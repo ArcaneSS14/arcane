@@ -12,6 +12,12 @@
   components:
   - type: Accentless
     removes:
+    # Arcane-Start
+    - type: OwOAccent
+    - type: VulpaAccent
+    - type: TajaranAccent
+    - type: MoldovanAccent
+    # Arcane-End
     - type: LizardAccent
     - type: MothAccent
     - type: ReplacementAccent
@@ -96,6 +102,16 @@
   - type: ReplacementAccent
     accent: liar
 
+# Arcane-Start
+- type: trait
+  id: MoldovanAccent
+  name: trait-moldovan-name
+  description: trait-moldovan-desc
+  category: SpeechTraits
+  cost: 1
+  components:
+  - type: MoldovanAccent
+# Arcane-End
 # 2 Cost
 
 - type: trait

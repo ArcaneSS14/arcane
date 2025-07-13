@@ -49,3 +49,5 @@ trait-newyork-desc = Разговаривай как крыса.
 trait-painnumbness-desc = Вы не чувствуете боли и не осознаёте, насколько вы ранены.
 trait-british-name = Британский акцент
 trait-british-desc = Изысканная речь, превозносящая вас над смердом.
+trait-moldovan-name = Молдавский диалект
+trait-moldovan-desc = Цыгания дам ын спацию космик!
