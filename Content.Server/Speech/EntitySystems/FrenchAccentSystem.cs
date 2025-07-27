@@ -13,6 +13,11 @@ public sealed class FrenchAccentSystem : EntitySystem
 {
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
 
+    // Arcane-Edit-Start
+    private static readonly Regex RegexK = new(@"к", RegexOptions.IgnoreCase);
+    private static readonly Regex RegexR = new(@"р", RegexOptions.IgnoreCase);
+    // Arcane-Edit-End
+
     private static readonly Regex RegexTh = new(@"th", RegexOptions.IgnoreCase);
     private static readonly Regex RegexStartH = new(@"(?<!\w)h", RegexOptions.IgnoreCase);
     private static readonly Regex RegexSpacePunctuation = new(@"(?<=\w\w)[!?;:](?!\w)", RegexOptions.IgnoreCase);
@@ -32,6 +37,13 @@ public sealed class FrenchAccentSystem : EntitySystem
 
         // replaces h with ' at the start of words.
         msg = RegexStartH.Replace(msg, "'");
+        // Arcane-Start
+        // replaces к with кх at the start of words.
+        msg = RegexK.Replace(msg, "кх");
+
+        // replaces р with х at the start of words.
+        msg = RegexR.Replace(msg, "х");
+        // Arcane-End
 
         // spaces out ! ? : and ;.
         msg = RegexSpacePunctuation.Replace(msg, " $&");
