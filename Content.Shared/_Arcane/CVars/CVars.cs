@@ -71,4 +71,10 @@ public sealed class ArtCVars
     // public static readonly CVarDef<bool> TTSClientEnabled =
     //     CVarDef.Create("tts.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
     #endregion
+
+    /// <summary>
+    /// Offer item.
+    /// </summary>
+    public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
+        CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

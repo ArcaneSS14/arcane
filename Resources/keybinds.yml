@@ -688,3 +688,6 @@ binds:
   type: State
   key: E
 # Orion-End
+- function: OfferItem # CorvaxGoob-Offer
+  type: State
+  key: H

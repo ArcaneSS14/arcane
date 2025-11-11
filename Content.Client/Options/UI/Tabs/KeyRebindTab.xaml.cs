@@ -206,6 +206,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.PosingRotatePositive);
             // Orion-End
 
+            AddButton(ContentKeyFunctions.OfferItem); // CorvaxGoob-Offer
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);
             AddButton(ContentKeyFunctions.SmartEquipBelt);
