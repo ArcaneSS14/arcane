@@ -441,6 +441,7 @@
     - GrenadeTriggersStatic
     - TapeRecorderStatic
     - MiscSignallersStatic
+    - HydroponicsStatic # CorvaxGoob
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityWeaponsStatic

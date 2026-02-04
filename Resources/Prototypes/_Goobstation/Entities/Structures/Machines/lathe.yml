@@ -290,6 +290,7 @@
     - PowerCellsStatic
     - LatheMiscStatic
     - PartsStatic
+    - HydroponicsStatic # CorvaxGoob
     - ChemistryStatic
     - TapeRecorderStatic
     - CondimentStatic
