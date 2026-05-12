@@ -23,33 +23,17 @@
       "name": "static"
     },
     {
-      "name": "smes-open",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
+      "name": "smes-open"
     },
     {
-      "name": "smes-oc0",
-      "delays": [
-        [
-          0.5,
-          0.3
-        ]
-      ]
+      "name": "smes-oc0"
     },
     {
       "name": "smes-oc1",
       "delays": [
         [
-          0.3,
-          0.3
+          0.5,
+          0.5
         ]
       ]
     },
@@ -57,8 +41,8 @@
       "name": "smes-oc2",
       "delays": [
         [
-          0.3,
-          0.3
+          0.5,
+          0.5
         ]
       ]
     },
@@ -87,7 +71,13 @@
       "name": "smes-op0"
     },
     {
-      "name": "smes-op1"
+      "name": "smes-op1",
+      "delays": [
+        [
+          1,
+          1
+        ]
+      ]
     },
     {
       "name": "smes-op2"
