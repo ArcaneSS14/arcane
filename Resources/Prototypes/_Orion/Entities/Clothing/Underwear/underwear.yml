@@ -285,3 +285,49 @@
   components:
   - type: Sprite
     sprite: _Orion/Clothing/Underwear/Underwear/thong_babydoll.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearpantiesSpiderman
+  name: panties spiderman
+  description: men's panties with a print of an ancient hero
+  components:
+  - type: Sprite
+    sprite: _Orion/Clothing/Underwear/Underwear/panties_with_spiderman.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearboxerwolf
+  name: boxer with wolf
+  description: brutal boxers with a wolf print
+  components:
+  - type: Sprite
+    sprite: _Orion/Clothing/Underwear/Underwear/boxer_wolf.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearboxerelephant
+  name: elephant boxers
+  description: Are you sure it's not a thong?!
+  components:
+  - type: Sprite
+    sprite: _Orion/Clothing/Underwear/Underwear/boxer_elephant.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearboxerfrance
+  name: france boxers
+  description: boxers with the print of the ancient country "France"
+  components:
+  - type: Sprite
+    sprite: _Orion/Clothing/Underwear/Underwear/boxer_france.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearboxermaidwithsuspenders
+  name: maid's boxer with suspenders
+  description: boxers for real men
+  components:
+  - type: Sprite
+    sprite: _Orion/Clothing/Underwear/Underwear/boxer_maidwithsuspenders.rsi
+
