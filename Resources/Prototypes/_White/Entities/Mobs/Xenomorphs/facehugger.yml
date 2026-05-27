@@ -60,6 +60,8 @@
       - Ghost
       - XenomorphEgg
       - FacehuggerImmune # Goobstation
+      tags:
+      - HumanoidXeno # Arcane
     damageOnImpact:
       types:
         Blunt: 15
