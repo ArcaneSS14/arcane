@@ -33,10 +33,10 @@ chat-emote-name-robotbeep = Робот
 chat-emote-name-yawn = Зевать
 chat-emote-name-snore = Храпеть
 # Arcane-Start
-Meow = мяукать
-Growl = рычать
-Purr = мурчать
-Mew = мявкать
+chat-emote-name-Meow = мяукать
+chat-emote-name-Growl = рычать
+chat-emote-name-Purr = мурчать
+chat-emote-name-Mew = мявкать
 # Arcane-End
 # Сообщение
 chat-emote-msg-scream = кричит!
