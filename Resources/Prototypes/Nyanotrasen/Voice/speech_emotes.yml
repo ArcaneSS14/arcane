@@ -31,7 +31,7 @@
 
 - type: emote
   id: Meow
-  name: Meow
+  name: chat-emote-name-Meow # Arcane-Edit
   category: Vocal
   icon: _Goobstation/Interface/Emotes/meow.png
   whitelist:
@@ -41,7 +41,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-meows"]
+  chatMessages: ["chat-emote-msg-meows"] # Arcane-Edit
   chatTriggers:
     - meow
     - meows
@@ -63,7 +63,7 @@
 
 - type: emote
   id: Mew
-  name: Mew
+  name: chat-emote-name-Mew # Arcane-Edit
   category: Vocal
   icon: _Goobstation/Interface/Emotes/mew.png
   whitelist:
@@ -73,7 +73,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-mews"]
+  chatMessages: ["chat-emote-msg-mews"] # Arcane-Edit
   chatTriggers:
     - mew
     - mews
@@ -89,7 +89,7 @@
 
 - type: emote
   id: Growl
-  name: Growl
+  name: chat-emote-name-Growl # Arcane-Edit
   category: Vocal
   icon: _Goobstation/Interface/Emotes/growl.png
   whitelist:
@@ -99,7 +99,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-growls"]
+  chatMessages: ["chat-emote-msg-growls"] # Arcane-Edit
   chatTriggers:
     - growl
     - growls
@@ -117,7 +117,7 @@
 
 - type: emote
   id: Purr
-  name: Purr
+  name: chat-emote-name-Purr # Arcane-Edit
   category: Vocal
   icon: _Goobstation/Interface/Emotes/purr.png
   whitelist:
@@ -127,7 +127,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-purrs"]
+  chatMessages: ["chat-emote-msg-purrs"] # Arcane-Edit
   chatTriggers:
     - purr
     - purrs
@@ -139,4 +139,4 @@
     - муркнул
     - муркнула
     - мурчание
-    # Arcane End
+    # Arcane-End
