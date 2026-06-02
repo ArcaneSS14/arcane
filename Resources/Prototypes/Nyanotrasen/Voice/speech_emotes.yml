@@ -41,7 +41,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [meows.]
+  chatMessages: ["chat-emote-msg-meows"]
   chatTriggers:
     - meow
     - meows
@@ -53,6 +53,13 @@
     - nyas
     - mraow
     - mraows
+    # Arcane-Start
+    - мяу
+    - мяукает
+    - мяукнул
+    - мяукнула
+    - мяуканье
+    # Arcane-End
 
 - type: emote
   id: Mew
@@ -66,12 +73,19 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [mews.]
+  chatMessages: ["chat-emote-msg-mews"]
   chatTriggers:
     - mew
     - mews
     - mewing
     - mewed
+    # Arcane-Start
+    - мя
+    - мякает
+    - мякнул
+    - мякнула
+    - мяканье
+    # Arcane-End
 
 - type: emote
   id: Growl
@@ -85,12 +99,21 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [growls.]
+  chatMessages: ["chat-emote-msg-growls"]
   chatTriggers:
     - growl
     - growls
     - growling
     - growled
+    # Arcane-Start
+    - рычит
+    - рыкнул
+    - рыкнула
+    - порыкивает
+    - порыкнула
+    - порыкнул
+    - рычание
+    # Arcane-End
 
 - type: emote
   id: Purr
@@ -104,9 +127,16 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [purrs.]
+  chatMessages: ["chat-emote-msg-purrs"]
   chatTriggers:
     - purr
     - purrs
     - purring
     - purred
+    # Arcane-Start
+    - мурчит
+    - муркает
+    - муркнул
+    - муркнула
+    - мурчание
+    # Arcane End
