@@ -35,24 +35,24 @@ CHANGELOG_RSS_KEY = os.environ.get("CHANGELOG_RSS_KEY")
 
 # Change these to suit your server settings
 # https://docs.fabfile.org/en/stable/getting-started.html#run-commands-via-connections-and-run
-SSH_HOST = "136.243.32.120"
-SSH_USER = "changelog-rss"
+SSH_HOST = "178.20.208.239"
+SSH_USER = "ss14changelog"
 SSH_PORT = 22
 RSS_FILE = "upload/changelog.xml"
 XSL_FILE = "stylesheet.xsl"
 HOST_KEYS = [
-    "AAAAC3NzaC1lZDI1NTE5AAAAIGpFfKfwiDlKdf3t8A+pwupschcRnQfBf9Mj/EbCGKxB"
+    "AAAAC3NzaC1lZDI1NTE5AAAAICaU3aq4p5xSGlpUeu5htFmbnxpg3JYSIxKxxWhGOO9G"
 ]
 
 # RSS feed parameters, change these
-FEED_TITLE       = "Goob Station Changelog"
-FEED_LINK        = "https://github.com/Goob-Station/Goob-Station"
-FEED_DESCRIPTION = "Changelog for Goob Station, a fork of Space Station 14."
+FEED_TITLE       = "Arcane Station Changelog"
+FEED_LINK        = "https://github.com/ArcaneSS14/arcane-station"
+FEED_DESCRIPTION = "Changelog for Arcane Station, a fork of Space Station 14."
 FEED_LANGUAGE    = "en-US"
-FEED_GUID_PREFIX = "ss14-changelog-goob-"
-FEED_URL         = "https://rss.goobstation.com/changelog.xml"
+FEED_GUID_PREFIX = "ss14-changelog-arcane-"
+FEED_URL         = "https://changelog.arcane-station.ru/changelog.xml"
 
-CHANGELOG_FILE = "Resources/Changelog/GoobChangelog.yml"
+CHANGELOG_FILE = "Resources/Changelog/Changelog.yml"
 
 TYPES_TO_EMOJI = {
     "Fix":    "🐛",
