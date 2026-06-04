@@ -33,6 +33,8 @@ MAX_ITEM_AGE = timedelta(days=30)
 # Set as a repository secret.
 CHANGELOG_RSS_KEY = os.environ.get("CHANGELOG_RSS_KEY")
 
+# Eaaaah
+
 # Change these to suit your server settings
 # https://docs.fabfile.org/en/stable/getting-started.html#run-commands-via-connections-and-run
 SSH_HOST = "178.20.208.239"
