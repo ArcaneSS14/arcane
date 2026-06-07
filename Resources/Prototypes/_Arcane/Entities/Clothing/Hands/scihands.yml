@@ -1,0 +1,15 @@
+- type: entity
+  parent: [ClothingHandsButcherable, BaseScienceContraband]
+  id: ClothingHandsGlovesScihands
+  name: Scihands gloves
+  description: Glory to Science!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Hands/Gloves/scihands.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Hands/Gloves/scihands.rsi
+  - type: Insulated # Arcane-Station
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-black
+  - type: FingerprintMask

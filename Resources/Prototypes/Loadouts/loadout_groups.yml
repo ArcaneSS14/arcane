@@ -1273,7 +1273,8 @@
   loadouts:
   - LatexGloves
   - PurpleGloves
-  - RobohandsGloves
+ # - RobohandsGloves # Arcane-Station
+  - ScihandsGloves # Arcane-Station
 
 - type: loadoutGroup
   id: ScientistPDA

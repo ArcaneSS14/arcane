@@ -1,0 +1,4 @@
+- type: loadout
+  id: ScihandsGloves
+  equipment:
+    gloves: ClothingHandsGlovesScihands

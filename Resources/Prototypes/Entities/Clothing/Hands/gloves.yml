@@ -330,7 +330,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: [ClothingHandsButcherable, BaseScienceContraband] # Arcane-Station
   id: ClothingHandsGlovesRobohands
   name: robohands gloves
   description: Beep boop borp!
@@ -339,6 +339,7 @@
     sprite: Clothing/Hands/Gloves/robohands.rsi
   - type: Clothing
     sprite: Clothing/Hands/Gloves/robohands.rsi
+  - type: Insulated # Arcane-Station
   - type: Fiber
     fiberMaterial: fibers-leather
     fiberColor: fibers-black
