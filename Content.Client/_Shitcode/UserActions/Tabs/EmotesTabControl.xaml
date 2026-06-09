@@ -5,16 +5,21 @@
     <PanelContainer StyleClasses="BackgroundDark">
         <ScrollContainer VerticalExpand="True"
                          HorizontalExpand="True"
-                         Margin="2"
+                         Margin="0"
                          MinHeight="100"
                          HScrollEnabled="False">
             <BoxContainer Orientation="Vertical"
                           HorizontalExpand="True"
-                          Margin="2">
-                <GridContainer Name="EmotesList" Columns="3" HorizontalExpand="True">
+                          Margin="4 4 0 4">
+                <!-- # Arcane-Edit -->
+                <GridContainer Name="EmotesList" 
+                               Columns="3" 
+                               HorizontalExpand="True"
+                               VerticalExpand="True">
                 </GridContainer>
             </BoxContainer>
         </ScrollContainer>
     </PanelContainer>
 
 </controls:EmotesTabControl>
+
