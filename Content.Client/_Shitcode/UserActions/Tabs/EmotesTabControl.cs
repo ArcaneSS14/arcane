@@ -3,8 +3,9 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System;
 using System.Linq;
-using Content.Goobstation.UIKit.UserActions.Controls;
+using Content.Client._Shitcode.UserActions.Controls;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Speech;
@@ -53,6 +54,8 @@ public sealed partial class EmotesTabControl : BaseTabControl
         if (emotes.Count == 0)
             return false;
 
+        EmotesList.Columns = 3; // # Arcane-Edit
+
         foreach (var emote in emotes)
         {
             var button = CreateEmoteButton(emote);
@@ -62,21 +65,11 @@ public sealed partial class EmotesTabControl : BaseTabControl
         return true;
     }
 
-    private BoxContainer CreateNewRow()
-    {
-        return new BoxContainer
-        {
-            Orientation = BoxContainer.LayoutOrientation.Horizontal,
-            HorizontalExpand = true,
-        };
-    }
-
     private IconButton CreateEmoteButton(EmotePrototype emote)
     {
         var button = new IconButton(Loc.GetString(emote.Name));
         button.Icon.Texture = emote.Icon.Frame0();
         button.OnPressed += _ => OnPlayEmote(new ProtoId<EmotePrototype>(emote.ID));
-
         return button;
     }
 
@@ -112,4 +105,6 @@ public sealed partial class EmotesTabControl : BaseTabControl
     protected override void Resized()
     {
     }
+}
+
 }
