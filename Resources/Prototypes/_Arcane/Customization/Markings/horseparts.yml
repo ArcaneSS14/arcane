@@ -5,7 +5,7 @@
   speciesRestriction: [Human, Dwarf, Felinid, Vulpkanin, SlimePerson]
   sprites:
   - sprite: _Arcane/Mobs/Customization/horse_markings.rsi
-    state: horse_tail_standart
+    state: horse_tail_standard
 
 - type: marking
   id: HorseTailAnimated
