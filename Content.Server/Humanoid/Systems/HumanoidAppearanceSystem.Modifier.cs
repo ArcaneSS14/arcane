@@ -12,6 +12,7 @@
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.Humanoid;
+using Content.Shared._Arcane.Wagging; // Arcane
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
@@ -110,6 +111,10 @@ public sealed partial class HumanoidAppearanceSystem
                         component.CustomBaseLayers
                     ));
         }
+
+        // Arcane-Start
+        RaiseLocalEvent(uid, new HumanoidMarkingsUpdatedEvent());
+        // Arcane-End
 
     }
 }

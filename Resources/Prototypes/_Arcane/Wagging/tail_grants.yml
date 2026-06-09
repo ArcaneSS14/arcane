@@ -1,0 +1,4 @@
+- type: waggingTailGrant
+  id: AddingWaggingComponent
+  tailMarkings:
+  - HorseTail

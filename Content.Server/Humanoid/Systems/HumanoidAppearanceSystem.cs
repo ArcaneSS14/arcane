@@ -19,6 +19,7 @@
 
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared._Arcane.Wagging; // Arcane
 using Content.Shared.Verbs;
 
 namespace Content.Server.Humanoid;
@@ -105,6 +106,10 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
 
         humanoid.MarkingSet.Replace(category, index, marking);
         Dirty(uid, humanoid);
+
+        // Arcane-Start
+        RaiseLocalEvent(uid, new HumanoidMarkingsUpdatedEvent());
+        // Arcane-End
     }
 
     /// <summary>
