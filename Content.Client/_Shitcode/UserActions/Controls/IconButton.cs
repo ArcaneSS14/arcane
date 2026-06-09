@@ -15,59 +15,57 @@ public class IconButton : Button
     private readonly BoxContainer _mainContainer;
 
     public readonly TextureRect Icon;
-    public readonly RichTextLabel Label;
-    //public readonly PanelContainer HighlightRect;
+    public readonly Label Label; // # Arcane-Edit
 
     public IconButton(string name)
     {
-        MinSize = new Vector2(0, 24);
+        // # Arcane-Edit-Start
+        HorizontalExpand = true;
+        MinSize = new Vector2(120, 32);
+        MaxSize = new Vector2(float.PositiveInfinity, 32);
+        // # Arcane-Edit-End
         Margin = new Thickness(1);
         HorizontalAlignment = HAlignment.Left;
 
         _mainContainer = new BoxContainer
         {
             Orientation = LayoutOrientation.Horizontal,
-            //HorizontalExpand = true,
-            MinSize = new Vector2(0, 24),
-            Margin = new Thickness(1)
+            // # Arcane-Edit-Start
+            HorizontalExpand = true,
+            MinSize = new Vector2(120, 32),
+            MaxSize = new Vector2(float.PositiveInfinity, 32),
+            // # Arcane-Edit-End
+            Margin = new Thickness(0)
         };
         AddChild(_mainContainer);
 
         Icon = new TextureRect
         {
-            HorizontalExpand = true,
+            HorizontalExpand = false,
             VerticalExpand = true,
             HorizontalAlignment = HAlignment.Left,
             VerticalAlignment = VAlignment.Center,
             Stretch = TextureRect.StretchMode.Scale,
-            Margin = new Thickness(0, 0, 5, 0),
+            Margin = new Thickness(4, 0, 4, 0),
             TextureScale = new Vector2(1, 1),
-            MinSize = new Vector2(24, 24),
-            MaxSize = new Vector2(24, 24),
+            MinSize = new Vector2(20, 20),
+            MaxSize = new Vector2(20, 20),
             Visible = true
         };
         _mainContainer.AddChild(Icon);
 
-        Label = new RichTextLabel
+        // # Arcane-Edit-Start
+        Label = new Label
         {
             HorizontalExpand = true,
             VerticalExpand = true,
             HorizontalAlignment = HAlignment.Left,
             VerticalAlignment = VAlignment.Center,
-            Margin = new Thickness(1),
+            Margin = new Thickness(0, 0, 6, 0),
             Text = name,
             Visible = true
         };
+        // # Arcane-Edit-End
         _mainContainer.AddChild(Label);
-    }
-
-    protected override void MouseExited()
-    {
-        base.MouseExited();
-    }
-
-    protected override void MouseEntered()
-    {
-        base.MouseEntered();
     }
 }
