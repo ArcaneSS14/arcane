@@ -1,0 +1,6 @@
+- type: trait
+  id: CatNature
+  name: trait-catnature-name
+  description: trait-catnature-desc
+  components:
+  - type: CatNature
