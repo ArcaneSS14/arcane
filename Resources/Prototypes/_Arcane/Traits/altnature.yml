@@ -4,3 +4,10 @@
   description: trait-catnature-desc
   components:
   - type: CatNature
+    MeowSound:
+      collection: FelinidMeows
+    MewSound: 
+      collection: FelinidMews
+    GrowlSound: /Audio/Nyanotrasen/Voice/Felinid/cat_growl1.ogg
+    PurrSound:
+      collection: FelinidPurrs

@@ -38,6 +38,8 @@
     tags:
     - FelinidEmotes
     - HarpyEmotes
+    components:
+    - CatNature
   blacklist:
     components:
     - BorgChassis
@@ -80,6 +82,8 @@
     tags:
     - FelinidEmotes
     - HarpyEmotes
+    components:
+    - CatNature
   blacklist:
     components:
     - BorgChassis
@@ -112,6 +116,7 @@
     - HarpyEmotes
   blacklist:
     components:
+    - VulpEmotes
     - BorgChassis
   chatMessages: ["chat-emote-msg-growl"]
   chatTriggers:
@@ -140,6 +145,8 @@
     tags:
     - FelinidEmotes
     - HarpyEmotes
+    components:
+    - CatNature
   blacklist:
     components:
     - BorgChassis
