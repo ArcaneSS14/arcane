@@ -106,5 +106,3 @@ public sealed partial class EmotesTabControl : BaseTabControl
     {
     }
 }
-
-}
