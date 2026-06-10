@@ -1,7 +1,5 @@
 using Robust.Shared.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.Manager.Attributes;
 
 namespace Content.Shared._Arcane.Speech;

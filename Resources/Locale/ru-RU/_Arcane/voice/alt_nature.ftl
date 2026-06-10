@@ -1,3 +1,3 @@
 trait-catnature-name = Кошачья натура
-trait-catnature-desc = Кажется в Вас пробудилось что-то кошачее!
+trait-catnature-desc = Кажется, в вас пробудилось что-то кошачье!
 trait-category-nature = Дополнительная натура
