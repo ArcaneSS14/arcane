@@ -100,13 +100,22 @@ public sealed class MarkingGrantComponentSystem : EntitySystem
             foreach (var marking in markings)
             {
                 foreach (var (name, entry) in GetMarkingComponents(marking.MarkingId))
+                {
+                    // We check if this component has been added before.
+                    if (desired.TryGetValue(name, out var existingEntry))
+                    {
+                        // We output a warning to the log. We show the component name and old/new data for debugging.
+                        Logger.Warning($"Component conflict in GetDesiredComponents! Component '{name}' is being overwritten. " +
+                                    $"Existing entry data: {existingEntry.Component}, New entry from marking '{marking.MarkingId}': {entry.Component}");
+                    }
+
                     desired[name] = entry;
+                }
             }
         }
 
         return desired;
     }
-
     private IEnumerable<KeyValuePair<string, EntityPrototype.ComponentRegistryEntry>> GetMarkingComponents(string markingId)
     {
         if (!_prototype.TryIndex<MarkingPrototype>(markingId, out var prototype))
