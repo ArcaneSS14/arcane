@@ -17,7 +17,6 @@ using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Robust.Shared.GameObjects;    // Arcane
 
 namespace Content.Server.Humanoid;
 
@@ -25,15 +24,6 @@ public sealed partial class HumanoidAppearanceSystem
 {
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    //Arcane-Start
-        public override void Initialize()
-    {
-        base.Initialize();
-
-        // Subscribing to component changes to isolate Arcane label update logic
-        SubscribeLocalEvent<ref EntityDirtiedEvent>(OnEntityDirtied);
-    }
-    //Arcane-End
 
     private void OnVerbsRequest(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<Verb> args)
     {
@@ -121,18 +111,8 @@ public sealed partial class HumanoidAppearanceSystem
                         component.CustomBaseLayers
                     ));
         }
-    }
-    /// Arcane-Start
-    /// <summary>
-    /// Intercepted entity change event. Fires automatically after calling Dirty(uid, component) within OnMarkingsSet or OnBaseLayersSet.
-    /// </summary>
-    private void OnEntityDirtied(ref EntityDirtiedEvent ev)
-    {
-        if (!TryComp<HumanoidAppearanceComponent>(ev.Uid, out var humanoid))
-            return;
 
-        // We call the Arcane event without directly interfering with the logic of the OnMarkingsSet / OnBaseLayersSet methods
-        RaiseLocalEvent(ev.Uid, new HumanoidMarkingsUpdatedEvent());
-    /// Arcane-End
+        RaiseLocalEvent(uid, new HumanoidMarkingsUpdatedEvent()); //Arcane
+
     }
 }
