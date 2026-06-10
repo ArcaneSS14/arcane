@@ -3,6 +3,8 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human, Dwarf, Felinid, Vulpkanin, SlimePerson]
+  components:
+  - type: Wagging
   sprites:
   - sprite: _Arcane/Mobs/Customization/horse_markings.rsi
     state: horse_tail_standard

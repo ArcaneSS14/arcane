@@ -65,6 +65,14 @@ namespace Content.Shared.Humanoid.Markings
         public string? Shader { get; private set; } = null;
         /// Impstation end
 
+        // Arcane-Edit-Start
+        /// <summary>
+        /// Components granted to the mob while this marking is present.
+        /// </summary>
+        [DataField]
+        public ComponentRegistry Components { get; private set; } = new();
+        // Arcane-Edit-End
+
         public Marking AsMarking()
         {
             return new Marking(ID, Sprites.Count);

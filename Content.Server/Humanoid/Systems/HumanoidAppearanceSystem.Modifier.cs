@@ -9,10 +9,10 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server._Arcane.Markings;  // Arcane
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.Humanoid;
-using Content.Shared._Arcane.Wagging; // Arcane
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
@@ -112,9 +112,7 @@ public sealed partial class HumanoidAppearanceSystem
                     ));
         }
 
-        // Arcane-Start
-        RaiseLocalEvent(uid, new HumanoidMarkingsUpdatedEvent());
-        // Arcane-End
+        RaiseLocalEvent(uid, new HumanoidMarkingsUpdatedEvent()); //Arcane
 
     }
 }
