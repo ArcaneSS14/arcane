@@ -1,6 +1,6 @@
 using Content.Server.Actions;
 using Content.Server.Wagging;
-using Content.Shared._Arcane.Wagging;
+using Content.Server._Arcane.Wagging;
 using Content.Shared._Shitmed.Humanoid.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -20,7 +20,7 @@ public sealed class WaggingTailGrantSystem : EntitySystem
 
     private const string AnimatedSuffix = "Animated";
 
-    private readonly HashSet<string> _eligibleTailMarkings = new();
+    private readonly  HashSet<ProtoId<MarkingPrototype>> _eligibleTailMarkings = new();
 
     public override void Initialize()
     {
@@ -94,7 +94,7 @@ public sealed class WaggingTailGrantSystem : EntitySystem
         return false;
     }
 
-    private bool IsEligibleTailMarking(string markingId)
+   private bool IsEligibleTailMarking(ProtoId<MarkingPrototype> markingId)
     {
         if (_eligibleTailMarkings.Contains(markingId))
             return true;
