@@ -139,9 +139,9 @@ public sealed class MarkingGrantComponentSystem : EntitySystem
             // Added a log to debug missing base prototype
             Log.Warning($"Animated marking '{markingId}' has no components and its base prototype '{baseMarkingId}' could not be found.");
             yield break;
-    }
+        }
 
     foreach (var pair in basePrototype.Components)
         yield return pair;
-}
+    }
 }
