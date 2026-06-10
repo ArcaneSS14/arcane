@@ -20,7 +20,7 @@ public sealed class WaggingTailGrantSystem : EntitySystem
 
     private const string AnimatedSuffix = "Animated";
 
-    private readonly  HashSet<ProtoId<MarkingPrototype>> _eligibleTailMarkings = new();
+     private readonly  HashSet<ProtoId<MarkingPrototype>> _eligibleTailMarkings = new();
 
     public override void Initialize()
     {
@@ -41,7 +41,7 @@ public sealed class WaggingTailGrantSystem : EntitySystem
         UpdateWaggingGrant(ent, ent.Comp);
     }
 
-    private void OnMarkingsUpdated(Entity<HumanoidAppearanceComponent> ent, ref HumanoidMarkingsUpdatedEvent args)
+    private readonly HashSet<string> _eligibleTailMarkings = new();
     {
         UpdateWaggingGrant(ent, ent.Comp);
     }
@@ -94,7 +94,7 @@ public sealed class WaggingTailGrantSystem : EntitySystem
         return false;
     }
 
-   private bool IsEligibleTailMarking(ProtoId<MarkingPrototype> markingId)
+    private bool IsEligibleTailMarking(string markingId)
     {
         if (_eligibleTailMarkings.Contains(markingId))
             return true;
