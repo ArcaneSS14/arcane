@@ -42,6 +42,8 @@ public sealed class WaggingTailGrantSystem : EntitySystem
     }
 
     private readonly HashSet<string> _eligibleTailMarkings = new();
+
+    private void OnMarkingsUpdated(Entity<HumanoidAppearanceComponent> ent, ref HumanoidMarkingsUpdatedEvent args)
     {
         UpdateWaggingGrant(ent, ent.Comp);
     }
