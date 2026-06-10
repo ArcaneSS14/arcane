@@ -61,13 +61,6 @@ public sealed class MarkingGrantComponentSystem : EntitySystem
 
             EntityManager.AddComponents(uid, new ComponentRegistry { { componentName, entry } }, removeExisting: false);
             granted.Granted.Add(componentName);
-
-            if (registration.Type == typeof(WaggingComponent)
-                && TryComp(uid, out WaggingComponent? wagging)
-                && wagging.ActionEntity == null)
-            {
-                _actions.AddAction(uid, ref wagging.ActionEntity, wagging.Action, uid);
-            }
         }
 
         foreach (var componentName in granted.Granted.ToList())
