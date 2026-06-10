@@ -98,7 +98,7 @@ public sealed class MarkingGrantComponentSystem : EntitySystem
                     if (desired.TryGetValue(name, out var existingEntry))
                     {
                         // We output a warning to the log. We show the component name and old/new data for debugging.
-                        Logger.Warning($"Component conflict in GetDesiredComponents! Component '{name}' is being overwritten. " +
+                        Log.Warning($"Component conflict in GetDesiredComponents! Component '{name}' is being overwritten. " +
                                     $"Existing entry data: {existingEntry.Component}, New entry from marking '{marking.MarkingId}': {entry.Component}");
                     }
 
@@ -132,9 +132,9 @@ public sealed class MarkingGrantComponentSystem : EntitySystem
             // Added a log to debug missing base prototype
             Log.Warning($"Animated marking '{markingId}' has no components and its base prototype '{baseMarkingId}' could not be found.");
             yield break;
-        }
+            }
 
-    foreach (var pair in basePrototype.Components)
-        yield return pair;
-}
+        foreach (var pair in basePrototype.Components)
+            yield return pair;
+    }
 }
