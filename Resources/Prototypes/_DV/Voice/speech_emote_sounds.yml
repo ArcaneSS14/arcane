@@ -196,7 +196,7 @@
     Scream:
       collection: VulpkaninScreams # EE
     Laugh:
-      collection: FemaleLaugh
+      collection: VulpkaninFemaleLaugh
     Sneeze:
       collection: FemaleSneezes
     Cough:
@@ -246,7 +246,7 @@
     Scream:
       collection: VulpkaninScreams # EE
     Laugh:
-      collection: MaleLaugh
+      collection: VulpkaninMaleLaugh
     Sneeze:
       collection: MaleSneezes
     Cough:

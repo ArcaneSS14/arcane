@@ -1,0 +1,12 @@
+- type: soundCollection
+  id: VulpkaninMaleLaugh
+  files:
+    - /Audio/Voice/Human/manlaugh1.ogg
+    - /Audio/Voice/Human/manlaugh2.ogg
+    - /Audio/_Arcane/Voice/Vulpkanin/Vulpkaninlaugh.ogg
+
+- type: soundCollection
+  id: VulpkaninFemaleLaugh
+  files:
+    - /Audio/Voice/Human/womanlaugh.ogg
+    - /Audio/_Arcane/Voice/Vulpkanin/Vulpkaninlaugh.ogg
