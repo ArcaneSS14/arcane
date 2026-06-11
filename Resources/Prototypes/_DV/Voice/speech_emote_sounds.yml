@@ -196,10 +196,10 @@
     Scream:
       collection: VulpkaninScreams # EE
     # Arcane-Edit-Start
-+    Laugh:
-+      collection: VulpkaninFemaleLaugh
-+    VulpkaninLaugh:
-+      collection: VulpkaninFemaleLaugh
+    Laugh:
+      collection: VulpkaninFemaleLaugh
+    VulpkaninLaugh:
+      collection: VulpkaninFemaleLaugh
     # Arcane-Edit-End
     Sneeze:
       collection: FemaleSneezes
@@ -250,10 +250,10 @@
     Scream:
       collection: VulpkaninScreams # EE
     # Arcane-Edit-Start
-+    Laugh:
-+      collection: VulpkaninMaleLaugh
-+    VulpkaninLaugh:
-+      collection: VulpkaninMaleLaugh
+    Laugh:
+      collection: VulpkaninMaleLaugh
+    VulpkaninLaugh:
+      collection: VulpkaninMaleLaugh
     # Arcane-Edit-End    # Arcane-Edit
     Sneeze:
       collection: MaleSneezes
