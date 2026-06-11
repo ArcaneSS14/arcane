@@ -1,0 +1,8 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadCowHorns
+  name: cow horns
+  description: Small cow horns with additional accessories!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/cow_horns.rsi

@@ -65,6 +65,12 @@ namespace Content.Server.Voting.Managers
         private RoleSystem? _roleSystem;
         private GameTicker? _gameTicker;
 
+        // Arcane-start
+        const int MaxStorySize = 5;
+        const int PresetAvailable = 2; // Макс кол-во раундов, после которых убираем режим из ротации
+        private List<string> _gameruleStory = new();
+        // Arcane-end
+
         private static readonly Dictionary<StandardVoteType, CVarDef<bool>> VoteTypesToEnableCVars = new()
         {
             {StandardVoteType.Restart, CCVars.VoteRestartEnabled},
@@ -290,6 +296,12 @@ namespace Content.Server.Voting.Managers
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset vote finished: {picked}");
                 var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
                 ticker.SetGamePreset(picked);
+
+                // Arcane-start
+                _gameruleStory.Add(picked);
+                while (_gameruleStory.Count > MaxStorySize)
+                    _gameruleStory.RemoveAt(0);
+                // Arcane-end
             };
         }
 
@@ -628,6 +640,11 @@ namespace Content.Server.Voting.Managers
 
                 if(_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
                     continue;
+
+                // Arcane-start
+                if (_gameruleStory.Count(el => el == preset.ID) >= PresetAvailable)
+                    continue;
+                // Arcane-end
 
                 presets[preset.ID] = preset.ModeTitle;
             }

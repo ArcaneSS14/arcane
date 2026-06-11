@@ -1,0 +1,8 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingFurCape
+  name: Fur cape
+  description: The perfect addition to the look!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Cape/furcape.rsi

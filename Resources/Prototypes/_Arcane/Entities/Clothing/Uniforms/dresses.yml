@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformDressesWithFlowers
+  name: Dresses with flowers
+  description: Black dress with bright flowers. Something is clearly missing.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Dresses/dresseswithflowers.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Dresses/dresseswithflowers.rsi

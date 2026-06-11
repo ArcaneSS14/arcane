@@ -43,3 +43,21 @@
   - type: Sprite
     sprite: _Arcane/Clothing/Underwear/Underwear/boxer_maidwithsuspenders.rsi
 
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearWarmThongs
+  name: warm thongs
+  description: Warm thongs with fur lining.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/warm_thongs.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearPussystickers
+  name: pussy stickers
+  description: Stickers on the most intimate place for your perverted pleasures.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/pussy_stickers.rsi

@@ -37,7 +37,7 @@ public sealed partial class CCVars
     ///     See vote.enabled, but specific to preset votes
     /// </summary>
     public static readonly CVarDef<bool> VotePresetEnabled =
-        CVarDef.Create("vote.preset_enabled", true, CVar.SERVERONLY);
+        CVarDef.Create("vote.preset_enabled", false, CVar.SERVERONLY); // Arcane - starting by AutoVotingSystem
 
     /// <summary>
     ///     See vote.enabled, but specific to map votes
@@ -67,7 +67,7 @@ public sealed partial class CCVars
     ///     Sets the duration of the map vote timer.
     /// </summary>
     public static readonly CVarDef<int>
-        VoteTimerMap = CVarDef.Create("vote.timermap", 90, CVar.SERVERONLY);
+        VoteTimerMap = CVarDef.Create("vote.timermap", 120, CVar.SERVERONLY); // Arcane - because always starting on RoundRestartCleanupEvent
 
     /// <summary>
     ///     Sets the duration of the restart vote timer.
@@ -79,7 +79,7 @@ public sealed partial class CCVars
     ///     Sets the duration of the gamemode/preset vote timer.
     /// </summary>
     public static readonly CVarDef<int>
-        VoteTimerPreset = CVarDef.Create("vote.timerpreset", 30, CVar.SERVERONLY);
+        VoteTimerPreset = CVarDef.Create("vote.timerpreset", 120, CVar.SERVERONLY); // Arcane - because always starting on RoundRestartCleanupEvent
 
     /// <summary>
     ///     Sets the duration of the map vote timer when ALONE.

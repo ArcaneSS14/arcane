@@ -22,3 +22,8 @@
   id: boxermaidwithsuspenders
   equipment:
     underwear: ClothingUnderwearboxermaidwithsuspenders
+
+- type: loadout
+  id: WarmThongs
+  equipment:
+    underwear: ClothingUnderwearWarmThongs

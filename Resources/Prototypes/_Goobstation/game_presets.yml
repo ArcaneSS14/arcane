@@ -160,10 +160,10 @@
   name: sleeper-title
   description: sleeper-description
   showInVote: true
-  minPlayers: 5
+  # minPlayers: 5 Arcane
   rules:
     - CalmDynamic
-    - SubGamemodesRule
+    # - SubGamemodesRule Arcane
     - RareIonStormScheduler
     - SpaceTrafficControlFriendlyEventScheduler
 
@@ -227,7 +227,7 @@
     - survivalnew
   name: survivalplus-title
   description: survivalplus-description
-  showInVote: true
+  showInVote: false # Arcane
   rules:
     - SecretPlusRampingMid
 
@@ -269,7 +269,7 @@
     - Bare
   name: secretplus-lowpop-title
   description: secretplus-lowpop-description
-  showInVote: true
+  showInVote: false # Arcane
   maxPlayers: 40
   rules:
     - SecretPlusLowpop

@@ -142,6 +142,10 @@
   - SwimmingBlack
   - SwimmingBlue
   - SwimmingRed
+  # Arcane-Start
+  - WarmBra
+  - CowSwimsuit
+  # Arcane-End
 
 - type: loadoutGroup
   id: Underwear
@@ -186,6 +190,7 @@
   - boxerelephant
   - boxerfrance
   - boxermaidwithsuspenders
+  - WarmThongs
   # Arcane-end
 
 - type: loadoutGroup

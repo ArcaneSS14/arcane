@@ -1,0 +1,20 @@
+# PuroSlavKing
+- type: customGhost
+  parent: CkeyPersonal
+  id: VecortysGhost
+  restrictions:
+  - !type:CkeyRestriction
+    ckey: [ Vecortys ]
+  entity: MobObserverVecortys
+
+- type: entity
+  id: MobObserverVecortys
+  parent: AdminObserver
+  categories: [ HideSpawnMenu ]
+  description: Прямо тут! Прямо сейчас!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Ghosts/ckey/Vecortys.rsi
+    color: "#ffffff80" # 0.5 alpha
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 22

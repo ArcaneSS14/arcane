@@ -242,7 +242,7 @@
   name: death-match-title
   description: death-match-description
   maxPlayers: 15
-  showInVote: true
+  showInVote: false # Arcane
   isMiniGame: true # Orion
   supportedMaps: DeathMatchMapPool
   rules:
