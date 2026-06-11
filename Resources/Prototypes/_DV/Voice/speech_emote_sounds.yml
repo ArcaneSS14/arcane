@@ -195,8 +195,12 @@
   sounds:
     Scream:
       collection: VulpkaninScreams # EE
-    Laugh:
-      collection: VulpkaninFemaleLaugh
+    # Arcane-Edit-Start
++    Laugh:
++      collection: VulpkaninFemaleLaugh
++    VulpkaninLaugh:
++      collection: VulpkaninFemaleLaugh
+    # Arcane-Edit-End
     Sneeze:
       collection: FemaleSneezes
     Cough:
@@ -245,8 +249,12 @@
   sounds:
     Scream:
       collection: VulpkaninScreams # EE
-    Laugh:
-      collection: VulpkaninMaleLaugh
+    # Arcane-Edit-Start
++    Laugh:
++      collection: VulpkaninMaleLaugh
++    VulpkaninLaugh:
++      collection: VulpkaninMaleLaugh
+    # Arcane-Edit-End    # Arcane-Edit
     Sneeze:
       collection: MaleSneezes
     Cough:
