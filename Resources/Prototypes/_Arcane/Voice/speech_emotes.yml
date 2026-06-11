@@ -4,8 +4,6 @@
   category: Vocal
   icon: Interface/Emotes/laugh.png
   whitelist:
-    tags:
-    - VulpEmotes
   blacklist:
     components:
     - BorgChassis
