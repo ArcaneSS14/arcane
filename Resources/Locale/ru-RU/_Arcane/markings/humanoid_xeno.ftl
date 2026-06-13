@@ -22,3 +22,6 @@ marking-HumanoidXenoTracheasRavager = Трахеи разрушителя
 marking-HumanoidXenoLegsPredalien = Ноги предалиена
 marking-HumanoidXenoArmsPredalien = Руки предалиена
 marking-HumanoidXenoArmsRavager = Руки разрушителя
+marking-HumanoidXenoTailRen = Хвост Рен
+marking-HumanoidXenoTracheasRen = Трахеи Рен
+marking-HumanoidXenoHeadRen = Голова Рен

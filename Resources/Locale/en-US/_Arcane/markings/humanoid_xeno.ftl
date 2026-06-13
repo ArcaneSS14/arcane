@@ -5,3 +5,6 @@ marking-HumanoidXenoHeadPretor = Praetorian head
 marking-HumanoidXenoHeadQueen = Queen head
 marking-HumanoidXenoHeadShine = Head shine
 marking-HumanoidXenoChestTubes = Chest tubes
+marking-HumanoidXenoTailRen = Ren Tail
+marking-HumanoidXenoTracheasRen = Ren Tracheas
+marking-HumanoidXenoHeadRen = Ren Head

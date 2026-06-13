@@ -269,3 +269,41 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/arms.rsi
     state: ravager_arms
+
+- type: marking
+  id: HumanoidXenoTailRen
+  whitelist:
+    allowed:
+    - "Bulbo44kkey"
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: ren_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: ren_tail_grad
+
+- type: marking
+  id: HumanoidXenoTracheasRen
+  whitelist:
+    allowed:
+    - "Bulbo44kkey"
+  bodyPart: Chest
+  markingCategory: Tracheas
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
+    state: ren_tubes
+
+- type: marking
+  id: HumanoidXenoHeadRen
+  whitelist:
+    allowed:
+    - "Bulbo44kkey"
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: ren_head

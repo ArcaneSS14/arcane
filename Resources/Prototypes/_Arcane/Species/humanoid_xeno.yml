@@ -174,3 +174,27 @@
   baseSprite:
     sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
     state: r_foot
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoRenhead
+  baseSprite:
+    sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
+    state: ren_head
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoRentailgrad
+  baseSprite:
+    sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
+    state: ren_tail_grad
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoRen_tail
+  baseSprite:
+    sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
+    state: ren_tail
+
+- type: humanoidBaseSprite
+  id: MobHumanoidXenoRen_tubes
+  baseSprite:
+    sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
+    state: ren_tubes

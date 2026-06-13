@@ -125,3 +125,12 @@
   - type: Sprite
     sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
     state: "r_foot"
+
+- type: entity
+  id: RenhedHumanoidXeno
+  name: "ren head"
+  parent: [PartHumanoidXeno, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "head_m"

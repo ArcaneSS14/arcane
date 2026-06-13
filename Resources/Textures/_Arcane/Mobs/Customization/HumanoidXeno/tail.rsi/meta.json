@@ -54,6 +54,14 @@
         {
             "name": "ravager_tail_grad",
             "directions": 4
+        },
+        {
+            "name": "ren_tail",
+            "directions": 4
+        },
+        {
+            "name": "ren_tail_grad",
+            "directions": 4
         }
     ]
 }

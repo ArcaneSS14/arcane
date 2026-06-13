@@ -17,6 +17,8 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.SpecialWhitelist;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -276,6 +278,42 @@ public sealed partial class MarkingSet
             {
                 Remove(category, i);
             }
+        }
+    }
+
+    /// <summary>
+    /// Removes markings that are not allowed for the supplied session.
+    /// </summary>
+    public void EnsureWhitelisted(ICommonSession? session = null, MarkingManager? markingManager = null)
+    {
+        if (session == null)
+        {
+            return;
+        }
+
+        IoCManager.Resolve(ref markingManager);
+
+        var toRemove = new List<(MarkingCategories category, string id)>();
+
+        foreach (var (category, list) in Markings)
+        {
+            foreach (var marking in list)
+            {
+                if (!markingManager.TryGetMarking(marking, out var prototype))
+                {
+                    continue;
+                }
+
+                if (!MarkingWhitelistManager.IsMarkingAllowed(prototype, session))
+                {
+                    toRemove.Add((category, marking.MarkingId));
+                }
+            }
+        }
+
+        foreach (var remove in toRemove)
+        {
+            Remove(remove.category, remove.id);
         }
     }
 

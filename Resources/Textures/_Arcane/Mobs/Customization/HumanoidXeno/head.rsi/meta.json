@@ -72,6 +72,10 @@
             "directions": 4
         },
         {
+            "name": "ren_head",
+            "directions": 4
+        },
+        {
             "name": "shine",
             "directions": 4
         }

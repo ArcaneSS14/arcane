@@ -17,6 +17,7 @@
 
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.SpecialWhitelist;
 
 namespace Content.Shared.Humanoid.Markings
 {
@@ -64,7 +65,8 @@ namespace Content.Shared.Humanoid.Markings
 
         public string? Shader { get; private set; } = null;
         /// Impstation end
-
+        [DataField("whitelist")]
+        public SpecialWhiteList? Whitelist { get; private set; }
         public Marking AsMarking()
         {
             return new Marking(ID, Sprites.Count);

@@ -10,7 +10,9 @@
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.SpecialWhitelist;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 
 namespace Content.Shared.Humanoid.Markings
 {
@@ -67,7 +69,7 @@ namespace Content.Shared.Humanoid.Markings
         /// </remarks>
         /// <returns></returns>
         public IReadOnlyDictionary<string, MarkingPrototype> MarkingsByCategoryAndSpecies(MarkingCategories category,
-            string species)
+            string species, ICommonSession? session = null)
         {
             var speciesProto = _prototypeManager.Index<SpeciesPrototype>(species);
             var markingPoints = _prototypeManager.Index(speciesProto.MarkingPoints);
@@ -88,6 +90,11 @@ namespace Content.Shared.Humanoid.Markings
                 {
                     continue;
                 }
+
+                if (!MarkingWhitelistManager.IsMarkingAllowed(marking, session))
+                {
+                    continue;
+                }
                 res.Add(key, marking);
             }
 
@@ -105,13 +112,18 @@ namespace Content.Shared.Humanoid.Markings
         /// </remarks>
         /// <returns></returns>
         public IReadOnlyDictionary<string, MarkingPrototype> MarkingsByCategoryAndSex(MarkingCategories category,
-            Sex sex)
+            Sex sex, ICommonSession? session = null)
         {
             var res = new Dictionary<string, MarkingPrototype>();
 
             foreach (var (key, marking) in MarkingsByCategory(category))
             {
                 if (marking.SexRestriction != null && marking.SexRestriction != sex)
+                {
+                    continue;
+                }
+
+                if (!MarkingWhitelistManager.IsMarkingAllowed(marking, session))
                 {
                     continue;
                 }
@@ -134,7 +146,7 @@ namespace Content.Shared.Humanoid.Markings
         /// </remarks>
         /// <returns></returns>
         public IReadOnlyDictionary<string, MarkingPrototype> MarkingsByCategoryAndSpeciesAndSex(MarkingCategories category,
-            string species, Sex sex)
+            string species, Sex sex, ICommonSession? session = null)
         {
             var speciesProto = _prototypeManager.Index<SpeciesPrototype>(species);
             var onlyWhitelisted = _prototypeManager.Index(speciesProto.MarkingPoints).OnlyWhitelisted;
@@ -153,6 +165,11 @@ namespace Content.Shared.Humanoid.Markings
                 }
 
                 if (marking.SexRestriction != null && marking.SexRestriction != sex)
+                {
+                    continue;
+                }
+
+                if (!MarkingWhitelistManager.IsMarkingAllowed(marking, session))
                 {
                     continue;
                 }
@@ -204,7 +221,7 @@ namespace Content.Shared.Humanoid.Markings
                 CachePrototypes();
         }
 
-        public bool CanBeApplied(string species, Sex sex, Marking marking, IPrototypeManager? prototypeManager = null)
+        public bool CanBeApplied(string species, Sex sex, Marking marking, IPrototypeManager? prototypeManager = null, ICommonSession? session = null)
         {
             IoCManager.Resolve(ref prototypeManager);
 
@@ -232,10 +249,15 @@ namespace Content.Shared.Humanoid.Markings
                 return false;
             }
 
+            if (!MarkingWhitelistManager.IsMarkingAllowed(prototype, session))
+            {
+                return false;
+            }
+
             return true;
         }
 
-        public bool CanBeApplied(string species, Sex sex, MarkingPrototype prototype, IPrototypeManager? prototypeManager = null)
+        public bool CanBeApplied(string species, Sex sex, MarkingPrototype prototype, IPrototypeManager? prototypeManager = null, ICommonSession? session = null)
         {
             IoCManager.Resolve(ref prototypeManager);
 
@@ -254,6 +276,11 @@ namespace Content.Shared.Humanoid.Markings
             }
 
             if (prototype.SexRestriction != null && prototype.SexRestriction != sex)
+            {
+                return false;
+            }
+
+            if (!MarkingWhitelistManager.IsMarkingAllowed(prototype, session))
             {
                 return false;
             }
