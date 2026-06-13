@@ -27,6 +27,10 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 10
+      # Arcane-Start
+      stain:
+        maxVol: 5
+      # Arcane-End
   - type: Tag
     tags:
     - ClothMade
@@ -43,6 +47,17 @@
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.95
+  # Arcane-Start
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      gloves:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: gloveblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: glovebloodicon
+  # Arcane-End
 
 - type: entity
   abstract: true
