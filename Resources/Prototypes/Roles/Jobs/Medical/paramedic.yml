@@ -36,6 +36,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentMedical
+  alternateTitles:
+  - ParamedicTraumaSpecialist
+  - ParamedicEmergencyMedicalTechnician
   # Arcane-end
 
 - type: startingGear
@@ -58,3 +61,11 @@
     neck: ClothingNeckStethoscope
     outerClothing: ClothingOuterCoatParamedicWB
     gloves: ClothingHandsGlovesLatex
+
+- type: jobAlternateTitle
+  id: ParamedicTraumaSpecialist
+  name: job-name-alt-paramedic-1
+
+- type: jobAlternateTitle
+  id: ParamedicEmergencyMedicalTechnician
+  name: job-name-alt-paramedic-2

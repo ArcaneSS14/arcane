@@ -27,10 +27,14 @@
   extendedAccess:
   - Kitchen
   - Hydroponics
-  # Arcane-start
+  # Arcane-Start
   contracts:
   - DocumentContractEmploymentService
-  # Arcane-end
+  alternateTitles:
+  - BartenderMixologist
+  - BartenderBarista
+  - BartenderHydrationEquipmentOperator
+  # Arcane-End
 
 - type: startingGear
   id: BartenderGear
@@ -42,6 +46,7 @@
     #back:
     #- Stuff
 
+
 - type: chameleonOutfit
   id: BartenderChameleonOutfit
   job: Bartender
@@ -52,3 +57,15 @@
     neck: ClothingNeckScarfStripedBlack
     outerClothing: ClothingOuterArmorBasicSlim
     gloves: ClothingHandsGlovesColorBlack
+
+- type: jobAlternateTitle
+  id: BartenderMixologist
+  name: job-name-alt-bartender-1
+
+- type: jobAlternateTitle
+  id: BartenderHydrationEquipmentOperator
+  name: job-name-alt-bartender-2
+
+- type: jobAlternateTitle
+  id: BartenderBarista
+  name: job-name-alt-bartender-3

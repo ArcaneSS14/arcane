@@ -21,6 +21,10 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentMedical
+  alternateTitles:
+  - PsychologistTherapist
+  - PsychologistGuidanceCounselor
+  - PsychologistPsychatrist
   # Arcane-end
 
 - type: startingGear
@@ -44,3 +48,15 @@
     neck: ClothingNeckStethoscope
     belt: ClothingBeltMedical
     gloves: ClothingHandsGlovesLatex
+
+- type: jobAlternateTitle
+  id: PsychologistTherapist
+  name: job-name-alt-psychologist-1
+
+- type: jobAlternateTitle
+  id: PsychologistGuidanceCounselor
+  name: job-name-alt-psychologist-2
+
+- type: jobAlternateTitle
+  id: PsychologistPsychatrist
+  name: job-name-alt-psychologist-3

@@ -25,6 +25,10 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentService
+  alternateTitles:
+  - JanitorMaid
+  - JanitorMaintenanceWorker
+  - JanitorCustodialTechnician
   # Arcane-end
 
 - type: startingGear
@@ -58,3 +62,15 @@
     neck: ClothingNeckScarfStripedPurple
     outerClothing: ClothingOuterWinterJani
     gloves: ClothingHandsGlovesJanitor
+
+- type: jobAlternateTitle
+  id: JanitorMaid
+  name: job-name-alt-janitor-1
+
+- type: jobAlternateTitle
+  id: JanitorMaintenanceWorker
+  name: job-name-alt-janitor-2
+
+- type: jobAlternateTitle
+  id: JanitorCustodialTechnician
+  name: job-name-alt-janitor-3

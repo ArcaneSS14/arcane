@@ -67,9 +67,9 @@ job-name-syndicate = синдикат
 job-name-unknown = неизвестно
 job-name-zombie = зомби
 # Job titles
-job-title-visitor = посетитель
-job-title-cluwne = клувень
-job-title-universal = универсальная
+job-title-visitor = Посетитель
+job-title-cluwne = Клувень
+job-title-universal = Универсальная
 # Role timers - Make these alphabetical or I cut you
 JobAtmosphericTechnician = атмосферный техник
 JobBartender = бармен

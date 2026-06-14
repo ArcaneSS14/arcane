@@ -34,6 +34,8 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentEngineering
+  alternateTitles:
+  - AtmosphericTechnicianFirefighter
   # Arcane-end
 
 - type: startingGear
@@ -56,3 +58,7 @@
     neck: ClothingNeckScarfStripedLightBlue
     outerClothing: ClothingOuterSuitAtmosFire
     gloves: ClothingHandsGlovesColorYellow
+
+- type: jobAlternateTitle
+  id: AtmosphericTechnicianFirefighter
+  name: job-name-alt-atmos-1

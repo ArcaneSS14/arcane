@@ -36,6 +36,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentService
+  alternateTitles:
+  - ClownJester
+  - ClownBouffon
   # Arcane-end
 
 - type: startingGear
@@ -53,6 +56,7 @@
     - RubberStampClown
     - CrayonRainbow
 
+
 - type: chameleonOutfit
   id: ClownChameleonOutfit
   job: Clown
@@ -62,3 +66,11 @@
     neck: ClothingHeadHatFlowerWreath
     outerClothing: ClothingOuterClownPriest
     gloves: ClothingHandsGlovesColorYellowBudget
+
+- type: jobAlternateTitle
+  id: ClownJester
+  name: job-name-alt-clown-1
+
+- type: jobAlternateTitle
+  id: ClownBouffon
+  name: job-name-alt-clown-2

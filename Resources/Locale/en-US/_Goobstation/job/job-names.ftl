@@ -26,6 +26,7 @@ job-name-diplomat = Diplomat
 job-name-inspector = Central Command Auditor
 job-name-nct = Nanotrasen Career Trainer
 job-name-outercommander = Outer Commander
+job-name-special-operations-officer = Special Operations Officer
 
 # Syndicate
 
@@ -50,6 +51,7 @@ JobNanotrasenCareerTrainer = Nanotrasen Career Trainer
 JobHecuOperative = HECU Operative
 JobNavyOfficer = Navy Officer
 JobNavyOfficerUndercover = Undercover Navy Officer
+JobSpecialOperationsOfficer = Special Operations Officer
 JobNavyCaptain = Navy Captain
 JobDiplomat = Diplomat
 JobGovernmentMan = The G-Man

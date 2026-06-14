@@ -411,4 +411,9 @@ public sealed class MindSystem : SharedMindSystem
         mindComp.VisitingEntity = newVisiting;
         mindComp.OwnedEntity = newReturn ?? mindComp.OwnedEntity;
     }
+
+    internal bool TryGetMind(EntityUid mindId, out object mind)
+    {
+        throw new NotImplementedException();
+    }
 }

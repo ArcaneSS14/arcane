@@ -13,4 +13,7 @@ public sealed partial class PresetIdCardComponent : Component
 
     [DataField("name")]
     public string? IdName;
+
+    [DataField("alternateTitle")]
+    public ProtoId<JobAlternateTitlePrototype>? AlternateTitleId;
 }

@@ -47,8 +47,12 @@
   - !type:AddComponentSpecial # goobstation
     components:
       - type: SecurityStaff
-  contracts: # Arcane
+  # Arcane-Start
+  contracts:
   - DocumentContractEmploymentSecurity
+  alternateTitles:
+  - WardenDispatch
+  # Arcane-End
 
 - type: startingGear
   id: WardenGear
@@ -75,3 +79,7 @@
     belt: ClothingBeltSecurity
     gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesBootsJack
+
+- type: jobAlternateTitle
+  id: WardenDispatch
+  name: job-name-alt-warden-1

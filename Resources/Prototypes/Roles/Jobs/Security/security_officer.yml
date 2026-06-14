@@ -39,6 +39,8 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentSecurity
+  alternateTitles: # Reserve - alternate titles
+  - SecurityOfficerHallMonitor
   # Arcane-end
 
 - type: startingGear
@@ -61,3 +63,7 @@
     mask: ClothingMaskGasSecurity
     neck: Dinkystar
     gloves: ClothingHandsGlovesColorBlack
+
+- type: jobAlternateTitle
+  id: SecurityOfficerHallMonitor
+  name: job-name-alt-secoff-1

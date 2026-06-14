@@ -22,6 +22,13 @@
       factions:
       - NanoTrasen
       - Assistant
+  # Arcane-Start
+  alternateTitles:
+  - AssistantPassenger
+  - AssistantVisitor
+  - AssistantEntrepreneur
+  - AssistantOffDuty
+  # Arcane-End
 
 - type: startingGear
   id: PassengerGear
@@ -42,3 +49,19 @@
     neck: ClothingNeckMantle
     outerClothing: ClothingOuterWinterCoat
     gloves: ClothingHandsGlovesColorYellowBudget
+
+- type: jobAlternateTitle
+  id: AssistantPassenger
+  name: job-name-alt-assistant-1
+
+- type: jobAlternateTitle
+  id: AssistantVisitor
+  name: job-name-alt-assistant-2
+
+- type: jobAlternateTitle
+  id: AssistantEntrepreneur
+  name: job-name-alt-assistant-3
+
+- type: jobAlternateTitle
+  id: AssistantOffDuty
+  name: job-name-alt-assistant-4
