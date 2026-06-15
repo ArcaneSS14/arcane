@@ -499,3 +499,104 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/succubus.rsi
     state: succubus
+
+- type: marking
+  id: DemonHimeraTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: tail_himera
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: tail_himera_hair
+
+- type: marking
+  id: DemonTailDevilTrident
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: tail_devil_trident
+
+- type: marking
+  id: DemonOxHorns
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: ox_horns
+
+- type: marking
+  id: DemonSkeletonChest
+  bodyPart: LLeg
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: skeleton
+
+- type: marking
+  id: DemonSuccubusWingsBig
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: succubus_wings_big
+
+- type: marking
+  id: DemonSuccubusWingsFin
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: succubus_wings_fin
+
+- type: marking
+  id: DemonSuccubusWingsLowerAlter
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: succubus_wings_big
+
+- type: marking
+  id: DemonSuccubusWingsLower
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: succubus_wings_big
+
+- type: marking
+  id: EarsCowAlter
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: cow_ears_alter
+
+- type: marking
+  id: EarsOx
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: ox_ears
+
+- type: marking
+  id: EarsFin
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: fin_ears

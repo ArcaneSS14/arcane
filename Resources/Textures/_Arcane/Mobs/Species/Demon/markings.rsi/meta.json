@@ -340,6 +340,58 @@
             "directions": 4
         },
         {
+            "name": "tail_devil_trident",
+            "directions": 4
+        },
+        {
+            "name": "tail_himera",
+            "directions": 4
+        },
+        {
+            "name": "tail_himera_hair",
+            "directions": 4
+        },
+        {
+            "name": "hooves",
+            "directions": 4
+        },
+        {
+            "name": "skeleton",
+            "directions": 4
+        },
+        {
+            "name": "cow_ears_alter",
+            "directions": 4
+        },
+        {
+            "name": "fin_ears",
+            "directions": 4
+        },
+        {
+            "name": "ox_ears",
+            "directions": 4
+        },
+        {
+            "name": "ox_horns",
+            "directions": 4
+        },
+        {
+            "name": "succubus_wings_big",
+            "directions": 4
+        },
+        {
+            "name": "succubus_wings_fin",
+            "directions": 4
+        },
+        {
+            "name": "succubus_wings_lower_alter",
+            "directions": 4
+        },
+        {
+            "name": "succubus_wings_lower",
+            "directions": 4
+        },
+        {
             "name": "small_horns_alt",
             "directions": 4
         }
