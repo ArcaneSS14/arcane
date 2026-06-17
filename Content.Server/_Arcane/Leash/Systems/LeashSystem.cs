@@ -123,7 +123,7 @@ public sealed partial class LeashSystem : EntitySystem
         }
 
         component.Wearer = null;
-        _alerts.ClearAlert(args.EquipTarget, component.Alert);
+        _alerts.ClearAlert(args.Equipee, component.Alert);
     }
 
     private void OnCollarTerminating(EntityUid uid, CollarComponent component, ref EntityTerminatingEvent args)

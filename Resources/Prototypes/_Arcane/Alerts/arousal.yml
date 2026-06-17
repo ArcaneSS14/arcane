@@ -30,3 +30,12 @@
     state: refractory
   name: alerts-arousal-refractory-name
   description: alerts-arousal-refractory-desc
+
+- type: alert
+  id: Collared
+  clickEvent: !type:RemoveCollarAlertEvent
+  icons:
+  - sprite: /Textures/_Erida/Clothing/Neck/Misc/petcollar.rsi
+    state: icon
+  name: alerts-collared-name
+  description: alerts-collared-desc
