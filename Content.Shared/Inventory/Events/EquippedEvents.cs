@@ -72,5 +72,4 @@ public sealed class GotEquippedEvent : EquippedEventBase
     {
     }
 
-    public EntityUid EquipTarget { get; set; } //Arcane
 }
