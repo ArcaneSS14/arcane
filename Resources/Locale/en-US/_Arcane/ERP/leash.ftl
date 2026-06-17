@@ -1,0 +1,13 @@
+leash-no-collar = The target is not wearing a collar.
+leash-collar-must-be-worn = You can only clip the leash onto a worn collar.
+leash-attached-user = You clip the leash onto the collar.
+leash-attached-target = A leash is clipped onto your collar.
+leash-detached-user = You unclip the leash.
+leash-detached-target = The leash is unclipped from your collar.
+leash-choking = The collar digs into your neck and chokes you!
+leash-remove-collar-start = You start working the collar loose.
+leash-remove-collar-fail = You fail to remove the collar.
+leash-remove-collar-success = You work the collar free.
+leash-remove-collar-blocked = The collar must be worked loose first.
+leash-cannot-pick-up = The leash is pulled taut.
+leash-cannot-carry = The leash is pulled taut.

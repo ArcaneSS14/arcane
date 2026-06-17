@@ -1,0 +1,13 @@
+sleash-no-collar = На цели нет ошейника.
+leash-collar-must-be-worn = Поводок можно пристегнуть только к надетому ошейнику.
+leash-attached-user = Вы пристёгиваете поводок к ошейнику.
+leash-attached-target = К вашему ошейнику пристегнули поводок.
+leash-detached-user = Вы отстёгиваете поводок.
+leash-detached-target = Поводок отстегнули от вашего ошейника.
+leash-choking = Ошейник впивается в шею и душит вас!
+leash-remove-collar-start = Вы начинаете возиться с застёжкой ошейника.
+leash-remove-collar-fail = Вам не удаётся снять ошейник.
+leash-remove-collar-success = Вам удаётся снять ошейник.
+leash-remove-collar-blocked = Сначала нужно расстегнуть ошейник.
+leash-cannot-pick-up = Поводок натянулся.
+leash-cannot-carry = Поводок натянулся.
