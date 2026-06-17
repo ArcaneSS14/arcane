@@ -446,6 +446,9 @@ public sealed partial class LeashSystem : EntitySystem
     {
         if (leash.Holder is { Valid: true } holder &&
             !TerminatingOrDeleted(holder))
+        {
+            _physics.WakeBody(holder);
+        }
 
         if (leash.AttachedCollar is { Valid: true } collarUid &&
             TryComp<CollarComponent>(collarUid, out var collar) &&
