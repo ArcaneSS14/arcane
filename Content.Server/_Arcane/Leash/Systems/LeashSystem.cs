@@ -444,12 +444,13 @@ public sealed partial class LeashSystem : EntitySystem
 
     private void StopLeashPull(EntityUid leashUid, LeashComponent leash)
     {
-        if (leash.Holder is { Valid: true } holder)
-            _physics.WakeBody(holder);
+        if (leash.Holder is { Valid: true } holder &&
+            !TerminatingOrDeleted(holder))
 
         if (leash.AttachedCollar is { Valid: true } collarUid &&
             TryComp<CollarComponent>(collarUid, out var collar) &&
-            collar.Wearer is { Valid: true } wearer)
+            collar.Wearer is { Valid: true } wearer &&
+            !TerminatingOrDeleted(wearer))
         {
             _physics.WakeBody(wearer);
         }
@@ -590,7 +591,7 @@ public sealed partial class LeashSystem : EntitySystem
 
     private bool TryStartRemoveCollarDoAfter(EntityUid wearerUid, EntityUid collarUid, CollarComponent collar)
     {
-        var doAfter = new DoAfterArgs(EntityManager, wearerUid, collar.BreakoutTime, new RemoveCollarDoAfterEvent(), wearerUid, target: wearerUid, used: collarUid)
+        var doAfter = new DoAfterArgs(EntityManager, wearerUid, collar.BreakoutTime, new RemoveCollarDoAfterEvent(), wearerUid, target: wearerUid)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -642,6 +643,8 @@ public sealed partial class LeashSystem : EntitySystem
             leash.AttachedCollar is not { Valid: true } collarUid ||
             !TryComp<CollarComponent>(collarUid, out var collar) ||
             collar.Wearer is not { Valid: true } wearer ||
+            TerminatingOrDeleted(holder) ||
+            TerminatingOrDeleted(wearer) ||
             holder == wearer)
         {
             return;
