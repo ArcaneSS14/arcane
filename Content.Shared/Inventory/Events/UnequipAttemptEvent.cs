@@ -120,7 +120,10 @@ public abstract class UnequipAttemptEventBase(EntityUid unequipee, EntityUid unE
 /// Raised on the item that is being unequipped.
 /// </summary>
 public sealed class BeingUnequippedAttemptEvent(EntityUid unequipee, EntityUid unEquipTarget, EntityUid equipment,
-    SlotDefinition slotDefinition) : UnequipAttemptEventBase(unequipee, unEquipTarget, equipment, slotDefinition);
+    SlotDefinition slotDefinition) : UnequipAttemptEventBase(unequipee, unEquipTarget, equipment, slotDefinition)
+{
+    public EntityUid User { get; set; } //Arcane
+}
 
 /// <summary>
 /// Raised on the entity that is unequipping an item.

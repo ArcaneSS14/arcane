@@ -71,4 +71,6 @@ public sealed class GotEquippedEvent : EquippedEventBase
     public GotEquippedEvent(EntityUid equipee, EntityUid equipment, SlotDefinition slotDefinition) : base(equipee, equipment, slotDefinition)
     {
     }
+
+    public EntityUid EquipTarget { get; set; } //Arcane
 }
