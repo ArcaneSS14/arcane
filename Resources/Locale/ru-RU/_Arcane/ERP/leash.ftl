@@ -1,4 +1,4 @@
-sleash-no-collar = На цели нет ошейника.
+leash-no-collar = На цели нет ошейника.
 leash-collar-must-be-worn = Поводок можно пристегнуть только к надетому ошейнику.
 leash-attached-user = Вы пристёгиваете поводок к ошейнику.
 leash-attached-target = К вашему ошейнику пристегнули поводок.

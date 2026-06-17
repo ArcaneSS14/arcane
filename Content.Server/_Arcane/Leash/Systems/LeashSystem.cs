@@ -20,7 +20,6 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -101,7 +100,7 @@ public sealed partial class LeashSystem : EntitySystem
     private void OnCollarUnequipAttempt(EntityUid uid, CollarComponent component, BeingUnequippedAttemptEvent args)
     {
         if (args.Slot != "neck" ||
-            args.UnEquipTarget != args.User ||
+            args.UnEquipTarget != args.Unequipee ||
             component.Wearer != args.UnEquipTarget ||
             _allowedCollarUnequips.Contains(uid))
         {
@@ -117,10 +116,10 @@ public sealed partial class LeashSystem : EntitySystem
     {
         DetachLeashFromCollar(uid, component);
 
-        if (TryComp<CollarWearerComponent>(args.EquipTarget, out var wearer) &&
+        if (TryComp<CollarWearerComponent>(args.Equipee, out var wearer) &&
             wearer.Collar == uid)
         {
-            RemCompDeferred<CollarWearerComponent>(args.EquipTarget);
+            RemCompDeferred<CollarWearerComponent>(args.Equipee);
         }
 
         component.Wearer = null;
