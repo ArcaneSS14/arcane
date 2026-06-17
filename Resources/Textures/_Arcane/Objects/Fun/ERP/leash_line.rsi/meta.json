@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Derived from leash.png by nikitok007 (Discord) for Space Station 14 server MK: Erida 18+",
+  "size": {
+    "x": 2,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "line"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseItem
+  id: LPPLeash
+  name: leash
+  description: A sturdy leash that clips onto a collar.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Fun/ERP/leash.rsi
+    scale: 0.75,0.75
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Fun/ERP/leash.rsi
+    size: Small
+  - type: Leash

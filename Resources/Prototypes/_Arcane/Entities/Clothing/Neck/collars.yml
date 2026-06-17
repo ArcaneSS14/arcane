@@ -1,0 +1,23 @@
+- type: entity
+  parent: Clothing
+  id: ClothingNeckPetCollar
+  name: pet collar
+  description: A sturdy collar with a fastening ring for a leash.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Arcane/Clothing/Neck/Misc/petcollar.rsi
+  - type: Clothing
+    quickEquip: true
+    equipDelay: 1.5
+    slots:
+    - neck
+    sprite: _Arcane/Clothing/Neck/Misc/petcollar.rsi
+  - type: Sprite
+    state: icon
+    sprite: _Arcane/Clothing/Neck/Misc/petcollar.rsi
+    scale: 0.75,0.75
+  - type: Tag
+    tags:
+    - Recyclable
+  - type: Collar
