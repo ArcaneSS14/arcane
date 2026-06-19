@@ -350,11 +350,11 @@ public sealed class SurgeryBui : BoundUserInterface
 
         if (_entities.TryGetComponent(_part, out MetaDataComponent? partMeta) &&
             _entities.TryGetComponent(_surgery?.Ent, out MetaDataComponent? surgeryMeta))
-            _window.Title = $"Surgery - {partMeta.EntityName}, {surgeryMeta.EntityName}";
+            _window.Title = $"{Loc.GetString("surgery-ui-window-title")} - {partMeta.EntityName}, {surgeryMeta.EntityName}"; // Arcane-Edit-Locale
         else if (partMeta != null)
-            _window.Title = $"Surgery - {partMeta.EntityName}";
+            _window.Title = $"{Loc.GetString("surgery-ui-window-title")} - {partMeta.EntityName}"; // Arcane-Edit-Locale
         else
-            _window.Title = "Surgery";
+            _window.Title = $"{Loc.GetString("surgery-ui-window-title")}"; // Arcane-Edit-Locale
     }
 
     private enum ViewType

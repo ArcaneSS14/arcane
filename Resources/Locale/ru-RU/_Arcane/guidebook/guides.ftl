@@ -7,3 +7,4 @@ guide-entry-arcane-server-rules-rule-4 = 4. Память персонажа
 guide-entry-arcane-server-rules-rule-5 = 5. Нечестная игра
 guide-entry-arcane-server-rules-rule-6 = 6. Ответственная игра за антагониста
 guide-entry-arcane-server-rules-rule-7 = 7. ERP
+guide-entry-arcane-server-rules-rule-x = X. Секретное правило.
