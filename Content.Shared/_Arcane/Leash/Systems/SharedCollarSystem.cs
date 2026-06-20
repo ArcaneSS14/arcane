@@ -26,7 +26,7 @@ public sealed partial class SharedCollarSystem : EntitySystem
             return;
         }
 
-        _inventory.TryEquip(
+        if (_inventory.TryEquip(
             args.User,
             target,
             uid,
@@ -34,8 +34,9 @@ public sealed partial class SharedCollarSystem : EntitySystem
             predicted: true,
             inventory: inventory,
             checkDoafter: true,
-            triggerHandContact: false);
-
-        args.Handled = true;
+            triggerHandContact: false))
+        {
+            args.Handled = true;
+        }
     }
 }

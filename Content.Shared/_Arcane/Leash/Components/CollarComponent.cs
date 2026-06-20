@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Arcane.Leash.Components;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentState]
 public sealed partial class CollarComponent : Component
 {
     [DataField]
@@ -12,6 +12,8 @@ public sealed partial class CollarComponent : Component
     [DataField]
     public ProtoId<AlertPrototype> Alert = "Collared";
 
-    public EntityUid? Wearer;
-    public EntityUid? AttachedLeash;
+    [AutoNetworkedField]
+     public EntityUid? Wearer;
+    [AutoNetworkedField]
+     public EntityUid? AttachedLeash;
 }
