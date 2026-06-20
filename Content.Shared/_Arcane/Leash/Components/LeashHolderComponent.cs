@@ -1,7 +1,8 @@
 namespace Content.Shared._Arcane.Leash.Components;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentState]
 public sealed partial class LeashHolderComponent : Component
 {
-    public readonly HashSet<EntityUid> Leashes = new();
+    [AutoNetworkedField]
+    public readonly List<EntityUid> Leashes = new();
 }
