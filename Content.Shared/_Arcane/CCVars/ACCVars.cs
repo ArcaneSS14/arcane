@@ -33,5 +33,5 @@ public sealed partial class ACCVars
     /// Должна ли система автоматически добавлять пацифист после конца раунда.
     /// </summary>
     public static readonly CVarDef<bool> EndRoundPacification =
-        CVarDef.Create("game.end_round_pacifism", true, CVar.SERVERONLY | CVar.ARCHIVE);
+        CVarDef.Create("game.end_round_pacifism", false, CVar.SERVERONLY | CVar.ARCHIVE);
 }
