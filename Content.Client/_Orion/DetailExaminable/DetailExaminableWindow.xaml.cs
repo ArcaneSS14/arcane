@@ -196,7 +196,7 @@ public sealed partial class DetailExaminableWindow : FancyWindow
             PreviewNSFWLinksContainer?.RemoveAllChildren();
         }
 
-        Badge.Visible = PlayerBadge();
+        // Badge.Visible = PlayerBadge();
     }
 
     private static string GetContentWithEmptyMessage(string content, string emptyMessageKey)
@@ -339,25 +339,27 @@ public sealed partial class DetailExaminableWindow : FancyWindow
         return stripe;
     }
 
-    private bool PlayerBadge() // TODO: Something like donator, coder, owner badges
-    {
-        if (_currentEntity == null)
-            return false;
+    // Arcane-start
+    // private bool PlayerBadge() // TODO: Something like donator, coder, owner badges
+    // {
+    //     if (_currentEntity == null)
+    //         return false;
 
-        var playerManager = IoCManager.Resolve<IPlayerManager>();
-        if (!playerManager.TryGetSessionByEntity(_currentEntity.Value, out var session))
-            return false;
+    //     var playerManager = IoCManager.Resolve<IPlayerManager>();
+    //     if (!playerManager.TryGetSessionByEntity(_currentEntity.Value, out var session))
+    //         return false;
 
-        var playerName = session.Name;
-        var ckeyToMatch = playerName.StartsWith("localhost@", StringComparison.OrdinalIgnoreCase)
-            ? playerName.Substring("localhost@".Length)
-            : playerName;
+    //     var playerName = session.Name;
+    //     var ckeyToMatch = playerName.StartsWith("localhost@", StringComparison.OrdinalIgnoreCase)
+    //         ? playerName.Substring("localhost@".Length)
+    //         : playerName;
 
-        var ckeyLower = ckeyToMatch.ToLowerInvariant();
-        var grantedCKeys = new[] { "puroslavking" };
+    //     var ckeyLower = ckeyToMatch.ToLowerInvariant();
+    //     var grantedCKeys = new[] { "puroslavking" };
 
-        return grantedCKeys.Contains(ckeyLower);
-    }
+    //     return grantedCKeys.Contains(ckeyLower);
+    // }
+    // Arcane-end
 
     private bool IsCharacterClothed(EntityUid entity, IEntityManager entManager) // Hide NSFW flavor if character is clothed
     {
