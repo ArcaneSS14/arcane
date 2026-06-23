@@ -137,6 +137,7 @@
   - HydroponicsToolMiniHoe
   - HydroponicsToolClippers
   - HydroponicsToolHatchet
+  - PlantAnalyzer # Arcane-add
   position: 7,-5
 
 - type: technology
@@ -159,7 +160,6 @@
   recipeUnlocks:
   - BiogeneratorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
-  - PlantAnalyzer # Arcane-add
   position: 6,-5
 
 - type: technology
