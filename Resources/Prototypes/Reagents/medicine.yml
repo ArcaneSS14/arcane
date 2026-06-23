@@ -1677,9 +1677,10 @@
           damage: # Goobstation - Cryo rebalance
             groups:
               Airloss: -10.0
-              Brute: -5.0
-              Burn: -5.0
-              Toxin: -5.0
+              Brute: -20.0 # Orion-Edit: -5.0 > -20.0
+              Burn: -15.0 # Orion-Edit: -5.0 > -15.0
+              Toxin: -10.0 # Orion-Edit: -5.0 > -10.0
+              Radiation: -5 # Orion
         - !type:GenericStatusEffect # Mono edit
           conditions:
           - !type:OrganType
@@ -1690,7 +1691,6 @@
           component: ForcedSleeping
           refresh: false
           type: Add
-
 
 - type: reagent
   id : Aloxadone
