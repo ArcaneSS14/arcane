@@ -1,4 +1,9 @@
 - type: latheRecipe
-  parent: HandheldHealthAnalyzer
   id: PlantAnalyzer
   result: PlantAnalyzer
+  categories:
+  - Service
+  completetime: 4
+  materials:
+    Steel: 300
+    Plastic: 200
