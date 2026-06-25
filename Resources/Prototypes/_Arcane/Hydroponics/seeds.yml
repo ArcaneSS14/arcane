@@ -1,0 +1,302 @@
+- type: seed
+  id: coffeeArabica
+  name: seeds-coffee-arabica-name
+  noun: seeds-noun-seeds
+  displayName: seeds-coffee-arabica-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/coffee_arabica.rsi
+  packetPrototype: CoffeeArabicaSeeds
+  productPrototypes:
+  - FoodCoffeeArabica
+  harvestRepeat: Repeat
+  mutationPrototypes:
+  - coffeeRobust
+  lifespan: 25
+  maturation: 6
+  production: 4
+  yield: 3
+  potency: 10
+  growthStages: 5
+  idealLight: 7
+  waterConsumption: 0.40
+  nutrientConsumption: 0.30
+  idealHeat: 298
+  chemicals:
+    Grcoffee:
+      Min: 1
+      Max: 20
+      PotencyDivisor: 4
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 4
+
+- type: seed
+  id: coffeeRobust
+  name: seeds-coffee-robust-name
+  noun: seeds-noun-seeds
+  displayName: seeds-coffee-robust-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/coffee_robust.rsi
+  packetPrototype: CoffeeRobustSeeds
+  productPrototypes:
+  - FoodCoffeeRobust
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 6
+  production: 4
+  yield: 3
+  potency: 10
+  growthStages: 5
+  idealLight: 7
+  waterConsumption: 0.40
+  nutrientConsumption: 0.30
+  idealHeat: 298
+  chemicals:
+    Grcoffee:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 2
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 2
+    Ephedrine:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 25
+
+- type: seed
+  id: plaststeelcap
+  name: plaststeelcap
+  noun: seeds-noun-spores
+  displayName: seeds-plaststeellog-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/plaststeelcap.rsi
+  packetPrototype: PlastSteelcapSeeds
+  productPrototypes:
+  - PlastSteelLog
+  lifespan: 80
+  maturation: 15
+  ligneous: true
+  production: 3
+  yield: 3
+  potency: 1
+  growthStages: 3
+  waterConsumption: 0.60
+  nutrientConsumption: 0.80
+  lightTolerance: 6
+  idealHeat: 288
+
+- type: seed
+  id: glasscap
+  name: glasscap
+  noun: seeds-noun-spores
+  displayName: seeds-glasslog-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/glasscap.rsi
+  packetPrototype: GlasscapSeeds
+  productPrototypes:
+  - GlassLog
+  lifespan: 80
+  maturation: 15
+  ligneous: true
+  production: 3
+  yield: 5
+  potency: 1
+  growthStages: 3
+  waterConsumption: 0.60
+  nutrientConsumption: 0.50
+  lightTolerance: 6
+  idealHeat: 288
+
+- type: seed
+  id: cannabisVita
+  name: Cannabis Vita
+  noun: seeds-noun-seeds
+  displayName: seeds-cannabisvita-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/cannabis_vita.rsi
+  packetPrototype: CannabisVitaSeeds
+  productPrototypes:
+  - CannabisVitaLeaves
+  harvestRepeat: Repeat
+  lifespan: 40
+  maturation: 8
+  production: 5
+  yield: 2
+  potency: 20
+  growthStages: 3
+  idealLight: 11
+  idealHeat: 298
+  chemicals:
+    Omnizine:
+      Min: 1
+      Max: 6
+      PotencyDivisor: 35
+    THC:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+
+- type: seed
+  id: barrelmelon
+  name: Barrelmelon
+  noun: seeds-noun-seeds
+  displayName: seeds-barrelmelon-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/barrelmelon.rsi
+  packetPrototype: BarrelmelonSeeds
+  productPrototypes:
+  - FoodBarrelmelon
+  lifespan: 55
+  maturation: 12
+  production: 3
+  yield: 1
+  potency: 1
+  idealLight: 8
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Moonshine:
+      Min: 1
+      Max: 15
+      PotencyDivisor: 20
+
+- type: seed
+  id: lanternfruit
+  name: Lantern fruit
+  noun: seeds-noun-seeds
+  displayName: seeds-lanternfruit-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/lanternfruit.rsi
+  packetPrototype: LanternfruitSeeds
+  productPrototypes:
+  - FoodLanternfruit
+  harvestRepeat: Repeat
+  lifespan: 60
+  maturation: 8
+  production: 3
+  yield: 1
+  potency: 20
+  growthStages: 3
+  idealLight: 7
+  idealHeat: 298
+  chemicals:
+    PulverizedLantern:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 5
+    Sulfur:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Licoxide:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 5
+
+- type: seed
+  id: ambrosiaGaia
+  name: AmbrosiaGaia
+  noun: seeds-noun-seeds
+  displayName: seeds-ambrosiagaia-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/ambrosia_gaia.rsi
+  packetPrototype: AmbrosiaGaiaSeeds
+  productPrototypes:
+  - FoodAmbrosiaGaia
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 6
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    EarthBlood:
+      Min: 1
+      Max: 3
+      PotencyDivisor: 35
+
+- type: seed
+  id: kronkus
+  name: Kronkus
+  noun: seeds-noun-seeds
+  displayName: seeds-kronkus-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/kronkus.rsi
+  packetPrototype: KronkusSeeds
+  productPrototypes:
+  - FoodKronkus
+  lifespan: 25
+  maturation: 10
+  production: 1
+  yield: 1
+  potency: 15
+  growthStages: 3
+  waterConsumption: 0.20
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10
+    Fentanyl: #TODO заменить на крокаин
+      Min: 1
+      Max: 5
+      PotencyDivisor: 15
+
+- type: seed
+  id: aloeIgnis
+  name: seeds-aloe-ignis-name
+  noun: seeds-noun-seeds
+  displayName: seeds-aloe-ignis-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/aloe_ignis.rsi
+  packetPrototype: AloeIgnisSeeds
+  productPrototypes:
+  - FoodAloeIgnis
+  mutationPrototypes:
+  - dragonTail
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 5
+  waterConsumption: 0.30
+  nutrientConsumption: 0.40
+  chemicals:
+    Ignisol:
+      Min: 5
+      Max: 15
+      PotencyDivisor: 5
+    Carbon:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: dragonTail
+  name: seeds-dragontail-name
+  noun: seeds-noun-seeds
+  displayName: seeds-dragontail-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/dragon_tail.rsi
+  packetPrototype: DragonTailSeeds
+  productPrototypes:
+  - FoodDragonTail
+  lifespan: 35
+  maturation: 10
+  production: 4
+  yield: 3
+  potency: 10
+  growthStages: 5
+  chemicals:
+    Equiline:
+      Min: 5
+      Max: 20
+      PotencyDivisor: 5
+    Nutriment:
+      Min: 1
+      Max: 3
+      PotencyDivisor: 10

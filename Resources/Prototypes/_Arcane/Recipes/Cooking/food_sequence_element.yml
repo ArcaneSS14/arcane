@@ -1,0 +1,124 @@
+# Coffee Arabica
+
+- type: foodSequenceElement
+  id: CoffeeArabica
+  name: food-sequence-content-coffee-arabica
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/coffee_arabica.rsi
+    state: produce
+
+- type: foodSequenceElement
+  id: CoffeeArabicaBurger
+  name: food-sequence-burger-content-coffee-arabica
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/coffee_arabica.rsi
+    state: produce
+
+# Coffee Robust
+
+- type: foodSequenceElement
+  id: CoffeeRobust
+  name: food-sequence-content-coffee-robust
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/coffee_robust.rsi
+    state: produce
+
+- type: foodSequenceElement
+  id: CoffeeRobustBurger
+  name: food-sequence-burger-content-coffee-robust
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/coffee_robust.rsi
+    state: produce
+
+# Barrelmelon
+
+- type: foodSequenceElement
+  id: Barrelmelon
+  name: food-sequence-content-barrelmelon
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/barrelmelon.rsi
+    state: produce
+
+- type: foodSequenceElement
+  id: BarrelmelonBurger
+  name: food-sequence-burger-content-barrelmelon
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/barrelmelon.rsi
+    state: produce
+# Lantern Fruit
+
+- type: foodSequenceElement
+  id: Lanternfruit
+  name: food-sequence-content-lanternfruit
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/lanternfruit.rsi
+    state: produce
+
+- type: foodSequenceElement
+  id: LanternfruitBurger
+  name: food-sequence-burger-content-lanternfruit
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/lanternfruit.rsi
+    state: produce
+
+# Ambrosia Gaia
+
+- type: foodSequenceElement
+  id: AmbrosiaGaia
+  name: food-sequence-content-ambrosia-gaia
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/ambrosia_gaia.rsi
+    state: produce
+
+- type: foodSequenceElement
+  id: AmbrosiaGaiaBurger
+  name: food-sequence-burger-content-ambrosia-gaia
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/ambrosia_gaia.rsi
+    state: produce
+# Kronkus
+
+- type: foodSequenceElement
+  id: Kronkus
+  name: food-sequence-content-kronkus
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/kronkus.rsi
+    state: produce
+- type: foodSequenceElement
+  id: KronkusBurger
+  name: food-sequence-burger-content-kronkus
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/kronkus.rsi
+    state: produce
+
+# Aloe Ignis
+
+- type: foodSequenceElement
+  id: AloeIgnis
+  name: food-sequence-content-aloe-ignis
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/aloe_ignis.rsi
+    state: produce
+
+- type: foodSequenceElement
+  id: AloeIgnisBurger
+  name: food-sequence-burger-content-aloe-ignis
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/aloe_ignis.rsi
+    state: produce
+
+# Dragon Tail
+
+- type: foodSequenceElement
+  id: DragonTail
+  name: food-sequence-content-dragon-tail
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/dragon_tail.rsi
+    state: produce
+
+- type: foodSequenceElement
+  id: DragonTailBurger
+  name: food-sequence-burger-content-dragon-tail
+  sprites:
+  - sprite: _Arcane/Objects/Specific/Hydroponics/dragon_tail.rsi
+    state: produce

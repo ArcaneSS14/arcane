@@ -1,0 +1,133 @@
+- type: reagent
+  id: EarthBlood
+  name: reagent-name-earthblood
+  group: Medicine
+  desc: reagent-desc-earthblood
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#f4bf20"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -3
+            Toxin: -3
+            Airloss: -3
+            Brute: -3
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 0.25
+
+- type: reagent
+  id: EarthBlessing
+  name: reagent-name-earthblessing
+  group: Botanical
+  desc: reagent-desc-earthblessing
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: bitter
+  color: "#997000"
+  plantMetabolism:
+  - !type:PlantAdjustPests
+    amount: -10
+  - !type:PlantAdjustNutrition
+    amount: 10
+  - !type:PlantAdjustWater
+    amount: 10
+  - !type:PlantAdjustWeeds
+    amount: -10
+
+- type: reagent
+  id: Ignisol
+  name: reagent-name-ignisol
+  desc: reagent-desc-ignisol
+  physicalDesc: reagent-physical-desc-oily
+  flavor: spicy
+  color: "#F9863F"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cold: -5
+      - !type:PopupMessage
+        type: Local
+        visualType: SmallCaution
+        messages: [ "ignis-inside-effect-light" ]
+        probability: 0.1
+      - !type:AdjustTemperature
+        amount: 6000
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Ignisol
+          max: 10
+        - !type:Temperature
+          max: 313.15
+      - !type:AdjustTemperature
+        amount: 25000
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Ignisol
+          min: 10
+        - !type:Temperature
+          max: 350.15
+      - !type:FlammableReaction
+        multiplier: 0.2
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Ignisol
+          min: 15
+      - !type:Ignite
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Ignisol
+          min: 15
+      - !type:Emote
+        emote: Scream
+        probability: 0.5
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Ignisol
+          min: 15
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:Ignite
+      - !type:FlammableReaction
+        multiplier: 0.1
+
+- type: reagent
+  id: Equiline
+  name: reagent-name-equiline
+  desc: reagent-desc-equiline
+  physicalDesc: reagent-physical-desc-shimmering
+  flavor: minty
+  color: "#703B43"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.1
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Burn: -1
+      - !type:AdjustTemperature
+        amount: 2000
+        conditions:
+        - !type:Temperature
+          max: 310.15
+      - !type:AdjustTemperature
+        amount: -2000
+        conditions:
+        - !type:Temperature
+          min: 310.15
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "equiline-effect-feeling-balanced" ]
+        probability: 0.1

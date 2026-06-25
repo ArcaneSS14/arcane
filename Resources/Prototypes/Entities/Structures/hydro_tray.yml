@@ -188,6 +188,11 @@
     guides:
     - Botany
     - Chemicals
+  # Arcane-start
+  - type: Construction
+    graph: UpgradeHydroponicsTray
+    node: start
+  # Arcane-end
 
 - type: entity
   parent: hydroponicsTray
