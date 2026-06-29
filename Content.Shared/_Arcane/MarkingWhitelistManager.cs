@@ -3,11 +3,6 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._Arcane.SpecialWhitelist;
 
-public sealed partial class MarkingWhitelistData
-{
-    [DataField("allowed")]
-    public List<string> Allowed { get; private set; } = new();
-}
 public static class MarkingWhitelistManager
 {
     public static bool IsMarkingAllowed(MarkingPrototype marking, ICommonSession? session)

@@ -17,6 +17,7 @@
 
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Arcane.SpecialWhitelist;
 
 namespace Content.Shared.Humanoid.Markings
 {
