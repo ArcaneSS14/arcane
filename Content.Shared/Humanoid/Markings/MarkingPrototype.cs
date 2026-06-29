@@ -69,5 +69,9 @@ namespace Content.Shared.Humanoid.Markings
         {
             return new Marking(ID, Sprites.Count);
         }
+        // Arcane - Start
+        [DataField("whitelist")]
+        public MarkingWhitelistData? Whitelist { get; private set; }
+        // Arcane - End
     }
 }
