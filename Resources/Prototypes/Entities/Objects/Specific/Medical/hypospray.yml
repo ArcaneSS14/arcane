@@ -409,7 +409,7 @@
   name: burn auto-injector
   parent: ChemicalMedipen
   id: BurnAutoInjector
-  description: A rapid dose of oxandrolone, leporazine, and tramadol, intended for combat applications. # goobstation
+  description: A rapid dose of oxandrolone, leporazine, and dermaline, intended for combat applications. # goobstation # Arcane-Edit
   components:
   - type: Item
     inhandVisuals:
@@ -444,8 +444,10 @@
         reagents:
         - ReagentId: Oxandrolone # Goobstation
           Quantity: 10
+        - ReagentId: Dermaline # Arcane
+          Quantity: 5
         - ReagentId: Leporazine
-          Quantity: 10
+          Quantity: 5 # Arcane-Edit: 10 > 5
         - ReagentId: Tramadol # goobstation
           Quantity: 5
 

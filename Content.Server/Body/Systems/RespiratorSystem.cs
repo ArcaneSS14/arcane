@@ -137,6 +137,8 @@ public sealed class RespiratorSystem : EntitySystem
 
     private static readonly ProtoId<MetabolismGroupPrototype> GasId = new("Gas");
 
+    private const float VacuumSuffocationMultiplier = 2f; // Arcane
+
     public override void Initialize()
     {
         base.Initialize();
@@ -531,7 +533,14 @@ public sealed class RespiratorSystem : EntitySystem
         }
 
         // Shitmed Change End
-        _damageableSys.TryChangeDamage(ent, HasComp<DebrainedComponent>(ent) ? ent.Comp.Damage * 4.5f : ent.Comp.Damage, targetPart: TargetBodyPart.All, interruptsDoAfters: false); // Shitmed Change
+        // Arcane-Start
+        var suffocationDamage = HasComp<DebrainedComponent>(ent) ? ent.Comp.Damage * 4.5f : ent.Comp.Damage;
+
+        if (_atmosSys.GetContainingMixture(ent.Owner) is { Pressure: <= Atmospherics.HazardLowPressure })
+            suffocationDamage *= VacuumSuffocationMultiplier;
+        // Arcane-End
+
+        _damageableSys.TryChangeDamage(ent, suffocationDamage, targetPart: TargetBodyPart.All, interruptsDoAfters: false); // Shitmed Change // Arcane-Edit
 
         if (ent.Comp.SuffocationCycles < ent.Comp.SuffocationCycleThreshold)
             return;
