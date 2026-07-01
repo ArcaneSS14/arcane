@@ -130,7 +130,7 @@
       - !type:HealthChange
         damage:
           types:
-            Poison: -1 # Was 1, Slight Buff as it should heal for half the amount as Dip or Stelli(GoobStation) # Orion-Edit: -1.5 > -1
+            Poison: -1.5 # Was 1, Slight Buff as it should heal for half the amount as Dip or Stelli(GoobStation)
       - !type:HealthChange
         conditions:
         - !type:OrganType # Goobstation - Yowie
@@ -184,7 +184,7 @@
       effects:
       - !type:AdjustReagent
         reagent: Histamine
-        amount: -4.0 # Orion-Edit: -3.0 > -4.0
+        amount: -3.0
       - !type:GenericStatusEffect
         key: Jitter
         time: 3.0
@@ -324,38 +324,20 @@
   metabolisms:
     Medicine:
       effects:
-        # Orion-Edit-Start: TG13 approximation
         - !type:HealthChange
           conditions:
           - !type:Temperature
-            max: 273.15
-          scaleByTemperature:
-            min: 100
-            max: 273.15
-            scale: 3
+            # this is a little arbitrary but they gotta be pretty cold
+            max: 213.0
+          scaleByTemperature: # Shitmed Change
+            min: 100.0
+            max: 213.0
+            scale: 1.6
           damage:
-            groups:
-              Airloss: -6
+            groups: # Goobstation - Cryo rebalance
+              Airloss: -3
               Brute: -3
               Burn: -3
-        - !type:HealthChange
-          conditions:
-          - !type:Temperature
-            max: 273.15
-          - !type:MobStateCondition
-            mobstate: Critical
-          scaleByTemperature:
-            min: 100
-            max: 273.15
-            scale: 3
-          damage:
-            groups:
-              Airloss: -6
-              Brute: -3
-              Burn: -3
-            types:
-              Poison: -1.5
-        # Orion-Edit-End
         - !type:GenericStatusEffect # Mono edit
           conditions:
           - !type:OrganType #
@@ -425,9 +407,9 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: -1.5 # Orion-Edit: -2 > -1.5
-            Shock: -1.5 # Orion-Edit: -2 > -1.5
-            Cold: -1.5 # Was 1.5, Buffed due to limb damage changes(GoobStation) # Orion-Edit: -2 > -1.5
+            Heat: -2
+            Shock: -2
+            Cold: -2 # Was 1.5, Buffed due to limb damage changes(GoobStation)
       - !type:HealthChange
         conditions:
         - !type:OrganType # Goobstation - Yowie
@@ -574,7 +556,7 @@
         conditions:
         - !type:ReagentThreshold
           reagent: Histamine
-          min: 30 # Orion-Edit: 45 > 30
+          min: 45
         reagent: Histamine
         amount: -5
       - !type:HealthChange
@@ -1040,7 +1022,7 @@
             type: Feroxi
           factor: 2
         - !type:ModifyBloodLevel
-          amount: 6 # Goobstation - buffed by two times due to shitmed changes # Orion-Edit: 12 > 6
+          amount: 12 # Goobstation - buffed by two times due to shitmed changes
 
 - type: reagent
   id: Siderlac
@@ -1058,7 +1040,7 @@
       - !type:HealthChange
         damage:
           types:
-            Caustic: -6 # Orion-Edit: -5 > -6
+            Caustic: -5
 
 - type: reagent
   id: Stellibinin
@@ -1102,7 +1084,6 @@
         - !type:OrganType # Goobstation - Yowie
           type: Yowie
           shouldHave: false
-        probability: 0.3 # Orion
         damage:
           types:
             Poison: 2
@@ -1114,16 +1095,6 @@
         key: KnockedDown
         time: 3.0
         type: Remove
-      # Orion-Start
-      - !type:ModifyStatusEffect
-        conditions:
-        - !type:ReagentThreshold
-          reagent: Haloperidol
-          max: 0.01
-        effectProto: StatusEffectDrowsiness
-        time: 3
-        type: Remove
-      # Orion-End
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
         time: 15.0
@@ -1171,7 +1142,7 @@
       - !type:HealthChange
         conditions:
         - !type:TotalDamage
-          max: 60 # Goobstation # Orion-Edit: 100 > 60
+          max: 100 # Goobstation
         damage:
           groups:
             Brute: -1
@@ -1371,7 +1342,7 @@
       - !type:HealthChange
         damage:
           types:
-            Caustic: -4 # Orion-Edit: -3 > -4
+            Caustic: -3
       - !type:HealthChange
         conditions:
         - !type:OrganType # Goobstation - Yowie
@@ -1574,7 +1545,7 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: -1.5 # Orion-Edit: -1 > -1.5
+            Heat: -1
       # od causes massive bleeding
       - !type:HealthChange
         conditions:
@@ -1620,7 +1591,7 @@
       - !type:HealthChange
         damage:
           types:
-            Shock: -6 # Orion-Edit: -4 > -6
+            Shock: -4
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -4
@@ -1706,9 +1677,9 @@
           damage: # Goobstation - Cryo rebalance
             groups:
               Airloss: -10.0
-              Brute: -20.0 # Orion-Edit: -5.0 > -20.0
-              Burn: -15.0 # Orion-Edit: -5.0 > -15.0
-              Toxin: -10.0 # Orion-Edit: -5.0 > -10.0
+              Brute: -5.0
+              Burn: -5.0
+              Toxin: -5.0
         - !type:GenericStatusEffect # Mono edit
           conditions:
           - !type:OrganType
@@ -1719,6 +1690,7 @@
           component: ForcedSleeping
           refresh: false
           type: Add
+
 
 - type: reagent
   id : Aloxadone

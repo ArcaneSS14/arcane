@@ -154,7 +154,7 @@
       - !type:HealthChange
         damage:
           types:
-            Radiation: 3.5 # Orion-Edit: 2 > 3.5
+            Radiation: 2
         conditions:
         - !type:TypedDamageThreshold
           damage:

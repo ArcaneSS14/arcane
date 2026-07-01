@@ -80,8 +80,7 @@
     Steel: 500
     Plastic: 500
     Plasma: 150
-    Uranium: 50 # Orion-Edit: Silver > Uranium
-    BSCrystal: 50
+    Silver: 50
 
 - type: latheRecipe
   id: SyringeBluespace

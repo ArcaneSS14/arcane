@@ -180,14 +180,7 @@ namespace Content.Client.Chemistry.UI
             // Ensure the Panel Info is updated, including UI elements for Buffer Volume, Output Container and so on
             UpdatePanelInfo(castState);
 
-            // Orion-Edit-Start
-            var bufCur = castState.BufferCurrentVolume?.Int() ?? 0;
-            var bufMax = castState.BufferMaxVolume?.Int() ?? 0;
-
-            BufferCurrentVolume.Text = bufMax > 0
-                ? $" {bufCur}/{bufMax}u"
-                : $" {bufCur}u";
-            // Orion-Edit-End
+            BufferCurrentVolume.Text = $" {castState.BufferCurrentVolume?.Int() ?? 0}u";
 
             InputEjectButton.Disabled = castState.InputContainerInfo is null;
             OutputEjectButton.Disabled = castState.OutputContainerInfo is null;
@@ -286,14 +279,9 @@ namespace Content.Client.Chemistry.UI
 
             var bufferLabel = new Label { Text = $"{Loc.GetString("chem-master-window-buffer-label")} " };
             bufferHBox.AddChild(bufferLabel);
-            // Orion-Start
-            var bufVolText = state.BufferMaxVolume is { } maxVol && maxVol > FixedPoint2.Zero
-                ? $"{state.BufferCurrentVolume}/{maxVol}u"
-                : $"{state.BufferCurrentVolume}u";
-            // Orion-End
             var bufferVol = new Label
             {
-                Text = bufVolText, // Orion-Edit
+                Text = $"{state.BufferCurrentVolume}u",
                 StyleClasses = { StyleNano.StyleClassLabelSecondaryColor }
             };
             bufferHBox.AddChild(bufferVol);
