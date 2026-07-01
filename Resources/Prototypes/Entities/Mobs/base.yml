@@ -163,7 +163,7 @@
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 450 # Arcane-Edit: 400 > 450
+        damage: 400
       behaviors:
       - !type:GibBehavior { }
     # GoobStation: Disabled ashing until husking is added

@@ -175,7 +175,7 @@
 - type: entity
   name: airloss autoinjector cartridge
   parent: [ BaseSecurityMedicalContraband , BaseAutoinjectorCartridge ]
-  description: Contains 5u of saline, 3u of dexalin plus and 2u artiplates, used in a cartridge autoinjector. # Arcane-Edit
+  description: Contains 7u of saline and 3u of dexalin plus, used in a cartridge autoinjector.
   id: CartridgeSaline
   components:
   - type: Sprite
@@ -189,11 +189,9 @@
       maxVol: 10
       reagents:
       - ReagentId: Saline
-        Quantity: 5 # Arcane-Edit: 7 > 5
+        Quantity: 7
       - ReagentId: DexalinPlus
         Quantity: 3
-      - ReagentId: Artiplates # Arcane
-        Quantity: 2
 
 - type: entity
   name: brute autoinjector cartridge

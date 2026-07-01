@@ -60,11 +60,6 @@
     snapCardinals: true
     layers:
     - state: mixer_empty
-    # Arcane-Start
-    - state: mixer_fill-1
-      map: ["enum.SolutionContainerLayers.Fill"]
-      visible: false
-    # Arcane-End
     - state: mixer_screens
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -184,23 +179,10 @@
   - type: SolutionContainerManager
     solutions:
       buffer: # Goobstation - solution shitcode doesnt like max volume 0 and i dont want to rewrite AddSolution
-        maxVol: 1000 # Arcane-Edit: 1000000 > 1000
-  # Arcane-Start
-  - type: ChemMasterBeakerCapacity
-  - type: RefillableSolution
-    solution: buffer
-  - type: DrainableSolution
-    solution: buffer
-  - type: SolutionContainerVisuals
-    solutionName: buffer
-    maxFillLevels: 10
-    fillBaseName: mixer_fill-
-    changeColor: true
-  - type: ChemMasterTransferTarget
-  # Arcane-End
+        maxVol: 1000000
   - type: DumpableSolution
     solution: buffer
-    unlimited: false # Arcane-Edit: true > false
+    unlimited: true
   - type: GuideHelp
     guides:
     - Chemicals

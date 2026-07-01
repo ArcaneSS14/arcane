@@ -276,13 +276,6 @@
         reagent: Theobromine
         amount: 0.01
       # Orion-End
-      # Arcane-Start
-      - !type:AdjustTemperature
-        amount: -15
-        conditions:
-        - !type:Temperature
-          min: 310.15
-      # Arcane-End
 
 - type: reagent
   id: IcedGreenTea
@@ -320,14 +313,7 @@
         factor: 2
       - !type:AdjustReagent
         reagent: Theobromine
-        amount: 0.01 # Arcane-Edit: 0.05 > 0.01
-      # Arcane-Start
-      - !type:AdjustTemperature
-        amount: -15
-        conditions:
-        - !type:Temperature
-          min: 310.15
-      # Arcane-End
+        amount: 0.01 # Orion-Edit: 0.05 > 0.01
 
 - type: reagent
   id: JuiceBerryPoison
@@ -670,18 +656,6 @@
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Arcane-Start
-  metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateThirst
-        factor: 3
-      - !type:AdjustTemperature
-        amount: -20
-        conditions:
-        - !type:Temperature
-          min: 310.15
-  # Arcane-End
 
 - type: reagent
   id: DryRamen
