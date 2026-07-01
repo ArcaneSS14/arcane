@@ -8,6 +8,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Construction;
 using Content.Goobstation.Maths.FixedPoint;
 using Robust.Shared.Containers;
+using System.Linq;
 
 namespace Content.Server._Arcane.Chemistry.EntitySystems;
 
@@ -145,21 +146,18 @@ public sealed class ChemMasterBeakerCapacitySystem : EntitySystem
         if (!_solutions.TryGetSolution(ent.Owner, SharedChemMaster.BufferSolutionName, out var bufferSoln, out _))
             return false;
 
-        var count = 0;
-        foreach (var beaker in GetConstructionBeakers(ent.Owner))
-            count++;
-
-        if (count < 2)
+        var beakers = GetConstructionBeakers(ent.Owner).ToList();
+        if (beakers.Count < 2)
             return false;
 
         var transferred = false;
-        foreach (var beaker in GetConstructionBeakers(ent.Owner))
+        foreach (var beaker in beakers)
         {
-            if (!_solutions.TryGetFitsInDispenser(beaker, out _, out var beakerSolution)
+            if (!_solutions.TryGetFitsInDispenser(beaker, out var beakerSoln, out var beakerSolution)
                 || beakerSolution.Volume == FixedPoint2.Zero)
                 continue;
 
-            var split = beakerSolution.SplitSolution(beakerSolution.Volume);
+            var split = _solutions.SplitSolution(beakerSoln!.Value, beakerSolution.Volume);
             _solutions.TryAddSolution(bufferSoln.Value, split);
             transferred = true;
         }
@@ -168,7 +166,7 @@ public sealed class ChemMasterBeakerCapacitySystem : EntitySystem
     }
     private void ReturnBufferToConstructionBeakers(Entity<ChemMasterBeakerCapacityComponent> ent)
     {
-        if (!_solutions.TryGetSolution(ent.Owner, SharedChemMaster.BufferSolutionName, out _, out var buffer)
+        if (!_solutions.TryGetSolution(ent.Owner, SharedChemMaster.BufferSolutionName, out var bufferSoln, out var buffer)
             || buffer.Volume == FixedPoint2.Zero)
         {
             return;
@@ -187,13 +185,13 @@ public sealed class ChemMasterBeakerCapacitySystem : EntitySystem
                 continue;
 
             var toTransfer = FixedPoint2.Min(canFit, buffer.Volume);
-            _solutions.TryAddSolution(beakerSoln.Value, buffer.SplitSolution(toTransfer));
+            _solutions.TryAddSolution(beakerSoln.Value, _solutions.SplitSolution(bufferSoln.Value, toTransfer));
         }
 
         if (buffer.Volume > FixedPoint2.Zero)
         {
             var coords = Transform(ent.Owner).Coordinates;
-            _puddle.TrySpillAt(coords, buffer.SplitSolution(buffer.Volume), out _);
+            _puddle.TrySpillAt(coords, _solutions.SplitSolution(bufferSoln.Value, buffer.Volume), out _);
         }
     }
 }
