@@ -234,7 +234,22 @@ namespace Content.Server.Chemistry.EntitySystems
                     _solutionContainerSystem.RemoveReagent(bufferSoln.Value, id, removed);
                 }
                 else
+                {
                     return;
+                }
+            }
+            else
+            {
+                var container = _itemSlotsSystem.GetItemOrNull(chemMaster, SharedChemMaster.InputSlotName);
+                if (container is null ||
+                    !_solutionContainerSystem.TryGetFitsInDispenser(container.Value, out var containerSoln, out var containerSolution))
+                    return;
+
+                var removed = FixedPoint2.Min(amount, containerSolution.GetReagentQuantity(id));
+                if (removed <= FixedPoint2.Zero)
+                    return;
+
+                _solutionContainerSystem.RemoveReagent(containerSoln.Value, id, removed);
             }
             // Arcane-Edit-End
 
