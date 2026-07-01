@@ -153,19 +153,17 @@
   products:
     Dexalin: 3
 
-# Orion-Edit-Start: Removed
-#- type: reaction
-#  id: DexalinPlus
-#  reactants:
-#    Dexalin:
-#      amount: 1
-#    Carbon:
-#      amount: 1
-#    Iron:
-#      amount: 1
-#  products:
-#    DexalinPlus: 3
-# Orion-Edit-End
+- type: reaction
+  id: DexalinPlus
+  reactants:
+    Dexalin:
+      amount: 1
+    Carbon:
+      amount: 1
+    Iron:
+      amount: 1
+  products:
+    DexalinPlus: 3
 
 - type: reaction
   id: Hyronalin
@@ -295,7 +293,7 @@
 - type: reaction
   id: HeartbreakerToxin
   reactants:
-    Dexalin: # Orion-Edit: DexalinPlus > Dexalin
+    DexalinPlus:
       amount: 1
     MindbreakerToxin:
       amount: 1

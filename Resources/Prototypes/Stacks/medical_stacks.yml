@@ -53,11 +53,11 @@
   name: stack-medicated-suture
   icon: {sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: medicated-suture }
   spawn: MedicatedSuture
-  maxCount: 10 #Was 10, bumped up due to Shitmed changes. (Goobstation) # Orion-Edit: 15 > 10
+  maxCount: 15 #Was 10, bumped up due to Shitmed changes. (Goobstation)
 
 - type: stack
   id: RegenerativeMesh
   name: stack-regenerative-mesh
   icon: {sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: regenerative-mesh}
-  spawn: RegenerativeMeshOpened # Orion-Edit
+  spawn: RegenerativeMesh
   maxCount: 15 #Was 10, bumped up due to Shitmed changes. (Goobstation)
