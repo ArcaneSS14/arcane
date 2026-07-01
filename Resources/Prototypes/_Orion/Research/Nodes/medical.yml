@@ -19,6 +19,7 @@
   - ScanningReagentCryostylane
   recipeUnlocks:
   - LargeBeaker
+  - XLargeBeaker # Arcane
   - Beaker
   - Bloodpack
   - Bonesetter
@@ -106,6 +107,7 @@
   - SprayBottleRed
   - SprayBottleBlue
   - SprayBottleOrange
+  - MetamaterialBeaker # Arcane
   - BoneGel
   - SodaDispenserMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
