@@ -40,9 +40,11 @@ public sealed partial class ReagentThreshold : EntityEffectCondition
     {
         if (args is EntityEffectReagentArgs reagentArgs)
         {
+            /* Arcane-Edit-Start: Moved
             var reagent = Reagent ?? reagentArgs.Reagent?.ID;
             if (reagent == null)
                 return true; // No condition to apply.
+            */ // Arcane-Edit-End
 
             // Arcane-Start
             if (Reagents != null)
@@ -57,6 +59,10 @@ public sealed partial class ReagentThreshold : EntityEffectCondition
                 }
                 return false;
             }
+
+            var reagent = Reagent ?? reagentArgs.Reagent?.ID;
+            if (reagent == null)
+                return true; // No condition to apply.
             // Arcane-End
 
             var quant = FixedPoint2.Zero;
