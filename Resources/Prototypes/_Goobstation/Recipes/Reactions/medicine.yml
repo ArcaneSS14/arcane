@@ -90,10 +90,11 @@
   reactants:
     Acetone:
       amount: 2
-    SodiumPolyacrylate:
-      amount: 1
+    Nitrogen: # Arcane-Edit: SodiumPolyacrylate > Nitrogen
+      amount: 3
     SulfuricAcid:
       amount: 1
+      catalyst: true
   products:
     Tirimol: 4
 
