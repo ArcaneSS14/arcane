@@ -154,6 +154,10 @@
         understands:
         - CorporateCodespeak
       # Orion-End
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentCentCom
+  # Arcane-end
 
 - type: startingGear
   id: NanotrasenRepresentativeGear

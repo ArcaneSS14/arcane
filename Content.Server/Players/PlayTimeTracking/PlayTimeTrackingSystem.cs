@@ -274,6 +274,13 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         ev.Jobs.UnionWith(GetDisallowedJobs(ev.Player));
     }
 
+    // Arcane-start
+    private bool HasFullRoleAccess(ICommonSession? player)
+    {
+        return player != null && ArcaneSponsorTiers.HasAllRoles(_linkManager.GetPatron(player)?.Tier?.Tier);
+    }
+    // Arcane-end
+
     public bool IsAllowed(ICommonSession player, string role)
     {
         if (!_prototypes.TryIndex<JobPrototype>(role, out var job) ||
@@ -281,7 +288,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             return true;
 
         // Arcane-sponsor-start
-        if (ArcaneSponsorTiers.HasAllRoles(_linkManager.GetPatron(player)?.Tier?.Tier))
+        if (HasFullRoleAccess(player))
             return true;
         // Arcane-sponsor-end
 
@@ -299,6 +306,11 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         var roles = new HashSet<ProtoId<JobPrototype>>();
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return roles;
+
+        // Arcane-sponsor-start
+        if (HasFullRoleAccess(player))
+            return roles;
+        // Arcane-sponsor-end
 
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
         {
@@ -321,6 +333,11 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             return;
 
         var player = _playerManager.GetSessionById(userId);
+        // Arcane-start
+        if (player == null || HasFullRoleAccess(player))
+            return;
+        // Arcane-end
+
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
         {
             // Sorry mate but your playtimes haven't loaded.

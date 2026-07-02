@@ -175,7 +175,7 @@
       - type: CommandStaff
   # Arcane-start
   contracts:
-  - DocumentContractEmploymentRnd
+  - DocumentContractEmploymentCommand
   # Arcane-end
 
 - type: startingGear

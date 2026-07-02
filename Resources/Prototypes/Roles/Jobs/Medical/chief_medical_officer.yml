@@ -184,7 +184,7 @@
       speedModifier: 2
   # Arcane-start
   contracts:
-  - DocumentContractEmploymentMedical
+  - DocumentContractEmploymentCommand
   # Arcane-end
 
 - type: startingGear

@@ -1,0 +1,69 @@
+- type: latheRecipe
+  id: DocumentContractEmploymentSecurityRecipe
+  result: DocumentContractEmploymentSecurity
+  categories:
+    - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPaper: 100
+
+- type: latheRecipe
+  id: DocumentContractEmploymentCargoRecipe
+  result: DocumentContractEmploymentCargo
+  categories:
+    - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPaper: 100
+
+- type: latheRecipe
+  id: DocumentContractEmploymentEngineeringRecipe
+  result: DocumentContractEmploymentEngineering
+  categories:
+    - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPaper: 100
+
+- type: latheRecipe
+  id: DocumentContractEmploymentMedicalRecipe
+  result: DocumentContractEmploymentMedical
+  categories:
+    - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPaper: 100
+
+- type: latheRecipe
+  id: DocumentContractEmploymentRndRecipe
+  result: DocumentContractEmploymentRnd
+  categories:
+    - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPaper: 100
+
+- type: latheRecipe
+  id: DocumentContractEmploymentServiceRecipe
+  result: DocumentContractEmploymentService
+  categories:
+    - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPaper: 100
+
+- type: latheRecipe
+  id: DocumentContractEmploymentCommandRecipe
+  result: DocumentContractEmploymentCommand
+  categories:
+    - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPaper: 100
