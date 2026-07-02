@@ -272,13 +272,13 @@
 # Homemade hyperzine, should be worse than it and harder to make, but
 # doesn't require vestine. Should NOT be addictive when we get addictions
 - type: reagent
-  id: Aranesp
-  name: reagent-name-aranesp
+  id: Dopamine # Arcane-Edit: Aranesp > Dopamine
+  name: reagent-name-dopamine
   group: Narcotics
-  desc: reagent-desc-aranesp
+  desc: reagent-desc-dopamine
   physicalDesc: reagent-physical-desc-oily
   flavor: oily
-  color: "#75fff5"
+  color: "#ffd900"
   metabolisms:
     Narcotic:
       metabolismRate: 0.5
@@ -286,7 +286,7 @@
       - !type:MovespeedModifier
         walkSpeedModifier: 1.3 # slower than dylometh due to being diluted - still overall stronger due to omni heal
         sprintSpeedModifier: 1.3
-      - !type:ModifyStatusEffect 
+      - !type:ModifyStatusEffect
         effectProto: StatusEffectStunned
         time: 3
         type: Remove
@@ -322,7 +322,7 @@
             Cold: -0.5
             Radiation: -0.5
             Poison: -0.5
-            Asphyxiation: 0.5
+            Asphyxiation: 3 # Arcane-Edit: 0.5 > 3
 
 - type: reagent
   id: MouseBites
