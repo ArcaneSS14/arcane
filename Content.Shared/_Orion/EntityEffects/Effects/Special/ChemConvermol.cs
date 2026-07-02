@@ -23,7 +23,7 @@ public sealed partial class ChemConvermol : EntityEffect
     public ProtoId<DamageGroupPrototype> HealDamageGroup = "Airloss";
 
     [DataField]
-    public string ToxDamageType = "Poison";
+    public ProtoId<DamageTypePrototype> ToxDamageType = "Poison";
 
     [DataField]
     public float HealPerTick = 1f;
