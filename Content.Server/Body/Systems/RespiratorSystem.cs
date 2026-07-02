@@ -536,7 +536,8 @@ public sealed class RespiratorSystem : EntitySystem
         // Arcane-Start
         var suffocationDamage = HasComp<DebrainedComponent>(ent) ? ent.Comp.Damage * 4.5f : ent.Comp.Damage;
 
-        if (_atmosSys.GetContainingMixture(ent.Owner) is { Pressure: <= Atmospherics.HazardLowPressure })
+        var pressure = _atmosSys.GetContainingMixture(ent.Owner)?.Pressure ?? 0f;
+        if (pressure <= Atmospherics.HazardLowPressure)
             suffocationDamage *= VacuumSuffocationMultiplier;
         // Arcane-End
 
@@ -554,7 +555,7 @@ public sealed class RespiratorSystem : EntitySystem
         if (ent.Comp.SuffocationCycles >= 2)
             _adminLogger.Add(LogType.Asphyxiation, $"{ToPrettyString(ent):entity} stopped suffocating");
 
-//        _damageableSys.TryChangeDamage(ent, ent.Comp.DamageRecovery); // Orion-Edit
+//        _damageableSys.TryChangeDamage(ent, ent.Comp.DamageRecovery); // Arcane-Edit
 
         var ev = new StopSuffocatingEvent();
         RaiseLocalEvent(ent, ref ev);
