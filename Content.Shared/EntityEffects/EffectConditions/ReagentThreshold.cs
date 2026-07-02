@@ -82,6 +82,25 @@ public sealed partial class ReagentThreshold : EntityEffectCondition
         if (Reagent is not null)
             prototype.TryIndex(Reagent, out reagentProto);
 
+        // Arcane-Start
+        if (Reagents != null)
+        {
+            var names = new List<string>();
+            foreach (var reagentId in Reagents)
+            {
+                if (prototype.TryIndex(reagentId, out ReagentPrototype? rProto))
+                    names.Add(rProto.LocalizedName);
+            }
+
+            return Loc.GetString("reagent-effect-condition-guidebook-reagent-threshold",
+                ("reagent", names.Count > 0
+                    ? string.Join(", ", names)
+                    : Loc.GetString("reagent-effect-condition-guidebook-this-reagent")),
+                ("max", Max == FixedPoint2.MaxValue ? int.MaxValue : Max.Float()),
+                ("min", Min.Float()));
+        }
+        // Arcane-End
+
         return Loc.GetString("reagent-effect-condition-guidebook-reagent-threshold",
             ("reagent", reagentProto?.LocalizedName ?? Loc.GetString("reagent-effect-condition-guidebook-this-reagent")),
             ("max", Max == FixedPoint2.MaxValue ? int.MaxValue : Max.Float()),

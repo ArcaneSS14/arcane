@@ -131,9 +131,7 @@
         moodPrototype: StrongStimulant
       # Arcane-Start
       - !type:AdjustReagent
-        groups:
-        - Narcotic
-        - Stimulant
+        group: Narcotic
         amount: -1
         conditions:
         - !type:ReagentThreshold
