@@ -60,8 +60,6 @@
   name: metamaterial beaker
   description: A large beaker.
   components:
-  - type: Spillable
-    solution: beaker
   - type: Sprite
     sprite: _Arcane/Objects/Specific/Chemistry/beaker_metamaterial.rsi
     layers:

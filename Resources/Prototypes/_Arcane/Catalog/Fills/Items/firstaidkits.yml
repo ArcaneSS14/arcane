@@ -1,7 +1,7 @@
 - type: entity
+  parent: MedkitEmergency
   id: MedkitEmergencyFilled
   suffix: Filled
-  parent: MedkitEmergency
   components:
   - type: StorageFill
     contents:
@@ -12,9 +12,9 @@
       - id: PillCharcoal
 
 - type: entity
+  parent: MedkitCombatStandard
   id: MedkitCombatStandardFilled
   suffix: Filled
-  parent: MedkitCombatStandard
   components:
   - type: StorageFill
     contents:
@@ -30,9 +30,9 @@
       - id: MedicalPatchPrefilledDermaline
 
 - type: entity
+  parent: MedkitCombatAdvanced
   id: MedkitCombatAdvancedFilled
   suffix: Filled
-  parent: MedkitCombatAdvanced
   components:
   - type: StorageFill
     contents:

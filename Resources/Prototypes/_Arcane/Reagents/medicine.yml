@@ -43,7 +43,7 @@
   name: reagent-name-salbutamol
   group: Medicine
   desc: reagent-desc-salbutamol
-  physicalDesc: reagent-physical-desc-salbutamol
+  physicalDesc: reagent-physical-desc-cloudy
   flavor: medicine
   color: "#00FFFF"
   metabolisms:
