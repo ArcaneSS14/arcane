@@ -793,10 +793,10 @@
         ignoreBlockers: false
         damage:
           types:
-            Heat: -1.5
-            Cold: -1.5
+            Heat: -0.75 # Arcane-Edit: -1.5 > -0.75
+            Cold: -1 # Arcane-Edit: -1.5 > -1
             Shock: -1
-            Caustic: -1
+            Caustic: -0.75 # Arcane-Edit: -1 > -0.75
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
@@ -858,9 +858,9 @@
         ignoreBlockers: false
         damage:
           types:
-            Blunt: -2
-            Piercing: -1 # limits combat effectivness
-            Slash: -2
+            Blunt: -1 # Arcane-Edit: -2 > -1
+            Piercing: -0.5 # limits combat effectivness # Arcane-Edit: -1 > -0.5
+            Slash: -1 # Arcane-Edit: -2 > -1
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
@@ -920,6 +920,7 @@
             Cold: -0.38
             Shock: -0.25
             Caustic: -0.25
+            Poison: 0.2 # Arcane
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
@@ -958,8 +959,8 @@
         damage:
           types:
             Blunt: 0.25
-            Poison: -2
-            Radiation: -1
+            Poison: -0.4 # Arcane-Edit: -2 > -0.4
+            Radiation: -0.2 # Arcane-Edit: -1 > -0.2
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
@@ -971,7 +972,7 @@
       - !type:HealthChange
         damage:
           groups:
-            Toxin: -2
+            Toxin: -1 # Arcane-Edit: -2 > -1
       - !type:HealthChange
         damage:
           types:
