@@ -174,10 +174,29 @@ namespace Content.Shared.EntityEffects.Effects
             // Arcane-Start
             if (Reagents != null || Groups != null)
             {
+                var names = new List<string>();
+
+                if (Reagents != null)
+                {
+                    foreach (var reagentId in Reagents)
+                    {
+                        if (prototype.TryIndex(reagentId, out ReagentPrototype? rProto))
+                            names.Add(rProto.LocalizedName);
+                    }
+                }
+
+                if (Groups != null)
+                {
+                    foreach (var groupId in Groups)
+                    {
+                        if (prototype.TryIndex(groupId, out MetabolismGroupPrototype? gProto))
+                            names.Add(gProto.LocalizedName);
+                    }
+                }
                 return Loc.GetString("reagent-effect-guidebook-adjust-reagent-group",
                     ("chance", Probability),
                     ("deltasign", MathF.Sign(Amount.Float())),
-                    ("group", "..."),
+                    ("group", names.Count > 0 ? string.Join(", ", names) : "..."),
                     ("amount", MathF.Abs(Amount.Float())));
             }
             // Arcane-End
