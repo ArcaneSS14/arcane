@@ -50,13 +50,13 @@ namespace Content.Shared.EntityEffects.Effects
         /// Multiple reagent IDs to adjust. Used alongside or instead of <see cref="Reagent"/>.
         /// </summary>
         [DataField]
-        public List<string>? Reagents;
+        public List<ProtoId<ReagentPrototype>>? Reagents;
 
         /// <summary>
         /// Multiple metabolism groups to adjust. Used alongside or instead of <see cref="Group"/>.
         /// </summary>
         [DataField]
-        public List<string>? Groups;
+        public List<ProtoId<MetabolismGroupPrototype>>? Groups;
 
         [DataField]
         public bool ExcludeSelf = false;
@@ -116,22 +116,32 @@ namespace Content.Shared.EntityEffects.Effects
                 if (Groups != null)
                 {
                     var protoMan = IoCManager.Resolve<IPrototypeManager>();
-                    foreach (var groupId in Groups)
+                    foreach (var quant in reagentArgs.Source.Contents.ToArray())
                     {
-                        foreach (var quant in reagentArgs.Source.Contents.ToArray())
+                        if (ExcludeSelf && reagentArgs.Reagent != null &&
+                            quant.Reagent.Prototype == reagentArgs.Reagent.ID)
+                            continue;
+
+                        var proto = protoMan.Index<ReagentPrototype>(quant.Reagent.Prototype);
+                        if (proto.Metabolisms == null)
+                            continue;
+
+                        var matchesAny = false;
+                        foreach (var groupId in Groups)
                         {
-                            if (ExcludeSelf && reagentArgs.Reagent != null &&
-                                quant.Reagent.Prototype == reagentArgs.Reagent.ID)
-                                continue;
-                            var proto = protoMan.Index<ReagentPrototype>(quant.Reagent.Prototype);
-                            if (proto.Metabolisms != null && proto.Metabolisms.ContainsKey(groupId))
+                            if (proto.Metabolisms.ContainsKey(groupId))
                             {
-                                if (amount < 0)
-                                    reagentArgs.Source.RemoveReagent(quant.Reagent, -amount);
-                                if (amount > 0)
-                                    reagentArgs.Source.AddReagent(quant.Reagent, amount);
+                                matchesAny = true;
+                                break;
                             }
                         }
+                        if (!matchesAny)
+                            continue;
+
+                        if (amount < 0)
+                            reagentArgs.Source.RemoveReagent(quant.Reagent, -amount);
+                        if (amount > 0)
+                            reagentArgs.Source.AddReagent(quant.Reagent, amount);
                     }
                 }
                 // Arcane-End
