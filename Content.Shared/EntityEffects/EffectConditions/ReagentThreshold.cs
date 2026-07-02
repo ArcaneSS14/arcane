@@ -33,7 +33,7 @@ public sealed partial class ReagentThreshold : EntityEffectCondition
     /// Multiple reagent IDs, checked with OR logic (any one meeting Min/Max passes the condition).
     /// </summary>
     [DataField]
-    public List<string>? Reagents;
+    public List<ProtoId<ReagentPrototype>>? Reagents;
     // Arcane-End
 
     public override bool Condition(EntityEffectBaseArgs args)
