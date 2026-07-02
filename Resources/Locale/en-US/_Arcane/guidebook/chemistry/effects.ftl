@@ -10,6 +10,6 @@ reagent-effect-guidebook-purge-moodlets =
 
 reagent-effect-guidebook-oxygenate =
     { $chance ->
-        [1] Improves oxygenation by { NATURALFIXED($factor, 1) } and slows further suffocation damage
-       *[other] Improves oxygenation by { NATURALFIXED($factor, 1) } and slows further suffocation damage
+        [1] Improves oxygenation by { NATURALFIXED($factor, 1) } and slows further suffocation damage.
+       *[other] With { NATURALPERCENT($chance, 1) } chance, improves oxygenation by { NATURALFIXED($factor, 1) } and slows further suffocation damage.
     }
