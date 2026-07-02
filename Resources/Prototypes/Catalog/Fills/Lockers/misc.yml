@@ -143,7 +143,7 @@
       - id: OxygenTankFilled
     - id: ToolboxEmergencyFilled
       prob: 0.5
-    - id: MedkitEmergency # Arcane-Edit
+    - id: MedkitEmergencyFilled # Arcane-Edit
       prob: 0.3 # Arcane-Edit: 0.2 > 0.3
     - id: WeaponFlareGun
       prob: 0.1

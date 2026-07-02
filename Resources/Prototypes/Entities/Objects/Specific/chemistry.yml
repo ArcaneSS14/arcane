@@ -263,19 +263,19 @@
   # Arcane-Start
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/_Orion/Items/ReagentContainers/beaker_place.ogg
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_place.ogg
       params:
         volume: -4
         variation: 0.125
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/_Orion/Items/ReagentContainers/beaker_place.ogg
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_place.ogg
       params:
         volume: -4
         variation: 0.125
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/_Orion/Items/ReagentContainers/beaker_pickup.ogg
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_pickup.ogg
       params:
         volume: -6
         variation: 0.125
@@ -422,19 +422,19 @@
   # Arcane-Start
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/_Orion/Items/ReagentContainers/beaker_place.ogg
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_place.ogg
       params:
         volume: -4
         variation: 0.125
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/_Orion/Items/ReagentContainers/beaker_place.ogg
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_place.ogg
       params:
         volume: -4
         variation: 0.125
   - type: EmitSoundOnPickup
     sound:
-      path: /Audio/_Orion/Items/ReagentContainers/beaker_pickup.ogg
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_pickup.ogg
       params:
         volume: -6
         variation: 0.125

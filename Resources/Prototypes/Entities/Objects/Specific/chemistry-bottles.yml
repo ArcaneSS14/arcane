@@ -207,7 +207,7 @@
   # Arcane-Start
   - type: EmitSoundOnDrop
     sound:
-      path: /Audio/_Orion/Items/ReagentContainers/beaker_place.ogg
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_place.ogg
       params:
         volume: -4
         variation: 0.125
