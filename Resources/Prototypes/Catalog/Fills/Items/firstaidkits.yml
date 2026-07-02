@@ -105,7 +105,7 @@
     contents:
       # Arcane-Edit-Start
       - id: SyringeConvermol
-      - id: AirlossAutoInjector
+      - id: SalbutamolAutoInjector
       - id: EmergencyMedipen
       - id: PillCanisterDexalin
       - id: SyringeConvermol
