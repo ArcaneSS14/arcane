@@ -3,7 +3,7 @@
   name: reagent-name-convermol
   group: Medicine
   desc: reagent-desc-convermol
-  physicalDesc: reagent-physical-desc-convermol
+  physicalDesc: reagent-physical-desc-sour
   flavor: medicine
   color: "#FF6464"
   metabolisms:
