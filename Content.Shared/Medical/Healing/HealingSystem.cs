@@ -426,6 +426,9 @@ public sealed class HealingSystem : EntitySystem
                 var bleeding = new List<(EntityUid Id, FixedPoint2 Bleed)>();
                 var nonBleeding = new List<EntityUid>();
 
+                if (TryComp<WoundableComponent>(targetedWoundable, out var targetWc) && targetWc.Bleeds > FixedPoint2.Zero)
+                    bleeding.Add((targetedWoundable, targetWc.Bleeds));
+
                 for (var i = 0; i < _partHealingOrder.Length; i++)
                 {
                     var (pt, sym) = _bodySystem.ConvertTargetBodyPart(_partHealingOrder[i]);
@@ -441,10 +444,13 @@ public sealed class HealingSystem : EntitySystem
 
                 // Bleeding limbs first, sorted by severity desc. Then damage-only limbs
                 bleeding.Sort((a, b) => b.Bleed.CompareTo(a.Bleed));
+
+                woundablesQueue.Clear();
                 foreach (var (id, _) in bleeding)
                     woundablesQueue.Enqueue(id);
-                foreach (var id in nonBleeding)
-                    woundablesQueue.Enqueue(id);
+                if (nonBleeding.Contains(targetedWoundable) || !bleeding.Any(b => b.Id == targetedWoundable))
+                    foreach (var id in nonBleeding)
+                        woundablesQueue.Enqueue(id);
             }
             // Arcane-End
             // Arcane-Edit-Start
