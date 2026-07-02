@@ -84,6 +84,8 @@ using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
@@ -97,6 +99,9 @@ public sealed class SolutionTransferSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // Arcane
+
+    private static readonly SoundSpecifier LiquidPourSound = new SoundCollectionSpecifier("LiquidPour", AudioParams.Default.WithVariation(0.2f)); // Arcane
 
     /// <summary>
     ///     Default transfer amounts for the set-transfer verb.
@@ -205,6 +210,7 @@ public sealed class SolutionTransferSystem : EntitySystem
                     : "comp-solution-transfer-fill-normal";
 
                 _popup.PopupClient(Loc.GetString(msg, ("owner", args.Target), ("amount", transferred), ("target", uid)), uid, args.User);
+                _audio.PlayPredicted(LiquidPourSound, target, args.User); // Arcane
                 return;
             }
         }
@@ -250,6 +256,7 @@ public sealed class SolutionTransferSystem : EntitySystem
             {
                 var message = Loc.GetString("comp-solution-transfer-transfer-solution", ("amount", transferred), ("target", target));
                 _popup.PopupClient(message, uid, args.User);
+                _audio.PlayPredicted(LiquidPourSound, target, args.User); // Arcane
             }
         }
     }
