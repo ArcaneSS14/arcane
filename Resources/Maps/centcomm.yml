@@ -22917,21 +22917,21 @@ entities:
       pos: -14.5,-4.5
       parent: 1668
     - type: FaxMachine
-      name: CCO office
+      name: Офис ОЦК
   - uid: 2815
     components:
     - type: Transform
       pos: -25.5,-7.5
       parent: 1668
     - type: FaxMachine
-      name: CC intern 2
+      name: Офис интерна ЦК 2
   - uid: 2816
     components:
     - type: Transform
       pos: -25.5,-3.5
       parent: 1668
     - type: FaxMachine
-      name: CC intern 1
+      name: Офис интерна ЦК 1
 - proto: filingCabinetDrawer
   entities:
   - uid: 1628
