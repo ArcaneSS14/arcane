@@ -225,7 +225,7 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
                 || !_solutionContainerSystem.TryGetFitsInDispenser(outputContainer, out var solution, out var soln))
                 return;
 
-            var refundedPower = soln.Sum(reagent => GetPowerCostForReagent(reagent.Reagent.Prototype, (int) reagent.Quantity, reagentDispenser.Comp)) // Orion-Edit
+            var refundedPower = soln.Sum(reagent => GetRefundCostForReagent(reagent.Reagent.Prototype, (int) reagent.Quantity, reagentDispenser.Comp)) // Orion-Edit // Arcane-Edit
                                 * reagentDispenser.Comp.RefundEnergyEfficiency; // Orion
             if (refundedPower > 0)
                 _battery.AddCharge(reagentDispenser, refundedPower);
@@ -244,6 +244,15 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
                 ? cost * amount * comp.FinalEnergyCostMultiplier // Orion-Edit
                 : float.MaxValue;
         }
+
+        // Arcane-Start
+        private static float GetRefundCostForReagent(string reagentId, int amount, EnergyReagentDispenserComponent comp)
+        {
+            return comp.Reagents.TryGetValue(reagentId, out var cost)
+                ? cost * amount * comp.FinalEnergyCostMultiplier
+                : 0f;
+        }
+        // Arcane-End
 
         private void OnMapInit(Entity<EnergyReagentDispenserComponent> entity, ref MapInitEvent args)
         {
