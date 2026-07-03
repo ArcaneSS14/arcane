@@ -140,10 +140,6 @@
             "directions": 4
         },
         {
-            "name": "worker_teeth",
-            "directions": 4
-        },
-        {
             "name": "ren_head",
             "directions": 4
         }
