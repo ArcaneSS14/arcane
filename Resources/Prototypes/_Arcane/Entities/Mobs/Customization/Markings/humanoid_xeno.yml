@@ -117,6 +117,20 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
     state: neomorph_tail
 
+- type: marking
+  id: HumanoidXenoTailRen
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: ren_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: ren_tail_grad
+  whitelist:
+    allowed:
+    - Bulbo44key
+
 # Head
 
 - type: marking
@@ -281,6 +295,18 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: worker_shine
 
+- type: marking
+  id: HumanoidXenoHeadRen
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: ren_head
+  whitelist:
+    allowed:
+    - Bulbo44key
+
 # Chest
 
 - type: marking
@@ -410,6 +436,18 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tracheas.rsi
     state: carrier_tubes
+
+- type: marking
+  id: HumanoidXenoTracheasRen
+  bodyPart: Chest
+  markingCategory: Tracheas
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
+    state: ren_tubes
+  whitelist:
+    allowed:
+    - Bulbo44key
 
 # Legs
 
