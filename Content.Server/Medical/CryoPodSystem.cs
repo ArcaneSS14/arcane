@@ -62,6 +62,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Administration.Logs;
+using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Unary.EntitySystems;
@@ -171,8 +172,16 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
         if (currentTemperature <= targetTemperature)
             return;
 
-        var ignoreResistance = !_inventory.TryGetSlotEntity(patient, "outerClothing", out var suit)
-            || !HasComp<TemperatureProtectionComponent>(suit);
+        var ignoreResistance = true;
+
+        if (_inventory.TryGetSlotEntity(patient, "outerClothing", out var suit))
+        {
+            var hasTemp = HasComp<TemperatureProtectionComponent>(suit);
+            var hasPress = HasComp<PressureProtectionComponent>(suit);
+
+            if (hasTemp && hasPress)
+                ignoreResistance = false;
+        }
 
         var temperatureStep = MathF.Min(
             currentTemperature - targetTemperature,
