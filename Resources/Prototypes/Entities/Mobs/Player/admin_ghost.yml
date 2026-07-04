@@ -277,10 +277,10 @@
     allowedVerbs: []
   - type: ExplosionResistance
     damageCoefficient: 0
-  # Lust-start
+  # Arcane-start
   - type: DirectionalEmote
     canHideName: true
-  # Lust-end
+  # Arcane-end
 
 - type: entity
   abstract: true

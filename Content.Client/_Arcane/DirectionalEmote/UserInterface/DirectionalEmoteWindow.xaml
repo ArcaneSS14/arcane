@@ -3,7 +3,7 @@
                 xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                 VerticalExpand="True"
                 HorizontalExpand="True"
-                Title="{Loc directional-emote-title}"
+                Title="Directional Emote"
                 MinSize="600 300">
     <PanelContainer Margin="10">
         <PanelContainer.PanelOverride>

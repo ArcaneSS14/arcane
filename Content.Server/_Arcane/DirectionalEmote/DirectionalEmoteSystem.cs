@@ -26,10 +26,20 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
     {
         base.Initialize();
 
-        _cfg.OnValueChanged(ACCVars.DirectionalEmoteMaxLength, value => _maxEmoteLength = value, true);
-        _cfg.OnValueChanged(ACCVars.DirectionalEmoteMaxDistance, value => _maxEmoteDistance = value, true);
+        Subs.CVar(_cfg, ACCVars.DirectionalEmoteMaxLength, OnMaxEmoteLengthChanged, true);
+        Subs.CVar(_cfg, ACCVars.DirectionalEmoteMaxDistance, OnMaxEmoteDistanceChanged, true);
 
         SubscribeNetworkEvent<DirectionalEmoteAttemptEvent>(HandleDirectionalEmoteAttemptEvent);
+    }
+
+    private void OnMaxEmoteLengthChanged(int value)
+    {
+        _maxEmoteLength = value;
+    }
+
+    private void OnMaxEmoteDistanceChanged(float value)
+    {
+        _maxEmoteDistance = value;
     }
 
     private void HandleDirectionalEmoteAttemptEvent(DirectionalEmoteAttemptEvent args, EntitySessionEventArgs eventArgs)
