@@ -242,17 +242,22 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
 
         private static float GetPowerCostForReagent(string reagentId, int amount, EnergyReagentDispenserComponent comp)
         {
-            return comp.Reagents.TryGetValue(reagentId, out var cost)
-                ? cost * amount * comp.FinalEnergyCostMultiplier // Orion-Edit
-                : float.MaxValue;
+            // Arcane-Edit-Start
+            return GetReagentCost(reagentId, amount, comp, unknownFallback: float.MaxValue);
+            // Arcane-Edit-End
         }
 
         // Arcane-Start
         private static float GetRefundCostForReagent(string reagentId, int amount, EnergyReagentDispenserComponent comp)
         {
+            return GetReagentCost(reagentId, amount, comp, unknownFallback: 0f);
+        }
+
+        private static float GetReagentCost(string reagentId, int amount, EnergyReagentDispenserComponent comp, float unknownFallback)
+        {
             return comp.Reagents.TryGetValue(reagentId, out var cost)
                 ? cost * amount * comp.FinalEnergyCostMultiplier
-                : 0f;
+                : unknownFallback;
         }
         // Arcane-End
 
