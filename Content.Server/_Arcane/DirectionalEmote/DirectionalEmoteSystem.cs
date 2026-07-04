@@ -1,7 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
-using Content.Shared._Lust.DirectionalEmote;
-using Content.Shared._Lust.LustCCVars;
+using Content.Shared._Arcane.CCVars;
+using Content.Shared._Arcane.DirectionalEmote;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -9,7 +9,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Lust.DirectionalEmote;
+namespace Content.Server._Arcane.DirectionalEmote;
 
 public sealed partial class DirectionalEmoteSystem : EntitySystem
 {
@@ -26,8 +26,8 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
     {
         base.Initialize();
 
-        _cfg.OnValueChanged(LustCCVars.DirectionalEmoteMaxLength, value => _maxEmoteLength = value, true);
-        _cfg.OnValueChanged(LustCCVars.DirectionalEmoteMaxDistance, value => _maxEmoteDistance = value, true);
+        _cfg.OnValueChanged(ACCVars.DirectionalEmoteMaxLength, value => _maxEmoteLength = value, true);
+        _cfg.OnValueChanged(ACCVars.DirectionalEmoteMaxDistance, value => _maxEmoteDistance = value, true);
 
         SubscribeNetworkEvent<DirectionalEmoteAttemptEvent>(HandleDirectionalEmoteAttemptEvent);
     }

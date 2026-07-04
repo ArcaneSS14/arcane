@@ -1,8 +1,7 @@
-
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Lust.DirectionalEmote;
+namespace Content.Shared._Arcane.DirectionalEmote;
 
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]

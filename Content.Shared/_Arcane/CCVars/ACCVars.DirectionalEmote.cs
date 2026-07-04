@@ -1,8 +1,8 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared._Lust.LustCCVars;
+namespace Content.Shared._Arcane.CCVars;
 
-public sealed partial class LustCCVars
+public sealed partial class ACCVars
 {
     /// <summary>
     /// Maximum length of directional emotes.

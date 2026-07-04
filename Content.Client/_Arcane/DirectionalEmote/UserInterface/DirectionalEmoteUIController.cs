@@ -1,9 +1,9 @@
-using Content.Shared._Lust.DirectionalEmote;
+using Content.Shared._Arcane.DirectionalEmote;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 
-namespace Content.Client._Lust.DirectionalEmote.UserInterface;
+namespace Content.Client._Arcane.DirectionalEmote.UserInterface;
 
 [UsedImplicitly]
 public sealed class DirectionalEmoteUIController : UIController

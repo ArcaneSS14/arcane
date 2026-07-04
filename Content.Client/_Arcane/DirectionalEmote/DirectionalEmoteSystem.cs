@@ -1,8 +1,8 @@
-using Content.Client._Lust.DirectionalEmote.UserInterface;
+using Content.Client._Arcane.DirectionalEmote.UserInterface;
 using Content.Client.Examine;
 using Content.Client.Popups;
-using Content.Shared._Lust.DirectionalEmote;
-using Content.Shared._Lust.LustCCVars;
+using Content.Shared._Arcane.CCVars;
+using Content.Shared._Arcane.DirectionalEmote;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Client.UserInterface;
@@ -10,7 +10,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Lust.DirectionalEmote;
+namespace Content.Client._Arcane.DirectionalEmote;
 
 public sealed partial class DirectionalEmoteSystem : EntitySystem
 {
@@ -27,8 +27,8 @@ public sealed partial class DirectionalEmoteSystem : EntitySystem
     {
         base.Initialize();
 
-        _cfg.OnValueChanged(LustCCVars.DirectionalEmoteMaxLength, value => _maxEmoteLength = value, true);
-        _cfg.OnValueChanged(LustCCVars.DirectionalEmoteMaxDistance, value => _maxEmoteDistance = value, true);
+        _cfg.OnValueChanged(ACCVars.DirectionalEmoteMaxLength, value => _maxEmoteLength = value, true);
+        _cfg.OnValueChanged(ACCVars.DirectionalEmoteMaxDistance, value => _maxEmoteDistance = value, true);
 
         SubscribeLocalEvent<DirectionalEmoteComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
     }
