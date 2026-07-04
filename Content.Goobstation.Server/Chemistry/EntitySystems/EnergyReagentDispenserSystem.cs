@@ -56,6 +56,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared._Orion.Construction.Events;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 
 namespace Content.Goobstation.Server.Chemistry.EntitySystems
 {
@@ -72,6 +73,7 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly BatterySystem _battery = default!;
+        [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!; // Arcane
 
         public override void Initialize()
         {
@@ -276,7 +278,9 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
             var matterBinTier = args.GetPartRating(component.MatterBinPart);
 
             component.FinalRechargeRate = component.BaseRechargeRate * RefreshPartsEvent.GetPositiveTierMultiplier(capacitorTier);
-            component.FinalEnergyCostMultiplier = RefreshPartsEvent.GetLinearMultiplier(matterBinTier, 0.1f, 0.5f, 1.2f);
+            component.FinalEnergyCostMultiplier = Math.Clamp(1.1f - matterBinTier * 0.1f, 0.5f, 1.2f); // Arcane-Edit
+
+            _powerReceiver.SetBatteryRechargeRate(uid, component.FinalRechargeRate); // Arcane
 
             UpdateUiState((uid, component));
         }
