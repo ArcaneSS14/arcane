@@ -1,6 +1,6 @@
 - type: entity
-  id: SmokingPipeFilledCannabisVita
   parent: SmokingPipe
+  id: SmokingPipeFilledCannabisVita
   name: pipe
   suffix: Vita
   description: Just like grandpappy used to smoke.
