@@ -1,6 +1,6 @@
 - type: entity
-  id: JointVita
   parent: Joint
+  id: JointVita
   name: joint
   suffix: Vita
   description: A roll of dried plant matter wrapped in thin paper.
