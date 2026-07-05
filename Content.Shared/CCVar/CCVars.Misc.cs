@@ -41,11 +41,10 @@ public sealed partial class CCVars
     /// <summary>
     ///     Whether idle players sitting in the lobby or as an unattached ghost should be disconnected by
     ///     <c>AfkKickSystem</c>. Disabled in integration tests, where a client can stay unattached for the
-    ///     whole test without actually being an idle player. // Arcane
+    ///     whole test without actually being an idle player.
     /// </summary>
     public static readonly CVarDef<bool> AfkKickEnabled =
         CVarDef.Create("afk.kick_enabled", true, CVar.SERVERONLY); // Arcane
-
     /// <summary>
     ///     Flavor limit. This is to ensure that having a large mass of flavors in
     ///     some food object won't spam a user with flavors.
