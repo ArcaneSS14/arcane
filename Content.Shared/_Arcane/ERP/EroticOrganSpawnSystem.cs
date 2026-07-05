@@ -39,10 +39,13 @@ public sealed class EroticOrganSpawnSystem : EntitySystem
 
     private void OnProfileLoaded(Entity<EroticOrgansComponent> ent, ref ProfileLoadFinishedEvent args)
     {
-        if (!_net.IsServer)
+        if (!TryComp<HumanoidAppearanceComponent>(ent, out var humanoid))
             return;
 
-        if (!TryComp<HumanoidAppearanceComponent>(ent, out var humanoid))
+        humanoid.HideLayersOnEquip.Add(HumanoidVisualLayers.ErpGroin); // Arcane-edit
+        humanoid.HideLayersOnEquip.Add(HumanoidVisualLayers.ErpChest); // Arcane-edit
+
+        if (!_net.IsServer)
             return;
 
         RemoveEroticOrgans(ent);
@@ -60,9 +63,6 @@ public sealed class EroticOrganSpawnSystem : EntitySystem
 
     private void SpawnEroticOrgans(EntityUid uid, EroticOrgansComponent def, Sex sex)
     {
-        if (sex == Sex.Unsexed)
-            return;
-
         var groin = GetBodyPartOfType(uid, BodyPartType.Groin);
         var chest = GetBodyPartOfType(uid, BodyPartType.Chest);
 

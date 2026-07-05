@@ -94,6 +94,10 @@
     components:
     - type: Condemned
       soulOwnedNotDevil: true
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentService
+  # Arcane-end
 
 - type: startingGear
   id: LawyerGear

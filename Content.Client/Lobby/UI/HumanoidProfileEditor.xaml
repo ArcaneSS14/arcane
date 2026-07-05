@@ -208,6 +208,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         <humanoid:MarkingPicker Name="Markings" IgnoreCategories="Hair,FacialHair" />
                     </ScrollContainer>
                 </BoxContainer>
+                <!-- Arcane-Start: ERP tab -->
+                <BoxContainer Name="ErpTab" Orientation="Vertical" Margin="10" />
+                <!-- Arcane-End -->
             </TabContainer>
         </BoxContainer>
         <!-- Right side -->

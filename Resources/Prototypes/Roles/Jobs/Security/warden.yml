@@ -176,6 +176,10 @@
   - !type:AddComponentSpecial # goobstation
     components:
       - type: SecurityStaff
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentSecurity
+  # Arcane-end
 
 - type: startingGear
   id: WardenGear

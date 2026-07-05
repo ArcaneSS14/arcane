@@ -262,12 +262,15 @@ namespace Content.Server.Database
                 .Where(p => p.Preference.UserId == userId.UserId && p.Slot == slot)
                 .SingleOrDefaultAsync();
 
-            if (profile == null)
-            {
-                return;
-            }
+            if (profile != null)
+                db.Profile.Remove(profile);
 
-            db.Profile.Remove(profile);
+            // Arcane-Start — always clean ERP prefs for the slot, even if no profile row exists.
+            var erpRow = await db.ErpOrganPreferences
+                .FirstOrDefaultAsync(e => e.UserId == userId.UserId && e.Slot == slot);
+            if (erpRow != null)
+                db.ErpOrganPreferences.Remove(erpRow);
+            // Arcane-End
         }
 
         public async Task<PlayerPreferences> InitPrefsAsync(NetUserId userId, ICharacterProfile defaultProfile)
@@ -342,6 +345,46 @@ namespace Content.Server.Database
 
             await db.DbContext.SaveChangesAsync();
         }
+
+        // Arcane-Start
+        public async Task<string?> GetErpOrganPreferencesAsync(NetUserId userId, int slot)
+        {
+            await using var db = await GetDb();
+            var row = await db.DbContext.ErpOrganPreferences
+                .FirstOrDefaultAsync(e => e.UserId == userId.UserId && e.Slot == slot);
+            return row?.Data;
+        }
+
+        public async Task SaveErpOrganPreferencesAsync(NetUserId userId, int slot, string data)
+        {
+            await using var db = await GetDb();
+            var row = await db.DbContext.ErpOrganPreferences
+                .FirstOrDefaultAsync(e => e.UserId == userId.UserId && e.Slot == slot);
+
+            if (row == null)
+            {
+                row = new ErpOrganPreference { UserId = userId.UserId, Slot = slot, Data = data };
+                db.DbContext.ErpOrganPreferences.Add(row);
+            }
+            else
+            {
+                row.Data = data;
+            }
+
+            try
+            {
+                await db.DbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateException) // Arcane: concurrent insert race — retry as update
+            {
+                db.DbContext.Entry(row).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+                row = await db.DbContext.ErpOrganPreferences
+                    .FirstAsync(e => e.UserId == userId.UserId && e.Slot == slot);
+                row.Data = data;
+                await db.DbContext.SaveChangesAsync();
+            }
+        }
+        // Arcane-End
 
         private static async Task SetSelectedCharacterSlotAsync(NetUserId userId, int newSlot, ServerDbContext db)
         {

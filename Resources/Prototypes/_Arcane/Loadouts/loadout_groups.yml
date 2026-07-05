@@ -1,0 +1,6 @@
+- type: loadoutGroup
+  id: Patron
+  name: loadout-group-patron
+  minLimit: 0
+  loadouts:
+  - BoomboxPatron

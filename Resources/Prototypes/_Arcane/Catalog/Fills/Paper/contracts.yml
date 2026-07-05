@@ -1,0 +1,97 @@
+- type: entity
+  parent: PrintedDocument
+  id: BaseContract
+  abstract: true
+  components:
+  - type: Flammable
+    damage:
+      types: {}
+
+- type: entity
+  parent: BaseContract
+  id: DocumentContractEmploymentSecurity
+  name: work contract
+  components:
+    - type: Paper
+      content: doc-text-employment-contract-security
+      editingDisabled: true
+
+- type: entity
+  parent: BaseContract
+  id: DocumentContractEmploymentCargo
+  name: work contract
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-employment-contract-cargo
+      editingDisabled: true
+
+- type: entity
+  parent: BaseContract
+  id: DocumentContractEmploymentEngineering
+  name: work contract
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-employment-contract-engineering
+      editingDisabled: true
+
+- type: entity
+  parent: BaseContract
+  id: DocumentContractEmploymentMedical
+  name: work contract
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-employment-contract-medical
+      editingDisabled: true
+
+- type: entity
+  parent: BaseContract
+  id: DocumentContractEmploymentRnd
+  name: work contract
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-employment-contract-rnd
+      editingDisabled: true
+
+- type: entity
+  parent: BaseContract
+  id: DocumentContractEmploymentService
+  name: work contract
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-employment-contract-service
+      editingDisabled: true
+
+- type: entity
+  parent: BaseContract
+  id: DocumentContractEmploymentCommand
+  name: work contract
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-employment-contract-command
+      editingDisabled: true
+
+- type: entity
+  parent: BaseContract
+  id: DocumentContractEmploymentDSO
+  name: work contract
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-employment-contract-dso
+      editingDisabled: true
+
+- type: entity
+  parent: BaseContract
+  id: DocumentContractEmploymentCentCom
+  name: work contract
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-employment-contract-centcom
+      editingDisabled: true

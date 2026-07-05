@@ -197,8 +197,16 @@ namespace Content.Server.Database
         public DbSet<PollVote> PollVotes { get; set; } = default!;
         public DbSet<PollSeen> PollSeen { get; set; } = default!;
 
+        public DbSet<ErpOrganPreference> ErpOrganPreferences { get; set; } = default!; // Arcane-edit
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Arcane-Start
+            modelBuilder.Entity<ErpOrganPreference>()
+                .HasIndex(e => new { e.UserId, e.Slot })
+                .IsUnique();
+            // Arcane-End
+
             modelBuilder.Entity<Preference>()
                 .HasIndex(p => p.UserId)
                 .IsUnique();
@@ -1594,6 +1602,25 @@ namespace Content.Server.Database
         }
     }
 
+
+    // Arcane-Start
+    /// <summary>Per-character organ appearance preferences (variant, size).</summary>
+    public class ErpOrganPreference
+    {
+        [Key]
+        public int Id { get; set; }
+
+        /// <summary>Player user id.</summary>
+        public Guid UserId { get; set; }
+
+        /// <summary>Character slot index matching HumanoidCharacterProfile slot.</summary>
+        public int Slot { get; set; }
+
+        /// <summary>JSON-serialized ErpOrganPreferences.</summary>
+        [Required]
+        public string Data { get; set; } = "{}";
+    }
+    // Arcane-End
 
     /// <summary>
     ///  Cache for the IPIntel system

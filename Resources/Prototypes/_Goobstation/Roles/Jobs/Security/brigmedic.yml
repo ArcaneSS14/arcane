@@ -47,6 +47,10 @@
     components:
     - type: SurgerySpeedModifier
       speedModifier: 1.25 # Same as Paramedic
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentSecurity
+  # Arcane-end
 
 - type: chameleonOutfit
   id: BrigmedicChameleonOutfit

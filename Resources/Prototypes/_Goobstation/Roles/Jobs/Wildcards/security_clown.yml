@@ -41,6 +41,10 @@
       interval: 10
   - !type:AddImplantSpecial
     implants: [ SadTromboneImplant, MindShieldImplant ]
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentSecurity
+  # Arcane-end
 
 - type: startingGear
   id: SecurityClownGear

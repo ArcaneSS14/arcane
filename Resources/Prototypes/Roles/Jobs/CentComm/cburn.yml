@@ -40,7 +40,7 @@
     jumpsuit: ClothingUniformJumpsuitColorBrown
     back: ClothingBackpackDuffelCBURN
     mask: ClothingMaskGasERT
-    neck: ExecutiveIDCard # Executive Access!
+#   neck: ExecutiveIDCard # Arcane-Edit
     eyes: ClothingEyesGlassesMedSec # Better glasses
     ears: ClothingHeadsetAltCentCom
     gloves: ClothingHandsGlovesCombat

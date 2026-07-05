@@ -130,6 +130,7 @@
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 7 ]
+            Roboticist: [ 2, 2 ] # Arcane
             ResearchAssistant: [ 3, 6 ]
             #security
             HeadOfSecurity: [ 1, 1 ]

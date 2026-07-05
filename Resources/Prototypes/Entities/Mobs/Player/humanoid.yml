@@ -198,8 +198,10 @@
   suffix: ERTRole, Death Squad
   components:
     - type: Sprite
-      sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
-      state: icon
+      # Arcane-Edit-start
+      sprite: _Orion/Icons/nanotrasen.rsi
+      state: logo
+      # Arcane-Edit-end
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
@@ -697,8 +699,10 @@
   suffix: ERTRole
   components:
     - type: Sprite
-      sprite: Markers/jobs.rsi
-      state: cburn
+      # Arcane-Edit-start
+      sprite: _Orion/Icons/nanotrasen.rsi
+      state: logo
+      # Arcane-Edit-end
     - type: RandomHumanoidSpawner
       settings: CBURNAgent
 

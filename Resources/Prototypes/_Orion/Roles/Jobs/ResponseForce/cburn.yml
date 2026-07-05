@@ -5,7 +5,7 @@
   playTimeTracker: JobCBURNLeader
   setPreference: false
   startingGear: CBURNLeaderGear
-  icon: "JobIconNanotrasen"
+  icon: "JobIconERTLeader" # Arcane-Edit
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -24,7 +24,7 @@
     jumpsuit: ClothingUniformJumpsuitColorBrown
     back: ClothingBackpackDuffelCBURN
     mask: ClothingMaskGasERT
-    neck: ExecutiveIDCard
+    neck: ClothingNeckMantleEpaulettes # Arcane-Edit
     eyes: ClothingEyesGlassesMedSec
     ears: ClothingHeadsetAltCentCom
     gloves: ClothingHandsGlovesCombat

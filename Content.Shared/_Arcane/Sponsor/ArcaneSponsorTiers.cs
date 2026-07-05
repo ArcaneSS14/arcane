@@ -3,8 +3,8 @@ namespace Content.Shared._Arcane.Sponsor;
 // TODO: избавиться от этой хуйни
 public static class ArcaneSponsorTiers
 {
-    public const string Tier1 = "Tir1";
-    public const string Tier2 = "Tir2";
+    public const string Tier1 = "Tier1";
+    public const string Tier2 = "Tier2";
     public const string Tier1OocColor = "#8b00d1";
     public const string Tier2OocColor = "#ecad00";
     public const int TokenMultiplierTier1 = 2;
@@ -14,6 +14,16 @@ public static class ArcaneSponsorTiers
     public static bool HasAllRoles(string? tier)
     {
         return tier == Tier2;
+    }
+
+    public static bool HasTier(string? currentTier, string? requiredTier)
+    {
+        if (currentTier == null)
+            return false;
+
+        return requiredTier == null ||
+               currentTier == requiredTier ||
+               HasAllRoles(currentTier);
     }
 
     public static string GetOocColor(string? tier)

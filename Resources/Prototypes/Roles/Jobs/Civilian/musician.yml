@@ -75,6 +75,10 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: MikuDay
     prototype: BoxPerformer
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentService
+  # Arcane-end
 
 - type: startingGear
   id: MusicianGear

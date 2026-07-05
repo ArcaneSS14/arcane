@@ -45,6 +45,14 @@ public sealed partial class RottingComponent : Component
     [DataField]
     public TimeSpan TotalRotTime = TimeSpan.Zero;
 
+    // Arcane-start
+    /// <summary>
+    /// When remove the non-humanoid entity after the start of rotting
+    /// </summary>
+    [DataField]
+    public TimeSpan DeleteAfter = TimeSpan.FromMinutes(10);
+    // Arcane-end
+
     /// <summary>
     /// The damage dealt by rotting.
     /// </summary>

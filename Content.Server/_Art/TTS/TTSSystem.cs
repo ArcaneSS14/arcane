@@ -53,9 +53,7 @@ public sealed partial class TTSSystem : EntitySystem
             return;
 
         var voiceId = component.VoicePrototype;
-        // var voiceEv = new TransformSpeakerVoiceEvent(uid, voiceId);
-        // RaiseLocalEvent(uid, voiceEv);
-        // voiceId = voiceEv.VoiceId;
+        var effect = component.Effect;
 
         if (!_prototypeManager.TryIndex(voiceId, out var protoVoice))
             return;
@@ -66,7 +64,7 @@ public sealed partial class TTSSystem : EntitySystem
             return;
         }
 
-        HandleSay(uid, args.Message, args.Language, protoVoice.Speaker);
+        HandleSay(uid, args.Message, args.Language, protoVoice.Speaker, effect);
     }
 
     private void OnTTSRadioPlayEvent(EntityUid uid, ActorComponent comp, TTSRadioPlayEvent args)
@@ -88,14 +86,8 @@ public sealed partial class TTSSystem : EntitySystem
             voice = voicePrototype.Speaker;
         }
 
-        Logger.Debug("ANNOUNCE PENIS");
-
         if (voice != null)
-        {
-            Logger.Debug("ANNOUNCE PENIS VOICE CHECK ASDASDSAD");
-
             Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(6), () => HandleReceiveRadio(args.Recievers, args.Message, voice, "announce"));
-        }
     }
 
     private async void HandleReceiveRadio(Filter filter, string message, string speaker, string effect, LanguagePrototype? language = null)
@@ -118,9 +110,9 @@ public sealed partial class TTSSystem : EntitySystem
     }
     // Arcane-end
 
-    private async void HandleSay(EntityUid uid, string message, LanguagePrototype language, string speaker)
+    private async void HandleSay(EntityUid uid, string message, LanguagePrototype language, string speaker, string? effect)
     {
-        var normal = await GenerateTTS(message, speaker);
+        var normal = await GenerateTTS(message, speaker, effect);
         if (normal is null)
             return;
 

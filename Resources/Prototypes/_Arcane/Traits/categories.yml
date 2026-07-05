@@ -1,0 +1,4 @@
+- type: traitCategory
+  id: Nature
+  name: trait-category-nature
+  maxTraitPoints: 1

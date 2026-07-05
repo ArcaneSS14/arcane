@@ -71,6 +71,10 @@
   access:
   - Research
   - Maintenance
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentRnd
+  # Arcane-end
 
 - type: startingGear
   id: ResearchAssistantGear

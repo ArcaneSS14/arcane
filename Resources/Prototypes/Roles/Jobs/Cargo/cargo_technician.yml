@@ -96,6 +96,10 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay
     prototype: BoxCardboard
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentCargo
+  # Arcane-end
 
 - type: startingGear
   id: CargoTechGear

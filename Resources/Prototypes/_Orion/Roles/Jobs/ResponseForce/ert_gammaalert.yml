@@ -5,7 +5,7 @@
     back: ClothingBackpackERTLeader
     shoes: ClothingShoesBootsMagEmergencyResponseTeam
     head: ClothingHeadHelmetERTLeader
-    neck: ExecutiveIDCard # Goobstation - Executive Access!
+    neck: ClothingNeckMantleEpaulettes # Arcane-Edit
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTLeader
@@ -28,7 +28,7 @@
     back: ClothingBackpackERTJanitor
     shoes: ClothingShoesGaloshes
     head: ClothingHeadHelmetERTJanitor
-    neck: ExecutiveIDCard # Goobstation - Executive Access!
+#   neck: ExecutiveIDCard # Arcane-Edit
     gloves: ClothingHandsGlovesColorPurple
     outerClothing: ClothingOuterHardsuitERTJanitor
     id: ERTJanitorPDA
@@ -51,7 +51,7 @@
     back: ClothingBackpackERTEngineer
     shoes: ClothingShoesBootsMagEmergencyResponseTeam
     head: ClothingHeadHelmetERTEngineer
-    neck: ExecutiveIDCard # Goobstation - Executive Access!
+#   neck: ExecutiveIDCard # Arcane-Edit
     eyes: ClothingEyesGlassesMeson
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTEngineer
@@ -80,7 +80,7 @@
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesBootsMagEmergencyResponseTeam
     head: ClothingHeadHelmetERTSecurity
-    neck: ExecutiveIDCard # Goobstation - Executive Access!
+#   neck: ExecutiveIDCard # Arcane-Edit
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTSecurity
@@ -105,7 +105,7 @@
     back: ClothingBackpackERTMedical
     shoes: ClothingShoesBootsMagEmergencyResponseTeam
     head: ClothingHeadHelmetERTMedic
-    neck: ExecutiveIDCard # Goobstation - Executive Access!
+#   neck: ExecutiveIDCard # Arcane-Edit
     eyes: ClothingEyesGlassesMedSec # Goobstation
     gloves: ClothingHandsGlovesNitrile
     outerClothing: ClothingOuterHardsuitERTMedical

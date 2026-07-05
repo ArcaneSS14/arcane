@@ -116,6 +116,10 @@
   - Maintenance
 #  extendedAccess: # Orion-Edit
 #  - Chemistry
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentMedical
+  # Arcane-end
 
 - type: startingGear
   id: PsychologistGear

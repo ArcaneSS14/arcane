@@ -109,6 +109,8 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     {
         base.Update(frameTime);
 
+        return; // Arcane-remove
+
         if (!_gameTiming.IsFirstTimePredicted)
             return;
 

@@ -64,7 +64,7 @@ namespace Content.Server.GameTicking
                 jObject["name"] = _baseServer.ServerName;
                 jObject["map"] = _gameMapManager.GetSelectedMap()?.MapName;
                 jObject["round_id"] = _gameTicker.RoundId;
-                jObject["players"] = _joinQueue.ActualPlayersCount; // Goobstation - Queue
+                jObject["players"] = _joinQueue.ActualPlayersCount + _joinQueue.PlayerInQueueCount; // Arcane
                 jObject["queue"] = _joinQueue.PlayerInQueueCount; // Goobstation - Queue
                 jObject["soft_max_players"] = _cfg.GetCVar(CCVars.SoftMaxPlayers);
                 jObject["panic_bunker"] = _cfg.GetCVar(CCVars.PanicBunkerEnabled);

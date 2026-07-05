@@ -9,4 +9,3 @@
     noRot: true
   - type: PermanentBlindness
     blindness: 4
-  - type: DirectionalEmoteTarget

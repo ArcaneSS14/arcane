@@ -1,7 +1,14 @@
-directional-emote-title = Меню направленного действия
+directional-emote-title = Направленный Эмоут -> { $target }
 directional-emote-button = Отправить
+directional-last-emote-button = Прошлый Эмоут
+directional-emote-hide-name = Скрыть имя
 
-directional-emote-verb-name = Направленная эмоция
+directional-emote-unknown-target = Неизвестная Сущность
 
-directional-emote-range-error = [bolditalic]Для отправки направленной эмоции вы должны быть рядом с целью![/bolditalic]
-directional-emote-length-error = [bolditalic]Ваше сообщение не должно превышать { $maxLength } символов![/bolditalic]
+directional-emote-verb-get-data-text = Направленный эмоут
+
+directional-emote-too-long-popup = Вы должны находиться в { $range } метрах от цели!
+directional-emote-length-error = Ваше сообщение превышает лимит! ({ $limit } символов)
+
+directional-emote-wrap-message = [italic]{ $source }:[/italic]
+    { $message }

@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: AnusFuck
   category: Anus
-  name: Трахать в анус
   userArouse: 10
   targetArouse: 10
   range: 1
@@ -27,11 +26,11 @@
   - !type:EroticOrganRequirement
     organ: penis
     requireVisible: true
+  - !type:ArousalRequirement
 
 - type: panelInteraction
   id: AnusLick
   category: Anus
-  name: Лизать анус
   userArouse: 5
   targetArouse: 10
   range: 1
@@ -54,7 +53,6 @@
 - type: panelInteraction
   id: AnusFingering
   category: Anus
-  name: Трахать анус пальцами
   userArouse: 5
   targetArouse: 10
   range: 1
@@ -76,7 +74,6 @@
 - type: panelInteraction
   id: AnusTailFuck
   category: Anus
-  name: Трахать анус хвостом
   userArouse: 5
   targetArouse: 10
   range: 1
@@ -111,7 +108,6 @@
 - type: panelInteraction
   id: AnalLick2
   category: Anus
-  name: Глубоко вылизать анус
   userArouse: 5
   targetArouse: 15
   range: 1
@@ -134,7 +130,6 @@
 - type: panelInteraction
   id: AnalFingering2
   category: Anus
-  name: Двумя пальцами в анус
   userArouse: 5
   targetArouse: 15
   range: 1
@@ -157,7 +152,6 @@
 - type: panelInteraction
   id: ToyButt
   category: Anus
-  name: Использовать игрушку в попе
   userArouse: 5
   targetArouse: 15
   range: 1

@@ -181,6 +181,7 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
 
             _serverCur.ClientBalanceChange += UpdatePlayerBalance; // Goobstation - Goob Coin
+            _linkAccount.Updated += ApplyDiscordLinkGate; // Arcane
         }
 
         protected override void Shutdown()
@@ -192,6 +193,7 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyLateJoinStatusUpdated -= LobbyLateJoinStatusUpdated;
             _contentAudioSystem.LobbySoundtrackChanged -= UpdateLobbySoundtrackInfo;
             _serverCur.ClientBalanceChange -= UpdatePlayerBalance; // Goobstation - Goob Coin
+            _linkAccount.Updated -= ApplyDiscordLinkGate; // Arcane
 
             _voteManager.ClearPopupContainer();
 
@@ -448,7 +450,7 @@ namespace Content.Client.Lobby
             Lobby!.Balance.Text = _serverCur.Stringify(_serverCur.GetBalance());
         }
 
-        // arcane discord link start
+        // Arcane-start
         private void ApplyDiscordLinkGate()
         {
             if (Lobby == null)
@@ -475,7 +477,20 @@ namespace Content.Client.Lobby
                 Lobby.ReadyButton.Disabled = true;
                 Lobby.ObserveButton.Disabled = true;
             }
+
+            UpdateSponsorTier();
         }
-        // arcane discord link end
+
+        private void UpdateSponsorTier()
+        {
+            if (_linkAccount.Tier != null)
+            {
+                Lobby!.SponsorTier.Text = Loc.GetString($"{_linkAccount.Tier.Tier}-patron-name");
+                return;
+            }
+
+            Lobby!.SponsorTier.Text = Loc.GetString("not-patron-name");
+        }
+        // Arcane-end
     }
 }

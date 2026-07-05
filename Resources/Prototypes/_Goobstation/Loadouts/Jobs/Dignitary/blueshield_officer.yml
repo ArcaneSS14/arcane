@@ -59,6 +59,20 @@
     head: ClothingHeadHatUshankaBlueshield
 
 
+# Aracne-Start
+- type: loadout
+  id: BlueshieldOfficerBeretCap
+  equipment:
+    head: ClothingHatBeretBlueShield
+
+
+- type: loadout
+  id: BlueshieldOfficerHatCap
+  equipment:
+    head: ClothingHatCapBlueShield
+# Aracne-End
+
+
 - type: loadout
   id: BlueshieldOfficerEnvirohelm
   equipment:
@@ -85,6 +99,26 @@
   id: BlueshieldOfficerInnerBlueshieldShirt
   equipment:
     jumpsuit: ClothingUniformJumpsuitBlueshieldShirt
+
+
+# Arcane-Start
+- type: loadout
+  id: BlueShieldOfficerCommonUniform
+  equipment:
+    jumpsuit: ClothingUniformBlueShieldCommon
+
+
+- type: loadout
+  id: BlueShieldOfficerCeremonialUniform
+  equipment:
+    jumpsuit: ClothingUniformBlueShieldCeremonial
+
+
+- type: loadout
+  id: BlueShieldOfficerCommonJumpskirt
+  equipment:
+    jumpsuit: ClothingJumpskirtBlueShieldCommon
+# Arcane-End
 
 
 - type: loadout
@@ -149,6 +183,13 @@
     proto: GrandMasterBSO
   equipment:
     neck: ClothingNeckEnsembleBlueshield
+
+# Arcane-Start
+- type: loadout
+  id: BlueShieldOfficerCape
+  equipment:
+    neck: ClothingCapeBlueShield 
+# Arcane-End
 
 # Mask
 - type: loadout

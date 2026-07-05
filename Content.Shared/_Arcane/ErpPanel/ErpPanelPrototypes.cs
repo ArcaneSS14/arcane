@@ -19,9 +19,6 @@ public sealed partial class PanelInteractionPrototype : IPrototype
     [DataField(required: true)]
     public ProtoId<PanelInteractionCategoryPrototype> Category;
 
-    [DataField(required: true)]
-    public string Name = string.Empty;
-
     [DataField]
     public List<string> Messages = new();
 
@@ -61,7 +58,4 @@ public sealed partial class PanelInteractionCategoryPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
-
-    [DataField(required: true)]
-    public string Name = string.Empty;
 }

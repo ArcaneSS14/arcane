@@ -8,4 +8,7 @@ public sealed partial class TTSComponent : Component
 {
     [DataField("voice")]
     public ProtoId<TTSVoicePrototype>? VoicePrototype = "Gman";
+
+    [DataField]
+    public string? Effect;
 }

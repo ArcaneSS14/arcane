@@ -191,6 +191,10 @@
     components:
       - type: CommandStaff
       - type: SecurityStaff # goobstation
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentCommand
+  # Arcane-end
 
 - type: startingGear
   id: HoSGear

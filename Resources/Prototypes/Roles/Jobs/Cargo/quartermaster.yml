@@ -172,6 +172,10 @@
     components:
       - type: CommandStaff
       - type: QuartermasterTraining
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentCommand
+  # Arcane-end
 
 - type: startingGear
   id: QuartermasterGear

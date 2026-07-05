@@ -1,0 +1,19 @@
+- files: ["minigame_music.ogg"]
+  license: "CC0-1.0"
+  copyright: "freesound community"
+  source: "https://freesound.org/s/72593/"
+
+- files: ["minigame_kill.ogg"]
+  license: "CC0-1.0"
+  copyright: "freesound community"
+  source: "https://freesound.org/s/82880/"
+
+- files: ["minigame_gameover.ogg"]
+  license: "CC0-1.0"
+  copyright: "freesound community"
+  source: "https://freesound.org/s/66829/"
+
+- files: ["minigame_shoot.ogg"]
+  license: "CC0-1.0"
+  copyright: "freesound community"
+  source: "https://freesound.org/s/82067/"

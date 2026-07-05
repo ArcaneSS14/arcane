@@ -26,7 +26,7 @@ guide-entry-antagonist = Антагонисты
 guide-entry-antagonist-cortical-borer = Кортикальный Паразит
 guide-entry-antagonist-morph = Морф
 
-guide-entry-sop = Нормативные Рабочие Процедуры
+guide-entry-sop = Должностные обязанности
 
 guide-entry-sop-alerts = Уровень угрозы
 guide-entry-sop-alerts-green = Зелёный код

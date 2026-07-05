@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: PussyFingering
   category: Pussy
-  name: Ласкать вагину пальцами
   userArouse: 3
   targetArouse: 10
   sounds:
@@ -31,7 +30,6 @@
 - type: panelInteraction
   id: PussyLicking
   category: Pussy
-  name: Ласкать вагину языком
   userArouse: 3
   targetArouse: 10
   sounds:
@@ -60,7 +58,6 @@
 - type: panelInteraction
   id: PussyScissors
   category: Pussy
-  name: Тереться вагиной о киску
   userArouse: 10
   targetArouse: 10
   sounds:
@@ -87,7 +84,6 @@
 - type: panelInteraction
   id: PussyTouch
   category: Pussy
-  name: Потрогать вагину
   targetArouse: 5
   range: 1
   sounds:
@@ -109,7 +105,6 @@
 - type: panelInteraction
   id: PussyTailFuck
   category: Pussy
-  name: Трахать вагину хвостом
   userArouse: 5
   targetArouse: 15
   range: 1
@@ -139,9 +134,39 @@
     - Rodentia
 
 - type: panelInteraction
+  id: CockPussyFuck
+  category: Pussy
+  userArouse: 15
+  targetArouse: 20
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  - /Audio/_Arcane/Interactions/bang2.ogg
+  - /Audio/_Arcane/Interactions/bang4.ogg
+  - /Audio/_Arcane/Interactions/bang5.ogg
+  - /Audio/_Arcane/Interactions/bang6.ogg
+  messages:
+  - входит членом в вагину $target.
+  - медленно проникает членом в вагину $target.
+  - ритмично двигает членом внутри вагины $target.
+  - прижимается к $target, трахая вагину членом.
+  - глубоко входит членом в вагину $target.
+  icon: _Arcane/Interface/ErpPanel/fuck_pussy.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:EroticOrganRequirement
+    organ: vagina
+    requireVisible: true
+  userRequirements:
+  - !type:EroticOrganRequirement
+    organ: penis
+    requireVisible: true
+  - !type:ArousalRequirement
+
+- type: panelInteraction
   id: ToyPussy
   category: Pussy
-  name: Использовать игрушку
   targetArouse: 15
   range: 1
   sounds:

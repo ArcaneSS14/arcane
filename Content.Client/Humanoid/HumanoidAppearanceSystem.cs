@@ -20,6 +20,8 @@
 
 using System.Numerics;
 using Content.Client.DisplacementMap;
+using Content.Shared._Arcane.ERP.OrgansAppearance;
+using Content.Shared._Shitmed.Humanoid.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -50,6 +52,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     private void OnHandleState(EntityUid uid, HumanoidAppearanceComponent component, ref AfterAutoHandleStateEvent args)
     {
         UpdateSprite((uid, component, Comp<SpriteComponent>(uid)));
+        var ev = new HumanoidVisualStateUpdatedEvent(); RaiseLocalEvent(uid, ref ev); // Arcane-edit
     }
 
     private void OnCvarChanged(bool value)
@@ -263,6 +266,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.Width = profile.Width; // Goobstation: port EE height/width sliders
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
+        RaiseLocalEvent(uid, new ProfileLoadFinishedEvent()); // Arcane-edit
     }
 
     private void ApplyMarkingSet(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)

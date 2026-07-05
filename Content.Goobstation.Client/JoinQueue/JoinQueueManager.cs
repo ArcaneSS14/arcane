@@ -1,4 +1,5 @@
 using Content.Goobstation.Shared.JoinQueue;
+using Content.Shared._Arcane.JoinQueue;
 using Robust.Client.State;
 using Robust.Shared.Network;
 
@@ -13,6 +14,7 @@ public sealed class JoinQueueManager
     public void Initialize()
     {
         _net.RegisterNetMessage<QueueUpdateMessage>(OnQueueUpdate);
+        _net.RegisterNetMessage<QueueMiniGameScoreMessage>(); // Arcane-edit
     }
 
 

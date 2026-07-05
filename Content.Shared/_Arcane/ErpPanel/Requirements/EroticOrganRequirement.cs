@@ -1,4 +1,6 @@
+using Content.Shared._Arcane.ERP;
 using Content.Shared._Arcane.ERP.Organs;
+using Content.Shared._Arcane.ERP.OrgansAppearance;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Serialization;
@@ -42,7 +44,24 @@ public sealed partial class EroticOrganRequirement : ErpRequirement
                 continue;
 
             if (RequireVisible)
-                return organ.Comp1.Visible;
+            {
+                // Authoritative server flag (set by EroticCoverageSystem) — always checked first.
+                if (!organ.Comp1.Visible)
+                    return false;
+
+                // CoveredSlots and HideWhenFlaccid are networked for the client side.
+                if (!entityManager.TryGetComponent<ErpOrganVisualsComponent>(uid, out var visuals))
+                    return true;
+
+                if (visuals.CoveredSlots.Contains(Organ))
+                    return false;
+
+                if (!visuals.HideWhenFlaccid.Contains(Organ))
+                    return true;
+
+                return entityManager.TryGetComponent<ArousalComponent>(uid, out var arousal)
+                    && arousal.CurrentPhase >= ArousalPhase.Aroused;
+            }
             else
                 return true;
         }

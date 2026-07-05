@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Tinry",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "aroused_1",
+            "directions": 4
+        },
+        {
+            "name": "aroused_2",
+            "directions": 4
+        },
+        {
+            "name": "aroused_3",
+            "directions": 4
+        },
+        {
+            "name": "aroused_4",
+            "directions": 4
+        },
+        {
+            "name": "aroused_5",
+            "directions": 4
+        },
+        {
+            "name": "flaccid",
+            "directions": 4
+        }
+    ]
+}

@@ -1,9 +1,12 @@
-﻿namespace Content.Shared._Arcane.ERP.Organs;
+namespace Content.Shared._Arcane.ERP.Organs;
 
 // Marker components — each is a tag for interaction condition checks.
 // All sexes
 [RegisterComponent]
 public sealed partial class AnusOrganComponent : Component;
+
+[RegisterComponent]
+public sealed partial class ButtOrganComponent : Component;
 
 // Male + Futanari
 [RegisterComponent]

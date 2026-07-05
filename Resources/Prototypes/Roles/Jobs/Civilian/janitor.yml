@@ -95,6 +95,10 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: GarbageDay
     prototype: WeaponRevolverInspector
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentService
+  # Arcane-end
 
 - type: startingGear
   id: JanitorGear

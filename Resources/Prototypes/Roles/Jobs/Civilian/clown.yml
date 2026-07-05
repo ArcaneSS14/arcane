@@ -153,6 +153,10 @@
       interval: 10
   - !type:AddImplantSpecial
     implants: [ SadTromboneImplant ]
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentService
+  # Arcane-end
 
 - type: startingGear
   id: ClownGear

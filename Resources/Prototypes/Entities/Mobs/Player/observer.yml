@@ -221,7 +221,7 @@
     tags:
     - AllowGhostShownByEvent
     - NoConsoleSound # Orion
-  # <Goobstation>
+# <Goobstation>
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -233,7 +233,15 @@
   - type: RadarConsole
     followEntity: true
   # </Goobstation>
-
+  #Arcane-start
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-cat
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/cat_meow.ogg
+  #Arcane-end
 
 # Goobstation
 - type: entity

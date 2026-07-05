@@ -12,6 +12,7 @@ using Robust.Shared.Timing;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 using Content.Shared.IdentityManagement;
 using Content.Shared._Arcane.ERP;
+using Robust.Shared.Localization;
 
 namespace Content.Client._Arcane.ErpPanel;
 
@@ -209,7 +210,7 @@ public sealed partial class ErpPanelWindow : FancyWindow
             var categoryCollapsible = PrepareInteractionCategory(category);
             var categoryBody = new BoxContainer() { Orientation = LayoutOrientation.Vertical };
 
-            foreach (var interaction in interactions.Where(i => i.Category.Id == category.ID).OrderBy(i => i.Name))
+            foreach (var interaction in interactions.Where(i => i.Category.Id == category.ID).OrderBy(GetInteractionName))
             {
                 var requirementPassed = CheckRequirements(user, target, interaction);
                 if (!requirementPassed)
@@ -238,7 +239,7 @@ public sealed partial class ErpPanelWindow : FancyWindow
 
     private Collapsible PrepareInteractionCategory(PanelInteractionCategoryPrototype categoryProto)
     {
-        var heading = new CollapsibleHeading(categoryProto.Name)
+        var heading = new CollapsibleHeading(GetCategoryName(categoryProto))
         {
             ChevronMargin = new Thickness(10, 0),
             MinHeight = 32,
@@ -264,12 +265,12 @@ public sealed partial class ErpPanelWindow : FancyWindow
             category.BodyVisible = !category.BodyVisible;
 
             if (category.BodyVisible)
-                _openedCategories.Add(categoryProto.Name);
+                _openedCategories.Add(categoryProto.ID);
             else
-                _openedCategories.Remove(categoryProto.Name);
+                _openedCategories.Remove(categoryProto.ID);
         };
 
-        category.BodyVisible = _openedCategories.Contains(categoryProto.Name);
+        category.BodyVisible = _openedCategories.Contains(categoryProto.ID);
 
         return category;
     }
@@ -307,7 +308,7 @@ public sealed partial class ErpPanelWindow : FancyWindow
 
         var label = new Label()
         {
-            Text = interaction.Name,
+            Text = GetInteractionName(interaction),
             Margin = new Thickness(40, 0, 0, 0)
         };
 
@@ -324,7 +325,40 @@ public sealed partial class ErpPanelWindow : FancyWindow
         if (string.IsNullOrEmpty(searchText))
             return true;
 
-        return interaction.Name.StartsWith(searchText, StringComparison.InvariantCultureIgnoreCase);
+        return GetInteractionName(interaction).StartsWith(searchText, StringComparison.InvariantCultureIgnoreCase);
+    }
+
+    private static string GetInteractionName(PanelInteractionPrototype interaction)
+    {
+        return Loc.GetString($"erp-panel-interaction-{ToKebabCase(interaction.ID)}-name");
+    }
+
+    private static string GetCategoryName(PanelInteractionCategoryPrototype category)
+    {
+        return Loc.GetString($"erp-panel-category-{ToKebabCase(category.ID)}-name");
+    }
+
+    private static string ToKebabCase(string value)
+    {
+        var builder = new System.Text.StringBuilder(value.Length * 2);
+
+        for (var i = 0; i < value.Length; i++)
+        {
+            var character = value[i];
+
+            if (char.IsUpper(character))
+            {
+                if (i > 0)
+                    builder.Append('-');
+
+                builder.Append(char.ToLowerInvariant(character));
+                continue;
+            }
+
+            builder.Append(character);
+        }
+
+        return builder.ToString();
     }
 
     private bool CheckRequirements(EntityUid user, EntityUid target, PanelInteractionPrototype interaction)

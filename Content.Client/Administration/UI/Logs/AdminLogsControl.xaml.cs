@@ -476,21 +476,35 @@ public sealed partial class AdminLogsControl : Control
     public void AddLogs(List<SharedAdminLog> logs)
     {
         var span = CollectionsMarshal.AsSpan(logs);
+
         for (var i = 0; i < span.Length; i++)
         {
+            // Arcane-start
             ref var log = ref span[i];
-            var separator = new HSeparator();
-            var label = new AdminLogLabel(ref log, separator);
-            label.Visible = ShouldShowLog(label);
 
-            TotalLogs++;
-            if (label.Visible)
+            try
             {
-                ShownLogs++;
-            }
+                var separator = new HSeparator();
+                var label = new AdminLogLabel(ref log, separator);
 
-            LogsContainer.AddChild(label);
-            LogsContainer.AddChild(separator);
+                label.Visible = ShouldShowLog(label);
+
+                TotalLogs++;
+
+                if (label.Visible)
+                    ShownLogs++;
+
+                LogsContainer.AddChild(label);
+                LogsContainer.AddChild(separator);
+            }
+            catch (Exception e)
+            {
+                Logger.Error($"Failed to render admin log: {e}");
+                Logger.Error($"Broken log: {log.Message}");
+
+                continue;
+            }
+            // Arcane-end
         }
 
         UpdateCount();

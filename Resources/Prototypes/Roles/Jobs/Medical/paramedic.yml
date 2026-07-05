@@ -108,6 +108,10 @@
     components:
     - type: SurgerySpeedModifier
       speedModifier: 1.25
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentMedical
+  # Arcane-end
 
 - type: startingGear
   id: ParamedicGear
