@@ -273,12 +273,12 @@
 # doesn't require vestine. Should NOT be addictive when we get addictions
 - type: reagent
   id: Dopamine # Arcane-Edit: Aranesp > Dopamine
-  name: reagent-name-dopamine
+  name: reagent-name-dopamine # Arcane-Edit
   group: Narcotics
-  desc: reagent-desc-dopamine
+  desc: reagent-desc-dopamine # Arcane-Edit
   physicalDesc: reagent-physical-desc-oily
   flavor: oily
-  color: "#ffd900"
+  color: "#ffd900" # Arcane-Edit
   metabolisms:
     Narcotic:
       metabolismRate: 0.5

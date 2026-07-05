@@ -10,7 +10,7 @@
 
 - type: listing
   id: UplinkCombatAdvancedMedkit
-  name: uplink-combat-adcanced-medkit-name
+  name: uplink-combat-advanced-medkit-name
   description: uplink-combat-advanced-medkit-desc
   productEntity: MedkitCombatAdvancedFilled
   cost:

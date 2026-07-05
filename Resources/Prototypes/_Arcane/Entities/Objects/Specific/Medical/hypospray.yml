@@ -1,7 +1,7 @@
 - type: entity
-  name: advanced emergency medipen
   parent: EmergencyMedipen
   id: AdvancedEmergencyMedipen
+  name: advanced emergency medipen
   description: No slowdown. No whining. Just get back in the fight before someone steals your ass. # Без замедления. Без нытья. Просто возвращайся в бой, пока кто-то не украл твою жопу.
   components:
   - type: Sprite
@@ -52,9 +52,9 @@
     - Trash
 
 - type: entity
-  name: airloss auto-injector
   parent: ChemicalMedipen
   id: SalbutamolAutoInjector
+  name: airloss auto-injector
   description: No air? No problem. One pen, one breath, one more chance to be an idiot. Don't choke on it. # Нет воздуха? Не проблема. Один пен, один вдох, один шанс снова быть идиотом. Не подавись.
   components:
   - type: Item
@@ -89,10 +89,10 @@
           Quantity: 20
 
 - type: entity
-  name: advanced emergency medipen
   parent: ChemicalMedipen
   id: StimulatorAutoInjector
-  description: Fast, reckless, and probably a bad idea. This pen doesn't care about your health. Neither do you? Use it! # Быстро, безрассудно и, скорее всего, плохая идея. Этому пену плевать на твоё здоровье. Тебе тоже? Используй!
+  name: standard stimulator autoinjector
+  description: Fast, reckless, and probably a bad idea. This pen doesn't care about your health. Neither do you? Use it! # Быстро, безрассудно и, скорее всего, плохая идея. Этому инжектору плевать на твоё здоровье. Тебе тоже? Используй!
   components:
   - type: Sprite
     layers:
