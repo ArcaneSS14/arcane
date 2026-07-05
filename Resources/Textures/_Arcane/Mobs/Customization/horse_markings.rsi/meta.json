@@ -7,27 +7,27 @@
         "y": 32
     },
     "states": [
-    {
-        "name": "horse_ears_inner",
-        "directions": 4
-    },
-    {
-        "name": "horse_ears_outer",
-        "directions": 4
-    },
-    {
-        "name": "horse_tail_wagging",
-        "directions": 4,
-        "delays": [
+        {
+            "name": "horse_ears_inner",
+            "directions": 4
+        },
+        {
+            "name": "horse_ears_outer",
+            "directions": 4
+        },
+        {
+            "name": "horse_tail_wagging",
+            "directions": 4,
+            "delays":[
                 [60, 0.10, 0.10, 0.10, 0.10],
                 [60, 0.10, 0.10, 0.10, 0.10],
                 [60, 0.10, 0.10, 0.10, 0.10],
                 [60, 0.10, 0.10, 0.10, 0.10]
             ]
-    },
-    {
-        "name": "horse_tail_standard",
-        "directions": 4
-    }
-  ]
+        },
+        {
+            "name": "horse_tail_standard",
+            "directions": 4
+        }
+    ]
 }
