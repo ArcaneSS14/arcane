@@ -161,3 +161,26 @@
       components:
       - XenoborgMothership
     targetName: the mothership # Goob edit
+
+- type: entity
+  name: SquadPin
+  description: Херня что должна связывать вас и вашего товарища
+  id: SquadPin
+  parent: PinpointerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: pinpointer-universal
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    state: pinpointer-universal
+  - type: Pinpointer
+    whitelist:
+      components:
+      - Pinpointer
+    updateTargetName: true
+    canRetarget: true
