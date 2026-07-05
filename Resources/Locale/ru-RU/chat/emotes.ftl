@@ -71,6 +71,7 @@ chat-emote-msg-catmeow = мяукает
 chat-emote-msg-cathisses = шипит
 chat-emote-msg-monkeyscreeches = кричит
 chat-emote-msg-yawn = зевает
+chat-emote-msg-snore = храпит
 # Arcane-Edit-Start
 chat-emote-msg-mew = мявкает.
 # Arcane-Edit-End
