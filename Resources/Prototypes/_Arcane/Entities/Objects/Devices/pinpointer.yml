@@ -1,0 +1,24 @@
+- type: entity
+  parent: PinpointerBase
+  id: PinpointerSecSquad
+  name: security squad pinpointer
+  description: A handheld tracking device that leads to the direction of any similar squad pinpoint within range.
+  components:
+  - type: Sprite
+    layers:
+    - state: pinpointer-universal
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    state: pinpointer-universal
+  - type: Tag
+    tags:
+    - SquadPin
+  - type: Pinpointer
+    whitelist:
+      tags:
+      - SquadPin
+
