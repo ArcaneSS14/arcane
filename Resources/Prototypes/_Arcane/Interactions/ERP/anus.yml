@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: AnusFuck
   category: Anus
-  name: Трахать в анус
   userArouse: 10
   targetArouse: 10
   range: 1
@@ -17,6 +16,8 @@
   - быстро трахает $target в попу.
   - нежно трахает анал $target.
   icon: _Arcane/Interface/ErpPanel/cock_near_ass.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: anus
@@ -25,11 +26,11 @@
   - !type:EroticOrganRequirement
     organ: penis
     requireVisible: true
+  - !type:ArousalRequirement
 
 - type: panelInteraction
   id: AnusLick
   category: Anus
-  name: Лизать анус
   userArouse: 5
   targetArouse: 10
   range: 1
@@ -42,6 +43,8 @@
   - аккуратно вводит язычок в анус $target.
   - игриво водит язычком вокруг ануса $target.
   icon: _Arcane/Interface/ErpPanel/anal_lick.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: anus
@@ -50,7 +53,6 @@
 - type: panelInteraction
   id: AnusFingering
   category: Anus
-  name: Трахать анус пальцами
   userArouse: 5
   targetArouse: 10
   range: 1
@@ -62,6 +64,8 @@
   - трахает пальцами анус $target.
   - двигает пальцами внутри ануса $target.
   icon: _Arcane/Interface/ErpPanel/anal_fingering.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: anus
@@ -70,7 +74,6 @@
 - type: panelInteraction
   id: AnusTailFuck
   category: Anus
-  name: Трахать анус хвостом
   userArouse: 5
   targetArouse: 10
   range: 1
@@ -86,6 +89,8 @@
   - страстно долбит анус $target хвостом.
   - нежно трахает анус $target, используя свой хвостик.
   icon: _Arcane/Interface/ErpPanel/butt_tail_fuck.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: anus
@@ -99,3 +104,77 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+
+- type: panelInteraction
+  id: AnalLick2
+  category: Anus
+  userArouse: 5
+  targetArouse: 15
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  messages:
+  - глубоко проникает языком в анус $target.
+  - страстно вылизывает анус $target.
+  - жадно лижет анус $target.
+  - плотно прижимается языком к анусу $target, проникая глубже.
+  - ритмично ласкает анус $target языком.
+  icon: _Arcane/Interface/ErpPanel/anal_lick2.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:EroticOrganRequirement
+    organ: anus
+    requireVisible: true
+
+- type: panelInteraction
+  id: AnalFingering2
+  category: Anus
+  userArouse: 5
+  targetArouse: 15
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  messages:
+  - вводит два пальца в анус $target.
+  - двигает двумя пальцами внутри ануса $target.
+  - глубоко проникает двумя пальцами в анус $target.
+  - ритмично трахает пальцами анус $target.
+  - медленно вводит и выводит два пальца из ануса $target.
+  icon: _Arcane/Interface/ErpPanel/anal_fingering2.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:EroticOrganRequirement
+    organ: anus
+    requireVisible: true
+
+- type: panelInteraction
+  id: ToyButt
+  category: Anus
+  userArouse: 5
+  targetArouse: 15
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/asscrap1.ogg
+  - /Audio/_Arcane/Interactions/asscrap2.ogg
+  - /Audio/_Arcane/Interactions/asscrap3.ogg
+  messages:
+  - вставляет игрушку в анус $target.
+  - двигает секс-игрушкой в анусе $target.
+  - ритмично использует игрушку в попе $target.
+  - аккуратно вводит игрушку в анус $target.
+  - медленно работает игрушкой в попке $target.
+  icon: _Arcane/Interface/ErpPanel/toy_butt.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:EroticOrganRequirement
+    organ: anus
+    requireVisible: true
+  userRequirements:
+  - !type:HeldItemRequirement
+    tags:
+    - SexToyAnal
+    - SexToyDildo
+    - SexToyVibrator

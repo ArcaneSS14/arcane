@@ -1,0 +1,8 @@
+- type: entity
+  parent: ClothingSocksBase
+  id: ClothingSocksBeer
+  name: beer stockings
+  description: Beer stockings.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Socks/beer_stokings.rsi

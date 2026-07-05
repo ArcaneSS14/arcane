@@ -34,6 +34,9 @@ namespace Content.Shared._RMC14.LinkAccount;
 public sealed record SharedRMCPatronFull(
     SharedRMCPatronTier? Tier,
     bool Linked,
+    // arcane discord link start
+    bool HasPlayerRole,
+    // arcane discord link end
     Color? GhostColor,
     SharedRMCLobbyMessage? LobbyMessage,
     SharedRMCRoundEndShoutouts? RoundEndShoutout

@@ -16,6 +16,9 @@ public sealed partial class CCVars
     public static readonly CVarDef<bool> EventMusicEnabled =
         CVarDef.Create("ambience.event_music_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 
+    public static readonly CVarDef<bool> TTSSoundsEnabled =
+        CVarDef.Create("audio.tts_sounds_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY); // Art-TTS
+
     /// <summary>
     ///     Round end sound (APC Destroyed)
     /// </summary>

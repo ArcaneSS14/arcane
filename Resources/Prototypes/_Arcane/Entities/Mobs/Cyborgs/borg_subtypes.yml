@@ -1,0 +1,313 @@
+# Generic subtypes
+
+- type: borgSubtype
+  parentBorgType: generic
+  id: generic_dullahan
+  spritePath: _Arcane/Mobs/Silicon/Generic/dullahan.rsi
+  visuals:
+    restBodyState: robot-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisGenericDullahan
+
+# Engineering subtypes
+
+- type: borgSubtype
+  parentBorgType: engineering
+  id: engineer_mekaengi
+  spritePath: _Arcane/Mobs/Silicon/Engineering/mekaengi.rsi
+  visuals:
+    restBodyState: engineer-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisEngineerMekaengi
+
+- type: borgSubtype
+  parentBorgType: engineering
+  id: engineer_k4tengi
+  spritePath: _Arcane/Mobs/Silicon/Engineering/k4tengi.rsi
+  visuals:
+    restBodyState: engineer-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisEngineerK4t
+
+- type: borgSubtype
+  parentBorgType: engineering
+  id: engineer_k4tengi_alt1
+  spritePath: _Arcane/Mobs/Silicon/Engineering/k4tengi_alt1.rsi
+  visuals:
+    restBodyState: engineer-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisEngineerK4tAlt
+
+- type: borgSubtype
+  parentBorgType: engineering
+  id: engineer_fmekaengi
+  spritePath: _Arcane/Mobs/Silicon/Engineering/fmekaengi.rsi
+  visuals:
+    restBodyState: engineer-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisEngineerFMeka
+
+- type: borgSubtype
+  parentBorgType: engineering
+  id: engineer_mmekaengi
+  spritePath: _Arcane/Mobs/Silicon/Engineering/mmekaengi.rsi
+  visuals:
+    restBodyState: engineer-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisEngineerMMeka
+
+- type: borgSubtype
+  parentBorgType: engineering
+  id: engineer_dullahan
+  spritePath: _Arcane/Mobs/Silicon/Engineering/dullahaneng.rsi
+  visuals:
+    restBodyState: engineer-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisEngineerDullahan
+
+# Janitor subtypes
+
+- type: borgSubtype
+  parentBorgType: janitor
+  id: janitor_mekajani
+  spritePath: _Arcane/Mobs/Silicon/Janitor/mekajani.rsi
+  visuals:
+    restBodyState: janitor-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisJanitorMeka
+
+- type: borgSubtype
+  parentBorgType: janitor
+  id: janitor_k4tjani
+  spritePath: _Arcane/Mobs/Silicon/Janitor/k4tjani.rsi
+  visuals:
+    restBodyState: janitor-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisJanitorK4t
+
+- type: borgSubtype
+  parentBorgType: janitor
+  id: janitor_k4tjani_alt1
+  spritePath: _Arcane/Mobs/Silicon/Janitor/k4tjani_alt1.rsi
+  visuals:
+    restBodyState: janitor-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisJanitorK4tAlt
+
+- type: borgSubtype
+  parentBorgType: janitor
+  id: janitor_fmekajani
+  spritePath: _Arcane/Mobs/Silicon/Janitor/fmekajani.rsi
+  visuals:
+    restBodyState: janitor-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisJanitorFMeka
+
+- type: borgSubtype
+  parentBorgType: janitor
+  id: janitor_mmekajani
+  spritePath: _Arcane/Mobs/Silicon/Janitor/mmekajani.rsi
+  visuals:
+    restBodyState: janitor-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisJanitorMMeka
+
+- type: borgSubtype
+  parentBorgType: janitor
+  id: janitor_dullahan
+  spritePath: _Arcane/Mobs/Silicon/Janitor/dullahanjani.rsi
+  visuals:
+    restBodyState: janitor-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisJanitorDullahan
+
+# Medical subtypes
+
+- type: borgSubtype
+  parentBorgType: medical
+  id: medical_mekamed
+  spritePath: _Arcane/Mobs/Silicon/Medical/mekamed.rsi
+  visuals:
+    restBodyState: medical-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMedicalMeka
+
+- type: borgSubtype
+  parentBorgType: medical
+  id: medical_k4tmed
+  spritePath: _Arcane/Mobs/Silicon/Medical/k4tmed.rsi
+  visuals:
+    restBodyState: medical-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMedicalK4t
+
+- type: borgSubtype
+  parentBorgType: medical
+  id: medical_k4tmed_alt1
+  spritePath: _Arcane/Mobs/Silicon/Medical/k4tmed_alt1.rsi
+  visuals:
+    restBodyState: medical-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMedicalK4tAlt
+
+- type: borgSubtype
+  parentBorgType: medical
+  id: medical_fmekamed
+  spritePath: _Arcane/Mobs/Silicon/Medical/fmekamed.rsi
+  visuals:
+    restBodyState: medical-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMedicalFMeka
+
+- type: borgSubtype
+  parentBorgType: medical
+  id: medical_mmekamed
+  spritePath: _Arcane/Mobs/Silicon/Medical/mmekamed.rsi
+  visuals:
+    restBodyState: medical-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMedicalMMeka
+
+- type: borgSubtype
+  parentBorgType: medical
+  id: medical_dullahan
+  spritePath: _Arcane/Mobs/Silicon/Medical/dullahanmed.rsi
+  visuals:
+    restBodyState: medical-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMedicalDullahan
+
+# Mining subtypes
+
+- type: borgSubtype
+  parentBorgType: mining
+  id: mining_mekamine
+  spritePath: _Arcane/Mobs/Silicon/Mining/mekamine.rsi
+  visuals:
+    restBodyState: miner-rest
+    noMindState: miner_e
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMiningMeka
+
+- type: borgSubtype
+  parentBorgType: mining
+  id: mining_k4tmine
+  spritePath: _Arcane/Mobs/Silicon/Mining/k4tmine.rsi
+  visuals:
+    restBodyState: miner-rest
+    noMindState: miner_e
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMiningK4t
+
+- type: borgSubtype
+  parentBorgType: mining
+  id: mining_k4tmine_alt1
+  spritePath: _Arcane/Mobs/Silicon/Mining/k4tmine_alt1.rsi
+  visuals:
+    restBodyState: miner-rest
+    noMindState: miner_e
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMiningK4tAlt
+
+- type: borgSubtype
+  parentBorgType: mining
+  id: mining_fmekamine
+  spritePath: _Arcane/Mobs/Silicon/Mining/fmekamine.rsi
+  visuals:
+    restBodyState: miner-rest
+    noMindState: miner_e
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMiningFMeka
+
+- type: borgSubtype
+  parentBorgType: mining
+  id: mining_mmekamine
+  spritePath: _Arcane/Mobs/Silicon/Mining/mmekamine.rsi
+  visuals:
+    restBodyState: miner-rest
+    noMindState: miner_e
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMiningMMeka
+
+- type: borgSubtype
+  parentBorgType: mining
+  id: mining_dullahan
+  spritePath: _Arcane/Mobs/Silicon/Mining/dullahanmine.rsi
+  visuals:
+    restBodyState: miner-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisMiningDullahan
+
+# Service subtypes
+
+- type: borgSubtype
+  parentBorgType: service
+  id: service_mekaserve
+  spritePath: _Arcane/Mobs/Silicon/Service/mekaserve.rsi
+  visuals:
+    restBodyState: service-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisServiceMeka
+
+- type: borgSubtype
+  parentBorgType: service
+  id: service_mekaserve_alt
+  spritePath: _Arcane/Mobs/Silicon/Service/mekaserve_alt.rsi
+  visuals:
+    restBodyState: service-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisServiceMekaAlt
+
+- type: borgSubtype
+  parentBorgType: service
+  id: service_k4tserve
+  spritePath: _Arcane/Mobs/Silicon/Service/k4tserve.rsi
+  visuals:
+    restBodyState: service-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisServiceK4t
+
+- type: borgSubtype
+  parentBorgType: service
+  id: service_k4tserve_alt1
+  spritePath: _Arcane/Mobs/Silicon/Service/k4tserve_alt1.rsi
+  visuals:
+    restBodyState: service-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisServiceK4tAlt1
+
+- type: borgSubtype
+  parentBorgType: service
+  id: service_k4tserve_alt2
+  spritePath: _Arcane/Mobs/Silicon/Service/k4tserve_alt2.rsi
+  visuals:
+    restBodyState: service-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisServiceK4tAlt2
+
+- type: borgSubtype
+  parentBorgType: service
+  id: service_fmekaserv
+  spritePath: _Arcane/Mobs/Silicon/Service/fmekaserv.rsi
+  visuals:
+    restBodyState: service-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisServiceFMeka
+
+- type: borgSubtype
+  parentBorgType: service
+  id: service_mmekaserv
+  spritePath: _Arcane/Mobs/Silicon/Service/mmekaserv.rsi
+  visuals:
+    restBodyState: service-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisServiceMMeka
+
+- type: borgSubtype
+  parentBorgType: service
+  id: service_dullahan
+  spritePath: _Arcane/Mobs/Silicon/Service/dullahanserv.rsi
+  visuals:
+    restBodyState: service-rest
+    disableMovementVisuals: true
+  dummyPrototype: BorgChassisServiceDullahan

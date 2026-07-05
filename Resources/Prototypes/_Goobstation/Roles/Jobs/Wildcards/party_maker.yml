@@ -15,6 +15,10 @@
   - Service
   - Maintenance
   - Theatre
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentService
+  # Arcane-end
 
 - type: startingGear
   id: PartyMakerGear

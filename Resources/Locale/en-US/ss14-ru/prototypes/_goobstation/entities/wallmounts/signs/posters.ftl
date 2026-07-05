@@ -40,3 +40,6 @@ ent-PosterContrabandGoobYakub = Yakub Poster
     .desc = Your yakubian powers of tricknology imbued into you by Yakub strengthen as you stare into the poster
 ent-PosterContrabandGoobRedFOSS = Red Tux Poster
     .desc = A poster calling free open source software communism, you are unsure if the poster author is for or against this.
+# Arcane
+ent-PosterVivaLaPivo =  Viva la pivo
+    .desc = A poster praicing beer. Viva la pivo!

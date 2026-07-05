@@ -83,6 +83,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
+using Content.Client._RMC14.LinkAccount;
+using Content.Shared._Arcane.Sponsor;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -107,6 +109,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly LinkAccountManager _linkAccount = default!; // Arcane
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();
@@ -198,6 +201,11 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         if (player == null)
             return true;
 
+        // Arcane-start
+        if (_linkAccount.Tier != null && ArcaneSponsorTiers.HasAllRoles(_linkAccount.Tier.Tier))
+            return true;
+        // Arcane-end
+
         return CheckRoleRequirements(job, profile, out reason);
     }
 
@@ -210,6 +218,12 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
+
+        // Arcane-start
+        var player = _playerManager.LocalSession;
+        if (player != null && _linkAccount.Tier != null && ArcaneSponsorTiers.HasAllRoles(_linkAccount.Tier.Tier))
+            return true;
+        // Arcane-end
 
         if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;

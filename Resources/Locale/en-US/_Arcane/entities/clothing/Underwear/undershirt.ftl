@@ -6,3 +6,5 @@ ent-ClothingUndershirtNippleStickers = nipple stickers
     .desc = Stickers for your most perverted pleasures.
 ent-ClothingUndershirtHeartShapedNippleStickers = heart-shaped nipple stickers
     .desc = Heart-shaped stickers for your most perverted pleasures.
+ent-ClothingBraBeer = beer bra
+    .desc = You definitely want it.

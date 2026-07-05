@@ -114,6 +114,14 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         Entry("[':", "chatsan-tearfully-smiles"),
         Entry("('=", "chatsan-tearfully-smiles"),
         Entry("['=", "chatsan-tearfully-smiles"),
+        // Arcane-start
+        Entry(")", "chatsan-smiles"),
+        Entry("))", "chatsan-smiles-widely"),
+        Entry("(", "chatsan-frowns"),
+        Entry("((", "chatsan-frowns-deeply"),
+        Entry("лол", "chatsan-laughs"),
+        Entry("кек", "chatsan-laughs"),
+        // Arcane-end
     ];
 
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;

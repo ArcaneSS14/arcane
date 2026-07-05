@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: Handshake
-  category: Friendship
-  name: Пожать руку
+  category: Hands
   range: 1
   sounds:
   - /Audio/_Arcane/Interactions/handshake.ogg
@@ -15,8 +14,7 @@
 
 - type: panelInteraction
   id: FingerTap
-  category: Friendship
-  name: Массировать спину
+  category: Back
   range: 1
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
@@ -34,8 +32,7 @@
 
 - type: panelInteraction
   id: TailPat
-  category: Friendship
-  name: Погладить хвост
+  category: Tail
   range: 1
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
@@ -61,8 +58,7 @@
 
 - type: panelInteraction
   id: TailHug
-  category: Friendship
-  name: Сплестись хвостами
+  category: Tail
   range: 1
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
@@ -95,8 +91,7 @@
 
 - type: panelInteraction
   id: HighFive
-  category: Friendship
-  name: Дать пять
+  category: Hands
   range: 1
   sounds:
   - /Audio/_Arcane/Interactions/bang1.ogg
@@ -109,3 +104,147 @@
   - ударяет ладошкой по ладошке $target.
   - звонко шлёпает $target по ладошке!
   icon: _Arcane/Interface/ErpPanel/high_five.png
+
+- type: panelInteraction
+  id: FriendlyFlyingKiss
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  messages:
+  - посылает воздушный поцелуй $target.
+  - игриво целует кончики пальцев и посылает $target воздушный поцелуй.
+  - нежно дует $target воздушный поцелуй.
+  - дует поцелуй в сторону $target с улыбкой.
+  - отправляет $target воздушный поцелуй.
+  icon: _Arcane/Interface/ErpPanel/friendly_flying_kiss.png
+
+- type: panelInteraction
+  id: FriendlyNoseBoop
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - тыкает пальчиком в носик $target.
+  - игриво дотрагивается до носика $target.
+  - легонько тыкает $target по носу.
+  - бупает $target по носику.
+  - аккуратно нажимает на носик $target.
+  icon: _Arcane/Interface/ErpPanel/friendly_nose_boop.png
+
+- type: panelInteraction
+  id: FriendlyTailPull
+  category: Tail
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - игриво дёргает $target за хвост.
+  - тянет за кончик хвоста $target.
+  - слегка тянет хвостик $target.
+  - хватает $target за хвост и несильно тянет.
+  - теребит хвостик $target.
+  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+    - Felinid
+    - Vulpkanin
+    - Tajaran
+    - HumanoidXeno
+    - Rodentia
+
+- type: panelInteraction
+  id: KissHand
+  category: Hands
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  messages:
+  - галантно целует руку $target.
+  - нежно берёт руку $target и прикладывает к губам.
+  - почтительно целует $target в руку.
+  - прикасается губами к тыльной стороне ладони $target.
+  - с улыбкой целует руку $target.
+  icon: _Arcane/Interface/ErpPanel/kiss_hand.png
+
+- type: panelInteraction
+  id: PatShoulder
+  category: Shoulders
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  - /Audio/_Arcane/Interactions/pat2.ogg
+  messages:
+  - хлопает $target по плечу.
+  - дружески похлопывает $target по плечу.
+  - несколько раз хлопает $target по плечу.
+  - ободряюще похлопывает $target по плечу.
+  - легонько шлёпает $target по плечу.
+  icon: _Arcane/Interface/ErpPanel/pat_shoulder.png
+
+- type: panelInteraction
+  id: PetHead
+  category: Head
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - гладит $target по голове.
+  - нежно проводит рукой по голове $target.
+  - ласково треплет $target по голове.
+  - мягко поглаживает голову $target.
+  - заботливо гладит $target по головке.
+  - проводит ладонью по волосам $target.
+  icon: _Arcane/Interface/ErpPanel/pet_head.png
+
+- type: panelInteraction
+  id: PlayfulNibble
+  category: Neck
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - игриво покусывает $target.
+  - тихонько кусает $target.
+  - слегка прикусывает $target.
+  - игриво цапает $target зубками.
+  - нежно жуёт $target.
+  icon: _Arcane/Interface/ErpPanel/playful_nibble.png
+
+- type: panelInteraction
+  id: HornsPat
+  category: Head
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - гладит рога $target.
+  - проводит рукой по рогам $target.
+  - восхищённо трогает рога $target.
+  - аккуратно поглаживает рог $target.
+  - нежно касается рогов $target.
+  icon: _Arcane/Interface/ErpPanel/horns_pat.png
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+
+- type: panelInteraction
+  id: Kitty
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  messages:
+  - трётся мордочкой о $target.
+  - мурча, трётся щёкой о $target.
+  - нежно трётся мордашкой об $target.
+  - тычется носиком в $target.
+  - игриво трётся о $target щёкой.
+  icon: _Arcane/Interface/ErpPanel/kitty.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Felinid
+    - Vulpkanin
+    - Tajaran
+    - HumanoidXeno
+    - Rodentia

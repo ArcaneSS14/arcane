@@ -296,6 +296,8 @@
     defaultPrice: 25
     extraPrice: 50
   # Orion-End
+  - type: TTS # Arcane
+    voice: Fact_core
 
 - type: entity
   id: VendingMachineWallmount

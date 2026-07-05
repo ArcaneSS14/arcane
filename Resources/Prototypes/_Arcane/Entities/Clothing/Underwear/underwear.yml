@@ -61,3 +61,12 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Underwear/Underwear/pussy_stickers.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearBeerPants
+  name: beer pants
+  description: Beer pants.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/beer_pants.rsi

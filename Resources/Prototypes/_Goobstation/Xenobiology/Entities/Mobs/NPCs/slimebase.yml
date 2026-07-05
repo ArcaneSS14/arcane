@@ -125,6 +125,22 @@
   - type: Speech
     speechVerb: Slime
     speechSounds: Slime
+  # Arcane-delete-start
+  # - type: CorpseEater
+  #   organWhitelist:
+  #     components:
+  #     - Edible
+  #   bodyPartWhitelist:
+  #     components:
+  #     - Edible
+  #   organBlacklist:
+  #     components:
+  #     - BadFood
+  #   bodyPartBlacklist:
+  #     components:
+  #     - BadFood
+  #   bodyPartComposition: Organic # I hope it works
+  # Arcane-delete-end
   - type: TypingIndicator
     proto: slime
   - type: LanguageKnowledge # Einstein Engines - Language
@@ -142,6 +158,7 @@
   - type: ActionGrant
     actions:
     - ActionSlimeLatch
+    - ActionEatCorpse
   - type: HTN
     rootTask:
       task: XenoSlimeCompound
@@ -166,23 +183,25 @@
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
       color: "#FFFFFF"
-  - type: MobGrowth
-    hungerRequired: 75
-    currentStage: baby
-    stages:
-      baby:
-        nextStage: adult
-        sprite: _Goobstation/Xenobiology/Mobs/slimesBaby.rsi
-        displayName: baby
-      adult:
-        sprite: _Goobstation/Xenobiology/Mobs/slimesAdult.rsi
-        displayName: adult
-  - type: Slime
-    breed: MobSlimeXenobioBaby
-    breedName: xenobio-breed-undetermined
-    maxOffspring: 4
-    mutationChance: 0.45
-  - type: RandomSlimeChange
+  # Arcane-delete-start
+  # - type: MobGrowth
+  #   hungerRequired: 75
+  #   currentStage: baby
+  #   stages:
+  #     baby:
+  #       nextStage: adult
+  #       sprite: _Goobstation/Xenobiology/Mobs/slimesBaby.rsi
+  #       displayName: baby
+  #     adult:
+  #       sprite: _Goobstation/Xenobiology/Mobs/slimesAdult.rsi
+  #       displayName: adult
+  # - type: Slime
+  #   breed: MobSlimeXenobioBaby
+  #   breedName: xenobio-breed-undetermined
+  #   maxOffspring: 4
+  #   mutationChance: 0.45
+  # - type: RandomSlimeChange
+  # Arcane-delete-end
 
 #- type: entity
 #  parent: MobSlimeXenobioBaby

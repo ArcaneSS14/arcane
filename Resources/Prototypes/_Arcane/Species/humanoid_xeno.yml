@@ -10,7 +10,7 @@
   maleFirstNames: names_xeno_first
   femaleFirstNames: names_xeno_first
   lastNames: names_xeno_last
-  sexes: [Unsexed, Male, Female]
+  sexes: [Unsexed, Male, Female, Futanari]
   category: Unusual
   description: "/ServerInfo/_Arcane/SpeciesDescriptions/HumanoidXeno.xml"
   minHeight: 0.90

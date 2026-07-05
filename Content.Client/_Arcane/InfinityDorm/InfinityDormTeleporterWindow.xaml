@@ -1,0 +1,113 @@
+<!-- MIT License
+
+Copyright (c) 2026 Vecortys
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE. -->
+
+
+
+<controls:FancyWindow xmlns="https://spacestation14.io"
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               Title="{Loc infinity-dorm-teleporter-ui-title}"
+               Resizable="False"
+               SetSize="600 280">
+    <PanelContainer HorizontalExpand="True" VerticalExpand="True" Margin="1">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#3F6BA6" />
+        </PanelContainer.PanelOverride>
+        <PanelContainer Margin="3">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#141A1F" />
+            </PanelContainer.PanelOverride>
+
+            <BoxContainer>
+                <BoxContainer Orientation="Vertical" SetWidth="220" MaxWidth="220" HorizontalAlignment="Left">
+                    <LineEdit Name="NumberInput"
+                        Margin="10 15"
+                        HorizontalExpand="True"
+                        MinHeight="24"
+                        SetWidth="165"
+                        PlaceHolder="{Loc infinity-dorm-teleporter-ui-input-number}"
+                        HidePlaceHolderOnFocus="True"
+                        StyleClasses="LineEditDark"/>
+
+                    <Button Name="Confirm"
+                        Text="{Loc infinity-dorm-teleporter-ui-button-confirm}"
+                        SetHeight="35"
+                        VerticalAlignment="Bottom"
+                        Margin="20 0 20 10">
+                        <Button.StyleBoxOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#55858A" BorderColor="#63EBFF" BorderThickness="2"/>
+                        </Button.StyleBoxOverride>
+                    </Button>
+
+                    <!-- Потому что HSeparator не имеет параметра цвета... -->
+                    <PanelContainer HorizontalExpand="True" SetHeight="3" Margin="0 10">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#3F6BA6" />
+                        </PanelContainer.PanelOverride>
+                    </PanelContainer>
+
+                    <BoxContainer Orientation="Vertical" VerticalExpand="True">
+                        <BoxContainer Orientation="Vertical" VerticalExpand="True">
+                            <RichTextLabel Text="{Loc infinity-dorm-teleporter-ui-current-room-label}" HorizontalAlignment="Center"/>
+
+                            <Label Name="CurrentRoom"
+                                Text="{Loc infinity-dorm-teleporter-ui-dont-selected}"
+                                HorizontalAlignment="Center"/>
+                        </BoxContainer>
+
+                        <BoxContainer Orientation="Vertical" VerticalExpand="True">
+                            <RichTextLabel Text="{Loc infinity-dorm-teleporter-ui-rooms-available-label}" HorizontalAlignment="Center"/>
+
+                            <Label Name="RoomsAvailable" HorizontalAlignment="Center"/>
+                        </BoxContainer>
+                    </BoxContainer>
+                </BoxContainer>
+
+                <!-- Потому что VSeparator не имеет параметра цвета... -->
+                <PanelContainer VerticalExpand="True" SetWidth="3">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#3F6BA6" />
+                    </PanelContainer.PanelOverride>
+                </PanelContainer>
+
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+                    <ScrollContainer VScrollEnabled="True" HorizontalExpand="True" VerticalExpand="True">
+                        <BoxContainer Name="RoomsContainer"  Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="10">
+                            <!-- Заполняется через код -->
+                        </BoxContainer>
+                    </ScrollContainer>
+
+                    <!-- Потому что HSeparator не имеет параметра цвета... -->
+                    <PanelContainer HorizontalExpand="True" SetHeight="3" VerticalAlignment="Bottom">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#3F6BA6" />
+                        </PanelContainer.PanelOverride>
+                    </PanelContainer>
+
+                    <RichTextLabel Text="{Loc veco-corp-label}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                </BoxContainer>
+            </BoxContainer>
+        </PanelContainer>
+    </PanelContainer>
+</controls:FancyWindow>
+

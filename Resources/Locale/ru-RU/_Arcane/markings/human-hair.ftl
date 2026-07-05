@@ -15,3 +15,5 @@ marking-HumanHairSpider = Паук
 marking-HumanHairTaleBang = Чёлка и хвост
 marking-HumanHairTale = Хвостик
 marking-HumanHairTwilight = Твайлайт
+marking-HumanHairHardMorning = Тяжелое утро
+marking-HumanHairHardMorningAlt = Тяжелое утро (Альт.)

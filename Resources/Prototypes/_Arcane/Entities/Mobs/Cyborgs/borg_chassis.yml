@@ -1,0 +1,308 @@
+﻿# Engineering
+
+- type: entity
+  parent: BorgChassisEngineer
+  id: BorgChassisEngineerMekaengi
+  categories: [ HideSpawnMenu ]
+  name: meka engineer cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: engineer_mekaengi
+
+- type: entity
+  parent: BorgChassisEngineer
+  id: BorgChassisEngineerK4t
+  categories: [ HideSpawnMenu ]
+  name: K4T engineer cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: engineer_k4tengi
+
+- type: entity
+  parent: BorgChassisEngineer
+  id: BorgChassisEngineerK4tAlt
+  categories: [ HideSpawnMenu ]
+  name: K4T alt engineer cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: engineer_k4tengi_alt1
+
+- type: entity
+  parent: BorgChassisEngineer
+  id: BorgChassisEngineerFMeka
+  categories: [ HideSpawnMenu ]
+  name: meka engineer cyborg (f)
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: engineer_fmekaengi
+
+- type: entity
+  parent: BorgChassisEngineer
+  id: BorgChassisEngineerMMeka
+  categories: [ HideSpawnMenu ]
+  name: meka engineer cyborg (m)
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: engineer_mmekaengi
+
+# Janitor
+
+- type: entity
+  parent: BorgChassisJanitor
+  id: BorgChassisJanitorMeka
+  categories: [ HideSpawnMenu ]
+  name: meka janitor cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: janitor_mekajani
+
+- type: entity
+  parent: BorgChassisJanitor
+  id: BorgChassisJanitorK4t
+  categories: [ HideSpawnMenu ]
+  name: K4T janitor cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: janitor_k4tjani
+
+- type: entity
+  parent: BorgChassisJanitor
+  id: BorgChassisJanitorK4tAlt
+  categories: [ HideSpawnMenu ]
+  name: K4T alt janitor cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: janitor_k4tjani_alt1
+
+- type: entity
+  parent: BorgChassisJanitor
+  id: BorgChassisJanitorFMeka
+  categories: [ HideSpawnMenu ]
+  name: meka janitor cyborg (f)
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: janitor_fmekajani
+
+- type: entity
+  parent: BorgChassisJanitor
+  id: BorgChassisJanitorMMeka
+  categories: [ HideSpawnMenu ]
+  name: meka janitor cyborg (m)
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: janitor_mmekajani
+
+# Medical
+
+- type: entity
+  parent: BorgChassisMedical
+  id: BorgChassisMedicalMeka
+  categories: [ HideSpawnMenu ]
+  name: meka medical cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: medical_mekamed
+
+- type: entity
+  parent: BorgChassisMedical
+  id: BorgChassisMedicalK4t
+  categories: [ HideSpawnMenu ]
+  name: K4T medical cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: medical_k4tmed
+
+- type: entity
+  parent: BorgChassisMedical
+  id: BorgChassisMedicalK4tAlt
+  categories: [ HideSpawnMenu ]
+  name: K4T alt medical cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: medical_k4tmed_alt1
+
+- type: entity
+  parent: BorgChassisMedical
+  id: BorgChassisMedicalFMeka
+  categories: [ HideSpawnMenu ]
+  name: meka medical cyborg (f)
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: medical_fmekamed
+
+- type: entity
+  parent: BorgChassisMedical
+  id: BorgChassisMedicalMMeka
+  categories: [ HideSpawnMenu ]
+  name: meka medical cyborg (m)
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: medical_mmekamed
+
+# Mining
+
+- type: entity
+  parent: BorgChassisMining
+  id: BorgChassisMiningMeka
+  categories: [ HideSpawnMenu ]
+  name: meka mining cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: mining_mekamine
+
+- type: entity
+  parent: BorgChassisMining
+  id: BorgChassisMiningK4t
+  categories: [ HideSpawnMenu ]
+  name: K4T mining cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: mining_k4tmine
+
+- type: entity
+  parent: BorgChassisMining
+  id: BorgChassisMiningK4tAlt
+  categories: [ HideSpawnMenu ]
+  name: K4T alt mining cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: mining_k4tmine_alt1
+
+- type: entity
+  parent: BorgChassisMining
+  id: BorgChassisMiningFMeka
+  categories: [ HideSpawnMenu ]
+  name: meka mining cyborg (f)
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: mining_fmekamine
+
+- type: entity
+  parent: BorgChassisMining
+  id: BorgChassisMiningMMeka
+  categories: [ HideSpawnMenu ]
+  name: meka mining cyborg (m)
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: mining_mmekamine
+
+# Service
+
+- type: entity
+  parent: BorgChassisService
+  id: BorgChassisServiceMeka
+  categories: [ HideSpawnMenu ]
+  name: meka service cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: service_mekaserve
+
+- type: entity
+  parent: BorgChassisService
+  id: BorgChassisServiceMekaAlt
+  categories: [ HideSpawnMenu ]
+  name: meka alt service cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: service_mekaserve_alt
+
+- type: entity
+  parent: BorgChassisService
+  id: BorgChassisServiceK4t
+  categories: [ HideSpawnMenu ]
+  name: K4T service cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: service_k4tserve
+
+- type: entity
+  parent: BorgChassisService
+  id: BorgChassisServiceK4tAlt1
+  categories: [ HideSpawnMenu ]
+  name: K4T alt1 service cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: service_k4tserve_alt1
+
+- type: entity
+  parent: BorgChassisService
+  id: BorgChassisServiceK4tAlt2
+  categories: [ HideSpawnMenu ]
+  name: K4T alt2 service cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: service_k4tserve_alt2
+
+- type: entity
+  parent: BorgChassisService
+  id: BorgChassisServiceFMeka
+  categories: [ HideSpawnMenu ]
+  name: meka service cyborg (f)
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: service_fmekaserv
+
+- type: entity
+  parent: BorgChassisService
+  id: BorgChassisServiceMMeka
+  categories: [ HideSpawnMenu ]
+  name: meka service cyborg (m)
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: service_mmekaserv
+
+# Dullahan
+
+- type: entity
+  parent: BorgChassisGeneric
+  id: BorgChassisGenericDullahan
+  categories: [ HideSpawnMenu ]
+  name: dullahan generic cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: generic_dullahan
+
+- type: entity
+  parent: BorgChassisEngineer
+  id: BorgChassisEngineerDullahan
+  categories: [ HideSpawnMenu ]
+  name: dullahan engineer cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: engineer_dullahan
+
+- type: entity
+  parent: BorgChassisJanitor
+  id: BorgChassisJanitorDullahan
+  categories: [ HideSpawnMenu ]
+  name: dullahan janitor cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: janitor_dullahan
+
+- type: entity
+  parent: BorgChassisMedical
+  id: BorgChassisMedicalDullahan
+  categories: [ HideSpawnMenu ]
+  name: dullahan medical cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: medical_dullahan
+
+- type: entity
+  parent: BorgChassisMining
+  id: BorgChassisMiningDullahan
+  categories: [ HideSpawnMenu ]
+  name: dullahan mining cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: mining_dullahan
+
+- type: entity
+  parent: BorgChassisService
+  id: BorgChassisServiceDullahan
+  categories: [ HideSpawnMenu ]
+  name: dullahan service cyborg
+  components:
+  - type: BorgSwitchableSubtype
+    borgSubtype: service_dullahan

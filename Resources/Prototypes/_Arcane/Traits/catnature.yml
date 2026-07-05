@@ -1,0 +1,8 @@
+- type: trait
+  id: CatNature
+  name: trait-catnature-name
+  description: trait-catnature-desc
+  category: Nature
+  cost: 1
+  components:      
+  - type: CatNature

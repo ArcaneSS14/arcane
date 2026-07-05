@@ -47,7 +47,7 @@
     back: ClothingBackpackDeathSquad
     mask: ClothingMaskGasDeathSquad
     eyes: ClothingEyesGlassesDeathsquad # Goobstation
-    neck: ExecutiveIDCard # Executive Access!
+#   neck: ExecutiveIDCard # Arcane-Edit
     ears: ClothingHeadsetDeathsquad # Goobstation
     gloves: ClothingHandsGlovesDeathsquadUnremovable # Rip and TEAR
     outerClothing: ClothingOuterHardsuitDeathsquad

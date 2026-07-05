@@ -34,4 +34,54 @@ public sealed partial class BorgSubtypePrototype : IPrototype
     /// </summary>
     [DataField]
     public required ProtoId<BorgTypePrototype> ParentBorgType = "generic";
+
+    // Arcane-Edit-Start
+    /// <summary>
+    /// Optional visual overrides for this subtype.
+    /// </summary>
+    [DataField]
+    public BorgSubtypeVisuals Visuals = new();
+    // Arcane-Edit-End
 }
+
+// Arcane-Edit-Start
+[DataDefinition]
+public sealed partial class BorgSubtypeVisuals
+{
+    /// <summary>
+    /// RSI state name to use when this borg is resting. Leave null if the subtype has no rest sprite.
+    /// </summary>
+    [DataField]
+    public string? RestBodyState;
+
+    /// <summary>
+    /// RSI state name to use when this borg is moving. Falls back to the parent borg type movement state when null.
+    /// </summary>
+    [DataField]
+    public string? MovementBodyState;
+
+    /// <summary>
+    /// RSI state name to use for the has-mind light layer. Falls back to the parent borg type state when null.
+    /// </summary>
+    [DataField]
+    public string? HasMindState;
+
+    /// <summary>
+    /// RSI state name to use for the no-mind light layer. Falls back to the parent borg type state when null.
+    /// </summary>
+    [DataField]
+    public string? NoMindState;
+
+    /// <summary>
+    /// RSI state name to use for the toggleable light layer. Falls back to the parent borg type state when null.
+    /// </summary>
+    [DataField]
+    public string? ToggleLightState;
+
+    /// <summary>
+    /// If true, do not install movement body-state visuals for this subtype.
+    /// </summary>
+    [DataField]
+    public bool DisableMovementVisuals;
+}
+// Arcane-Edit-End

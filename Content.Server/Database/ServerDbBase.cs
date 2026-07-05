@@ -137,6 +137,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
+using Content.Shared._Arcane.ERP;
 using Content.Shared._Orion.CustomGhost;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
@@ -261,12 +262,15 @@ namespace Content.Server.Database
                 .Where(p => p.Preference.UserId == userId.UserId && p.Slot == slot)
                 .SingleOrDefaultAsync();
 
-            if (profile == null)
-            {
-                return;
-            }
+            if (profile != null)
+                db.Profile.Remove(profile);
 
-            db.Profile.Remove(profile);
+            // Arcane-Start — always clean ERP prefs for the slot, even if no profile row exists.
+            var erpRow = await db.ErpOrganPreferences
+                .FirstOrDefaultAsync(e => e.UserId == userId.UserId && e.Slot == slot);
+            if (erpRow != null)
+                db.ErpOrganPreferences.Remove(erpRow);
+            // Arcane-End
         }
 
         public async Task<PlayerPreferences> InitPrefsAsync(NetUserId userId, ICharacterProfile defaultProfile)
@@ -342,6 +346,46 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
         }
 
+        // Arcane-Start
+        public async Task<string?> GetErpOrganPreferencesAsync(NetUserId userId, int slot)
+        {
+            await using var db = await GetDb();
+            var row = await db.DbContext.ErpOrganPreferences
+                .FirstOrDefaultAsync(e => e.UserId == userId.UserId && e.Slot == slot);
+            return row?.Data;
+        }
+
+        public async Task SaveErpOrganPreferencesAsync(NetUserId userId, int slot, string data)
+        {
+            await using var db = await GetDb();
+            var row = await db.DbContext.ErpOrganPreferences
+                .FirstOrDefaultAsync(e => e.UserId == userId.UserId && e.Slot == slot);
+
+            if (row == null)
+            {
+                row = new ErpOrganPreference { UserId = userId.UserId, Slot = slot, Data = data };
+                db.DbContext.ErpOrganPreferences.Add(row);
+            }
+            else
+            {
+                row.Data = data;
+            }
+
+            try
+            {
+                await db.DbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateException) // Arcane: concurrent insert race — retry as update
+            {
+                db.DbContext.Entry(row).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+                row = await db.DbContext.ErpOrganPreferences
+                    .FirstAsync(e => e.UserId == userId.UserId && e.Slot == slot);
+                row.Data = data;
+                await db.DbContext.SaveChangesAsync();
+            }
+        }
+        // Arcane-End
+
         private static async Task SetSelectedCharacterSlotAsync(NetUserId userId, int newSlot, ServerDbContext db)
         {
             var prefs = await db.Preference.SingleAsync(p => p.UserId == userId.UserId);
@@ -363,6 +407,12 @@ namespace Content.Server.Database
             var gender = sex == Sex.Male ? Gender.Male : Gender.Female;
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
+
+            // Art-TTS Start
+            var voice = profile.Voice;
+            if (voice == string.Empty)
+                voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
+            // Art-TTS End
 
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             var markingsRaw = profile.Markings?.Deserialize<List<string>>();
@@ -406,6 +456,8 @@ namespace Content.Server.Database
 
             var barkVoice = profile.BarkVoice ?? SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
 
+            var erpPreference = (ErpPreference) profile.ErpPreference; // Arcane
+
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.FlavorText,
@@ -427,6 +479,7 @@ namespace Content.Server.Database
                 profile.Width, // Goobstation: port EE height/width sliders
                 profile.Age,
                 sex,
+                voice, // Art-TTS
                 gender,
                 new HumanoidCharacterAppearance
                 (
@@ -444,7 +497,8 @@ namespace Content.Server.Database
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts,
-                barkVoice // Goob Station - Barks
+                barkVoice, // Goob Station - Barks
+                erpPreference // Arcane
             );
         }
 
@@ -479,6 +533,7 @@ namespace Content.Server.Database
             profile.Width = humanoid.Width; // Goobstation: port EE height/width sliders
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
+            profile.Voice = humanoid.Voice; // Art-TTS
             profile.Gender = humanoid.Gender.ToString();
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();
@@ -511,6 +566,7 @@ namespace Content.Server.Database
             );
 
             profile.BarkVoice = humanoid.BarkVoice; // Goob Station - Barks
+            profile.ErpPreference = (int) humanoid.ErpPreference; // Arcane
 
             profile.Loadouts.Clear();
 
@@ -2025,6 +2081,49 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return await db.DbContext.RMCLinkedAccounts.AnyAsync(l => l.PlayerId == player, cancel);
 
         }
+
+        // arcane discord link start
+        public async Task<(bool Linked, bool HasPlayerRole)> GetLinkedAccountStatus(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var linked = await db.DbContext.RMCLinkedAccounts
+                .Include(l => l.Discord)
+                .FirstOrDefaultAsync(l => l.PlayerId == player, cancel);
+
+            return linked == null
+                ? (false, false)
+                : (true, linked.Discord.HasPlayerRole);
+        }
+
+        public async Task<bool> UnlinkDiscordAccount(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var linked = await db.DbContext.RMCLinkedAccounts
+                .FirstOrDefaultAsync(l => l.PlayerId == player, cancel);
+
+            if (linked == null)
+                return false;
+
+            db.DbContext.RMCLinkedAccounts.Remove(linked);
+
+            var linkingCode = await db.DbContext.RMCLinkingCodes
+                .FirstOrDefaultAsync(l => l.PlayerId == player, cancel);
+
+            if (linkingCode != null)
+                db.DbContext.RMCLinkingCodes.Remove(linkingCode);
+
+            // arcane sponsor start
+            var patron = await db.DbContext.RMCPatrons
+                .FirstOrDefaultAsync(p => p.PlayerId == player, cancel);
+
+            if (patron != null)
+                db.DbContext.RMCPatrons.Remove(patron);
+            // arcane sponsor end
+
+            await db.DbContext.SaveChangesAsync(cancel);
+            return true;
+        }
+        // arcane discord link end
 
         public async Task<RMCPatron?> GetPatron(Guid player, CancellationToken cancel)
         {

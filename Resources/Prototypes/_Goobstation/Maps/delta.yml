@@ -7,7 +7,7 @@
 - type: gameMap
   id: Delta
   mapName: 'Delta Station'
-  mapPath: /Maps/_Goobstation/delta.yml
+  mapPath: /Maps/_Arcane/delta.yml # Arcane
   minPlayers: 55
   stations:
     Delta:

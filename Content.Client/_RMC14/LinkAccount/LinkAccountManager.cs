@@ -27,11 +27,14 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared._RMC14.LinkAccount;
+using Content.Shared._Arcane.LinkAccount;
+using Content.Shared._Arcane.Sponsor;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 
 namespace Content.Client._RMC14.LinkAccount;
 
-public sealed class LinkAccountManager : IPostInjectInit
+public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
 {
     [Dependency] private readonly INetManager _net = default!;
 
@@ -39,6 +42,9 @@ public sealed class LinkAccountManager : IPostInjectInit
 
     public SharedRMCPatronTier? Tier { get; private set; }
     public bool Linked { get; private set; }
+    // arcane discord link start
+    public bool HasPlayerRole { get; private set; }
+    // arcane discord link end
     public Color? GhostColor { get; private set; }
     public SharedRMCLobbyMessage? LobbyMessage { get; private set; }
     public SharedRMCRoundEndShoutouts? RoundEndShoutout { get; private set; }
@@ -55,6 +61,9 @@ public sealed class LinkAccountManager : IPostInjectInit
     {
         Tier = ev.Patron?.Tier;
         Linked = ev.Patron?.Linked ?? false;
+        // arcane discord link start
+        HasPlayerRole = ev.Patron?.HasPlayerRole ?? false;
+        // arcane discord link end
         GhostColor = ev.Patron?.GhostColor;
         LobbyMessage = ev.Patron?.LobbyMessage;
         RoundEndShoutout = ev.Patron?.RoundEndShoutout;
@@ -77,11 +86,26 @@ public sealed class LinkAccountManager : IPostInjectInit
         return Tier is { } tier && (tier.GhostColor || tier.LobbyMessage || tier.RoundEndShoutout);
     }
 
+    public bool HasSponsor(ICommonSession session, string? tier = null)
+    {
+        return ArcaneSponsorTiers.HasTier(Tier?.Tier, tier);
+    }
+
+    // arcane discord link start
+    public void RequestUnlink()
+    {
+        _net.ClientSendMessage(new LinkAccountUnlinkRequestMsg());
+    }
+    // arcane discord link end
+
     void IPostInjectInit.PostInject()
     {
         _net.RegisterNetMessage<LinkAccountCodeMsg>(OnCode);
         _net.RegisterNetMessage<LinkAccountRequestMsg>();
         _net.RegisterNetMessage<LinkAccountStatusMsg>(OnStatus);
+        // arcane discord link start
+        _net.RegisterNetMessage<LinkAccountUnlinkRequestMsg>();
+        // arcane discord link end
         _net.RegisterNetMessage<RMCPatronListMsg>(OnPatronList);
         _net.RegisterNetMessage<RMCClearGhostColorMsg>();
         _net.RegisterNetMessage<RMCChangeGhostColorMsg>();

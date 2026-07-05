@@ -162,6 +162,11 @@ using Content.Shared._RMC14.CCVar;
 // Goob start - the blind dont see
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Traits.Assorted;
+using Content.Server._Arcane.Discord;
+using Content.Shared.Damage;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.StatusEffect;
+using Content.Shared.Speech.Muting;
 // Goob end
 
 namespace Content.Server.Chat.Systems;
@@ -196,6 +201,8 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly LanguageSystem _language = default!; // Einstein Engines - Language
     [Dependency] private readonly ChatProtectionSystem _chatProtection = default!; // Orion
     [Dependency] private readonly EmoteProtectionSystem _emoteProtection = default!; // Orion
+    [Dependency] private readonly ChatLogsWebhook _chatLogsWebhook = default!; // Arcane
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!; // Arcane
 
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
@@ -257,7 +264,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             Loc.GetString(val ? "chat-manager-crit-looc-chat-enabled-message" : "chat-manager-crit-looc-chat-disabled-message"));
     }
 
-        private void OnDeadChatEnabledChanged(bool val)
+    private void OnDeadChatEnabledChanged(bool val)
     {
         if (_DeadchatEnabled == val)
             return;
@@ -354,7 +361,13 @@ public sealed partial class ChatSystem : SharedChatSystem
             _collectiveMind.UpdateCollectiveMind(source, collective);
 
         if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
+        {
+            // Arcane-start
+            if (desiredType == InGameICChatType.Speak || desiredType == InGameICChatType.Whisper)
+                _statusEffects.TryAddStatusEffect<MutedComponent>(source, "Muted", TimeSpan.FromSeconds(60), true);
+            // Arcane-end
             return;
+        }
 
         // Orion-Start
         if (_chatProtection.CheckICMessage(message, source))
@@ -1173,6 +1186,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             );
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");
+        _chatLogsWebhook.CreateChatWebhookMessage(ChatChannel.LOOC, message, player); // Arcane
     }
 
     private void SendDeadChat(EntityUid source, ICommonSession player, string message, bool hideChat)
@@ -1211,6 +1225,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         _chatManager.ChatMessageToMany(ChatChannel.Dead, message, wrappedMessage, source, hideChat, true, clients.ToList(), author: player.UserId);
+        _chatLogsWebhook.CreateChatWebhookMessage(ChatChannel.Dead, message, player); // Arcane
     }
     #endregion
 
@@ -1434,7 +1449,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     // Einstein Engines - Language begin
-       /// <summary>
+    /// <summary>
     ///     Wraps a message sent by the specified entity into an "x says y" string.
     /// </summary>
     public string WrapPublicMessage(EntityUid source, string name, string message, LanguagePrototype? language = null, Color? colorOverride = null)
@@ -1477,6 +1492,13 @@ public sealed partial class ChatSystem : SharedChatSystem
         var languageDisplay = language.IsVisibleLanguage
             ? Loc.GetString("chat-manager-language-prefix", ("language", language.ChatName))
             : "";
+        // goob start - font modifiers
+        var fontModifierEv = new TransformSpeakerFontEvent(source);
+        RaiseLocalEvent(source, fontModifierEv);
+        string? modFontId = fontModifierEv.FontId;
+        int? modFontSize = fontModifierEv.FontSize;
+        Color? modFontColor = fontModifierEv.Color;
+        // goob end - font modifiers
 
         // goob start - loudspeakers
 
@@ -1501,11 +1523,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         // goob end
 
         return Loc.GetString(wrapId,
-            ("color", color),
+            ("color", modFontColor ?? color),
             ("entityName", entityName),
             ("verb", Loc.GetString(verbId)),
-            ("fontType", language.SpeechOverride.FontId ?? speech.FontId),
-            ("fontSize", loudSpeakFont ?? language.SpeechOverride.FontSize ?? speech.FontSize), // goob edit - "loudSpeakFont"
+            ("fontType", modFontId ?? language.SpeechOverride.FontId ?? speech.FontId),
+            ("fontSize", loudSpeakFont ?? modFontSize ?? language.SpeechOverride.FontSize ?? speech.FontSize), // goob edit - "loudSpeakFont"
             ("boldFontType", language.SpeechOverride.BoldFontId ?? language.SpeechOverride.FontId ?? speech.FontId), // Goob Edit - Custom Bold Fonts
             ("message", message),
             ("language", languageDisplay));
@@ -1657,6 +1679,8 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     ///     message gets sent on this channel, this should be set to null to prevent duplicate messages.
     /// </summary>
     public RadioChannelPrototype? Channel;
+
+    public bool RadioMessageSent; // Art-TTS
 
     public EntitySpokeEvent(EntityUid source, string message, RadioChannelPrototype? channel, bool isWhisper, LanguagePrototype language) // Einstein Engines - Language
     {

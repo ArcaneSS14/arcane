@@ -207,6 +207,10 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentCommand
+  # Arcane-end
 
 - type: startingGear
   id: HoPGear

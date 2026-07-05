@@ -92,6 +92,7 @@
       Male: UnisexDwarf
       Female: FemaleDwarf
       Unsexed: UnisexDwarf
+      Futanari: FemaleDwarf # Arcane-edit
   - type: ReplacementAccent
     accent: dwarf
   - type: ZombieAccentOverride #Goob

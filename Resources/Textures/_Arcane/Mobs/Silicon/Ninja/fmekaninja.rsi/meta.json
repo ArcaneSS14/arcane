@@ -1,0 +1,31 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Fluffy",
+    "size": {
+        "x": 32,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "ninja",
+            "directions": 4
+        },
+        {
+            "name": "ninja-rest",
+            "directions": 4
+        },
+        {
+            "name": "ninja_e",
+            "directions": 4
+        },
+        {
+            "name": "ninja_e_r",
+            "directions": 4
+        },
+        {
+            "name": "ninja_l",
+            "directions": 4
+        }
+    ]
+}

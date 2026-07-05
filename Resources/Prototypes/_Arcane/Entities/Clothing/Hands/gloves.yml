@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsBDSMgloves
+  name: BDSM gloves
+  description: These hands will make you scream.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Hands/bdsm_gloves.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Hands/bdsm_gloves.rsi

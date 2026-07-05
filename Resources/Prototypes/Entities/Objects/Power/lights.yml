@@ -165,6 +165,10 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - LightTube # Arcane
+    - Trash
 
 # Lighting color values gathered from
 # https://andi-siess.de/rgb-to-color-temperature/

@@ -20,10 +20,12 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server._Arcane.Discord;
 using Content.Server._Orion.ServerProtection.Administration;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
+using Content.Shared._Arcane.CCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Players;
@@ -57,6 +59,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     [Dependency] private readonly ITaskManager _taskManager = default!;
     [Dependency] private readonly UserDbDataManager _userDbData = default!;
     [Dependency] private readonly AdminActionProtectionSystem _adminActionProtection = default!; // Orion
+    [Dependency] private readonly BanWebhooks _banWebhooks = default!; // Arcane
 
     private ISawmill _sawmill = default!;
 
@@ -181,6 +184,13 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             severity,
             banningAdmin,
             null);
+
+        // Arcane-start
+        var banWebhookUrl = _cfg.GetCVar(ACCVars.DiscordBanWebhook);
+        var banWebhookData = new BanWebhookData(_playerManager, target, banningAdmin, reason, severity, expires);
+        if (!string.IsNullOrEmpty(banWebhookUrl))
+            _banWebhooks.CreateBanWebhookMessage(banWebhookData, banWebhookUrl);
+        // Arcane-end
 
         await _db.AddServerBanAsync(banDef);
         if (_cfg.GetCVar(CCVars.ServerBanResetLastReadRules) && target != null)

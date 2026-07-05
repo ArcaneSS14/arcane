@@ -36,6 +36,32 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     </BoxContainer>
                     <BoxContainer Orientation="Vertical" Name="ConnectFail" Visible="False" SeparationOverride="10">
                         <RichTextLabel Name="ConnectFailReason" VerticalAlignment="Stretch"/>
+                        <!-- // arcane discord link start -->
+                        <BoxContainer Orientation="Vertical" Name="DiscordAuthPanel" Visible="False" SeparationOverride="6">
+                            <controls:HighDivider />
+                            <Label Text="{Loc 'connecting-discord-auth-title'}"
+                                   StyleClasses="LabelHeading"
+                                   Align="Center" />
+                            <RichTextLabel Name="DiscordAuthInfo" />
+                            <BoxContainer Orientation="Vertical" Name="DiscordAuthCodeContainer">
+                                <Label Text="{Loc 'connecting-discord-auth-code'}"
+                                       StyleClasses="LabelSubText" />
+                                <LineEdit Name="DiscordAuthCode"
+                                          Editable="False"
+                                          HorizontalExpand="True" />
+                            </BoxContainer>
+                            <BoxContainer Orientation="Vertical" Name="Buttons" SeparationOverride="4">
+                                <Button Name="DiscordAuthCopyCodeButton"
+                                        Text="{Loc 'connecting-discord-auth-copy-code'}"
+                                        HorizontalExpand="True"
+                                        MinSize="160 32" />
+                                <Button Name="DiscordAuthOpenDiscordButton"
+                                        Text="{Loc 'connecting-discord-auth-open-discord'}"
+                                        HorizontalExpand="True"
+                                        MinSize="160 32" />
+                            </BoxContainer>
+                        </BoxContainer>
+                        <!-- // arcane discord link end -->
                         <BoxContainer Orientation="Horizontal" Align="Center">
                             <Button Name="RetryButton"
                                     Text="{Loc 'connecting-retry'}"

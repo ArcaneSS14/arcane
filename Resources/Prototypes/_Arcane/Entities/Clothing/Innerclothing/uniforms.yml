@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPivozavr
+  name: pivozavr
+  description: An ancient reptile that lovwe beer.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/pivozavr.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/pivozavr.rsi

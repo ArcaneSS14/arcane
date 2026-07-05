@@ -1,0 +1,11 @@
+- type: entity
+  parent: BedsheetBase
+  id: BedsheetBeer
+  name: beer bedsheet
+  description: Look! I sleep in the beer!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Bedsheets/beer_bedsheet.rsi
+    state: sheetBEER
+  - type: Clothing
+    sprite: _Arcane/Clothing/Neck/Bedsheets/beer_bedsheet.rsi

@@ -167,6 +167,11 @@
   # Goobstation edit end
   - type: Sprite
     state: icon
+  # Arcane-start: hide erp chest organs under outer clothing
+  - type: HideLayerClothing
+    layers:
+      ErpChest: OUTERCLOTHING
+  # Arcane-end
 
 - type: entity
   abstract: true
@@ -364,6 +369,12 @@
   - type: HideClothingLayerClothing # Goobstation
     hiddenSlots:
     - jumpsuit
+  # Arcane-start: full body suit hides all erp organs
+  - type: HideLayerClothing
+    layers:
+      ErpGroin: OUTERCLOTHING
+      ErpChest: OUTERCLOTHING
+  # Arcane-end
 
 - type: entity
   abstract: true
@@ -406,6 +417,12 @@
   - type: HideClothingLayerClothing # Goobstation
     hiddenSlots:
     - jumpsuit
+  # Arcane-start: full body suit hides all erp organs
+  - type: HideLayerClothing
+    layers:
+      ErpGroin: OUTERCLOTHING
+      ErpChest: OUTERCLOTHING
+  # Arcane-end
   - type: Tag
     tags:
     - PlasmamanSafe # EE Plasmeme Change

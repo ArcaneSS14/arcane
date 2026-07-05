@@ -215,3 +215,16 @@
   - type: Sprite
     sprite: _Goobstation/Structures/posters.rsi
     state: goob_poster3_contraband
+
+# Arcane - Start
+- type: entity
+  parent: PosterBase
+  id: PosterVivaLaPivo
+  name: Viva la pivo!
+  description: A poster praicing beer. Viva la pivo!
+  components:
+  - type: Sprite
+    sprite: _Arcane/posters.rsi
+    state: poster_viva_la_pivo
+
+# Arcane - End

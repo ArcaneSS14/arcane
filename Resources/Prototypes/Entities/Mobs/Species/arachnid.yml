@@ -118,6 +118,7 @@
       Male: UnisexArachnid
       Female: UnisexArachnid
       Unsexed: UnisexArachnid
+      Futanari: UnisexArachnid # Arcane-edit
   - type: TypingIndicator
     proto: spider
   - type: LanguageKnowledge # Einstein Engines - Language

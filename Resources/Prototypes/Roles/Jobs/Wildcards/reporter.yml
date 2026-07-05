@@ -70,6 +70,10 @@
   - Service
   - Maintenance
   - Journalism # goob
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentService
+  # Arcane-end
 
 - type: startingGear
   id: ReporterGear

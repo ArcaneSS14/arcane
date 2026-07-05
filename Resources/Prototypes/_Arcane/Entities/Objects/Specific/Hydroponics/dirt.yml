@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseItem
+  id: HandheldSoil
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/soil.rsi
+    layers:
+    - state: item
+  - type: TriggerOnUse
+  - type: SpawnOnTrigger
+    proto: hydroponicsSoil
+  - type: Item
+    size: Large
+  - type: DeleteOnTrigger

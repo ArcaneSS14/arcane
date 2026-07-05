@@ -1,0 +1,120 @@
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: ClothingKimonoBase
+  components:
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: "folded"
+  - type: FoldedHandsClothing
+
+- type: entity
+  parent: ClothingKimonoBase
+  id: ClothingOuterKimonoBlackGreen
+  name: kimono black
+  description: A traditional black kimono with green accents.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_blgr.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_blgr.rsi
+
+- type: entity
+  parent: ClothingKimonoBase
+  id: ClothingOuterKimonoBlue
+  name: kimono blue
+  description: A traditional blue kimono.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_blu.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_blu.rsi
+
+- type: entity
+  parent: ClothingKimonoBase
+  id: ClothingOuterKimonoFlowerBlack
+  name: kimono black with flowers
+  description: A black kimono adorned with floral patterns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_flowbl.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_flowbl.rsi
+
+- type: entity
+  parent: ClothingKimonoBase
+  id: ClothingOuterKimonoFlowerBlue
+  name: kimono blue with flowers
+  description: A blue kimono adorned with floral patterns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_flowblu.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_flowblu.rsi
+
+- type: entity
+  parent: ClothingKimonoBase
+  id: ClothingOuterKimonoFlowerRed
+  name: kimono red with flowers
+  description: A red kimono adorned with floral patterns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_flowred.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_flowred.rsi
+
+- type: entity
+  parent: ClothingKimonoBase
+  id: ClothingOuterKimonoFlowerWhite
+  name: kimono white with flowers
+  description: A white kimono adorned with floral patterns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_flowwh.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_flowwh.rsi
+
+- type: entity
+  parent: ClothingKimonoBase
+  id: ClothingOuterKimonoRed
+  name: kimono red
+  description: A traditional red kimono.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_red.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_red.rsi
+
+- type: entity
+  parent: ClothingKimonoBase
+  id: ClothingOuterKimonoRedBlack
+  name: kimono red with black
+  description: A red kimono with a black hem.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_redbl.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_redbl.rsi
+
+- type: entity
+  parent: ClothingKimonoBase
+  id: ClothingOuterKimonoStripes
+  name: kimono striped
+  description: A black kimono with striking stripe patterns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_stripes.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_stripes.rsi
+
+- type: entity
+  parent: ClothingKimonoBase
+  id: ClothingOuterKimonoWhite
+  name: kimono white
+  description: A traditional white kimono.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_wh.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Kimonos/kimono_wh.rsi

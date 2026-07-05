@@ -176,6 +176,10 @@
     components:
       - type: CommandStaff
       - type: EngineeringStaff # Goobstation
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentCommand
+  # Arcane-end
 
 - type: startingGear
   id: ChiefEngineerGear

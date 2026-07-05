@@ -67,6 +67,9 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
+// arcane discord link start
+using Content.Server._RMC14.LinkAccount;
+// arcane discord link end
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
@@ -122,6 +125,9 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly MetaDataSystem _metaData = default!;
         [Dependency] private readonly SharedRoleSystem _roles = default!;
         [Dependency] private readonly ServerDbEntryManager _dbEntryManager = default!;
+        // arcane discord link start
+        [Dependency] private readonly LinkAccountManager _linkAccount = default!;
+        // arcane discord link end
 
         [ViewVariables] private bool _initialized;
         [ViewVariables] private bool _postInitialized;

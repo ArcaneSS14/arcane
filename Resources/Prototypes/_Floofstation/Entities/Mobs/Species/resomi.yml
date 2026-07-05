@@ -503,3 +503,13 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_resomi"
       visible: false
+  # Arcane-start: species-specific organ prototypes
+  - type: EroticOrgans
+    groinMale:
+    - proto: OrganPenisResomi
+      slot: penis
+    - proto: OrganTesticles
+      slot: testicles
+    hideWhenFlaccid:
+    - penis
+  # Arcane-end

@@ -175,6 +175,7 @@
       Male: MaleMoth
       Female: FemaleMoth
       Unsexed: UnisexMoth
+      Futanari: FemaleMoth # Arcane-edit
   - type: MovementSpeedModifier
     baseWeightlessAcceleration: 3 # Goobstation value
     baseWeightlessFriction: 1

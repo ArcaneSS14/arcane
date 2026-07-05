@@ -51,6 +51,7 @@
 
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._Art.TTS; // Art-TTS
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -176,6 +177,11 @@ namespace Content.Shared.Preferences
         [DataField]
         public Sex Sex { get; private set; } = Sex.Male;
 
+        // Art-TTS Start
+        [DataField]
+        public string Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
+        // Art-TTS End
+
         [DataField]
         public Gender Gender { get; private set; } = Gender.Male;
 
@@ -246,6 +252,7 @@ namespace Content.Shared.Preferences
             float width, // Goobstation: port EE height/width sliders
             int age,
             Sex sex,
+            string voice, // Art-TTS
             Gender gender,
             HumanoidCharacterAppearance appearance,
             SpawnPriorityPreference spawnPriority,
@@ -254,7 +261,8 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
-            ProtoId<BarkPrototype> barkVoice) // Goob Station - Barks
+            ProtoId<BarkPrototype> barkVoice, // Goob Station - Barks
+            ErpPreference erpPreference) // Arcane
         {
             Name = name;
             FlavorText = flavortext;
@@ -276,6 +284,7 @@ namespace Content.Shared.Preferences
             Width = width; // Goobstation: port EE height/width sliders
             Age = age;
             Sex = sex;
+            Voice = voice; // Art-TTS
             Gender = gender;
             Appearance = appearance;
             SpawnPriority = spawnPriority;
@@ -285,6 +294,7 @@ namespace Content.Shared.Preferences
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
             BarkVoice = barkVoice; // Goob Station - Barks
+            ErpPreference = erpPreference; // Arcane
 
             var hasHighPrority = false;
             foreach (var (key, value) in _jobPriorities)
@@ -323,6 +333,7 @@ namespace Content.Shared.Preferences
                 other.Width, // Goobstation: port EE height/width sliders
                 other.Age,
                 other.Sex,
+                other.Voice, // Art-TTS
                 other.Gender,
                 other.Appearance.Clone(),
                 other.SpawnPriority,
@@ -331,10 +342,9 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
-                other.BarkVoice) // Goob Station - Barks
-        {
-            ErpPreference = other.ErpPreference; // Arcane-edit
-        }
+                other.BarkVoice, // Goob Station - Barks
+                other.ErpPreference) // arcane
+        { }
 
         /// <summary>
         ///     Get the default humanoid character profile, using internal constant values.
@@ -388,18 +398,23 @@ namespace Content.Shared.Preferences
             var width = 1f; // Goobstation: port EE height/width sliders
             if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             {
-                sex = random.Pick(speciesPrototype.Sexes);
+                sex = speciesPrototype.Sexes.Count > 0
+                    ? random.Pick(speciesPrototype.Sexes)
+                    : Sex.Unsexed;
                 age = random.Next(speciesPrototype.MinAge, speciesPrototype.OldAge); // people don't look and keep making 119 year old characters with zero rp, cap it at middle aged
                 height = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight); // Goobstation: port EE height/width sliders
                 width = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth); // Goobstation: port EE height/width sliders
             }
 
             // Goob Station - Barks Start
-            var barkvoiceId = random.Pick(prototypeManager
+            var barkVoiceCandidates = prototypeManager
                 .EnumeratePrototypes<BarkPrototype>()
                 .Where(o => o.RoundStart && (o.SpeciesWhitelist is null || o.SpeciesWhitelist.Contains(species)))
-                .ToArray()
-            );
+                .ToArray();
+
+            var barkvoiceId = barkVoiceCandidates.Length > 0
+                ? random.Pick(barkVoiceCandidates)
+                : SharedHumanoidAppearanceSystem.DefaultBarkVoice;
             //  Goob Station - Barks End
 
             var gender = Gender.Epicene;
@@ -414,6 +429,17 @@ namespace Content.Shared.Preferences
                     break;
             }
 
+            // Art-TTS Start
+            var voiceCandidates = prototypeManager
+                .EnumeratePrototypes<TTSVoicePrototype>()
+                .Where(o => o.RoundStart && CanHaveVoice(o, sex))
+                .ToArray();
+
+            var voiceId = voiceCandidates.Length > 0
+                ? random.Pick(voiceCandidates).ID
+                : SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
+            // Art-TTS End
+
             var name = GetName(species, gender);
 
 
@@ -421,6 +447,7 @@ namespace Content.Shared.Preferences
             {
                 Name = name,
                 Sex = sex,
+                Voice = voiceId, // Art-TTS
                 Age = age,
                 Gender = gender,
                 Species = species,
@@ -538,6 +565,12 @@ namespace Content.Shared.Preferences
         {
             return new(this) { SpawnPriority = spawnPriority };
         }
+        // Art-TTS Start
+        public HumanoidCharacterProfile WithVoice(string voiceId)
+        {
+            return new(this) { Voice = voiceId };
+        }
+        // Art-TTS End
 
         // Goob Station - Barks Start
         public HumanoidCharacterProfile WithBarkVoice(BarkPrototype barkVoice)
@@ -710,6 +743,7 @@ namespace Content.Shared.Preferences
             if (Name != other.Name) return false;
             if (Age != other.Age) return false;
             if (Sex != other.Sex) return false;
+            if (Voice != other.Voice) return false; // Art-TTS
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (Height != other.Height) return false; // Goobstation: port EE height/width sliders
@@ -1047,6 +1081,12 @@ namespace Content.Shared.Preferences
             _traitPreferences.Clear();
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
+            // Art-TTS Start
+            prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
+            if (voice == null || !CanHaveVoice(voice, Sex))
+                Voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
+            // Art-TTS End
+
             // Checks prototypes exist for all loadouts and dump / set to default if not.
             var toRemove = new ValueList<string>();
 
@@ -1067,6 +1107,17 @@ namespace Content.Shared.Preferences
                 _loadouts.Remove(value);
             }
         }
+
+        // Art-TTS Start
+        public static bool CanHaveVoice(TTSVoicePrototype voice, Sex sex)
+        {
+            return voice.RoundStart
+            && (sex == Sex.Unsexed
+            || voice.Sex == sex
+            || voice.Sex == Sex.Female && sex == Sex.Futanari // Arcane
+            || voice.Sex == Sex.Unsexed);
+        }
+        // Art-TTS End
 
         /// <summary>
         /// Takes in an IEnumerable of traits and returns a List of the valid traits.
@@ -1161,6 +1212,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Width); // Goobstation: port EE height/width sliders
             hashCode.Add(Age);
             hashCode.Add((int) Sex);
+            hashCode.Add(Voice); // Art-TTS
             hashCode.Add((int) Gender);
             hashCode.Add(Appearance);
             hashCode.Add(BarkVoice); // Goob Station - Barks

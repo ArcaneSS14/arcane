@@ -25,7 +25,8 @@ public readonly record struct RadioReceiveEvent(
     ChatMessage OriginalChatMsg,
     ChatMessage LanguageObfuscatedChatMsg,
     LanguagePrototype Language,
-    EntityUid RadioSource
+    EntityUid RadioSource,
+    string? Voice = null // Art-TTS
     );
 // Einstein Engines - Language end
 

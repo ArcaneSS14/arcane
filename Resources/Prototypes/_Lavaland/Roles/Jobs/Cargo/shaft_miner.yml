@@ -15,11 +15,19 @@
   - Cargo
   goobcoins: 20
   supervisors: job-supervisors-qm
+  # Arcane-Start
+  salary: 60
+  payrollDepartmentAccount: Command
+  # Arcane-End
   access:
   - Cargo
   - Salvage
   - Maintenance
   - External
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentCargo
+  # Arcane-end
 
 - type: startingGear
   id: ShaftMinerGear

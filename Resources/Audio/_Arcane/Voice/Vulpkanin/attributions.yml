@@ -1,0 +1,16 @@
+- files:
+  - female_fox_growl.ogg
+  - female_fox_scream1.ogg
+  - female_fox_scream2.ogg
+  - female_wolf_howl.ogg
+  - fox_cry1.ogg
+  - fox_cry2.ogg
+  - fox_laugh1.ogg
+  - fox_laugh2.ogg
+  - male_fox_scream1.ogg
+  - male_fox_scream2.ogg
+  - male_wolf_growl.ogg
+  - male_wolf_howl.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Original sound taken from dead-space-14."
+  source: "https://github.com/dead-space-server/dead-space-14/tree/master/Resources/Audio/_DeadSpace/Voice/Vulpkanin"

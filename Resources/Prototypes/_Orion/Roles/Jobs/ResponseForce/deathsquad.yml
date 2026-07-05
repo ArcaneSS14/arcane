@@ -5,7 +5,7 @@
   playTimeTracker: JobDeathSquadLeader
   setPreference: false
   startingGear: DeathSquadLeaderGear
-  icon: "JobIconDeathSquad"
+  icon: "JobIconERTLeader" # Arcane-Edit
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -28,7 +28,7 @@
     back: ClothingBackpackDeathSquad
     mask: ClothingMaskGasDeathSquad
     eyes: ClothingEyesGlassesDeathsquad
-    neck: ExecutiveIDCard
+    neck: ClothingNeckMantleEpaulettes # Arcane-Edit
     ears: ClothingHeadsetDeathsquad
     gloves: ClothingHandsGlovesDeathsquadUnremovable
     outerClothing: ClothingOuterHardsuitDeathsquad

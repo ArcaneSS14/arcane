@@ -1,0 +1,31 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Fluffy",
+    "size": {
+        "x": 32,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "security",
+            "directions": 4
+        },
+        {
+            "name": "security-rest",
+            "directions": 4
+        },
+        {
+            "name": "security_e",
+            "directions": 4
+        },
+        {
+            "name": "security_e_r",
+            "directions": 4
+        },
+        {
+            "name": "security_l",
+            "directions": 4
+        }
+    ]
+}

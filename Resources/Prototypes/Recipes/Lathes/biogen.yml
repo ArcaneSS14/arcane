@@ -316,3 +316,17 @@
   completetime: 3
   materials:
     Biomass: 6
+
+# Arcane-Start
+- type: latheRecipe
+  id: BioHandheldSoil
+  result: HandheldSoil
+  categories:
+  - Materials
+  icon:
+    sprite: _Arcane/Objects/Specific/Hydroponics/soil.rsi
+    state: item
+  completetime: 3
+  materials:
+    Biomass: 40
+# Arcane-End

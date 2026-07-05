@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Space Station 14" width="700" src="https://media.discordapp.net/attachments/1487521471109796041/1505580382756540646/logo.png?ex=6a0b247f&is=6a09d2ff&hm=b7eec3f86490de6e2e1ea8bde8bfe1d2be64e5ff920e1cb64e86e6db87975ee1&=&format=webp&quality=lossless&width=1872&height=541" />
+  <img alt="Space Station 14" width="700" src="https://media.discordapp.net/attachments/1508949497563316436/1508950573179998389/argane_logo.png?ex=6a2fcafb&is=6a2e797b&hm=e38889db1882ed97f2abc670af9bb4c85035504b68ccf3d42ecc070e4ecc91fe&=&format=webp&quality=lossless&width=1768&height=511" />
 </p>
 
 <p align="center">

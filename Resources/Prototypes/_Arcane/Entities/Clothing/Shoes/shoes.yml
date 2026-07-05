@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesBeer
+  name: beer shoes
+  description: Beer shoes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/beer_shoes.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/beer_shoes.rsi

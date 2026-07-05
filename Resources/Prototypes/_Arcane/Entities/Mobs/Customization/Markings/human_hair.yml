@@ -133,3 +133,19 @@
   sprites:
     - sprite: _Arcane/Mobs/Customization/hair.rsi
       state: twilight
+
+- type: marking
+  id: HumanHairHardMorning
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/hair.rsi
+      state: hardmorning
+
+- type: marking
+  id: HumanHairHardMorningAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/hair.rsi
+      state: hardmorningalt

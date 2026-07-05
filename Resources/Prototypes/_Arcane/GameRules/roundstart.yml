@@ -1,0 +1,10 @@
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesCalmRule
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
+      prob: 0.5
+    - id: Devil
+      prob: 0.02

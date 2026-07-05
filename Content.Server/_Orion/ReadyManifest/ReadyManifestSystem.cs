@@ -8,6 +8,7 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -21,6 +22,7 @@ public sealed class ReadyManifestSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
+    [Dependency] private readonly IPlayerManager _player = default!; // Arcane
 
     private readonly Dictionary<ICommonSession, ReadyManifestEui> _openEuis = new();
     private Dictionary<ProtoId<JobPrototype>, List<string>> _jobCharacters = new();
@@ -114,6 +116,11 @@ public sealed class ReadyManifestSystem : EntitySystem
             if (preferences.SelectedCharacter is not HumanoidCharacterProfile profile)
                 continue;
 
+            // Arcane-start
+            if (!_player.TryGetSessionById(userId, out var session))
+                continue;
+            // Arcane-end
+
             var characterName = profile.Name;
             var profileJobs = FilterPlayerJobs(profile);
 
@@ -124,9 +131,9 @@ public sealed class ReadyManifestSystem : EntitySystem
                     jobCharacters[jobId] = new List<string>();
                 }
 
-                if (!jobCharacters[jobId].Contains(characterName))
+                if (!jobCharacters[jobId].Contains($"{characterName} - {session.Name}")) // Arcane
                 {
-                    jobCharacters[jobId].Add(characterName);
+                    jobCharacters[jobId].Add($"{characterName} - {session.Name}"); // Arcane
                 }
             }
         }

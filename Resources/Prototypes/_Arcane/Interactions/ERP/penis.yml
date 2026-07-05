@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: SuckCock
   category: Penis
-  name: Сосать член
   userArouse: 5
   targetArouse: 15
   range: 1
@@ -17,6 +16,8 @@
   - обхватывает губами головку члена $target и нежно посасывает.
   - захватывает член $target губами и ритмично скользит по нему.
   icon: _Arcane/Interface/ErpPanel/cock_tongue_fap.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: penis
@@ -25,7 +26,6 @@
 - type: panelInteraction
   id: SlimeFuckCock
   category: Penis
-  name: Трахать член плазмой
   userArouse: 10
   targetArouse: 10
   range: 1
@@ -47,6 +47,8 @@
   - ритмично передвигает плазму у члена $target.
   - ласкает головку члена $target своей плазмой.
   icon: _Arcane/Interface/ErpPanel/cock_slime_sex.png
+  tags:
+  - RequiresERP
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -59,7 +61,6 @@
 - type: panelInteraction
   id: CockFap
   category: Penis
-  name: Подрочить член
   userArouse: 10
   targetArouse: 10
   range: 1
@@ -74,6 +75,8 @@
   - наяривает свой пенис.
   - обхватывает член рукой и активно ласкает его.
   icon: _Arcane/Interface/ErpPanel/cock_fap.png
+  tags:
+  - RequiresERP
   userRequirements:
   - !type:EroticOrganRequirement
     organ: penis
@@ -82,7 +85,6 @@
 - type: panelInteraction
   id: CockFootjob
   category: Penis
-  name: Подрочить член ногой
   targetArouse: 10
   range: 1
   sounds:
@@ -99,6 +101,8 @@
   - плавно водит ножкой по пенису $target.
   - гладит ступнёй пенис $target.
   icon: _Arcane/Interface/ErpPanel/cock_footjob.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: penis
@@ -107,7 +111,6 @@
 - type: panelInteraction
   id: CockSwordmanship
   category: Penis
-  name: Фехтовать членами
   userArouse: 10
   targetArouse: 10
   range: 1
@@ -123,6 +126,8 @@
   - ударяет пенисом по члену $target.
   - борется членами с $target, как на мечах.
   icon: _Arcane/Interface/ErpPanel/cock_swordmanship.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: penis
@@ -135,7 +140,6 @@
 - type: panelInteraction
   id: CockFapTail
   category: Penis
-  name: Подрочить член хвостом
   targetArouse: 10
   range: 1
   sounds:
@@ -144,6 +148,8 @@
   - обвивает хвостиком член $target.
   - надрачивает хвостом член $target.
   icon: _Arcane/Interface/ErpPanel/cock_tail_fap.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: penis
@@ -161,7 +167,6 @@
 - type: panelInteraction
   id: CockFuckLegs
   category: Penis
-  name: Трахнуть член ляжками
   userArouse: 5
   targetArouse: 10
   range: 1
@@ -177,7 +182,154 @@
   - проталкивает член $target между ляжками.
   - трётся ляжками о член $target.
   icon: _Arcane/Interface/ErpPanel/legs_cock_fuck.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: penis
     requireVisible: true
+
+- type: panelInteraction
+  id: CockBlowjob
+  category: Penis
+  userArouse: 5
+  targetArouse: 20
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/bj1.ogg
+  - /Audio/_Arcane/Interactions/bj2.ogg
+  - /Audio/_Arcane/Interactions/bj3.ogg
+  - /Audio/_Arcane/Interactions/bj4.ogg
+  - /Audio/_Arcane/Interactions/bj5.ogg
+  - /Audio/_Arcane/Interactions/bj6.ogg
+  - /Audio/_Arcane/Interactions/bj7.ogg
+  - /Audio/_Arcane/Interactions/bj8.ogg
+  - /Audio/_Arcane/Interactions/bj9.ogg
+  - /Audio/_Arcane/Interactions/bj10.ogg
+  - /Audio/_Arcane/Interactions/bj11.ogg
+  messages:
+  - делает минет $target, активно работая головой.
+  - ритмично двигает головой, сосая член $target.
+  - жадно глотает член $target.
+  - страстно делает минет $target, не останавливаясь.
+  - быстро работает ртом и рукой на члене $target.
+  icon: _Arcane/Interface/ErpPanel/cock_blowjob.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:EroticOrganRequirement
+    organ: penis
+    requireVisible: true
+
+- type: panelInteraction
+  id: CockNearAssTail
+  category: Butt
+  userArouse: 10
+  targetArouse: 5
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - водит пенисом по попке $target, обвивая хвостом.
+  - проводит членом по булкам $target, хвостом помогая.
+  - трётся членом о ягодицы $target, хвостом обвивая.
+  icon: _Arcane/Interface/ErpPanel/cock_near_ass_tail.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:EroticOrganRequirement
+    organ: penis
+    requireVisible: true
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+    - Felinid
+    - Vulpkanin
+    - Tajaran
+    - HumanoidXeno
+    - Rodentia
+
+- type: panelInteraction
+  id: HairFaceFuck
+  category: Mouth
+  userArouse: 15
+  targetArouse: 10
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/bj1.ogg
+  - /Audio/_Arcane/Interactions/bj2.ogg
+  - /Audio/_Arcane/Interactions/bj3.ogg
+  - /Audio/_Arcane/Interactions/bj4.ogg
+  - /Audio/_Arcane/Interactions/bj5.ogg
+  - /Audio/_Arcane/Interactions/bj6.ogg
+  - /Audio/_Arcane/Interactions/bj7.ogg
+  - /Audio/_Arcane/Interactions/bj8.ogg
+  - /Audio/_Arcane/Interactions/bj9.ogg
+  - /Audio/_Arcane/Interactions/bj10.ogg
+  - /Audio/_Arcane/Interactions/bj11.ogg
+  messages:
+  - хватает $target за волосы и трахает в рот.
+  - держит $target за голову и ритмично двигается.
+  - тянет $target за волосы, погружая член глубже.
+  - контролирует голову $target, трахая в рот.
+  - крепко держит $target за волосы и интенсивно трахает в рот.
+  icon: _Arcane/Interface/ErpPanel/hair_face_fuck.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:EroticOrganRequirement
+    organ: penis
+    requireVisible: true
+
+- type: panelInteraction
+  id: LegsCockFuckTail
+  category: Penis
+  userArouse: 5
+  targetArouse: 10
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - трахает ляжками член $target, обвивая хвостом.
+  - зажимает член $target между ляжками, хвостом помогая.
+  - трётся ляжками о член $target, хвостом обхватив.
+  icon: _Arcane/Interface/ErpPanel/legs_cock_fuckt_tail.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:EroticOrganRequirement
+    organ: penis
+    requireVisible: true
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+    - Felinid
+    - Vulpkanin
+    - Tajaran
+    - HumanoidXeno
+    - Rodentia
+
+- type: panelInteraction
+  id: HornsBlowjobF
+  category: Head
+  targetArouse: 10
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/oral1.ogg
+  - /Audio/_Arcane/Interactions/oral2.ogg
+  messages:
+  - облизывает рог $target.
+  - нежно лижет рог $target.
+  - проводит языком по рогу $target.
+  - медленно лижет кончик рога $target.
+  - захватывает губами рог $target.
+  icon: _Arcane/Interface/ErpPanel/horns_blowjob_female.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon

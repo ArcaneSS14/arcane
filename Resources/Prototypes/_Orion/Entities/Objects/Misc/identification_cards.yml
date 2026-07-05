@@ -52,8 +52,10 @@
     job: ERTInteQVanguard
 
 - type: entity
-  parent: CBURNIDcard
-  id: CBURNLeaderIDcard
+  # Arcane-Edit-start
+  parent: CBURNIDCard
+  id: CBURNLeaderIDCard
+  # Arcane-Edit-end
   name: CBURN leader ID card
   suffix: CBURN leader
   components:

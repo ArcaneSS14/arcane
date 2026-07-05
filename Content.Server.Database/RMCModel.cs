@@ -40,6 +40,12 @@ public sealed class RMCDiscordAccount
     [Key]
     public ulong Id { get; set; }
 
+    // arcane discord link start
+    public bool HasPlayerRole { get; set; }
+
+    public DateTime? PlayerRoleUpdatedAt { get; set; }
+    // arcane discord link end
+
     public RMCLinkedAccount LinkedAccount { get; set; } = default!;
     public List<RMCLinkedAccountLogs> LinkedAccountLogs { get; set; } = default!;
 }

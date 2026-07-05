@@ -1,0 +1,89 @@
+- type: jukebox
+  id: MrBlueSky
+  name: ELO - Mr. Blue Sky
+  path:
+    path: /Audio/_Arcane/Lobby/MrBlueSky.ogg
+
+- type: jukebox
+  id: APillToCrush
+  name: Evalyn - A Pill To Crush
+  path:
+    path: /Audio/_Arcane/Lobby/APillToCrush.ogg
+
+- type: jukebox
+  id: FreakingOutTheNeighborhood
+  name: Mac DeMarco - Freaking Out The Neighborhood
+  path:
+    path: /Audio/_Arcane/Lobby/FreakingOutTheNeighborhood.ogg
+
+- type: jukebox
+  id: Gold
+  name: Spandau Ballet - Gold
+  path:
+    path: /Audio/_Arcane/Lobby/Gold.ogg
+
+- type: jukebox
+  id: OneWayOrAnother
+  name: Blondie - One Way Or Another
+  path:
+    path: /Audio/_Arcane/Lobby/OneWayOrAnother.ogg
+
+- type: jukebox
+  id: BeLikeAWoman
+  name: Chris Rainbow - Be Like A Woman
+  path:
+    path: /Audio/_Arcane/Lobby/BeLikeAWoman.ogg
+
+- type: jukebox
+  id: ComeAndGetYourLove
+  name: Redbone - Come and Get Your Love
+  path:
+    path: /Audio/_Arcane/Lobby/ComeAndGetYourLove.ogg
+
+- type: jukebox
+  id: TimeInABottle
+  name: Jim Croce - Time In A Bottle
+  path:
+    path: /Audio/_Arcane/Lobby/TimeInABottle.ogg
+
+- type: jukebox
+  id: TheSummerEnds
+  name: American Football - The Summer Ends
+  path:
+    path: /Audio/_Arcane/Lobby/TheSummerEnds.ogg
+
+- type: jukebox
+  id: ThisIsOurTime
+  name: Miles Malone - This Is Our Time
+  path:
+    path: /Audio/_Arcane/Lobby/ThisIsOurTime.ogg
+
+- type: jukebox
+  id: ItWasAGoodDay
+  name: Ice Cube - It Was A Good Day
+  path:
+    path: /Audio/_Arcane/Lobby/ItWasAGoodDay.ogg
+
+- type: jukebox
+  id: UnwelcomeSchool
+  name: Mitsukiyo - Unwelcome School
+  path:
+    path: /Audio/_Arcane/Lobby/UnwelcomeSchool.ogg
+
+- type: jukebox
+  id: VKrauMagnoliy
+  name: АРИЭЛЬ - В Краю Магнолий
+  path:
+    path: /Audio/_Arcane/Lobby/VKrauMagnoliy.ogg
+
+- type: jukebox
+  id: Invisible
+  name: Duran Duran - INVISIBLE
+  path:
+    path: /Audio/_Arcane/Lobby/Invisible.ogg
+
+- type: jukebox
+  id: InThePool
+  name: Kensuke Ushio - In The Pool
+  path:
+    path: /Audio/_Arcane/Lobby/InThePool.ogg

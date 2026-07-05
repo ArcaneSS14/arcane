@@ -15,6 +15,7 @@ using Content.Goobstation.Common.ServerCurrency;
 using Content.Server._RMC14.LinkAccount;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
+using Content.Shared._Arcane.Sponsor;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -132,7 +133,7 @@ namespace Content.Goobstation.Server.ServerCurrency
                             money *= _goobcoinsServerMultiplier;
 
                         if (_linkAccount.GetPatron(session)?.Tier != null) // Orion-Edit
-                            money *= 2;
+                            money *= ArcaneSponsorTiers.GetTokenMultiplier(_linkAccount.GetPatron(session)?.Tier?.Tier); // Arcane
 
                         if (_goobcoinsUseShortRoundPenalty)
                         {

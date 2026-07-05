@@ -4,6 +4,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client._Arcane.SiliconStanding;
 using Content.Shared.Mobs;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
@@ -17,6 +18,7 @@ public sealed class BorgSystem : SharedBorgSystem
 {
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly SiliconRestingVisualizerSystem _restingVisualizer = default!; // Arcane
 
     public override void Initialize()
     {
@@ -73,6 +75,11 @@ public sealed class BorgSystem : SharedBorgSystem
 
         _sprite.LayerSetVisible((uid, sprite), BorgVisualLayers.Light, component.BrainEntity != null || hasPlayer);
         _sprite.LayerSetRsiState((uid, sprite), BorgVisualLayers.Light, hasPlayer ? component.HasMindState : component.NoMindState);
+
+        // Arcane-Edit-Start
+        // Re-apply resting visuals after the normal borg appearance pass.
+        _restingVisualizer.Refresh(uid, sprite);
+        // Arcane-Edit-End
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)

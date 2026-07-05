@@ -1,0 +1,253 @@
+- type: entity
+  parent: [BaseItem]
+  id: Whip
+  name: whip
+  description: Please no.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/whip.rsi
+    state: icon
+    scale: 0.8,0.8
+  - type: Item
+    size: Normal
+    sprite: _Arcane/ERP/whip.rsi
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0
+
+- type: entity
+  parent: [BaseItem]
+  id: BlowGreen
+  name: green blow
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/blow_green.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/blow_green.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: BlowPink
+  name: pink blow
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/blow_pink.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/blow_pink.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: BlowPurple
+  name: purple blow
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/blow_purple.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/blow_purple.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: BunnyVibrator
+  name: bunny vibrator
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/bunny_vibrator.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/bunny_vibrator.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: ButtholeGreen
+  name: green butthole
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/butthole_green.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/butthole_green.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: ButtholePink
+  name: pink butthole
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/butthole_pink.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/butthole_pink.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: ButtholePurple
+  name: purple butthole
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/butthole_purple.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/butthole_purple.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: DogDildo
+  name: dog dildo
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/dog_dildo.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/dog_dildo.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: HorseDildo
+  name: horse dildo
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/horse_dildo.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/horse_dildo.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: TentacleSDildo
+  name: tentacle dildo
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/tentacle_dildo.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/tentacle_dildo.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: SlimeDildo
+  name: slime dildo
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/slime_dildo.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/slime_dildo.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: XenoDildo
+  name: xeno dildo
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/xeno_dildo.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/xeno_dildo.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: OnaholeGreen
+  name: green onahole
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/onahole_green.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/onahole_green.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: OnaholePink
+  name: pink onahole
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/onahole_pink.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/onahole_pink.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: OnaholePurple
+  name: purple onahole
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/onahole_purple.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/onahole_purple.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: PussyVulpaBlue
+  name: blue vulpkanin pussy
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/vulp_blue.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/vulp_blue.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: PussyVulpaPink
+  name: pink vulpkanin pussy
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/vulp_pink.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/vulp_pink.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: PussyVulpaRed
+  name: red vulpkanin pussy
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/vulp_red.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/Toys/vulp_red.rsi

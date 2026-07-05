@@ -5,7 +5,7 @@
     back: ClothingBackpackERTLeader
     shoes: ClothingShoesBootsMagEmergencyResponseTeam
     head: ClothingHeadHelmetERTLeader
-    neck: ExecutiveIDCard # Goobstation - Executive Access!
+    neck: ClothingNeckMantleEpaulettes # Arcane-Edit
     mask: ClothingMaskGas
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesColorYellow
@@ -34,7 +34,7 @@
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesBootsMagEmergencyResponseTeam
     head: ClothingHeadHelmetERTSecurity
-    neck: ExecutiveIDCard # Goobstation - Executive Access!
+#   neck: ExecutiveIDCard # Arcane-Edit
     mask: ClothingMaskGas
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesColorYellow

@@ -26,6 +26,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.IntegrationTests.Tests.Fluids;
 
@@ -57,6 +59,7 @@ public sealed class FluidSpill
         var server = pair.Server;
         var mapManager = server.ResolveDependency<IMapManager>();
         var entityManager = server.ResolveDependency<IEntityManager>();
+        var prototypeManager = server.ResolveDependency<IPrototypeManager>();
         var puddleSystem = server.System<PuddleSystem>();
         var mapSystem = server.System<SharedMapSystem>();
         var gameTiming = server.ResolveDependency<IGameTiming>();
@@ -109,7 +112,11 @@ public sealed class FluidSpill
 
 #pragma warning disable NUnit2045 // Interdependent tests
             Assert.That(puddle, Is.Not.Null);
-            Assert.That(puddleSystem.CurrentVolume(puddle!.Value.Owner, puddle), Is.EqualTo(FixedPoint2.New(100)));
+
+            // Arcane-start
+            var puddleProto = prototypeManager.Index<ReagentPrototype>("Blood");
+            Assert.That(puddleSystem.CurrentVolume(puddle!.Value.Owner, puddle), Is.EqualTo(FixedPoint2.New(100 - (float) puddleProto.EvaporationSpeed)));
+            // Arcane-end
 #pragma warning restore NUnit2045
 
             for (var x = 0; x < 3; x++)

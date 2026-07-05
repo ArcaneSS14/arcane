@@ -46,6 +46,7 @@
   id: BorgChassisSelectable
   parent: BaseBorgChassisNT
   components:
+  - type: Appearance # Arcane
   - type: Sprite
     layers:
     - state: robot

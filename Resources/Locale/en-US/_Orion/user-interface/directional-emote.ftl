@@ -1,7 +1,14 @@
-directional-emote-title = Directional emote menu
+directional-emote-title = Directional Emote -> { $target }
 directional-emote-button = Send
+directional-last-emote-button = Last Emote
+directional-emote-hide-name = Hide name
 
-directional-emote-verb-name = Directional emote
+directional-emote-unknown-target = Unknown Person
 
-directional-emote-range-error = [bolditalic]To send a directed emotion, you must be close to the target![/bolditalic]
-directional-emote-length-error = [bolditalic]Your message should not exceed { $maxLength } characters![/bolditalic]
+directional-emote-verb-get-data-text = Directional emote
+
+directional-emote-too-long-popup = You must be within { $range } meters of the target!
+directional-emote-length-error = Your message exceeds the limit! ({ $limit } characters)
+
+directional-emote-wrap-message = [italic]{ $source }:[/italic]
+    { $message }

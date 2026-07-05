@@ -20,3 +20,12 @@ connecting-state-ResolvingHost = Определение хоста
 connecting-state-EstablishingConnection = Установка соединения...
 connecting-state-Handshake = Установка соединения с нейроконнекторами...
 connecting-state-Connected = Подключение установлено, добро пожаловать!
+connecting-discord-auth-title = Привяжите Discord!
+connecting-discord-auth-link-info =
+    Для входа на сервер необходимо привязать Discord-аккаунт
+    Зайдите на наш Discord-сервер, перейдите в канал привязки, нажмите на кнопку под последним сообщением и укажите этот код
+connecting-discord-auth-role-info = У вас отсутствует роль "игрун" на нашем Discord сервере!
+    Если она уже есть, обновите привязку.
+connecting-discord-auth-code = Код привязки
+connecting-discord-auth-copy-code = Скопировать код
+connecting-discord-auth-open-discord = Открыть Discord

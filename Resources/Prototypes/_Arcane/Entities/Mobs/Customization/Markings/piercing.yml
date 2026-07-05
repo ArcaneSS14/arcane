@@ -1,0 +1,53 @@
+- type: marking
+  id: PiercingRightEar
+  bodyPart: HeadSide
+  markingCategory: Overlay
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/piercing.rsi
+    state: piercing_right_ear
+
+- type: marking
+  id: PiercingLeftEar
+  bodyPart: HeadSide
+  markingCategory: Overlay
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/piercing.rsi
+    state: piercing_left_ear
+
+- type: marking
+  id: PiercingNose
+  bodyPart: Head
+  markingCategory: Overlay
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/piercing.rsi
+    state: piercing_nose
+
+- type: marking
+  id: PiercingPubis
+  bodyPart: Chest
+  markingCategory: Overlay
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/piercing.rsi
+    state: piercing_pubis
+
+- type: marking
+  id: PiercingNipples
+  bodyPart: Chest
+  markingCategory: Overlay
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/piercing.rsi
+    state: piercing_nipples
+
+- type: marking
+  id: PiercingBellybutton
+  bodyPart: Chest
+  markingCategory: Overlay
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/piercing.rsi
+    state: piercing_bellybutton

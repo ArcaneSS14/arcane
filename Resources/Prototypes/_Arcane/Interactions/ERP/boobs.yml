@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: BoobsSlap
   category: Boobs
-  name: Шлёпнуть по груди
   userArouse: 5
   range: 1
   sounds:
@@ -16,6 +15,8 @@
   - хлопает $target по сиськам.
   - бьёт $target по груди.
   icon: _Arcane/Interface/ErpPanel/boobs_slap.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: breasts
@@ -24,7 +25,6 @@
 - type: panelInteraction
   id: BoobsPaw
   category: Boobs
-  name: Погладить по груди
   userArouse: 5
   range: 1
   sounds:
@@ -36,6 +36,8 @@
   - проводит рукой по бюсту $target.
   - игриво гладит грудь $target.
   icon: _Arcane/Interface/ErpPanel/boobs_paw.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: breasts
@@ -44,7 +46,6 @@
 - type: panelInteraction
   id: BoobsFuck
   category: Boobs
-  name: Трахать грудь
   userArouse: 10
   targetArouse: 5
   range: 1
@@ -61,6 +62,8 @@
   - трётся пенисом о бюст $target.
   - страстно трахает бюст $target!
   icon: _Arcane/Interface/ErpPanel/boobs_fuck.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: breasts
@@ -69,11 +72,11 @@
   - !type:EroticOrganRequirement
     organ: penis
     requireVisible: true
+  - !type:ArousalRequirement
 
 - type: panelInteraction
   id: BoobsSqueeze
   category: Boobs
-  name: Сжать грудь
   userArouse: 5
   range: 1
   sounds:
@@ -86,6 +89,8 @@
   - жмёт руками бюст $target.
   - хватает $target за грудь!
   icon: _Arcane/Interface/ErpPanel/boobs_squeeze.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: breasts
@@ -94,7 +99,6 @@
 - type: panelInteraction
   id: BoobsKisses
   category: Boobs
-  name: Расцеловать грудь
   userArouse: 5
   targetArouse: 5
   range: 1
@@ -113,6 +117,8 @@
   - нежно целует грудь $target.
   - целует $target в грудь.
   icon: _Arcane/Interface/ErpPanel/boobs_many_kisses.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: breasts
@@ -121,7 +127,6 @@
 - type: panelInteraction
   id: BoobsTail
   category: Boobs
-  name: Ласкать грудь хвостом
   targetArouse: 5
   range: 1
   sounds:
@@ -134,6 +139,8 @@
   - обвивает грудь $target хвостом.
   - гладит грудь $target хвостиком.
   icon: _Arcane/Interface/ErpPanel/boobs_tail.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: breasts
@@ -151,7 +158,6 @@
 - type: panelInteraction
   id: BoobsMassage
   category: Boobs
-  name: Массировать грудь
   userArouse: 5
   targetArouse: 5
   range: 1
@@ -164,6 +170,32 @@
   - водит вокруг сосков $target.
   - аккуратно сжимает и разжимает грудь $target.
   icon: _Arcane/Interface/ErpPanel/boobs_massage.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:EroticOrganRequirement
+    organ: breasts
+    requireVisible: true
+
+- type: panelInteraction
+  id: BoobsSuck
+  category: Boobs
+  userArouse: 5
+  targetArouse: 10
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/oral1.ogg
+  - /Audio/_Arcane/Interactions/oral2.ogg
+  messages:
+  - захватывает губами сосок $target.
+  - нежно сосёт сосок $target.
+  - посасывает сосок $target.
+  - обхватывает губами сосок $target и тихо посасывает.
+  - медленно водит языком вокруг соска $target.
+  - ласкает сосок $target губами.
+  icon: _Arcane/Interface/ErpPanel/boobs_suck.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:EroticOrganRequirement
     organ: breasts

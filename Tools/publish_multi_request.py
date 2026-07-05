@@ -20,8 +20,8 @@ RELEASE_DIR = "release"
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://cdn.goobstation.com/"
-FORK_ID = "GoobLRP"
+ROBUST_CDN_URL = "https://cdn.arcane-station.ru/"
+FORK_ID = "arcane"
 
 def main():
     session = requests.Session()
@@ -74,10 +74,10 @@ def get_files_to_publish() -> Iterable[str]:
 
 
 def get_engine_version() -> str:
-    proc = subprocess.run(["git", "describe","--tags", "--abbrev=0"], stdout=subprocess.PIPE, cwd="RobustToolbox", check=True, encoding="UTF-8")
-    tag = proc.stdout.strip()
-    assert tag.startswith("v")
-    return tag[1:] # Cut off v prefix.
+    import xml.etree.ElementTree as ET
+    tree = ET.parse(os.path.join("RobustToolbox", "MSBuild", "Robust.Engine.Version.props"))
+    version = tree.getroot().find(".//Version").text.strip()
+    return version
 
 
 if __name__ == '__main__':

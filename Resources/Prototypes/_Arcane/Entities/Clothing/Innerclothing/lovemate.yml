@@ -1,0 +1,32 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingJumpsuitBDSMress
+  name: BDSM dress
+  description: Lord have mercy.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/bdsm_dress.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/bdsm_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingJumpsuitBlackShirt
+  name: Black shirt
+  description: Translucent nightgrown for comfortable sleep.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/black_shirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/black_shirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingJumpsuitWhiteShirt
+  name: White shirt
+  description: Translucent nightgrown for comfortable sleep.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/white_shirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/white_shirt.rsi

@@ -11,10 +11,111 @@
   id: MobObserverVecortys
   parent: AdminObserver
   categories: [ HideSpawnMenu ]
-  description: Прямо тут! Прямо сейчас!
+  description: Тише, тише.
   components:
   - type: Sprite
     sprite: _Arcane/Ghosts/ckey/Vecortys.rsi
     color: "#ffffff80" # 0.5 alpha
   - type: MovementSpeedModifier
     baseSprintSpeed: 22
+
+- type: customGhost
+  parent: CkeyPersonal
+  id: SShvedGhost
+  restrictions:
+  - !type:CkeyRestriction
+    ckey: [ SShved ]
+  entity: MobObserverSShved
+
+- type: entity
+  id: MobObserverSShved
+  parent: AdminObserver
+  categories: [ HideSpawnMenu ]
+  description: Создатель сервера.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Ghosts/ckey/SShved.rsi
+    color: "#ffffff80" # 0.5 alpha
+    scale: 1.4, 1.4
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 18
+
+- type: customGhost
+  parent: CkeyPersonal
+  id: ArcaneGodFaceGhost
+  restrictions:
+  - !type:CkeyRestriction
+    ckey: [ GodFace ]
+  entity: MobObserverArcaneGodFace
+
+- type: entity
+  id: MobObserverArcaneGodFace
+  parent: AdminObserver
+  categories: [ HideSpawnMenu ]
+  description: Создатель сервера.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Ghosts/ckey/GodFace.rsi
+    color: "#ffffff80" # 0.5 alpha
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 18
+
+- type: customGhost
+  parent: CkeyPersonal
+  id: Bulbo44kkeyGhost
+  restrictions:
+  - !type:CkeyRestriction
+    ckey: [ Bulbo44kkey ]
+  entity: MobObserverBulbo44kkey
+
+- type: entity
+  id: MobObserverBulbo44kkey
+  parent: AdminObserver
+  categories: [ HideSpawnMenu ]
+  description: Крутая крутышка, умеющая рисовать.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Ghosts/ckey/Bulbo44kkey.rsi
+    color: "#ffffff80" # 0.5 alpha
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 18
+
+- type: customGhost
+  parent: CkeyPersonal
+  id: GasperHornedGhost
+  restrictions:
+  - !type:CkeyRestriction
+    ckey: [ Gasper_Horned ]
+  entity: MobObserverGasperHorned
+
+- type: entity
+  id: MobObserverGasperHorned
+  parent: AdminObserver
+  categories: [ HideSpawnMenu ]
+  description: Невероятный художник и невероятный гоблин.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Ghosts/ckey/Gasper_Horned.rsi
+    color: "#ffffff80" # 0.5 alpha
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 18
+
+- type: customGhost
+  parent: CkeyPersonal
+  id: SqerDustGhost
+  restrictions:
+  - !type:CkeyRestriction
+    ckey: [ SqerDust ]
+  entity: MobObserverSqerDust
+
+- type: entity
+  id: MobObserverSqerDust
+  parent: AdminObserver
+  categories: [ HideSpawnMenu ]
+  description: Амбассадор Мартини, лысый глобус, хайповоз.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Ghosts/ckey/SqerDust.rsi
+    color: "#ffffff80" # 0.5 alpha
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 18

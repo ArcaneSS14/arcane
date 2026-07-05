@@ -96,7 +96,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                     <Control HorizontalExpand="True"/>
                                     <OptionButton Name="SexButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
-                                <!-- Pronouns -->
+                            <!-- Pronouns -->
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-pronouns-label'}" />
                                     <Control HorizontalExpand="True"/>
@@ -145,12 +145,24 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                 <!-- end Goobstation: port EE height/width sliders -->
                                 <!-- Corvax-Frontier-Barks-Start -->
                                 <BoxContainer HorizontalExpand="True" Visible="False" Name="BarksContainer">
-                                    <Label Text="{Loc 'humanoid-profile-editor-voice-label'}" />
+                                    <Label Text="{Loc 'humanoid-profile-editor-bark-label'}" />
                                     <Control HorizontalExpand="True"/>
                                     <OptionButton Name="BarkVoiceButton" HorizontalAlignment="Right" />
                                     <Button Name="BarkVoicePlayButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" MaxWidth="80" />
                                 </BoxContainer>
                                 <!-- Corvax-Frontier-Barks-End -->
+                                <!-- Art-TTS End -->
+                                <CheckBox Name="ToggleTTS" Text="{Loc 'humanoid-profile-editor-tts-enable'}" HorizontalAlignment="Right" Margin="0 8 0 0"/>
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-voice-label'}"/>
+                                    <Control HorizontalExpand="True"/>
+                                    <OptionButton Name="VoiceButton"
+                                            HorizontalAlignment="Right"/>
+                                    <Button Name="VoicePlayButton"
+                                            Text="▶"
+                                            MaxWidth="80"/>
+                                </BoxContainer>
+                                <!-- Art-TTS End -->
                             </BoxContainer>
                             <!-- Skin -->
                             <BoxContainer Margin="10" HorizontalExpand="True" Orientation="Vertical">
@@ -196,6 +208,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         <humanoid:MarkingPicker Name="Markings" IgnoreCategories="Hair,FacialHair" />
                     </ScrollContainer>
                 </BoxContainer>
+                <!-- Arcane-Start: ERP tab -->
+                <BoxContainer Name="ErpTab" Orientation="Vertical" Margin="10" />
+                <!-- Arcane-End -->
             </TabContainer>
         </BoxContainer>
         <!-- Right side -->

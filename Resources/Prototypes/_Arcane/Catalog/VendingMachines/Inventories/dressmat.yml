@@ -1,0 +1,21 @@
+- type: vendingMachineInventory
+  id: DressMateInventory
+  startingInventory:
+    ClothingUniformJumpskirtMaidBlue: 3
+    ClothingUniformJumpskirtMaidLong: 3
+    ClothingUniformJumpskirtMaidPink: 3
+    ClothingUniformJumpskirtSexyDress: 3
+    ClothingUniformJumpskirtSuccubusBlack: 2
+    ClothingUniformJumpskirtSuccubusWhite: 2
+    ClothingUniformJumpskirtTangoDress: 3
+    ClothingUniformJumpskirtXenoDress: 2
+    ClothingOuterKimonoBlackGreen: 2
+    ClothingOuterKimonoBlue: 2
+    ClothingOuterKimonoFlowerBlack: 2
+    ClothingOuterKimonoFlowerBlue: 2
+    ClothingOuterKimonoFlowerRed: 2
+    ClothingOuterKimonoFlowerWhite: 2
+    ClothingOuterKimonoRed: 2
+    ClothingOuterKimonoRedBlack: 2
+    ClothingOuterKimonoStripes: 2
+    ClothingOuterKimonoWhite: 2

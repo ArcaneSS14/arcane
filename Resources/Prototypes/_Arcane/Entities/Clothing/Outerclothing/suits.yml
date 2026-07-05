@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSuitBeer
+  name: beer suit
+  description: Beer suit.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Outerclothing/beer_suit.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Outerclothing/beer_suit.rsi

@@ -190,6 +190,7 @@ using Content.Server.MoMMI;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
 using Content.Shared.Administration;
+using Content.Shared._Arcane.Sponsor;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
@@ -200,6 +201,10 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Shared.Damage;
+using Microsoft.CodeAnalysis.Elfie.Serialization;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Server._Arcane.Discord;
 
 namespace Content.Server.Chat.Managers;
 
@@ -208,13 +213,17 @@ namespace Content.Server.Chat.Managers;
 /// </summary>
 internal sealed partial class ChatManager : IChatManager
 {
+    // arcane sponsor start
     private static readonly Dictionary<string, string> PatronOocColors = new()
     {
+        { ArcaneSponsorTiers.Tier1, ArcaneSponsorTiers.Tier1OocColor },
+        { ArcaneSponsorTiers.Tier2, ArcaneSponsorTiers.Tier2OocColor },
         // I had plans for multiple colors and those went nowhere so...
         { "nuclear_operative", "#aa00ff" },
         { "syndicate_agent", "#aa00ff" },
         { "revolutionary", "#aa00ff" }
     };
+    // arcane sponsor end
 
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
@@ -229,6 +238,7 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly LinkAccountManager _linkAccount = default!; // RMC - Patreon
     [Dependency] private readonly ChatProtectionSystem _chatProtection = default!; // Orion
+    [Dependency] private readonly ChatLogsWebhook _chatLogsWebhook = default!; // Arcane
 
     /// <summary>
     /// The maximum length a player-sent message can be sent
@@ -450,18 +460,21 @@ internal sealed partial class ChatManager : IChatManager
         if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) &&
             _linkAccount.GetPatron(player)?.Tier is { } tier)
         {
+            // arcane sponsor start
+            var patronColor = PatronOocColors.GetValueOrDefault(tier.Tier, ArcaneSponsorTiers.GetOocColor(tier.Tier));
+            // arcane sponsor end
             if (tier.Icon != null)
             {
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message",
                     ("tierIcon", tier.Icon),
-                    ("patronColor", "#aa00ff"),
+                    ("patronColor", patronColor),
                     ("playerName", player.Name),
                     ("message", FormattedMessage.EscapeText(message)));
             }
             else
             {
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message-no-icon",
-                    ("patronColor", "#aa00ff"),
+                    ("patronColor", patronColor),
                     ("playerName", player.Name),
                     ("message", FormattedMessage.EscapeText(message)));
             }
@@ -471,6 +484,7 @@ internal sealed partial class ChatManager : IChatManager
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);
         _mommiLink.SendOOCMessage(player.Name, message.Replace("@", "\\@").Replace("<", "\\<").Replace("/", "\\/")); // @ and < are both problematic for discord due to pinging. / is sanitized solely to kneecap links to murder embeds via blunt force
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"OOC from {player:Player}: {message}");
+        _chatLogsWebhook.CreateChatWebhookMessage(ChatChannel.OOC, message, player); // Arcane
     }
 
     private void SendAdminChat(ICommonSession player, string message)
@@ -501,6 +515,7 @@ internal sealed partial class ChatManager : IChatManager
         }
 
         _adminLogger.Add(LogType.Chat, $"Admin chat from {player:Player}: {message}");
+        _chatLogsWebhook.CreateChatWebhookMessage(ChatChannel.AdminChat, message, player); // Arcane
     }
 
     #endregion

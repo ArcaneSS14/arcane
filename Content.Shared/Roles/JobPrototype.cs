@@ -273,6 +273,14 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public int Goobcoins { get; private set; } = 1;
+
+        // Arcane-start
+        /// <summary>
+        ///    Work Contracts to give on spawn.
+        /// </summary>
+        [DataField]
+        public HashSet<EntProtoId>? Contracts { get; private set; } = null;
+        // Arcane-end
     }
 
     /// <summary>

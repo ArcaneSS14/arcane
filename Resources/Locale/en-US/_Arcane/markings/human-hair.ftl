@@ -15,3 +15,5 @@ marking-HumanHairSpider = Spider
 marking-HumanHairTaleBang = Tale with bang
 marking-HumanHairTale = Tale
 marking-HumanHairTwilight = Twilight
+marking-HumanHairHardMorning = Hard morning
+marking-HumanHairHardMorningAlt = Hard morning (Alt.)

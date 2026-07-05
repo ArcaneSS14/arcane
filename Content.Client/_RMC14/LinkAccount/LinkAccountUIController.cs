@@ -71,16 +71,40 @@ public sealed class LinkAccountUIController : UIController, IOnSystemChanged<Lin
         if (_window == null)
             return;
 
-        _window.CopyButton.Disabled = false;
+        // arcane discord link start
+        UpdateWindow();
+        // arcane discord link end
     }
 
     private void OnUpdated()
     {
+        // arcane discord link start
+        UpdateWindow();
+        // arcane discord link end
+
         if (UIManager.ActiveScreen is not LobbyGui gui)
             return;
 
         gui.CharacterPreview.PatronPerks.Visible = _linkAccount.CanViewPatronPerks();
     }
+
+    // arcane discord link start
+    private void UpdateWindow()
+    {
+        if (_window == null)
+            return;
+
+        if (_linkAccount.Linked)
+        {
+            _window.Label.SetMarkupPermissive(Loc.GetString("rmc-ui-link-discord-account-already-linked"));
+            _window.CopyButton.Disabled = true;
+            return;
+        }
+
+        _window.Label.SetMarkupPermissive(Loc.GetString("rmc-ui-link-discord-account-text"));
+        _window.CopyButton.Disabled = _code == default;
+    }
+    // arcane discord link end
 
 /* // Orion-Edit: Removed because don't give a fuck about Patron
     private void OnLobbyMessageReceived(SharedRMCDisplayLobbyMessageEvent message)
@@ -100,9 +124,6 @@ public sealed class LinkAccountUIController : UIController, IOnSystemChanged<Lin
         {
             _window = new LinkAccountWindow();
             _window.OnClose += () => _window = null;
-            _window.Label.SetMarkupPermissive($"{Loc.GetString("rmc-ui-link-discord-account-text")}");
-            if (_linkAccount.Linked)
-                _window.Label.SetMarkupPermissive($"{Loc.GetString("rmc-ui-link-discord-account-already-linked")}\n\n{Loc.GetString("rmc-ui-link-discord-account-text")}");
 
             _window.CopyButton.OnPressed += _ =>
             {
@@ -127,16 +148,27 @@ public sealed class LinkAccountUIController : UIController, IOnSystemChanged<Lin
 
             _window.OpenCentered();
 
-            if (_code == default)
-                _window.CopyButton.Disabled = true;
+            // arcane discord link start
+            UpdateWindow();
 
-            _net.ClientSendMessage(new LinkAccountRequestMsg());
+            if (!_linkAccount.Linked)
+                _net.ClientSendMessage(new LinkAccountRequestMsg());
+            // arcane discord link end
             return;
         }
 
         _window.Close();
         _window = null;
     }
+
+    // arcane discord link start
+    public void RequestUnlink()
+    {
+        _window?.Close();
+        _window = null;
+        _linkAccount.RequestUnlink();
+    }
+    // arcane discord link end
 
     public void TogglePatronPerksWindow()
     {
@@ -274,7 +306,9 @@ public sealed class LinkAccountUIController : UIController, IOnSystemChanged<Lin
         {
             _disableUntil = default;
             _window.CopyButton.Text = Loc.GetString("rmc-ui-link-discord-account-copy");
-            _window.CopyButton.Disabled = false;
+            // arcane discord link start
+            _window.CopyButton.Disabled = _linkAccount.Linked || _code == default;
+            // arcane discord link end
         }
     }
 }

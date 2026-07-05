@@ -28,6 +28,7 @@
       Male: MaleHuman
       Female: FemaleHuman
       Unsexed: FemaleHuman
+      Futanari: FemaleHuman
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Infernal

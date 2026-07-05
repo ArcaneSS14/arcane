@@ -173,7 +173,7 @@
 # For produce that can't be immediately eaten
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, FoodRotting] # Arcane
   id: ProduceBase
   abstract: true
   components:
@@ -195,7 +195,7 @@
 # For produce that can be immediately eaten
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: [FoodInjectableBase, FoodRotting] # Arcane
   id: FoodProduceBase
   abstract: true
   components:

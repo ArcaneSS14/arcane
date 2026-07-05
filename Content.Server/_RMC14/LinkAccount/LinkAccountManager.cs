@@ -28,8 +28,16 @@
 
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server.Connection;
+using Content.Goobstation.Common.CCVar;
 using Content.Server.Database;
+using Content.Shared.CCVar;
+using Content.Shared._Arcane.Sponsor;
+using Content.Shared._Arcane.LinkAccount;
 using Content.Shared._RMC14.LinkAccount;
+using Robust.Server.Player;
+using Robust.Shared.Asynchronous;
+using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -38,13 +46,21 @@ using Color = System.Drawing.Color;
 
 namespace Content.Server._RMC14.LinkAccount;
 
-public sealed class LinkAccountManager : IPostInjectInit
+public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
 {
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly INetManager _net = default!;
+    // arcane discord link start
+    [Dependency] private readonly IServerNetManager _serverNet = default!;
+    // arcane discord link end
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly UserDbDataManager _userDb = default!;
+    // arcane discord link start
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly ITaskManager _task = default!;
+    // arcane discord link end
 
     private readonly Dictionary<NetUserId, TimeSpan> _lastRequest = new();
     private readonly TimeSpan _minimumWait = TimeSpan.FromSeconds(0.5);
@@ -55,13 +71,22 @@ public sealed class LinkAccountManager : IPostInjectInit
     private readonly List<(string Message, string User)> _lobbyMessages = [];
     private readonly List<string> _shoutouts = [];
 
+    // arcane discord link start
+    private const string DiscordLinkRequiredKey = "discord_link_required";
+    private const string DiscordPlayerRoleRequiredKey = "discord_player_role_required";
+    private const string DiscordLinkCodeKey = "discord_link_code";
+    private const string DiscordInviteLinkKey = "discord_invite_link";
+    // arcane discord link end
+
     public event Action? PatronsReloaded;
     public event Action<(NetUserId Id, SharedRMCPatronFull Patron)>? PatronUpdated;
 
     private async Task LoadData(ICommonSession player, CancellationToken cancel)
     {
         var patron = await _db.GetPatron(player.UserId, cancel);
-        var linked = await _db.HasLinkedAccount(player.UserId, cancel);
+        // arcane discord link start
+        var linked = await _db.GetLinkedAccountStatus(player.UserId, cancel);
+        // arcane discord link end
         cancel.ThrowIfCancellationRequested();
 
         var tier = patron?.Tier;
@@ -93,7 +118,15 @@ public sealed class LinkAccountManager : IPostInjectInit
             ghostColor = new Robust.Shared.Maths.Color(sysColor.R, sysColor.G, sysColor.B, sysColor.A);
         }
 
-        _connected[player.UserId] = new SharedRMCPatronFull(sharedTier, linked, ghostColor, lobbyMessage, shoutouts);
+        // arcane discord link start
+        _connected[player.UserId] = new SharedRMCPatronFull(
+            sharedTier,
+            linked.Linked,
+            linked.HasPlayerRole,
+            ghostColor,
+            lobbyMessage,
+            shoutouts);
+        // arcane discord link end
     }
 
     private void FinishLoad(ICommonSession player)
@@ -114,7 +147,9 @@ public sealed class LinkAccountManager : IPostInjectInit
         SendPatrons(player);
     }
 
-    private void OnRequest(LinkAccountRequestMsg message)
+    // arcane discord link start
+    private async void OnRequest(LinkAccountRequestMsg message)
+    // arcane discord link end
     {
         var user = message.MsgChannel.UserId;
         var time = _timing.RealTime;
@@ -127,11 +162,108 @@ public sealed class LinkAccountManager : IPostInjectInit
         _lastRequest[user] = time;
 
         var code = Guid.NewGuid();
-        _db.SetLinkingCode(user, code);
+        // arcane discord link start
+        await _db.SetLinkingCode(user, code);
+        // arcane discord link end
 
         var response = new LinkAccountCodeMsg { Code = code };
         _net.ServerSendMessage(response, message.MsgChannel);
     }
+
+    // arcane discord link start
+    private async void OnUnlinkRequest(LinkAccountUnlinkRequestMsg message)
+    {
+        if (!_player.TryGetSessionById(message.MsgChannel.UserId, out var session))
+            return;
+
+        await _db.UnlinkDiscordAccount(session.UserId, CancellationToken.None);
+        await LoadData(session, CancellationToken.None);
+        SendPatronStatus(session);
+        session.Channel.Disconnect(Loc.GetString("rmc-ui-discord-account-unlinked-kick"));
+    }
+
+    private async Task OnConnecting(NetConnectingArgs args)
+    {
+        if (args.IsDenied)
+            return;
+
+        if (!_config.GetCVar(GoobCVars.RMCDiscordAccountLinkRequired))
+            return;
+
+        var status = await _db.GetLinkedAccountStatus(args.UserId, CancellationToken.None);
+        if (!status.Linked)
+        {
+            await DenyConnection(args, "rmc-ui-discord-link-required", DiscordLinkRequiredKey);
+            return;
+        }
+
+        if (_config.GetCVar(GoobCVars.RMCDiscordAccountPlayerRoleRequired) &&
+            !status.HasPlayerRole)
+        {
+            await DenyConnection(args, "rmc-ui-discord-player-role-required", DiscordPlayerRoleRequiredKey);
+        }
+    }
+
+    private async Task DenyConnection(NetConnectingArgs args, string locId, string denyKey)
+    {
+        var code = Guid.NewGuid();
+        await _db.UpdatePlayerRecordAsync(args.UserId, args.UserName, args.IP.Address, args.UserData.GetModernHwid());
+        await _db.SetLinkingCode(args.UserId, code);
+
+        var codeText = code.ToString();
+        var inviteLink = _config.GetCVar(GoobCVars.RMCDiscordAccountLinkingMessageLink);
+        if (string.IsNullOrWhiteSpace(inviteLink))
+            inviteLink = _config.GetCVar(CCVars.InfoLinksDiscord);
+
+        var properties = new Dictionary<string, object>
+        {
+            [denyKey] = true,
+            [DiscordLinkCodeKey] = codeText,
+        };
+
+        if (!string.IsNullOrEmpty(inviteLink))
+            properties[DiscordInviteLinkKey] = inviteLink;
+
+        var reason = Loc.GetString(
+            $"{locId}-with-code",
+            ("code", codeText),
+            ("command", $"/link code:{codeText}"));
+
+        if (!string.IsNullOrEmpty(inviteLink))
+            reason += "\n" + Loc.GetString("rmc-ui-discord-invite-link", ("invite", inviteLink));
+
+        args.Deny(new NetDenyReason(reason, properties));
+    }
+    // arcane discord link end
+
+    // arcane sponsor start
+    private void OnSponsorUpdated(DatabaseNotification notification)
+    {
+        if (notification.Channel != ArcaneSponsorTiers.UpdatedNotificationChannel ||
+            notification.Payload == null ||
+            !Guid.TryParse(notification.Payload, out var playerId))
+        {
+            return;
+        }
+
+        _task.RunOnMainThread(() => ReloadSponsor(playerId));
+    }
+
+    private async void ReloadSponsor(Guid playerId)
+    {
+        if (_player.TryGetSessionById(new NetUserId(playerId), out var session))
+        {
+            await LoadData(session, CancellationToken.None);
+            SendPatronStatus(session);
+
+            if (_connected.TryGetValue(session.UserId, out var patron))
+                PatronUpdated?.Invoke((session.UserId, patron));
+        }
+
+        await RefreshAllPatrons();
+        SendPatronsToAll();
+    }
+    // arcane sponsor end
 
     private void OnClearGhostColor(RMCClearGhostColorMsg message)
     {
@@ -245,6 +377,11 @@ public sealed class LinkAccountManager : IPostInjectInit
         return GetPatron(player.UserId);
     }
 
+    public bool HasSponsor(ICommonSession player, string? tier = null)
+    {
+        return ArcaneSponsorTiers.HasTier(GetPatron(player)?.Tier?.Tier, tier);
+    }
+
     public SharedRMCPatronFull? GetPatron(NetUserId userId)
     {
         if (_fauxPatronAssignments.TryGetValue(userId, out var tierId) &&
@@ -253,6 +390,9 @@ public sealed class LinkAccountManager : IPostInjectInit
             return new SharedRMCPatronFull(
                 Tier: tier,
                 Linked: true,
+                // arcane discord link start
+                HasPlayerRole: true,
+                // arcane discord link end
                 GhostColor: null,
                 LobbyMessage: null,
                 RoundEndShoutout: null
@@ -261,6 +401,32 @@ public sealed class LinkAccountManager : IPostInjectInit
 
         return _connected.GetValueOrDefault(userId);
     }
+
+    // arcane discord link start
+    public bool CanPlay(ICommonSession player, out string locId)
+    {
+        locId = string.Empty;
+
+        if (!_config.GetCVar(GoobCVars.RMCDiscordAccountLinkRequired))
+            return true;
+
+        var status = GetPatron(player.UserId);
+        if (status is not { Linked: true })
+        {
+            locId = "rmc-ui-discord-link-required";
+            return false;
+        }
+
+        if (_config.GetCVar(GoobCVars.RMCDiscordAccountPlayerRoleRequired) &&
+            !status.HasPlayerRole)
+        {
+            locId = "rmc-ui-discord-player-role-required";
+            return false;
+        }
+
+        return true;
+    }
+    // arcane discord link end
 
     public void AddFauxTier(string tierId, SharedRMCPatronTier tier)
     {
@@ -295,11 +461,18 @@ public sealed class LinkAccountManager : IPostInjectInit
         _net.RegisterNetMessage<LinkAccountRequestMsg>(OnRequest);
         _net.RegisterNetMessage<LinkAccountCodeMsg>();
         _net.RegisterNetMessage<LinkAccountStatusMsg>();
+        // arcane discord link start
+        _net.RegisterNetMessage<LinkAccountUnlinkRequestMsg>(OnUnlinkRequest);
+        // arcane discord link end
         _net.RegisterNetMessage<RMCPatronListMsg>();
         _net.RegisterNetMessage<RMCClearGhostColorMsg>(OnClearGhostColor);
         _net.RegisterNetMessage<RMCChangeGhostColorMsg>(OnChangeGhostColor);
         _net.RegisterNetMessage<RMCChangeLobbyMessageMsg>(OnChangeLobbyMessage);
         _net.RegisterNetMessage<RMCChangeNTShoutoutMsg>(OnChangeNTShoutout);
+        // arcane discord link start
+        _serverNet.Connecting += OnConnecting;
+        _db.SubscribeToNotifications(OnSponsorUpdated);
+        // arcane discord link end
         _userDb.AddOnLoadPlayer(LoadData);
         _userDb.AddOnFinishLoad(FinishLoad);
         _userDb.AddOnPlayerDisconnect(ClientDisconnected);

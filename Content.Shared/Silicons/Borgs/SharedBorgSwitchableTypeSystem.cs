@@ -7,6 +7,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Actions;
+using Content.Shared._Arcane.SiliconStanding;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
@@ -83,7 +84,9 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
         if (ent.Comp.SelectedBorgType != null)
             return;
 
-        if (!Prototypes.HasIndex(args.Prototype) || !Prototypes.HasIndex(args.Subtype))
+        if (!Prototypes.TryIndex(args.Prototype, out _) ||
+            !Prototypes.TryIndex(args.Subtype, out var subtypePrototype) ||
+            subtypePrototype.ParentBorgType != args.Prototype) // Arcane
             return;
 
         SelectBorgModule(ent, args.Prototype, args.Subtype);
@@ -110,7 +113,32 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
             Dirty(ent.Owner, subtype);
 
         UpdateEntityAppearance(ent);
+
+        // Arcane-Edit-Start
+        if (Prototypes.TryIndex(borgSubtype, out var subtypePrototype))
+            UpdateSiliconRestingAction(ent.Owner, subtypePrototype);
+        // Arcane-Edit-End
     }
+
+    // Arcane-Edit-Start
+    private void UpdateSiliconRestingAction(EntityUid uid, BorgSubtypePrototype subtypePrototype)
+    {
+        if (!TryComp<SiliconStandingComponent>(uid, out var standing))
+            return;
+
+        if (subtypePrototype.Visuals.RestBodyState != null)
+        {
+            _actionsSystem.AddAction(uid, ref standing.ToggleRestingAction, SiliconStandingComponent.ToggleRestingActionId);
+        }
+        else
+        {
+            _actionsSystem.RemoveAction(uid, standing.ToggleRestingAction);
+            standing.ToggleRestingAction = null;
+        }
+
+        Dirty(uid, standing);
+    }
+    // Arcane-Edit-End
 
     protected void UpdateEntityAppearance(Entity<BorgSwitchableTypeComponent> entity)
     {

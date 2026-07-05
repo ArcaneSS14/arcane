@@ -9,8 +9,6 @@
     minimumWait: 12
     maximumWait: 80
     pack: Wisdom
-#  - type: TTS
-#    voice: Dictor
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge

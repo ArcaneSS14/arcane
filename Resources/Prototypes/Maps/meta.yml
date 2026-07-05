@@ -87,7 +87,7 @@
 - type: gameMap
   id: Meta
   mapName: 'Meta Station'
-  mapPath: /Maps/_Goobstation/meta.yml # Goobstation
+  mapPath: /Maps/_Arcane/meta.yml # Arcane
   minPlayers: 30 # Goobstation return minPlayers requirement for maps
   maxPlayers: 85 # Goobstation - Limit mappool to highpop versions of maps only
   stations:
@@ -130,6 +130,7 @@
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 7 ]
+            Roboticist: [ 2, 2 ] # Arcane
             ResearchAssistant: [ 3, 6 ]
             #security
             HeadOfSecurity: [ 1, 1 ]

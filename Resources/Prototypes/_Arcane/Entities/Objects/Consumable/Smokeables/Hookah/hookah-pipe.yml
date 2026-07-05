@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseItem
+  id: hookah-pipe
+  name: Hookah pipe
+  description: "It's hookah pipe. Add some water to it and do some pooh..."
+  components:
+  - type: Tag
+    tags:
+    - Hookahpipe
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Arcane/Objects/Consumable/Smokeables/hookah-pipe.rsi
+    state: icon
+  - type: Vape
+    damage:
+      types:
+        Heat: 3
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 50
+  - type: RefillableSolution
+    solution: smokable
+  - type: ExaminableSolution
+    solution: smokable

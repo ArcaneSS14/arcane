@@ -223,6 +223,14 @@ namespace Content.Server.GameTicking
             bool lateJoin = true,
             bool silent = false)
         {
+            // arcane discord link start
+            if (!_linkAccount.CanPlay(player, out var locId))
+            {
+                _chatManager.DispatchServerMessage(player, Loc.GetString(locId));
+                return;
+            }
+            // arcane discord link end
+
             var character = GetPlayerProfile(player);
 
             var jobBans = _banManager.GetJobBans(player.UserId);
@@ -480,6 +488,14 @@ namespace Content.Server.GameTicking
             if (!_userDb.IsLoadComplete(player))
                 return;
 
+            // arcane discord link start
+            if (!_linkAccount.CanPlay(player, out var locId))
+            {
+                _chatManager.DispatchServerMessage(player, Loc.GetString(locId));
+                return;
+            }
+            // arcane discord link end
+
             SpawnPlayer(player, station, jobId, silent: silent);
         }
 
@@ -491,6 +507,14 @@ namespace Content.Server.GameTicking
             // Can't spawn players with a dummy ticker!
             if (DummyTicker)
                 return;
+
+            // arcane discord link start
+            if (!_linkAccount.CanPlay(player, out var locId))
+            {
+                _chatManager.DispatchServerMessage(player, Loc.GetString(locId));
+                return;
+            }
+            // arcane discord link end
 
             PlayerJoinGame(player);
             SpawnObserver(player);

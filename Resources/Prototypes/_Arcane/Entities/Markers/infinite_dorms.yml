@@ -1,0 +1,12 @@
+- type: entity
+  parent: MarkerBase
+  id: InfiniteDormSpawnMarker
+  name: Infinite Dorm Spawn Marker
+  description: This is where you spawn in the Infinite Dorms.
+  components:
+  - type: InfinityDormSpawnMarker
+  - type: Sprite
+    layers:
+    - sprite: Markers/cross.rsi
+      state: pink
+      shader: unshaded

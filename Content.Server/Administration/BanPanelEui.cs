@@ -62,14 +62,18 @@
 
 using System.Net;
 using System.Net.Sockets;
+using Content.Server._Arcane.Discord;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.EUI;
+using Content.Shared._Arcane.CCVars;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Eui;
 using Content.Shared.Roles;
+using Robust.Server.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
@@ -84,6 +88,11 @@ public sealed class BanPanelEui : BaseEui
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IAdminManager _admins = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    // Arcane-start
+    [Dependency] private readonly BanWebhooks _banWebhooks = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    // Arcane-end
 
     private readonly ISawmill _sawmill;
 
@@ -195,6 +204,13 @@ public sealed class BanPanelEui : BaseEui
                     _sawmill.Warning($"{Player.Name} ({Player.UserId}) tried to issue a job ban with an invalid job: {role}");
                 }
             }
+
+            // Arcane-start
+            var banWebhookUrl = _cfg.GetCVar(ACCVars.DiscordBanWebhook);
+            var banWebhookData = new BanWebhookData(_playerManager, targetUid, Player.UserId, reason, severity, DateTimeOffset.Now + TimeSpan.FromMinutes(minutes), roles);
+            if (!string.IsNullOrEmpty(banWebhookUrl))
+                _banWebhooks.CreateBanWebhookMessage(banWebhookData, banWebhookUrl);
+            // Arcane-end
 
             Close();
             return;

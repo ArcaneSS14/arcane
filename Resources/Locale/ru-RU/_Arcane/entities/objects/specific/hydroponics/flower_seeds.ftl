@@ -1,35 +1,35 @@
-ent-CornflowerSeeds = пакет семян василька
+ent-CornflowerSeeds = пакет семян (василёк)
     .desc = Семена для выращивания васильков.
 
-ent-GeraniumSeeds = пакет семян герани
+ent-GeraniumSeeds = пакет семян (герань)
     .desc = Семена для выращивания герани.
 
-ent-LilyOfTheValleySeeds = пакет семян ландыша
+ent-LilyOfTheValleySeeds = пакет семян (ландыш)
     .desc = Семена для выращивания ландышей.
 
-ent-WhiteLilySeeds = пакет семян белой лилии
+ent-WhiteLilySeeds = пакет семян (белая лилия)
     .desc = Семена для выращивания белых лилий.
 
-ent-PinkLilySeeds = пакет семян розовой лилии
+ent-PinkLilySeeds = пакет семян (розовая лилия)
     .desc = Семена для выращивания розовых лилий.
 
-ent-PeonySeeds = пакет семян пиона
+ent-PeonySeeds = пакет семян (пион)
     .desc = Семена для выращивания пионов.
 
-ent-SunflowerSeeds = пакет семян подсолнуха
+ent-SunflowerSeeds = пакет семян (подсолнух)
     .desc = Семена для выращивания подсолнухов.
 
-ent-WhiteRoseSeeds = пакет семян белой розы
+ent-WhiteRoseSeeds = пакет семян (белая роза)
     .desc = Семена для выращивания белых роз.
 
-ent-RedRoseSeeds = пакет семян красной розы
+ent-RedRoseSeeds = пакет семян (красная роза)
     .desc = Семена для выращивания красных роз.
 
-ent-ChamomileSeeds = пакет семян ромашки
+ent-ChamomileSeeds = пакет семян (ромашка)
     .desc = Семена для выращивания ромашек.
 
-ent-YellowTulipSeeds = пакет семян жёлтого тюльпана
+ent-YellowTulipSeeds = пакет семян (жёлтый тюльпан)
     .desc = Семена для выращивания жёлтых тюльпанов.
 
-ent-PinkTulipSeeds = пакет семян розового тюльпана
+ent-PinkTulipSeeds = пакет семян (розовый тюльпан)
     .desc = Семена для выращивания розовых тюльпанов.

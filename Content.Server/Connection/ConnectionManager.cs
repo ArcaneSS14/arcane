@@ -480,7 +480,12 @@ namespace Content.Server.Connection
             var ticker = IoCManager.Resolve<IEntityManager>().System<GameTicker>();
             var wasInGame = ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
-            return isAdmin || wasInGame;
+            // arcane sponsor start
+            if (isAdmin || wasInGame)
+                return true;
+
+            return await _db.GetPatron(userId, default) != null;
+            // arcane sponsor end
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿namespace Content.Shared._Arcane.ERP;
 
-public enum ErpPreference : byte
+public enum ErpPreference
 {
-    Yes,
-    Ask,
-    No,
+    Yes = 2,
+    Ask = 1,
+    No = 0,
 }
 
 public sealed class ErpPreferenceChangedEvent(ErpPreference oldPreference, ErpPreference newPreference) : EntityEventArgs

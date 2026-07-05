@@ -54,14 +54,6 @@ public sealed partial class NPCRangedCombatComponent : Component
     // ReSharper disable once InconsistentNaming
     public bool UseOpaqueForLOSChecks = false;
 
-    // Arcane-start
-    /// <summary>
-    /// If false, the NPC will continue firing even if the target is not currently in line of sight.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public bool RequireLOS = true;
-    // Arcane-end
-
     /// <summary>
     /// Delay after target is in LOS before we start shooting.
     /// </summary>

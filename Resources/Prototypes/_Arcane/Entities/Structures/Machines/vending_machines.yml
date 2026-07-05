@@ -1,0 +1,58 @@
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineDressMate
+  name: DressMate
+  description: A vending machine stocked with elegant dresses and feminine clothing.
+  components:
+  - type: VendingMachine
+    pack: DressMateInventory
+    offState: off
+    brokenState: broken
+  - type: Sprite
+    sprite: _Arcane/Structures/Machines/VendingMachines/dressmat.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#FF69B4"
+    
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineLove
+  name: LoveMate
+  description: A wide selection of fun for you!
+  components:
+  - type: VendingMachine
+    pack: LoveMateInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _Arcane/Structures/Machines/VendingMachines/lovemate.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 2
+    energy: 1.6
+    color: "#d64bc3"
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+  - type: Tag
+    tags:
+      - DroneUsable # Goobstation
+  # Orion-Edit-Start
+  - type: VendingMachinePricing
+    defaultPrice: 35
+    extraPrice: 100
+  # Orion-Edit-End

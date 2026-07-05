@@ -15,6 +15,7 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
+using Content.Shared._Art.TTS; // Art-TTS
 using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -149,6 +150,14 @@ public sealed partial class HumanoidAppearanceComponent : Component
     public float Width = 1f;
 
     // end Goobstation: port EE height/width sliders
+
+    // Art-TTS Start
+    /// <summary>
+    ///    The voice of this humanoid.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public ProtoId<TTSVoicePrototype> Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
+    // Art-TTS End
 }
 
 [DataDefinition]

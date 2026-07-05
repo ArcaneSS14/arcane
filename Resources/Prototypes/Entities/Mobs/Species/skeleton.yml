@@ -101,6 +101,7 @@
       Male: Skeleton
       Female: Skeleton
       Unsexed: Skeleton
+      Futanari: Skeleton # Arcane-edit
   - type: LanguageKnowledge # Einstein Engines - Language
     speaks:
     - TauCetiBasic

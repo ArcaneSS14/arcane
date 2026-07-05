@@ -27,6 +27,16 @@ connecting-window-tip = Tip { $numberTip }
 connecting-version = ver 0.1
 connecting-fail-reason = Failed to connect to server:
                          { $reason }
+connecting-discord-auth-title = Link Your Discord
+connecting-discord-auth-link-info =
+    To join the server, you need to link your Discord account.
+    Join our Discord server, run the /link command, and enter this code.
+
+connecting-discord-auth-role-info = todo
+
+connecting-discord-auth-code = Link Code
+connecting-discord-auth-copy-code = Copy Code
+connecting-discord-auth-open-discord = Open Discord
 connecting-state-NotConnecting = Not connecting
 connecting-state-ResolvingHost = Resolving host
 connecting-state-EstablishingConnection = Establishing connection

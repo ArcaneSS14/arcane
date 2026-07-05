@@ -89,7 +89,7 @@
 - type: gameMap
   id: Box
   mapName: 'Box Station'
-  mapPath: /Maps/_Goobstation/box.yml # Goobstation
+  mapPath: /Maps/_Arcane/box.yml # Arcane
   minPlayers: 30 # Goobstation return minPlayers requirement for maps
   maxPlayers: 85 # Goobstation - Limit mappool to highpop versions of maps only
   stations:
@@ -134,6 +134,7 @@
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
+            Roboticist: [ 2, 2 ] # Arcane
             ResearchAssistant: [ 4, 4 ]
             #security
             HeadOfSecurity: [ 1, 1 ]

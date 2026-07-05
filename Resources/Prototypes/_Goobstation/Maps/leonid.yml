@@ -86,6 +86,7 @@
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 6, 6 ]
+            Roboticist: [ 2, 2 ] # Arcane
             ResearchAssistant: [ 6, 6 ]
             #security
             HeadOfSecurity: [ 1, 1 ]

@@ -1,0 +1,17 @@
+- type: entity
+  parent: BaseStructure
+  id: InfiniteDormExitDoor
+  name: wooden door
+  description: Wooden doors are the most basic type of door, and are commonly found in residential buildings.
+  suffix: InfDorm
+  components:
+  - type: InfinityDormExit
+  - type: InteractionOutline
+  - type: Occluder
+  - type: Sprite
+    sprite: Structures/Doors/MineralDoors/wood_door.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: Speech
+  - type: Vocal

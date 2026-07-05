@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by mariki0048 (Discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "piercing_right_ear",
+            "directions": 4
+        },
+        {
+            "name": "piercing_left_ear",
+            "directions": 4
+        },
+        {
+            "name": "piercing_nose",
+            "directions": 4
+        },
+        {
+            "name": "piercing_pubis",
+            "directions": 4
+        },
+        {
+            "name": "piercing_nipples",
+            "directions": 4
+        },
+        {
+            "name": "piercing_bellybutton",
+            "directions": 4
+        }
+    ]
+}

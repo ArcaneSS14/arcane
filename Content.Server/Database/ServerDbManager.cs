@@ -132,6 +132,11 @@ namespace Content.Server.Database
         // Single method for two operations for transaction.
         Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot);
         Task<PlayerPreferences?> GetPlayerPreferencesAsync(NetUserId userId, CancellationToken cancel);
+
+        // Arcane-Start
+        Task<string?> GetErpOrganPreferencesAsync(NetUserId userId, int slot);
+        Task SaveErpOrganPreferencesAsync(NetUserId userId, int slot, string data);
+        // Arcane-End
         #endregion
 
         #region User Ids
@@ -433,6 +438,12 @@ namespace Content.Server.Database
 
         Task<bool> HasLinkedAccount(Guid player, CancellationToken cancel);
 
+        // arcane discord link start
+        Task<(bool Linked, bool HasPlayerRole)> GetLinkedAccountStatus(Guid player, CancellationToken cancel);
+
+        Task<bool> UnlinkDiscordAccount(Guid player, CancellationToken cancel);
+        // arcane discord link end
+
         Task<RMCPatron?> GetPatron(Guid player, CancellationToken cancel);
 
         Task<List<RMCPatron>> GetAllPatrons();
@@ -644,6 +655,20 @@ namespace Content.Server.Database
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetPlayerPreferencesAsync(userId, cancel));
         }
+
+        // Arcane-Start
+        public Task<string?> GetErpOrganPreferencesAsync(NetUserId userId, int slot)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetErpOrganPreferencesAsync(userId, slot));
+        }
+
+        public Task SaveErpOrganPreferencesAsync(NetUserId userId, int slot, string data)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SaveErpOrganPreferencesAsync(userId, slot, data));
+        }
+        // Arcane-End
 
         public Task AssignUserIdAsync(string name, NetUserId userId)
         {
@@ -1224,6 +1249,20 @@ namespace Content.Server.Database
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.HasLinkedAccount(player, cancel));
         }
+
+        // arcane discord link start
+        public Task<(bool Linked, bool HasPlayerRole)> GetLinkedAccountStatus(Guid player, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetLinkedAccountStatus(player, cancel));
+        }
+
+        public Task<bool> UnlinkDiscordAccount(Guid player, CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.UnlinkDiscordAccount(player, cancel));
+        }
+        // arcane discord link end
 
         public Task<RMCPatron?> GetPatron(Guid player, CancellationToken cancel)
         {

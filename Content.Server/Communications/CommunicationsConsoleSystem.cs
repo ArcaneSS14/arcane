@@ -58,6 +58,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._Art.TTS;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
@@ -69,6 +70,7 @@ using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 
@@ -318,8 +320,18 @@ namespace Content.Server.Communications
             Loc.TryGetString(comp.Title, out var title);
             title ??= comp.Title;
 
-            if (comp.AnnounceSentBy)
-                msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
+            // Arcane-start
+            var station = _stationSystem.GetOwningStation(uid);
+            if (TryComp<StationDataComponent>(station, out var stationDataComp))
+            {
+                var filter = _stationSystem.GetInStation(stationDataComp);
+                RaiseLocalEvent(new TTSAnnouncePlayEvent(msg, message.Actor, filter));
+            }
+
+            // if (comp.AnnounceSentBy)
+            //     msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
+
+            // Arcane-end
 
             if (comp.Global)
             {

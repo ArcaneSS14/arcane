@@ -8,6 +8,7 @@
   markingLimits: MobChitinidMarkingLimits
   dollPrototype: MobChitinidDummy
   skinColoration: Hues
+  sexes: [Unsexed, Male, Female, Futanari] # Arcane-edit: allow ERP organ selection for sexed chitinid profiles.
   maleFirstNames: NamesChitinidFirstMale
   femaleFirstNames: NamesChitinidFirstFemale
   naming: First

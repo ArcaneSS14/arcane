@@ -96,6 +96,10 @@
   - !type:AddComponentSpecial
     components:
     - type: EngineeringStaff
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentEngineering
+  # Arcane-end
 
 - type: startingGear
   id: StationEngineerGear

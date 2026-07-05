@@ -1,0 +1,31 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Fluffy; ported from Splurt robots_32x64.dmi",
+    "size": {
+        "x": 32,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "clown",
+            "directions": 4
+        },
+        {
+            "name": "clown-rest",
+            "directions": 4
+        },
+        {
+            "name": "clown_e",
+            "directions": 4
+        },
+        {
+            "name": "clown_e_r",
+            "directions": 4
+        },
+        {
+            "name": "clown_l",
+            "directions": 4
+        }
+    ]
+}

@@ -33,3 +33,17 @@ rmc-ui-ghost-color-save = Сохранить
 rmc-ui-shoutout-nt = [bold]НаноТрейзен финансируется: [color=green]{ $name }[/color]![/bold]
 rmc-ui-discord = Discord
 rmc-ui-patreon = Patreon
+# // arcane discord link start
+rmc-ui-unlink-discord-account = Отвязать Discord
+rmc-ui-discord-account-unlinked-kick = Discord отвязан. Перезайдите и привяжите Discord заново.
+rmc-ui-discord-link-required = Привяжите Discord, чтобы зайти в игру.
+rmc-ui-discord-link-required-with-code = Привяжите Discord, чтобы зайти в игру.
+    Код привязки: { $code }
+    В Discord выполните: { $command }
+rmc-ui-discord-player-role-required = На привязанном Discord нет нужной роли.
+rmc-ui-discord-player-role-required-with-code = На привязанном Discord нет нужной роли.
+    Если роль уже есть, обновите привязку.
+    Код привязки: { $code }
+    В Discord выполните: { $command }
+rmc-ui-discord-invite-link = Discord-сервер: { $invite }
+# // arcane discord link end

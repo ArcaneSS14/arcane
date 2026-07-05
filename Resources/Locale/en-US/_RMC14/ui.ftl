@@ -10,6 +10,20 @@ rmc-ui-link-discord-account-copy = Copy code
 rmc-ui-link-discord-account-copied = Copied!
 rmc-ui-link-discord-account-already-linked = [bold]Your account is already linked![/bold]
 rmc-ui-link-discord-account-open-channel = Open channel
+# // arcane discord link start
+rmc-ui-unlink-discord-account = Unlink Discord Account
+rmc-ui-discord-account-unlinked-kick = Your Discord account was unlinked. Reconnect and link Discord again.
+rmc-ui-discord-link-required = Link your Discord account before joining the game.
+rmc-ui-discord-link-required-with-code = Link your Discord account before joining the game.
+    Link code: { $code }
+    In Discord, run: { $command }
+rmc-ui-discord-player-role-required = Your linked Discord account does not have the required Discord role.
+rmc-ui-discord-player-role-required-with-code = Your linked Discord account does not have the required Discord role.
+    If you already have the role, refresh your link.
+    Link code: { $code }
+    In Discord, run: { $command }
+rmc-ui-discord-invite-link = Discord server: { $invite }
+# // arcane discord link end
 
 rmc-ui-patron-perks = Patron Perks
 rmc-ui-lobby-message = Lobby Message

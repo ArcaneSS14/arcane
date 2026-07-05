@@ -90,6 +90,10 @@
   - !type:AddComponentSpecial # Goobstation
     components:
     - type: EngineeringStaff
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentEngineering
+  # Arcane-end
 
 - type: startingGear
   id: AtmosphericTechnicianGear

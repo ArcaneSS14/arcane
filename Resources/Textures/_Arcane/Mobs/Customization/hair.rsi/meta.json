@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by seraphimttt, theanemone, bulbo44kkey (Discord)",
+    "copyright": "Made by seraphimttt, theanemone, bulbo44kkey, tinry. (Discord)",
     "size": {
         "x": 32,
         "y": 32
@@ -73,6 +73,14 @@
         },
         {
             "name": "twilight",
+            "directions": 4
+        },
+        {
+            "name": "hardmorning",
+            "directions": 4
+        },
+        {
+            "name": "hardmorningalt",
             "directions": 4
         }
     ]

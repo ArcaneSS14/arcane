@@ -7,6 +7,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Goobstation.Common.CCVar;
+using Content.Shared._Arcane.CCVars;
 
 namespace Content.Goobstation.Client.Barks;
 
@@ -57,6 +58,11 @@ public sealed class BarkSystem : EntitySystem
 
     private void PlayBark(EntityUid? source, string message, bool whisper, BarkPrototype proto)
     {
+        // Arcane-start
+        if (_cfg.GetCVar(ACCVars.UseTTS))
+            return;
+        // Arcane-end
+
         if (proto.SoundCollection is null)
             return;
 

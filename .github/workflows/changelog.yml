@@ -17,46 +17,52 @@ env:
 
 jobs:
   changelog:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
+
     permissions:
       contents: write
+
     steps:
       - name: Checkout Master
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.BOT_TOKEN }}
-          ref: "${{ vars.CHANGELOG_BRANCH }}"
+          ref: ${{ vars.CHANGELOG_BRANCH }}
 
       - name: Setup Git
-        run: |
-          git config --global user.name "${{ vars.CHANGELOG_USER }}"
-          git config --global user.email "${{ vars.CHANGELOG_EMAIL }}"
         shell: bash
+        run: |
+          git config user.name "${{ vars.CHANGELOG_USER }}"
+          git config user.email "${{ vars.CHANGELOG_EMAIL }}"
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Install Dependencies
-        run: |
-          cd "Tools/changelog"
-          npm install
+        working-directory: Tools/changelog
         shell: bash
-        continue-on-error: true
+        run: npm install --ignore-scripts --no-package-lock
 
       - name: Generate Changelog
-        run: |
-          cd "Tools/changelog"
-          node changelog.js
+        working-directory: Tools/changelog
         shell: bash
-        continue-on-error: true
+        run: node changelog.js
 
       - name: Commit Changelog
-        run: |
-          git add *.yml
-          git commit -m "${{ vars.CHANGELOG_MESSAGE }} (#${{ env.PR_NUMBER }})"
-          git push
         shell: bash
-        continue-on-error: true
+        env:
+          CHANGELOG_BRANCH: ${{ vars.CHANGELOG_BRANCH }}
+          CHANGELOG_MESSAGE: ${{ vars.CHANGELOG_MESSAGE }}
+        run: |
+          git add -- "${CHANGELOG_DIR}"
+
+          if git diff --cached --quiet; then
+            echo "Changelog не изменён."
+            exit 0
+          fi
+
+          git commit -m "${CHANGELOG_MESSAGE} (#${PR_NUMBER})"
+          git push origin "HEAD:${CHANGELOG_BRANCH}"

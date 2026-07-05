@@ -112,7 +112,7 @@
     proto: felinid
   # Orion-Start
   - type: Inventory
-    speciesId: reptilian
+#    speciesId: reptilian # Orion-Edit: We don't want to see tails from lizards on suits.
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -189,7 +189,7 @@
     species: Tajaran
   # Orion-Start
   - type: Inventory
-    speciesId: reptilian
+#    speciesId: reptilian # Orion-Edit: We don't want to see tails from lizards on suits.
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -233,3 +233,26 @@
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
   # Orion-End
+  # Arcane-start: species-specific organ prototypes
+  - type: EroticOrgans
+    groinCommon:
+    - proto: OrganAnus
+      slot: anus
+    - proto: OrganButt
+      slot: butt
+    groinMale:
+    - proto: OrganPenisTajaran
+      slot: penis
+    - proto: OrganTesticles
+      slot: testicles
+    groinFemale:
+    - proto: OrganVagina
+      slot: vagina
+    - proto: OrganUterus
+      slot: uterus
+    chestFemale:
+    - proto: OrganBreastsHuman
+      slot: breasts
+    hideWhenFlaccid:
+    - penis
+  # Arcane-end

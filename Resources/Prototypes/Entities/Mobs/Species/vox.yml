@@ -156,6 +156,7 @@
       Male: UnisexVox
       Female: UnisexVox
       Unsexed: UnisexVox
+      Futanari: UnisexVox # Arcane-edit
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -167,6 +168,7 @@
   - type: PassiveDamage
     # Augment normal health regen to be able to tank some Poison damage
     # This allows Vox to take their mask off temporarily to eat something without needing a trip to medbay afterwards.
+    splitBehavior: SplitEnsureAllDamagedAndOrganic # Goob
     allowedStates:
     - Alive
     damageCap: 20
@@ -390,7 +392,7 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
-  - type: FootprintOwner # Corvax-Next-Footprints
+  - type: FootprintOwner
   - type: Carriable # Goobstation
   - type: CPRTraining # Goobstation - Just give to everyone! This ain't MRP.
   - type: GrabIntent # wilted rose
@@ -512,3 +514,26 @@
         32:
           sprite: Mobs/Species/Vox/displacement.rsi
           state: hand_r
+  # Arcane-start: species-specific organ prototypes
+  - type: EroticOrgans
+    groinCommon:
+    - proto: OrganAnus
+      slot: anus
+    - proto: OrganButt
+      slot: butt
+    groinMale:
+    - proto: OrganPenisVox
+      slot: penis
+    - proto: OrganTesticles
+      slot: testicles
+    groinFemale:
+    - proto: OrganVagina
+      slot: vagina
+    - proto: OrganUterus
+      slot: uterus
+    chestFemale:
+    - proto: OrganBreastsHuman
+      slot: breasts
+    hideWhenFlaccid:
+    - penis
+  # Arcane-end

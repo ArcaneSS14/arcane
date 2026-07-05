@@ -6,20 +6,33 @@
   - type: NpcFactionMember
     factions:
     - InteQHostile
-  # Arcane-start
-    - Syndicate
   - type: BallisticAmmoProvider
-    capacity: 90000
-  - type: HTN
-    rootTask:
-      task: TurretOutLOSCompound
-    blackboard:
-      VisionRadius: !type:Single
-        14
-      AggroVisionRadius: !type:Single
-        14
-      RangedRange: !type:Single
-        14
-      RotateSpeed: !type:Single
-        6.282
+    capacity: 1500 # Was 500
+  # Arcane-start
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 6000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+    - trigger:
+        !type:DamageTrigger
+        damage: 3000
+       # TODO: Construction graph
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 3
+            max: 5
   # Arcane-end

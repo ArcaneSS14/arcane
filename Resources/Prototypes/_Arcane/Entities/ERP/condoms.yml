@@ -1,0 +1,44 @@
+- type: entity
+  parent: FoodPacketTrash
+  id: CondomTrash
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/condoms.rsi
+    state: condom-trash
+  - type: Item
+    sprite: _Arcane/ERP/condoms.rsi
+    size: Tiny
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearCondom
+  name: condom
+  description: One of the most common contraceptives. Don't forget to wear it!
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/condoms.rsi
+    state: icon1
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/condoms.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/condoms.rsi
+
+- type: entity
+  parent: [BaseItem]
+  id: Condom
+  name: condom
+  description: One of the most common contraceptives. Don't forget to wear it!
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/condoms.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Arcane/ERP/condoms.rsi
+  - type: SpawnItemsOnUse
+    items:
+      - id: CondomTrash
+      - id: ClothingUnderwearCondom
+    sound:
+      path: /Audio/Effects/unwrap.ogg

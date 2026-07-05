@@ -194,10 +194,15 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
 using Direction = Robust.Shared.Maths.Direction;
-using Content.Goobstation.Common.CCVar;
-using Content.Goobstation.Common.Barks;
+using Content.Goobstation.Common.CCVar; // Goob Station - Barks
+using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Orion.RichText;
-using Content.Shared._Arcane.ERP; // Arcane-edit
+using Content.Shared._Arcane.CCVars;
+using Content.Shared._Arcane.ERP;
+using Content.Client._Arcane.ERP.UI;
+using Content.Client._Arcane.ERP.OrgansAppearance;
+using Content.Client._Arcane.ERP.Preferences;
+using Content.Shared._Arcane.ERP.Preferences;
 namespace Content.Client.Lobby.UI
 {
     [GenerateTypedNameReferences]
@@ -237,6 +242,12 @@ namespace Content.Client.Lobby.UI
         private TextEdit? _nsfwOOCTextEdit;
         private TextEdit? _nsfwTagsTextEdit;
         // Orion-End
+
+        // Arcane-Start
+        private readonly ClientErpOrganPreferencesManager _erpOrganPreferences;
+        private ErpOrganSection? _erpOrganSection;
+        private Action<int, ErpOrganPreferences>? _erpPrefsReceivedHandler;
+        // Arcane-End
 
         // One at a time.
         private LoadoutWindow? _loadoutWindow;
@@ -316,6 +327,7 @@ namespace Content.Client.Lobby.UI
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
+            _erpOrganPreferences = IoCManager.Resolve<ClientErpOrganPreferencesManager>(); // Arcane
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
@@ -348,6 +360,13 @@ namespace Content.Client.Lobby.UI
             SaveButton.OnPressed += args =>
             {
                 Save?.Invoke();
+                // Arcane-Start: save ERP prefs after profile so server normalization sees the updated species/sex
+                if (CharacterSlot != null)
+                {
+                    _erpOrganPreferences.SaveSlot(CharacterSlot.Value, _erpOrganPrefs);
+                    _erpOrganPrefsDirty = false; // Arcane-edit: reset after confirmed save
+                }
+                // Arcane-End
             };
 
             #region Left
@@ -375,6 +394,8 @@ namespace Content.Client.Lobby.UI
             };
 
             #endregion Sex
+
+            InitializeVoice(); // Art-TTS
 
             #region Age
 
@@ -413,6 +434,15 @@ namespace Content.Client.Lobby.UI
             }
 
             #endregion
+
+            // Arcane-start
+            _cfgManager.OnValueChanged(ACCVars.UseTTS, OnUseTTSChanged, true);
+
+            ToggleTTS.OnPressed += _ =>
+            {
+                _cfgManager.SetCVar(ACCVars.UseTTS, ToggleTTS.Pressed);
+            };
+            // Arcane-end
 
             RefreshSpecies();
 
@@ -696,11 +726,28 @@ namespace Content.Client.Lobby.UI
             #region Markings
 
             TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
+            // Arcane-Start
+            TabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-erp-tab"));
+            // Arcane-End
 
             Markings.OnMarkingAdded += OnMarkingChange;
             Markings.OnMarkingRemoved += OnMarkingChange;
             Markings.OnMarkingColorChange += OnMarkingChange;
             Markings.OnMarkingRankChange += OnMarkingChange;
+
+            // Arcane-Start: refresh ERP organ section when server sends updated prefs
+            _erpPrefsReceivedHandler = (slot, prefs) =>
+            {
+                if (slot != CharacterSlot)
+                    return;
+                if (_erpOrganPrefsDirty) // Arcane-edit: don't overwrite in-progress edits
+                    return;
+                _erpOrganPrefs = prefs;
+                UpdateErpOrganSection();
+                RefreshErpOrganPreview();
+            };
+            _erpOrganPreferences.OnPreferencesReceived += _erpPrefsReceivedHandler;
+            // Arcane-End
 
             #endregion Markings
 
@@ -842,6 +889,54 @@ namespace Content.Client.Lobby.UI
                 _flavorText = null;
             }
         }
+
+        // Arcane-Start
+        private void InitErpOrganSection()
+        {
+            if (_erpOrganSection != null)
+                return;
+
+            _erpOrganSection = new ErpOrganSection();
+            var erpScroll = new ScrollContainer { VerticalExpand = true };
+            erpScroll.AddChild(_erpOrganSection);
+            ErpTab.AddChild(erpScroll);
+
+            _erpOrganSection.OnPreferencesChanged += prefs =>
+            {
+                if (Profile == null || CharacterSlot == null)
+                    return;
+                _erpOrganPrefs = prefs;
+                _erpOrganPrefsDirty = true; // Arcane-edit
+                IsDirty = true;
+                RefreshErpOrganPreview();
+            };
+
+            _erpOrganSection.OnPenisArousedPreviewChanged += aroused =>
+            {
+                _erpPenisArousedPreview = aroused;
+                RefreshErpOrganPreview();
+            };
+        }
+
+        private void UpdateErpOrganSection()
+        {
+            if (_erpOrganSection == null || Profile == null)
+                return;
+
+            _erpOrganSection.Update(Profile.Species, Profile.Sex, _erpOrganPrefs);
+            _erpOrganSection.SetPenisArousedPreview(_erpPenisArousedPreview);
+        }
+
+        private ErpOrganPreferences _erpOrganPrefs = ErpOrganPreferences.Default();
+        private bool _erpOrganPrefsDirty; // Arcane-edit
+        private bool _erpPenisArousedPreview; // Arcane-edit
+
+        private void RefreshErpOrganPreview()
+        {
+            var phase = _erpPenisArousedPreview ? ArousalPhase.Aroused : ArousalPhase.Calm;
+            _entManager.System<ErpOrganVisualsSystem>().RefreshPreview(PreviewDummy, _erpOrganPrefs, CharacterSlot, phase);
+        }
+        // Arcane-End
 
         // Orion-Start
         private void UpdateFlavorPreview()
@@ -1294,6 +1389,12 @@ namespace Content.Client.Lobby.UI
 
         private void SetDirty()
         {
+            if (_erpOrganPrefsDirty) // Arcane-edit: ERP-only changes must keep dirty regardless of profile match
+            {
+                IsDirty = true;
+                return;
+            }
+
             // If it equals default then reset the button.
             if (Profile == null || _preferencesManager.Preferences?.SelectedCharacter.MemberwiseEquals(Profile) == true)
             {
@@ -1337,6 +1438,8 @@ namespace Content.Client.Lobby.UI
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
             SetDirty();
+
+            RefreshErpOrganPreview(); // Arcane-edit
         }
 
         /// <summary>
@@ -1357,12 +1460,22 @@ namespace Content.Client.Lobby.UI
             Profile = profile?.Clone();
             CharacterSlot = slot;
             IsDirty = false;
+            _erpOrganPrefsDirty = false; // Arcane-edit
+            _erpPenisArousedPreview = false; // Arcane-edit
             JobOverride = null;
+
+            // Arcane-Start
+            if (slot != null)
+                _erpOrganPrefs = _erpOrganPreferences.GetSlot(slot.Value);
+            else
+                _erpOrganPrefs = ErpOrganPreferences.Default();
+            // Arcane-End
 
             UpdateNameEdit();
             UpdateFlavorTextEdit();
             UpdateFlavorPreview(); // Orion
             UpdateSexControls();
+            UpdateTTSVoicesControls(); // Art-TTS
             UpdateGenderControls();
             UpdateSkinColor();
             UpdateSpawnPriorityControls();
@@ -1384,6 +1497,8 @@ namespace Content.Client.Lobby.UI
             RefreshSpecies();
             RefreshTraits();
             RefreshFlavorText();
+            InitErpOrganSection(); // Arcane-edit
+            UpdateErpOrganSection(); // Arcane-edit
             ReloadPreview();
 
             if (Profile != null)
@@ -1889,6 +2004,14 @@ namespace Content.Client.Lobby.UI
 
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
+
+            // Arcane-Start
+            if (_erpPrefsReceivedHandler != null)
+            {
+                _erpOrganPreferences.OnPreferencesReceived -= _erpPrefsReceivedHandler;
+                _erpPrefsReceivedHandler = null;
+            }
+            // Arcane-End
         }
 
         protected override void EnteredTree()
@@ -1929,8 +2052,18 @@ namespace Content.Client.Lobby.UI
 
             UpdateGenderControls();
             Markings.SetSex(newSex);
+            UpdateErpOrganSection(); // Arcane-edit
+            UpdateTTSVoicesControls(); // Art-TTS
             ReloadPreview();
         }
+
+        // Art-TTS Start
+        private void SetVoice(string newVoice)
+        {
+            Profile = Profile?.WithVoice(newVoice);
+            IsDirty = true;
+        }
+        // Art-TTS End
 
         private void SetGender(Gender newGender)
         {
@@ -1949,6 +2082,7 @@ namespace Content.Client.Lobby.UI
             RefreshLoadouts();
             UpdateSexControls(); // update sex for new species
             UpdateSpeciesGuidebookIcon();
+            UpdateErpOrganSection(); // Arcane-edit
             ReloadPreview();
             UpdateBarkVoice(); // Goob Station - Barks
             // begin Goobstation: port EE height/width sliders
@@ -2635,5 +2769,12 @@ namespace Content.Client.Lobby.UI
             label.SetMessage(FormattedMessage.FromMarkupPermissive(safeContent), SafeMarkupTags.Basic);
         }
         // Orion-End
+
+        // Arcane-start
+        private void OnUseTTSChanged(bool value)
+        {
+            ToggleTTS.Pressed = value;
+        }
+        // Arcane-end
     }
 }

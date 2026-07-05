@@ -33,3 +33,12 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Underwear/undershirt/heart-shaped_nipple_stickers.rsi
+
+- type: entity
+  parent: ClothingBraBase
+  id: ClothingBraBeer
+  name: beer bra
+  description: You definitely want it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Undershirt/beer_undershirt.rsi

@@ -244,6 +244,16 @@ namespace Content.Server.GameTicking
                 return;
             }
 
+            // arcane discord link start
+            if (ready && !_linkAccount.CanPlay(player, out var locId))
+            {
+                _playerGameStatuses[player.UserId] = PlayerGameStatus.NotReadyToPlay;
+                _chatManager.DispatchServerMessage(player, Loc.GetString(locId));
+                RaiseNetworkEvent(GetStatusMsg(player), player.Channel);
+                return;
+            }
+            // arcane discord link end
+
             var status = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             _playerGameStatuses[player.UserId] = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             RaiseNetworkEvent(GetStatusMsg(player), player.Channel);

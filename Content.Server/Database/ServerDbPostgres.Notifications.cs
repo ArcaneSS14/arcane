@@ -8,6 +8,7 @@ using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
+using Content.Shared._Arcane.Sponsor;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
@@ -25,6 +26,9 @@ public sealed partial class ServerDbPostgres
     [
         BanManager.BanNotificationChannel,
         MultiServerKickManager.NotificationChannel,
+        // arcane sponsor start
+        ArcaneSponsorTiers.UpdatedNotificationChannel,
+        // arcane sponsor end
     ];
 
     private static readonly TimeSpan ReconnectWaitIncrease = TimeSpan.FromSeconds(10);

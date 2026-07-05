@@ -142,6 +142,10 @@
     - type: MimePowers
       preventWriting: true
     - type: FrenchAccent
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentService
+  # Arcane-end
 
 - type: startingGear
   id: MimeGear

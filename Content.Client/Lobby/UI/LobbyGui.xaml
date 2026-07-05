@@ -40,7 +40,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     xmlns:lobbyUi="clr-namespace:Content.Client.Lobby.UI"
     xmlns:info="clr-namespace:Content.Client.Info"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
-    xmlns:buttons="clr-namespace:Content.Client._Orion.UserInterface.Buttons">
+    xmlns:buttons="clr-namespace:Content.Client._Orion.UserInterface.Buttons"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
     <TextureRect Access="Public" VerticalExpand="True" HorizontalExpand="True" Name="Background" Stretch="KeepAspectCovered" />
 
     <BoxContainer Name="MainContainer" VerticalExpand="True" HorizontalExpand="True" Orientation="Horizontal" Margin="10 10 10 10" SeparationOverride="4">
@@ -99,6 +100,16 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                     <BoxContainer Orientation="Vertical" HorizontalAlignment="Center" SeparationOverride="6" MinWidth="280">
                                         <lobbyUi:LobbyCharacterPreviewPanel Name="CharacterPreview" Access="Public" HorizontalAlignment="Center" />
                                         <controls:HLine Color="{x:Static style:StyleNano.DisabledFore}" Thickness="1" />
+
+                                        <!-- Arcane-start -->
+                                        <PanelContainer HorizontalExpand="True" VerticalExpand="True" MinHeight="60">
+                                            <controls:StripeBack Margin="0 24 0 0"/>
+                                            <controls:StripeBack/>
+                                            <RichTextLabel Text="{Loc 'ui-lobby-sponsor-label'}" Access="Public" VerticalAlignment="Top" HorizontalExpand="True" HorizontalAlignment="Center" Margin="0 8"/>
+                                            <RichTextLabel Name="SponsorTier" Access="Public" VerticalAlignment="Bottom" HorizontalExpand="True" HorizontalAlignment="Center" Margin="0 8"/>
+                                        </PanelContainer>
+                                        <!-- Arcane-end -->
+
                                         <controls:StripeBack>
                                             <Label Name="Balance" Access="Public" StyleClasses="LabelHeadingBigger" VAlign="Center" HorizontalExpand="True" HorizontalAlignment="Center" />
                                         </controls:StripeBack>
@@ -107,6 +118,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                         <cc:UICommandButton Command="observe" Name="ObserveButton" Access="Public" Text="{Loc 'ui-lobby-observe-button'}" WindowType="{x:Type lobbyUi:ObserveWarningWindow}" HorizontalExpand="True" />
                                         <Button Name="ManifestButton" Access="Public" Text="{Loc 'ui-lobby-manifest-button'}" HorizontalExpand="True" />
                                         <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}" HorizontalExpand="True" />
+                                        <!-- // arcane discord link start -->
+                                        <RichTextLabel Name="DiscordLinkStatus" Visible="False" Access="Public" HorizontalAlignment="Center" />
+                                        <controls:ConfirmButton Name="DiscordLinkButton" Access="Public" Text="{Loc 'rmc-ui-link-discord-account'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" HorizontalExpand="True" />
+                                        <!-- // arcane discord link end -->
                                         <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}" HorizontalExpand="True" />
                                     </BoxContainer>
                                     <Control VerticalExpand="True" />

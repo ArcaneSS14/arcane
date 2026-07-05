@@ -15,9 +15,15 @@
     Scream:
       collection: HumanoidXenoSqeals
     Laugh:
-      collection: HumanoidXenoScreams
+      collection: XenomorphLaugh
+    Sneeze:
+      collection: XenomorphCoughs
+      params:
+        volume: -12
     Cough:
-      collection: HumanoidXenoScreams
+      collection: XenomorphCoughs
+      params:
+        volume: -12
     Hiss:
       collection: HumanoidXenoHisses
     Roars:
@@ -30,6 +36,20 @@
       collection: HumanoidXenoCry
     DefaultDeathgasp:
       collection: HumanoidXenoDeathgasp
+    Yawn:
+      collection: XenomorphHiss
+      params:
+        volume: -12
+    Snore:
+      collection: XenomorphSnores
+      params:
+        volume: -12
+    Honk:
+      collection: BikeHorn
+    Weh:
+      collection: Weh
+    Whistle:
+      collection: Whistles
 
 - type: emote
   id: Roars

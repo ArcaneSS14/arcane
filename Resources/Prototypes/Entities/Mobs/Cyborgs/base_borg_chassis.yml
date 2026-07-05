@@ -294,6 +294,7 @@
     doAfterDelay: 10
     # allowSelfRepair: false # Goobstation
   - type: BorgChassis
+  - type: SiliconStanding # Arcane
   - type: LockingWhitelist
     blacklist:
       components:
@@ -488,6 +489,10 @@
   - type: MiningPoints # goobstation borgs can claim mining points
   - type: SpeechSynthesis # Corvax-Frontier-Barks
     voice: Borg
+  # Arcane-start
+  - type: TTS
+    voice: Glados
+  # Arcane-end
 
 - type: entity
   abstract: true

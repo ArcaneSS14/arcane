@@ -53,6 +53,7 @@
       Male: UnisexChitinid
       Female: UnisexChitinid
       Unsexed: UnisexChitinid
+      Futanari: UnisexChitinid # Arcane-edit
   - type: Temperature # Ants hate the cold
     heatDamageThreshold: 320
     coldDamageThreshold: 230

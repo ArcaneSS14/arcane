@@ -266,6 +266,14 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<string> RMCDiscordAccountLinkingMessageLink =
         CVarDef.Create("rmc.discord_account_linking_message_link", "", CVar.REPLICATED | CVar.SERVER);
 
+    // arcane discord link start
+    public static readonly CVarDef<bool> RMCDiscordAccountLinkRequired =
+        CVarDef.Create("rmc.discord_account_link_required", false, CVar.REPLICATED | CVar.SERVER);
+
+    public static readonly CVarDef<bool> RMCDiscordAccountPlayerRoleRequired =
+        CVarDef.Create("rmc.discord_account_player_role_required", false, CVar.REPLICATED | CVar.SERVER);
+    // arcane discord link end
+
     #endregion
 
     public static readonly CVarDef<string> PatronSupportLastShown =
@@ -602,7 +610,7 @@ public sealed partial class GoobCVars
     /// Whether or not to spawn space whales if the entity is too far away from the station
     /// </summary>
     public static readonly CVarDef<bool> SpaceWhaleSpawn =
-        CVarDef.Create("misc.space_whale_spawn", true, CVar.SERVER);
+        CVarDef.Create("misc.space_whale_spawn", false, CVar.SERVER); // Arcane - disable by default
 
     /// <summary>
     /// The distance to spawn a space whale from the station

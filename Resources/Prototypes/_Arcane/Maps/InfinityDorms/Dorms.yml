@@ -1,0 +1,51 @@
+
+# region КЛАССИКА
+- type: infinityDorm
+  id: Narure
+  title: Природа
+  author: seemah
+  description: Приятный отдых на природе.
+  category: General
+  gridPath: /Maps/_Arcane/InfinityDorms/narure.yml
+
+- type: infinityDorm
+  id: Retro
+  title: Ретро
+  author: seemah
+  description: Комната отдыха прямиком из прошлого!
+  category: General
+  gridPath: /Maps/_Arcane/InfinityDorms/retro.yml
+
+- type: infinityDorm
+  id: Hotel
+  title: Заброшенный отель
+  author: archehya.
+  description: Заброшенный отель с сюрпризом в лесу.
+  category: General
+  gridPath: /Maps/_Arcane/InfinityDorms/hotel.yml
+
+# endregion КЛАССИКА
+
+# region НЕОБЫЧНЫЕ
+
+- type: infinityDorm
+  id: Aurora
+  title: Аврора
+  author: Vecortys
+  description: Просторный зимний номер с уютным местом у камина.
+  category: Unusual
+  gridPath: /Maps/_Arcane/InfinityDorms/aurora.yml
+
+# endregion НЕОБЫЧНЫЕ
+
+# region ЭКЗОТИЧЕСКИЕ
+
+- type: infinityDorm
+  id: Cosmic
+  title: Андромеда
+  author: seemah
+  description: Для любителей неизвестности и космической экзотики.
+  category: Exotic
+  gridPath: /Maps/_Arcane/InfinityDorms/cosmic.yml
+
+# endregion ЭКЗОТИЧЕСКИЕ

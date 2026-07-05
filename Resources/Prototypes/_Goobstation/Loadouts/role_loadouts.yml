@@ -101,6 +101,7 @@
   - NanotrasenRepresentativeBelt
   - Glasses
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   - Survival
@@ -127,6 +128,7 @@
   - BlueshieldOfficerMask
   - BlueshieldOfficerShoes
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   - SurvivalSecurity
@@ -154,6 +156,7 @@
   - NanotrasenTrainerGloves
   - NanotrasenTrainerBelt
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   - Survival
@@ -190,6 +193,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - GroupSpeciesBreathTool
   # Plasmaman
   - ScientistEnvirohelm
@@ -216,6 +220,7 @@
   - SecurityNeck
   - SurvivalSecurity
   - Trinkets
+  - Patron # Arcane
   - Animals
   - SecurityStar
   - GroupSpeciesBreathToolSecurity
@@ -237,6 +242,7 @@
   - CommonBackpack
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   - Glasses
@@ -314,6 +320,7 @@
    - VirologistPDA
    - SurvivalMedical
    - Trinkets
+   - Patron # Arcane
    - GroupSpeciesBreathToolMedical
    - VirologyEnvirohelm
    - VirologyEnvirosuit
