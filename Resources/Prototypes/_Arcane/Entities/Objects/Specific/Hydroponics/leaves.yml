@@ -1,7 +1,7 @@
 - type: entity
-  name: Cannabis Vita leaves
   parent: ProduceBase
   id: CannabisVitaLeaves
+  name: Cannabis Vita leaves
   description: Medicinal hemp leaves.
   components:
   - type: Sprite
