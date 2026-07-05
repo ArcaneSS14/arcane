@@ -5,7 +5,7 @@
   description: An experimental set for improving a hydroponic tray.
   components:
   - type: Sprite
-    sprite: _BE/Objects/Specific/Hydroponics/livearth.rsi
+    sprite: _Arcane/Objects/Specific/Hydroponics/livearth.rsi
     state: livearth
   - type: Item
     size: Small

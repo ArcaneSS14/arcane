@@ -1286,6 +1286,8 @@
   packetPrototype: AloeSeeds
   productPrototypes:
     - FoodAloe
+  mutationPrototypes: # Arcane-add
+    - aloeIgnis # Arcane-add
   lifespan: 25
   maturation: 10
   production: 3
@@ -1406,6 +1408,8 @@
   packetPrototype: AmbrosiaDeusSeeds
   productPrototypes:
     - FoodAmbrosiaDeus
+  mutationPrototypes: # Arcane-add
+    - ambrosiaGaia # Arcane-add
   lifespan: 25
   maturation: 10
   production: 3

@@ -1,0 +1,16 @@
+ent-CoffeeArabicaSeeds = пакет семян (кофе арабика)
+    .desc = { ent-SeedBase.desc }
+ent-CoffeeRobustSeeds = пакет семян (кофе робуста)
+    .desc = { ent-SeedBase.desc }
+ent-GlasscapSeeds = пакет спор (стеклошляпник)
+    .desc = { ent-SeedBase.desc }
+ent-PlastSteelcapSeeds = пакет спор (пластошляпник)
+    .desc = { ent-SeedBase.desc }
+ent-CannabisVitaSeeds = пакет семян (конопля жизни)
+    .desc = { ent-SeedBase.desc }
+ent-BarrelmelonSeeds = пакет семян (алкобуз)
+    .desc = { ent-SeedBase.desc }
+ent-LanternfruitSeeds = пакет семян (фонарный фрукт)
+    .desc = { ent-SeedBase.desc }
+ent-AmbrosiaGaiaSeeds = пакет семян (амброзия гайа)
+    .desc = { ent-SeedBase.desc }

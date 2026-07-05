@@ -61,6 +61,7 @@
     WhiteLilySeeds: 3
     WhiteRoseSeeds: 3
     YellowTulipSeeds: 3
+    CoffeeArabicaSeeds: 3
     # Arcane-Edit-End
     EggplantSeeds: 5
     GalaxythistleSeeds: 3
@@ -91,5 +92,6 @@
     TobaccoSeeds: 2
     FoodSnackSemki: 2
     FlyAmanitaSeeds: 1
+    KronkusSeeds: 2 # Arcane-add
   emaggedInventory: # goob
     RealCapfruitSeeds: 1

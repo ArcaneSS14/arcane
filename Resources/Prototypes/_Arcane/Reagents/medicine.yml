@@ -9,19 +9,51 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:HealthChange
-        damage:
-          groups:
-            Burn: -3
-            Toxin: -3
-            Airloss: -3
-            Brute: -3
-    Poison:
-      effects:
+      - !type:SuppressPain
+        amount: 10
+        time: 14
       - !type:HealthChange
         damage:
           types:
-            Cellular: 0.25
+            Heat: -4
+            Shock: -4
+            Cold: -4
+            Caustic: -4
+            Poison: -4
+            Radiation: -4
+            Asphyxiation: -4
+            Bloodloss: -8
+            Blunt: -4
+            Slash: -4
+            Piercing: -4
+            Cellular: -4
+      - !type:ImmunityModifier
+        gainRateModifier: 0.0011
+        strengthModifier: 0.0088888888888
+        statusLifetime: 3
+      - !type:AdjustPainFeels
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        amount: 0.04
+      - !type:AdjustConsciousness
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        allowNewModifiers: true
+        modifierType: Pain
+        identifier: Suffocation
+        amount: -2.4
+        time: 12
+    Poison:
+      effects:
+      - !type:GenericStatusEffect
+        key: Pacified
+        component: Pacified
+        type: Add
+        time: 4
+      - !type:ChemAddMoodlet
+        moodPrototype: PaxEffect
 
 - type: reagent
   id: EarthBlessing
@@ -40,6 +72,8 @@
     amount: 10
   - !type:PlantAdjustWeeds
     amount: -10
+  - !type:PlantAdjustHealth
+    amount: 1
 
 - type: reagent
   id: Ignisol

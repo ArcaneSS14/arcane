@@ -1,0 +1,111 @@
+- type: entity
+  parent: SeedBase
+  name: packet of coffee arabica
+  id: CoffeeArabicaSeeds
+  components:
+  - type: Seed
+    seedId: coffeeArabica
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/coffee_arabica.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of coffee robust
+  id: CoffeeRobustSeeds
+  components:
+  - type: Seed
+    seedId: coffeeRobust
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/coffee_robust.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of glasscap
+  id: GlasscapSeeds
+  components:
+  - type: Seed
+    seedId: glasscap
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/glasscap.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of plaststeelcap
+  id: PlastSteelcapSeeds
+  components:
+  - type: Seed
+    seedId: plaststeelcap
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/plaststeelcap.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of cannabis vita
+  id: CannabisVitaSeeds
+  components:
+  - type: Seed
+    seedId: cannabisVita
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/cannabis_vita.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of barrelmelon
+  id: BarrelmelonSeeds
+  components:
+  - type: Seed
+    seedId: barrelmelon
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/barrelmelon.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of lanternfruit
+  id: LanternfruitSeeds
+  components:
+  - type: Seed
+    seedId: lanternfruit
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/lanternfruit.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of ambrosia gaia
+  id: AmbrosiaGaiaSeeds
+  components:
+  - type: Seed
+    seedId: ambrosiaGaia
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/ambrosia_gaia.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of kronkus
+  id: KronkusSeeds
+  components:
+  - type: Seed
+    seedId: kronkus
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/kronkus.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of aloe ignis seeds
+  id: AloeIgnisSeeds
+  components:
+  - type: Seed
+    seedId: aloeIgnis
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/aloe_ignis.rsi
+    state: seedpack
+
+- type: entity
+  parent: SeedBase
+  name: packet of dragon's tail seeds
+  id: DragonTailSeeds
+  components:
+  - type: Seed
+    seedId: dragonTail
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/dragon_tail.rsi
+    state: seedpack

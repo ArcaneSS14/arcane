@@ -127,11 +127,11 @@
   chemicals:
     Omnizine:
       Min: 1
-      Max: 6
-      PotencyDivisor: 35
-    THC:
-      Min: 1
       Max: 10
+      PotencyDivisor: 35
+    Pax:
+      Min: 1
+      Max: 5
       PotencyDivisor: 10
 
 - type: seed

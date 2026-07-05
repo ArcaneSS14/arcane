@@ -41,7 +41,7 @@
     ChemistryBottleRobustHarvest: 3
     ChemistryBottleEZNutrient: 3
     Bucket: 3
-    BoxMouthSwab: 1
+    BoxMouthSwab: 2 # Arcane-edit 1->2
     BoxAgrichem: 1
     #TO DO:
     #plant analyzer

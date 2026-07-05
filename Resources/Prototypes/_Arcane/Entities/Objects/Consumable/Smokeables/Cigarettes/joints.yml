@@ -27,7 +27,7 @@
       smokable:
         maxVol: 30
         reagents:
-        - ReagentId: THC
-          Quantity: 20
-        - ReagentId: Omnizine
+        - ReagentId: Pax
           Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 20

@@ -51,7 +51,7 @@
         amount: 0.05
       - !type:HealthChange
         conditions:
-        - !type:OrganType # Goobstation - Yowie
+        - !type:OrganType
           type: Yowie
         damage:
           groups:
@@ -61,11 +61,6 @@
             Shock: -0.5
             Cold: -0.5
             Radiation: -0.5
-      - !type:HealthChange
-        conditions:
-        - !type:OrganType # Goobstation - Yowie
-          type: Yowie
-          shouldHave: false
     Narcotic:
       effects:
       - !type:MovespeedModifier
