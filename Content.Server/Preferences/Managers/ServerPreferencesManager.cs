@@ -56,6 +56,8 @@ namespace Content.Server.Preferences.Managers
     /// </summary>
     public sealed class ServerPreferencesManager : IServerPreferencesManager, IPostInjectInit
     {
+        public event Action<CharacterProfileSavedEventArgs>? CharacterProfileSaved; // Arcane
+
         [Dependency] private readonly IServerNetManager _netManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IServerDbManager _db = default!;
@@ -151,6 +153,8 @@ namespace Content.Server.Preferences.Managers
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
+
+            CharacterProfileSaved?.Invoke(new CharacterProfileSavedEventArgs(session, slot, profile)); // Arcane
         }
 
         public async Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites)

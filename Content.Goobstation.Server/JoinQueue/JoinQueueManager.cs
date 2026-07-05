@@ -92,6 +92,11 @@ public sealed class JoinQueueManager : IJoinQueueManager
     public int PlayerInQueueCount => _queue.Count + _patronQueue.Count;
     public int ActualPlayersCount => _player.PlayerCount - PlayerInQueueCount;
 
+    public bool IsQueued(NetUserId userId)
+    {
+        return _queuedSessions.ContainsKey(userId);
+    }
+
     private readonly HashSet<NetUserId> _bypassUsers = new();
 
     public void Initialize()
