@@ -1,3 +1,5 @@
+using Robust.Shared.Network;
+
 namespace Content.Goobstation.Common.JoinQueue;
 
 /// <summary>
@@ -24,4 +26,9 @@ public interface IJoinQueueManager
     /// Gets the number of players currently considered "in the game" (not in the queue).
     /// </summary>
     int ActualPlayersCount { get; }
+
+    /// <summary>
+    /// Returns whether the player is currently waiting in the join queue.
+    /// </summary>
+    bool IsQueued(NetUserId userId);
 }
