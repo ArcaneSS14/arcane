@@ -1,0 +1,55 @@
+- type: job
+  id: SecurityPilot
+  name: job-name-pilot
+  description: job-description-pilot
+  playTimeTracker: JobSecurityPilot
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 #10 hrs
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 7200 # 2 hours
+  startingGear: SecurityPilotGear
+  icon: "JobIconSecurityPilot"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  guides: # goobstation
+  # Orion-Edit-Start
+  - SpaceLaw
+  - SOP-Security-Officer
+  - SOP-Security
+  # Orion-Edit-End
+  goobcoins: 30 #Goob content
+  # Orion-Start
+  salary: 85
+  payrollDepartmentAccount: Security
+  # Orion-End
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  - Cryogenics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial # goobstation
+    components:
+      - type: SecurityStaff
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentSecurity
+  # Arcane-end
+
+- type: startingGear
+  id: SecurityPilotGear
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+    ears: ClothingHeadsetAltSecurityRegular # Goobstation
+    pocket1: WeaponDisabler # Orion-Edit: PistolMk58 > Disabler
+  storage:
+    back:
+    - Flash
+#    - MagazinePistol # Orion-Edit: Now in loadout

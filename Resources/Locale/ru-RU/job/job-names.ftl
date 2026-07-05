@@ -1,5 +1,6 @@
 job-name-warden = смотритель
 job-name-security = офицер СБ
+job-name-pilot = пилот СБ
 job-name-cadet = кадет СБ
 job-name-hos = глава службы безопасности
 job-name-detective = детектив
@@ -115,6 +116,7 @@ JobSalvageSpecialist = утилизатор
 JobScientist = учёный
 JobSecurityCadet = кадет СБ
 JobSecurityOfficer = офицер СБ
+JobSecurityPilot = пилот СБ
 JobServiceWorker = сервисный работник
 JobSecurityClown = клоун СБ
 JobStationAi = станционный ИИ
