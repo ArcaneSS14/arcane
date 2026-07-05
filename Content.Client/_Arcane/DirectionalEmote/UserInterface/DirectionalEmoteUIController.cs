@@ -1,0 +1,64 @@
+using Content.Shared._Arcane.DirectionalEmote;
+using JetBrains.Annotations;
+using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controllers;
+
+namespace Content.Client._Arcane.DirectionalEmote.UserInterface;
+
+[UsedImplicitly]
+public sealed class DirectionalEmoteUIController : UIController
+{
+    [UISystemDependency] private readonly DirectionalEmoteSystem _directionalEmoteSystem = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
+
+    private DirectionalEmoteWindow _emoteWindow = default!;
+
+    public void OpenWindow(NetEntity source, NetEntity target)
+    {
+        EnsureWindow();
+
+        _emoteWindow.Source = source;
+        _emoteWindow.Target = target;
+        _emoteWindow.Text = string.Empty;
+
+        _entityManager.TryGetComponent<MetaDataComponent>(_entityManager.GetEntity(target), out var targetMeta);
+        var targetName = targetMeta != null ? targetMeta.EntityName : Loc.GetString("directional-emote-unknown-target");
+
+        _emoteWindow.Title = Loc.GetString("directional-emote-title",
+                                          ("target", targetName));
+
+        if (!_entityManager.TryGetEntity(_emoteWindow.Source, out var sourceEntity))
+            return;
+
+        if (!_entityManager.TryGetComponent<DirectionalEmoteComponent>(sourceEntity, out var emoteComp))
+            return;
+
+        _emoteWindow.OpenCentered();
+        _emoteWindow.MoveToFront();
+
+        _emoteWindow.UpdateHideNameVisibility(emoteComp.CanHideName);
+
+        _emoteWindow.AcceptPressed = null;
+        _emoteWindow.LastEmotePressed = null;
+
+        _emoteWindow.AcceptPressed += () =>
+        {
+            _directionalEmoteSystem.TrySendEmote(_emoteWindow.Source, _emoteWindow.Target, _emoteWindow.Text, _emoteWindow.HideName);
+            _emoteWindow.Close();
+            _emoteWindow.SetText(string.Empty);
+        };
+
+        _emoteWindow.LastEmotePressed += () =>
+        {
+            _emoteWindow.SetText(emoteComp.LastEmote);
+        };
+    }
+
+    private void EnsureWindow()
+    {
+        if (_emoteWindow is { Disposed: false })
+            return;
+
+        _emoteWindow = UIManager.CreateWindow<DirectionalEmoteWindow>();
+    }
+}
