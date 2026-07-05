@@ -84,6 +84,7 @@ public sealed class ChemMasterBeakerCapacitySystem : EntitySystem
     private void OnMachineDeconstructed(Entity<ChemMasterBeakerCapacityComponent> ent, ref MachineDeconstructedEvent args)
     {
         ReturnBufferToConstructionBeakers(ent);
+        ent.Comp.InitializedFromConstructionBeakers = false;
     }
 
     private void OnShutdown(Entity<ChemMasterBeakerCapacityComponent> ent, ref ComponentShutdown args)
@@ -147,7 +148,7 @@ public sealed class ChemMasterBeakerCapacitySystem : EntitySystem
             return false;
 
         var beakers = GetConstructionBeakers(ent.Owner).ToList();
-        if (beakers.Count < 2)
+        if (beakers.Count == 0)
             return false;
 
         var transferred = false;
