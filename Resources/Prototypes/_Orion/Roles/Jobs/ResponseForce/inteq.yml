@@ -22,7 +22,7 @@
 #  duffelbag: ClothingBackpackDuffelInteQ
   storage:
     back:
-    - ExecutiveIDCard # Goobstation - Executive Access!
+    # - ExecutiveIDCard # Arcane-Edit
     - MedkitCombatFilled # Goobstation - No reason not to.
     - BoxZiptie
     - CrowbarRed
@@ -38,7 +38,7 @@
     jumpsuit: ClothingUniformJumpsuitInteQFormal
     back: ClothingBackpackInteQ
     head: ClothingHeadHelmetSwatInteQ
-    neck: ExecutiveIDCard # Goobstation - Executive Access!
+#   neck: ExecutiveIDCard # Arcane-Edit
     mask: ClothingMaskNeckGaiter
     eyes: ClothingEyesGogglessInteQ
     ears: ClothingHeadsetInteQ
@@ -70,7 +70,7 @@
     jumpsuit: ClothingUniformJumpsuitInteQMedical
     back: ClothingBackpackInteQ
     head: ClothingHeadInteQBeret
-    neck: ExecutiveIDCard # Goobstation - Executive Access!
+#   neck: ExecutiveIDCard # Arcane-Edit
     mask: ClothingMaskBreathMedicalSecurity
     eyes: ClothingEyesHudMedical
     ears: ClothingHeadsetInteQ
@@ -123,7 +123,7 @@
 #  duffelbag: ClothingBackpackDuffelInteQ
   storage:
     back:
-    - ExecutiveIDCard # Goobstation - Executive Access!
+    # - ExecutiveIDCard # Arcane-Edit
     - MedkitCombatFilled # Goobstation - No reason not to.
     - BoxZiptie
     - CrowbarRed
@@ -138,7 +138,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitInteQOperative
     back: ClothingBackpackInteQ
-    neck: ExecutiveIDCard # Goobstation - Executive Access!
+#   neck: ExecutiveIDCard # Arcane-Edit
     mask: ClothingMaskNeckGaiter
     eyes: ClothingEyesGogglessInteQ
     ears: ClothingHeadsetAltInteQERT

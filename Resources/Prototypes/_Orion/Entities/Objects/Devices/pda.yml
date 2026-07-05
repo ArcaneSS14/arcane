@@ -5,7 +5,7 @@
   description: Smells like rotten flesh.
   components:
   - type: Pda
-    id: CBURNLeaderIDcard
+    id: CBURNLeaderIDCard # Arcane-Edit
 
 - type: entity
   parent: DeathsquadPDA

@@ -31,18 +31,13 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Robust.Shared.Configuration;
-using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Arcane.InfinityDorm;
 
 public sealed partial class InfinityDormSystem : EntitySystem
 {
     [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
     [Dependency] private readonly StationSystem _station = default!;

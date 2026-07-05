@@ -3,8 +3,23 @@
          xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
          xmlns:parallax="clr-namespace:Content.Client.Parallax;assembly=Content.Client"
          xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls;assembly=Content.Client"
-         xmlns:queue="clr-namespace:Content.Goobstation.Client.JoinQueue">
+         xmlns:queue="clr-namespace:Content.Goobstation.Client.JoinQueue"
+         xmlns:arcaneQueue="clr-namespace:Content.Client._Arcane.JoinQueue;assembly=Content.Client">
     <parallax:ParallaxControl />
+
+    <!-- Arcane-Edit-Start: queue leaderboard side panels -->
+    <Control Name="MiniGameLeaderboardPanel" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="96 0 0 0">
+        <PanelContainer StyleClasses="AngleRect" />
+        <arcaneQueue:QueueMiniGameLeaderboardControl Name="MiniGameLeaderboard"
+                                                     Margin="12 8" />
+    </Control>
+    <Control Name="QueueTimeLeaderboardPanel" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 96 0">
+        <PanelContainer StyleClasses="AngleRect" />
+        <arcaneQueue:QueueTimeLeaderboardControl Name="QueueTimeLeaderboard"
+                                                 Margin="12 8" />
+    </Control>
+    <!-- Arcane-Edit-End -->
+
     <Control HorizontalAlignment="Center" VerticalAlignment="Center">
         <PanelContainer StyleClasses="AngleRect" />
         <BoxContainer Orientation="Vertical" MinSize="300 0" Margin="12 8">
@@ -57,6 +72,11 @@
                        StyleClasses="LabelKeyText" Align="Center"
                        Margin="8 6" />
             </PanelContainer>
+
+            <!-- Arcane-Edit-Start: queue mini-games -->
+            <controls:HighDivider Margin="0 8 0 4" />
+            <arcaneQueue:QueueMiniGameHostControl Name="MiniGameHost" Margin="0 4 0 0" HorizontalAlignment="Center" />
+            <!-- Arcane-Edit-End -->
         </BoxContainer>
     </Control>
     <queue:QueueCritterWalk Name="CritterWalk"

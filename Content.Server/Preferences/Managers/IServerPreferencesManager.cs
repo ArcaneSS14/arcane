@@ -30,6 +30,8 @@ namespace Content.Server.Preferences.Managers
 {
     public interface IServerPreferencesManager
     {
+        event Action<CharacterProfileSavedEventArgs>? CharacterProfileSaved; // Arcane
+
         void Init();
 
         Task LoadData(ICommonSession session, CancellationToken cancel);
@@ -45,4 +47,6 @@ namespace Content.Server.Preferences.Managers
         Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile);
         Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites);
     }
+
+    public readonly record struct CharacterProfileSavedEventArgs(ICommonSession Session, int Slot, ICharacterProfile Profile); // Arcane
 }

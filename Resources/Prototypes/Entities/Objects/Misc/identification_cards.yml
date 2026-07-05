@@ -966,7 +966,7 @@
 
 - type: entity
   parent: CentcomIDCard
-  id: CBURNIDcard
+  id: CBURNIDCard # Arcane-Edit
   name: CBURN ID card
   suffix: CBURN
   components:

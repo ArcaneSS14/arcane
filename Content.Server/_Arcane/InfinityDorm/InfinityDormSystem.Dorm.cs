@@ -1,12 +1,21 @@
 using System.Numerics;
+using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Systems;
 using Content.Shared._Arcane.InfinityDorm;
 using Content.Shared.Chat;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Arcane.InfinityDorm;
 
 public sealed partial class InfinityDormSystem
 {
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly MapLoaderSystem _loader = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
+
     private bool TryCreateDorm(EntityUid teleporter, EntityUid creator, string room, int number)
     {
         if (IsDormExists(number))
@@ -26,6 +35,10 @@ public sealed partial class InfinityDormSystem
             return false;
 
         _lastPosition = offset.X;
+
+        var shuttle = EnsureComp<ShuttleComponent>(grid.Value);
+        _shuttleSystem.Disable(grid.Value);
+        shuttle.Enabled = false;
 
         var dormComp = EnsureComp<InfinityDormComponent>(grid.Value);
         dormComp.ConnectedTeleporter = teleporter;

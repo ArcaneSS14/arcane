@@ -34,7 +34,7 @@
   - type: StorageFill
     contents:
       - id: AmePartFlatpack
-        amount: 9
+        amount: 12 # Arcane-Edit: 9 > 12
 
 - type: entity
   id: CrateEngineeringAMEJar

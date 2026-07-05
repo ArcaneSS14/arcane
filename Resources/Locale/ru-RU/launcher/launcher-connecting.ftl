@@ -23,8 +23,9 @@ connecting-state-Connected = Подключение установлено, до
 connecting-discord-auth-title = Привяжите Discord!
 connecting-discord-auth-link-info =
     Для входа на сервер необходимо привязать Discord-аккаунт
-    Зайдите на наш Discord-сервер, выполните команду /link и укажите этот код
-connecting-discord-auth-role-info = У вас отсутствует роль игрока на нашем Discord сервере!
+    Зайдите на наш Discord-сервер, перейдите в канал привязки, нажмите на кнопку под последним сообщением и укажите этот код
+connecting-discord-auth-role-info = У вас отсутствует роль "игрун" на нашем Discord сервере!
+    Если она уже есть, обновите привязку.
 connecting-discord-auth-code = Код привязки
 connecting-discord-auth-copy-code = Скопировать код
 connecting-discord-auth-open-discord = Открыть Discord
