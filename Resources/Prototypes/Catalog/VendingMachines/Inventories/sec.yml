@@ -61,6 +61,7 @@
     RiotLaserShield: 2
     RiotBulletShield: 2
     RadioHandheldSecurity: 5
+    PinpointerSecSquad: 8 # Arcane-Edit
     #Bola: 6 # Goob edit - already have energy bolas
     CombatKnife: 3 # Goob edit # Orion-Edit: 1 > 3
     # Goobstation
@@ -90,4 +91,5 @@
     Zipties: 35
     BolaEnergy: 35
     ClothingBeltSecurityWebbing: 300
+    PinpointerSecSquad: 50 # Arcane-Edit
   # Orion-End
