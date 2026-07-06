@@ -28,10 +28,12 @@
     - /Audio/Voice/Human/malescream_4.ogg
     - /Audio/Voice/Human/malescream_5.ogg
     - /Audio/Voice/Human/malescream_6.ogg
+    # Arcane-Start
     - /Audio/Voice/Moth/moth_scream.ogg
     - /Audio/Voice/Skeleton/skeleton_scream.ogg
     - /Audio/Voice/Reptilian/reptilian_scream.ogg
     - /Audio/_Floofstation/Voice/Avali/avali_scream.ogg
+    # Arcane-End
 
 
 # Arcane-Start
@@ -42,6 +44,7 @@
     - /Audio/Nyanotrasen/Voice/Felinid/cat_scream2.ogg
     - /Audio/Nyanotrasen/Voice/Felinid/cat_scream3.ogg
     - /Audio/Animals/monkey_scream.ogg
+# Arcane-End
     - /Audio/Voice/Human/femalescream_1.ogg
     - /Audio/Voice/Human/femalescream_2.ogg
     - /Audio/Voice/Human/femalescream_3.ogg
@@ -51,7 +54,6 @@
     - /Audio/Voice/Skeleton/skeleton_scream.ogg
     - /Audio/Voice/Reptilian/reptilian_scream.ogg
     - /Audio/_Floofstation/Voice/Avali/avali_scream.ogg
-# Arcane-End
 
 
 - type: soundCollection
@@ -59,6 +61,7 @@
   files:
     - /Audio/Voice/Human/manlaugh1.ogg
     - /Audio/Voice/Human/manlaugh2.ogg
+    # Arcane-Start
     - /Audio/Voice/Diona/diona_rustle1.ogg
     - /Audio/Voice/Diona/diona_rustle2.ogg
     - /Audio/Voice/Diona/diona_rustle3.ogg
@@ -66,6 +69,7 @@
     - /Audio/Animals/ferret_happy.ogg
     - /Audio/Voice/Moth/moth_laugh.ogg
     - /Audio/_Floofstation/Voice/Avali/avali_laugh.ogg
+    # Arcane-End
 
 
 # Arcane-Start
@@ -170,6 +174,7 @@
   id: HarpyPurrs
   files:
     - /Audio/Nyanotrasen/Voice/Felinid/cat_purr1.ogg
+    #- /Audio/Mecha/sound_mecha_hydraulic.ogg -  Arcane-Edit
 
 
 - type: soundCollection
@@ -212,9 +217,16 @@
     - /Audio/Weapons/Guns/Gunshots/mk58.ogg
     - /Audio/Weapons/Guns/Gunshots/pistol.ogg
     - /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+    # Arcane-Edit-Start
+    #- /Audio/Items/snap.ogg
+    #- /Audio/Machines/blastdoor.ogg
+    #- /Audio/_Orion/Machines/blastdoornew.ogg # Orion
+    #- /Audio/Machines/machine_vend.ogg
+    # Arcane-Edit-End
     - /Audio/Magic/disintegrate.ogg
     - /Audio/Magic/fireball.ogg
     - /Audio/Magic/forcewall.ogg
+    #- /Audio/Magic/knock.ogg - Arcane-Edit
 
 - type: soundCollection
   id: HarpyBeeps
