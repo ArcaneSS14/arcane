@@ -76,6 +76,7 @@
 - type: soundCollection
   id: HarpyFemaleLaugh
   files:
+# Arcane-End
     - /Audio/Voice/Human/womanlaugh.ogg
     - /Audio/Voice/Diona/diona_rustle1.ogg
     - /Audio/Voice/Diona/diona_rustle2.ogg
@@ -84,7 +85,6 @@
     - /Audio/Animals/ferret_happy.ogg
     - /Audio/Voice/Moth/moth_laugh.ogg
     - /Audio/_Floofstation/Voice/Avali/avali_laugh.ogg
-# Arcane-End
 
 
 - type: soundCollection
@@ -136,11 +136,11 @@
 - type: soundCollection
   id: HarpyFemaleCry
   files:
+# Arcane-End
     - /Audio/Voice/Human/cry_female_1.ogg
     - /Audio/Voice/Human/cry_female_2.ogg
     - /Audio/Voice/Human/cry_female_3.ogg
     - /Audio/Voice/Human/cry_female_4.ogg
-# Arcane-End
 
 
 - type: soundCollection
@@ -169,12 +169,11 @@
     - /Audio/_DV/Voice/Vulpkanin/dog_growl4.ogg
     - /Audio/_DV/Voice/Vulpkanin/dog_growl5.ogg
     - /Audio/_DV/Voice/Vulpkanin/dog_growl6.ogg
-
 - type: soundCollection
   id: HarpyPurrs
   files:
     - /Audio/Nyanotrasen/Voice/Felinid/cat_purr1.ogg
-    #- /Audio/Mecha/sound_mecha_hydraulic.ogg -  Arcane-Edit
+#   - /Audio/Mecha/sound_mecha_hydraulic.ogg # Arcane-Edit
 
 
 - type: soundCollection
@@ -217,16 +216,16 @@
     - /Audio/Weapons/Guns/Gunshots/mk58.ogg
     - /Audio/Weapons/Guns/Gunshots/pistol.ogg
     - /Audio/Weapons/Guns/Gunshots/c-20r.ogg
-    # Arcane-Edit-Start
-    #- /Audio/Items/snap.ogg
-    #- /Audio/Machines/blastdoor.ogg
-    #- /Audio/_Orion/Machines/blastdoornew.ogg # Orion
-    #- /Audio/Machines/machine_vend.ogg
-    # Arcane-Edit-End
+#   Arcane-Edit-Start
+#   - /Audio/Items/snap.ogg
+#   - /Audio/Machines/blastdoor.ogg
+#   - /Audio/_Orion/Machines/blastdoornew.ogg # Orion
+#   - /Audio/Machines/machine_vend.ogg
+#   Arcane-Edit-End
     - /Audio/Magic/disintegrate.ogg
     - /Audio/Magic/fireball.ogg
     - /Audio/Magic/forcewall.ogg
-    #- /Audio/Magic/knock.ogg - Arcane-Edit
+#   - /Audio/Magic/knock.ogg # Arcane-Edit
 
 - type: soundCollection
   id: HarpyBeeps
