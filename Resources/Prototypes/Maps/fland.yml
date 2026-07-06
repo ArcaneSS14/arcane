@@ -64,6 +64,8 @@
           availableJobs:
             #service
             Captain: [ 1, 1 ]
+            Adjutant: [ 1, 1 ] # Arcane
+            CommandMaid: [ 1, 1 ] # Arcane
             NanotrasenRepresentative: [ 1, 1 ]
             BlueshieldOfficer: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
@@ -96,6 +98,7 @@
             SecurityOfficer: [ 8, 8 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ]
+            IAA: [ 1, 1 ] # Arcane
             Lawyer: [ 2, 2 ]
             Brigmedic: [ 1, 1 ]
             #supply

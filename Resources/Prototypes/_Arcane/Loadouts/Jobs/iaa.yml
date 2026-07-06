@@ -1,0 +1,4 @@
+- type: loadout
+  id: IAAJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlackSuit

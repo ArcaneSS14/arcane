@@ -26,6 +26,8 @@
           availableJobs:
             # command
             Captain: [ 1, 1 ]
+            Adjutant: [ 1, 1 ] # Arcane
+            CommandMaid: [ 1, 1 ] # Arcane
             NanotrasenRepresentative: [ 1, 1 ]
             BlueshieldOfficer: [ 1, 1 ]
             # cargo

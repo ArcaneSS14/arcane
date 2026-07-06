@@ -53,6 +53,8 @@
             #service
             StationAi: [ 1, 1 ]
             Captain: [ 1, 1 ]
+            Adjutant: [ 1, 1 ] # Arcane
+            CommandMaid: [ 1, 1 ] # Arcane
             NanotrasenRepresentative: [ 1, 1 ]
             BlueshieldOfficer: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
@@ -62,6 +64,7 @@
             Janitor: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
+            IAA: [ 1, 1 ] # Arcane
             Lawyer: [ 1, 1 ]
             ServiceWorker: [ 1, 1 ]
             #engineering

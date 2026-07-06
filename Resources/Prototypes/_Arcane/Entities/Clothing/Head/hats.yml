@@ -1,4 +1,88 @@
 - type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAdjutant
+  name: adjutant beret
+  description: Awarded by passing difficult qualification tests and is a matter of extreme pride.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/adjutant_beret.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/adjutant_beret.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatGarrisonCapAdjutant
+  name: adjutant garrisoncap
+  description: A little cotton cap that's just about to fall off his head.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/garrisoncap_adj.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/garrisoncap_adj.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapAdjutant
+  name: adjutant cap
+  description: Blue and white, suspiciously reminiscent of the captain's.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/adjcap.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/adjcap.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCommandMaid
+  name: cap
+  description: An exquisite cap for an impeccable person.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/hat_maid.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/hat_maid.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBowsCommandMaid
+  name: bows cap
+  description: An exquisite cap with bows for an impeccable person.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/hat_maid_bows.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/hat_maid_bows.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBlackCommandMaid
+  name: black cap
+  description: An exquisite cap for an impeccable person.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/hat_black_maid.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/hat_black_maid.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
   parent: ClothingHeadHatCentcom
   id: ClothingHatBeretBlueShield
   name: “Blue Shield” Officer's Beret
