@@ -2,7 +2,7 @@
   parent: EmergencyMedipen
   id: AdvancedEmergencyMedipen
   name: advanced emergency medipen
-  description: No slowdown. No whining. Just get back in the fight before someone steals your ass. # Без замедления. Без нытья. Просто возвращайся в бой, пока кто-то не украл твою жопу.
+  description: No slowdown. No whining. Just get back in the fight before someone steals your ass.
   components:
   - type: Sprite
     layers:
@@ -55,7 +55,7 @@
   parent: ChemicalMedipen
   id: SalbutamolAutoInjector
   name: airloss auto-injector
-  description: No air? No problem. One pen, one breath, one more chance to be an idiot. Don't choke on it. # Нет воздуха? Не проблема. Один пен, один вдох, один шанс снова быть идиотом. Не подавись.
+  description: No air? No problem. One pen, one breath, one more chance to be an idiot. Don't choke on it.
   components:
   - type: Item
     inhandVisuals:
@@ -92,7 +92,7 @@
   parent: ChemicalMedipen
   id: StimulatorAutoInjector
   name: standard stimulator autoinjector
-  description: Fast, reckless, and probably a bad idea. This pen doesn't care about your health. Neither do you? Use it! # Быстро, безрассудно и, скорее всего, плохая идея. Этому инжектору плевать на твоё здоровье. Тебе тоже? Используй!
+  description: Fast, reckless, and probably a bad idea. This pen doesn't care about your health. Neither do you? Use it!
   components:
   - type: Sprite
     layers:
