@@ -277,6 +277,10 @@
     allowedVerbs: []
   - type: ExplosionResistance
     damageCoefficient: 0
+  # Arcane-start
+  - type: DirectionalEmote
+    canHideName: true
+  # Arcane-end
 
 - type: entity
   abstract: true
