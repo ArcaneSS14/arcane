@@ -58,7 +58,7 @@
   parent: XLargeBeaker
   id: MetamaterialBeaker
   name: metamaterial beaker
-  description: A large beaker.
+  description: An enormous, metamaterial-reinforced beaker.
   components:
   - type: Sprite
     sprite: _Arcane/Objects/Specific/Chemistry/beaker_metamaterial.rsi

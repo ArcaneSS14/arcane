@@ -550,7 +550,7 @@ public sealed class HealingSystem : EntitySystem
         args.Repeat = IsAnythingToHeal(args.User, ent, (args.Used.Value, healing)) && !dontRepeat; // GOOBEDIT // Arcane-Edit
         args.Handled = true;
 
-        if (args.Repeat || dontRepeat)
+        if (args.Repeat) // Arcane-Edit
             return;
 
         // Arcane-Start
@@ -689,8 +689,7 @@ public sealed class HealingSystem : EntitySystem
         // Arcane-Edit-Start: BugFix
         if (TryComp<ConsciousnessComponent>(ent.Owner, out var consciousness))
         {
-            var consciousnessRatio = (float)((consciousness.Cap - consciousness.Consciousness) /
-                                              (consciousness.Cap - consciousness.Threshold));
+            var consciousnessRatio = (float)((consciousness.Cap - consciousness.Consciousness) / (consciousness.Cap - consciousness.Threshold));
             percentDamage = Math.Max(percentDamage, Math.Clamp(consciousnessRatio, 0f, 1f));
         }
         // Arcane-Edit-End
