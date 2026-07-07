@@ -553,6 +553,14 @@ public sealed class HealingSystem : EntitySystem
         if (args.Repeat || dontRepeat)
             return;
 
+        // Arcane-Start
+        if (dontRepeat)
+        {
+            _audio.PlayPredicted(healing.HealingFullEndSound, ent, args.User);
+            return;
+        }
+        // Arcane-End
+
         if (modifiedBleedStopAbility != -healing.BloodlossModifier)
             // Goobstation predicted --> client
             _popupSystem.PopupClient(Loc.GetString("medical-item-finished-using", ("item", args.Used)), ent, args.User, PopupType.Medium);
