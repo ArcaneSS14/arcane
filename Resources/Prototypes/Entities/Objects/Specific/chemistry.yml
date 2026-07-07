@@ -968,7 +968,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 50 # Arcane-Edit: 20 > 50
   - type: ExplosionResistance
     damageCoefficient: 0.025 # survives conventional explosives but not minibombs and nukes
   - type: Damageable

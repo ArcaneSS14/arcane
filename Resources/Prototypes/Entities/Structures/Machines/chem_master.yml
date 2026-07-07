@@ -96,7 +96,7 @@
           - FitsInDispenser
   # Orion-End
   - type: ChemMaster
-    pillDosageLimit: 20
+    pillDosageLimit: 50 # Arcane-Edit: 20 > 50
   - type: Physics
     bodyType: Static
   - type: Fixtures
