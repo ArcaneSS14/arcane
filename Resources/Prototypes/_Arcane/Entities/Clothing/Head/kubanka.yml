@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingHeadBase
-  id: Kubanka
+  id: ClothingHeadKubanka
   name: kubanka
   description: some missing description
   components:
