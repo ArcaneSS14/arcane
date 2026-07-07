@@ -42,6 +42,7 @@ public sealed partial class MobThresholdsComponent : Component
     public Dictionary<MobState, ProtoId<AlertPrototype>> StateAlertDict = new()
     {
         {MobState.Alive, "HumanHealth"},
+        {MobState.Critical, "HumanSoftCrit"}, // Arcane
         {MobState.SoftCritical, "HumanSoftCrit"}, // Orion-Edit
         {MobState.HardCritical, "HumanHardCrit"}, // Orion
         {MobState.Dead, "HumanDead"},
