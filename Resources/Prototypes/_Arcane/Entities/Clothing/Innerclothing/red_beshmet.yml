@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingBeshmet
+  name: red beshmet
+  description: Some missing descr
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/red_beshmet.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/red_beshmet.rsi

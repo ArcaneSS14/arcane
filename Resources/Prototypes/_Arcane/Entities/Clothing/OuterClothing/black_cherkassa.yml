@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterSuitBlackCherkassa
+  name: Black Cherkassa
+  description: some missing desc
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Outerclothing/black_cherkassa.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Outerclothing/black_cherkassa.rsi

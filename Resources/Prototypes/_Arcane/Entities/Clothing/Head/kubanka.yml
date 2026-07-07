@@ -1,0 +1,9 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: Kubanka
+  name: kubanka
+  description: some missing description
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/kubanka.rsi
+    scale: 0.65, 0.65
