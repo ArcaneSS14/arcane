@@ -1,10 +1,10 @@
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingBeshmet
+  id: ClothingUniformBeshmet
   name: red beshmet
-  description: Some missing descr
+  description: A traditional quilted under-caftan, closely fitted and reaching to the knees, worn by Cossacks beneath the cherkassa or on its own.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Innerclothing/red_beshmet.rsi
+    sprite: _Arcane/Clothing/InnerClothing/red_beshmet.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Innerclothing/red_beshmet.rsi
+    sprite: _Arcane/Clothing/InnerClothing/red_beshmet.rsi

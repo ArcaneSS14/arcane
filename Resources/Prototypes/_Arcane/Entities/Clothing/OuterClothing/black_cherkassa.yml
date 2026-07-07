@@ -2,9 +2,9 @@
   parent: ClothingOuterBase
   id: ClothingOuterSuitBlackCherkassa
   name: black cherkassa
-  description: Some missing desc
+  description: A traditional Caucasian long coat with a fitted waist and flared skirt, adorned with cartridge pouches across the chest — a hallmark of Cossack and Caucasian horsemen.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Outerclothing/black_cherkassa.rsi
+    sprite: _Arcane/Clothing/OuterClothing/black_cherkassa.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Outerclothing/black_cherkassa.rsi
+    sprite: _Arcane/Clothing/OuterClothing/black_cherkassa.rsi

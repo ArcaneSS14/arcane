@@ -2,8 +2,10 @@
   parent: ClothingHeadBase
   id: ClothingHeadKubanka
   name: kubanka
-  description: some missing description
+  description: A traditional Cossack fur hat, cylindrical in shape with a flat top, worn by Cossack cavalry and ceremonial guards.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Head/kubanka.rsi
     scale: 0.65, 0.65
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/kubanka.rsi
