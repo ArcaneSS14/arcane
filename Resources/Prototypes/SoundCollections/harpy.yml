@@ -216,12 +216,12 @@
     - /Audio/Weapons/Guns/Gunshots/mk58.ogg
     - /Audio/Weapons/Guns/Gunshots/pistol.ogg
     - /Audio/Weapons/Guns/Gunshots/c-20r.ogg
-#   Arcane-Edit-Start
+    # Arcane-Edit-Start
 #   - /Audio/Items/snap.ogg
 #   - /Audio/Machines/blastdoor.ogg
 #   - /Audio/_Orion/Machines/blastdoornew.ogg # Orion
 #   - /Audio/Machines/machine_vend.ogg
-#   Arcane-Edit-End
+    # Arcane-Edit-End
     - /Audio/Magic/disintegrate.ogg
     - /Audio/Magic/fireball.ogg
     - /Audio/Magic/forcewall.ogg
