@@ -166,6 +166,15 @@ namespace Content.Client.Chemistry.UI
             return buttons;
         }
 
+        // Arcane-Start: You can see max volume
+        private static string FormatVolume(FixedPoint2 current, FixedPoint2? max)
+        {
+            return max is { } m && m > FixedPoint2.Zero
+                ? $"{current}/{m}u"
+                : $"{current}u";
+        }
+        // Arcane-End
+
         /// <summary>
         /// Update the UI state when new state data is received from the server.
         /// </summary>
@@ -181,12 +190,7 @@ namespace Content.Client.Chemistry.UI
             UpdatePanelInfo(castState);
 
             // Arcane-Edit-Start
-            var bufCur = castState.BufferCurrentVolume?.Int() ?? 0;
-            var bufMax = castState.BufferMaxVolume?.Int() ?? 0;
-
-            BufferCurrentVolume.Text = bufMax > 0
-                ? $" {bufCur}/{bufMax}u"
-                : $" {bufCur}u";
+            BufferCurrentVolume.Text = FormatVolume(castState.BufferCurrentVolume ?? 0, castState.BufferMaxVolume);
             // Arcane-Edit-End
 
             InputEjectButton.Disabled = castState.InputContainerInfo is null;
