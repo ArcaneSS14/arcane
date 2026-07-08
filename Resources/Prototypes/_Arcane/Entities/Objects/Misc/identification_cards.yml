@@ -1,0 +1,11 @@
+- type: entity
+  parent: IDCardStandard
+  id: SecurityPilotIDCard
+  name: security pilot ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idsecuritypilot
+  - type: PresetIdCard
+    job: SecurityPilot

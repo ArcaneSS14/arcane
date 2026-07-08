@@ -49,6 +49,7 @@
     eyes: ClothingEyesGlassesSecurityPilot
     ears: ClothingHeadsetAltSecurityRegular # Goobstation
     pocket1: WeaponDisabler # Orion-Edit: PistolMk58 > Disabler
+    gloves: ClothingHandsGlovesCombat
   storage:
     back:
     - Flash

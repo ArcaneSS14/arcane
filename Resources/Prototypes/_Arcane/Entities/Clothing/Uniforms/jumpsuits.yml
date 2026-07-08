@@ -19,3 +19,14 @@
     sprite: _Arcane/Clothing/Uniforms/Jumpsuits/blueshieldceremonialuniform.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Uniforms/Jumpsuits/blueshieldceremonialuniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPilotJumpsuit
+  name: WIP
+  description: WIP
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuits/pilotuniform.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuits/pilotuniform.rsi

@@ -1,0 +1,30 @@
+- type: entity
+  parent: BaseSecurityPDA
+  id: PilotPDA
+  name: security pilot PDA
+  description: Red to hide the stains of passenger blood.
+  components:
+  # Orion-Start
+  - type: Sprite
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: pda_base
+      color: "#A32D26"
+    - state: pda_buttons
+    - map: [ "enum.PdaVisualLayers.Screen" ]
+      state: pda_screen_borders
+    - state: light_overlay
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: unshaded
+      visible: false
+    - state: id_overlay
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: unshaded
+      visible: false
+    - state: "insert_overlay" # Goob
+      map: [ "enum.PdaVisualLayers.Pen" ]
+  # Orion-End
+  - type: Pda
+    id: SecurityPilotIDCard
+  - type: PdaBorderColor
+    borderColor: "#A32D26"

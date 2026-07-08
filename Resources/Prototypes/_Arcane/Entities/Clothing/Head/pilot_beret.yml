@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadHelmetBaseFoldable]
+  parent: [BaseSecurityContraband, ClothingHeadHatBeretCaptainWhite]
   id: ClothingHeadPilotBeret
   name: WIP
   description: WIP

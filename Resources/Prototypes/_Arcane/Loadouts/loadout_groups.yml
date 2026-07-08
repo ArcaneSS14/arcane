@@ -6,27 +6,35 @@
   - BoomboxPatron
 
 - type: loadoutGroup
-  id: SecurityPilotHead
-  name: loadout-group-pilot-head
-  loadouts:
-  - ClothingHeadPilotBeret
-
-- type: loadoutGroup
   id: SecurityPilotJumpsuit
   name: loadout-group-pilot-jumpsuit
   loadouts:
-  - PilotJumpsuit
+  - SecurityPilotJumpsuit
   #- PilotJumpskirt  - ждём Густова
+
+- type: loadoutGroup
+  id: SecurityPilotHead
+  name: loadout-group-pilot-head
+  loadouts:
+  - SecurityHelmet
+  - SecurityHelmetAlt # Goobstation
+  - SecurityBeret
+  - SecurityHat
+  - TrooperHat
+  - SecuritySideCap # Orion
+  - SecurityPilotBeret
 
 - type: loadoutGroup
   id: SecurityPilotPDA
   name: loadout-group-pilot-PDA
   loadouts:
-  - SecurityPDA
+  - PilotPDA
 
 - type: loadoutGroup
-  parent: SecurityBelt
   id: SecurityPilotBelt
   name: loadout-group-pilot-belt
   loadouts:
-  - ClothingBeltUtilityEngineering
+  - PilotUtility
+  - SecurityBelt
+  - SecurityWebbing
+  - SecurityJudoBelt # Goobstation - Martial Arts

@@ -1,0 +1,35 @@
+- type: entity
+  parent: [ClothingMaskGas, BaseSecurityContraband]
+  id: ClothingMaskGasSecurityPilot
+  name: WIP
+  description: WIP
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/pilotmask.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/pilotmask.rsi
+  - type: Armor
+    coverage:
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.5
+  - type: Tag # Goobstation - For survial boxes
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+    - SecurityBreathMask
+    - GasMask # Goobstation
+  - type: HideLayerClothing
+    slots:
+    - Snout
+#    - HeadTop # Orion-Edit: Removed
+    - HeadSide
+  - type: Hailer # Goobstation - Hailer
+  - type: IngestionBlocker # Goobstation
+    blockSmokeIngestion: true
