@@ -802,6 +802,16 @@
           components:
           - type: PressureProtection # can't get through this to reach the bodyparts!
           invert: true
+      # Arcane-Start
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+        amount: -2500
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          invert: true
+      # Arcane-End
   metabolisms:
     Medicine:
       metabolismRate: 3
@@ -866,6 +876,16 @@
           components:
           - type: PressureProtection # can't get through this to reach the bodyparts!
           invert: true
+      # Arcane-Start
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+        amount: 5000
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          invert: true
+      # Arcane-End
       - !type:ModifyBleedAmount
         amount: -2
         conditions:
@@ -1245,17 +1265,16 @@
       - !type:HealthChange
         scaleByQuantity: true
         ignoreResistances: false
+        ignoreBlockers: false # Arcane
         damage:
           types:
             Cold: 0.05
-      # Arcane-Start
-      - !type:HealthChange
-        scaleByQuantity: true
-        ignoreResistances: false
-        ignoreBlockers: false
-        damage:
-          types:
-            Heat: -0.5
+            Heat: -0.5 # Arcane
+        # Arcane-Start
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          invert: true
       - !type:HealthChange
         scaleByQuantity: true
         ignoreResistances: false
@@ -1268,12 +1287,22 @@
         damage:
           types:
             Heat: -0.5
-      # Arcane-End
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          invert: true
+        # Arcane-End
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature
           min: 160.15
         amount: -10000
+        # Arcane-Start
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          invert: true
+        # Arcane-End
   metabolisms:
     Medicine:
       effects:
@@ -1323,17 +1352,16 @@
       - !type:HealthChange
         scaleByQuantity: true
         ignoreResistances: false
+        ignoreBlockers: false # Arcane
         damage:
           types:
             Heat: 0.05
-      # Arcane-Start
-      - !type:HealthChange
-        scaleByQuantity: true
-        ignoreResistances: false
-        ignoreBlockers: false
-        damage:
-          types:
-            Cold: -0.5
+            Cold: -0.5 # Arcane
+        # Arcane-Start
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          invert: true
       - !type:HealthChange
         scaleByQuantity: true
         ignoreResistances: false
@@ -1346,12 +1374,22 @@
         damage:
           types:
             Cold: -0.5
-      # Arcane-End
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          invert: true
+        # Arcane-End
       - !type:AdjustTemperature
         conditions:
         - !type:Temperature
           max: 420
         amount: 10000
+        # Arcane-Start
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          invert: true
+        # Arcane-End
   metabolisms:
     Medicine:
       effects:
