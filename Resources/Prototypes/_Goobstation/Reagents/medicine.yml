@@ -793,8 +793,8 @@
         ignoreBlockers: false
         damage:
           types:
-            Heat: -0.75 # Arcane-Edit: -1.5 > -0.75
-            Cold: -1 # Arcane-Edit: -1.5 > -1
+            Heat: -1 # Arcane-Edit: -1.5 > -1
+            Cold: -1.25 # Arcane-Edit: -1.5 > -1.25
             Shock: -1
             Caustic: -0.75 # Arcane-Edit: -1 > -0.75
         conditions:
@@ -868,9 +868,9 @@
         ignoreBlockers: false
         damage:
           types:
-            Blunt: -1 # Arcane-Edit: -2 > -1
-            Piercing: -0.5 # limits combat effectivness # Arcane-Edit: -1 > -0.5
-            Slash: -1 # Arcane-Edit: -2 > -1
+            Blunt: -1.5 # Arcane-Edit: -2 > -1.5
+            Piercing: -0.75 # limits combat effectivness # Arcane-Edit: -1 > -0.75
+            Slash: -1.5 # Arcane-Edit: -2 > -1.5
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
