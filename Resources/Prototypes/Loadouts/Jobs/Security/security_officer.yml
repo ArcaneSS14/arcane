@@ -139,19 +139,16 @@
   equipment:
     head: ClothingHeadHatBeretSecurity
 
-
 - type: loadout
   id: TrooperHat
   equipment:
     head: ClothingHeadHatSecurityTrooper
-
 
 # Jumpsuit
 - type: loadout
   id: SecurityJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitSec
-
 
 - type: loadout
   id: SecurityJumpskirt

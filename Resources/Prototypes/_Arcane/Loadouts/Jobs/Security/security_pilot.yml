@@ -1,0 +1,19 @@
+- type: loadout
+  id: SecurityPilotBeret
+  equipment:
+    head: ClothingHeadPilotBeret
+
+- type: loadout
+  id: PilotUtility
+  equipment:
+    belt: ClothingBeltUtilityEngineering
+
+- type: loadout
+  id: SecurityPilotJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformPilotJumpsuit
+
+- type: loadout
+  id: PilotPDA
+  equipment:
+    id: PilotPDA

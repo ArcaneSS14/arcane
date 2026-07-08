@@ -1,0 +1,31 @@
+- type: entityTable
+  id: FillLockerSecurityPilot
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadPilotBeret
+    - id: ClothingUniformPilotJumpsuit
+    - id: ClothingOuterArmorBasic
+    - id: ClothingEyesGlassesSecurityPilot
+    - id: ClothingBeltUtilityEngineering
+    - id: ClothingMaskGasSecurityPilot
+    - id: ClothingShoesBootsMag
+    - id: ClothingHandsGlovesCombat
+    - id: ClothingHeadsetAltSecurityRegular
+    - id: PanicButton
+    - !type:GroupSelector
+      children:
+      - id: ClothingBeltSecurityFilled
+        weight: 0.8
+      - id: ClothingBeltCorporateJudoFilled
+        weight: 0.2
+
+- type: entity
+  id: LockerPilotFilled
+  suffix: Filled
+  parent: LockerSecurity
+  name: security pilot locker
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerSecurityPilot
