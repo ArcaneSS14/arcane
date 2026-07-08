@@ -74,6 +74,8 @@ namespace Content.Shared.Chemistry.Reaction
         /// </summary>
         private FrozenDictionary<string, List<ReactionPrototype>> _reactions = default!;
 
+        private FrozenDictionary<string, List<ReactionPrototype>> _cascadeReactions = default!; // Arcane
+
         public override void Initialize()
         {
             base.Initialize();
@@ -108,6 +110,21 @@ namespace Content.Shared.Chemistry.Reaction
                 }
             }
             _reactions = dict.ToFrozenDictionary();
+            // Arcane-Start
+            dict.Clear();
+            foreach (var reaction in _prototypeManager.EnumeratePrototypes<ReactionPrototype>())
+            {
+                if (!reaction.Cascading)
+                    continue;
+
+                foreach (var reagent in reaction.Reactants.Keys)
+                {
+                    var list = dict.GetOrNew(reagent);
+                    list.Add(reaction);
+                }
+            }
+            _cascadeReactions = dict.ToFrozenDictionary();
+            // Arcane-End
         }
 
         /// <summary>
@@ -297,7 +314,7 @@ namespace Content.Shared.Chemistry.Reaction
             // over previously. The new product may mean the reactions are applicable again and need to be processed.
             foreach (var product in products)
             {
-                if (_reactions.TryGetValue(product, out var reactantReactions))
+                if (_cascadeReactions.TryGetValue(product, out var reactantReactions)) // Arcane-Edit
                     reactions.UnionWith(reactantReactions);
             }
 
