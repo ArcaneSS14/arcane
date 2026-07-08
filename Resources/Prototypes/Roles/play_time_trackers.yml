@@ -163,6 +163,9 @@
   id: JobSecurityOfficer
 
 - type: playTimeTracker
+  id: JobSecurityPilot
+
+- type: playTimeTracker
   id: JobServiceWorker
 
 - type: playTimeTracker

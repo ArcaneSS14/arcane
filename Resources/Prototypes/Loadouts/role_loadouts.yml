@@ -845,6 +845,36 @@
   # Orion-End
 
 - type: roleLoadout
+  id: JobSecurityPilot
+  groups:
+  - SecurityPilotHead
+  - SecurityPilotJumpsuit
+  - SecurityBackpack
+  - SecurityGun # Orion
+  - SecurityMelee # Goobstation
+  - SecurityOuterClothing
+  - SecurityShoes
+  - SecurityNeck
+  - SecurityPilotPDA
+  - SecurityPilotBelt
+  - SurvivalSecurity
+  - Trinkets
+  - Patron # Arcane
+  - SecurityStar
+  - Animals
+  - GroupSpeciesBreathToolSecurity
+  # Goobstation - EE Plasmeme Change.
+  - SecurityOfficerEnvirohelm
+  - SecurityOfficerEnvirosuit
+  - SecurityOfficerEnvirogloves
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+
+- type: roleLoadout
   id: JobDetective
   groups:
   - DetectiveHead

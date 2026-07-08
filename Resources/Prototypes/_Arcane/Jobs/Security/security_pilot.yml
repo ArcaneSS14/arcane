@@ -46,7 +46,7 @@
 - type: startingGear
   id: SecurityPilotGear
   equipment:
-    eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingEyesGlassesSecurityPilot
     ears: ClothingHeadsetAltSecurityRegular # Goobstation
     pocket1: WeaponDisabler # Orion-Edit: PistolMk58 > Disabler
   storage:

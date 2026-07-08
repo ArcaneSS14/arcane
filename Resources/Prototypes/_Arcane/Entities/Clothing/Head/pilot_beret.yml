@@ -1,0 +1,10 @@
+- type: entity
+  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadHelmetBaseFoldable]
+  id: ClothingHeadPilotBeret
+  name: WIP
+  description: WIP
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/pilot_beret.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/pilot_beret.rsi

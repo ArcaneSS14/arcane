@@ -153,6 +153,7 @@ JobScientist = Scientist
 JobSecurityCadet = Security Cadet
 JobSecurityClown = Security Clown
 JobSecurityOfficer = Security Officer
+JobSecurityPilot = Security Pilot
 JobServiceWorker = Service Worker
 JobStationAi = Station AI
 JobStationEngineer = Station Engineer

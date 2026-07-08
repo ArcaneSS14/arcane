@@ -4,3 +4,29 @@
   minLimit: 0
   loadouts:
   - BoomboxPatron
+
+- type: loadoutGroup
+  id: SecurityPilotHead
+  name: loadout-group-pilot-head
+  loadouts:
+  - ClothingHeadPilotBeret
+
+- type: loadoutGroup
+  id: SecurityPilotJumpsuit
+  name: loadout-group-pilot-jumpsuit
+  loadouts:
+  - PilotJumpsuit
+  #- PilotJumpskirt  - ждём Густова
+
+- type: loadoutGroup
+  id: SecurityPilotPDA
+  name: loadout-group-pilot-PDA
+  loadouts:
+  - SecurityPDA
+
+- type: loadoutGroup
+  parent: SecurityBelt
+  id: SecurityPilotBelt
+  name: loadout-group-pilot-belt
+  loadouts:
+  - ClothingBeltUtilityEngineering
