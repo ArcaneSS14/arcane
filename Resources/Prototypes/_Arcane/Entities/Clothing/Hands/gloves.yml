@@ -8,3 +8,14 @@
     sprite: _Arcane/Clothing/Hands/bdsm_gloves.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Hands/bdsm_gloves.rsi
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsQMLongGloves
+  name: QM's long gloves
+  description: Gloves made to protect against cuts from banknotes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Hands/Sponsor/QM_long_gloves.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Hands/Sponsor/QM_long_gloves.rsi
