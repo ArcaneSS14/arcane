@@ -563,7 +563,7 @@
     # Arcane-Start
     layers:
     - state: cream
-    map: ["base"]
+      map: ["base"]
   - type: Item
     sprite: Objects/Specific/Hydroponics/aloe.rsi
     heldPrefix: produce
