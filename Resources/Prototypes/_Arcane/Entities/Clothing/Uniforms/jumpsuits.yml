@@ -23,8 +23,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformPilotJumpsuit
-  name: WIP
-  description: WIP
+  name: security pilot gas mask
+  description: A gas mask worn by security pilots for respiratory protection.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Uniforms/Jumpsuits/pilotuniform.rsi

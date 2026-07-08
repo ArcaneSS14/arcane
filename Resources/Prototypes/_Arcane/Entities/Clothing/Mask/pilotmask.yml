@@ -1,8 +1,8 @@
 - type: entity
   parent: [ClothingMaskGas, BaseSecurityContraband]
   id: ClothingMaskGasSecurityPilot
-  name: WIP
-  description: WIP
+  name: security pilot gas mask
+  description: A gas mask worn by security pilots for respiratory protection.
   components:
   - type: Item
     size: Tiny

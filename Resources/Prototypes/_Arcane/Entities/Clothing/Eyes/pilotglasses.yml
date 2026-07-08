@@ -1,8 +1,8 @@
 - type: entity
   parent: [BaseSecurityContraband, ClothingEyesGlassesSecurityContraDetect, ClothingEyesGlassesMeson]
   id: ClothingEyesGlassesSecurityPilot
-  name: WIP
-  description: WIP
+  name: security pilot glasses
+  description: Glasses issued to security pilots for improved threat detection.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Eyes/Glasses/pilot_glasses.rsi

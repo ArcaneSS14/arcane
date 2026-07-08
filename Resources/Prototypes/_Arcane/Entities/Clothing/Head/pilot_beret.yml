@@ -1,8 +1,8 @@
 - type: entity
   parent: [BaseSecurityContraband, ClothingHeadHatBeretCaptainWhite]
   id: ClothingHeadPilotBeret
-  name: WIP
-  description: WIP
+  name: security pilot beret
+  description: A beret worn by pilots of the security department.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Head/pilot_beret.rsi
