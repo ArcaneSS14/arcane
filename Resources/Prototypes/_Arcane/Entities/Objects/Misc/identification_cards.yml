@@ -7,5 +7,7 @@
     layers:
     - state: default
     - state: idpilot
+  - type: Item
+    heldPrefix:
   - type: PresetIdCard
     job: SecurityPilot
