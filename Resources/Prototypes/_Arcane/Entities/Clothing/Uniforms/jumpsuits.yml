@@ -23,8 +23,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformPilotJumpsuit
-  name: security pilot gas mask
-  description: A gas mask worn by security pilots for respiratory protection.
+  name: security pilot jumpsuit
+  description: A flight suit tailored for security pilots.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Uniforms/Jumpsuits/pilotuniform.rsi

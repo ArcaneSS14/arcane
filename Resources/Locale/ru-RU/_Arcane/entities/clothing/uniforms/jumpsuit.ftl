@@ -3,3 +3,6 @@ ent-ClothingUniformBlueShieldCommon = униформа офицера "Сини�
 
 ent-ClothingUniformBlueShieldCeremonial = парадная униформа офицера "Синий Щит"
     .desc = Стильная парадная униформа, разработанная специально для сотрудников «Синий Щит».
+
+ent-ClothingUniformPilotJumpsuit = комбинезон пилота СБ
+    .desc = Лётный комбинезон для пилотов СБ, разработан для комфорта во время долгих смен в кабине.

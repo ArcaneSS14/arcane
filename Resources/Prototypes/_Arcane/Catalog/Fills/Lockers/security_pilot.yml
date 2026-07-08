@@ -12,6 +12,9 @@
     - id: ClothingHandsGlovesCombat
     - id: ClothingHeadsetAltSecurityRegular
     - id: PanicButton
+    - id: UndeterminedVoidsuitSecurity
+    - id: JetpackSecurityFilled
+    - id: DoubleEmergencyOxygenTank
     - !type:GroupSelector
       children:
       - id: ClothingBeltSecurityFilled
