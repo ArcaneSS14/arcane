@@ -20,10 +20,10 @@
         weight: 0.2
 
 - type: entity
-  id: LockerPilotFilled
-  suffix: Filled
   parent: LockerSecurity
+  id: LockerPilotFilled
   name: security pilot locker
+  suffix: Filled
   components:
   - type: EntityTableContainerFill
     containers:

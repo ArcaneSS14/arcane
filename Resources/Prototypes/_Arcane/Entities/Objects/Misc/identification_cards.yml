@@ -6,6 +6,6 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idsecuritypilot
+    - state: idpilot
   - type: PresetIdCard
     job: SecurityPilot
