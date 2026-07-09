@@ -1,0 +1,10 @@
+- type: entity
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseSecurityCommandContraband]
+  id: ClothingOuterHOSLongVest
+  name: HOS' long vest
+  description: A high-quality armored vest made from a hard synthetic material. It is surprisingly flexible and light, despite formidable armor plating.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/HOS_armor.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/HOS_armor.rsi
