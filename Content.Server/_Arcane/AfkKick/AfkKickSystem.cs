@@ -2,8 +2,10 @@ using System.Numerics;
 using Content.Goobstation.Common.JoinQueue;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
+using Content.Shared.CCVar;
 using Content.Shared.Ghost;
 using Robust.Server.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -19,6 +21,7 @@ public sealed class AfkKickSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IJoinQueueManager _joinQueue = default!;
     [Dependency] private readonly IServerPreferencesManager _preferences = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Arcane
 
     private readonly Dictionary<ICommonSession, TimeSpan> _lobbySince = new();
     private readonly Dictionary<ICommonSession, GhostAfkState> _ghostStates = new();
@@ -58,6 +61,9 @@ public sealed class AfkKickSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        if (!_cfg.GetCVar(CCVars.AfkKickEnabled)) // Arcane
+            return;
 
         var now = _timing.CurTime;
         if (now < _nextUpdate)

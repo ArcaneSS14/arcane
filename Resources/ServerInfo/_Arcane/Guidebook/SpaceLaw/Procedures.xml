@@ -1,0 +1,23 @@
+<Document>
+
+    ### Допрос
+
+  - [bold]Допрос[/bold] проводят: [bold][color=darkred]Смотритель[/color][/bold], [bold][color=darkred]Глава СБ[/color][/bold], [bold][color=darkred]Детектив[/color][/bold] или [bold][color=blue]Капитан[/color][/bold].
+  - Допрашивающий обязан предоставить право на [bold]защитника[/bold]. [italic]При неявке защитника в течение 5 минут право аннулируется[/italic]
+  - В качестве [bold]защитника[/bold] могут выступать: [bold][color=purple]Адвокат[/color][/bold], [bold][color=#32CD32]Агент Внутренних Дел[/color][/bold], [bold][color=darkred]Глава отдела[/color][/bold] задержанного или [bold][color=blue]Капитан[/color][/bold].
+  - Продолжительность [bold]допроса[/bold] не должна превышать 15 минут, возможно продление на 10 минут с согласия задержанного.
+  - По окончании [bold]допроса[/bold] должен быть вынесен [bold]вердикт[/bold] в установленном порядке.
+
+  ### Вынесение вердикта
+
+  - Задержанному должны быть объявлены срок содержания и инкриминируемые статьи.
+  - Во время [bold][color=magenta]Гамма кода[/color][/bold] допускается содержание под стражей без процессуальных формальностей.
+  - Право вынесения [bold]вердикта[/bold] имеют: [bold][color=darkred]Смотритель[/color][/bold], [bold][color=darkred]Глава СБ[/color][/bold], [bold][color=blue]Капитан[/color][/bold], [bold][color=aqua]Представитель NT[/color][/bold] или [bold][color=darkred]Детектив[/color][/bold] с разрешения [bold][color=darkred]Главы СБ[/color][/bold] .
+  - Иерархия отмены решений: [bold][color=DeepSkyBlue]Представитель NT[/color][/bold] > [bold][color=blue]Капитан[/color][/bold] > [bold][color=darkred]Глава СБ[/color][/bold] > [bold][color=darkred]Смотритель[/color][/bold].
+
+  # Юридическая неприкосновенность
+
+  Лица, обладающие [bold]юридической неприкосновенностью[/bold], не могут быть подвергнуты задержанию, обыску, аресту или применению силы до её снятия.
+  - Неприкосновенностью обладают: [bold][color=aqua]Представитель NT[/color][/bold], [bold][color=blue]Капитан[/color][/bold], [bold][color=#32CD32]Агент Внутренних Дел[/color][/bold], сотрудники [bold][color=lime]Центрального Командования[/color][/bold] и [bold][color=#010108]Департамента Специальных Операций[/color][/bold].
+
+</Document>

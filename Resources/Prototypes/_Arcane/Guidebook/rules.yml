@@ -1,8 +1,9 @@
-﻿# Arcane rules
+# Arcane rules
 - type: guideEntry
   id: ArcaneRuleset
   name: guide-entry-arcane-server-rules
   text: "/ServerInfo/_Arcane/Guidebook/ServerRules/Ruleset.xml"
+  ruleEntry: true
   children:
   - ArcaneRule0
   - ArcaneRule1

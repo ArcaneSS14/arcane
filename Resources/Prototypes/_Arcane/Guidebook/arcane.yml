@@ -1,0 +1,9 @@
+- type: guideEntry
+  id: Arcane
+  name: guide-entry-arcane
+  text: "/ServerInfo/_Arcane/Guidebook/Arcane.xml"
+  priority: -1
+  children:
+  - ArcaneRuleset
+  - SpaceLaw
+  - SOP

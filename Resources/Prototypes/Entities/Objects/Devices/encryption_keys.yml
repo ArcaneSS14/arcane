@@ -169,6 +169,7 @@
     - Security
     - Service
     - Supply
+    - Legal # Arcane
     defaultChannel: Command
   - type: Sprite
     layers:

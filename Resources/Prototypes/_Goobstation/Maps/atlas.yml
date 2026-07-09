@@ -56,6 +56,10 @@
             #service
             StationAi: [ 1, 1 ]
             Captain: [ 1, 1 ]
+            # Arcane-start
+            Adjutant: [ 1, 1 ]
+            CommandMaid: [ 1, 1 ]
+            # Arcane-end
             NanotrasenRepresentative: [ 1, 1 ]
             BlueshieldOfficer: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
@@ -99,6 +103,7 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
+            IAA: [ 1, 1 ] # Arcane
             Lawyer: [ 1, 1 ]
 
         # Goobstation blob-config-start SMALL+

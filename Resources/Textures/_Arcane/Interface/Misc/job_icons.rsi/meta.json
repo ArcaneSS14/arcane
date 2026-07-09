@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Bulbo44kkey for Arcane Station SS14 | IAA made by FourHybra for Arcane Station SS14",
+  "size": {
+    "x": 8,
+    "y": 8
+  },
+  "states": [
+    {
+        "name": "Adjutant"
+    },
+    {
+        "name": "CommandMaid"
+    },
+    {
+        "name": "IAA"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+- type: loadout
+  id: CommandMaidJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformDressCommandMaid
+
+- type: loadout
+  id: CommandMaidJumpskirtMaidLong
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMaidLong
+
+- type: loadout
+  id: CommandMaidJumpskirtJanimaidmini
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaidmini
+
+- type: loadout
+  id: CommandMaidJumpskirtElegantMaid
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
+
+- type: loadout
+  id: CommandMaidJumpskirtJanimaid
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaid
+
+- type: loadout
+  id: CommandMaidJumpskirtMaidPink
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMaidPink
+
+- type: loadout
+  id: CommandMaidJumpskirtMaidBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMaidBlue
+
+- type: loadout
+  id: CommandMaidJumpskirtAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCommandMaid
+
+- type: loadout
+  id: CommandMaidJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformMajordomCommandMaid
+
+- type: loadout
+  id: CommandMaidBackpack
+  equipment:
+    back: ClothingBackpackCommandMaid
+
+- type: loadout
+  id: CommandMaidCap
+  equipment:
+    head: ClothingHeadHatCommandMaid
+
+- type: loadout
+  id: CommandMaidBowsCap
+  equipment:
+    head: ClothingHeadHatBowsCommandMaid
+
+- type: loadout
+  id: CommandMaidBlackCap
+  equipment:
+    head: ClothingHeadHatBlackCommandMaid
+
+- type: loadout
+  id: CommandMaidGloves
+  equipment:
+    gloves: ClothingHandsGlovesCommandMaid
+
+- type: loadout
+  id: CommandMaidShoes
+  equipment:
+    shoes: ClothingShoesBootsCommandMaid
+
+- type: loadout
+  id: CommandMaidShoesLaceup
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+
+- type: loadout
+  id: CommandMaidNeckBowTie
+  equipment:
+    neck: ClothingNeckTieBowCommandMaid
+
+- type: loadout
+  id: CommandMaidNeckShortTie
+  equipment:
+    neck: ClothingNeckShortTieCommandMaid
+
+- type: loadout
+  id: CommandMaidNeckMediumTie
+  equipment:
+    neck: ClothingNeckMediumTieCommandMaid

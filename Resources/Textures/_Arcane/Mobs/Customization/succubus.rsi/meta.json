@@ -10,6 +10,10 @@
         {
             "name": "succubus",
             "directions": 4
+        },
+        {
+            "name": "succubus_not_tail",
+            "directions": 4
         }
     ]
 }

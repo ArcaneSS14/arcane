@@ -1,0 +1,77 @@
+- type: guideEntry
+  id: SpaceLaw
+  name: guide-entry-space-law
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/SpaceLawIntro.xml"
+  children:
+    - SpaceLawTable
+    - Procedures
+
+- type: guideEntry
+  id: Procedures
+  name: guide-entry-space-law-laws-procedures
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Procedures.xml"
+
+- type: guideEntry
+  id: SpaceLawTable
+  name: guide-entry-space-law-table
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/SpaceLaw-Law_Table.xml"
+  children:
+    - SpaceLaw_Law-0
+    - SpaceLaw_Law-1
+    - SpaceLaw_Law-2
+    - SpaceLaw_Law-3
+    - SpaceLaw_Law-4
+    - SpaceLaw_Law-5
+    - SpaceLaw_Law-6
+    - SpaceLaw_Law-7
+
+- type: guideEntry
+  id: SpaceLaw_Law-0
+  name: guide-entry-space-law-laws-0
+  priority: 0
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T0.xml"
+
+- type: guideEntry
+  id: SpaceLaw_Law-1
+  name: guide-entry-space-law-laws-1
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T1.xml"
+
+- type: guideEntry
+  id: SpaceLaw_Law-2
+  name: guide-entry-space-law-laws-2
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T2.xml"
+
+- type: guideEntry
+  id: SpaceLaw_Law-3
+  name: guide-entry-space-law-laws-3
+  priority: 3
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T3.xml"
+
+- type: guideEntry
+  id: SpaceLaw_Law-4
+  name: guide-entry-space-law-laws-4
+  priority: 4
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T4.xml"
+
+- type: guideEntry
+  id: SpaceLaw_Law-5
+  name: guide-entry-space-law-laws-5
+  priority: 5
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T5.xml"
+
+- type: guideEntry
+  id: SpaceLaw_Law-6
+  name: guide-entry-space-law-laws-6
+  priority: 6
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T6.xml"
+
+- type: guideEntry
+  id: SpaceLaw_Law-7
+  name: guide-entry-space-law-laws-7
+  priority: 7
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T7.xml"

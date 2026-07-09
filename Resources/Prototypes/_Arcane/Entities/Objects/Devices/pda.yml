@@ -1,0 +1,91 @@
+- type: entity
+  parent: BasePDA
+  id: AdjutantPDA
+  name: adjutant PDA
+  description: It really lacks the camera monitor function.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: pda_base
+      color: "#23577e"
+    - state: pda_buttons
+    - state: pda_stripe_thick
+      color: "#ffffff"
+    - map: [ "enum.PdaVisualLayers.Screen" ]
+      state: pda_screen_borders
+    - state: light_overlay
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: unshaded
+      visible: false
+    - state: id_overlay
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: unshaded
+      visible: false
+    - state: "insert_overlay"
+      map: [ "enum.PdaVisualLayers.Pen" ]
+  - type: Pda
+    id: AdjutantIDCard
+  - type: PdaBorderColor
+    borderColor: "#23577e"
+    accentVColor: "#ffffff"
+
+- type: entity
+  parent: BasePDA
+  id: CommandMaidPDA
+  name: command maid PDA
+  description: It really lacks the camera monitor function.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: pda_base
+    - state: pda_buttons
+    - state: pda_commaid
+    - map: [ "enum.PdaVisualLayers.Screen" ]
+      state: pda_screen_borders
+    - state: light_overlay
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: unshaded
+      visible: false
+    - state: id_overlay
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: unshaded
+      visible: false
+    - state: "insert_overlay"
+      map: [ "enum.PdaVisualLayers.Pen" ]
+  - type: Pda
+    id: CommandMaidIDCard
+  - type: PdaBorderColor
+    borderColor: "#ff96f1"
+    accentVColor: "#302243"
+
+- type: entity
+  parent: BasePDA
+  id: IAAPDA
+  name: internal affairs agent PDA
+  description: Corporation and profit are best friends.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: pda_base
+      color: "#000000"
+    - state: pda_buttons
+    - state: pda_iaa
+    - map: [ "enum.PdaVisualLayers.Screen" ]
+      state: pda_screen_borders
+    - state: light_overlay
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: unshaded
+      visible: false
+    - state: id_overlay
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: unshaded
+      visible: false
+    - state: "insert_overlay"
+      map: [ "enum.PdaVisualLayers.Pen" ]
+  - type: Pda
+    id: IAAIDCard
+  - type: PdaBorderColor
+    borderColor: "#141414"
