@@ -1,0 +1,9 @@
+- type: loadout
+  id: BoomboxPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  storage:
+    back:
+    - HandledBoomBox

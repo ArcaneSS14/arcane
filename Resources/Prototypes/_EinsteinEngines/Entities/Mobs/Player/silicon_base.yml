@@ -22,7 +22,6 @@
   parent: [BaseMob, MobDamageable, MobCombat, MobAtmosExposed, MobFlammable]
   abstract: true
   components:
-    - type: TTS # Arcane
     - type: ContentEye
     - type: CameraRecoil
     - type: Reactive
@@ -365,3 +364,7 @@
     - type: CombatMode
       canDisarm: true
     - type: ExaminableCharacter # WWDP
+    # Arcane-start
+    - type: TTS
+    - type: DirectionalEmote
+    # Arcane-end

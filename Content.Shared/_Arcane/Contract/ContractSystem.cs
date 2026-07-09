@@ -52,9 +52,13 @@ public sealed partial class ContractSystem : EntitySystem
                 continue;
             }
 
-            paper.Content = paper.Content
-                .Replace("SIGN", MetaData(args.Mob).EntityName);
+            var signStamp = new StampDisplayInfo()
+            {
+                StampedName = MetaData(args.Mob).EntityName,
+                StampedColor = Color.DarkGray,
+            };
 
+            _paper.TryStamp((spawnedEntity, paper), signStamp, "paper_stamp-signature");
             _paper.TryStamp((spawnedEntity, paper), _stampInfo, "paper_stamp-centcom");
 
             _metadata.SetEntityName(spawnedEntity, Loc.GetString("contract-paper-name", ("number", _random.Next(1000000, 9999999))));

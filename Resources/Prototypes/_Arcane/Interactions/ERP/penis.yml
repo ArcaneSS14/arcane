@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: SuckCock
   category: Penis
-  name: Сосать член
   userArouse: 5
   targetArouse: 15
   range: 1
@@ -27,7 +26,6 @@
 - type: panelInteraction
   id: SlimeFuckCock
   category: Penis
-  name: Трахать член плазмой
   userArouse: 10
   targetArouse: 10
   range: 1
@@ -63,7 +61,6 @@
 - type: panelInteraction
   id: CockFap
   category: Penis
-  name: Подрочить член
   userArouse: 10
   targetArouse: 10
   range: 1
@@ -88,7 +85,6 @@
 - type: panelInteraction
   id: CockFootjob
   category: Penis
-  name: Подрочить член ногой
   targetArouse: 10
   range: 1
   sounds:
@@ -115,7 +111,6 @@
 - type: panelInteraction
   id: CockSwordmanship
   category: Penis
-  name: Фехтовать членами
   userArouse: 10
   targetArouse: 10
   range: 1
@@ -145,7 +140,6 @@
 - type: panelInteraction
   id: CockFapTail
   category: Penis
-  name: Подрочить член хвостом
   targetArouse: 10
   range: 1
   sounds:
@@ -173,7 +167,6 @@
 - type: panelInteraction
   id: CockFuckLegs
   category: Penis
-  name: Трахнуть член ляжками
   userArouse: 5
   targetArouse: 10
   range: 1
@@ -199,7 +192,6 @@
 - type: panelInteraction
   id: CockBlowjob
   category: Penis
-  name: Сделать минет
   userArouse: 5
   targetArouse: 20
   range: 1
@@ -232,7 +224,6 @@
 - type: panelInteraction
   id: CockNearAssTail
   category: Butt
-  name: Водить членом по попе с хвостом
   userArouse: 10
   targetArouse: 5
   range: 1
@@ -262,7 +253,6 @@
 - type: panelInteraction
   id: HairFaceFuck
   category: Mouth
-  name: Трахать в рот держа за волосы
   userArouse: 15
   targetArouse: 10
   range: 1
@@ -295,7 +285,6 @@
 - type: panelInteraction
   id: LegsCockFuckTail
   category: Penis
-  name: Трахать ляжками с хвостом
   userArouse: 5
   targetArouse: 10
   range: 1
@@ -326,7 +315,6 @@
 - type: panelInteraction
   id: HornsBlowjobF
   category: Head
-  name: Лизать рог
   targetArouse: 10
   range: 1
   sounds:

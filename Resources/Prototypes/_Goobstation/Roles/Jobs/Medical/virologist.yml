@@ -30,6 +30,10 @@
     components:
     - type: SurgerySpeedModifier
       speedModifier: 1.75
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentMedical
+  # Arcane-end
 
 
 - type: startingGear

@@ -198,10 +198,12 @@ using Content.Server.Voting.Managers;
 using Content.Server.Worldgen.Tools;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
+using Content.Shared._Arcane.Sponsor;
 using Content.Shared.Chat;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
+using Content.Server._Arcane.ERP.Preferences;
 
 namespace Content.Server.IoC
 {
@@ -252,6 +254,7 @@ namespace Content.Server.IoC
             IoCManager.Register<CVarControlManager>();
             IoCManager.Register<LastRolledAntagManager>(); // Goobstation - antag pity
             IoCManager.Register<LinkAccountManager>(); // RMC - Patreon
+            IoCManager.Register<ISharedSponsorManager, LinkAccountManager>();
             // Orion-Start
             IoCManager.Register<ServerProtectionAuditManager>();
             IoCManager.Register<ServerProtectionPunishmentSystem>();
@@ -259,6 +262,7 @@ namespace Content.Server.IoC
             IoCManager.Register<EmoteProtectionSystem>();
             IoCManager.Register<AdminActionProtectionSystem>();
             // Orion-End
+            IoCManager.Register<ErpOrganPreferencesManager>(); // Arcane-edit
             IoCManager.Register<TTSManager>(); // Art-TTS
             // Arcane-start
             IoCManager.Register<BanWebhooks>();

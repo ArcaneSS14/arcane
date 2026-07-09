@@ -392,7 +392,7 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
-  # - type: FootprintOwner Arcane
+  - type: FootprintOwner
   - type: Carriable # Goobstation
   - type: CPRTraining # Goobstation - Just give to everyone! This ain't MRP.
   - type: GrabIntent # wilted rose
@@ -514,3 +514,26 @@
         32:
           sprite: Mobs/Species/Vox/displacement.rsi
           state: hand_r
+  # Arcane-start: species-specific organ prototypes
+  - type: EroticOrgans
+    groinCommon:
+    - proto: OrganAnus
+      slot: anus
+    - proto: OrganButt
+      slot: butt
+    groinMale:
+    - proto: OrganPenisVox
+      slot: penis
+    - proto: OrganTesticles
+      slot: testicles
+    groinFemale:
+    - proto: OrganVagina
+      slot: vagina
+    - proto: OrganUterus
+      slot: uterus
+    chestFemale:
+    - proto: OrganBreastsHuman
+      slot: breasts
+    hideWhenFlaccid:
+    - penis
+  # Arcane-end

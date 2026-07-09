@@ -193,3 +193,26 @@
     species: Rodentia
   - type: Inventory
     speciesId: rodentia
+  # Arcane-start: species-specific organ prototypes
+  - type: EroticOrgans
+    groinCommon:
+    - proto: OrganAnus
+      slot: anus
+    - proto: OrganButt
+      slot: butt
+    groinMale:
+    - proto: OrganPenisRodentia
+      slot: penis
+    - proto: OrganTesticles
+      slot: testicles
+    groinFemale:
+    - proto: OrganVagina
+      slot: vagina
+    - proto: OrganUterus
+      slot: uterus
+    chestFemale:
+    - proto: OrganBreastsHuman
+      slot: breasts
+    hideWhenFlaccid:
+    - penis
+  # Arcane-end

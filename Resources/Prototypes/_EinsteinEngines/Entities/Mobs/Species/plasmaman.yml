@@ -90,7 +90,11 @@
     bloodMaxVolume: 0
   - type: Damageable
     damageModifierSet: Plasmaman
-
+  # Arcane-start: plasmamen need a separate ERP implementation later.
+  - type: ErpPanelOwner
+    enabled: false
+  - type: EroticOrgans
+  # Arcane-end
   - type: MeleeWeapon
     soundHit:
       collection: FirePunch

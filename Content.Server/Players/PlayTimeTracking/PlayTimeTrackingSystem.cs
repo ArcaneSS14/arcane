@@ -83,6 +83,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Server._RMC14.LinkAccount;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
@@ -91,6 +92,7 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Events;
+using Content.Shared._Arcane.Sponsor;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
@@ -121,6 +123,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
+    [Dependency] private readonly LinkAccountManager _linkManager = default!; // Arcane
 
     public override void Initialize()
     {
@@ -271,11 +274,23 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         ev.Jobs.UnionWith(GetDisallowedJobs(ev.Player));
     }
 
+    // Arcane-start
+    private bool HasFullRoleAccess(ICommonSession? player)
+    {
+        return player != null && ArcaneSponsorTiers.HasAllRoles(_linkManager.GetPatron(player)?.Tier?.Tier);
+    }
+    // Arcane-end
+
     public bool IsAllowed(ICommonSession player, string role)
     {
         if (!_prototypes.TryIndex<JobPrototype>(role, out var job) ||
             !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
+
+        // Arcane-sponsor-start
+        if (HasFullRoleAccess(player))
+            return true;
+        // Arcane-sponsor-end
 
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
         {
@@ -291,6 +306,11 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         var roles = new HashSet<ProtoId<JobPrototype>>();
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return roles;
+
+        // Arcane-sponsor-start
+        if (HasFullRoleAccess(player))
+            return roles;
+        // Arcane-sponsor-end
 
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
         {
@@ -313,6 +333,11 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             return;
 
         var player = _playerManager.GetSessionById(userId);
+        // Arcane-start
+        if (player == null || HasFullRoleAccess(player))
+            return;
+        // Arcane-end
+
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
         {
             // Sorry mate but your playtimes haven't loaded.

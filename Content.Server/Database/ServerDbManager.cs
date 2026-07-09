@@ -132,6 +132,11 @@ namespace Content.Server.Database
         // Single method for two operations for transaction.
         Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot);
         Task<PlayerPreferences?> GetPlayerPreferencesAsync(NetUserId userId, CancellationToken cancel);
+
+        // Arcane-Start
+        Task<string?> GetErpOrganPreferencesAsync(NetUserId userId, int slot);
+        Task SaveErpOrganPreferencesAsync(NetUserId userId, int slot, string data);
+        // Arcane-End
         #endregion
 
         #region User Ids
@@ -650,6 +655,20 @@ namespace Content.Server.Database
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetPlayerPreferencesAsync(userId, cancel));
         }
+
+        // Arcane-Start
+        public Task<string?> GetErpOrganPreferencesAsync(NetUserId userId, int slot)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetErpOrganPreferencesAsync(userId, slot));
+        }
+
+        public Task SaveErpOrganPreferencesAsync(NetUserId userId, int slot, string data)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SaveErpOrganPreferencesAsync(userId, slot, data));
+        }
+        // Arcane-End
 
         public Task AssignUserIdAsync(string name, NetUserId userId)
         {

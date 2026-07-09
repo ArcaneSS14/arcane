@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: BiteEars
   category: Ears
-  name: Укусить ухо
   messages:
   - кусает ухо $target!
   - покусывает ухо $target.
@@ -18,7 +17,6 @@
 - type: panelInteraction
   id: BiteEarsHuman
   category: Ears
-  name: Укусить ухо
   targetArouse: 3
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
@@ -36,7 +34,6 @@
 - type: panelInteraction
   id: EarsKiss
   category: Ears
-  name: Поцеловать в ухо
   targetArouse: 5
   sounds:
   - /Audio/_Arcane/Interactions/kiss1.ogg
@@ -56,7 +53,6 @@
 - type: panelInteraction
   id: PatEars
   category: Ears
-  name: Погладить ушки
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
   - /Audio/_Arcane/Interactions/friction2.ogg
@@ -81,7 +77,6 @@
 - type: panelInteraction
   id: PatEarsHuman
   category: Ears
-  name: Потеребить уши
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
   messages:

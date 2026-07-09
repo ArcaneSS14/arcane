@@ -20,6 +20,10 @@
   - Research
   - Maintenance
   - Robotics
+  # Arcane-start
+  contracts:
+  - DocumentContractEmploymentRnd
+  # Arcane-end
 
 - type: startingGear
   id: RoboticistGear

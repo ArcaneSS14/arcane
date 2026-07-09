@@ -145,9 +145,11 @@ using Content.Shared.Administration.Logs;
 using Content.Client.Lobby;
 using Content.Client.Players.RateLimiting;
 using Content.Shared.Administration.Managers;
+using Content.Shared._Arcane.Sponsor;
 using Content.Shared.Chat;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
+using Content.Client._Arcane.ERP.Preferences;
 
 namespace Content.Client.IoC
 {
@@ -185,7 +187,9 @@ namespace Content.Client.IoC
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             collection.Register<TitleWindowManager>();
             collection.Register<LinkAccountManager>(); // RMC14
+            collection.Register<ISharedSponsorManager, LinkAccountManager>();
             collection.Register<ClientsidePlaytimeTrackingManager>();
+            collection.Register<ClientErpOrganPreferencesManager>(); // Arcane-edit
         }
     }
 }

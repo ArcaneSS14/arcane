@@ -8,6 +8,23 @@
     removable: false
 
 # Universal (all sexes)
+# External — shows in health scanner.
+- type: entity
+  id: OrganButt
+  parent: BaseEroticOrgan
+  name: butt
+  description: A pair of buttocks.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Mobs/Organs/anus.rsi
+    state: default
+  - type: Organ
+    slotId: butt
+    removable: false
+  - type: EroticOrgan
+    sensitivity: 0.9
+  - type: ButtOrgan
+
 # Internal muscle — no integrity display in health scanner.
 - type: entity
   id: OrganAnus
@@ -16,7 +33,7 @@
   description: An internal sphincter muscle.
   components:
   - type: Sprite
-    sprite: _Arcane/Mobs/organs/anus.rsi
+    sprite: _Arcane/Mobs/Organs/anus.rsi
     state: default
   - type: Organ
     slotId: anus
@@ -26,15 +43,16 @@
   - type: AnusOrgan
 
 # Male / Futanari
-# External organ — shows in health scanner.
+# Abstract base — each species references its own concrete organ.
 - type: entity
   id: OrganPenis
   parent: BaseEroticOrgan
+  abstract: true
   name: penis
   description: A male genital organ.
   components:
   - type: Sprite
-    sprite: _Arcane/Mobs/organs/penis.rsi
+    sprite: _Arcane/Mobs/Organs/penis.rsi
     state: default
   - type: Organ
     intCap: 15
@@ -47,7 +65,51 @@
     removable: false
   - type: EroticOrgan
     sensitivity: 1.5
+    editorVisible: true
+    editorMaxSize: 1
   - type: PenisOrgan
+
+- type: entity
+  id: OrganPenisHuman
+  parent: OrganPenis
+
+- type: entity
+  id: OrganPenisReptilian
+  parent: OrganPenis
+
+- type: entity
+  id: OrganPenisDiona
+  parent: OrganPenis
+
+- type: entity
+  id: OrganPenisVox
+  parent: OrganPenis
+
+- type: entity
+  id: OrganPenisRodentia
+  parent: OrganPenis
+
+- type: entity
+  id: OrganPenisVulpkanin
+  parent: OrganPenis
+
+- type: entity
+  id: OrganPenisTajaran
+  parent: OrganPenis
+
+- type: entity
+  id: OrganPenisResomi
+  parent: OrganPenis
+
+- type: entity
+  id: OrganPenisHumanoidXeno
+  parent: OrganPenis
+  name: xenomorph penis
+  description: A xenomorph genital organ.
+  components:
+  - type: EroticOrgan
+    editorVisible: true
+    editorMaxSize: 5
 
 # Internal gonads — no integrity display in health scanner.
 - type: entity
@@ -57,7 +119,7 @@
   description: Male gonads.
   components:
   - type: Sprite
-    sprite: _Arcane/Mobs/organs/testicles.rsi
+    sprite: _Arcane/Mobs/Organs/testicles.rsi
     state: default
   - type: Organ
     slotId: testicles
@@ -75,13 +137,15 @@
   description: A female genital organ.
   components:
   - type: Sprite
-    sprite: _Arcane/Mobs/organs/vagina.rsi
+    sprite: _Arcane/Mobs/Organs/vagina.rsi
     state: default
   - type: Organ
     slotId: vagina
     removable: false
   - type: EroticOrgan
     sensitivity: 1.5
+    editorVisible: true
+    editorVariants: [human, gaping, hairy, spade]
   - type: VaginaOrgan
 
 # Deeply internal — no integrity display in health scanner.
@@ -92,7 +156,7 @@
   description: A female reproductive organ.
   components:
   - type: Sprite
-    sprite: _Arcane/Mobs/organs/uterus.rsi
+    sprite: _Arcane/Mobs/Organs/uterus.rsi
     state: default
   - type: Organ
     slotId: uterus
@@ -101,15 +165,16 @@
     sensitivity: 0.8
   - type: UterusOrgan
 
-# External tissue — shows in health scanner.
+# Abstract base — each species references its own concrete organ.
 - type: entity
   id: OrganBreasts
   parent: BaseEroticOrgan
+  abstract: true
   name: breasts
   description: Mammary glands.
   components:
   - type: Sprite
-    sprite: _Arcane/Mobs/organs/breasts.rsi
+    sprite: _Arcane/Mobs/Organs/breasts.rsi
     state: default
   - type: Organ
     intCap: 15
@@ -122,4 +187,20 @@
     removable: false
   - type: EroticOrgan
     sensitivity: 1.1
+    editorVisible: true
+    editorMaxSize: 4
   - type: BreastsOrgan
+
+- type: entity
+  id: OrganBreastsHuman
+  parent: OrganBreasts
+
+- type: entity
+  id: OrganBreastsHumanoidXeno
+  parent: OrganBreasts
+  name: xenomorph breasts
+  description: Xenomorph mammary glands.
+  components:
+  - type: EroticOrgan
+    editorVisible: true
+    editorMaxSize: 3

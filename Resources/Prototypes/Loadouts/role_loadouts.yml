@@ -128,6 +128,7 @@
   - CaptainGloves # Orion
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -154,6 +155,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -195,6 +197,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -219,6 +222,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -241,6 +245,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -266,6 +271,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -288,6 +294,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -311,6 +318,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -337,6 +345,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -362,6 +371,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - JanitorPlunger
   - Animals
   - GroupSpeciesBreathTool
@@ -387,6 +397,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -413,6 +424,7 @@
   - Glasses
   - SurvivalClown
   - Trinkets
+  - Patron # Arcane
   - Animals
   # Goobstation - EE Plasmeme Change.
   - ClownEnvirohelm
@@ -439,6 +451,7 @@
   - Glasses
   - SurvivalMime
   - Trinkets
+  - Patron # Arcane
   - Animals
   # Goobstation - EE Plasmeme Change.
   - MimeEnvirohelm
@@ -462,6 +475,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Instruments
   - Animals
   - GroupSpeciesBreathTool
@@ -490,6 +504,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -515,6 +530,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -540,6 +556,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -567,6 +584,7 @@
   - ChiefEngineerShoes
   - SurvivalExtended
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -588,6 +606,7 @@
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -614,6 +633,7 @@
   - StationEngineerID
   - SurvivalExtended
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -639,6 +659,7 @@
   - AtmosphericTechnicianShoes
   - SurvivalExtended
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -667,6 +688,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -695,6 +717,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -717,6 +740,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -745,6 +769,7 @@
   - HeadofSecurityShoes # Goobstation edit
   - SurvivalSecurity
   - Trinkets
+  - Patron # Arcane
   - SecurityStar
   - Animals
   - GroupSpeciesBreathToolSecurity
@@ -774,6 +799,7 @@
   - SecurityShoes
   - SurvivalSecurity
   - Trinkets
+  - Patron # Arcane
   - SecurityStar
   - Animals
   - GroupSpeciesBreathToolSecurity
@@ -803,6 +829,7 @@
   - SecurityBelt
   - SurvivalSecurity
   - Trinkets
+  - Patron # Arcane
   - SecurityStar
   - Animals
   - GroupSpeciesBreathToolSecurity
@@ -828,6 +855,7 @@
   - SecurityShoes
   - SurvivalSecurity
   - Trinkets
+  - Patron # Arcane
   - SecurityStar
   - Animals
   - GroupSpeciesBreathToolSecurity
@@ -853,6 +881,7 @@
   - SecurityNeck
   - SecurityOuterClothing # Goobstation - Why not.
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathToolSecurity
   # Goobstation - EE Plasmeme Change.
@@ -883,6 +912,7 @@
 #  - MedicalEyewear # Orion-Edit: Replaced
   - SurvivalMedical
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathToolMedical
   # Goobstation - EE Plasmeme Change.
@@ -911,6 +941,7 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathToolMedical
   # Goobstation - EE Plasmeme Change.
@@ -933,6 +964,7 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathToolMedical
   # Goobstation - EE Plasmeme Change.
@@ -959,6 +991,7 @@
   - MedicalShoes
   - SurvivalMedical
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathToolMedical
   # Goobstation - EE Plasmeme Change.
@@ -986,6 +1019,7 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathToolMedical
   # Goobstation - EE Plasmeme Change.
@@ -1010,6 +1044,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -1033,6 +1068,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -1055,6 +1091,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -1078,6 +1115,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.

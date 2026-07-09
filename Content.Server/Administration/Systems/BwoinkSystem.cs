@@ -121,6 +121,7 @@ using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Content.Goobstation.Common.CCVar;
+using Content.Server._RMC14.LinkAccount;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Database;
@@ -128,6 +129,7 @@ using Content.Server.Discord;
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
+using Content.Shared._Arcane.Sponsor;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -163,6 +165,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly IBanManager _banManager = default!; // Orion
+        [Dependency] private readonly LinkAccountManager _linkManager = default!; // Arcane
 
         [GeneratedRegex(@"^https://(?:(?:canary|ptb)\.)?discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -850,6 +853,12 @@ namespace Content.Server.Administration.Systems
 
             if (_config.GetCVar(GoobCVars.UseDiscordRoleColor) && bwoinkParams.RoleColor is not null)
                 adminColor = bwoinkParams.RoleColor;
+
+            // Arcane-start
+            var tier = _linkManager.GetPatron(bwoinkParams.SenderId)?.Tier;
+            if (tier != null)
+                bwoinkText = $"[color={ArcaneSponsorTiers.GetOocColor(tier.Tier)}]{bwoinkParams.SenderName}[/color]";
+            // Arcane-end
 
             if (!bwoinkParams.FromWebhook
                 && _config.GetCVar(GoobCVars.UseAdminOOCColorInBwoinks)

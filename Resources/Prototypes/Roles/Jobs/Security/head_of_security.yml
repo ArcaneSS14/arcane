@@ -193,7 +193,7 @@
       - type: SecurityStaff # goobstation
   # Arcane-start
   contracts:
-  - DocumentContractEmploymentSecurity
+  - DocumentContractEmploymentCommand
   # Arcane-end
 
 - type: startingGear

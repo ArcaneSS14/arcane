@@ -53,6 +53,7 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: HumanoidXenomorph
+  - type: BlockInjection
   - type: NightVision
     color: "#44944A"
     toggleAction: ToggleNightVision
@@ -135,6 +136,29 @@
     species: HumanoidXeno
     permanentlyHidden:
     - Eyes
+  # Arcane-start: xenos have a species-specific ERP organ set.
+  - type: EroticOrgans
+    groinCommon:
+    - proto: OrganAnus
+      slot: anus
+    - proto: OrganButt
+      slot: butt
+    groinMale:
+    - proto: OrganPenisHumanoidXeno
+      slot: penis
+    - proto: OrganTesticles
+      slot: testicles
+    groinFemale:
+    - proto: OrganVagina
+      slot: vagina
+    - proto: OrganUterus
+      slot: uterus
+    chestFemale:
+    - proto: OrganBreastsHumanoidXeno
+      slot: breasts
+    hideWhenFlaccid:
+    - penis
+  # Arcane-end
   - type: LanguageKnowledge
     speaks:
     - TauCetiBasic
@@ -212,6 +236,29 @@
             state: shoes
   - type: Body
     prototype: HumanoidXeno
+  # Arcane-start: species-specific organ prototypes
+  - type: EroticOrgans
+    groinCommon:
+    - proto: OrganAnus
+      slot: anus
+    - proto: OrganButt
+      slot: butt
+    groinMale:
+    - proto: OrganPenisHumanoidXeno
+      slot: penis
+    - proto: OrganTesticles
+      slot: testicles
+    groinFemale:
+    - proto: OrganVagina
+      slot: vagina
+    - proto: OrganUterus
+      slot: uterus
+    chestFemale:
+    - proto: OrganBreastsHumanoidXeno
+      slot: breasts
+    hideWhenFlaccid:
+    - penis
+  # Arcane-end
 
 - type: entity
   parent: BaseMobHumanoidXeno

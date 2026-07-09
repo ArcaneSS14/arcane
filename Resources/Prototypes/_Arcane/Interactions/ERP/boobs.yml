@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: BoobsSlap
   category: Boobs
-  name: Шлёпнуть по груди
   userArouse: 5
   range: 1
   sounds:
@@ -26,7 +25,6 @@
 - type: panelInteraction
   id: BoobsPaw
   category: Boobs
-  name: Погладить по груди
   userArouse: 5
   range: 1
   sounds:
@@ -48,7 +46,6 @@
 - type: panelInteraction
   id: BoobsFuck
   category: Boobs
-  name: Трахать грудь
   userArouse: 10
   targetArouse: 5
   range: 1
@@ -75,11 +72,11 @@
   - !type:EroticOrganRequirement
     organ: penis
     requireVisible: true
+  - !type:ArousalRequirement
 
 - type: panelInteraction
   id: BoobsSqueeze
   category: Boobs
-  name: Сжать грудь
   userArouse: 5
   range: 1
   sounds:
@@ -102,7 +99,6 @@
 - type: panelInteraction
   id: BoobsKisses
   category: Boobs
-  name: Расцеловать грудь
   userArouse: 5
   targetArouse: 5
   range: 1
@@ -131,7 +127,6 @@
 - type: panelInteraction
   id: BoobsTail
   category: Boobs
-  name: Ласкать грудь хвостом
   targetArouse: 5
   range: 1
   sounds:
@@ -163,7 +158,6 @@
 - type: panelInteraction
   id: BoobsMassage
   category: Boobs
-  name: Массировать грудь
   userArouse: 5
   targetArouse: 5
   range: 1
@@ -186,7 +180,6 @@
 - type: panelInteraction
   id: BoobsSuck
   category: Boobs
-  name: Сосать сосок
   userArouse: 5
   targetArouse: 10
   range: 1

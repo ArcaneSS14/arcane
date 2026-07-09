@@ -178,7 +178,7 @@
       - type: EngineeringStaff # Goobstation
   # Arcane-start
   contracts:
-  - DocumentContractEmploymentEngineering
+  - DocumentContractEmploymentCommand
   # Arcane-end
 
 - type: startingGear

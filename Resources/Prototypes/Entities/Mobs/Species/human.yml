@@ -152,25 +152,6 @@
             state: jumpsuit-female
   - type: Sprinter # Goob Change: human major
     staminaDrainRate: 8
-  # Arcane-start
-  - type: EroticOrgans
-    groinCommon:
-    - proto: OrganAnus
-      slot: anus
-    groinMale:
-    - proto: OrganPenis
-      slot: penis
-    - proto: OrganTesticles
-      slot: testicles
-    groinFemale:
-    - proto: OrganVagina
-      slot: vagina
-    - proto: OrganUterus
-      slot: uterus
-    chestFemale:
-    - proto: OrganBreasts
-      slot: breasts
-  # Arcane-end
 
 
 - type: entity

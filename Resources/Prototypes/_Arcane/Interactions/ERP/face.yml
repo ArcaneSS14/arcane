@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: CheeksKiss
   category: Face
-  name: Поцеловать в щёку
   targetArouse: 3
   sounds:
   - /Audio/_Arcane/Interactions/kiss1.ogg
@@ -19,7 +18,6 @@
 - type: panelInteraction
   id: CheeksKissBoth
   category: Face
-  name: Поцеловать в обе щёки
   targetArouse: 5
   sounds:
   - /Audio/_Arcane/Interactions/kiss1.ogg
@@ -37,7 +35,6 @@
 - type: panelInteraction
   id: CheeksPat
   category: Face
-  name: Похлопать по щекам
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
   - /Audio/_Arcane/Interactions/pat2.ogg
@@ -52,7 +49,6 @@
 - type: panelInteraction
   id: CheeksPress
   category: Face
-  name: Сжать щёки
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
   messages:
@@ -66,7 +62,6 @@
 - type: panelInteraction
   id: GentleKiss
   category: Face
-  name: Нежный поцелуй
   userArouse: 3
   targetArouse: 5
   sounds:
@@ -89,7 +84,6 @@
 - type: panelInteraction
   id: KissLips
   category: Face
-  name: Страстный поцелуй
   userArouse: 5
   targetArouse: 10
   sounds:
@@ -111,7 +105,6 @@
 - type: panelInteraction
   id: FaceRubCat
   category: Face
-  name: Потереться мордочкой о лицо
   targetArouse: 3
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
@@ -136,7 +129,6 @@
 - type: panelInteraction
   id: FaceSitting
   category: Face
-  name: Сесть лицом
   userArouse: 10
   targetArouse: 10
   sounds:
@@ -154,11 +146,11 @@
   - !type:EroticOrganRequirement
     organ: vagina
     requireVisible: true
+  - !type:ArousalRequirement
 
 - type: panelInteraction
   id: FaceDickSlap
   category: Face
-  name: Шлёпнуть членом по лицу
   userArouse: 10
   targetArouse: 3
   sounds:
@@ -178,11 +170,11 @@
   - !type:EroticOrganRequirement
     organ: penis
     requireVisible: true
+  - !type:ArousalRequirement
 
 - type: panelInteraction
   id: LegsSqueezeface
   category: Face
-  name: Сдавить лицо ляжками
   userArouse: 10
   targetArouse: 5
   sounds:
@@ -201,7 +193,6 @@
 - type: panelInteraction
   id: Mewing
   category: Face
-  name: Замяукать в лицо
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
   messages:

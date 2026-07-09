@@ -122,6 +122,18 @@ public sealed partial class CuffableComponent : Component
 
     [DataField]
     public ProtoId<AlertPrototype> CuffedAlert = "Handcuffed";
+
+    // Arcane-start
+    /// <summary>
+    /// The last time they tried to self remove cuff.
+    /// </summary>
+    public TimeSpan LastSelfUncuffTry = TimeSpan.MinValue;
+
+    /// <summary>
+    /// Recharge time for self-remove cuff.
+    /// </summary>
+    public TimeSpan SelfUncuffDelay = TimeSpan.FromMinutes(3);
+    // Arcane-end
 }
 
 public sealed partial class RemoveCuffsAlertEvent : BaseAlertEvent;

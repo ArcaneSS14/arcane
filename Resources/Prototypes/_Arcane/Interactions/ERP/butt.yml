@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: ButtNearCock
   category: Butt
-  name: Водить член по ягодицам
   userArouse: 10
   targetArouse: 5
   range: 1
@@ -21,11 +20,11 @@
   - !type:EroticOrganRequirement
     organ: penis
     requireVisible: true
+  - !type:ArousalRequirement
 
 - type: panelInteraction
   id: ButtMassage
   category: Butt
-  name: Массировать попку
   targetArouse: 5
   range: 1
   sounds:
@@ -45,7 +44,6 @@
 - type: panelInteraction
   id: ButtTail
   category: Butt
-  name: Гладить попу хвостом
   targetArouse: 5
   range: 1
   sounds:
@@ -73,7 +71,6 @@
 - type: panelInteraction
   id: HandsOnButt
   category: Butt
-  name: Схватить за попку
   userArouse: 5
   range: 1
   sounds:
@@ -92,7 +89,6 @@
 - type: panelInteraction
   id: KissButt
   category: Butt
-  name: Поцеловать попку
   targetArouse: 5
   range: 1
   sounds:
@@ -112,7 +108,6 @@
 - type: panelInteraction
   id: SlapButt
   category: Butt
-  name: Шлёпнуть по попе
   userArouse: 5
   range: 1
   sounds:
@@ -134,7 +129,6 @@
 - type: panelInteraction
   id: HornsAssF
   category: Butt
-  name: Водить рогом по попе
   userArouse: 5
   targetArouse: 10
   range: 1

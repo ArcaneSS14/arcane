@@ -219,6 +219,12 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     {
         reason = null;
 
+        // Arcane-start
+        var player = _playerManager.LocalSession;
+        if (player != null && _linkAccount.Tier != null && ArcaneSponsorTiers.HasAllRoles(_linkAccount.Tier.Tier))
+            return true;
+        // Arcane-end
+
         if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 

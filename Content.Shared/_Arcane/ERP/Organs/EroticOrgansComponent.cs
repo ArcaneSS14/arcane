@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Arcane.ERP.Organs;
 
@@ -28,6 +28,20 @@ public sealed partial class EroticOrgansComponent : Component
     /// </summary>
     [DataField]
     public List<EroticOrganEntry> ChestFemale = [];
+
+    /// <summary>
+    /// Organ slots hidden when not aroused. Visual layer only shows during arousal.
+    /// Used for species with retracted or cloaca-concealed genitals (e.g. xenos).
+    /// </summary>
+    [DataField]
+    public HashSet<string> HideWhenFlaccid = [];
+
+    /// <summary>
+    /// Default visual variant per organ slot, applied when the player has no saved preference.
+    /// Key = slot id (e.g. "penis"), value = variant name (e.g. "hemi").
+    /// </summary>
+    [DataField]
+    public Dictionary<string, string> DefaultVariants = [];
 }
 
 [DataDefinition]

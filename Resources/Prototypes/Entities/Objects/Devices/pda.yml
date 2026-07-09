@@ -1957,7 +1957,7 @@
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
   - type: Pda
-    id: CBURNIDcard
+    id: CBURNIDCard # Arcane-Edit
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentHColor: "#447987"

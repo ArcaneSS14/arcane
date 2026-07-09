@@ -1,0 +1,14 @@
+- type: entity
+  abstract: true
+  name: rotting abstract
+  id: FoodRotting
+  components:
+  - type: FoodRotting
+    stageDurations: [7m, 3m, 3m, 3m]
+    puddleReagent: Mold
+    puddleAmount: 1
+    baseColor: "#FFFFFFFF"
+    stageColors:
+      - "#aaa3a3"
+      - "#616d3e"
+      - "#444129"

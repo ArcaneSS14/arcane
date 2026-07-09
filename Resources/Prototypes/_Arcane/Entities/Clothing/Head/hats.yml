@@ -1,0 +1,21 @@
+- type: entity
+  parent: ClothingHeadHatCentcom
+  id: ClothingHatBeretBlueShield
+  name: “Blue Shield” Officer's Beret
+  description: A beret designed for “Blue Shield” employees.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/blueshieldhatberet.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/blueshieldhatberet.rsi
+
+- type: entity
+  parent: ClothingHeadHatCentcom
+  id: ClothingHatCapBlueShield
+  name: “Blue Shield” Officer's Cap
+  description: A cap designed for “Blue Shield” employees.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/blueshieldhatcap.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/blueshieldhatcap.rsi

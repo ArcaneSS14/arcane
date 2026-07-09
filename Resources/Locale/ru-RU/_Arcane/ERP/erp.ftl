@@ -1,4 +1,5 @@
-﻿humanoid-profile-editor-erp-preference-label = ERP
+humanoid-profile-editor-erp-preference-label = ERP
+humanoid-profile-editor-erp-tab = ERP
 humanoid-profile-editor-erp-preference-yes = Да
 humanoid-profile-editor-erp-preference-ask = Спрашивать
 humanoid-profile-editor-erp-preference-no = Отключено

@@ -515,6 +515,7 @@
   # Arcane-start
   - type: ErpPanelOwner
   - type: TTS
+  - type: DirectionalEmote
   # Arcane-end
 
 - type: entity
@@ -592,7 +593,7 @@
   - type: GrabIntent
   - type: Grabbable
   - type: Carriable
-  # - type: FootprintOwner Arcane
+  - type: FootprintOwner
   - type: CPRTraining # Goobstation - Just give to everyone! This ain't MRP.
   - type: BloodstreamAffectedByMass # Goobstation: port EE height/width sliders. Also, lol at the comment above.
     power: 0.6
@@ -612,8 +613,10 @@
     groinCommon:
     - proto: OrganAnus
       slot: anus
+    - proto: OrganButt
+      slot: butt
     groinMale:
-    - proto: OrganPenis
+    - proto: OrganPenisHuman
       slot: penis
     - proto: OrganTesticles
       slot: testicles
@@ -623,7 +626,7 @@
     - proto: OrganUterus
       slot: uterus
     chestFemale:
-    - proto: OrganBreasts
+    - proto: OrganBreastsHuman
       slot: breasts
   # Arcane-end
 

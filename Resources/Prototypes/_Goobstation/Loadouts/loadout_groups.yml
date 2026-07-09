@@ -982,6 +982,11 @@
   - BlueshieldOfficerBeret
   - BlueshieldOfficerHeadCowboy
   - BlueshieldOfficerGoidaHelmet
+  # Arcane-Start
+  - BlueshieldOfficerBeretCap
+  - BlueshieldOfficerHatCap
+  # Arcane-End
+
 
 - type: loadoutGroup
   id: BlueshieldOfficerBackpack
@@ -999,6 +1004,11 @@
   - BlueshieldOfficerInnerBlueshieldSuit
   - BlueshieldOfficerInnerBlueshieldSkirt
   - BlueshieldOfficerInnerBlueshieldShirt
+  # Arcane-Start
+  - BlueShieldOfficerCommonUniform
+  - BlueShieldOfficerCeremonialUniform
+  - BlueShieldOfficerCommonJumpskirt
+  # Arcane-End
 
 - type: loadoutGroup
   id: BlueshieldOfficerOuter
@@ -1015,6 +1025,7 @@
   minLimit: 0
   loadouts:
   - BlueshieldOfficerOuterBlueshieldMantle
+  - BlueShieldOfficerCape # Arcane Edit
   - BlueshieldOfficerEnsemble
 
 - type: loadoutGroup

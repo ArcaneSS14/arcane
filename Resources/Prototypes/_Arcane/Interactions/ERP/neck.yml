@@ -1,7 +1,6 @@
 - type: panelInteraction
   id: BiteNeck
   category: Neck
-  name: Укусить шею
   messages:
   - вцепляется зубами в шею $target!
   - оставляет болезненный укус на шее $target.
@@ -18,7 +17,6 @@
 - type: panelInteraction
   id: LickNeck
   category: Neck
-  name: Облизать шею
   targetArouse: 3
   messages:
   - едва касаясь кожи, проводит языком вдоль шеи $target.
@@ -38,7 +36,6 @@
 - type: panelInteraction
   id: KissNeck
   category: Neck
-  name: Поцеловать шею
   targetArouse: 3
   messages:
   - мягко прижимается губами к шее $target.
@@ -58,7 +55,6 @@
 - type: panelInteraction
   id: ShoulderMassage
   category: Shoulders
-  name: Помассировать плечи
   messages:
   - мягко разминает плечи $target.
   - осторожно массирует напряжённые плечи $target.
@@ -81,7 +77,6 @@
 - type: panelInteraction
   id: NuzzleNeck
   category: Neck
-  name: Уткнуться в шею
   targetArouse: 3
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
@@ -98,7 +93,6 @@
 - type: panelInteraction
   id: NuzzleNeckVulpa
   category: Neck
-  name: Ткнуться мордочкой в шею
   targetArouse: 3
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
@@ -123,7 +117,6 @@
 - type: panelInteraction
   id: BlowSlap
   category: Face
-  name: Дать пощёчину
   sounds:
   - /Audio/_Arcane/Interactions/bang1.ogg
   - /Audio/_Arcane/Interactions/bang2.ogg

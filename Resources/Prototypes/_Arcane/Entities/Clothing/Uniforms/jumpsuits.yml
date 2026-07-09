@@ -1,0 +1,21 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBlueShieldCommon
+  name: “Blue Shield” Special Uniform
+  description: Special uniforms designed for “Blue Shield” officers
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuits/blueshieldcommonuniform.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuits/blueshieldcommonuniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBlueShieldCeremonial
+  name: “Blue Shield” Ceremonial Uniform
+  description: Ceremonial uniforms designed for “Blue Shield” officers
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuits/blueshieldceremonialuniform.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuits/blueshieldceremonialuniform.rsi

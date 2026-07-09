@@ -34,7 +34,6 @@ public sealed class EconomyCardSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private static readonly ProtoId<StackPrototype> HolochipStackId = "CreditHolochip";
-    private static readonly ProtoId<StackPrototype> CreditStackId = "Credit";
 
     private float _uiRefreshAccumulator;
     private readonly Dictionary<EntityUid, string> _openUiAccounts = new();
@@ -241,7 +240,7 @@ public sealed class EconomyCardSystem : EntitySystem
         if (!TryComp(args.Used, out StackComponent? usedStack) || usedStack.Count <= 0)
             return;
 
-        if (usedStack.StackTypeId != HolochipStackId && usedStack.StackTypeId != CreditStackId)
+        if (usedStack.StackTypeId != HolochipStackId)
             return;
 
         args.Handled = TryDepositStackToCard(ent, args.User, args.Used, usedStack);
@@ -255,7 +254,7 @@ public sealed class EconomyCardSystem : EntitySystem
         if (!TryComp(target, out StackComponent? targetStack) || targetStack.Count <= 0)
             return;
 
-        if (targetStack.StackTypeId != HolochipStackId && targetStack.StackTypeId != CreditStackId)
+        if (targetStack.StackTypeId != HolochipStackId)
             return;
 
         args.Handled = TryDepositStackToCard(ent, args.User, target, targetStack);

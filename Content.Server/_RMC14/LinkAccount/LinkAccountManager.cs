@@ -46,7 +46,7 @@ using Color = System.Drawing.Color;
 
 namespace Content.Server._RMC14.LinkAccount;
 
-public sealed class LinkAccountManager : IPostInjectInit
+public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
 {
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -375,6 +375,11 @@ public sealed class LinkAccountManager : IPostInjectInit
     public SharedRMCPatronFull? GetPatron(ICommonSession player)
     {
         return GetPatron(player.UserId);
+    }
+
+    public bool HasSponsor(ICommonSession player, string? tier = null)
+    {
+        return ArcaneSponsorTiers.HasTier(GetPatron(player)?.Tier?.Tier, tier);
     }
 
     public SharedRMCPatronFull? GetPatron(NetUserId userId)

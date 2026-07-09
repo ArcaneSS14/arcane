@@ -16,6 +16,16 @@ public static class ArcaneSponsorTiers
         return tier == Tier2;
     }
 
+    public static bool HasTier(string? currentTier, string? requiredTier)
+    {
+        if (currentTier == null)
+            return false;
+
+        return requiredTier == null ||
+               currentTier == requiredTier ||
+               HasAllRoles(currentTier);
+    }
+
     public static string GetOocColor(string? tier)
     {
         return tier switch
