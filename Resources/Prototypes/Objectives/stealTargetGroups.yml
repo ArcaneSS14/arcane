@@ -186,6 +186,15 @@
     sprite: Objects/Tools/lantern.rsi
     state: lantern
 
+# Arcane-Start
+- type: stealTargetGroup
+  id: AuthenticSpaceCash
+  name: steal-target-groups-space-cash-authentic
+  sprite:
+    sprite: Objects/Economy/cash.rsi
+    state: cash
+# Arcane-End
+
 - type: stealTargetGroup #Goobstation
   id: Battery
   name: steal-target-groups-battery
