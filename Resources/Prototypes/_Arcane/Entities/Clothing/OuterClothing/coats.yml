@@ -10,7 +10,7 @@
     sprite: _Arcane/Clothing/OuterClothing/Sponsor/leather_coat.rsi
 
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabEasy
   name: easy lab coat
   description: A suit that protects against minor chemical spills.
@@ -31,7 +31,7 @@
         Caustic: 0.65
 
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabBelts
   name: lab coat with belts
   description: A suit that protects against minor chemical spills. Has some black belts on chest.
@@ -52,7 +52,7 @@
         Caustic: 0.65
 
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabBlack
   name: black lab coat
   description: Black suit that protects against minor chemical spills.
@@ -73,7 +73,7 @@
         Caustic: 0.65
 
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabEnlightenment
   name: enlightenment lab coat
   description: Word "bacchus" and word "death" means same for you.
@@ -94,7 +94,7 @@
         Caustic: 0.65
 
 - type: entity
-  parent: ClothingOuterBaseToggleable
+  parent: ClothingOuterBase
   id: ClothingOuterApostolCoat
   name: apostol coat
   description: Heed the voice of my prayer when I call upon You.
