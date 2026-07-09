@@ -107,8 +107,10 @@
       collection: Warble
     Wurble:
       collection: Wurble
-    Mars: # Arcane
+    # Arcanestart
+    Mars:
       collection: Mars
+    # Arcane-end
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
 
