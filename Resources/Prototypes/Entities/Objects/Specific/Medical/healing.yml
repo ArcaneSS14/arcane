@@ -574,7 +574,8 @@
     # Arcane-Start
     baseLayer: base
     layerStates:
-    - cream 
+    - cream
+    - cream
   - type: Healing
     damage:
       types:
