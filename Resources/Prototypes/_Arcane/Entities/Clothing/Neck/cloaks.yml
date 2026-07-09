@@ -18,15 +18,6 @@
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingCloakCETricolor
-  name: CE's tricolor cloak
-  description: Green stripe? Looks exquisitely.
-  components:
-  - type: Sprite
-    sprite: _Arcane/Clothing/Neck/Sponsor/CE_white_cloak.rsi
-
-- type: entity
-  parent: ClothingNeckBase
   id: ClothingCloakCMOHonorable
   name: CMO's honorable cloak
   description: Only the most experienced doctor can get this.

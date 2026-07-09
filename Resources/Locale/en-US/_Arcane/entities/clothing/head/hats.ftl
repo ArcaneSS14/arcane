@@ -1,0 +1,12 @@
+ent-ClothingHatCEBlackBeret = CE's black beret
+    .desc = CE's black beret.
+ent-ClothingHatClownPink = pink clown hat
+    .desc = Pink clown hat.
+ent-ClothingHatCMO = CMO's hat
+    .desc = CMO's hat.
+ent-ClothingHatHOSCap = HOS' cap
+    .desc = HOS' cap.
+ent-ClothingHatQMBlackBeret = QM's black beret
+    .desc = QM's black beret.
+ent-ClothingHatSanitar = sanitar hat
+    .desc = Sanitar hat.

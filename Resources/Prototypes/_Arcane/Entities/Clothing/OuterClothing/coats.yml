@@ -96,8 +96,8 @@
 - type: entity
   parent: ClothingOuterBaseToggleable
   id: ClothingOuterApostolCoat
-  name: chaplain's hoodie
-  description: Black and strict chaplain hoodie.
+  name: apostol coat
+  description: Heed the voice of my prayer when I call upon You.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/OuterClothing/Sponsor/apostol.rsi

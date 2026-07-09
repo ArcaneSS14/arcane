@@ -35,7 +35,7 @@
   parent: ClothingHeadHatCentcom
   id: ClothingHatClownPink
   name: pink clown hat
-  description: pink clown hat.
+  description: Pink clown hat.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Head/Sponsor/clown.rsi
@@ -68,7 +68,7 @@
   parent: ClothingHeadHatCentcom
   id: ClothingHatQMBlackBeret
   name: QM's black beret
-  description: QM's black beret
+  description: QM's black beret.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Head/Sponsor/QM_beret.rsi
