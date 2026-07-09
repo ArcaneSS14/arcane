@@ -45,6 +45,10 @@
             NanotrasenRepresentative: [ 1, 1 ] # Goobstation
             BlueshieldOfficer: [ 1, 1 ] # Goobstation
             Captain: [ 1, 1 ]
+            # Arcane-start
+            Adjutant: [ 1, 1 ]
+            CommandMaid: [ 1, 1 ]
+            # Arcane-end
             HeadOfSecurity: [ 1, 1 ]
             SecurityOfficer: [ 1, 2 ]
             CargoTechnician: [ 1, 1 ]

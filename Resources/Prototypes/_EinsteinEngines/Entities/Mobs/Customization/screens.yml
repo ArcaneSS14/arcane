@@ -13,7 +13,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_static
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -23,7 +23,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_blue
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -33,7 +33,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_breakout
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -43,7 +43,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_eight
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -53,7 +53,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_goggles
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -63,7 +63,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_exclaim
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -73,7 +73,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_heart
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -83,7 +83,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_monoeye
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -93,7 +93,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_nature
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -103,7 +103,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_orange
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -113,7 +113,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_pink
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -123,7 +123,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_question
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -133,7 +133,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_shower
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -143,7 +143,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_yellow
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -153,7 +153,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_scroll
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -163,7 +163,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_console
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -173,7 +173,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_rgb
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -183,7 +183,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_glider
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -193,7 +193,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_rainbowhoriz
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -203,7 +203,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_bsod
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -213,7 +213,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_redtext
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -223,7 +223,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_sinewave
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -233,7 +233,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_squarewave
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -243,7 +243,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_ecgwave
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -253,7 +253,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_eyes
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -263,7 +263,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_eyestall
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -273,7 +273,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_eyesangry
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -283,7 +283,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_loading
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -293,7 +293,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_windowsxp
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -303,7 +303,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_tetris
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -313,7 +313,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_tv
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -323,7 +323,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_textdrop
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -333,7 +333,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_stars
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -343,7 +343,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_rainbowdiag
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -353,7 +353,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_blank
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -363,6 +363,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_smile
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -372,7 +373,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_frown
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -382,7 +383,7 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_ring
-
+  shader: unshaded # Arcane
 
 - type: marking
   speciesRestriction: [ IPC ]
@@ -392,3 +393,4 @@
   sprites:
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_l
+  shader: unshaded # Arcane

@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelAdjutant
+  name: adjutant duffel
+  description: It looks redundantly empty, with only a crumpled piece of paper lying lonely at the bottom.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Duffels/adjutant.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon

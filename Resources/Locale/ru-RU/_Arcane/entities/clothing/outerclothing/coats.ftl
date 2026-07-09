@@ -10,3 +10,5 @@ ent-ClothingOuterCoatLabEnlightenment = халат эпохи возрожден
     .desc = Слово "бахус" и слово "смерть" для вас означают одно и то же.
 ent-ClothingOuterApostolCoat = плащ апостола
     .desc = Вонми гласу моления моего, внегда воззвати ми к Тебе.
+ent-ClothingOuterCoatAdjutant = зимняя куртка адъютанта
+    .desc = Тяжёлая куртка из 'синтетического' меха животных.

@@ -252,6 +252,21 @@
   - type: Objective
     difficulty: 0.5 # just for fun, collectings Battery for ipc
 
+# Arcane-Start
+- type: entity
+  parent: BaseThiefStealCollectionObjective
+  id: HolochipsStealCollectionObjective
+  components:
+  - type: StealCondition
+    stealGroup: AuthenticSpaceCash
+    descriptionMultiplyText: objective-condition-steal-cash
+    minCollectionSize: 10000
+    maxCollectionSize: 40000
+    verifyMapExistence: false
+  - type: Objective
+    difficulty: 0.7 # the time when there wasn't enough money for the pink wolf
+# Arcane-End
+
 # steal item
 
 - type: entity                                      #Security subgroup

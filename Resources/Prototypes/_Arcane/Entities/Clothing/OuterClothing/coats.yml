@@ -103,3 +103,14 @@
     sprite: _Arcane/Clothing/OuterClothing/Sponsor/apostol.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/OuterClothing/Sponsor/apostol.rsi
+    
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatAdjutant
+  name: adjutant's winter jacket
+  description: heavy jacket made of 'synthetic' animal fur.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Coats/adjutantcoat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Coats/adjutantcoat.rsi

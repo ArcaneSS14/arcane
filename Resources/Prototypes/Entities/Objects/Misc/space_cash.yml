@@ -24,11 +24,12 @@
 
 - type: entity
   parent: BaseItem
-  id: SpaceCash
+  id: HiddenFakeSpaceCash # Arcane-Edit
   name: spesos
-  description: You gotta have money.
+  description: You need to have money, but not like that. # Arcane-Edit
+  suffix: Fake # Arcane
   components:
-  - type: Cash
+# - type: Cash # Arcane-Edit
   - type: Item
     shape:
     - 0,0,1,0
@@ -36,11 +37,11 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      Credit: 1
+      HiddenFakeCredit: 1
   - type: StaticPrice
     price: 0
   - type: Stack
-    stackType: Credit
+    stackType: HiddenFakeCredit # Arcane-Edit
     count: 1
     baseLayer: base
     layerStates:
@@ -118,6 +119,59 @@
     - Ore
     - Paper         # Moth food
   # </Goobstation>
+
+# Arcane-Start
+- type: material
+  id: HiddenFakeCredit
+  name: speso
+  unit: materials-unit-bill
+  stackEntity: HiddenFakeSpaceCash
+  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  price: 1
+
+- type: stack
+  id: HiddenFakeCredit
+  name: stack-credit
+  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  spawn: HiddenFakeSpaceCash
+
+- type: entity
+  parent: HiddenFakeSpaceCash
+  id: HiddenFakeSpaceCash50000
+  suffix: Fake 50000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_50000
+  - type: Stack
+    count: 50000
+
+- type: entity
+  parent: HiddenFakeSpaceCash
+  id: HiddenFakeSpaceCash60000
+  suffix: Fake 60000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_50000
+  - type: Stack
+    count: 60000
+
+- type: entity
+  parent: HiddenFakeSpaceCash
+  id: SpaceCash
+  name: spesos
+  description: You gotta have money.
+  components:
+  - type: Cash
+  - type: Stack
+    stackType: Credit
+  - type: StealTarget
+    stealGroup: AuthenticSpaceCash
+  - type: PhysicalComposition
+    materialComposition:
+      Credit: 1
+# Arcane-End
 
 - type: material
   id: Credit

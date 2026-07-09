@@ -1,0 +1,28 @@
+- type: marking
+  id: HorseTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human, Dwarf, Felinid, Vulpkanin, SlimePerson]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/horse_markings.rsi
+    state: horse_tail_standard
+
+- type: marking
+  id: HorseTailAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human, Dwarf, Felinid, Vulpkanin, SlimePerson]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/horse_markings.rsi
+    state: horse_tail_wagging
+
+- type: marking
+  id: HorseEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human, Dwarf, Felinid, Vulpkanin, SlimePerson]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/horse_markings.rsi
+    state: horse_ears_inner
+  - sprite: _Arcane/Mobs/Customization/horse_markings.rsi
+    state: horse_ears_outer

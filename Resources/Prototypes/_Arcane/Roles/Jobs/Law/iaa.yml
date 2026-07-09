@@ -1,0 +1,71 @@
+- type: job
+  id: IAA
+  name: job-name-iaa
+  description: job-description-iaa
+  playTimeTracker: JobIAA
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 72000 # 20 Hours
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 36000 # 10 Hours
+  - !type:RoleTimeRequirement
+    role: JobLawyer
+    time: 18000 # 5 Hours
+  - !type:TraitsRequirement
+    inverted: true
+    traits:
+    - Muted
+  startingGear: IAAGear
+  icon: "JobIconIAA"
+  supervisors: job-supervisors-centcom
+  setPreference: true
+  guides:
+  - SpaceLaw
+  goobcoins: 30
+  salary: 100
+  payrollDepartmentAccount: Service
+  canBeAntag: false
+  access:
+  - Service
+  - Brig
+  - Maintenance
+  - Command
+  - External
+  - Lawyer
+  special:
+    - !type:AddImplantSpecial
+      implants: [MindShieldImplant]
+    - !type:AddComponentSpecial
+      components:
+      - type: Condemned
+        soulOwnedNotDevil: true
+      - type: AdditionalLanguage
+        speaks:
+        - CorporateCodespeak
+        understands:
+        - CorporateCodespeak
+  contracts:
+  - DocumentContractEmploymentJusticeDepartment
+
+- type: startingGear
+  id: IAAGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: IAAPDA
+    eyes: ClothingEyesGlassesSunglasses
+    ears: ClothingHeadsetIAA
+    pocket2: BookSpaceLaw
+  inhand:
+    - BriefcaseIAAFilled
+  storage:
+    back:
+    - Flash
+    - TelescopicBaton
+
+- type: chameleonOutfit
+  id: IAAChameleonOutfit
+  job: IAA
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses

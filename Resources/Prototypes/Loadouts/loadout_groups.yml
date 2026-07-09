@@ -587,6 +587,7 @@
   id: LawyerJumpsuit
   name: loadout-group-lawyer-jumpsuit
   loadouts:
+  - LawyerJumpsuitBrown # Arcane
   - LawyerJumpsuit
   - LawyerJumpskirt
   - LawyerJumpsuitBlue
@@ -597,7 +598,7 @@
   - LawyerJumpskirtRed
   - LawyerJumpsuitGood
   - LawyerJumpskirtGood
-  - ServiceMJ # goob
+# - ServiceMJ # Arcane-Edit
 
 - type: loadoutGroup
   id: LawyerNeck
