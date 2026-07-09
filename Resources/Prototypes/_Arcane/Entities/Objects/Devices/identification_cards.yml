@@ -31,10 +31,10 @@
   id: IAAIDCard
   name: internal affairs agent ID card
   components:
-    - type: Sprite
-      sprite: Objects/Misc/id_cards.rsi
-      layers:
-        - state: silver
-        - state: idiaa
-    - type: PresetIdCard
-      job: IAA
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    layers:
+      - state: silver
+      - state: idiaa
+  - type: PresetIdCard
+    job: IAA

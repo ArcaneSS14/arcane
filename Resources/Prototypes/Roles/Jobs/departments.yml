@@ -105,7 +105,7 @@
   description: department-Cargo-description
   color: "#A46106"
   # Orion-Start
-  weight: -8 # Arcane-Edit
+  weight: -8 # Arcane-Edit: -7 > -8
   buttonStyle: ButtonColorCargoDepartment
   # Orion-End
   roles:
@@ -134,7 +134,7 @@
   description: department-Civilian-description
   color: "#9FED58"
   # Orion-Start
-  weight: -9 # Arcane-Edit
+  weight: -9 # Arcane-Edit -8 > -9
   buttonStyle: ButtonColorCivilianDepartment
   # Orion-End
   roles:
@@ -146,7 +146,7 @@
   - Clown
   - HeadOfPersonnel
   - Janitor
-  #- Lawyer # Arcane-Edit
+# - Lawyer # Arcane-Edit
   - Librarian
   - Mime
   - Musician
@@ -232,7 +232,7 @@
   description: department-Engineering-description
   color: "#EFB341"
   # Orion-Start
-  weight: -5 # Arcane-Edit
+  weight: -5 # Arcane-Edit -4 > -5
   buttonStyle: ButtonColorEngineeringDepartment
   # Orion-End
   roles:
@@ -247,7 +247,7 @@
   description: department-Medical-description
   color: "#52B4E9"
   # Orion-Start
-  weight: -7 # Arcane-Edit
+  weight: -7 # Arcane-Edit -6 > -7
   buttonStyle: ButtonColorMedicalDepartment
   # Orion-End
   roles:
@@ -283,7 +283,7 @@
   description: department-Science-description
   color: "#D381C9"
   # Orion-Start
-  weight: -6 # Arcane-Edit
+  weight: -6 # Arcane-Edit -5 > -6
   buttonStyle: ButtonColorScienceDepartment
   # Orion-End
   roles:
@@ -298,7 +298,7 @@
   description: department-Silicon-description
   color: "#D381C9"
   # Orion-Start
-  weight: -10 # Arcane-Edit
+  weight: -10 # Arcane-Edit -9 > -10
   buttonStyle: ButtonColorSiliconDepartment
   # Orion-End
   roles:

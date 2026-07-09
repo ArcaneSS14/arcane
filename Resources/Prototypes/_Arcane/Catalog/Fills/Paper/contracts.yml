@@ -95,3 +95,14 @@
     - type: Paper
       content: doc-text-employment-contract-centcom
       editingDisabled: true
+
+- type: entity
+  parent: BaseContract
+  id: DocumentContractEmploymentJusticeDepartment
+  name: work contract
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-employment-contract-justice-department
+      editingDisabled: true
+

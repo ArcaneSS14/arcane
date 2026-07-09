@@ -8,8 +8,8 @@ ent-ClothingHeadHatCapAdjutant = фуражка адъютанта
     .desc = Синяя с белым, подозрительно напоминает капитанскую.
 
 ent-ClothingHeadHatCommandMaid = чепчик
-
     .desc = Изысканная шапочка для безупречной особы.
+
 ent-ClothingHeadHatBowsCommandMaid = чепчик с бантиками
 
     .desc = Изысканная шапочка с бантами для безупречной особы.

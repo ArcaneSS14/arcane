@@ -36,14 +36,3 @@
     sprite: _Arcane/Clothing/Uniforms/Jumpskirts/blueshieldcommonskirt.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Uniforms/Jumpskirts/blueshieldcommonskirt.rsi
-
-- type: entity
-  parent: ClothingUniformBase
-  id: ClothingJumpskirtBlueShieldCommon
-  name: “Blue Shield” Jumpskirt
-  description: Special jumpskirt designed for “Blue Shield” officers
-  components:
-  - type: Sprite
-    sprite: _Arcane/Clothing/Uniforms/Jumpskirts/blueshieldcommonskirt.rsi
-  - type: Clothing
-    sprite: _Arcane/Clothing/Uniforms/Jumpskirts/blueshieldcommonskirt.rsi

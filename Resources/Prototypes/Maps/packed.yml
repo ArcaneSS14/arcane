@@ -52,8 +52,10 @@
           availableJobs:
             #service
             Captain: [ 1, 1 ]
-            Adjutant: [ 1, 1 ] # Arcane
-            CommandMaid: [ 1, 1 ] # Arcane
+            # Arcane-start
+            Adjutant: [ 1, 1 ]
+            CommandMaid: [ 1, 1 ]
+            # Arcane-end
             NanotrasenRepresentative: [ 1, 1 ] # Goobstation
             BlueshieldOfficer: [ 1, 1 ] # Goobstation
             HeadOfPersonnel: [ 1, 1 ]

@@ -104,7 +104,7 @@
   equipment:
     shoes: ClothingShoesBootsLaceup
     id: LawyerPDA
-    ears: ClothingHeadsetLawyer # Arcane
+    ears: ClothingHeadsetLawyer # Arcane-Edit
   inhand:
     - BriefcaseBrownFilled
   storage:

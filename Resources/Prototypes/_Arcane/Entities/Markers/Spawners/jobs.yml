@@ -1,6 +1,6 @@
 - type: entity
-  id: SpawnPointAdjutant
   parent: SpawnPointJobBase
+  id: SpawnPointAdjutant
   name: adjutant
   components:
   - type: SpawnPoint
@@ -12,8 +12,8 @@
     - state: adjutant
 
 - type: entity
-  id: SpawnPointCommandMaid
   parent: SpawnPointJobBase
+  id: SpawnPointCommandMaid
   name: command maid
   components:
   - type: SpawnPoint
@@ -24,8 +24,8 @@
     - state: green
 
 - type: entity
-  id: SpawnPointIAA
   parent: SpawnPointJobBase
+  id: SpawnPointIAA
   name: IAA
   components:
   - type: SpawnPoint

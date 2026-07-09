@@ -17,7 +17,7 @@
   icon: JobIconAdjutant
   supervisors: job-supervisors-command
   setPreference: true
-  goobcoins: 10 
+  goobcoins: 40
   salary: 100
   payrollDepartmentAccount: Command
   access:
@@ -36,16 +36,18 @@
     - Cargo
     - Medical
   special:
-    - !type:AddComponentSpecial
-      components:
-        - type: CommandStaff
-        - type: Condemned
-          soulOwnedNotDevil: true
-        - type: AdditionalLanguage
-          speaks:
-          - CorporateCodespeak
-          understands:
-          - CorporateCodespeak
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+      - type: Condemned
+        soulOwnedNotDevil: true
+      - type: AdditionalLanguage
+        speaks:
+        - CorporateCodespeak
+        understands:
+        - CorporateCodespeak
+  contracts:
+  - DocumentContractEmploymentCommand
 
 - type: startingGear
   id: AdjutantGear

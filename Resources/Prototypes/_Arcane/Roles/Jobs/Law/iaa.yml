@@ -23,7 +23,7 @@
   setPreference: true
   guides:
   - SpaceLaw
-  goobcoins: 10 
+  goobcoins: 30
   salary: 100
   payrollDepartmentAccount: Service
   canBeAntag: false
@@ -39,13 +39,15 @@
       implants: [MindShieldImplant]
     - !type:AddComponentSpecial
       components:
-        - type: Condemned
-          soulOwnedNotDevil: true
-        - type: AdditionalLanguage
-          speaks:
-          - CorporateCodespeak
-          understands:
-          - CorporateCodespeak
+      - type: Condemned
+        soulOwnedNotDevil: true
+      - type: AdditionalLanguage
+        speaks:
+        - CorporateCodespeak
+        understands:
+        - CorporateCodespeak
+  contracts:
+  - DocumentContractEmploymentJusticeDepartment
 
 - type: startingGear
   id: IAAGear

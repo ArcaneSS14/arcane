@@ -4,10 +4,10 @@
   name: bow tie
   description: The perfect finishing touch for your look.
   components:
-    - type: Sprite
-      sprite: _Arcane/Clothing/Neck/Ties/bow-tie.rsi
-    - type: Clothing
-      sprite: _Arcane/Clothing/Neck/Ties/bow-tie.rsi
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Ties/bow-tie.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Neck/Ties/bow-tie.rsi
 
 - type: entity
   parent: ClothingNeckBase

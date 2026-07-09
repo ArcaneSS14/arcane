@@ -84,7 +84,7 @@
   mapName: 'Bagel Station'
   mapPath: /Maps/_Goobstation/bagel.yml # Goobstation - custom bagel
   minPlayers: 35
-  maxPlayers: 90 #Arcane-Edit
+  maxPlayers: 90 # Arcane-Edit 80 > 90
   stations:
     Bagel:
       stationProto: StandardNanotrasenStation
@@ -100,8 +100,10 @@
           availableJobs: # 63 jobs total w/o latejoins & interns, 80 jobs total w/ latejoins & interns
             #command (7)
             Captain: [ 1, 1 ]
-            Adjutant: [ 1, 1 ] # Arcane
-            CommandMaid: [ 1, 1 ] # Arcane
+            # Arcane-start
+            Adjutant: [ 1, 1 ]
+            CommandMaid: [ 1, 1 ]
+            # Arcane-end
             NanotrasenRepresentative: [ 1, 1 ]
             BlueshieldOfficer: [ 1, 1 ]
             #service

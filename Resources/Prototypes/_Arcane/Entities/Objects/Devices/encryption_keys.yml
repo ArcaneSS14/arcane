@@ -4,17 +4,17 @@
   name: iaa encryption key
   description: An encryption key used by the most meticulous person.
   components:
-    - type: EncryptionKey
-      channels:
-      - Common
-      - Command
-      - Security
-      - Legal
-      defaultChannel: Legal
-    - type: Sprite
-      layers:
-      - state: crypt_silver
-      - state: nano_label
+  - type: EncryptionKey
+    channels:
+    - Common
+    - Command
+    - Security
+    - Legal
+    defaultChannel: Legal
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: nano_label
 
 - type: entity
   parent: EncryptionKey
@@ -22,11 +22,11 @@
   name: legal department encryption key
   description: An encryption key used by the most meticulous person.
   components:
-    - type: EncryptionKey
-      channels:
-      - Legal
-      defaultChannel: Legal
-    - type: Sprite
-      layers:
-      - state: crypt_gray
-      - state: nano_label
+  - type: EncryptionKey
+    channels:
+    - Legal
+    defaultChannel: Legal
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - state: nano_label

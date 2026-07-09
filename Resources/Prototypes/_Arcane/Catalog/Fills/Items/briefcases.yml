@@ -3,8 +3,8 @@
   id: BriefcaseIAAFilled
   suffix: IAA
   components:
-    - type: StorageFill
-      contents:
-        - id: Paper
-        - id: PenCentcom
-        - id: RubberStampIAA
+  - type: StorageFill
+    contents:
+      - id: Paper
+      - id: PenCentcom
+      - id: RubberStampIAA

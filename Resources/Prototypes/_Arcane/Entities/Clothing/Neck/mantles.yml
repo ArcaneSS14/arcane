@@ -4,10 +4,10 @@
   name: adjutant mantle
   description: Lightweight, velvet, uninhibited movement, on one shoulder, as if it speaks to your precarious position of command..
   components:
-    - type: Sprite
-      sprite: _Arcane/Clothing/Neck/Mantles/adjmantle.rsi
-    - type: Clothing
-      sprite: _Arcane/Clothing/Neck/Mantles/adjmantle.rsi
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Mantles/adjmantle.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Neck/Mantles/adjmantle.rsi
 
 - type: entity
   parent: ClothingNeckBase
