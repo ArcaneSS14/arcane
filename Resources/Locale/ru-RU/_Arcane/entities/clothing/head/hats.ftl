@@ -3,3 +3,16 @@ ent-ClothingHatBeretBlueShield = берет офицера "Синий Щит"
 
 ent-ClothingHatCapBlueShield = фуражка офицера "Синий Щит"
     .desc = Деловая фуражка, созданная специально для сотрудников «Синий Щит».
+
+ent-ClothingHatCEBlackBeret = чёрный берет старшего инженера
+    .desc = Элегантный головной убор, контрастирующий на фоне светлой формы.
+ent-ClothingHatClownPink = розовая шапка клоуна
+    .desc = Розовый - значит забавный!
+ent-ClothingHatCMO = шапочка главного врача
+    .desc = Создана для проведения операций и осмотров, но выглядит так, будто для парадов.
+ent-ClothingHatHOSCap = фуражка ГСБ
+    .desc = Я здесь закон!
+ent-ClothingHatQMBlackBeret = чёрный берет квартирмейстера
+    .desc = Чёрный берет главы отдела снабжения.
+ent-ClothingHatSanitar = шапочка санитара
+    .desc = Головной убор маньяка из слэшера.

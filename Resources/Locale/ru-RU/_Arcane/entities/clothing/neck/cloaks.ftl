@@ -1,0 +1,14 @@
+ent-ClothingCloakCEBlack = чёрный плащ старшего инженера
+    .desc = Чёрный плащ с золотой отделкой, созданных для лучших в своём деле.
+ent-ClothingCloakCETricolor = трёхцветный плащ старшего инженера
+    .desc = Зелёная полоса? Выглядит изысканно.
+ent-ClothingCloakCMOHonorable = почётный плащ главного врача
+    .desc = Только опытнейший врач может позволить себе такой.
+ent-ClothingCloakHOSBlack = чёрный плащ ГСБ
+    .desc = Брутальный и мрачный.
+ent-ClothingCloakHOSRed = красный плащ ГСБ
+    .desc = Брутальный и мрачный.
+ent-ClothingCloakQMBlack = чёрный плащ квартирмейстера
+    .desc = Чёрные перья! Ты однозначно босс здесь.
+ent-ClothingCloakQMWhite = светлый плащ квартирмейстера
+    .desc = Классика.
