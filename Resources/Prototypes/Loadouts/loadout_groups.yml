@@ -528,8 +528,10 @@
   - BartenderJumpskirt
   - BartenderJumpsuitPurple
   - ServiceMJ # goob
-  - BartenderPatron # Arcane
-  - BartenderSkirtPatron # Arcane
+  # Arcane - Start
+  - BartenderPatron
+  - BartenderSkirtPatron
+# Arcane - End
 
 - type: loadoutGroup
   id: BartenderOuterClothing
@@ -916,10 +918,12 @@
   - QuartermasterFormalSuit
   - QuartermasterMJ # goob
   - QMSummerShirt # goob
-  - SleevelesQMBlackSkirtPatron # Arcane
-  - SleevelesQMBlackPatron # Arcane
-  - SleevelesQMSkirtPatron # Arcane
-  - SleevelesQMPatron # Arcane
+  # Arcane - Start
+  - SleevelesQMBlackSkirtPatron
+  - SleevelesQMBlackPatron
+  - SleevelesQMSkirtPatron
+  - SleevelesQMPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: QuartermasterNeck
@@ -929,8 +933,10 @@
   - QuartermasterCloak
   - QuartermasterMantle
   - QuartermasterEnsemble # goob
-  - QMBlackCloakPatron # Arcane
-  - QMWhiteCloakPatron # Arcane
+  # Arcane - Start
+  - QMBlackCloakPatron
+  - QMWhiteCloakPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: QuartermasterOuterClothing
@@ -1041,10 +1047,12 @@
   - ChiefEngineerTurtleneckSkirt
   - ChiefEngineerMJ # goob
   - CESummerShirt # goob
-  - CEBlackPatron # Arcane
-  - CEBlackSkirtPatron # Arcane
-  - CEWhiteSkirtPatron # Arcane
-  - CEWhitePatron # Arcane
+  # Arcane - Start
+  - CEBlackPatron
+  - CEBlackSkirtPatron
+  - CEWhiteSkirtPatron
+  - CEWhitePatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: ChiefEngineerNeck
@@ -1354,8 +1362,10 @@
   - SecurityScarfRed # Orion
   - Bodycam # Goobstation - Body cameras
   - HeadOfSecurityEnsemble # goob
+  # Arcane - Start
   - HOSBlackCloakPatron # Arcane
   - HOSRedCloakPatron # Arcane
+  # Arcane - End
 
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing

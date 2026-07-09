@@ -82,6 +82,6 @@
   description: Sanitar hat.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Head/Sponsor/sanitar.rsi
+    sprite: _Arcane/Clothing/Head/Sponsor/sanitar_hat.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Head/Sponsor/sanitar.rsi
+    sprite: _Arcane/Clothing/Head/Sponsor/sanitar_hat.rsi
