@@ -571,7 +571,10 @@
   - type: Stack
     stackType: AloeCream
     count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
-  # Arcane-Start
+    # Arcane-Start
+    baseLayer: base
+    layerStates:
+    - cream 
   - type: Healing
     damage:
       types:
@@ -579,7 +582,7 @@
         Cold: -6
         Shock: -6
         Caustic: -5
-  # Arcane-End
+    # Arcane-End
 
 - type: entity
   parent: BaseHealingItem
