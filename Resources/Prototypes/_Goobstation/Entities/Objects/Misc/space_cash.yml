@@ -6,14 +6,14 @@
 
 
 - type: entity
-  parent: [SpaceCash, BaseMajorContraband]
+  parent: [HiddenFakeSpaceCash, BaseMajorContraband] # Arcane-Edit
   id: SpaceCashCounterfeit
   name: suspicious spesos
   description: This looks like painted-on paper.
   # Arcane-Start
   components:
   - type: Stack
-  stackType: FakeCredit
+    stackType: FakeCredit
   # Arcane-End
 
 - type: entity
@@ -46,7 +46,7 @@
   id: FakeCredit
   name: speso
   unit: materials-unit-bill
-  stackEntity: AltSpaceCash
+  stackEntity: SpaceCashCounterfeit
   icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
   price: 1
 
@@ -54,5 +54,5 @@
   id: FakeCredit
   name: stack-credit
   icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
-  spawn: AltSpaceCash
+  spawn: SpaceCashCounterfeit
 # Arcane-End

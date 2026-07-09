@@ -27,6 +27,7 @@
   id: HiddenFakeSpaceCash # Arcane-Edit
   name: spesos
   description: You need to have money, but not like that. # Arcane-Edit
+  suffix: Fake # Arcane
   components:
 # - type: Cash # Arcane-Edit
   - type: Item
@@ -36,7 +37,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      Credit: 1
+      HiddenFakeCredit: 1
   - type: StaticPrice
     price: 0
   - type: Stack
@@ -167,6 +168,9 @@
     stackType: Credit
   - type: StealTarget
     stealGroup: AuthenticSpaceCash
+  - type: PhysicalComposition
+    materialComposition:
+      Credit: 1
 # Arcane-End
 
 - type: material
