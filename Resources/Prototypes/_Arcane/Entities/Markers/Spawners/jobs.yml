@@ -1,0 +1,36 @@
+- type: entity
+  parent: SpawnPointJobBase
+  id: SpawnPointAdjutant
+  name: adjutant
+  components:
+  - type: SpawnPoint
+    job_id: Adjutant
+  - type: Sprite
+    sprite: _Arcane/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: adjutant
+
+- type: entity
+  parent: SpawnPointJobBase
+  id: SpawnPointCommandMaid
+  name: command maid
+  components:
+  - type: SpawnPoint
+    job_id: CommandMaid
+  - type: Sprite
+    sprite: _Arcane/Markers/jobs.rsi
+    layers:
+    - state: green
+
+- type: entity
+  parent: SpawnPointJobBase
+  id: SpawnPointIAA
+  name: IAA
+  components:
+  - type: SpawnPoint
+    job_id: IAA
+  - type: Sprite
+    sprite: _Arcane/Markers/jobs.rsi
+    layers:
+    - state: green

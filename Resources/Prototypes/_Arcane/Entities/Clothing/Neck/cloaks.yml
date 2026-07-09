@@ -1,0 +1,62 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakCEBlack
+  name: CE's black cloak
+  description: A black cloak with gold trim, made for the best in his field.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/CE_black_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakCETricolor
+  name: CE's tricolor cloak
+  description: Green stripe? Looks exquisitely.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/CE_white_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakCMOHonorable
+  name: CMO's honorable cloak
+  description: Only the most experienced doctor can get this.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/CMO_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakHOSBlack
+  name: HOS' black cloak
+  description: Brutal and gloomy.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/HOS_black_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakHOSRed
+  name: HOS' red cloak
+  description: Brutal and gloomy.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/HOS_red_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakQMBlack
+  name: QM's black cloak
+  description: Black feathers! You are definately boss here.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/QM_black_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakQMWhite
+  name: QM's white cloak
+  description: Classic.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/QM_white_cloak.rsi

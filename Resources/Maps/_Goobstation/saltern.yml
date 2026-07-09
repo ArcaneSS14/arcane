@@ -4,7 +4,7 @@ meta:
   engineVersion: 266.0.0
   forkId: Orion
   forkVersion: ""
-  time: 05/03/2026 19:49:20
+  time: 07/05/2026 12:56:06
   entityCount: 12230
 maps:
 - 1
@@ -64212,6 +64212,13 @@ entities:
     - type: Transform
       pos: 17.5,-0.5
       parent: 2
+- proto: SpawnPointAdjutant
+  entities:
+  - uid: 52230
+    components:
+    - type: Transform
+      pos: 6.5,31.5
+      parent: 2
 - proto: SpawnPointAtmos
   entities:
   - uid: 9708
@@ -64334,6 +64341,13 @@ entities:
     components:
     - type: Transform
       pos: -18.5,-7.5
+      parent: 2
+- proto: SpawnPointCommandMaid
+  entities:
+  - uid: 52229
+    components:
+    - type: Transform
+      pos: 1.5,31.5
       parent: 2
 - proto: SpawnPointDetective
   entities:

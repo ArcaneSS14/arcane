@@ -1,0 +1,8 @@
+- type: playTimeTracker
+  id: JobAdjutant
+
+- type: playTimeTracker
+  id: JobCommandMaid
+
+- type: playTimeTracker
+  id: JobIAA

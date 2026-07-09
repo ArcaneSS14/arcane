@@ -3,6 +3,7 @@
   id: OrionRuleset
   name: guide-entry-server-rules
   text: "/ServerInfo/_Orion/Guidebook/ServerRules/Ruleset.xml"
+  ruleEntry: true
   children:
   - OrionRule1
   - OrionRule2

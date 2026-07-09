@@ -1,0 +1,20 @@
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconAdjutant
+  icon:
+    sprite: /Textures/_Arcane/Interface/Misc/job_icons.rsi
+    state: Adjutant
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCommandMaid
+  icon:
+    sprite: /Textures/_Arcane/Interface/Misc/job_icons.rsi
+    state: CommandMaid
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconIAA
+  icon:
+    sprite: /Textures/_Arcane/Interface/Misc/job_icons.rsi
+    state: IAA

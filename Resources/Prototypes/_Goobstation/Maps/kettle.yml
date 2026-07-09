@@ -55,6 +55,10 @@
             NanotrasenRepresentative: [ 1, 1 ]
             BlueshieldOfficer: [ 1, 1 ]
             Captain: [ 1, 1 ]
+            # Arcane-start
+            Adjutant: [ 1, 1 ]
+            CommandMaid: [ 1, 1 ]
+            # Arcane-end
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 1, 2 ]
             Botanist: [ 3, 4 ]
@@ -62,6 +66,7 @@
             Janitor: [ 4, 4 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 2 ]
+            IAA: [ 1, 1 ] # Arcane
             Lawyer: [ 2, 3 ]
             Zookeeper: [ 1, 1 ]
             ServiceWorker: [ 4, 4 ]

@@ -215,6 +215,7 @@
       - EncryptionKeySecurity
       - EncryptionKeyService
       - EncryptionKeyCommand
+      - EncryptionKeyLegal # Arcane
 
 - type: entity
   parent: TelecomServer
@@ -275,6 +276,7 @@
     containers:
       key_slots:
       - EncryptionKeySecurity
+      - EncryptionKeyLegal # Arcane
 
 - type: entity
   parent: TelecomServer

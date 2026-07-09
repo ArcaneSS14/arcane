@@ -1,0 +1,12 @@
+ent-ClothingOuterArmorHoSLeather = leather coat
+    .desc = A black leather coat with an experimental bluespace assisted alloy for some extra protection and style for those with a commanding presence.
+ent-ClothingOuterCoatLabEasy = easy lab coat
+    .desc = A suit that protects against minor chemical spills.
+ent-ClothingOuterCoatLabBelts = lab coat with belts
+    .desc = A suit that protects against minor chemical spills. Has some black belts on chest.
+ent-ClothingOuterCoatLabBlack = black lab coat
+    .desc = Black suit that protects against minor chemical spills.
+ent-ClothingOuterCoatLabEnlightenment = enlightenment lab coat
+    .desc = Word "bacchus" and word "death" means same for you.
+ent-ClothingOuterApostolCoat = apostol coat
+    .desc = Heed the voice of my prayer when I call upon You.

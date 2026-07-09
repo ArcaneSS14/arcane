@@ -8,3 +8,25 @@
     sprite: _Arcane/Clothing/Shoes/beer_shoes.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Shoes/beer_shoes.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesOldFashionedMedical
+  name: doctor's old-fashioned shoes
+  description: Classic shoes from enlightenment ages.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/Sponsor/livsey.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/Sponsor/livsey.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesQMBoots
+  name: QM's boots
+  description: Expensive stylish black boots.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/Sponsor/QM_boots.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/Sponsor/QM_boots.rsi

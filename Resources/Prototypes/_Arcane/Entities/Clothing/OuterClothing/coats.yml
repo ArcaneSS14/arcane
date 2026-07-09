@@ -1,0 +1,116 @@
+- type: entity
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseSecurityCommandContraband]
+  id: ClothingOuterArmorHoSLeather
+  name: leather coat
+  description: A black leather coat with an experimental bluespace assisted alloy for some extra protection and style for those with a commanding presence.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/leather_coat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/leather_coat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatLabEasy
+  name: easy lab coat
+  description: A suit that protects against minor chemical spills.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/robe.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/robe.rsi
+  - type: Armor
+    coverage:
+    - Chest
+    - Groin
+    - Tail
+    - Arm
+    - Leg
+    modifiers:
+      coefficients:
+        Caustic: 0.65
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatLabBelts
+  name: lab coat with belts
+  description: A suit that protects against minor chemical spills. Has some black belts on chest.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/robe_belts.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/robe_belts.rsi
+  - type: Armor
+    coverage:
+    - Chest
+    - Groin
+    - Tail
+    - Arm
+    - Leg
+    modifiers:
+      coefficients:
+        Caustic: 0.65
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatLabBlack
+  name: black lab coat
+  description: Black suit that protects against minor chemical spills.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/black_robe.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/black_robe.rsi
+  - type: Armor
+    coverage:
+    - Chest
+    - Groin
+    - Tail
+    - Arm
+    - Leg
+    modifiers:
+      coefficients:
+        Caustic: 0.65
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatLabEnlightenment
+  name: enlightenment lab coat
+  description: Word "bacchus" and word "death" means same for you.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/livsey.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/livsey.rsi
+  - type: Armor
+    coverage:
+    - Chest
+    - Groin
+    - Tail
+    - Arm
+    - Leg
+    modifiers:
+      coefficients:
+        Caustic: 0.65
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterApostolCoat
+  name: apostol coat
+  description: Heed the voice of my prayer when I call upon You.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/apostol.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Sponsor/apostol.rsi
+    
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatAdjutant
+  name: adjutant's winter jacket
+  description: heavy jacket made of 'synthetic' animal fur.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Coats/adjutantcoat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Coats/adjutantcoat.rsi

@@ -1,4 +1,88 @@
 - type: loadoutGroup
+  id: AdjutantJumpsuit
+  name: loadout-group-adj-jumpsuit
+  loadouts:
+  - AdjutantJumpsuit
+  - AdjutantJumpskirt
+
+- type: loadoutGroup
+  id: AdjutantBackpack
+  name: loadout-group-adj-backpack
+  loadouts:
+  - AdjutantBackpack
+  - AdjutantSatchel
+  - AdjutantDuffel
+
+- type: loadoutGroup
+  id: AdjutantHead
+  name: loadout-group-adj-head
+  loadouts:
+  - AdjutantCap
+  - AdjutantBeret
+  - AdjutantGarrisonCap
+
+- type: loadoutGroup
+  id: AdjutantOuterClothing
+  name: loadout-group-adj-outerClothing
+  loadouts:
+  - AdjutantCoat
+
+- type: loadoutGroup
+  id: CommandMaidJumpsuit
+  name: loadout-group-command-maid-jumpsuit
+  loadouts:
+  - CommandMaidJumpskirt
+  - CommandMaidJumpskirtAlt
+  - CommandMaidJumpskirtMaidLong
+  - CommandMaidJumpskirtJanimaidmini
+  - CommandMaidJumpskirtElegantMaid
+  - CommandMaidJumpskirtJanimaid
+  - CommandMaidJumpskirtMaidPink
+  - CommandMaidJumpskirtMaidBlue
+  - CommandMaidJumpsuit
+
+- type: loadoutGroup
+  id: CommandMaidBackpack
+  name: loadout-group-command-maid-backpack
+  loadouts:
+  - CommandMaidBackpack
+
+- type: loadoutGroup
+  id: CommandMaidHead
+  name: loadout-group-command-maid-head
+  loadouts:
+  - CommandMaidCap
+  - CommandMaidBowsCap
+  - CommandMaidBlackCap
+
+- type: loadoutGroup
+  id: CommandMaidGloves
+  name: loadout-group-command-maid-gloves
+  loadouts:
+  - CommandMaidGloves
+
+- type: loadoutGroup
+  id: CommandMaidShoes
+  name: loadout-group-command-maid-shoes
+  loadouts:
+  - CommandMaidShoes
+  - CommandMaidShoesLaceup
+
+- type: loadoutGroup
+  id: CommandMaidneck
+  name: loadout-group-command-maid-neck
+  loadouts:
+  - CommandMaidNeckBowTie
+  - CommandMaidNeckShortTie
+  - CommandMaidNeckMediumTie
+
+- type: loadoutGroup
+  id: IAAJumpsuit
+  name: loadout-group-iaa-jumpsuit
+  loadouts:
+  - IAAJumpsuit
+
+- type: loadoutGroup
   id: Patron
   name: loadout-group-patron
   minLimit: 0

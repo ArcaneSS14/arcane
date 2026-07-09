@@ -1,0 +1,38 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckTieBowCommandMaid
+  name: bow tie
+  description: The perfect finishing touch for your look.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Ties/bow-tie.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Neck/Ties/bow-tie.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckShortTieCommandMaid
+  name: short tie
+  description: The perfect finishing touch for your look.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Ties/short-tie.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Neck/Ties/short-tie.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMediumTieCommandMaid
+  name: medium tie
+  description: The perfect finishing touch for your look.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Ties/medium-tie.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Neck/Ties/medium-tie.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
