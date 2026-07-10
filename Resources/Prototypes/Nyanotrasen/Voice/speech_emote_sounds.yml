@@ -56,6 +56,10 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleFelinid
@@ -104,3 +108,7 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End

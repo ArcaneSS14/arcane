@@ -105,6 +105,10 @@
       collection: ReptilianHisses
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleHuman
@@ -151,6 +155,10 @@
       path: /Audio/_Goobstation/Voice/Human/gulp.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds ## GOOB CONTENT START
   id: MonkeyMode
@@ -241,6 +249,10 @@
       collection: MaleCoughs
     Yawn: # Goob
       collection: MaleYawn
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -285,6 +297,10 @@
       collection: FemaleCoughs
     Yawn: # Goob
       collection: FemaleYawn
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: MaleSlime
@@ -339,6 +355,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
   params:
     variation: 0.125
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleSlime
@@ -393,6 +413,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
   params:
     variation: 0.125
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: UnisexVox
@@ -489,6 +513,10 @@
       collection: Dionasigh
   params:
     variation: 0.125
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: UnisexArachnid
@@ -521,6 +549,10 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Hiss: # Orion
       collection: ReptilianHisses
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -570,6 +602,10 @@
   params:
     variation: 0.125
     pitch: 0.75
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleDwarf
@@ -619,6 +655,10 @@
   params:
     variation: 0.125
     pitch: 0.75
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: UnisexMoth
@@ -671,6 +711,10 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: MaleMoth
@@ -723,6 +767,10 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleMoth
@@ -775,6 +823,10 @@
       collection: FemaleSneezes
     Cough:
       collection: FemaleCoughs
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: UnisexSilicon

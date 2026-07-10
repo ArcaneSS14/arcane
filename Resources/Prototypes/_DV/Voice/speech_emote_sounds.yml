@@ -113,6 +113,10 @@
     # Arcane-end
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: SoundsHarpyMale
@@ -207,6 +211,10 @@
       collection: Mars
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleVulpkanin
@@ -259,6 +267,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Hiss: # Arcane
       path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: MaleVulpkanin
@@ -311,6 +323,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Hiss: # Arcane
       path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 
 - type: emoteSounds
@@ -370,6 +386,10 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleRodentia
@@ -410,6 +430,10 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: UnisexChitinid
@@ -494,6 +518,10 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: MaleFeroxi
@@ -536,3 +564,7 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
