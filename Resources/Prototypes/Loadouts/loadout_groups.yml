@@ -946,12 +946,14 @@
   loadouts:
   - QuartermasterWintercoat
 
+# Arcane - Start
 - type: loadoutGroup
   id: QuartermasterHands
   name: loadout-group-quartermaster-hands
   minLimit: 0
   loadouts:
   - QMGlovesPatron
+# Arcane - End
 
 - type: loadoutGroup
   id: QuartermasterShoes
@@ -959,7 +961,7 @@
   loadouts:
   - BrownShoes
   - CargoWinterBoots
-  - QMShoesPatron
+  - QMShoesPatron # Arcane
 
 - type: loadoutGroup
   id: CargoTechnicianHead
@@ -1066,11 +1068,13 @@
   - ClothingNeckMantleOrangeCE # goob
   - ClothingNeckEnsembleChiefEngineerWhite # goob
   - ClothingNeckEnsembleChiefEngineerGreen # goob
-  - CEBlackCloakPatron # Arcane
-  - CETricolorCloakPatron # Arcane
+  # Arcane - Start
+  - CEBlackCloakPatron
+  - CETricolorCloakPatron
+  # Arcane - End
 
 - type: loadoutGroup
-  id: ChiefEngineerOuterClothing
+  id: hohiefEngineerOuterClothing
   name: loadout-group-chief-engineer-outerclothing
   minLimit: 0
   loadouts:
@@ -1364,8 +1368,8 @@
   - Bodycam # Goobstation - Body cameras
   - HeadOfSecurityEnsemble # goob
   # Arcane - Start
-  - HOSBlackCloakPatron # Arcane
-  - HOSRedCloakPatron # Arcane
+  - HOSBlackCloakPatron
+  - HOSRedCloakPatron
   # Arcane - End
 
 - type: loadoutGroup
@@ -1376,8 +1380,10 @@
   - HeadofSecurityWinterCoat
   - HeadofSecurityGreatCoat # Goobstation
   - HeadofSecurityVestWeb # Goobstation
-  - LeatherCoatPatron # Arcane
-  - HOSLongVestPatron # Arcane
+  # Arcane - Start
+  - LeatherCoatPatron
+  - HOSLongVestPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: WardenHead
@@ -1556,8 +1562,10 @@
   - ChiefMedicalOfficerTurtleneckJumpsuit
   - ChiefMedicalOfficerTurtleneckJumpskirt
   - CMOMJ # goob
-  - CMOSweaterSkirtPatron # Arcane
-  - CMOSweaterPatron # Arcane
+  # Arcane - Start
+  - CMOSweaterSkirtPatron
+  - CMOSweaterPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerOuterClothing
@@ -1619,10 +1627,12 @@
   - RegularLabCoat
   - MedicalDoctorWintercoat
   - SeniorPhysicianLabCoat
-  - EeayLabCoatPatron # Arcane
-  - LabCoatBeltsPatron # Arcane
-  - LabCoatBlackPatron # Arcane
-  - LivseyCoatPatron # Arcane
+  # Arcane - Start
+  - EeayLabCoatPatron
+  - LabCoatBeltsPatron
+  - LabCoatBlackPatron
+  - LivseyCoatPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: MedicalBackpack
