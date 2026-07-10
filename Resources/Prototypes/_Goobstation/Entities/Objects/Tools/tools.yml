@@ -44,15 +44,11 @@
 #   delay: 1
 # Arcane-Delete-End
   - type: Tool
-    qualities:
-      - Screwing
-    # Arcane-Edit-Start
-      - Prying
-      - Anchoring
-      - Cutting
-      - Welding
-    speedModifier: 5
-    # Arcane-Edit-End
+#   Arcane-Delete-Start
+#   qualities:
+#    - Screwing
+#   Arcane-Delete-End
+    speedModifier: 5 # Arcane-Edit 1>5
     useSound: /Audio/Items/drill_use.ogg
   - type: ToolTileCompatible
   - type: MultipleTool
