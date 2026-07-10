@@ -76,7 +76,6 @@
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
   - /Audio/_Arcane/Interactions/pat2.ogg
-  - /Audio/_Arcane/Interactions/pat3.ogg
   messages:
   - хватает $target за попку!
   - кладёт руки на ягодицы $target.
@@ -117,6 +116,7 @@
   - /Audio/_Arcane/Interactions/bang4.ogg
   - /Audio/_Arcane/Interactions/bang5.ogg
   - /Audio/_Arcane/Interactions/bang6.ogg
+  - /Audio/_Arcane/Interactions/bang7.ogg
   messages:
   - шлёпает $target по попе!
   - звонко хлопает по ягодице $target.
