@@ -37,14 +37,15 @@
     damage:
       types:
         Blunt: 0 # melee weapon to allow flashing individual targets
-  - type: Prying
-    enabled: false
-  - type: UseDelay # For insta prying
-    delay: 1
   - type: Tool
     qualities:
       - Screwing
+      - Prying
+      - Anchoring
+      - Cutting
+      - Welder
     useSound: /Audio/Items/drill_use.ogg
+    speedModifier: 5
   - type: ToolTileCompatible
   - type: MultipleTool
     statusShowBehavior: true
@@ -87,6 +88,15 @@
           state: icon
         changeSound:
           path: /Audio/Effects/Arcade/newgame.ogg
+      - behavior: Welding
+        sprite:
+          sprite: _Goobstation/Objects/Tools/sonic_screwdriver.rsi
+          state: crowbar
+        useSound:
+          collection: Welder
+        changeSound:
+          path: /Audio/Effects/Arcade/newgame.ogg
+
 
 
 - type: entity

@@ -270,12 +270,23 @@
     back: ClothingBackpackSatchelAdmin
     eyes: ClothingEyesHudMultiversal # Orion
     id: AdminPDA
+    pocket1: PinpointerNuclear
+    pocket2: PinpointerStationGoob
+    pocket3: WeaponTaserSuper
+    pocket4: DoorRemoteAll
+    head: ClothingHeadHatGoldCentcom
+    neck: ClothingNeckMantleEpaulettes
   storage:
     back:
     - GasAnalyzer
-    - trayScanner
     - AccessConfiguratorUniversal
-    - Multitool
+    - HandTeleporterAdmeme
+    - SonicScrewdriver
+    - StasisCage
+    - StasisCage
+    - StasisCage
+    - StasisCage
+    - ClothingBeltWhipping
 
 #Gladiator with spear
 - type: startingGear
