@@ -277,6 +277,7 @@
     pocket4: DoorRemoteAll
     head: ClothingHeadHatGoldCentcom
     neck: ClothingNeckMantleEpaulettes
+    belt: ClothingBeltWhipping
     # Arcane-Edit-End
   storage:
     back:
@@ -291,7 +292,6 @@
     - StasisCage
     - StasisCage
     - StasisCage
-    - ClothingBeltWhipping
     # Arcane-Edit-End
 
 #Gladiator with spear
