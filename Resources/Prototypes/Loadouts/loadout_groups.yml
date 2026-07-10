@@ -1074,7 +1074,7 @@
   # Arcane - End
 
 - type: loadoutGroup
-  id: hohiefEngineerOuterClothing
+  id: ChiefEngineerOuterClothing
   name: loadout-group-chief-engineer-outerclothing
   minLimit: 0
   loadouts:
