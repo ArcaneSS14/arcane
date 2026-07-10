@@ -292,6 +292,10 @@
     - StasisCage
     - StasisCage
     - StasisCage
+    - BaseUplinkRadioDebug
+    - LightReplacer
+    - SprayPainter
+    - GeigerCounter
     # Arcane-Edit-End
 
 #Gladiator with spear
