@@ -531,7 +531,7 @@
   # Arcane - Start
   - BartenderPatron
   - BartenderSkirtPatron
-# Arcane - End
+  # Arcane - End
 
 - type: loadoutGroup
   id: BartenderOuterClothing
@@ -746,7 +746,7 @@
   - ClownSkirt
   - JesterSuit
   - JesterAltSuit
-  - ClownPinkPatron
+  - ClownPinkPatron # Arcane
 
 - type: loadoutGroup
   id: ClownBackpack
