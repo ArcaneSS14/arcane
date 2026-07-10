@@ -76,10 +76,18 @@ namespace Content.IntegrationTests.Tests.Chemistry
                         .TryGetSolution(beaker, "beaker", out solutionEnt, out solution));
                     foreach (var (id, reactant) in reactionPrototype.Reactants)
                     {
+                        // Arcane-Start: Add reagents and set temperature directly on the solution instance, bypassing TryAddReagent/SetTemperature, both of which internally call UpdateChemicals(soln) on every single call. That used to let passive temperature-only reactions (e.g. WaterFreezing) consume reagents *before* the mixer-only reaction under test got a chance to run, producing false negatives like the Vodka reaction failing because its Water reactant froze into Ice mid-setup.
+                        var accepted = solution.AvailableVolume > reactant.Amount
+                            ? reactant.Amount
+                            : solution.AvailableVolume;
+                        solution.AddReagent(id, accepted, dirtyHeatCap: false);
+                        // Arcane-End
 #pragma warning disable NUnit2045
+                        /* Arcane-Edit-Start
                         Assert.That(solutionContainerSystem
                             .TryAddReagent(solutionEnt.Value, id, reactant.Amount, out var quantity));
-                        Assert.That(reactant.Amount, Is.EqualTo(quantity));
+                        */ // Arcane-Edit-End
+                        Assert.That(reactant.Amount, Is.EqualTo(accepted)); // Arcane-Edit
 #pragma warning restore NUnit2045
                     }
                     // Goobstation - this part of the test disallows many interesting temperature dependent chemical reactions
@@ -108,15 +116,17 @@ namespace Content.IntegrationTests.Tests.Chemistry
                     }
                     */
                     //Now safe set the temperature and mix the reagents
-                    solutionContainerSystem.SetTemperature(solutionEnt.Value, reactionPrototype.MinimumTemperature);
+                    solution.Temperature = reactionPrototype.MinimumTemperature; // Arcane-Edit
 
+                    ReactionMixerComponent? mixerComponent = null; // Arcane
                     if (reactionPrototype.MixingCategories != null)
                     {
                         var dummyEntity = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
-                        var mixerComponent = entityManager.AddComponent<ReactionMixerComponent>(dummyEntity);
+                        mixerComponent = entityManager.AddComponent<ReactionMixerComponent>(dummyEntity); // Arcane-Edit
                         mixerComponent.ReactionTypes = reactionPrototype.MixingCategories;
                         solutionContainerSystem.UpdateChemicals(solutionEnt.Value, true, mixerComponent);
                     }
+                    solutionContainerSystem.UpdateChemicals(solutionEnt.Value, true, mixerComponent); // Arcane: Single reaction-processing pass, with reagents + temperature + mixer already fully set up.
                 });
 
                 await server.WaitIdleAsync();
