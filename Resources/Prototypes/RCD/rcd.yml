@@ -104,6 +104,56 @@
   rotation: Fixed
   fx: EffectRCDConstruct2
 
+# Arcane-Edit-Start # For AGhost 'RCD Chrono'
+- type: rcd
+  id: Drain
+  category: WallsAndFlooring
+  sprite: /Textures/Objects/Specific/Janitorial/drain.rsi/icon.png
+  mode: ConstructObject
+  prototype: FloorDrain
+  cost: 2
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: ReinforcedWall
+  category: WallsAndFlooring
+  sprite: /Textures/Structures/Walls/solid.rsi/rgeneric.png
+  mode: ConstructObject
+  prototype: WallReinforced
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct3
+
+- type: rcd
+  id: ShuttleWindow
+  category: WallsAndFlooring
+  sprite: /Textures/Structures/Windows/shuttle_window.rsi/full.png
+  mode: ConstructObject
+  prototype: ShuttleWindow
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct3
+
+- type: rcd
+  id: ShuttleWall
+  category: WallsAndFlooring
+  sprite: /Textures/Structures/Walls/shuttle.rsi/full.png
+  mode: ConstructObject
+  prototype: WallShuttle
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct3
+# Arcane-Edit-End
+
 # Windows
 - type: rcd
   id: Window
@@ -200,6 +250,80 @@
   rotation: Camera
   fx: EffectRCDConstruct3
 
+# Arcane-Edit-Start   # For AGhost 'RCD Chrono'
+- type: rcd
+  id: HighSecDoor
+  category: Airlocks
+  sprite: /Textures/Structures/Doors/Airlocks/highsec/highsec.rsi/closed.png
+  mode: ConstructObject
+  prototype: HighSecDoor
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct3
+
+- type: rcd
+  id: BlastDoor
+  category: Airlocks
+  sprite: /Textures/Structures/Doors/Shutters/blastdoor.rsi/closed.png
+  mode: ConstructObject
+  prototype: BlastDoor
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct3
+
+- type: rcd
+  id: ShuttersNormal
+  category: Airlocks
+  sprite: /Textures/Structures/Doors/Shutters/shutters.rsi/closed.png
+  mode: ConstructObject
+  prototype: ShuttersNormal
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct3
+
+- type: rcd
+  id: ShuttersWindow
+  category: Airlocks
+  sprite: /Textures/Structures/Doors/Shutters/shutters_window.rsi/closed.png
+  mode: ConstructObject
+  prototype: ShuttersWindow
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct3
+
+- type: rcd
+  id: AirlockGlassShuttle
+  category: Airlocks
+  sprite: /Textures/Structures/Doors/Airlocks/Glass/shuttle.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockGlassShuttle
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct3
+
+- type: rcd
+  id: AirlockShuttle
+  category: Airlocks
+  sprite: /Textures/Structures/Doors/Airlocks/Standard/shuttle.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockShuttle
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct3
+# Arcane-Edit-End
+
 # Lighting
 - type: rcd
   id: TubeLight
@@ -282,3 +406,65 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
+
+# Arcane-Edit-Start   # For AGhost 'RCD Chrono'
+- type: rcd
+  id: Camera
+  category: Electrical
+  sprite: /Textures/Structures/Wallmounts/camera.rsi/cameracase.png
+  mode: ConstructObject
+  prototype: SurveillanceCameraConstructed
+  cost: 3
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: APC
+  category: Electrical
+  sprite: /Textures/Structures/Power/apc.rsi/static.png
+  mode: ConstructObject
+  prototype: ApcConstructed
+  cost: 8
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: Substation
+  category: Electrical
+  sprite: /Textures/Structures/Power/substation.rsi/substation_static.png
+  mode: ConstructObject
+  prototype: SubstationBasicEmpty
+  cost: 15
+  delay: 4
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: SMES
+  category: Electrical
+  sprite: /Textures/Structures/Power/smes.rsi/static.png
+  mode: ConstructObject
+  prototype: SMESBasicEmpty
+  cost: 30
+  delay: 4
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: APU
+  category: Electrical
+  sprite: /Textures/Structures/Power/Generation/wallmount_generator.rsi/static.png
+  mode: ConstructObject
+  prototype: GeneratorWallmountAPU
+  cost: 1
+  delay: 4
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+# Arcane-Edit-End

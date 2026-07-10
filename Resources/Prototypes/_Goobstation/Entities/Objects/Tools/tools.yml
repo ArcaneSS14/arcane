@@ -114,13 +114,50 @@
   - type: UseDelay
     delay: 0.1
   - type: AutoRecharge
-    rechargeDuration: 5
+    rechargeDuration: 0.1 # Arcane-Edit: 5 > 0.1
   - type: Sprite
     sprite: _Goobstation/Objects/Tools/rcd_chrono.rsi
     state: icon
   - type: Item
     sprite: _Goobstation/Objects/Tools/rcd_chrono.rsi
   - type: RCD
+    availablePrototypes:
+    - WallSolid
+    - FloorSteel
+    - Plating
+    - Catwalk
+    - Grille
+    - Window
+    - WindowDirectional
+    - WindowReinforcedDirectional
+    - ReinforcedWindow
+    - Airlock
+    - AirlockGlass
+    - Firelock
+    - TubeLight
+    - BulbLight
+    - LVCable
+    - MVCable
+    - HVCable
+    - CableTerminal
+    - Deconstruct
+    # Arcane-Edit-Start
+    - Camera
+    - APC
+    - Substation
+    - SMES
+    - APU
+    - Drain
+    - ReinforcedWall
+    - ShuttleWindow
+    - ShuttleWall
+    - HighSecDoor
+    - BlastDoor
+    - ShuttersNormal
+    - ShuttersWindow
+    - AirlockGlassShuttle
+    - AirlockShuttle
+    # Arcane-Edit-End
 
 - type: entity
   name: handheld fax

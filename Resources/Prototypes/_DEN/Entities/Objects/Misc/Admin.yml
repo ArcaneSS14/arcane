@@ -1,0 +1,25 @@
+- type: entity
+  id: AdminMaterialBox
+  parent: BoxCardboard
+  name: admin material box
+  description: A box of basic materials.
+  suffix: Admin
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SheetSteel
+        - id: SheetGlass
+        - id: SheetPlastic
+        - id: MaterialWoodPlank
+        - id: MaterialCloth
+        - id: PartRodMetal

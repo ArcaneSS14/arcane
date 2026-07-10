@@ -281,21 +281,23 @@
     # Arcane-Edit-End
   storage:
     back:
-    - GasAnalyzer
     # Arcane-Edit-Start
 #   - trayScanner
 #   - Multitool
-    - AccessConfiguratorUniversal
+    - StasisCage
+    - StasisCage
+    - StasisCage
+    - StasisCage
     - HandTeleporterAdmeme
-    - SonicScrewdriver
-    - StasisCage
-    - StasisCage
-    - StasisCage
-    - StasisCage
+    - AccessConfiguratorUniversal
     - BaseUplinkRadioDebug
-    - LightReplacer
+    - SonicScrewdriver
     - SprayPainter
+    - LightReplacer
     - GeigerCounter
+    - GasAnalyzer
+    - RCDChrono
+    - AdminMaterialBox
     # Arcane-Edit-End
 
 #Gladiator with spear
