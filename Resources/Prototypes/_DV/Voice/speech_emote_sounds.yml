@@ -24,17 +24,17 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: HarpyScreams
+      collection: HarpyFemaleScreams # Arcane-Edit
     Laugh:
-      collection: HarpyLaugh
+      collection: HarpyFemaleLaugh # Arcane-Edit
     Sneeze:
-      collection: MaleSneezes
+      collection: FemaleSneezes # Arcane-Edit
     Cough:
-      collection: MaleCoughs
+      collection: FemaleCoughs # Arcane-Edit
     Sigh:
-      collection: MaleSigh
+      collection: HarpyFemaleSigh # Arcane-Edit
     Crying:
-      collection: HarpyCry
+      collection: HarpyFemaleCry # Arcane-Edit
     Whistle:
       collection: Whistles
     Hiss:
@@ -57,8 +57,16 @@
       collection: HarpyBeeps
     Rev:
       collection: HarpyRevs
-#    Click:
-#      collection: HarpyClicks
+    # Arcane-Edit-Start
+    Click:
+      collection: HarpyClicks
+    Squish:
+      collection: Squishes
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops
+    # Arcane-Edit-End
     Chitter:
       collection: HarpyChitter
     Squeak:
@@ -99,6 +107,10 @@
       collection: Warble
     Wurble:
       collection: Wurble
+    # Arcane-start
+    Mars:
+      collection: Mars
+    # Arcane-end
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
 
@@ -108,17 +120,17 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: HarpyScreams
+      collection: HarpyMaleScreams # Arcane-Edit
     Laugh:
-      collection: HarpyLaugh
+      collection: HarpyMaleLaugh # Arcane-Edit
     Sneeze:
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
     Sigh:
-      collection: MaleSigh
+      collection: HarpyMaleSigh # Arcane-Edit
     Crying:
-      collection: HarpyCry
+      collection: HarpyMaleCry # Arcane-Edit
     Whistle:
       collection: Whistles
     Hiss:
@@ -141,8 +153,16 @@
       collection: HarpyBeeps
     Rev:
       collection: HarpyRevs
-#    Click:
-#      collection: HarpyClicks
+    # Arcane-Edit-Start
+    Click:
+      collection: HarpyClicks
+    Squish:
+      collection: Squishes
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops
+    # Arcane-Edit-End
     Chitter:
       collection: HarpyChitter
     Squeak:

@@ -29,6 +29,10 @@
   - type: Appearance
   - type: StaticPrice
     price: 0
+  # Arcane-Start
+  - type: StealTarget
+    stealGroup: AuthenticSpaceCash
+  # Arcane-End
 
 - type: entity
   parent: CreditHolochip

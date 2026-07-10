@@ -76,6 +76,14 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Jumpsuit
+
+# Arcane-Start
+- type: loadout
+  id: LawyerJumpsuitBrown
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBrownSuit
+# Arcane-End
+
 - type: loadout
   id: LawyerJumpsuit
   equipment:

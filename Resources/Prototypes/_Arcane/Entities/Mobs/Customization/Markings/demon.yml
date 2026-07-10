@@ -499,3 +499,12 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/succubus.rsi
     state: succubus
+
+- type: marking
+  id: SuccubusWingsNotWithTail
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Demon, SlimePerson]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/succubus.rsi
+    state: succubus_not_tail

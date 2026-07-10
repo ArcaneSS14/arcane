@@ -76,6 +76,7 @@
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
   - /Audio/_Arcane/Interactions/pat2.ogg
+  - /Audio/_Arcane/Interactions/pat3.ogg
   messages:
   - хватает $target за попку!
   - кладёт руки на ягодицы $target.

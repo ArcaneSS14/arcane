@@ -1028,6 +1028,7 @@
       state: pda_base
       color: "#003153"
     - state: pda_buttons
+    - state: pda_lawyer # Arcane
     - map: [ "enum.PdaVisualLayers.Screen" ]
       state: pda_screen_borders
     - state: light_overlay
@@ -1050,7 +1051,7 @@
         tags:
         - Write
   - type: PdaBorderColor
-    borderColor: "#003153" # Orion-Edit
+    borderColor: "#a02342" # Orion-Edit # Arcane-Edit
 
 - type: entity
   parent: LawyerPDA

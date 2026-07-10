@@ -279,18 +279,20 @@
   - Wrists
   # Orion-End
 
-- type: roleLoadout
-  id: JobCommandMaid
-  groups:
-  - CommonBackpack
-  - Survival
-  - GroupSpeciesBreathTool
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
+# Arcane-Edit-Start
+# - type: roleLoadout
+#   id: JobCommandMaid
+#   groups:
+#   - CommonBackpack
+#   - Survival
+#   - GroupSpeciesBreathTool
+#   # Orion-Start
+#   - Undershirt
+#   - Underwear
+#   - Socks
+#   - Wrists
+#   # Orion-End
+# Arcane-Edit-End
 
 - type: roleLoadout
   id: JobPartyMaker

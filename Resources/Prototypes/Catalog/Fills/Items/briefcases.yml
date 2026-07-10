@@ -136,7 +136,7 @@
   - type: StorageFill
     contents:
       - id: ClothingEyesGlassesSunglasses
-      - id: SpaceCash20000
+      - id: HiddenFakeSpaceCash50000 # Arcane-Edit
         amount: 1
       - id: ClothingOuterCoatJensen
       # EE Plasmeme Change: Why did they make this have combat gloves???

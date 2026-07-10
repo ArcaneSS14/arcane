@@ -8,3 +8,20 @@
     sprite: _Arcane/Clothing/Hands/bdsm_gloves.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Hands/bdsm_gloves.rsi
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesCommandMaid
+  name: gloves of the maid of command
+  description: Thin, breathable latex gloves, the touch of which gives incomparable emotions.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Hands/Gloves/command_maid_gloves.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Hands/Gloves/command_maid_gloves.rsi
+  - type: Fiber
+    fiberMaterial: fibers-latex
+  - type: FingerprintMask
+  - type: Tag
+    tags:
+    - WhitelistChameleon
