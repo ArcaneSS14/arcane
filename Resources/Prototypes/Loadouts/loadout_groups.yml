@@ -1649,7 +1649,7 @@
   loadouts:
   - WhiteShoes
   - MedicalWinterBoots
-  - OldFashionesDoctorShoesPatron
+  - OldFashionesDoctorShoesPatron # Arcane
 
 - type: loadoutGroup
   id: MedicalDoctorPDA
