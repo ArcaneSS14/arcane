@@ -37,15 +37,23 @@
     damage:
       types:
         Blunt: 0 # melee weapon to allow flashing individual targets
+# Arcane-Delete-Start
+# - type: Prying
+#   enabled: false
+# - type: UseDelay
+#   delay: 1
+# Arcane-Delete-End
   - type: Tool
     qualities:
       - Screwing
+    # Arcane-Edit-Start
       - Prying
       - Anchoring
       - Cutting
       - Welder
-    useSound: /Audio/Items/drill_use.ogg
     speedModifier: 5
+    # Arcane-Edit-End
+    useSound: /Audio/Items/drill_use.ogg
   - type: ToolTileCompatible
   - type: MultipleTool
     statusShowBehavior: true
@@ -88,6 +96,7 @@
           state: icon
         changeSound:
           path: /Audio/Effects/Arcade/newgame.ogg
+      # Arcane-Edit-Start
       - behavior: Welding
         sprite:
           sprite: _Goobstation/Objects/Tools/sonic_screwdriver.rsi
@@ -96,6 +105,7 @@
           collection: Welder
         changeSound:
           path: /Audio/Effects/Arcade/newgame.ogg
+      # Arcane-Edit-End
 
 
 

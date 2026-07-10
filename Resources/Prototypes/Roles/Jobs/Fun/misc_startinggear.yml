@@ -270,15 +270,20 @@
     back: ClothingBackpackSatchelAdmin
     eyes: ClothingEyesHudMultiversal # Orion
     id: AdminPDA
+    # Arcane-Edit-Start
     pocket1: PinpointerNuclear
     pocket2: PinpointerStationGoob
     pocket3: WeaponTaserSuper
     pocket4: DoorRemoteAll
     head: ClothingHeadHatGoldCentcom
     neck: ClothingNeckMantleEpaulettes
+    # Arcane-Edit-End
   storage:
     back:
     - GasAnalyzer
+    # Arcane-Edit-Start
+#   - trayScanner
+#   - Multitool
     - AccessConfiguratorUniversal
     - HandTeleporterAdmeme
     - SonicScrewdriver
@@ -287,6 +292,7 @@
     - StasisCage
     - StasisCage
     - ClothingBeltWhipping
+    # Arcane-Edit-End
 
 #Gladiator with spear
 - type: startingGear
