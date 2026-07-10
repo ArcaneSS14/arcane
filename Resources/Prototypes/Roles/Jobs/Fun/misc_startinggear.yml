@@ -292,7 +292,7 @@
     - AccessConfiguratorUniversal
     - BaseUplinkRadioDebug
     - SonicScrewdriver
-    - SprayPainter
+    - SprayPainterRecharging
     - LightReplacer
     - GeigerCounter
     - GasAnalyzer
@@ -302,6 +302,8 @@
     - PinpointerContractor
     - PinpointerContractor
     - PinpointerContractor
+    - BlueshieldOfficerLockerTeleporter
+    - NanorepLockerTeleporter
     # Arcane-Edit-End
 
 #Gladiator with spear
