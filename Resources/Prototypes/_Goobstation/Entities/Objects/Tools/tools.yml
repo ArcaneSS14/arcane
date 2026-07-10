@@ -50,7 +50,7 @@
       - Prying
       - Anchoring
       - Cutting
-      - Welder
+      - Welding
     speedModifier: 5
     # Arcane-Edit-End
     useSound: /Audio/Items/drill_use.ogg
