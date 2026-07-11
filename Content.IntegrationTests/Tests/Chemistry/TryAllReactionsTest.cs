@@ -124,7 +124,7 @@ namespace Content.IntegrationTests.Tests.Chemistry
                         var dummyEntity = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
                         mixerComponent = entityManager.AddComponent<ReactionMixerComponent>(dummyEntity); // Arcane-Edit
                         mixerComponent.ReactionTypes = reactionPrototype.MixingCategories;
-                        solutionContainerSystem.UpdateChemicals(solutionEnt.Value, true, mixerComponent);
+//                        solutionContainerSystem.UpdateChemicals(solutionEnt.Value, true, mixerComponent); // Arcane-Edit: Moved
                     }
                     solutionContainerSystem.UpdateChemicals(solutionEnt.Value, true, mixerComponent); // Arcane: Single reaction-processing pass, with reagents + temperature + mixer already fully set up.
                 });
