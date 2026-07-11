@@ -130,20 +130,6 @@
   fx: EffectRCDConstruct3
 
 - type: rcd
-  id: ShuttleWindow
-  category: WallsAndFlooring
-  sprite: /Textures/Structures/Windows/shuttle_window.rsi/full.png
-  mode: ConstructObject
-  prototype: ShuttleWindow
-  cost: 8
-  delay: 3
-  collisionMask: Impassable
-  rules:
-+   - IsWindow
-  rotation: Fixed
-  fx: EffectRCDConstruct3
-
-- type: rcd
   id: ShuttleWall
   category: WallsAndFlooring
   sprite: /Textures/Structures/Walls/shuttle.rsi/full.png
@@ -214,6 +200,22 @@
     - IsWindow
   rotation: User
   fx: EffectRCDConstruct2
+
+# Arcane-Edit-Start
+- type: rcd
+  id: WindowShuttle
+  category: WindowsAndGrilles
+  sprite: /Textures/Structures/Windows/shuttle_window.rsi/full.png
+  mode: ConstructObject
+  prototype: ShuttleWindow
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rules:
+  - IsWindow
+  rotation: User
+  fx: EffectRCDConstruct3
+# Arcane-Edit-End
 
 # Airlocks
 - type: rcd

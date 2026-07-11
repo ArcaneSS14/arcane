@@ -149,7 +149,7 @@
     - APU
     - Drain
     - ReinforcedWall
-    - ShuttleWindow
+    - WindowShuttle
     - ShuttleWall
     - HighSecDoor
     - BlastDoor
