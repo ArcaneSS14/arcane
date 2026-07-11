@@ -212,6 +212,11 @@ public sealed partial class SingleMarkingPicker : BoxContainer
                 item.Selected = true;
                 _ignoreItemSelected = false;
             }
+            // Arcane - Start
+            var session = _playerManager.LocalSession; // получить текущую клиентскую сессию
+            if (!MarkingWhitelistManager.IsMarkingAllowed(marking, session))
+            continue; // не добавлять в список
+            // Arcane - End
         }
     }
 
@@ -312,9 +317,4 @@ public sealed partial class SingleMarkingPicker : BoxContainer
     {
         return Loc.GetString($"marking-{marking.ID}");
     }
-    // Arcane - Start
-    var session = _playerManager.LocalSession; // получить текущую клиентскую сессию
-    if (!MarkingWhitelistManager.IsMarkingAllowed(marking, session))
-        continue; // не добавлять в список
-    // Arcane - End
 }

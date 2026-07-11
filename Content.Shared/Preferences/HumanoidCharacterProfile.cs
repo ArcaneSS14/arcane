@@ -1111,6 +1111,14 @@ namespace Content.Shared.Preferences
             {
                 _loadouts.Remove(value);
             }
+            // Arcane - Start
+            if (!_prototypeManager.TryIndex<MarkingPrototype>(markingId.MarkingId, out var proto))
+                continue;
+
+            if (!MarkingWhitelistManager.IsMarkingAllowed(proto, session))
+                profile.Appearance.Markings.Remove(markingId); // либо reject профиль
+        }
+        // Arcane - End
         }
 
         // Art-TTS Start
@@ -1299,13 +1307,5 @@ namespace Content.Shared.Preferences
         }
         foreach (var markingId in profile.Appearance.Markings.ToList())
         {
-        // Arcane - Start
-        if (!_prototypeManager.TryIndex<MarkingPrototype>(markingId.MarkingId, out var proto))
-            continue;
-
-        if (!MarkingWhitelistManager.IsMarkingAllowed(proto, session))
-            profile.Appearance.Markings.Remove(markingId); // либо reject профиль
-        }
-        // Arcane - End
     }
 }
