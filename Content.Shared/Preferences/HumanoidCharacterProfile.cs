@@ -69,6 +69,11 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+// Arcane - Start
+using Content.Shared._Arcane.SpecialWhitelist;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
+// Arcane - End
 
 namespace Content.Shared.Preferences
 {
@@ -1292,5 +1297,15 @@ namespace Content.Shared.Preferences
         {
             return new HumanoidCharacterProfile(this);
         }
+        foreach (var markingId in profile.Appearance.Markings.ToList())
+        {
+        // Arcane - Start
+        if (!_prototypeManager.TryIndex<MarkingPrototype>(markingId.MarkingId, out var proto))
+            continue;
+
+        if (!MarkingWhitelistManager.IsMarkingAllowed(proto, session))
+            profile.Appearance.Markings.Remove(markingId); // либо reject профиль
+        }
+        // Arcane - End
     }
 }

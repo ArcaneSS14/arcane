@@ -22,6 +22,10 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
+// Arcane - Start
+using Content.Shared._Arcane.SpecialWhitelist;
+using Robust.Client.Player;
+// Arcane - End
 
 namespace Content.Client.Humanoid;
 
@@ -31,6 +35,7 @@ public sealed partial class MarkingPicker : Control
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!; // Arcane
 
     private readonly SpriteSystem _sprite;
 
@@ -177,6 +182,11 @@ public sealed partial class MarkingPicker : Control
             validCategories.Add(category);
             CMarkingCategoryButton.AddItem(Loc.GetString($"markings-category-{category.ToString()}"), i);
         }
+        // Arcane - Start
+        var session = _playerManager.LocalSession; // получить текущую клиентскую сессию
+        if (!MarkingWhitelistManager.IsMarkingAllowed(marking, session))
+            continue; // не добавлять в список
+        // Arcane - End
 
         if (validCategories.Contains(_selectedMarkingCategory))
         {
@@ -190,6 +200,10 @@ public sealed partial class MarkingPicker : Control
         {
             _selectedMarkingCategory = MarkingCategories.Chest;
         }
+        // Arcane - Start
+        if (!MarkingWhitelistManager.IsMarkingAllowed(marking, _playerManager.LocalSession))
+    continue;
+    // Arcane - End
     }
 
     private string GetMarkingName(MarkingPrototype marking) => Loc.GetString($"marking-{marking.ID}");
