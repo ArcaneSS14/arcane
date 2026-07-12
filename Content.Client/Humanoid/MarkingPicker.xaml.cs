@@ -197,8 +197,8 @@ public sealed partial class MarkingPicker : Control
         }
         // Arcane - Start
         if (!MarkingWhitelistManager.IsMarkingAllowed(marking, _playerManager.LocalSession))
-    continue;
-    // Arcane - End
+            continue;
+        // Arcane - End
     }
 
     private string GetMarkingName(MarkingPrototype marking) => Loc.GetString($"marking-{marking.ID}");
