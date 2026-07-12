@@ -29,10 +29,6 @@ namespace Content.Client.Access.UI
 
         private AccessLevelControl _accessButtons = new();
         private readonly List<string> _jobPrototypeIds = new();
-        // DS14-start
-        private readonly List<ProtoId<AccessLevelPrototype>> _basicAccessLevels;
-        private readonly List<ProtoId<AccessLevelPrototype>> _extendedAccessLevels;
-        // DS14-end
 
         private string? _lastFullName;
         private string? _lastJobTitle;
@@ -42,20 +38,13 @@ namespace Content.Client.Access.UI
         private static ProtoId<JobPrototype> _defaultJob = "Passenger";
 
         public IdCardConsoleWindow(IdCardConsoleBoundUserInterface owner, IPrototypeManager prototypeManager,
-            List<ProtoId<AccessLevelPrototype>> accessLevels,
-            List<ProtoId<AccessLevelPrototype>> basicAccessLevels,
-            List<ProtoId<AccessLevelPrototype>> extendedAccessLevels,
-            bool isTaipan) //DS14
+            List<ProtoId<AccessLevelPrototype>> accessLevels)
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
             _logMill = _logManager.GetSawmill(SharedIdCardConsoleSystem.Sawmill);
 
             _owner = owner;
-            // DS14-start
-            _basicAccessLevels = basicAccessLevels;
-            _extendedAccessLevels = extendedAccessLevels;
-            // DS14-end
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _maxIdJobLength = _cfgManager.GetCVar(CCVars.MaxIdJobLength);
@@ -95,13 +84,11 @@ namespace Content.Client.Access.UI
                         containerChild.AddChild(button);
             };
             // Goobstation End
-
-            // DS14-start
+            // Arcane-Edit-Start
             var jobs = _prototypeManager.EnumeratePrototypes<JobPrototype>()
                 .Where(job => job.OverrideConsoleVisibility.GetValueOrDefault(job.SetPreference))
-                .Where(job => isTaipan ? job.IsTaipan : !job.IsTaipan)
                 .ToList();
-            // DS14-end
+            // Arcane-Edit-End
 
             jobs.Sort((x, y) => string.Compare(x.LocalizedName, y.LocalizedName, StringComparison.CurrentCulture));
 
@@ -137,12 +124,16 @@ namespace Content.Client.Access.UI
                 button.OnPressed += _ => SubmitData();
             }
 
-            // DS14-Start
-            BasicAccessButton.Visible = _basicAccessLevels.Count > 0;
-            ExtendedAccessButton.Visible = _extendedAccessLevels.Count > 0;
-            BasicAccessButton.OnPressed += _ => SetAccessPreset(_basicAccessLevels);
-            ExtendedAccessButton.OnPressed += _ => SetAccessPreset(_extendedAccessLevels);
-            // DS14-End
+        }
+
+        /// <param name="enabled">If true, every individual access button will be pressed. If false, each will be depressed.</param>
+        private void SetAllAccess(bool enabled)
+        {
+            foreach (var button in _accessButtons.ButtonsList.Values)
+            {
+                if (!button.Disabled && button.Pressed != enabled)
+                    button.Pressed = enabled;
+            }
         }
 
         /// <param name="enabled">If true, every individual access button will be pressed. If false, each will be depressed.</param>
@@ -236,10 +227,6 @@ namespace Content.Client.Access.UI
             JobTitleSaveButton.Disabled = !interfaceEnabled || !jobTitleDirty;
 
             JobPresetOptionButton.Disabled = !interfaceEnabled;
-            // DS14-start
-            BasicAccessButton.Disabled = !interfaceEnabled;
-            ExtendedAccessButton.Disabled = !interfaceEnabled;
-            // DS14-end
 
             _accessButtons.UpdateState(state.TargetIdAccessList?.ToList() ??
                                        new List<ProtoId<AccessLevelPrototype>>(),
