@@ -23,6 +23,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 {
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!; // Arcane
 
     private readonly SpriteSystem _sprite;
 
@@ -203,6 +204,12 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         foreach (var (id, marking) in sortedMarkings)
         {
+            // Arcane - Start
+            if (!MarkingWhitelistManager.IsMarkingAllowed(marking, _playerManager.LocalSession))
+            {
+                continue;
+            }
+            // Arcane - End
             var item = MarkingList.AddItem(Loc.GetString($"marking-{id}"), _sprite.Frame0(marking.Sprites[0]));
             item.Metadata = marking.ID;
 
@@ -212,11 +219,6 @@ public sealed partial class SingleMarkingPicker : BoxContainer
                 item.Selected = true;
                 _ignoreItemSelected = false;
             }
-            // Arcane - Start
-            var session = _playerManager.LocalSession; // получить текущую клиентскую сессию
-            if (!MarkingWhitelistManager.IsMarkingAllowed(marking, session))
-            continue; // не добавлять в список
-            // Arcane - End
         }
     }
 

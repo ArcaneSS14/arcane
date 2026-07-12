@@ -182,11 +182,6 @@ public sealed partial class MarkingPicker : Control
             validCategories.Add(category);
             CMarkingCategoryButton.AddItem(Loc.GetString($"markings-category-{category.ToString()}"), i);
         }
-        // Arcane - Start
-        var session = _playerManager.LocalSession; // получить текущую клиентскую сессию
-        if (!MarkingWhitelistManager.IsMarkingAllowed(marking, session))
-            continue; // не добавлять в список
-        // Arcane - End
 
         if (validCategories.Contains(_selectedMarkingCategory))
         {
@@ -252,7 +247,12 @@ public sealed partial class MarkingPicker : Control
             {
                 continue;
             }
-
+            // Arcane - Start
+             if (!MarkingWhitelistManager.IsMarkingAllowed(marking, _playerManager.LocalSession))
+            {
+                continue;
+            }
+            // Arcane - End
             var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
             item.Metadata = marking;
         }
