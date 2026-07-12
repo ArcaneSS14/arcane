@@ -70,6 +70,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 // Arcane - Start
+using Content.Shared.Humanoid.Markings;
 using Content.Shared._Arcane.SpecialWhitelist;
 // Arcane - End
 
