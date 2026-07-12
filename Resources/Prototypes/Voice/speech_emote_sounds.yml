@@ -507,16 +507,16 @@
       collection: Dionawhistle
     Cough: #goob
       collection: Dionacough
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
     Yawn: #goob
       collection: Dionayawn
     Sigh: #goob
       collection: Dionasigh
   params:
     variation: 0.125
-    # Arcane-Start
-    Moan:
-      collection: MoansMale
-    # Arcane-End
 
 - type: emoteSounds
   id: UnisexArachnid
@@ -651,7 +651,7 @@
     Hiss: # Orion
       collection: ReptilianHisses
       # Arcane-Start
-      Moan:
+    Moan:
         collection: MoansFemale
       # Arcane-End
     Surprised: # Goob
