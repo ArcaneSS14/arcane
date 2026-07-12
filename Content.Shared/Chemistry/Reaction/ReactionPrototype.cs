@@ -74,18 +74,6 @@ namespace Content.Shared.Chemistry.Reaction
         [DataField("requiredMixerCategories")]
         public List<ProtoId<MixingCategoryPrototype>>? MixingCategories;
 
-        // Arcane-Start
-        /// <summary>
-        ///     If false, this reaction will not be re-triggered automatically as a side effect of a reagent
-        ///     produced by ANOTHER reaction within the same FullyReactSolution pass. It still reacts normally
-        ///     when its reactants are already present in the solution content. Use for passive/ambient
-        ///     conversions (e.g. temperature-driven freezing/melting) to avoid unwanted chaining with
-        ///     unrelated reactions that transiently produce the same reagent.
-        /// </summary>
-        [DataField]
-        public bool Cascading = true;
-        // Arcane-End
-
         /// <summary>
         /// Reagents created when the reaction occurs.
         /// </summary>
