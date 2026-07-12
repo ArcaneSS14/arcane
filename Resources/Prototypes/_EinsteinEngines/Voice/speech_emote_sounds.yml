@@ -127,7 +127,7 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     # Arcane-Start
     Moan:
-      collection: MoansFemale
+      collection: MoansMale
     # Arcane-End
 
 - type: emoteSounds

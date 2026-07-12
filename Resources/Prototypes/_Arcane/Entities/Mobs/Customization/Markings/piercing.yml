@@ -29,7 +29,7 @@
   id: PiercingPubis
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demo, Vulpkanin]
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/piercing.rsi
     state: piercing_pubis
