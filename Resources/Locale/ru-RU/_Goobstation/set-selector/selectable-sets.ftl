@@ -31,9 +31,9 @@ selectable-set-thief-sleeper-description =
 selectable-set-thief-communicator-name = Набор коммуникатора
 selectable-set-thief-communicator-description =
     Деньги — это власть, а секреты — деньги. Используйте своё красноречие
-    и богатство, чтобы подорвать структуру станции.
+    и "богатство", чтобы подорвать структуру станции.
     Включает: мастер-ключ для всех каналов станции, ручку Киберсан,
-    маску хамелеона и 20000 кредитов в чемодане.
+    маску хамелеона и 50000 поддельных кредитов в чемодане. 
 selectable-set-thief-smuggler-name = Набор контрабандиста
 selectable-set-thief-smuggler-description =
     Всем ворам нужно место, где спрятать свою добычу.

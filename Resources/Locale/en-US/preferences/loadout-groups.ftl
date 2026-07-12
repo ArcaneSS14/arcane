@@ -113,6 +113,7 @@ loadout-group-quartermaster-head = Quartermaster head
 loadout-group-quartermaster-jumpsuit = Quartermaster jumpsuit
 loadout-group-quartermaster-neck = Quartermaster neck
 loadout-group-quartermaster-outerclothing = Quartermaster outer clothing
+loadout-group-quartermaster-hands = Quartermaster gloves
 loadout-group-quartermaster-shoes = Quartermaster shoes
 
 loadout-group-cargo-technician-head = Cargo Technician head

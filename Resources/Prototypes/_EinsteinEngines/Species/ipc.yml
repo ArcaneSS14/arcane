@@ -16,9 +16,9 @@
   dollPrototype: MobIPCDummy
   skinColoration: Hues
   minAge: 1
-  maxAge: 240
-  oldAge: 50
-  youngAge: 50
+  maxAge: 1000 # Arcane-Edit: 240 > 1000
+  oldAge: 700 # Arcane-Edit: 50 > 700
+  youngAge: 350 # Arcane-Edit: 50 > 350
   maleFirstNames: IpcFirst
   femaleFirstNames: IpcFirst
   lastNames: IpcLast

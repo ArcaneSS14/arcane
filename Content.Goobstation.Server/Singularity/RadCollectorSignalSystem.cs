@@ -13,6 +13,11 @@ namespace Content.Goobstation.Server.Singularity;
 
 public sealed class RadCollectorSignalSystem : EntitySystem
 {
+    // Arcane-start
+    private const float SignalUpdateInterval = 0.25f;
+    private float _signalUpdateAccumulator;
+    // Arcane-end
+
     [Dependency] private readonly AutomationSystem _automation = default!;
     [Dependency] private readonly DeviceLinkSystem _device = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -24,6 +29,14 @@ public sealed class RadCollectorSignalSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // Arcane-start
+        _signalUpdateAccumulator += frameTime;
+        if (_signalUpdateAccumulator < SignalUpdateInterval)
+            return;
+
+        _signalUpdateAccumulator = 0f;
+        // Arcane-end
 
         var query = EntityQueryEnumerator<RadCollectorSignalComponent>();
         while (query.MoveNext(out var uid, out var comp))

@@ -13,6 +13,11 @@ namespace Content.Goobstation.Server.Sound;
 /// </summary>
 public sealed class RandomIntervalSoundSystem : EntitySystem
 {
+    // Arcane-start
+    private static readonly TimeSpan SoundUpdateInterval = TimeSpan.FromSeconds(1);
+    private TimeSpan _nextSoundUpdate;
+    // Arcane-end
+
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -37,6 +42,13 @@ public sealed class RandomIntervalSoundSystem : EntitySystem
         base.Update(frameTime);
 
         var now = _timing.CurTime;
+        // Arcane-start
+        if (now < _nextSoundUpdate)
+            return;
+
+        _nextSoundUpdate = now + SoundUpdateInterval;
+        // Arcane-end
+
         var query = EntityQueryEnumerator<RandomIntervalSoundComponent>();
 
         while (query.MoveNext(out var uid, out var comp))

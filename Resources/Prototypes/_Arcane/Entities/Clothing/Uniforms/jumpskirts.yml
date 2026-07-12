@@ -1,5 +1,33 @@
 - type: entity
-  parent: ClothingUniformBase
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtAdjutant
+  name: adjutant jumpskirt
+  description: Sewn to perfection with breathable fabric that will keep you on your feet for your entire shift.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirt/adjutant.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirt/adjutant.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformDressCommandMaid
+  name: command maid dress
+  description: It is made of breathable fabric, which will allow you to stay on your feet for the entire shift.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirt/command_maid.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirt/command_maid.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingUniformSkirtBase
   id: ClothingJumpskirtBlueShieldCommon
   name: “Blue Shield” Jumpskirt
   description: Special jumpskirt designed for “Blue Shield” officers

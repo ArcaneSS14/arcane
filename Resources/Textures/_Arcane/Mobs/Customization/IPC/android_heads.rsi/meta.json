@@ -1,0 +1,19 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made with love by Misha_Unity and Melissandra >//<; Syth sprites are made by Admiral Eisenberger",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "synt_m",
+            "directions": 4
+        },
+        {
+            "name": "synt_f",
+            "directions": 4
+        }
+    ]
+}

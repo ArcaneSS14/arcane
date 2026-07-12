@@ -50,6 +50,11 @@ public sealed class NtrTaskSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
 
     private const string NameIdentifierGroup = "Task";
+    // Arcane-start
+    private static readonly TimeSpan TaskUpdateInterval = TimeSpan.FromSeconds(1);
+
+    private TimeSpan _nextTaskUpdate;
+    // Arcane-end
 
     public override void Initialize()
     {
@@ -157,6 +162,15 @@ public sealed class NtrTaskSystem : EntitySystem
     #region Task Lifecycle
     public override void Update(float frameTime)
     {
+        // Arcane-start
+        base.Update(frameTime);
+
+        if (_timing.CurTime < _nextTaskUpdate)
+            return;
+
+        _nextTaskUpdate = _timing.CurTime + TaskUpdateInterval;
+        // Arcane-end
+
         var query = EntityQueryEnumerator<NtrTaskDatabaseComponent>();
         while (query.MoveNext(out var uid, out var db))
         {
@@ -167,10 +181,15 @@ public sealed class NtrTaskSystem : EntitySystem
 
     private void CleanExpiredTasks(EntityUid uid, NtrTaskDatabaseComponent db)
     {
-        foreach (var task in db.Tasks.ToArray())
+        // Arcane-start
+        for (var i = db.Tasks.Count - 1; i >= 0; i--)
+        {
+            var task = db.Tasks[i];
             if (task.IsActive
                 && (_timing.CurTime - task.ActiveTime) > db.MaxActiveTime)
                 TryRemoveTask(uid, task.Id, true);
+        }
+        // Arcane-end
     }
 
     private void GenerateNewTasks(EntityUid uid, NtrTaskDatabaseComponent db)

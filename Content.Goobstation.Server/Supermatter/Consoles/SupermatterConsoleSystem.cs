@@ -27,6 +27,7 @@ public sealed class SupermatterConsoleSystem : SharedSupermatterConsoleSystem
 
     // Note: this data does not need to be saved
     private float _updateTimer = 1.0f;
+    private readonly Dictionary<EntityUid, SupermatterConsoleEntry[]> _supermatterEntriesForEachGrid = new(); // Arcane
 
     public override void Initialize()
     {
@@ -78,8 +79,16 @@ public sealed class SupermatterConsoleSystem : SharedSupermatterConsoleSystem
     {
         base.Update(frameTime);
 
+        // Arcane-start
+        _updateTimer += frameTime;
+        if (_updateTimer < UpdateTime)
+            return;
+
+        _updateTimer -= UpdateTime;
+        // Arcane-end
+
         // Keep a list of UI entries for each gridUid, in case multiple consoles stand on the same grid
-        var supermatterEntriesForEachGrid = new Dictionary<EntityUid, SupermatterConsoleEntry[]>();
+        _supermatterEntriesForEachGrid.Clear(); // Arcane
 
         var query = AllEntityQuery<SupermatterConsoleComponent, TransformComponent>();
         while (query.MoveNext(out var ent, out var entConsole, out var entXform))
@@ -88,10 +97,10 @@ public sealed class SupermatterConsoleSystem : SharedSupermatterConsoleSystem
                 continue;
 
             // Make a list of alarm state data for all the supermatters on the grid
-            if (!supermatterEntriesForEachGrid.TryGetValue(entXform.GridUid.Value, out var supermatterEntries))
+            if (!_supermatterEntriesForEachGrid.TryGetValue(entXform.GridUid.Value, out var supermatterEntries)) // Arcane
             {
                 supermatterEntries = GetSupermatterStateData(entXform.GridUid.Value).ToArray();
-                supermatterEntriesForEachGrid[entXform.GridUid.Value] = supermatterEntries;
+                _supermatterEntriesForEachGrid[entXform.GridUid.Value] = supermatterEntries; // Arcane
             }
 
             // Determine the highest level of status for the console

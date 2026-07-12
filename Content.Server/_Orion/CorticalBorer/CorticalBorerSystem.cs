@@ -52,6 +52,11 @@ namespace Content.Server._Orion.CorticalBorer;
 
 public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
 {
+    // Arcane-start
+    private static readonly TimeSpan BorerUpdateInterval = TimeSpan.FromSeconds(0.25);
+    private TimeSpan _nextBorerUpdate;
+    // Arcane-end
+
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly BloodstreamSystem _blood = default!;
     [Dependency] private readonly HealthAnalyzerSystem _analyzer = default!;
@@ -121,7 +126,15 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
     {
         base.Update(frameTime);
 
-        foreach (var comp in EntityManager.EntityQuery<CorticalBorerComponent>())
+        // Arcane-start
+        if (_timing.CurTime < _nextBorerUpdate)
+            return;
+
+        _nextBorerUpdate = _timing.CurTime + BorerUpdateInterval;
+
+        var borerQuery = EntityQueryEnumerator<CorticalBorerComponent>();
+        while (borerQuery.MoveNext(out var borerUid, out var comp))
+        // Arcane-end
         {
             if (_timing.CurTime < comp.UpdateTimer)
                 continue;
@@ -131,7 +144,7 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
 #pragma warning disable CS0618
              if (!comp.Host.HasValue)
             {
-                _alerts.ClearAlert(comp.Owner, comp.SugarAlert);
+                _alerts.ClearAlert(borerUid, comp.SugarAlert); // Arcane
                 continue;
             }
 
@@ -140,21 +153,24 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
             if (comp.WillingHosts.Contains(comp.Host.Value))
                 chemicalGeneration = (int) MathF.Ceiling(chemicalGeneration * comp.WillingHostChemicalGenerationMultiplier);
 
-            UpdateChemicals((comp.Owner, comp), chemicalGeneration);
-            _damageable.TryChangeDamage(comp.Owner, comp.HealingDamage); // Heal borer
+            UpdateChemicals((borerUid, comp), chemicalGeneration); // Arcane
+            _damageable.TryChangeDamage(borerUid, comp.HealingDamage); // Arcane
 
             if (HasBorerProtection(comp.Host.Value))
-                _alerts.ShowAlert(comp.Owner, comp.SugarAlert);
+                _alerts.ShowAlert(borerUid, comp.SugarAlert); // Arcane
             else
-                _alerts.ClearAlert(comp.Owner, comp.SugarAlert);
+                _alerts.ClearAlert(borerUid, comp.SugarAlert); // Arcane
 #pragma warning restore CS0618
         }
 
-        foreach (var comp in EntityManager.EntityQuery<CorticalBorerInfestedComponent>())
+        // Arcane-start
+        var infestedQuery = EntityQueryEnumerator<CorticalBorerInfestedComponent>();
+        while (infestedQuery.MoveNext(out var hostUid, out var comp))
+        // Arcane-end
         {
 #pragma warning disable CS0618
             if (_timing.CurTime >= comp.ControlTimeEnd)
-                EndControl((comp.Owner, comp));
+                EndControl((hostUid, comp)); // Arcane
 #pragma warning restore CS0618
         }
     }

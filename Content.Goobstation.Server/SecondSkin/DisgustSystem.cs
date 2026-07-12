@@ -14,6 +14,11 @@ namespace Content.Goobstation.Server.SecondSkin;
 
 public sealed class DisgustSystem : EntitySystem
 {
+    // Arcane-start
+    private const float DisgustUpdateInterval = 1f;
+    private float _disgustUpdateAccumulator;
+    // Arcane-end
+
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly AlertsSystem _alets = default!;
     [Dependency] private readonly SharedEntityEffectSystem _effect = default!;
@@ -41,13 +46,22 @@ public sealed class DisgustSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // Arcane-start
+        _disgustUpdateAccumulator += frameTime;
+        if (_disgustUpdateAccumulator < DisgustUpdateInterval)
+            return;
+
+        var elapsed = _disgustUpdateAccumulator;
+        _disgustUpdateAccumulator = 0f;
+        // Arcane-end
+
         var siliconQuery = GetEntityQuery<SiliconComponent>();
         var godmodeQuery = GetEntityQuery<GodmodeComponent>();
 
         var query = EntityQueryEnumerator<DisgustComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var disgust, out var mobstete))
         {
-            disgust.Accumulator += frameTime;
+            disgust.Accumulator += elapsed; // Arcane
 
             if (disgust.Accumulator < disgust.UpdateTime)
                 continue;

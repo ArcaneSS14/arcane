@@ -42,6 +42,11 @@ public sealed class MoodSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
 
+    // Arcane-start
+    private const float SanityUpdateInterval = 1f;
+    private float _sanityUpdateAccumulator;
+    // Arcane-end
+
     public override void Initialize()
     {
         base.Initialize();
@@ -75,14 +80,23 @@ public sealed class MoodSystem : EntitySystem
         if (!_config.GetCVar(CCVars.MoodEnabled))
             return;
 
+        // Arcane-start
+        _sanityUpdateAccumulator += frameTime;
+        if (_sanityUpdateAccumulator < SanityUpdateInterval)
+            return;
+
+        var elapsed = _sanityUpdateAccumulator;
+        _sanityUpdateAccumulator = 0f;
+
         var query = EntityQueryEnumerator<MoodComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var mood, out var mobState))
         {
             if (mobState.CurrentState == MobState.Dead)
                 continue;
 
-            ProcessSanity(uid, mood, frameTime);
+            ProcessSanity(uid, mood, elapsed);
         }
+        // Arcane-end
     }
 
     private void OnShowMoodAlert(EntityUid uid, MoodComponent component, ShowMoodAlertEvent args)

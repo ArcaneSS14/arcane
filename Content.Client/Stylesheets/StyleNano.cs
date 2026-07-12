@@ -333,7 +333,7 @@ namespace Content.Client.Stylesheets
         public static readonly Color ButtonColorScience = Color.FromHex("#D381C9");
         public static readonly Color ButtonColorSilicon = Color.FromHex("#D381C9");
         public static readonly Color ButtonColorCivilian = Color.FromHex("#40A166");
-        public static readonly Color ButtonColorJustice = Color.FromHex("#8E3D3D");
+        public static readonly Color ButtonColorJustice = Color.FromHex("#92213d"); // Arcane-Edit
         public static readonly Color ButtonColorSpecific = Color.FromHex("#969696");
         public static readonly Color ButtonColorAntagonist = Color.FromHex("#7F4141");
         // Orion-End

@@ -35,8 +35,15 @@ public sealed class EconomyCardSystem : EntitySystem
 
     private static readonly ProtoId<StackPrototype> HolochipStackId = "CreditHolochip";
 
+    // Arcane-start
+    private const float UiRefreshInterval = 1f;
+    private const float StationSyncInterval = 10f;
+
     private float _uiRefreshAccumulator;
+    private float _stationSyncAccumulator;
     private readonly Dictionary<EntityUid, string> _openUiAccounts = new();
+    private readonly List<EntityUid> _closedUis = new();
+    // Arcane-end
 
     public override void Initialize()
     {
@@ -59,19 +66,28 @@ public sealed class EconomyCardSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // Arcane-start
         _uiRefreshAccumulator += frameTime;
-        if (_uiRefreshAccumulator < 1f)
+        _stationSyncAccumulator += frameTime;
+
+        if (_stationSyncAccumulator >= StationSyncInterval)
+        {
+            _stationSyncAccumulator -= StationSyncInterval;
+            SyncAccountsOwningStations();
+        }
+
+        if (_uiRefreshAccumulator < UiRefreshInterval)
             return;
 
-        _uiRefreshAccumulator = 0f;
-        SyncAccountsOwningStations();
+        _uiRefreshAccumulator -= UiRefreshInterval;
 
-        var closedUis = new List<EntityUid>();
+        _closedUis.Clear();
+        // Arcane-end
         foreach (var (uid, accountId) in _openUiAccounts)
         {
             if (!_ui.IsUiOpen(uid, EconomyCardUiKey.Key))
             {
-                closedUis.Add(uid);
+                _closedUis.Add(uid); // Arcane
                 continue;
             }
 
@@ -84,7 +100,7 @@ public sealed class EconomyCardSystem : EntitySystem
             _ui.SetUiState(uid, EconomyCardUiKey.Key, new EconomyCardBoundUiState(accountId, account.Comp.Balance));
         }
 
-        foreach (var uid in closedUis)
+        foreach (var uid in _closedUis) // Arcane
         {
             _openUiAccounts.Remove(uid);
         }

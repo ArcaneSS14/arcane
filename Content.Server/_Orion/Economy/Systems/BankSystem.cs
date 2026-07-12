@@ -20,17 +20,33 @@ public sealed class BankSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("economy-bank");
+    private readonly Dictionary<string, EntityUid> _accountsById = new(StringComparer.OrdinalIgnoreCase); // Arcane
 
     public override void Initialize()
     {
         SubscribeLocalEvent<StationAccountComponent, ComponentStartup>(OnAccountStartup);
+        SubscribeLocalEvent<StationAccountComponent, ComponentShutdown>(OnAccountShutdown); // Arcane
     }
 
     private void OnAccountStartup(Entity<StationAccountComponent> ent, ref ComponentStartup args)
     {
         if (TryComp<MindComponent>(ent, out var mind) && !string.IsNullOrWhiteSpace(mind.CharacterName))
             ent.Comp.OwnerName = mind.CharacterName;
+
+        CacheAccount(ent); // Arcane
     }
+
+    // Arcane-start
+    private void OnAccountShutdown(Entity<StationAccountComponent> ent, ref ComponentShutdown args)
+    {
+        if (!string.IsNullOrWhiteSpace(ent.Comp.AccountId)
+            && _accountsById.TryGetValue(ent.Comp.AccountId, out var cached)
+            && cached == ent.Owner)
+        {
+            _accountsById.Remove(ent.Comp.AccountId);
+        }
+    }
+    // Arcane-end
 
     public StationAccountComponent EnsurePlayerAccount(EntityUid mindUid, MindComponent? mind = null)
     {
@@ -38,6 +54,8 @@ public sealed class BankSystem : EntitySystem
 
         if (!IsValidAccountId(account.AccountId))
             account.AccountId = GenerateUniqueAccountId();
+
+        CacheAccount((mindUid, account)); // Arcane
 
         if (Resolve(mindUid, ref mind, false) && !string.IsNullOrWhiteSpace(mind.CharacterName) && account.OwnerName != mind.CharacterName)
             account.OwnerName = mind.CharacterName;
@@ -87,19 +105,28 @@ public sealed class BankSystem : EntitySystem
 
     public bool TryFindAccountById(string accountId, out Entity<StationAccountComponent> account)
     {
-        var query = EntityQueryEnumerator<StationAccountComponent>();
-        while (query.MoveNext(out var uid, out var acc))
+        // Arcane-start
+        if (_accountsById.TryGetValue(accountId, out var uid)
+            && TryComp(uid, out StationAccountComponent? component)
+            && string.Equals(component.AccountId, accountId, StringComparison.OrdinalIgnoreCase))
         {
-            if (!string.Equals(acc.AccountId, accountId, StringComparison.OrdinalIgnoreCase))
-                continue;
-
-            account = (uid, acc);
+            account = (uid, component);
             return true;
         }
 
+        _accountsById.Remove(accountId);
         account = default;
         return false;
+        // Arcane-end
     }
+
+    // Arcane-start
+    private void CacheAccount(Entity<StationAccountComponent> account)
+    {
+        if (IsValidAccountId(account.Comp.AccountId))
+            _accountsById[account.Comp.AccountId] = account.Owner;
+    }
+    // Arcane-end
 
     public bool TryGetDepartment(Entity<StationAccountComponent> account, out ProtoId<CargoAccountPrototype> department)
     {

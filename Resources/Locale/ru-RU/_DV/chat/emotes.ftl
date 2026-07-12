@@ -23,5 +23,7 @@ chat-emote-msg-bark = лает.
 chat-emote-msg-snarl = рычит.
 chat-emote-msg-whine = скулит.
 chat-emote-msg-howl = воет.
-chat-emote-msg-awoo = жалобное воет.
+# Arcane-Edit-Start
+chat-emote-msg-awoo = жалобно воет.
+# Arcane-Edit-End
 chat-emote-msg-gnash = скрежещет зубами.

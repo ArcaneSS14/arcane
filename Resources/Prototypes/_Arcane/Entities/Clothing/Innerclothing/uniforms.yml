@@ -8,3 +8,168 @@
     sprite: _Arcane/Clothing/Innerclothing/pivozavr.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/pivozavr.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBartender
+  name: bartender unoform
+  description: Bartender uniform.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/bartender.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/bartender.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBartenderSkirt
+  name: bartender unoform with skirt
+  description: Bartender uniform with skirt.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/bartender_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/bartender_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCEBlack
+  name: CE's black uniform
+  description: An indicator of skill and sense of style.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCEBlackSkirt
+  name: CE's black uniform with skirt
+  description: An indicator of skill and sense of style.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCEWhiteSkirt
+  name: CE's white uniform with skirt
+  description: An indicator of skill and sense of style.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCEWhite
+  name: CE's white uniform
+  description: An indicator of skill and sense of style.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPinkClown
+  name: pink clown dress
+  description: Even more fun, tricks and style!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/clown.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/clown.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCMOSweaterSkirt
+  name: CMO's sweater with skirt
+  description: An expensive, high-quality sweater shows who's the boss of pracrical medicine.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CMO_sweater_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CMO_sweater_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCMOSweater
+  name: CMO's sweater
+  description: An expensive, high-quality sweater shows who's the boss of pracrical medicine.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CMO_sweater.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CMO_sweater.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformHOSShortDress
+  name: HOS' short dress
+  description: Show them, who's mom here.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/HOS_short_dress.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/HOS_short_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformNun
+  name: nun's dress
+  description: Modest gothic black dress.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/nun.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/nun.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformQMBlackSkirtSleeveles
+  name: sleeveles QM's black uniform with skirt
+  description: "Get out of here and get me some money too!"
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/QM_black_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/QM_black_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformQMBlackSleeveles
+  name: sleeveles QM's black uniform
+  description: "Get out of here and get me some money too!"
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/QM_black.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/QM_black.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformQMSkirtSleeveles
+  name: sleeveles QM's uniform with skirt
+  description: "Get out of here and get me some money too!"
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/QM_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/QM_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformQMSleeveles
+  name: sleeveles QM's uniform
+  description: "Get out of here and get me some money too!"
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/QM.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/QM.rsi

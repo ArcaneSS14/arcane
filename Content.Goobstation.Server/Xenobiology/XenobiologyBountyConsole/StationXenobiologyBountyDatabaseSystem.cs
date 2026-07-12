@@ -25,6 +25,11 @@ public sealed class StationXenobiologyBountyDatabaseSystem : EntitySystem
 
     private static readonly ProtoId<NameIdentifierGroupPrototype> BountyNameIdentifierGroup = "Bounty";
 
+    // Arcane-start
+    private static readonly TimeSpan MarketUpdateInterval = TimeSpan.FromSeconds(5);
+    private TimeSpan _nextMarketUpdate;
+    // Arcane-end
+
     public override void Initialize()
     {
         base.Initialize();
@@ -39,6 +44,13 @@ public sealed class StationXenobiologyBountyDatabaseSystem : EntitySystem
     public override void Update(float frametime)
     {
         base.Update(frametime);
+
+        // Arcane-start
+        if (_timing.CurTime < _nextMarketUpdate)
+            return;
+
+        _nextMarketUpdate = _timing.CurTime + MarketUpdateInterval;
+        // Arcane-end
 
         var query = EntityQueryEnumerator<StationXenobiologyBountyDatabaseComponent>();
         while (query.MoveNext(out var uid, out var db))

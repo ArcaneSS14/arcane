@@ -96,6 +96,11 @@ namespace Content.Goobstation.Server.MedicalPatch;
 
 public sealed class MedicalPatchSystem : EntitySystem
 {
+    // Arcane-start
+    private static readonly TimeSpan PatchUpdateInterval = TimeSpan.FromSeconds(0.25);
+    private TimeSpan _nextPatchUpdate;
+    // Arcane-end
+
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly StickySystem _stickySystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -117,12 +122,18 @@ public sealed class MedicalPatchSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        foreach (var comp in EntityManager.EntityQuery<MedicalPatchComponent>())
+        // Arcane-start
+        if (_timing.CurTime < _nextPatchUpdate)
+            return;
+
+        _nextPatchUpdate = _timing.CurTime + PatchUpdateInterval;
+
+        var query = EntityQueryEnumerator<MedicalPatchComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        // Arcane-end
         {
             if (_timing.CurTime < comp.NextUpdate)
                 continue;
-            var uid = comp.Owner; // TODO update thsi to the
-
             if (!TryComp<StickyComponent>(uid, out var stickycomp))
                 continue;
             if (stickycomp.StuckTo == null)

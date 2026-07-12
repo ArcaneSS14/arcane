@@ -391,13 +391,15 @@
   - type: Pda
     id: SecurityClownIDCard
 
-- type: entity
-  parent: JanitorPDA
-  id: CommandMaidPDA
-  name: command maid PDA
-  components:
-  - type: Pda
-    id: CommandMaidIDCard
+# Arcane-Edit-Start
+# - type: entity
+#   parent: JanitorPDA
+#   id: CommandMaidPDA
+#   name: command maid PDA
+#   components:
+#   - type: Pda
+#     id: CommandMaidIDCard
+# Arcane-Edit-End
 
 - type: entity
   parent: MusicianPDA

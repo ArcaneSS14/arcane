@@ -4,8 +4,8 @@ meta:
   engineVersion: 266.0.0
   forkId: Orion
   forkVersion: ""
-  time: 05/03/2026 18:47:34
-  entityCount: 38461
+  time: 07/05/2026 11:55:16
+  entityCount: 38463
 maps:
 - 1
 grids:
@@ -220724,6 +220724,13 @@ entities:
     - type: Transform
       pos: 7.5,-29.5
       parent: 2
+- proto: SpawnPointAdjutant
+  entities:
+  - uid: 88463
+    components:
+    - type: Transform
+      pos: 1.5,17.5
+      parent: 2
 - proto: SpawnPointAtmos
   entities:
   - uid: 30150
@@ -220909,6 +220916,13 @@ entities:
     - type: Transform
       pos: -19.5,40.5
       parent: 2
+- proto: SpawnPointCommandMaid
+  entities:
+  - uid: 80194
+    components:
+    - type: Transform
+      pos: -2.5,17.5
+      parent: 2
 - proto: SpawnPointDetective
   entities:
   - uid: 30181
@@ -220929,6 +220943,13 @@ entities:
     components:
     - type: Transform
       pos: 40.5,20.5
+      parent: 2
+- proto: SpawnPointIAA
+  entities:
+  - uid: 80136
+    components:
+    - type: Transform
+      pos: 33.5,-0.5
       parent: 2
 - proto: SpawnPointJanitor
   entities:
@@ -220985,11 +221006,6 @@ entities:
     components:
     - type: Transform
       pos: 26.5,1.5
-      parent: 2
-  - uid: 30194
-    components:
-    - type: Transform
-      pos: 33.5,-0.5
       parent: 2
 - proto: SpawnPointLibrarian
   entities:

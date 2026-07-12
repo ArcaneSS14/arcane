@@ -35,6 +35,7 @@
     BookSpaceLaw: 3
     LuxuryPen: 2
     HandLabeler: 2
+    EncryptionKeyLegal: 3 # Arcane
   contrabandInventory:
     ClothingOuterRobesJudge: 1
     ClothingHeadHatPwig: 1

@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from TGStation | Edited by PuroSlavKing (Github)",
+    "copyright": "Taken from TGStation | Edited by PuroSlavKing (Github) | pda_commaid made by Bulbo44kkey (Discord) for Arcane Station SS14 | pda_lawyer, pda_iaa made by FourHybra (Discord) for Arcane Station SS14",
     "size": {
         "x": 32,
         "y": 32
@@ -57,6 +57,15 @@
         },
         {
             "name": "pda-clown"
+        },
+        {
+            "name": "pda_commaid"
+        },
+        {
+            "name": "pda_iaa"
+        },
+        {
+            "name": "pda_lawyer"
         },
         {
             "name": "pda-clear"

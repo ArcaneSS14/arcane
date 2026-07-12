@@ -1,5 +1,61 @@
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAdjutant
+  name: adjutant jumpsuit
+  description: Sewn to perfection with breathable fabric that will keep you on your feet for your entire shift.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuit/adjutant.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuit/adjutant.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformMajordomCommandMaid
+  name: command maid majordom
+  description: It is made of breathable fabric, which will allow you to stay on your feet for the entire shift.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuit/command_maid.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuit/command_maid.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBlackSuit
+  name: black formal suit
+  description: A tailored jacket and trousers ensemble made of high-quality wool or its synthetic equivalents. Its simple cut and deep color symbolize professional status, authority, and a willingness to handle any administrative decision.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuit/Legal/black_suit.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuit/Legal/black_suit.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBrownSuit
+  name: brown formal suit
+  description: A brown business suit is an elegant ensemble in warm shades of wool or tweed, combining formality with a touch of informal confidence. Its color suggests stability, practicality, and a willingness to embrace long-term solutions that transcend black-and-white bureaucracy.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuit/Legal/brown_suit.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpsuit/Legal/brown_suit.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformBlueShieldCommon
   name: “Blue Shield” Special Uniform
   description: Special uniforms designed for “Blue Shield” officers

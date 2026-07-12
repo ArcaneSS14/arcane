@@ -7,3 +7,345 @@
   storage:
     back:
     - HandledBoomBox
+
+- type: loadout
+  id: BartenderPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformBartender
+
+- type: loadout
+  id: BartenderSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformBartenderSkirt
+
+- type: loadout
+  id: CEBlackPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformCEBlack
+
+- type: loadout
+  id: CEBlackSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformCEBlackSkirt
+
+- type: loadout
+  id: CEWhiteSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformCEWhiteSkirt
+
+- type: loadout
+  id: CEWhitePatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformCEWhite
+
+- type: loadout
+  id: ClownPinkPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformPinkClown
+
+- type: loadout
+  id: CMOSweaterSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformCMOSweaterSkirt
+
+- type: loadout
+  id: CMOSweaterPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformCMOSweater
+
+- type: loadout
+  id: HOSShortDressPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformHOSShortDress
+
+- type: loadout
+  id: NunDressPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformNun
+
+- type: loadout
+  id: SleevelesQMBlackSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformQMBlackSkirtSleeveles
+
+- type: loadout
+  id: SleevelesQMBlackPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformQMBlackSleeveles
+
+- type: loadout
+  id: SleevelesQMSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformQMSkirtSleeveles
+
+- type: loadout
+  id: SleevelesQMPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    jumpsuit: ClothingUniformQMSleeveles
+
+- type: loadout
+  id: QMGlovesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    gloves: ClothingHandsQMLongGloves
+
+- type: loadout
+  id: QMShoesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    shoes: ClothingShoesQMBoots
+
+- type: loadout
+  id: OldFashionesDoctorShoesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    shoes: ClothingShoesOldFashionedMedical
+
+- type: loadout
+  id: CEBlackBeretPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    head: ClothingHatCEBlackBeret
+
+- type: loadout
+  id: ClownPinkHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    head: ClothingHatClownPink
+
+- type: loadout
+  id: CMOHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    head: ClothingHatCMO
+
+- type: loadout
+  id: HOSCapPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    head: ClothingHatHOSCap
+
+- type: loadout
+  id: QMBlackBeretPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    head: ClothingHatQMBlackBeret
+
+- type: loadout
+  id: SanitarHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    head: ClothingHatSanitar
+
+- type: loadout
+  id: LeatherCoatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    outerClothing: ClothingOuterArmorHoSLeather
+
+- type: loadout
+  id: HOSLongVestPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    outerClothing: ClothingOuterHOSLongVest
+
+- type: loadout
+  id: EeayLabCoatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    outerClothing: ClothingOuterCoatLabEasy
+
+- type: loadout
+  id: LabCoatBeltsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    outerClothing: ClothingOuterCoatLabBelts
+
+- type: loadout
+  id: LabCoatBlackPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    outerClothing: ClothingOuterCoatLabBlack
+
+- type: loadout
+  id: LivseyCoatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    outerClothing: ClothingOuterCoatLabEnlightenment
+
+- type: loadout
+  id: ApostolCoatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    outerClothing: ClothingOuterApostolCoat
+
+- type: loadout
+  id: CEBlackCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingCloakCEBlack
+
+- type: loadout
+  id: CETricolorCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingCloakCETricolor
+
+- type: loadout
+  id: CMOHonorableCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingCloakCMOHonorable
+
+- type: loadout
+  id: HOSBlackCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingCloakHOSBlack
+
+- type: loadout
+  id: HOSRedCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingCloakHOSRed
+
+- type: loadout
+  id: QMBlackCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingCloakQMBlack
+
+- type: loadout
+  id: QMWhiteCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingCloakQMWhite

@@ -16,7 +16,7 @@
   # Arcane-start
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, Dwarf, Demon, Felinid]
+  speciesRestriction: [Human, Dwarf, Demon, Felinid, IPC] # Arcane-Edit
   # Arcane-end
   coloring:
     default:

@@ -17,6 +17,11 @@ namespace Content.Goobstation.Server.Virology;
 
 public sealed partial class VirologyMachinesSystem : EntitySystem
 {
+    // Arcane-start
+    private const float MachineUpdateInterval = 0.25f;
+    private float _machineUpdateAccumulator;
+    // Arcane-end
+
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -39,6 +44,15 @@ public sealed partial class VirologyMachinesSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
+        // Arcane-start
+        _machineUpdateAccumulator += frameTime;
+        if (_machineUpdateAccumulator < MachineUpdateInterval)
+            return;
+
+        var elapsed = _machineUpdateAccumulator;
+        _machineUpdateAccumulator = 0f;
+        // Arcane-end
+
         var query = EntityQueryEnumerator<ActiveVirologyMachineComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -55,7 +69,7 @@ public sealed partial class VirologyMachinesSystem : EntitySystem
             if (!_power.IsPowered(uid))
             {
                 SetAppearance(uid, false);
-                comp.EndTime += TimeSpan.FromSeconds(frameTime);
+                comp.EndTime += TimeSpan.FromSeconds(elapsed); // Arcane
                 continue;
             }
 

@@ -130,12 +130,14 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<bool> DormNotifier =
         CVarDef.Create("dorm_notifier.enable", true, CVar.SERVER);
 
+    // Arcane-start
     /// <summary>
-    ///     Check for dorm activity every X amount of ticks
+    ///     Check for dorm activity every X amount of seconds
     ///     Default is 10.
     /// </summary>
     public static readonly CVarDef<int> DormNotifierFrequency =
         CVarDef.Create("dorm_notifier.frequency", 10, CVar.SERVER);
+    // Arcane-end
 
     /// <summary>
     ///     Time given to be found to be engaging in dorm activity

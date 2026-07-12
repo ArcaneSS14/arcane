@@ -1,0 +1,2087 @@
+- type: marking
+  id: WingsRoboticRGB
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/rgb_wings.rsi
+      state: robotic_light_rgb
+  shader: unshaded
+
+- type: marking
+  id: RobotAntennaHoly
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/holy_head.rsi
+      state: holy_head
+
+
+############################################ MK PORT #########################################################
+# IPC variant
+- type: marking
+  id: IPCHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_head
+
+- type: marking
+  id: IPCChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_chest
+
+- type: marking
+  id: IPCGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_groin
+
+- type: marking
+  id: IPCRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_r_arm
+
+- type: marking
+  id: IPCLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_l_arm
+
+- type: marking
+  id: IPCRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_r_hand
+
+- type: marking
+  id: IPCLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_l_hand
+
+- type: marking
+  id: IPCRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_r_leg
+
+- type: marking
+  id: IPCLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_l_leg
+
+- type: marking
+  id: IPCRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_r_foot
+
+- type: marking
+  id: IPCLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ipc_l_foot
+
+# IPS variant
+- type: marking
+  id: IPSHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_head
+
+- type: marking
+  id: IPSChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_chest
+
+- type: marking
+  id: IPSGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_groin
+
+- type: marking
+  id: IPSRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_r_arm
+
+- type: marking
+  id: IPSLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_l_arm
+
+- type: marking
+  id: IPSRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_r_hand
+
+- type: marking
+  id: IPSLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_l_hand
+
+- type: marking
+  id: IPSRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_r_leg
+
+- type: marking
+  id: IPSLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_l_leg
+
+- type: marking
+  id: IPSRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_r_foot
+
+- type: marking
+  id: IPSLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: ips_l_foot
+
+# BSH variant
+- type: marking
+  id: BSHHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_head
+
+- type: marking
+  id: BSHChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_chest
+
+- type: marking
+  id: BSHGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_groin
+
+- type: marking
+  id: BSHRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_r_arm
+
+- type: marking
+  id: BSHLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_l_arm
+
+- type: marking
+  id: BSHRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_r_hand
+
+- type: marking
+  id: BSHLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_l_hand
+
+- type: marking
+  id: BSHRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_r_leg
+
+- type: marking
+  id: BSHLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_l_leg
+
+- type: marking
+  id: BSHRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_r_foot
+
+- type: marking
+  id: BSHLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bshipc_l_foot
+
+# BS2 variant
+- type: marking
+  id: BS2Head
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_head
+
+- type: marking
+  id: BS2Chest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_chest
+
+- type: marking
+  id: BS2Groin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_groin
+
+- type: marking
+  id: BS2RArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_r_arm
+
+- type: marking
+  id: BS2LArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_l_arm
+
+- type: marking
+  id: BS2RHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_r_hand
+
+- type: marking
+  id: BS2LHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_l_hand
+
+- type: marking
+  id: BS2RLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_r_leg
+
+- type: marking
+  id: BS2LLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_l_leg
+
+- type: marking
+  id: BS2RFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_r_foot
+
+- type: marking
+  id: BS2LFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: bs2ipc_l_foot
+
+
+# HSI variant
+- type: marking
+  id: HSIHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_head
+
+- type: marking
+  id: HSIChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_chest
+
+- type: marking
+  id: HSIGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_groin
+
+- type: marking
+  id: HSIRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_r_arm
+
+- type: marking
+  id: HSILArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_l_arm
+
+- type: marking
+  id: HSIRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_r_hand
+
+- type: marking
+  id: HSILHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_l_hand
+
+- type: marking
+  id: HSIRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_r_leg
+
+- type: marking
+  id: HSILLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_l_leg
+
+- type: marking
+  id: HSIRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_r_foot
+
+- type: marking
+  id: HSILFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hsiipc_l_foot
+
+# HI2 variant
+- type: marking
+  id: HI2Head
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_head
+
+- type: marking
+  id: HI2Chest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_chest
+
+- type: marking
+  id: HI2Groin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_groin
+
+- type: marking
+  id: HI2RArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_r_arm
+
+- type: marking
+  id: HI2LArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_l_arm
+
+- type: marking
+  id: HI2RHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_r_hand
+
+- type: marking
+  id: HI2LHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_l_hand
+
+- type: marking
+  id: HI2RLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_r_leg
+
+- type: marking
+  id: HI2LLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_l_leg
+
+- type: marking
+  id: HI2RFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_r_foot
+
+- type: marking
+  id: HI2LFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: hi2ipc_l_foot
+
+# SGM variant
+- type: marking
+  id: SGMHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_head
+
+- type: marking
+  id: SGMChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_chest
+
+- type: marking
+  id: SGMGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_groin
+
+- type: marking
+  id: SGMRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_r_arm
+
+- type: marking
+  id: SGMLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_l_arm
+
+- type: marking
+  id: SGMRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_r_hand
+
+- type: marking
+  id: SGMLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_l_hand
+
+- type: marking
+  id: SGMRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_r_leg
+
+- type: marking
+  id: SGMLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_l_leg
+
+- type: marking
+  id: SGMRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_r_foot
+
+- type: marking
+  id: SGMLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: sgmipc_l_foot
+
+
+# WTM variant
+- type: marking
+  id: WTMHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_head
+
+- type: marking
+  id: WTMChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_chest
+
+- type: marking
+  id: WTMGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_groin
+
+- type: marking
+  id: WTMRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_r_arm
+
+- type: marking
+  id: WTMLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_l_arm
+
+- type: marking
+  id: WTMRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_r_hand
+
+- type: marking
+  id: WTMLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_l_hand
+
+- type: marking
+  id: WTMRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_r_leg
+
+- type: marking
+  id: WTMLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_l_leg
+
+- type: marking
+  id: WTMRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_r_foot
+
+- type: marking
+  id: WTMLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: wtmipc_l_foot
+
+# XMG variant
+- type: marking
+  id: XMGHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_head
+
+- type: marking
+  id: XMGChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_chest
+
+- type: marking
+  id: XMGGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_groin
+
+- type: marking
+  id: XMGRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_r_arm
+
+- type: marking
+  id: XMGLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_l_arm
+
+- type: marking
+  id: XMGRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_r_hand
+
+- type: marking
+  id: XMGLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_l_hand
+
+- type: marking
+  id: XMGRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_r_leg
+
+- type: marking
+  id: XMGLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_l_leg
+
+- type: marking
+  id: XMGRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_r_foot
+
+- type: marking
+  id: XMGLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xmgipc_l_foot
+
+# XM2 variant
+- type: marking
+  id: XM2Head
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_head
+
+- type: marking
+  id: XM2Chest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_chest
+
+- type: marking
+  id: XM2Groin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_groin
+
+- type: marking
+  id: XM2RArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_r_arm
+
+- type: marking
+  id: XM2LArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_l_arm
+
+- type: marking
+  id: XM2RHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_r_hand
+
+- type: marking
+  id: XM2LHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_l_hand
+
+- type: marking
+  id: XM2RLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_r_leg
+
+- type: marking
+  id: XM2LLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_l_leg
+
+- type: marking
+  id: XM2RFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_r_foot
+
+- type: marking
+  id: XM2LFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: xm2ipc_l_foot
+
+# ZHP variant
+- type: marking
+  id: ZHPHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_head
+
+- type: marking
+  id: ZHPChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_chest
+
+- type: marking
+  id: ZHPGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_groin
+
+- type: marking
+  id: ZHPRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_r_arm
+
+- type: marking
+  id: ZHPLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_l_arm
+
+- type: marking
+  id: ZHPRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_r_hand
+
+- type: marking
+  id: ZHPLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_l_hand
+
+- type: marking
+  id: ZHPRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_r_leg
+
+- type: marking
+  id: ZHPLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_l_leg
+
+- type: marking
+  id: ZHPRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_r_foot
+
+- type: marking
+  id: ZHPLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: zhpipc_l_foot
+
+# MCG variant
+- type: marking
+  id: MCGHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_head
+
+- type: marking
+  id: MCGChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_chest
+
+- type: marking
+  id: MCGGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_groin
+
+- type: marking
+  id: MCGRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_r_arm
+
+- type: marking
+  id: MCGLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_l_arm
+
+- type: marking
+  id: MCGRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_r_hand
+
+- type: marking
+  id: MCGLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_l_hand
+
+- type: marking
+  id: MCGRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_r_leg
+
+- type: marking
+  id: MCGLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_l_leg
+
+- type: marking
+  id: MCGRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_r_foot
+
+- type: marking
+  id: MCGLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: mcgipc_l_foot
+
+# Star variant
+- type: marking
+  id: SteampunkHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_head
+
+- type: marking
+  id: SteampunkChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_chest
+
+- type: marking
+  id: SteampunkGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_groin
+
+- type: marking
+  id: SteampunkRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_r_arm
+
+- type: marking
+  id: SteampunkLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_l_arm
+
+- type: marking
+  id: SteampunkRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_r_hand
+
+- type: marking
+  id: SteampunkLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_l_hand
+
+- type: marking
+  id: SteampunkRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_r_leg
+
+- type: marking
+  id: SteampunkLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_l_leg
+
+- type: marking
+  id: SteampunkRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_r_foot
+
+- type: marking
+  id: SteampunkLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: staripc_l_foot
+
+# Pawsitrons variant
+- type: marking
+  id: PawsitronsHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_head
+
+- type: marking
+  id: PawsitronsChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_chest
+
+- type: marking
+  id: PawsitronsGroin
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_groin
+
+- type: marking
+  id: PawsitronsRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_r_arm
+
+- type: marking
+  id: PawsitronsLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_l_arm
+
+- type: marking
+  id: PawsitronsRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_r_hand
+
+- type: marking
+  id: PawsitronsLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_l_hand
+
+- type: marking
+  id: PawsitronsRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_r_leg
+
+- type: marking
+  id: PawsitronsLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_l_leg
+
+- type: marking
+  id: PawsitronsRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_r_foot
+
+- type: marking
+  id: PawsitronsLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/ipc_parts.rsi
+      state: pawsitrons_l_foot
+
+
+
+############################################ WEGA PORT #########################################################
+#region Head Top
+
+- type: marking
+  id: AndroidAntennaLeft
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#bf3f3f"
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: head_antenna_l
+
+- type: marking
+  id: AndroidAntennaRight
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#bf3f3f"
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: head_antenna_r
+
+- type: marking
+  id: AndroidHeadBulbs
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Special
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: head_bulbs
+
+#endregion Head Top
+
+#region Torso
+
+- type: marking
+  id: AndroidTorsoFemaleStandart
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: body_f
+
+- type: marking
+  id: AndroidTorsoFemaleBreast
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: body_f_breast
+
+- type: marking
+  id: AndroidTorsoFemaleBigBreast
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: body_f_bigbreast
+
+- type: marking
+  id: AndroidTorsoFemaleNoBreast
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: body_f_nobreast
+
+- type: marking
+  id: AndroidTorsoMale
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: body_m
+
+#groin
+
+- type: marking
+  id: AndroidGroinFemaleStandart
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: groin_f
+
+- type: marking
+  id: AndroidGroinFemaleBreast
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: groin_f_breast
+
+- type: marking
+  id: AndroidGroinFemaleBigBreast
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: groin_f_bigbreast
+
+- type: marking
+  id: AndroidGroinFemaleNoBreast
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: groin_f_nobreast
+
+- type: marking
+  id: AndroidGroinMale
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: groin_m
+
+- type: marking
+  id: AndroidTorsoFemaleSynt
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: body_f_synt
+
+- type: marking
+  id: AndroidTorsoMaleSynt
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: body_m_synt
+
+- type: marking
+  id: AndroidGroinFemaleSynt
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: groin_f_synt
+
+- type: marking
+  id: AndroidGroinMaleSynt
+  bodyPart: Groin
+  markingCategory: Groin
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: groin_m_synt
+
+#endregion Torso
+
+#region Leds
+
+- type: marking
+  id: AndroidTempleLed
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Special
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: temple_led
+
+#endregion Leds
+
+#region Limbs
+
+# Scrap
+
+- type: marking
+  id: AndroidScrapArmLeft
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: l_arm_scrap
+
+- type: marking
+  id: AndroidScrapArmRight
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: r_arm_scrap
+
+- type: marking
+  id: AndroidScrapHandLeft
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: l_hand_scrap
+
+- type: marking
+  id: AndroidScrapHandRight
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: r_hand_scrap
+
+- type: marking
+  id: AndroidScrapLegLeft
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: l_leg_scrap
+
+- type: marking
+  id: AndroidScrapLegRight
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: r_leg_scrap
+
+- type: marking
+  id: AndroidScrapFootLeft
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: l_foot_scrap
+
+- type: marking
+  id: AndroidScrapFootRight
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: r_foot_scrap
+
+# Synth
+
+- type: marking
+  id: AndroidSyntArmLeft
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: l_arm_synt
+
+- type: marking
+  id: AndroidSyntArmRight
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: r_arm_synt
+
+- type: marking
+  id: AndroidSyntHandLeft
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: l_hand_synt
+
+- type: marking
+  id: AndroidSyntHandRight
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: r_hand_synt
+
+- type: marking
+  id: AndroidSyntLegLeft
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: l_leg_synt
+
+- type: marking
+  id: AndroidSyntLegRight
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: r_leg_synt
+
+- type: marking
+  id: AndroidSyntFootLeft
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: l_foot_synt
+
+- type: marking
+  id: AndroidSyntFootRight
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+      state: r_foot_synt
+
+#endregion Limbs
+
+#region Head
+- type: marking
+  id: AndroidHeadFemaleSynt
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android_heads.rsi
+    state: synt_f
+
+- type: marking
+  id: AndroidHeadMaleSynt
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_heads.rsi
+      state: synt_m
+
+#endregion Head
+
+#region Misc
+
+- type: marking
+  id: AndroidCatEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      ears_cat_led:
+        type:
+          !type:CategoryColoring
+            category: Special
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: ears_cat_outer
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: ears_cat_led
+
+- type: marking
+  id: AndroidCatTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+            category: Hair
+    layers:
+      cat_tail_led:
+        type:
+          !type:CategoryColoring
+            category: Special
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: cat_tail
+  - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
+    state: cat_tail_led
+
+#endregion Misc
+
+- type: marking
+  id: AndroidDefaultHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: head_f
+
+- type: marking
+  id: AndroidDefaultRArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: r_arm
+
+- type: marking
+  id: AndroidDefaultLArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: l_arm
+
+- type: marking
+  id: AndroidDefaultRHand
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: r_hand
+
+- type: marking
+  id: AndroidDefaultLHand
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: l_hand
+
+- type: marking
+  id: AndroidDefaultRLeg
+  bodyPart: RLeg
+  markingCategory: RightLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: r_leg
+
+- type: marking
+  id: AndroidDefaultLLeg
+  bodyPart: LLeg
+  markingCategory: LeftLeg
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: l_leg
+
+- type: marking
+  id: AndroidDefaultRFoot
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: r_foot
+
+- type: marking
+  id: AndroidDefaultLFoot
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: l_foot
+
+- type: marking
+  id: AndroidDefaultEyes
+  bodyPart: Face
+  markingCategory: Face
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: r_eye
+    - sprite: _Arcane/Mobs/Customization/IPC/android_default.rsi
+      state: l_eye
+  shader: unshaded
