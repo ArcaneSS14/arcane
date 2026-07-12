@@ -85,7 +85,7 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ChemMasterComponent, SolutionContainerChangedEvent>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ChemMasterComponent, SolutionChangedEvent>(SubscribeUpdateUiState); // Arcane
             SubscribeLocalEvent<ChemMasterComponent, SolutionTransferredEvent>(SubscribeUpdateUiState); // Arcane
-            SubscribeLocalEvent<ChemMasterComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState); // Arcane-Edit
+            SubscribeLocalEvent<ChemMasterComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ChemMasterComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ChemMasterComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
 
@@ -184,9 +184,9 @@ namespace Content.Server.Chemistry.EntitySystems
                 return;
             }
 
-            // Arcane-Edit-Start
             if (fromBuffer) // Buffer -> container
             {
+                // Arcane-Edit-Start
                 var removed = FixedPoint2.Min(amount, bufferSolution.GetReagentQuantity(id), containerSolution.AvailableVolume);
                 if (removed <= FixedPoint2.Zero)
                     return;
@@ -214,17 +214,17 @@ namespace Content.Server.Chemistry.EntitySystems
                     LogImpact.Low,
                     $"{ToPrettyString(actor)} transferred {amount}u of {id} {(!fromBuffer ? "from" : "to")}" +
                     $" {ToPrettyString(containerSoln)} {(fromBuffer ? "from" : "to")} {ToPrettyString(chemMaster)}");
+                // Arcane-Edit-End
             }
-            // Arcane-Edit-End
 
             UpdateUiState(chemMaster, updateLabel: true);
         }
 
         private void DiscardReagents(Entity<ChemMasterComponent> chemMaster, ReagentId id, FixedPoint2 amount, bool fromBuffer)
         {
-            // Arcane-Edit-Start
             if (fromBuffer)
             {
+                // Arcane-Edit-Start
                 if (_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out var bufferSoln, out var bufferSolution))
                 {
                     var removed = FixedPoint2.Min(amount, bufferSolution.GetReagentQuantity(id));
@@ -250,8 +250,8 @@ namespace Content.Server.Chemistry.EntitySystems
                     return;
 
                 _solutionContainerSystem.RemoveReagent(containerSoln.Value, id, removed);
+                // Arcane-Edit-End
             }
-            // Arcane-Edit-End
 
             UpdateUiState(chemMaster, updateLabel: fromBuffer);
         }
@@ -382,10 +382,10 @@ namespace Content.Server.Chemistry.EntitySystems
             if (container is not { Valid: true })
                 return null;
 
-            // Arcane-Start
+            // Arcane-Edit-Start
             if (!_solutionContainerSystem.TryGetFitsInDispenser(container.Value, out _, out var solution))
                 return null;
-            // Arcane-End
+            // Arcane-Edit-End
 
             return BuildContainerInfo(Name(container.Value), solution);
         }

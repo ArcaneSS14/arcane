@@ -241,25 +241,23 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
             _audioSystem.PlayPvs(reagentDispenser.Comp.ClickSound, reagentDispenser, AudioParams.Default.WithVolume(-2f));
 
         private static float GetPowerCostForReagent(string reagentId, int amount, EnergyReagentDispenserComponent comp)
+        // Arcane-Start
         {
-            // Arcane-Edit-Start
             return GetReagentCost(reagentId, amount, comp, unknownFallback: float.MaxValue);
-            // Arcane-Edit-End
         }
 
-        // Arcane-Start
         private static float GetRefundCostForReagent(string reagentId, int amount, EnergyReagentDispenserComponent comp)
         {
             return GetReagentCost(reagentId, amount, comp, unknownFallback: 0f);
         }
 
         private static float GetReagentCost(string reagentId, int amount, EnergyReagentDispenserComponent comp, float unknownFallback)
+        // Arcane-End
         {
             return comp.Reagents.TryGetValue(reagentId, out var cost)
-                ? cost * amount * comp.FinalEnergyCostMultiplier
-                : unknownFallback;
+                ? cost * amount * comp.FinalEnergyCostMultiplier // Orion-Edit
+                : unknownFallback; // Arcane-Edit
         }
-        // Arcane-End
 
         private void OnMapInit(Entity<EnergyReagentDispenserComponent> entity, ref MapInitEvent args)
         {
