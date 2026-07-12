@@ -71,8 +71,6 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 // Arcane - Start
 using Content.Shared._Arcane.SpecialWhitelist;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
 // Arcane - End
 
 namespace Content.Shared.Preferences
@@ -1307,7 +1305,5 @@ namespace Content.Shared.Preferences
         {
             return new HumanoidCharacterProfile(this);
         }
-        foreach (var markingId in profile.Appearance.Markings.ToList())
-        {
     }
 }
