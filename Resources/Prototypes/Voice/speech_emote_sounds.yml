@@ -347,6 +347,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
     Gulp: # Goob
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Hiss: # Orion
@@ -355,10 +359,6 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
   params:
     variation: 0.125
-    # Arcane-Start
-    Moan:
-      collection: MoansMale
-    # Arcane-End
 
 - type: emoteSounds
   id: FemaleSlime
@@ -401,6 +401,10 @@
       collection: Weh
     Hew:
       collection: Hew
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -413,10 +417,6 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
   params:
     variation: 0.125
-    # Arcane-Start
-    Moan:
-      collection: MoansFemale
-    # Arcane-End
 
 - type: emoteSounds
   id: UnisexVox
@@ -597,15 +597,15 @@
       path: /Audio/_Goobstation/Voice/Human/gulp.ogg
     Hiss: # Orion
       collection: ReptilianHisses
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
   params:
     variation: 0.125
     pitch: 0.75
-    # Arcane-Start
-    Moan:
-      collection: MoansMale
-    # Arcane-End
 
 - type: emoteSounds
   id: FemaleDwarf
@@ -650,15 +650,15 @@
       path: /Audio/_Goobstation/Voice/Human/gulp.ogg
     Hiss: # Orion
       collection: ReptilianHisses
+      # Arcane-Start
+      Moan:
+        collection: MoansFemale
+      # Arcane-End
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
   params:
     variation: 0.125
     pitch: 0.75
-    # Arcane-Start
-    Moan:
-      collection: MoansFemale
-    # Arcane-End
 
 - type: emoteSounds
   id: UnisexMoth
