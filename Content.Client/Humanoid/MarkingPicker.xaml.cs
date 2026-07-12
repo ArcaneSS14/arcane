@@ -247,15 +247,14 @@ public sealed partial class MarkingPicker : Control
             {
                 continue;
             }
+
             // Arcane - Start
-            else
-            {
-            _   selectedMarkingCategory = MarkingCategories.Chest;
-            }
-        }
+            if (!MarkingWhitelistManager.IsMarkingAllowed(marking, _playerManager.LocalSession))
+                continue;
             // Arcane - End
+
             var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
-            item.Metadata = marking;
+                item.Metadata = marking;
         }
 
         CMarkingPoints.Visible = _currentMarkings.PointsLeft(_selectedMarkingCategory) != -1;

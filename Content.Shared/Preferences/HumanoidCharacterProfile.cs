@@ -1118,7 +1118,7 @@ namespace Content.Shared.Preferences
                 if (!MarkingWhitelistManager.IsMarkingAllowed(proto, session))
                     Appearance.Markings.Remove(markingId);
             }
-// Arcane - End
+            // Arcane - End
         }
 
         // Art-TTS Start
