@@ -1,3 +1,3 @@
-chat-emote-name-moan = стон
+chat-emote-name-moan = стонать
 
 chat-emote-msg-moan = стонет.

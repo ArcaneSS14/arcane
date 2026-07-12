@@ -2,7 +2,7 @@
   id: Moan
   name: chat-emote-name-moan
   category: Vocal
-  icon: _Arcane\Interface\Emotes
+  icon: _Arcane/Interface/Emotes/moan.png
   whitelist:
     components:
     - Vocal
