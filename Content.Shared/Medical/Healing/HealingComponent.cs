@@ -53,7 +53,7 @@ public sealed partial class HealingComponent : Component
     /// How long it takes to apply the damage.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public TimeSpan Delay = TimeSpan.FromSeconds(2f); //Was 3f, changed due to Surgery Changes (Goobstation) // Arcane-Edit: 2 > 1
+    public TimeSpan Delay = TimeSpan.FromSeconds(1f); //Was 3f, changed due to Surgery Changes (Goobstation) // Arcane-Edit: 2 > 1
 
     /// <summary>
     /// Delay multiplier when healing yourself.
