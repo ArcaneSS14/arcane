@@ -140,11 +140,15 @@
   - type: StorageFill
     contents:
       # Arcane-Edit-Start
-      - id: MedicatedSuture
-      - id: RegenerativeMesh
-      - id: Bloodpack
+      - id: Suture
         amount: 2
-      - id: Tourniquet # Shitmed Change
+      - id: RegenerativeMesh
+        amount: 2
+      - id: MedicalPatchPrefilledSynthflesh
+        amount: 3
+      - id: PillCanisterIron
+      - id: SyringeSaline
+      - id: AdvancedEmergencyMedipen
       # Arcane-Edit-End
 
 - type: entity
