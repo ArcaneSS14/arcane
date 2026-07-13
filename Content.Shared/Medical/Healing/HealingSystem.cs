@@ -686,8 +686,8 @@ public sealed class HealingSystem : EntitySystem
             return 1;
 
         var percentDamage = (float)(ent.Comp1.TotalDamage / amount);
-        // Arcane-Edit-Start: BugFix
         if (TryComp<ConsciousnessComponent>(ent.Owner, out var consciousness))
+        // Arcane-Edit-Start: BugFix
         {
             var consciousnessRatio = (float)((consciousness.Cap - consciousness.Consciousness) / (consciousness.Cap - consciousness.Threshold));
             percentDamage = Math.Max(percentDamage, Math.Clamp(consciousnessRatio, 0f, 1f));

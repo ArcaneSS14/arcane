@@ -184,7 +184,7 @@ namespace Content.Server.Chemistry.EntitySystems
                 return;
             }
 
-            if (fromBuffer) // Buffer -> container
+            if (fromBuffer) // Buffer to container
             {
                 // Arcane-Edit-Start
                 var removed = FixedPoint2.Min(amount, bufferSolution.GetReagentQuantity(id), containerSolution.AvailableVolume);
@@ -196,7 +196,7 @@ namespace Content.Server.Chemistry.EntitySystems
                 amount = removed;
             }
 
-            else // Container -> buffer
+            else // Container to buffer
             {
                 var available = FixedPoint2.Max(bufferSolution.AvailableVolume, FixedPoint2.Zero);
                 amount = FixedPoint2.Min(amount, containerSolution.GetReagentQuantity(id), available);

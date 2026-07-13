@@ -555,7 +555,7 @@ public sealed class RespiratorSystem : EntitySystem
         if (ent.Comp.SuffocationCycles >= 2)
             _adminLogger.Add(LogType.Asphyxiation, $"{ToPrettyString(ent):entity} stopped suffocating");
 
-//        _damageableSys.TryChangeDamage(ent, ent.Comp.DamageRecovery); // Arcane-Edit
+//        _damageableSys.TryChangeDamage(ent, ent.Comp.DamageRecovery); // Orion-Edit
 
         var ev = new StopSuffocatingEvent();
         RaiseLocalEvent(ent, ref ev);

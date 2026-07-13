@@ -21,9 +21,9 @@ public enum MobState : byte
 {
     Invalid = 0,
     Alive = 1,
-    SoftCritical = 2, // Orion-Edit
-    Critical = SoftCritical, // Arcane
-    HardCritical = 3, // Orion // Arcane-Edit
+    SoftCritical = 2, // Orion
+    Critical = SoftCritical, // Orion-Edit
+    HardCritical = 3, // Orion
     Dead = 4, // Orion-Edit
 }
 

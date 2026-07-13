@@ -192,8 +192,10 @@
         Quantity: 5 # Arcane-Edit: 7 > 5
       - ReagentId: DexalinPlus
         Quantity: 3
-      - ReagentId: Artiplates # Arcane
+      # Arcane-Start
+      - ReagentId: Artiplates
         Quantity: 2
+      # Arcane-End
 
 - type: entity
   name: brute autoinjector cartridge

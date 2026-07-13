@@ -189,9 +189,7 @@ namespace Content.Client.Chemistry.UI
             // Ensure the Panel Info is updated, including UI elements for Buffer Volume, Output Container and so on
             UpdatePanelInfo(castState);
 
-            // Arcane-Edit-Start
-            BufferCurrentVolume.Text = FormatVolume(castState.BufferCurrentVolume ?? 0, castState.BufferMaxVolume);
-            // Arcane-Edit-End
+            BufferCurrentVolume.Text = FormatVolume(castState.BufferCurrentVolume ?? 0, castState.BufferMaxVolume); // Arcane-Edit
 
             InputEjectButton.Disabled = castState.InputContainerInfo is null;
             OutputEjectButton.Disabled = castState.OutputContainerInfo is null;

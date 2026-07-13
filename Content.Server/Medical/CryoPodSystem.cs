@@ -162,10 +162,8 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
         {
             TryCryoCool(patient, patientTemperature, cryoPodAir.Air.Temperature, entity.Comp);
         }
-        // Arcane-End
     }
 
-    // Arcane-Start
     private void TryCryoCool(EntityUid patient, TemperatureComponent patientTemperature, float targetTemperature, CryoPodComponent cryoPod)
     {
         var currentTemperature = patientTemperature.CurrentTemperature;
@@ -193,8 +191,8 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
             -temperatureStep * heatCapacity,
             ignoreHeatResistance: ignoreResistance,
             temperature: patientTemperature);
+        // Arcane-End
     }
-    // Arcane-End
 
     private void OnGasAnalyzed(Entity<CryoPodComponent> entity, ref GasAnalyzerScanEvent args)
     {
