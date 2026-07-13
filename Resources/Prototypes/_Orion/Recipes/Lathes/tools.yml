@@ -15,6 +15,16 @@
     Glass: 100
     Plastic: 100
 
+# Arcane-start
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: PinpointerSecSquad
+  result: PinpointerSecSquad
+  materials:
+    Glass: 200
+    Plastic: 200
+    Steel: 100
+# Arcane-end
 - type: latheRecipe
   parent: BaseToolRecipe
   id: ClothingShoesBootsMag

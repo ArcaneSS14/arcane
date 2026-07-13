@@ -2,7 +2,7 @@
   id: PiercingRightEar
   bodyPart: HeadSide
   markingCategory: Overlay
-  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/piercing.rsi
     state: piercing_right_ear
@@ -11,7 +11,7 @@
   id: PiercingLeftEar
   bodyPart: HeadSide
   markingCategory: Overlay
-  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/piercing.rsi
     state: piercing_left_ear
@@ -20,7 +20,7 @@
   id: PiercingNose
   bodyPart: Head
   markingCategory: Overlay
-  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/piercing.rsi
     state: piercing_nose
@@ -29,7 +29,7 @@
   id: PiercingPubis
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/piercing.rsi
     state: piercing_pubis
@@ -38,7 +38,7 @@
   id: PiercingNipples
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/piercing.rsi
     state: piercing_nipples
@@ -47,7 +47,7 @@
   id: PiercingBellybutton
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon]
+  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/piercing.rsi
     state: piercing_bellybutton

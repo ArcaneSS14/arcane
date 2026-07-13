@@ -163,7 +163,7 @@
   id: LizardTailSmooth
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Human, Dwarf, Felinid, SlimePerson] # Arcane-Edit
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_smooth_primary

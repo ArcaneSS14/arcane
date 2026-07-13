@@ -72,6 +72,10 @@
       collection: MaleDeathGasp
     Gulp: # Goob
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleAvaliEmote
@@ -122,3 +126,7 @@
       collection: FemaleDeathGasp
     Gulp: # Goob
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End

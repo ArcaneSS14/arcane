@@ -99,9 +99,32 @@
   description: job-description-ntr
   playTimeTracker: JobNanotrasenRepresentative
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 180000  #50 hours
+  # Arcane-Start
+    - !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 72000 #20h
+    - !type:RoleTimeRequirement
+      role: JobIAA
+      time: 72000 #20h
+    - !type:RoleTimeRequirement
+      role: JobHeadOfPersonnel
+      time: 36000 #10h
+    - !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 36000 #10h
+    - !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 36000 #10h
+    - !type:RoleTimeRequirement
+      role: JobResearchDirector
+      time: 36000 #10h
+    - !type:RoleTimeRequirement
+      role: JobChiefMedicalOfficer
+      time: 36000 #10h
+    - !type:RoleTimeRequirement
+      role: JobQuartermaster
+      time: 36000 #10h
+  # Arcane-End
     - !type:AgeRequirement
       requiredAge: 21
   weight: 20
