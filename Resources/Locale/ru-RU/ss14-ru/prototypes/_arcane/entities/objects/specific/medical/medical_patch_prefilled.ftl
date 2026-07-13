@@ -15,3 +15,6 @@ ent-MedicalPatchPrefilledHyronalin = пластырь от радиации
 
 ent-MedicalPatchPrefilledFormaldehyde = пластырь от разложения
     .desc = Пластырь с формальдегидом. Останавливает разложение тканей, вплоть до восстановления при контакте с кожей.
+
+ent-MedicalPatchPrefilledSynthflesh = пластырь синтплоти
+    .desc = Лечит и живых, и трупов, но исключительно при наложении на тело. Токсичен.

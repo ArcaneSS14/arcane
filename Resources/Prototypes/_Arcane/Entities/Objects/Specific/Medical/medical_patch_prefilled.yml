@@ -93,3 +93,19 @@
         reagents:
           - ReagentId: Formaldehyde
             Quantity: 30
+
+- type: entity
+  parent: MedicalPatchPrefilledBase
+  id: MedicalPatchPrefilledSynthflesh
+  name: synthflesh patch
+  suffix: Synthflesh
+  components:
+  - type: Label
+    currentLabel: Synthflesh 30u
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+          - ReagentId: Synthflesh
+            Quantity: 30
