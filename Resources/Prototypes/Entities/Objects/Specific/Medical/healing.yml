@@ -507,9 +507,9 @@
       - Biological
     damage:
       types:
-        Slash: -1 # Was 5 # Arcane-Edit: -10 > -2
-        Piercing: -2 # Was 10, Buffed due to limb damage changes (Goobstation) # Arcane-Edit: -15 > -4
-    delay: 1 # Arcane
+        Slash: -2 # Was 5 # Arcane-Edit: -10 > -2
+        Piercing: -4 # Was 10, Buffed due to limb damage changes (Goobstation) # Arcane-Edit: -15 > -4
+    delay: 0.5 # Arcane
     bloodlossModifier: -10
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
