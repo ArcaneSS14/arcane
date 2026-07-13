@@ -68,7 +68,7 @@
     startingCharge: 1500
   - type: ApcPowerReceiverBattery
     idleLoad: 65
-    batteryRechargeRate: 30
+    batteryRechargeRate: 20 # Arcane-Edit: 30 > 20
     batteryRechargeEfficiency: 1.0
   - type: ApcPowerReceiver
     powerLoad: 65
