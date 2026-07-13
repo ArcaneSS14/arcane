@@ -53,7 +53,7 @@
     children:
     - id: DefibrillatorCompact
     - id: ParamedHypo
-    - id: LockerBlueshieldOfficerFilled # Arcane-Edit: MedBay Rework
+    - id: MedkitCombatStandardFilled # Arcane-Edit: MedBay Rework
     - id: MedkitBSOIPCFilled
     - id: FlippoLighterBlueshield
     - id: CigPackBlueshield
