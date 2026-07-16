@@ -512,6 +512,7 @@
     - Tradeband
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # CorvaxGoob
     understands:
     - TauCetiBasic
     - Canilunzt
@@ -533,6 +534,7 @@
     - Sign
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # Arcane
   - type: SpeechSynthesis # Corvax-Frontier-Barks
     voice: Borg
   # Arcane-start
