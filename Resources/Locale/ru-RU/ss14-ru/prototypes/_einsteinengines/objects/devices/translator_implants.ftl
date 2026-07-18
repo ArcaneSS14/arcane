@@ -35,4 +35,4 @@ ent-NewKinPidginTranslatorImplant = имплант "переводчик Ка'р
 ent-GruntishTranslatorImplant = имплант "Грунтич"
     .desc = Имплант, дающий возможность понимать и говорить на Грунтиче.
 ent-HydraspeakTranslatorImplant = имплант "переводчик Ги'драв'та"
-    .desc = Имплантат, позволяющий общаться с гидракинами.
+    .desc = Имплант, позволяющий общаться с гидракинами.
