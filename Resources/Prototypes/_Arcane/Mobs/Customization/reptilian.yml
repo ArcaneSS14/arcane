@@ -1,0 +1,8 @@
+- type: marking
+  id: LizardTongue
+  bodyPart: Face
+  markingCategory: Face
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/reptilian_tongue.rsi
+    state: reptilian_tongue
