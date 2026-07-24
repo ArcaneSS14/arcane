@@ -1,1 +1,1 @@
-marking-LizardTongue = Раздвоенный язык
+marking-ForkedTongue = Раздвоенный Язык (Переключаемый)

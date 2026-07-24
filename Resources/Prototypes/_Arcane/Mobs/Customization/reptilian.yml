@@ -1,8 +1,17 @@
 - type: marking
-  id: LizardTongue
+  id: ForkedTongue
   bodyPart: Face
   markingCategory: Face
   speciesRestriction: [ Reptilian ]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/reptilian_tongue.rsi
-    state: reptilian_tongue
+  - sprite: _Arcane/Mobs/Customization/forked_tongue.rsi
+    state: no_tongue
+
+- type: marking
+  id: ForkedTongueFlicking
+  bodyPart: Face
+  markingCategory: Face
+  speciesRestriction: [ ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/forked_tongue.rsi
+    state: forked_tongue

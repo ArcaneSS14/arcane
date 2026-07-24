@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseToggleAction
+  id: ActionToggleFlicking
+  name: Flicking Tongue
+  description: Start or stop flicking your tongue.
+  components:
+  - type: Action
+    icon: { sprite: _Arcane/Mobs/Customization/forked_tongue.rsi, state: tongue_off }
+    iconOn: { sprite: _Arcane/Mobs/Customization/forked_tongue.rsi, state: tongue_on }
+    itemIconStyle: NoItem
+    useDelay: 1
+    checkCanInteract: false
