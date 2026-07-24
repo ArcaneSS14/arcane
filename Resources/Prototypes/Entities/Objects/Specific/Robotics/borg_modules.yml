@@ -1002,12 +1002,11 @@
   - type: ItemBorgModule
     moduleId: Service
     items:
-    - Pen
     #- BooksBag (Add back when hand whitelisting exists, at the moment they can only use it like an orebag.)
     - HandLabeler
+    - Lighter
     - RubberStampApproved
     - RubberStampDenied
-    - Lighter
     # Frontier: droppable borg items
     # - DrinkShaker
     # - BorgDropper
@@ -1019,6 +1018,33 @@
         components:
         - FitsInDispenser
     # End Frontier: droppable borg items
+    # Arcane-Edit-Start
+        tags:
+        - DrinkBottle
+        - Beer
+    - id: BarSpoon
+      whitelist:
+        tags:
+        - BarSpoon
+    - id: Pen
+      whitelist:
+        tags:
+        - Book
+        - Dice
+        - Document
+        - Figurine
+        - TabletopBoard
+        - Write
+    - id: Paper
+      whitelist:
+        tags:
+        - Book
+        - Dice
+        - Document
+        - Figurine
+        - TabletopBoard
+        - Write
+    # Arcane-Edit-End
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: service-module }
 
