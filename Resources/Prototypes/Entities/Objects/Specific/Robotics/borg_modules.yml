@@ -1024,8 +1024,11 @@
         - Beer
     - id: BarSpoon
       whitelist:
+        requireAll: true
+        components:
+        - ReactionMixer
         tags:
-        - BarSpoon
+        - Metal
     - id: Pen
       whitelist:
         tags:
