@@ -7,6 +7,8 @@
       part: ChestAnimal
       connections:
       - groin
+      - right hand # Arcane
+      - left hand # Arcane
       organs:
         brain: OrganHumanBrain # feels strange but it is what it is
         lungs: OrganAnimalLungs
@@ -14,6 +16,10 @@
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
+    right hand: # Arcane
+      part: RightHandSmartCorgi
+    left hand: # Arcane
+      part: LeftHandSmartCorgi
     groin:
       part: GroinAnimal
       connections:
