@@ -87,3 +87,117 @@
   name: Kensuke Ushio - In The Pool
   path:
     path: /Audio/_Arcane/Lobby/InThePool.ogg
+
+- type: jukebox
+  id: PeopleAreStrange
+  name: The Doors - People Are Strange
+  path:
+    path: /Audio/_Arcane/Lobby/PeopleAreStrange.ogg
+
+- type: jukebox
+  id: RidersOnTheStorm
+  name: The Doors - Riders On The Storm
+  path:
+    path: /Audio/_Arcane/Lobby/RidersOnTheStorm.ogg
+
+- type: jukebox
+  id: Maybe
+  name: The Ink Spots - Maybe
+  path:
+    path: /Audio/_Arcane/Lobby/Maybe.ogg
+
+- type: jukebox
+  id: IDontWantToSetTheWorldOnFire
+  name: The Ink Spots - I Don't Want To Set The World On Fire
+  path:
+    path: /Audio/_Arcane/Lobby/IDontWantToSetTheWorldOnFire.ogg
+
+- type: jukebox
+  id: JavaJive
+  name: The Ink Spots - Java Jive
+  path:
+    path: /Audio/_Arcane/Lobby/JavaJive.ogg
+
+- type: jukebox
+  id: IfIDidntCare
+  name: The Ink Spots - If I Didn't Care
+  path:
+    path: /Audio/_Arcane/Lobby/IfIDidntCare.ogg
+
+- type: jukebox
+  id: ItsAllOver
+  name: The Ink Spots - It's All Over
+  path:
+    path: /Audio/_Arcane/Lobby/ItsAllOver.ogg
+
+- type: jukebox
+  id: WelcomeToTheJungle
+  name: Guns N' Roses - Welcome To The Jungle
+  path:
+    path: /Audio/_Arcane/Lobby/WelcomeToTheJungle.ogg
+
+- type: jukebox
+  id: HighwayToHell
+  name: AC/DC - Highway To Hell
+  path:
+    path: /Audio/_Arcane/Lobby/HighwayToHell.ogg
+
+- type: jukebox
+  id: TNT
+  name: AC/DC - T.N.T.
+  path:
+    path: /Audio/_Arcane/Lobby/TNT.ogg
+
+- type: jukebox
+  id: BackInBlack
+  name: AC/DC - Back In Black
+  path:
+    path: /Audio/_Arcane/Lobby/BackInBlack.ogg
+
+- type: jukebox
+  id: BillieJean
+  name: Michael Jackson - Billie Jean
+  path:
+    path: /Audio/_Arcane/Lobby/BillieJean.ogg
+
+- type: jukebox
+  id: Bad
+  name: Michael Jackson - Bad
+  path:
+    path: /Audio/_Arcane/Lobby/Bad.ogg
+
+- type: jukebox
+  id: EarthSong
+  name: Michael Jackson - Earth Song
+  path:
+    path: /Audio/_Arcane/Lobby/EarthSong.ogg
+
+- type: jukebox
+  id: Thriller
+  name: Michael Jackson - Thriller
+  path:
+    path: /Audio/_Arcane/Lobby/Thriller.ogg
+
+- type: jukebox
+  id: HotelCalifornia
+  name: Eagles - Hotel California
+  path:
+    path: /Audio/_Arcane/Lobby/HotelCalifornia.ogg
+
+- type: jukebox
+  id: Wartrauma
+  name: Barotrauma - Wartrauma
+  path:
+    path: /Audio/_Arcane/Lobby/Wartrauma.ogg
+
+- type: jukebox
+  id: ZaKray
+  name: Три Дня Дождя - За Край
+  path:
+    path: /Audio/_Arcane/Lobby/ZaKray.ogg
+
+- type: jukebox
+  id: TavoAkys
+  name: Katarsis - Tavo Akys
+  path:
+    path: /Audio/_Arcane/Lobby/TavoAkys.ogg
