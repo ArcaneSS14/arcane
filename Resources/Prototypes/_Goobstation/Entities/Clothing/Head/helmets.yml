@@ -262,6 +262,11 @@
     state: icon
   - type: Clothing
     sprite: _ShitChap/Clothing/Head/Misc/clock.rsi
+# Arcane-Start
+  - type: Tag
+    tags:
+    - HidesHair
+# Arcane-end
 
 - type: entity
   parent: ClothingHeadHatHelmetTemplar
