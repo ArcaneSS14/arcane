@@ -1002,13 +1002,13 @@
   - type: ItemBorgModule
     moduleId: Service
     items:
-    # - Pen # Arcane-Edit: Moved
+#    - Pen # Arcane-Edit: Moved
     #- BooksBag (Add back when hand whitelisting exists, at the moment they can only use it like an orebag.)
     - HandLabeler
     - Lighter # Arcane
     - RubberStampApproved
     - RubberStampDenied
-    # - Lighter # Arcane-Edit: Moved
+#    - Lighter # Arcane-Edit: Moved
     # Frontier: droppable borg items
     # - DrinkShaker
     # - BorgDropper
