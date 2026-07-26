@@ -7,7 +7,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Goobstation.Shared.Devil;
 using Content.Goobstation.Shared.SlaughterDemon;
-using Content.Server.Medical;
+using Content.Shared.Medical;
 using Content.Shared._EinsteinEngines.Silicon.Components;
 using Content.Shared._Orion.CorticalBorer;
 using Content.Shared._Orion.CorticalBorer.Components;

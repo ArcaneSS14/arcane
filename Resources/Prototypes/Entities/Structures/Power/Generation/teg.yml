@@ -1,20 +1,3 @@
-# SPDX-FileCopyrightText: 2023 Colin-Tel <113523727+Colin-Tel@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Ed <96445749+TheShuEd@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Flareguy <78941145+Flareguy@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-# SPDX-FileCopyrightText: 2023 Kevin Zheng <kevinz5000@gmail.com>
-# SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-# SPDX-FileCopyrightText: 2023 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 crazybrain23 <44417085+crazybrain23@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2024 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 plykiya <plykiya@protonmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 ScarKy0 <scarky0@onet.eu>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -31,24 +14,19 @@
       sprite: Structures/Power/Generation/teg.rsi
       layers:
         - state: teg
-        # Orion-Edit-Start
-          map: [ "center" ]
-#        - state: teg_mid
-#          shader: unshaded
-#          map: [ "enum.PowerDeviceVisualLayers.Powered" ]
-        # Orion-Edit-End
+        - state: teg_mid
+          shader: unshaded
+          map: [ "enum.PowerDeviceVisualLayers.Powered" ]
         - state: teg-op1
           shader: unshaded
           visible: false
           map: [ "enum.TegVisualLayers.PowerOutput" ]
     - type: GenericVisualizer
       visuals:
-        # Orion-Edit-Start
-#        enum.PowerDeviceVisuals.Powered:
-#          enum.PowerDeviceVisualLayers.Powered:
-#            True: { visible: true }
-#            False: { visible: false }
-        # Orion-Edit-End
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: { visible: true }
+            False: { visible: false }
         enum.TegVisuals.PowerOutput:
           enum.TegVisualLayers.PowerOutput:
             0: { visible: false }
@@ -63,12 +41,6 @@
             9: { visible: true, state: teg-op9 }
             10: { visible: true, state: teg-op10 }
             11: { visible: true, state: teg-op11 }
-        # Orion-Start
-        enum.AnchorVisuals.Anchored:
-          center:
-            False: { state: teg-unassembled }
-            True: { state: teg }
-        # Orion-End
 
     - type: Anchorable
     - type: Pullable
@@ -92,7 +64,8 @@
     # It fires processing on behalf of its connected circulators.
     - type: AtmosDevice
     - type: TegGenerator
-      thermalEfficiency: 0.8 # Orion
+      thermalEfficiency: 0.1
+      powerFactor: 1.75
 
     - type: DeviceNetwork
       deviceNetId: AtmosDevices
@@ -119,7 +92,7 @@
       enabled: false
       castShadows: false
       radius: 1.5
-      color: "#ff8800" # Orion-Edit
+      color: "#FFAA00"
 
     - type: AmbientSound
       volume: -4
@@ -170,24 +143,17 @@
             SpeedStill: { state: circ-0-light }
             SpeedSlow: { state: circ-1-light }
             SpeedFast: { state: circ-2-light }
-        # Orion-Start
-        enum.AnchorVisuals.Anchored:
-          enum.TegVisualLayers.CirculatorBase:
-            False: { state: circ-unassembled-0 }
-            True: { state: circ-0 }
-        # Orion-End
 
     - type: Appearance
     - type: PointLight
       enabled: false
       castShadows: false
       radius: 1.5
-      color: "#f700ff" # Orion-Edit
+      color: "#CC00FF"
 
     # tags
     - type: Tag
       tags:
-        - Pipe
         - Unstackable
 
     # basic interactions

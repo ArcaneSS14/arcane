@@ -53,7 +53,7 @@
 
 - type: entity
   # Arcane-Edit-start
-  parent: CBURNIDCard
+  parent: CBURNIDcard
   id: CBURNLeaderIDCard
   # Arcane-Edit-end
   name: CBURN leader ID card
