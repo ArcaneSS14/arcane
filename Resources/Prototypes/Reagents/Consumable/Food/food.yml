@@ -62,8 +62,8 @@
         #        probability: 0.5, goob
         damage:
           groups:
-            Brute: -0.5 #vitamin will heal 1 dmg per 1u
-            Burn: -0.5
+            Brute: -0.75 #goob
+            Burn: -0.75 #goob
       # Helps you stop bleeding to an extent.
       - !type:ModifyBleedAmount
         amount: -0.25
@@ -95,7 +95,7 @@
         #        probability: 0.5, goob
         damage:
           groups:
-            Brute: -0.8 #goob, was -0.4
+            Brute: -0.85 #goob, was -0.4
       - !type:ModifyBloodLevel
         amount: 2 # Goob
       - !type:SatiateHunger
