@@ -590,10 +590,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 25 #Goobstation # Arcane-Edit: 20 > 25
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20
+          Quantity: 20 #Goobstation # Arcane-Edit: 15 > 20
 
 - type: entity
   id: FoodSnackMREBrownie
