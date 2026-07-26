@@ -8,11 +8,6 @@
   copyright: "Plamenev"
   source: "https://plamenev.ru/music.php"
 
-- files: ["Plamenev_BigLove.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Plamenev"
-  source: "https://plamenev.ru/music.php"
-
 - files: ["Plamenev_BystroSgoraya.ogg"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "Plamenev"
@@ -38,11 +33,6 @@
   copyright: "Plamenev"
   source: "https://plamenev.ru/music.php"
 
-- files: ["Plamenev_IntoDarkness.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Plamenev"
-  source: "https://plamenev.ru/music.php"
-
 - files: ["Plamenev_Knife.ogg"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "Plamenev"
@@ -53,17 +43,7 @@
   copyright: "Plamenev"
   source: "https://plamenev.ru/music.php"
 
-- files: ["Plamenev_KradushhajaSny.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Plamenev"
-  source: "https://plamenev.ru/music.php"
-
 - files: ["Plamenev_OurWorld.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Plamenev"
-  source: "https://plamenev.ru/music.php"
-
-- files: ["Plamenev_SokrushitelVelikih.ogg"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "Plamenev"
   source: "https://plamenev.ru/music.php"
@@ -78,7 +58,3 @@
   copyright: "Plamenev"
   source: "https://plamenev.ru/music.php"
 
-- files: ["Plamenev_DevilWaiting.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Plamenev"
-  source: "https://plamenev.ru/music.php"

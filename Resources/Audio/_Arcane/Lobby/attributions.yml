@@ -103,11 +103,6 @@
   copyright: "The Ink Spots"
   source: "https://mp3party.net/music/8995553"
 
-- files: ["IfIDidntCare.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "The Ink Spots"
-  source: "https://ink-spots.skysound7.com/t/20989654690967601380-ink-spots-if-i-didn-t-care/"
-
 - files: ["JavaJive.ogg"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "The Ink Spots"
@@ -153,11 +148,6 @@
   copyright: "Michael Jackson"
   source: "https://mp3party.net/music/9279892"
 
-- files: ["BillieJean.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Michael Jackson"
-  source: "https://mp3party.net/music/8426120"
-
 - files: ["HighwayToHell.ogg"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "AC DC"
@@ -175,7 +165,7 @@
 
 - files: ["WelcomeToTheJungle.ogg"]
   license: "CC-BY-NC-SA-3.0"
-  copyright: "AC DC"
+  copyright: "Guns N' Roses"
   source: "https://mp3party.net/music/10125348"
 
 - files: ["ZaKray.ogg"]

@@ -119,12 +119,6 @@
     path: /Audio/_Arcane/Lobby/JavaJive.ogg
 
 - type: jukebox
-  id: IfIDidntCare
-  name: The Ink Spots - If I Didn't Care
-  path:
-    path: /Audio/_Arcane/Lobby/IfIDidntCare.ogg
-
-- type: jukebox
   id: ItsAllOver
   name: The Ink Spots - It's All Over
   path:
@@ -155,12 +149,6 @@
     path: /Audio/_Arcane/Lobby/BackInBlack.ogg
 
 - type: jukebox
-  id: BillieJean
-  name: Michael Jackson - Billie Jean
-  path:
-    path: /Audio/_Arcane/Lobby/BillieJean.ogg
-
-- type: jukebox
   id: Bad
   name: Michael Jackson - Bad
   path:
@@ -183,12 +171,6 @@
   name: Eagles - Hotel California
   path:
     path: /Audio/_Arcane/Lobby/HotelCalifornia.ogg
-
-- type: jukebox
-  id: Wartrauma
-  name: Barotrauma - Wartrauma
-  path:
-    path: /Audio/_Arcane/Lobby/Wartrauma.ogg
 
 - type: jukebox
   id: ZaKray

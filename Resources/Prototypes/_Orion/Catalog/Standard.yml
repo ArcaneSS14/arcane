@@ -53,12 +53,6 @@
     path: /Audio/_Orion/Jukebox/Plamenev/Plamenev_BeforeExecution.ogg
 
 - type: jukebox
-  id: BigLove
-  name: Plamenev - Вселенская большая любовь
-  path:
-    path: /Audio/_Orion/Jukebox/Plamenev/Plamenev_BigLove.ogg
-
-- type: jukebox
   id: BystroSgoraya
   name: Plamenev - Быстро сгорая
   path:
@@ -89,12 +83,6 @@
     path: /Audio/_Orion/Jukebox/Plamenev/Plamenev_Geroy.ogg
 
 - type: jukebox
-  id: IntoDarkness
-  name: Plamenev - Шаг в темноту
-  path:
-    path: /Audio/_Orion/Jukebox/Plamenev/Plamenev_IntoDarkness.ogg
-
-- type: jukebox
   id: Knife
   name: Plamenev - Воля ножа
   path:
@@ -107,22 +95,10 @@
     path: /Audio/_Orion/Jukebox/Plamenev/Plamenev_KogdaToDavno.ogg
 
 - type: jukebox
-  id: KradushhajaSny
-  name: Plamenev - Девушка, крадущая сны
-  path:
-    path: /Audio/_Orion/Jukebox/Plamenev/Plamenev_KradushhajaSny.ogg
-
-- type: jukebox
   id: OurWorld
   name: Plamenev - Наш мир
   path:
     path: /Audio/_Orion/Jukebox/Plamenev/Plamenev_OurWorld.ogg
-
-- type: jukebox
-  id: SokrushitelVelikih
-  name: Plamenev - Сокрушить Великих!
-  path:
-    path: /Audio/_Orion/Jukebox/Plamenev/Plamenev_SokrushitelVelikih.ogg
 
 - type: jukebox
   id: Uhozhu
@@ -135,12 +111,6 @@
   name: Plamenev - Вне смерти
   path:
     path: /Audio/_Orion/Jukebox/Plamenev/Plamenev_VneSmerti.ogg
-
-- type: jukebox
-  id: DevilWaiting
-  name: Plamenev - Дьявол ждёт меня!
-  path:
-    path: /Audio/_Orion/Jukebox/Plamenev/Plamenev_DevilWaiting.ogg
 
 - type: jukebox
   id: DIAMANT
