@@ -9,6 +9,7 @@
     species: Demon
     hideLayersOnEquip:
     - HeadSide
+    - Hair
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -57,6 +58,12 @@
     baseSprintSpeed: 4.5
   - type: Inventory
     speciesId: demon
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
 
 - type: entity
   parent: BaseMobDemon
@@ -83,3 +90,9 @@
     species: Demon
   - type: Inventory
     speciesId: demon
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
