@@ -8,8 +8,10 @@
     sprite: _Arcane/Clothing/Head/Veils/white_veil.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Veils/white_veil.rsi
-  - type: ToggleableVisuals
-    spriteLayer: equipped-HELMET-closed
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: closed
 
 - type: entity
   parent: ClothingHeadBase
@@ -21,8 +23,10 @@
     sprite: _Arcane/Clothing/Head/Veils/black_veil.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Veils/black_veil.rsi
-  - type: ToggleableVisuals
-    spriteLayer: equipped-HELMET-closed
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: closed
 
 - type: entity
   parent: ClothingHeadBase
@@ -34,5 +38,7 @@
     sprite: _Arcane/Clothing/Head/Veils/beer_veil.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Veils/beer_veil.rsi
-  - type: ToggleableVisuals
-    spriteLayer: equipped-HELMET-closed
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: closed
