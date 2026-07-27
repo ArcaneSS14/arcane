@@ -1,18 +1,3 @@
-# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 eclips_e <67359748+Just-a-Unity-Dev@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Adrian16199 <144424013+Adrian16199@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
-# SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BloodfiendishOperator <141253729+Diggy0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 LaCumbiaDelCoronavirus <90893484+LaCumbiaDelCoronavirus@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Zalycon <84675130+Zalycon@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
 # SPDX-License-Identifier: MIT
 
 - type: species
@@ -25,24 +10,6 @@
   markingLimits: MobSlimeMarkingLimits
   dollPrototype: MobSlimePersonDummy
   skinColoration: Hues
-  # Orion-Start
-  category: Classic
-  description: "/ServerInfo/_Orion/SpeciesDescriptions/SlimePerson.xml"
-  pros:
-  - Получают на 40% меньше урона от ушибов и на 20% меньше от ядов.
-  - Способны прожить в условиях вакуума дольше чем человек.
-  - Обладают встроенным хранилищем внутри себя.
-  special:
-  - Быстрее пьянеют.
-  - Дышат реже человека в 5 раз, следовательно получают по 0.2 урона удушьем.
-  - Скорость метаболизма - 0.13 единиц. Это означает, что у них всё усваивается медленней, чем у человека.
-  - Дышат азотом (N2) и выдыхают его оксид (N2O).
-  - Слизь слаймолюда не восстанавливается железом. Тем не менее, слизь является умеренно питательным источником пищи для других существ, но пить кровь своих товарищей по команде обычно считается неприемлемым.
-  cons:
-  - Получают на 50% больше урона холодоми и на 20% больше от порезов и уколов.
-  - При контакте с водой получает 12 термического урона. Инъекции, питьё воды, хождение по лужам, вдыхание водяного пара - не наносят урон.
-  - Получают повышенный урон от давления.
-  # Orion-End
 
 - type: speciesBaseSprites
   id: MobSlimeSprites
@@ -52,9 +19,8 @@
     HeadSide: MobHumanoidAnyMarking
     Hair: MobSlimeMarkingFollowSkin
     FacialHair: MobSlimeMarkingFollowSkin
-#    Underwear: MobHumanoidAnyMarking # Orion-Edit: Removed
-#    Undershirt: MobHumanoidAnyMarking # Orion-Edit: Removed
-    Wings: MobHumanoidAnyMarking # Arcane
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobSlimeChest
     Groin: MobSlimeGroin
     Eyes: MobHumanoidEyes
@@ -82,12 +48,12 @@
     Chest:
       points: 8
       required: false
-#    Underwear: # Orion-Edit: Removed
-#      points: 1
-#      required: false
-#    Undershirt: # Orion-Edit: Removed
-#      points: 1
-#      required: false
+    UndergarmentBottom: # Goob
+      points: 1
+      required: false
+    UndergarmentTop: # Goob
+      points: 1
+      required: false
     RightLeg:
       points: 2
       required: false

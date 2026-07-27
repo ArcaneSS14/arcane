@@ -115,8 +115,6 @@
     minAngle: 12
     maxAngle: 20
     fireRate: 3.5
-  - type: ProjectileBatteryAmmoProvider
-    fireCost: 10
   - type: DivineIntervention
 
 - type: entity
@@ -146,8 +144,9 @@
     soundGunshot:
       path: /Audio/_Orion/Weapons/Guns/LMGs/minigunSG.ogg
   - type: ClothingSlotAmmoProvider
+  - type: SlotBasedConnectedContainer
     targetSlot: BACK
-    providerWhitelist:
+    containerWhitelist:
       tags:
       - PowerpackRifle
   - type: Tag
@@ -193,8 +192,9 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: ClothingSlotAmmoProvider
+  - type: SlotBasedConnectedContainer
     targetSlot: BACK
-    providerWhitelist:
+    containerWhitelist:
       tags:
       - PowerpackEnergy
   - type: Tag

@@ -149,50 +149,9 @@ public sealed partial class SpeciesWindow : FancyWindow
         var previewProfile = Profile;
         previewProfile = previewProfile.WithSpecies(protoId);
 
-        var skin = proto.SkinColoration;
-        switch (skin)
-        {
-            case HumanoidSkinColor.HumanToned:
-                {
-                    var tone = SkinColor.HumanSkinToneFromColor(Profile.Appearance.SkinColor);
-                    var color = SkinColor.HumanSkinTone((int)tone);
-
-                    previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
-                    break;
-                }
-            case HumanoidSkinColor.Hues:
-                {
-                    break;
-                }
-            case HumanoidSkinColor.TintedHues:
-                {
-                    var color = SkinColor.TintedHues(Profile.Appearance.SkinColor);
-
-                    previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
-                    break;
-                }
-            case HumanoidSkinColor.VoxFeathers:
-                {
-                    var color = SkinColor.ClosestVoxColor(Profile.Appearance.SkinColor);
-
-                    previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
-                    break;
-                }
-            case HumanoidSkinColor.NoColor:
-                {
-                    var color = Color.White;
-
-                    previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
-                    break;
-                }
-            case HumanoidSkinColor.AnimalFur:
-                {
-                    var color = SkinColor.ClosestAnimalFurColor(Profile.Appearance.SkinColor);
-
-                    previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(color));
-                    break;
-                }
-        }
+        var skinStrategy = _proto.Index(proto.SkinColoration).Strategy;
+        var skinColor = skinStrategy.EnsureVerified(Profile.Appearance.SkinColor);
+        previewProfile = previewProfile.WithCharacterAppearance(previewProfile.Appearance.WithSkinColor(skinColor));
 
         var mob = _uIController.LoadProfileEntity(previewProfile, jobProto, ClothingDisplayMode.HideAll);
         Mob.SetEntity(mob);
