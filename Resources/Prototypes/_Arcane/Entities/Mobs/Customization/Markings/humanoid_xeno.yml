@@ -640,7 +640,7 @@
 
 - type: marking
   id: HumanoidXenoLegsChris
-  bodyPart: [LFoot, RFoot]
+  bodyPart: LLeg
   markingCategory: FeetClaws
   speciesRestriction: [HumanoidXeno]
   sprites:
@@ -649,7 +649,7 @@
 
 - type: marking
   id: HumanoidXenoLegsRazor
-  bodyPart: [LFoot, RFoot]
+  bodyPart: LLeg
   markingCategory: FeetClaws
   speciesRestriction: [HumanoidXeno]
   sprites:
@@ -707,7 +707,7 @@
 
 - type: marking
   id: HumanoidXenoHandRazor
-  bodyPart: [LHand, RHand]
+  bodyPart: LArm
   markingCategory: ArmClaws
   speciesRestriction: [HumanoidXeno]
   sprites:
