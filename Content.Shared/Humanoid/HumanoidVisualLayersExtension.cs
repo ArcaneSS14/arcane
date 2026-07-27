@@ -94,19 +94,15 @@ namespace Content.Shared.Humanoid
                     break;
                 case HumanoidVisualLayers.LHand:
                     yield return HumanoidVisualLayers.LHand;
-                    yield return HumanoidVisualLayers.ArmClaws; // Arcane
                     break;
                 case HumanoidVisualLayers.RHand:
                     yield return HumanoidVisualLayers.RHand;
-                    yield return HumanoidVisualLayers.ArmClaws; // Arcane
                     break;
                 case HumanoidVisualLayers.LFoot:
                     yield return HumanoidVisualLayers.LFoot;
-                    yield return HumanoidVisualLayers.FeetClaws; // Arcane
                     break;
                 case HumanoidVisualLayers.RFoot:
                     yield return HumanoidVisualLayers.RFoot;
-                    yield return HumanoidVisualLayers.FeetClaws; // Arcane
                     break;
                 // Shitmed Change End
                 default:

@@ -636,12 +636,12 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/legs.rsi
     state: cougar_legs
 
-# Feet claws
+# Feet
 
 - type: marking
   id: HumanoidXenoLegsChris
   bodyPart: LLeg
-  markingCategory: FeetClaws
+  markingCategory: LeftFoot
   speciesRestriction: [HumanoidXeno]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
@@ -650,7 +650,7 @@
 - type: marking
   id: HumanoidXenoLegsRazor
   bodyPart: LLeg
-  markingCategory: FeetClaws
+  markingCategory: LeftFoot
   speciesRestriction: [HumanoidXeno]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
