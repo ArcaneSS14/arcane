@@ -1,0 +1,28 @@
+- type: entity
+  parent: Clothing
+  id: ClothingStabikor
+  name: The Stabikor device
+  description: Aggression stabilizer for aggressive assistants
+  components:
+  - type: Item
+    size: Small
+    sprite: _Arcane/Clothing/Neck/Misc/petcollar.rsi
+  - type: Clothing
+    quickEquip: true
+    equipDelay: 1.5
+    slots:
+    - neck
+    - gloves
+    sprite: _Arcane/Clothing/Neck/Misc/petcollar.rsi
+  - type: Sprite
+    state: icon
+    sprite: _Arcane/Clothing/Neck/Misc/petcollar.rsi
+    scale: 0.75,0.75
+  - type: Tag
+    tags:
+    - Recyclable
+  - type: Stabikor
+  - type: CuttableItem
+    toolQualities:
+      - Sawing
+    delay: 45.0

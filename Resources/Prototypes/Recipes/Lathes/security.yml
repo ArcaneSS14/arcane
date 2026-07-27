@@ -121,6 +121,19 @@
     Plastic: 250
     Cloth: 500
 
+# Arcane-Start
+- type: latheRecipe
+  id: ClothingStabikor
+  result: ClothingStabikor
+  categories:
+  - Clothing
+  completetime: 4
+  materials:
+    Steel: 500
+    Plastic: 250
+    Cloth: 500
+    # Arcane-End
+
 - type: latheRecipe
   id: ClothingEyesHudSecurity
   result: ClothingEyesHudSecurity

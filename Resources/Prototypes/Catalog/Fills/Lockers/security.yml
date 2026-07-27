@@ -120,6 +120,10 @@
     - id: BookSpaceLaw
     - id: ClothingBackpackElectropack
       amount: 2
+    # Arcane-Start
+    - id: ClothingStabikor
+      amount: 2
+    # Arcane-End
     - id: RemoteSignaller
       amount: 2
     - id: Binoculars
