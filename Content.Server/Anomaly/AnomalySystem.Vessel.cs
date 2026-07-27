@@ -1,9 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: MIT
 
 using Content.Server.Anomaly.Components;
@@ -30,21 +24,8 @@ public sealed partial class AnomalySystem
         SubscribeLocalEvent<AnomalyVesselComponent, MapInitEvent>(OnVesselMapInit);
         SubscribeLocalEvent<AnomalyVesselComponent, InteractUsingEvent>(OnVesselInteractUsing);
         SubscribeLocalEvent<AnomalyVesselComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<AnomalyVesselComponent, ResearchServerGetPointsPerSecondByTypeEvent>(OnVesselGetPointsPerSecond); // Orion-Edit
-        SubscribeLocalEvent<AnomalyShutdownEvent>(OnShutdown);
-        SubscribeLocalEvent<AnomalyStabilityChangedEvent>(OnStabilityChanged);
-    }
-
-    private void OnStabilityChanged(ref AnomalyStabilityChangedEvent args)
-    {
-        OnVesselAnomalyStabilityChanged(ref args);
-        OnScannerAnomalyStabilityChanged(ref args);
-    }
-
-    private void OnShutdown(ref AnomalyShutdownEvent args)
-    {
-        OnVesselAnomalyShutdown(ref args);
-        OnScannerAnomalyShutdown(ref args);
+        SubscribeLocalEvent<AnomalyVesselComponent, ResearchServerGetPointsPerSecondByTypeEvent>(OnVesselGetPointsPerSecond);
+        SubscribeLocalEvent<AnomalyShutdownEvent>(OnVesselAnomalyShutdown);
     }
 
     private void OnExamined(EntityUid uid, AnomalyVesselComponent component, ExaminedEvent args)
@@ -90,25 +71,18 @@ public sealed partial class AnomalySystem
         _radiation.SetSourceEnabled(uid, true);
         UpdateVesselAppearance(uid,  component);
         Popup.PopupEntity(Loc.GetString("anomaly-vessel-component-anomaly-assigned"), uid);
-
-        // Orion-Start
-        if (_research.TryGetClientServer(uid, out var serverUid, out _))
-            _research.LogNetworkEvent(serverUid.Value, "anomaly", Loc.GetString("research-netlog-anomaly-vessel-bound", ("vessel", MetaData(uid).EntityName), ("anomaly", MetaData(anomaly).EntityName)));
-        // Orion-End
     }
 
-    private void OnVesselGetPointsPerSecond(EntityUid uid, AnomalyVesselComponent component, ref ResearchServerGetPointsPerSecondByTypeEvent args) // Orion-Edit
+    private void OnVesselGetPointsPerSecond(EntityUid uid, AnomalyVesselComponent component, ref ResearchServerGetPointsPerSecondByTypeEvent args)
     {
         if (!this.IsPowered(uid, EntityManager) || component.Anomaly is not {} anomaly)
             return;
 
-        // Orion-Edit-Start
         args.Points.Add(new ResearchPointAmount
         {
             Type = "General",
             Amount = (int) (GetAnomalyPointValue(anomaly) * component.PointMultiplier),
         });
-        // Orion-Edit-End
     }
 
     private void OnVesselAnomalyShutdown(ref AnomalyShutdownEvent args)
@@ -161,21 +135,10 @@ public sealed partial class AnomalySystem
         if (_pointLight.TryGetLight(uid, out var pointLightComponent))
             _pointLight.SetEnabled(uid, on, pointLightComponent);
 
-        // arbitrary value for the generic visualizer to use.
-        // i didn't feel like making an enum for this.
-        var value = 1;
-        if (TryComp<AnomalyComponent>(component.Anomaly, out var anomalyComp))
-        {
-            if (anomalyComp.Stability <= anomalyComp.DecayThreshold)
-            {
-                value = 2;
-            }
-            else if (anomalyComp.Stability >= anomalyComp.GrowthThreshold)
-            {
-                value = 3;
-            }
-        }
-        Appearance.SetData(uid, AnomalyVesselVisuals.AnomalyState, value, appearanceComponent);
+        if (component.Anomaly == null || !TryGetStabilityVisual(component.Anomaly.Value, out var visual))
+            visual = AnomalyStabilityVisuals.Stable;
+
+        Appearance.SetData(uid, AnomalyVesselVisuals.AnomalySeverity, visual, appearanceComponent);
 
         _ambient.SetAmbience(uid, on);
     }

@@ -1,5 +1,5 @@
 - type: entity
-  parent: SprayBottle
+  parent: SprayBottleBase
   id: SprayBottleRedEmpty
   name: red spray bottle
   suffix: Empty, Styptic powder
@@ -11,7 +11,7 @@
     sprite: _Goobstation/Objects/Medical/Stypticspray.rsi
 
 - type: entity
-  parent: SprayBottle
+  parent: SprayBottleBase
   id: SprayBottleOrangeEmpty
   name: orange spray bottle
   suffix: Empty, Styptic powder
@@ -23,7 +23,7 @@
     sprite: _Goobstation/Objects/Medical/Silverspray.rsi
 
 - type: entity
-  parent: SprayBottle
+  parent: SprayBottleBase
   id: SprayBottleBlueEmpty
   name: blue spray bottle
   suffix: Empty, Blue

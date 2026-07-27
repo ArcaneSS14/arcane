@@ -174,6 +174,49 @@ public sealed partial class CargoSystem : SharedCargoSystem
     {
         return Resolve(ent, ref ent.Comp) && ent.Comp.Accounts.ContainsKey(account);
     }
+
+    public IReadOnlyDictionary<ProtoId<CargoAccountPrototype>, int> GetAccounts(
+        Entity<StationBankAccountComponent?> ent)
+    {
+        return Resolve(ent, ref ent.Comp)
+            ? ent.Comp.Accounts
+            : new Dictionary<ProtoId<CargoAccountPrototype>, int>();
+    }
+
+    public bool TryGetAccount(
+        Entity<StationBankAccountComponent?> ent,
+        ProtoId<CargoAccountPrototype> account,
+        out int balance)
+    {
+        balance = 0;
+        return Resolve(ent, ref ent.Comp) && ent.Comp.Accounts.TryGetValue(account, out balance);
+    }
+
+    public bool TryAdjustBankAccount(
+        Entity<StationBankAccountComponent?> ent,
+        ProtoId<CargoAccountPrototype> account,
+        int amount,
+        bool dirty = true)
+    {
+        if (!TryGetAccount(ent, account, out _))
+            return false;
+
+        UpdateBankAccount(ent, amount, account, dirty);
+        return true;
+    }
+
+    public bool TrySetBankAccount(
+        Entity<StationBankAccountComponent?> ent,
+        ProtoId<CargoAccountPrototype> account,
+        int amount,
+        bool dirty = true)
+    {
+        if (!TryGetAccount(ent, account, out var current))
+            return false;
+
+        UpdateBankAccount(ent, amount - current, account, dirty);
+        return true;
+    }
     // Orion-End
 
     public void UpdateBankAccount(

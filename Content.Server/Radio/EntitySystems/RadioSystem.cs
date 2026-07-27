@@ -1,62 +1,18 @@
-// SPDX-FileCopyrightText: 2020 Bright <nsmoak10@yahoo.com>
-// SPDX-FileCopyrightText: 2020 Bright0 <55061890+Bright0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2020 Swept <jamesurquhartwebb@gmail.com>
-// SPDX-FileCopyrightText: 2020 Víctor Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2021 Metal Gear Sloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Kevin Zheng <kevinz5000@gmail.com>
-// SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 AJCM <AJCM@tutanota.com>
-// SPDX-FileCopyrightText: 2023 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Slava0135 <40753025+Slava0135@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 adamsong <adamsong@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 SkaldetSkaeg <impotekh@gmail.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-// SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
-// SPDX-FileCopyrightText: 2025 CerberusWolfie <wb.johnb.willis@gmail.com>
-// SPDX-FileCopyrightText: 2025 GabyChangelog <agentepanela2@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Kyoth25f <kyoth25f@gmail.com>
-// SPDX-FileCopyrightText: 2025 Panela <107573283+AgentePanela@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 cosmosgc <cosmoskitsune@hotmail.com>
-// SPDX-FileCopyrightText: 2025 the biggest bruh <199992874+thebiggestbruh@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
-using Content.Goobstation.Shared.Communications;
-using Content.Goobstation.Shared.Loudspeaker.Events;
-using Content.Server._EinsteinEngines.Language;
-using Content.Server._Art.TTS; // Art-TTS
-using Content.Server._Orion.ServerProtection.Chat;
+using System.Linq;  // goob - intermap transmitters
+using Content.Goobstation.Shared.Communications; // goob - intermap transmitters
+using Content.Goobstation.Shared.Loudspeaker.Events; // goob - loudspeakers
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
+using Content.Server._EinsteinEngines.Language;
 using Content.Server.Power.Components;
-using Content.Server.Radio.Components;
-using Content.Shared._Art.TTS; // Art-TTS
-using Content.Shared._EinsteinEngines.Language;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared._EinsteinEngines.Language;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
-using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -64,9 +20,11 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Content.Shared.Chat.RadioIconsEvents;
-using Content.Shared.StatusIcon;
-using Content.Goobstation.Shared.Radio;
+using Content.Shared.Access.Systems; // Goobstation
+using Content.Shared.Chat.RadioIconsEvents; // Goobstation
+using Content.Shared.Whitelist; // Goobstation
+using Content.Shared.StatusIcon; // Goobstation
+using Content.Goobstation.Shared.Radio; // Goobstation
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -84,7 +42,6 @@ public sealed partial class RadioSystem : EntitySystem
     [Dependency] private readonly RadioJobIconSystem _radioIconSystem = default!; // Goobstation - radio icons
     [Dependency] private readonly LanguageSystem _language = default!; // Einstein Engines - Language
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Goobstation - Whitelisted radio channels
-    [Dependency] private readonly ChatProtectionSystem _chatProtection = default!; // Orion
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -95,7 +52,7 @@ public sealed partial class RadioSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<IntrinsicRadioReceiverComponent, RadioReceiveEvent>(OnIntrinsicReceive);
-        SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EntitySpokeEvent>(OnIntrinsicSpeak, before: [typeof(TTSSystem)]); // Art-TTS
+        SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EntitySpokeEvent>(OnIntrinsicSpeak);
         SubscribeLocalEvent<IntrinsicRadioReceiverComponent, RadioReceiveAttemptEvent>(OnIntrinsicReceiveAttempt); // Goobstation
 
         _exemptQuery = GetEntityQuery<TelecomExemptComponent>();
@@ -107,13 +64,8 @@ public sealed partial class RadioSystem : EntitySystem
             && component.Channels.Contains(args.Channel.ID)
             && _whitelist.IsWhitelistPassOrNull(args.Channel.SendWhitelist, uid)) // Goobstation - Whitelisted radio channels
         {
-            // Art-TTS Start
-            if (SendRadioMessage(uid, args.Message, args.Channel, uid, args.Language)) // Einstein Engines - Language
-            {
-                args.RadioMessageSent = true;
-                args.Channel = null; // prevent duplicate messages from other listeners.
-            }
-            // Art-TTS End
+            SendRadioMessage(uid, args.Message, args.Channel, uid, args.Language); // Einstein Engines - Language
+            args.Channel = null; // prevent duplicate messages from other listeners.
         }
     }
 
@@ -124,18 +76,10 @@ public sealed partial class RadioSystem : EntitySystem
             // Einstein Engines - Languages begin
             var listener = component.Owner;
             var msg = args.OriginalChatMsg;
-            var canUnderstand = listener == null || _language.CanUnderstand(listener, args.Language.ID); // Art-TTS
 
-            if (!canUnderstand) // Art-TTS
+            if (listener != null && !_language.CanUnderstand(listener, args.Language.ID))
                 msg = args.LanguageObfuscatedChatMsg;
 
-            // Art-TTS Start
-            if (canUnderstand && args.Voice is { } voice)
-            {
-                var ev = new TTSRadioPlayEvent(Filter.SinglePlayer(actor.PlayerSession), args.OriginalChatMsg.Message, args.Language, voice);
-                RaiseLocalEvent(uid, ev);
-            }
-            // Art-TTS End
             _netMan.ServerSendMessage(new MsgChatMessage { Message = msg }, actor.PlayerSession.Channel);
             // Einstein Engines - Languages end
         }
@@ -150,7 +94,7 @@ public sealed partial class RadioSystem : EntitySystem
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
-    public bool SendRadioMessage(
+    public void SendRadioMessage(
         EntityUid messageSource,
         string message,
         ProtoId<RadioChannelPrototype> channel,
@@ -158,7 +102,7 @@ public sealed partial class RadioSystem : EntitySystem
         LanguagePrototype? language = null,
         bool escapeMarkup = true)
     {
-        return SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language); // Einstein Engines - Language
+        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language); // Einstein Engines - Language
     }
 
     /// <summary>
@@ -166,7 +110,7 @@ public sealed partial class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
-    public bool SendRadioMessage(
+    public void SendRadioMessage(
         EntityUid messageSource,
         string message,
         RadioChannelPrototype channel,
@@ -179,17 +123,12 @@ public sealed partial class RadioSystem : EntitySystem
             language = _language.GetLanguage(messageSource);
 
         if (!language.SpeechOverride.AllowRadio)
-            return false;
+            return;
         // Einstein Engines - Language end
-
-        // Orion-Start
-        if (_chatProtection.CheckICMessage(message, messageSource))
-            return false;
-        // Orion-End
 
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
-            return false;
+            return;
 
         var evt = new TransformSpeakerNameEvent(messageSource, MetaData(messageSource).EntityName);
         RaiseLocalEvent(messageSource, evt);
@@ -208,7 +147,7 @@ public sealed partial class RadioSystem : EntitySystem
         name = FormattedMessage.EscapeText(name);
 
         SpeechVerbPrototype speech;
-        if (evt.SpeechVerb != null && _prototype.TryIndex(evt.SpeechVerb, out var evntProto))
+        if (evt.SpeechVerb != null && _prototype.Resolve(evt.SpeechVerb, out var evntProto))
             speech = evntProto;
         else
             speech = _chat.GetSpeechVerb(messageSource, message);
@@ -246,16 +185,7 @@ public sealed partial class RadioSystem : EntitySystem
         // Added GetNetEntity(messageSource), to source
         var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, name, obfuscated, language, jobIcon, jobName);
         var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, GetNetEntity(messageSource), null);
-        // Art-TTS Start
-        string? voice = null;
-        if (TryComp<TTSComponent>(messageSource, out var ttsComponent)
-            && ttsComponent.VoicePrototype is { } voiceId
-            && _prototype.TryIndex(voiceId, out var voicePrototype))
-        {
-            voice = voicePrototype.Speaker;
-        }
-        // Art-TTS End
-        var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource, voice); // Art-TTS: language + voice
+        var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource);
         // Einstein Engines - Language end
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
@@ -268,7 +198,6 @@ public sealed partial class RadioSystem : EntitySystem
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
-        var sent = false; // Art-TTS
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
             if (!radio.ReceiveAllChannels)
@@ -296,7 +225,6 @@ public sealed partial class RadioSystem : EntitySystem
 
             // send the message
             RaiseLocalEvent(receiver, ref ev);
-            sent = true; // Art-TTS
         }
 
         if (name != Name(messageSource))
@@ -306,7 +234,6 @@ public sealed partial class RadioSystem : EntitySystem
 
         _replay.RecordServerMessage(msg); // Einstein Engines - Language
         _messages.Remove(message);
-        return sent; // Orion-Edit
     }
 
     // Einstein Engines - Language begin

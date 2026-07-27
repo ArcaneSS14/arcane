@@ -11,43 +11,32 @@
   - StationAiIconDorf
   - StationAiIconHeartline
   - StationAiIconSmiley
-  # Orion-Start
-  - StationAiIconThinking
-  - StationAiIconXenomorph
-  - StationAiIconBanned
-  - StationAiIconDatabase
+  # <Trauma>
   - StationAiIconFirewall
-  - StationAiIconGento
+  - StationAiIconDatabase
   - StationAiIconGlitchman
-  - StationAiIconGondola
-  - StationAiIconGoon
-  - StationAiIconHelios
-  - StationAiIconHouse
-  - StationAiIconInverted
+  - StationAiIconHades
   - StationAiIconMatrix
   - StationAiIconMonochrome
-  - StationAiIconArmy
+  - StationAiIconMurica
   - StationAiIconNanotrasen
-  - StationAiIconNotMalf
   - StationAiIconPresident
-  - StationAiIconRainbow
+  - StationAiIconRedDot
   - StationAiIconRed
-  - StationAiIconRedOctober
-  - StationAiIconStatic
-  - StationAiIconMeow
-  - StationAiIconText
   - StationAiIconTooDeep
   - StationAiIconTriumvirate
-  - StationAiIconTriumvirateMalf
+  - StationAiIconNotMalf
+  - StationAiIconHelios
+  - StationAiIconHouse
+  - StationAiIconRainbow
+  - StationAiIconAlien
+  - StationAiIconGoon
   - StationAiIconWeird
-  - StationAiIconAnima
-  - StationAiIconBorb
-  - StationAiIconDarkMatter
-  - StationAiIconRedDot
-  - StationAiIconLamp
-  - StationAiIconLizard
-  - StationAiIconVox
-  # Orion-End
+  - StationAiIconInverted
+  # </Trauma>
+  - StationAiIconBingle #Goobstation
+  - StationAiIconBlank #Goobstation
+  - StationAiIconPerformer #Goobstation
 
 - type: stationAiCustomizationGroup
   id: StationAiHolograms
@@ -59,28 +48,12 @@
   - StationAiHologramFace
   - StationAiHologramCat
   - StationAiHologramDog
-  # Orion-Start
   - StationAiHologramKobold
   - StationAiHologramMonkey
-  - StationAiHologramHorror
-  - StationAiHologramXenomorphQueen
-  - StationAiHologramAngel
-  - StationAiHologramBorb
-  - StationAiHologramCloudkat
-  - StationAiHologramPhoenix
-  - StationAiHologramAlgalone
-  - StationAiHologramFractalsnowflake
-  - StationAiHologramHensonsnode
-  - StationAiHologramLongrun
-  - StationAiHologramNtpaint
-  - StationAiHologramPuredata
-  - StationAiHologramRorschach
-  - StationAiHologramSeraphim
-  - StationAiHologramTripleaffirmative
-  # Orion-End
-#  - StationAiHologramKobold # Orion-Edit: Already have it
-#  - StationAiHologramMonkey # Orion-Edit: Already have it
-  - StationAiHologramScurret # goob
+  - StationAiHologramScurret #Goobstation
+  - StationAiHologramHorror #Goobstation
+  - StationAiHologramQueen #Goobstation
+  - StationAiHologramPerformer  #Goobstation
 
 # Iconography
 - type: stationAiCustomization

@@ -1,105 +1,77 @@
-# SPDX-FileCopyrightText: 2022 ElectroJr <leonsfriedrich@gmail.com>
-# SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
-# SPDX-FileCopyrightText: 2022 T-Stalker <43253663+DogZeroX@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 T-Stalker <le0nel_1van@hotmail.com>
-# SPDX-FileCopyrightText: 2022 Visne <39844191+Visne@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 metalgearsloth <metalgearsloth@gmail.com>
-# SPDX-FileCopyrightText: 2023 Boaz1111 <149967078+Boaz1111@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Vordenburg <114301317+Vordenburg@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 lzk <124214523+lzk228@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Nairod <110078045+Nairodian@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 PoorMansDreams <150595537+PoorMansDreams@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BramvanZijp <56019239+BramvanZijp@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Killerqu00 <47712032+Killerqu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
-  id: BaseCartridgeLightRifle
-  name: cartridge (5.45mm rifle) # Orion-Edit: .30 > 5.45mm
-  parent: [ BaseCartridge, BaseSecurityContraband ]
   abstract: true
+  parent: [ BaseCartridge, BaseSecurityContraband ]
+  id: BaseCartridgeLightRifle
+  name: cartridge (.30 rifle)
   components:
   - type: Tag
     tags:
-    - Cartridge
     - CartridgeLightRifle
   - type: CartridgeAmmo
     proto: BulletLightRifle
   - type: Sprite
-    sprite: _Orion/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi # Orion-Edit: New sprites
-    scale: 0.8, 0.8 # Orion
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
-    - state: 30combat # Orion-Edit: New sprites
+    - state: base
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals
-    state: 30combat # Orion: New sprites
 
 - type: entity
-  id: CartridgeLightRifle
-  name: cartridge (5.45mm rifle) # Orion-Edit: .30 > 5.45mm
   parent: BaseCartridgeLightRifle
+  id: CartridgeLightRifle
+  name: cartridge (.30 rifle)
   description: A classic intermediate cartridge used by many combat rifles and LMGs. Standard kinetic ammunition is common and useful in most situations.
   components:
   - type: CartridgeAmmo
     proto: BulletLightRifle
 
 - type: entity
-  id: CartridgeLightRiflePractice
-  name: cartridge (5.45mm practice) # Orion-Edit: .30 rifle > 5.45mm
   parent: BaseCartridgeLightRifle
-  description: A classic intermediate cartridge used by many combat rifles and LMGs. Chalk ammunition is generally non-harmful, used for practice.
+  id: CartridgeLightRiflePractice
+  name: cartridge (.30 rifle practice)
+  description: A classic intermediate cartridge used by many combat rifles and LMGs. Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
   components:
-  - type: SpentAmmoVisuals # Orion: New sprites
-    state: 30training
   - type: CartridgeAmmo
     proto: BulletLightRiflePractice
   - type: Sprite
     layers:
-      - state: 30training # Orion-Edit: New sprites
+      - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
-#      - state: tip # Orion-Edit: Removed
-#        map: [ "enum.AmmoVisualLayers.Tip" ]
-#        color: "#dbdbdb"
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dbdbdb"
 
 - type: entity
-  id: CartridgeLightRifleIncendiary
-  name: cartridge (5.45mm incendiary) # Orion-Edit: .30 rifle > 5.45mm
   parent: BaseCartridgeLightRifle
-  description: A classic intermediate cartridge used by many combat rifles and LMGs. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
+  id: CartridgeLightRifleIncendiary
+  name: cartridge (.30 rifle incendiary)
+  description: A classic intermediate cartridge used by many combat rifles and LMGs. Incendiary ammunition contains a self-igniting compound that sets targets ablaze.
   components:
-  - type: SpentAmmoVisuals # Orion: New sprites
-    state: 30incendiary
   - type: CartridgeAmmo
     proto: BulletLightRifleIncendiary
   - type: Sprite
     layers:
-      - state: 30incendiary # Orion-Edit: New sprites
+      - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
-#      - state: tip
-#        map: [ "enum.AmmoVisualLayers.Tip" ]
-#        color: "#ff6e52"
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff6e52"
 
 - type: entity
-  id: CartridgeLightRifleUranium
-  name: cartridge (5.45mm uranium) # Orion-Edit: .30 rifle > 5.45mm
   parent: BaseCartridgeLightRifle
-  description: A classic intermediate cartridge used by many combat rifles and LMGs. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
+  id: CartridgeLightRifleUranium
+  name: cartridge (.30 rifle uranium)
+  description: A classic intermediate cartridge used by many combat rifles and LMGs. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating targets from the inside.
   components:
-  - type: SpentAmmoVisuals # Orion: New sprites
-    state: 30uranium
   - type: CartridgeAmmo
     proto: BulletLightRifleUranium
   - type: Sprite
     layers:
-      - state: 30uranium # Orion-Edit: New sprites
+      - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
-#      - state: tip    # Orion-Edit: Removed
-#        map: [ "enum.AmmoVisualLayers.Tip" ]
-#        color: "#65fe08"
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#65fe08"

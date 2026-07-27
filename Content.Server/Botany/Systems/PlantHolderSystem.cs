@@ -1,65 +1,23 @@
-// SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Morbo <14136326+Morb0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 keronshb <54602815+keronshb@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Ben <50087092+benev0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 BenOwnby <ownbyb@appstate.edu>
-// SPDX-FileCopyrightText: 2023 Brandon Hu <103440971+Brandon-Huu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Doru991 <75124791+Doru991@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Duke <112821543+DukeVanity@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 ElectroJr <leonsfriedrich@gmail.com>
-// SPDX-FileCopyrightText: 2023 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Crotalus <Crotalus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Flesh <62557990+PolterTzi@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Jezithyr <jezithyr@gmail.com>
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2024 Kevin Zheng <kevinz5000@gmail.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LittleNyanCat <littlenyancat204@gmail.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Token <esil.bektay@yandex.com>
-// SPDX-FileCopyrightText: 2024 Tr1bute <tomsredhammer@gmail.com>
-// SPDX-FileCopyrightText: 2024 botanySupremist <160211017+botanySupremist@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 drakewill-CRL <46307022+drakewill-CRL@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Ignaz "Ian" Kraft <ignaz.k@live.de>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Maths.FixedPoint;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Botany.Components;
 using Content.Server.Hands.Systems;
-using Content.Server.Kitchen.Components;
 using Content.Server.Popups;
 using Content.Shared._Orion.Construction;
 using Content.Shared._Orion.Construction.Events;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Botany;
 using Content.Shared.Burial.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Database;
 using Content.Shared.Examine;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
-using Content.Shared.Labels.Components;
 using Content.Shared.Popups;
 using Content.Shared.Random;
 using Content.Shared.Tag;
@@ -69,6 +27,13 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Chemistry.Reaction;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Database;
+using Content.Shared.EntityEffects;
+using Content.Shared.Kitchen.Components;
+using Content.Shared.Labels.Components;
+using Content.Shared.Labels.Components;
 
 namespace Content.Server.Botany.Systems;
 
@@ -89,9 +54,11 @@ public sealed class PlantHolderSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
     public const float HydroponicsSpeedMultiplier = 1f;
     public const float HydroponicsConsumptionMultiplier = 2f;
+    public readonly FixedPoint2 PlantMetabolismRate = FixedPoint2.New(1);
 
     private static readonly ProtoId<TagPrototype> HoeTag = "Hoe";
     private static readonly ProtoId<TagPrototype> PlantSampleTakerTag = "PlantSampleTaker";
@@ -103,10 +70,8 @@ public sealed class PlantHolderSystem : EntitySystem
         SubscribeLocalEvent<PlantHolderComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PlantHolderComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<PlantHolderComponent, SolutionTransferredEvent>(OnSolutionTransferred);
-        // Orion-Start
-        SubscribeLocalEvent<PlantHolderComponent, RefreshPartsEvent>(OnRefreshParts);
-        SubscribeLocalEvent<PlantHolderComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-        // Orion-End
+        SubscribeLocalEvent<PlantHolderComponent, RefreshPartsEvent>(OnRefreshParts); // Orion
+        SubscribeLocalEvent<PlantHolderComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Orion
     }
 
     public override void Update(float frameTime)
@@ -176,7 +141,7 @@ public sealed class PlantHolderSystem : EntitySystem
                 if (component.Seed.CanScream)
                     args.PushMarkup(Loc.GetString("mutation-plant-scream"));
 
-                if (!component.Seed.Viable)
+                if (component.Seed.Viable == false)
                     args.PushMarkup(Loc.GetString("mutation-plant-unviable"));
             }
             else
@@ -190,9 +155,9 @@ public sealed class PlantHolderSystem : EntitySystem
             if (component.PestLevel >= 5)
                 args.PushMarkup(Loc.GetString("plant-holder-component-pest-high-level-message"));
 
-            args.PushMarkup(Loc.GetString("plant-holder-component-water-level-message",
+            args.PushMarkup(Loc.GetString($"plant-holder-component-water-level-message",
                 ("waterLevel", (int)component.WaterLevel)));
-            args.PushMarkup(Loc.GetString("plant-holder-component-nutrient-level-message",
+            args.PushMarkup(Loc.GetString($"plant-holder-component-nutrient-level-message",
                 ("nutritionLevel", (int)component.NutritionLevel)));
 
             if (component.DrawWarnings)
@@ -514,7 +479,8 @@ public sealed class PlantHolderSystem : EntitySystem
         // Nutrient consumption.
         if (component.Seed.NutrientConsumption > 0 && component.NutritionLevel > 0 && _random.Prob(0.75f))
         {
-            component.NutritionLevel -= MathF.Max(0f, component.Seed.NutrientConsumption * HydroponicsSpeedMultiplier * component.NutrientConsumptionMultiplier); // Orion-Edit
+            component.NutritionLevel -= MathF.Max(0f,
+                component.Seed.NutrientConsumption * HydroponicsSpeedMultiplier * component.NutrientConsumptionMultiplier); // Orion
             if (component.DrawWarnings)
                 component.UpdateSpriteAfterUpdate = true;
         }
@@ -734,8 +700,8 @@ public sealed class PlantHolderSystem : EntitySystem
         }
 
         component.MutationLevel = MathHelper.Clamp(component.MutationLevel, 0f, 100f);
-        component.NutritionLevel = MathHelper.Clamp(component.NutritionLevel, 0f, component.MaxNutrition); // Orion-Edit
-        component.WaterLevel = MathHelper.Clamp(component.WaterLevel, 0f, component.MaxWater); // Orion-Edit
+        component.NutritionLevel = MathHelper.Clamp(component.NutritionLevel, 0f, component.MaxNutrition); // Orion
+        component.WaterLevel = MathHelper.Clamp(component.WaterLevel, 0f, component.MaxWater); // Orion
         component.PestLevel = MathHelper.Clamp(component.PestLevel, 0f, 10f);
         component.WeedLevel = MathHelper.Clamp(component.WeedLevel, 0f, 10f);
         component.Toxins = MathHelper.Clamp(component.Toxins, 0f, 100f);
@@ -786,7 +752,7 @@ public sealed class PlantHolderSystem : EntitySystem
     /// <returns></returns>
     public bool DoScream(EntityUid plantholder, SeedData? seed = null)
     {
-        if (seed == null || !seed.CanScream)
+        if (seed == null || seed.CanScream == false)
             return false;
 
         _audio.PlayPvs(seed.ScreamSound, plantholder);
@@ -928,12 +894,18 @@ public sealed class PlantHolderSystem : EntitySystem
 
         if (solution.Volume > 0 && component.MutationLevel < 25)
         {
-            var amt = FixedPoint2.New(1);
-            foreach (var entry in _solutionContainerSystem.RemoveEachReagent(component.SoilSolution.Value, amt))
+            // Don't apply any effects to a non-unique seed ever! Remove this when botany code is sane...
+            EnsureUniqueSeed(uid, component);
+            foreach (var entry in solution.Contents)
             {
+                if (entry.Quantity < PlantMetabolismRate)
+                    continue;
+
                 var reagentProto = _prototype.Index<ReagentPrototype>(entry.Reagent.Prototype);
-                reagentProto.ReactionPlant(uid, entry, solution);
+                _entityEffects.ApplyEffects(uid, reagentProto.PlantMetabolisms.ToArray(), entry.Quantity);
             }
+
+            _solutionContainerSystem.RemoveEachReagent(component.SoilSolution.Value, PlantMetabolismRate);
         }
 
         CheckLevelSanity(uid, component);
@@ -1032,21 +1004,24 @@ public sealed class PlantHolderSystem : EntitySystem
         Update(uid, component);
     }
 
-    // Orion-Start
+    // Orion-Edit-Start
     private static void OnRefreshParts(EntityUid uid, PlantHolderComponent component, RefreshPartsEvent args)
     {
         var bin = args.GetPartRating(MachinePartIds.MatterBin);
         var servo = args.GetPartRating(MachinePartIds.Servo);
         component.MaxWater = component.BaseMaxWater * RefreshPartsEvent.GetPositiveTierMultiplier(bin);
         component.MaxNutrition = component.BaseMaxNutrition * RefreshPartsEvent.GetPositiveTierMultiplier(bin);
-        component.NutrientConsumptionMultiplier = RefreshPartsEvent.GetLinearMultiplier(servo, 0.1f, 0.5f, 1.2f);
+        component.NutrientConsumptionMultiplier =
+            RefreshPartsEvent.GetLinearMultiplier(servo, 0.1f, 0.5f, 1.2f);
     }
 
     private static void OnUpgradeExamine(EntityUid uid, PlantHolderComponent component, UpgradeExamineEvent args)
     {
         args.AddPercentageUpgrade("machine-upgrade-hydro-water", component.MaxWater / component.BaseMaxWater);
-        args.AddPercentageUpgrade("machine-upgrade-hydro-nutrition", component.MaxNutrition / component.BaseMaxNutrition);
-        args.AddPercentageUpgrade("machine-upgrade-hydro-nutrition-consume", component.NutrientConsumptionMultiplier);
+        args.AddPercentageUpgrade("machine-upgrade-hydro-nutrition",
+            component.MaxNutrition / component.BaseMaxNutrition);
+        args.AddPercentageUpgrade("machine-upgrade-hydro-nutrition-consume",
+            component.NutrientConsumptionMultiplier);
     }
-    // Orion-End
+    // Orion-Edit-End
 }

@@ -1,119 +1,3 @@
-# SPDX-FileCopyrightText: 2024 AJCM <AJCM@tutanota.com>
-# SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2024 Alex Evgrashin <aevgrashin@yandex.ru>
-# SPDX-FileCopyrightText: 2024 Alex Pavlenko <diraven@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Alice "Arimah" Heurlin <30327355+arimah@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Alzore <140123969+Blackern5000@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 ArkiveDev <95712736+ArkiveDev@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 BeeRobynn <robynthewarcrime@proton.me>
-# SPDX-FileCopyrightText: 2024 Boaz1111 <149967078+Boaz1111@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Brandon Hu <103440971+Brandon-Huu@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 CaasGit <87243814+CaasGit@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Doomsdrayk <robotdoughnut@comcast.net>
-# SPDX-FileCopyrightText: 2024 DrSmugleaf <10968691+DrSmugleaf@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 EmoGarbage404 <retron404@gmail.com>
-# SPDX-FileCopyrightText: 2024 Eoin Mcloughlin <helloworld@eoinrul.es>
-# SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Firewatch <54725557+musicmanvr@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Flareguy <78941145+Flareguy@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Ghagliiarghii <68826635+Ghagliiarghii@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 HS <81934438+HolySSSS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Hrosts <35345601+Hrosts@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Ian <ignaz.k@live.de>
-# SPDX-FileCopyrightText: 2024 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Joel Zimmerman <JoelZimmerman@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 JustCone <141039037+JustCone14@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Killerqu00 <47712032+Killerqu00@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Ko4ergaPunk <62609550+Ko4ergaPunk@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Kukutis96513 <146854220+Kukutis96513@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Lye <128915833+Lyroth001@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 MerrytheManokit <167581110+MerrytheManokit@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-# SPDX-FileCopyrightText: 2024 MilenVolf <63782763+MilenVolf@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Mr. 27 <koolthunder019@gmail.com>
-# SPDX-FileCopyrightText: 2024 MureixloI <132683811+MureixloI@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 NakataRin <45946146+NakataRin@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 OrangeMoronage9622 <whyteterry0092@gmail.com>
-# SPDX-FileCopyrightText: 2024 PJBot <pieterjan.briers+bot@gmail.com>
-# SPDX-FileCopyrightText: 2024 Partmedia <kevinz5000@gmail.com>
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 PoorMansDreams <150595537+PoorMansDreams@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 PopGamer46 <yt1popgamer@gmail.com>
-# SPDX-FileCopyrightText: 2024 Preston Smith <92108534+thetolbean@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Psychpsyo <60073468+Psychpsyo@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Redfire1331 <125223432+Redfire1331@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Repo <47093363+Titian3@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 RiceMar1244 <138547931+RiceMar1244@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Rouge2t7 <81053047+Sarahon@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 SpeltIncorrectyl <66873282+SpeltIncorrectyl@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Spessmann <156740760+Spessmann@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Stalen <33173619+stalengd@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 TakoDragon <69509841+BackeTako@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-# SPDX-FileCopyrightText: 2024 Thomas <87614336+Aeshus@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Truoizys <153248924+Truoizys@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 TsjipTsjip <19798667+TsjipTsjip@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Ubaser <134914314+UbaserB@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Unkn0wn_Gh0st <shadowstalkermll@gmail.com>
-# SPDX-FileCopyrightText: 2024 Vasilis <vasilis@pikachu.systems>
-# SPDX-FileCopyrightText: 2024 Verm <32827189+Vermidia@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Vigers Ray <60344369+VigersRay@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Weide <64257676+Lyacs@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 cool dolphin <36332236+Afrokada@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 coolboy911 <85909253+coolboy911@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 deathride58 <deathride58@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-# SPDX-FileCopyrightText: 2024 dffdff2423 <dffdff2423@gmail.com>
-# SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
-# SPDX-FileCopyrightText: 2024 foboscheshir <156405958+foboscheshir@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 lunarcomets <140772713+lunarcomets@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
-# SPDX-FileCopyrightText: 2024 neutrino <67447925+neutrino-laser@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 osjarw <62134478+osjarw@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 pigeonpeas <147350443+pigeonpeas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 plykiya <plykiya@protonmail.com>
-# SPDX-FileCopyrightText: 2024 redfire1331 <Redfire1331@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 saintmuntzer <47153094+saintmuntzer@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 shamp <140359015+shampunj@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 strO0pwafel <153459934+strO0pwafel@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 stroopwafel <j.o.luijkx@student.tudelft.nl>
-# SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 to4no_fix <156101927+chavonadelal@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 voidnull000 <18663194+voidnull000@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Арт <123451459+JustArt1m@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Phooooooooooooooooooooooooooooooosphate <184853112+Phooooooooooooooooooooooooooooooosphate@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-# SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 lzk <124214523+lzk228@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-# SPDX-FileCopyrightText: 2025 shityaml <unalterableness@gmail.com>
-# SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Command
 - type: roleLoadout
@@ -125,23 +9,17 @@
   - CaptainMask # Goobstation - Lollypops!
   - CaptainBackpack
   - CaptainOuterClothing
-  - CaptainGloves # Orion
+  - CaptainShoes # Goobstation
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - CaptainJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - CaptainEnvirohelm
   - CaptainEnvirosuit
   - CaptainEnvirogloves
-#  - CaptainGloves # Orion-Edit: Moved up
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
+  - CaptainGloves
 
 - type: roleLoadout
   id: JobHeadOfPersonnel
@@ -155,21 +33,14 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - HoPJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - HoPEnvirohelm
   - HoPEnvirosuit
   - HoPEnvirogloves
   - HoPGloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-
 # Silicons
 - type: roleLoadout
   id: JobBorg
@@ -186,7 +57,6 @@
   id: JobPassenger
   groups:
   - GroupTankHarness
-  - PassengerHead # Orion
   - PassengerJumpsuit
   - CommonBackpack
   - PassengerNeck
@@ -197,19 +67,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - PassengerJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - AssistantEnvirohelm
   - AssistantEnvirosuit
   - AssistantEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobBartender
@@ -222,19 +86,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - BartenderJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - BartenderEnvirohelm
   - BartenderEnvirosuit
   - BartenderEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobServiceWorker
@@ -245,19 +103,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ServiceWorkerJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ServiceWorkerEnvirohelm
   - ServiceWorkerEnvirosuit
   - ServiceWorkerEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobChef
@@ -271,19 +123,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ChefJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ChefEnvirohelm
   - ChefEnvirosuit
   - ChefEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobLibrarian
@@ -294,19 +140,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - LibrarianJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - LibrarianEnvirohelm
   - LibrarianEnvirosuit
   - LibrarianEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobLawyer
@@ -318,19 +158,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - LawyerJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - LawyerEnvirohelm
   - LawyerEnvirosuit
   - LawyerEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobChaplain
@@ -342,22 +176,17 @@
   - ChaplainJumpsuit
   - CommonBackpack
   - ChaplainOuterClothing
+  - ChaplainBible
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ChaplainJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ChaplainEnvirohelm
   - ChaplainEnvirosuit
   - ChaplainEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobJanitor
@@ -371,20 +200,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - JanitorPlunger
-  - Animals
+  - JanitorJobTrinkets
+  - Animals # Goobstation?
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - JanitorEnvirohelm
   - JanitorEnvirosuit
   - JanitorEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobBotanist
@@ -397,19 +219,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - BotanistJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - BotanistEnvirohelm
   - BotanistEnvirosuit
   - BotanistEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobClown
@@ -424,18 +240,12 @@
   - Glasses
   - SurvivalClown
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ClownJobTrinkets
+  - Animals # Goobstation
   # Goobstation - EE Plasmeme Change.
   - ClownEnvirohelm
   - ClownEnvirosuit
   - ClownEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobMime
@@ -447,26 +257,23 @@
   - MimeJumpsuit
   - MimeBackpack
   - MimeOuterClothing
+  - MimeGloves # Goobstation
+  - MimeShoes # Goobstation
   - MimeBelt
   - Glasses
   - SurvivalMime
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - MimeJobTrinkets
+  - Animals # Goobstation
   # Goobstation - EE Plasmeme Change.
   - MimeEnvirohelm
   - MimeEnvirosuit
   - MimeEnvirogloves
-  - MimeGloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
+
 
 - type: roleLoadout
   id: JobMusician
+  canCustomizeName: true
   groups:
   - GroupTankHarness
   - MusicianJumpsuit
@@ -475,7 +282,7 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
+  - MusicianJobTrinkets
   - Instruments
   - Animals
   - GroupSpeciesBreathTool
@@ -483,12 +290,6 @@
   - MusicianEnvirohelm
   - MusicianEnvirosuit
   - MusicianEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 # Cargo
 - type: roleLoadout
@@ -498,26 +299,19 @@
   - QuartermasterHead
   - QuartermasterNeck
   - QuartermasterJumpsuit
-  - QuartermasterHands # Arcane
   - CargoTechnicianBackpack
   - QuartermasterOuterClothing
   - QuartermasterShoes
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - QuartermasterJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - QuartermasterEnvirohelm
   - QuartermasterEnvirosuit
   - QuartermasterEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobCargoTechnician
@@ -528,22 +322,17 @@
   - CargoTechnicianBackpack
   - CargoTechnicianOuterClothing
   - CargoTechnicianShoes
+  - CargoTechnicianID
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - CargoTechnicianJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - CargoTechnicianEnvirohelm
   - CargoTechnicianEnvirosuit
   - CargoTechnicianEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobSalvageSpecialist
@@ -557,19 +346,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - SalvageSpecialistJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - SalvageEnvirohelm
   - SalvageEnvirosuit
   - SalvageEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 # Engineering
 - type: roleLoadout
@@ -577,7 +360,6 @@
   groups:
   - GroupTankHarness
   - ChiefEngineerHead
-  - StationEngineerEyes # Orion
   - ChiefEngineerJumpsuit
   - StationEngineerBackpack
   - ChiefEngineerNeck
@@ -585,19 +367,13 @@
   - ChiefEngineerShoes
   - SurvivalExtended
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ChiefEngineerJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ChiefEngineerEnvirohelm
   - ChiefEngineerEnvirosuit
   - ChiefEngineerEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobTechnicalAssistant
@@ -607,26 +383,19 @@
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - TechnicalAssistantJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - TechnicalAssistantEnvirohelm
   - TechnicalAssistantEnvirosuit
   - TechnicalAssistantEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobStationEngineer
   groups:
   - GroupTankHarness
   - StationEngineerHead
-  - StationEngineerEyes # Orion
   - StationEngineerJumpsuit
   - StationEngineerBackpack
   - StationEngineerOuterClothing
@@ -634,45 +403,32 @@
   - StationEngineerID
   - SurvivalExtended
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - StationEngineerJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - StationEngineerEnvirohelm
   - StationEngineerEnvirosuit
   - StationEngineerEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobAtmosphericTechnician
   groups:
   - GroupTankHarness
   - AtmosphericTechnicianHead # Goobstation
-  - StationEngineerEyes # Orion
   - AtmosphericTechnicianJumpsuit
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
   - SurvivalExtended
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - AtmosphericTechnicianJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - AtmosEnvirohelm
   - AtmosEnvirosuit
   - AtmosEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 # Science
 - type: roleLoadout
@@ -689,19 +445,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ResearchDirectorJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ResearchDirectorEnvirosuit
   - ResearchDirectorEnvirohelm
   - ResearchDirectorEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobScientist
@@ -718,19 +468,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ScientistJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ScientistEnvirohelm
   - ScientistEnvirosuit
   - ScientistEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobResearchAssistant
@@ -741,19 +485,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ResearchAssistantJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ResearchAssistantEnvirohelm
   - ResearchAssistantEnvirosuit
   - ResearchAssistantEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 # Security
 - type: roleLoadout
@@ -763,28 +501,21 @@
   - HeadofSecurityNeck
   - HeadofSecurityJumpsuit
   - SecurityBackpack
-  - SecurityGunHos # Orion
   - SecurityMelee # Goobstation
   - SecurityBelt
   - HeadofSecurityOuterClothing
   - HeadofSecurityShoes # Goobstation edit
+  - SecurityGloves #goob
   - SurvivalSecurity
   - Trinkets
-  - Patron # Arcane
-  - SecurityStar
-  - Animals
+  - HeadofSecurityJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathToolSecurity
   # Goobstation - EE Plasmeme Change.
   - HeadofSecurityEnvirohelm
   - HeadofSecurityEnvirosuit
   - HeadofSecurityEnvirogloves
   - HeadofSecurityGloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobWarden
@@ -792,28 +523,21 @@
   - WardenHead
   - WardenJumpsuit
   - SecurityBackpack
-  - SecurityGun # Orion
   - SecurityMelee # Goobstation
   - SecurityNeck
   - SecurityBelt
   - WardenOuterClothing
   - SecurityShoes
+  - SecurityGloves #goob
   - SurvivalSecurity
   - Trinkets
-  - Patron # Arcane
-  - SecurityStar
-  - Animals
+  - WardenJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathToolSecurity
   # Goobstation - EE Plasmeme Change.
   - WardenEnvirohelm
   - WardenEnvirosuit
   - WardenEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobSecurityOfficer
@@ -821,29 +545,22 @@
   - SecurityHead
   - SecurityJumpsuit
   - SecurityBackpack
-  - SecurityGun # Orion
   - SecurityMelee # Goobstation
   - SecurityOuterClothing
   - SecurityShoes
+  - SecurityGloves #goob
   - SecurityNeck
   - SecurityPDA
   - SecurityBelt
   - SurvivalSecurity
   - Trinkets
-  - Patron # Arcane
-  - SecurityStar
-  - Animals
+  - SecurityJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathToolSecurity
   # Goobstation - EE Plasmeme Change.
   - SecurityOfficerEnvirohelm
   - SecurityOfficerEnvirosuit
   - SecurityOfficerEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobDetective
@@ -856,21 +573,14 @@
   - SecurityShoes
   - SurvivalSecurity
   - Trinkets
-  - Patron # Arcane
-  - SecurityStar
-  - Animals
+  - DetectiveJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathToolSecurity
   # Goobstation - EE Plasmeme Change.
   - DetectiveEnvirohelm
   - DetectiveEnvirosuit
   - DetectiveEnvirogloves
   - DetectiveGloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobSecurityCadet
@@ -882,19 +592,13 @@
   - SecurityNeck
   - SecurityOuterClothing # Goobstation - Why not.
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - SecurityCadetJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathToolSecurity
   # Goobstation - EE Plasmeme Change.
   - SecurityCadetEnvirohelm
   - SecurityCadetEnvirosuit
   - SecurityCadetEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 # Medical
 - type: roleLoadout
@@ -902,7 +606,6 @@
   groups:
   - GroupTankHarness
   - ChiefMedicalOfficerHead
-  - ChiefMedicalOfficerEyes # Orion
   - MedicalMask
   - ChiefMedicalOfficerJumpsuit
   - MedicalGloves
@@ -910,22 +613,16 @@
   - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes
-#  - MedicalEyewear # Orion-Edit: Replaced
+ # - MedicalEyewear #Goobstation - Spawns with medichem hud
   - SurvivalMedical
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ChiefMedicalOfficerJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
   # Goobstation - EE Plasmeme Change.
   - ChiefMedicalOfficerEnvirohelm
   - ChiefMedicalOfficerEnvirosuit
   - ChiefMedicalOfficerEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobMedicalDoctor
@@ -942,19 +639,13 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - MedicalDoctorJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
   # Goobstation - EE Plasmeme Change.
   - MedicalDoctorEnvirohelm
   - MedicalDoctorEnvirosuit
   - MedicalDoctorEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobMedicalIntern
@@ -965,19 +656,13 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - MedicalInternJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
   # Goobstation - EE Plasmeme Change.
   - MedicalInternEnvirohelm
   - MedicalInternEnvirosuit
   - MedicalInternEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobChemist
@@ -992,19 +677,13 @@
   - MedicalShoes
   - SurvivalMedical
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ChemistJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
   # Goobstation - EE Plasmeme Change.
   - ChemistEnvirohelm
   - ChemistEnvirosuit
   - ChemistEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobParamedic
@@ -1020,45 +699,15 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ParamedicJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
   # Goobstation - EE Plasmeme Change.
   - ParamedicEnvirohelm
   - ParamedicEnvirosuit
   - ParamedicEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 # Wildcards
-- type: roleLoadout
-  id: JobZookeeper
-  groups:
-  - ZookeeperHead
-  - ZookeeperJumpsuit
-  - GroupTankHarness
-  - CommonBackpack
-  - Glasses
-  - Survival
-  - Trinkets
-  - Patron # Arcane
-  - Animals
-  - GroupSpeciesBreathTool
-  # Goobstation - EE Plasmeme Change.
-  - ZookeeperEnvirohelm
-  - ZookeeperEnvirosuit
-  - ZookeeperEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-
 - type: roleLoadout
   id: JobReporter
   groups:
@@ -1069,19 +718,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - ReporterJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ReporterEnvirohelm
   - ReporterEnvirosuit
   - ReporterEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 - type: roleLoadout
   id: JobPsychologist
@@ -1092,42 +735,13 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
-  - Animals
+  - PsychologistJobTrinkets
+  - Animals # Goobstation
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - PsychologistEnvirohelm
   - PsychologistEnvirosuit
   - PsychologistEnvirogloves
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-
-- type: roleLoadout
-  id: JobBoxer
-  groups:
-  - GroupTankHarness
-  - BoxerJumpsuit
-  - BoxerGloves
-  - CommonBackpack
-  - Glasses
-  - Survival
-  - Trinkets
-  - Patron # Arcane
-  - Animals
-  - GroupSpeciesBreathTool
-  # Goobstation - EE Plasmeme Change.
-  - BoxerEnvirohelm
-  - BoxerEnvirosuit
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit
@@ -1189,6 +803,11 @@
   - GroupTankHarness
 
 - type: roleLoadout
+  id: RoleSurvivalMilitaryDouble
+  groups:
+  - SurvivalMilitaryDouble
+
+- type: roleLoadout
   id: RoleSurvivalNukie
   groups:
   - SurvivalSyndicate
@@ -1200,3 +819,8 @@
   groups:
   - GroupEVATank
   - SurvivalExtended
+
+- type: roleLoadout
+  id: RoleSurvivalSpaceNinja
+  groups:
+  - GroupEVATank
