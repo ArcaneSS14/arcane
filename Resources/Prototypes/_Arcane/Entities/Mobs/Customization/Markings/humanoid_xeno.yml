@@ -134,11 +134,11 @@
   markingCategory: Tail
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: bers_tail
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: bers_tail_grad
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: bers_tail_spike
 
 - type: marking
@@ -147,11 +147,11 @@
   markingCategory: Tail
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: chris_tail
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: chris_tail_grad
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: chris_tail_spike
 
 - type: marking
@@ -160,11 +160,11 @@
   markingCategory: Tail
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: cougar_tail
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: cougar_tail_claws
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: cougar_tail_veins
 
 - type: marking
@@ -173,9 +173,9 @@
   markingCategory: Tail
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: crocodile_tail
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: crocodile_tail_grad
 
 - type: marking
@@ -184,11 +184,11 @@
   markingCategory: Tail
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: razor_tail
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: razor_tail_grad
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: razor_tail_spike
 
 # Head
@@ -368,7 +368,7 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: cat_teeth
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
-    state: cat_plates
+    state: cat_plate
 
 - type: marking
   id: HumanoidXenoHeadCris
@@ -381,7 +381,7 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: chris_teeth
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
-    state: chris_plates
+    state: chris_plate
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: chris_grad
 
@@ -396,7 +396,7 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: cougar_teeth
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
-    state: bers_veins
+    state: cougar_veins
 
 - type: marking
   id: HumanoidXenoHeadCrocodile
