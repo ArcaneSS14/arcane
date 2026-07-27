@@ -435,7 +435,7 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: razor_teeth
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
-    state: razor_plates
+    state: razor_plate
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: razor_shine
 
@@ -630,7 +630,7 @@
 - type: marking
   id: HumanoidXenoLegsChris
   bodyPart: LLeg
-  markingCategory: Legs
+  markingCategory: FeetClaws
   speciesRestriction: [HumanoidXeno]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/legs.rsi
@@ -645,13 +645,24 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/legs.rsi
     state: cougar_legs
 
+# Feet claws
+
+- type: marking
+  id: HumanoidXenoLegsChris
+  bodyPart: LLeg
+  markingCategory: FeetClaws
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
+    state: chris_claws
+
 - type: marking
   id: HumanoidXenoLegsRazor
   bodyPart: LLeg
-  markingCategory: Legs
+  markingCategory: FeetClaws
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/legs.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
     state: razor_feet
 
 # Arms

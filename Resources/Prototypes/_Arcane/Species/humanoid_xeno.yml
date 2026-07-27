@@ -90,6 +90,9 @@
       points: 1
       required: true
       defaultMarkings: [ HumanoidXenoTracheasDrone ]
+    FeetClaws:
+      points: 1
+      required: false
 
 - type: humanoidBaseSprite
   id: MobHumanoidXenoHead
