@@ -62,3 +62,4 @@ marking-HumanoidXenoArmsRavager = Руки разрушителя
 marking-HumanoidXenoArmsMuscles = "Мышцы"
 marking-HumanoidXenoArmsChris = Руки хризалиды
 marking-HumanoidXenoArmsCougar = Руки пумы
+marking-HumanoidXenoHandRazor = Когти бритвы

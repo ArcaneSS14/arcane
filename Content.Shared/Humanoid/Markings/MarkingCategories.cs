@@ -48,6 +48,9 @@ namespace Content.Shared.Humanoid.Markings
         Overlay,
 
         Tracheas, // Arcane
+
+        FeetClaws, // Arcane
+        ArmClaws // Arcane
     }
 
     public static class MarkingCategoriesConversion
@@ -78,6 +81,8 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.RFoot => MarkingCategories.RightFoot,
                 HumanoidVisualLayers.Wings => MarkingCategories.Wings,
                 HumanoidVisualLayers.Tracheas => MarkingCategories.Tracheas, // Arcane
+                HumanoidVisualLayers.FeetClaws => MarkingCategories.FeetClaws, // Arcane,
+                HumanoidVisualLayers.ArmClaws => MarkingCategories.ArmClaws, // Arcane
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
                 _ => MarkingCategories.Overlay,
             };

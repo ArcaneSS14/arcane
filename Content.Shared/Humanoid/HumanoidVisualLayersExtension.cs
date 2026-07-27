@@ -67,18 +67,22 @@ namespace Content.Shared.Humanoid
                 case HumanoidVisualLayers.LArm:
                     yield return HumanoidVisualLayers.LArm;
                     yield return HumanoidVisualLayers.LHand;
+                    yield return HumanoidVisualLayers.ArmClaws; // Arcane
                     break;
                 case HumanoidVisualLayers.RArm:
                     yield return HumanoidVisualLayers.RArm;
                     yield return HumanoidVisualLayers.RHand;
+                    yield return HumanoidVisualLayers.ArmClaws; // Arcane
                     break;
                 case HumanoidVisualLayers.LLeg:
                     yield return HumanoidVisualLayers.LLeg;
                     yield return HumanoidVisualLayers.LFoot;
+                    yield return HumanoidVisualLayers.FeetClaws; // Arcane
                     break;
                 case HumanoidVisualLayers.RLeg:
                     yield return HumanoidVisualLayers.RLeg;
                     yield return HumanoidVisualLayers.RFoot;
+                    yield return HumanoidVisualLayers.FeetClaws; // Arcane
                     break;
                 case HumanoidVisualLayers.Chest:
                     yield return HumanoidVisualLayers.Chest;

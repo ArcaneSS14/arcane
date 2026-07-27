@@ -66,5 +66,8 @@ namespace Content.Shared.Humanoid
 
         ErpGroin, // Arcane-edit: covered by underwear/pants/jumpsuit
         ErpChest, // Arcane-edit: covered by undershirt/shirt/jumpsuit
+
+        FeetClaws, // Arcane
+        ArmClaws, // Arcane
     }
 }
