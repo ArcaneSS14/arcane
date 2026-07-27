@@ -14,6 +14,18 @@
         {
             "name": "muscles_legs",
             "directions": 4
+        },
+        {
+            "name": "chris_claws",
+            "directions": 4
+        },
+        {
+            "name": "cougar_legs",
+            "directions": 4
+        },
+        {
+            "name": "razor_feet",
+            "directions": 4
         }
     ]
 }

@@ -18,6 +18,14 @@
         {
             "name": "muscles_arms",
             "directions": 4
+        },
+        {
+            "name": "chris_arms",
+            "directions": 4
+        },
+        {
+            "name": "cougar_arms",
+            "directions": 4
         }
     ]
 }
