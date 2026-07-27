@@ -10,9 +10,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningFish
@@ -26,9 +26,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningFishSecond
@@ -42,9 +42,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningPeopleAndroid
@@ -58,9 +58,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningPeopleAugmentedOrgans
@@ -74,9 +74,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningPeopleMutant
@@ -90,9 +90,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningPeopleSkillchip
@@ -104,9 +104,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningPointsAnomalies
@@ -120,9 +120,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningPointsBluespaceCrystal
@@ -136,9 +136,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningPointsMachineryTieredScanTier2Any
@@ -151,9 +151,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningPointsMachineryTieredScanTier3Any
@@ -166,9 +166,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningPointsSlimeHard
@@ -182,9 +182,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningRandomJanitorTrash
@@ -198,9 +198,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningRandomMechaDamageScan
@@ -216,9 +216,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningRandomMechaEquippedScan
@@ -232,9 +232,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningRandomPlantsTraits
@@ -248,9 +248,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningRandomPlantsWild
@@ -264,9 +264,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningReagentCryostylane
@@ -279,9 +279,9 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500
 
 - type: researchExperiment
   id: ScanningReagentHaloperidol
@@ -294,6 +294,6 @@
   reward:
     pointRewards:
     - type: General
-      amount: 500
+      amount: 5000
     - type: Experimental
-      amount: 150
+      amount: 500

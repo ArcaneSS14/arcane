@@ -15,4 +15,7 @@ public sealed partial class ExperimentalLawProviderComponent : Component
     [DataField] public float RewardTime = 120.0f;
 
     [DataField] public int RewardPoints = 30000;
+
+    [DataField]
+    public bool Used = false;
 }

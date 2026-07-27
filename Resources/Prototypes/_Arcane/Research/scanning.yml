@@ -1,0 +1,127 @@
+- type: researchExperiment
+  id: ScanningRandomGun
+  name: research-experiment-scanning-reagent-gun-name
+  description: research-experiment-scanning-reagent-gun-desc
+  category: Scanning
+  objective: !type:ScanDifferentEntitiesExperimentObjective
+    requiredComponents:
+    - Gun
+    target: 2
+  reward:
+    pointRewards:
+    - type: General
+      amount: 5000
+    - type: Experimental
+      amount: 500
+
+- type: researchExperiment
+  id: ScanningRandomBlocking
+  name: research-experiment-scanning-riotshield-name
+  description: research-experiment-scanning-riotshield-desc
+  category: Scanning
+  objective: !type:ScanDifferentEntitiesExperimentObjective
+    requiredComponents:
+    - Blocking
+    target: 3
+  reward:
+    pointRewards:
+    - type: General
+      amount: 5000
+    - type: Experimental
+      amount: 500
+
+- type: researchExperiment
+  id: ScanningRandomRipley
+  name: research-experiment-scanning-ripley-name
+  description: research-experiment-scanning-ripley-desc
+  category: Scanning
+  objective: !type:ScanDifferentEntitiesExperimentObjective
+    requiredComponents:
+    - MechAir
+    target: 1
+  reward:
+    pointRewards:
+    - type: General
+      amount: 8000
+    - type: Experimental
+      amount: 500
+
+- type: researchExperiment
+  id: ScanningBots
+  name: research-experiment-scanning-clothing-name
+  description: research-experiment-scanning-clothing-desc
+  category: Scanning
+  objective: !type:ScanDifferentEntitiesExperimentObjective
+    requiredComponents:
+    - Clothing
+    target: 5
+  reward:
+    pointRewards:
+    - type: General
+      amount: 3000
+    - type: Experimental
+      amount: 600
+
+- type: researchExperiment
+  id: ScanningImplanter
+  name: research-experiment-scanning-clothing-name
+  description: research-experiment-scanning-clothing-desc
+  category: Scanning
+  objective: !type:ScanDifferentEntitiesExperimentObjective
+    requiredComponents:
+    - Implanter
+    target: 3
+  reward:
+    pointRewards:
+    - type: General
+      amount: 4500
+    - type: Experimental
+      amount: 600
+
+- type: researchExperiment
+  id: ScanningImplanter
+  name: research-experiment-scanning-implants-name
+  description: research-experiment-scanning-implants-desc
+  category: Scanning
+  objective: !type:ScanDifferentEntitiesExperimentObjective
+    requiredComponents:
+    - Vehicle
+    target: 2
+  reward:
+    pointRewards:
+    - type: General
+      amount: 4500
+    - type: Experimental
+      amount: 600
+
+- type: researchExperiment
+  id: ScanningImplanter
+  name: research-experiment-scanning-bots-name
+  description: research-experiment-scanning-bots-desc
+  category: Scanning
+  objective: !type:ScanDifferentEntitiesExperimentObjective
+    requiredComponents:
+    - HTN
+    target: 3
+  reward:
+    pointRewards:
+    - type: General
+      amount: 4500
+    - type: Experimental
+      amount: 600
+
+- type: researchExperiment
+  id: ScanningHumanoids
+  name: research-experiment-scanning-humanoids-name
+  description: research-experiment-scanning-humanoids-desc
+  category: Scanning
+  objective: !type:ScanDifferentEntitiesExperimentObjective
+    requiredComponents:
+    - HumanoidAppearance
+    target: 5
+  reward:
+    pointRewards:
+    - type: General
+      amount: 4000
+    - type: Experimental
+      amount: 400

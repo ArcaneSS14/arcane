@@ -35,6 +35,7 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Research.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Research.Systems;
+using Robust.Shared.Timing;
 
 // Corvax-Next-AiRemoteControl
 using Content.Shared.Silicons.StationAi;
@@ -59,6 +60,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private readonly ResearchSystem _research = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!; // Corvax-Next-AiRemoteControl
+    [Dependency] private readonly IGameTiming _timing = default!; // Arcane-Edit
 
 
 
@@ -415,11 +417,41 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     // Goob edit start
     private void ApplyExperimentalLaws(Entity<SiliconLawUpdaterComponent> ent, Entity<ExperimentalLawProviderComponent, SiliconLawProviderComponent> experiment)
     {
-        var laws = GetRandomLaws(experiment.Comp1.RandomLawsets);
+        if (experiment.Comp1.Used)
+        {
+            var failMessage = Loc.GetString("experimental-law-provider-already-used");
+            _radio.SendRadioMessage(ent, failMessage, AnnouncementChannel, ent, escapeMarkup: false);
+            return;
+        }
+
         var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components);
+        var hasSubverted = false;
+        var targetList = new List<EntityUid>();
 
         while (query.MoveNext(out var update))
+        {
+            targetList.Add(update);
+            if (TryComp<SiliconLawProviderComponent>(update, out var provider) && provider.Subverted)
+            {
+                hasSubverted = true;
+            }
+        }
+
+        if (hasSubverted)
+        {
+            var failMessage = Loc.GetString("experimental-law-provider-already-subverted");
+            _radio.SendRadioMessage(ent, failMessage, AnnouncementChannel, ent, escapeMarkup: false);
+            return;
+        }
+
+        var laws = GetRandomLaws(experiment.Comp1.RandomLawsets);
+
+        foreach (var update in targetList)
+        {
             SetLaws(laws.Laws, update, experiment.Comp2.LawUploadSound);
+        }
+
+        experiment.Comp1.Used = true;
 
         var activeProv = EnsureComp<ActiveExperimentalLawProviderComponent>(ent);
         activeProv.Timer = experiment.Comp1.RewardTime;
@@ -429,7 +461,12 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         var message = Loc.GetString("experimental-law-provider-start", ("timeLeft", (int) experiment.Comp1.RewardTime));
         _radio.SendRadioMessage(ent, message, AnnouncementChannel, ent, escapeMarkup: false);
 
-        QueueDel(experiment); // Don't need this experimental board anymore
+        var boardUid = experiment.Owner;
+        Timer.Spawn(TimeSpan.FromSeconds(0.5), () =>
+        {
+            if (!Deleted(boardUid)) QueueDel(boardUid);
+        }
+        );
     }
 
     private const string AnnouncementChannel = "Science";

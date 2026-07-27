@@ -1,0 +1,16 @@
+research-experiment-scanning-reagent-gun-name = Сканирование оружия
+research-experiment-scanning-reagent-gun-desc = Сборка оружия позволяет узнать их слабые стороны и пересобрать в будущем. Отсканируйте 2 эксземпляра.
+research-experiment-scanning-riotshield-name = Композитный щит подавления
+research-experiment-scanning-riotshield-desc = Щит содержит слоистый композит, способный рассеивать энергию. Для усиления защиты нужен анализ структуры. Соберите щит и отсканируйте его.
+research-experiment-scanning-ripley-name = Тяжёлый экзоскелет Рипли
+research-experiment-scanning-ripley-desc = Механический экзоскелет Рипли использует сервоприводы нового поколения. Для улучшения маневренности необходим анализ гидравлики. Соберите Рипли и отсканируйте его.
+research-experiment-scanning-clothing-name = Сканирование одежды
+research-experiment-scanning-clothing-desc = Анализ тканей одежды позволяет улучшить их износостойкость. Отсканируйте 5 экземпляров.
+research-experiment-scanning-implants-name = Сканирование имплантов
+research-experiment-scanning-implants-desc = Анализ имплантации позволяет улучшить их износостойкость. Отсканируйте 3 экземпляров.
+research-experiment-scanning-machines-name = Сканирование машин
+research-experiment-scanning-machines-desc = Анализ машин позволяет улучшить их эффективность и надёжность. Отсканируйте 2 экземпляров.
+research-experiment-scanning-bots-name = Сканирование ботов
+research-experiment-scanning-bots-desc = Изучение конструкции ботов позволяет улучшить их автономность. Отсканируйте 3 экземпляра.
+research-experiment-scanning-humanoids-name = Сканирование гуманоидов
+research-experiment-scanning-humanoids-desc = Изучение анатомии гуманоидов позволяет улучшить медицинские процедуры. Отсканируйте 5 экземпляров.
