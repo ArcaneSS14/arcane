@@ -628,15 +628,6 @@
     state: muscles_legs
 
 - type: marking
-  id: HumanoidXenoLegsChris
-  bodyPart: LLeg
-  markingCategory: FeetClaws
-  speciesRestriction: [HumanoidXeno]
-  sprites:
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/legs.rsi
-    state: chris_claws
-
-- type: marking
   id: HumanoidXenoLegsCougar
   bodyPart: LLeg
   markingCategory: Legs
