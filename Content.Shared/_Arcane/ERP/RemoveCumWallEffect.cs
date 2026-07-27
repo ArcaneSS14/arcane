@@ -1,15 +1,13 @@
-﻿using Content.Shared.EntityEffects;
-using Robust.Shared.Prototypes;
+using Content.Shared.EntityEffects;
 
 namespace Content.Shared._Arcane.ERP;
 
-public sealed partial class RemoveCumWallEffect : EntityEffect
+public sealed partial class RemoveCumWallEffectSystem : EntityEffectSystem<MetaDataComponent, RemoveCumWallEffect>
 {
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => null;
-
-    public override void Effect(EntityEffectBaseArgs args)
+    protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<RemoveCumWallEffect> args)
     {
-        args.EntityManager.QueueDeleteEntity(args.TargetEntity);
+        QueueDel(entity);
     }
 }
+
+public sealed partial class RemoveCumWallEffect : EntityEffectBase<RemoveCumWallEffect>;

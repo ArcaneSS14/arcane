@@ -7354,7 +7354,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -14.940454,-39.485104
       parent: 2
-- proto: BoxFolderBlue
+- proto: BoxFolderBlueEmpty
   entities:
   - uid: 510
     components:
@@ -33827,7 +33827,7 @@ entities:
       parent: 5503
     - type: Physics
       canCollide: False
-- proto: EnergyChemDispenser
+- proto: ChemDispenser
   entities:
   - uid: 5505
     components:
@@ -52799,7 +52799,7 @@ entities:
     - type: Transform
       pos: 7.2571726,18.545927
       parent: 2
-- proto: MaterialSilo
+- proto: MachineMaterialSilo
   entities:
   - uid: 8242
     components:

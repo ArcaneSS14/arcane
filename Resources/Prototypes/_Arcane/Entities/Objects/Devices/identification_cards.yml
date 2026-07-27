@@ -6,9 +6,7 @@
   components:
   - type: Sprite
     sprite: Objects/Misc/id_cards.rsi
-    layers:
-    - state: silver
-    - state: idadjutant
+    state: idheadofpersonnel
   - type: PresetIdCard
     job: Adjutant
 
@@ -20,9 +18,7 @@
   components:
   - type: Sprite
     sprite: Objects/Misc/id_cards.rsi
-    layers:
-    - state: ert_commaid
-    - state: idcommaid
+    state: idcommandmaid
   - type: PresetIdCard
     job: CommandMaid
 
@@ -33,8 +29,6 @@
   components:
   - type: Sprite
     sprite: Objects/Misc/id_cards.rsi
-    layers:
-      - state: silver
-      - state: idiaa
+    state: idlawyer
   - type: PresetIdCard
     job: IAA

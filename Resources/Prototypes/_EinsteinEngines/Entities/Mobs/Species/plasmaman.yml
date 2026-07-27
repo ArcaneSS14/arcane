@@ -28,22 +28,13 @@
       sprite: Mobs/Customization/masking_helpers.rsi
       state: unisex_full
       visible: false
-    # Orion-Start
-    - map: [ "underwear" ]
-    - map: [ "undershirt" ]
-    # Orion-End
-    # Orion-Edit-Start: Moved under jumpsuit
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
-    # Orion-Edit-End
-    - map: [ "socks" ] # Orion
-    - map: ["jumpsuit"]
+    - map: ["jumpsuit"] # jumpsuit after foot to show envirosuit shoes
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: [ "gloves" ]
-    - map: [ "wrists" ] # Orion
     - map: [ "shoes" ]
-    - map: [ "earsright" ] # Orion
     - map: [ "ears" ]
     - map: [ "innerBelt" ]
     - map: [ "innerNeck" ]
@@ -80,21 +71,12 @@
     bloodlossThreshold: 0
     bleedReductionAmount: 0
     maxBleedAmount: 0
-    bloodlossDamage:
-      types:
-        Blunt: 0
-    bloodlossHealDamage:
-      types:
-        Blunt: 0
-    bloodRefreshAmount: 0
-    bloodMaxVolume: 0
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Plasma
+        Quantity: 300
   - type: Damageable
     damageModifierSet: Plasmaman
-  # Arcane-start: plasmamen need a separate ERP implementation later.
-  - type: ErpPanelOwner
-    enabled: false
-  - type: EroticOrgans
-  # Arcane-end
   - type: MeleeWeapon
     soundHit:
       collection: FirePunch
@@ -125,9 +107,10 @@
   - type: Inventory
     templateId: plasmaman
   - type: Temperature
-    heatDamageThreshold: 308    # 35 celsius, -17 from base heat damage threshold
-    currentTemperature: 270.15  # -3 celsius
     specificHeat: 46
+    currentTemperature: 270.15  # -3 celsius
+  - type: TemperatureDamage
+    heatDamageThreshold: 308    # 35 celsius, -17 from base heat damage threshold
     coldDamage:
       types:
         Cold: 0
@@ -192,8 +175,6 @@
   - type: TemperatureSpeed
     thresholds:
       243: 0.8
-#  - type: Fart # Orion-Edit: Removed
-#    gasToFart: Plasma
 
 - type: entity
   parent: BaseSpeciesDummy
