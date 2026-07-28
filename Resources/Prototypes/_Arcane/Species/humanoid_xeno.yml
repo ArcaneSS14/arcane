@@ -90,10 +90,16 @@
       points: 1
       required: true
       defaultMarkings: [ HumanoidXenoTracheasDrone ]
-    FeetClaws:
+    LeftFoot:
       points: 1
       required: false
-    ArmClaws:
+    RightFoot:
+      points: 1
+      required: false
+    LeftHand:
+      points: 1
+      required: false
+    RightHand:
       points: 1
       required: false
 

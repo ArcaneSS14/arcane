@@ -8,11 +8,19 @@
     },
     "states": [
         {
-            "name": "chris_claws",
+            "name": "chris_claws_left",
             "directions": 4
         },
         {
-            "name": "razor_feet",
+            "name": "chris_claws_right",
+            "directions": 4
+        },
+        {
+            "name": "razor_feet_left",
+            "directions": 4
+        },
+        {
+            "name": "razor_feet_right",
             "directions": 4
         }
     ]

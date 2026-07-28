@@ -639,22 +639,40 @@
 # Feet
 
 - type: marking
-  id: HumanoidXenoLegsChris
-  bodyPart: LLeg
-  markingCategory: FeetClaws
+  id: HumanoidXenoLegsChrisLeft
+  bodyPart: LFoot
+  markingCategory: LeftFoot
   speciesRestriction: [HumanoidXeno]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
-    state: chris_claws
+    state: chris_claws_left
 
 - type: marking
-  id: HumanoidXenoLegsRazor
-  bodyPart: LLeg
-  markingCategory: FeetClaws
+  id: HumanoidXenoLegsChrisRight
+  bodyPart: RFoot
+  markingCategory: RightFoot
   speciesRestriction: [HumanoidXeno]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
-    state: razor_feet
+    state: chris_claws_right
+
+- type: marking
+  id: HumanoidXenoLegsRazorLeft
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
+    state: razor_feet_left
+
+- type: marking
+  id: HumanoidXenoLegsRazorRight
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
+    state: razor_feet_right
 
 # Arms
 
@@ -706,10 +724,19 @@
 # Hands
 
 - type: marking
-  id: HumanoidXenoHandRazor
-  bodyPart: LArm
-  markingCategory: ArmClaws
+  id: HumanoidXenoHandRazorLeft
+  bodyPart: LHand
+  markingCategory: LeftHand
   speciesRestriction: [HumanoidXeno]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_arms.rsi
-    state: razor_claws
+    state: razor_claws_left
+
+- type: marking
+  id: HumanoidXenoHandRazorRight
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_arms.rsi
+    state: razor_claws_right
