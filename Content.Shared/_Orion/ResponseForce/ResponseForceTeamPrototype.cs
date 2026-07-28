@@ -6,23 +6,23 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared._Orion.ResponseForce;
 
 [Prototype("responseForceTeam")]
-public sealed class ResponseForceTeamPrototype : IPrototype, IInheritingPrototype
+public sealed partial class ResponseForceTeamPrototype : IPrototype, IInheritingPrototype
 {
     /// <summary>
     /// Name of the Response ForceTeam that will be shown at the round end manifest.
     /// </summary>
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ResponseForceTeamPrototype>))]
-    public string[]? Parents { get; }
+    public string[]? Parents { get; private set; }
 
     /// <summary>
     /// Is that Response Force Team is abstract.
     /// </summary>
     [NeverPushInheritance]
     [AbstractDataField]
-    public bool Abstract { get; }
+    public bool Abstract { get; private set; }
 
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     /// <summary>
     /// Name of the Response Force Team that will be shown at the round end manifest.

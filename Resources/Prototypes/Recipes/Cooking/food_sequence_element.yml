@@ -1341,14 +1341,13 @@
 
 # Arachnid Plushie
 
-# Orion-Edit: Plushie removed
-#- type: foodSequenceElement
-#  id: ArachnidPlushie
-#  scale: 0.8, 0.8
-#  name: food-sequence-cotton-burger-content-plushie-arachnid
-#  sprites:
-#  - sprite: Objects/Fun/Plushies/arachnid.rsi
-#    state: icon
+- type: foodSequenceElement
+  id: ArachnidPlushie
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-arachnid
+  sprites:
+  - sprite: Objects/Fun/Plushies/arachnid.rsi
+    state: icon
 
 # Lizard Plushies
 
@@ -1385,14 +1384,13 @@
 
 #Diona Plushie
 
-# Orion-Edit: Plushie removed
-#- type: foodSequenceElement
-#  id: DionaPlushie
-#  scale: 0.8, 0.8
-#  name: food-sequence-cotton-burger-content-plushie-diona
-#  sprites:
-#  - sprite: Objects/Fun/Plushies/diona.rsi
-#    state: plushie_diona
+- type: foodSequenceElement
+  id: DionaPlushie
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-diona
+  sprites:
+  - sprite: Objects/Fun/Plushies/diona.rsi
+    state: plushie_diona
 
 #Shark Plushies
 
@@ -1531,14 +1529,13 @@
 
 #Human Plushie
 
-# Orion-Edit: Plushie removed
-#- type: foodSequenceElement
-#  id: HumanPlushie
-#  scale: 0.8, 0.8
-#  name: food-sequence-cotton-burger-content-plushie-human
-#  sprites:
-#  - sprite: Objects/Fun/Plushies/human.rsi
-#    state: icon
+- type: foodSequenceElement
+  id: HumanPlushie
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-human
+  sprites:
+  - sprite: Objects/Fun/Plushies/human.rsi
+    state: icon
 
 #Moth Plushie
 

@@ -83,7 +83,8 @@ public sealed partial class CargoSystem
         if (args.Account == null)
         {
             var stackPrototype = _protoMan.Index(ent.Comp.CashType);
-            _stack.Spawn(args.Amount, stackPrototype, Transform(ent).Coordinates);
+            var cash = Spawn(stackPrototype.Spawn, Transform(ent).Coordinates);
+            _stack.SetCount(cash, args.Amount);
 
             if (!_emag.CheckFlag(ent, EmagType.Interaction))
             {

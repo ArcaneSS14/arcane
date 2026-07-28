@@ -25091,7 +25091,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -44.5,-16.5
       parent: 2
-- proto: EnergyChemDispenser
+- proto: ChemDispenser
   entities:
   - uid: 3926
     components:
@@ -41831,7 +41831,7 @@ entities:
       parent: 2
     - type: Physics
       canCollide: False
-- proto: MaterialSilo
+- proto: MachineMaterialSilo
   entities:
   - uid: 3425
     components:

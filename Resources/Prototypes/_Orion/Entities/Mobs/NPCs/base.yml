@@ -79,10 +79,12 @@
     speedModifierThresholds:
       50: 0.5
   - type: Stamina
-    critThreshold: 200
+    baseCritThreshold: 200
   - type: Bloodstream
-    bloodReagent: Blood
-    bloodMaxVolume: 10
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 10
     bloodlossThreshold: 0
   - type: Destructible
     thresholds:

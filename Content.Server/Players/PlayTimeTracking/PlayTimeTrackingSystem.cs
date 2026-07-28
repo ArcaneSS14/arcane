@@ -301,6 +301,36 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         return JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(player.UserId).SelectedCharacter);
     }
 
+    /// <summary>
+    /// Checks requirements stored directly on a role entity.
+    /// </summary>
+    public bool CanMeetRoleRequirements(ICommonSession player, HashSet<JobRequirement>? requirements)
+    {
+        if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
+            return true;
+
+        if (HasFullRoleAccess(player))
+            return true;
+
+        if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
+        {
+            Log.Error($"Unable to check playtimes {Environment.StackTrace}");
+            playTimes = new Dictionary<string, TimeSpan>();
+        }
+
+        var profile = (HumanoidCharacterProfile?) _preferencesManager
+            .GetPreferences(player.UserId)
+            .SelectedCharacter;
+
+        return JobRequirements.TryRequirementsMet(
+            requirements,
+            playTimes,
+            out _,
+            EntityManager,
+            _prototypes,
+            profile);
+    }
+
     public HashSet<ProtoId<JobPrototype>> GetDisallowedJobs(ICommonSession player)
     {
         var roles = new HashSet<ProtoId<JobPrototype>>();

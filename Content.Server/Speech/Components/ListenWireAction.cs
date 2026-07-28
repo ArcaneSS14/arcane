@@ -1,11 +1,7 @@
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Chat.Systems;
-using Content.Server.Radio.Components;
+using Content.Shared.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Speech.Components;
 using Content.Server.Wires;
@@ -49,9 +45,12 @@ public sealed partial class ListenWireAction : BaseToggleWireAction
     {
         if (GetValue(wire.Owner))
             return StatusLightState.On;
-        if (TimeoutKey != null && _wires.HasData(wire.Owner, TimeoutKey))
-            return StatusLightState.BlinkingSlow;
-        return StatusLightState.Off;
+        else
+        {
+            if (TimeoutKey != null && _wires.HasData(wire.Owner, TimeoutKey))
+                return StatusLightState.BlinkingSlow;
+            return StatusLightState.Off;
+        }
     }
     public override void ToggleValue(EntityUid owner, bool setting)
     {

@@ -1,64 +1,33 @@
-// SPDX-FileCopyrightText: 2023 Colin-Tel <113523727+Colin-Tel@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Flareguy <78941145+Flareguy@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Crotalus <Crotalus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Hreno <hrenor@gmail.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Conchelle <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Killerqu00 <47712032+Killerqu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Content.Goobstation.Common.CCVar;
-using Content.Goobstation.Common.ServerCurrency;
-using Content.Goobstation.Shared.ManifestListings;
 using Content.Server.GameTicking;
-using Content.Server.Objectives.Commands;
 using Content.Server.Shuttles.Systems;
-using Content.Shared.Administration.Logs;
-using Content.Shared.CCVar;
 using Content.Shared.Cuffs.Components;
-using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
-using Content.Shared.Prototypes;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using System.Linq;
+using System.Text;
+using Content.Goobstation.Common.CCVar;
+using Content.Goobstation.Common.ServerCurrency;
+using Content.Goobstation.Shared.ManifestListings;
+using Content.Server.Objectives.Commands;
+using Content.Shared.CCVar;
+using Content.Shared.Prototypes;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
-using Robust.Shared.Network;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server.Roles;
+using Content.Shared.Administration.Logs;
+using Robust.Shared.Network;
 using Content.Shared.Roles;
+using Content.Server.Roles;
+using Content.Shared.Roles.Components; //Goobstation
 
 namespace Content.Server.Objectives;
 
@@ -66,16 +35,16 @@ namespace Content.Server.Objectives;
 // if you wanna upstream something think twice
 public sealed class ObjectivesSystem : SharedObjectivesSystem
 {
-    [Robust.Shared.IoC.Dependency] private readonly GameTicker _gameTicker = default!;
-    [Robust.Shared.IoC.Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Robust.Shared.IoC.Dependency] private readonly IPlayerManager _player = default!;
-    [Robust.Shared.IoC.Dependency] private readonly IRobustRandom _random = default!;
-    [Robust.Shared.IoC.Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
-    [Robust.Shared.IoC.Dependency] private readonly SharedJobSystem _job = default!;
-    [Robust.Shared.IoC.Dependency] private readonly ICommonCurrencyManager _currencyMan = default!;
-    [Robust.Shared.IoC.Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Robust.Shared.IoC.Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Robust.Shared.IoC.Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
+    [Dependency] private readonly SharedJobSystem _job = default!;
+    [Dependency] private readonly ICommonCurrencyManager _currencyMan = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     private IEnumerable<string>? _objectives;
 
@@ -253,10 +222,10 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                     if (username is null &&
                         userid.HasValue &&
                         _player.TryGetPlayerData(userid.Value, out var data))
-                        username = FormattableStringFactory.Create(data.UserName);
+                        username = System.Runtime.CompilerServices.FormattableStringFactory.Create(data.UserName);
 
-                    _adminLog.Add(LogType.AntagObjective,
-                                    LogImpact.Low,
+                    _adminLog.Add(Shared.Database.LogType.AntagObjective,
+                                    Shared.Database.LogImpact.Low,
                                     $"{username:subject} achieved {progress}% of objective {objectiveTitle}");
 
                     agentSummary.Append("- ");
