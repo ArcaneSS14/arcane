@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
+using Content.Client._RMC14.LinkAccount;
+using Content.Shared._Arcane.Sponsor;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -23,6 +25,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly LinkAccountManager _linkAccount = default!; // Arcane
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
@@ -45,7 +48,10 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
+        _linkAccount.Updated += OnLinkAccountUpdated; // Arcane
     }
+
+    private void OnLinkAccountUpdated() => Updated?.Invoke(); // Arcane
 
     private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
     {
@@ -188,6 +194,15 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     private bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
+
+        // Arcane-Edit-Start
+        if (_playerManager.LocalSession != null &&
+            _linkAccount.Tier != null &&
+            ArcaneSponsorTiers.HasAllRoles(_linkAccount.Tier.Tier))
+        {
+            return true;
+        }
+        // Arcane-Edit-End
 
         if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;

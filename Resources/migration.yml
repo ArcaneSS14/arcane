@@ -975,7 +975,6 @@ MailTeleporter: CargoMailTeleporter
 MaterialSilo: MachineMaterialSilo
 BoxMailCapsulePrimed: null
 VendingMachineMailDrobe: null
-MailMetricsCartridge: null
 WeaponMailLake: null
 ComputerShuttleSalvage: null
 GygaxChassis: null

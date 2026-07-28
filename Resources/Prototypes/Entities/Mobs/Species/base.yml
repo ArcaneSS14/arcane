@@ -253,6 +253,10 @@
   - type: MindControllable # Goobstation
   - type: VisibleContraband # Goobstation
   - type: MomentumSteering # Goobstation - No steer
+  # Arcane-start
+  - type: ErpPanelOwner
+  - type: TTS
+  # Arcane-end
 
 - type: entity
   save: false
@@ -344,6 +348,27 @@
     - Parasite
   - type: ObraDinnBody # Goobstation
   # </Goobstation>
+  # Arcane-start
+  - type: EroticOrgans
+    groinCommon:
+    - proto: OrganAnus
+      slot: anus
+    - proto: OrganButt
+      slot: butt
+    groinMale:
+    - proto: OrganPenisHuman
+      slot: penis
+    - proto: OrganTesticles
+      slot: testicles
+    groinFemale:
+    - proto: OrganVagina
+      slot: vagina
+    - proto: OrganUterus
+      slot: uterus
+    chestFemale:
+    - proto: OrganBreastsHuman
+      slot: breasts
+  # Arcane-end
 
 - type: entity
   save: false

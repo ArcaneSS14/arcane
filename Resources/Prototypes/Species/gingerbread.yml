@@ -10,6 +10,10 @@
   dollPrototype: MobGingerbreadDummy
   skinColoration: HumanToned
   defaultSkinTone: "#9a7c5a"
+  # Orion-Start
+  category: Special
+  description: "/ServerInfo/Guidebook/Mobs/Gingerbread.xml"
+  # Orion-End
 
 - type: speciesBaseSprites
   id: MobGingerbreadSprites

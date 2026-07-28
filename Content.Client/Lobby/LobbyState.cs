@@ -9,6 +9,7 @@ using Content.Client.Message;
 using Content.Client.Playtime;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
+using Content.Goobstation.Common.CCVar;
 using Content.Goobstation.Common.ServerCurrency;
 using Content.Shared.CCVar;
 using Robust.Client;
@@ -43,6 +44,9 @@ namespace Content.Client.Lobby
 
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         public LobbyGui? Lobby;
+        // Arcane-start
+        private bool _discordUnlinkRequested;
+        // Arcane-end
 
         protected override void Startup()
         {
@@ -78,6 +82,7 @@ namespace Content.Client.Lobby
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
             Lobby.CharacterPreview.PatronPerks.OnPressed += OnPatronPerksPressed;
+            Lobby.DiscordLinkButton.OnPressed += OnDiscordLinkPressed; // Arcane
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
             Lobby.ReadyButton.OnToggled += OnReadyToggled;
 
@@ -86,6 +91,7 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
 
             _serverCur.ClientBalanceChange += UpdatePlayerBalance; // Goobstation - Goob Coin
+            _linkAccount.Updated += ApplyDiscordLinkGate; // Arcane
         }
 
         protected override void Shutdown()
@@ -97,11 +103,13 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyLateJoinStatusUpdated -= LobbyLateJoinStatusUpdated;
             _contentAudioSystem.LobbySoundtrackChanged -= UpdateLobbySoundtrackInfo;
             _serverCur.ClientBalanceChange -= UpdatePlayerBalance; // Goobstation - Goob Coin
+            _linkAccount.Updated -= ApplyDiscordLinkGate; // Arcane
 
             _voteManager.ClearPopupContainer();
 
             Lobby!.CharacterPreview.CharacterSetupButton.OnPressed -= OnSetupPressed;
             Lobby.CharacterPreview.PatronPerks.OnPressed -= OnPatronPerksPressed;
+            Lobby.DiscordLinkButton.OnPressed -= OnDiscordLinkPressed; // Arcane
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
 
@@ -124,6 +132,17 @@ namespace Content.Client.Lobby
         {
             _userInterfaceManager.GetUIController<LinkAccountUIController>().TogglePatronPerksWindow();
         }
+
+        // Arcane-start
+        private void OnDiscordLinkPressed(BaseButton.ButtonEventArgs args)
+        {
+            if (!_linkAccount.Linked)
+                return;
+
+            _discordUnlinkRequested = true;
+            _userInterfaceManager.GetUIController<LinkAccountUIController>().RequestUnlink();
+        }
+        // Arcane-end
 
         private void OnReadyPressed(BaseButton.ButtonEventArgs args)
         {
@@ -192,6 +211,7 @@ namespace Content.Client.Lobby
         private void LobbyLateJoinStatusUpdated()
         {
             Lobby!.ReadyButton.Disabled = _gameTicker.DisallowedLateJoin;
+            ApplyDiscordLinkGate(); // Arcane
         }
 
         private void UpdateLobbyUi()
@@ -221,6 +241,7 @@ namespace Content.Client.Lobby
             }
 
             UpdatePlayerBalance(); // Goobstation - Goob Coin
+            ApplyDiscordLinkGate(); // Arcane
 
             var minutesToday = _playtimeTracking.PlaytimeMinutesToday;
             if (minutesToday > 60)
@@ -241,7 +262,51 @@ namespace Content.Client.Lobby
             }
             else
                 Lobby!.PlaytimeComment.Visible = false;
+
+            UpdateSponsorTier(); // Arcane
         }
+
+        // Arcane-start
+        private void ApplyDiscordLinkGate()
+        {
+            if (Lobby == null)
+                return;
+
+            var linkRequired = _cfg.GetCVar(GoobCVars.RMCDiscordAccountLinkRequired);
+            var roleRequired = _cfg.GetCVar(GoobCVars.RMCDiscordAccountPlayerRoleRequired);
+            var linked = _linkAccount.Linked;
+            var hasRequiredRole = !roleRequired || _linkAccount.HasPlayerRole;
+            var canPlay = !linkRequired || linked && hasRequiredRole;
+
+            Lobby.DiscordLinkButton.Visible = linked;
+            Lobby.DiscordLinkButton.Disabled = _discordUnlinkRequested;
+            Lobby.DiscordLinkButton.Text = Loc.GetString("rmc-ui-unlink-discord-account");
+
+            Lobby.DiscordLinkStatus.Visible = linkRequired && !canPlay;
+            if (linkRequired && !linked)
+                Lobby.DiscordLinkStatus.SetMarkup(Loc.GetString("rmc-ui-discord-link-required"));
+            else if (linkRequired && !hasRequiredRole)
+                Lobby.DiscordLinkStatus.SetMarkup(Loc.GetString("rmc-ui-discord-player-role-required"));
+
+            if (!canPlay)
+            {
+                Lobby.ReadyButton.Disabled = true;
+                Lobby.ObserveButton.Disabled = true;
+            }
+
+            UpdateSponsorTier();
+        }
+
+        private void UpdateSponsorTier()
+        {
+            if (Lobby == null)
+                return;
+
+            Lobby.SponsorTier.Text = _linkAccount.Tier != null
+                ? Loc.GetString($"{_linkAccount.Tier.Tier}-patron-name")
+                : Loc.GetString("not-patron-name");
+        }
+        // Arcane-end
 
         private void UpdateLobbySoundtrackInfo(LobbySoundtrackChangedEvent ev)
         {
