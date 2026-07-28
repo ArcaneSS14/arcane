@@ -287,6 +287,16 @@ public sealed class ClientClothingSystem : ClothingSystem
         if (!slotLayerExists)
             slotLayerExists = _sprite.LayerMapTryGet((equipee, sprite), slot, out index, false);
 
+        // Orion-Edit-Start: Keep underwear below the jumpsuit after upstream removed its dedicated layer bookmarks.
+        if (!slotLayerExists &&
+            (slot is "underwear" or "undershirt" or "socks") &&
+            _sprite.LayerMapTryGet((equipee, sprite), Jumpsuit, out index, false))
+        {
+            index--;
+            slotLayerExists = true;
+        }
+        // Orion-Edit-End
+
         var hiddenEv = new CheckClothingSlotHiddenEvent(slot);
         RaiseLocalEvent(equipee, ref hiddenEv);
         // Goob edit end
