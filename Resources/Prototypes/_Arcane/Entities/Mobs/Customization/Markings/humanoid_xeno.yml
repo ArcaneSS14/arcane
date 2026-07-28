@@ -188,8 +188,6 @@
     state: razor_tail
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: razor_tail_grad
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
-    state: razor_tail_spike
 
 # Head
 

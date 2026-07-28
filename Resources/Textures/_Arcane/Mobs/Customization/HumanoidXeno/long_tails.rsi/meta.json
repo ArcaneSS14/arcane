@@ -72,10 +72,6 @@
             "directions": 4
         },
         {
-            "name": "razor_tail_spike",
-            "directions": 4
-        },
-        {
             "name": "razor_tail",
             "directions": 4
         }
