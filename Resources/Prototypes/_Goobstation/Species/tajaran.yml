@@ -12,6 +12,20 @@
   maleFirstNames: NamesTajaranFirst
   femaleFirstNames: NamesTajaranFirst
   lastNames: NamesTajaranLast
+  # Orion-Start
+  category: Classic
+  description: "/ServerInfo/_Orion/SpeciesDescriptions/Tajaran.xml"
+  pros:
+  - Получают на 20% меньше холодного урона.
+  - Нейтрализуют 99% урона от падения, или удара об что-то.
+  special:
+  - Не издают звуков ходьбы, если не носят обуви.
+  - Могут поместится в вещмешок.
+  cons:
+  - Получают на 15% больше тупого, колющего и режущего урона.
+  - Получают на 20% больше огненного урона.
+  - Стамина меньше на 25%, чем у человека.
+  # Orion-End
   # begin Goobstation: port EE height/width sliders
   minHeight: 0.85
   defaultHeight: 0.90

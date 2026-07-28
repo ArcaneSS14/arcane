@@ -13,6 +13,19 @@
   maleFirstNames: NamesMothFirstMale
   femaleFirstNames: NamesMothFirstFemale
   lastNames: NamesMothLast
+  # Orion-Start
+  category: Classic
+  description: "/ServerInfo/_Orion/SpeciesDescriptions/Moth.xml"
+  pros:
+  - Получают на 30% меньше урона холодом.
+  - Могут совершать протяжный прыжок благодаря крыльям.
+  - Передвигаются гораздо лучше без гравитации, чем человек.
+  special:
+  - Имеют отличимый от других рас порог температуры. При низкой температуре получают 0.05 холода в секунду; При высокой температуре получают 3 ожогов в секунду.
+  cons:
+  - Получают на 30% больше урона огнём.
+  - Легко возгораемые.
+  # Orion-End
   # begin Goobstation: port EE height/width sliders
   minHeight: 0.8
   defaultHeight: 1
