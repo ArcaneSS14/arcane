@@ -14,9 +14,14 @@ namespace Content.Goobstation.Server.SecondSkin;
 
 public sealed class DisgustSystem : EntitySystem
 {
+    // Arcane-start
+    private const float DisgustUpdateInterval = 1f;
+    private float _disgustUpdateAccumulator;
+    // Arcane-end
+
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly AlertsSystem _alets = default!;
-    [Dependency] private readonly SharedEntityEffectSystem _effect = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _effect = default!;
 
     public override void Initialize()
     {
@@ -41,13 +46,22 @@ public sealed class DisgustSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // Arcane-start
+        _disgustUpdateAccumulator += frameTime;
+        if (_disgustUpdateAccumulator < DisgustUpdateInterval)
+            return;
+
+        var elapsed = _disgustUpdateAccumulator;
+        _disgustUpdateAccumulator = 0f;
+        // Arcane-end
+
         var siliconQuery = GetEntityQuery<SiliconComponent>();
         var godmodeQuery = GetEntityQuery<GodmodeComponent>();
 
         var query = EntityQueryEnumerator<DisgustComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var disgust, out var mobstete))
         {
-            disgust.Accumulator += frameTime;
+            disgust.Accumulator += elapsed; // Arcane
 
             if (disgust.Accumulator < disgust.UpdateTime)
                 continue;
@@ -89,7 +103,6 @@ public sealed class DisgustSystem : EntitySystem
         if (ent.Comp.Level <= 0f)
             return;
 
-        var args = new EntityEffectBaseArgs(ent, EntityManager);
         foreach (var (level, effects) in ent.Comp.EffectsThresholds)
         {
             if (ent.Comp.Level < level)
@@ -97,10 +110,9 @@ public sealed class DisgustSystem : EntitySystem
 
             foreach (var effect in effects)
             {
-                if (!effect.ShouldApply(args, _random))
-                    break; // If one of the effects cant be applied, then the rest of them are not applied
+                if (!_effect.TryApplyEffect(ent.Owner, effect))
+                    break; // preserve original behavior
 
-                _effect.Effect(effect, args);
             }
         }
     }
@@ -109,7 +121,7 @@ public sealed class DisgustSystem : EntitySystem
     {
         if (ent.Comp.Level <= 0f)
         {
-            _alets.ClearAlert(ent, ent.Comp.Alert);
+            _alets.ClearAlert(ent.Owner, ent.Comp.Alert);
             return;
         }
 
@@ -121,8 +133,8 @@ public sealed class DisgustSystem : EntitySystem
         }
 
         if (severity == 0)
-            _alets.ClearAlert(ent, ent.Comp.Alert);
+            _alets.ClearAlert(ent.Owner, ent.Comp.Alert);
         else
-            _alets.ShowAlert(ent, ent.Comp.Alert, severity);
+            _alets.ShowAlert(ent.Owner, ent.Comp.Alert, severity);
     }
 }

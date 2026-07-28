@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
@@ -12,6 +9,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.NameIdentifier;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Server.Xenobiology.XenobiologyBountyConsole;
@@ -22,8 +20,14 @@ public sealed class StationXenobiologyBountyDatabaseSystem : EntitySystem
     [Dependency] private readonly NameIdentifierSystem _nameIdentifier = default!;
     [Dependency] private readonly XenobiologyBountyConsoleSystem _xenoConsole = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
-    private static readonly ProtoId<NameIdentifierGroupPrototype> BountyNameIdentifierGroup = "Bounty";
+    private static readonly ProtoId<NameIdentifierGroupPrototype> BountyNameIdentifierGroup = "XenobioBounty";
+
+    // Arcane-start
+    private static readonly TimeSpan MarketUpdateInterval = TimeSpan.FromSeconds(5);
+    private TimeSpan _nextMarketUpdate;
+    // Arcane-end
 
     public override void Initialize()
     {
@@ -39,6 +43,13 @@ public sealed class StationXenobiologyBountyDatabaseSystem : EntitySystem
     public override void Update(float frametime)
     {
         base.Update(frametime);
+
+        // Arcane-start
+        if (_timing.CurTime < _nextMarketUpdate)
+            return;
+
+        _nextMarketUpdate = _timing.CurTime + MarketUpdateInterval;
+        // Arcane-end
 
         var query = EntityQueryEnumerator<StationXenobiologyBountyDatabaseComponent>();
         while (query.MoveNext(out var uid, out var db))
@@ -57,12 +68,36 @@ public sealed class StationXenobiologyBountyDatabaseSystem : EntitySystem
         if (!Resolve(database, ref database.Comp))
             return;
 
-        var bounties = _proto.EnumeratePrototypes<XenobiologyBountyPrototype>();
-        foreach (var bounty in bounties)
-            TryAddBounty(database, bounty);
+        while (database.Comp.Bounties.Count < database.Comp.MaxBounties)
+        {
+            if (!TryAddBounty(database))
+                break;
+        }
 
         SortBounties(database.Comp);
         _xenoConsole.UpdateBountyConsoles();
+    }
+
+    public bool TryAddBounty(EntityUid uid, StationXenobiologyBountyDatabaseComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return false;
+
+        // todo: consider making the cargo bounties weighted.
+        var allBounties = _proto.EnumeratePrototypes<XenobiologyBountyPrototype>()
+            .Where(p => p.Group == component.Group)
+            .ToList();
+        var filteredBounties = new List<XenobiologyBountyPrototype>();
+        foreach (var proto in allBounties)
+        {
+            if (component.Bounties.Any(b => b.Bounty == proto.ID))
+                continue;
+            filteredBounties.Add(proto);
+        }
+
+        var pool = filteredBounties.Count == 0 ? allBounties : filteredBounties;
+        var bounty = _random.Pick(pool);
+        return TryAddBounty(uid, bounty, component);
     }
 
     public void RerollBountyDatabase(Entity<StationXenobiologyBountyDatabaseComponent?> entity)
@@ -85,6 +120,9 @@ public sealed class StationXenobiologyBountyDatabaseSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
+        if (component.Bounties.Count >= component.MaxBounties)
+            return false;
+
         _nameIdentifier.GenerateUniqueName(uid, BountyNameIdentifierGroup, out var randomVal);
         var newBounty = new XenobiologyBountyData(bounty, randomVal);
 
@@ -95,6 +133,7 @@ public sealed class StationXenobiologyBountyDatabaseSystem : EntitySystem
         }
 
         component.Bounties.Add(newBounty);
+        component.TotalBounties++;
         return true;
     }
 

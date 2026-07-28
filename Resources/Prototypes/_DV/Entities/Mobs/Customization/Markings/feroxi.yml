@@ -270,7 +270,7 @@
   id: FeroxiTipTwoToneTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Feroxi ]
+  speciesRestriction: [ Feroxi, Human, Dwarf, Felinid, SlimePerson ] # Arcane-Edit
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Feroxi/tail_markings.rsi #RedTerror Goob Resprite
     state: feroxi-tail

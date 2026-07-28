@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Orion.Economy.Prototypes;
 
 [Prototype("marketCommodity")]
-public sealed class MarketCommodityPrototype : IPrototype
+public sealed partial class MarketCommodityPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

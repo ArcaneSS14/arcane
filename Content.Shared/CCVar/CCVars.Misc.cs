@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Robust.Shared.Configuration;
@@ -38,6 +35,13 @@ public sealed partial class CCVars
     public static readonly CVarDef<float> AfkTime =
         CVarDef.Create("afk.time", 60f, CVar.SERVERONLY);
 
+    /// <summary>
+    ///     Whether idle players sitting in the lobby or as an unattached ghost should be disconnected by
+    ///     <c>AfkKickSystem</c>. Disabled in integration tests, where a client can stay unattached for the
+    ///     whole test without actually being an idle player.
+    /// </summary>
+    public static readonly CVarDef<bool> AfkKickEnabled =
+        CVarDef.Create("afk.kick_enabled", true, CVar.SERVERONLY); // Arcane
     /// <summary>
     ///     Flavor limit. This is to ensure that having a large mass of flavors in
     ///     some food object won't spam a user with flavors.

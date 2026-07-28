@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -42,12 +35,12 @@ public sealed class SelectableAmmoSystem : EntitySystem
     private void OnExamine(Entity<AmmoSelectorComponent> ent, ref ExaminedEvent args)
     {
         // Orion-Edit-Start
-        var entId = GetProviderProtoId(ent); // GetProviderProtoName -> GetProviderProtoId // name -> entId
-
-        if (entId == null) // name -> entId
+        var prototypeId = GetProviderProtoId(ent);
+        if (prototypeId == null)
             return;
 
-        args.PushMarkup(Loc.GetString("ammo-selector-examine-mode", ("mode", Loc.GetString("ent-" + entId)))); // name -> loc // name -> Loc.GetString("ent-" + entId)
+        args.PushMarkup(Loc.GetString("ammo-selector-examine-mode",
+            ("mode", Loc.GetString($"ent-{prototypeId}"))));
         // Orion-Edit-End
     }
 
@@ -66,9 +59,10 @@ public sealed class SelectableAmmoSystem : EntitySystem
             return;
 
         // Orion-Edit-Start
-        var entId = GetProviderProtoId(ent); // GetProviderProtoName -> GetProviderProtoId // name -> entId
-        if (entId != null) // name -> entId
-            _popup.PopupClient(Loc.GetString("mode-selected", ("mode", Loc.GetString("ent-" + entId))), ent, args.Actor); // ("mode", name) -> ("mode", Loc.GetString("ent-" + entId))
+        var prototypeId = GetProviderProtoId(ent);
+        if (prototypeId != null)
+            _popup.PopupClient(Loc.GetString("mode-selected",
+                ("mode", Loc.GetString($"ent-{prototypeId}"))), ent, args.Actor);
         // Orion-Edit-End
         _audio.PlayPredicted(ent.Comp.SoundSelect, ent, args.Actor);
     }
@@ -103,19 +97,16 @@ public sealed class SelectableAmmoSystem : EntitySystem
     }
 
     // Orion-Edit-Start
-    private string? GetProviderProtoId(EntityUid uid) // GetProviderProtoName -> GetProviderProtoId
+    private string? GetProviderProtoId(EntityUid uid)
     {
         if (TryComp(uid, out BasicEntityAmmoProviderComponent? basic) && basic.Proto != null)
-            return _protoManager.TryIndex(basic.Proto, out var index) ? index.ID : null; // index.Name -> index.ID
+            return _protoManager.TryIndex(basic.Proto, out var index) ? index.ID : null;
 
-        if (TryComp(uid, out HitscanBatteryAmmoProviderComponent? hitscanBattery))
-            return _protoManager.TryIndex(hitscanBattery.Prototype, out var index) ? index.ID : null; // index.Name -> index.ID
-
-        if (TryComp(uid, out ProjectileBatteryAmmoProviderComponent? projectileBattery))
-            return _protoManager.TryIndex(projectileBattery.Prototype, out var index) ? index.ID : null; // index.Name -> index.ID
+        if (TryComp(uid, out BatteryAmmoProviderComponent? battery))
+            return _protoManager.TryIndex(battery.Prototype, out var index) ? index.ID : null;
 
         if (TryComp(uid, out ChangelingChemicalsAmmoProviderComponent? chemicals))
-            return _protoManager.TryIndex(chemicals.Proto, out var index) ? index.ID : null; // index.Name -> index.ID
+            return _protoManager.TryIndex(chemicals.Proto, out var index) ? index.ID : null;
 
         // Add more providers if needed
 
@@ -132,7 +123,7 @@ public sealed class SelectableAmmoSystem : EntitySystem
         }
 
         // this entire system makes me want to sob but im not touching this shit more than i have to
-        if (TryComp(uid, out HitscanBatteryAmmoProviderComponent? hitscanBattery))
+        if (TryComp(uid, out BatteryAmmoProviderComponent? hitscanBattery))
         {
             hitscanBattery.Prototype = proto.ProtoId;
             if (!ShouldSetFireCost(proto))
@@ -144,24 +135,6 @@ public sealed class SelectableAmmoSystem : EntitySystem
             hitscanBattery.Shots = (int) Math.Round(hitscanBattery.Shots / fireCostDiff);
             hitscanBattery.Capacity = (int) Math.Round(hitscanBattery.Capacity / fireCostDiff);
             Dirty(uid, hitscanBattery);
-            var updateClientAmmoEvent = new UpdateClientAmmoEvent();
-            RaiseLocalEvent(uid, ref updateClientAmmoEvent);
-            return true;
-        }
-
-        if (TryComp(uid, out ProjectileBatteryAmmoProviderComponent? projectileBattery))
-        {
-            projectileBattery.Prototype = proto.ProtoId;
-            if (!ShouldSetFireCost(proto))
-                return true;
-            var oldFireCost = projectileBattery.FireCost;
-            projectileBattery.FireCost = proto.FireCost;
-            var fireCostDiff =  proto.FireCost / oldFireCost;
-            projectileBattery.Shots = (int) Math.Round(projectileBattery.Shots / fireCostDiff);
-            projectileBattery.Capacity = (int) Math.Round(projectileBattery.Capacity / fireCostDiff);
-            Dirty(uid, projectileBattery);
-            var updateClientAmmoEvent = new UpdateClientAmmoEvent();
-            RaiseLocalEvent(uid, ref updateClientAmmoEvent);
             return true;
         }
 

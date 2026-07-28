@@ -3,6 +3,7 @@ using Content.Shared._Arcane.CCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.Voting;
 using Robust.Shared.Configuration;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Arcane.AutoVoting;
 
@@ -32,7 +33,10 @@ public sealed partial class AutoVotingSystem : EntitySystem
         if (!_enabled)
             return;
 
-        _voteManager.CreateStandardVote(null, StandardVoteType.Preset);
-        _voteManager.CreateStandardVote(null, StandardVoteType.Map);
+        Timer.Spawn(TimeSpan.FromSeconds(25), () =>
+        {
+            _voteManager.CreateStandardVote(null, StandardVoteType.Preset);
+            _voteManager.CreateStandardVote(null, StandardVoteType.Map);
+        });
     }
 }

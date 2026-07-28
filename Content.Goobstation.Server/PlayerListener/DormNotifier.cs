@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
@@ -65,7 +60,7 @@ public sealed class DormNotifier : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRestartCleanup);
     }
 
-    private int _clock;
+    private float _checkAccumulator; // Arcane
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -73,13 +68,13 @@ public sealed class DormNotifier : EntitySystem
         if (!_enabled || _frequency <= 0)
             return;
 
-        if (_clock <= _frequency)
-        {
-            _clock++;
+        // Arcane-start
+        _checkAccumulator += frameTime;
+        if (_checkAccumulator < _frequency)
             return;
-        }
 
-        _clock = 0;
+        _checkAccumulator = 0f;
+        // Arcane-end
         Check();
     }
 
@@ -263,17 +258,34 @@ public sealed class DormNotifier : EntitySystem
         if (!TryGetDormNotifierEntity(out var ent))
             return false;
 
-        var master = ent.Value.Comp.Condemned.Concat(ent.Value.Comp.Potential);
-        var entities = new HashSet<int>(master.SelectMany(m => m.Condemned.Select(c => c.Id)));
+        // Arcane-start
+        foreach (var existing in ent.Value.Comp.Condemned)
+        {
+            if (existing.Condemned.Overlaps(condemnation.Condemned))
+                return true;
+        }
 
-        return condemnation.Condemned.Any(con => entities.Contains(con.Id));
+        foreach (var existing in ent.Value.Comp.Potential)
+        {
+            if (existing.Condemned.Overlaps(condemnation.Condemned))
+                return true;
+        }
+
+        return false;
+        // Arcane-end
     }
 
     private void QueueRecheck(TimeSpan seconds, Condemnation potential, bool expedited = false)
     {
         var cts = new CancellationTokenSource();
         _tokens.Add(cts);
-        Timer.Spawn(seconds, () => Recheck(potential, expedited), cts.Token);
+        // Arcane-start
+        Timer.Spawn(seconds, () =>
+        {
+            _tokens.Remove(cts);
+            Recheck(potential, expedited);
+        }, cts.Token);
+        // Arcane-end
     }
 
     private void OnRoundStart(RoundStartingEvent args)
@@ -294,5 +306,7 @@ public sealed class DormNotifier : EntitySystem
         {
             token.Cancel();
         }
+
+        _tokens.Clear(); // Arcane
     }
 }

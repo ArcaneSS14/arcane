@@ -1,85 +1,33 @@
-// SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Slava0135 <40753025+Slava0135@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 12rabbits <53499656+12rabbits@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Alzore <140123969+Blackern5000@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Brandon Hu <103440971+Brandon-Huu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Dimastra <65184747+Dimastra@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Dimastra <dimastra@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Eoin Mcloughlin <helloworld@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 JIPDawg <51352440+JIPDawg@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 JIPDawg <JIPDawg93@gmail.com>
-// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-// SPDX-FileCopyrightText: 2024 Moomoobeef <62638182+Moomoobeef@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 PJBot <pieterjan.briers+bot@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 PopGamer46 <yt1popgamer@gmail.com>
-// SPDX-FileCopyrightText: 2024 PursuitInAshes <pursuitinashes@gmail.com>
-// SPDX-FileCopyrightText: 2024 QueerNB <176353696+QueerNB@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Saphire Lattice <lattice@saphi.re>
-// SPDX-FileCopyrightText: 2024 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Spessmann <156740760+Spessmann@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Thomas <87614336+Aeshus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 YourUsername <you@example.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 godisdeadLOL <169250097+godisdeadLOL@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 stellar-novas <stellar_novas@riseup.net>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
-using System.Numerics;
-using Content.Server._Orion.Bitrunning.Components;
 using Content.Server.Administration.Logs;
-using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Emp;
+using Content.Server._Orion.Bitrunning.Components;
 using Content.Shared._Orion.Bitrunning.Components;
+using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Chat; // Einstein Engines - Languages
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
-using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Power;
-using Content.Shared.Silicons.StationAi;
 using Content.Shared.SurveillanceCamera;
-using Content.Shared.Verbs;
+using Content.Shared.SurveillanceCamera.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.SurveillanceCamera;
 
-public sealed class SurveillanceCameraSystem : EntitySystem
+public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly ViewSubscriberSystem _viewSubscriberSystem = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!; // Goobstation
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedStationAiSystem _stationAiSystem = default!; // Orion
 
 
     // Pings a surveillance camera subnet. All cameras will always respond
@@ -113,45 +61,15 @@ public sealed class SurveillanceCameraSystem : EntitySystem
 
     public const int CameraNameLimit = 32;
 
-    // Orion-Start
-    private const float AiViewerActivationRange = 7f;
-    private const float VisualRefreshInterval = 1f;
-    private float _visualRefreshAccumulator;
-    private readonly List<(MapId Map, Vector2 Position)> _activeAiObservers = new();
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        _visualRefreshAccumulator += frameTime;
-        if (_visualRefreshAccumulator < VisualRefreshInterval)
-            return;
-
-        _visualRefreshAccumulator = 0f;
-        RefreshActiveAiObservers();
-
-        var query = EntityQueryEnumerator<SurveillanceCameraComponent>();
-        while (query.MoveNext(out var uid, out var camera))
-        {
-            if (!camera.Active)
-                continue;
-
-            UpdateVisuals(uid, camera);
-        }
-    }
-    // Orion-End
-
     public override void Initialize()
     {
+        base.Initialize();
+
         SubscribeLocalEvent<SurveillanceCameraComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SurveillanceCameraComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<SurveillanceCameraComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<SurveillanceCameraComponent, SurveillanceCameraSetupSetName>(OnSetName);
         SubscribeLocalEvent<SurveillanceCameraComponent, SurveillanceCameraSetupSetNetwork>(OnSetNetwork);
-        SubscribeLocalEvent<SurveillanceCameraComponent, GetVerbsEvent<AlternativeVerb>>(AddVerbs);
-
-        SubscribeLocalEvent<SurveillanceCameraComponent, EmpPulseEvent>(OnEmpPulse);
-        SubscribeLocalEvent<SurveillanceCameraComponent, EmpDisabledRemoved>(OnEmpDisabledRemoved);
     }
 
     private void OnPacketReceived(EntityUid uid, SurveillanceCameraComponent component, DeviceNetworkPacketEvent args)
@@ -168,11 +86,11 @@ public sealed class SurveillanceCameraSystem : EntitySystem
 
         if (args.Data.TryGetValue(DeviceNetworkConstants.Command, out string? command))
         {
-            var payload = new NetworkPayload
+            var payload = new NetworkPayload()
             {
                 { DeviceNetworkConstants.Command, string.Empty },
                 { CameraAddressData, deviceNet.Address },
-                { CameraNameData, component.CameraId },
+                { CameraNameData, component.UseEntityNameAsCameraId ? MetaData(uid).EntityName : component.CameraId },
                 { CameraSubnetData, string.Empty }
             };
 
@@ -209,7 +127,9 @@ public sealed class SurveillanceCameraSystem : EntitySystem
                     if (TryComp(uid, out TransformComponent? transformComponent))
                     {
                         // Decoupling the bodycam/nopro from the wearer, otherwise we'll just keep seeing the last known owner move around on the map
-                        payload[CameraNetEntity] = (GetNetEntity(uid), GetNetCoordinates(transformComponent.Coordinates)); // Orion-Edit
+                        payload[CameraNetEntity] = component.Mobile ?
+                            (GetNetEntity(uid), GetNetCoordinates(_transformSystem.ToCoordinates(uid, _transformSystem.ToMapCoordinates(transformComponent.Coordinates)))) :
+                            (GetNetEntity(uid), GetNetCoordinates(transformComponent.Coordinates));
                         payload[CameraMobile] = component.Mobile;
                     }
                     // Goobstation end
@@ -223,26 +143,6 @@ public sealed class SurveillanceCameraSystem : EntitySystem
                 payload);
         }
     }
-
-    private void AddVerbs(EntityUid uid, SurveillanceCameraComponent component, GetVerbsEvent<AlternativeVerb> verbs)
-    {
-        if (!_actionBlocker.CanInteract(verbs.User, uid) || !_actionBlocker.CanComplexInteract(verbs.User))
-        {
-            return;
-        }
-
-        if (component.NameSet && component.NetworkSet)
-        {
-            return;
-        }
-
-        AlternativeVerb verb = new();
-        verb.Text = Loc.GetString("surveillance-camera-setup");
-        verb.Act = () => OpenSetupInterface(uid, verbs.User, component);
-        verbs.Verbs.Add(verb);
-    }
-
-
 
     private void OnPowerChanged(EntityUid camera, SurveillanceCameraComponent component, ref PowerChangedEvent args)
     {
@@ -266,6 +166,7 @@ public sealed class SurveillanceCameraSystem : EntitySystem
 
         component.CameraId = args.Name;
         component.NameSet = true;
+        Dirty(uid, component);
         UpdateSetupInterface(uid, component);
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(args.Actor)} set the name of {ToPrettyString(uid)} to \"{args.Name}.\"");
     }
@@ -283,7 +184,7 @@ public sealed class SurveillanceCameraSystem : EntitySystem
             return;
         }
 
-        if (!_prototypeManager.TryIndex<DeviceFrequencyPrototype>(component.AvailableNetworks[args.Network],
+        if (!_prototypeManager.Resolve<DeviceFrequencyPrototype>(component.AvailableNetworks[args.Network],
                 out var frequency))
         {
             return;
@@ -291,29 +192,11 @@ public sealed class SurveillanceCameraSystem : EntitySystem
 
         _deviceNetworkSystem.SetReceiveFrequency(uid, frequency.Frequency);
         component.NetworkSet = true;
+        Dirty(uid, component);
         UpdateSetupInterface(uid, component);
     }
 
-    // Orion-Start
-    public void ConfigureCameraNetwork(EntityUid uid, ProtoId<DeviceFrequencyPrototype> receiveFrequencyId, ProtoId<DeviceFrequencyPrototype>? transmitFrequencyId = null, SurveillanceCameraComponent? camera = null, DeviceNetworkComponent? deviceNet = null)
-    {
-        if (!Resolve(uid, ref camera, ref deviceNet))
-            return;
-
-        deviceNet.ReceiveFrequencyId = receiveFrequencyId;
-
-        if (transmitFrequencyId != null)
-            deviceNet.TransmitFrequencyId = transmitFrequencyId.Value;
-
-        if (!camera.AvailableNetworks.Contains(receiveFrequencyId))
-            camera.AvailableNetworks.Add(receiveFrequencyId);
-
-        camera.NetworkSet = true;
-        Dirty(uid, deviceNet);
-    }
-    // Orion-End
-
-    private void OpenSetupInterface(EntityUid uid, EntityUid player, SurveillanceCameraComponent? camera = null)
+    protected override void OpenSetupInterface(EntityUid uid, EntityUid player, SurveillanceCameraComponent? camera = null)
     {
         if (!Resolve(uid, ref camera))
             return;
@@ -350,7 +233,8 @@ public sealed class SurveillanceCameraSystem : EntitySystem
             }
         }
 
-        var state = new SurveillanceCameraSetupBoundUiState(camera.CameraId, deviceNet.ReceiveFrequency ?? 0,
+        var name = camera.UseEntityNameAsCameraId ? MetaData(uid).EntityName : camera.CameraId;
+        var state = new SurveillanceCameraSetupBoundUiState(name, deviceNet.ReceiveFrequency ?? 0,
             camera.AvailableNetworks, camera.NameSet, camera.NetworkSet);
         _userInterface.SetUiState(uid, SurveillanceCameraSetupUiKey.Camera, state);
     }
@@ -366,7 +250,7 @@ public sealed class SurveillanceCameraSystem : EntitySystem
 
         var ev = new SurveillanceCameraDeactivateEvent(camera);
 
-        RemoveActiveViewers(camera, new(component.ActiveViewers.Keys), null, component); // Orion-Edit
+        RemoveActiveViewers(camera, new(component.ActiveViewers.Keys), null, component);
         component.Active = false;
 
         // Send a targetted event to all monitors.
@@ -383,7 +267,7 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         UpdateVisuals(camera, component);
     }
 
-    public void SetActive(EntityUid camera, bool setting, SurveillanceCameraComponent? component = null)
+    public override void SetActive(EntityUid camera, bool setting, SurveillanceCameraComponent? component = null)
     {
         if (!Resolve(camera, ref component))
         {
@@ -415,11 +299,9 @@ public sealed class SurveillanceCameraSystem : EntitySystem
             return;
         }
 
-        // Orion-Edit-Start
         var subscribeTarget = ResolveSubscribeTarget(camera);
         _viewSubscriberSystem.AddViewSubscriber(subscribeTarget, actor.PlayerSession);
         component.ActiveViewers[player] = subscribeTarget;
-        // Orion-Edit-End
 
         if (monitor != null)
         {
@@ -478,14 +360,11 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         if (!Resolve(camera, ref component))
             return;
 
-        // Orion-Start
-        var subscribeTarget = ResolveSubscribeTarget(camera);
-        if (component.ActiveViewers.TryGetValue(player, out var storedTarget))
-            subscribeTarget = storedTarget;
-        // Orion-End
-
         if (Resolve(player, ref actor))
-            _viewSubscriberSystem.RemoveViewSubscriber(subscribeTarget, actor.PlayerSession); // Orion-Edit
+        {
+            var subscribeTarget = component.ActiveViewers.GetValueOrDefault(player, camera);
+            _viewSubscriberSystem.RemoveViewSubscriber(subscribeTarget, actor.PlayerSession);
+        }
 
         component.ActiveViewers.Remove(player);
 
@@ -496,37 +375,6 @@ public sealed class SurveillanceCameraSystem : EntitySystem
 
         UpdateVisuals(camera, component);
     }
-
-    // Orion-Start
-    public void ClearActiveViewers(EntityUid camera, SurveillanceCameraComponent? component = null)
-    {
-        if (!Resolve(camera, ref component))
-            return;
-
-//        var subscribeTarget = ResolveSubscribeTarget(camera); // Orion-Edit
-        foreach (var (viewer, subscribeTarget) in component.ActiveViewers.ToArray()) // Orion-Edit
-        {
-            if (!TryComp<ActorComponent>(viewer, out var actor))
-                continue;
-
-            _viewSubscriberSystem.RemoveViewSubscriber(subscribeTarget, actor.PlayerSession);
-        }
-
-        component.ActiveViewers.Clear();
-        UpdateVisuals(camera, component);
-    }
-
-    private EntityUid ResolveSubscribeTarget(EntityUid camera)
-    {
-        if (TryComp<AvatarNavRelayComponent>(camera, out var relay) && relay.RelayEntity is { } relayUid && Exists(relayUid))
-            return relayUid;
-
-        if (TryComp<NetpodComponent>(camera, out var pod) && pod.Avatar is { } avatar && Exists(avatar))
-            return avatar;
-
-        return camera;
-    }
-    // Orion-End
 
     public void RemoveActiveViewers(EntityUid camera, HashSet<EntityUid> players, EntityUid? monitor = null, SurveillanceCameraComponent? component = null)
     {
@@ -548,6 +396,52 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         }
     }
 
+    // Orion-Start
+    public void ConfigureCameraNetwork(
+        EntityUid uid,
+        ProtoId<DeviceFrequencyPrototype> receiveFrequencyId,
+        ProtoId<DeviceFrequencyPrototype>? transmitFrequencyId = null,
+        SurveillanceCameraComponent? camera = null,
+        DeviceNetworkComponent? deviceNet = null)
+    {
+        if (!Resolve(uid, ref camera, ref deviceNet))
+            return;
+
+        deviceNet.ReceiveFrequencyId = receiveFrequencyId;
+        if (transmitFrequencyId != null)
+            deviceNet.TransmitFrequencyId = transmitFrequencyId.Value;
+
+        if (!camera.AvailableNetworks.Contains(receiveFrequencyId))
+            camera.AvailableNetworks.Add(receiveFrequencyId);
+
+        camera.NetworkSet = true;
+        Dirty(uid, deviceNet);
+    }
+
+    public void ClearActiveViewers(EntityUid camera, SurveillanceCameraComponent? component = null)
+    {
+        if (!Resolve(camera, ref component))
+            return;
+
+        RemoveActiveViewers(camera, new HashSet<EntityUid>(component.ActiveViewers.Keys), component: component);
+    }
+
+    private EntityUid ResolveSubscribeTarget(EntityUid camera)
+    {
+        if (TryComp<AvatarNavRelayComponent>(camera, out var relay) &&
+            relay.RelayEntity is { } relayUid &&
+            Exists(relayUid))
+            return relayUid;
+
+        if (TryComp<NetpodComponent>(camera, out var pod) &&
+            pod.Avatar is { } avatar &&
+            Exists(avatar))
+            return avatar;
+
+        return camera;
+    }
+    // Orion-End
+
     private void UpdateVisuals(EntityUid uid, SurveillanceCameraComponent? component = null, AppearanceComponent? appearance = null)
     {
         // Don't log missing, because otherwise tests fail.
@@ -563,70 +457,12 @@ public sealed class SurveillanceCameraSystem : EntitySystem
             key = SurveillanceCameraVisuals.Active;
         }
 
-        if (component.Active && HasActiveAiViewerInRange(uid)) // Orion-Edit
+        if (component.ActiveViewers.Count > 0 || component.ActiveMonitors.Count > 0)
         {
             key = SurveillanceCameraVisuals.InUse;
         }
 
         _appearance.SetData(uid, SurveillanceCameraVisualsKey.Key, key, appearance);
-    }
-
-    // Orion-Start
-    private void RefreshActiveAiObservers()
-    {
-        _activeAiObservers.Clear();
-
-        var coreQuery = EntityQueryEnumerator<StationAiCoreComponent>();
-        while (coreQuery.MoveNext(out var coreUid, out var coreComp))
-        {
-            if (coreComp.RemoteEntity == null)
-                continue;
-
-            // Only active AI with mind should affect camera visuals
-            if (!_stationAiSystem.TryGetHeld((coreUid, coreComp), out var held) || !HasComp<ActorComponent>(held))
-                continue;
-
-            if (!TryComp(coreComp.RemoteEntity.Value, out TransformComponent? observerXform))
-                continue;
-
-            _activeAiObservers.Add((observerXform.MapID, _transformSystem.GetWorldPosition(observerXform)));
-        }
-    }
-
-    private bool HasActiveAiViewerInRange(EntityUid camera)
-    {
-        if (!TryComp(camera, out TransformComponent? cameraXform))
-            return false;
-
-        var cameraMap = cameraXform.MapID;
-        var cameraPos = _transformSystem.GetWorldPosition(cameraXform);
-        var activationRangeSquared = AiViewerActivationRange * AiViewerActivationRange;
-        foreach (var observer in _activeAiObservers)
-        {
-            if (observer.Map != cameraMap)
-                continue;
-
-            if ((observer.Position - cameraPos).LengthSquared() <= activationRangeSquared)
-                return true;
-        }
-
-        return false;
-    }
-    // Orion-End
-
-    private void OnEmpPulse(EntityUid uid, SurveillanceCameraComponent component, ref EmpPulseEvent args)
-    {
-        if (component.Active)
-        {
-            args.Affected = true;
-            args.Disabled = true;
-            SetActive(uid, false);
-        }
-    }
-
-    private void OnEmpDisabledRemoved(EntityUid uid, SurveillanceCameraComponent component, ref EmpDisabledRemoved args)
-    {
-        SetActive(uid, true);
     }
 }
 

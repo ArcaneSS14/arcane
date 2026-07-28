@@ -11,11 +11,25 @@ namespace Content.Goobstation.Server.SecondSkin;
 
 public sealed class SecondSkinSystem : SharedSecondSkinSystem
 {
+    // Arcane-start
+    private const float SkinUpdateInterval = 1f;
+    private float _skinUpdateAccumulator;
+    // Arcane-end
+
     [Dependency] private readonly DamageableSystem _dmg = default!;
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // Arcane-start
+        _skinUpdateAccumulator += frameTime;
+        if (_skinUpdateAccumulator < SkinUpdateInterval)
+            return;
+
+        var elapsed = _skinUpdateAccumulator;
+        _skinUpdateAccumulator = 0f;
+        // Arcane-end
 
         var siliconQuery = GetEntityQuery<SiliconComponent>();
         var userQuery = GetEntityQuery<SecondSkinUserComponent>();
@@ -28,7 +42,7 @@ public sealed class SecondSkinSystem : SharedSecondSkinSystem
             if (skin.User == null)
                 continue;
 
-            skin.Accumulator += frameTime;
+            skin.Accumulator += elapsed; // Arcane
 
             if (skin.Accumulator < skin.UpdateTime)
                 continue;

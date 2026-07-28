@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 MarkerWicker <markerWicker@proton.me>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Body.Systems;
@@ -33,7 +30,7 @@ public sealed class BloodstreamAdjustSystem : EntitySystem
     {
         if (!TryComp<BloodstreamComponent>(ent, out var bloodstream)
             || !_solutionContainer.TryGetSolution(ent.Owner, bloodstream.BloodSolutionName, out var bloodSolutionEnt)
-            || bloodstream.BloodMaxVolume == 0
+            || bloodstream.BloodReferenceSolution.Volume == 0
             || !_config.GetCVar(CCVars.HeightAdjustModifiesBloodstream))
             return false;
 
@@ -41,7 +38,7 @@ public sealed class BloodstreamAdjustSystem : EntitySystem
 
         var factor = Math.Pow(_contests.MassContest(ent, bypassClamp: true, rangeFactor: 4f), ent.Comp.Power);
         factor = Math.Clamp(factor, ent.Comp.Min, ent.Comp.Max);
-        var newVolume = bloodstream.BloodMaxVolume * factor;
+        var newVolume = bloodstream.BloodReferenceSolution.Volume * factor;
         var newBloodLevel = bloodSolution.FillFraction * newVolume;
         bloodSolution.MaxVolume = newVolume;
 

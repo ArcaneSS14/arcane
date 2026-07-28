@@ -25,5 +25,8 @@ ent-DocumentContractEmploymentCommand = Контракт командовани�
 ent-DocumentContractEmploymentDSO = Контракт департамента специальных операций
     .desc = { contract-paper-description }
 
-ent-DocumentContractEmploymentCentCom= Контракт центрального командования
+ent-DocumentContractEmploymentCentCom = Контракт центрального командования
+    .desc = { contract-paper-description }
+
+ent-DocumentContractEmploymentJusticeDepartment = Контракт юридического департамента
     .desc = { contract-paper-description }

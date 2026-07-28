@@ -309,3 +309,11 @@
   name: Nostalghia - Who You Talkin To Man
   path:
     path: /Audio/_Orion/Jukebox/Nostalghia/Nostalghia_WhoYouTalkinToMan.ogg
+
+# Arcane-Start
+- type: jukebox
+  id: LucasPopeTheme
+  name: Lucas Pope - Papers, Please Theme
+  path:
+    path: /Audio/_Arcane/Jukebox/Lucas_Pope/Lucas_Pope_Theme.ogg
+# Arcane-End

@@ -1,22 +1,7 @@
-# SPDX-FileCopyrightText: 2024 Adeinitas <147965189+adeinitas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2024 Danger Revolution! <142105406+DangerRevolution@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Timemaster99 <57200767+Timemaster99@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
-# SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 CometVoid <cometsstrile@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: soundCollection
-  id: HarpyScreams
+  id: HarpyMaleScreams # Arcane-Edit
   files:
     #- /Audio/Nyanotrasen/Voice/Felinid/cat_scream1.ogg  - Goobstation - Remove mute sound from felinid + harpy screams
     - /Audio/Nyanotrasen/Voice/Felinid/cat_scream2.ogg
@@ -28,6 +13,23 @@
     - /Audio/Voice/Human/malescream_4.ogg
     - /Audio/Voice/Human/malescream_5.ogg
     - /Audio/Voice/Human/malescream_6.ogg
+    # Arcane-Start
+    - /Audio/Voice/Moth/moth_scream.ogg
+    - /Audio/Voice/Skeleton/skeleton_scream.ogg
+    - /Audio/Voice/Reptilian/reptilian_scream.ogg
+    - /Audio/_Floofstation/Voice/Avali/avali_scream.ogg
+    # Arcane-End
+
+
+# Arcane-Start
+- type: soundCollection
+  id: HarpyFemaleScreams
+  files:
+    #- /Audio/Nyanotrasen/Voice/Felinid/cat_scream1.ogg  - Goobstation - Remove mute sound from felinid + harpy screams
+    - /Audio/Nyanotrasen/Voice/Felinid/cat_scream2.ogg
+    - /Audio/Nyanotrasen/Voice/Felinid/cat_scream3.ogg
+    - /Audio/Animals/monkey_scream.ogg
+# Arcane-End
     - /Audio/Voice/Human/femalescream_1.ogg
     - /Audio/Voice/Human/femalescream_2.ogg
     - /Audio/Voice/Human/femalescream_3.ogg
@@ -40,10 +42,26 @@
 
 
 - type: soundCollection
-  id: HarpyLaugh
+  id: HarpyMaleLaugh # Arcane-Edit
   files:
     - /Audio/Voice/Human/manlaugh1.ogg
     - /Audio/Voice/Human/manlaugh2.ogg
+    # Arcane-Start
+    - /Audio/Voice/Diona/diona_rustle1.ogg
+    - /Audio/Voice/Diona/diona_rustle2.ogg
+    - /Audio/Voice/Diona/diona_rustle3.ogg
+    - /Audio/Animals/lizard_happy.ogg
+    - /Audio/Animals/ferret_happy.ogg
+    - /Audio/Voice/Moth/moth_laugh.ogg
+    - /Audio/_Floofstation/Voice/Avali/avali_laugh.ogg
+    # Arcane-End
+
+
+# Arcane-Start
+- type: soundCollection
+  id: HarpyFemaleLaugh
+  files:
+# Arcane-End
     - /Audio/Voice/Human/womanlaugh.ogg
     - /Audio/Voice/Diona/diona_rustle1.ogg
     - /Audio/Voice/Diona/diona_rustle2.ogg
@@ -52,6 +70,7 @@
     - /Audio/Animals/ferret_happy.ogg
     - /Audio/Voice/Moth/moth_laugh.ogg
     - /Audio/_Floofstation/Voice/Avali/avali_laugh.ogg
+
 
 - type: soundCollection
   id: HarpyHisses
@@ -76,22 +95,38 @@
     - /Audio/_Floofstation/Voice/Reptilian/hiss.ogg
 
 - type: soundCollection
-  id: HarpySigh
+  id: HarpyMaleSigh # Arcane-Edit
   files:
     - /Audio/Voice/Human/male_sigh.ogg
+
+
+# Arcane-Start
+- type: soundCollection
+  id: HarpyFemaleSigh
+  files:
     - /Audio/Voice/Human/female_sigh.ogg
+# Arcane-End
+
 
 - type: soundCollection
-  id: HarpyCry
+  id: HarpyMaleCry # Arcane-Edit
   files:
     - /Audio/Voice/Human/cry_male_1.ogg
     - /Audio/Voice/Human/cry_male_2.ogg
     - /Audio/Voice/Human/cry_male_3.ogg
     - /Audio/Voice/Human/cry_male_4.ogg
+
+
+# Arcane-Start
+- type: soundCollection
+  id: HarpyFemaleCry
+  files:
+# Arcane-End
     - /Audio/Voice/Human/cry_female_1.ogg
     - /Audio/Voice/Human/cry_female_2.ogg
     - /Audio/Voice/Human/cry_female_3.ogg
     - /Audio/Voice/Human/cry_female_4.ogg
+
 
 - type: soundCollection
   id: HarpyMeows
@@ -119,12 +154,12 @@
     - /Audio/_DV/Voice/Vulpkanin/dog_growl4.ogg
     - /Audio/_DV/Voice/Vulpkanin/dog_growl5.ogg
     - /Audio/_DV/Voice/Vulpkanin/dog_growl6.ogg
-
 - type: soundCollection
   id: HarpyPurrs
   files:
     - /Audio/Nyanotrasen/Voice/Felinid/cat_purr1.ogg
-    - /Audio/Mecha/sound_mecha_hydraulic.ogg
+#   - /Audio/Mecha/sound_mecha_hydraulic.ogg # Arcane-Edit
+
 
 - type: soundCollection
   id: HarpyRings
@@ -166,14 +201,16 @@
     - /Audio/Weapons/Guns/Gunshots/mk58.ogg
     - /Audio/Weapons/Guns/Gunshots/pistol.ogg
     - /Audio/Weapons/Guns/Gunshots/c-20r.ogg
-    - /Audio/Items/snap.ogg
-    - /Audio/Machines/blastdoor.ogg
-    - /Audio/_Orion/Machines/blastdoornew.ogg # Orion
-    - /Audio/Machines/machine_vend.ogg
+    # Arcane-Edit-Start
+#   - /Audio/Items/snap.ogg
+#   - /Audio/Machines/blastdoor.ogg
+#   - /Audio/_Orion/Machines/blastdoornew.ogg # Orion
+#   - /Audio/Machines/machine_vend.ogg
+    # Arcane-Edit-End
     - /Audio/Magic/disintegrate.ogg
     - /Audio/Magic/fireball.ogg
     - /Audio/Magic/forcewall.ogg
-    - /Audio/Magic/knock.ogg
+#   - /Audio/Magic/knock.ogg # Arcane-Edit
 
 - type: soundCollection
   id: HarpyBeeps

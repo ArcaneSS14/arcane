@@ -52,6 +52,11 @@ namespace Content.Server._Orion.CorticalBorer;
 
 public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
 {
+    // Arcane-start
+    private static readonly TimeSpan BorerUpdateInterval = TimeSpan.FromSeconds(0.25);
+    private TimeSpan _nextBorerUpdate;
+    // Arcane-end
+
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly BloodstreamSystem _blood = default!;
     [Dependency] private readonly HealthAnalyzerSystem _analyzer = default!;
@@ -113,7 +118,7 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
             Actions.AddAction(ent, actionId);
         }
 
-        _alerts.ShowAlert(ent, ent.Comp.ChemicalAlert);
+        _alerts.ShowAlert(ent.Owner, ent.Comp.ChemicalAlert);
         UpdateUiState(ent);
     }
 
@@ -121,7 +126,15 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
     {
         base.Update(frameTime);
 
-        foreach (var comp in EntityManager.EntityQuery<CorticalBorerComponent>())
+        // Arcane-start
+        if (_timing.CurTime < _nextBorerUpdate)
+            return;
+
+        _nextBorerUpdate = _timing.CurTime + BorerUpdateInterval;
+
+        var borerQuery = EntityQueryEnumerator<CorticalBorerComponent>();
+        while (borerQuery.MoveNext(out var borerUid, out var comp))
+        // Arcane-end
         {
             if (_timing.CurTime < comp.UpdateTimer)
                 continue;
@@ -131,7 +144,7 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
 #pragma warning disable CS0618
              if (!comp.Host.HasValue)
             {
-                _alerts.ClearAlert(comp.Owner, comp.SugarAlert);
+                _alerts.ClearAlert(borerUid, comp.SugarAlert); // Arcane
                 continue;
             }
 
@@ -140,21 +153,24 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
             if (comp.WillingHosts.Contains(comp.Host.Value))
                 chemicalGeneration = (int) MathF.Ceiling(chemicalGeneration * comp.WillingHostChemicalGenerationMultiplier);
 
-            UpdateChemicals((comp.Owner, comp), chemicalGeneration);
-            _damageable.TryChangeDamage(comp.Owner, comp.HealingDamage); // Heal borer
+            UpdateChemicals((borerUid, comp), chemicalGeneration); // Arcane
+            _damageable.TryChangeDamage(borerUid, comp.HealingDamage); // Arcane
 
             if (HasBorerProtection(comp.Host.Value))
-                _alerts.ShowAlert(comp.Owner, comp.SugarAlert);
+                _alerts.ShowAlert(borerUid, comp.SugarAlert); // Arcane
             else
-                _alerts.ClearAlert(comp.Owner, comp.SugarAlert);
+                _alerts.ClearAlert(borerUid, comp.SugarAlert); // Arcane
 #pragma warning restore CS0618
         }
 
-        foreach (var comp in EntityManager.EntityQuery<CorticalBorerInfestedComponent>())
+        // Arcane-start
+        var infestedQuery = EntityQueryEnumerator<CorticalBorerInfestedComponent>();
+        while (infestedQuery.MoveNext(out var hostUid, out var comp))
+        // Arcane-end
         {
 #pragma warning disable CS0618
             if (_timing.CurTime >= comp.ControlTimeEnd)
-                EndControl((comp.Owner, comp));
+                EndControl((hostUid, comp)); // Arcane
 #pragma warning restore CS0618
         }
     }
@@ -184,12 +200,12 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
         if (comp.UiUpdateInterval > 0 && comp.ChemicalPoints % comp.UiUpdateInterval == 0)
             UpdateUiState(ent);
 
-        _alerts.ShowAlert(ent, ent.Comp.ChemicalAlert);
+        _alerts.ShowAlert(ent.Owner, ent.Comp.ChemicalAlert);
 
         if (comp.Host.HasValue && !HasBorerProtection(comp.Host.Value))
-            _alerts.ClearAlert(ent, ent.Comp.SugarAlert);
+            _alerts.ClearAlert(ent.Owner, ent.Comp.SugarAlert);
         else if (comp.Host.HasValue)
-            _alerts.ShowAlert(ent, ent.Comp.SugarAlert);
+            _alerts.ShowAlert(ent.Owner, ent.Comp.SugarAlert);
 
         Dirty(ent);
     }
@@ -251,10 +267,10 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
         solution.AddReagent(chemicalPrototype.Reagent, chemAmount);
 
         // add the chemicals to the bloodstream of the host
-        if (!_blood.TryAddToChemicals((comp.Host.Value, blood), solution))
+        if (!_blood.TryAddToBloodstream((comp.Host.Value, blood), solution))
             return false;
 
-        _admin.Add(LogType.ReagentEffect,
+        _admin.Add(LogType.Action,
             LogImpact.Low,
             $"{ToPrettyString(uid):actor} injected {chemAmount}u of {chemicalPrototype.Reagent:reagent}"
             + $" (severity: {chemicalPrototype.Severity}) into host {ToPrettyString(comp.Host.Value):target}");
@@ -541,7 +557,7 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
         var query = EntityQueryEnumerator<MindComponent>();
         while (query.MoveNext(out var mindUid, out var mind))
         {
-            if (!mind.MindRoles.Any(HasComp<CorticalBorerRoleComponent>))
+            if (!mind.MindRoleContainer.ContainedEntities.Any(HasComp<CorticalBorerRoleComponent>))
                 continue;
 
             var name = mind.CharacterName;
@@ -712,7 +728,7 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
 
     private void EnsureBorerObjectives(EntityUid mindId, MindComponent mindComp, List<EntProtoId> objectives)
     {
-        if (!mindComp.MindRoles.Any(HasComp<CorticalBorerRoleComponent>))
+        if (!mindComp.MindRoleContainer.ContainedEntities.Any(HasComp<CorticalBorerRoleComponent>))
             return;
 
         foreach (var objective in objectives)

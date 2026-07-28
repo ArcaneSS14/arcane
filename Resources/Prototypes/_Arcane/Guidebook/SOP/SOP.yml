@@ -1,0 +1,415 @@
+- type: guideEntry
+  id: SOP
+  name: guide-entry-sop
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Info.xml"
+  children:
+    - SOP-CentralCommand
+    - SOP-Command
+    - SOP-Security
+    - SOP-Legal
+    - SOP-Medical
+    - SOP-Science
+    - SOP-Engineering
+    - SOP-Cargo
+    - SOP-Service
+    - SOP-Alerts
+
+- type: guideEntry
+  id: SOP-CentralCommand
+  name: guide-entry-sop-central-command
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/CentralCommand/Info.xml"
+  children:
+    - SOP-CentralCommand-NanoTrasenRep
+    - SOP-CentralCommand-BlueshieldOfficer
+
+- type: guideEntry
+  id: SOP-CentralCommand-NanoTrasenRep
+  name: guide-entry-sop-central-command-nano_trasen_rep
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/CentralCommand/NanoTrasenRep.xml"
+
+- type: guideEntry
+  id: SOP-CentralCommand-BlueshieldOfficer
+  name: guide-entry-sop-central-command-blueshield_officer
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/CentralCommand/BlueshieldOfficer.xml"
+
+- type: guideEntry
+  id: SOP-Command
+  name: guide-entry-sop-command
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Command/Info.xml"
+  children:
+    - SOP-Command-Captain
+    - SOP-Command-HeadOfDepartment
+    - SOP-Command-Adjutant
+
+- type: guideEntry
+  id: SOP-Command-Captain
+  name: guide-entry-sop-command-captain
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Command/Captain.xml"
+
+- type: guideEntry
+  id: SOP-Command-HeadOfDepartment
+  name: guide-entry-sop-command-head_of_department
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Command/HeadOfDepartment.xml"
+
+- type: guideEntry
+  id: SOP-Command-Adjutant
+  name: guide-entry-sop-command-adjutant
+  priority: 3
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Command/Adjutant.xml"
+
+- type: guideEntry
+  id: SOP-Security
+  name: guide-entry-sop-security
+  priority: 3
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Security/Info.xml"
+  children:
+    - SOP-Security-HeadOfSecurity
+    - SOP-Security-Warden
+    - SOP-Security-Brigmedic
+    - SOP-Security-Detective
+    - SOP-Security-Officer
+    - SOP-Security-Cadet
+
+- type: guideEntry
+  id: SOP-Security-HeadOfSecurity
+  name: guide-entry-sop-security-head_of_security
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Security/HeadOfSecurity.xml"
+
+- type: guideEntry
+  id: SOP-Security-Warden
+  name: guide-entry-sop-security-warden
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Security/Warden.xml"
+
+- type: guideEntry
+  id: SOP-Security-Brigmedic
+  name: guide-entry-sop-security-brigmedic
+  priority: 3
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Security/Brigmedic.xml"
+
+- type: guideEntry
+  id: SOP-Security-Detective
+  name: guide-entry-sop-security-detective
+  priority: 4
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Security/Detective.xml"
+
+- type: guideEntry
+  id: SOP-Security-Officer
+  name: guide-entry-sop-security-officer
+  priority: 5
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Security/Officer.xml"
+
+- type: guideEntry
+  id: SOP-Security-Cadet
+  name: guide-entry-sop-security-cadet
+  priority: 6
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Security/Cadet.xml"
+
+- type: guideEntry
+  id: SOP-Legal
+  name: guide-entry-sop-legal
+  priority: 4
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Legal/Info.xml"
+  children:
+    - SOP-Legal-InternalAffairsAgent
+    - SOP-Legal-Lawyer
+
+- type: guideEntry
+  id: SOP-Legal-InternalAffairsAgent
+  name: guide-entry-sop-legal-internal_affairs_agent
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Legal/InternalAffairsAgent.xml"
+
+- type: guideEntry
+  id: SOP-Legal-Lawyer
+  name: guide-entry-sop-legal-lawyer
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Legal/Lawyer.xml"
+
+- type: guideEntry
+  id: SOP-Medical
+  name: guide-entry-sop-medical
+  priority: 5
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Medical/Info.xml"
+  children:
+    - SOP-Medical-ChiefMedicalOfficer
+    - SOP-Medical-LeadDoctor
+    - SOP-Medical-Chemist
+    - SOP-Medical-Paramedic
+    - SOP-Medical-Doctor
+    - SOP-Medical-Psychologist
+    - SOP-Medical-Intern
+
+- type: guideEntry
+  id: SOP-Medical-ChiefMedicalOfficer
+  name: guide-entry-sop-medical-chief_medical_officer
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Medical/ChiefMedicalOfficer.xml"
+
+- type: guideEntry
+  id: SOP-Medical-LeadDoctor
+  name: guide-entry-sop-medical-lead_doctor
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Medical/LeadDoctor.xml"
+
+- type: guideEntry
+  id: SOP-Medical-Chemist
+  name: guide-entry-sop-medical-chemist
+  priority: 3
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Medical/Chemist.xml"
+
+- type: guideEntry
+  id: SOP-Medical-Paramedic
+  name: guide-entry-sop-medical-paramedic
+  priority: 4
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Medical/Paramedic.xml"
+
+- type: guideEntry
+  id: SOP-Medical-Doctor
+  name: guide-entry-sop-medical-doctor
+  priority: 5
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Medical/Doctor.xml"
+
+- type: guideEntry
+  id: SOP-Medical-Psychologist
+  name: guide-entry-sop-medical-psychologist
+  priority: 6
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Medical/Psychologist.xml"
+
+- type: guideEntry
+  id: SOP-Medical-Intern
+  name: guide-entry-sop-medical-intern
+  priority: 7
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Medical/Intern.xml"
+
+- type: guideEntry
+  id: SOP-Science
+  name: guide-entry-sop-science
+  priority: 6
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Science/Info.xml"
+  children:
+    - SOP-Science-ResearchDirector
+    - SOP-Science-LeadScientist
+    - SOP-Science-Roboticist
+    - SOP-Science-Scientist
+    - SOP-Science-ResearchAssistant
+
+- type: guideEntry
+  id: SOP-Science-ResearchDirector
+  name: guide-entry-sop-science-research_director
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Science/ResearchDirector.xml"
+
+- type: guideEntry
+  id: SOP-Science-LeadScientist
+  name: guide-entry-sop-science-lead_scientist
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Science/LeadScientist.xml"
+
+- type: guideEntry
+  id: SOP-Science-Roboticist
+  name: guide-entry-sop-science-roboticist
+  priority: 3
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Science/Roboticist.xml"
+
+- type: guideEntry
+  id: SOP-Science-Scientist
+  name: guide-entry-sop-science-scientist
+  priority: 4
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Science/Scientist.xml"
+
+- type: guideEntry
+  id: SOP-Science-ResearchAssistant
+  name: guide-entry-sop-science-research_assistant
+  priority: 5
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Science/ResearchAssistant.xml"
+
+- type: guideEntry
+  id: SOP-Engineering
+  name: guide-entry-sop-engineering
+  priority: 7
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Engineering/Info.xml"
+  children:
+    - SOP-Engineering-ChiefEngineer
+    - SOP-Engineering-LeadEngineer
+    - SOP-Engineering-AtmosphericTechnician
+    - SOP-Engineering-Engineer
+    - SOP-Engineering-TechnicalAssistant
+
+- type: guideEntry
+  id: SOP-Engineering-ChiefEngineer
+  name: guide-entry-sop-engineering-chief_engineer
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Engineering/ChiefEngineer.xml"
+
+- type: guideEntry
+  id: SOP-Engineering-LeadEngineer
+  name: guide-entry-sop-engineering-lead_engineer
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Engineering/LeadEngineer.xml"
+
+- type: guideEntry
+  id: SOP-Engineering-AtmosphericTechnician
+  name: guide-entry-sop-engineering-atmospheric_technician
+  priority: 3
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Engineering/AtmosphericTechnician.xml"
+
+- type: guideEntry
+  id: SOP-Engineering-Engineer
+  name: guide-entry-sop-engineering-engineer
+  priority: 4
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Engineering/Engineer.xml"
+
+- type: guideEntry
+  id: SOP-Engineering-TechnicalAssistant
+  name: guide-entry-sop-engineering-technical_assistant
+  priority: 5
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Engineering/TechnicalAssistant.xml"
+
+- type: guideEntry
+  id: SOP-Cargo
+  name: guide-entry-sop-cargo
+  priority: 8
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Cargo/Info.xml"
+  children:
+    - SOP-Cargo-Quartermaster
+    - SOP-Cargo-Salvager
+    - SOP-Cargo-ShaftMiner
+    - SOP-Cargo-MailCarrier
+    - SOP-Cargo-CargoTechnician
+
+- type: guideEntry
+  id: SOP-Cargo-Quartermaster
+  name: guide-entry-sop-cargo-quartermaster
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Cargo/Quartermaster.xml"
+
+- type: guideEntry
+  id: SOP-Cargo-Salvager
+  name: guide-entry-sop-cargo-salvager
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Cargo/Salvager.xml"
+
+- type: guideEntry
+  id: SOP-Cargo-ShaftMiner
+  name: guide-entry-sop-cargo-shaft_miner
+  priority: 3
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Cargo/ShaftMiner.xml"
+
+- type: guideEntry
+  id: SOP-Cargo-MailCarrier
+  name: guide-entry-sop-cargo-mail_carrier
+  priority: 4
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Cargo/MailCarrier.xml"
+
+- type: guideEntry
+  id: SOP-Cargo-CargoTechnician
+  name: guide-entry-sop-cargo-cargo_technician
+  priority: 5
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Cargo/CargoTechnician.xml"
+
+- type: guideEntry
+  id: SOP-Service
+  name: guide-entry-sop-service
+  priority: 9
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Info.xml"
+  children:
+    - SOP-Service-HeadOfPersonnel
+    - SOP-Service-Chef
+    - SOP-Service-Botanist
+    - SOP-Service-Bartender
+    - SOP-Service-Janitor
+    - SOP-Service-ServiceWorker
+    - SOP-Service-Librarian
+    - SOP-Service-Chaplain
+    - SOP-Service-Mime
+    - SOP-Service-Clown
+    - SOP-Service-Reporter
+    - SOP-Service-Musician
+    - SOP-Service-Barber
+
+- type: guideEntry
+  id: SOP-Service-HeadOfPersonnel
+  name: guide-entry-sop-service-head_of_personnel
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/HeadOfPersonnel.xml"
+
+- type: guideEntry
+  id: SOP-Service-Chef
+  name: guide-entry-sop-service-chef
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Chef.xml"
+
+- type: guideEntry
+  id: SOP-Service-Botanist
+  name: guide-entry-sop-service-botanist
+  priority: 3
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Botanist.xml"
+
+- type: guideEntry
+  id: SOP-Service-Bartender
+  name: guide-entry-sop-service-bartender
+  priority: 4
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Bartender.xml"
+
+- type: guideEntry
+  id: SOP-Service-Janitor
+  name: guide-entry-sop-service-janitor
+  priority: 5
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Janitor.xml"
+
+- type: guideEntry
+  id: SOP-Service-ServiceWorker
+  name: guide-entry-sop-service-service_worker
+  priority: 6
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/ServiceWorker.xml"
+
+- type: guideEntry
+  id: SOP-Service-Librarian
+  name: guide-entry-sop-service-librarian
+  priority: 7
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Librarian.xml"
+
+- type: guideEntry
+  id: SOP-Service-Chaplain
+  name: guide-entry-sop-service-chaplain
+  priority: 8
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Chaplain.xml"
+
+- type: guideEntry
+  id: SOP-Service-Mime
+  name: guide-entry-sop-service-mime
+  priority: 9
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Mime.xml"
+
+- type: guideEntry
+  id: SOP-Service-Clown
+  name: guide-entry-sop-service-clown
+  priority: 10
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Clown.xml"
+
+- type: guideEntry
+  id: SOP-Service-Reporter
+  name: guide-entry-sop-service-reporter
+  priority: 11
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Reporter.xml"
+
+- type: guideEntry
+  id: SOP-Service-Musician
+  name: guide-entry-sop-service-musician
+  priority: 12
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Musician.xml"
+
+- type: guideEntry
+  id: SOP-Service-Barber
+  name: guide-entry-sop-service-barber
+  priority: 13
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Service/Barber.xml"

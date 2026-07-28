@@ -28,4 +28,10 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<bool> EndRoundPacification =
         CVarDef.Create("game.end_round_pacifism", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Должен ли сервер автоматически перезапускаться после конца раунда.
+    /// </summary>
+    public static readonly CVarDef<bool> RestartServerOnRoundEnd =
+        CVarDef.Create("game.restart_server_on_round_end", false, CVar.SERVERONLY | CVar.ARCHIVE);
 }

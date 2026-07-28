@@ -1,0 +1,34 @@
+- type: entity
+  parent: IDCardStandard
+  id: AdjutantIDCard
+  name: adjutant ID card
+  description: Adjutant ID card.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    state: idheadofpersonnel
+  - type: PresetIdCard
+    job: Adjutant
+
+- type: entity
+  parent: IDCardStandard
+  id: CommandMaidIDCard
+  name: command maid ID card
+  description: Command Maid ID card.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    state: idcommandmaid
+  - type: PresetIdCard
+    job: CommandMaid
+
+- type: entity
+  parent: IDCardStandard
+  id: IAAIDCard
+  name: internal affairs agent ID card
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    state: idlawyer
+  - type: PresetIdCard
+    job: IAA

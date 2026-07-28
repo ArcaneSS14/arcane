@@ -12,6 +12,11 @@ public sealed class GravitySourceSystem : EntitySystem
 {
     [Dependency] private readonly GravitySystem _gravity = default!;
 
+    // Arcane-start
+    private const float GravityUpdateInterval = 0.25f;
+    private float _gravityUpdateAccumulator;
+    // Arcane-end
+
     public override void Initialize()
     {
         base.Initialize();
@@ -23,6 +28,14 @@ public sealed class GravitySourceSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // Arcane-start
+        _gravityUpdateAccumulator += frameTime;
+        if (_gravityUpdateAccumulator < GravityUpdateInterval)
+            return;
+
+        _gravityUpdateAccumulator = 0f;
+        // Arcane-end
 
         var query = EntityQueryEnumerator<GravitySourceComponent, ApcComponent, PowerNetworkBatteryComponent, TransformComponent>();
         while (query.MoveNext(out _, out var gravitySource, out var apc, out var battery, out var xform))

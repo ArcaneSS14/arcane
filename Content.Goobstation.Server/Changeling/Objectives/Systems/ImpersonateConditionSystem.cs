@@ -1,13 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 ImWeax <59857479+ImWeax@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Weax <59857479+ImWeax@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Server.Changeling.Objectives.Components;
@@ -36,27 +26,6 @@ public sealed class ImpersonateConditionSystem : EntitySystem
         SubscribeLocalEvent<ImpersonateConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
     }
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<ImpersonateConditionComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (comp.Name == null || comp.MindId == null)
-                continue;
-
-            if (!TryComp<MindComponent>(comp.MindId, out var mind) || mind.OwnedEntity == null)
-                continue;
-            if (!TryComp<MetaDataComponent>(mind.CurrentEntity, out var metaData))
-                continue;
-
-            if (metaData.EntityName == comp.Name)
-                comp.Completed = true;
-            else comp.Completed = false;
-        }
-    }
-
     private void OnAfterAssign(EntityUid uid, ImpersonateConditionComponent comp, ref ObjectiveAfterAssignEvent args)
     {
         if (!_target.GetTarget(uid, out var target))
@@ -72,6 +41,13 @@ public sealed class ImpersonateConditionSystem : EntitySystem
     // copypasta from escape shittle objective. eh.
     private void OnGetProgress(EntityUid uid, ImpersonateConditionComponent comp, ref ObjectiveGetProgressEvent args)
     {
+        // Arcane-start
+        comp.Completed = comp.Name != null
+            && args.Mind.OwnedEntity is { } owned
+            && TryComp<MetaDataComponent>(owned, out var metadata)
+            && metadata.EntityName == comp.Name;
+        // Arcane-end
+
         args.Progress = GetProgress(args.Mind, comp);
     }
 

@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsCommandMaid
+  name: command maid's shoes
+  description: Extremely comfortable and pleasant to wear.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/Boots/command_maid_shoes.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/Boots/command_maid_shoes.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon

@@ -22,6 +22,11 @@ namespace Content.Server._Orion.Bitrunning.Systems;
 
 public sealed class BitrunningObjectiveSystem : EntitySystem
 {
+    // Arcane-start
+    private static readonly TimeSpan SatiationUpdateInterval = TimeSpan.FromSeconds(1);
+    private TimeSpan _nextSatiationUpdate;
+    // Arcane-end
+
     [Dependency] private readonly QuantumServerSystem _server = default!;
     [Dependency] private readonly ByteforgeSystem _byteforge = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -46,6 +51,13 @@ public sealed class BitrunningObjectiveSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // Arcane-start
+        if (_timing.CurTime < _nextSatiationUpdate)
+            return;
+
+        _nextSatiationUpdate = _timing.CurTime + SatiationUpdateInterval;
+        // Arcane-end
 
         var servers = EntityQueryEnumerator<QuantumServerComponent>();
         while (servers.MoveNext(out var serverUid, out var server))

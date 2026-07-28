@@ -14,7 +14,7 @@
   recipeUnlocks:
   - MagazineShotgunBeanbag
   - BoxBeanbag
-  - MagazineBoxShotgunBeanbagHighCaliber 
+  - MagazineBoxShotgunBeanbagHighCaliber
   - ModularReceiver
   - BoxLethalshot
   - BoxShotgunSlug
@@ -92,6 +92,7 @@
   - SecHypo
   - PolymerBaton
   - SpearTelescopic
+  - PinpointerSecSquad # Arcane-Edit
   position: -1,1
 
 - type: technology

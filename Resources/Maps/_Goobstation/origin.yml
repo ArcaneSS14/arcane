@@ -4,8 +4,8 @@ meta:
   engineVersion: 266.0.0
   forkId: Orion
   forkVersion: ""
-  time: 05/03/2026 19:41:59
-  entityCount: 32512
+  time: 07/05/2026 12:40:30
+  entityCount: 32514
 maps:
 - 1
 grids:
@@ -79660,7 +79660,7 @@ entities:
     - type: Transform
       pos: -31.439095,-73.39239
       parent: 2
-- proto: ClothingBeltAssault
+- proto: ClothingBeltMilitaryWebbing
   entities:
   - uid: 12623
     components:
@@ -94461,7 +94461,7 @@ entities:
       parent: 14998
     - type: Physics
       canCollide: False
-- proto: EnergyChemDispenser
+- proto: ChemDispenser
   entities:
   - uid: 15000
     components:
@@ -145517,7 +145517,7 @@ entities:
     - type: Transform
       pos: 2.6569777,-7.614023
       parent: 2
-- proto: MaterialSilo
+- proto: MachineMaterialSilo
   entities:
   - uid: 22038
     components:
@@ -171785,6 +171785,13 @@ entities:
     - type: Transform
       pos: 5.5,-49.5
       parent: 2
+- proto: SpawnPointAdjutant
+  entities:
+  - uid: 52513
+    components:
+    - type: Transform
+      pos: 23.5,-22.5
+      parent: 2
 - proto: SpawnPointAtmos
   entities:
   - uid: 25313
@@ -171980,6 +171987,13 @@ entities:
     - type: Transform
       pos: 0.5,-21.5
       parent: 2
+- proto: SpawnPointCommandMaid
+  entities:
+  - uid: 52514
+    components:
+    - type: Transform
+      pos: 27.5,-22.5
+      parent: 2
 - proto: SpawnPointDetective
   entities:
   - uid: 25346
@@ -172000,6 +172014,13 @@ entities:
     components:
     - type: Transform
       pos: 5.5,21.5
+      parent: 2
+- proto: SpawnPointIAA
+  entities:
+  - uid: 55354
+    components:
+    - type: Transform
+      pos: 44.5,-3.5
       parent: 2
 - proto: SpawnPointJanitor
   entities:
@@ -172037,11 +172058,6 @@ entities:
       parent: 2
 - proto: SpawnPointLawyer
   entities:
-  - uid: 25355
-    components:
-    - type: Transform
-      pos: 42.5,-2.5
-      parent: 2
   - uid: 25356
     components:
     - type: Transform

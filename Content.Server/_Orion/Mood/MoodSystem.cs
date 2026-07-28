@@ -25,6 +25,7 @@ using Robust.Shared.Configuration;
 using Content.Shared.CCVar;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Slippery;
 
 namespace Content.Server._Orion.Mood;
@@ -41,6 +42,11 @@ public sealed class MoodSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
+
+    // Arcane-start
+    private const float SanityUpdateInterval = 1f;
+    private float _sanityUpdateAccumulator;
+    // Arcane-end
 
     public override void Initialize()
     {
@@ -75,14 +81,23 @@ public sealed class MoodSystem : EntitySystem
         if (!_config.GetCVar(CCVars.MoodEnabled))
             return;
 
+        // Arcane-start
+        _sanityUpdateAccumulator += frameTime;
+        if (_sanityUpdateAccumulator < SanityUpdateInterval)
+            return;
+
+        var elapsed = _sanityUpdateAccumulator;
+        _sanityUpdateAccumulator = 0f;
+
         var query = EntityQueryEnumerator<MoodComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var mood, out var mobState))
         {
             if (mobState.CurrentState == MobState.Dead)
                 continue;
 
-            ProcessSanity(uid, mood, frameTime);
+            ProcessSanity(uid, mood, elapsed);
         }
+        // Arcane-end
     }
 
     private void OnShowMoodAlert(EntityUid uid, MoodComponent component, ShowMoodAlertEvent args)
@@ -471,13 +486,13 @@ public sealed class MoodSystem : EntitySystem
         if (args.Mind.OwnedEntity is not { } ownedEntity || !HasComp<MoodComponent>(ownedEntity))
             return;
 
-        if (args.Mind.MindRoles.Any(HasComp<TraitorRoleComponent>))
+        if (args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<TraitorRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodEffectEvent("TraitorFocused"));
 
-        if (args.Mind.MindRoles.Any(HasComp<RevolutionaryRoleComponent>))
+        if (args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<RevolutionaryRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodEffectEvent("RevolutionFocused"));
 
-        if (args.Mind.MindRoles.Any(HasComp<CosmicCultRoleComponent>))
+        if (args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<CosmicCultRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodEffectEvent("CultFocused"));
     }
 
@@ -486,13 +501,13 @@ public sealed class MoodSystem : EntitySystem
         if (args.Mind.OwnedEntity is not { } ownedEntity || !HasComp<MoodComponent>(ownedEntity))
             return;
 
-        if (!args.Mind.MindRoles.Any(HasComp<TraitorRoleComponent>))
+        if (!args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<TraitorRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodRemoveEffectEvent("TraitorFocused"));
 
-        if (!args.Mind.MindRoles.Any(HasComp<RevolutionaryRoleComponent>))
+        if (!args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<RevolutionaryRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodRemoveEffectEvent("RevolutionFocused"));
 
-        if (!args.Mind.MindRoles.Any(HasComp<CosmicCultRoleComponent>))
+        if (!args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<CosmicCultRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodRemoveEffectEvent("CultFocused"));
     }
 

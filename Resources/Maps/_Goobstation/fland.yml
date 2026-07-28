@@ -4,8 +4,8 @@ meta:
   engineVersion: 266.0.0
   forkId: Orion
   forkVersion: ""
-  time: 05/03/2026 18:54:42
-  entityCount: 36096
+  time: 07/05/2026 12:13:08
+  entityCount: 36099
 maps:
 - 1
 grids:
@@ -111369,7 +111369,7 @@ entities:
       parent: 17126
     - type: Physics
       canCollide: False
-- proto: EnergyChemDispenser
+- proto: ChemDispenser
   entities:
   - uid: 17128
     components:
@@ -168573,7 +168573,7 @@ entities:
     - type: Transform
       pos: 46.429523,54.487045
       parent: 2
-- proto: MaterialSilo
+- proto: MachineMaterialSilo
   entities:
   - uid: 25107
     components:
@@ -196167,6 +196167,13 @@ entities:
     - type: Transform
       pos: 20.5,36.5
       parent: 2
+- proto: SpawnPointAdjutant
+  entities:
+  - uid: 86098
+    components:
+    - type: Transform
+      pos: 68.5,45.5
+      parent: 2
 - proto: SpawnPointAtmos
   entities:
   - uid: 29091
@@ -196325,6 +196332,13 @@ entities:
     - type: Transform
       pos: -13.5,9.5
       parent: 2
+- proto: SpawnPointCommandMaid
+  entities:
+  - uid: 86099
+    components:
+    - type: Transform
+      pos: 70.5,45.5
+      parent: 2
 - proto: SpawnPointDetective
   entities:
   - uid: 29117
@@ -196345,6 +196359,13 @@ entities:
     components:
     - type: Transform
       pos: 38.5,25.5
+      parent: 2
+- proto: SpawnPointIAA
+  entities:
+  - uid: 86097
+    components:
+    - type: Transform
+      pos: 71.5,32.5
       parent: 2
 - proto: SpawnPointJanitor
   entities:

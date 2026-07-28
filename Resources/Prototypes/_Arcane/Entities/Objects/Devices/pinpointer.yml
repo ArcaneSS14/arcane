@@ -1,0 +1,29 @@
+- type: entity
+  parent: [PinpointerBase, BaseSecurityContraband]
+  id: PinpointerSecSquad
+  name: security pinpointer
+  description: A handheld tracking device that leads to the direction of any similar squad pinpointer within range.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Devices/pinpointer_secsquad.rsi
+    layers:
+    - state: pinpointer-secsquad
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: _Arcane/Objects/Devices/pinpointer_secsquad.rsi
+    state: pinpointer-secsquad
+  - type: Item
+    sprite: _Arcane/Objects/Devices/pinpointer_secsquad.rsi
+  - type: Tag
+    tags:
+    - SquadPin
+  - type: Pinpointer
+    canRetarget: true
+    updateTargetName: true
+    retargetingWhitelist:
+      tags:
+      - SquadPin

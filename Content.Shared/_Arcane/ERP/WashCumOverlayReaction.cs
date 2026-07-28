@@ -1,15 +1,13 @@
-﻿using Content.Shared.EntityEffects;
-using Robust.Shared.Prototypes;
+using Content.Shared.EntityEffects;
 
 namespace Content.Shared._Arcane.ERP;
 
-public sealed partial class WashCumOverlayReaction : EntityEffect
+public sealed partial class WashCumOverlayReactionSystem : EntityEffectSystem<CumOverlayComponent, WashCumOverlayReaction>
 {
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => null;
-
-    public override void Effect(EntityEffectBaseArgs args)
+    protected override void Effect(Entity<CumOverlayComponent> entity, ref EntityEffectEvent<WashCumOverlayReaction> args)
     {
-        args.EntityManager.RemoveComponent<CumOverlayComponent>(args.TargetEntity);
+        RemComp<CumOverlayComponent>(entity);
     }
 }
+
+public sealed partial class WashCumOverlayReaction : EntityEffectBase<WashCumOverlayReaction>;
