@@ -31,8 +31,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 7 # Goobstation
-        Heat: 7 # Goobstation
+        Blunt: 7 # Arcane-Edit
+        Heat: 15 # Arcane-Edit: 7 > 15
 
 - type: entity
   parent: BaseBullet # Goobstation edit
@@ -55,5 +55,6 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 15
+        Radiation: 10 # Orion-Edit: 15 > 10
         Piercing: 20
+      armorPenetration: 0.25 # Arcane
