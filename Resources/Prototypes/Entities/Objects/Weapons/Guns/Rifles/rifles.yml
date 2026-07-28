@@ -281,7 +281,7 @@
   name: Estoc # Goob
   parent: [BaseWeaponRifle, BaseSyndicateContraband]
   id: WeaponRifleEstoc
-  description: A now defunct military burst-fire DMR, the Estoc quickly found its way into paramilitary and boarding party hands. Boasts an expensive tritium sight for faster target acquisition. Feeds from 5.56mm rifle magazines. # Goobstation | Orion-Edit: .20 > 5.56mm
+  description: A now defunct military burst-fire DMR, the Estoc quickly found its way into paramilitary and boarding party hands. Boasts an expensive tritium sight for faster target acquisition. Feeds from 5.45mm rifle magazines. # Goobstation | Orion-Edit: .20 > 5.56mm
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Rifles/estoc.rsi

@@ -41,7 +41,7 @@
   parent: BaseBulletUranium
   id: BulletLightRifleUranium
   categories: [ HideSpawnMenu ]
-  name: bullet (.30 rifle uranium)
+  name: bullet (5.45mm uranium) # Orion-Edit: 0.30 rifle > 5.45mm
   components:
   - type: Projectile
     damage:

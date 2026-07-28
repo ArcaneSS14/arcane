@@ -36,6 +36,8 @@
   name: cartridge (5.56mm practice) # Orion-Edit: .20 rifle > 5.56mm
   description: A modern intermediate cartridge for combat rifles. Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
   components:
+  - type: SpentAmmoVisuals # Orion: New sprites
+    state: 20training
   - type: CartridgeAmmo
     proto: BulletRiflePractice
   - type: Sprite
@@ -70,6 +72,8 @@
   name: cartridge (5.56mm uranium) # Orion-Edit: .20 rifle > 5.56mm
   description: A modern intermediate cartridge for combat rifles. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating targets from the inside.
   components:
+  - type: SpentAmmoVisuals # Orion: New sprites
+    state: 20uranium
   - type: CartridgeAmmo
     proto: BulletRifleUranium
   - type: Sprite

@@ -39,7 +39,7 @@
   parent: BaseMagazineLightRifle
   id: MagazineLightRifleBox
   name: "L6 SAW magazine box (5.45mm rifle)" # Orion-Edit: .30 > 5.45mm
-  description: Box containing a 100-round belt of linked .30 rifle rounds, used by light machine guns such as the L6. Intended to hold general-purpose kinetic ammunition.
+  description: Box containing a 100-round belt of linked 5.45mm rifle rounds, used by light machine guns such as the L6. Intended to hold general-purpose kinetic ammunition. # Arcane-Edit: .30 > 5.45mm
   components:
   - type: Tag
     tags:

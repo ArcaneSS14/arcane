@@ -152,7 +152,7 @@
   - type: Projectile
     damage:
       types:
-        Brute: 10 # Arcane-Edit
+        Blunt: 10 # Arcane-Edit
         Heat: 4
   - type: PointLight
     enabled: true
