@@ -101,7 +101,7 @@
         types:
           Radiation: 4 # Arcane-Edit: 8 > 4
           Piercing: 8
-      armorPenetration: 0.15 # Arcane
+        armorPenetration: 0.15 # Arcane
 
 - type: entity
   id: HighCaliberPelletShotgunUraniumSpread
