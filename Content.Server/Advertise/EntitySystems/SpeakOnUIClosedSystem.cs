@@ -1,20 +1,9 @@
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 CerberusWolfie <wb.johnb.willis@gmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Mnemotechnican <69920617+Mnemotechnician@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Tim <timfalken@hotmail.com>
-// SPDX-FileCopyrightText: 2025 Timfa <timfalken@hotmail.com>
-// SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Chat.Systems;
 using Content.Shared.Advertise.Components;
 using Content.Shared.Advertise.Systems;
+using Content.Shared.Chat; // Einstein Engines - Languages
 using Content.Shared.Chat;
 using Content.Shared.UserInterface;
 using Robust.Shared.Prototypes;
@@ -22,7 +11,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Advertise.EntitySystems;
 
-public sealed class SpeakOnUIClosedSystem : SharedSpeakOnUIClosedSystem
+public sealed partial class SpeakOnUIClosedSystem : SharedSpeakOnUIClosedSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -53,7 +42,7 @@ public sealed class SpeakOnUIClosedSystem : SharedSpeakOnUIClosedSystem
         if (!entity.Comp.Enabled)
             return false;
 
-        if (!_prototypeManager.TryIndex(entity.Comp.Pack, out var messagePack))
+        if (!_prototypeManager.Resolve(entity.Comp.Pack, out var messagePack))
             return false;
 
         var message = Loc.GetString(_random.Pick(messagePack.Values), ("name", Name(entity)));

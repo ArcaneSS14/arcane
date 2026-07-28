@@ -1,13 +1,9 @@
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
-namespace Content.Server.Abilities.Felinid;
+namespace Content.Server.Nyanotrasen.Abilities.Felinid;
 
 [RegisterComponent]
 public sealed partial class FelinidComponent : Component
@@ -36,5 +32,5 @@ public sealed partial class FelinidComponent : Component
     public EntityUid? EatAction;
 
     [DataField("eatActionTarget")]
-    public EntityUid? EatActionTarget;
+    public EntityUid? EatActionTarget = null;
 }

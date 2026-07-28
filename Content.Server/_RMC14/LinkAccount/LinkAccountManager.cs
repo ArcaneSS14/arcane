@@ -95,6 +95,8 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
             : new SharedRMCPatronTier(
                 tier.ShowOnCredits,
                 tier.GhostColor,
+                tier.GhostCosmetics,
+                tier.GhostParticles,
                 tier.LobbyMessage,
                 tier.RoundEndShoutout,
                 tier.Name,
@@ -118,12 +120,17 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
             ghostColor = new Robust.Shared.Maths.Color(sysColor.R, sysColor.G, sysColor.B, sysColor.A);
         }
 
+        SharedRMCGhostCosmetics? ghostCosmetics = null;
+        if (patron is { } p && (p.GhostParticles != null || p.GhostHat != null || p.GhostMask != null))
+            ghostCosmetics = new SharedRMCGhostCosmetics(p.GhostParticles, p.GhostHat, p.GhostMask);
+
         // arcane discord link start
         _connected[player.UserId] = new SharedRMCPatronFull(
             sharedTier,
             linked.Linked,
             linked.HasPlayerRole,
             ghostColor,
+            ghostCosmetics,
             lobbyMessage,
             shoutouts);
         // arcane discord link end
@@ -394,6 +401,7 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
                 HasPlayerRole: true,
                 // arcane discord link end
                 GhostColor: null,
+                GhostCosmetics: null,
                 LobbyMessage: null,
                 RoundEndShoutout: null
             );
@@ -401,6 +409,46 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
 
         return _connected.GetValueOrDefault(userId);
     }
+
+    // Goobstation-Start
+    public void SetGhostCosmetics(NetUserId user, string? particles, string? hat, string? mask)
+    {
+        if (GetPatron(user)?.Tier is not { } tier ||
+            !tier.GhostCosmetics && !tier.GhostParticles)
+            return;
+
+        if (!tier.GhostParticles)
+            particles = null;
+
+        if (!tier.GhostCosmetics)
+        {
+            hat = null;
+            mask = null;
+        }
+
+        var cosmetics = particles == null && hat == null && mask == null
+            ? null
+            : new SharedRMCGhostCosmetics(particles, hat, mask);
+
+        _db.SetGhostCosmetics(user, particles, hat, mask);
+
+        if (_connected.TryGetValue(user, out var connected))
+        {
+            connected = connected with { GhostCosmetics = cosmetics };
+            _connected[user] = connected;
+            PatronUpdated?.Invoke((user, connected));
+        }
+    }
+
+    public async Task ReloadPatron(ICommonSession player)
+    {
+        await LoadData(player, CancellationToken.None);
+        SendPatronStatus(player);
+
+        if (_connected.TryGetValue(player.UserId, out var connected))
+            PatronUpdated?.Invoke((player.UserId, connected));
+    }
+    // Goobstation-End
 
     // arcane discord link start
     public bool CanPlay(ICommonSession player, out string locId)
