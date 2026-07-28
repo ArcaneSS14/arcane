@@ -9,6 +9,10 @@
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
+  # Orion-Start
+  category: Classic
+  description: "/ServerInfo/_Orion/SpeciesDescriptions/Human.xml"
+  # Orion-End
   # begin Goobstation: port EE height/width sliders
   minHeight: 0.90
   defaultHeight: 1

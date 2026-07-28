@@ -9,6 +9,21 @@
   markingLimits: MobHarpyMarkingLimits
   dollPrototype: MobHarpyDummy
   skinColoration: HumanToned
+  # Orion-Start
+  category: Unusual
+  description: "/ServerInfo/_Orion/SpeciesDescriptions/Harpy.xml"
+  pros:
+  - Могут летать на своих крыльях.
+  - Бегают на 10% быстрее, чем человек.
+  - Умеют петь, без инструментов.
+  - Умеют имитировать чужие голоса.
+  - Не могут порезаться об стекло и активировать мины с мышеловками своими ногами.
+  special:
+  - Дышат в 3 раза чаще, чем человек.
+  cons:
+  - Получают на 15% больше тупого урона.
+  - Не могут с лёгкостью тянуть другие расы и предметы, по сравнению с человеком.
+  # Orion-End
   # begin Goobstation: port EE height/width sliders
   minHeight: 0.80
   defaultHeight: 0.80
