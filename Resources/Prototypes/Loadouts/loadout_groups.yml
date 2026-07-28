@@ -359,6 +359,8 @@
   - BartenderJumpsuit
   - BartenderJumpskirt
   - BartenderJumpsuitPurple
+  - BartenderPatron # Arcane
+  - BartenderSkirtPatron # Arcane
   - ServiceMJ # goob
 
 - type: loadoutGroup
@@ -496,6 +498,7 @@
   - ChaplainJumpskirt
   - ChaplainRobesLight
   - ChaplainRobesDark
+  - NunDressPatron # Arcane
   - ServiceMJ # goob
 
 - type: loadoutGroup
@@ -507,6 +510,7 @@
   - ChaplainNunRobe
   - ChaplainBlackHoodie
   - ChaplainHoodie
+  - ApostolCoatPatron # Arcane
 
 - type: loadoutGroup
   id: ChaplainNeck
@@ -627,6 +631,7 @@
   loadouts:
   - JesterHat
   - JesterAltHat
+  - ClownPinkHatPatron # Arcane
 
 - type: loadoutGroup
   id: ClownJumpsuit
@@ -636,6 +641,7 @@
   - ClownSkirt
   - JesterSuit
   - JesterAltSuit
+  - ClownPinkPatron # Arcane
 
 - type: loadoutGroup
   id: ClownBackpack
@@ -817,6 +823,7 @@
   loadouts:
   - QuartermasterHead
   - QuartermasterBeret
+  - QMBlackBeretPatron # Arcane
 
 - type: loadoutGroup
   id: QuartermasterJumpsuit
@@ -827,6 +834,10 @@
   - QuartermasterTurtleneck
   - QuartermasterTurtleneckSkirt
   - QuartermasterFormalSuit
+  - SleevelesQMBlackSkirtPatron # Arcane
+  - SleevelesQMBlackPatron # Arcane
+  - SleevelesQMSkirtPatron # Arcane
+  - SleevelesQMPatron # Arcane
   - QuartermasterMJ # goob
   - QMSummerShirt # goob
 
@@ -837,6 +848,8 @@
   loadouts:
   - QuartermasterCloak
   - QuartermasterMantle
+  - QMBlackCloakPatron # Arcane
+  - QMWhiteCloakPatron # Arcane
   - QuartermasterEnsemble # goob
 
 - type: loadoutGroup
@@ -846,12 +859,22 @@
   loadouts:
   - QuartermasterWintercoat
 
+# Arcane-Start
+- type: loadoutGroup
+  id: QuartermasterHands
+  name: loadout-group-quartermaster-hands
+  minLimit: 0
+  loadouts:
+  - QMGlovesPatron
+# Arcane-End
+
 - type: loadoutGroup
   id: QuartermasterShoes
   name: loadout-group-quartermaster-shoes
   loadouts:
   - BrownShoes
   - CargoWinterBoots
+  - QMShoesPatron # Arcane
 
 - type: loadoutGroup
   id: QuartermasterJobTrinkets
@@ -956,6 +979,7 @@
   loadouts:
   - ChiefEngineerHead
   - ChiefEngineerBeret
+  - CEBlackBeretPatron # Arcane
 
 - type: loadoutGroup
   id: ChiefEngineerJumpsuit
@@ -965,6 +989,10 @@
   - ChiefEngineerJumpskirt
   - ChiefEngineerTurtleneck
   - ChiefEngineerTurtleneckSkirt
+  - CEBlackPatron # Arcane
+  - CEBlackSkirtPatron # Arcane
+  - CEWhiteSkirtPatron # Arcane
+  - CEWhitePatron # Arcane
   - ChiefEngineerMJ # goob
   - CESummerShirt # goob
 
@@ -975,6 +1003,8 @@
   loadouts:
   - ClothingNeckCloakWhiteCe # goob
   - ClothingNeckCloakGreenCe # goob
+  - CEBlackCloakPatron # Arcane
+  - CETricolorCloakPatron # Arcane
   - ClothingNeckMantleWhiteCE # goob
   - ClothingNeckMantleOrangeCE # goob
   - ClothingNeckEnsembleChiefEngineerWhite # goob
@@ -1294,6 +1324,7 @@
   loadouts:
   - HeadofSecurityHead
   - HeadofSecurityBeret
+  - HOSCapPatron # Arcane
   - HeadofSecuritySpecialBeret # Goobstation
 
 - type: loadoutGroup
@@ -1306,6 +1337,7 @@
   - HeadofSecurityTurtleneckSkirt
   - HeadofSecurityFormalSuit
   - HeadofSecurityFormalSkirt
+  - HOSShortDressPatron # Arcane
   - HoSSummerShirt # goob
   - HoSMJ # goob
 
@@ -1316,6 +1348,8 @@
   loadouts:
   - HeadofSecurityCloak
   - HeadofSecurityMantle
+  - HOSBlackCloakPatron # Arcane
+  - HOSRedCloakPatron # Arcane
   - Bodycam # Goobstation - Body cameras
   - HeadOfSecurityEnsemble # goob
 
@@ -1325,6 +1359,8 @@
   loadouts:
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
+  - LeatherCoatPatron # Arcane
+  - HOSLongVestPatron # Arcane
   - HeadofSecurityGreatCoat # Goobstation
   - HeadofSecurityVestWeb # Goobstation
 
@@ -1522,6 +1558,7 @@
   loadouts:
   - ChiefMedicalOfficerBeret
   - CMOMedicalHeadMirror
+  - CMOHatPatron # Arcane
   - ChemistUshanka # Goobstation
 
 - type: loadoutGroup
@@ -1532,6 +1569,8 @@
   - ChiefMedicalOfficerJumpskirt
   - ChiefMedicalOfficerTurtleneckJumpsuit
   - ChiefMedicalOfficerTurtleneckJumpskirt
+  - CMOSweaterSkirtPatron # Arcane
+  - CMOSweaterPatron # Arcane
   - CMOMJ # goob
 
 - type: loadoutGroup
@@ -1549,6 +1588,7 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
+  - CMOHonorableCloakPatron # Arcane
   - ChiefMedicalOfficerEnsemble # goob
 
 - type: loadoutGroup
@@ -1577,6 +1617,7 @@
   - GreenSurgeryCap
   - PurpleSurgeryCap
   - NurseHat
+  - SanitarHatPatron # Arcane
 
 - type: loadoutGroup
   id: MedicalDoctorJumpsuit
@@ -1599,6 +1640,10 @@
   - RegularLabCoat
   - MedicalDoctorWintercoat
   - SeniorPhysicianLabCoat
+  - EeayLabCoatPatron # Arcane
+  - LabCoatBeltsPatron # Arcane
+  - LabCoatBlackPatron # Arcane
+  - LivseyCoatPatron # Arcane
 
 - type: loadoutGroup
   id: MedicalBackpack
@@ -1615,6 +1660,7 @@
   loadouts:
   - WhiteShoes
   - MedicalWinterBoots
+  - OldFashionesDoctorShoesPatron # Arcane
 
 - type: loadoutGroup
   id: MedicalDoctorPDA

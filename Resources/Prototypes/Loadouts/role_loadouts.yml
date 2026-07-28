@@ -12,6 +12,7 @@
   - CaptainShoes # Goobstation
   - Survival
   - Trinkets
+  - Patron # Arcane
   - CaptainJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -33,6 +34,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - HoPJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -67,6 +69,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - PassengerJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -86,6 +89,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - BartenderJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -103,6 +107,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - ServiceWorkerJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -123,6 +128,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - ChefJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -140,6 +146,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - LibrarianJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -158,6 +165,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - LawyerJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -180,6 +188,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - ChaplainJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -200,6 +209,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - JanitorJobTrinkets
   - Animals # Goobstation?
   - GroupSpeciesBreathTool
@@ -219,6 +229,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - BotanistJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -240,6 +251,7 @@
   - Glasses
   - SurvivalClown
   - Trinkets
+  - Patron # Arcane
   - ClownJobTrinkets
   - Animals # Goobstation
   # Goobstation - EE Plasmeme Change.
@@ -263,6 +275,7 @@
   - Glasses
   - SurvivalMime
   - Trinkets
+  - Patron # Arcane
   - MimeJobTrinkets
   - Animals # Goobstation
   # Goobstation - EE Plasmeme Change.
@@ -282,6 +295,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - MusicianJobTrinkets
   - Instruments
   - Animals
@@ -299,12 +313,14 @@
   - QuartermasterHead
   - QuartermasterNeck
   - QuartermasterJumpsuit
+  - QuartermasterHands # Arcane
   - CargoTechnicianBackpack
   - QuartermasterOuterClothing
   - QuartermasterShoes
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - QuartermasterJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -326,6 +342,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - CargoTechnicianJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -346,6 +363,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - SalvageSpecialistJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -367,6 +385,7 @@
   - ChiefEngineerShoes
   - SurvivalExtended
   - Trinkets
+  - Patron # Arcane
   - ChiefEngineerJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -383,6 +402,7 @@
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
+  - Patron # Arcane
   - TechnicalAssistantJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -403,6 +423,7 @@
   - StationEngineerID
   - SurvivalExtended
   - Trinkets
+  - Patron # Arcane
   - StationEngineerJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -422,6 +443,7 @@
   - AtmosphericTechnicianShoes
   - SurvivalExtended
   - Trinkets
+  - Patron # Arcane
   - AtmosphericTechnicianJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -445,6 +467,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - ResearchDirectorJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -468,6 +491,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - ScientistJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -485,6 +509,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - ResearchAssistantJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -508,6 +533,7 @@
   - SecurityGloves #goob
   - SurvivalSecurity
   - Trinkets
+  - Patron # Arcane
   - HeadofSecurityJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolSecurity
@@ -531,6 +557,7 @@
   - SecurityGloves #goob
   - SurvivalSecurity
   - Trinkets
+  - Patron # Arcane
   - WardenJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolSecurity
@@ -554,6 +581,7 @@
   - SecurityBelt
   - SurvivalSecurity
   - Trinkets
+  - Patron # Arcane
   - SecurityJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolSecurity
@@ -573,6 +601,7 @@
   - SecurityShoes
   - SurvivalSecurity
   - Trinkets
+  - Patron # Arcane
   - DetectiveJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolSecurity
@@ -592,6 +621,7 @@
   - SecurityNeck
   - SecurityOuterClothing # Goobstation - Why not.
   - Trinkets
+  - Patron # Arcane
   - SecurityCadetJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolSecurity
@@ -616,6 +646,7 @@
  # - MedicalEyewear #Goobstation - Spawns with medichem hud
   - SurvivalMedical
   - Trinkets
+  - Patron # Arcane
   - ChiefMedicalOfficerJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
@@ -639,6 +670,7 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
+  - Patron # Arcane
   - MedicalDoctorJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
@@ -656,6 +688,7 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
+  - Patron # Arcane
   - MedicalInternJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
@@ -677,6 +710,7 @@
   - MedicalShoes
   - SurvivalMedical
   - Trinkets
+  - Patron # Arcane
   - ChemistJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
@@ -699,6 +733,7 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
+  - Patron # Arcane
   - ParamedicJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
@@ -718,6 +753,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - ReporterJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
@@ -735,6 +771,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - Patron # Arcane
   - PsychologistJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool

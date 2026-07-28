@@ -86,6 +86,7 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
 
             _serverCur.ClientBalanceChange += UpdatePlayerBalance; // Goobstation - Goob Coin
+            _linkAccount.Updated += UpdateSponsorTier; // Arcane
         }
 
         protected override void Shutdown()
@@ -97,6 +98,7 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyLateJoinStatusUpdated -= LobbyLateJoinStatusUpdated;
             _contentAudioSystem.LobbySoundtrackChanged -= UpdateLobbySoundtrackInfo;
             _serverCur.ClientBalanceChange -= UpdatePlayerBalance; // Goobstation - Goob Coin
+            _linkAccount.Updated -= UpdateSponsorTier; // Arcane
 
             _voteManager.ClearPopupContainer();
 
@@ -241,7 +243,21 @@ namespace Content.Client.Lobby
             }
             else
                 Lobby!.PlaytimeComment.Visible = false;
+
+            UpdateSponsorTier(); // Arcane
         }
+
+        // Arcane-start
+        private void UpdateSponsorTier()
+        {
+            if (Lobby == null)
+                return;
+
+            Lobby.SponsorTier.Text = _linkAccount.Tier != null
+                ? Loc.GetString($"{_linkAccount.Tier.Tier}-patron-name")
+                : Loc.GetString("not-patron-name");
+        }
+        // Arcane-end
 
         private void UpdateLobbySoundtrackInfo(LobbySoundtrackChangedEvent ev)
         {
