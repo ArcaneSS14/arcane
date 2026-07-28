@@ -47,7 +47,7 @@
       amount: 500
 
 - type: researchExperiment
-  id: ScanningBots
+  id: ScanningClothing
   name: research-experiment-scanning-clothing-name
   description: research-experiment-scanning-clothing-desc
   category: Scanning
@@ -79,9 +79,9 @@
       amount: 600
 
 - type: researchExperiment
-  id: ScanningImplanter
-  name: research-experiment-scanning-implants-name
-  description: research-experiment-scanning-implants-desc
+  id: ScanningVehicle
+  name: research-experiment-scanning-machines-name
+  description: research-experiment-scanning-machines-desc
   category: Scanning
   objective: !type:ScanDifferentEntitiesExperimentObjective
     requiredComponents:
@@ -95,7 +95,7 @@
       amount: 600
 
 - type: researchExperiment
-  id: ScanningImplanter
+  id: ScanningBots
   name: research-experiment-scanning-bots-name
   description: research-experiment-scanning-bots-desc
   category: Scanning
