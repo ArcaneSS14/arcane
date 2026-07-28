@@ -158,6 +158,19 @@
     laws: NutimovLawset
 
 - type: entity
+  id: ArtPlanetSupportCircuitBoard
+  parent: BaseElectronics
+  name: law board (ArtPlanet Technical Support)
+  suffix: Admeme
+  description: An electronics board containing the ArtPlanet Technical Support lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: ArtPlanetSupportLawset
+
+- type: entity
   id: XenoborgCircuitBoard
   parent: BaseElectronics
   name: law board (Xenoborg)
