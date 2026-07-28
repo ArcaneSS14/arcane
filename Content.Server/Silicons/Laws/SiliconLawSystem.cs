@@ -415,6 +415,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     // Corvax-Next-AiRemoteControl-End
 
     // Goob edit start
+    // Arcane edit start
     private void ApplyExperimentalLaws(Entity<SiliconLawUpdaterComponent> ent, Entity<ExperimentalLawProviderComponent, SiliconLawProviderComponent> experiment)
     {
         if (experiment.Comp1.Used)
@@ -425,12 +426,22 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         }
 
         var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components);
-        var hasSubverted = false;
         var targetList = new List<EntityUid>();
+        var hasSubverted = false;
 
         while (query.MoveNext(out var update))
         {
             targetList.Add(update);
+
+            // Проверяем связанного ИИ
+            if (TryComp<StationAiHeldComponent>(update, out var stationAiHeldComp) &&
+                stationAiHeldComp.CurrentConnectedEntity != null &&
+                HasComp<SiliconLawProviderComponent>(stationAiHeldComp.CurrentConnectedEntity.Value) &&
+                !targetList.Contains(stationAiHeldComp.CurrentConnectedEntity.Value))
+            {
+                targetList.Add(stationAiHeldComp.CurrentConnectedEntity.Value);
+            }
+
             if (TryComp<SiliconLawProviderComponent>(update, out var provider) && provider.Subverted)
             {
                 hasSubverted = true;
@@ -464,10 +475,11 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         var boardUid = experiment.Owner;
         Timer.Spawn(TimeSpan.FromSeconds(0.5), () =>
         {
-            if (!Deleted(boardUid)) QueueDel(boardUid);
-        }
-        );
+            if (!Deleted(boardUid))
+                QueueDel(boardUid);
+        });
     }
+    // Arcane-Edit-End
 
     private const string AnnouncementChannel = "Science";
 
