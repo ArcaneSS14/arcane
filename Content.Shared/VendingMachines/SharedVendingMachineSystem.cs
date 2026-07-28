@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Emag.Components;
+using Content.Shared._Orion.VendingMachines.Components;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Access.Components;
@@ -238,6 +239,16 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             return;
         }
 
+        // Orion-Edit-Start
+        var beforeEject = new VendingMachineBeforeEjectEvent(uid, user, type, itemId, entry.Price);
+        RaiseLocalEvent(uid, ref beforeEject);
+        if (beforeEject.Cancelled)
+        {
+            Deny((uid, vendComponent), user);
+            return;
+        }
+        // Orion-Edit-End
+
         // Start Ejecting, and prevent users from ordering while anim playing
         vendComponent.EjectEnd = Timing.CurTime + vendComponent.EjectDelay;
         vendComponent.NextItemToEject = entry.ID;
@@ -332,9 +343,11 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         if (!PrototypeManager.TryIndex(component.PackPrototypeId, out VendingMachineInventoryPrototype? packPrototype))
             return;
 
-        AddInventoryFromPrototype(uid, packPrototype.StartingInventory, InventoryType.Regular, component, restockQuality);
-        AddInventoryFromPrototype(uid, packPrototype.EmaggedInventory, InventoryType.Emagged, component, restockQuality);
-        AddInventoryFromPrototype(uid, packPrototype.ContrabandInventory, InventoryType.Contraband, component, restockQuality);
+        // Orion-Edit-Start
+        AddInventoryFromPrototype(uid, packPrototype.StartingInventory, InventoryType.Regular, packPrototype, component, restockQuality);
+        AddInventoryFromPrototype(uid, packPrototype.EmaggedInventory, InventoryType.Emagged, packPrototype, component, restockQuality);
+        AddInventoryFromPrototype(uid, packPrototype.ContrabandInventory, InventoryType.Contraband, packPrototype, component, restockQuality);
+        // Orion-Edit-End
         Dirty(uid, component);
     }
 
@@ -382,8 +395,42 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         return GetAllInventory(uid, component).Where(_ => _.Amount > 0).ToList();
     }
 
+    // Orion-Edit-Start
+    private int ResolveItemPrice(EntityUid uid, InventoryType type, string id, VendingMachineInventoryPrototype packPrototype)
+    {
+        if (TryComp<VendingMachinePricingComponent>(uid, out var pricing) && pricing.AllProductsFree)
+            return 0;
+
+        switch (type)
+        {
+            case InventoryType.Regular when packPrototype.Prices != null && packPrototype.Prices.TryGetValue(id, out var regularPrice):
+                return Math.Max(0, regularPrice);
+            case InventoryType.Contraband when packPrototype.ContrabandPrices != null && packPrototype.ContrabandPrices.TryGetValue(id, out var contrabandPrice):
+                return Math.Max(0, contrabandPrice);
+            case InventoryType.Emagged when packPrototype.EmaggedPrices != null && packPrototype.EmaggedPrices.TryGetValue(id, out var emaggedPrice):
+                return Math.Max(0, emaggedPrice);
+        }
+
+        var defaultPrice = packPrototype.DefaultPrice;
+        var extraPrice = packPrototype.ExtraPrice;
+
+        if (pricing != null)
+        {
+            if (defaultPrice <= 0)
+                defaultPrice = pricing.DefaultPrice;
+
+            if (extraPrice <= 0)
+                extraPrice = pricing.ExtraPrice;
+        }
+
+        var finalPrice = type == InventoryType.Regular ? defaultPrice : extraPrice > 0 ? extraPrice : defaultPrice;
+        return Math.Max(0, finalPrice);
+    }
+    // Orion-Edit-End
+
     private void AddInventoryFromPrototype(EntityUid uid, Dictionary<string, uint>? entries,
         InventoryType type,
+        VendingMachineInventoryPrototype packPrototype, // Orion
         VendingMachineComponent? component = null, float restockQuality = 1.0f)
     {
         if (!Resolve(uid, ref component) || entries == null)
@@ -429,7 +476,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
                     // losing the rest of the restock.
                     entry.Amount = Math.Min(entry.Amount + amount, 3 * restock);
                 else
-                    inventory.Add(id, new VendingMachineInventoryEntry(type, id, restock));
+                    inventory.Add(id, new VendingMachineInventoryEntry(type, id, restock, ResolveItemPrice(uid, type, id, packPrototype))); // Orion
             }
         }
     }

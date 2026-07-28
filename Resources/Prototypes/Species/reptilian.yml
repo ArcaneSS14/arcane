@@ -13,6 +13,18 @@
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
+  # Orion-Start
+  category: Classic
+  description: "/ServerInfo/_Orion/SpeciesDescriptions/Reptilian.xml"
+  pros:
+  - Имеют большую толерантность к боли.
+  - Могут таскать предметы хвостом.
+  special:
+  - Имеют отличимый от других рас порог температуры. При низкой температуре получают 0.1 холода в секунду. При высокой температуре получают 1.5 ожогов в секунду.
+  - Имеет животный желудок.
+  cons:
+  - На 30% чувствительнее к холоду, чем человек.
+  # Orion-End
 
 - type: speciesBaseSprites
   id: MobReptilianSprites

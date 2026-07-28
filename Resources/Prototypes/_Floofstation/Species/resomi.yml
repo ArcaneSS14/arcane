@@ -17,6 +17,19 @@
   - Unsexed
   - Male
   - Female
+  # Orion-Start
+  category: Classic
+  description: "/ServerInfo/_Orion/SpeciesDescriptions/Resomi.xml"
+  pros:
+  - Невосприимчивы к урону от холода и другим воздействиям.
+  special:
+  - Могут поместится в вещмешок.
+  cons:
+  - Получают на 30% больше теплового урона.
+  - Получают на 15% больше тупого урона.
+  - Температура, которую большинство других видов считают комфортной, для них невыносимо высокая, и они начинают страдать начиная всего с 30°C.
+  - Не могут с лёгкостью тянуть другие расы и предметы, по сравнению с человеком.
+  # Orion-End
   # begin Goobstation: port EE height/width sliders
   # resomi sprites look very wrong when too big or too wide
   minHeight: 0.80
