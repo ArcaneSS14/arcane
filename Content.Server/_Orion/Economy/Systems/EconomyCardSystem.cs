@@ -221,7 +221,8 @@ public sealed class EconomyCardSystem : EntitySystem
         if (!_bank.Withdraw(account, args.Amount, "card-withdrawal", GetNetEntity(user)))
             return;
 
-        var holochip = _stack.Spawn(args.Amount, stackProto, Transform(user).Coordinates);
+        var holochip = Spawn(stackProto.Spawn, Transform(user).Coordinates);
+        _stack.SetCount(holochip, args.Amount);
         _hands.PickupOrDrop(user, holochip);
 
         _openUiAccounts[ent.Owner] = account.Comp.AccountId;

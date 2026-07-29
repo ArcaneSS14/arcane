@@ -1,7 +1,4 @@
-// SPDX-FileCopyrightText: 2024 Nemanja
-// SPDX-FileCopyrightText: 2025 Coenx-flex
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: MIT
 
 using Content.Shared.Alert;
 using Robust.Client.GameObjects;

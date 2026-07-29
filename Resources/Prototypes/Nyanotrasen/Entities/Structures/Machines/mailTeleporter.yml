@@ -52,7 +52,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: ApcPowerReceiver
-    powerLoad: 1000 # TODO if we keep this make it spike power draw when teleporting
+    powerLoad: 1000
     powerDisabled: true
   - type: ExtensionCableReceiver
   - type: Appearance

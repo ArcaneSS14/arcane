@@ -3,6 +3,7 @@ using Content.Server.Popups;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Cargo.Prototypes;
@@ -100,7 +101,7 @@ public sealed class PayrollSystem : EntitySystem
 
     private (JobPrototype Job, int Salary, ProtoId<CargoAccountPrototype>? DepartmentAccount, bool PayrollFromStationBudget)? GetPayrollData(Entity<MindComponent> mind)
     {
-        foreach (var role in mind.Comp.MindRoles)
+        foreach (var role in mind.Comp.MindRoleContainer.ContainedEntities)
         {
             if (!TryComp<MindRoleComponent>(role, out var mindRole) || mindRole.JobPrototype == null)
                 continue;

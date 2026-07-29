@@ -1,99 +1,17 @@
-// SPDX-FileCopyrightText: 2020 ComicIronic <comicironic@gmail.com>
-// SPDX-FileCopyrightText: 2020 FL-OZ <58238103+FL-OZ@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2020 FL-OZ <anotherscuffed@gmail.com>
-// SPDX-FileCopyrightText: 2020 Peter Wedder <burneddi@gmail.com>
-// SPDX-FileCopyrightText: 2020 Víctor Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2020 chairbender <kwhipke1@gmail.com>
-// SPDX-FileCopyrightText: 2020 namespace-Memory <66768086+namespace-Memory@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2020 scuffedjays <yetanotherscuffed@gmail.com>
-// SPDX-FileCopyrightText: 2020 zumorica <zddm@outlook.es>
-// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2021 Galactic Chimp <GalacticChimpanzee@gmail.com>
-// SPDX-FileCopyrightText: 2021 Javier Guardia Fernández <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Metal Gear Sloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2021 Michael Phillips <1194692+MeltedPixel@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Paul <ritter.paul1+git@googlemail.com>
-// SPDX-FileCopyrightText: 2021 Paul Ritter <ritter.paul1@gmail.com>
-// SPDX-FileCopyrightText: 2021 Paul Ritter <ritter.paul1@googlemail.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <gradientvera@outlook.com>
-// SPDX-FileCopyrightText: 2021 Ygg01 <y.laughing.man.y@gmail.com>
-// SPDX-FileCopyrightText: 2021 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2021 metalgearsloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2021 mirrorcult <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2021 plinyvic <plinyvicgames@gmail.com>
-// SPDX-FileCopyrightText: 2022 0x6273 <0x40@keemail.me>
-// SPDX-FileCopyrightText: 2022 keronshb <54602815+keronshb@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <wrexbe@protonmail.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 ElectroJr <leonsfriedrich@gmail.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2024 12rabbits <53499656+12rabbits@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Alzore <140123969+Blackern5000@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Benjamin Velliquette <32338704+bVelliquette@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Brandon Hu <103440971+Brandon-Huu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Crotalus <Crotalus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Dimastra <65184747+Dimastra@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Dimastra <dimastra@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Eoin Mcloughlin <helloworld@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 JIPDawg <51352440+JIPDawg@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 JIPDawg <JIPDawg93@gmail.com>
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-// SPDX-FileCopyrightText: 2024 Moomoobeef <62638182+Moomoobeef@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 PJBot <pieterjan.briers+bot@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 PopGamer46 <yt1popgamer@gmail.com>
-// SPDX-FileCopyrightText: 2024 PursuitInAshes <pursuitinashes@gmail.com>
-// SPDX-FileCopyrightText: 2024 QueerNB <176353696+QueerNB@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Saphire Lattice <lattice@saphi.re>
-// SPDX-FileCopyrightText: 2024 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Spessmann <156740760+Spessmann@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 Thomas <87614336+Aeshus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 stellar-novas <stellar_novas@riseup.net>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
-using Content.Goobstation.Maths.FixedPoint;
-using Content.Server.Jittering;
-using Content.Server.Kitchen.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
 using Content.Shared._Orion.Construction.Events;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Destructible;
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Interaction;
-using Content.Shared.Jittering;
 using Content.Shared.Kitchen;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Popups;
-using Content.Shared.Power;
 using Content.Shared.Random;
 using Content.Shared.Stacks;
 using JetBrains.Annotations;
@@ -102,11 +20,16 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using System.Linq;
+using Content.Server.Jittering;
+using Content.Shared.Jittering;
+using Content.Shared.Kitchen.EntitySystems;
+using Content.Shared.Power;
 
 namespace Content.Server.Kitchen.EntitySystems
 {
     [UsedImplicitly]
-    internal sealed class ReagentGrinderSystem : EntitySystem
+    internal sealed class ReagentGrinderSystem : SharedReagentGrinderSystem
     {
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly SharedSolutionContainerSystem _solutionContainersSystem = default!;
@@ -121,14 +44,13 @@ namespace Content.Server.Kitchen.EntitySystems
         [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
         [Dependency] private readonly JitteringSystem _jitter = default!;
 
-        private readonly List<EntityUid> _containedEntities = new(); // Orion
-
         public override void Initialize()
         {
             base.Initialize();
 
             SubscribeLocalEvent<ActiveReagentGrinderComponent, ComponentStartup>(OnActiveGrinderStart);
             SubscribeLocalEvent<ActiveReagentGrinderComponent, ComponentRemove>(OnActiveGrinderRemove);
+            SubscribeLocalEvent<ReagentGrinderComponent, ComponentInit>(OnGrinderInit); // Orion
             SubscribeLocalEvent<ReagentGrinderComponent, ComponentStartup>((uid, _, _) => UpdateUiState(uid));
             SubscribeLocalEvent((EntityUid uid, ReagentGrinderComponent _, ref PowerChangedEvent _) => UpdateUiState(uid));
             SubscribeLocalEvent<ReagentGrinderComponent, InteractUsingEvent>(OnInteractUsing);
@@ -141,15 +63,48 @@ namespace Content.Server.Kitchen.EntitySystems
             SubscribeLocalEvent<ReagentGrinderComponent, ReagentGrinderStartMessage>(OnStartMessage);
             SubscribeLocalEvent<ReagentGrinderComponent, ReagentGrinderEjectChamberAllMessage>(OnEjectChamberAllMessage);
             SubscribeLocalEvent<ReagentGrinderComponent, ReagentGrinderEjectChamberContentMessage>(OnEjectChamberContentMessage);
-            // Orion-Start
-            SubscribeLocalEvent<ReagentGrinderComponent, RefreshPartsEvent>(OnPartsRefresh);
-            SubscribeLocalEvent<ReagentGrinderComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-            // Orion-End
+            SubscribeLocalEvent<ReagentGrinderComponent, RefreshPartsEvent>(OnPartsRefresh); // Orion
+            SubscribeLocalEvent<ReagentGrinderComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Orion
         }
+
+        // Orion-Edit-Start
+        private static void OnGrinderInit(Entity<ReagentGrinderComponent> ent, ref ComponentInit args)
+        {
+            ent.Comp.BaseWorkTimeMultiplier = ent.Comp.WorkTimeMultiplier;
+            ent.Comp.BaseStorageMaxEntities = ent.Comp.StorageMaxEntities;
+        }
+
+        private void OnPartsRefresh(EntityUid uid, ReagentGrinderComponent component, RefreshPartsEvent args)
+        {
+            var servoTier = args.GetPartRating(component.ServoPart, 1f);
+            var matterBinTier = args.GetPartRating(component.MatterBinPart, 1f);
+
+            component.WorkTimeMultiplier = component.BaseWorkTimeMultiplier / MathF.Max(servoTier, 1f);
+            component.StorageMaxEntities = (int) MathF.Round(component.BaseStorageMaxEntities *
+                RefreshPartsEvent.GetPositiveTierMultiplier(matterBinTier));
+            Dirty(uid, component);
+            UpdateUiState(uid);
+        }
+
+        private static void OnUpgradeExamine(EntityUid uid, ReagentGrinderComponent component, UpgradeExamineEvent args)
+        {
+            var speedMultiplier = component.WorkTimeMultiplier <= 0f
+                ? 1f
+                : component.BaseWorkTimeMultiplier / component.WorkTimeMultiplier;
+            var capacityMultiplier = component.BaseStorageMaxEntities <= 0
+                ? 1f
+                : (float) component.StorageMaxEntities / component.BaseStorageMaxEntities;
+
+            args.AddPercentageUpgrade("machine-upgrade-process-speed", speedMultiplier);
+            args.AddPercentageUpgrade("machine-upgrade-capacity", capacityMultiplier);
+        }
+        // Orion-Edit-End
 
         private void OnToggleAutoModeMessage(Entity<ReagentGrinderComponent> entity, ref ReagentGrinderToggleAutoModeMessage message)
         {
             entity.Comp.AutoMode = (GrinderAutoMode) (((byte) entity.Comp.AutoMode + 1) % Enum.GetValues(typeof(GrinderAutoMode)).Length);
+
+            Dirty(entity);
 
             UpdateUiState(entity);
         }
@@ -172,19 +127,9 @@ namespace Content.Server.Kitchen.EntitySystems
                 if (outputContainer is null || !_solutionContainersSystem.TryGetFitsInDispenser(outputContainer.Value, out var containerSoln, out var containerSolution))
                     continue;
 
-                // Orion-Start
-                _containedEntities.Clear();
-                _containedEntities.AddRange(inputContainer.ContainedEntities);
-                // Orion-End
-
-                foreach (var item in _containedEntities) // Orion-Edit
+                foreach (var item in inputContainer.ContainedEntities.ToList())
                 {
-                    var solution = active.Program switch
-                    {
-                        GrinderProgram.Grind => GetGrindSolution(item),
-                        GrinderProgram.Juice => CompOrNull<ExtractableComponent>(item)?.JuiceSolution,
-                        _ => null,
-                    };
+                    var solution = GetGrinderSolution(item, active.Program);
 
                     if (solution is null)
                         continue;
@@ -207,7 +152,7 @@ namespace Content.Server.Kitchen.EntitySystems
                         scaledSolution.ScaleSolution(fitsCount);
                         solution = scaledSolution;
 
-                        _stackSystem.SetCount(item, stack.Count - fitsCount); // Setting to 0 will QueueDel
+                        _stackSystem.ReduceCount((item, stack), fitsCount); // Setting to 0 will QueueDel
                     }
                     else
                     {
@@ -219,8 +164,6 @@ namespace Content.Server.Kitchen.EntitySystems
 
                     _solutionContainersSystem.TryAddSolution(containerSoln.Value, solution);
                 }
-
-                _containedEntities.Clear(); // Orion
 
                 _userInterfaceSystem.ServerSendUiMessage(uid, ReagentGrinderUiKey.Key,
                     new ReagentGrinderWorkCompleteMessage());
@@ -312,8 +255,8 @@ namespace Content.Server.Kitchen.EntitySystems
                 && _solutionContainersSystem.TryGetFitsInDispenser(outputContainer.Value, out _, out containerSolution)
                 && inputContainer.ContainedEntities.Count > 0)
             {
-                canGrind = inputContainer.ContainedEntities.All(CanGrind);
-                canJuice = inputContainer.ContainedEntities.All(CanJuice);
+                canGrind = inputContainer.ContainedEntities.All(x => CanGrind(x));
+                canJuice = inputContainer.ContainedEntities.All(x => CanJuice(x));
             }
 
             var state = new ReagentGrinderInterfaceState(
@@ -387,10 +330,10 @@ namespace Content.Server.Kitchen.EntitySystems
             SoundSpecifier? sound;
             switch (program)
             {
-                case GrinderProgram.Grind when inputContainer.ContainedEntities.All(CanGrind):
+                case GrinderProgram.Grind when inputContainer.ContainedEntities.All(x => CanGrind(x)):
                     sound = reagentGrinder.GrindSound;
                     break;
-                case GrinderProgram.Juice when inputContainer.ContainedEntities.All(CanJuice):
+                case GrinderProgram.Juice when inputContainer.ContainedEntities.All(x => CanJuice(x)):
                     sound = reagentGrinder.JuiceSound;
                     break;
                 default:
@@ -411,55 +354,5 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             _audioSystem.PlayPvs(reagentGrinder.Comp.ClickSound, reagentGrinder.Owner, AudioParams.Default.WithVolume(-2f));
         }
-
-        private Solution? GetGrindSolution(EntityUid uid)
-        {
-            if (TryComp<ExtractableComponent>(uid, out var extractable)
-                && extractable.GrindableSolution is not null
-                && _solutionContainersSystem.TryGetSolution(uid, extractable.GrindableSolution, out _, out var solution))
-            {
-                return solution;
-            }
-
-            return null;
-        }
-
-        private bool CanGrind(EntityUid uid)
-        {
-            var solutionName = CompOrNull<ExtractableComponent>(uid)?.GrindableSolution;
-
-            return solutionName is not null && _solutionContainersSystem.TryGetSolution(uid, solutionName, out _, out _);
-        }
-
-        private bool CanJuice(EntityUid uid)
-        {
-            return CompOrNull<ExtractableComponent>(uid)?.JuiceSolution is not null;
-        }
-
-        // Orion-Start
-        private void OnPartsRefresh(EntityUid uid, ReagentGrinderComponent component, RefreshPartsEvent args)
-        {
-            var servoTier = args.GetPartRating(component.ServoPart, 1f);
-            var matterBinTier = args.GetPartRating(component.MatterBinPart, 1f);
-
-            component.WorkTimeMultiplier = 1f / MathF.Max(servoTier, 1f);
-            component.StorageMaxEntities = (int)MathF.Round(component.BaseStorageMaxEntities * RefreshPartsEvent.GetPositiveTierMultiplier(matterBinTier));
-
-            UpdateUiState(uid);
-        }
-
-        private static void OnUpgradeExamine(EntityUid uid, ReagentGrinderComponent component, UpgradeExamineEvent args)
-        {
-            var speedMultiplier = component.WorkTimeMultiplier <= 0f
-                ? 1f
-                : 1f / component.WorkTimeMultiplier;
-            var capacityMultiplier = component.BaseStorageMaxEntities <= 0
-                ? 1f
-                : (float) component.StorageMaxEntities / component.BaseStorageMaxEntities;
-
-            args.AddPercentageUpgrade("machine-upgrade-process-speed", speedMultiplier);
-            args.AddPercentageUpgrade("machine-upgrade-capacity", capacityMultiplier);
-        }
-        // Orion-End
     }
 }

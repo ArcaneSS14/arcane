@@ -521,7 +521,7 @@ public sealed class MorphSystem : SharedMorphSystem
 
     private void EnsureMorphObjectives(EntityUid mindId, MindComponent mindComp, List<EntProtoId> objectives)
     {
-        if (!mindComp.MindRoles.Any(HasComp<MorphRoleComponent>))
+        if (!mindComp.MindRoleContainer.ContainedEntities.Any(HasComp<MorphRoleComponent>))
             return;
 
         foreach (var objective in objectives)

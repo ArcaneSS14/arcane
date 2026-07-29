@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.Access;
 using Content.Shared.DeviceNetwork;
@@ -9,14 +8,18 @@ using Content.Shared.TurretController;
 using Content.Shared.Turrets;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
+using System.Linq;
+using Content.Server.Administration.Logs;
+using Content.Shared.Database;
 
 namespace Content.Server.TurretController;
 
 /// <inheritdoc/>
-public sealed class DeployableTurretControllerSystem : SharedDeployableTurretControllerSystem
+public sealed partial class DeployableTurretControllerSystem : SharedDeployableTurretControllerSystem
 {
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
 
     /// Keys for the device network. See <see cref="DeviceNetworkConstants"/> for further examples.
     public const string CmdSetArmamemtState = "set_armament_state";
@@ -109,6 +112,8 @@ public sealed class DeployableTurretControllerSystem : SharedDeployableTurretCon
             [CmdSetArmamemtState] = armamentState,
         };
 
+        _adminLogger.Add(LogType.ItemConfigure, LogImpact.Medium, $"{ToPrettyString(user)} set {ToPrettyString(ent)} to {armamentState}");
+
         _deviceNetwork.QueuePacket(ent, null, payload, device: device);
     }
 
@@ -131,6 +136,11 @@ public sealed class DeployableTurretControllerSystem : SharedDeployableTurretCon
             [DeviceNetworkConstants.Command] = CmdSetAccessExemptions,
             [CmdSetAccessExemptions] = turretTargetingSettings.ExemptAccessLevels,
         };
+
+        foreach (var exemption in exemptions)
+        {
+            _adminLogger.Add(LogType.ItemConfigure, LogImpact.Medium, $"{ToPrettyString(user)} set {ToPrettyString(ent)} authorization of {exemption} to {enabled}");
+        }
 
         _deviceNetwork.QueuePacket(ent, null, payload, device: device);
     }

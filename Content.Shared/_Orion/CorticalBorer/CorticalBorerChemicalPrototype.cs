@@ -13,7 +13,7 @@ namespace Content.Shared._Orion.CorticalBorer;
 public sealed partial class CorticalBorerChemicalPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     /// <summary>
     ///     Chemical cost per unit of reagent
