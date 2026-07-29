@@ -36,7 +36,7 @@
       - MegaCell
       - DroneUsable # Goobstation
   - type: Appearance
-  - type: PowerCellVisuals
+  - type: BatteryVisuals # Arcane-Edit: Fix
   - type: Riggable
   - type: StealTarget #Goobstation - IPC steal
     stealGroup: Battery

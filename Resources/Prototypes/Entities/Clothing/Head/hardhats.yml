@@ -69,6 +69,8 @@
     tags:
     - WhitelistChameleon
     - HardHat # Einstein Engines
+  - type: StaticPrice # Arcane
+    price: 0
   - type: Armor
     coverage:
     - Head
