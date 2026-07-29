@@ -134,6 +134,7 @@
       - state: coil
   - type: ExaminableBattery
   - type: Battery
+    netsync: false # Arcane
     maxCharge: 30000 # max supply
     startingCharge: 10000
   - type: PowerNetworkBattery
