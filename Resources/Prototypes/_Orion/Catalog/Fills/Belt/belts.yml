@@ -19,3 +19,13 @@
       - Katana
       item2:
       - Wakizashi
+
+- type: entity
+  id: ClothingBeltAssaultFilled
+  parent: ClothingBeltAssault
+  suffix: Filled, BSO
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltAssaultBSOEntityTable

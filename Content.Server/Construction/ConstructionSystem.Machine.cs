@@ -1,19 +1,8 @@
-// SPDX-FileCopyrightText: 2022 0x6273 <0x40@keemail.me>
-// SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 Ygg01 <y.laughing.man.y@gmail.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Construction.Components;
 using Content.Shared._Orion.Construction.Prototypes;
 using Content.Shared.Construction.Components;
-using Content.Shared.Stacks;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Construction;
@@ -33,7 +22,13 @@ public sealed partial class ConstructionSystem
         component.PartContainer = _container.EnsureContainer<Container>(uid, MachineFrameComponent.PartContainerName);
     }
 
-    // Orion-Start
+    private void OnMachineMapInit(EntityUid uid, MachineComponent component, MapInitEvent args)
+    {
+        CreateBoardAndStockParts(uid, component);
+        RefreshParts(uid, component); // Orion
+    }
+
+    // Orion-Edit-Start
     private void OnMachineStartup(EntityUid uid, MachineComponent component, ComponentStartup args)
     {
         if (component.BoardContainer.ContainedEntities.Count == 0)
@@ -41,13 +36,7 @@ public sealed partial class ConstructionSystem
 
         RefreshParts(uid, component);
     }
-    // Orion-End
-
-    private void OnMachineMapInit(EntityUid uid, MachineComponent component, MapInitEvent args)
-    {
-        CreateBoardAndStockParts(uid, component);
-        RefreshParts(uid, component); // Orion
-    }
+    // Orion-Edit-End
 
     private void CreateBoardAndStockParts(EntityUid uid, MachineComponent component)
     {
@@ -75,44 +64,24 @@ public sealed partial class ConstructionSystem
 
         foreach (var (stackType, amount) in machineBoard.StackRequirements)
         {
-/*
-            var stack = _stackSystem.Spawn(amount, stackType, xform.Coordinates);
+            var stack = _stackSystem.SpawnAtPosition(amount, stackType, xform.Coordinates);
             if (!_container.Insert(stack, partContainer))
                 throw new Exception($"Couldn't insert machine material of type {stackType} to machine with prototype {Prototype(uid)?.ID ?? "N/A"}");
-*/
-
-            // Orion-Start
-            if (PrototypeManager.TryIndex(stackType, out _))
-            {
-                var stack = _stackSystem.Spawn(amount, stackType, xform.Coordinates);
-                if (!_container.Insert(stack, partContainer))
-                {
-                    Del(stack);
-                    throw new Exception($"Couldn't insert machine material of type {stackType} to machine with prototype {Prototype(uid)?.ID ?? "N/A"}");
-                }
-
-                continue;
-            }
-
-            throw new Exception($"Unknown stack material requirement {stackType} for machine with prototype {Prototype(uid)?.ID ?? "N/A"}");
         }
 
+        // Orion-Edit-Start
         foreach (var (partType, amount) in machineBoard.PartRequirements)
         {
-            if (PrototypeManager.TryIndex(partType, out var machinePart))
+            if (!PrototypeManager.TryIndex<MachinePartPrototype>(partType, out var machinePart))
+                throw new Exception($"Unknown machine part requirement {partType} for machine with prototype {Prototype(uid)?.ID ?? "N/A"}");
+
+            for (var i = 0; i < amount; i++)
             {
-                for (var i = 0; i < amount; i++)
-                {
-                    if (!TrySpawnInContainer(machinePart.StockPartPrototype, uid, MachineFrameComponent.PartContainerName, out _))
-                        throw new Exception($"Couldn't insert machine part requirement {partType} to machine with prototype {Prototype(uid)?.ID ?? "N/A"}");
-                }
-
-                continue;
+                if (!TrySpawnInContainer(machinePart.StockPartPrototype, uid, MachineFrameComponent.PartContainerName, out _))
+                    throw new Exception($"Couldn't insert machine part requirement {partType} to machine with prototype {Prototype(uid)?.ID ?? "N/A"}");
             }
-
-            throw new Exception($"Unknown machine part requirement {partType} for machine with prototype {Prototype(uid)?.ID ?? "N/A"}");
-            // Orion-End
         }
+        // Orion-Edit-End
 
         foreach (var (compName, info) in machineBoard.ComponentRequirements)
         {

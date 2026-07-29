@@ -1,19 +1,16 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Skubman <ba.fallaria@gmail.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server._EinsteinEngines.Atmos.Components;
 using Content.Shared.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared._EinsteinEngines.SelfExtinguisher;
 using Content.Shared.Actions;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Effects;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
+using Content.Shared._EinsteinEngines.SelfExtinguisher;
+using Content.Shared.Atmos.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
@@ -21,7 +18,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._EinsteinEngines.SelfExtinguisher;
 
-public sealed class SelfExtinguisherSystem : SharedSelfExtinguisherSystem
+public sealed partial class SelfExtinguisherSystem : SharedSelfExtinguisherSystem
 {
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
@@ -76,7 +73,7 @@ public sealed class SelfExtinguisherSystem : SharedSelfExtinguisherSystem
             if (!SetPopupCooldown((uid, selfExtinguisher), curTime))
                 return;
 
-            _popup.PopupEntity(Loc.GetString("self-extinguisher-on-cooldown", ("item", uid)),
+            _popup.PopupEntity(Loc.GetString($"self-extinguisher-on-cooldown", ("item", uid)),
                 target, user, !flammable.OnFire ? PopupType.Small : PopupType.MediumCaution);
             return;
         }

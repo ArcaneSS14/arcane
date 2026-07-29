@@ -1,49 +1,13 @@
-// SPDX-FileCopyrightText: 2021 20kdc <asdd2808@gmail.com>
-// SPDX-FileCopyrightText: 2021 Clyybber <darkmine956@gmail.com>
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto <gradientvera@outlook.com>
-// SPDX-FileCopyrightText: 2021 Ygg01 <y.laughing.man.y@gmail.com>
-// SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 metalgearsloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 ElectroJr <leonsfriedrich@gmail.com>
-// SPDX-FileCopyrightText: 2023 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <deltanedas@laptop>
-// SPDX-FileCopyrightText: 2023 deltanedas <user@zenith>
-// SPDX-FileCopyrightText: 2024 0x6273 <0x40@keemail.me>
-// SPDX-FileCopyrightText: 2024 AWF <you@example.com>
-// SPDX-FileCopyrightText: 2024 Brandon Li <48413902+aspiringLich@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 GitHubUser53123 <110841413+GitHubUser53123@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Jake Huxell <JakeHuxell@pm.me>
-// SPDX-FileCopyrightText: 2024 Kevin Zheng <kevinz5000@gmail.com>
-// SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <comedian_vs_clown@hotmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
-using Content.Goobstation.Maths.FixedPoint;
 using Content.Server.Chemistry.Components;
-using Content.Server.Hands.Systems;
 using Content.Shared._Orion.Construction.Events;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Labels.Components;
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Nutrition.EntitySystems;
-using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Server.Audio;
@@ -51,6 +15,9 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Content.Shared.Labels.Components;
+using Content.Shared.Storage;
+using Content.Server.Hands.Systems;
 
 namespace Content.Server.Chemistry.EntitySystems
 {
@@ -86,11 +53,8 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserClearContainerSolutionMessage>(OnClearContainerSolutionMessage);
 
             SubscribeLocalEvent<ReagentDispenserComponent, MapInitEvent>(OnMapInit, before: new[] { typeof(ItemSlotsSystem) });
-
-            // Orion-Start
-            SubscribeLocalEvent<ReagentDispenserComponent, RefreshPartsEvent>(OnPartsRefresh);
-            SubscribeLocalEvent<ReagentDispenserComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-            // Orion-End
+            SubscribeLocalEvent<ReagentDispenserComponent, RefreshPartsEvent>(OnPartsRefresh); // Orion
+            SubscribeLocalEvent<ReagentDispenserComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Orion
         }
 
         private void SubscribeUpdateUiState<T>(Entity<ReagentDispenserComponent> ent, ref T ev)
@@ -185,11 +149,11 @@ namespace Content.Server.Chemistry.EntitySystems
                 _solutionContainerSystem.TryGetRefillableSolution(outputContainer.Value, out var dst, out _))
             {
                 // force open container, if applicable, to avoid confusing people on why it doesn't dispense
-                _openable.SetOpen(storedContainer);
-                _solutionTransferSystem.Transfer(reagentDispenser,
+                _openable.SetOpen(storedContainer, true);
+                _solutionTransferSystem.Transfer(new SolutionTransferData(reagentDispenser,
                         storedContainer, src.Value,
                         outputContainer.Value, dst.Value,
-                        (int)reagentDispenser.Comp.DispenseAmount);
+                        (int)reagentDispenser.Comp.DispenseAmount));
             }
 
             UpdateUiState(reagentDispenser);
@@ -241,15 +205,20 @@ namespace Content.Server.Chemistry.EntitySystems
             var capacitorTier = args.GetPartRating(component.CapacitorPart);
             var matterBinTier = args.GetPartRating(component.MatterBinPart);
 
-            component.FinalRechargeRate = component.BaseRechargeRate * RefreshPartsEvent.GetPositiveTierMultiplier(capacitorTier);
+            component.FinalRechargeRate =
+                component.BaseRechargeRate * RefreshPartsEvent.GetPositiveTierMultiplier(capacitorTier);
 
             var energyMultiplier = RefreshPartsEvent.GetLinearMultiplier(matterBinTier, 0.1f, 0.5f, 1.2f);
-            component.FinalEnergyCostPerUnit = MathF.Max(0.01f, component.BaseEnergyCostPerUnit * energyMultiplier);
+            component.FinalEnergyCostPerUnit =
+                MathF.Max(0.01f, component.BaseEnergyCostPerUnit * energyMultiplier);
 
             UpdateUiState((uid, component));
         }
 
-        private static void OnUpgradeExamine(EntityUid uid, ReagentDispenserComponent component, UpgradeExamineEvent args)
+        private static void OnUpgradeExamine(
+            EntityUid uid,
+            ReagentDispenserComponent component,
+            UpgradeExamineEvent args)
         {
             var rechargeMultiplier = component.BaseRechargeRate <= 0f
                 ? 1f

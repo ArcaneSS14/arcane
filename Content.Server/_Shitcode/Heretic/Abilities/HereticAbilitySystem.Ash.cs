@@ -1,32 +1,17 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 MJSailor <92106367+kurokoTurbo@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Marcus F <199992874+thebiggestbruh@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 shibe <95730644+shibechef@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 whateverusername0 <whateveremail>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
-using System.Threading.Tasks;
-using Content.Server.Atmos.Components;
-using Content.Shared._Shitmed.Damage;
-using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Heretic;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Atmos.Components;
 using Robust.Shared.Map.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+using System.Linq;
+using System.Threading.Tasks;
+using Content.Shared._Shitmed.Damage;
+using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Atmos.Components;
 
 namespace Content.Server.Heretic.Abilities;
 
@@ -74,7 +59,7 @@ public sealed partial class HereticAbilitySystem
                 !TryComp<MobStateComponent>(look, out var mobstate) || mobstate.CurrentState == MobState.Dead)
                 continue;
 
-            if (mobstate.CurrentState is MobState.SoftCritical or MobState.HardCritical) // Orion-Edit
+            if (mobstate.CurrentState == MobState.Critical)
                 _mobstate.ChangeMobState(look, MobState.Dead, mobstate);
 
             toHeal += args.HealAmount;
@@ -118,7 +103,7 @@ public sealed partial class HereticAbilitySystem
     public async Task CombustArea(EntityUid ent, int range = 1, bool hollow = true)
     {
         // we need this beacon in order for damage box to not break apart
-        var beacon = Spawn(null, _xform.GetMapCoordinates(ent));
+        var beacon = Spawn(null, _xform.GetMapCoordinates((EntityUid) ent));
 
         for (int i = 0; i <= range; i++)
         {

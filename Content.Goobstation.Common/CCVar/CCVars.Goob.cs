@@ -116,6 +116,13 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<bool> CloneBiomassEasyMode =
         CVarDef.Create("goob.clone_biomass_easy_mode", false, CVar.SERVER | CVar.SERVER);
 
+    /// <summary>
+    ///     DEBUG Cvar - Should pathfinding be disabled globally. For SpawnAndDirty cause we need the mem.
+    /// </summary>
+    public static readonly CVarDef<bool> DisablePathfinding =
+        CVarDef.Create("goob.disable_pathfinding", false, CVar.SERVER | CVar.SERVERONLY);
+
+
     #region Player Listener
 
     /// <summary>
@@ -455,6 +462,37 @@ public sealed partial class GoobCVars
     /// </summary>
     public static readonly CVarDef<float> BarksVolume =
         CVarDef.Create("voice.barks_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    #endregion
+
+    #region Voicechat
+
+    public static readonly CVarDef<bool> VoiceChatEnabled =
+        CVarDef.Create("voice.enabled", false, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> VoiceChatPort =
+        CVarDef.Create("voice.vc_server_port", 1213, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> VoiceChatVolume =
+        CVarDef.Create("voice.volume", 5f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VoiceChatBufferTargetMultiplier =
+        CVarDef.Create("voice.buffer_target_multiplier", 1.0f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> VoiceChatMinBufferSize =
+        CVarDef.Create("voice.min_buffer_size", 10, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> VoiceChatMaxBufferSize =
+        CVarDef.Create("voice.max_buffer_size", 50, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> VoiceChatAdvancedTimeStretch =
+        CVarDef.Create("voice.advanced_time_stretch", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> VoiceChatDebugLogging =
+        CVarDef.Create("voice.debug_logging", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> VoiceChatHearSelf =
+        CVarDef.Create("voice.hear_self", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     #endregion
 

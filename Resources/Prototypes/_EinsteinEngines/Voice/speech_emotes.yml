@@ -1,12 +1,3 @@
-# SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
-# SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 Marty <martynashagriefer@gmail.com>
-# SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: emote
@@ -25,17 +16,9 @@
   id: Boop
   name: chat-emote-name-boop
   category: Vocal
-  chatMessages: ["chat-emote-msg-boop"] # Orion-Edit: Localization
+  chatMessages: [ boops. ]
   chatTriggers:
   - boops
-  # Orion-Start
-  - буп
-  - буп.
-  - буп!
-  - бупает
-  - бупает.
-  - бупает!
-  # Orion-End
   whitelist:
     components:
     - Silicon
@@ -45,17 +28,9 @@
   id: Whirr
   name: chat-emote-name-whirr
   category: Vocal
-  chatMessages: ["chat-emote-msg-whirr"] # Orion-Edit: Localization
+  chatMessages: [ whirrs. ]
   chatTriggers:
   - whirrs
-  # Orion-Start
-  - жужжит сервоприводами
-  - жужжит сервоприводами.
-  - жужжит сервоприводами!
-  - гудит сервоприводами
-  - гудит сервоприводами.
-  - гудит сервоприводами!
-  # Orion-End
   whitelist:
     components:
     - Silicon
@@ -77,16 +52,6 @@
     - mars
     - marsing
     - marsed
-    # Orion-Start
-    - марсит
-    - марсит.
-    - марсит!
-    # Orion-End
-    # Arcane-Start
-    - мар
-    - мар.
-    - мар!
-    # Arcane-End
 
 - type: emoteSounds
   id: UnisexPlasmaman
@@ -95,5 +60,8 @@
   sounds:
     Scream:
       collection: PlasmamanUnisexScreams
+    Belch: # Frontier
+      collection: Belch # Frontier
   sound:
     path: /Audio/Voice/Skeleton/skeleton_scream.ogg
+

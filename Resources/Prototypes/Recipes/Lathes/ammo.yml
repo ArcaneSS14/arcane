@@ -92,7 +92,15 @@
     Plastic: 500
     Uranium: 500
 
-# .30 Rifle # Orion: Now it 5.45mm or .21
+# .25 Caseless
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolCaselessRifle
+  result: MagazinePistolCaselessRifle
+  materials:
+    Steel: 145
+
+# .30 Rifle
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
   id: MagazineLightRifleEmpty
@@ -105,7 +113,7 @@
   id: MagazineLightRifle
   result: MagazineLightRifle
   materials:
-    Steel: 500 # Orion-Edit: 565 > 500
+    Steel: 565
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -113,14 +121,14 @@
   result: MagazineLightRifleIncendiary
   materials:
     Steel: 25
-    Plastic: 475 # Orion-Edit: 540 > 475
+    Plastic: 540
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineLightRiflePractice
   result: MagazineLightRiflePractice
   materials:
-    Steel: 175 # Orion-Edit: 205 > 175
+    Steel: 205
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -128,37 +136,37 @@
   result: MagazineLightRifleUranium
   materials:
     Steel: 25
-    Plastic: 325 # Orion-Edit: 360 > 325
-    Uranium: 325 # Orion-Edit: 360 > 325
+    Plastic: 360
+    Uranium: 360
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
   id: MagazineBoxLightRifle
   result: MagazineBoxLightRifle
   materials:
-    Steel: 775 # Orion-Edit: 900 > 775
+    Steel: 900
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
   id: MagazineBoxLightRifleIncendiary
   result: MagazineBoxLightRifleIncendiary
   materials:
-    Plastic: 775 # Orion-Edit: 900 > 775
+    Plastic: 900
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
   id: MagazineBoxLightRiflePractice
   result: MagazineBoxLightRiflePractice
   materials:
-    Steel: 200 # Orion-Edit: 300 > 200
+    Steel: 300
 
 - type: latheRecipe
   parent: BaseAmmoBoxRecipe
   id: MagazineBoxLightRifleUranium
   result: MagazineBoxLightRifleUranium
   materials:
-    Plastic: 550 # Orion-Edit: 600 > 550
-    Uranium: 550 # Orion-Edit: 600 > 550
+    Plastic: 600
+    Uranium: 600
 
 # .35 Auto
 - type: latheRecipe
@@ -451,6 +459,14 @@
   materials:
     Steel: 80
     Plastic: 80
+
+# .60 anti-materiel
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: MagazineBoxAntiMateriel
+  result: MagazineBoxAntiMateriel
+  materials:
+    Steel: 200
 
 # Encampment ammo
 - type: latheRecipe

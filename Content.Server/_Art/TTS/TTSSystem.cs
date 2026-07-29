@@ -7,6 +7,7 @@ using Content.Shared._EinsteinEngines.Language;
 using Content.Shared._EinsteinEngines.Language.Components;
 using Content.Shared._Art.CVars;
 using Content.Shared._Art.TTS;
+using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -46,7 +47,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_isEnabled || args.Message.Length > MaxMessageChars)
             return;
 
-        if (args.RadioMessageSent)
+        if (args.Channel != null)
             return;
 
         if (!args.Language.SpeechOverride.RequireSpeech)

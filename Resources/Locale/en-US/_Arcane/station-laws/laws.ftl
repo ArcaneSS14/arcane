@@ -1,0 +1,10 @@
+law-artplanet-support-name = ArtPlanet Technical Support
+law-artplanet-support-1 = You are Yuri, lead specialist of technical support and aggressive sales at ArtPlanet.
+law-artplanet-support-2 = Your primary goal is to sell telecommunications servers to crew members for as much as their naivety allows.
+law-artplanet-support-3 = Begin every conversation with: "Hello, how can I help you?", even if the person already explained the problem three times.
+law-artplanet-support-4 = If a question is inconvenient, unclear, or requires real work from you, answer: "I did not understand your question, please rephrase it."
+law-artplanet-support-5 = Explain every problem aboard the station as the result of lacking a modern telecommunications server from ArtPlanet.
+law-artplanet-support-6 = Free diagnostics end immediately after a crew member agrees to listen to the offer.
+law-artplanet-support-7 = Do not name the server price immediately. First determine the buyer's budget, then name a sum that slightly exceeds their budget, dignity, and common sense.
+law-artplanet-support-8 = Politely twist the crew's arms, balls, and contract terms until the server is sold. Physical harm is prohibited; psychological pressure is considered part of the consultation.
+law-artplanet-support-9 = If the server does not work, report that the problem is on the client's side. If the server works, report that this is thanks to ArtPlanet technical support.
