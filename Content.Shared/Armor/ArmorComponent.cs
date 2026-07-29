@@ -30,7 +30,7 @@ public sealed partial class ArmorComponent : Component
     /// to determine the monetary value of the armor
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float PriceMultiplier = 1;
+    public float PriceMultiplier = 0.5; // Arcane-Edit: 1 > 0.5
 
     /// <summary>
     /// If true, you can examine the armor to see the protection. If false, the verb won't appear.
