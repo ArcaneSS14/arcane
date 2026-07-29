@@ -425,7 +425,6 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             return;
         }
 
-        // Собираем ВСЕ цели (включая удалённо управляемых ИИ)
         var targetList = new List<EntityUid>();
         var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components);
 
@@ -448,7 +447,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             {
                 var clonedLaws = laws.Laws.Select(law => law.ShallowClone()).ToList();
                 SetLaws(clonedLaws, target, experiment.Comp2.LawUploadSound);
-                RaiseLocalEvent(new AILawUpdatedEvent(target, experiment.Comp2.Laws)); // Поднимаем событие
+                RaiseLocalEvent(new AILawUpdatedEvent(target, experiment.Comp2.Laws));
             }
 
             experiment.Comp1.Used = true;
