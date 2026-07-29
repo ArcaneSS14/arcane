@@ -12,7 +12,7 @@ public sealed partial class ExperimentalLawProviderComponent : Component
     [DataField] public string RandomLawsets = "IonStormLawsets";
 
     // buffed point amounts 3x so people will actually use this; 30k in two minutes seems ok to me (triples points per second from ~80 to ~240)- strong but takes a lot of setup by RD (and stealing the AI upload console)
-    [DataField] public float RewardTime = 120.0f;
+    [DataField] public float RewardTime = 300.0f; // Arcane-Edit
 
     // Arcane-Edit-Start
     //[DataField] public int RewardPoints = 30000;
