@@ -16,7 +16,7 @@ public sealed partial class ExperimentalLawProviderComponent : Component
 
     // Arcane-Edit-Start
     //[DataField] public int RewardPoints = 30000;
-    [DataField] public int MinRewardPoints = 1000;
-    [DataField] public int MaxRewardPoints = 15000;
+    [DataField] public int MinRewardPoints = 10;
+    [DataField] public int MaxRewardPoints = 15001;
 // Arcane-Edit-End
 }
