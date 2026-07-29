@@ -425,15 +425,15 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             return;
         }
 
-        var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components);
+        // Собираем ВСЕ цели (включая удалённо управляемых ИИ)
         var targetList = new List<EntityUid>();
-        var hasSubverted = false;
+        var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components);
 
         while (query.MoveNext(out var update))
         {
             targetList.Add(update);
 
-            // Проверяем связанного ИИ
+            // Добавляем связанного ИИ из StationAiHeldComponent
             if (TryComp<StationAiHeldComponent>(update, out var stationAiHeldComp) &&
                 stationAiHeldComp.CurrentConnectedEntity != null &&
                 HasComp<SiliconLawProviderComponent>(stationAiHeldComp.CurrentConnectedEntity.Value) &&
@@ -441,25 +441,23 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             {
                 targetList.Add(stationAiHeldComp.CurrentConnectedEntity.Value);
             }
-
-            if (TryComp<SiliconLawProviderComponent>(update, out var provider) && provider.Subverted)
-            {
-                hasSubverted = true;
-            }
         }
 
-        if (hasSubverted)
+        foreach (var target in targetList)
         {
-            var failMessage = Loc.GetString("experimental-law-provider-already-subverted");
-            _radio.SendRadioMessage(ent, failMessage, AnnouncementChannel, ent, escapeMarkup: false);
-            return;
+            if (TryComp<SiliconLawProviderComponent>(target, out var provider) && provider.Subverted)
+            {
+                var failMessage = Loc.GetString("experimental-law-provider-already-subverted");
+                _radio.SendRadioMessage(ent, failMessage, AnnouncementChannel, ent, escapeMarkup: false);
+                return;
+            }
         }
 
         var laws = GetRandomLaws(experiment.Comp1.RandomLawsets);
 
-        foreach (var update in targetList)
+        foreach (var target in targetList)
         {
-            SetLaws(laws.Laws, update, experiment.Comp2.LawUploadSound);
+            SetLaws(laws.Laws, target, experiment.Comp2.LawUploadSound);
         }
 
         experiment.Comp1.Used = true;
@@ -468,6 +466,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         activeProv.Timer = experiment.Comp1.RewardTime;
         activeProv.RewardPoints = experiment.Comp1.RewardPoints;
         activeProv.OldSiliconLawsetId = ent.Comp.LastLawset;
+        activeProv.TargetedEntities = targetList; // <-- СОХРАНЯЕМ СПИСОК ЦЕЛЕЙ ДЛЯ ОТКАТА
 
         var message = Loc.GetString("experimental-law-provider-start", ("timeLeft", (int) experiment.Comp1.RewardTime));
         _radio.SendRadioMessage(ent, message, AnnouncementChannel, ent, escapeMarkup: false);
@@ -500,15 +499,16 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
                 researchClient.Server == null)
                 continue;
 
-            if (!TryComp(uid, out SiliconLawUpdaterComponent? updater))
-                continue;
-
             // Replace laws back
+            // Arcane-Edit-Start
             var lawset = GetLawset(provider.OldSiliconLawsetId).Laws;
-            var query = EntityManager.CompRegistryQueryEnumerator(updater.Components);
 
-            while (query.MoveNext(out var update))
-                SetLaws(lawset, update, provider.LawRewardSound);
+            foreach (var target in provider.TargetedEntities)
+            {
+                if (!Deleted(target))
+                    SetLaws(lawset, target, provider.LawRewardSound);
+            }
+            // Arcane-Edit-End
 
             RemCompDeferred(uid, provider);
             _research.ModifyServerPoints(researchClient.Server.Value, provider.RewardPoints);
