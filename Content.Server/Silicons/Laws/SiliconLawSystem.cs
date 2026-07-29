@@ -426,7 +426,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         activeProv.Timer = experiment.Comp1.RewardTime;
         /*Arcane-Edit-Start
         activeProv.RewardPoints = experiment.Comp1.RewardPoints;*/
-        activeProv.RewardPoints = _robustRandom.Next(experiment.Comp1.MinRewardPoints, experiment.Comp1.MaxRewardPoints);
+        activeProv.RewardPoints = _robustRandom.Next(experiment.Comp1.MinRewardPoints, experiment.Comp1.MaxRewardPoints + 1);
         //Arcane-Edit-End
 
         activeProv.OldSiliconLawsetId = ent.Comp.LastLawset;
