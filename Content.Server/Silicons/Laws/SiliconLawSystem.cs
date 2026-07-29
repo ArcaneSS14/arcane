@@ -448,13 +448,13 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             if (provider.Timer >= 0)
                 continue;
 
-            if (!TryComp(uid, out SiliconLawUpdaterComponent? updater))
-                continue;
-
             // Reward time!!!
             if (!TryComp(uid, out ResearchClientComponent? researchClient) ||
                 !researchClient.ConnectedToServer ||
                 researchClient.Server == null)
+                continue;
+
+            if (!TryComp(uid, out SiliconLawUpdaterComponent? updater))
                 continue;
 
             // Replace laws back
