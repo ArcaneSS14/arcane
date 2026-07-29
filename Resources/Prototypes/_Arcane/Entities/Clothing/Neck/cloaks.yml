@@ -62,3 +62,12 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Neck/Sponsor/QM_white_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakIan
+  name: Ian cloak
+  description: We assure you that this is not a real dog, but a plush toy sewn into a coat.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/ian_cloak.rsi
