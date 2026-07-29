@@ -16,6 +16,8 @@ public sealed partial class ExperimentalLawProviderComponent : Component
 
     [DataField] public int RewardPoints = 30000;
 
+    // Arcane-Start
     [DataField]
     public bool Used = false;
+    // Arcane-End
 }

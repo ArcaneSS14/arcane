@@ -10,7 +10,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -26,7 +26,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -42,7 +42,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -58,7 +58,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -74,7 +74,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -90,7 +90,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -104,7 +104,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -120,7 +120,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 300
     - type: Experimental
       amount: 500
 
@@ -136,7 +136,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 3000
     - type: Experimental
       amount: 500
 
@@ -151,7 +151,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -166,7 +166,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -182,7 +182,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -198,7 +198,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -216,7 +216,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -232,7 +232,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -248,7 +248,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -264,7 +264,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 2500
     - type: Experimental
       amount: 500
 
@@ -279,7 +279,7 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 3600
     - type: Experimental
       amount: 500
 
@@ -294,6 +294,6 @@
   reward:
     pointRewards:
     - type: General
-      amount: 5000
+      amount: 400
     - type: Experimental
       amount: 500

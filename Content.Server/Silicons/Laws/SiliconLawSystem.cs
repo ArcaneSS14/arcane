@@ -60,7 +60,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private readonly ResearchSystem _research = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!; // Corvax-Next-AiRemoteControl
-    [Dependency] private readonly IGameTiming _timing = default!; // Arcane-Edit
+    [Dependency] private readonly IGameTiming _timing = default!; // Arcane
 
 
 
@@ -415,9 +415,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     // Corvax-Next-AiRemoteControl-End
 
     // Goob edit start
-    // Arcane edit start
     private void ApplyExperimentalLaws(Entity<SiliconLawUpdaterComponent> ent, Entity<ExperimentalLawProviderComponent, SiliconLawProviderComponent> experiment)
     {
+    // Arcane-Edit-Start
         if (experiment.Comp1.Used)
         {
             var failMessage = Loc.GetString("experimental-law-provider-already-used");
@@ -432,53 +432,47 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         while (query.MoveNext(out var update))
         {
             targetList.Add(update);
-
-            // Добавляем связанного ИИ из StationAiHeldComponent
-            if (TryComp<StationAiHeldComponent>(update, out var stationAiHeldComp) &&
-                stationAiHeldComp.CurrentConnectedEntity != null &&
-                HasComp<SiliconLawProviderComponent>(stationAiHeldComp.CurrentConnectedEntity.Value) &&
-                !targetList.Contains(stationAiHeldComp.CurrentConnectedEntity.Value))
             {
-                targetList.Add(stationAiHeldComp.CurrentConnectedEntity.Value);
+                if (TryComp<StationAiHeldComponent>(update, out var stationAiHeldComp) &&
+                    stationAiHeldComp.CurrentConnectedEntity != null &&
+                    HasComp<SiliconLawProviderComponent>(stationAiHeldComp.CurrentConnectedEntity.Value) &&
+                    !targetList.Contains(stationAiHeldComp.CurrentConnectedEntity.Value))
+                {
+                    targetList.Add(stationAiHeldComp.CurrentConnectedEntity.Value);
+                }
             }
-        }
 
-        foreach (var target in targetList)
-        {
-            if (TryComp<SiliconLawProviderComponent>(target, out var provider) && provider.Subverted)
+            var laws = GetRandomLaws(experiment.Comp1.RandomLawsets);
+
+            foreach (var target in targetList)
             {
-                var failMessage = Loc.GetString("experimental-law-provider-already-subverted");
-                _radio.SendRadioMessage(ent, failMessage, AnnouncementChannel, ent, escapeMarkup: false);
-                return;
+                var clonedLaws = laws.Laws.Select(law => law.ShallowClone()).ToList();
+                SetLaws(clonedLaws, target, experiment.Comp2.LawUploadSound);
+                RaiseLocalEvent(new AILawUpdatedEvent(target, experiment.Comp2.Laws)); // Поднимаем событие
             }
+
+            experiment.Comp1.Used = true;
+            // Arcane-Edit-End
+
+            var activeProv = EnsureComp<ActiveExperimentalLawProviderComponent>(ent);
+            activeProv.Timer = experiment.Comp1.RewardTime;
+            activeProv.RewardPoints = experiment.Comp1.RewardPoints;
+            activeProv.OldSiliconLawsetId = ent.Comp.LastLawset;
+            activeProv.TargetedEntities = targetList;
+
+            var message = Loc.GetString("experimental-law-provider-start", ("timeLeft", (int) experiment.Comp1.RewardTime));
+            _radio.SendRadioMessage(ent, message, AnnouncementChannel, ent, escapeMarkup: false);
+
+            // Arcane-Edit-Start
+            var boardUid = experiment.Owner;
+            Timer.Spawn(TimeSpan.FromSeconds(0.5), () =>
+            {
+                if (!Deleted(boardUid))
+                    QueueDel(boardUid);
+            });
         }
-
-        var laws = GetRandomLaws(experiment.Comp1.RandomLawsets);
-
-        foreach (var target in targetList)
-        {
-            SetLaws(laws.Laws, target, experiment.Comp2.LawUploadSound);
-        }
-
-        experiment.Comp1.Used = true;
-
-        var activeProv = EnsureComp<ActiveExperimentalLawProviderComponent>(ent);
-        activeProv.Timer = experiment.Comp1.RewardTime;
-        activeProv.RewardPoints = experiment.Comp1.RewardPoints;
-        activeProv.OldSiliconLawsetId = ent.Comp.LastLawset;
-        activeProv.TargetedEntities = targetList; // <-- СОХРАНЯЕМ СПИСОК ЦЕЛЕЙ ДЛЯ ОТКАТА
-
-        var message = Loc.GetString("experimental-law-provider-start", ("timeLeft", (int) experiment.Comp1.RewardTime));
-        _radio.SendRadioMessage(ent, message, AnnouncementChannel, ent, escapeMarkup: false);
-
-        var boardUid = experiment.Owner;
-        Timer.Spawn(TimeSpan.FromSeconds(0.5), () =>
-        {
-            if (!Deleted(boardUid))
-                QueueDel(boardUid);
-        });
+        // Arcane-Edit-End
     }
-    // Arcane-Edit-End
 
     private const string AnnouncementChannel = "Science";
 
@@ -507,6 +501,10 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             {
                 if (!Deleted(target))
                     SetLaws(lawset, target, provider.LawRewardSound);
+
+                var clonedLaws = lawset.Select(law => law.ShallowClone()).ToList();
+                SetLaws(clonedLaws, target, provider.LawRewardSound);
+                RaiseLocalEvent(new AILawUpdatedEvent(target, provider.OldSiliconLawsetId));
             }
             // Arcane-Edit-End
 
