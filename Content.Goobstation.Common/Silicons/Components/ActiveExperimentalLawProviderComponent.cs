@@ -22,7 +22,4 @@ public sealed partial class ActiveExperimentalLawProviderComponent : Component
 
     [DataField]
     public SoundSpecifier? LawRewardSound = new SoundPathSpecifier("/Audio/Misc/cryo_warning.ogg");
-
-    [DataField]
-    public List<EntityUid> TargetedEntities = new(); // Arcane-Edit
 }
