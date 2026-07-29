@@ -28,7 +28,7 @@ public sealed class TongueFlickingSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TongueFlickingComponent, MapInitEvent>(OnTongueFlickingMapInit);
+        SubscribeLocalEvent<TongueFlickingComponent, ComponentStartup>(OnTongueFlickingStartup);
         SubscribeLocalEvent<TongueFlickingComponent, ComponentShutdown>(OnTongueFlickingShutdown);
         SubscribeLocalEvent<TongueFlickingComponent, ToggleActionEvent>(OnTongueFlickingToggle);
         SubscribeLocalEvent<TongueFlickingComponent, MobStateChangedEvent>(OnMobStateChanged);
@@ -56,7 +56,7 @@ public sealed class TongueFlickingSystem : EntitySystem
         });
     }
 
-    private void OnTongueFlickingMapInit(EntityUid uid, TongueFlickingComponent component, MapInitEvent args)
+    private void OnTongueFlickingStartup(EntityUid uid, TongueFlickingComponent component, ComponentStartup args)
     {
         _actions.AddAction(uid, ref component.ActionEntity, component.Action, uid);
     }
