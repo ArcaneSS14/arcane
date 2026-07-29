@@ -1,16 +1,17 @@
 ent-ClothingUniformPivozavr = футболка пивозавра
     .desc = Древняя рептилия, которая любит пиво.
+# Sponsor
 ent-ClothingUniformBartender = униформа бармена
     .desc = Униформа бармена.
 ent-ClothingUniformBartenderSkirt = униформа бармена с юбкой
     .desc = Униформа бармена с юбкой.
-ent-ClothingUniformCEBlack = чёрная униформа старшего инженера
+ent-ClothingUniformNTRBlack = чёрная униформа представителя NanoTrasen
     .desc = Показатель навыка и чувства стиля.
-ent-ClothingUniformCEBlackSkirt = чёрная униформа старшего инженера с юбкой
+ent-ClothingUniformNTRBlackSkirt = чёрная униформа представителя NanoTrasen с юбкой
     .desc = Показатель навыка и чувства стиля.
-ent-ClothingUniformCEWhiteSkirt = белая униформа старшего инженера с юбкой
+ent-ClothingUniformNTRWhiteSkirt = белая униформа представителя NanoTrasen с юбкой
     .desc = Показатель навыка и чувства стиля.
-ent-ClothingUniformCEWhite =  белая униформа старшего инженера
+ent-ClothingUniformNTRWhite =  белая униформа представителя NanoTrasen
     .desc = Показатель навыка и чувства стиля.
 ent-ClothingUniformPinkClown = розовое клоунское платье
     .desc = Ещё больше веселья, приколов и стиля!

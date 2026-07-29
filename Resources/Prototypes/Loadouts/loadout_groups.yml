@@ -1038,7 +1038,6 @@
   - ChiefEngineerHead
   - ChiefEngineerBeret
   - EngineeringBeret # Orion
-  - CEBlackBeretPatron # Arcane
 
 - type: loadoutGroup
   id: ChiefEngineerJumpsuit
@@ -1050,12 +1049,6 @@
   - ChiefEngineerTurtleneckSkirt
   - ChiefEngineerMJ # goob
   - CESummerShirt # goob
-  # Arcane - Start
-  - CEBlackPatron
-  - CEBlackSkirtPatron
-  - CEWhiteSkirtPatron
-  - CEWhitePatron
-  # Arcane - End
 
 - type: loadoutGroup
   id: ChiefEngineerNeck
@@ -1068,10 +1061,6 @@
   - ClothingNeckMantleOrangeCE # goob
   - ClothingNeckEnsembleChiefEngineerWhite # goob
   - ClothingNeckEnsembleChiefEngineerGreen # goob
-  # Arcane - Start
-  - CEBlackCloakPatron
-  - CETricolorCloakPatron
-  # Arcane - End
 
 - type: loadoutGroup
   id: ChiefEngineerOuterClothing

@@ -900,6 +900,7 @@
   - NanotrasenRepresentativeBowler
   - NanotrasenRepresentativeOutlaw
   - NanotrasenRepresentativeMAA
+  - NTRBlackBeretPatron # Arcane
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeNeck
@@ -908,6 +909,10 @@
   loadouts:
   - ClothingNeckScarfStripedCentcom
   - NanotrasenRepresentativeEnsemble
+  # Arcane - Start
+  - NTRBlackCloakPatron
+  - NTRTricolorCloakPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeBackpack
@@ -925,6 +930,12 @@
   - NanotrasenRepresentativeJumpsuit
   - NanotrasenRepresentativeJumpskirt
   - NanotrasenRepresentativeFancyJumpsuit
+  # Arcane - Start
+  - NTRBlackPatron
+  - NTRBlackSkirtPatron
+  - NTRWhiteSkirtPatron
+  - NTRWhitePatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeBelt

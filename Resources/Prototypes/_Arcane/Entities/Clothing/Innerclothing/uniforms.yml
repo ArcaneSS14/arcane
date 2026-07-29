@@ -9,6 +9,8 @@
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/pivozavr.rsi
 
+# Sponsor
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformBartender
@@ -33,47 +35,47 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformCEBlack
-  name: CE's black uniform
+  id: ClothingUniformNTRBlack
+  name: NTR's black uniform
   description: An indicator of skill and sense of style.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_black.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_black.rsi
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformCEBlackSkirt
-  name: CE's black uniform with skirt
+  id: ClothingUniformNTRBlackSkirt
+  name: NTR's black uniform with skirt
   description: An indicator of skill and sense of style.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black_skirt.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_black_skirt.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black_skirt.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_black_skirt.rsi
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformCEWhiteSkirt
-  name: CE's white uniform with skirt
+  id: ClothingUniformNTRWhiteSkirt
+  name: NTR's white uniform with skirt
   description: An indicator of skill and sense of style.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white_skirt.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_white_skirt.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white_skirt.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_white_skirt.rsi
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformCEWhite
-  name: CE's white uniform
+  id: ClothingUniformNTRWhite
+  name: NTR's white uniform
   description: An indicator of skill and sense of style.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_white.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_white.rsi
 
 - type: entity
   parent: ClothingUniformBase

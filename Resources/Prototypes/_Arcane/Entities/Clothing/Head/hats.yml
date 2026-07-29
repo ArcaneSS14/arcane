@@ -104,16 +104,18 @@
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Hats/blueshieldhatcap.rsi
 
+# Sponsor
+
 - type: entity
   parent: ClothingHeadHatCentcom
-  id: ClothingHatCEBlackBeret
-  name: CE's black beret
-  description: CE's black beret.
+  id: ClothingHatNTRBlackBeret
+  name: NTR's black beret
+  description: NTR's black beret.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Head/Sponsor/CE_beret.rsi
+    sprite: _Arcane/Clothing/Head/Sponsor/NTR_beret.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Head/Sponsor/CE_beret.rsi
+    sprite: _Arcane/Clothing/Head/Sponsor/NTR_beret.rsi
 
 - type: entity
   parent: ClothingHeadHatCentcom

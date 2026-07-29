@@ -27,40 +27,40 @@
     jumpsuit: ClothingUniformBartenderSkirt
 
 - type: loadout
-  id: CEBlackPatron
+  id: NTRBlackPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     tiers:
     - Tier2
   equipment:
-    jumpsuit: ClothingUniformCEBlack
+    jumpsuit: ClothingUniformNTRBlack
 
 - type: loadout
-  id: CEBlackSkirtPatron
+  id: NTRBlackSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     tiers:
     - Tier2
   equipment:
-    jumpsuit: ClothingUniformCEBlackSkirt
+    jumpsuit: ClothingUniformNTRBlackSkirt
 
 - type: loadout
-  id: CEWhiteSkirtPatron
+  id: NTRWhiteSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     tiers:
     - Tier2
   equipment:
-    jumpsuit: ClothingUniformCEWhiteSkirt
+    jumpsuit: ClothingUniformNTRWhiteSkirt
 
 - type: loadout
-  id: CEWhitePatron
+  id: NTRWhitePatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     tiers:
     - Tier2
   equipment:
-    jumpsuit: ClothingUniformCEWhite
+    jumpsuit: ClothingUniformNTRWhite
 
 - type: loadout
   id: ClownPinkPatron
@@ -171,13 +171,13 @@
     shoes: ClothingShoesOldFashionedMedical
 
 - type: loadout
-  id: CEBlackBeretPatron
+  id: NTRBlackBeretPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     tiers:
     - Tier2
   equipment:
-    head: ClothingHatCEBlackBeret
+    head: ClothingHatNTRBlackBeret
 
 - type: loadout
   id: ClownPinkHatPatron
@@ -288,22 +288,22 @@
     outerClothing: ClothingOuterApostolCoat
 
 - type: loadout
-  id: CEBlackCloakPatron
+  id: NTRBlackCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     tiers:
     - Tier2
   equipment:
-    neck: ClothingCloakCEBlack
+    neck: ClothingCloakNTRBlack
 
 - type: loadout
-  id: CETricolorCloakPatron
+  id: NTRTricolorCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     tiers:
     - Tier2
   equipment:
-    neck: ClothingCloakCETricolor
+    neck: ClothingCloakNTRTricolor
 
 - type: loadout
   id: CMOHonorableCloakPatron
