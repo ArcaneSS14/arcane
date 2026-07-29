@@ -1,61 +1,3 @@
-// SPDX-FileCopyrightText: 2019 Silver <Silvertorch5@gmail.com>
-// SPDX-FileCopyrightText: 2020 ComicIronic <comicironic@gmail.com>
-// SPDX-FileCopyrightText: 2020 Julian Giebel <j.giebel@netrocks.info>
-// SPDX-FileCopyrightText: 2020 Julian Giebel <juliangiebel@live.de>
-// SPDX-FileCopyrightText: 2020 Metal Gear Sloth <metalgearsloth@gmail.com>
-// SPDX-FileCopyrightText: 2020 Víctor Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2020 chairbender <kwhipke1@gmail.com>
-// SPDX-FileCopyrightText: 2020 py01 <60152240+collinlunn@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2020 py01 <pyronetics01@gmail.com>
-// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
-// SPDX-FileCopyrightText: 2021 Daniel Castro Razo <eldanielcr@gmail.com>
-// SPDX-FileCopyrightText: 2021 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Jacob Tong <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 12rabbits <53499656+12rabbits@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Alzore <140123969+Blackern5000@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Brandon Hu <103440971+Brandon-Huu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Dimastra <65184747+Dimastra@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Dimastra <dimastra@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Eoin Mcloughlin <helloworld@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 JIPDawg <51352440+JIPDawg@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 JIPDawg <JIPDawg93@gmail.com>
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
-// SPDX-FileCopyrightText: 2024 Moomoobeef <62638182+Moomoobeef@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 PJBot <pieterjan.briers+bot@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers@gmail.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2024 PopGamer46 <yt1popgamer@gmail.com>
-// SPDX-FileCopyrightText: 2024 PursuitInAshes <pursuitinashes@gmail.com>
-// SPDX-FileCopyrightText: 2024 QueerNB <176353696+QueerNB@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Saphire Lattice <lattice@saphi.re>
-// SPDX-FileCopyrightText: 2024 ShadowCommander <10494922+ShadowCommander@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Spessmann <156740760+Spessmann@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2024 Thomas <87614336+Aeshus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 chavonadelal <156101927+chavonadelal@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
-// SPDX-FileCopyrightText: 2024 github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 stellar-novas <stellar_novas@riseup.net>
-// SPDX-FileCopyrightText: 2024 superjj18 <gagnonjake@gmail.com>
-// SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.AlertLevel;
@@ -68,11 +10,9 @@ using Content.Shared.Examine;
 using Content.Shared.Light;
 using Content.Shared.Light.Components;
 using Content.Shared.Power;
+using Content.Shared.Power.Components;
 using Content.Shared.Station.Components;
-using Robust.Server.Audio;
 using Robust.Server.GameObjects;
-using Robust.Shared.Player;
-using Robust.Shared.Timing;
 using Color = Robust.Shared.Maths.Color;
 
 namespace Content.Server.Light.EntitySystems;
@@ -84,21 +24,16 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
     [Dependency] private readonly PointLightSystem _pointLight = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!; // Orion
-    [Dependency] private readonly IGameTiming _timing = default!; // Orion
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<EmergencyLightComponent, MapInitEvent>(OnMapInit); // Orion
         SubscribeLocalEvent<EmergencyLightComponent, EmergencyLightEvent>(OnEmergencyLightEvent);
         SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
         SubscribeLocalEvent<EmergencyLightComponent, ExaminedEvent>(OnEmergencyExamine);
         SubscribeLocalEvent<EmergencyLightComponent, PowerChangedEvent>(OnEmergencyPower);
     }
-
-    private void OnMapInit(Entity<EmergencyLightComponent> entity, ref MapInitEvent args) => UpdateState(entity); // Orion
 
     private void OnEmergencyPower(Entity<EmergencyLightComponent> entity, ref PowerChangedEvent args)
     {
@@ -139,7 +74,7 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
             args.PushMarkup(
                 Loc.GetString("emergency-light-component-on-examine-alert",
                     ("color", color.ToHex()),
-                    ("level", Loc.GetString($"alert-level-{name.ToLower()}"))));
+                    ("level", Loc.GetString($"alert-level-{name.ToString().ToLower()}"))));
         }
     }
 
@@ -149,10 +84,9 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
         {
             case EmergencyLightState.On:
             case EmergencyLightState.Charging:
-            case EmergencyLightState.Full: // Orion
                 EnsureComp<ActiveEmergencyLightComponent>(uid);
                 break;
-//            case EmergencyLightState.Full: // Orion-Edit: Moved upper
+            case EmergencyLightState.Full:
             case EmergencyLightState.Empty:
                 RemComp<ActiveEmergencyLightComponent>(uid);
                 break;
@@ -177,7 +111,6 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
 
             _pointLight.SetColor(uid, details.EmergencyLightColor, pointLight);
             _appearance.SetData(uid, EmergencyLightVisuals.Color, details.EmergencyLightColor, appearance);
-            UpdateAlarmSound((uid, light), details);
 
             if (details.ForceEnableEmergencyLights && !light.ForciblyEnabled)
             {
@@ -201,45 +134,39 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
         RaiseLocalEvent(uid, new EmergencyLightEvent(state));
     }
 
-    // Orion-Edit-Start
     public override void Update(float frameTime)
     {
         var query = EntityQueryEnumerator<ActiveEmergencyLightComponent, EmergencyLightComponent, BatteryComponent>();
         while (query.MoveNext(out var uid, out _, out var emergencyLight, out var battery))
         {
-            if (emergencyLight.State == EmergencyLightState.On)
-            {
-                if (!_battery.TryUseCharge(uid, emergencyLight.Wattage * frameTime, battery))
-                {
-                    SetState(uid, emergencyLight, EmergencyLightState.Empty);
-                    TurnOff((uid, emergencyLight));
-                }
-            }
-            else
-            {
-                _battery.SetCharge(
-                    uid,
-                    battery.CurrentCharge + emergencyLight.ChargingWattage * frameTime * emergencyLight.ChargingEfficiency,
-                    battery);
-                if (_battery.IsFull(uid, battery))
-                {
-                    if (TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
-                        receiver.Load = 1;
-
-                    SetState(uid, emergencyLight, EmergencyLightState.Full);
-                }
-            }
-
-            // Audio Alarm
-            if (emergencyLight.AlarmNextSound >= _timing.CurTime || emergencyLight.AlarmSound == null)
-                continue;
-
-            _audioSystem.PlayEntity(emergencyLight.AlarmSound, Filter.Pvs(uid, 0.5f), uid, true);
-
-            emergencyLight.AlarmNextSound = _timing.CurTime.Add(emergencyLight.AlarmInterval);
+            Update((uid, emergencyLight), battery, frameTime);
         }
     }
-    // Orion-Edit-End
+
+    private void Update(Entity<EmergencyLightComponent> entity, BatteryComponent battery, float frameTime)
+    {
+        if (entity.Comp.State == EmergencyLightState.On)
+        {
+            if (!_battery.TryUseCharge((entity.Owner, battery), entity.Comp.Wattage * frameTime))
+            {
+                SetState(entity.Owner, entity.Comp, EmergencyLightState.Empty);
+                TurnOff(entity);
+            }
+        }
+        else
+        {
+            _battery.ChangeCharge((entity.Owner, battery), entity.Comp.ChargingWattage * frameTime * entity.Comp.ChargingEfficiency);
+            if (_battery.IsFull((entity.Owner, battery)))
+            {
+                if (TryComp<ApcPowerReceiverComponent>(entity.Owner, out var receiver))
+                {
+                    receiver.Load = 1;
+                }
+
+                SetState(entity.Owner, entity.Comp, EmergencyLightState.Full);
+            }
+        }
+    }
 
     /// <summary>
     ///     Updates the light's power drain, battery drain, sprite and actual light state.
@@ -264,19 +191,15 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
             TurnOff(entity, details.Color);
             SetState(entity.Owner, entity.Comp, EmergencyLightState.Charging);
         }
-        else if (!receiver.Powered) // If internal battery runs out
+        else if (!receiver.Powered) // If internal battery runs out it will end in off red state
         {
-            // Orion-Edit-Start
-            if (!entity.Comp.ForciblyEnabled)
-                TurnOn(entity, Color.Red);
-            // Orion-Edit-End
+            TurnOn(entity, Color.Red);
             SetState(entity.Owner, entity.Comp, EmergencyLightState.On);
         }
         else // Powered and enabled
         {
             TurnOn(entity, details.Color);
             SetState(entity.Owner, entity.Comp, EmergencyLightState.On);
-            UpdateAlarmSound(entity, details); // Orion
         }
     }
 
@@ -317,23 +240,4 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
         _appearance.SetData(entity.Owner, EmergencyLightVisuals.On, true);
         _ambient.SetAmbience(entity.Owner, true);
     }
-
-    // Orion-Start
-    private void UpdateAlarmSound(Entity<EmergencyLightComponent> entity, AlertLevelDetail alertLevel)
-    {
-        if (alertLevel.AlarmSound == null)
-        {
-            entity.Comp.AlarmSound = null;
-            return;
-        }
-
-        entity.Comp.AlarmSound = alertLevel.AlarmSound;
-        entity.Comp.AlarmInterval = alertLevel.AlarmInterval;
-
-        if (entity.Comp.AlarmInterval < TimeSpan.FromSeconds(1f)) // Safeguard against spam and client crash
-            entity.Comp.AlarmInterval = TimeSpan.FromSeconds(1f);
-
-        entity.Comp.AlarmNextSound = _timing.CurTime.Add(entity.Comp.AlarmInterval);
-    }
-    // Orion-End
 }

@@ -25,10 +25,10 @@ public enum ErpStateMode : byte
 /// An entry with an empty Species list acts as the slot fallback for any unmatched species.
 /// </summary>
 [Prototype("erpOrganVisual")]
-public sealed class ErpOrganVisualPrototype : IPrototype
+public sealed partial class ErpOrganVisualPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     /// <summary>ErpOrganSlots constant this entry targets, e.g. "penis".</summary>
     [DataField(required: true)]

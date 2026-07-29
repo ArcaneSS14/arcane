@@ -52,7 +52,7 @@ public sealed partial class ResearchSystem
         Dirty(uid, database);
 
         var newlyUnlockedRecipes = database.UnlockedRecipes.Except(previouslyUnlockedRecipes).ToList();
-        var ev = new TechnologyDatabaseModifiedEvent(newlyUnlockedRecipes);
+        var ev = new TechnologyDatabaseModifiedEvent(newlyUnlockedRecipes.Select(recipe => recipe.Id).ToList());
         RaiseLocalEvent(uid, ref ev);
 
         LogNetworkEvent(uid,

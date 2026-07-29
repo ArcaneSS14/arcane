@@ -1,19 +1,11 @@
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 BeBright <98597725+be1bright@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 BeBright <98597725+bebr3ght@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Shared._Arcane.SiliconStanding;
 using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
 
 namespace Content.Client.Silicons.Borgs;
@@ -27,7 +19,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
 {
     [Dependency] private readonly BorgSystem _borgSystem = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-    // [Dependency] private readonly IPrototypeManager _prototypeManager = default!; Arcane-edit
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
@@ -54,8 +46,6 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         BorgTypePrototype prototype,
         BorgSubtypePrototype subtypePrototype)
     {
-        var visualsConfig = subtypePrototype.Visuals; // Arcane
-
         if (TryComp(entity, out SpriteComponent? sprite))
         {
             _sprite.LayerSetRsiState((entity, sprite), BorgVisualLayers.Body, prototype.SpriteBodyState);
@@ -70,16 +60,15 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
                 _sprite.LayerSetRsi((entity, sprite), BorgVisualLayers.LightStatus, resource.RSI);
             }
             _sprite.LayerSetRsiState((entity, sprite), BorgVisualLayers.Body, prototype.SpriteBodyState);
-            _sprite.LayerSetRsiState((entity, sprite), BorgVisualLayers.LightStatus, // Arcane
-                visualsConfig.ToggleLightState ?? prototype.SpriteToggleLightState);
+            _sprite.LayerSetRsiState((entity, sprite), BorgVisualLayers.LightStatus, prototype.SpriteToggleLightState);
         }
 
         if (TryComp(entity, out BorgChassisComponent? chassis))
         {
             _borgSystem.SetMindStates(
                 (entity.Owner, chassis),
-                visualsConfig.HasMindState ?? prototype.SpriteHasMindState, // Arcane
-                visualsConfig.NoMindState ?? prototype.SpriteNoMindState); // Arcane
+                prototype.SpriteHasMindState,
+                prototype.SpriteNoMindState);
 
             if (TryComp(entity, out AppearanceComponent? appearance))
             {
@@ -88,39 +77,6 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
             }
         }
 
-        // Arcane-Edit-Start
-        var restBodyState = visualsConfig.RestBodyState;
-        if (restBodyState != null)
-        {
-            var visuals = EnsureComp<SiliconRestingVisualsComponent>(entity);
-            visuals.NormalBodyState = prototype.SpriteBodyState;
-            visuals.RestBodyState = restBodyState;
-        }
-        else
-        {
-            RemComp<SiliconRestingVisualsComponent>(entity);
-        }
-        var movementBodyState = visualsConfig.MovementBodyState ?? prototype.SpriteBodyMovementState;
-        if (!visualsConfig.DisableMovementVisuals && movementBodyState is { } movementState)
-        {
-            var spriteMovement = EnsureComp<SpriteMovementComponent>(entity);
-            spriteMovement.NoMovementLayers.Clear();
-            spriteMovement.NoMovementLayers["movement"] = new PrototypeLayerData
-            {
-                State = prototype.SpriteBodyState,
-            };
-            spriteMovement.MovementLayers.Clear();
-            spriteMovement.MovementLayers["movement"] = new PrototypeLayerData
-            {
-                State = movementState,
-            };
-        }
-        else
-        {
-            RemComp<SpriteMovementComponent>(entity);
-        }
-        // Arcane-Edit-End
-
-        base.UpdateEntityAppearance(entity, prototype, subtypePrototype);
+        base.UpdateEntityAppearance(entity, prototype, subtypePrototype); // Goob pass along subtypePrototype. No i don't know what the fuck happened here and im too tired to care.
     }
 }

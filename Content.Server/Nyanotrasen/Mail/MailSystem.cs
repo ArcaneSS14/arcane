@@ -26,7 +26,6 @@ using Content.Server.Damage.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
-using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Server.Mail.Components;
 using Content.Server.Mind;
 using Content.Server.Popups;
@@ -41,6 +40,7 @@ using Content.Shared.Chat;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
+using Content.Shared.Destructible.Thresholds.Triggers;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Fluids.Components;
@@ -562,7 +562,7 @@ namespace Content.Server.Mail
                 ("recipient", recipient.Name)));
 
             var accessReader = EnsureComp<AccessReaderComponent>(uid);
-            _accessReader.AddAccess((uid, accessReader), recipient.AccessTags);
+            _accessReader.TryAddAccess((uid, accessReader), recipient.AccessTags);
         }
 
         /// <summary>

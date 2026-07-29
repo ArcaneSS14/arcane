@@ -1621,3 +1621,59 @@
       partRequirements: # Orion
         Servo: 4
 # Shitmed Change End
+
+# Orion-Edit-Start: compatibility boards for upstream machines.
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: SmartFridgeCircuitboard
+  name: SmartFridge machine board
+  description: A machine printed circuit board for a SmartFridge.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: SmartFridge
+    stackRequirements:
+      Glass: 5
+    partRequirements:
+      Servo: 2
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: SurveillanceCameraWirelessRouterXenoborgCircuitboard
+  name: xenoborg camera wireless router
+  description: A machine printed circuit board for a xenoborg camera wireless router.
+  components:
+  - type: Sprite
+    state: generic
+  - type: MachineBoard
+    prototype: SurveillanceCameraWirelessRouterXenoborg
+    stackRequirements:
+      Cable: 2
+      Glass: 1
+
+- type: entity
+  id: TurboItemRechargerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: turbo recharger machine board
+  description: A machine printed circuit board for a turbo recharger.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: charger_APC
+  - type: MachineBoard
+    prototype: TurboItemRecharger
+    stackRequirements:
+      CableMV: 5
+    partRequirements:
+      Servo: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+      Glass: 125
+      Gold: 25
+# Orion-Edit-End

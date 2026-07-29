@@ -35,7 +35,6 @@ station-ai-icon-lamp = Mothmaxxed
 station-ai-icon-liz = Lizard
 station-ai-icon-vox = Vox
 
-station-ai-hologram-horror = Horror appearance
 station-ai-hologram-xenomorph-queen = Xenomorph queen appearance
 station-ai-hologram-angel = Angel appearance
 station-ai-hologram-borb = Bird appearance

@@ -30,7 +30,7 @@ public partial class SharedClothingCoatingSystem : EntitySystem
 
         var target = args.Target.Value;
         // Orion-Start
-        if (_whitelist.IsBlacklistPass(ent.Comp.Blacklist, target))
+        if (_whitelist.IsWhitelistPass(ent.Comp.Blacklist, target))
         {
             _popup.PopupEntity(Loc.GetString("clothing-coating-blocked", ("target", target), ("source", ent)), target, args.User);
             args.Handled = true;

@@ -1,51 +1,35 @@
-// SPDX-FileCopyrightText: 2022 20kdc <asdd2808@gmail.com>
-// SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 faint <46868845+ficcialfaint@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Crotalus <crotalus@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
+using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
-using Content.Server.Power.NodeGroups;
 using Content.Server.Power.Nodes;
+using Content.Server.Power.NodeGroups;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.NodeContainer;
 using Content.Shared.Pinpointer;
-using Content.Shared.Power;
 using Content.Shared.Station.Components;
+using Content.Shared.Power;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
+using System.Linq;
+using Content.Shared.NodeContainer;
 
 namespace Content.Server.Power.EntitySystems;
 
 [UsedImplicitly]
-internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsoleSystem
+internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsoleSystem
 {
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private readonly SharedMapSystem _sharedMapSystem = default!;
+    [Dependency] private readonly SharedBatterySystem _battery = default!;
 
     // Note: this data does not need to be saved
     private Dictionary<EntityUid, Dictionary<Vector2i, PowerCableChunk>> _gridPowerCableChunks = new();
-    private readonly Dictionary<EntityUid, HashSet<EntityUid>> _consolesByGrid = new(); // Orion
     private float _updateTimer = 1.0f;
 
     private const float UpdateTime = 1.0f;
@@ -57,7 +41,6 @@ internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsol
 
         // Console events
         SubscribeLocalEvent<PowerMonitoringConsoleComponent, ComponentInit>(OnConsoleInit);
-        SubscribeLocalEvent<PowerMonitoringConsoleComponent, ComponentShutdown>(OnConsoleShutdown); // Orion
         SubscribeLocalEvent<PowerMonitoringConsoleComponent, EntParentChangedMessage>(OnConsoleParentChanged);
         SubscribeLocalEvent<PowerMonitoringCableNetworksComponent, ComponentInit>(OnCableNetworksInit);
         SubscribeLocalEvent<PowerMonitoringCableNetworksComponent, EntParentChangedMessage>(OnCableNetworksParentChanged);
@@ -81,24 +64,11 @@ internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsol
 
     private void OnConsoleInit(EntityUid uid, PowerMonitoringConsoleComponent component, ComponentInit args)
     {
-        TrackConsole(uid); // Orion
         RefreshPowerMonitoringConsole(uid, component);
     }
 
-    // Orion-Start
-    private void OnConsoleShutdown(EntityUid uid, PowerMonitoringConsoleComponent component, ComponentShutdown args)
-    {
-        UntrackConsole(uid, Transform(uid).GridUid);
-    }
-    // Orion-End
-
     private void OnConsoleParentChanged(EntityUid uid, PowerMonitoringConsoleComponent component, EntParentChangedMessage args)
     {
-        // Orion-Start
-        var oldGrid = GetTrackedGrid(args.OldParent);
-        UntrackConsole(uid, oldGrid);
-        TrackConsole(uid);
-        // Orion-End
         RefreshPowerMonitoringConsole(uid, component);
     }
 
@@ -154,7 +124,10 @@ internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsol
     private void OnGridSplit(ref GridSplitEvent args)
     {
         // Collect grids
-        var allGrids = new HashSet<EntityUid>(args.NewGrids) { args.Grid }; // Orion-Edit
+        var allGrids = args.NewGrids.ToList();
+
+        if (!allGrids.Contains(args.Grid))
+            allGrids.Add(args.Grid);
 
         // Refresh affected power cable grids
         foreach (var grid in allGrids)
@@ -166,22 +139,18 @@ internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsol
         }
 
         // Update power monitoring consoles that stand upon an updated grid
-        // Orion-Edit-Start
-        foreach (var gridUid in allGrids)
+        var query = AllEntityQuery<PowerMonitoringConsoleComponent, PowerMonitoringCableNetworksComponent, TransformComponent>();
+        while (query.MoveNext(out var ent, out var entConsole, out var entCableNetworks, out var entXform))
         {
-            if (!_consolesByGrid.TryGetValue(gridUid, out var consoles))
+            if (entXform.GridUid == null)
                 continue;
 
-            foreach (var ent in consoles)
-            {
-                if (TryComp(ent, out PowerMonitoringConsoleComponent? entConsole))
-                    RefreshPowerMonitoringConsole(ent, entConsole);
+            if (!allGrids.Contains(entXform.GridUid.Value))
+                continue;
 
-                if (TryComp(ent, out PowerMonitoringCableNetworksComponent? entCableNetworks))
-                    RefreshPowerMonitoringCableNetworks(ent, entCableNetworks);
-            }
+            RefreshPowerMonitoringConsole(ent, entConsole);
+            RefreshPowerMonitoringCableNetworks(ent, entCableNetworks);
         }
-        // Orion-Edit-End
     }
 
     public void OnCableAnchorStateChanged(EntityUid uid, CableComponent component, CableAnchorStateChangedEvent args)
@@ -212,14 +181,10 @@ internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsol
         else
             chunk.PowerCableData[(int) component.CableType] &= ~flag;
 
-        // Orion-Edit-Start
-        if (!_consolesByGrid.TryGetValue(xform.GridUid.Value, out var consoles))
-            return;
-
-        foreach (var ent in consoles)
-        // Orion-Edit-End
+        var query = AllEntityQuery<PowerMonitoringCableNetworksComponent, TransformComponent>();
+        while (query.MoveNext(out var ent, out var entCableNetworks, out var entXform))
         {
-            if (!TryComp(ent, out PowerMonitoringCableNetworksComponent? entCableNetworks)) // Orion-Edit
+            if (entXform.GridUid != xform.GridUid)
                 continue;
 
             entCableNetworks.AllChunks = allChunks;
@@ -238,14 +203,10 @@ internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsol
         if (component.IsCollectionMasterOrChild)
             AssignEntityAsCollectionMaster(uid, component, xform);
 
-        // Orion-Edit-Start
-        if (!_consolesByGrid.TryGetValue(gridUid.Value, out var consoles))
-            return;
-
-        foreach (var ent in consoles)
-        // Orion-Edit-End
+        var query = AllEntityQuery<PowerMonitoringConsoleComponent, TransformComponent>();
+        while (query.MoveNext(out var ent, out var entConsole, out var entXform))
         {
-            if (!TryComp(ent, out PowerMonitoringConsoleComponent? entConsole)) // Orion-Edit
+            if (gridUid != entXform.GridUid)
                 continue;
 
             if (!args.Anchored)
@@ -271,60 +232,13 @@ internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsol
         if (component.IsCollectionMasterOrChild)
             AssignEntityAsCollectionMaster(uid, component);
 
-        // Orion-Edit-Start
-        var gridUid = Transform(uid).GridUid;
-        if (gridUid == null || !_consolesByGrid.TryGetValue(gridUid.Value, out var consoles))
-            return;
-
-        foreach (var ent in consoles)
-        // Orion-Edit-End
+        var query = AllEntityQuery<PowerMonitoringConsoleComponent, PowerMonitoringCableNetworksComponent>();
+        while (query.MoveNext(out var _, out var entConsole, out var entCableNetworks))
         {
-            // Orion-Start
-            if (!TryComp(ent, out PowerMonitoringConsoleComponent? entConsole) ||
-                !TryComp(ent, out PowerMonitoringCableNetworksComponent? entCableNetworks))
-                continue;
-            // Orion-End
-
             if (entConsole.Focus == uid)
                 entCableNetworks.FocusChunks.Clear(); // Component is dirtied when these chunks are rebuilt
         }
     }
-
-    // Orion-Start
-    private void TrackConsole(EntityUid uid)
-    {
-        var gridUid = Transform(uid).GridUid;
-        if (gridUid == null)
-            return;
-
-        if (!_consolesByGrid.TryGetValue(gridUid.Value, out var consoles))
-        {
-            consoles = new HashSet<EntityUid>();
-            _consolesByGrid[gridUid.Value] = consoles;
-        }
-
-        consoles.Add(uid);
-    }
-
-    private void UntrackConsole(EntityUid uid, EntityUid? gridUid)
-    {
-        if (gridUid == null || !_consolesByGrid.TryGetValue(gridUid.Value, out var consoles))
-            return;
-
-        consoles.Remove(uid);
-        if (consoles.Count == 0)
-            _consolesByGrid.Remove(gridUid.Value);
-    }
-
-    private EntityUid? GetTrackedGrid(EntityUid? parent)
-    {
-        if (parent == null)
-            return null;
-
-        var xform = Transform(parent.Value);
-        return xform.GridUid ?? parent;
-    }
-    // Orion-End
 
     private void OnPowerGridCheckStarted(ref GameRuleStartedEvent ev)
     {
@@ -413,7 +327,7 @@ internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsol
         var powerConsumerQuery = AllEntityQuery<PowerConsumerComponent, TransformComponent>();
         while (powerConsumerQuery.MoveNext(out var ent, out var powerConsumer, out var xform))
         {
-            if (!xform.Anchored || xform.GridUid != gridUid)
+            if (xform.Anchored == false || xform.GridUid != gridUid)
                 continue;
 
             if (TryComp<PowerMonitoringDeviceComponent>(ent, out var device))
@@ -437,7 +351,7 @@ internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsol
             if (device.IsCollectionMasterOrChild && !device.IsCollectionMaster)
                 continue;
 
-            if (!xform.Anchored || xform.GridUid != gridUid)
+            if (xform.Anchored == false || xform.GridUid != gridUid)
                 continue;
 
             // Get the device power stats
@@ -601,7 +515,7 @@ internal sealed class PowerMonitoringConsoleSystem : SharedPowerMonitoringConsol
         if (effectiveMax == 0)
             effectiveMax = 1;
 
-        return battery.CurrentCharge / effectiveMax;
+        return _battery.GetCharge((uid, battery)) / effectiveMax;
     }
 
     private void GetSourcesForNode(EntityUid uid, Node node, out List<PowerMonitoringConsoleEntry> sources)

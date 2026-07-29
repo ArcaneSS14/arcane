@@ -1,0 +1,9 @@
+- type: entity
+  parent: BaseSiliconLawboard
+  id: ArtPlanetSupportCircuitBoard
+  name: law board (ArtPlanet Technical Support)
+  description: An electronics board containing the ArtPlanet Technical Support lawset.
+  suffix: Admeme
+  components:
+  - type: SiliconLawProvider
+    laws: ArtPlanetSupportLawset

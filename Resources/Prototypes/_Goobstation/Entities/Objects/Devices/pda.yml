@@ -1,21 +1,3 @@
-# SPDX-FileCopyrightText: 2024 BombasterDS <115770678+BombasterDS@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2024 starch <starchpersonal@gmail.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 GMWQ <garethquaile@gmail.com>
-# SPDX-FileCopyrightText: 2025 Gareth Quaile <garethquaile@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 PunishedJoe <PunishedJoeseph@proton.me>
-# SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 crasg <109207982+Scruq445@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -25,7 +7,7 @@
   description: A powerful quantum computer disguised as a regular pda for disguise.
   components:
   - type: Sprite
-#    sprite: _Goobstation/Objects/Devices/pda.rsi # Orion-Edit: Removed
+    sprite: _Orion/Objects/Devices/pda.rsi # Orion-Edit
   # Orion-Start
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
@@ -45,6 +27,11 @@
     - state: "insert_overlay" # Goob
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
+  - type: Appearance
+    appearanceDataInit: &orionPdaAppearance
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda_base
   - type: Pda
     id: ChronoIDCard
     penSlot:
@@ -63,7 +50,7 @@
   description: Your mind can't quite comprehend this.
   components:
   - type: Sprite
-#    sprite: _Goobstation/Objects/Devices/pda.rsi # Orion-Edit: Removed
+    sprite: _Orion/Objects/Devices/pda.rsi # Orion-Edit
   # Orion-Start
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
@@ -83,6 +70,8 @@
     - state: "insert_overlay" # Goob
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
+  - type: Appearance
+    appearanceDataInit: *orionPdaAppearance
   - type: Pda
     id: GmanIDCard
     penSlot:
@@ -101,7 +90,7 @@
   description: Smells like corpses of insects and androids.
   components:
   - type: Sprite
-#    sprite: _Goobstation/Objects/Devices/pda.rsi # Orion-Edit: Removed
+    sprite: _Orion/Objects/Devices/pda.rsi # Orion-Edit
   # Orion-Start
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
@@ -123,6 +112,8 @@
     - state: "insert_overlay" # Goob
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
+  - type: Appearance
+    appearanceDataInit: *orionPdaAppearance
   - type: Pda
     id: HelldiverIDCard
   - type: PdaBorderColor
@@ -157,7 +148,7 @@
   - type: Pda
     id: BlueshieldIDCard
   - type: Sprite
-#    sprite: _Goobstation/Objects/Devices/pda.rsi # Orion-Edit: Removed
+    sprite: _Orion/Objects/Devices/pda.rsi # Orion-Edit
   # Orion-Start
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
@@ -177,6 +168,8 @@
     - state: "insert_overlay" # Goob
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
+  - type: Appearance
+    appearanceDataInit: *orionPdaAppearance
   - type: PdaBorderColor
     borderColor: "#3c94c5"
 
@@ -189,7 +182,7 @@
   - type: Pda
     id: CentcomIDCardDeathsquad
   - type: Sprite
-#    sprite: _Goobstation/Objects/Devices/pda.rsi # Orion-Edit: Removed
+    sprite: _Orion/Objects/Devices/pda.rsi # Orion-Edit
   # Orion-Start
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
@@ -211,6 +204,8 @@
     - state: "insert_overlay" # Goob
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
+  - type: Appearance
+    appearanceDataInit: *orionPdaAppearance
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: PdaBorderColor
@@ -317,7 +312,7 @@
         tags:
         - Write
   - type: Sprite
-#    sprite: _Goobstation/Objects/Devices/pda.rsi # Orion-Edit: Removed
+    sprite: _Orion/Objects/Devices/pda.rsi # Orion-Edit
   # Orion-Start
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
@@ -337,6 +332,8 @@
     - state: "insert_overlay" # Goob
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
+  - type: Appearance
+    appearanceDataInit: *orionPdaAppearance
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -352,6 +349,7 @@
   components:
   # Orion-Start
   - type: Sprite
+    sprite: _Orion/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: pda_base
@@ -374,6 +372,8 @@
     - state: "insert_overlay" # Goob
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
+  - type: Appearance
+    appearanceDataInit: *orionPdaAppearance
   - type: Pda
     id: VirologistIDCard
   - type: PdaBorderColor
@@ -418,6 +418,7 @@
   components:
   # Orion-Start
   - type: Sprite
+    sprite: _Orion/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: pda_base
@@ -438,6 +439,8 @@
     - state: "insert_overlay" # Goob
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
+  - type: Appearance
+    appearanceDataInit: *orionPdaAppearance
   - type: Pda
     id: RoboticistIDCard
   - type: PdaBorderColor
@@ -452,6 +455,7 @@
   components:
   # Orion-Start
   - type: Sprite
+    sprite: _Orion/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: pda_base
@@ -470,6 +474,8 @@
     - state: "insert_overlay" # Goob
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
+  - type: Appearance
+    appearanceDataInit: *orionPdaAppearance
   - type: Pda
     id: RadioHostIDCard
 
@@ -480,7 +486,7 @@
   description: Purple pda for outer command members.
   components:
   - type: Sprite
-#    sprite: _Goobstation/Objects/Devices/pda.rsi # Orion-Edit: Removed
+    sprite: _Orion/Objects/Devices/pda.rsi # Orion-Edit
   # Orion-Start
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
@@ -502,5 +508,7 @@
   # Orion-End
     - state: "insert_overlay"
       map: [ "enum.PdaVisualLayers.Pen" ]
+  - type: Appearance
+    appearanceDataInit: *orionPdaAppearance
   - type: Pda
     id: OuterCommandIDCard
