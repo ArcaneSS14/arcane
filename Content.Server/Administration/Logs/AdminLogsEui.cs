@@ -106,41 +106,52 @@ public sealed class AdminLogsEui : BaseEui
         switch (msg)
         {
             case LogsRequest request:
-            {
-                _sawmill.Info($"Admin log request from admin with id {Player.UserId.UserId} and name {Player.Name}");
-
-                _logSendCancellation.Cancel();
-                _logSendCancellation = new CancellationTokenSource();
-                _filter = new LogFilter
+                // Arcane-Edit-Start: Fix tests
                 {
-                    CancellationToken = _logSendCancellation.Token,
-                    Round = request.RoundId,
-                    Search = request.Search,
-                    Types = request.Types,
-                    Impacts = request.Impacts,
-                    Before = request.Before,
-                    After = request.After,
-                    IncludePlayers = request.IncludePlayers,
-                    AnyPlayers = request.AnyPlayers,
-                    AllPlayers = request.AllPlayers,
-                    IncludeNonPlayers = request.IncludeNonPlayers,
-                    LastLogId = null,
-                    Limit = _clientBatchSize
-                };
+                    _logSendCancellation.Cancel();
+                    _logSendCancellation = new CancellationTokenSource();
 
-                var roundId = _filter.Round ??= CurrentRoundId;
-                await LoadFromDb(roundId);
+                    var filter = new LogFilter
+                    {
+                        CancellationToken = _logSendCancellation.Token,
+                        Round = request.RoundId,
+                        Search = request.Search,
+                        Types = request.Types,
+                        Impacts = request.Impacts,
+                        Before = request.Before,
+                        After = request.After,
+                        IncludePlayers = request.IncludePlayers,
+                        AnyPlayers = request.AnyPlayers,
+                        AllPlayers = request.AllPlayers,
+                        IncludeNonPlayers = request.IncludeNonPlayers,
+                        LastLogId = null,
+                        Limit = _clientBatchSize,
+                        DateOrder = request.DateOrder,
+                    };
 
-                SendLogs(true);
-                break;
-            }
+                    _filter = filter;
+
+                    var roundId = filter.Round ??= CurrentRoundId;
+                    await LoadFromDb(roundId);
+
+                    if (filter.CancellationToken.IsCancellationRequested ||
+                        !ReferenceEquals(filter, _filter))
+                    {
+                        break;
+                    }
+
+                    await SendLogs(filter, replace: true);
+                    break;
+                }
             case NextLogsRequest:
-            {
-                _sawmill.Info($"Admin log next batch request from admin with id {Player.UserId.UserId} and name {Player.Name}");
+                {
+                    _sawmill.Info($"Admin log next batch request from admin with id {Player.UserId.UserId} and name {Player.Name}");
 
-                SendLogs(false);
-                break;
-            }
+                    var filter = _filter;
+                    await SendLogs(filter, replace: false);
+                    break;
+                }
+                // Arcane-Edit-End
         }
     }
 
@@ -154,36 +165,58 @@ public sealed class AdminLogsEui : BaseEui
         SendMessage(message);
     }
 
-    private async void SendLogs(bool replace)
+    // Arcane-Edit-Start
+    private async Task SendLogs(LogFilter filter, bool replace)
     {
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        var logs = await Task.Run(async () => await _adminLogs.All(_filter, _adminLogListPool.Get),
-            _filter.CancellationToken);
-
-        if (logs.Count > 0)
+        List<SharedAdminLog> logs;
+        try
         {
-            _filter.LogsSent += logs.Count;
-
-            var largestId = _filter.DateOrder switch
-            {
-                DateOrder.Ascending => 0,
-                DateOrder.Descending => ^1,
-                _ => throw new ArgumentOutOfRangeException(nameof(_filter.DateOrder), _filter.DateOrder, null)
-            };
-
-            _filter.LastLogId = logs[largestId].Id;
+            logs = await _adminLogs.All(filter, _adminLogListPool.Get);
+        }
+        catch (OperationCanceledException) when (filter.CancellationToken.IsCancellationRequested)
+        {
+            return;
         }
 
-        var message = new NewLogs(logs, replace, logs.Count >= _filter.Limit);
+        try
+        {
+            if (filter.CancellationToken.IsCancellationRequested ||
+                !ReferenceEquals(filter, _filter))
+            {
+                return;
+            }
 
-        SendMessage(message);
+            if (logs.Count > 0)
+            {
+                filter.LogsSent += logs.Count;
 
-        _sawmill.Info($"Sent {logs.Count} logs to {Player.Name} in {stopwatch.Elapsed.TotalMilliseconds} ms");
+                var largestId = filter.DateOrder switch
+                {
+                    DateOrder.Ascending => logs[^1].Id,
+                    DateOrder.Descending => logs[0].Id,
+                    _ => throw new ArgumentOutOfRangeException(nameof(filter.DateOrder), filter.DateOrder, null)
+                };
 
-        _adminLogListPool.Return(logs);
+                filter.LastLogId = largestId;
+            }
+
+            SendMessage(new NewLogs(
+                logs,
+                replace,
+                logs.Count >= filter.Limit));
+
+            _sawmill.Info(
+                $"Sent {logs.Count} logs to {Player.Name} in {stopwatch.Elapsed.TotalMilliseconds} ms");
+        }
+        finally
+        {
+            _adminLogListPool.Return(logs);
+        }
     }
+    // Arcane-Edit-End
 
     public override void Closed()
     {
