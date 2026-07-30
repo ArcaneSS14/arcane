@@ -3,6 +3,7 @@
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: material silo
   description: An advanced machine, capable of using bluespace technology to transmit materials to nearby machines.
+  suffix: old # Arcane
   components:
   - type: Sprite
     sprite: Structures/Machines/silo.rsi
@@ -17,6 +18,7 @@
           True: { state: silo_active }
           False: { state: silo }
   - type: OreSilo
+    range: 250 # Arcane
   - type: MaterialStorage
     whitelist:
       tags:

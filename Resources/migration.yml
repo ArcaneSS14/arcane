@@ -872,6 +872,12 @@ ClothingNeckCloakMiner: null
 #MatterBinStockPart: MicroManipulatorStockPart # Orion-Edit
 #CapacitorStockPart: MicroManipulatorStockPart # Orion-Edit
 
+# Orion-Start
+GasThermoMachineHellfireFreezer: null
+GasThermoMachineHellfireHeater: null
+MachineMaterialSilo: MaterialSilo
+# Orion-End
+
 # 2025-05-26 Turrets
 WeaponEnergyTurretStation: WeaponEnergyTurretSecurity
 WeaponEnergyTurretStationControlPanel: WeaponEnergyTurretSecurityControlPanel

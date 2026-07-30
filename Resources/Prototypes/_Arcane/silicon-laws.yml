@@ -1,0 +1,60 @@
+# ArtPlanet Technical Support laws
+- type: siliconLaw
+  id: ArtPlanetSupport1
+  order: 1
+  lawString: law-artplanet-support-1
+
+- type: siliconLaw
+  id: ArtPlanetSupport2
+  order: 2
+  lawString: law-artplanet-support-2
+
+- type: siliconLaw
+  id: ArtPlanetSupport3
+  order: 3
+  lawString: law-artplanet-support-3
+
+- type: siliconLaw
+  id: ArtPlanetSupport4
+  order: 4
+  lawString: law-artplanet-support-4
+
+- type: siliconLaw
+  id: ArtPlanetSupport5
+  order: 5
+  lawString: law-artplanet-support-5
+
+- type: siliconLaw
+  id: ArtPlanetSupport6
+  order: 6
+  lawString: law-artplanet-support-6
+
+- type: siliconLaw
+  id: ArtPlanetSupport7
+  order: 7
+  lawString: law-artplanet-support-7
+
+- type: siliconLaw
+  id: ArtPlanetSupport8
+  order: 8
+  lawString: law-artplanet-support-8
+
+- type: siliconLaw
+  id: ArtPlanetSupport9
+  order: 9
+  lawString: law-artplanet-support-9
+
+- type: siliconLawset
+  id: ArtPlanetSupportLawset
+  name: law-artplanet-support-name
+  laws:
+  - ArtPlanetSupport1
+  - ArtPlanetSupport2
+  - ArtPlanetSupport3
+  - ArtPlanetSupport4
+  - ArtPlanetSupport5
+  - ArtPlanetSupport6
+  - ArtPlanetSupport7
+  - ArtPlanetSupport8
+  - ArtPlanetSupport9
+  obeysTo: laws-owner-station

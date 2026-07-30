@@ -70,7 +70,7 @@
 
 - type: latheRecipe
   id: ClothingHeadset
-  result: ClothingHeadset
+  result: ClothingHeadsetGrey
   categories:
   - Clothing
   completetime: 4
