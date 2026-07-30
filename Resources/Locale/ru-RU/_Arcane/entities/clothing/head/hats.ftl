@@ -25,7 +25,7 @@ ent-ClothingHatCapBlueShield = фуражка офицера "Синий Щит"
 
 # Sponsor
 
-ent-ClothingHatNTRBlackBeret = чёрный берет старшего инженера
+ent-ClothingHatNTRBlackBeret = чёрный берет представителя NanoTrasen
     .desc = Элегантный головной убор.
 ent-ClothingHatClownPink = розовая шапка клоуна
     .desc = Розовый - значит забавный!
