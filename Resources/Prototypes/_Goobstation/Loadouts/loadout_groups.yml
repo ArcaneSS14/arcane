@@ -700,6 +700,26 @@
 
 # Librarian
 
+# Arcane - Start
+
+- type: loadoutGroup
+  id: LibrarianShoes
+  name: loadout-group-librarian-shoes
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - TwilightSparkleBootsPatron
+
+- type: loadoutGroup
+  id: LibrarianGlasses
+  name: loadout-group-librarian-glasses
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - TwilightSparkleGlassesPatron
+
+# Arcane - End
+
 - type: loadoutGroup
   id: LibrarianEnvirohelm
   name: loadout-group-librarian-envirohelm
@@ -1500,6 +1520,7 @@
   maxLimit: 1
   loadouts:
   - ZookeeperHead
+  - CamouflageHatPatron # Arcane
 
 - type: loadoutGroup
   id: ZookeeperJumpsuit
@@ -1508,6 +1529,22 @@
   maxLimit: 1
   loadouts:
   - ZookeeperJumpsuit
+  # Arcane - Start
+  - CamouflageUniformPatron
+  - SterileUniformPatron
+  # Arcane - End
+
+# Arcane - Start
+
+- type: loadoutGroup
+  id: ZookeeperOuterclothing
+  name: loadout-group-zookeeper-outerclothing
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - CowCostumePatron
+
+# Arcane - End
 
 - type: loadoutGroup
   id: ZookeeperEnvirohelm
@@ -1627,6 +1664,23 @@
   - JumpsuitHawaiBlue
   - JumpsuitHawaiRed
   - JumpsuitHawaiYellow
+  - ComfortableUniformPatron # Arcane
+
+# Arcane - Start
+
+- type: loadoutGroup
+  id: RadioHostOuterclothing
+  name: loadout-group-radiohost-outerclothing
+  loadouts:
+  - RadioHostJacketPatron
+
+- type: loadoutGroup
+  id: RadioHostMicrophone
+  name: loadout-group-radiohost-microphone
+  loadouts:
+  - RadioHostMicrophonePatron
+
+# Arcane - End
 
 # Salvage/Shaft Miner
 

@@ -88,3 +88,24 @@
   minLimit: 0
   loadouts:
   - BoomboxPatron
+
+# Service Worker
+
+- type: loadoutGroup
+  id: ServiceWorkerJumpsuit
+  name: loadout-group-service-worker-jumpsuit
+  loadouts:
+  - ServiveShirtPatron
+  - ServiveShirtSkirtPatron
+
+- type: loadoutGroup
+  id: ServiceWorkerShoes
+  name: loadout-group-service-worker-shoes
+  loadouts:
+  - WorkerBootsPatron
+
+- type: loadoutGroup
+  id: ServiceWorkerBelt
+  name: loadout-group-service-worker-belt
+  loadouts:
+  - ServiceApronPatron

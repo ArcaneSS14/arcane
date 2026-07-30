@@ -349,3 +349,372 @@
     - Tier2
   equipment:
     neck: ClothingCloakQMWhite
+
+- type: loadout
+  id: TwilightSparklePatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformTwilightSparkle
+
+- type: loadout
+  id: BotanistUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformBotanist
+
+- type: loadout
+  id: BotanistUniformWithStrapsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformBotanistWhithStraps
+
+- type: loadout
+  id: CamouflageUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformCamouflage
+
+- type: loadout
+  id: ChiefCookUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformChiefCook
+
+- type: loadout
+  id: FreeClothesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformFreeClothes
+
+- type: loadout
+  id: CookUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformCook
+
+- type: loadout
+  id: DancerDressPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformDancer
+
+- type: loadout
+  id: FeminineUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformFeminine
+
+- type: loadout
+  id: EmptyFeminineUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformFeminineEmpty
+
+- type: loadout
+  id: JesterCostumePatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformJesterCostume
+
+- type: loadout
+  id: PerfomanceDressPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformPerfomanceDress
+
+- type: loadout
+  id: ComfortableUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformComfortableUniform
+
+- type: loadout
+  id: ServiveShirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformServiceShirt
+
+- type: loadout
+  id: ServiveShirtSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformServiceShirtSkirt
+
+- type: loadout
+  id: SterileUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUniformSterileUniform
+
+- type: loadout
+  id: ServiceApronPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingBeltServiceApron
+
+- type: loadout
+  id: MimeMittensPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingHandsMimeMittens
+
+- type: loadout
+  id: BotanistHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingHatBotanist
+
+- type: loadout
+  id: CamouflageHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingHatCamouflage
+
+- type: loadout
+  id: ClownCilinderPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingHatClownCilinder
+
+- type: loadout
+  id: FishCookBandanaPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingHatFishCookBandana
+
+- type: loadout
+  id: HighCookHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingHatCookHigh
+
+- type: loadout
+  id: InclinedCookHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingHatCookInclined
+
+- type: loadout
+  id: RedCookHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingHatCookRed
+
+- type: loadout
+  id: JesterHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingHatJester
+
+- type: loadout
+  id: IanCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingCloakIan
+
+- type: loadout
+  id: CleanerJumpsuitPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingOuterCleanerJumpsuit
+
+- type: loadout
+  id: CookApronPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingOuterCookApron
+
+- type: loadout
+  id: MusicianJacketPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingOuterMusicianJacket
+
+- type: loadout
+  id: RadioHostJacketPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingOuterRadioHostJacket
+
+- type: loadout
+  id: CowCostumePatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingOuterCow
+
+- type: loadout
+  id: ServiceJacketPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingOuterServiceJacket
+
+- type: loadout
+  id: MusicianBootsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingShoesMusicianBoots
+
+- type: loadout
+  id: JesterShoesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingShoesJester
+
+- type: loadout
+  id: TwilightSparkleBootsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingShoesTwilightSparkle
+
+- type: loadout
+  id: WorkerBootsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingShoesWorkerBoots
+
+- type: loadout
+  id: MimeStockingsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingMimeStockings
+
+- type: loadout
+  id: JesterPantsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingUnderwearJesterPants
+
+- type: loadout
+  id: TwilightSparkleGlassesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: ClothingEyesBookWorm
+
+- type: loadout
+  id: RadioHostMicrophonePatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    tiers:
+    - Tier2
+  equipment:
+    neck: RadioHostMicrophone

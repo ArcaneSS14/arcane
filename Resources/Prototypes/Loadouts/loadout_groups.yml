@@ -414,6 +414,7 @@
   - HoPCloak
   - HoPMantle
   - HeadOfPersonnelEnsemble # goob
+  - IanCloakPatron # Arcane
 
 - type: loadoutGroup
   id: HoPBackpack
@@ -548,6 +549,12 @@
   minLimit: 0
   loadouts:
   - ChefHead
+  # Arcane - Start
+  - FishCookBandanaPatron
+  - HighCookHatPatron
+  - InclinedCookHatPatron
+  - RedCookHatPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: ChefMask
@@ -563,6 +570,10 @@
   - ChefJumpsuit
   - ChefJumpskirt
   - ServiceMJ # goob
+  # Arcane - Start
+  - ChiefCookUniformPatron
+  - CookUniformPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: ChefOuterClothing
@@ -572,6 +583,7 @@
   - ChefApron
   - ChefJacket
   - ChefWintercoat
+  - CookApronPatron # Arcane
 
 - type: loadoutGroup
   id: LibrarianJumpsuit
@@ -582,6 +594,7 @@
   - CuratorJumpsuit
   - CuratorJumpskirt
   - ServiceMJ # goob
+  - TwilightSparklePatron # Arcane
 
 - type: loadoutGroup
   id: LawyerJumpsuit
@@ -669,6 +682,7 @@
   - JanitorJumpsuit
   - JanitorJumpskirt
   - ServiceMJ # goob
+  - FreeClothesPatron # Arcane
 
 - type: loadoutGroup
   id: JanitorGloves
@@ -685,6 +699,7 @@
   minLimit: 0
   loadouts:
   - JanitorWintercoat
+  - CleanerJumpsuitPatron # Arcane
 
 - type: loadoutGroup
   id: JanitorPlunger
@@ -701,6 +716,7 @@
   - BotanistHead
   - BotanistBandana
   - BotanistBeret # Goobstation
+  - BotanistHatPatron # Arcane
 
 - type: loadoutGroup
   id: BotanistJumpsuit
@@ -711,6 +727,10 @@
   - BotanistOveralls
   - ServiceMJ # goob
   - HydroMJ # goob
+  # Arcane - Start
+  - BotanistUniformPatron
+  - BotanistUniformWithStrapsPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: BotanistBackpack
@@ -736,7 +756,11 @@
   loadouts:
   - JesterHat
   - JesterAltHat
-  - ClownPinkHatPatron # Arcane
+  # Arcane - Start
+  - ClownPinkHatPatron
+  - JesterHatPatron
+  - ClownCilinderPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: ClownJumpsuit
@@ -746,7 +770,10 @@
   - ClownSkirt
   - JesterSuit
   - JesterAltSuit
-  - ClownPinkPatron # Arcane
+  # Arcane - Start
+  - ClownPinkPatron
+  - JesterCostumePatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: ClownBackpack
@@ -771,6 +798,17 @@
   loadouts:
   - ClownShoes
   - JesterShoes
+  - JesterShoesPatron # Arcane
+
+# Arcane - Start
+
+- type: loadoutGroup
+  id: ClownUnderwear
+  name: loadout-group-clown-underwear
+  loadouts:
+  - JesterPantsPatron
+
+# Arcane - End
 
 - type: loadoutGroup
   id: SurvivalClown
@@ -809,6 +847,26 @@
   loadouts:
   - MimeJumpsuit
   - MimeJumpskirt
+  # Arcane - Start
+  - FeminineUniformPatron
+  - EmptyFeminineUniformPatron
+  # Arcane - End
+
+# Arcane - Start
+
+- type: loadoutGroup
+  id: MimeHands
+  name: loadout-group-mime-hands
+  loadouts:
+  - MimeMittensPatron
+
+- type: loadoutGroup
+  id: MimeSocks
+  name: loadout-group-mime-socks
+  loadouts:
+  - MimeStockingsPatron
+
+# Arcane - End
 
 - type: loadoutGroup
   id: MimeBackpack
@@ -854,7 +912,11 @@
   loadouts:
   - MusicianJumpsuit
   - MusicianJumpskirt
-  - ServiceMJ # goob
+  - ServiceMJ #
+  # Arcane - Start
+  - DancerDressPatron
+  - PerfomanceDressPatron
+  # Arcane - End
 
 - type: loadoutGroup
   id: MusicianOuterClothing
@@ -862,6 +924,18 @@
   minLimit: 0
   loadouts:
   - MusicianWintercoat
+  - MusicianJacketPatron # Arcane
+
+# Arcane - Start
+
+- type: loadoutGroup
+  id: MusicianShoes
+  name: loadout-group-musician-shoes
+  minLimit: 0
+  loadouts:
+  - MusicianBootsPatron
+
+# Arcane - End
 
 - type: loadoutGroup
   id: Instruments

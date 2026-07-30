@@ -241,6 +241,11 @@
   groups:
   - GroupTankHarness
   - BartenderJumpsuit
+  # Arcane - Start
+  - ServiceWorkerJumpsuit
+  - ServiceWorkerShoes
+  - ServiceWorkerBelt
+  # Arcane - End
   - CommonBackpack
   - Glasses
   - Survival
@@ -294,7 +299,11 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
+  # Arcane - Start
+  - LibrarianGlasses
+  - LibrarianShoes
+  - Patron
+  # Arcane - End
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
@@ -424,7 +433,10 @@
   - Glasses
   - SurvivalClown
   - Trinkets
-  - Patron # Arcane
+  # Arcane - Start
+  - Patron
+  - ClownUnderwear
+  # Arcane - End
   - Animals
   # Goobstation - EE Plasmeme Change.
   - ClownEnvirohelm
@@ -445,13 +457,17 @@
   - MimeHead
   - MimeMask
   - MimeJumpsuit
+  - MimeHands # Arcane
   - MimeBackpack
   - MimeOuterClothing
   - MimeBelt
   - Glasses
   - SurvivalMime
   - Trinkets
-  - Patron # Arcane
+  # Arcane - Start
+  - Patron
+  - MimeSocks
+  # Arcane - End
   - Animals
   # Goobstation - EE Plasmeme Change.
   - MimeEnvirohelm
@@ -472,6 +488,7 @@
   - MusicianJumpsuit
   - CommonBackpack
   - MusicianOuterClothing
+  - MusicianShoes # Arcane
   - Glasses
   - Survival
   - Trinkets
@@ -1040,6 +1057,7 @@
   groups:
   - ZookeeperHead
   - ZookeeperJumpsuit
+  - ZookeeperOuterclothing # Arcane
   - GroupTankHarness
   - CommonBackpack
   - Glasses
