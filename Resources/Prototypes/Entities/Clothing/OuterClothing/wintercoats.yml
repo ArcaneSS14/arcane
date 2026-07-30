@@ -44,7 +44,7 @@
     - WhitelistChameleon
     - WinterCoat # Goobstation
   - type: StaticPrice
-    price: 50
+    price: 10 # Arcane-Edit: 50 > 10
   - type: PhysicalComposition #Goobstation - Recycle update
     materialComposition:
       Cloth: 125

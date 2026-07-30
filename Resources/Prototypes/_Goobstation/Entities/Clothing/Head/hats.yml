@@ -20,6 +20,8 @@
         Slash: 0.7
         Piercing: 0.7
         Heat: 0.8
+  - type: StaticPrice # Arcane
+    price: 0
 
 - type: entity
   abstract: true
