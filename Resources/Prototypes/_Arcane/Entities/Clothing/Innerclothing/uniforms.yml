@@ -191,7 +191,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformBotanist
   name: botanist uniform
-  description: Special clothes for works with plants.
+  description: Special clothes for working with plants.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Innerclothing/Sponsor/botanist.rsi
@@ -202,7 +202,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformBotanistWhithStraps
   name: botanist jumpsuit with straps
-  description: Special clothes for works with plants.
+  description: Special clothes for working with plants.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Innerclothing/Sponsor/botanist_straps.rsi

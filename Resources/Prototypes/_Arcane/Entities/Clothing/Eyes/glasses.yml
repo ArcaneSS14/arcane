@@ -2,6 +2,7 @@
 
 - type: entity
   parent: ClothingEyesBase
+  id: ClothingEyesBookWorm
   name: bookworm's glasses
   description: Huge and ridiculous. But it allows you to see normaly.
   components:

@@ -43,7 +43,7 @@
   parent: ClothingHandsButcherable
   id: ClothingHandsMimeMittens
   name: mime's mittens
-  description: Long striped gloves.
+  description: Long striped gloves without fingers.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Hands/Sponsor/mime_mittens.rsi
