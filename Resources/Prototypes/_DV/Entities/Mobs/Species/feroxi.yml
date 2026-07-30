@@ -103,6 +103,15 @@
     hydratedMetabolizer: Feroxi
     dehydratedMetabolizer: FeroxiDehydrated
     dehydrationThreshold: 150
+  # Arcane-Start
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Feroxi
+  # Arcane-End
   - type: LanguageKnowledge # The Den, give Feroxi their own language.
     speaks:
     - TauCetiBasic
