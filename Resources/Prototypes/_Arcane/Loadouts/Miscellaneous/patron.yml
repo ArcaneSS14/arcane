@@ -357,7 +357,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformTwilightSparkle
+    jumpsuit: ClothingUniformTwilightSparkle
 
 - type: loadout
   id: BotanistUniformPatron
@@ -366,7 +366,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformBotanist
+    jumpsuit: ClothingUniformBotanist
 
 - type: loadout
   id: BotanistUniformWithStrapsPatron
@@ -375,7 +375,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformBotanistWhithStraps
+    jumpsuit: ClothingUniformBotanistWhithStraps
 
 - type: loadout
   id: CamouflageUniformPatron
@@ -384,7 +384,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformCamouflage
+    jumpsuit: ClothingUniformCamouflage
 
 - type: loadout
   id: ChiefCookUniformPatron
@@ -393,7 +393,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformChiefCook
+    jumpsuit: ClothingUniformChiefCook
 
 - type: loadout
   id: FreeClothesPatron
@@ -402,7 +402,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformFreeClothes
+    jumpsuit: ClothingUniformFreeClothes
 
 - type: loadout
   id: CookUniformPatron
@@ -411,7 +411,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformCook
+    jumpsuit: ClothingUniformCook
 
 - type: loadout
   id: DancerDressPatron
@@ -420,7 +420,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformDancer
+    jumpsuit: ClothingUniformDancer
 
 - type: loadout
   id: FeminineUniformPatron
@@ -429,7 +429,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformFeminine
+    jumpsuit: ClothingUniformFeminine
 
 - type: loadout
   id: EmptyFeminineUniformPatron
@@ -438,7 +438,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformFeminineEmpty
+    jumpsuit: ClothingUniformFeminineEmpty
 
 - type: loadout
   id: JesterCostumePatron
@@ -447,7 +447,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformJesterCostume
+    jumpsuit: ClothingUniformJesterCostume
 
 - type: loadout
   id: PerfomanceDressPatron
@@ -456,7 +456,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformPerfomanceDress
+    jumpsuit: ClothingUniformPerfomanceDress
 
 - type: loadout
   id: ComfortableUniformPatron
@@ -465,7 +465,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformComfortableUniform
+    jumpsuit: ClothingUniformComfortableUniform
 
 - type: loadout
   id: ServiveShirtPatron
@@ -474,7 +474,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformServiceShirt
+    jumpsuit: ClothingUniformServiceShirt
 
 - type: loadout
   id: ServiveShirtSkirtPatron
@@ -483,7 +483,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformServiceShirtSkirt
+    jumpsuit: ClothingUniformServiceShirtSkirt
 
 - type: loadout
   id: SterileUniformPatron
@@ -492,7 +492,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUniformSterileUniform
+    jumpsuit: ClothingUniformSterileUniform
 
 - type: loadout
   id: ServiceApronPatron
@@ -501,7 +501,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingBeltServiceApron
+    belt: ClothingBeltServiceApron
 
 - type: loadout
   id: MimeMittensPatron
@@ -510,7 +510,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingHandsMimeMittens
+    gloves: ClothingHandsMimeMittens
 
 - type: loadout
   id: BotanistHatPatron
@@ -519,7 +519,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingHatBotanist
+    head: ClothingHatBotanist
 
 - type: loadout
   id: CamouflageHatPatron
@@ -528,7 +528,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingHatCamouflage
+    head: ClothingHatCamouflage
 
 - type: loadout
   id: ClownCilinderPatron
@@ -537,7 +537,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingHatClownCilinder
+    head: ClothingHatClownCilinder
 
 - type: loadout
   id: FishCookBandanaPatron
@@ -546,7 +546,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingHatFishCookBandana
+    head: ClothingHatFishCookBandana
 
 - type: loadout
   id: HighCookHatPatron
@@ -555,7 +555,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingHatCookHigh
+    head: ClothingHatCookHigh
 
 - type: loadout
   id: InclinedCookHatPatron
@@ -564,7 +564,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingHatCookInclined
+    head: ClothingHatCookInclined
 
 - type: loadout
   id: RedCookHatPatron
@@ -573,7 +573,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingHatCookRed
+    head: ClothingHatCookRed
 
 - type: loadout
   id: JesterHatPatron
@@ -582,7 +582,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingHatJester
+    head: ClothingHatJester
 
 - type: loadout
   id: IanCloakPatron
@@ -600,7 +600,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingOuterCleanerJumpsuit
+    outerClothing: ClothingOuterCleanerJumpsuit
 
 - type: loadout
   id: CookApronPatron
@@ -609,7 +609,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingOuterCookApron
+    outerClothing: ClothingOuterCookApron
 
 - type: loadout
   id: MusicianJacketPatron
@@ -618,7 +618,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingOuterMusicianJacket
+    outerClothing: ClothingOuterMusicianJacket
 
 - type: loadout
   id: RadioHostJacketPatron
@@ -627,7 +627,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingOuterRadioHostJacket
+    outerClothing: ClothingOuterRadioHostJacket
 
 - type: loadout
   id: CowCostumePatron
@@ -636,7 +636,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingOuterCow
+    outerClothing: ClothingOuterCow
 
 - type: loadout
   id: ServiceJacketPatron
@@ -645,7 +645,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingOuterServiceJacket
+    outerClothing: ClothingOuterServiceJacket
 
 - type: loadout
   id: MusicianBootsPatron
@@ -654,7 +654,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingShoesMusicianBoots
+    shoes: ClothingShoesMusicianBoots
 
 - type: loadout
   id: JesterShoesPatron
@@ -663,7 +663,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingShoesJester
+    shoes: ClothingShoesJester
 
 - type: loadout
   id: TwilightSparkleBootsPatron
@@ -672,7 +672,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingShoesTwilightSparkle
+    shoes: ClothingShoesTwilightSparkle
 
 - type: loadout
   id: WorkerBootsPatron
@@ -681,7 +681,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingShoesWorkerBoots
+    shoes: ClothingShoesWorkerBoots
 
 - type: loadout
   id: MimeStockingsPatron
@@ -690,7 +690,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingMimeStockings
+    socks: ClothingMimeStockings
 
 - type: loadout
   id: JesterPantsPatron
@@ -699,7 +699,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingUnderwearJesterPants
+    underwear: ClothingUnderwearJesterPants
 
 - type: loadout
   id: TwilightSparkleGlassesPatron
@@ -708,7 +708,7 @@
     tiers:
     - Tier2
   equipment:
-    neck: ClothingEyesBookWorm
+    eyes: ClothingEyesBookWorm
 
 - type: loadout
   id: RadioHostMicrophonePatron
@@ -716,5 +716,3 @@
   - !type:SponsorRequirementLoadoutEffect
     tiers:
     - Tier2
-  equipment:
-    neck: RadioHostMicrophone

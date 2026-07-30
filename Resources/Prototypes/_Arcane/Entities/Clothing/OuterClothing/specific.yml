@@ -51,9 +51,9 @@
   description: Moo.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Outerclothing/cow.rsi
+    sprite: _Arcane/Clothing/Outerclothing/Sponsor/cow.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Outerclothing/cow.rsi
+    sprite: _Arcane/Clothing/Outerclothing/Sponsor/cow.rsi
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHatCow
@@ -65,6 +65,6 @@
   description: Black jacket.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Outerclothing/service_jacket.rsi
+    sprite: _Arcane/Clothing/Outerclothing/Sponsor/service_jacket.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Outerclothing/service_jacket.rsi
+    sprite: _Arcane/Clothing/Outerclothing/Sponsor/service_jacket.rsi
