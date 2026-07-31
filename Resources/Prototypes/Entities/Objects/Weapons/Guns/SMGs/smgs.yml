@@ -21,10 +21,10 @@
   - type: AmmoCounter
   - type: Gun
     minAngle: 2
-    maxAngle: 16
+    maxAngle: 13 # Orion-Edit: 16 > 13
     fireRate: 8
     burstFireRate: 8
-    angleIncrease: 3
+    angleIncrease: 2 # Orion-Edit: 3 > 2
     angleDecay: 16
     selectedMode: FullAuto
     availableModes:
@@ -32,6 +32,8 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+    soundEmpty: # Orion
+      path: /Audio/_Orion/Weapons/Guns/Rifles/rifle_empty.ogg
     defaultDirection: 1, 0
   - type: ChamberMagazineAmmoProvider
     soundRack:
@@ -39,7 +41,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+#        name: Magazine # Orion-Edit: Localization
         startingItem: MagazinePistolSubMachineGun
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -49,7 +51,7 @@
             - MagazinePistolSubMachineGun
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+#        name: Chamber # Orion-Edit: Localization
         priority: 1
         whitelist:
           tags:
@@ -109,7 +111,7 @@
   - type: Gun
     fireRate: 10
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      path: /Audio/_Orion/Weapons/Guns/SMGs/mp7.ogg # Orion-Edit: New sounds
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -139,6 +141,8 @@
   - type: Gun
 #    minAngle: 21 # Base SMG already has minAngle: 2 maxAngle: 16
 #    maxAngle: 32 # Goob - one-handed C20R - end
+    maxAngle: 11 # Orion
+    angleIncrease: 1.5 # Orion
     shotsPerBurst: 5
     availableModes:
     - Burst
@@ -220,25 +224,25 @@
       unwieldOnUse: false
     - type: GunWieldBonus
       minAngle: -19
-      maxAngle: -16
+      maxAngle: -19 # Orion-Edit 16 > 19
     - type: Gun
       minAngle: 21
-      maxAngle: 32
-      fireRate: 6
-      burstFireRate: 18
+      maxAngle: 25 # Orion-Edit: 32 > 25
+      fireRate: 6.5 # Orion-Edit: 6 > 6.5
+      burstFireRate: 20 # Orion-Edit: 18 > 20
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+        path: /Audio/_Orion/Weapons/Guns/SMGs/mp7.ogg # Orion-Edit
       selectedMode: Burst
       availableModes:
       - Burst
       - FullAuto
       - SemiAuto
       shotsPerBurst: 3
-      burstCooldown: 0.375
+      burstCooldown: 0.35 # Orion-Edit: 0.375 > 0.35
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+#        name: Magazine # Orion-Edit: Localization
           startingItem: MagazinePistolSubMachineGun
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -248,7 +252,7 @@
               - MagazinePistolSubMachineGun
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
-          name: Chamber
+#        name: Chamber # Orion-Edit: Localization
           priority: 1
           whitelist:
             tags:
@@ -283,12 +287,12 @@
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun # Goobstation - I am the one who nerfs the WT.
-    minAngle: 2
-    maxAngle: 16
-    fireRate: 5
+    minAngle: 4 # Orion-Edit: 2 > 4
+    maxAngle: 14 # Orion-Edit: 16 > 14
+    fireRate: 5.5 # Orion-Edit: 5 > 5.5
     burstFireRate: 8
-    angleIncrease: 3
-    angleDecay: 16
+    angleIncrease: 1 # Orion-Edit: 3 > 1
+    angleDecay: 14 # Orion-Edit: 16 > 14
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -296,7 +300,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+#        name: Magazine # Orion-Edit: Localization
         startingItem: MagazinePistolSubMachineGunTopMounted
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -306,7 +310,7 @@
             - MagazinePistolSubMachineGunTopMounted
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+#        name: Chamber # Orion-Edit: Localization
         priority: 1
         whitelist:
           tags:
@@ -350,8 +354,8 @@
       map: ["enum.GunVisualLayers.Base"]
   - type: Gun
     fireRate: 9
-    minAngle: 25
-    maxAngle: 32
+    minAngle: 15 # Arcane-Edit: 25 > 15
+    maxAngle: 27 # Arcane-Edit: 32 > 27
     availableModes:
     - FullAuto
     soundGunshot:

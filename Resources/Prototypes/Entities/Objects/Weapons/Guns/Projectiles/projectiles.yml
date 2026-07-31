@@ -95,6 +95,9 @@
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
   - type: TimedDespawn
     lifetime: 10
+  - type: Tracer # Orion
+    color: "#ffe600"
+    length: 3
 
 - type: entity
   id: BaseBulletTrigger # Trigger-on-collide bullets
@@ -104,6 +107,8 @@
   - type: TriggerOnCollide
     fixtureID: projectile
     maxTriggers: 1
+  - type: Tracer # Orion
+    length: 2
   - type: Projectile
     damage:
       types:
@@ -134,6 +139,9 @@
     damage:
       types:
         Blunt: 1
+  - type: Tracer # Orion
+    color: "#CCCCCCFF"
+    length: 3
 
 - type: entity
   id: BaseBulletIncendiary
@@ -144,7 +152,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
+        Blunt: 10 # Arcane-Edit
         Heat: 4
   - type: PointLight
     enabled: true
@@ -153,6 +161,9 @@
     energy: 7.0
   - type: IgniteOnCollide
     fireStacks: 0.5 # Goob
+  - type: Tracer # Orion
+    color: "#ff7349"
+    length: 3
 
 - type: entity
   id: BaseBulletAP
@@ -169,6 +180,9 @@
       types:
         Piercing: 11 # 20% decrease
     ignoreResistances: true
+  - type: Tracer # Orion
+    color: "#256400"
+    length: 3
 
 - type: entity
   id: BaseBulletUranium
@@ -181,14 +195,19 @@
     layers:
     - state: uranium
       shader: unshaded
- # - type: PointLight // Too resource intensive for what little effect it has, one day...
- #   enabled: true
- #   color: "#059919"
- #   radius: 2.0
+  # Arcane-Edit-Start
+  - type: PointLight
+    enabled: true
+    color: "#059919"
+    radius: 2.0
+  # Arcane-Edit-End
   - type: Projectile
     damage:
       types:
         Radiation: 11
+  - type: Tracer # Orion
+    color: "#71C978FF"
+    length: 3
 
 # Energy projectiles
 - type: entity
@@ -232,6 +251,9 @@
     forceSound: true
   - type: TimedDespawn
     lifetime: 0.170 # Very short range
+  - type: Tracer # Arcane
+    color: "#ffff33"
+    length: 1.5
   - type: StunOnCollide
     stunAmount: 0
     knockdownAmount: 2.5 # Enough to subdue and follow up with a stun baton
@@ -266,6 +288,9 @@
     energy: 7.01
   - type: TimedDespawn
     lifetime: 1.0 # Not so short range
+  - type: Tracer # Arcane
+    color: "#ffff33"
+    length: 1.5
   - type: StunOnCollide
     stunAmount: 5
     drop: true # this is the evil taser
@@ -303,12 +328,17 @@
         hard: false
         mask:
         - Opaque
-        - Impassable
-        - BulletImpassable
+        # Arcane-Edit-Start
+#        - Impassable
+#        - BulletImpassable
+        # Arcane-Edit-End
       fly-by: *flybyfixture
   - type: Ammo
   - type: StaminaDamageOnCollide
-    damage: 20 # Goob edit
+    damage: 33 # Goob edit # Orion-Edit: 20 > 33
+  - type: Tracer # Arcane
+    color: "#33cfff"
+    length: 1.5
   - type: Projectile
     impactEffect: BulletImpactEffectDisabler
     damage:
@@ -351,6 +381,9 @@
   - type: Ammo
   - type: StaminaDamageOnCollide
     damage: 1
+  - type: Tracer # Arcane
+    color: "#33cfff"
+    length: 1.5
   - type: Projectile
     impactEffect: BulletImpactEffectDisabler
     damage:
@@ -388,6 +421,9 @@
   - type: Reflective # Goobstation - Make emitter bolts reflect as energy
     reflective:
     - Energy
+  - type: Tracer # Arcane
+    color: "#33cfff"
+    length: 1.5
   - type: Projectile
     #   soundHit:  Waiting on serv3
     damage:
@@ -433,6 +469,9 @@
         - Impassable
         - BulletImpassable
       fly-by: *flybyfixture
+  - type: Tracer # Arcane
+    color: "#33cfff"
+    length: 1.5
   - type: Projectile
     #   soundHit:  Waiting on serv3
     impactEffect: BulletImpactEffectDisabler
@@ -496,6 +535,9 @@
   - type: Reflective
     reflective:
     - Energy
+  - type: Tracer # Arcane
+    color: "#3347ff"
+    length: 1.5
   - type: Projectile
     #   soundHit:  Waiting on serv3
     impactEffect: BulletImpactEffectDisabler
@@ -539,6 +581,9 @@
     damage:
       types:
         Cold: 5
+  - type: Tracer # Arcane
+    color: "#33cfff"
+    length: 0.7
   - type: TimedDespawn
     lifetime: 3
   - type: ChangeTemperatureOnCollide
@@ -700,6 +745,9 @@
         mask:
         - Opaque
       fly-by: *flybyfixture
+  - type: Tracer # Orion
+    color: "#c2385d"
+    length: 2
   - type: Projectile
     damage:
       types:
@@ -735,6 +783,9 @@
     color: "#38c296"
     radius: 2.0
     energy: 7.0
+  - type: Tracer # Arcane
+    color: "#38c296"
+    length: 1
   - type: Sprite
     layers:
     - state: magicm_cyan
@@ -767,6 +818,8 @@
     color: "#b9c238"
     radius: 2.0
     energy: 7.0
+  - type: Tracer # Arcane
+    color: "#b9c238"
   - type: Sprite
     layers:
     - state: magicm_yellow
@@ -799,6 +852,8 @@
     color: "#38c24f"
     radius: 2.0
     energy: 7.0
+  - type: Tracer # Arcane
+    color: "#38c24f"
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
@@ -829,6 +884,8 @@
     color: "#8d38c2"
     radius: 2.0
     energy: 7.0
+  - type: Tracer # Arcane
+    color: "#8d38c2"
   - type: Sprite
     layers:
     - state: magicm
@@ -858,6 +915,8 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
     - state: frag
+  - type: Tracer # Orion
+    color: "#ffe600"
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -904,6 +963,9 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
     - state: grenade
+  - type: Tracer # Orion
+    color: "#ffe600"
+    length: 1.5
   - type: Projectile
     deleteOnCollide: false
     damage:
@@ -926,11 +988,14 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
     - state: grenade
+  - type: Tracer # Orion
+    color: "#ffe600"
+    length: 1.5
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
     totalIntensity: 150 # a ~2 tile radius
-    intensitySlope: 5
+    intensitySlope: 10 # Orion-Edit: 5 > 10
     maxIntensity: 10
     canCreateVacuum: false
   - type: SmartLinkBlacklist  # Goobstation
@@ -945,6 +1010,9 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
     - state: grenade
+  - type: Tracer # Orion
+    color: "#ffffff"
+    length: 1.5
   - type: FlashOnTrigger
     range: 7
   - type: SpawnOnTrigger
@@ -977,7 +1045,7 @@
   - type: ProjectileGrenade
     triggerKey: trigger
     fillPrototype: PelletClusterLessLethal
-    capacity: 30
+    capacity: 50 # Orion-Edit: 30 > 50
   - type: SmartLinkBlacklist  # Goobstation
 
 - type: entity
@@ -990,6 +1058,9 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
     - state: cleanade
+  - type: Tracer # Orion
+    color: "#15b100"
+    length: 1.5
   - type: SmokeOnTrigger
     duration: 3.5
     spreadAmount: 30
@@ -1020,6 +1091,8 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
     - state: frag
+  - type: Tracer # Orion
+    color: "#1100ff"
   - type: EmpOnTrigger
     range: 3 # Goobstation
     energyConsumption: 360 # Goobstation
@@ -1059,6 +1132,9 @@
     damage:
       types:
         Caustic: 5
+  - type: Tracer # Orion
+    color: "#00ff15"
+    length: 1.5
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
     layers:
@@ -1088,6 +1164,9 @@
     layers:
     - state: icon
       map: ["enum.VaporVisualLayers.Base"]
+  - type: Tracer # Arcane
+    color: "#cfedff"
+    length: 1
   - type: Ammo
     muzzleFlash: null
   - type: SolutionContainerManager
@@ -1211,6 +1290,9 @@
     layers:
     - state: omnilaser
       shader: unshaded
+  - type: Tracer # Arcane
+    color: "#33cfff"
+    length: 1.5
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -1221,12 +1303,14 @@
         hard: false
         mask:
         - Opaque
-        - Impassable
-        - BulletImpassable
+        # Arcane-Edit-Start
+#        - Impassable
+#        - BulletImpassable
+        # Arcane-Edit-End
       fly-by: *flybyfixture
   - type: Ammo
   - type: StaminaDamageOnCollide
-    damage: 12 # Goob edit
+    damage: 15 # Goob edit # Orion-Edit: 12 > 15
   - type: Projectile
     impactEffect: BulletImpactEffectDisabler
     damage:
@@ -1256,6 +1340,9 @@
     layers:
     - state: heavylaser
       shader: unshaded
+  - type: Tracer # Arcane
+    color: "#33cfff"
+    length: 1.5
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -1282,6 +1369,8 @@
     layers:
     - state: heavylaser
       shader: unshaded
+  - type: Tracer # Arcane
+    color: "#ff5c33"
   - type: Projectile
     impactEffect: BulletImpactEffectOrangeDisabler
     damage:
@@ -1325,6 +1414,9 @@
     layers:
     - state: tesla_projectile
       shader: unshaded
+  - type: Tracer # Arcane
+    color: "#fffedb"
+    length: 1.5
   - type: StaminaDamageOnCollide
     damage: 15
   - type: EmbeddableProjectile
@@ -1367,6 +1459,9 @@
     layers:
     - state: heavylaser
       shader: unshaded
+  - type: Tracer # Arcane
+    color: "#ff3a33"
+    length: 1.5
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -1377,8 +1472,10 @@
         hard: false
         mask:
         - Opaque
-        - Impassable
-        - BulletImpassable
+        # Arcane-Edit-Start
+#        - Impassable
+#        - BulletImpassable
+        # Arcane-Edit-End
       fly-by: *flybyfixture
   - type: Ammo
   - type: Projectile
@@ -1486,6 +1583,9 @@
     layers:
     - state: crossbowbolt
       shader: unshaded
+  - type: Tracer # Arcane
+    color: "#7eff33"
+    length: 1
   - type: Projectile
     damage:
       types:
