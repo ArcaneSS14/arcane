@@ -199,11 +199,13 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
             TryDoElectrifiedAct(uid, args.User, 1, electrified);
     }
 
-    private void OnElectrifiedActivate(EntityUid uid, ElectrifiedComponent electrified, ActivateInWorldEvent args) // Arcane-Edit
+    // Arcane-Start
+    private void OnElectrifiedActivate(EntityUid uid, ElectrifiedComponent electrified, ActivateInWorldEvent args)
     {
         if (electrified.OnHandInteract)
             TryDoElectrifiedAct(uid, args.User, 1, electrified);
     }
+    // Arcane-End
 
     private void OnLightAttacked(EntityUid uid, PoweredLightComponent component, AttackedEvent args)
     {

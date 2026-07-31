@@ -34,6 +34,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!; // Arcane
+
     private static readonly EntProtoId HornActionId = "ActionHorn";
     private static readonly EntProtoId SirenActionId = "ActionSiren";
 
@@ -61,8 +62,10 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void OnInit(EntityUid uid, VehicleComponent component, ComponentInit args)
     {
-        EnsureComp<GravityAffectedComponent>(uid); // Arcane
-        _gravity.RefreshWeightless(uid); // Arcane
+        // Arcane-Start
+        EnsureComp<GravityAffectedComponent>(uid);
+        _gravity.RefreshWeightless(uid);
+        // Arcane-End
 
         _appearance.SetData(uid, VehicleState.Animated, component.EngineRunning);
         _appearance.SetData(uid, VehicleState.DrawOver, false);

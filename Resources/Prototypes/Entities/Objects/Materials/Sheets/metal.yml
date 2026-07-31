@@ -80,7 +80,7 @@
     - Sheet
     - Metal
     - Steel
-    - ConstructionMaterial # CorvaxGoob
+    - ConstructionMaterial # Arcane
 
 - type: entity
   parent: SheetSteel
