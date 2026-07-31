@@ -47,7 +47,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_isEnabled || args.Message.Length > MaxMessageChars)
             return;
 
-        if (args.Channel != null)
+        if (args.RadioMessageSent)
             return;
 
         if (!args.Language.SpeechOverride.RequireSpeech)
