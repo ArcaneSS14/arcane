@@ -873,9 +873,14 @@ ClothingNeckCloakMiner: null
 #CapacitorStockPart: MicroManipulatorStockPart # Orion-Edit
 
 # Orion-Start
-GasThermoMachineHellfireFreezer: null
-GasThermoMachineHellfireHeater: null
+GasThermoMachineHellfireFreezer: GasThermoMachineFreezer
+GasThermoMachineHellfireHeater: GasThermoMachineHeater
+HellfireFreezerMachineCircuitBoard: ThermomachineFreezerMachineCircuitBoard
+HellfireHeaterMachineCircuitBoard: ThermomachineHeaterMachineCircuitBoard
 MachineMaterialSilo: MaterialSilo
+OreProcessorIndustrial: OreProcessor
+XenoEggDestroyed: EggSpider
+BaseSecretDoorAssembly: SolidSecretDoor
 # Orion-End
 
 # 2025-05-26 Turrets
@@ -983,7 +988,7 @@ DVSmartFridgeMedical: SmartFridgeMedical
 
 # 2026-02-14 Goobstation, upstreaming. wild.
 MailTeleporter: CargoMailTeleporter
-MaterialSilo: MachineMaterialSilo
+# MaterialSilo: MachineMaterialSilo # Arcane-Edit: Removed
 BoxMailCapsulePrimed: null
 VendingMachineMailDrobe: null
 WeaponMailLake: null
