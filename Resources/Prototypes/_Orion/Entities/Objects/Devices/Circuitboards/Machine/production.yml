@@ -113,6 +113,7 @@
   - type: ComputerBoard
     prototype: QuantumConsole
 
+# Arcane-Edit-Start
 # - type: entity
 #   parent: BaseMachineCircuitboard
 #   id: SmartFridgeMachineCircuitboard
@@ -126,3 +127,4 @@
 #       Glass: 2
 #     partRequirements:
 #       MatterBin: 1
+# Arcane-Edit-End
