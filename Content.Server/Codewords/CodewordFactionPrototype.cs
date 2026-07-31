@@ -6,15 +6,15 @@ namespace Content.Server.Codewords;
 /// This is a prototype for easy access to codewords using identifiers instead of magic strings.
 /// </summary>
 [Prototype]
-public sealed class CodewordFactionPrototype : IPrototype
+public sealed partial class CodewordFactionPrototype : IPrototype
 {
     /// <inheritdoc/>
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     /// <summary>
     /// The generator to use for this faction.
     /// </summary>
     [DataField(required:true)]
-    public ProtoId<CodewordGeneratorPrototype> Generator { get; }
+    public ProtoId<CodewordGeneratorPrototype> Generator { get; private set; } = default!;
 }

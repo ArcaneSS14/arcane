@@ -9,8 +9,7 @@
     - state: engineering
     - state: icon-tools-adv
   - type: ItemBorgModule
-    moduleId: RPED
-    items:
-    - RapidPartExchangerBorg
+    hands:
+    - item: RapidPartExchangerBorg
   - type: BorgModuleIcon
     icon: { sprite: _Orion/Interface/Actions/actions_borg.rsi, state: rped-module }

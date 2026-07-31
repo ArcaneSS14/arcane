@@ -25,6 +25,12 @@ public sealed partial class EnergyDomeGeneratorComponent : Component
     public float DamageEnergyDraw = 10f;
 
     /// <summary>
+    /// Charge rate applied to an internal battery while the dome is active.
+    /// </summary>
+    [DataField]
+    public float InternalBatteryChargeRate;
+
+    /// <summary>
     /// Whether or not the dome can be toggled via standard interactions
     /// (alt verbs, using in hand, etc)
     /// </summary>

@@ -1,36 +1,31 @@
-// SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Server.Chemistry.Containers.EntitySystems;
-using Content.Server.Medical;
-using Content.Server.Popups;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Events;
 using Content.Shared.Audio;
-using Content.Shared.Body.Components;
-using Content.Shared.Charges.Systems;
-using Content.Shared.Hands;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Inventory;
-using Content.Shared.Item;
-using Content.Shared.Nutrition.Components;
-using Content.Shared.Nutrition.EntitySystems;
-using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
 using Content.Shared.Throwing;
+using Content.Shared.Item;
+using Content.Shared.Inventory;
+using Content.Shared.Hands;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
+using Content.Server.Body.Components;
+using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Server.Medical;
+using Content.Server.Nutrition.Components;
+using Content.Server.Popups;
+using Content.Shared.Body.Components;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
+using Content.Shared.Charges.Systems;
+using Content.Shared.Medical;
 
-namespace Content.Server.Abilities.Felinid;
+namespace Content.Server.Nyanotrasen.Abilities.Felinid;
 
-public sealed class FelinidSystem : EntitySystem
+public sealed partial class FelinidSystem : EntitySystem
 {
 
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
@@ -134,9 +129,9 @@ public sealed class FelinidSystem : EntitySystem
         if (!TryComp<HungerComponent>(uid, out var hunger))
             return;
 
-        if (hunger.CurrentThreshold == HungerThreshold.Overfed)
+        if (hunger.CurrentThreshold == Shared.Nutrition.Components.HungerThreshold.Overfed)
         {
-            _popupSystem.PopupEntity(Loc.GetString("ingestion-other-cannot-ingest-any-more"), uid, uid, PopupType.SmallCaution);
+            _popupSystem.PopupEntity(Loc.GetString("ingestion-other-cannot-ingest-any-more"), uid, uid, Shared.Popups.PopupType.SmallCaution);
             return;
         }
 
@@ -144,7 +139,7 @@ public sealed class FelinidSystem : EntitySystem
         EntityManager.TryGetComponent<IngestionBlockerComponent>(maskUid, out var blocker) &&
         blocker.Enabled)
         {
-            _popupSystem.PopupEntity(Loc.GetString("hairball-mask", ("mask", maskUid)), uid, uid, PopupType.SmallCaution);
+            _popupSystem.PopupEntity(Loc.GetString("hairball-mask", ("mask", maskUid)), uid, uid, Shared.Popups.PopupType.SmallCaution);
             return;
         }
 
@@ -169,9 +164,9 @@ public sealed class FelinidSystem : EntitySystem
         var hairball = EntityManager.SpawnEntity(component.HairballPrototype, Transform(uid).Coordinates);
         var hairballComp = Comp<HairballComponent>(hairball);
 
-        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.ChemicalSolution.HasValue)
+        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.BloodSolution.HasValue)
         {
-            var temp = _solutionSystem.SplitSolution(bloodstream.ChemicalSolution.Value, 20);
+            var temp = _solutionSystem.SplitSolution(bloodstream.BloodSolution.Value, 20);
 
             if (_solutionSystem.TryGetSolution(hairball, hairballComp.SolutionName, out var hairballSolution))
             {

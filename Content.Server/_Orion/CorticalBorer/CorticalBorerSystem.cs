@@ -118,7 +118,7 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
             Actions.AddAction(ent, actionId);
         }
 
-        _alerts.ShowAlert(ent, ent.Comp.ChemicalAlert);
+        _alerts.ShowAlert(ent.Owner, ent.Comp.ChemicalAlert);
         UpdateUiState(ent);
     }
 
@@ -200,12 +200,12 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
         if (comp.UiUpdateInterval > 0 && comp.ChemicalPoints % comp.UiUpdateInterval == 0)
             UpdateUiState(ent);
 
-        _alerts.ShowAlert(ent, ent.Comp.ChemicalAlert);
+        _alerts.ShowAlert(ent.Owner, ent.Comp.ChemicalAlert);
 
         if (comp.Host.HasValue && !HasBorerProtection(comp.Host.Value))
-            _alerts.ClearAlert(ent, ent.Comp.SugarAlert);
+            _alerts.ClearAlert(ent.Owner, ent.Comp.SugarAlert);
         else if (comp.Host.HasValue)
-            _alerts.ShowAlert(ent, ent.Comp.SugarAlert);
+            _alerts.ShowAlert(ent.Owner, ent.Comp.SugarAlert);
 
         Dirty(ent);
     }
@@ -267,10 +267,10 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
         solution.AddReagent(chemicalPrototype.Reagent, chemAmount);
 
         // add the chemicals to the bloodstream of the host
-        if (!_blood.TryAddToChemicals((comp.Host.Value, blood), solution))
+        if (!_blood.TryAddToBloodstream((comp.Host.Value, blood), solution))
             return false;
 
-        _admin.Add(LogType.ReagentEffect,
+        _admin.Add(LogType.Action,
             LogImpact.Low,
             $"{ToPrettyString(uid):actor} injected {chemAmount}u of {chemicalPrototype.Reagent:reagent}"
             + $" (severity: {chemicalPrototype.Severity}) into host {ToPrettyString(comp.Host.Value):target}");
@@ -557,7 +557,7 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
         var query = EntityQueryEnumerator<MindComponent>();
         while (query.MoveNext(out var mindUid, out var mind))
         {
-            if (!mind.MindRoles.Any(HasComp<CorticalBorerRoleComponent>))
+            if (!mind.MindRoleContainer.ContainedEntities.Any(HasComp<CorticalBorerRoleComponent>))
                 continue;
 
             var name = mind.CharacterName;
@@ -728,7 +728,7 @@ public sealed partial class CorticalBorerSystem : SharedCorticalBorerSystem
 
     private void EnsureBorerObjectives(EntityUid mindId, MindComponent mindComp, List<EntProtoId> objectives)
     {
-        if (!mindComp.MindRoles.Any(HasComp<CorticalBorerRoleComponent>))
+        if (!mindComp.MindRoleContainer.ContainedEntities.Any(HasComp<CorticalBorerRoleComponent>))
             return;
 
         foreach (var objective in objectives)

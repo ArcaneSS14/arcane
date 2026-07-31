@@ -11,7 +11,6 @@ ent-ClothingHeadHatCommandMaid = чепчик
     .desc = Изысканная шапочка для безупречной особы.
 
 ent-ClothingHeadHatBowsCommandMaid = чепчик с бантиками
-
     .desc = Изысканная шапочка с бантами для безупречной особы.
 
 ent-ClothingHeadHatBlackCommandMaid = чёрный чепчик
@@ -56,3 +55,6 @@ ent-ClothingHatJester = колпак шута
 ent-ClothingHatCookRed = красный поварской колпак
     .desc = Красный поварской колпак.
 
+
+ent-ClothingHatFlyAgaric = шляпа-мухомор
+    .desc = Головной убор, напоминающий шляпку ядовитого гриба.

@@ -111369,7 +111369,7 @@ entities:
       parent: 17126
     - type: Physics
       canCollide: False
-- proto: EnergyChemDispenser
+- proto: ChemDispenser
   entities:
   - uid: 17128
     components:
@@ -168573,7 +168573,7 @@ entities:
     - type: Transform
       pos: 46.429523,54.487045
       parent: 2
-- proto: MaterialSilo
+- proto: MachineMaterialSilo
   entities:
   - uid: 25107
     components:
