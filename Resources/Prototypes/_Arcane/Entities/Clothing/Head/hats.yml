@@ -169,3 +169,14 @@
     sprite: _Arcane/Clothing/Head/Sponsor/sanitar_hat.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Sponsor/sanitar_hat.rsi
+
+- type: entity
+  parent: ClothingHeadHatCentcom
+  id: ClothingHatFlyAgaric
+  name: fly agaric hat
+  description: A hat resempling a cap of a poisonous mushroom.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/fly_agaric_hat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/fly_agaric_hat.rsi

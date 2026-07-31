@@ -19,6 +19,9 @@
     layers:
     - state: heavylaser
       shader: unshaded
+  - type: Tracer # Arcane
+    color: "#fc5024"
+    length: 1.5
   - type: Ammo
   - type: Physics
   - type: Fixtures
@@ -58,6 +61,9 @@
     - state: omnilaser_greyscale
       shader: unshaded
       color: blue
+  - type: Tracer # Arcane
+    color: "#2428fc"
+    length: 1.5
   - type: Ammo
   - type: Physics
   - type: Fixtures
@@ -97,6 +103,9 @@
     layers:
     - state: omnilaser
       shader: unshaded
+  - type: Tracer # Arcane
+    color: "#24e3fc"
+    length: 1.5
   - type: Ammo
   - type: Physics
   - type: Fixtures
@@ -138,6 +147,9 @@
     layers:
     - state: heavylaser
       shader: unshaded
+  - type: Tracer # Arcane
+    color: "#a52100"
+    length: 1.5
   - type: Ammo
   - type: Physics
   - type: Fixtures
@@ -177,6 +189,9 @@
     - state: omnilaser_greyscale
       shader: unshaded
       color: red
+  - type: Tracer # Arcane
+    color: "#c02600"
+    length: 1.5
   - type: Ammo
   - type: Physics
   - type: Fixtures

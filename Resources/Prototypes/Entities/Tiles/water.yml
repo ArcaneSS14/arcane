@@ -37,6 +37,11 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
+    # Arcane-Start
+    ignoreWhitelist:
+      tags:
+      - Feroxi
+    # Arcane-End
   - type: Physics
     bodyType: Static
   - type: Fixtures
