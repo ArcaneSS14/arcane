@@ -36,7 +36,7 @@
             Musician: [ 3, 3 ]
             # Engineering
             ChiefEngineer: [ 1, 1 ]
-            StationEngineer: [ 10, 8 ]
+            StationEngineer: [ 10, 7 ]
             AtmosphericTechnician: [ 4, 3 ]
             TechnicalAssistant: [ 5, 5 ]
             # Medical
@@ -46,9 +46,11 @@
             MedicalIntern: [ 4, 4 ]
             Chemist: [ 3, 3 ]
             Virologist: [ 2, 1 ]
+            Psychologist: [ 1, 1 ]
             # Science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 10, 6 ]
+            Scientist: [ 8, 5 ]
+            Roboticist: [ 4, 3 ]
             ResearchAssistant: [ 6, 5 ]
             # Security
             HeadOfSecurity: [ 1, 1 ]
@@ -61,7 +63,7 @@
             IAA: [ 1, 1 ]
             # Supply
             Quartermaster: [ 1, 1 ]
-            CargoTechnician: [ 6, 5 ]
+            CargoTechnician: [ 7, 5 ]
             SalvageSpecialist: [ 4, 3 ]
             ShaftMiner: [ 4, 3 ]
             # Civilian
