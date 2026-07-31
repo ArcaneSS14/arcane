@@ -15,7 +15,7 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed class LizardAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
+    [Dependency] private readonly IRobustRandom _random = default!; // Arcane: Localization
 
     private static readonly Regex RegexLowerS = new("s+");
     private static readonly Regex RegexUpperS = new("S+");
@@ -44,7 +44,7 @@ public sealed class LizardAccentSystem : EntitySystem
         // eckS
         message = RegexUpperEndX.Replace(message, "ECKS$1");
 
-        // Corvax-Localization-Start
+        // Arcane-Start: Localization
         // c => ссс
         message = Regex.Replace(
             message,
@@ -93,7 +93,7 @@ public sealed class LizardAccentSystem : EntitySystem
             "Ч+",
             _random.Pick(new List<string>() { "ЩЩ", "ЩЩЩ" })
         );
-        // Corvax-Localization-End
+        // Arcane-End
         args.Message = message;
     }
 }
