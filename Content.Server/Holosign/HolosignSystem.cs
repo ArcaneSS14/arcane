@@ -74,7 +74,7 @@ public sealed class HolosignSystem : EntitySystem
                 return;
 
             if (!_physicsQuery.TryComp(entity, out var physics)
-            || !physics.CanCollide || !physics.Hard) // Arcane-Add
+            || !physics.CanCollide || !physics.Hard) // Arcane
                 continue;
 
             if ((physics.CollisionLayer &
