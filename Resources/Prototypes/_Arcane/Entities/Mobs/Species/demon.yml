@@ -89,6 +89,9 @@
   components:
   - type: HumanoidAppearance
     species: Demon
+    hideLayersOnEquip:
+    - HeadSide
+    - Hair
   - type: Inventory
     speciesId: demon
     femaleDisplacements:
