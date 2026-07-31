@@ -25,6 +25,7 @@ using Robust.Shared.Configuration;
 using Content.Shared.CCVar;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Slippery;
 
 namespace Content.Server._Orion.Mood;
@@ -485,13 +486,13 @@ public sealed class MoodSystem : EntitySystem
         if (args.Mind.OwnedEntity is not { } ownedEntity || !HasComp<MoodComponent>(ownedEntity))
             return;
 
-        if (args.Mind.MindRoles.Any(HasComp<TraitorRoleComponent>))
+        if (args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<TraitorRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodEffectEvent("TraitorFocused"));
 
-        if (args.Mind.MindRoles.Any(HasComp<RevolutionaryRoleComponent>))
+        if (args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<RevolutionaryRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodEffectEvent("RevolutionFocused"));
 
-        if (args.Mind.MindRoles.Any(HasComp<CosmicCultRoleComponent>))
+        if (args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<CosmicCultRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodEffectEvent("CultFocused"));
     }
 
@@ -500,13 +501,13 @@ public sealed class MoodSystem : EntitySystem
         if (args.Mind.OwnedEntity is not { } ownedEntity || !HasComp<MoodComponent>(ownedEntity))
             return;
 
-        if (!args.Mind.MindRoles.Any(HasComp<TraitorRoleComponent>))
+        if (!args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<TraitorRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodRemoveEffectEvent("TraitorFocused"));
 
-        if (!args.Mind.MindRoles.Any(HasComp<RevolutionaryRoleComponent>))
+        if (!args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<RevolutionaryRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodRemoveEffectEvent("RevolutionFocused"));
 
-        if (!args.Mind.MindRoles.Any(HasComp<CosmicCultRoleComponent>))
+        if (!args.Mind.MindRoleContainer.ContainedEntities.Any(HasComp<CosmicCultRoleComponent>))
             RaiseLocalEvent(ownedEntity, new MoodRemoveEffectEvent("CultFocused"));
     }
 

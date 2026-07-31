@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # ER-5 Torrent SMG
@@ -73,9 +70,9 @@
     shape:
     - 0,0,6,1
   - type: Gun
-    burstFireRate: 15
+    burstFireRate: 6 # Arcane-Edit: 15 > 8
     shotsPerBurst: 3
-    burstCooldown: 1.5
+    burstCooldown: 1 # Arcane-Edit: 1.5 > 1
     fireRate: 1.5
     lockOnTargetBurst: true
     selectedMode: Burst
@@ -229,7 +226,7 @@
   - type: Gun
     minAngle: 50
     maxAngle: 20
-    angleIncrease: -5
+    angleIncrease: -2 # Arcane-Edit: -5 > -2
     angleDecay: -80
     fireRate: 10
     selectedMode: FullAuto
@@ -249,8 +246,9 @@
     endSound:
       path: /Audio/_Goobstation/Weapons/Guns/Gunshots/laser_lmg.ogg
   - type: ClothingSlotAmmoProvider
+  - type: SlotBasedConnectedContainer
     targetSlot: BACK
-    providerWhitelist:
+    containerWhitelist:
       tags:
       - LaserLMGBackpack
   - type: Tag

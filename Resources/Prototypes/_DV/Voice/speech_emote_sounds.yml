@@ -1,21 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2024 AstroDogeDX <48888500+AstroDogeDX@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 CerberusWolfie <wb.johnb.willis@gmail.com>
-# SPDX-FileCopyrightText: 2025 CometVoid <cometsstrile@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 Theodore Lukin <66275205+pheenty@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-# SPDX-FileCopyrightText: 2025 loltart <159829224+loltart@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 loltart <lo1tartyt@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # species
 - type: emoteSounds
@@ -24,17 +6,17 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: HarpyFemaleScreams # Arcane-Edit
+      collection: HarpyFemaleScreams
     Laugh:
-      collection: HarpyFemaleLaugh # Arcane-Edit
+      collection: HarpyFemaleLaugh
     Sneeze:
-      collection: FemaleSneezes # Arcane-Edit
+      collection: MaleSneezes
     Cough:
-      collection: FemaleCoughs # Arcane-Edit
+      collection: MaleCoughs
     Sigh:
-      collection: HarpyFemaleSigh # Arcane-Edit
+      collection: HarpyFemaleSigh
     Crying:
-      collection: HarpyFemaleCry # Arcane-Edit
+      collection: HarpyFemaleCry
     Whistle:
       collection: Whistles
     Hiss:
@@ -57,16 +39,8 @@
       collection: HarpyBeeps
     Rev:
       collection: HarpyRevs
-    # Arcane-Edit-Start
-    Click:
-      collection: HarpyClicks
-    Squish:
-      collection: Squishes
-    Bubble:
-      collection: Bubbles
-    Pop:
-      collection: Pops
-    # Arcane-Edit-End
+#    Click:
+#      collection: HarpyClicks
     Chitter:
       collection: HarpyChitter
     Squeak:
@@ -107,16 +81,10 @@
       collection: Warble
     Wurble:
       collection: Wurble
-    # Arcane-start
-    Mars:
-      collection: Mars
-    # Arcane-end
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
-    # Arcane-Start
-    Moan:
-      collection: MoansFemale
-    # Arcane-End
+    Belch: # Frontier
+      collection: Belch # Frontier
 
 - type: emoteSounds
   id: SoundsHarpyMale
@@ -124,17 +92,17 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: HarpyMaleScreams # Arcane-Edit
+      collection: HarpyMaleScreams
     Laugh:
-      collection: HarpyMaleLaugh # Arcane-Edit
+      collection: HarpyMaleLaugh
     Sneeze:
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
     Sigh:
-      collection: HarpyMaleSigh # Arcane-Edit
+      collection: HarpyMaleSigh
     Crying:
-      collection: HarpyMaleCry # Arcane-Edit
+      collection: HarpyMaleCry
     Whistle:
       collection: Whistles
     Hiss:
@@ -157,16 +125,8 @@
       collection: HarpyBeeps
     Rev:
       collection: HarpyRevs
-    # Arcane-Edit-Start
-    Click:
-      collection: HarpyClicks
-    Squish:
-      collection: Squishes
-    Bubble:
-      collection: Bubbles
-    Pop:
-      collection: Pops
-    # Arcane-Edit-End
+#    Click:
+#      collection: HarpyClicks
     Chitter:
       collection: HarpyChitter
     Squeak:
@@ -211,10 +171,8 @@
       collection: Mars
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
-    # Arcane-Start
-    Moan:
-      collection: MoansMale
-    # Arcane-End
+    Belch: # Frontier
+      collection: Belch # Frontier
 
 - type: emoteSounds
   id: FemaleVulpkanin
@@ -222,9 +180,9 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: FemaleVulpkaninScreams # Arcane-Edit
+      collection: VulpkaninScreams # EE
     Laugh:
-      collection: VulpkaninLaugh # Arcane-Edit
+      collection: FemaleLaugh
     Sneeze:
       collection: FemaleSneezes
     Cough:
@@ -238,13 +196,13 @@
     Sigh:
       collection: FemaleSigh
     Crying:
-      collection: VulpkaninCry # Arcane-Edit
+      collection: FemaleCry
     Whistle:
       collection: Whistles
     Weh:
       collection: Weh
     Growl:
-      collection: FemaleVulpkaninGrowls # Arcane-Edit
+      collection: VulpkaninGrowls
     Snarl:
       collection: VulpkaninSnarls
     Bark:
@@ -252,9 +210,9 @@
     Whine:
       collection: VulpkaninWhines
     Howl:
-      collection: FemaleVulpkaninHowls # Arcane-Edit
+      collection: VulpkaninHowls
     Awoo:
-      collection: FemaleVulpkaninHowls # Arcane-Edit
+      collection: VulpkaninHowls
     CatMeow:
       collection: CatMeows # Goobstation - effect standardization
     Gasp:
@@ -265,12 +223,8 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
-    Hiss: # Arcane
-      path: /Audio/Animals/snake_hiss.ogg
-    # Arcane-Start
-    Moan:
-      collection: MoansFemale
-    # Arcane-End
+    Belch: # Frontier
+      collection: Belch # Frontier
 
 - type: emoteSounds
   id: MaleVulpkanin
@@ -278,9 +232,9 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: MaleVulpkaninScreams # Arcane-Edit
+      collection: VulpkaninScreams # EE
     Laugh:
-      collection: VulpkaninLaugh # Arcane-Edit
+      collection: MaleLaugh
     Sneeze:
       collection: MaleSneezes
     Cough:
@@ -294,13 +248,13 @@
     Sigh:
       collection: MaleSigh
     Crying:
-      collection: VulpkaninCry # Arcane-Edit
+      collection: MaleCry
     Whistle:
       collection: Whistles
     Weh:
       collection: Weh
     Growl:
-      collection: MaleVulpkaninGrowls # Arcane-Edit
+      collection: VulpkaninGrowls
     Snarl:
       collection: VulpkaninSnarls
     Bark:
@@ -308,9 +262,9 @@
     Whine:
       collection: VulpkaninWhines
     Howl:
-      collection: MaleVulpkaninHowls # Arcane-Edit
+      collection: VulpkaninHowls
     Awoo:
-      collection: MaleVulpkaninHowls # Arcane-Edit
+      collection: VulpkaninHowls
     CatMeow:
       collection: CatMeows # Goobstation - effect standardization
     Gasp:
@@ -321,13 +275,8 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
-    Hiss: # Arcane
-      path: /Audio/Animals/snake_hiss.ogg
-    # Arcane-Start
-    Moan:
-      collection: MoansMale
-    # Arcane-End
-
+    Belch: # Frontier
+      collection: Belch # Frontier
 
 - type: emoteSounds
   id: MobDog
@@ -386,10 +335,8 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
-    # Arcane-Start
-    Moan:
-      collection: MoansMale
-    # Arcane-End
+    Belch: # Frontier
+      collection: Belch # Frontier
 
 - type: emoteSounds
   id: FemaleRodentia
@@ -430,10 +377,8 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
-    # Arcane-Start
-    Moan:
-      collection: MoansFemale
-    # Arcane-End
+    Belch: # Frontier
+      collection: Belch # Frontier
 
 - type: emoteSounds
   id: UnisexChitinid
@@ -476,6 +421,8 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
+    Belch: # Frontier
+      collection: Belch # Frontier
 
 - type: emoteSounds
   id: FemaleFeroxi
@@ -518,10 +465,8 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
-    # Arcane-Start
-    Moan:
-      collection: MoansFemale
-    # Arcane-End
+    Belch: # Frontier
+      collection: Belch # Frontier
 
 - type: emoteSounds
   id: MaleFeroxi
@@ -564,7 +509,5 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Surprised: # Goob
       path: /Audio/_Goobstation/Voice/surprised.ogg
-    # Arcane-Start
-    Moan:
-      collection: MoansMale
-    # Arcane-End
+    Belch: # Frontier
+      collection: Belch # Frontier

@@ -8,6 +8,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
+using Content.Shared.Power.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Wall;
 using Robust.Shared.Utility;
@@ -52,13 +53,13 @@ public sealed class InducerSystem : EntitySystem
             return;
         }
 
-        if (sourceBattery.CurrentCharge <= 0)
+        if (_battery.GetCharge((slot.Item.Value, sourceBattery)) <= 0)
         {
             _popup.PopupEntity(Loc.GetString("inducer-empty"), uid, args.User);
             return;
         }
 
-        if (_battery.IsFull(target, targetBattery))
+        if (_battery.IsFull((target, targetBattery)))
         {
             _popup.PopupEntity(Loc.GetString("inducer-target-full"), uid, args.User);
             return;
@@ -101,27 +102,29 @@ public sealed class InducerSystem : EntitySystem
             return;
 
         var baseEnergyToConsume = component.TransferRate * component.TransferDelay;
-        baseEnergyToConsume = Math.Min(baseEnergyToConsume, sourceBattery.CurrentCharge);
+        var sourceCharge = _battery.GetCharge((slot.Item.Value, sourceBattery));
+        baseEnergyToConsume = Math.Min(baseEnergyToConsume, sourceCharge);
 
         if (baseEnergyToConsume <= 0)
             return;
 
         var energyToReceive = baseEnergyToConsume * effectiveMultiplier;
-        var freeSpace = targetBattery.MaxCharge - targetBattery.CurrentCharge;
+        var targetCharge = _battery.GetCharge((target, targetBattery));
+        var freeSpace = targetBattery.MaxCharge - targetCharge;
         energyToReceive = Math.Min(energyToReceive, freeSpace);
 
         var actualEnergyToConsume = energyToReceive / effectiveMultiplier;
-        if (_battery.TryUseCharge(slot.Item.Value, actualEnergyToConsume, sourceBattery))
+        if (_battery.TryUseCharge((slot.Item.Value, sourceBattery), actualEnergyToConsume))
         {
-            _battery.AddCharge(target, energyToReceive, targetBattery);
+            _battery.ChangeCharge((target, targetBattery), energyToReceive);
             _sparks.DoSparks(Transform(target).Coordinates);
 
-            args.Repeat = targetBattery.CurrentCharge < targetBattery.MaxCharge;
+            args.Repeat = _battery.GetCharge((target, targetBattery)) < targetBattery.MaxCharge;
         }
         else
         {
-            _battery.SetCharge(target, targetBattery.CurrentCharge + energyToReceive, targetBattery);
-            _battery.SetCharge(slot.Item.Value, sourceBattery.CurrentCharge - actualEnergyToConsume, sourceBattery);
+            _battery.SetCharge((target, targetBattery), targetCharge + energyToReceive);
+            _battery.SetCharge((slot.Item.Value, sourceBattery), sourceCharge - actualEnergyToConsume);
             args.Repeat = false;
         }
     }

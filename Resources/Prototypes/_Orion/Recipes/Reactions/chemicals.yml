@@ -12,6 +12,6 @@
       prototypeId: Smoke
       sound:
         path: /Audio/Effects/smoke.ogg
-    - !type:FlashReactionEffect
-    - !type:CreateEntityReactionEffect
+    - !type:Flash
+    - !type:SpawnEntity
       entity: AnomalyBluespace

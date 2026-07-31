@@ -24,7 +24,6 @@ using Content.Shared.UserInterface;
 using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
-using Content.Server.PowerCell;
 
 namespace Content.Server._Imp.Drone
 {
@@ -186,7 +185,7 @@ namespace Content.Server._Imp.Drone
             if (_powerCell.TryGetBatteryFromSlot(uid, out var battery) && _battery.TryGetBatteryComponent(uid, out var batteryComponent, out _))
             {
                 hasBattery = true;
-                chargePercent = MathF.Round(batteryComponent.CurrentCharge /batteryComponent.MaxCharge * 10f); // max is 10 min is 0
+                chargePercent = MathF.Round(batteryComponent.LastCharge /batteryComponent.MaxCharge * 10f); // max is 10 min is 0
             }
 
             var state = new DroneBuiState(chargePercent, hasBattery);
@@ -207,7 +206,7 @@ namespace Content.Server._Imp.Drone
 
             var chargePercent = new short();
             if (_battery.TryGetBatteryComponent(ent.Owner, out var batteryComponent, out var _))
-                chargePercent = (short) MathF.Round(batteryComponent.CurrentCharge / batteryComponent.MaxCharge * 10f);
+                chargePercent = (short) MathF.Round(batteryComponent.LastCharge / batteryComponent.MaxCharge * 10f);
 
             if (chargePercent == 5 && chargePercent < ent.Comp.LastChargePercent)
             {

@@ -35,3 +35,6 @@ ent-ClothingHatQMBlackBeret = альтернативный берет кварт
     .desc = Берет главы отдела снабжения.
 ent-ClothingHatSanitar = шапочка санитара
     .desc = Головной убор маньяка из слэшера.
+
+ent-ClothingHatFlyAgaric = шляпа-мухомор
+    .desc = Головной убор, напоминающий шляпку ядовитого гриба.

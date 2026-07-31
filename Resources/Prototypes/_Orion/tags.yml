@@ -80,6 +80,9 @@
   id: Wakizashi
 
 - type: Tag
+  id: Katana
+
+- type: Tag
   id: BluespaceAnomalyCore
 
 - type: Tag

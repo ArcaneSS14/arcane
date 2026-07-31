@@ -2,13 +2,14 @@ using Content.Server._Orion.EnergyDome.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Server.PowerCell;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Content.Shared.Power;
+using Content.Shared.Power.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Timing;
@@ -148,13 +149,13 @@ public sealed class EnergyDomeSystem : EntitySystem
 
     private void OnPowerCellChanged(Entity<EnergyDomeGeneratorComponent> generator, ref PowerCellChangedEvent args)
     {
-        if (args.Ejected || !_powerCell.HasDrawCharge(generator))
+        if (args.Ejected || !_powerCell.HasDrawCharge(generator.Owner))
             TurnOff(generator, true);
     }
 
     private void OnChargeChanged(Entity<EnergyDomeGeneratorComponent> generator, ref ChargeChangedEvent args)
     {
-        if (args.Charge == 0)
+        if (args.CurrentCharge == 0)
             TurnOff(generator, true);
     }
 
@@ -179,9 +180,9 @@ public sealed class EnergyDomeSystem : EntitySystem
         {
             if (_powerCell.TryGetBatteryFromSlot(generatorUid, out var cell))
             {
-                _battery.UseCharge(generatorUid, energyLeak, cell);
+                _battery.UseCharge(cell.Value.AsNullable(), energyLeak);
 
-                if (cell.CurrentCharge == 0)
+                if (_battery.GetCharge(cell.Value.AsNullable()) == 0)
                     TurnOff((generatorUid, generatorComp), true);
             }
         }
@@ -190,9 +191,9 @@ public sealed class EnergyDomeSystem : EntitySystem
         if (!TryComp<BatteryComponent>(generatorUid, out var battery))
             return;
 
-        _battery.UseCharge(generatorUid, energyLeak, battery);
+        _battery.UseCharge((generatorUid, battery), energyLeak);
 
-        if (battery.CurrentCharge == 0)
+        if (_battery.GetCharge((generatorUid, battery)) == 0)
             TurnOff((generatorUid, generatorComp), true);
     }
 
@@ -226,7 +227,7 @@ public sealed class EnergyDomeSystem : EntitySystem
 
         if (TryComp<PowerCellSlotComponent>(generator, out _))
         {
-            if (!_powerCell.TryGetBatteryFromSlot(generator, out _) && !TryComp(generator, out BatteryComponent? _))
+            if (!_powerCell.TryGetBatteryFromSlot(generator.Owner, out _) && !TryComp<BatteryComponent>(generator.Owner, out _))
             {
                 _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
                 _popup.PopupEntity(
@@ -235,7 +236,7 @@ public sealed class EnergyDomeSystem : EntitySystem
                 return false;
             }
 
-            if (!_powerCell.HasDrawCharge(generator))
+            if (!_powerCell.HasDrawCharge(generator.Owner))
             {
                 _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
                 _popup.PopupEntity(
@@ -247,7 +248,7 @@ public sealed class EnergyDomeSystem : EntitySystem
 
         if (TryComp<BatteryComponent>(generator, out var battery))
         {
-            if (battery.CurrentCharge == 0)
+            if (_battery.GetCharge((generator.Owner, battery)) == 0)
             {
                 _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
                 _popup.PopupEntity(
@@ -292,7 +293,9 @@ public sealed class EnergyDomeSystem : EntitySystem
 
         if (TryComp<BatterySelfRechargerComponent>(generator, out var recharger))
         {
-            recharger.AutoRecharge = true;
+            recharger.AutoRechargeRate = generator.Comp.InternalBatteryChargeRate;
+            Dirty(generator.Owner, recharger);
+            _battery.RefreshChargeRate(generator.Owner);
         }
 
         generator.Comp.SpawnedDome = newDome;
@@ -314,7 +317,9 @@ public sealed class EnergyDomeSystem : EntitySystem
         }
         if (TryComp<BatterySelfRechargerComponent>(generator, out var recharger))
         {
-            recharger.AutoRecharge = false;
+            recharger.AutoRechargeRate = 0f;
+            Dirty(generator.Owner, recharger);
+            _battery.RefreshChargeRate(generator.Owner);
         }
 
         _audio.PlayPvs(generator.Comp.TurnOffSound, generator);

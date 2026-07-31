@@ -6,11 +6,18 @@
   children:
     - SpaceLawTable
     - Procedures
+    - SpaceRights
+
+- type: guideEntry
+  id: SpaceRights
+  name: guide-entry-space-law-laws-space-rights
+  priority: 2
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/SpaceRights.xml"
 
 - type: guideEntry
   id: Procedures
   name: guide-entry-space-law-laws-procedures
-  priority: 2
+  priority: 3
   text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Procedures.xml"
 
 - type: guideEntry

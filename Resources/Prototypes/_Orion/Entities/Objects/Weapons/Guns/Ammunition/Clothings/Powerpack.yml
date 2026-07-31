@@ -73,11 +73,11 @@
     equipDelay: 2.5
     unequipDelay: 2.5
   - type: PowerCell
-  - type: PowerCellVisuals
+  - type: BatteryVisuals # Arcane-Edit: Fix
   - type: Battery
     maxCharge: 500000
     startingCharge: 500000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     fireCost: 100
   - type: ClothingSpeedModifier
     sprintModifier: 0.8
@@ -134,5 +134,5 @@
   id: PowerpackEnergyPulse
   name: powerpack (pulse)
   components:
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: Pulse

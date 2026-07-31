@@ -10,7 +10,7 @@ public sealed partial class MoodEffectPrototype : IPrototype
     ///     The ID of the moodlet to use.
     /// </summary>
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     public string Description(EntityUid? entity = null)
     {

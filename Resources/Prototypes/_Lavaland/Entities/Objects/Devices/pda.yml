@@ -5,7 +5,7 @@
   description: Smells like ash.
   components:
   - type: Sprite
-#    sprite: _Lavaland/Objects/Devices/pda.rsi # Orion-Edit: Removed
+    sprite: _Orion/Objects/Devices/pda.rsi # Orion-Edit
   # Orion-Start
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
@@ -27,6 +27,14 @@
     - state: "insert_overlay" # Goob
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda_base
+  - type: Icon
+    sprite: _Orion/Objects/Devices/pda.rsi
+    state: icon
   - type: Pda
     id: MinerIDCard
   - type: PdaBorderColor

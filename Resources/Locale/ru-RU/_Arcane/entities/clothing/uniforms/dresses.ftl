@@ -24,3 +24,30 @@ ent-ClothingUniformJumpskirtTangoDress = платье для танго
 
 ent-ClothingUniformJumpskirtXenoDress = ксено-платье
     .desc = Платье с отчётливо инопланетной эстетикой.
+
+ent-ClothingUniformJumpskirtWedingBeerDress = пивное свадебное платье
+    .desc = Свадьба лучше с пивом!
+
+ent-ClothingUniformJumpskirtFlowerPrincessDress = платье принцессы цветов
+    .desc = Нежное и изящное.
+
+ent-ClothingUniformJumpskirtFlyAgaricDress = платье-мухомор
+    .desc = Платье, напоминающее ножку ядовитого гриба.
+
+ent-ClothingUniformJumpskirtGentleYellowDress = нежное жёлтое платье
+    .desc = Нежное жёлтое платье.
+
+ent-ClothingUniformJumpskirtLeopardDress = леопардовое платье
+    .desc = Дерзко. Смело. Ты королева!
+
+ent-ClothingUniformJumpskirtPurpleEveningDress = фиолетовое вечернее платье
+    .desc = Соблазнительное фиолетовое платье.
+
+ent-ClothingUniformJumpskirtSpiderDress = паучье платье
+    .desc = Милое платье с белой паутинкой на юбке.
+
+ent-ClothingUniformJumpskirtWeddingDress = свадебное платье
+    .desc = Горько!
+
+ent-ClothingUniformJumpskirtWeddingSleevesDress = свадебное платье с рукавами
+    .desc = Горько!

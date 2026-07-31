@@ -5,6 +5,7 @@
   description: It really lacks the camera monitor function.
   components:
   - type: Sprite
+    sprite: _Orion/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: pda_base
@@ -24,6 +25,14 @@
       visible: false
     - state: "insert_overlay"
       map: [ "enum.PdaVisualLayers.Pen" ]
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda_base
+  - type: Icon
+    sprite: _Orion/Objects/Devices/pda.rsi
+    state: icon
   - type: Pda
     id: AdjutantIDCard
   - type: PdaBorderColor
@@ -37,6 +46,7 @@
   description: It really lacks the camera monitor function.
   components:
   - type: Sprite
+    sprite: _Orion/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: pda_base
@@ -54,6 +64,14 @@
       visible: false
     - state: "insert_overlay"
       map: [ "enum.PdaVisualLayers.Pen" ]
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda_base
+  - type: Icon
+    sprite: _Orion/Objects/Devices/pda.rsi
+    state: icon
   - type: Pda
     id: CommandMaidIDCard
   - type: PdaBorderColor
@@ -67,6 +85,7 @@
   description: Corporation and profit are best friends.
   components:
   - type: Sprite
+    sprite: _Orion/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: pda_base
@@ -85,6 +104,14 @@
       visible: false
     - state: "insert_overlay"
       map: [ "enum.PdaVisualLayers.Pen" ]
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda_base
+  - type: Icon
+    sprite: _Orion/Objects/Devices/pda.rsi
+    state: icon
   - type: Pda
     id: IAAIDCard
   - type: PdaBorderColor
