@@ -325,6 +325,7 @@
   # Arcane-start
   - type: TTS
     voice: Glados
+  - type: DirectionalEmote
   # Arcane-end
 
 - type: entity
