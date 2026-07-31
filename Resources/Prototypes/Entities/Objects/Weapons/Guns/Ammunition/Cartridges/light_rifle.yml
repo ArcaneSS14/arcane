@@ -4,7 +4,7 @@
   abstract: true
   parent: [ BaseCartridge, BaseSecurityContraband ]
   id: BaseCartridgeLightRifle
-  name: cartridge (.30 rifle)
+  name: cartridge (5.45mm rifle) # Orion-Edit: .30 > 5.45mm
   components:
   - type: Tag
     tags:
@@ -12,17 +12,19 @@
   - type: CartridgeAmmo
     proto: BulletLightRifle
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Orion/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi # Orion-Edit: New sprites
+    scale: 0.8, 0.8 # Orion
     layers:
-    - state: base
+    - state: 30combat # Orion-Edit: New sprites
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals
+    state: 30combat # Orion: New sprites
 
 - type: entity
   parent: BaseCartridgeLightRifle
   id: CartridgeLightRifle
-  name: cartridge (.30 rifle)
+  name: cartridge (5.45mm rifle) # Orion-Edit: .30 > 5.45mm
   description: A classic intermediate cartridge used by many combat rifles and LMGs. Standard kinetic ammunition is common and useful in most situations.
   components:
   - type: CartridgeAmmo
@@ -31,47 +33,53 @@
 - type: entity
   parent: BaseCartridgeLightRifle
   id: CartridgeLightRiflePractice
-  name: cartridge (.30 rifle practice)
+  name: cartridge (5.45mm rifle practice) # Orion-Edit: .30 > 5.45mm
   description: A classic intermediate cartridge used by many combat rifles and LMGs. Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
   components:
+  - type: SpentAmmoVisuals # Orion: New sprites
+    state: 30training
   - type: CartridgeAmmo
     proto: BulletLightRiflePractice
   - type: Sprite
     layers:
-      - state: base
+      - state: 30training # Orion-Edit: New sprites
         map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#dbdbdb"
+#      - state: tip # Orion-Edit: Removed
+#        map: [ "enum.AmmoVisualLayers.Tip" ]
+#        color: "#dbdbdb"
 
 - type: entity
   parent: BaseCartridgeLightRifle
   id: CartridgeLightRifleIncendiary
-  name: cartridge (.30 rifle incendiary)
+  name: cartridge (5.45mm incendiary) # Orion-Edit: .30 rifle > 5.45mm
   description: A classic intermediate cartridge used by many combat rifles and LMGs. Incendiary ammunition contains a self-igniting compound that sets targets ablaze.
   components:
+  - type: SpentAmmoVisuals # Orion: New sprites
+    state: 30incendiary
   - type: CartridgeAmmo
     proto: BulletLightRifleIncendiary
   - type: Sprite
     layers:
-      - state: base
+      - state: 30incendiary # Orion-Edit: New sprites
         map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#ff6e52"
+#      - state: tip
+#        map: [ "enum.AmmoVisualLayers.Tip" ]
+#        color: "#ff6e52"
 
 - type: entity
   parent: BaseCartridgeLightRifle
   id: CartridgeLightRifleUranium
-  name: cartridge (.30 rifle uranium)
+  name: cartridge (5.45mm uranium) # Orion-Edit: .30 rifle > 5.45mm
   description: A classic intermediate cartridge used by many combat rifles and LMGs. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating targets from the inside.
   components:
+  - type: SpentAmmoVisuals # Orion: New sprites
+    state: 30uranium
   - type: CartridgeAmmo
     proto: BulletLightRifleUranium
   - type: Sprite
     layers:
-      - state: base
+      - state: 30uranium # Orion-Edit: New sprites
         map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#65fe08"
+#      - state: tip    # Orion-Edit: Removed
+#        map: [ "enum.AmmoVisualLayers.Tip" ]
+#        color: "#65fe08"

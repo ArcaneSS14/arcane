@@ -19,7 +19,19 @@
     - Back
     - suitStorage
   - type: AmmoCounter
+  # Orion-Start
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -31
+    angleIncrease: -4
+  # Orion-End
   - type: Gun
+    # Orion-Start
+    angleDecay: 20
+    angleIncrease: 6
+    minAngle: 24
+    maxAngle: 40
+    # Orion-End
     fireRate: 5
     selectedMode: FullAuto
     availableModes:
@@ -27,13 +39,15 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+    soundEmpty: # Orion
+      path: /Audio/_Orion/Weapons/Guns/Rifles/rifle_empty.ogg
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+#        name: Magazine # Orion-Edit: Localization
         startingItem: MagazineLightRifle
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
@@ -43,7 +57,7 @@
             - MagazineLightRifle
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+#        name: Chamber # Orion-Edit: Localization
         priority: 1
         whitelist:
           tags:
@@ -91,26 +105,31 @@
   name: AKM
   parent: [BaseWeaponRifle, BaseSecurityContraband]
   id: WeaponRifleAk
-  description: A somewhat battered combat rifle of a design originating from old Earth. Favored by criminals, militias, and terrorists due to its famed reliability and easy-to-manufacture design. Feeds from .30 Rifle magazines.
+  description: A somewhat battered combat rifle of a design originating from old Earth. Favored by criminals, militias, and terrorists due to its famed reliability and easy-to-manufacture design. Feeds from 5.45mm rifle magazines. # Orion-Edit: .30 > 5.45mm
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+    sprite: _Orion/Objects/Weapons/Guns/Rifles/akms/big.rsi # Orion-Edit: New sprites
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+    scale: 0.9, 0.9 # Orion
+  - type: Clothing # Orion: New sprites
+    sprite: _Orion/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
+  - type: Item # Orion: New sprites
+    sprite: _Orion/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+      path: /Audio/_Orion/Weapons/Guns/Rifles/ak47.ogg # Orion-Edit
   - type: ChamberMagazineAmmoProvider
-    boltClosed: null # Goobstation
+    #boltClosed: null # Orion-Edit
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+#        name: Magazine # Orion-Edit: Localization
         startingItem: MagazineLightRifle
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
@@ -120,7 +139,7 @@
             - MagazineLightRifle
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+#        name: Chamber # Orion-Edit: Localization
         priority: 1
         whitelist:
           tags:
@@ -139,7 +158,7 @@
   name: M-90GL # Goobstation
   parent: [BaseWeaponRifle, BaseSyndicateContraband]
   id: WeaponRifleM90GrenadeLauncher
-  description: A bullpup Waffle Corporation assault rifle with an integrated grenade launcher. Feeds from .20 Rifle magazines. # Goobstation
+  description: A bullpup Waffle Corporation assault rifle with an integrated grenade launcher. Feeds from 5.56mm rifle magazines. # Goobstation | Orion-Edit: .20 > 5.56mm
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
@@ -153,7 +172,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+#        name: Magazine # Orion-Edit: Localization
         startingItem: MagazineRifle
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
@@ -163,7 +182,8 @@
             - MagazineRifle
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+#        name: Chamber # Orion-Edit: Localization
+        startingItem: CartridgeRifle
         priority: 1
         whitelist:
           tags:
@@ -184,35 +204,38 @@
   name: Lecter
   parent: [BaseWeaponRifle, BaseSecurityContraband]
   id: WeaponRifleLecter
-  description: A military-grade assault rifle that's seen more wars than you can remember. The full-size package and steady recoil of the Lecter help it excel at one thing—pinpoint accuracy. Feeds from .20 Rifle magazines. # Goobstation
+  description: A military-grade assault rifle that's seen more wars than you can remember. The full-size package and steady recoil of the Lecter help it excel at one thing—pinpoint accuracy. Feeds from 5.56mm rifle magazines. # Goobstation | Orion-Edit: .20 > 5.56mm
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+    sprite: _Orion/Objects/Weapons/Guns/Rifles/lecter/big.rsi # Orion-Edit: New sprites
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+    scale: 0.9, 0.9 # Orion
+  - type: Item # Orion
+    sprite: _Orion/Objects/Weapons/Guns/Rifles/lecter/tiny.rsi
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+    sprite: _Orion/Objects/Weapons/Guns/Rifles/lecter/tiny.rsi # Orion-Edit: New sprites
   - type: Gun
     fireRate: 5 # Goobstation?
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+      path: /Audio/_Orion/Weapons/Guns/Rifles/556rifle.ogg # Orion-Edit: New sprites
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+#        name: Magazine # Orion-Edit: Localization
         startingItem: MagazineRifle
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        ejectSound: /Audio/_Orion/Weapons/Guns/Rifles/556_unload.ogg # Orion-Edit: New sounds
         priority: 2
         whitelist:
           tags:
             - MagazineRifle
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+#        name: Chamber # Orion-Edit: Localization
         priority: 1
         whitelist:
           tags:
@@ -258,7 +281,7 @@
   name: Estoc # Goob
   parent: [BaseWeaponRifle, BaseSyndicateContraband]
   id: WeaponRifleEstoc
-  description: A now defunct military burst-fire DMR, the Estoc quickly found its way into paramilitary and boarding party hands. Boasts an expensive tritium sight for faster target acquisition. Feeds from .30 Rifle magazines. # Goobstation
+  description: A now defunct military burst-fire DMR, the Estoc quickly found its way into paramilitary and boarding party hands. Boasts an expensive tritium sight for faster target acquisition. Feeds from 5.45mm rifle magazines. # Goobstation | Orion-Edit: .20 > 5.56mm
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Rifles/estoc.rsi
@@ -281,14 +304,14 @@
     selectedMode: Burst
     availableModes:
     - Burst
-    burstFireRate: 10 # Goob
+    burstFireRate: 15 # Goob # Orion-Edit: 10 > 15
   - type: GunWieldBonus
     minAngle: -30 # Goob
     maxAngle: -40 # Goob
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+#        name: Magazine # Orion-Edit: Localization
         startingItem: MagazineLightRifle # Goob
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
@@ -298,7 +321,8 @@
           - MagazineLightRifle # Goob
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+#        name: Chamber # Orion-Edit: Localization
+        startingItem: CartridgeLightRifle # Arcane
         priority: 1
         whitelist:
           tags:

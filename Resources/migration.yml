@@ -965,6 +965,11 @@ BaseChemistryEmptyVial: ChemistryEmptyVial
 BibleTanakh: null
 BibleSatanic: null
 
+# Arcane-Start
+ClothingBackpackDuffelSurgeryFilled: SurgerykitFilled
+WeaponRifleLecterXL8: WeaponRifleFamas
+# Arcane-End
+
 # 2026-01-04
 GhostBarSpawner: null
 
