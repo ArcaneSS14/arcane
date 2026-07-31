@@ -18,11 +18,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Flicking;
 
-public sealed class TongueFlickingSystem : EntitySystem
+public sealed partial class TongueFlickingSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {
