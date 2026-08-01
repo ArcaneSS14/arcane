@@ -54,7 +54,7 @@
   job: TechnicalAssistant
   equipment:
     head: ClothingHeadHatHardhatOrange
-    eyes: ClothingEyesGlassesMeson
+#    eyes: ClothingEyesGlassesMeson # Orion-Edit: In loadout
     mask: ClothingMaskBreath
     neck: ClothingNeckScarfStripedOrange
     outerClothing: ClothingOuterVestHazard
