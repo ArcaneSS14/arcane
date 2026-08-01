@@ -2,10 +2,6 @@
 loadout-group-librarian-shoes = Библиотекарь, обувь
 loadout-group-librarian-glasses = Библиотекарь, очки
 
-# Zookeeper
-
-loadout-group-zookeeper-outerclothing = Зоотехник, верхняя одежда
-
 # Clown
 
 loadout-group-clown-underwear = Клоун, нижнее бельё

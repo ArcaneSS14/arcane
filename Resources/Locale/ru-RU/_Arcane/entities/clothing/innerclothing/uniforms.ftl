@@ -62,5 +62,5 @@ ent-ClothingUniformServiceShirt = рубашка
 ent-ClothingUniformServiceShirtSkirt = рубашка с юбкой
     .desc = Белая рубашка с чёрной юбкой.
 ent-ClothingUniformSterileUniform = стерильная форма
-    .desc = Одежда ветеринара.
+    .desc = Стерильная одежда.
 

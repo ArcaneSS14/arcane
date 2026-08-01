@@ -687,7 +687,7 @@
 
 # Librarian
 
-# Arcane - Start
+# Arcane-Start
 
 - type: loadoutGroup
   id: LibrarianShoes
@@ -705,7 +705,7 @@
   loadouts:
   - TwilightSparkleGlassesPatron
 
-# Arcane - End
+# Arcane-End
 
 - type: loadoutGroup
   id: LibrarianEnvirohelm
@@ -975,10 +975,10 @@
   loadouts:
   - ClothingNeckScarfStripedCentcom
   - NanotrasenRepresentativeEnsemble
-  # Arcane - Start
+  # Arcane-Start
   - NTRBlackCloakPatron
   - NTRTricolorCloakPatron
-  # Arcane - End
+  # Arcane-End
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeBackpack
@@ -997,12 +997,12 @@
   - NanotrasenRepresentativeJumpskirt
   - NTRMJ
   - NanotrasenRepresentativeFancyJumpsuit
-  # Arcane - Start
+  # Arcane-Start
   - NTRBlackPatron
   - NTRBlackSkirtPatron
   - NTRWhiteSkirtPatron
   - NTRWhitePatron
-  # Arcane - End
+  # Arcane-End
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeBelt
@@ -1595,22 +1595,10 @@
   maxLimit: 1
   loadouts:
   - ZookeeperJumpsuit
-  # Arcane - Start
+  # Arcane-Start
   - CamouflageUniformPatron
   - SterileUniformPatron
-  # Arcane - End
-
-# Arcane - Start
-
-- type: loadoutGroup
-  id: ZookeeperOuterclothing
-  name: loadout-group-zookeeper-outerclothing
-  minLimit: 1
-  maxLimit: 1
-  loadouts:
-  - CowCostumePatron
-
-# Arcane - End
+  # Arcane-End
 
 - type: loadoutGroup
   id: ZookeeperEnvirohelm
@@ -1744,7 +1732,7 @@
   - JumpsuitHawaiYellow
   - ComfortableUniformPatron # Arcane
 
-# Arcane - Start
+# Arcane-Start
 
 - type: loadoutGroup
   id: RadioHostOuterclothing
@@ -1758,7 +1746,7 @@
   loadouts:
   - RadioHostMicrophonePatron
 
-# Arcane - End
+# Arcane-End
 
 # Salvage/Shaft Miner
 

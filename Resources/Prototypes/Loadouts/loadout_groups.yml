@@ -415,10 +415,10 @@
   - ChefJumpsuit
   - ChefJumpskirt
   - ServiceMJ # goob
-  # Arcane - Start
+  # Arcane-Start
   - ChiefCookUniformPatron
   - CookUniformPatron
-  # Arcane - End
+  # Arcane-End
 
 - type: loadoutGroup
   id: ChefOuterClothing
@@ -428,7 +428,10 @@
   - ChefApron
   - ChefJacket
   - ChefWintercoat
-  - CookApronPatron # Arcane
+  # Arcane-Start
+  - CookApronPatron
+  - CowCostumePatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ChefJobTrinkets
@@ -569,7 +572,10 @@
   - JanitorJumpsuit
   - JanitorJumpskirt
   - ServiceMJ # goob
-  - FreeClothesPatron # Arcane
+  # Arcane-Start
+  - FreeClothesPatron
+  - SterileUniformPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: JanitorGloves
@@ -604,7 +610,10 @@
   - BotanistHead
   - BotanistBandana
   - BotanistBeret # Goobstation
-  - BotanistHatPatron # Arcane
+  # Arcane-Start
+  - BotanistHatPatron
+  - CamouflageHatPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: BotanistJumpsuit
@@ -618,6 +627,7 @@
   # Arcane-Start
   - BotanistUniformPatron
   - BotanistUniformWithStrapsPatron
+  - CamouflageUniformPatron
   # Arcane-End
 
 - type: loadoutGroup
@@ -695,7 +705,7 @@
   - JesterShoes
   - JesterShoesPatron # Arcane
 
-# Arcane - Start
+# Arcane-Start
 
 - type: loadoutGroup
   id: ClownUnderwear
@@ -703,7 +713,7 @@
   loadouts:
   - JesterPantsPatron
 
-# Arcane - End
+# Arcane-End
 
 - type: loadoutGroup
   id: SurvivalClown
@@ -821,10 +831,10 @@
   - MusicianJumpsuit
   - MusicianJumpskirt
   - ServiceMJ #
-  # Arcane - Start
+  # Arcane-Start
   - DancerDressPatron
   - PerfomanceDressPatron
-  # Arcane - End
+  # Arcane-End
 
 - type: loadoutGroup
   id: MusicianOuterClothing
@@ -834,7 +844,7 @@
   - MusicianWintercoat
   - MusicianJacketPatron # Arcane
 
-# Arcane - Start
+# Arcane-Start
 
 - type: loadoutGroup
   id: MusicianShoes
@@ -843,7 +853,7 @@
   loadouts:
   - MusicianBootsPatron
 
-# Arcane - End
+# Arcane-End
 
 - type: loadoutGroup
   id: Instruments
@@ -1052,7 +1062,6 @@
   - ChiefEngineerHead
   - ChiefEngineerBeret
   - EngineeringBeret # Orion
-  - CEBlackBeretPatron # Arcane
 
 - type: loadoutGroup
   id: ChiefEngineerJumpsuit
@@ -1062,10 +1071,6 @@
   - ChiefEngineerJumpskirt
   - ChiefEngineerTurtleneck
   - ChiefEngineerTurtleneckSkirt
-  - CEBlackPatron # Arcane
-  - CEBlackSkirtPatron # Arcane
-  - CEWhiteSkirtPatron # Arcane
-  - CEWhitePatron # Arcane
   - ChiefEngineerMJ # goob
   - CESummerShirt # goob
 
@@ -1076,8 +1081,6 @@
   loadouts:
   - ClothingNeckCloakWhiteCe # goob
   - ClothingNeckCloakGreenCe # goob
-  - CEBlackCloakPatron # Arcane
-  - CETricolorCloakPatron # Arcane
   - ClothingNeckMantleWhiteCE # goob
   - ClothingNeckMantleOrangeCE # goob
   - ClothingNeckEnsembleChiefEngineerWhite # goob
