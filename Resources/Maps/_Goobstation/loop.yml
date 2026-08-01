@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 12/22/2025 08:30:41
-  entityCount: 18076
+  entityCount: 18079
 maps:
 - 1
 grids:
@@ -44478,6 +44478,27 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
+      pos: -22.5,72.5
+      parent: 2
+- proto: SpawnPointAdjutant
+  entities:
+  - uid: 18077
+    components:
+    - type: Transform
+      pos: -22.5,72.5
+      parent: 2
+- proto: SpawnPointCommandMaid
+  entities:
+  - uid: 18078
+    components:
+    - type: Transform
+      pos: -22.5,72.5
+      parent: 2
+- proto: SpawnPointIAA
+  entities:
+  - uid: 18079
+    components:
+    - type: Transform
       pos: -22.5,72.5
       parent: 2
 - proto: DefaultStationBeaconCaptainsQuarters
