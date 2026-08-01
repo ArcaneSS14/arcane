@@ -138,6 +138,102 @@
         {
             "name": "worker_teeth",
             "directions": 4
+        },
+        {
+            "name": "bers_plates",
+            "directions": 4
+        },
+        {
+            "name": "bers_shine",
+            "directions": 4
+        },
+        {
+            "name": "bers_teeth",
+            "directions": 4
+        },
+        {
+            "name": "bers_head",
+            "directions": 4
+        },
+        {
+            "name": "cat_plate",
+            "directions": 4
+        },
+        {
+            "name": "cat_teeth",
+            "directions": 4
+        },
+        {
+            "name": "cat_head",
+            "directions": 4
+        },
+        {
+            "name": "chris_grad",
+            "directions": 4
+        },
+        {
+            "name": "chris_plate",
+            "directions": 4
+        },
+        {
+            "name": "chris_teeth",
+            "directions": 4
+        },
+        {
+            "name": "chris_head",
+            "directions": 4
+        },
+        {
+            "name": "cougar_veins",
+            "directions": 4
+        },
+        {
+            "name": "cougar_head",
+            "directions": 4
+        },
+        {
+            "name": "cougar_teeth",
+            "directions": 4
+        },
+        {
+            "name": "crocodile_shine",
+            "directions": 4
+        },
+        {
+            "name": "crocodile_teeth",
+            "directions": 4
+        },
+        {
+            "name": "crocodile_head",
+            "directions": 4
+        },
+        {
+            "name": "prowler_grad",
+            "directions": 4
+        },
+        {
+            "name": "prowler_head",
+            "directions": 4
+        },
+        {
+            "name": "prowler_teeth",
+            "directions": 4
+        },
+        {
+            "name": "razor_head",
+            "directions": 4
+        },
+        {
+            "name": "razor_plate",
+            "directions": 4
+        },
+        {
+            "name": "razor_shine",
+            "directions": 4
+        },
+        {
+            "name": "razor_teeth",
+            "directions": 4
         }
     ]
 }

@@ -21,7 +21,6 @@ namespace Content.Shared.Body.Part
         Leg = 1 << 5,
         Foot = 1 << 6,
         Tail = 1 << 7,
-        Tracheas = 1, // Arcane edit
         Vital = Chest | Groin | Head
         // Goobstation end
     }
