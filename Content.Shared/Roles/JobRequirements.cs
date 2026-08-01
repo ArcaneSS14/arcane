@@ -23,11 +23,19 @@ public static class JobRequirements
         [NotNullWhen(false)] out FormattedMessage? reason,
         IEntityManager entManager,
         IPrototypeManager protoManager,
-        HumanoidCharacterProfile? profile)
+        HumanoidCharacterProfile? profile,
+        bool ignorePlaytimeRequirements = false) // Arcane
     {
         var sys = entManager.System<SharedRoleSystem>();
         var requirements = sys.GetRoleRequirements(job);
-        return TryRequirementsMet(requirements, playTimes, out reason, entManager, protoManager, profile);
+        return TryRequirementsMet(
+            requirements,
+            playTimes,
+            out reason,
+            entManager,
+            protoManager,
+            profile,
+            ignorePlaytimeRequirements); // Arcane
     }
 
     /// <summary>
@@ -43,7 +51,8 @@ public static class JobRequirements
         [NotNullWhen(false)] out FormattedMessage? reason,
         IEntityManager entManager,
         IPrototypeManager protoManager,
-        HumanoidCharacterProfile? profile)
+        HumanoidCharacterProfile? profile,
+        bool ignorePlaytimeRequirements = false) // Arcane
     {
         reason = null;
         if (requirements == null)
@@ -51,12 +60,26 @@ public static class JobRequirements
 
         foreach (var requirement in requirements)
         {
+            // Arcane-Edit-Start
+            if (ignorePlaytimeRequirements && IsPlaytimeRequirement(requirement))
+                continue;
+            // Arcane-Edit-End
+
             if (!requirement.Check(entManager, protoManager, profile, playTimes, out reason))
                 return false;
         }
 
         return true;
     }
+
+    // Arcane-Edit-Start
+    public static bool IsPlaytimeRequirement(JobRequirement requirement)
+    {
+        return requirement is RoleTimeRequirement or
+            OverallPlaytimeRequirement or
+            DepartmentTimeRequirement;
+    }
+    // Arcane-Edit-End
 }
 
 /// <summary>

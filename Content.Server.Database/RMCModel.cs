@@ -18,10 +18,27 @@ public sealed class RMCDiscordAccount
     public bool HasPlayerRole { get; set; }
 
     public DateTime? PlayerRoleUpdatedAt { get; set; }
+
+    /// <summary>
+    ///     Last time the external Discord integration replaced the role snapshot.
+    /// </summary>
+    public DateTime? RolesUpdatedAt { get; set; }
     // arcane discord link end
 
     public RMCLinkedAccount LinkedAccount { get; set; } = default!;
     public List<RMCLinkedAccountLogs> LinkedAccountLogs { get; set; } = default!;
+    public List<RMCDiscordAccountRole> Roles { get; set; } = default!;
+}
+
+[Table("rmc_discord_account_roles")]
+[Index(nameof(RoleId))]
+public sealed class RMCDiscordAccountRole
+{
+    public ulong DiscordId { get; set; }
+
+    public RMCDiscordAccount Discord { get; set; } = default!;
+
+    public ulong RoleId { get; set; }
 }
 
 [Table("rmc_linked_accounts")]
@@ -66,12 +83,9 @@ public sealed class RMCPatronTier
     public ulong DiscordRole { get; set; }
 
     public int Priority { get; set; }
-
-    public List<RMCPatron> Patrons { get; set; } = default!;
 }
 
 [Table("rmc_patrons")]
-[Index(nameof(TierId))]
 public sealed class RMCPatron
 {
     [Key]
@@ -79,9 +93,6 @@ public sealed class RMCPatron
 
     public Player Player { get; set; } = default!;
 
-    public int TierId { get; set; }
-
-    public RMCPatronTier Tier { get; set; } = default!;
     public int? GhostColor { get; set; } = default!;
     // Goob start - ghost cosmetics: selected cosmetic prototype ids
     public string? GhostParticles { get; set; }
@@ -91,6 +102,19 @@ public sealed class RMCPatron
     public RMCPatronLobbyMessage? LobbyMessage { get; set; } = default!;
     public RMCPatronRoundEndNTShoutout? RoundEndNTShoutout { get; set; } = default!;
 }
+
+/// <summary>
+///     Sponsor state resolved from a player's linked Discord role snapshot.
+/// </summary>
+public sealed record RMCPatronData(RMCPatron? Preferences, IReadOnlyList<RMCPatronTier> Tiers)
+{
+    public RMCPatronTier? PrimaryTier => Tiers.Count > 0 ? Tiers[0] : null;
+}
+
+/// <summary>
+///     A sponsor and their highest-priority matching tier.
+/// </summary>
+public sealed record RMCPatronSummary(Guid PlayerId, string PlayerName, RMCPatronTier Tier);
 
 [Table("rmc_linking_codes")]
 [Index(nameof(Code))]

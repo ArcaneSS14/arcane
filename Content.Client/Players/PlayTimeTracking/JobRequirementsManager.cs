@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
-using Content.Client._RMC14.LinkAccount;
-using Content.Shared._Arcane.Sponsor;
+using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -25,7 +24,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly LinkAccountManager _linkAccount = default!; // Arcane
+    [Dependency] private readonly ISharedDiscordRoleManager _discordRoles = default!; // Arcane
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
@@ -48,10 +47,10 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
-        _linkAccount.Updated += OnLinkAccountUpdated; // Arcane
+        _discordRoles.RolesUpdated += OnDiscordRolesUpdated; // Arcane
     }
 
-    private void OnLinkAccountUpdated() => Updated?.Invoke(); // Arcane
+    private void OnDiscordRolesUpdated() => Updated?.Invoke(); // Arcane
 
     private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
     {
@@ -196,20 +195,29 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         reason = null;
 
         // Arcane-Edit-Start
-        if (_playerManager.LocalSession != null &&
-            _linkAccount.Tier != null &&
-            ArcaneSponsorTiers.HasAllRoles(_linkAccount.Tier.Tier))
+        var session = _playerManager.LocalSession;
+        if (session is null)
         {
-            return true;
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
+            return false;
         }
+
+        if (_discordRoles.HasRole(session, DiscordRole.SponsorTier2))
+            return true;
         // Arcane-Edit-End
 
         if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 
+        var ignorePlaytimeRequirements = _discordRoles.HasRole(session, DiscordRole.UnlockRoles); // Arcane
         var reasons = new List<string>();
         foreach (var requirement in requirements)
         {
+            // Arcane-Edit-Start
+            if (ignorePlaytimeRequirements && JobRequirements.IsPlaytimeRequirement(requirement))
+                continue;
+            // Arcane-Edit-End
+
             if (requirement.Check(_entManager, _prototypes, profile, _roles, out var jobReason))
                 continue;
 

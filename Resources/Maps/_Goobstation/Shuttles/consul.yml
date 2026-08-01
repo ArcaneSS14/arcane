@@ -3205,6 +3205,7 @@ entities:
     - type: Transform
       parent: 185
     - type: Stack
+      stackType: Cable
       count: 3
     - type: SolutionContainerManager
       solutions: null
@@ -3282,6 +3283,7 @@ entities:
     - type: Transform
       parent: 52
     - type: Stack
+      stackType: CableHV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3300,6 +3302,7 @@ entities:
     - type: Transform
       parent: 61
     - type: Stack
+      stackType: CableHV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3318,6 +3321,7 @@ entities:
     - type: Transform
       parent: 85
     - type: Stack
+      stackType: CableHV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3660,6 +3664,7 @@ entities:
     - type: Transform
       parent: 52
     - type: Stack
+      stackType: CableMV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3678,6 +3683,7 @@ entities:
     - type: Transform
       parent: 61
     - type: Stack
+      stackType: CableMV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3696,6 +3702,7 @@ entities:
     - type: Transform
       parent: 85
     - type: Stack
+      stackType: CableMV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3723,8 +3730,6 @@ entities:
     components:
     - type: Transform
       parent: 2
-    - type: Stack
-      count: 4
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -3733,8 +3738,6 @@ entities:
     components:
     - type: Transform
       parent: 7
-    - type: Stack
-      count: 4
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -3743,8 +3746,6 @@ entities:
     components:
     - type: Transform
       parent: 12
-    - type: Stack
-      count: 4
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -3753,8 +3754,6 @@ entities:
     components:
     - type: Transform
       parent: 17
-    - type: Stack
-      count: 4
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -3763,8 +3762,6 @@ entities:
     components:
     - type: Transform
       parent: 22
-    - type: Stack
-      count: 4
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -3773,8 +3770,6 @@ entities:
     components:
     - type: Transform
       parent: 27
-    - type: Stack
-      count: 4
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -3783,8 +3778,6 @@ entities:
     components:
     - type: Transform
       parent: 32
-    - type: Stack
-      count: 4
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -3793,8 +3786,6 @@ entities:
     components:
     - type: Transform
       parent: 37
-    - type: Stack
-      count: 4
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -3803,8 +3794,6 @@ entities:
     components:
     - type: Transform
       parent: 42
-    - type: Stack
-      count: 4
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -3813,8 +3802,6 @@ entities:
     components:
     - type: Transform
       parent: 47
-    - type: Stack
-      count: 4
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -9788,8 +9775,6 @@ entities:
     components:
     - type: Transform
       parent: 94
-    - type: Stack
-      count: 3
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -9798,8 +9783,6 @@ entities:
     components:
     - type: Transform
       parent: 101
-    - type: Stack
-      count: 2
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -9867,8 +9850,6 @@ entities:
     components:
     - type: Transform
       parent: 101
-    - type: Stack
-      count: 2
     - type: Physics
       angularDamping: 0
       linearDamping: 0
@@ -10894,6 +10875,7 @@ entities:
     - type: Transform
       parent: 2
     - type: Stack
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10912,6 +10894,7 @@ entities:
     - type: Transform
       parent: 7
     - type: Stack
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10930,6 +10913,7 @@ entities:
     - type: Transform
       parent: 12
     - type: Stack
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10948,6 +10932,7 @@ entities:
     - type: Transform
       parent: 17
     - type: Stack
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10966,6 +10951,7 @@ entities:
     - type: Transform
       parent: 22
     - type: Stack
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10984,6 +10970,7 @@ entities:
     - type: Transform
       parent: 27
     - type: Stack
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -11002,6 +10989,7 @@ entities:
     - type: Transform
       parent: 32
     - type: Stack
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -11020,6 +11008,7 @@ entities:
     - type: Transform
       parent: 37
     - type: Stack
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -11038,6 +11027,7 @@ entities:
     - type: Transform
       parent: 42
     - type: Stack
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -11056,6 +11046,7 @@ entities:
     - type: Transform
       parent: 47
     - type: Stack
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -11074,6 +11065,7 @@ entities:
     - type: Transform
       parent: 122
     - type: Stack
+      stackType: Steel
       count: 3
     - type: SolutionContainerManager
       solutions: null
@@ -11092,6 +11084,7 @@ entities:
     - type: Transform
       parent: 185
     - type: Stack
+      stackType: Steel
       count: 2
     - type: SolutionContainerManager
       solutions: null

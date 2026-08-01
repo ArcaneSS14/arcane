@@ -80,6 +80,9 @@
       ]
     },
     {
+       "name": "open_unlit"
+    },
+    {
       "name": "opening_unlit",
       "delays": [
         [

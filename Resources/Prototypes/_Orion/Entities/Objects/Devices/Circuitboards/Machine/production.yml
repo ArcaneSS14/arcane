@@ -113,16 +113,18 @@
   - type: ComputerBoard
     prototype: QuantumConsole
 
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: SmartFridgeMachineCircuitboard
-  name: smart fridge machine board
-  description: A machine printed circuit board for a smart fridge.
-  components:
-  - type: MachineBoard
-    prototype: SmartFridge
-    stackRequirements:
-      Cable: 2
-      Glass: 2
-    partRequirements:
-      MatterBin: 1
+# Arcane-Edit-Start
+# - type: entity
+#   parent: BaseMachineCircuitboard
+#   id: SmartFridgeMachineCircuitboard
+#   name: smart fridge machine board
+#   description: A machine printed circuit board for a smart fridge.
+#   components:
+#   - type: MachineBoard
+#     prototype: SmartFridge
+#     stackRequirements:
+#       Cable: 2
+#       Glass: 2
+#     partRequirements:
+#       MatterBin: 1
+# Arcane-Edit-End
