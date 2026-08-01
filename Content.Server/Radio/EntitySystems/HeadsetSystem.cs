@@ -3,15 +3,10 @@
 using Content.Server.Chat.Systems;
 using Content.Shared.Radio.Components;
 using Content.Server._EinsteinEngines.Language;
-using Content.Shared._Orion.Radio;
 using Content.Shared.Chat;
-using Content.Shared.Examine;
-using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.EntitySystems;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Shared.Whitelist;
@@ -23,8 +18,6 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!; // Orion
-    [Dependency] private readonly SharedAudioSystem _audio = default!; // Orion
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Goobstation
 
     public override void Initialize()
@@ -33,8 +26,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         SubscribeLocalEvent<HeadsetComponent, RadioReceiveEvent>(OnHeadsetReceive);
         SubscribeLocalEvent<HeadsetComponent, EncryptionChannelsChangedEvent>(OnKeysChanged);
 
-        SubscribeLocalEvent<ActorComponent, EntitySpokeEvent>(OnEntitySpoke); // Orion-Edit
-        SubscribeLocalEvent<InventoryComponent, ExaminedEvent>(OnInventoryExamined); // Orion
+        SubscribeLocalEvent<WearingHeadsetComponent, EntitySpokeEvent>(OnSpeak);
         SubscribeLocalEvent<HeadsetComponent, RadioReceiveAttemptEvent>(OnHeadsetReceiveAttempt); // Goobstation - Whitelisted radio channel
     }
 
@@ -58,7 +50,6 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             EnsureComp<ActiveRadioComponent>(uid).Channels = new(keyHolder.Channels);
     }
 
-    /* // Orion-Edit: Removed
     private void OnSpeak(EntityUid uid, WearingHeadsetComponent component, EntitySpokeEvent args)
     {
         if (args.Channel != null
@@ -70,115 +61,31 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
     }
-    */
-
-    // Orion-Start
-    private void OnInventoryExamined(EntityUid uid, InventoryComponent component, ExaminedEvent args)
-    {
-        if (!_inventory.TryGetSlotEntity(uid, "ears", out var leftEar) ||
-            !_inventory.TryGetSlotEntity(uid, "earsright", out var rightEar))
-            return;
-
-        if (!HasComp<HeadsetComponent>(leftEar) || !HasComp<HeadsetComponent>(rightEar))
-            return;
-
-        var entityName = MetaData(uid).EntityName;
-        args.PushMarkup(Loc.GetString("examine-headset-double-wearing", ("entityName", entityName)));
-    }
-    // Orion-End
 
     protected override void OnGotEquipped(EntityUid uid, HeadsetComponent component, GotEquippedEvent args)
     {
         base.OnGotEquipped(uid, component, args);
-
-        // Orion-Edit-Start
-        UpdateWearingHeadsetComponent(args.Equipee);
-        if (component.IsEquipped)
+        if (component.IsEquipped && component.Enabled)
+        {
+            EnsureComp<WearingHeadsetComponent>(args.Equipee).Headset = uid;
             UpdateRadioChannels(uid, component);
-        // Orion-Edit-End
+        }
     }
 
     protected override void OnGotUnequipped(EntityUid uid, HeadsetComponent component, GotUnequippedEvent args)
     {
         base.OnGotUnequipped(uid, component, args);
-        // Orion-Edit-Start
-        RemCompDeferred<ActiveRadioComponent>(uid);
-
-        UpdateWearingHeadsetComponent(args.Equipee);
-        // Orion-Edit-End
+        RemComp<ActiveRadioComponent>(uid);
+        RemComp<WearingHeadsetComponent>(args.Equipee);
     }
-
-    // Orion-Start
-    private void UpdateWearingHeadsetComponent(EntityUid wearer)
-    {
-        EntityUid? newActiveHeadset = null;
-
-        var enumerator = _inventory.GetSlotEnumerator(wearer, SlotFlags.EARS | SlotFlags.EARSRIGHT);
-        while (enumerator.MoveNext(out var slot))
-        {
-            if (!_inventory.TryGetSlotEntity(wearer, slot.ID, out var headsetEntity) ||
-                !TryComp(headsetEntity, out HeadsetComponent? headset) ||
-                !headset.Enabled ||
-                !headset.IsEquipped)
-                continue;
-
-            newActiveHeadset = headsetEntity;
-            break;
-        }
-
-        if (newActiveHeadset != null)
-        {
-            if (TryComp<WearingHeadsetComponent>(wearer, out var wearing))
-                wearing.Headset = newActiveHeadset.Value;
-            else
-                EnsureComp<WearingHeadsetComponent>(wearer).Headset = newActiveHeadset.Value;
-        }
-        else
-        {
-            RemComp<WearingHeadsetComponent>(wearer);
-        }
-    }
-
-    private void OnEntitySpoke(EntityUid uid, ActorComponent component, EntitySpokeEvent args)
-    {
-        if (args.Channel == null)
-            return;
-
-        var enumerator = _inventory.GetSlotEnumerator(uid, SlotFlags.EARS | SlotFlags.EARSRIGHT);
-        while (enumerator.MoveNext(out var slot))
-        {
-            if (!_inventory.TryGetSlotEntity(uid, slot.ID, out var headsetEntity) ||
-                !TryComp(headsetEntity, out HeadsetComponent? headset) ||
-                !headset.Enabled ||
-                !headset.IsEquipped ||
-                !TryComp(headsetEntity, out EncryptionKeyHolderComponent? keys))
-                continue;
-
-            if (!keys.Channels.Contains(args.Channel.ID))
-                continue;
-
-            if (!_whitelist.IsWhitelistPassOrNull(args.Channel.SendWhitelist, uid))
-                continue;
-
-            _radio.SendRadioMessage(
-                uid,
-                args.Message,
-                args.Channel,
-                headsetEntity.Value
-            );
-        }
-    }
-    // Orion-End
 
     public void SetEnabled(EntityUid uid, bool value, HeadsetComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
 
-        /* // Arcane-Edit-Start
         if (component.Enabled == value)
             return;
-        */ // Arcane-Edit-End
 
         component.Enabled = value;
         Dirty(uid, component);
@@ -187,28 +94,15 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         {
             RemCompDeferred<ActiveRadioComponent>(uid);
 
-            // Orion-Edit-Start
-            if (!component.IsEquipped)
-                return;
-
-            var parent = Transform(uid).ParentUid;
-            UpdateWearingHeadsetComponent(parent);
-            // Orion-Edit-End
+            if (component.IsEquipped)
+                RemCompDeferred<WearingHeadsetComponent>(Transform(uid).ParentUid);
         }
-        else if (component.IsEquipped) // Arcane-Edit
+        else if (component.IsEquipped)
         {
-            // Orion-Edit-Start
-            var parent = Transform(uid).ParentUid;
-            UpdateWearingHeadsetComponent(parent);
+            EnsureComp<WearingHeadsetComponent>(Transform(uid).ParentUid).Headset = uid;
             UpdateRadioChannels(uid, component);
-            // Orion-Edit-End
         }
     }
-
-    // Orion-Start: Radio sound
-    private static readonly SoundSpecifier DefaultOnSound =
-        new SoundPathSpecifier("/Audio/_Orion/Radio/basic.ogg");
-    // Orion-End
 
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
@@ -233,22 +127,6 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
                 Message = canUnderstand ? args.OriginalChatMsg : args.LanguageObfuscatedChatMsg
             };
             _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
-
-            // Orion-Start
-            var sound = args.Channel.OnSendSound ?? DefaultOnSound;
-            if (sound is SoundPathSpecifier sps)
-            {
-                RaiseNetworkEvent(new PlayRadioBarkEvent
-                {
-                    Path = sps.Path.ToString(),
-                    Params = sps.Params,
-                }, actor.PlayerSession.Channel);
-            }
-            else if (sound is SoundCollectionSpecifier)
-            {
-                Log.Warning($"Radio channel {args.Channel.ID} uses SoundCollectionSpecifier, which is not supported for PlayRadioBarkEvent. Falling back to silent playback.");
-            }
-            // Orion-End
         }
         // Einstein Engines - Language end
     }

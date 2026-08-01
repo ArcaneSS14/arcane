@@ -24,7 +24,6 @@
   - type: Clothing
     slots:
     - ears
-    - earsright # Orion
     sprite: Clothing/Ears/Headsets/base.rsi
   - type: GuideHelp
     guides:
