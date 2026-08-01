@@ -256,6 +256,7 @@
   # Arcane-start
   - type: ErpPanelOwner
   - type: TTS
+  - type: DirectionalEmote
   # Arcane-end
 
 - type: entity

@@ -47,7 +47,7 @@ public sealed partial class CCVars
     ///     The preset for the game to fall back to if the selected preset could not be used, and fallback is enabled.
     /// </summary>
     public static readonly CVarDef<string>
-        GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "SecretPlusLow,Extended", CVar.ARCHIVE); // Orion-Edit
+        GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "SecretPlusLow", CVar.ARCHIVE); // Arcane-Edit
 
     /// <summary>
     ///     Controls if people can win the game in Suspicion or Deathmatch.

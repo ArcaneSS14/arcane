@@ -37,6 +37,7 @@
     stealGroup: IDCard
   - type: MiningPoints # DeltaV
   - type: NanoChatCard # DeltaV
+  - type: BitrunningPoints # Arcane
   # Goobstation edit start
   - type: EmitSoundOnPickup
     sound:
