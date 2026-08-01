@@ -1637,6 +1637,7 @@
       Glass: 5
     partRequirements:
       Servo: 2
+      MatterBin: 1 # Arcane
     tagRequirements:
       GlassBeaker:
         amount: 2

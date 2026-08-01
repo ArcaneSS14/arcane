@@ -113,6 +113,7 @@ namespace Content.IntegrationTests.Tests
             // order this list alphabetically, mark dev maps
             // if upstreaming take ours here and edit manually.
             //"Amber", kill
+            "Aspid",          // Arcane
             "Atlas",
             "Bagel",
             "Barratry",
@@ -148,7 +149,8 @@ namespace Content.IntegrationTests.Tests
             "Serpentcrest",
             "Snowball",
             "TestTeg",        // Dev map
-            "Train"           // Not in pool
+            "Train",           // Not in pool
+            "WonderBox"       // Arcane
             // Goob end
         };
         // Goobstation edit start, yeah i know, but this is easier and less load than loading protoman or something.

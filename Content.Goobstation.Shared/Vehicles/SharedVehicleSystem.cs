@@ -19,6 +19,7 @@ using Content.Shared.Destructible;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Damage;
 using Content.Shared.Actions.Components;
+using Content.Shared.Gravity; // Arcane
 
 namespace Content.Goobstation.Shared.Vehicles;
 
@@ -32,6 +33,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedGravitySystem _gravity = default!; // Arcane
 
     private static readonly EntProtoId HornActionId = "ActionHorn";
     private static readonly EntProtoId SirenActionId = "ActionSiren";
@@ -55,13 +57,26 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, BreakageEventArgs>(OnBreak);
         SubscribeLocalEvent<VehicleComponent, DamageChangedEvent>(OnRepair);
         SubscribeLocalEvent<VehicleComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
+        SubscribeLocalEvent<VehicleComponent, RefreshWeightlessModifiersEvent>(OnRefreshWeightlessModifiers); // Arcane
     }
 
     private void OnInit(EntityUid uid, VehicleComponent component, ComponentInit args)
     {
+        // Arcane-Start
+        EnsureComp<GravityAffectedComponent>(uid);
+        _gravity.RefreshWeightless(uid);
+        // Arcane-End
+
         _appearance.SetData(uid, VehicleState.Animated, component.EngineRunning);
         _appearance.SetData(uid, VehicleState.DrawOver, false);
     }
+
+    // Arcane-Start
+    private void OnRefreshWeightlessModifiers(EntityUid uid, VehicleComponent component, ref RefreshWeightlessModifiersEvent args)
+    {
+        args.WeightlessModifier = 0;
+    }
+    // Arcane-End
 
     private void OnRemove(EntityUid uid, VehicleComponent component, ComponentRemove args)
     {

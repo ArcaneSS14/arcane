@@ -125,18 +125,19 @@
   name: Mateba
   parent: [BaseWeaponRevolver, BaseCentcommContraband]
   id: WeaponRevolverMateba
-  description: A rare and beautiful semi-automatic revolver. Provided only to the Nanotrasen elite, the Mateba sports a unique barrel design that greatly reduces muzzle flip. Many have stared down the barrel of this gun, and even fewer have lived to tell the tale. Loads 6 rounds of .45 Magnum. # Goobstation
+  description: A rare and beautiful semi-automatic revolver. Provided only to the Nanotrasen elite, the Mateba sports a unique barrel design that greatly reduces muzzle flip. Many have stared down the barrel of this gun, and even fewer have lived to tell the tale. Loads 7 rounds of .45 Magnum. # Goobstation
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
+    sprite: _Orion/Objects/Weapons/Guns/Revolver/mateba/big.rsi # Orion-Edit: New sprites
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
+    sprite: _Orion/Objects/Weapons/Guns/Revolver/mateba/tiny.rsi # Orion-Edit: New sprites
   - type: Item
     storedOffset: 0,-3
+    sprite: _Orion/Objects/Weapons/Guns/Revolver/mateba/tiny.rsi # Orion
   - type: Gun
-    fireRate: 4 # Goob edit
+    fireRate: 3 # Orion-Edit: 4 > 3
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+      path: /Audio/_Orion/Weapons/Guns/Revolvers/mateba.ogg # Orion-Edit
   - type: RevolverAmmoProvider
     whitelist:
       tags:
@@ -147,9 +148,9 @@
     chambers: [ True, True, True, True, True, True, True ] # Goobstation - Deathsquad revamp
     ammoSlots: [ null, null, null, null, null, null, null ] # Goobstation - Deathsquad revamp
     soundEject:
-      path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+      path: /Audio/_Orion/Weapons/Guns/Revolvers/revolver_unload.ogg # Orion-Edit
     soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+      path: /Audio/_Orion/Weapons/Guns/Revolvers/revolver_load.ogg # Orion-Edit
 
 - type: entity
   parent: WeaponRevolverMateba

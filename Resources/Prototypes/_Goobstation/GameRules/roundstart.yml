@@ -421,7 +421,7 @@
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
       components:
-      - type: Pacified
+      # - type: Pacified // Arcane-Edit
       - type: Thieving
         stripTimeReduction: 2
         stealthy: true

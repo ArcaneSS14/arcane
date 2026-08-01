@@ -118,6 +118,10 @@ public sealed class SpriteToLayerBullshitOverlay : Overlay
                 // if for some reason we can't render the item to a texture (or there is no item to render),
                 // assign an "empty" texture to the layer
                 if (!comp.CachedEntities.TryGetValue(slotId, out var _item) || _item is not EntityUid item ||
+                    // Arcane-Start
+                    _entMan.Deleted(item) ||
+                    !_entMan.HasComponent<SpriteComponent>(item) ||
+                    // Arcane-End
                     !comp.CachedRT.TryGetValue(slotId, out var renderTarget))
                 {
                     if (layer.Texture != Texture.Transparent)

@@ -189,7 +189,7 @@
         amount: 2
       - id: PowerCellXraySMG
         amount: 2
-      - id: PowerCellPulseSMG
+      - id: PowerCellOverchargedSMG # Arcane-Edit
         amount: 2
 
 - type: entity

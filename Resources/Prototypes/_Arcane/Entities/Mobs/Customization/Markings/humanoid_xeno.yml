@@ -117,6 +117,78 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
     state: neomorph_tail
 
+- type: marking
+  id: HumanoidXenoTailProwler
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: prowler_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: prowler_tail_grad
+
+- type: marking
+  id: HumanoidXenoTailBers
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: bers_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: bers_tail_grad
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: bers_tail_spike
+
+- type: marking
+  id: HumanoidXenoTailChris
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: chris_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: chris_tail_grad
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: chris_tail_spike
+
+- type: marking
+  id: HumanoidXenoTailCougar
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: cougar_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: cougar_tail_claws
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: cougar_tail_veins
+
+- type: marking
+  id: HumanoidXenoTailCrocodile
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: crocodile_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: crocodile_tail_grad
+
+- type: marking
+  id: HumanoidXenoTailRazor
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: razor_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: razor_tail_grad
+
 # Head
 
 - type: marking
@@ -269,17 +341,101 @@
     state: neomorph_veins
 
 - type: marking
-  id: HumanoidXenoHeadWorker
+  id: HumanoidXenoHeadBers
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [HumanoidXeno]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
-    state: worker_head
+    state: bers_head
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
-    state: worker_teeth
+    state: bers_teeth
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
-    state: worker_shine
+    state: bers_plates
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: bers_shine
+
+- type: marking
+  id: HumanoidXenoHeadCat
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: cat_head
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: cat_teeth
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: cat_plate
+
+- type: marking
+  id: HumanoidXenoHeadCris
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: chris_head
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: chris_teeth
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: chris_plate
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: chris_grad
+
+- type: marking
+  id: HumanoidXenoHeadCougar
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: cougar_head
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: cougar_teeth
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: cougar_veins
+
+- type: marking
+  id: HumanoidXenoHeadCrocodile
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: crocodile_head
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: crocodile_teeth
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: crocodile_shine
+
+- type: marking
+  id: HumanoidXenoHeadProwler
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: prowler_head
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: prowler_teeth
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: prowler_grad
+
+- type: marking
+  id: HumanoidXenoHeadRazor
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: razor_head
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: razor_teeth
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: razor_plate
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: razor_shine
 
 # Chest
 
@@ -411,6 +567,44 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tracheas.rsi
     state: carrier_tubes
 
+- type: marking
+  id: HumanoidXenoTracheasChris
+  bodyPart: Chest
+  markingCategory: Tracheas
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
+    state: chris_tubes
+
+- type: marking
+  id: HumanoidXenoTracheasCougar
+  bodyPart: Chest
+  markingCategory: Tracheas
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
+    state: cougar_tubes
+
+- type: marking
+  id: HumanoidXenoTracheasCrocodile
+  bodyPart: Chest
+  markingCategory: Tracheas
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
+    state: crocodile_tubes
+
+- type: marking
+  id: HumanoidXenoTracheasBers
+  bodyPart: Chest
+  markingCategory: Tracheas
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
+    state: bers_tubes
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
+    state: bers_tubes_veins
+
 # Legs
 
 - type: marking
@@ -430,6 +624,53 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/legs.rsi
     state: muscles_legs
+
+- type: marking
+  id: HumanoidXenoLegsCougar
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/legs.rsi
+    state: cougar_legs
+
+# Feet
+
+- type: marking
+  id: HumanoidXenoLegsChrisLeft
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
+    state: chris_claws_left
+
+- type: marking
+  id: HumanoidXenoLegsChrisRight
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
+    state: chris_claws_right
+
+- type: marking
+  id: HumanoidXenoLegsRazorLeft
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
+    state: razor_feet_left
+
+- type: marking
+  id: HumanoidXenoLegsRazorRight
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
+    state: razor_feet_right
 
 # Arms
 
@@ -459,3 +700,41 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/arms.rsi
     state: muscles_arms
+
+- type: marking
+  id: HumanoidXenoArmsChris
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/arms.rsi
+    state: chris_arms
+
+- type: marking
+  id: HumanoidXenoArmsCougar
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/arms.rsi
+    state: cougar_arms
+
+# Hands
+
+- type: marking
+  id: HumanoidXenoHandRazorLeft
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_arms.rsi
+    state: razor_claws_left
+
+- type: marking
+  id: HumanoidXenoHandRazorRight
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_arms.rsi
+    state: razor_claws_right

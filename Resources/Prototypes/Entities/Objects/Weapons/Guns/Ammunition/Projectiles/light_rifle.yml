@@ -4,45 +4,48 @@
   parent: BaseBullet
   id: BulletLightRifle
   categories: [ HideSpawnMenu ]
-  name: bullet (.30 rifle)
+  name: bullet (5.45mm rifle) # Orion-Edit: 0.30 > 5.45mm
   components:
   - type: Projectile
     damage:
       types:
         Piercing: 19
-      armorPenetration: 0.4 # Goobstation
+      armorPenetration: 0.2 # Goobstation # Orion-Edit: 0.4 > 0.2
 
 - type: entity
   parent: BaseBulletPractice
   id: BulletLightRiflePractice
   categories: [ HideSpawnMenu ]
-  name: bullet (.30 rifle practice)
+  name: bullet (5.45mm practice) # Orion-Edit: 0.30 rifle > 5.45mm
   components:
   - type: Projectile
     damage:
       types:
-        Blunt: 2
+        Blunt: 5 # Orion-Edit: 2 > 5
+      armorPenetration: -0.5 # Orion
 
 - type: entity
   parent: BaseBulletIncendiary
   id: BulletLightRifleIncendiary
   categories: [ HideSpawnMenu ]
-  name: bullet (.30 rifle incendiary)
+  name: bullet (5.45mm incendiary) # Orion-Edit: 0.30 rifle > 5.45mm
   components:
   - type: Projectile
     damage:
       types:
-        Piercing: 4 # Goobstation?
-        Heat: 4  # Goobstation?
+        Blunt: 4
+        Heat: 7 # Arcane-Edit: 4 > 7
+      armorPenetration: 0.10 # Orion
 
 - type: entity
   parent: BaseBulletUranium
   id: BulletLightRifleUranium
   categories: [ HideSpawnMenu ]
-  name: bullet (.30 rifle uranium)
+  name: bullet (5.45mm uranium) # Orion-Edit: 0.30 rifle > 5.45mm
   components:
   - type: Projectile
     damage:
       types:
-        Radiation: 10 # Goobstation?
-        Piercing: 11  # Goobstation?
+        Radiation: 5 # Orion-Edit: 10 > 5
+        Piercing: 11
+      armorPenetration: 0.35 # Arcane
