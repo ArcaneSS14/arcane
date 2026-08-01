@@ -3283,7 +3283,7 @@ entities:
     - type: Transform
       parent: 52
     - type: Stack
-      stackType: Cable
+      stackType: CableHV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3302,7 +3302,7 @@ entities:
     - type: Transform
       parent: 61
     - type: Stack
-      stackType: Cable
+      stackType: CableHV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3321,7 +3321,7 @@ entities:
     - type: Transform
       parent: 85
     - type: Stack
-      stackType: Cable
+      stackType: CableHV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3664,7 +3664,7 @@ entities:
     - type: Transform
       parent: 52
     - type: Stack
-      stackType: Cable
+      stackType: CableMV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3683,7 +3683,7 @@ entities:
     - type: Transform
       parent: 61
     - type: Stack
-      stackType: Cable
+      stackType: CableMV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -3702,7 +3702,7 @@ entities:
     - type: Transform
       parent: 85
     - type: Stack
-      stackType: Cable
+      stackType: CableMV
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10875,7 +10875,7 @@ entities:
     - type: Transform
       parent: 2
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10894,7 +10894,7 @@ entities:
     - type: Transform
       parent: 7
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10913,7 +10913,7 @@ entities:
     - type: Transform
       parent: 12
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10932,7 +10932,7 @@ entities:
     - type: Transform
       parent: 17
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10951,7 +10951,7 @@ entities:
     - type: Transform
       parent: 22
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10970,7 +10970,7 @@ entities:
     - type: Transform
       parent: 27
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -10989,7 +10989,7 @@ entities:
     - type: Transform
       parent: 32
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -11008,7 +11008,7 @@ entities:
     - type: Transform
       parent: 37
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -11027,7 +11027,7 @@ entities:
     - type: Transform
       parent: 42
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -11046,7 +11046,7 @@ entities:
     - type: Transform
       parent: 47
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 5
     - type: SolutionContainerManager
       solutions: null
@@ -11065,7 +11065,7 @@ entities:
     - type: Transform
       parent: 122
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 3
     - type: SolutionContainerManager
       solutions: null
@@ -11084,7 +11084,7 @@ entities:
     - type: Transform
       parent: 185
     - type: Stack
-      stackType: Cable
+      stackType: Steel
       count: 2
     - type: SolutionContainerManager
       solutions: null
