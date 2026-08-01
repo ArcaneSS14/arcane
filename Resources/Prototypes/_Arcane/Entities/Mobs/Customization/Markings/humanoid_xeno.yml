@@ -743,7 +743,7 @@
   markingCategory: LeftHand
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_arms.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/short_claws_arms.rsi
     state: short_claws_left
 
 - type: marking
@@ -752,5 +752,5 @@
   markingCategory: RightHand
   speciesRestriction: [HumanoidXeno]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_arms.rsi
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/short_claws_arms.rsi
     state: short_claws_right
