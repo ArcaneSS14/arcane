@@ -535,6 +535,10 @@
     - NewKinPidgin
   - type: SpeechSynthesis # Corvax-Frontier-Barks
     voice: Borg
+  # Arcane-start
+  - type: TTS
+    voice: Glados
+  # Arcane-end
 
 # Hologram projection that the AI's eye tracks.
 - type: entity

@@ -19,6 +19,8 @@ using Content.Shared.Silicons.StationAi;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Telephone;
+using Content.Shared.Holopad; // Arcane - holopad TTS voice
+using Content.Shared._Art.TTS; // Arcane - TTS voice preservation
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -120,7 +122,28 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         var range = args.TelephoneSource.Comp.LinkedTelephones.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimit;
         var volume = entity.Comp.SpeakerVolume == TelephoneVolume.Speak ? InGameICChatType.Speak : InGameICChatType.Whisper;
 
-        _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Eisntein Engines - Language
+        // Arcane-Start: Preserve the original speaker's TTS voice through the relay, so e.g. the station AI is heard
+        // at the receiving holopad with its own voice. The relay entity usually has no TTS component of its own.
+        // Holopad holograms apply a robotic effect to every relayed voice, like a holographic speaker.
+        if (TryComp<TTSComponent>(args.MessageSource, out var sourceTts) && sourceTts.VoicePrototype is { } voiceId)
+        {
+            var speakerTts = TryComp<TTSComponent>(speaker, out var existingTts) ? existingTts : AddComp<TTSComponent>(speaker);
+
+            var oldVoice = speakerTts.VoicePrototype;
+            var oldEffect = speakerTts.Effect;
+            speakerTts.VoicePrototype = voiceId;
+            speakerTts.Effect = HasComp<HolopadHologramComponent>(speaker) ? "robotic" : sourceTts.Effect;
+
+            _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Eisntein Engines - Language
+
+            speakerTts.VoicePrototype = oldVoice;
+            speakerTts.Effect = oldEffect;
+            if (existingTts == null)
+                RemComp<TTSComponent>(speaker);
+        }
+        else
+            _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Eisntein Engines - Language
+        // Arcane-End
     }
 
     #endregion
