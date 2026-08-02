@@ -5,7 +5,7 @@
   maps:
   - Atlas
   - Aspid # Arcane
-  #- Amber kil by upstream we still have ours but it testfails oh well.
+  - Amber # Arcane-Edit
   - Bagel
   - Box
   - Cluster
