@@ -33,7 +33,7 @@
         whitelist:
           requireAll: true
           tags:
-          - VehicleKey
+          #- VehicleKey # Arcane-Edit
           - BikeHorn
         insertSound:
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg

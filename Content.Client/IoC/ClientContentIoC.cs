@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Client._RMC14.LinkAccount;
+using Content.Client._Arcane.DiscordRoles;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -25,7 +26,7 @@ using Content.Shared.Administration.Logs;
 using Content.Client.Lobby;
 using Content.Client.Players.RateLimiting;
 using Content.Shared.Administration.Managers;
-using Content.Shared._Arcane.Sponsor;
+using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared.Chat;
 using Content.Shared.IoC;
 using Content.Shared.Players.PlayTimeTracking;
@@ -67,7 +68,8 @@ namespace Content.Client.IoC
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             collection.Register<TitleWindowManager>();
             collection.Register<LinkAccountManager>(); // RMC14
-            collection.Register<ISharedSponsorManager, LinkAccountManager>();
+            collection.Register<DiscordRoleManager>(); // Arcane
+            collection.Register<ISharedDiscordRoleManager, DiscordRoleManager>(); // Arcane
             collection.Register<ClientsidePlaytimeTrackingManager>();
             collection.Register<ClientErpOrganPreferencesManager>(); // Arcane-edit
         }

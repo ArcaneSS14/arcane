@@ -113,7 +113,7 @@
 
 - type: entity
   id: Autolathe
-  parent: [BaseLatheLube]
+  parent: [BaseLatheLube, BaseSiloUtilizer] # Arcane-Edit
   name: autolathe
   description: It produces basic items using metal and glass. Has the ability to process blueprints to print new recipes.
   components:
@@ -208,7 +208,7 @@
 
 - type: entity
   id: Protolathe
-  parent: [BaseLatheLube]
+  parent: [BaseLatheLube, BaseSiloUtilizer] # Arcane-Edit
   name: protolathe
   description: Converts raw materials into advanced items.
   components:
@@ -288,7 +288,7 @@
 
 - type: entity
   id: CircuitImprinter
-  parent: [BaseLatheLube]
+  parent: [BaseLatheLube, BaseSiloUtilizer] # Arcane-Edit
   name: circuit imprinter
   description: Prints circuit boards for machines.
   components:
@@ -358,7 +358,7 @@
 
 - type: entity
   id: ExosuitFabricator
-  parent: [BaseLatheLube]
+  parent: [BaseLatheLube, BaseSiloUtilizer] # Arcane-Edit
   name: exosuit fabricator
   description: Creates parts for robotics and other mechanical needs.
   components:
@@ -466,7 +466,7 @@
 
 - type: entity
   id: SecurityTechFab
-  parent: [BaseLatheLube]
+  parent: [BaseLatheLube, BaseSiloUtilizer] # Arcane-Edit
   name: security techfab
   description: Prints equipment and circuitboards for use by security crew. #Goobstation - Circuitboards description
   components:
@@ -536,7 +536,7 @@
 
 - type: entity
   id: AmmoTechFab
-  parent: [BaseLatheLube]
+  parent: [BaseLatheLube, BaseSiloUtilizer] # Arcane-Edit
   name: ammo techfab
   description: Prints the bare minimum of bullets that any budget military or armory could need. Nothing fancy.
   components:
@@ -572,7 +572,7 @@
 
 - type: entity
   id: MedicalTechFab
-  parent: [BaseLatheLube] #Goobstation - Circuitboards description
+  parent: [BaseLatheLube, BaseSiloUtilizer] #Goobstation - Circuitboards description # Arcane-Edit
   name: medical techfab
   description: Prints equipment and circuitboards for use by the medbay.
   components:
@@ -648,7 +648,7 @@
     channels: [Medical]
 
 - type: entity
-  parent: [BaseLatheLube]
+  parent: [BaseLatheLube, BaseSiloUtilizer] # Arcane-Edit
   id: UniformPrinter
   name: uniform printer
   description: Prints new or replacement uniforms.
@@ -745,7 +745,7 @@
     - HostileCubesStatic
 
 - type: entity
-  parent: [BaseLathe]
+  parent: [BaseLathe, BaseSiloUtilizer] # Arcane-Edit
   id: OreProcessor
   name: ore processor
   description: It produces sheets and ingots using ores.
@@ -844,7 +844,7 @@
     - SheetifierStatic
 
 - type: entity
-  parent: BaseLatheLube # Orion-Edit
+  parent: [ BaseLatheLube, BaseSiloUtilizer ] # Orion-Edit: BaseSiloUtilizer
   id: CutterMachine
   name: cutter machine
   description: This is a cutter. It cuts. Add variety to your station floor with eye-pleasing patterns! Don't stick your fingers in.

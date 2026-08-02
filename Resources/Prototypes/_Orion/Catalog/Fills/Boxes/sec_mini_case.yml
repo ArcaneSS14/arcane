@@ -98,7 +98,7 @@
   - type: Storage
     grid:
     - 0,0,1,1
-    - 3,0,4,1
+    - 3,0,5,1
   - type: StorageFill
     contents:
       - id: WeaponFlareGunSecurity

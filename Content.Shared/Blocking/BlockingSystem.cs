@@ -177,7 +177,7 @@ public sealed partial class BlockingSystem : EntitySystem
             var mobQuery = GetEntityQuery<MobStateComponent>();
             foreach (var uid in intersecting)
             {
-                if (uid != user && mobQuery.HasComponent(uid))
+                if (uid != user && mobQuery.HasComponent(uid) && Transform(uid).ParentUid == xform.ParentUid) // Arcane-Edit
                 {
                     TooCloseError(user);
                     return false;
