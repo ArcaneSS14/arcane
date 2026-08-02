@@ -341,3 +341,6 @@
     - type: CombatMode
       canDisarm: true
     - type: ExaminableCharacter # WWDP
+    # Arcane-start
+    - type: DirectionalEmote
+    # Arcane-end

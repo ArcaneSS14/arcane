@@ -73,7 +73,8 @@ public sealed class HolosignSystem : EntitySystem
             if (_tag.HasTag(entity, component.HolosignTag))
                 return;
 
-            if (!_physicsQuery.TryComp(entity, out var physics))
+            if (!_physicsQuery.TryComp(entity, out var physics)
+            || !physics.CanCollide || !physics.Hard) // Arcane
                 continue;
 
             if ((physics.CollisionLayer &

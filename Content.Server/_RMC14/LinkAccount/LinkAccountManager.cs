@@ -26,12 +26,15 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Connection;
+using Content.Server._Arcane.DiscordRoles;
 using Content.Goobstation.Common.CCVar;
 using Content.Server.Database;
 using Content.Shared.CCVar;
+using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared._Arcane.Sponsor;
 using Content.Shared._Arcane.LinkAccount;
 using Content.Shared._RMC14.LinkAccount;
@@ -46,9 +49,10 @@ using Color = System.Drawing.Color;
 
 namespace Content.Server._RMC14.LinkAccount;
 
-public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
+public sealed class LinkAccountManager : IPostInjectInit
 {
     [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private readonly DiscordRoleManager _discordRoles = default!;
     [Dependency] private readonly INetManager _net = default!;
     // arcane discord link start
     [Dependency] private readonly IServerNetManager _serverNet = default!;
@@ -83,22 +87,23 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
 
     private async Task LoadData(ICommonSession player, CancellationToken cancel)
     {
-        var patron = await _db.GetPatron(player.UserId, cancel);
+        var patronData = await _db.GetPatronData(player.UserId, cancel);
         // arcane discord link start
         var linked = await _db.GetLinkedAccountStatus(player.UserId, cancel);
         // arcane discord link end
         cancel.ThrowIfCancellationRequested();
 
-        var tier = patron?.Tier;
+        var patron = patronData.Preferences;
+        var tier = patronData.PrimaryTier;
         var sharedTier = tier == null
             ? null
             : new SharedRMCPatronTier(
-                tier.ShowOnCredits,
-                tier.GhostColor,
-                tier.GhostCosmetics,
-                tier.GhostParticles,
-                tier.LobbyMessage,
-                tier.RoundEndShoutout,
+                patronData.Tiers.Any(sponsorTier => sponsorTier.ShowOnCredits),
+                patronData.Tiers.Any(sponsorTier => sponsorTier.GhostColor),
+                patronData.Tiers.Any(sponsorTier => sponsorTier.GhostCosmetics),
+                patronData.Tiers.Any(sponsorTier => sponsorTier.GhostParticles),
+                patronData.Tiers.Any(sponsorTier => sponsorTier.LobbyMessage),
+                patronData.Tiers.Any(sponsorTier => sponsorTier.RoundEndShoutout),
                 tier.Name,
                 tier.Icon
             );
@@ -244,19 +249,19 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
     // arcane discord link end
 
     // arcane sponsor start
-    private void OnSponsorUpdated(DatabaseNotification notification)
+    private void OnDiscordRolesUpdated(DatabaseNotification notification)
     {
-        if (notification.Channel != ArcaneSponsorTiers.UpdatedNotificationChannel ||
+        if (notification.Channel != DiscordRoleConstants.UpdatedNotificationChannel ||
             notification.Payload == null ||
             !Guid.TryParse(notification.Payload, out var playerId))
         {
             return;
         }
 
-        _task.RunOnMainThread(() => ReloadSponsor(playerId));
+        _task.RunOnMainThread(() => ReloadPlayerData(playerId));
     }
 
-    private async void ReloadSponsor(Guid playerId)
+    private async void ReloadPlayerData(Guid playerId)
     {
         if (_player.TryGetSessionById(new NetUserId(playerId), out var session))
         {
@@ -342,7 +347,7 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
 
         foreach (var patron in patrons)
         {
-            _allPatrons.Add(new SharedRMCPatron(patron.Player.LastSeenUserName, patron.Tier.Name));
+            _allPatrons.Add(new SharedRMCPatron(patron.PlayerName, patron.Tier.Name));
         }
 
         _lobbyMessages.AddRange(messages);
@@ -382,11 +387,6 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
     public SharedRMCPatronFull? GetPatron(ICommonSession player)
     {
         return GetPatron(player.UserId);
-    }
-
-    public bool HasSponsor(ICommonSession player, string? tier = null)
-    {
-        return ArcaneSponsorTiers.HasTier(GetPatron(player)?.Tier?.Tier, tier);
     }
 
     public SharedRMCPatronFull? GetPatron(NetUserId userId)
@@ -488,10 +488,21 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
 
     public void AssignFauxPatron(NetUserId userId, string? tierId)
     {
+        if (_fauxPatronAssignments.TryGetValue(userId, out var oldTierId) &&
+            _fauxTiers.TryGetValue(oldTierId, out var oldTier) &&
+            SponsorRoleBenefits.TryGetRole(oldTier.Tier, out var oldRole))
+        {
+            _discordRoles.SetRoleOverride(userId, oldRole, false);
+        }
+
         if (tierId == null)
             _fauxPatronAssignments.Remove(userId);
         else if (_fauxTiers.ContainsKey(tierId))
+        {
             _fauxPatronAssignments[userId] = tierId;
+            if (SponsorRoleBenefits.TryGetRole(_fauxTiers[tierId].Tier, out var role))
+                _discordRoles.SetRoleOverride(userId, role, true);
+        }
     }
 
     public Dictionary<string, SharedRMCPatronTier> GetAllFauxTiers()
@@ -519,7 +530,7 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
         _net.RegisterNetMessage<RMCChangeNTShoutoutMsg>(OnChangeNTShoutout);
         // arcane discord link start
         _serverNet.Connecting += OnConnecting;
-        _db.SubscribeToNotifications(OnSponsorUpdated);
+        _db.SubscribeToNotifications(OnDiscordRolesUpdated);
         // arcane discord link end
         _userDb.AddOnLoadPlayer(LoadData);
         _userDb.AddOnFinishLoad(FinishLoad);

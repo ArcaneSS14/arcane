@@ -11,6 +11,7 @@
       - state: icon
   - type: SolutionContainerVisuals # Arcane
     maxFillLevels: 0
+    inHandsMaxFillLevels: 0
   - type: SolutionContainerManager
     solutions:
       drink:

@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 04/27/2026 05:10:09
-  entityCount: 12868
+  entityCount: 12871
 maps:
 - 1
 grids:
@@ -29655,6 +29655,27 @@ entities:
 - proto: DefaultStationBeaconBridge
   entities:
   - uid: 4441
+    components:
+    - type: Transform
+      pos: -2.5,28.5
+      parent: 2
+- proto: SpawnPointAdjutant
+  entities:
+  - uid: 128641
+    components:
+    - type: Transform
+      pos: -2.5,28.5
+      parent: 2
+- proto: SpawnPointCommandMaid
+  entities:
+  - uid: 128642
+    components:
+    - type: Transform
+      pos: -2.5,28.5
+      parent: 2
+- proto: SpawnPointIAA
+  entities:
+  - uid: 128643
     components:
     - type: Transform
       pos: -2.5,28.5

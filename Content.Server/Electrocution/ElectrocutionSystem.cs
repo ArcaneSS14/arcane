@@ -89,6 +89,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
 
         SubscribeLocalEvent<ElectrifiedComponent, StartCollideEvent>(OnElectrifiedStartCollide);
         SubscribeLocalEvent<ElectrifiedComponent, AttackedEvent>(OnElectrifiedAttacked);
+        SubscribeLocalEvent<ElectrifiedComponent, ActivateInWorldEvent>(OnElectrifiedActivate); // Arcane
         SubscribeLocalEvent<ElectrifiedComponent, InteractHandEvent>(OnElectrifiedHandInteract);
         SubscribeLocalEvent<ElectrifiedComponent, InteractUsingEvent>(OnElectrifiedInteractUsing);
         SubscribeLocalEvent<RandomInsulationComponent, MapInitEvent>(OnRandomInsulationMapInit);
@@ -197,6 +198,14 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         if (electrified.OnHandInteract)
             TryDoElectrifiedAct(uid, args.User, 1, electrified);
     }
+
+    // Arcane-Start
+    private void OnElectrifiedActivate(EntityUid uid, ElectrifiedComponent electrified, ActivateInWorldEvent args)
+    {
+        if (electrified.OnHandInteract)
+            TryDoElectrifiedAct(uid, args.User, 1, electrified);
+    }
+    // Arcane-End
 
     private void OnLightAttacked(EntityUid uid, PoweredLightComponent component, AttackedEvent args)
     {

@@ -4,13 +4,14 @@
   id: DefaultMapPool
   maps:
   - Atlas
+  - Aspid # Arcane
   #- Amber kil by upstream we still have ours but it testfails oh well.
   - Bagel
   - Box
   - Cluster
   #- Core
   - Fland
-  #- Loop Goobstation - I love maintenance!!!
+  - Loop # Arcane-Edit: Now in pool
   - Marathon
   - Meta
   - Oasis
@@ -32,3 +33,4 @@
   #- Reach
   #- Exo # Goobstation - Just no
   - Snowball
+  - WonderBox # Arcane

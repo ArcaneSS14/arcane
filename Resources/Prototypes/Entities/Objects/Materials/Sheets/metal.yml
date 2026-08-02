@@ -80,6 +80,7 @@
     - Sheet
     - Metal
     - Steel
+    - ConstructionMaterial # Arcane
 
 - type: entity
   parent: SheetSteel
