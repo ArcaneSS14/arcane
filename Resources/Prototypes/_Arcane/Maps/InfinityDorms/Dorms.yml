@@ -1,7 +1,7 @@
 
 # region КЛАССИКА
 - type: infinityDorm
-  id: Narure
+  id: Nature
   title: Природа
   author: seemah
   description: Приятный отдых на природе.
@@ -35,6 +35,14 @@
   description: Просторный зимний номер с уютным местом у камина.
   category: Unusual
   gridPath: /Maps/_Arcane/InfinityDorms/aurora.yml
+
+- type: infinityDorm
+  id: Pivo
+  title: Пивные
+  author: seemah
+  description: Viva la pivo!
+  category: Unusual
+  gridPath: /Maps/_Arcane/InfinityDorms/pivo.yml
 
 # endregion НЕОБЫЧНЫЕ
 
