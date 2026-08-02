@@ -11,6 +11,8 @@ using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared._EinsteinEngines.Language;
 using Content.Shared._Art.TTS; // Arcane
+using Content.Goobstation.Common.Barks;
+using Content.Shared._Orion.Radio;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
@@ -21,6 +23,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Robust.Shared.Audio;
 using Content.Shared.Access.Systems; // Goobstation
 using Content.Shared.Chat.RadioIconsEvents; // Goobstation
 using Content.Shared.Whitelist; // Goobstation
@@ -95,6 +98,32 @@ public sealed partial class RadioSystem : EntitySystem
             }
             // Arcane-End
             _netMan.ServerSendMessage(new MsgChatMessage { Message = msg }, actor.PlayerSession.Channel);
+
+            // Orion-Start: Radio sound
+            var sound = args.Channel.OnSendSound ?? DefaultOnSound;
+            if (sound is SoundPathSpecifier sps)
+            {
+                RaiseNetworkEvent(new PlayRadioBarkEvent
+                {
+                    Path = sps.Path.ToString(),
+                    Params = sps.Params,
+                    Source = GetNetEntity(args.MessageSource),
+                }, actor.PlayerSession.Channel);
+            }
+            else if (sound is SoundCollectionSpecifier)
+            {
+                Log.Warning($"Radio channel {args.Channel.ID} uses SoundCollectionSpecifier, which is not supported for PlayRadioBarkEvent. Falling back to silent playback.");
+            }
+
+            if (uid != args.MessageSource
+                && TryComp<SpeechSynthesisComponent>(args.MessageSource, out var speech)
+                && speech.VoicePrototypeId is { } barkVoice)
+            {
+                RaiseNetworkEvent(
+                    new PlayBarkEvent(GetNetEntity(args.MessageSource), args.OriginalChatMsg.Message, false, barkVoice),
+                    actor.PlayerSession.Channel);
+            }
+            // Orion-End
             // Einstein Engines - Languages end
         }
     }
@@ -104,6 +133,8 @@ public sealed partial class RadioSystem : EntitySystem
     {
         args.Cancelled = _whitelist.IsWhitelistFail(args.Channel.ReceiveWhitelist, uid);
     }
+
+    private static readonly SoundSpecifier DefaultOnSound = new SoundPathSpecifier("/Audio/_Orion/Radio/basic.ogg"); // Orion
 
     /// <summary>
     /// Send radio message to all active radio listeners
