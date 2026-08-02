@@ -133,13 +133,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
                 Message = canUnderstand ? args.OriginalChatMsg : args.LanguageObfuscatedChatMsg
             };
 
-            // Arcane-Edit-Start
+            // Arcane-Start
             if (canUnderstand && args.Voice is { } voice)
             {
                 var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice);
                 RaiseLocalEvent(parent, ref ev);
             }
-            // Arcane-Edit-End
+            // Arcane-End
 
             _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
         }

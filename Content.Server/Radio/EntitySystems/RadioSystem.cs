@@ -10,7 +10,7 @@ using Content.Server.Power.Components;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared._EinsteinEngines.Language;
-using Content.Shared._Art.TTS; // Orion-Edit
+using Content.Shared._Art.TTS; // Arcane
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
@@ -65,13 +65,13 @@ public sealed partial class RadioSystem : EntitySystem
             && component.Channels.Contains(args.Channel.ID)
             && _whitelist.IsWhitelistPassOrNull(args.Channel.SendWhitelist, uid)) // Goobstation - Whitelisted radio channels
         {
-            // Orion-Edit-Start
+            // Arcane-Edit-Start
             if (SendRadioMessage(uid, args.Message, args.Channel, uid, args.Language)) // Einstein Engines - Language
             {
                 args.RadioMessageSent = true;
                 args.Channel = null; // prevent duplicate messages from other listeners.
             }
-            // Orion-Edit-End
+            // Arcane-Edit-End
         }
     }
 
@@ -82,18 +82,18 @@ public sealed partial class RadioSystem : EntitySystem
             // Einstein Engines - Languages begin
             var listener = component.Owner;
             var msg = args.OriginalChatMsg;
-            var canUnderstand = listener == null || _language.CanUnderstand(listener, args.Language.ID); // Arcane-Edit
+            var canUnderstand = listener == null || _language.CanUnderstand(listener, args.Language.ID); // Arcane
 
             if (!canUnderstand)
                 msg = args.LanguageObfuscatedChatMsg;
 
-            // Arcane-Edit-Start
+            // Arcane-Start
             if (canUnderstand && args.Voice is { } voice)
             {
                 var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice);
                 RaiseLocalEvent(uid, ref ev);
             }
-            // Arcane-Edit-End
+            // Arcane-End
             _netMan.ServerSendMessage(new MsgChatMessage { Message = msg }, actor.PlayerSession.Channel);
             // Einstein Engines - Languages end
         }
@@ -201,13 +201,13 @@ public sealed partial class RadioSystem : EntitySystem
         var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, name, obfuscated, language, jobIcon, jobName);
         var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, GetNetEntity(messageSource), null);
 
-        // Arcane-Edit
+        // Arcane-Start
         string? voice = null;
         if (TryComp<TTSComponent>(messageSource, out var ttsComponent)
             && ttsComponent.VoicePrototype is { } voiceId
             && _prototype.TryIndex(voiceId, out var voicePrototype))
             voice = voicePrototype.Speaker;
-        // Arcane-Edit
+        // Arcane-End
         var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource, voice); // Arcane-Edit
         // Einstein Engines - Language end
 
