@@ -3,7 +3,7 @@
 using Content.Server.Chat.Systems;
 using Content.Shared.Radio.Components;
 using Content.Server._EinsteinEngines.Language;
-using Content.Shared._Art.TTS; // Orion-Edit
+using Content.Shared._Art.TTS; // Arcane
 using Content.Shared.Chat;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
@@ -58,13 +58,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && keys.Channels.Contains(args.Channel.ID)
             && _whitelist.IsWhitelistPassOrNull(args.Channel.SendWhitelist, uid)) // Goobstation - Whitelisted channels
         {
-            // Orion-Edit-Start
+            // Arcane-Edit-Start
             if (_radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset))
             {
                 args.RadioMessageSent = true;
                 args.Channel = null; // prevent duplicate messages from other listeners.
             }
-            // Orion-Edit-End
+            // Arcane-Edit-End
         }
     }
 
@@ -133,13 +133,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
                 Message = canUnderstand ? args.OriginalChatMsg : args.LanguageObfuscatedChatMsg
             };
 
-            // Orion-Edit-Start
+            // Arcane-Edit-Start
             if (canUnderstand && args.Voice is { } voice)
             {
                 var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice);
-                RaiseLocalEvent(parent, ev);
+                RaiseLocalEvent(parent, ref ev);
             }
-            // Orion-Edit-End
+            // Arcane-Edit-End
 
             _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
         }
