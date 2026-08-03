@@ -66,3 +66,5 @@ marking-HumanoidXenoArmsChris = Руки хризалиды
 marking-HumanoidXenoArmsCougar = Руки пумы
 marking-HumanoidXenoHandRazorLeft = Когти бритвы
 marking-HumanoidXenoHandRazorRight = Когти бритвы
+marking-HumanoidXenoHandClawsLeft = Когти
+marking-HumanoidXenoHandClawsRight = Когти
