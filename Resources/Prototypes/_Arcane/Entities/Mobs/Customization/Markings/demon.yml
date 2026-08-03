@@ -135,15 +135,6 @@
     state: devil_trident_tail
 
 - type: marking
-  id: DemonTailHimeraHair
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
-  sprites:
-  - sprite: _Arcane/Mobs/Species/Demon/markings_big.rsi
-    state: himera_tail_hair
-
-- type: marking
   id: DemonTailHimera
   bodyPart: Tail
   markingCategory: Tail
@@ -151,6 +142,8 @@
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings_big.rsi
     state: himera_tail
+  - sprite: _Arcane/Mobs/Species/Demon/markings_big.rsi
+    state: himera_tail_hair
 
 - type: marking
   id: DemonTailMermaidAnimatedBase
@@ -160,13 +153,6 @@
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings_big.rsi
     state: mermaid_animated_base
-
-- type: marking
-  id: DemonTailMermaidAnimatedFluff
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
-  sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings_big.rsi
     state: mermaid_animated_fluff
 
