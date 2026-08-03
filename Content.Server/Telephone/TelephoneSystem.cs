@@ -19,8 +19,6 @@ using Content.Shared.Silicons.StationAi;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Telephone;
-using Content.Shared.Holopad; // Arcane - holopad TTS voice
-using Content.Shared._Art.TTS; // Arcane - TTS voice preservation
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -28,6 +26,10 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+// Arcane-Start
+using Content.Shared.Holopad;
+using Content.Shared._Art.TTS;
+// Arcane-End
 
 namespace Content.Server.Telephone;
 
@@ -134,7 +136,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
             speakerTts.VoicePrototype = voiceId;
             speakerTts.Effect = HasComp<HolopadHologramComponent>(speaker) ? "robotic" : sourceTts.Effect;
 
-            _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Eisntein Engines - Language
+            _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language);
 
             speakerTts.VoicePrototype = oldVoice;
             speakerTts.Effect = oldEffect;
@@ -142,8 +144,8 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
                 RemComp<TTSComponent>(speaker);
         }
         else
+            // Arcane-End
             _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Eisntein Engines - Language
-        // Arcane-End
     }
 
     #endregion

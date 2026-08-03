@@ -3,7 +3,6 @@
 using Content.Server.Chat.Systems;
 using Content.Shared.Radio.Components;
 using Content.Server._EinsteinEngines.Language;
-using Content.Shared._Art.TTS; // Arcane
 using Content.Shared.Chat;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
@@ -11,9 +10,12 @@ using Content.Shared.Radio.EntitySystems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Shared.Whitelist;
+// Arcane-Start
+using Content.Shared._Art.TTS;
 using Content.Goobstation.Common.Barks;
 using Content.Shared._Orion.Radio;
 using Robust.Shared.Audio;
+// Arcane-End
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -113,7 +115,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         }
     }
 
-    private static readonly SoundSpecifier DefaultOnSound = new SoundPathSpecifier("/Audio/_Orion/Radio/basic.ogg"); // Orion
+    private static readonly SoundSpecifier DefaultOnSound = new SoundPathSpecifier("/Audio/_Orion/Radio/basic.ogg"); // Arcane
 
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
@@ -148,7 +150,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
             _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
 
-            // Orion-Start: Radio sound
+            // Arcane-Start: Radio sound
             var sound = args.Channel.OnSendSound ?? DefaultOnSound;
             if (sound is SoundPathSpecifier sps)
             {
@@ -172,7 +174,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
                     new PlayBarkEvent(GetNetEntity(args.MessageSource), args.OriginalChatMsg.Message, false, barkVoice),
                     actor.PlayerSession.Channel);
             }
-            // Orion-End
+            // Arcane-End
         }
         // Einstein Engines - Language end
     }

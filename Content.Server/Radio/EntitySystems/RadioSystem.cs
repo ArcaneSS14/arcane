@@ -10,9 +10,6 @@ using Content.Server.Power.Components;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared._EinsteinEngines.Language;
-using Content.Shared._Art.TTS; // Arcane
-using Content.Goobstation.Common.Barks;
-using Content.Shared._Orion.Radio;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech;
@@ -23,12 +20,17 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Robust.Shared.Audio;
 using Content.Shared.Access.Systems; // Goobstation
 using Content.Shared.Chat.RadioIconsEvents; // Goobstation
 using Content.Shared.Whitelist; // Goobstation
 using Content.Shared.StatusIcon; // Goobstation
 using Content.Goobstation.Shared.Radio; // Goobstation
+// Arcane-Start
+using Content.Shared._Art.TTS; // Arcane
+using Content.Goobstation.Common.Barks;
+using Content.Shared._Orion.Radio;
+using Robust.Shared.Audio;
+// Arcane-End
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -99,7 +101,7 @@ public sealed partial class RadioSystem : EntitySystem
             // Arcane-End
             _netMan.ServerSendMessage(new MsgChatMessage { Message = msg }, actor.PlayerSession.Channel);
 
-            // Orion-Start: Radio sound
+            // Arcane-Start: Radio sound
             var sound = args.Channel.OnSendSound ?? DefaultOnSound;
             if (sound is SoundPathSpecifier sps)
             {
@@ -123,7 +125,7 @@ public sealed partial class RadioSystem : EntitySystem
                     new PlayBarkEvent(GetNetEntity(args.MessageSource), args.OriginalChatMsg.Message, false, barkVoice),
                     actor.PlayerSession.Channel);
             }
-            // Orion-End
+            // Arcane-End
             // Einstein Engines - Languages end
         }
     }
@@ -134,7 +136,7 @@ public sealed partial class RadioSystem : EntitySystem
         args.Cancelled = _whitelist.IsWhitelistFail(args.Channel.ReceiveWhitelist, uid);
     }
 
-    private static readonly SoundSpecifier DefaultOnSound = new SoundPathSpecifier("/Audio/_Orion/Radio/basic.ogg"); // Orion
+    private static readonly SoundSpecifier DefaultOnSound = new SoundPathSpecifier("/Audio/_Orion/Radio/basic.ogg"); // Arcane
 
     /// <summary>
     /// Send radio message to all active radio listeners

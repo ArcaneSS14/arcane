@@ -3,7 +3,7 @@ using Robust.Shared.Serialization;
 namespace Content.Goobstation.Common.Barks;
 
 [Serializable, NetSerializable]
-public sealed class PlayBarkEvent(NetEntity sourceUid, string message, bool whisper, string? barkProtoId = null) : EntityEventArgs // Orion
+public sealed class PlayBarkEvent(NetEntity sourceUid, string message, bool whisper, string? barkProtoId = null) : EntityEventArgs // Arcane
 {
     public NetEntity SourceUid { get; } = sourceUid;
     public string Message { get; } = message;
