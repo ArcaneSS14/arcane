@@ -166,9 +166,12 @@ public abstract partial class SharedJobSystem : EntitySystem
         [NotNullWhen(true)] out JobPrototype? prototype)
     {
         prototype = null;
-        MindTryGetJobId(mindId, out var protoId);
+        // Arcane-Edit-Start
+        if (!MindTryGetJobId(mindId, out var protoId) || protoId is null)
+            return false;
 
-        return _prototypes.Resolve(protoId, out prototype) || prototype is not null;
+        return _prototypes.TryIndex(protoId.Value, out prototype);
+        // Arcane-Edit-End
     }
 
     public bool MindTryGetJobId(

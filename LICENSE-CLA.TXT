@@ -1,14 +1,14 @@
                            CLA License
-           Copyright (c) 2026 Arcane14 Organization
+           Copyright (c) 2026 Arcane SS14 Organization
 
                            Preamble
 
-  This Contributor License Agreement (“CLA”) is entered into between Arcane14 Organization (“A14” or “Organization”) and the contributor (“Contributor”). By making a submission to the A14 project, Contributor agrees to be bound by the terms of this CLA.
+  This Contributor License Agreement (“CLA”) is entered into between Arcane SS14 Organization and the contributor (“Contributor”). By making a submission to the Arcane SS14 Organization project, Contributor agrees to be bound by the terms of this CLA.
 
                             Definitions.
 
-  – “Contribution” means any original work of authorship (including modifications, enhancements, bug fixes, documentation, code, or other materials) submitted by Contributor to the A14 project.
-  – “Project” refers to any repository or software project managed by A14.
+  – “Contribution” means any original work of authorship (including modifications, enhancements, bug fixes, documentation, code, or other materials) submitted by Contributor to the Arcane SS14 Organization project.
+  – “Project” refers to any repository or software project managed by Arcane SS14 Organization.
   – “Contributor” is any individual or entity submitting a Contribution to the Project.
   – “Licensor” means Arcane14 Organization. For licensing inquiries, contact: puroslavking@yahoo.com.
 
@@ -29,19 +29,19 @@ and/or international legislation for certain forms of Contribution.
 
                             Grant of Rights.
 
-  By submitting a Contribution, Contributor hereby grants to A14:
-  – Contributor retains copyright ownership of the Contribution but agrees that A14 may distribute it under any license selected by A14.
-  – Contributor grants A14 a perpetual, worldwide, non-exclusive, royalty-free, irrevocable license under any necessary patent claims owned or controlled by Contributor to make, have made, use, offer to sell, sell, import, and otherwise transfer the Contribution.
+  By submitting a Contribution, Contributor hereby grants to Arcane SS14 Organization:
+  – Contributor retains copyright ownership of the Contribution but agrees that Arcane SS14 Organization may distribute it under any license selected by Arcane SS14 Organization.
+  – Contributor grants Arcane SS14 Organization a perpetual, worldwide, non-exclusive, royalty-free, irrevocable license under any necessary patent claims owned or controlled by Contributor to make, have made, use, offer to sell, sell, import, and otherwise transfer the Contribution.
 
                             License Types.
 
-  Source code and software components may be distributed by A14 under any license selected by A14, including but not limited to AGPL-3.0.
-  Documentation, graphics, and non-code assets may be distributed by A14 under any license selected by A14, including but not limited to CC-BY-SA 3.0.
-  A14 may change the licensing terms of any asset at any time.
+  Source code and software components may be distributed by Arcane SS14 Organization under any license selected by Arcane SS14 Organization, including but not limited to AGPL-3.0.
+  Documentation, graphics, and non-code assets may be distributed by Arcane SS14 Organization under any license selected by Arcane SS14 Organization, including but not limited to CC-BY-SA 3.0.
+  Arcane SS14 Organization may change the licensing terms of any asset at any time.
 
                             Acceptance.
 
   This CLA is accepted if one of these conditions is met:
-  – Submitting a Pull Request to an A14 repository.
+  – Submitting a Pull Request to an Arcane SS14 Organization repository.
   – Making a commit with a signed-off line: Signed-off-by: Name <email@example.com>.
   – Acceptance through the GitHub Pull Request license checkbox.

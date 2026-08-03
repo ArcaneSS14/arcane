@@ -90,6 +90,18 @@
       points: 1
       required: true
       defaultMarkings: [ HumanoidXenoTracheasDrone ]
+    LeftFoot:
+      points: 1
+      required: false
+    RightFoot:
+      points: 1
+      required: false
+    LeftHand:
+      points: 1
+      required: false
+    RightHand:
+      points: 1
+      required: false
 
 - type: humanoidBaseSprite
   id: MobHumanoidXenoHead

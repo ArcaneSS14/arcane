@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 266.0.0
+  engineVersion: 270.1.0
   forkId: arcane
-  forkVersion: 3df15cc15fb795975952da55856367a66fc161fd
-  time: 06/19/2026 21:25:46
+  forkVersion: b0755ea876c68a200685316e696e7fdaf19bc5a3
+  time: 08/02/2026 18:05:46
   entityCount: 450
 maps: []
 grids:
@@ -332,44 +332,17 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: TileHistory
+      chunkHistory: {}
+    - type: ExplosionAirtightGrid
 - proto: Airlock
   entities:
   - uid: 350
@@ -2375,6 +2348,8 @@ entities:
     - type: Transform
       pos: 9.5,-0.5
       parent: 1
+    missingComponents:
+    - AccessReader
 - proto: VendingMachineChefvend
   entities:
   - uid: 365
@@ -2382,6 +2357,8 @@ entities:
     - type: Transform
       pos: 19.5,-4.5
       parent: 1
+    missingComponents:
+    - AccessReader
 - proto: VendingMachineDinnerware
   entities:
   - uid: 366
@@ -2389,6 +2366,8 @@ entities:
     - type: Transform
       pos: 20.5,-4.5
       parent: 1
+    missingComponents:
+    - AccessReader
 - proto: VinylPlayer
   entities:
   - uid: 412

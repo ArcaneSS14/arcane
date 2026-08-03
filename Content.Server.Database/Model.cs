@@ -54,6 +54,7 @@ namespace Content.Server.Database
 
         // RMC14
         public DbSet<RMCDiscordAccount> RMCDiscordAccounts { get; set; } = default!;
+        public DbSet<RMCDiscordAccountRole> RMCDiscordAccountRoles { get; set; } = default!;
         public DbSet<RMCLinkedAccount> RMCLinkedAccounts { get; set; } = default!;
         public DbSet<RMCPatronTier> RMCPatronTiers { get; set; } = default!;
         public DbSet<RMCPatron> RMCPatrons { get; set; } = default!;
@@ -338,18 +339,23 @@ namespace Content.Server.Database
                 .HasPrincipalKey<RMCDiscordAccount>(d => d.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Arcane-Edit-Start
+            modelBuilder.Entity<RMCDiscordAccountRole>()
+                .HasKey(r => new { r.DiscordId, r.RoleId });
+
+            modelBuilder.Entity<RMCDiscordAccountRole>()
+                .HasOne(r => r.Discord)
+                .WithMany(d => d.Roles)
+                .HasForeignKey(r => r.DiscordId)
+                .HasPrincipalKey(d => d.Id)
+                .OnDelete(DeleteBehavior.Cascade);
+            // Arcane-Edit-End
+
             modelBuilder.Entity<RMCPatron>()
                 .HasOne(p => p.Player)
                 .WithOne(p => p.Patron)
                 .HasForeignKey<RMCPatron>(p => p.PlayerId)
                 .HasPrincipalKey<Player>(p => p.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<RMCPatron>()
-                .HasOne(p => p.Tier)
-                .WithMany(t => t.Patrons)
-                .HasForeignKey(p => p.TierId)
-                .HasPrincipalKey(p => p.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<RMCPatronTier>()

@@ -22,13 +22,13 @@
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -20
-    maxAngle: -20
+    maxAngle: -25 # Orion-Edit: -20 > -25
   - type: Gun
     minAngle: 24
-    maxAngle: 45
-    angleIncrease: 4
+    maxAngle: 50 # Orion-Edit: 45 > 50
+    angleIncrease: 2.5 # Orion-Edit: 4 > 2.5
     angleDecay: 16
-    fireRate: 8
+    fireRate: 7.5 # Orion-Edit: 8 > 7.5
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -43,7 +43,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+#        name: Magazine # Orion-Edit: Localization
         startingItem: MagazineLightRifleBox
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
@@ -52,7 +52,8 @@
           tags:
             - MagazineLightRifleBox
       gun_chamber:
-        name: Chamber
+#        name: Chamber # Orion-Edit: Localization
+        startingItem: CartridgeLightRifle # Arcane
         priority: 1
         whitelist:
           tags:
@@ -65,6 +66,7 @@
     price: 500
   - type: UseDelay
     delay: 1
+  - type: UseDelayBlockShoot # Orion
   - type: Multishot # Goobstation V
     missChance: 0.4 #MISS CHANCE DOESNT WORK LMAO
   - type: RestrictGunshotsByUserTag # Goobstation
@@ -113,6 +115,12 @@
   - type: Appearance
   - type: StaticPrice
     price: 10000
+# Orion-Start
+  - type: Gun
+    soundGunshot: /Audio/_Orion/Weapons/Guns/Rifles/ak47.ogg
+  - type: UseDelay
+    delay: 0.5
+# Orion-End
 
 - type: entity
   name: L6C ROW
@@ -123,14 +131,14 @@
     - type: Gun
       minAngle: 4
       maxAngle: 25
-      angleIncrease: 4
+      angleIncrease: 2 # Orion-Edit: 4 > 2
       angleDecay: 16
-      fireRate: 8
+      fireRate: 7.5 # Orion-Edit: 8 > 7.5
       selectedMode: FullAuto
       availableModes:
         - FullAuto
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+        path: /Audio/_Orion/Weapons/Guns/Rifles/ak47.ogg # Orion-Edit: New sounds
       soundEmpty:
         path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
     - type: Sprite

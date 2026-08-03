@@ -34,6 +34,26 @@
         {
             "name": "neomorph_tubes",
             "directions": 4
+        },
+        {
+            "name": "bers_tubes_veins",
+            "directions": 4
+        },
+        {
+            "name": "bers_tubes",
+            "directions": 4
+        },
+        {
+            "name": "chris_tubes",
+            "directions": 4
+        },
+        {
+            "name": "cougar_tubes",
+            "directions": 4
+        },
+        {
+            "name": "crocodile_tubes",
+            "directions": 4
         }
     ]
 }

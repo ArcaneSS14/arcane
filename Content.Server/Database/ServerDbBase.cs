@@ -1859,32 +1859,76 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return true;
         }
 
-        public async Task<RMCPatron?> GetPatron(Guid player, CancellationToken cancel)
+        public async Task<RMCPatronData> GetPatronData(Guid player, CancellationToken cancel)
         {
             await using var db = await GetDb(cancel);
-            var patron = await db.DbContext.RMCPatrons
-                .Include(p => p.Tier)
+            var preferences = await db.DbContext.RMCPatrons
                 .Include(p => p.LobbyMessage)
                 .Include(p => p.RoundEndNTShoutout)
                 .FirstOrDefaultAsync(p => p.PlayerId == player, cancellationToken: cancel);
-            return patron;
+
+            var tiers = await (
+                    from linked in db.DbContext.RMCLinkedAccounts
+                    from role in linked.Discord.Roles
+                    join tier in db.DbContext.RMCPatronTiers on role.RoleId equals tier.DiscordRole
+                    where linked.PlayerId == player
+                    orderby tier.Priority descending, tier.Id
+                    select tier)
+                .AsNoTracking()
+                .ToListAsync(cancel);
+
+            return new RMCPatronData(preferences, tiers);
         }
 
-        public async Task<List<RMCPatron>> GetAllPatrons()
+        public async Task<List<ulong>> GetDiscordRoleIds(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.RMCLinkedAccounts
+                .Where(linked => linked.PlayerId == player)
+                .SelectMany(linked => linked.Discord.Roles)
+                .Select(role => role.RoleId)
+                .ToListAsync(cancel);
+        }
+
+        public async Task<bool> HasDiscordRole(Guid player, ulong roleId, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.RMCLinkedAccounts.AnyAsync(
+                linked => linked.PlayerId == player &&
+                          linked.Discord.Roles.Any(role => role.RoleId == roleId),
+                cancel);
+        }
+
+        public async Task<List<RMCPatronSummary>> GetAllPatrons()
         {
             await using var db = await GetDb();
-            return await db.DbContext.RMCPatrons
-                .Include(p => p.Player)
-                .Include(p => p.Tier)
+            var matches = await (
+                    from linked in db.DbContext.RMCLinkedAccounts
+                    from role in linked.Discord.Roles
+                    join tier in db.DbContext.RMCPatronTiers on role.RoleId equals tier.DiscordRole
+                    select new
+                    {
+                        linked.PlayerId,
+                        PlayerName = linked.Player.LastSeenUserName,
+                        Tier = tier,
+                    })
+                .AsNoTracking()
                 .ToListAsync();
+
+            return matches
+                .GroupBy(match => match.PlayerId)
+                .Select(group => group
+                    .OrderByDescending(match => match.Tier.Priority)
+                    .ThenBy(match => match.Tier.Id)
+                    .First())
+                .Select(match => new RMCPatronSummary(match.PlayerId, match.PlayerName, match.Tier))
+                .ToList();
         }
 
         public async Task SetGhostColor(Guid player, System.Drawing.Color? color)
         {
             await using var db = await GetDb();
-            var patron = await db.DbContext.RMCPatrons.FirstOrDefaultAsync(p => p.PlayerId == player);
-            if (patron == null)
-                return;
+            var patron = await GetOrCreatePatronPreferences(db.DbContext, player);
 
             patron.GhostColor = color?.ToArgb();
             await db.DbContext.SaveChangesAsync();
@@ -1894,9 +1938,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         public async Task SetGhostCosmetics(Guid player, string? particles, string? hat, string? mask)
         {
             await using var db = await GetDb();
-            var patron = await db.DbContext.RMCPatrons.FirstOrDefaultAsync(p => p.PlayerId == player);
-            if (patron == null)
-                return;
+            var patron = await GetOrCreatePatronPreferences(db.DbContext, player);
 
             patron.GhostParticles = particles;
             patron.GhostHat = hat;
@@ -1939,10 +1981,21 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return true;
         }
 
-        public async Task<int> CountPatronsInTier(int tierId)
+        public async Task<List<Guid>> GetPatronPlayerIdsForTier(int tierId)
         {
             await using var db = await GetDb();
-            return await db.DbContext.RMCPatrons.CountAsync(p => p.TierId == tierId);
+            var discordRole = await db.DbContext.RMCPatronTiers
+                .Where(t => t.Id == tierId)
+                .Select(t => (ulong?) t.DiscordRole)
+                .FirstOrDefaultAsync();
+
+            if (discordRole == null)
+                return [];
+
+            return await db.DbContext.RMCLinkedAccounts
+                .Where(linked => linked.Discord.Roles.Any(role => role.RoleId == discordRole.Value))
+                .Select(linked => linked.PlayerId)
+                .ToListAsync();
         }
 
         public async Task<bool> DeletePatronTier(int tierId)
@@ -1957,41 +2010,13 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return true;
         }
 
-        public async Task<bool> SetPatron(Guid player, int? tierId)
-        {
-            await using var db = await GetDb();
-            var patron = await db.DbContext.RMCPatrons.FirstOrDefaultAsync(p => p.PlayerId == player);
-
-            if (tierId == null)
-            {
-                if (patron == null)
-                    return false;
-
-                db.DbContext.RMCPatrons.Remove(patron);
-                await db.DbContext.SaveChangesAsync();
-                return true;
-            }
-
-            if (patron == null)
-            {
-                patron = new RMCPatron { PlayerId = player, TierId = tierId.Value };
-                db.DbContext.RMCPatrons.Add(patron);
-            }
-            else
-            {
-                patron.TierId = tierId.Value;
-            }
-
-            await db.DbContext.SaveChangesAsync();
-            return true;
-        }
         // Goob end
 
         public async Task SetLobbyMessage(Guid player, string message)
         {
             await using var db = await GetDb();
+            await GetOrCreatePatronPreferences(db.DbContext, player);
             var msg = await db.DbContext.RMCPatronLobbyMessages
-                .Include(l => l.Patron)
                 .FirstOrDefaultAsync(p => p.PatronId == player);
             msg ??= db.DbContext.RMCPatronLobbyMessages
                 .Add(new RMCPatronLobbyMessage
@@ -2008,8 +2033,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         public async Task SetNTShoutout(Guid player, string name)
         {
             await using var db = await GetDb();
+            await GetOrCreatePatronPreferences(db.DbContext, player);
             var msg = await db.DbContext.RMCPatronRoundEndNTShoutouts
-                .Include(s => s.Patron)
                 .FirstOrDefaultAsync(p => p.PatronId == player);
             msg ??= db.DbContext.RMCPatronRoundEndNTShoutouts
                 .Add(new RMCPatronRoundEndNTShoutout()
@@ -2026,29 +2051,50 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         public async Task<List<(string Message, string User)>> GetLobbyMessages()
         {
             await using var db = await GetDb();
-            var messages = await db.DbContext.RMCPatronLobbyMessages
-                .Include(p => p.Patron)
-                .ThenInclude(p => p.Player)
-                .Where(p => p.Patron.Tier.LobbyMessage)
-                .Where(p => !string.IsNullOrWhiteSpace(p.Message))
-                .Select(p => new { p.Message, p.Patron.Player.LastSeenUserName })
-                .Select(p => new ValueTuple<string, string>(p.Message, p.LastSeenUserName))
+            var messages = await (
+                    from message in db.DbContext.RMCPatronLobbyMessages
+                    join linked in db.DbContext.RMCLinkedAccounts on message.PatronId equals linked.PlayerId
+                    from role in linked.Discord.Roles
+                    join tier in db.DbContext.RMCPatronTiers on role.RoleId equals tier.DiscordRole
+                    where tier.LobbyMessage && !string.IsNullOrWhiteSpace(message.Message)
+                    select new
+                    {
+                        message.Message,
+                        message.Patron.Player.LastSeenUserName,
+                    })
+                .Distinct()
                 .ToListAsync();
 
-            return messages;
+            return messages
+                .Select(message => (message.Message, message.LastSeenUserName))
+                .ToList();
         }
 
         public async Task<List<string>> GetShoutouts()
         {
             await using var db = await GetDb();
-            var ntNames = await db.DbContext.RMCPatronRoundEndNTShoutouts
-                .Include(p => p.Patron)
-                .Where(p => p.Patron.Tier.RoundEndShoutout)
-                .Where(p => !string.IsNullOrWhiteSpace(p.Name))
-                .Select(p => p.Name)
+            var ntNames = await (
+                    from shoutout in db.DbContext.RMCPatronRoundEndNTShoutouts
+                    join linked in db.DbContext.RMCLinkedAccounts on shoutout.PatronId equals linked.PlayerId
+                    from role in linked.Discord.Roles
+                    join tier in db.DbContext.RMCPatronTiers on role.RoleId equals tier.DiscordRole
+                    where tier.RoundEndShoutout && !string.IsNullOrWhiteSpace(shoutout.Name)
+                    select shoutout.Name)
+                .Distinct()
                 .ToListAsync();
 
             return ntNames;
+        }
+
+        private static async Task<RMCPatron> GetOrCreatePatronPreferences(ServerDbContext db, Guid player)
+        {
+            var patron = await db.RMCPatrons.FirstOrDefaultAsync(p => p.PlayerId == player);
+            if (patron != null)
+                return patron;
+
+            patron = new RMCPatron { PlayerId = player };
+            db.RMCPatrons.Add(patron);
+            return patron;
         }
 
         #endregion

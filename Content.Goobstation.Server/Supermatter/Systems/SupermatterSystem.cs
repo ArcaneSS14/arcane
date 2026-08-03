@@ -89,8 +89,6 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     {
         base.Update(frameTime);
 
-        return; // Arcane-remove
-
         if (!_gameTiming.IsFirstTimePredicted)
             return;
 
@@ -692,7 +690,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         // your criminal actions will not go unnoticed
         sm.Damage += sm.DelaminationPoint / 10;
         sm.DamageArchived += sm.DelaminationPoint / 10;
-        sm.SliverRemoved = true;
+//        sm.SliverRemoved = true; // Arcane-Edit: Removed
 
         var integrity = GetIntegrity(sm).ToString("0.00");
         SupermatterAnnouncement(uid, Loc.GetString("supermatter-announcement-cc-tamper", ("integrity", integrity)), true, "Central Command");
