@@ -22,6 +22,10 @@
   # Orion-Start
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/IPC.xml"
+  minAge: 0
+  maxAge: 120
+  youngAge: 30
+  oldAge: 60
   pros:
   - Имеют встроенный радио-модуль, позволяющий использовать ключи вне гарнитуры.
   - Могут воспроизводить MIDI музыку своими динамиками.
