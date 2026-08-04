@@ -14,9 +14,9 @@
   category: Unusual
   description: "/ServerInfo/_Arcane/SpeciesDescriptions/HumanoidXeno.xml"
   minAge: 18
-  maxAge: 10000
-  youngAge: 1000
-  oldAge: 7000
+  maxAge: 1000
+  youngAge: 300
+  oldAge: 600
   minHeight: 0.90
   defaultHeight: 1
   maxHeight: 1.20
