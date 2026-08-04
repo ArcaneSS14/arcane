@@ -628,6 +628,7 @@
       tags:
       - NukeOpsUplink
 
+# Arcane-Start
 - type: listing
   id: UplinkClothingHandsGlovesGuerrillaNukeops
   name: uplink-guerrilla-gloves-name
@@ -643,6 +644,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+# Arcane-End
 
 # Job specific
 - type: listing

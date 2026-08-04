@@ -12,6 +12,7 @@ using Content.Server.Discord.DiscordLink;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
 using Content.Shared.Administration;
+using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared._Arcane.Sponsor;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -34,18 +35,6 @@ namespace Content.Server.Chat.Managers;
 /// </summary>
 internal sealed partial class ChatManager : IChatManager
 {
-    // arcane sponsor start
-    private static readonly Dictionary<string, string> PatronOocColors = new()
-    {
-        { ArcaneSponsorTiers.Tier1, ArcaneSponsorTiers.Tier1OocColor },
-        { ArcaneSponsorTiers.Tier2, ArcaneSponsorTiers.Tier2OocColor },
-        // I had plans for multiple colors and those went nowhere so...
-        { "nuclear_operative", "#aa00ff" },
-        { "syndicate_agent", "#aa00ff" },
-        { "revolutionary", "#aa00ff" }
-    };
-    // arcane sponsor end
-
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
@@ -59,6 +48,7 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly LinkAccountManager _linkAccount = default!; // RMC - Patreon
+    [Dependency] private readonly ISharedDiscordRoleManager _discordRoles = default!; // Arcane
     [Dependency] private readonly ChatProtectionSystem _chatProtection = default!; // Orion
     [Dependency] private readonly ChatLogsWebhook _chatLogsWebhook = default!; // Arcane
 
@@ -297,12 +287,10 @@ internal sealed partial class ChatManager : IChatManager
         }
         // RMC - Heavily modified for patreon.
         if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) &&
-            _linkAccount.GetPatron(player)?.Tier is { } tier)
+            SponsorRoleBenefits.TryGetOocColor(_discordRoles, player, out var patronColor))
         {
-            // arcane sponsor start
-            var patronColor = PatronOocColors.GetValueOrDefault(tier.Tier, ArcaneSponsorTiers.GetOocColor(tier.Tier));
-            // arcane sponsor end
-            if (tier.Icon != null)
+            var tier = _linkAccount.GetPatron(player)?.Tier;
+            if (tier?.Icon != null)
             {
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message",
                     ("tierIcon", tier.Icon),

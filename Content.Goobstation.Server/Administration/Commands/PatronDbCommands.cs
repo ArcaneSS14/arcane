@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server._Arcane.DiscordRoles;
 using Content.Server._RMC14.LinkAccount;
 using Content.Server.Administration;
 using Content.Server.Database;
@@ -16,6 +17,7 @@ internal abstract class BasePatronDbCommand : LocalizedCommands
     protected static readonly string[] BoolOptions = ["true", "false"];
 
     [Dependency] protected readonly IServerDbManager Db = default!;
+    [Dependency] protected readonly DiscordRoleManager DiscordRoles = default!;
     [Dependency] protected readonly LinkAccountManager LinkAccount = default!;
     [Dependency] protected readonly IPlayerManager PlayerManager = default!;
 
@@ -43,7 +45,10 @@ internal abstract class BasePatronDbCommand : LocalizedCommands
         foreach (var playerId in playerIds)
         {
             if (PlayerManager.TryGetSessionById(new NetUserId(playerId), out var session))
+            {
+                await DiscordRoles.ReloadRoles(session);
                 await LinkAccount.ReloadPatron(session);
+            }
         }
 
         await LinkAccount.RefreshAllPatrons();
@@ -52,8 +57,7 @@ internal abstract class BasePatronDbCommand : LocalizedCommands
 
     protected async Task<List<Guid>> GetTierMemberIds(int tierId)
     {
-        var patrons = await Db.GetAllPatrons();
-        return patrons.Where(p => p.TierId == tierId).Select(p => p.PlayerId).ToList();
+        return await Db.GetPatronPlayerIdsForTier(tierId);
     }
 
     protected async ValueTask<CompletionResult> CompleteTierNames(string hint)
@@ -127,8 +131,7 @@ internal sealed class PatronAddCommand : BasePatronDbCommand
             };
 
             var id = await Db.AddPatronTier(tier);
-            await LinkAccount.RefreshAllPatrons();
-            LinkAccount.SendPatronsToAll();
+            await RefreshPatrons(await GetTierMemberIds(id));
 
             shell.WriteLine($"Patron tier '{name}' created with id {id}:");
             shell.WriteLine($"  Discord Role: {discordRole} | Priority: {priority} | Icon: {icon ?? "None"}");
@@ -215,6 +218,7 @@ internal sealed class PatronModifyCommand : BasePatronDbCommand
             if (await FindTier(shell, args[0]) is not { } tier)
                 return;
 
+            var affectedPlayers = (await GetTierMemberIds(tier.Id)).ToHashSet();
             var field = args[1].ToLowerInvariant();
             var value = args[2];
 
@@ -298,7 +302,8 @@ internal sealed class PatronModifyCommand : BasePatronDbCommand
                 return;
             }
 
-            await RefreshPatrons(await GetTierMemberIds(tier.Id));
+            affectedPlayers.UnionWith(await GetTierMemberIds(tier.Id));
+            await RefreshPatrons(affectedPlayers);
             shell.WriteLine($"Patron tier '{tier.Name}' updated: {field} = {value}");
         }
         catch (Exception e)
@@ -333,7 +338,7 @@ internal sealed class PatronDeleteCommand : BasePatronDbCommand
     public override string Description => "Delete a patron tier from the database";
 
     public override string Help => "Usage: patron:delete <tierIdOrName> [force]\n" +
-                                    "Deleting a tier with 'force' also removes all patrons in it.\n" +
+                                    "Deleting a tier never removes synchronized Discord roles or patron preferences.\n" +
                                     "Example: patron:delete \"Gold Tier\"";
 
     public override async void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -354,7 +359,7 @@ internal sealed class PatronDeleteCommand : BasePatronDbCommand
             if (members.Count > 0 && !force)
             {
                 shell.WriteError($"Patron tier '{tier.Name}' has {members.Count} patron(s). " +
-                                 "Move them with 'patron:set' first, or append 'force' to delete them along with the tier.");
+                                 "Append 'force' to remove the tier mapping; synchronized Discord roles will remain intact.");
                 return;
             }
 
@@ -366,7 +371,7 @@ internal sealed class PatronDeleteCommand : BasePatronDbCommand
 
             await RefreshPatrons(members);
             shell.WriteLine(members.Count > 0
-                ? $"Deleted patron tier '{tier.Name}' and removed {members.Count} patron(s) from it."
+                ? $"Deleted patron tier '{tier.Name}'. {members.Count} matching player(s) were refreshed; their Discord roles were not changed."
                 : $"Deleted patron tier '{tier.Name}'.");
         }
         catch (Exception e)
@@ -387,81 +392,5 @@ internal sealed class PatronDeleteCommand : BasePatronDbCommand
             2 => CompletionResult.FromHintOptions(["force"], "[force]"),
             _ => CompletionResult.Empty
         };
-    }
-}
-
-[AdminCommand(AdminFlags.Host)]
-internal sealed class PatronSetCommand : BasePatronDbCommand
-{
-    public override string Command => "patron:set";
-
-    public override string Description => "Set or remove a player's patron tier in the database";
-
-    public override string Help => "Usage: patron:set <username> <tierIdOrName|none>\n" +
-                                    "Example: patron:set \"John Doe\" \"Gold Tier\"\n" +
-                                    "Example: patron:set \"John Doe\" none";
-
-    public override async void Execute(IConsoleShell shell, string argStr, string[] args)
-    {
-        try
-        {
-            if (args.Length != 2)
-            {
-                shell.WriteError(Help);
-                return;
-            }
-
-            var player = await Db.GetPlayerRecordByUserName(args[0]);
-            if (player == null)
-            {
-                shell.WriteError($"Player '{args[0]}' was never seen on this server.");
-                return;
-            }
-
-            if (args[1].Equals("none", StringComparison.OrdinalIgnoreCase))
-            {
-                if (!await Db.SetPatron(player.UserId, null))
-                {
-                    shell.WriteError($"'{player.LastSeenUserName}' is not a patron.");
-                    return;
-                }
-
-                await RefreshPatrons([player.UserId.UserId]);
-                shell.WriteLine($"Removed patron status from '{player.LastSeenUserName}'.");
-                return;
-            }
-
-            if (await FindTier(shell, args[1]) is not { } tier)
-                return;
-
-            await Db.SetPatron(player.UserId, tier.Id);
-            await RefreshPatrons([player.UserId.UserId]);
-            shell.WriteLine($"Set '{player.LastSeenUserName}' to patron tier '{tier.Name}'.");
-        }
-        catch (Exception e)
-        {
-            shell.WriteError($"Error setting patron:\n{e}");
-        }
-    }
-
-    public override async ValueTask<CompletionResult> GetCompletionAsync(
-        IConsoleShell shell,
-        string[] args,
-        string argStr,
-        CancellationToken cancel)
-    {
-        if (args.Length == 1)
-        {
-            var playerNames = PlayerManager.Sessions.Select(s => s.Name);
-            return CompletionResult.FromHintOptions(playerNames, "<username>");
-        }
-
-        if (args.Length == 2)
-        {
-            var tiers = await Db.GetPatronTiers();
-            return CompletionResult.FromHintOptions(tiers.Select(t => t.Name).Append("none"), "<tierIdOrName|none>");
-        }
-
-        return CompletionResult.Empty;
     }
 }

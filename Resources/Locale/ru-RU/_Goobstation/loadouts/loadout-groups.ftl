@@ -180,5 +180,6 @@ loadout-group-boxer-envirohelm = Экошлем боксёра
 loadout-group-boxer-envirosuit = Экокостюм боксёра
 # Misc
 loadout-group-plasma-tank = баллон плазмы
+loadout-group-security-gloves = Перчатки СБ
 # Shaft Miner
 loadout-group-shaft-miner-jumpsuit = комбинезон шахтёра

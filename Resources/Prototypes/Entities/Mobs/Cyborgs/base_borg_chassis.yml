@@ -249,7 +249,7 @@
     radius: 4
     netsync: false
   - type: Pullable
-  - type: Grabbable # Arcane
+  - type: Grabbable # Goob
   - type: Puller
     needsHands: false
   - type: StandingState
@@ -326,6 +326,7 @@
   # Arcane-start
   - type: TTS
     voice: Glados
+  - type: DirectionalEmote
   # Arcane-end
 
 - type: entity
