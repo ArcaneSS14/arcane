@@ -34,7 +34,7 @@ public sealed partial class DisposalTubeComponent : Component
     {
         DamageDict = new()
         {
-            { "Blunt", 0.0 },
+            { "Blunt", 6.0 }, // Arcane
         }
     };
 }
