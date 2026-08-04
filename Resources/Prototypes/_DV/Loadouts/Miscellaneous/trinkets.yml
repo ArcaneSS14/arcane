@@ -6,6 +6,7 @@
 #  storage:
 #    back:
 #    - GoldRing
+#  groupBy: "ring"  # GoobStation
 
 # Orion-Edit: Duplicate
 #- type: loadout
@@ -13,6 +14,7 @@
 #  storage:
 #    back:
 #    - SilverRing
+#  groupBy: "ring"  # GoobStation
 
 - type: loadout
   id: WhiteCane

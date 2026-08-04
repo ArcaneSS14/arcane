@@ -80,7 +80,7 @@
     - Sheet
     - Metal
     - Steel
-    - ConstructionMaterial # Arcane
+    - ConstructionMaterial # Goob
 
 - type: entity
   parent: SheetSteel
