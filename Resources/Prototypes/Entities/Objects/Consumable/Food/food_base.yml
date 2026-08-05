@@ -20,7 +20,7 @@
 #
 - type: entity
   abstract: true
-  parent: [EdibleBase, FoodRotting] # Arcane
+  parent: EdibleBase
   id: FoodBase
   components:
   - type: SpaceGarbage

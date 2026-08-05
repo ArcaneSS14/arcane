@@ -4,6 +4,7 @@
   abstract: true
   components:
   - type: Flammable
+    alwaysCombustible: false
     damage:
       types: {}
 

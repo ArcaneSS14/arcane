@@ -22,6 +22,58 @@
         {
             "name": "queen_long_tail_grad",
             "directions": 4
+        },
+        {
+            "name": "bers_tail_grad",
+            "directions": 4
+        },
+        {
+            "name": "bers_tail_spike",
+            "directions": 4
+        },
+        {
+            "name": "bers_tail",
+            "directions": 4
+        },
+        {
+            "name": "chris_tail_grad",
+            "directions": 4
+        },
+        {
+            "name": "chris_tail_spike",
+            "directions": 4
+        },
+        {
+            "name": "chris_tail",
+            "directions": 4
+        },
+        {
+            "name": "cougar_tail_claws",
+            "directions": 4
+        },
+        {
+            "name": "cougar_tail_veins",
+            "directions": 4
+        },
+        {
+            "name": "cougar_tail",
+            "directions": 4
+        },
+        {
+            "name": "crocodile_tail_grad",
+            "directions": 4
+        },
+        {
+            "name": "crocodile_tail",
+            "directions": 4
+        },
+        {
+            "name": "razor_tail_grad",
+            "directions": 4
+        },
+        {
+            "name": "razor_tail",
+            "directions": 4
         }
     ]
 }

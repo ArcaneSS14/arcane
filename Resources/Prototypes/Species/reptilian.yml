@@ -13,6 +13,14 @@
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
+  # Arcane-start
+  minHeight: 0.90
+  defaultHeight: 1
+  maxHeight: 1.30
+  minWidth: 0.90
+  defaultWidth: 1
+  maxWidth: 1.25
+  # Arcane-end
   # Orion-Start
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Reptilian.xml"
@@ -29,6 +37,9 @@
 - type: speciesBaseSprites
   id: MobReptilianSprites
   sprites:
+    TailBehind: MobHumanoidAnyMarking # floof
+    TailOversuit: MobHumanoidAnyMarking # floof
+    TailBehindBackpack: MobHumanoidAnyMarking # imp
     Head: MobReptilianHead
     Face: MobHumanoidAnyMarking # Goob?
     Snout: MobHumanoidAnyMarking

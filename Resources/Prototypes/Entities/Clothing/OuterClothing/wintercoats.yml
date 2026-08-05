@@ -47,8 +47,10 @@
     price: 10 # Arcane-Edit: 50 > 10
   - type: PhysicalComposition #Goobstation - Recycle update
     materialComposition:
-      Cloth: 125
-      Durathread: 50
+    # Arcane-Edit-Start
+      Cloth: 3
+      Durathread: 3
+    # Arcane-Edit-End
 
 - type: entity
   parent: [ ClothingOuterStorageToggleableBase, ClothingOuterWinterCoat ]

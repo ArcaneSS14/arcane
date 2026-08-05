@@ -10,6 +10,9 @@
     damage:
       types:
         Piercing: 10
+  - type: Tracer # Arcane
+    color: "#24eefc"
+    length: 0.5
   - type: Sprite
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/smartgun.rsi
     layers:

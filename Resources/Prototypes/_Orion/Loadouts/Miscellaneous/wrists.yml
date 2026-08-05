@@ -22,8 +22,10 @@
   id: GoldRing
   equipment:
     wrists: GoldRing
+  groupBy: "ring" # Arcane: From Goob
 
 - type: loadout
   id: SilverRing
   equipment:
     wrists: SilverRing
+  groupBy: "ring" # Arcane: From Goob

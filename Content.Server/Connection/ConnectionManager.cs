@@ -6,12 +6,14 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Content.Goobstation.Common.CCVar;
 using Content.Server.Administration.Managers;
+using Content.Server._Arcane.DiscordRoles;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection.IPIntel;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
+using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Server.Player;
@@ -65,6 +67,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly IHttpClientHolder _http = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
+        [Dependency] private readonly DiscordRoleManager _discordRoles = default!; // Arcane
 
         private ISawmill _sawmill = default!;
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
@@ -380,7 +383,8 @@ namespace Content.Server.Connection
             if (isAdmin || wasInGame)
                 return true;
 
-            return await _db.GetPatron(userId, default) != null;
+            return await _discordRoles.HasRole(userId, DiscordRole.SponsorTier1, default) ||
+                   await _discordRoles.HasRole(userId, DiscordRole.SponsorTier2, default);
             // arcane sponsor end
         }
     }

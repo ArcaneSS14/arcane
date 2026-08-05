@@ -34,7 +34,12 @@ public sealed partial class DisposalTubeComponent : Component
     {
         DamageDict = new()
         {
-            { "Blunt", 0.0 },
+            { "Blunt", 4.0 }, // Arcane
         }
     };
+
+    // Arcane-start
+    public Dictionary<EntityUid, TimeSpan> LastDamageTime = new();
+    public TimeSpan DamageCooldown = TimeSpan.FromSeconds(30);
+    // Arcane-end
 }

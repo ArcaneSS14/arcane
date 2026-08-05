@@ -322,9 +322,13 @@ namespace Content.Server.Database
 
         Task<bool> UnlinkDiscordAccount(Guid player, CancellationToken cancel);
 
-        Task<RMCPatron?> GetPatron(Guid player, CancellationToken cancel);
+        Task<RMCPatronData> GetPatronData(Guid player, CancellationToken cancel);
 
-        Task<List<RMCPatron>> GetAllPatrons();
+        Task<List<ulong>> GetDiscordRoleIds(Guid player, CancellationToken cancel);
+
+        Task<bool> HasDiscordRole(Guid player, ulong roleId, CancellationToken cancel);
+
+        Task<List<RMCPatronSummary>> GetAllPatrons();
 
         Task SetGhostColor(Guid player, System.Drawing.Color? color);
 
@@ -337,11 +341,9 @@ namespace Content.Server.Database
 
         Task<bool> UpdatePatronTier(RMCPatronTier tier);
 
-        Task<int> CountPatronsInTier(int tierId);
+        Task<List<Guid>> GetPatronPlayerIdsForTier(int tierId);
 
         Task<bool> DeletePatronTier(int tierId);
-
-        Task<bool> SetPatron(Guid player, int? tierId);
         // Goob end
 
         Task SetLobbyMessage(Guid player, string message);
@@ -1105,13 +1107,25 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.UnlinkDiscordAccount(player, cancel));
         }
 
-        public Task<RMCPatron?> GetPatron(Guid player, CancellationToken cancel)
+        public Task<RMCPatronData> GetPatronData(Guid player, CancellationToken cancel)
         {
             DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetPatron(player, cancel));
+            return RunDbCommand(() => _db.GetPatronData(player, cancel));
         }
 
-        public Task<List<RMCPatron>> GetAllPatrons()
+        public Task<List<ulong>> GetDiscordRoleIds(Guid player, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetDiscordRoleIds(player, cancel));
+        }
+
+        public Task<bool> HasDiscordRole(Guid player, ulong roleId, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.HasDiscordRole(player, roleId, cancel));
+        }
+
+        public Task<List<RMCPatronSummary>> GetAllPatrons()
         {
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetAllPatrons());
@@ -1148,10 +1162,10 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.UpdatePatronTier(tier));
         }
 
-        public Task<int> CountPatronsInTier(int tierId)
+        public Task<List<Guid>> GetPatronPlayerIdsForTier(int tierId)
         {
             DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.CountPatronsInTier(tierId));
+            return RunDbCommand(() => _db.GetPatronPlayerIdsForTier(tierId));
         }
 
         public Task<bool> DeletePatronTier(int tierId)
@@ -1160,11 +1174,6 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.DeletePatronTier(tierId));
         }
 
-        public Task<bool> SetPatron(Guid player, int? tierId)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.SetPatron(player, tierId));
-        }
         // Goob end
 
         public Task SetLobbyMessage(Guid player, string message)

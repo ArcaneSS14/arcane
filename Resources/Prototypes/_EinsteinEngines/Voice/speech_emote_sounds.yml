@@ -132,7 +132,7 @@
     Scream:
       collection: SlimeFemaleScreams
     Laugh:
-      collection: MaleLaugh
+      collection: FemaleLaugh # Arcane-Edit
     Sneeze:
       collection: FemaleSneezes
     Cough:

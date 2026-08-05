@@ -99,7 +99,7 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/energy_cell_pistol_overcharge.rsi
   - type: BatteryAmmoProvider
     proto: SMGLaserOvercharged
-    fireCost: 100
+    fireCost: 75 # Arcane-Edit: 100 > 75
 # bluespace smg power cell
 - type: entity
   name: bluespace SMG power cell

@@ -9,13 +9,14 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 """
-Sends updates to a Discord webhook for new changelog entries since the last GitHub Actions publish run.
+Sends new changelog entries or a successful publish notification to a Discord webhook.
 
 Automatically figures out the last run and changelog contents with the GitHub API.
 """
 
 import itertools
 import os
+import sys
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -30,7 +31,10 @@ GITHUB_API_URL = os.environ.get("GITHUB_API_URL", "https://api.github.com")
 DISCORD_SPLIT_LIMIT = 2000
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 
-CHANGELOG_FILE = "Resources/Changelog/GoobChangelog.yml"
+CHANGELOG_FILE = (
+    os.environ.get("CHANGELOG_FILE")
+    or "Resources/Changelog/ArcaneChangelog.yml"
+)
 
 TYPES_TO_EMOJI = {"Fix": "🐛", "Add": "🆕", "Remove": "❌", "Tweak": "⚒️"}
 
@@ -40,6 +44,10 @@ ChangelogEntry = dict[str, Any]
 def main():
     if not DISCORD_WEBHOOK_URL:
         print("No discord webhook URL found, skipping discord send")
+        return
+
+    if "--publish-notification" in sys.argv:
+        send_publish_notification()
         return
 
     if DEBUG:
@@ -100,11 +108,11 @@ def get_last_changelog() -> str:
 
     session = requests.Session()
     session.headers["Authorization"] = f"Bearer {github_token}"
-    session.headers["Accept"] = "Accept: application/vnd.github+json"
+    session.headers["Accept"] = "application/vnd.github+json"
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
     most_recent = get_most_recent_workflow(session, github_repository, github_run)
-    last_sha = most_recent["head_commit"]["id"]
+    last_sha = most_recent["head_sha"]
     print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
     last_changelog_stream = get_last_changelog_by_sha(
         session, last_sha, github_repository
@@ -153,12 +161,28 @@ def get_discord_body(content: str):
     }
 
 
-def send_discord_webhook(lines: list[str]):
-    content = "".join(lines)
+def send_discord_message(content: str):
     body = get_discord_body(content)
 
     response = requests.post(DISCORD_WEBHOOK_URL, json=body)
     response.raise_for_status()
+
+
+def send_discord_webhook(lines: list[str]):
+    send_discord_message("".join(lines))
+
+
+def send_publish_notification():
+    repository = os.environ.get("GITHUB_REPOSITORY")
+    sha = os.environ.get("GITHUB_SHA")
+
+    message = "✅ **Сервер обновлён**"
+    if repository and sha:
+        commit_url = f"https://github.com/{repository}/commit/{sha}"
+        message += f"\nУстановлена версия [`{sha[:7]}`]({commit_url})."
+
+    print("Sending publish notification to discord")
+    send_discord_message(message)
 
 
 def changelog_entries_to_message_lines(entries: Iterable[ChangelogEntry]) -> list[str]:
