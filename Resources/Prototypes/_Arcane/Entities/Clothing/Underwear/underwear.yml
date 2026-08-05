@@ -124,3 +124,12 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Underwear/Underwear/red.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearAx
+  name: ax panties
+  description: Uga buga.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/ax.rsi

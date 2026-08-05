@@ -12,3 +12,5 @@ ent-ClothingUnderwearPinkFancy = модные розовые трусы
     .desc = Розовые, как Барби.
 ent-ClothingUnderwearRed = красные трусы
     .desc = Красные трусы.
+ent-ClothingUnderwearAx = трусы Акса
+    .desc = Уга буга.
