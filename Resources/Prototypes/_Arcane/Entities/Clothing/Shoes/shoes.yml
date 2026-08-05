@@ -46,7 +46,7 @@
 
 - type: entity
   parent: ClothingShoesClown
-  id: ClothingShoesJester
+  id: ClothingShoesJesters
   name: jester's shoes
   description: Old-fashioned clown shoes.
   components:

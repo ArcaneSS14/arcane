@@ -354,8 +354,8 @@
   id: TwilightSparklePatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformTwilightSparkle
 
@@ -363,8 +363,8 @@
   id: BotanistUniformPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformBotanist
 
@@ -372,8 +372,8 @@
   id: BotanistUniformWithStrapsPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformBotanistWhithStraps
 
@@ -381,8 +381,8 @@
   id: CamouflageUniformPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformCamouflage
 
@@ -390,8 +390,8 @@
   id: ChiefCookUniformPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformChiefCook
 
@@ -399,8 +399,8 @@
   id: FreeClothesPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformFreeClothes
 
@@ -408,8 +408,8 @@
   id: CookUniformPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformCook
 
@@ -417,8 +417,8 @@
   id: DancerDressPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformDancer
 
@@ -426,8 +426,8 @@
   id: FeminineUniformPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformFeminine
 
@@ -435,8 +435,8 @@
   id: EmptyFeminineUniformPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformFeminineEmpty
 
@@ -444,8 +444,8 @@
   id: JesterCostumePatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformJesterCostume
 
@@ -453,8 +453,8 @@
   id: PerfomanceDressPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformPerfomanceDress
 
@@ -462,8 +462,8 @@
   id: ComfortableUniformPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformComfortableUniform
 
@@ -471,8 +471,8 @@
   id: ServiveShirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformServiceShirt
 
@@ -480,8 +480,8 @@
   id: ServiveShirtSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformServiceShirtSkirt
 
@@ -489,8 +489,8 @@
   id: SterileUniformPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformSterileUniform
 
@@ -498,8 +498,8 @@
   id: ServiceApronPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     belt: ClothingBeltServiceApron
 
@@ -507,8 +507,8 @@
   id: MimeMittensPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     gloves: ClothingHandsMimeMittens
 
@@ -516,8 +516,8 @@
   id: BotanistHatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatBotanist
 
@@ -525,8 +525,8 @@
   id: CamouflageHatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatCamouflage
 
@@ -534,8 +534,8 @@
   id: ClownCilinderPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatClownCilinder
 
@@ -543,8 +543,8 @@
   id: FishCookBandanaPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatFishCookBandana
 
@@ -552,8 +552,8 @@
   id: HighCookHatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatCookHigh
 
@@ -561,8 +561,8 @@
   id: InclinedCookHatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatCookInclined
 
@@ -570,8 +570,8 @@
   id: RedCookHatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatCookRed
 
@@ -579,8 +579,8 @@
   id: JesterHatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatJester
 
@@ -588,8 +588,8 @@
   id: IanCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     neck: ClothingCloakIan
 
@@ -597,8 +597,8 @@
   id: CleanerJumpsuitPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterCleanerJumpsuit
 
@@ -606,8 +606,8 @@
   id: CookApronPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterCookApron
 
@@ -615,8 +615,8 @@
   id: MusicianJacketPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterMusicianJacket
 
@@ -624,8 +624,8 @@
   id: RadioHostJacketPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterRadioHostJacket
 
@@ -633,8 +633,8 @@
   id: CowCostumePatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterCow
 
@@ -642,8 +642,8 @@
   id: ServiceJacketPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterServiceJacket
 
@@ -651,8 +651,8 @@
   id: MusicianBootsPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     shoes: ClothingShoesMusicianBoots
 
@@ -660,17 +660,17 @@
   id: JesterShoesPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
-    shoes: ClothingShoesJester
+    shoes: ClothingShoesJesters
 
 - type: loadout
   id: TwilightSparkleBootsPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     shoes: ClothingShoesTwilightSparkle
 
@@ -678,8 +678,8 @@
   id: WorkerBootsPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     shoes: ClothingShoesWorkerBoots
 
@@ -687,8 +687,8 @@
   id: MimeStockingsPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     socks: ClothingMimeStockings
 
@@ -696,8 +696,8 @@
   id: JesterPantsPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     underwear: ClothingUnderwearJesterPants
 
@@ -705,8 +705,8 @@
   id: TwilightSparkleGlassesPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     eyes: ClothingEyesBookWorm
 
@@ -714,5 +714,5 @@
   id: RadioHostMicrophonePatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
