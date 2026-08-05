@@ -13,9 +13,9 @@
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Dwarf.xml"
   minAge: 18
-  maxAge: 500
-  youngAge: 150
-  oldAge: 300
+  maxAge: 400
+  youngAge: 120
+  oldAge: 240
   pros:
   - Обладают врождённой чувствительностью к наличию рудоносных жил в радиусе 3х метров.
   - Этанол лечит на 0.66 уколов и ушибов и на 0.68 порезов, при наличии менее 5 единиц в организме.
