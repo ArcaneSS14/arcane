@@ -66,6 +66,14 @@
         {
             "name": "neomorph_tail",
             "directions": 4
+        },
+        {
+            "name": "prowler_tail_grad",
+            "directions": 4
+        },
+        {
+            "name": "prowler_tail",
+            "directions": 4
         }
     ]
 }

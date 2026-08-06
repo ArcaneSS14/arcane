@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server._Art.TTS;
 using Content.Server._Goobstation.Antag;
 using Content.Server.Acz;
 using Content.Server.Administration;
@@ -79,6 +80,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly ServerApi _serverApi = default!;
         [Dependency] private readonly ServerInfoManager _serverInfo = default!;
         [Dependency] private readonly ServerUpdateManager _updateManager = default!;
+        [Dependency] private readonly TTSManager _ttsManager = default!; // Art-TTS
 
         [Dependency] private readonly LastRolledAntagManager _lastAntagManager = default!; // Goobstation
 
@@ -129,6 +131,7 @@ namespace Content.Server.Entry
             _ghostKick.Initialize();
             _serverInfo.Initialize();
             _serverApi.Initialize();
+            _ttsManager.Initialize(); // Art-TTS
             _voteManager.Initialize();
             _updateManager.Initialize();
             _playTimeTracking.Initialize();

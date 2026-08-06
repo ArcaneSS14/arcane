@@ -2,8 +2,8 @@
   id: BoomboxPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   storage:
     back:
     - HandledBoomBox
@@ -12,8 +12,8 @@
   id: BartenderPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformBartender
 
@@ -21,8 +21,8 @@
   id: BartenderSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformBartenderSkirt
 
@@ -30,8 +30,8 @@
   id: CEBlackPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformCEBlack
 
@@ -39,8 +39,8 @@
   id: CEBlackSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformCEBlackSkirt
 
@@ -48,8 +48,8 @@
   id: CEWhiteSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformCEWhiteSkirt
 
@@ -57,8 +57,8 @@
   id: CEWhitePatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformCEWhite
 
@@ -66,8 +66,8 @@
   id: ClownPinkPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformPinkClown
 
@@ -75,8 +75,8 @@
   id: CMOSweaterSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformCMOSweaterSkirt
 
@@ -84,8 +84,8 @@
   id: CMOSweaterPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformCMOSweater
 
@@ -93,8 +93,8 @@
   id: HOSShortDressPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformHOSShortDress
 
@@ -102,8 +102,8 @@
   id: NunDressPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformNun
 
@@ -111,8 +111,8 @@
   id: SleevelesQMBlackSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformQMBlackSkirtSleeveles
 
@@ -120,8 +120,8 @@
   id: SleevelesQMBlackPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformQMBlackSleeveles
 
@@ -129,8 +129,8 @@
   id: SleevelesQMSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformQMSkirtSleeveles
 
@@ -138,8 +138,8 @@
   id: SleevelesQMPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     jumpsuit: ClothingUniformQMSleeveles
 
@@ -147,8 +147,8 @@
   id: QMGlovesPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     gloves: ClothingHandsQMLongGloves
 
@@ -156,8 +156,8 @@
   id: QMShoesPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     shoes: ClothingShoesQMBoots
 
@@ -165,8 +165,8 @@
   id: OldFashionesDoctorShoesPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     shoes: ClothingShoesOldFashionedMedical
 
@@ -174,8 +174,8 @@
   id: CEBlackBeretPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatCEBlackBeret
 
@@ -183,8 +183,8 @@
   id: ClownPinkHatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatClownPink
 
@@ -192,8 +192,8 @@
   id: CMOHatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatCMO
 
@@ -201,8 +201,8 @@
   id: HOSCapPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatHOSCap
 
@@ -210,8 +210,8 @@
   id: QMBlackBeretPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatQMBlackBeret
 
@@ -219,8 +219,8 @@
   id: SanitarHatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     head: ClothingHatSanitar
 
@@ -228,8 +228,8 @@
   id: LeatherCoatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterArmorHoSLeather
 
@@ -237,8 +237,8 @@
   id: HOSLongVestPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterHOSLongVest
 
@@ -246,8 +246,8 @@
   id: EeayLabCoatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterCoatLabEasy
 
@@ -255,8 +255,8 @@
   id: LabCoatBeltsPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterCoatLabBelts
 
@@ -264,8 +264,8 @@
   id: LabCoatBlackPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterCoatLabBlack
 
@@ -273,8 +273,8 @@
   id: LivseyCoatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterCoatLabEnlightenment
 
@@ -282,8 +282,8 @@
   id: ApostolCoatPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     outerClothing: ClothingOuterApostolCoat
 
@@ -291,8 +291,8 @@
   id: CEBlackCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     neck: ClothingCloakCEBlack
 
@@ -300,8 +300,8 @@
   id: CETricolorCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     neck: ClothingCloakCETricolor
 
@@ -309,8 +309,8 @@
   id: CMOHonorableCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     neck: ClothingCloakCMOHonorable
 
@@ -318,8 +318,8 @@
   id: HOSBlackCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     neck: ClothingCloakHOSBlack
 
@@ -327,8 +327,8 @@
   id: HOSRedCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     neck: ClothingCloakHOSRed
 
@@ -336,8 +336,8 @@
   id: QMBlackCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     neck: ClothingCloakQMBlack
 
@@ -345,7 +345,7 @@
   id: QMWhiteCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
-    tiers:
-    - Tier2
+    roles:
+    - SponsorTier2
   equipment:
     neck: ClothingCloakQMWhite

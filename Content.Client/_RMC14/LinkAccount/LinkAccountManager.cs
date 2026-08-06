@@ -2,13 +2,11 @@
 
 using Content.Shared._RMC14.LinkAccount;
 using Content.Shared._Arcane.LinkAccount;
-using Content.Shared._Arcane.Sponsor;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 
 namespace Content.Client._RMC14.LinkAccount;
 
-public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
+public sealed class LinkAccountManager : IPostInjectInit
 {
     [Dependency] private readonly INetManager _net = default!;
 
@@ -65,11 +63,6 @@ public sealed class LinkAccountManager : IPostInjectInit, ISharedSponsorManager
                 tier.GhostParticles || // Goob - ghost cosmetics
                 tier.LobbyMessage ||
                 tier.RoundEndShoutout);
-    }
-
-    public bool HasSponsor(ICommonSession session, string? tier = null)
-    {
-        return ArcaneSponsorTiers.HasTier(Tier?.Tier, tier);
     }
 
     // arcane discord link start

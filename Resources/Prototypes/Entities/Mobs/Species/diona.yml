@@ -14,9 +14,9 @@
   - type: HumanoidAppearance
     species: Diona
   - type: Hunger
-    baseDecayRate: 0.0083
+    baseDecayRate: 0.020833 # Goobstation base rate changed, 2 times lower than base
   - type: Thirst
-    baseDecayRate: 0.0083
+    baseDecayRate: 0.0625 # Goobsatation base rate changed, 2 times lower than base
   - type: Icon
     sprite: Mobs/Species/Diona/parts.rsi
     state: full
@@ -132,6 +132,29 @@
       - Shard
   - type: SpeedModifierImmunity
   - type: Rootable
+  # Arcane-start: species-specific organ prototypes
+  - type: EroticOrgans
+    groinCommon:
+    - proto: OrganAnus
+      slot: anus
+    - proto: OrganButt
+      slot: butt
+    groinMale:
+    - proto: OrganPenisDiona
+      slot: penis
+    - proto: OrganTesticles
+      slot: testicles
+    groinFemale:
+    - proto: OrganVagina
+      slot: vagina
+    - proto: OrganUterus
+      slot: uterus
+    chestFemale:
+    - proto: OrganBreastsHuman
+      slot: breasts
+    hideWhenFlaccid:
+    - penis
+  # Arcane-end
 
 - type: entity
   parent: BaseSpeciesDummy

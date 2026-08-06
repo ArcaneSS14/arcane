@@ -50,8 +50,10 @@
           True: { visible: false }
       enum.WiresVisuals.MaintenancePanelState:
         enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
+          # Arcane-Edit-Start: Fix
+          True: { visible: true }
+          False: { visible: false }
+          # Arcane-Edit-End
   - type: Machine
     board: HolopadMachineCircuitboard
   - type: StationAiWhitelist

@@ -52,6 +52,14 @@
     - mars
     - marsing
     - marsed
+    # Arcane-Start
+    - марс
+    - марс!
+    - марс.
+    - мар
+    - мар!
+    - мар.
+    # Arcane-End
 
 - type: emoteSounds
   id: UnisexPlasmaman

@@ -3,12 +3,20 @@
 injector-draw-text = Забор
 injector-inject-text = Введение
 injector-invalid-injector-toggle-mode = Неверный режим
-injector-volume-label =
+injector-volume-transfer-label =
     Объём: [color=white]{ $currentVolume }/{ $totalVolume }[/color]
     Режим: [color=white]{ $modeString }[/color] ([color=white]{ $transferVolume } ед.[/color])
+injector-volume-label =
+    Объём: [color=white]{ $currentVolume }/{ $totalVolume }[/color]
+    Режим: [color=white]{ $modeString }[/color]
+injector-toggle-verb-text = Переключить режим инъектора
 
 ## Entity
 
+injector-component-inject-mode-name = введение
+injector-component-draw-mode-name = забор
+injector-component-dynamic-mode-name = динамический
+injector-component-mode-changed-text = Текущий режим: { $mode }
 injector-component-drawing-text = Содержимое набирается
 injector-component-injecting-text = Содержимое вводится
 injector-component-cannot-transfer-message = Вы не можете ничего переместить в { $target }!

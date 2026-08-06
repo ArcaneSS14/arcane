@@ -13,10 +13,33 @@
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
+  # Arcane-start
+  minHeight: 0.90
+  defaultHeight: 1
+  maxHeight: 1.30
+  minWidth: 0.90
+  defaultWidth: 1
+  maxWidth: 1.25
+  # Arcane-end
+  # Orion-Start
+  category: Classic
+  description: "/ServerInfo/_Orion/SpeciesDescriptions/Reptilian.xml"
+  pros:
+  - Имеют большую толерантность к боли.
+  - Могут таскать предметы хвостом.
+  special:
+  - Имеют отличимый от других рас порог температуры. При низкой температуре получают 0.1 холода в секунду. При высокой температуре получают 1.5 ожогов в секунду.
+  - Имеет животный желудок.
+  cons:
+  - На 30% чувствительнее к холоду, чем человек.
+  # Orion-End
 
 - type: speciesBaseSprites
   id: MobReptilianSprites
   sprites:
+    TailBehind: MobHumanoidAnyMarking # floof
+    TailOversuit: MobHumanoidAnyMarking # floof
+    TailBehindBackpack: MobHumanoidAnyMarking # imp
     Head: MobReptilianHead
     Face: MobHumanoidAnyMarking # Goob?
     Snout: MobHumanoidAnyMarking

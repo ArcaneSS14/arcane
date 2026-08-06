@@ -621,6 +621,7 @@
     PainterLawset: 1
     AntimovLawset: 0.25
     NutimovLawset: 0.5
+    ArtPlanetSupportLawset: 1 # Arcane
     HelpimovLawset: 0.6 #Goobstation
     Drone: 0.5
     Ninja: 0.25

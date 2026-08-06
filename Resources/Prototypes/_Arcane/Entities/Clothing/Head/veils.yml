@@ -1,0 +1,44 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadWhiteVeil
+  name: white veil
+  description: White veil.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Veils/white_veil.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Veils/white_veil.rsi
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: closed
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBlackVeil
+  name: black veil
+  description: Black veil.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Veils/black_veil.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Veils/black_veil.rsi
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: closed
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBeerVeil
+  name: beer veil
+  description: Beer veil.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Veils/beer_veil.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Veils/beer_veil.rsi
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: closed

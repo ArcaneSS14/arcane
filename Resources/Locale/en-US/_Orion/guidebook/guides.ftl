@@ -16,6 +16,7 @@ guide-entry-space-law-laws-3xx = Laws (3xx)
 guide-entry-space-law-laws-4xx = Laws (4xx)
 guide-entry-space-law-laws-5xx = Laws (5xx)
 guide-entry-space-law-laws-6xx = Laws (6xx)
+guide-entry-space-law-laws-space-rights = Space rights
 guide-entry-space-law-laws-procedures = Procedures
 
 guide-entry-antagonist = Antagonists

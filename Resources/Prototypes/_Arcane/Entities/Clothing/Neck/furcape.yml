@@ -6,3 +6,12 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Neck/Cape/furcape.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingArcticFoxCape
+  name: arctic fox cape
+  description: The perfect addition to the look!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Cape/arctic_fox_cape.rsi

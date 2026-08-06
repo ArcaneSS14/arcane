@@ -106,7 +106,9 @@ public sealed class PayrollSystem : EntitySystem
             if (!TryComp<MindRoleComponent>(role, out var mindRole) || mindRole.JobPrototype == null)
                 continue;
 
-            var job = _proto.Index(mindRole.JobPrototype.Value);
+            if (!_proto.TryIndex(mindRole.JobPrototype.Value, out JobPrototype? job)) // Arcane-Edit
+                continue; // Arcane
+
             if (job.Salary is null or <= 0)
                 continue;
 
