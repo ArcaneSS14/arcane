@@ -9,12 +9,12 @@ public sealed class PlayBarkEvent(NetEntity sourceUid, string message, bool whis
     public string Message { get; } = message;
     public bool Whisper { get; } = whisper;
 
-    // Orion-Start
+    // Arcane-Start
     /// <summary>
     /// Bark prototype id, when the bark is played for a radio listener that cannot see the speaker entity.
     /// </summary>
     public string? BarkProtoId { get; } = barkProtoId;
-    // Orion-End
+    // Arcane-End
 }
 
 [Serializable, NetSerializable]
