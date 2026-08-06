@@ -163,8 +163,6 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: cougar_tail
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
-    state: cougar_tail_claws
-  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: cougar_tail_veins
 
 - type: marking
@@ -738,3 +736,21 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_arms.rsi
     state: razor_claws_right
+
+- type: marking
+  id: HumanoidXenoHandClawsLeft
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/short_claws_arms.rsi
+    state: short_claws_left
+
+- type: marking
+  id: HumanoidXenoHandClawsRight
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/short_claws_arms.rsi
+    state: short_claws_right

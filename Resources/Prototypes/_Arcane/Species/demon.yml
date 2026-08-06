@@ -12,6 +12,10 @@
   sexes: [Male, Female, Futanari]
   category: Unusual
   description: "/ServerInfo/_Arcane/SpeciesDescriptions/Demon.xml"
+  minAge: 18
+  maxAge: 250
+  youngAge: 80
+  oldAge: 175
   minHeight: 0.90
   defaultHeight: 1
   maxHeight: 1.20
