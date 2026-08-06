@@ -181,7 +181,6 @@
     - SecurityAmmoStaticGoob
     - SyndicateAmmoLightStatic
     - ScienceExplosives
-    - MedicalBeamGunSyndicate
   - type: BlueprintReceiver
     whitelist:
       tags:
