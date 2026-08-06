@@ -37,8 +37,8 @@ namespace Content.Server.Voting.Managers
 
         // Arcane-start
         const int PresetMemory = 5;
-        const int MapMemory = 8;
-        const int MapAvailableCount = 2; // Макс кол-во раундов на этой карте в памяти
+        const int MapMemory = 6;
+        const int MapAvailableCount = 1; // Макс кол-во раундов на этой карте в памяти
         const int PresetAvailableCount = 2; // Макс кол-во раундов в памяти с этим режимом
         private List<string> _mapStory = new();
         private List<string> _gameruleStory = new();
@@ -297,7 +297,7 @@ namespace Content.Server.Voting.Managers
             foreach (var (k, v) in maps)
             {
                 // Arcane-start
-                if (_mapStory.Count(el => el == v) >= MapAvailableCount)
+                if (_mapStory.Count(el => el == k.ID) >= MapAvailableCount)
                     continue;
                 // Arcane-end
                 options.Options.Add((v, k));
