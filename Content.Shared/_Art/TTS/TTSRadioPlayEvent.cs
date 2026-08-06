@@ -7,4 +7,4 @@ namespace Content.Shared._Art.TTS;
 public readonly record struct TTSRadioPlayEvent(string Message, LanguagePrototype Language, string Voice);
 
 [ByRefEvent]
-public readonly record struct TTSAnnouncePlayEvent(string Message, EntityUid? Sender, Filter Recievers);
+public readonly record struct TTSAnnouncePlayEvent(string Message, EntityUid? Sender, Filter Receievers);

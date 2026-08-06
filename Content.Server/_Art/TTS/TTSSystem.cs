@@ -89,7 +89,7 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (voice != null)
         {
-            var receivers = args.Recievers;
+            var receivers = args.Receievers;
             var message = args.Message;
             Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(6), () => HandleReceiveRadio(receivers, message, voice, "announce"));
         }
