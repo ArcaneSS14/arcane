@@ -52,6 +52,9 @@
   - Drill
   - Saw
   - Hemostat
+  # Arcane-Start
+  - SawElectric
+  # Arcane-End
 
 - type: latheRecipePack
   id: MedicalStatic
@@ -65,6 +68,10 @@
   - OffsetCane
   - OffsetCaneWood
   - JetInjector
+  # Arcane-Start
+  - Bloodpack
+  - ClothingNeckStethoscope
+  # Arcane-End
 
 - type: latheRecipePack
   id: RollerBedsStatic
@@ -79,6 +86,9 @@
   - ClothingHandsGlovesLatex
   - ClothingHandsGlovesNitrile
   - ClothingMaskSterile
+  # Arcane-Start
+  - ClothingEyesNightVisionMedicalGoggles
+  # Arcane-End
 
 # These are all empty
 - type: latheRecipePack
@@ -102,6 +112,14 @@
   - ChemMasterMachineCircuitboard
   - CondenserMachineCircuitBoard
   - HotplateMachineCircuitboard
+  # Arcane-Start
+  - MedicalScannerMachineCircuitboard
+  - MedicalRecordsComputerCircuitboard
+  - CrewMonitoringComputerCircuitboard
+  - MedicalBiofabMachineBoard
+  - DiagnoserMachineCircuitboard
+  - VaccinatorMachineCircuitboard
+  # Arcane-End
 
 ## Dynamic
 
