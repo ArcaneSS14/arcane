@@ -45,7 +45,7 @@
     children:
     # Orion-Start
     - id: MorphInfestation
-    - id: CorticalBorerInfestation
+    # - id: CorticalBorerInfestation # Arcane-remove
     # Orion-End
     - id: ClosetSkeleton
     - id: KingRatMigration
