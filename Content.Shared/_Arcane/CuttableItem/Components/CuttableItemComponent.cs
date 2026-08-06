@@ -1,6 +1,7 @@
 using Robust.Shared.GameStates;
 using Content.Shared.Radio;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Tools;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Arcane.CuttableItem.Components;
 
@@ -13,35 +14,31 @@ namespace Content.Shared._Arcane.CuttableItem.Components;
 public sealed partial class CuttableItemComponent : Component
 {
     /// <summary>
-    /// A list of quality tools that can be used to cut this object.
+    /// The quality of the tools needed to cut the object.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public List<string> ToolQualities = new()
-    {
-        "Sawing"
-    };
+    [DataField(required: true), AutoNetworkedField]
+    public List<ProtoId<ToolQualityPrototype>> ToolQualities = new();
 
     /// <summary>
-    /// The time in seconds required to cut the object.
+    /// The time in seconds required to cut through the object.
     /// </summary>
     [DataField, AutoNetworkedField]
     public float Delay = 45.0f;
 
     /// <summary>
-    /// The ID of the prototype radio channel for sending the notification.
-    /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<RadioChannelPrototype>)), AutoNetworkedField]
-    public string RadioChannel = "Security";
-
-    /// <summary>
-    /// The localization key for the message in the communication channel.
+    /// The ID of the prototype radio channel for sending notifications when an attempt is made to cut through.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public string AlertMessage = "cuttable-item-alert-activated";
+    public ProtoId<RadioChannelPrototype> RadioChannel = "Security";
+
+    /// <summary>
+    /// The localization key for the message being sent to the communication channel.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public LocId AlertMessage = "cuttable-item-alert-activated";
 }
 
-public sealed class CuttableCutEvent(EntityUid user, EntityUid item) : HandledEntityEventArgs
+public sealed class CuttableCutEvent(EntityUid user) : HandledEntityEventArgs
 {
     public EntityUid User { get; } = user;
-    public EntityUid Item { get; } = item;
 }

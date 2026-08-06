@@ -64,8 +64,8 @@
 
 # Arcane-Start
 - type: latheRecipe
-  id: ClothingStabikor
-  result: ClothingStabikor
+  id: ClothingAggressionInhibitor
+  result: ClothingAggressionInhibitor
   categories:
   - Clothing
   completetime: 4

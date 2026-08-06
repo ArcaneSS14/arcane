@@ -2,16 +2,14 @@ using Content.Shared.Access;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
-using Content.Shared.Tag;
 
-namespace Content.Shared._Arcane.Stabikor.Components;
+namespace Content.Shared._Arcane.AggressionInhibitor.Components;
 
 /// <summary>
 /// A component that punishes creatures with a bad tone with electric shocks
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class StabikorComponent : Component
+public sealed partial class AggressionInhibitorComponent : Component
 {
     /// <summary>
     ///     Stores the UID of the player who is wearing the object
@@ -25,7 +23,7 @@ public sealed partial class StabikorComponent : Component
     /// <summary>
     ///     The time in seconds for which the object is blocked
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public float Duration = 60f;
 
     /// <summary>
@@ -44,13 +42,14 @@ public sealed partial class StabikorComponent : Component
     ///     Electric shock damage after punishment
     /// </summary>
     [DataField]
-    public int Damage = 5;
+    public int Damage = 10;
 
     /// <summary>
-    ///     The time of the knockout after the punishment
+    /// The time of the knockout after the punishment (in seconds).
     /// </summary>
     [DataField]
-    public float TimeStan = 5.0f;
+    public float TimeStun = 10.0f;
+
 
     /// <summary>
     ///     Object status: blocked or not
@@ -61,23 +60,14 @@ public sealed partial class StabikorComponent : Component
     /// <summary>
     ///     Who can CLOSE the object
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public List<ProtoId<AccessLevelPrototype>> LockAccess = new()
-    {
-        "Security"
-    };
+    [DataField(required: true), AutoNetworkedField]
+    public List<ProtoId<AccessLevelPrototype>> LockAccess = new();
 
     /// <summary>
     ///     Who can OPEN the object
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public List<ProtoId<AccessLevelPrototype>> UnlockAccess = new()
-    {
-        "Armory",
-        "HeadOfSecurity",
-        "Captain",
-        "CentralCommand"
-    };
+    [DataField(required: true), AutoNetworkedField]
+    public List<ProtoId<AccessLevelPrototype>> UnlockAccess = new();
 
     /// <summary>
     ///     Sound of successful blocking
@@ -99,13 +89,20 @@ public sealed partial class StabikorComponent : Component
 
 }
 
-[Serializable, NetSerializable]
-public sealed class OpenDialogEvent(NetEntity verp) : EntityEventArgs
+/// <summary>
+/// A local event for requesting the opening of the time dialog
+/// </summary>
+public sealed class OpenDialogEvent(EntityUid target, EntityUid user) : EntityEventArgs
 {
-    public NetEntity Verp = verp;
+    public EntityUid Target { get; } = target;
+    public EntityUid User { get; } = user;
 }
-[Serializable, NetSerializable]
-public sealed class ToggleLockEvent(NetEntity verp) : EntityEventArgs
+
+/// <summary>
+/// A local event for requesting a lock change (ToggleLock)
+/// </summary>
+public sealed class ToggleLockEvent(EntityUid target, EntityUid user) : EntityEventArgs
 {
-    public NetEntity Verp = verp;
+    public EntityUid Target { get; } = target;
+    public EntityUid User { get; } = user;
 }

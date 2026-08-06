@@ -1,10 +1,8 @@
 using Content.Shared._Arcane.CuttableItem.Components;
 using Content.Shared.Interaction;
-using Content.Shared.Tools;
 using Content.Shared.DoAfter;
 using Content.Shared.CuttableItem;
 using Content.Shared.Popups;
-using Content.Shared.Inventory;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Network;
 using Content.Shared.Examine;
@@ -13,14 +11,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Arcane.CuttableItem.Systems;
 
-public sealed class SharedCuttableItemSystem : EntitySystem
+public sealed partial class SharedCuttableItemSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedToolSystem _toolSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedToolSystem _toolSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private INetManager _netManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
@@ -28,78 +24,38 @@ public sealed class SharedCuttableItemSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<CuttableItemComponent, InteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<CuttableItemComponent, CuttableDoAfterEvent>(OnCutCompleted);
         SubscribeLocalEvent<CuttableItemComponent, ExaminedEvent>(OnExamined);
     }
 
     private void OnInteractUsing(EntityUid uid, CuttableItemComponent comp, InteractUsingEvent args)
     {
-        var toolFound = false;
+        if (args.Handled || _netManager.IsClient)
+            return;
 
-        foreach (var quality in comp.ToolQualities)
+        var toolFound = false;
+        for (var i = 0; i < comp.ToolQualities.Count; i++)
         {
-            if (_toolSystem.HasQuality(args.Used, quality))
+            if (_toolSystem.HasQuality(args.Used, comp.ToolQualities[i]))
             {
                 toolFound = true;
                 break;
             }
         }
 
-        if (_netManager.IsClient || !toolFound)
+        if (!toolFound)
             return;
 
-        args.Handled = true;
-
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, comp.Delay, new CuttableDoAfterEvent(), uid, target: uid, used: args.Used)
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(comp.Delay), new CuttableDoAfterEvent(), uid, target: uid, used: args.Used)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = true
         };
 
-        _popup.PopupEntity(Loc.GetString("cuttable-item-attempt-broken-popup", ("item", uid), ("user", Loc.GetString(Name(args.User)))), uid);
-
-        _doAfter.TryStartDoAfter(doAfterArgs);
-        Dirty(uid, comp);
-    }
-
-    private void OnCutCompleted(EntityUid uid, CuttableItemComponent comp, CuttableDoAfterEvent args)
-    {
-        if (args.Cancelled || args.Handled || _netManager.IsClient)
-            return;
-
-        args.Handled = true;
-
-        var victim = Transform(uid).ParentUid;
-
-        if (victim.IsValid())
+        if (_doAfter.TryStartDoAfter(doAfterArgs))
         {
-            if (_inventorySystem.TryGetSlots(victim, out var slotDefinitions))
-            {
-                if (_netManager.IsClient)
-                    return;
-
-                foreach (var slotDef in slotDefinitions)
-                {
-                    if (_inventorySystem.TryGetSlotEntity(victim, slotDef.Name, out var slotEntity) && slotEntity == uid)
-                    {
-                        var target = args.User;
-
-                        if (_inventorySystem.TryUnequip(target, victim, slotDef.Name, force: true))
-                        {
-                            _transformSystem.AttachToGridOrMap(uid);
-
-                            var victimCoords = Transform(victim).Coordinates;
-                            _transformSystem.SetCoordinates(uid, victimCoords);
-                            _popup.PopupEntity(Loc.GetString("cuttable-item-broken-moment-popup", ("item", uid)), uid);
-
-                            var ev = new CuttableCutEvent(target, uid);
-                            RaiseLocalEvent(uid, ev);
-                        }
-                        break;
-                    }
-                }
-            }
+            args.Handled = true;
+            _popup.PopupEntity(Loc.GetString("cuttable-item-attempt-broken-popup", ("item", uid), ("user", Name(args.User))), uid);
         }
     }
 
@@ -113,7 +69,7 @@ public sealed class SharedCuttableItemSystem : EntitySystem
 
         foreach (var qualityId in comp.ToolQualities)
         {
-            if (_prototypeManager.TryIndex<ToolQualityPrototype>(qualityId, out var qualityProto))
+            if (_prototypeManager.TryIndex(qualityId, out var qualityProto))
             {
                 var qualityName = Loc.GetString(qualityProto.Name);
                 message.AddMarkupOrThrow($" - [color=yellow]{qualityName}[/color]\n");
