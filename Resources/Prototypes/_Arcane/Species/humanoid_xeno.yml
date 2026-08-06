@@ -88,8 +88,7 @@
       required: false
     Tracheas:
       points: 1
-      required: true
-      defaultMarkings: [ HumanoidXenoTracheasDrone ]
+      required: false
     LeftFoot:
       points: 1
       required: false
