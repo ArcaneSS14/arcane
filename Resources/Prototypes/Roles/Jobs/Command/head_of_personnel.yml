@@ -21,6 +21,9 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 4h # Goobstation
+    - !type:SpeciesRequirement # Arcane: no restrictions
+      inverted: true
+      species:
 #  guides: # goobstation | Orion-Edit: Removed because dont have this SOP
 #  - Command
 #  - Succession

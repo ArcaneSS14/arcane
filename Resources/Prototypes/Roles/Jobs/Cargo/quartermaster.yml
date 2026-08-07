@@ -15,6 +15,9 @@
     - !type:DepartmentTimeRequirement
       department: Cargo
       time: 10h
+    - !type:SpeciesRequirement # Arcane: no restrictions
+      inverted: true
+      species:
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"

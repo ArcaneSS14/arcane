@@ -12,6 +12,9 @@
   - !type:DepartmentTimeRequirement
     department: Science
     time: 10h
+  - !type:SpeciesRequirement # Arcane: no restrictions
+      inverted: true
+      species:
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"

@@ -18,6 +18,9 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 10h
+    - !type:SpeciesRequirement # Arcane: no restrictions
+      inverted: true
+      species:
   weight: 10
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"

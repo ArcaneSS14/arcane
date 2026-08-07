@@ -17,6 +17,9 @@
       time: 90000 # 25 hours
     - !type:AgeRequirement
       requiredAge: 21
+    - !type:SpeciesRequirement # Arcane: no restrictions
+      inverted: true
+      species:
 #  guides: # Orion-Edit: Removed because dont have this SOP
 #  - BlueshieldOfficerSOP
 #  - Command
