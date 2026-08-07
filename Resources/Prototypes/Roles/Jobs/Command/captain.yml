@@ -21,9 +21,11 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 8h # Goobstation
-    - !type:SpeciesRequirement # Arcane: no restrictions
+      # Arcane-start
+    - !type:SpeciesRequirement
       inverted: true
-      species:
+      species: []
+      # Arcane-end
     # - !type:SaturationRequirement # MisandryBox - no neon hair on captain
     #   hairColorSaturation: 0.30
   # guides: # Orion-Edit: this fork does not ship the upstream SOP entries

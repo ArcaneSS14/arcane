@@ -15,9 +15,11 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 10h
-    - !type:SpeciesRequirement # Arcane: no restrictions
+      # Arcane-start
+    - !type:SpeciesRequirement
       inverted: true
-      species:
+      species: []
+      # Arcane-end
   weight: 10
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"
