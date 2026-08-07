@@ -21,7 +21,7 @@ public partial class SystemStylesheet : CommonStylesheet
         { typeof(TextureResource), [] },
     };
 
-    private const int PrimaryFontSize = 13; // Arcane
+    private const int PrimaryFontSize = 12;
     private const int FontSizeStep = 2;
 
     // for some GOD FORSAKEN REASON if I use a collection expression here it throws a sandbox error
