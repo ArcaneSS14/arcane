@@ -21,6 +21,10 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 4h # Goobstation
+    - !type:SpeciesRequirement # Goob - None Felinid
+      inverted: true
+      species:
+      - Felinid
 #  guides: # goobstation | Orion-Edit: Removed because dont have this SOP
 #  - Command
 #  - Succession
