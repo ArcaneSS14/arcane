@@ -343,5 +343,6 @@
     - type: ExaminableCharacter # WWDP
     # Arcane-start
     - type: DirectionalEmote
+    - type: TTS
     - type: ErpPanelOwner
     # Arcane-end

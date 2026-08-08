@@ -176,7 +176,7 @@ def send_publish_notification():
     repository = os.environ.get("GITHUB_REPOSITORY")
     sha = os.environ.get("GITHUB_SHA")
 
-    message = "✅ **Сервер обновлён**"
+    message = "<@&1512901533677916280>\n✅ **Сервер обновлён**"
     if repository and sha:
         commit_url = f"https://github.com/{repository}/commit/{sha}"
         message += f"\nУстановлена версия [`{sha[:7]}`]({commit_url})."
