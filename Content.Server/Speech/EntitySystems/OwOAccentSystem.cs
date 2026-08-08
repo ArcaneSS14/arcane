@@ -4,6 +4,7 @@ using Content.Server.Speech.Components;
 using Content.Shared.Speech;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
+using System.Text.RegularExpressions; // Arcane
 
 namespace Content.Server.Speech.EntitySystems
 {
@@ -34,13 +35,8 @@ namespace Content.Server.Speech.EntitySystems
             }
 
             return message.Replace("!", _random.Pick(Faces))
-                .Replace("r", "w").Replace("R", "W")
-                .Replace("l", "w").Replace("L", "W");
-            // Arcane-Start
-            return message.Replace("!", _random.Pick(Faces))
-                .Replace("р", "л").Replace("Р", "Л")
-                .Replace("в", "в").Replace("В", "В");
-            //Arcane-End
+                .Replace("р", "в").Replace("Р", "В")
+                .Replace("л", "в").Replace("Л", "В");
         }
 
 
@@ -53,6 +49,5 @@ namespace Content.Server.Speech.EntitySystems
         {
             args.Args.Message = Accentuate(args.Args.Message);
         }
-
     }
 }
