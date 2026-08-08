@@ -103,6 +103,7 @@
     proto: felinid
   # Orion-Start
   - type: Inventory
+    speciesId: tajaran
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
