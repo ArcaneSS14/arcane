@@ -4,32 +4,61 @@
 - type: dataset
   id: ArcaneItem
   values:
-  - ClothingHeadHatSombrero
-  - ClothingHeadHatUshanka
-  - ClothingHeadHatPlaguedoctor
-  - ClothingHeadHatTophat
-  - ClothingHeadHatBowlerHat
-  - ClothingHeadHatFez
-  - ClothingHeadHatPirate
-  - ClothingHeadHatCardborg
-  - ClothingHeadHatPaper
-  - ClothingHeadHatOutlawHat
-  - ClothingHeadHatWitch1
-  - ClothingHeadHatSantahat
+- ClothingUniformJumpsuitColorTeal
+- ClothingSocksAssBlastUSAThigh
+- ClothingHandsBDSMgloves
+- ClothingJumpsuitBDSMress
+- ClothingUniformJumpsuitTurtleneckWhite
+- ClothingUniformJumpsuitColorWhite
+- ClothingOuterHospitalGown
+- ClothingHeadHatWitch
+- ClothingUniformJumpskirtMaidLong
+- ClothingOuterWinterRobo
+- ClothingHandsGlovesCaptain
+- ClothingUniformJumpsuitRoboticist
+- ClothingUniformJumpsuitAviator
+- ClothingCloackHOSRed
+- ClothingShoesBootsWinterMed
+- ClothingHandsGlovesNitrile
+- ClothingEyesHudBeer
+- ClothingSocksBeer
+- ClothingUniformJumpskirtJanimaid
+- ClothingBeltJanitor
+- ClothingHandsGlovesJanitor
+- ClothingHandsGlovesRobohands
+- ClothingUniformJumpskirtMaidPink
+- BlowPink
+- BlowGreen
+- BlowPurple
+- PussyVulpaBlue
+- PussyVulpaBlue
+- OnaholeGreen
+- SlimeDildo
+- DogDildo
+- ClothingWristsClockworkSlab
+- ClothingNeckStoleChaplain
+- ClothingSocksThinThigh
+- ClothingShoesColorBlack
+- ClothingSocksThigh
+- ClothingSocksCandyCaneGreenThigh
+- ClothingUnderwearPantiesCommie
+- ClothingUnderwearPantiesFishnetLowerAlt
 
 - type: dataset
   id: ArcaneHalfProhibition
   values:
-  - "водка"
-  - "виски"
-  - "ром"
-  - "джин"
-  - "текила"
-  - "пиво"
-  - "эль"
-  - "абсент"
-  - "коньяк"
-  - "вино"
+  - "Вермут"
+  - "Вино"
+  - "Виски"
+  - "Водка"
+  - "Джин"
+  - "Коньяк"
+  - "Кофейный ликёр"
+  - "Медовуха"
+  - "Пиво"
+  - "Ром"
+  - "Текила"
+  - "Эль"
 
 - type: dataset
   id: ArcaneDepartments
