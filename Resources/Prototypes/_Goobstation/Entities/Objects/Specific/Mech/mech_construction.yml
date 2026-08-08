@@ -380,6 +380,12 @@
       - GygaxRArm
       - GygaxLLeg
       - GygaxRLeg
+  # Arcane-Start
+    containerId: mech-assembly-container
+  - type: Construction
+    graph: Gygax
+    node: start
+  # Arcane-End
 
 - type: entity
   parent: BaseGygaxPartItem
