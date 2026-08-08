@@ -38,6 +38,7 @@
       Male: UnisexVox
       Female: UnisexVox
       Unsexed: UnisexVox
+      Futanari: UnisexVox # Arcane
   - type: Butcherable
     butcheringType: Spike
     spawned:

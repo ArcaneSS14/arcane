@@ -159,6 +159,7 @@
       Male: MaleFelinid
       Female: FemaleFelinid
       Unsexed: MaleFelinid
+      Futanari: FemaleFelinid # Arcane
   - type: NoShoesSilentFootsteps
   - type: Tag
     tags:

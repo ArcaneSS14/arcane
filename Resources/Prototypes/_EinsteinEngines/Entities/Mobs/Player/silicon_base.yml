@@ -263,6 +263,7 @@
         Male: UnisexIPC
         Female: UnisexIPC
         Unsexed: UnisexIPC
+        Futanari: UnisexIPC # Arcane
     - type: MeleeWeapon
       hidden: true
       soundHit:

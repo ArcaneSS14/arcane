@@ -58,6 +58,7 @@
       Male: UnisexChitinid
       Female: UnisexChitinid
       Unsexed: UnisexChitinid
+      Futanari: UnisexChitinid # Arcane
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 46
