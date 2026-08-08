@@ -1,5 +1,6 @@
-# Что-бы добавить новый закон, нужно указать его локаль из фтл, датасет который будет использоваться
-# Всё это нужно прописать в "ArcaneLaws", если-же закон не подразумевает под собой использование какого-либо датасета, просто оставь локаль.
+# To add a new rule, you need to specify its locale from the FTL and the dataset that will be used.
+# All of this needs to be specified in “ArcaneLaws”; if the law does not specify the use of any particular dataset, just leave the locale as is.
+# To increase the hit rate, add it to the dataset again
 
 - type: dataset
   id: ArcaneItem

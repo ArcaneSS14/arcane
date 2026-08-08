@@ -16,7 +16,7 @@ using Robust.Shared.Random;
 namespace Content.Server._Arcane.StationEvents.Events;
 
 /// <summary>
-/// Ивент на странный закон от ЦК. Я попытался сделать так, что бы можно было добавлять новые законы не залезая в код. В Датасете есть всё, что нужно.
+/// An event related to a strange law from the Central Command. I tried to set it up so that new laws could be added without having to edit the code. The dataset file contains instructions.
 /// </summary>
 public sealed class WackyLawRule : StationEventSystem<WackyLawComponent>
 {
