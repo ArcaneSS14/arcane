@@ -370,6 +370,10 @@
         {
             "name": "skeleton",
             "directions": 4
+        },
+        {
+            "name": "arataki_painting",
+            "directions": 4
         }
     ]
 }

@@ -557,7 +557,7 @@
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
-    state: gradient_painting
+    state: gradient_paint
 
 - type: marking
   id: DemonChestSkeleton
