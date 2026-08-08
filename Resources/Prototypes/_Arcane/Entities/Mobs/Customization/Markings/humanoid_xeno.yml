@@ -202,7 +202,6 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: burrower_tail_spike
 
-
 - type: marking
   id: HumanoidXenoTailLord
   bodyPart: Tail
@@ -214,7 +213,7 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: lord_tail_butt
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
-    state: lord_tail_spike
+    state: lord_tail_spikes
 
 - type: marking
   id: HumanoidXenoTailOpress
@@ -533,11 +532,11 @@
   speciesRestriction: [HumanoidXeno]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
-    state: defender_head
+    state: defer_head
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
-    state: defender_teeth
+    state: defer_teeth
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
-    state: defender_head_shine
+    state: defer_head_shine
 
 - type: marking
   id: HumanoidXenoHeadValkyr
@@ -823,7 +822,7 @@
 - type: marking
   id: HumanoidXenoLegsBurrowerLeft
   bodyPart: LFoot
-  markingCategory: LefttFoot
+  markingCategory: LeftFoot
   speciesRestriction: [HumanoidXeno]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
