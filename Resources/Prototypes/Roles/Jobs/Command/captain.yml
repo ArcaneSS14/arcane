@@ -22,9 +22,10 @@
       department: Command
       time: 8h # Goobstation
       # Arcane-start
-    - !type:SpeciesRequirement
-      inverted: true
-      species: []
+    # - !type:SpeciesRequirement # Goob - None Felinid
+      # inverted: true
+      # species:
+      # - Felenid
       # Arcane-end
     # - !type:SaturationRequirement # MisandryBox - no neon hair on captain
     #   hairColorSaturation: 0.30

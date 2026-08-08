@@ -22,9 +22,10 @@
       department: Command
       time: 4h # Goobstation
       # Arcane-start
-    - !type:SpeciesRequirement
-      inverted: true
-      species: []
+    # - !type:SpeciesRequirement # Goob - None Felinid
+      # inverted: true
+      # species:
+      # - Felenid
       # Arcane-end
 #  guides: # goobstation | Orion-Edit: Removed because dont have this SOP
 #  - Command

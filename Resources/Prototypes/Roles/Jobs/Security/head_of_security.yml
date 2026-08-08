@@ -19,9 +19,10 @@
       department: Security
       time: 10h
       # Arcane-start
-    - !type:SpeciesRequirement
-      inverted: true
-      species: []
+    # - !type:SpeciesRequirement # Goob - None Felinid
+      # inverted: true
+      # species:
+      # - Felenid
       # Arcane-end
   weight: 10
   startingGear: HoSGear
