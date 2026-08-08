@@ -1,0 +1,52 @@
+# Что-бы добавить новый закон, нужно указать его локаль из фтл, датасет который будет использоваться
+# Всё это нужно прописать в "ArcaneLaws", если-же закон не подразумевает под собой использование какого-либо датасета, просто оставь локаль.
+
+- type: dataset
+  id: ArcaneItem
+  values:
+  - ClothingHeadHatSombrero
+  - ClothingHeadHatUshanka
+  - ClothingHeadHatPlaguedoctor
+  - ClothingHeadHatTophat
+  - ClothingHeadHatBowlerHat
+  - ClothingHeadHatFez
+  - ClothingHeadHatPirate
+  - ClothingHeadHatCardborg
+  - ClothingHeadHatPaper
+  - ClothingHeadHatOutlawHat
+  - ClothingHeadHatWitch1
+  - ClothingHeadHatSantahat
+
+- type: dataset
+  id: ArcaneHalfProhibition
+  values:
+  - "водка"
+  - "виски"
+  - "ром"
+  - "джин"
+  - "текила"
+  - "пиво"
+  - "эль"
+  - "абсент"
+  - "коньяк"
+  - "вино"
+
+- type: dataset
+  id: ArcaneDepartments
+  values:
+  - All
+  - Cargo
+  - Command
+  - Engineering
+  - Medical
+  - Science
+  - Security
+  - Service
+
+- type: dataset
+  id: ArcaneLaws
+  values:
+  - "wacky-law-content-force-item|ArcaneItem"
+  - "wacky-law-content-ban-item|ArcaneItem"
+  - "wacky-law-content-half-prohibition|ArcaneHalfProhibition"
+  - "wacky-law-content-full-prohibition"
