@@ -355,6 +355,7 @@
   - type: ObraDinnBody # Goobstation
   # </Goobstation>
   # Arcane-start
+  - type: Mood
   - type: EroticOrgans
     groinCommon:
     - proto: OrganAnus
