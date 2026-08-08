@@ -3,7 +3,6 @@ loadout-group-librarian-shoes = Библиотекарь, обувь
 loadout-group-librarian-glasses = Библиотекарь, очки
 
 # Clown
-
 loadout-group-clown-underwear = Клоун, нижнее бельё
 
 # Mime
