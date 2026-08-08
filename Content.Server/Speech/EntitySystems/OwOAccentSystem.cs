@@ -36,7 +36,13 @@ namespace Content.Server.Speech.EntitySystems
             return message.Replace("!", _random.Pick(Faces))
                 .Replace("r", "w").Replace("R", "W")
                 .Replace("l", "w").Replace("L", "W");
+            // Arcane-Start
+            return message.Replace("!", _random.Pick(Faces))
+                .Replace("р", "л").Replace("Р", "Л")
+                .Replace("в", "в").Replace("В", "В");
+            //Arcane-End
         }
+
 
         private void OnAccent(Entity<OwOAccentComponent> entity, ref AccentGetEvent args)
         {
