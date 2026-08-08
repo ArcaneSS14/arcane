@@ -59,10 +59,11 @@
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
       - map: [ "underpants" ]
       - map: [ "undershirt" ]
-      - map: [ "socks" ]
-      - map: [ "jumpsuit" ]
+      # Arcane-Edit-Start
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
+      # Arcane-Edit-End
+      - map: [ "jumpsuit" ]
       - map: ["enum.HumanoidVisualLayers.LHand"]
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
@@ -219,10 +220,11 @@
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "underpants" ]
       - map: [ "undershirt" ]
-      - map: [ "socks" ]
-      - map: [ "jumpsuit" ]
+      # Arcane-Edit-Start
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
+      # Arcane-Edit-End
+      - map: [ "jumpsuit" ]
       - map: ["enum.HumanoidVisualLayers.LHand"]
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "id" ]

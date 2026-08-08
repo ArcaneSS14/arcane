@@ -1463,9 +1463,11 @@
       sprite: /Textures/Mobs/Animals/monkey.rsi
       visible: false
       map: [ "enum.ToggleableVisuals.Layer" ]
-    - map: ["jumpsuit"]
+    # Arcane-Edit-Start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    # Arcane-Edit-End
+    - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: ["enum.HumanoidVisualLayers.Handcuffs"]
