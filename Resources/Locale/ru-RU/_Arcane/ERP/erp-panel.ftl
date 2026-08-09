@@ -11,7 +11,7 @@ erp-panel-custom-arousal-button-tooltip = Множитель возбужден�
 erp-panel-custom-moaning-button-tooltip = Множитель шанса на стон после взаимодействия.
 
 moan-message = стонет!
-orgasm-popup-self = Вы достигли оргазма. Вам нужно время для восстановления.
+orgasm-popup-self = Вы достигли оргазма. Вам нужно время восстановиться.
 orgasm-message-1 = кончает!
 orgasm-message-2 = достигает оргазма!
 orgasm-message-3 = содрогается от оргазма!

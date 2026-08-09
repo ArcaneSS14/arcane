@@ -71,6 +71,14 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     /// </summary>
     public RadioChannelPrototype? Channel;
 
+    // Arcane-Start
+    /// <summary>
+    /// Set to true when the message was actually sent over a radio channel. Used to suppress local TTS playback for
+    /// radio speech so it is only voiced for listeners on that frequency.
+    /// </summary>
+    public bool RadioMessageSent;
+    // Arcane-End
+
     public EntitySpokeEvent(EntityUid source, string message, RadioChannelPrototype? channel, bool isWhisper, LanguagePrototype language) // Einstein Engines - Language
     {
         Source = source;

@@ -57,6 +57,7 @@
       Male: MaleAvaliEmote
       Unsexed: MaleAvaliEmote
       Female: FemaleAvaliEmote
+      Futanari: FemaleAvaliEmote # Arcane
   - type: Tag
     tags:         # Goob - What the fuck is FootstepSound and DoorBumpOpener for if they work without them - rest fixes anoms though.
     - CanPilot
