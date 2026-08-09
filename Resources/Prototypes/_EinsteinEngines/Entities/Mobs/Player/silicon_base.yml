@@ -18,6 +18,7 @@
           methods: [Touch]
           effects:
             - !type:WashCreamPie
+            - !type:WashCumOverlayReaction # Arcane
     - type: DamageOnHighSpeedImpact
       damage:
         types:

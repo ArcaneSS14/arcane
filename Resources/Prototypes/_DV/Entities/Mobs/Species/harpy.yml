@@ -62,8 +62,9 @@
       # Arcane-Edit-Start
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
-      # Arcane-Edit-End
+      # - map: [ "socks" ]
       - map: [ "jumpsuit" ]
+      # Arcane-Edit-End
       - map: ["enum.HumanoidVisualLayers.LHand"]
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
@@ -224,8 +225,9 @@
       # Arcane-Edit-Start
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
-      # Arcane-Edit-End
+      # - map: [ "socks" ]
       - map: [ "jumpsuit" ]
+      # Arcane-Edit-End
       - map: ["enum.HumanoidVisualLayers.LHand"]
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "id" ]
