@@ -131,6 +131,7 @@
       methods: [Touch]
       effects:
       - !type:WashCreamPie
+      - !type:WashCumOverlayReaction # Arcane
   - type: StatusEffects
     allowed:
     - Electrocution
