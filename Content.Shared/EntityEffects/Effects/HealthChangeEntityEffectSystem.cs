@@ -2,8 +2,10 @@
 using Content.Shared.Damage.Prototypes;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared._Shitmed.EntityEffects.Effects;
-using Content.Shared._Shitmed.Targeting; // CorvaxGoob
-using Content.Shared._Shitmed.Damage; // CorvaxGoob
+// Arcane-Start
+using Content.Shared._Shitmed.Targeting;
+using Content.Shared._Shitmed.Damage;
+// Arcane-End
 using Content.Shared.Localizations;
 using Content.Shared.Temperature.Components;
 using Robust.Shared.Prototypes;
@@ -34,16 +36,16 @@ public sealed partial class HealthChangeEntityEffectSystem : EntityEffectSystem<
             damageSpec *= scaleTemp.GetEfficiencyMultiplier(temp.CurrentTemperature, args.Scale, false);
         }
         // Goobstation End
-        // CorvaxGoob-Start
         _damageable.TryChangeDamage(
                 entity,
                 damageSpec,
                 args.Effect.IgnoreResistances,
                 interruptsDoAfters: false,
+                // Arcane-Edit-Start
                 targetPart: args.Effect.UseTargeting ? args.Effect.TargetPart : null,
                 ignoreBlockers: args.Effect.IgnoreBlockers,
                 splitDamage: args.Effect.SplitDamage);
-        // CorvaxGoob-End
+                // Arcane-Edit-End
     }
 }
 
@@ -59,7 +61,7 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
     [DataField]
     public bool IgnoreResistances = true;
 
-    // CorvaxGoob-start
+    // Arcane-Start
     [DataField]
     public SplitDamageBehavior SplitDamage = SplitDamageBehavior.SplitEnsureAllOrganic;
 
@@ -71,7 +73,7 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
 
     [DataField]
     public bool IgnoreBlockers = true;
-    // CorvaxGoob-end
+    // Arcane-End
 
     [DataField]
     public TemperatureScaling? ScaleByTemperature;
