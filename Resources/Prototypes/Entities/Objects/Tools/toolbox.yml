@@ -198,3 +198,27 @@
       params:
         variation: 0.125
     storageRemoveSound: *SoundSqueak
+
+       # Arcane-Edit-Start
+- type: entity
+  id: ToolboxInteQ
+  name: brown toolbox
+  parent: [ToolboxBase, BaseMinorContraband]
+  description: A sinister looking toolbox filled with elite InteQ tools.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Toolboxes/toolbox_inteq.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Tools/Toolboxes/toolbox_inteq.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,3
+  - type: MeleeWeapon
+    flipAnimation: false 
+    heavyStaminaCost: 10 
+    damage:
+      types:
+        Blunt: 20
+        # Arcane-Edit-End
