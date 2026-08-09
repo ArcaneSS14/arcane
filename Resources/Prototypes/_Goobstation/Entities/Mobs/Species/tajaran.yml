@@ -103,6 +103,7 @@
     proto: felinid
   # Orion-Start
   - type: Inventory
+    speciesId: tajaran
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -158,6 +159,7 @@
       Male: MaleFelinid
       Female: FemaleFelinid
       Unsexed: MaleFelinid
+      Futanari: FemaleFelinid # Arcane
   - type: NoShoesSilentFootsteps
   - type: Tag
     tags:

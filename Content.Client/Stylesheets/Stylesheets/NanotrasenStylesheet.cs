@@ -23,7 +23,7 @@ public partial class NanotrasenStylesheet : CommonStylesheet
         { typeof(TextureResource), [TextureRoot] },
     };
 
-    private const int PrimaryFontSize = 12;
+    private const int PrimaryFontSize = 13; // Arcane
     private const int FontSizeStep = 2;
 
     // why? see InterfaceStylesheet.cs
