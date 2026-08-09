@@ -669,7 +669,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         Color? colorOverride = null // Goobstation
         )
     {
-        if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
+        if (!_actionBlocker.CanSpeak(source, isWhisper: channel == null) && !ignoreActionBlocker) // Arcane-Edit
             return;
 
         // Goob edit start
