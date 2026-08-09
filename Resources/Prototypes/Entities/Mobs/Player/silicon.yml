@@ -513,27 +513,28 @@
     - Schechi
     - NewKinPidgin
     - Hydraspeak
-#    understands:
-#    - TauCetiBasic
-#    - Canilunzt
-#    - Bubblish
-#    - Nekomimetic
-#    - Draconic
-#    - SolCommon
-#    - RootSpeak
-#    - Moffic
-#    - ValyrianStandard
-#    - Chittin
-#    - SiikMaas
-#    - RobotTalk
-#    - DroneTalk
-#    - Marish
-#    - Elyran
- #   - Freespeak
-#    - Tradeband
-#    - Sign
- #   - Schechi
- #   - NewKinPidgin
+    understands:
+    - TauCetiBasic
+    - Canilunzt
+    - Bubblish
+    - Nekomimetic
+    - Draconic
+    - SolCommon
+    - RootSpeak
+    - Moffic
+    - ValyrianStandard
+    - Chittin
+    - SiikMaas
+    - RobotTalk
+    - DroneTalk
+    - Marish
+    - Elyran
+    - Freespeak
+    - Tradeband
+    - Sign
+    - Schechi
+    - NewKinPidgin
+    - Hydraspeak
   - type: SpeechSynthesis # Corvax-Frontier-Barks
     voice: Borg
   # Arcane-start
