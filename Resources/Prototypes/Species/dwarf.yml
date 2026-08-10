@@ -12,8 +12,8 @@
   # Orion-Start
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Dwarf.xml"
-  minAge: 18
   # Arcane-Start
+  minAge: 18
   maxAge: 400
   youngAge: 120
   oldAge: 240
