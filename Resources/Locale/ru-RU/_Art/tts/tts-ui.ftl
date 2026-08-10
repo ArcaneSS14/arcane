@@ -1,5 +1,4 @@
 ui-options-tts-volume = Громкость TTS:
-humanoid-profile-editor-voice-play = ▶
 humanoid-profile-editor-voice-tab = Голос
 humanoid-profile-editor-voice-placeholder = Поиск по голосам...
 humanoid-profile-editor-voice-sex-male = Мужские
