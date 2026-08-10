@@ -214,7 +214,7 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-     - 0,0,7,3
+    - 0,0,7,3
   - type: MeleeWeapon
     flipAnimation: false 
     heavyStaminaCost: 10 
