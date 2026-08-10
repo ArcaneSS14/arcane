@@ -51,7 +51,6 @@ using Content.Client._Arcane.ERP.OrgansAppearance;
 using Content.Client._Arcane.ERP.Preferences;
 using Content.Shared._Arcane.ERP.Preferences;
 using Content.Client._Art.TTS;
-using Content.Shared._Art.CVars;
 using Content.Shared._Art.TTS;
 
 namespace Content.Client.Lobby.UI
