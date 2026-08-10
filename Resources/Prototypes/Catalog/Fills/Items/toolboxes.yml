@@ -264,9 +264,10 @@
     - id: ClothingUniformJumpsuitReporter # Reporter
     - id: ClothingOuterWinterMime # Mime
 
+# Arcane-Edit-Start
 - type: entity
-  parent: ToolboxInteq
-  id: ToolboxInteqFilled
+  parent: ToolboxInteQ
+  id: ToolboxInteQFilled
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -283,3 +284,4 @@
         - id: ClothingEyesGogglesInteq
   - type: StaticPrice
     price: 1000
+# Arcane-Edit-End
