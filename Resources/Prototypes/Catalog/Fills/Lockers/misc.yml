@@ -189,13 +189,13 @@
     # Fluff
     - !type:NestedSelector
       tableId: MaintFluffTable
-      prob: 0.33
+      prob: 0.4
       rolls: !type:RangeNumberSelector
         range: 0, 2
     # Plushies
     - !type:NestedSelector
       tableId: AllPlushiesTable
-      prob: 0.10
+      prob: 0.2
       rolls: !type:RangeNumberSelector
         range: 1, 2
     # Weapons
@@ -205,14 +205,15 @@
     # Syndie Loot
     - !type:NestedSelector
       tableId: SyndieMaintLoot
-      prob: 0.05
+      prob: 0.1
     # InteQ Loot | Orion
     - !type:NestedSelector
       tableId: InteQMaintLoot
-      prob: 0.05
+      prob: 0.1
     # Recursive
     - id: ClosetMaintenanceFilledRandom
-      prob: 0.01
+      prob: 0.05
+# Arcane: повышены шансы на каждую категорию ~2 раза.
 
 - type: entity
   id: ClosetMaintenanceFilledRandom
