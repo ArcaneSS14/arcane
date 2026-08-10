@@ -52,9 +52,7 @@
   - Drill
   - Saw
   - Hemostat
-  # Arcane-Start
-  - SawElectric
-  # Arcane-End
+  - SawElectric # Arcane
 
 - type: latheRecipePack
   id: MedicalStatic
@@ -87,9 +85,7 @@
   - ClothingHandsGlovesLatex
   - ClothingHandsGlovesNitrile
   - ClothingMaskSterile
-  # Arcane-Start
-  - ClothingEyesNightVisionMedicalGoggles
-  # Arcane-End
+  - ClothingEyesNightVisionMedicalGoggles # Arcane
 
 # These are all empty
 - type: latheRecipePack

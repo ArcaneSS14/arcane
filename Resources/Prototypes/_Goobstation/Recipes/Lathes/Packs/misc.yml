@@ -37,11 +37,6 @@
   - CartridgeTirizene
 
 - type: latheRecipePack
-  id: MedicalBeamGunSyndicate
-  recipes:
-  - MedicalBeamGunSyndicate
-
-- type: latheRecipePack
   id: ProtoLatheMiscStatic
   recipes:
   - MaterialBSCrystal

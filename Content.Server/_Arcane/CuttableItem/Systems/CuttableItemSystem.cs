@@ -40,24 +40,23 @@ public sealed partial class CuttableItemSystem : EntitySystem
 
         foreach (var slotDef in slotDefinitions)
         {
-            if (_inventorySystem.TryGetSlotEntity(victim, slotDef.Name, out var slotEntity) && slotEntity == uid)
-            {
-                var target = args.User;
+            if (!_inventorySystem.TryGetSlotEntity(victim, slotDef.Name, out var slotEntity) || slotEntity != uid)
+                continue;
 
-                if (_inventorySystem.TryUnequip(target, victim, slotDef.Name, force: true))
-                {
-                    _transformSystem.AttachToGridOrMap(uid);
+            var target = args.User;
 
-                    var victimCoords = Transform(victim).Coordinates;
-                    _transformSystem.SetCoordinates(uid, victimCoords);
+            if (!_inventorySystem.TryUnequip(target, victim, slotDef.Name, force: true))
+                continue;
 
-                    _popup.PopupEntity(Loc.GetString("cuttable-item-broken-moment-popup", ("item", uid)), uid);
+            _transformSystem.AttachToGridOrMap(uid);
 
-                    var ev = new CuttableCutEvent(target);
-                    RaiseLocalEvent(uid, ev);
-                }
-                break;
-            }
+            var victimCoords = Transform(victim).Coordinates;
+            _transformSystem.SetCoordinates(uid, victimCoords);
+
+            _popup.PopupEntity(Loc.GetString("cuttable-item-broken-moment-popup", ("item", uid)), uid);
+
+            var ev = new CuttableCutEvent(target);
+            RaiseLocalEvent(uid, ev);
         }
     }
 

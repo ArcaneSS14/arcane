@@ -2,13 +2,14 @@ using Content.Shared.Access;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._Arcane.AggressionInhibitor.Components;
 
 /// <summary>
 /// A component that punishes creatures with a bad tone with electric shocks
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class AggressionInhibitorComponent : Component
 {
     /// <summary>
@@ -21,16 +22,16 @@ public sealed partial class AggressionInhibitorComponent : Component
     public TimeSpan LastVerbClickTime = TimeSpan.Zero;
 
     /// <summary>
+    /// When to go to the next step of the schedule.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan NextUpdate;
+
+    /// <summary>
     ///     The time in seconds for which the object is blocked
     /// </summary>
     [AutoNetworkedField]
     public float Duration = 60f;
-
-    /// <summary>
-    ///     Timer to count down the time until withdrawal
-    /// </summary>
-    [AutoNetworkedField]
-    public float Timer = 0f;
 
     /// <summary>
     ///     Is the blocking process currently active

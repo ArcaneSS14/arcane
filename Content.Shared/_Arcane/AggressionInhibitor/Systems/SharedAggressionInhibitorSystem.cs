@@ -3,11 +3,8 @@ using Robust.Shared.Containers;
 using Content.Shared.Popups;
 using Content.Shared.Examine;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Access.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
-using Content.Shared.Access.Systems;
-using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
 using Content.Shared.CombatMode;
@@ -18,16 +15,14 @@ namespace Content.Shared._Arcane.AggressionInhibitor.Systems;
 
 public sealed partial class SharedAggressionInhibitorSystem : EntitySystem
 {
+    private static SpriteSpecifier.Texture _settingsIcon = new(new ResPath("/Textures/Interface/VerbIcons/settings.svg.192dpi.png"));
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedIdCardSystem _idCard = default!;
-    [Dependency] private SharedHandsSystem _handsSystem = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
     [Dependency] private SharedElectrocutionSystem _electrocution = default!;
     [Dependency] private SharedCombatModeSystem _combatMode = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -41,7 +36,7 @@ public sealed partial class SharedAggressionInhibitorSystem : EntitySystem
 
     private void OnToggleCombatAction(ToggleCombatActionEvent args)
     {
-        if (args.Handled || _netManager.IsClient)
+        if (args.Handled)
             return;
 
         var user = args.Performer;
@@ -59,21 +54,18 @@ public sealed partial class SharedAggressionInhibitorSystem : EntitySystem
         var slotEnumerator = _inventorySystem.GetSlotEnumerator(user);
         while (slotEnumerator.MoveNext(out var containerSlot))
         {
-            var slotItem = containerSlot.ContainedEntity;
-            if (slotItem == null)
+            if (containerSlot.ContainedEntity is not { } slotItem)
                 continue;
 
-            var uid = slotItem.Value;
-
-            if (_inventorySystem.TryGetContainingSlot(uid, out var slotDef))
+            if (_inventorySystem.TryGetContainingSlot(slotItem, out var slotDef))
             {
-                if ((slotDef.SlotFlags & SlotFlags.POCKET) != 0)
+                if (slotDef.SlotFlags.HasFlag(SlotFlags.POCKET))
                     continue;
             }
 
-            if (TryComp<AggressionInhibitorComponent>(uid, out var comp) && comp.IsActive)
+            if (TryComp<AggressionInhibitorComponent>(slotItem, out var comp) && comp.IsActive)
             {
-                inhibitorItem = uid;
+                inhibitorItem = slotItem;
                 inhibitorComp = comp;
                 break;
             }
@@ -84,13 +76,15 @@ public sealed partial class SharedAggressionInhibitorSystem : EntitySystem
 
         if (!_combatMode.IsInCombatMode(user))
         {
-            _electrocution.TryDoElectrocution(user, inhibitorItem, inhibitorComp.Damage, TimeSpan.FromSeconds(inhibitorComp.TimeStun), refresh: false, ignoreInsulation: true);
-
-            _popup.PopupEntity(Loc.GetString("stabikor-disarm-shock-popup"), user, user, PopupType.LargeCaution);
-
             _combatMode.SetInCombatMode(user, false);
-
             args.Handled = true;
+
+            if (_netManager.IsServer)
+            {
+                _electrocution.TryDoElectrocution(user, inhibitorItem, inhibitorComp.Damage, TimeSpan.FromSeconds(inhibitorComp.TimeStun), refresh: false, ignoreInsulation: true);
+
+                _popup.PopupEntity(Loc.GetString("stabikor-disarm-shock-popup"), user, user, PopupType.LargeCaution);
+            }
         }
     }
 
@@ -105,13 +99,10 @@ public sealed partial class SharedAggressionInhibitorSystem : EntitySystem
 
     private void OnGotUnequipped(EntityUid uid, AggressionInhibitorComponent comp, ref GotUnequippedEvent args)
     {
-        if (comp.IsActive)
+        if (comp.IsActive && _netManager.IsServer)
         {
-            if (_netManager.IsServer)
-            {
-                comp.Timer = 0;
-                Dirty(uid, comp);
-            }
+            comp.NextUpdate = default;
+            Dirty(uid, comp);
         }
     }
 
@@ -128,12 +119,13 @@ public sealed partial class SharedAggressionInhibitorSystem : EntitySystem
             ("hours", durationHours),
             ("minutes", durationMinutes)));
 
-        if (comp.IsLocked && comp.Timer > 0)
+        var remaining = comp.NextUpdate - _timing.CurTime;
+
+        if (comp.IsLocked && remaining.Ticks > 0)
         {
-            var remainingTotalMinutes = (int) (comp.Timer / 60f);
-            var remainingHours = remainingTotalMinutes / 60;
-            var remainingMinutes = remainingTotalMinutes % 60;
-            var remainingSeconds = (int) (comp.Timer % 60f);
+            var remainingHours = (int) remaining.TotalHours;
+            var remainingMinutes = remaining.Minutes;
+            var remainingSeconds = remaining.Seconds;
 
             args.PushMarkup(Loc.GetString("stabikor-examine-timer-remaining",
                 ("hours", remainingHours),
@@ -150,19 +142,12 @@ public sealed partial class SharedAggressionInhibitorSystem : EntitySystem
         if (!isInContainer && (!args.CanAccess || !args.CanInteract))
             return;
 
-        if (!_handsSystem.TryGetActiveItem(args.User, out var heldItem) ||
-            !_idCard.TryFindIdCard(heldItem.Value, out var idCard) ||
-            !TryComp<AccessComponent>(idCard.Owner, out var accessComp))
-            return;
-
-        var settingsIcon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/settings.svg.192dpi.png"));
-
         if (!comp.IsLocked)
         {
             args.Verbs.Add(new ActivationVerb()
             {
                 Text = Loc.GetString("stabikor-verb-set-duration"),
-                Icon = settingsIcon,
+                Icon = _settingsIcon,
                 Act = () => FlipOpenDialog(uid, args.User, comp)
             });
         }
@@ -172,27 +157,27 @@ public sealed partial class SharedAggressionInhibitorSystem : EntitySystem
         args.Verbs.Add(new ActivationVerb()
         {
             Text = Loc.GetString(verbText),
-            Icon = settingsIcon,
+            Icon = _settingsIcon,
             Act = () => FlipToggleLock(uid, args.User, comp)
         });
     }
 
     private void FlipOpenDialog(EntityUid uid, EntityUid user, AggressionInhibitorComponent comp)
     {
-        if (_gameTiming.CurTime < comp.LastVerbClickTime + TimeSpan.FromSeconds(0.4))
+        if (_timing.CurTime < comp.LastVerbClickTime + TimeSpan.FromSeconds(0.4))
             return;
 
-        comp.LastVerbClickTime = _gameTiming.CurTime;
+        comp.LastVerbClickTime = _timing.CurTime;
 
         RaiseLocalEvent(uid, new OpenDialogEvent(uid, user));
     }
 
     private void FlipToggleLock(EntityUid uid, EntityUid user, AggressionInhibitorComponent comp)
     {
-        if (_gameTiming.CurTime < comp.LastVerbClickTime + TimeSpan.FromSeconds(0.4))
+        if (_timing.CurTime < comp.LastVerbClickTime + TimeSpan.FromSeconds(0.4))
             return;
 
-        comp.LastVerbClickTime = _gameTiming.CurTime;
+        comp.LastVerbClickTime = _timing.CurTime;
 
         RaiseLocalEvent(uid, new ToggleLockEvent(uid, user));
     }

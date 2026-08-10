@@ -10,11 +10,13 @@ using Content.Server.Administration;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Robust.Server.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Arcane.AggressionInhibitor.Systems;
 
 public sealed partial class AggressionInhibitorSystem : EntitySystem
 {
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
@@ -34,23 +36,21 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
         SubscribeLocalEvent<AggressionInhibitorComponent, OpenDialogEvent>(OnOpenDialogReceived);
         SubscribeLocalEvent<AggressionInhibitorComponent, ToggleLockEvent>(OnToggleLockReceived);
     }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
+        var now = _timing.CurTime;
         var query = EntityQueryEnumerator<AggressionInhibitorComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (!comp.IsActive || comp.WearingEntity == null)
+            if (now < comp.NextUpdate || !comp.IsActive || comp.WearingEntity == null)
                 continue;
 
-            comp.Timer -= frameTime;
+            if (!RemoveInhibitor(uid, comp))
+                continue;
 
-            if (comp.Timer <= 0)
-            {
-                if (!RemoveInhibitor(uid, comp))
-                    continue;
-            }
             Dirty(uid, comp);
         }
     }
@@ -59,12 +59,14 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
     {
         var user = args.User;
 
-        var parent = Transform(uid).ParentUid;
-        var isEquipped = parent.IsValid() && HasComp<ContainerManagerComponent>(parent);
+        if (!TryComp<TransformComponent>(uid, out var xform))
+            return;
 
-        if (!isEquipped)
+        var parent = xform.ParentUid;
+
+        if (!parent.IsValid() && HasComp<ContainerManagerComponent>(parent))
         {
-            _audio.PlayPvs(comp.DenySound, uid);
+            PlaybackDenySound(uid, comp);
 
             args.Handled = true;
             return;
@@ -74,13 +76,9 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
             !TryComp<AccessComponent>(idCard.Owner, out var accessComp))
             return;
 
-        var cardAccess = accessComp.Tags;
-
         if (comp.IsLocked)
         {
-            var hasUnlockAccess = comp.UnlockAccess.Exists(proto => cardAccess.Contains(proto.Id));
-
-            if (hasUnlockAccess)
+            if (GetHasUnlockAccess(comp, accessComp.Tags))
             {
                 if (!RemoveInhibitor(uid, comp))
                     return;
@@ -88,13 +86,12 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
                 args.Handled = true;
                 return;
             }
-            else _audio.PlayPvs(comp.DenySound, uid);
+            else
+                PlaybackDenySound(uid, comp);
         }
         else
         {
-            var hasLockAccess = comp.LockAccess.Exists(proto => cardAccess.Contains(proto.Id));
-
-            if (hasLockAccess)
+            if (GetHasLockAccess(comp, accessComp.Tags))
             {
                 if (!ActivateInhibitor(uid, parent, comp, user))
                     return;
@@ -102,7 +99,8 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
                 args.Handled = true;
                 return;
             }
-            else _audio.PlayPvs(comp.DenySound, uid);
+            else
+                PlaybackDenySound(uid, comp);
         }
     }
 
@@ -124,12 +122,9 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
         if (comp.IsLocked)
             return;
 
-        var cardAccess = accessComp.Tags;
-        var hasSettingsAccess = comp.LockAccess.Exists(proto => cardAccess.Contains(proto.Id));
-
-        if (!hasSettingsAccess)
+        if (!GetHasLockAccess(comp, accessComp.Tags))
         {
-            _audio.PlayPvs(comp.DenySound, uid);
+            PlaybackDenySound(uid, comp);
             return;
         }
 
@@ -144,6 +139,8 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
             if (string.IsNullOrEmpty(input))
             {
                 comp.Duration = 60f;
+                comp.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(comp.Duration);
+
                 Dirty(uid, comp);
                 _popup.PopupEntity(Loc.GetString("stabikor-duration-set-cancel-fallback", ("time", 1)), uid, user);
                 return;
@@ -152,15 +149,15 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
             if (!int.TryParse(input, out var durationMinutes) || durationMinutes < 1 || durationMinutes > 900)
             {
                 _popup.PopupEntity(Loc.GetString("stabikor-dialog-invalid-range"), user, user, PopupType.SmallCaution);
-
-                _audio.PlayPvs(comp.DenySound, uid);
+                PlaybackDenySound(uid, comp);
                 return;
             }
 
             comp.Duration = durationMinutes * 60f;
-            _popup.PopupEntity(Loc.GetString("stabikor-duration-set-success", ("time", durationMinutes)), uid, user);
+            comp.NextUpdate = _timing.CurTime + TimeSpan.FromMinutes(durationMinutes);
 
-            _audio.PlayPvs(comp.UnlockSound, uid);
+            _popup.PopupEntity(Loc.GetString("stabikor-duration-set-success", ("time", durationMinutes)), uid, user);
+            PlaybackUnlockSound(uid, comp);
 
             Dirty(uid, comp);
         });
@@ -181,25 +178,25 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
             !TryComp<AccessComponent>(idCard.Owner, out var accessComp))
             return;
 
-        var cardAccess = accessComp.Tags;
-
         if (comp.IsLocked)
         {
-            if (comp.UnlockAccess.Exists(proto => cardAccess.Contains(proto.Id)))
+            if (GetHasUnlockAccess(comp, accessComp.Tags))
             {
                 if (!RemoveInhibitor(uid, comp))
                     return;
             }
-            else _audio.PlayPvs(comp.DenySound, uid);
+            else
+                PlaybackDenySound(uid, comp);
         }
         else
         {
-            if (comp.LockAccess.Exists(proto => cardAccess.Contains(proto.Id)))
+            if (GetHasLockAccess(comp, accessComp.Tags))
             {
                 if (!ActivateInhibitor(uid, parent ?? uid, comp, user))
                     return;
             }
-            else _audio.PlayPvs(comp.DenySound, uid);
+            else
+                PlaybackDenySound(uid, comp);
         }
     }
 
@@ -215,22 +212,22 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
 
             if (_inventorySystem.TryGetSlotEntity(wearerUid, slotDef.Name, out var slotItem) && slotItem == uid)
             {
-                comp.Timer = comp.Duration;
+                comp.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(comp.Duration);
                 comp.IsLocked = true;
                 comp.IsActive = true;
                 comp.WearingEntity = wearerUid;
-                _combatMode.SetInCombatMode(user, false);
+                _combatMode.SetInCombatMode(wearerUid, false);
 
                 Dirty(uid, comp);
 
-                _audio.PlayPvs(comp.LockSound, uid);
+                PlaybackLockSound(uid, comp);
 
                 _popup.PopupEntity(Loc.GetString("stabikor-activated-success", ("item", uid), ("user", Name(wearerUid))), uid);
 
                 return true;
             }
         }
-        _audio.PlayPvs(comp.DenySound, uid);
+        PlaybackDenySound(uid, comp);
 
         _popup.PopupEntity(Loc.GetString("stabikor-not-equipped"), uid, user);
         return false;
@@ -241,24 +238,51 @@ public sealed partial class AggressionInhibitorSystem : EntitySystem
         if (comp.WearingEntity is not { Valid: true } user)
             return false;
 
-        if (_inventorySystem.TryGetContainingSlot(uid, out var slotDef))
+        if (_containerSystem.TryGetContainingContainer(uid, out var container))
         {
-            if (!_inventorySystem.TryUnequip(user, user, slotDef.Name, force: true))
+            if (!_containerSystem.TryRemoveFromContainer(uid, force: true))
                 return false;
+
+            _transformSystem.SetCoordinates(uid, _transformSystem.GetMoverCoordinates(user));
         }
 
-        comp.Timer = 0f;
+        comp.NextUpdate = TimeSpan.MaxValue;
         comp.IsLocked = false;
         comp.IsActive = false;
         comp.WearingEntity = null;
 
         Dirty(uid, comp);
 
-        _audio.PlayPvs(comp.UnlockSound, uid);
+        PlaybackUnlockSound(uid, comp);
 
         _popup.PopupEntity(Loc.GetString("stabikor-moment-shutdown", ("item", uid)), uid);
 
         return true;
+    }
+
+    private static bool GetHasLockAccess(AggressionInhibitorComponent comp, HashSet<Robust.Shared.Prototypes.ProtoId<Shared.Access.AccessLevelPrototype>> cardAccess)
+    {
+        return comp.LockAccess.Exists(proto => cardAccess.Contains(proto.Id));
+    }
+
+    private static bool GetHasUnlockAccess(AggressionInhibitorComponent comp, HashSet<Robust.Shared.Prototypes.ProtoId<Shared.Access.AccessLevelPrototype>> cardAccess)
+    {
+        return comp.UnlockAccess.Exists(proto => cardAccess.Contains(proto.Id));
+    }
+
+    private void PlaybackDenySound(EntityUid uid, AggressionInhibitorComponent comp)
+    {
+        _audio.PlayPvs(comp.DenySound, uid);
+    }
+
+    private void PlaybackUnlockSound(EntityUid uid, AggressionInhibitorComponent comp)
+    {
+        _audio.PlayPvs(comp.UnlockSound, uid);
+    }
+
+    private void PlaybackLockSound(EntityUid uid, AggressionInhibitorComponent comp)
+    {
+        _audio.PlayPvs(comp.LockSound, uid);
     }
 
     private void OnOpenDialogReceived(EntityUid uid, AggressionInhibitorComponent comp, OpenDialogEvent args)
