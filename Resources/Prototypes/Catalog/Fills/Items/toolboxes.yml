@@ -281,7 +281,7 @@
         - id: WelderIndustrialAdvanced
         - id: Multitool
         - id: ClothingHandsGlovesCombat
-        - id: ClothingEyesGogglesInteQ
+        - id: ClothingEyesGogglessInteQ
   - type: StaticPrice
     price: 1000
 # Arcane-Edit-End
