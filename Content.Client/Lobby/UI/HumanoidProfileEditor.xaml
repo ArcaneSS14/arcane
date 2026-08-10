@@ -134,18 +134,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                     <Button Name="BarkVoicePlayButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" MaxWidth="80" />
                                 </BoxContainer>
                                 <!-- Corvax-Frontier-Barks-End -->
-                                <!-- Art-TTS End -->
-                                <CheckBox Name="ToggleTTS" Text="{Loc 'humanoid-profile-editor-tts-enable'}" HorizontalAlignment="Right" Margin="0 8 0 0"/>
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-voice-label'}"/>
-                                    <Control HorizontalExpand="True"/>
-                                    <OptionButton Name="VoiceButton"
-                                            HorizontalAlignment="Right"/>
-                                    <Button Name="VoicePlayButton"
-                                            Text="▶"
-                                            MaxWidth="80"/>
-                                </BoxContainer>
-                                <!-- Art-TTS End -->
                             </BoxContainer>
                             <!-- Skin -->
                             <BoxContainer Margin="10" HorizontalExpand="True" Orientation="Vertical">
