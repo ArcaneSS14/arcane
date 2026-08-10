@@ -7,6 +7,7 @@
       - id: ClothingBackpackInteQ
       - id: ClothingBackpackDuffelInteQ
       - id: ClothingBackpackSatchelInteQ
+      - id: ToolboxInteQFilled
     - !type:GroupSelector
       children:
       - id: ClothingHeadHatInteQSoft
@@ -35,16 +36,17 @@
     - !type:GroupSelector
       children:
       - id: ClothingBeltInteQWebbing
-        prob: 0.1
       - id: ClothingBeltInteQDropPouch
-        prob: 0.1
-    - id: ItemFlagMiniInteQ
-    - id: FoodSnackInteQCookies
-    - id: CigPackInteQ
-    - id: ClothingNeckCloakInteQ
-      prob: 0.05
-    - id: BoxInteQEVA
-      prob: 0.08
-    - id: ToolboxInteQFilled
-      prob: 0.8
-# Arcane - увеличены шансы и добавлен ToolboxInteQFilled
+      - id: ToolboxInteQFilled
+    - !type:GroupSelector
+      children:
+      - id: ItemFlagMiniInteQ
+      - id: FoodSnackInteQCookies
+      - id: CigPackInteQ
+      - id: ToolboxInteQFilled
+    - !type:GroupSelector
+      children:
+      - id: ClothingNeckCloakInteQ
+      - id: BoxInteQEVA
+      - id: ToolboxInteQFilled
+# Arcane - увеличены шансы лута и добавлен ToolboxInteQFilled

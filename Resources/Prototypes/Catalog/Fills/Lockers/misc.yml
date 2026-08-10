@@ -209,7 +209,7 @@
     # InteQ Loot | Orion
     - !type:NestedSelector
       tableId: InteQMaintLoot
-      prob: 0.1
+      prob: 0.3
     # Recursive
     - id: ClosetMaintenanceFilledRandom
       prob: 0.05
