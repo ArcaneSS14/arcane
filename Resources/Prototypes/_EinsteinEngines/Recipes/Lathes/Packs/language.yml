@@ -20,7 +20,7 @@
   - SchechiTranslator
   - GruntishTranslator
   - YowKriolTranslator # goob edit - yowie language
-  - HydraspeakTranslator # CorvaxGoob
+  - HydraspeakTranslator # Arcane
 
 - type: latheRecipePack
   id: TranslatorImplanters

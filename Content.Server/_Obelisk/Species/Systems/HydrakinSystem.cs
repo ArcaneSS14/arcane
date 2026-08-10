@@ -1,7 +1,7 @@
 using Content.Server._Obelisk.Species.Components;
 using Content.Server.Popups;
 using Content.Server.Temperature.Systems;
-using Content.Shared.Interaction.Events; // CorvaxGoob
+using Content.Shared.Interaction.Events;
 using Content.Shared._Mono.Species.Systems;
 using Content.Shared._Obelisk.Actions.Events;
 using Content.Shared.Actions;
@@ -26,7 +26,7 @@ public sealed class HydrakinSystem : EntitySystem
         SubscribeLocalEvent<HydrakinComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<HydrakinComponent, HydrakinCoolOffActionEvent>(OnCoolOff);
         SubscribeLocalEvent<HydrakinComponent, CoolOffDoAfterEvent>(OnCoolOffDoAfter);
-        SubscribeLocalEvent<TemperatureComponent, InteractionSuccessEvent>(OnHug); // CorvaxGoob
+        SubscribeLocalEvent<TemperatureComponent, InteractionSuccessEvent>(OnHug); // Arcane
     }
 
     private void OnInit(EntityUid uid, HydrakinComponent component, ComponentInit args)
