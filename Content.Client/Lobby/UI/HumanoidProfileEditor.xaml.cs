@@ -986,7 +986,7 @@ namespace Content.Client.Lobby.UI
 
         private void RefreshVoiceTab()
         {
-            if (!_cfgManager.GetCVar(ArtCVars.TTSEnabled))
+            if (!_cfgManager.GetCVar(ACCVars.UseTTS))
                 return;
 
             _ttsTab = new TTSTab();
@@ -1039,7 +1039,7 @@ namespace Content.Client.Lobby.UI
             TraitsList.RemoveAllChildren();
 
             var traits = _prototypeManager.EnumeratePrototypes<TraitPrototype>().OrderBy(t => Loc.GetString(t.Name)).ToList();
-            // TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab")); // Art-Edit
+            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab"));
 
             if (traits.Count < 1)
             {

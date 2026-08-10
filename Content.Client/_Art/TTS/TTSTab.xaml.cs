@@ -41,8 +41,10 @@ public sealed partial class TTSTab : Control
     private void SetSelectedSex(Sex sex)
     {
         _selectedSex = sex;
-        MaleButton.Pressed = sex == Sex.Male;
-        FemaleButton.Pressed = sex == Sex.Female;
+        if (sex == Sex.Male)
+            MaleButton.Pressed = true;
+        else
+            FemaleButton.Pressed = true;
         UpdateResults();
     }
 
