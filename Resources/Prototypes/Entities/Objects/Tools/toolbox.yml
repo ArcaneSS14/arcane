@@ -199,7 +199,7 @@
         variation: 0.125
     storageRemoveSound: *SoundSqueak
 
-       # Arcane-Edit-Start
+# Arcane-Edit-Start
 - type: entity
   id: ToolboxInteQ
   name: brown toolbox
@@ -214,11 +214,11 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,7,3
+     - 0,0,7,3
   - type: MeleeWeapon
     flipAnimation: false 
     heavyStaminaCost: 10 
     damage:
       types:
         Blunt: 20
-        # Arcane-Edit-End
+# Arcane-Edit-End
