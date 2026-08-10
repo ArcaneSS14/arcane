@@ -76,6 +76,22 @@
                     0.1
                 ]
             ]
+        },
+        {
+            "name": "succubus_wings_big",
+            "directions": 4
+        },
+        {
+            "name": "succubus_wings_fin",
+            "directions": 4
+        },
+        {
+            "name": "succubus_wings_lower",
+            "directions": 4
+        },
+        {
+            "name": "succubus_wings_lower2",
+            "directions": 4
         }
     ]
 }

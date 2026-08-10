@@ -156,7 +156,7 @@ namespace Content.Server.Bible
                 ignoreBlockers: true,
                 splitDamage: SplitDamageBehavior.SplitEnsureAll);
 
-            if (damage == null || damage.Empty) // Goob end damagesystemupdate required
+            if (damage is { Empty: false }) // Goob end damagesystemupdate required // Arcane
             {
                 othersMessage = Loc.GetString(component.LocPrefix + "-heal-success-others", ("user", userEnt), ("target", targetEnt), ("bible", uid));
                 selfMessage = Loc.GetString(component.LocPrefix + "-heal-success-self", ("target", targetEnt), ("bible", uid));

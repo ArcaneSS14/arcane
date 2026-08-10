@@ -118,6 +118,7 @@
       Male: UnisexHydrakin
       Female: UnisexHydrakin
       Unsexed: UnisexHydrakin
+      Futanari: UnisexHydrakin # Arcane
   - type: TypingIndicator
     proto: robot
   - type: Hydrakin
@@ -130,7 +131,7 @@
   - type: HumanoidAppearance
     species: Hydrakin
   - type: Inventory
-    speciesId: hydrakin 
+    speciesId: hydrakin
     templateId: hydrakin
     displacements:
       jumpsuit:
