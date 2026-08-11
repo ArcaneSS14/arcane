@@ -27,4 +27,4 @@
     laws: Crewsimov # Placeholder because lazy.
   - type: ExperimentalLawProvider
     rewardTime: 10.0
-    rewardPoints: 100000
+    rewardPoints: 7000 # Arcane

@@ -2,19 +2,19 @@
 
 - type: font
   id: Default
-  path: /Fonts/_Arcane/Jost/Jost-Regular.ttf
+  path: /Fonts/_Arcane/Exo2/Exo2-Regular.ttf
 
 - type: font
   id: DefaultItalic
-  path: /Fonts/_Arcane/Jost/Jost-Italic.ttf
+  path: /Fonts/_Arcane/Exo2/Exo2-Italic.ttf
 
 - type: font
   id: DefaultBold
-  path: /Fonts/_Arcane/Jost/Jost-Bold.ttf
+  path: /Fonts/_Arcane/Exo2/Exo2-Bold.ttf
 
 - type: font
   id: DefaultBoldItalic
-  path: /Fonts/_Arcane/Jost/Jost-BoldItalic.ttf
+  path: /Fonts/_Arcane/Exo2/Exo2-BoldItalic.ttf
 
 - type: font
   id: NotoSansDisplay

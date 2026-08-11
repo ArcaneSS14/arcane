@@ -4,8 +4,6 @@ using Content.Server.Discord;
 using Content.Server.GameTicking;
 using Content.Shared.Database;
 using Robust.Server;
-using Robust.Server.Player;
-using Robust.Shared.Network;
 
 namespace Content.Server._Arcane.Discord;
 
@@ -65,7 +63,7 @@ public sealed partial class BanWebhooks : IPostInjectInit
         }
         catch (Exception e)
         {
-            _sawmill.Error($"Error while sending vote webhook to Discord: {e}");
+            _sawmill.Error($"Error while sending ban webhook to Discord: {e}");
         }
     }
 }
@@ -76,20 +74,14 @@ public sealed class BanWebhookData
     public string Description;
     public int Color;
 
-    public BanWebhookData(IPlayerManager playerManager, NetUserId? playerUser, NetUserId? adminUser, string reason, NoteSeverity severity, DateTimeOffset? expirationTime, IReadOnlyCollection<string>? roles = null)
+    public BanWebhookData(string? playerName, string? adminName, string reason, NoteSeverity severity, DateTimeOffset? expirationTime, IReadOnlyCollection<string>? roles = null)
     {
         var emptyString = Loc.GetString("ban-webhook-empty");
 
-        var player = emptyString;
-        var admin = emptyString;
+        var player = playerName ?? emptyString;
+        var admin = adminName ?? emptyString;
         var roleBans = string.Empty;
         var expiration = Loc.GetString("ban-webhook-empty-expiration");
-
-        if (playerUser != null)
-            player = playerManager.GetPlayerData(playerUser.Value).UserName;
-
-        if (adminUser != null)
-            admin = playerManager.GetPlayerData(adminUser.Value).UserName;
 
         if (expirationTime != null)
             expiration = $"<t:{expirationTime.Value.ToUnixTimeSeconds()}:f>";

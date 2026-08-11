@@ -134,7 +134,7 @@
   # minPlayers: 5
   rules:
     # - CalmDynamic
-    - SubGamemodesCalmRule #
+    - SubGamemodesCalmRule
     - BasicStationEventSchedulerNoAntag
     - BasicRoundstartVariation
   # Arcane-end

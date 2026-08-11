@@ -276,7 +276,8 @@ namespace Content.Server.Communications
             if (TryComp<StationDataComponent>(station, out var stationDataComp))
             {
                 var filter = _stationSystem.GetInStation(stationDataComp);
-                RaiseLocalEvent(new TTSAnnouncePlayEvent(msg, message.Actor, filter));
+                var ttsEv = new TTSAnnouncePlayEvent(msg, message.Actor, filter);
+                RaiseLocalEvent(ref ttsEv);
             }
 
             // if (comp.AnnounceSentBy)

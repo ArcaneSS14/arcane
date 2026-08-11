@@ -164,6 +164,7 @@
       Male: MaleVulpkanin
       Female: FemaleVulpkanin
       Unsexed: MaleVulpkanin
+      Futanari: FemaleVulpkanin # Arcane
   - type: Tag
     tags:
     - CanPilot
