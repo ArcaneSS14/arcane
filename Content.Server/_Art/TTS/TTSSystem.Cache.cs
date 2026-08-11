@@ -8,7 +8,7 @@ namespace Content.Server._Art.TTS;
 // ReSharper disable once InconsistentNaming
 public sealed partial class TTSSystem
 {
-    [Dependency] private readonly IResourceManager _resourceManager = default!;
+    [Dependency] private IResourceManager _resourceManager = default!;
 
     private ResPath GetCacheId(TTSVoicePrototype voicePrototype, string cacheId)
     {

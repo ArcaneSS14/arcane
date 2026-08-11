@@ -208,6 +208,7 @@
       Male: MaleShadowkin
       Female: FemaleShadowkin
       Unsexed: MaleShadowkin
+      Futanari: FemaleShadowkin # Arcane
   - type: TypingIndicator
     proto: alien
   - type: MovementSpeedModifier

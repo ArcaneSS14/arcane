@@ -1067,3 +1067,7 @@
       gender: male
   - type: Loadout
     prototypes: [ MobPollyGear ]
+  # Arcane-Start
+  - type: TTS
+    voice: Alchemist_dota_2
+  # Arcane-End
