@@ -1,1 +1,1 @@
-announce-border-line = ────────────────────
+announce-border-line = -------------------------
