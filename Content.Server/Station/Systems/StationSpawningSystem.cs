@@ -139,10 +139,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             _humanoidSystem.LoadProfile(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
 
-            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
-            {
-                AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
-            }
+            // Arcane-Edit-Start
+            if (_configurationManager.GetCVar(CCVars.FlavorText))
+                AddComp<DetailExaminableComponent>(entity.Value).SetProfile(profile);
+            // Arcane-Edit-End
         }
 
         if (loadout != null)

@@ -2,6 +2,7 @@
 using Content.Shared.Damage.Prototypes;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared._Shitmed.EntityEffects.Effects;
+using Content.Shared._Shitmed.Damage; // Arcane
 using Content.Shared.Localizations;
 using Content.Shared.Temperature.Components;
 using Robust.Shared.Prototypes;
@@ -37,7 +38,14 @@ public sealed partial class EvenHealthChangeEntityEffectSystem : EntityEffectSys
             {
                 spec.DamageDict[type] = healing / groupProto.DamageTypes.Count;
             }
-            _damageable.TryChangeDamage(entity, spec, ignoreResistances: args.Effect.IgnoreResistances);
+            _damageable.TryChangeDamage(
+                    entity,
+                    spec,
+                    ignoreResistances: args.Effect.IgnoreResistances,
+                    // Arcane-Edit-Start
+                    interruptsDoAfters: false,
+                    splitDamage: args.Effect.SplitDamage);
+                    // Arcane-Edit-End
             // </Goob>
         }
     }
@@ -57,6 +65,11 @@ public sealed partial class EvenHealthChange : EntityEffectBase<EvenHealthChange
     /// </summary>
     [DataField]
     public bool IgnoreResistances = true;
+
+    // Arcane-Start
+    [DataField]
+    public SplitDamageBehavior SplitDamage = SplitDamageBehavior.SplitEnsureAllOrganic;
+    // Arcane-End
 
     /// <summary>
     /// Shitmed - How to scale the effect based on the temperature of the target entity.

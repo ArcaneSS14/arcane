@@ -2,198 +2,318 @@
   id: SocksAssBlastUSAKnee
   equipment:
     socks: ClothingSocksAssBlastUSAKnee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksAssBlastUSAThigh
   equipment:
     socks: ClothingSocksAssBlastUSAThigh
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksBeeKnee
   equipment:
     socks: ClothingSocksBeeKnee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksBee
   equipment:
     socks: ClothingSocksBee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksBeeThigh
   equipment:
     socks: ClothingSocksBeeThigh
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksCandyCaneGreenKnee
   equipment:
     socks: ClothingSocksCandyCaneGreenKnee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksCandyCaneGreen
   equipment:
     socks: ClothingSocksCandyCaneGreen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksCandyCaneGreenThigh
   equipment:
     socks: ClothingSocksCandyCaneGreenThigh
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksCandyCaneRedKnee
   equipment:
     socks: ClothingSocksCandyCaneRedKnee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksCandyCaneRed
   equipment:
     socks: ClothingSocksCandyCaneRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksCandyCaneRedThigh
   equipment:
     socks: ClothingSocksCandyCaneRedThigh
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksChristmasKnee
   equipment:
     socks: ClothingSocksChristmasKnee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksChristmas
   equipment:
     socks: ClothingSocksChristmas
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksChristmasThigh
   equipment:
     socks: ClothingSocksChristmasThigh
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksCommieKnee
   equipment:
     socks: ClothingSocksCommieKnee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksCommieThigh
   equipment:
     socks: ClothingSocksCommieThigh
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksFishnet
   equipment:
     socks: ClothingSocksFishnet
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksFishnetAlt
   equipment:
     socks: ClothingSocksFishnetAlt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksGarter
   equipment:
     socks: ClothingSocksGarter
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksLeggings
   equipment:
     socks: ClothingSocksLeggings
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksLeggingsBlack
   equipment:
     socks: ClothingSocksLeggingsBlack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksPantyhose
   equipment:
     socks: ClothingSocksPantyhose
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksPantyhoseRipped
   equipment:
     socks: ClothingSocksPantyhoseRipped
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksKnee
   equipment:
     socks: ClothingSocksKnee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksLatex
   equipment:
     socks: ClothingSocksLatex
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: Socks
   equipment:
     socks: ClothingSocks
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksShort
   equipment:
     socks: ClothingSocksShort
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksThigh
   equipment:
     socks: ClothingSocksThigh
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: StockingsDarkPink
   equipment:
     socks: ClothingStockingsDarkPink
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: StockingsGreen
   equipment:
     socks: ClothingStockingsGreen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: StockingsLightPink
   equipment:
     socks: ClothingStockingsLightPink
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: StockingsOrange
   equipment:
     socks: ClothingStockingsOrange
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: StockingsPurple
   equipment:
     socks: ClothingStockingsPurple
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: StockingsYellow
   equipment:
     socks: ClothingStockingsYellow
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksStripedKnee
   equipment:
     socks: ClothingSocksStripedKnee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksStripedThigh
   equipment:
     socks: ClothingSocksStripedThigh
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksThinKnee
   equipment:
     socks: ClothingSocksThinKnee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksThinThigh
   equipment:
     socks: ClothingSocksThinThigh
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksUKKnee
   equipment:
     socks: ClothingSocksUKKnee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
 
 - type: loadout
   id: SocksUKThigh
   equipment:
     socks: ClothingSocksUKThigh
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ArcaneSocksNoSpecies
