@@ -24,7 +24,7 @@ public sealed partial class AggressionInhibitorComponent : Component
     /// <summary>
     /// When to go to the next step of the schedule.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, AutoNetworkedField]
     public TimeSpan NextUpdate;
 
     /// <summary>
