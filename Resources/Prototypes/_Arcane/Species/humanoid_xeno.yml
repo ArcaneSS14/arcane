@@ -19,10 +19,10 @@
   oldAge: 600
   minHeight: 0.90
   defaultHeight: 1
-  maxHeight: 1.20
+  maxHeight: 1.35
   minWidth: 0.90
   defaultWidth: 1
-  maxWidth: 1.10
+  maxWidth: 1.35
   pros:
   - Иммунитет к давлению открытого космоса.
   - Кислотная кровь — ранения обжигают всех, кроме ксеноморфов.
