@@ -34,7 +34,7 @@ public sealed class MothAccentSystem : EntitySystem
         // Arcane-Start
         message = RegexLowerBuzzRus.Replace(message, "ззз");
         message = RegexUpperBuzzRus.Replace(message, "ЗЗЗ");
-        message = RegexLowerZhRus.Replace(message, "ж");
+        message = RegexLowerZhRus.Replace(message, "жжж");
         message = RegexUpperZhRus.Replace(message, "ЖЖЖ");
         // Arcane-End
 

@@ -35,8 +35,10 @@ namespace Content.Server.Speech.EntitySystems
             }
 
             return message.Replace("!", _random.Pick(Faces))
+                // Arcane-Start
                 .Replace("р", "в").Replace("Р", "В")
                 .Replace("л", "в").Replace("Л", "В");
+                // Arcane-End
         }
 
 
