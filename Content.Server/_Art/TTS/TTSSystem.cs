@@ -8,7 +8,9 @@ using Content.Shared._EinsteinEngines.Language.Components;
 using Content.Shared._Art.CVars;
 using Content.Shared._Art.TTS;
 using Content.Shared.Chat;
+using Content.Shared.Examine;
 using Content.Shared.GameTicking;
+using Content.Shared.Ghost;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -18,11 +20,12 @@ namespace Content.Server._Art.TTS;
 // ReSharper disable once InconsistentNaming
 public sealed partial class TTSSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly TTSManager _ttsManager = default!;
-    [Dependency] private readonly SharedTransformSystem _xforms = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private TTSManager _ttsManager = default!;
+    [Dependency] private SharedTransformSystem _xforms = default!;
+    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private ExamineSystemShared _examineSystem = default!;
 
     private const int MaxMessageChars = 300; // Arcane
     private bool _isEnabled;
@@ -47,7 +50,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_isEnabled || args.Message.Length > MaxMessageChars)
             return;
 
-        if (args.Channel != null)
+        if (args.RadioMessageSent)
             return;
 
         if (!args.Language.SpeechOverride.RequireSpeech)
@@ -68,7 +71,7 @@ public sealed partial class TTSSystem : EntitySystem
         HandleSay(uid, args.Message, args.Language, protoVoice.Speaker, effect);
     }
 
-    private void OnTTSRadioPlayEvent(EntityUid uid, ActorComponent comp, TTSRadioPlayEvent args)
+    private void OnTTSRadioPlayEvent(EntityUid uid, ActorComponent comp, ref TTSRadioPlayEvent args)
     {
         if (!_isEnabled || args.Message.Length > MaxMessageChars)
             return;
@@ -77,7 +80,7 @@ public sealed partial class TTSSystem : EntitySystem
     }
 
     // Arcane-start
-    private void OnTTSAnnouncePlayEvent(TTSAnnouncePlayEvent args)
+    private void OnTTSAnnouncePlayEvent(ref TTSAnnouncePlayEvent args)
     {
         string? voice = null;
         if (TryComp<TTSComponent>(args.Sender, out var ttsComponent)
@@ -88,7 +91,11 @@ public sealed partial class TTSSystem : EntitySystem
         }
 
         if (voice != null)
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(6), () => HandleReceiveRadio(args.Recievers, args.Message, voice, "announce"));
+        {
+            var receivers = args.Receievers;
+            var message = args.Message;
+            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(6), () => HandleReceiveRadio(receivers, message, voice, "announce"));
+        }
     }
 
     private async void HandleReceiveRadio(Filter filter, string message, string speaker, string effect, LanguagePrototype? language = null)
@@ -128,6 +135,9 @@ public sealed partial class TTSSystem : EntitySystem
             if (!session.AttachedEntity.HasValue)
                 continue;
 
+            if (!message.EndsWith("!") && !InLocalChatRangeUnOccluded(uid, session.AttachedEntity.Value, ChatSystem.VoiceRange))
+                continue;
+
             EntityManager.TryGetComponent(session.AttachedEntity.Value, out LanguageSpeakerComponent? lang);
             if (_language.CanUnderstand(new(session.AttachedEntity.Value, lang), language.ID))
                 nilter.AddPlayer(session);
@@ -149,7 +159,6 @@ public sealed partial class TTSSystem : EntitySystem
         // if (obfuscated is null)
         //     return;
 
-        // TODO: Check obstacles
         var xformQuery = GetEntityQuery<TransformComponent>();
         var sourcePos = _xforms.GetWorldPosition(xformQuery.GetComponent(uid), xformQuery);
         var nilter = Filter.Empty();
@@ -164,6 +173,9 @@ public sealed partial class TTSSystem : EntitySystem
             if (distance > ChatSystem.WhisperMuffledRange)
                 continue;
 
+            if (!InLocalChatRangeUnOccluded(uid, session.AttachedEntity.Value, ChatSystem.WhisperMuffledRange))
+                continue;
+
             EntityManager.TryGetComponent(session.AttachedEntity.Value, out LanguageSpeakerComponent? lang);
             if (_language.CanUnderstand(new(session.AttachedEntity.Value, lang), language.ID)
                 && distance <= ChatSystem.WhisperClearRange)
@@ -174,6 +186,12 @@ public sealed partial class TTSSystem : EntitySystem
 
         RaiseNetworkEvent(new PlayTTSEvent(normal, GetNetEntity(uid), true), nilter);
         // RaiseNetworkEvent(new PlayTTSEvent(obfuscated, GetNetEntity(uid), true), lilter, false);
+    }
+
+    private bool InLocalChatRangeUnOccluded(EntityUid source, EntityUid listener, float range)
+    {
+        return HasComp<GhostHearingComponent>(listener)
+            || _examineSystem.InRangeUnOccluded(source, listener, range);
     }
 
     private readonly Dictionary<string, Task<byte[]?>> _ttsTasks = new();
