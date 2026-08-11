@@ -237,10 +237,10 @@ public sealed partial class ErpPanelSystem : EntitySystem
         if (!_interaction.InRangeAndAccessible(user, target, interaction.Range))
             return false;
 
-        if (interaction.Messages.Count == 0)
+        if (user == target && interaction.SelfMessages.Count == 0)
             return false;
 
-        if (user == target && interaction.SelfMessages.Count == 0 || interaction.Messages.Count == 0)
+        if (user != target && interaction.Messages.Count == 0)
             return false;
 
         if (!TryComp<ErpPanelOwnerComponent>(user, out var userPanel) || !userPanel.Enabled)
