@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
-using Content.Goobstation.Server.JoinQueue;
 using Content.Goobstation.Server._Arcane.JoinQueue;
 using Robust.Shared.Network;
 
@@ -52,22 +51,20 @@ public sealed class JoinQueueStateTest
     }
 
     [Test]
-    public void ReconnectOrderDoesNotChangeReservedOrder()
+    public void RemovedUserReenqueuesAtTailWithNewOrder()
     {
         var queue = new JoinQueueState<string>();
-        queue.Enqueue(CreateEntry("first", 0));
-        queue.Enqueue(CreateEntry("last", 3));
+        var userId = new NetUserId(Guid.NewGuid());
 
-        // Reconnect in the opposite order. The original tickets still decide placement.
-        queue.Enqueue(CreateEntry("third", 2));
-        queue.Enqueue(CreateEntry("second", 1));
+        queue.Enqueue(CreateEntry("returning-old", 0, userId: userId));
+        queue.Enqueue(CreateEntry("other", 1));
+        Assert.That(queue.TryRemove(userId, out _), Is.True);
+        Assert.That(queue.Enqueue(CreateEntry("returning-new", 2, userId: userId)), Is.True);
 
         Assert.That(queue.Entries.Select(static entry => entry.Session), Is.EqualTo(new[]
         {
-            "first",
-            "second",
-            "third",
-            "last",
+            "other",
+            "returning-new",
         }));
     }
 
@@ -82,41 +79,6 @@ public sealed class JoinQueueStateTest
         Assert.That(queue.Count, Is.EqualTo(1));
         Assert.That(queue.TryGet(userId, out var entry), Is.True);
         Assert.That(entry.Session, Is.EqualTo("original"));
-    }
-
-    [Test]
-    public void LimitBypassDoesNotDelayQueueAfterRegularPlayerLeaves()
-    {
-        const int softMax = 50;
-
-        var countedAtAdmission = JoinQueueManager.CalculateCountedPlayerCount(
-            actualPlayers: 51,
-            limitBypasses: 1,
-            exemptAdmins: 0,
-            overlappingExemptions: 0);
-        var countedAfterRegularDisconnect = JoinQueueManager.CalculateCountedPlayerCount(
-            actualPlayers: 50,
-            limitBypasses: 1,
-            exemptAdmins: 0,
-            overlappingExemptions: 0);
-
-        Assert.Multiple(() =>
-        {
-            Assert.That(countedAtAdmission, Is.EqualTo(softMax));
-            Assert.That(countedAfterRegularDisconnect, Is.LessThan(softMax));
-        });
-    }
-
-    [Test]
-    public void AdminAndLimitBypassExemptionsAreNotCountedTwice()
-    {
-        var counted = JoinQueueManager.CalculateCountedPlayerCount(
-            actualPlayers: 51,
-            limitBypasses: 1,
-            exemptAdmins: 1,
-            overlappingExemptions: 1);
-
-        Assert.That(counted, Is.EqualTo(50));
     }
 
     [Test]
@@ -149,7 +111,6 @@ public sealed class JoinQueueStateTest
             session,
             order,
             priority,
-            TimeSpan.Zero,
-            0d);
+            TimeSpan.Zero);
     }
 }

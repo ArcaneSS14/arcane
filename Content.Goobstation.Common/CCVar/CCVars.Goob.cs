@@ -300,6 +300,11 @@ public sealed partial class GoobCVars
 
     #region Goobcoins
 
+    // Arcane-start: Server currency disabled by default
+    public static readonly CVarDef<bool> ServerCurrencyEnabled =
+        CVarDef.Create("servercurrency.enabled", false, CVar.SERVERONLY);
+    // Arcane-end
+
     public static readonly CVarDef<int> GoobcoinsPerPlayer =
         CVarDef.Create("servercurrency.per_player", 10, CVar.SERVERONLY);
 
