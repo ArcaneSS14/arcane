@@ -35,13 +35,17 @@
     - !type:GroupSelector
       children:
       - id: ClothingBeltInteQWebbing
-        prob: 0.005
       - id: ClothingBeltInteQDropPouch
-        prob: 0.005
-    - id: ItemFlagMiniInteQ
-    - id: FoodSnackInteQCookies
-    - id: CigPackInteQ
-    - id: ClothingNeckCloakInteQ
-      prob: 0.005
-    - id: BoxInteQEVA
-      prob: 0.005
+      - id: ToolboxInteQFilled
+    - !type:GroupSelector
+      children:
+      - id: ItemFlagMiniInteQ
+      - id: FoodSnackInteQCookies
+      - id: CigPackInteQ
+      - id: ToolboxInteQFilled
+    - !type:GroupSelector
+      children:
+      - id: ClothingNeckCloakInteQ
+      - id: BoxInteQEVA
+      - id: ToolboxInteQFilled
+# Arcane - увеличены шансы лута и добавлен ToolboxInteQFilled
