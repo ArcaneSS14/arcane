@@ -66,6 +66,11 @@ namespace Content.Goobstation.Server.ServerCurrency
 
         private void OnRoundEndText(RoundEndTextAppendEvent ev)
         {
+            // Arcane-start
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+                return;
+            // Arcane-end
+
             if (_players.PlayerCount < _goobcoinsMinPlayers)
                 return;
 
