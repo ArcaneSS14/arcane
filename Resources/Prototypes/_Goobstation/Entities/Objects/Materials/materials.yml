@@ -6,10 +6,10 @@
   name: bluespace crystal
   suffix: Full
   components:
-# Arcane-Start
+  # Arcane-Start
   - type: UseDelay
-    delay: 15
-# Arcane-Start-End
+    delay: 3
+  # Arcane-End
   - type: Stack
     stackType: BSCrystal
     baseLayer: base
