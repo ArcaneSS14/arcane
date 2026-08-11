@@ -19,6 +19,7 @@ import os
 import sys
 from pathlib import Path
 from typing import Any, Iterable
+from urllib.parse import quote
 
 import requests
 import yaml
@@ -34,6 +35,16 @@ DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 CHANGELOG_FILE = (
     os.environ.get("CHANGELOG_FILE")
     or "Resources/Changelog/ArcaneChangelog.yml"
+)
+PUBLISH_WORKFLOWS = tuple(
+    workflow.strip()
+    for workflow in os.environ.get("CHANGELOG_PUBLISH_WORKFLOWS", "").split(",")
+    if workflow.strip()
+)
+IGNORED_PUBLISH_RUNS = frozenset(
+    run.strip()
+    for run in os.environ.get("CHANGELOG_IGNORED_RUNS", "").split(",")
+    if run.strip()
 )
 
 TYPES_TO_EMOJI = {"Fix": "🐛", "Add": "🆕", "Remove": "❌", "Tweak": "⚒️"}
@@ -69,16 +80,37 @@ def main():
 
 
 def get_most_recent_workflow(
-    sess: requests.Session, github_repository: str, github_run: str
-) -> Any:
+    sess: requests.Session,
+    github_repository: str,
+    github_run: str,
+    publish_workflows: Iterable[str] = PUBLISH_WORKFLOWS,
+    ignored_runs: Iterable[str] = IGNORED_PUBLISH_RUNS,
+) -> dict[str, Any] | None:
+    """Find the newest usable successful run across all configured publish workflows."""
     workflow_run = get_current_run(sess, github_repository, github_run)
-    past_runs = get_past_runs(sess, workflow_run)
-    for run in past_runs["workflow_runs"]:
-        # First past successful run that isn't our current run.
-        if run["id"] == workflow_run["id"]:
-            continue
+    ignored_run_ids = {str(run) for run in ignored_runs}
 
-        return run
+    workflow_urls = [workflow_run["workflow_url"]]
+    if publish_workflows:
+        workflows_url = (
+            f"{GITHUB_API_URL}/repos/{github_repository}/actions/workflows"
+        )
+        workflow_urls = [
+            f"{workflows_url}/{quote(workflow, safe='')}"
+            for workflow in publish_workflows
+        ]
+
+    past_runs = []
+    for workflow_url in workflow_urls:
+        response = get_past_runs(sess, workflow_url, workflow_run["created_at"])
+        past_runs.extend(
+            run
+            for run in response["workflow_runs"]
+            if run["id"] != workflow_run["id"]
+            and str(run["id"]) not in ignored_run_ids
+        )
+
+    return max(past_runs, key=lambda run: run["created_at"], default=None)
 
 
 def get_current_run(
@@ -91,12 +123,14 @@ def get_current_run(
     return resp.json()
 
 
-def get_past_runs(sess: requests.Session, current_run: Any) -> Any:
+def get_past_runs(
+    sess: requests.Session, workflow_url: str, current_run_created_at: str
+) -> Any:
     """
     Get all successful workflow runs before our current one.
     """
-    params = {"status": "success", "created": f"<={current_run['created_at']}"}
-    resp = sess.get(f"{current_run['workflow_url']}/runs", params=params)
+    params = {"status": "success", "created": f"<={current_run_created_at}"}
+    resp = sess.get(f"{workflow_url}/runs", params=params)
     resp.raise_for_status()
     return resp.json()
 
@@ -112,6 +146,13 @@ def get_last_changelog() -> str:
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
     most_recent = get_most_recent_workflow(session, github_repository, github_run)
+    if most_recent is None:
+        workflows = ", ".join(PUBLISH_WORKFLOWS) or "the current workflow"
+        raise RuntimeError(
+            f"No previous successful publish run found in {workflows}; "
+            "cannot calculate the changelog diff"
+        )
+
     last_sha = most_recent["head_sha"]
     print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
     last_changelog_stream = get_last_changelog_by_sha(
