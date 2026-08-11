@@ -112,7 +112,7 @@ namespace Content.IntegrationTests.Tests
             // Goobstation edit:
             // order this list alphabetically, mark dev maps
             // if upstreaming take ours here and edit manually.
-            //"Amber", kill
+            "Amber",          // Arcane-Edit: In pool!!!
             "Aspid",          // Arcane
             "Atlas",
             "Bagel",
@@ -150,18 +150,19 @@ namespace Content.IntegrationTests.Tests
             "Snowball",
             "TestTeg",        // Dev map
             "Train",           // Not in pool
-            "WonderBox"       // Arcane
+            "WonderBox",       // Arcane
             // Goob end
         };
         // Goobstation edit start, yeah i know, but this is easier and less load than loading protoman or something.
         private static readonly string[] GameMapsInCurrentPool = // plus dev
         {
             // order this list alphabetically, mark dev maps
-              //"Amber", kill
+              "Amber",          // Arcane-Edit: Now in Pool
               "Atlas",
+              "Aspid",          // Arcane
               "Bagel",
              //  "Barratry", kill memory concerns
-            //"Box",            // Not in pool
+              "Box",            // Arcane-Edit: Now in Pool
               "CentComm",      // CentComm
               "Chloris",
               "Cluster",
@@ -172,17 +173,17 @@ namespace Content.IntegrationTests.Tests
             //"dm01-entryway",  // Deathmatch
             //"Europa",         // Not in pool.
               "Exo",
-            //  "Fland",        // kill due to mem
+              "Fland",        // kill due to mem // Arcane-Edit: Now in Pool
               "FlandHighPop",
               "Kettle",
-            //"Lambda",         // Not in pool
+              "Lambda",         // Not in pool // Arcane-Edit: Now in Pool
               "Lavatest",       //Dev map
               "Leonid",
               "Loop",
               "Marathon",
               "Meta",
             //"MeteorArena",    // Deathmatch
-            //  "Oasis",        // kill due to memory
+              "Oasis",        // kill due to memory // Arcane-Edit: Now in Pool
               "OasisHighPop",
               "Omega",
               "Origin",
@@ -194,6 +195,7 @@ namespace Content.IntegrationTests.Tests
               "Saltern",
               "Serpentcrest",
              // "Snowball", // fuck off not in pool
+              "WonderBox",       // Arcane
         };
         // Goobstation edit end
 

@@ -4,7 +4,7 @@ using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
-using Content.Shared._Arcane.Sponsor;
+using Content.Shared._Arcane.DiscordRoles;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
@@ -23,7 +23,7 @@ public sealed partial class ServerDbPostgres
         BanManager.BanNotificationChannel,
         MultiServerKickManager.NotificationChannel,
         // arcane sponsor start
-        ArcaneSponsorTiers.UpdatedNotificationChannel,
+        DiscordRoleConstants.UpdatedNotificationChannel,
         // arcane sponsor end
     ];
 

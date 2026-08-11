@@ -36,8 +36,11 @@ namespace Content.Server.Voting.Managers
         private GameTicker? _gameTicker;
 
         // Arcane-start
-        const int MaxStorySize = 5;
-        const int PresetAvailable = 2; // Макс кол-во раундов, после которых убираем режим из ротации
+        const int PresetMemory = 5;
+        const int MapMemory = 6;
+        const int MapAvailableCount = 1; // Макс кол-во раундов на этой карте в памяти
+        const int PresetAvailableCount = 2; // Макс кол-во раундов в памяти с этим режимом
+        private List<string> _mapStory = new();
         private List<string> _gameruleStory = new();
         // Arcane-end
 
@@ -269,7 +272,7 @@ namespace Content.Server.Voting.Managers
 
                 // Arcane-start
                 _gameruleStory.Add(picked);
-                while (_gameruleStory.Count > MaxStorySize)
+                while (_gameruleStory.Count > PresetMemory)
                     _gameruleStory.RemoveAt(0);
                 // Arcane-end
             };
@@ -293,6 +296,10 @@ namespace Content.Server.Voting.Managers
 
             foreach (var (k, v) in maps)
             {
+                // Arcane-start
+                if (_mapStory.Count(el => el == k.ID) >= MapAvailableCount)
+                    continue;
+                // Arcane-end
                 options.Options.Add((v, k));
             }
 
@@ -323,6 +330,11 @@ namespace Content.Server.Voting.Managers
                     if (_gameMapManager.TrySelectMapIfEligible(picked.ID))
                     {
                         ticker.UpdateInfoText();
+                        // Arcane-start
+                        _mapStory.Add(picked.ID);
+                        while (_mapStory.Count > MapMemory)
+                            _mapStory.RemoveAt(0);
+                        // Arcane-end
                     }
                 }
                 else
@@ -613,7 +625,7 @@ namespace Content.Server.Voting.Managers
                     continue;
 
                 // Arcane-start
-                if (_gameruleStory.Count(el => el == preset.ID) >= PresetAvailable)
+                if (_gameruleStory.Count(el => el == preset.ID) >= PresetAvailableCount)
                     continue;
                 // Arcane-end
 

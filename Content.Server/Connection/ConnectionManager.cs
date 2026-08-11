@@ -6,12 +6,14 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Content.Goobstation.Common.CCVar;
 using Content.Server.Administration.Managers;
+using Content.Server._Arcane.DiscordRoles;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection.IPIntel;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
+using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Server.Player;
@@ -33,6 +35,7 @@ namespace Content.Server.Connection
         void Initialize();
         void PostInit();
         Task<bool> HasPrivilegedJoin(NetUserId userId); // Goobstation - Queue
+        Task<bool> HasPrivilegedJoin(ICommonSession session); // Arcane
         /// <summary>
         /// Temporarily allow a user to bypass regular connection requirements.
         /// </summary>
@@ -65,6 +68,10 @@ namespace Content.Server.Connection
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly IHttpClientHolder _http = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
+        // Arcane-start
+        [Dependency] private readonly DiscordRoleManager _discordRoles = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
+        // Arcane-end
 
         private ISawmill _sawmill = default!;
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
@@ -291,13 +298,14 @@ namespace Content.Server.Connection
                 }
             }
 
-            var isPrivileged = await HasPrivilegedJoin(userId); // Goobstation - Queue
+            var isPrivileged = await HasPrivilegedJoin(userId, adminData != null); // Arcane
             var isQueueEnabled = _cfg.GetCVar(GoobCVars.QueueEnabled); // Goobstation - Queue
             var softPlayerCount = _plyMgr.PlayerCount;
 
             if (!_cfg.GetCVar(CCVars.AdminsCountForMaxPlayers))
             {
-                softPlayerCount -= _adminManager.ActiveAdmins.Count();
+                softPlayerCount -= _adminManager.ActiveAdmins.Count(admin =>
+                    _plyMgr.TryGetSessionById(admin.UserId, out var current) && ReferenceEquals(current, admin)); // Arcane
             }
 
             if (softPlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !isPrivileged && !isQueueEnabled) // Goobstation - Queue
@@ -370,18 +378,52 @@ namespace Content.Server.Connection
             return assigned;
         }
 
-        public async Task<bool> HasPrivilegedJoin(NetUserId userId) // Goobstation - Queue
+        // Arcane-Edit-Start
+        public async Task<bool> HasPrivilegedJoin(NetUserId userId)
         {
             var isAdmin = await _db.GetAdminDataForAsync(userId) != null;
-            var ticker = IoCManager.Resolve<IEntityManager>().System<GameTicker>();
-            var wasInGame = ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
-                            status == PlayerGameStatus.JoinedGame;
-            // arcane sponsor start
-            if (isAdmin || wasInGame)
+            return await HasPrivilegedJoin(userId, isAdmin);
+        }
+
+        public async Task<bool> HasPrivilegedJoin(ICommonSession session)
+        {
+            var isAdmin = await _db.GetAdminDataForAsync(session.UserId) != null;
+            if (HasBuiltInJoinPrivilege(session.UserId, isAdmin))
                 return true;
 
-            return await _db.GetPatron(userId, default) != null;
-            // arcane sponsor end
+            return _discordRoles.HasRole(session, DiscordRole.SponsorTier1) ||
+                   _discordRoles.HasRole(session, DiscordRole.SponsorTier2);
         }
+
+        private async Task<bool> HasPrivilegedJoin(NetUserId userId, bool isAdmin)
+        {
+            if (HasBuiltInJoinPrivilege(userId, isAdmin))
+                return true;
+
+            return await _discordRoles.HasRole(userId, DiscordRole.SponsorTier1, default) ||
+                   await _discordRoles.HasRole(userId, DiscordRole.SponsorTier2, default);
+        }
+
+        private bool HasBuiltInJoinPrivilege(NetUserId userId, bool isAdmin)
+        {
+            if (HasTemporaryBypass(userId))
+                return true;
+
+            var adminCanBypass = CanAdminBypassPlayerLimit(
+                isAdmin,
+                _cfg.GetCVar(CCVars.AdminBypassMaxPlayers));
+            if (adminCanBypass)
+                return true;
+
+            var ticker = _entityManager.System<GameTicker>();
+            return ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
+                   status == PlayerGameStatus.JoinedGame;
+        }
+
+        internal static bool CanAdminBypassPlayerLimit(bool isAdmin, bool bypassEnabled)
+        {
+            return isAdmin && bypassEnabled;
+        }
+        // Arcane-Edit-End
     }
 }

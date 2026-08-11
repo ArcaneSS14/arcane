@@ -60,6 +60,11 @@
   - SpeedLoaderMagnum
   - SpeedLoaderMagnumEmpty
   # - ShrapnelPayload
+  # Arcane-Start
+  - MagazineShotgun
+  - MagazineShotgunEmpty
+  - MagazineShotgunSlug
+  # Arcane-End
 
 - type: latheRecipePack
   id: SecurityWeaponsStatic
