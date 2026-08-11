@@ -107,6 +107,5 @@ internal sealed class JoinQueueState<TSession> where TSession : notnull
         TSession Session,
         long Order,
         bool IsPriority,
-        TimeSpan WaitStartedAt,
-        double AccumulatedWaitSeconds);
+        TimeSpan WaitStartedAt);
 }
