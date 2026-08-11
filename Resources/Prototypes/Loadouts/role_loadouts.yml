@@ -126,7 +126,6 @@
   id: JobServiceWorker
   groups:
   - GroupTankHarness
-  - BartenderJumpsuit
   # Arcane-Start
   - ServiceWorkerJumpsuit
   - ServiceWorkerShoes

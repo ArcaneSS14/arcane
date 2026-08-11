@@ -692,7 +692,7 @@
 - type: loadoutGroup
   id: LibrarianShoes
   name: loadout-group-librarian-shoes
-  minLimit: 1
+  minLimit: 0
   maxLimit: 1
   loadouts:
   - TwilightSparkleBootsPatron
@@ -700,7 +700,7 @@
 - type: loadoutGroup
   id: LibrarianGlasses
   name: loadout-group-librarian-glasses
-  minLimit: 1
+  minLimit: 0
   maxLimit: 1
   loadouts:
   - TwilightSparkleGlassesPatron

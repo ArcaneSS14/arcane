@@ -95,6 +95,12 @@
   id: ServiceWorkerJumpsuit
   name: loadout-group-service-worker-jumpsuit
   loadouts:
+  - BartenderJumpsuit
+  - BartenderJumpskirt
+  - BartenderJumpsuitPurple
+  - ServiceMJ # goob
+  - BartenderPatron
+  - BartenderSkirtPatron
   - ServiveShirtPatron
   - ServiveShirtSkirtPatron
 

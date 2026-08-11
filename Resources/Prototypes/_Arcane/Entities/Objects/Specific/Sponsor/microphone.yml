@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseItem
   id: RadioHostMicrophone
-  name: microphine
+  name: microphone
   description: To sing and dance!
   components:
   - type: Sprite
