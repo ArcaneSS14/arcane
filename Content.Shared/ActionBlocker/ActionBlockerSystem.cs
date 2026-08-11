@@ -156,10 +156,10 @@ namespace Content.Shared.ActionBlocker
             return !itemEv.Cancelled;
         }
 
-        public bool CanSpeak(EntityUid uid)
+        public bool CanSpeak(EntityUid uid, bool isWhisper = false) // Arcane-Edit
         {
             // This one is used as broadcast
-            var ev = new SpeakAttemptEvent(uid);
+            var ev = new SpeakAttemptEvent(uid, isWhisper); // Arcane-Edit
             RaiseLocalEvent(uid, ev, true);
 
             return !ev.Cancelled;

@@ -67,6 +67,7 @@
         Structural: 20
     soundHit:
       collection: MetalThud
+    animation: WeaponArcPunch # Arcane
   - type: Puller
     needsHands: false
   - type: InputMover
