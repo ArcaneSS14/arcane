@@ -90,7 +90,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         </PanelContainer>
 
                         <BoxContainer Orientation="Horizontal" HorizontalExpand="False" VerticalExpand="True">
-                            <PanelContainer Name="LeftInfoPanel" StyleClasses="BackgroundPanel" MinWidth="180" HorizontalExpand="False" VerticalExpand="True" ModulateSelfOverride="#333333C0">
+                            <PanelContainer Name="LeftInfoPanel" StyleClasses="BackgroundPanel" MinWidth="180" SetWidth="480" HorizontalExpand="False" VerticalExpand="True" ModulateSelfOverride="#333333C0"> <!-- Arcane reduce width-->
                                 <BoxContainer Orientation="Vertical" HorizontalExpand="False" VerticalExpand="True">
                                     <RichTextLabel Text="{Loc 'ui-lobby-server-info-block'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center" />
                                     <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" />
@@ -110,9 +110,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                         </PanelContainer>
                                         <!-- Arcane-end -->
 
+                                        <!-- Arcane-start: Goob Coins hidden
                                         <controls:StripeBack>
                                             <Label Name="Balance" Access="Public" StyleClasses="LabelHeadingBigger" VAlign="Center" HorizontalExpand="True" HorizontalAlignment="Center" />
                                         </controls:StripeBack>
+                                        Arcane-end -->
                                         <controls:HLine Color="{x:Static style:StyleNano.DisabledFore}" Thickness="1" />
                                         <Button Name="ReadyButton" Access="Public" ToggleMode="True" Text="{Loc 'ui-lobby-ready-up-button'}" StyleClasses="ButtonBig" HorizontalExpand="True" />
                                         <cc:UICommandButton Command="observe" Name="ObserveButton" Access="Public" Text="{Loc 'ui-lobby-observe-button'}" WindowType="{x:Type lobbyUi:ObserveWarningWindow}" HorizontalExpand="True" />
