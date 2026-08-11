@@ -207,7 +207,7 @@ public sealed class MoodSystem : EntitySystem
             return;
 
         var modifier = 1f;
-        if (component.CurrentMoodThreshold != MoodThreshold.Dead && component.CurrentMoodThreshold is <= MoodThreshold.Meh or >= MoodThreshold.Good)
+        if (component.CurrentMoodThreshold != MoodThreshold.Dead && component.CurrentMoodThreshold is <= MoodThreshold.Meh or >= MoodThreshold.Great) // Arcane-Edit
         {
             // This ridiculous math serves a purpose making high mood less impactful on movement speed than low mood
             modifier =
