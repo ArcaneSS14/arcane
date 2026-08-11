@@ -38,6 +38,7 @@
       Male: UnisexVox
       Female: UnisexVox
       Unsexed: UnisexVox
+      Futanari: UnisexVox # Arcane
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -132,9 +133,11 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: [ "jumpsuit" ]
+    # Arcane-Edit-Start
     - map: [ "enum.HumanoidVisualLayers.LFoot" ]
     - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: [ "jumpsuit" ]
+    # Arcane-Edit-End
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
     - map: [ "gloves" ]
@@ -213,6 +216,13 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: shoes
+      # Arcane-End
       outerClothing: # Goob
         sizeMaps:
           32:
@@ -384,6 +394,13 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: shoes
+      # Arcane-End
       outerClothing: # Goob
         sizeMaps:
           32:

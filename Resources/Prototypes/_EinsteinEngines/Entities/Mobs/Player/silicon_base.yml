@@ -18,6 +18,7 @@
           methods: [Touch]
           effects:
             - !type:WashCreamPie
+            - !type:WashCumOverlayReaction # Arcane
     - type: DamageOnHighSpeedImpact
       damage:
         types:
@@ -263,6 +264,7 @@
         Male: UnisexIPC
         Female: UnisexIPC
         Unsexed: UnisexIPC
+        Futanari: UnisexIPC # Arcane
     - type: MeleeWeapon
       hidden: true
       soundHit:
@@ -343,4 +345,6 @@
     - type: ExaminableCharacter # WWDP
     # Arcane-start
     - type: DirectionalEmote
+    - type: TTS
+    - type: ErpPanelOwner
     # Arcane-end

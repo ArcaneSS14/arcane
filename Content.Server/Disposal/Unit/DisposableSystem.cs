@@ -12,6 +12,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Disposal.Unit
 {
@@ -27,6 +28,7 @@ namespace Content.Server.Disposal.Unit
         [Dependency] private readonly SharedMapSystem _maps = default!;
         [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
         [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+        [Dependency] private readonly IGameTiming _timing = default!; // Arcane
 
         private EntityQuery<DisposalTubeComponent> _disposalTubeQuery;
         private EntityQuery<DisposalUnitComponent> _disposalUnitQuery;
@@ -199,6 +201,11 @@ namespace Content.Server.Disposal.Unit
             {
                 foreach (var ent in holder.Container.ContainedEntities)
                 {
+                    // Arcane-start
+                    if (to.LastDamageTime.TryGetValue(ent, out var lastDamageTime) && _timing.CurTime < lastDamageTime + to.DamageCooldown)
+                        continue;
+                    to.LastDamageTime[ent] = _timing.CurTime;
+                    // Arcane-end
                     _damageable.TryChangeDamage(ent, to.DamageOnTurn);
                 }
                 _audio.PlayPvs(to.ClangSound, toUid);

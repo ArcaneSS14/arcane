@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server._Arcane.Discord;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
+using Content.Shared._Arcane.CCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Players;
@@ -41,6 +43,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     [Dependency] private readonly IEntitySystemManager _systems = default!;
     [Dependency] private readonly ITaskManager _taskManager = default!;
     [Dependency] private readonly UserDbDataManager _userDbData = default!;
+    [Dependency] private readonly BanWebhooks _banWebhooks = default!; // Arcane
 
     private ISawmill _sawmill = default!;
 
@@ -128,6 +131,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var (banDef, expires) = await CreateBanDef(banInfo, BanType.Server, null);
 
         await _db.AddBanAsync(banDef);
+        SendBanWebhook(banInfo, banDef, expires); // Arcane
 
         if (_cfg.GetCVar(CCVars.ServerBanResetLastReadRules))
         {
@@ -239,6 +243,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var (banDef, expires) = await CreateBanDef(banInfo, BanType.Role, roleDefs);
 
         await AddRoleBan(banDef);
+        SendBanWebhook(banInfo, banDef, expires); // Arcane
 
         var length = expires == null
             ? Loc.GetString("cmd-roleban-inf")
@@ -315,6 +320,40 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             .Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall)
             ?.TimeSpent ?? TimeSpan.Zero;
     }
+
+    // Arcane-start
+    private void SendBanWebhook(CreateBanInfo banInfo, BanDef banDef, DateTimeOffset? expires)
+    {
+        var webhookUrl = _cfg.GetCVar(ACCVars.DiscordBanWebhook);
+        if (string.IsNullOrEmpty(webhookUrl))
+            return;
+
+        var targetName = banInfo.Users.Count == 0
+            ? null
+            : string.Join(", ", banInfo.Users.Select(user => user.UserName));
+
+        string? adminName = null;
+        if (banInfo.BanningAdmin is { } adminUser &&
+            _playerManager.TryGetPlayerData(adminUser, out var adminData))
+        {
+            adminName = adminData.UserName;
+        }
+
+        IReadOnlyCollection<string>? roles = null;
+        if (banDef.Roles is { } bannedRoles)
+            roles = bannedRoles.Select(role => role.RoleId).ToArray();
+
+        var data = new BanWebhookData(
+            targetName,
+            adminName,
+            banInfo.Reason,
+            banDef.Severity,
+            expires,
+            roles);
+
+        _banWebhooks.CreateBanWebhookMessage(data, webhookUrl);
+    }
+    // Arcane-end
 
     private IEnumerable<BanRoleDef> ToBanRoleDef<T>(IEnumerable<ProtoId<T>> protoIds) where T : class, IPrototype
     {
