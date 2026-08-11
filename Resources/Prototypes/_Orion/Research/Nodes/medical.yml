@@ -18,6 +18,10 @@
   - ScanningReagentHaloperidol
   - ScanningReagentCryostylane
   recipeUnlocks:
+  # Arcane-Start
+  - JetInjector
+  - ChemistryEmptyVialSmall
+  # Arcane-End
   - LargeBeaker
   - Beaker
   - Bloodpack
@@ -137,6 +141,7 @@
   requiredExperiments:
   - ScanningReagentHaloperidol
   recipeUnlocks:
+  - AdvancedJetInjector # Arcane
   - HandheldCrewMonitor
   - SyringeGun
   - DefibrillatorCompact

@@ -68,14 +68,22 @@ jobs:
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
 
     - name: Publish changelog (Discord)
+      id: publish-changelog
       continue-on-error: true
       run: Tools/actions_changelogs_since_last_run.py
       env:
         GITHUB_TOKEN: ${{ github.token }}
         DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
         CHANGELOG_FILE: ${{ vars.CHANGELOG_DIR }}
+        CHANGELOG_PUBLISH_WORKFLOWS: publish.yml,publish-with-changelog.yml
+        # Run #2 published successfully, but its changelog step failed.
+        CHANGELOG_IGNORED_RUNS: "31336400112"
 
     - name: Notify Discord about server update
       run: Tools/actions_changelogs_since_last_run.py --publish-notification
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
+
+    - name: Fail if changelog notification failed
+      if: ${{ steps.publish-changelog.outcome == 'failure' }}
+      run: exit 1
