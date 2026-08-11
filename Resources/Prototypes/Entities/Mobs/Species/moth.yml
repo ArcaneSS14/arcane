@@ -61,6 +61,7 @@
       Male: MaleMoth
       Female: FemaleMoth
       Unsexed: UnisexMoth
+      Futanari: FemaleMoth # Arcane
   - type: MovementSpeedModifier
     baseWeightlessAcceleration: 3 # Goobstation value
     baseWeightlessFriction: 1
@@ -102,11 +103,15 @@
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-      - map: [ "jumpsuit" ]
-      - map: [ "enum.HumanoidVisualLayers.LHand" ]
-      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+      # Arcane-Edit-Start
       - map: [ "enum.HumanoidVisualLayers.LFoot" ]
       - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+      - map: [ "jumpsuit" ]
+      # Arcane-Edit-End
+      - map: [ "enum.HumanoidVisualLayers.LHand" ]
+      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+      # - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+      # - map: [ "enum.HumanoidVisualLayers.RFoot" ]
       - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
@@ -167,6 +172,13 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Moth/displacement.rsi
+            state: shoes
+      # Arcane-End
     displacements:
       jumpsuit:
         sizeMaps:
@@ -193,6 +205,13 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Moth/displacement.rsi
+            state: shoes
+      # Arcane-End
   - type: Fixtures # Goob edit - make moths lighter
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
@@ -245,6 +264,13 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Moth/displacement.rsi
+            state: shoes
+      # Arcane-End
     displacements:
       jumpsuit:
         sizeMaps:
@@ -271,3 +297,10 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Moth/displacement.rsi
+            state: shoes
+      # Arcane-End

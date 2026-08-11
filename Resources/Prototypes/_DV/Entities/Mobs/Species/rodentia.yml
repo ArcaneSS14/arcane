@@ -132,6 +132,7 @@
       Male: MaleRodentia
       Female: FemaleRodentia
       Unsexed: MaleRodentia
+      Futanari: FemaleRodentia # Arcane
   - type: Rummager
   - type: AlwaysTriggerMousetrap
   - type: PseudoItem
