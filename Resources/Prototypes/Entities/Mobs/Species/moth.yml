@@ -61,6 +61,7 @@
       Male: MaleMoth
       Female: FemaleMoth
       Unsexed: UnisexMoth
+      Futanari: FemaleMoth # Arcane
   - type: MovementSpeedModifier
     baseWeightlessAcceleration: 3 # Goobstation value
     baseWeightlessFriction: 1
@@ -90,6 +91,7 @@
     noRot: true
     drawdepth: Mobs
     layers:
+      - map: [ "enum.HumanoidVisualLayers.TailBehind" ] # Floof
       - map: [ "enum.HumanoidVisualLayers.Groin" ]
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
       - map: [ "enum.HumanoidVisualLayers.Head" ]
@@ -101,11 +103,15 @@
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-      - map: [ "jumpsuit" ]
-      - map: [ "enum.HumanoidVisualLayers.LHand" ]
-      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+      # Arcane-Edit-Start
       - map: [ "enum.HumanoidVisualLayers.LFoot" ]
       - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+      - map: [ "jumpsuit" ]
+      # Arcane-Edit-End
+      - map: [ "enum.HumanoidVisualLayers.LHand" ]
+      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+      # - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+      # - map: [ "enum.HumanoidVisualLayers.RFoot" ]
       - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
@@ -119,7 +125,9 @@
       - map: [ "outerClothing" ]
       - map: [ "belt" ] #Goobedit - Belts over outerwear
       - map: [ "enum.HumanoidVisualLayers.Tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
+      - map: [ "enum.HumanoidVisualLayers.TailBehindBackpack" ] # imp
       - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.TailOversuit" ] # Floof
       - map: [ "neck" ]
       - map: [ "enum.HumanoidVisualLayers.Face" ] # Goobstation?
       - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
@@ -164,6 +172,13 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Moth/displacement.rsi
+            state: shoes
+      # Arcane-End
     displacements:
       jumpsuit:
         sizeMaps:
@@ -190,6 +205,13 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Moth/displacement.rsi
+            state: shoes
+      # Arcane-End
   - type: Fixtures # Goob edit - make moths lighter
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
@@ -242,6 +264,13 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Moth/displacement.rsi
+            state: shoes
+      # Arcane-End
     displacements:
       jumpsuit:
         sizeMaps:
@@ -268,3 +297,10 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Moth/displacement.rsi
+            state: shoes
+      # Arcane-End

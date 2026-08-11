@@ -15,10 +15,12 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 10h
-    - !type:SpeciesRequirement # Goob - None Felinid
-      inverted: true
-      species:
-      - Felinid
+      # Arcane-start
+    # - !type:SpeciesRequirement # Goob - None Felinid
+      # inverted: true
+      # species:
+      # - Felenid
+      # Arcane-end
   weight: 10
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"

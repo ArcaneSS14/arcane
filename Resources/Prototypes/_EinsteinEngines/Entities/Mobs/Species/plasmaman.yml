@@ -104,6 +104,7 @@
       Male: UnisexPlasmaman
       Female: UnisexPlasmaman
       Unsexed: UnisexPlasmaman
+      Futanari: UnisexPlasmaman # Arcane
   - type: Butcherable
     butcheringType: Spike
     spawned:

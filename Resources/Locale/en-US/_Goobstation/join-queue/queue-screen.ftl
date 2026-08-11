@@ -1,5 +1,6 @@
 queue-title = Join Queue
 queue-quit = Disconnect
+queue-disabled-disconnect-reason = The join queue was disabled.
 queue-position-label = Position
 queue-total-label = In Queue
 queue-patreon = Thank you for supporting us on Patreon!

@@ -7,8 +7,8 @@ on:
     types: [closed]
 
 env:
-  GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
-  CHANGELOG_DIR: ${{ vars.CHANGELOG_DIR }}
+  GITHUB_TOKEN: ${{ github.token }}
+  CHANGELOG_DIR: ${{ vars.CHANGELOG_DIR || 'Resources/Changelog/ArcaneChangelog.yml' }}
   PR_NUMBER: ${{ github.event.number }}
 
 jobs:
@@ -23,14 +23,17 @@ jobs:
       - name: Checkout Master
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.BOT_TOKEN }}
-          ref: ${{ vars.CHANGELOG_BRANCH }}
+          token: ${{ github.token }}
+          ref: ${{ vars.CHANGELOG_BRANCH || github.event.repository.default_branch }}
 
       - name: Setup Git
         shell: bash
+        env:
+          CHANGELOG_USER: ${{ vars.CHANGELOG_USER || 'arcane-changelog' }}
+          CHANGELOG_EMAIL: ${{ vars.CHANGELOG_EMAIL || '41898282+github-actions[bot]@users.noreply.github.com' }}
         run: |
-          git config user.name "${{ vars.CHANGELOG_USER }}"
-          git config user.email "${{ vars.CHANGELOG_EMAIL }}"
+          git config user.name "${CHANGELOG_USER}"
+          git config user.email "${CHANGELOG_EMAIL}"
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -50,8 +53,8 @@ jobs:
       - name: Commit Changelog
         shell: bash
         env:
-          CHANGELOG_BRANCH: ${{ vars.CHANGELOG_BRANCH }}
-          CHANGELOG_MESSAGE: ${{ vars.CHANGELOG_MESSAGE }}
+          CHANGELOG_BRANCH: ${{ vars.CHANGELOG_BRANCH || github.event.repository.default_branch }}
+          CHANGELOG_MESSAGE: ${{ vars.CHANGELOG_MESSAGE || 'Automatic changelog update' }}
         run: |
           git add -- "${CHANGELOG_DIR}"
 

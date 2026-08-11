@@ -7,8 +7,8 @@
       part: ChestAnimal
       connections:
       - groin
-      - right hand # Arcane
-      - left hand # Arcane
+      - right hand # Goob
+      - left hand # Goob
       organs:
         brain: OrganHumanBrain # feels strange but it is what it is
         lungs: OrganAnimalLungs
@@ -16,9 +16,9 @@
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
-    right hand: # Arcane
+    right hand: # Goob
       part: RightHandSmartCorgi
-    left hand: # Arcane
+    left hand: # Goob
       part: LeftHandSmartCorgi
     groin:
       part: GroinAnimal

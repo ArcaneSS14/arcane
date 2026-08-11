@@ -38,6 +38,7 @@
       Male: UnisexVox
       Female: UnisexVox
       Unsexed: UnisexVox
+      Futanari: UnisexVox # Arcane
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -120,6 +121,7 @@
         Slash: 5 # Reduce?
   - type: Sprite # Need to redefine the whole order to draw the tail over their gas tank
     layers:
+    - map: [ "enum.HumanoidVisualLayers.TailBehind" ] # Floof
     - map: [ "enum.HumanoidVisualLayers.Groin" ]
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
@@ -131,9 +133,11 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: [ "jumpsuit" ]
+    # Arcane-Edit-Start
     - map: [ "enum.HumanoidVisualLayers.LFoot" ]
     - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: [ "jumpsuit" ]
+    # Arcane-Edit-End
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
     - map: [ "gloves" ]
@@ -143,7 +147,9 @@
     - map: [ "id" ]
     - map: [ "outerClothing" ]
     - map: [ "belt" ] #Goobedit - Belts over outerwear
+    - map: [ "enum.HumanoidVisualLayers.TailBehindBackpack" ] # imp
     - map: [ "back" ]
+    - map: [ "enum.HumanoidVisualLayers.TailOversuit" ] # Floof
     - map: [ "enum.HumanoidVisualLayers.Face" ]
     - map: [ "neck" ]
     - map: [ "suitstorage" ] # This is not in the default order
@@ -210,6 +216,13 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: shoes
+      # Arcane-End
       outerClothing: # Goob
         sizeMaps:
           32:
@@ -381,6 +394,13 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: shoes
+      # Arcane-End
       outerClothing: # Goob
         sizeMaps:
           32:

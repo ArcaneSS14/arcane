@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by discord:LunaLita#0840, theanemone",
+    "copyright": "Created by discord:LunaLita#0840, theanemone, bulbo44key",
     "size": {
         "x": 32,
         "y": 32
@@ -341,6 +341,38 @@
         },
         {
             "name": "small_horns_alt",
+            "directions": 4
+        },
+        {
+            "name": "bigger_cow_ears",
+            "directions": 4
+        },
+        {
+            "name": "fin_ears",
+            "directions": 4
+        },
+        {
+            "name": "gradient_paint",
+            "directions": 4
+        },
+        {
+            "name": "hooves",
+            "directions": 4
+        },
+        {
+            "name": "long_ox_horns",
+            "directions": 4
+        },
+        {
+            "name": "ox_ears",
+            "directions": 4
+        },
+        {
+            "name": "skeleton",
+            "directions": 4
+        },
+        {
+            "name": "arataki_painting",
             "directions": 4
         }
     ]

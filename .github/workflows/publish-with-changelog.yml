@@ -1,0 +1,89 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+name: Publish With Changelog
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: [self-hosted, linux, x64, arcane-publish]
+    permissions:
+      actions: read
+      contents: read
+
+    env:
+      ROBUST_CDN_URL: http://127.0.0.1:8080/
+      NO_PROXY: 127.0.0.1,localhost
+
+    steps:
+    - name: Fail if we are attempting to run on the master branch
+      if: ${{ github.ref_name == 'master' && github.repository == 'space-wizards/space-station-14' }}
+      run: exit 1
+
+    - name: Check .NET Installation
+      id: check-dotnet
+      run: |
+        if dotnet --info > /dev/null 2>&1; then
+          echo "skip=true" >> $GITHUB_ENV
+        else
+          echo "skip=false" >> $GITHUB_ENV
+        fi
+
+    - uses: actions/checkout@v3.6.0
+      with:
+        submodules: 'recursive'
+
+    - name: Setup .NET Core
+      if: env.skip == 'false'
+      uses: actions/setup-dotnet@v3.2.0
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Get Engine Tag
+      run: |
+        cd RobustToolbox
+        git fetch --depth=1
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Build Packaging
+      run: dotnet build Content.Packaging --configuration Release --no-restore /m
+
+    - name: Package server
+      run: dotnet run --project Content.Packaging server --platform linux-x64
+
+    - name: Package client
+      run: dotnet run --project Content.Packaging client --no-wipe-release
+
+    - name: Publish version
+      run: Tools/publish_multi_request.py
+      env:
+        PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+        GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
+
+    - name: Publish changelog (Discord)
+      id: publish-changelog
+      continue-on-error: true
+      run: Tools/actions_changelogs_since_last_run.py
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
+        CHANGELOG_FILE: ${{ vars.CHANGELOG_DIR }}
+        CHANGELOG_PUBLISH_WORKFLOWS: publish.yml,publish-with-changelog.yml
+        # Run #2 published successfully, but its changelog step failed.
+        CHANGELOG_IGNORED_RUNS: "31336400112"
+
+    - name: Notify Discord about server update
+      run: Tools/actions_changelogs_since_last_run.py --publish-notification
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
+
+    - name: Fail if changelog notification failed
+      if: ${{ steps.publish-changelog.outcome == 'failure' }}
+      run: exit 1

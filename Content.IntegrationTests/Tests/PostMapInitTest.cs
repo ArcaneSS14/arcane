@@ -112,7 +112,7 @@ namespace Content.IntegrationTests.Tests
             // Goobstation edit:
             // order this list alphabetically, mark dev maps
             // if upstreaming take ours here and edit manually.
-            //"Amber", kill
+            "Amber",          // Arcane-Edit: In pool!!!
             "Aspid",          // Arcane
             "Atlas",
             "Bagel",
