@@ -205,7 +205,7 @@
     # Syndie Loot
     - !type:NestedSelector
       tableId: SyndieMaintLoot
-      prob: 0.1
+      prob: 0.15
     # InteQ Loot | Orion
     - !type:NestedSelector
       tableId: InteQMaintLoot
