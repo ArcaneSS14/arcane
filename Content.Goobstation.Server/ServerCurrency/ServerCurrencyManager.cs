@@ -111,8 +111,10 @@ namespace Content.Goobstation.Server.ServerCurrency
         /// <inheritdoc/>
         public int GetBalance(NetUserId? userId = null)
         {
-            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled)) // Arcane
-                return 0; // Arcane
+            // Arcane-start
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+                return 0;
+            // Arcane-end
 
             return userId == null ? 0 : Task.Run(() => GetBalanceAsync(userId.Value)).GetAwaiter().GetResult();
         }

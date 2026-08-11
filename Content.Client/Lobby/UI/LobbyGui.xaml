@@ -90,7 +90,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         </PanelContainer>
 
                         <BoxContainer Orientation="Horizontal" HorizontalExpand="False" VerticalExpand="True">
-                            <PanelContainer Name="LeftInfoPanel" StyleClasses="BackgroundPanel" MinWidth="180" HorizontalExpand="False" VerticalExpand="True" ModulateSelfOverride="#333333C0">
+                            <PanelContainer Name="LeftInfoPanel" StyleClasses="BackgroundPanel" MinWidth="180" SetWidth="480" HorizontalExpand="False" VerticalExpand="True" ModulateSelfOverride="#333333C0"> <!-- Arcane reduce width-->
                                 <BoxContainer Orientation="Vertical" HorizontalExpand="False" VerticalExpand="True">
                                     <RichTextLabel Text="{Loc 'ui-lobby-server-info-block'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center" />
                                     <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" />
