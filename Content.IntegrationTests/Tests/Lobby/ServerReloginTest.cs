@@ -33,7 +33,7 @@ public sealed class ServerReloginTest
             username = serverPlayerMgr.Sessions.First().Name;
 
             //No new players are allowed, but since our client was already playing, they should be able to get in
-            serverConfig.SetCVar(CCVars.SoftMaxPlayers, 0);
+            serverConfig.SetCVar(CCVars.SoftMaxPlayers, 1); // Arcane - NO RECONNECT WITH OUR QUEUE
         });
 
         await client.WaitAssertion(() =>

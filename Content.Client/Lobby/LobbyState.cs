@@ -34,7 +34,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
-        [Dependency] private readonly ICommonCurrencyManager _serverCur = default!; // Goobstation - server currency
+        // [Dependency] private readonly ICommonCurrencyManager _serverCur = default!; // Arcane: Goob Coins hidden
         [Dependency] private readonly IPrototypeManager _protoMan = default!; // Goobstation - credits
         [Dependency] private readonly LinkAccountManager _linkAccount = default!; // RMC - Patreon
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
@@ -94,7 +94,7 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
 
-            _serverCur.ClientBalanceChange += UpdatePlayerBalance; // Goobstation - Goob Coin
+            // _serverCur.ClientBalanceChange += UpdatePlayerBalance; // Arcane: Goob Coins hidden
             _linkAccount.Updated += ApplyDiscordLinkGate; // Arcane
         }
 
@@ -106,7 +106,7 @@ namespace Content.Client.Lobby
             _gameTicker.LobbyStatusUpdated -= LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated -= LobbyLateJoinStatusUpdated;
             _contentAudioSystem.LobbySoundtrackChanged -= UpdateLobbySoundtrackInfo;
-            _serverCur.ClientBalanceChange -= UpdatePlayerBalance; // Goobstation - Goob Coin
+            // _serverCur.ClientBalanceChange -= UpdatePlayerBalance; // Arcane: Goob Coins hidden
             _linkAccount.Updated -= ApplyDiscordLinkGate; // Arcane
 
             _voteManager.ClearPopupContainer();
@@ -254,7 +254,7 @@ namespace Content.Client.Lobby
                 Lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob);
             }
 
-            UpdatePlayerBalance(); // Goobstation - Goob Coin
+            // UpdatePlayerBalance(); // Arcane: Goob Coins hidden
             ApplyDiscordLinkGate(); // Arcane
 
             var minutesToday = _playtimeTracking.PlaytimeMinutesToday;
@@ -391,9 +391,12 @@ namespace Content.Client.Lobby
             _consoleHost.ExecuteCommand($"toggleready {newReady}");
         }
 
-        private void UpdatePlayerBalance() // Goobstation - Goob Coin
-        {
-            Lobby!.Balance.Text = _serverCur.Stringify(_serverCur.GetBalance());
-        }
+        // Arcane-start: Goob Coins hidden
+        // private void UpdatePlayerBalance()
+        // {
+        //     Lobby!.Balance.Text = _serverCur.Stringify(_serverCur.GetBalance());
+        // }
+        // Arcane-end
+
     }
 }
