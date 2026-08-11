@@ -8,7 +8,9 @@ using Content.Shared._EinsteinEngines.Language.Components;
 using Content.Shared._Art.CVars;
 using Content.Shared._Art.TTS;
 using Content.Shared.Chat;
+using Content.Shared.Examine;
 using Content.Shared.GameTicking;
+using Content.Shared.Ghost;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -23,6 +25,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private TTSManager _ttsManager = default!;
     [Dependency] private SharedTransformSystem _xforms = default!;
     [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private ExamineSystemShared _examineSystem = default!;
 
     private const int MaxMessageChars = 300; // Arcane
     private bool _isEnabled;
@@ -132,6 +135,9 @@ public sealed partial class TTSSystem : EntitySystem
             if (!session.AttachedEntity.HasValue)
                 continue;
 
+            if (!message.EndsWith("!") && !InLocalChatRangeUnOccluded(uid, session.AttachedEntity.Value, ChatSystem.VoiceRange))
+                continue;
+
             EntityManager.TryGetComponent(session.AttachedEntity.Value, out LanguageSpeakerComponent? lang);
             if (_language.CanUnderstand(new(session.AttachedEntity.Value, lang), language.ID))
                 nilter.AddPlayer(session);
@@ -153,7 +159,6 @@ public sealed partial class TTSSystem : EntitySystem
         // if (obfuscated is null)
         //     return;
 
-        // TODO: Check obstacles
         var xformQuery = GetEntityQuery<TransformComponent>();
         var sourcePos = _xforms.GetWorldPosition(xformQuery.GetComponent(uid), xformQuery);
         var nilter = Filter.Empty();
@@ -168,6 +173,9 @@ public sealed partial class TTSSystem : EntitySystem
             if (distance > ChatSystem.WhisperMuffledRange)
                 continue;
 
+            if (!InLocalChatRangeUnOccluded(uid, session.AttachedEntity.Value, ChatSystem.WhisperMuffledRange))
+                continue;
+
             EntityManager.TryGetComponent(session.AttachedEntity.Value, out LanguageSpeakerComponent? lang);
             if (_language.CanUnderstand(new(session.AttachedEntity.Value, lang), language.ID)
                 && distance <= ChatSystem.WhisperClearRange)
@@ -178,6 +186,12 @@ public sealed partial class TTSSystem : EntitySystem
 
         RaiseNetworkEvent(new PlayTTSEvent(normal, GetNetEntity(uid), true), nilter);
         // RaiseNetworkEvent(new PlayTTSEvent(obfuscated, GetNetEntity(uid), true), lilter, false);
+    }
+
+    private bool InLocalChatRangeUnOccluded(EntityUid source, EntityUid listener, float range)
+    {
+        return HasComp<GhostHearingComponent>(listener)
+            || _examineSystem.InRangeUnOccluded(source, listener, range);
     }
 
     private readonly Dictionary<string, Task<byte[]?>> _ttsTasks = new();
