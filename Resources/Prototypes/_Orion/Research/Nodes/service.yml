@@ -12,6 +12,11 @@
   - type: General
     amount: 500
   recipeUnlocks:
+  # Arcane-Start
+  - UtilityKnife
+  - BoxFolderClipboardEmpty
+  - BoxFolderPlasticClipboardEmpty
+  # Arcane-End
   - HandLabeler
   - ParcelWrap
   - CutterMachineCircuitboard
@@ -148,6 +153,7 @@
   - type: General
     amount: 500
   recipeUnlocks:
+  - SmartFridgeCircuitboard # Arcane
   - ElectricGrillMachineCircuitboard
   - MicrowaveMachineCircuitboard
   - FoodBowlBig
