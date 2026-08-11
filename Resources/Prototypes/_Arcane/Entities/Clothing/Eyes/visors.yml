@@ -1,0 +1,12 @@
+# Sponsor
+
+- type: entity
+  parent: ClothingEyesHudMedical
+  id: ClothingEyesParamedicGlasses
+  name: paramedic glasses
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Eyes/Sponsor/paramedic.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Eyes/Sponsor/paramedic.rsi
