@@ -73,6 +73,7 @@
       Male: UnisexArachnid
       Female: UnisexArachnid
       Unsexed: UnisexArachnid
+      Futanari: UnisexArachnid # Arcane
   - type: TypingIndicator
     proto: spider
   - type: LanguageKnowledge # Einstein Engines - Language
@@ -96,9 +97,11 @@
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-      - map: ["jumpsuit"]
+      # Arcane-Edit-Start
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["jumpsuit"]
+      # Arcane-Edit-End
       - map: ["enum.HumanoidVisualLayers.LHand"]
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "enum.HumanoidVisualLayers.Face" ]

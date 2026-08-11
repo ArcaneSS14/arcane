@@ -41,6 +41,14 @@
         {
             "name": "equipped-OUTERCLOTHING-feroxi",
             "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-tajaran",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-vulpkanin",
+            "directions": 4
         }
     ]
 }
