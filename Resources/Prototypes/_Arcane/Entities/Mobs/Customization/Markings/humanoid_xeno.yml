@@ -224,7 +224,7 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: opress_tail
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
-    state: lord_tail_grad
+    state: opress_tail_grad
 
 - type: marking
   id: HumanoidXenoTailValkyr
