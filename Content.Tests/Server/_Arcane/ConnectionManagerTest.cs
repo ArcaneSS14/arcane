@@ -9,17 +9,25 @@ namespace Content.Tests.Server._Arcane;
 [Parallelizable(ParallelScope.All)]
 public static class ConnectionManagerTest
 {
-    [TestCase(false, false, false)]
-    [TestCase(false, true, false)]
-    [TestCase(true, false, false)]
-    [TestCase(true, true, true)]
-    public static void AdminPlayerLimitPolicy(
+    [TestCase(false, false, false, false)]
+    [TestCase(false, false, true, false)]
+    [TestCase(false, true, false, false)]
+    [TestCase(false, true, true, true)]
+    [TestCase(true, false, false, true)]
+    [TestCase(true, false, true, true)]
+    [TestCase(true, true, false, true)]
+    [TestCase(true, true, true, true)]
+    public static void ExplicitJoinPrivilegePolicy(
+        bool hasTemporaryBypass,
         bool isAdmin,
-        bool bypassEnabled,
+        bool adminBypassEnabled,
         bool expected)
     {
         Assert.That(
-            ConnectionManager.CanAdminBypassPlayerLimit(isAdmin, bypassEnabled),
+            ConnectionManager.HasExplicitJoinPrivilege(
+                hasTemporaryBypass,
+                isAdmin,
+                adminBypassEnabled),
             Is.EqualTo(expected));
     }
 }
