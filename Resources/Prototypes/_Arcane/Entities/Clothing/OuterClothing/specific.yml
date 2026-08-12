@@ -57,6 +57,9 @@
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHatCow
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container {}
 
 - type: entity
   parent: ClothingOuterBase
