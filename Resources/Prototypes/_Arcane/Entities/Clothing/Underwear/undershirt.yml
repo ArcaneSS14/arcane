@@ -59,7 +59,7 @@
   description: A thin bra that barely covers the nipples.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Undershirt/undershirt/erotic_purple.rsi
+    sprite: _Arcane/Clothing/Underwear/undershirt/erotic_purple.rsi
 
 - type: entity
   parent: ClothingBraBase
@@ -68,7 +68,7 @@
   description: Jelly bra.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Undershirt/undershirt/medusa.rsi
+    sprite: _Arcane/Clothing/Underwear/undershirt/medusa.rsi
 
 - type: entity
   parent: ClothingBraBase
@@ -77,7 +77,7 @@
   description: 100% natural.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Undershirt/undershirt/leafs.rsi
+    sprite: _Arcane/Clothing/Underwear/undershirt/leafs.rsi
 
 - type: entity
   parent: ClothingBraBase
@@ -86,7 +86,7 @@
   description: Pink like Barbie.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Undershirt/undershirt/pink_fancy.rsi
+    sprite: _Arcane/Clothing/Underwear/undershirt/pink_fancy.rsi
 
 - type: entity
   parent: ClothingBraBase
@@ -95,4 +95,4 @@
   description: Red bra.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Undershirt/undershirt/red.rsi
+    sprite: _Arcane/Clothing/Underwear/undershirt/red.rsi
