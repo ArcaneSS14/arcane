@@ -5,7 +5,7 @@
   description: To sing and dance!
   components:
   - type: Sprite
-    sprite: _Arcane/Objects/Specific/Sponsor/microphone.rsi
+    sprite: _Arcane/Objects/Sponsor/microphone.rsi
   - type: Item
     size: Large
-    sprite: _Arcane/Objects/Specific/Sponsor/microphone.rsi
+    sprite: _Arcane/Objects/Sponsor/microphone.rsi
