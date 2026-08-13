@@ -33,7 +33,6 @@ public sealed partial class TTSVoiceChangeWindow : FancyWindow
             var button = new Button
             {
                 Text = Loc.GetString(prototype.Name),
-                ToolTip = prototype.ID,
                 HorizontalExpand = true,
                 HorizontalAlignment = HAlignment.Stretch,
                 Margin = new Thickness(0, 4, 0, 0),

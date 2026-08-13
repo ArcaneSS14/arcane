@@ -38,9 +38,14 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke, after: [typeof(RadioSystem), typeof(HeadsetSystem)]);
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => _ttsManager.ResetCache());
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(_ =>
+        {
+            _ttsManager.ResetCache();
+            _pendingVoiceChange.Clear();
+        });
         SubscribeLocalEvent<ActorComponent, TTSRadioPlayEvent>(OnTTSRadioPlayEvent);
         SubscribeLocalEvent<TTSAnnouncePlayEvent>(OnTTSAnnouncePlayEvent);
+        SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
 

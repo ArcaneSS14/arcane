@@ -17,19 +17,32 @@ public sealed partial class TTSSystem
         "Glados"
     ];
 
+    private readonly Dictionary<ICommonSession, EntityUid> _pendingVoiceChange = new();
+
     private void OnVoiceChangeMenu(TTSVoiceChangeOpenMenuEvent args)
     {
         args.Handled = true;
 
-        if (!TryComp<ActorComponent>(args.Performer, out var actor))
+        var performer = args.Performer;
+
+        if (!TryComp<ActorComponent>(performer, out var actor))
             return;
 
-        RaiseNetworkEvent(new TTSVoiceChangeMenuMessage(AvailableVoices.ToList()), actor.PlayerSession);
+        var session = actor.PlayerSession;
+        _pendingVoiceChange[session] = performer;
+
+        RaiseNetworkEvent(new TTSVoiceChangeMenuMessage(AvailableVoices.ToList()), session);
     }
 
     private void OnVoiceChangeSelected(TTSVoiceChangeSelectedMessage ev, EntitySessionEventArgs args)
     {
-        if (args.SenderSession.AttachedEntity is not { } uid)
+        var session = args.SenderSession;
+
+        // Only accept a selection if this session opened the menu for the entity it is attached to.
+        if (!_pendingVoiceChange.Remove(session, out var uid))
+            return;
+
+        if (session.AttachedEntity != uid)
             return;
 
         if (!AvailableVoices.Contains(ev.Voice))
@@ -40,5 +53,10 @@ public sealed partial class TTSSystem
 
         component.VoicePrototype = ev.Voice;
         Dirty(uid, component);
+    }
+
+    private void OnPlayerDetached(PlayerDetachedEvent ev)
+    {
+        _pendingVoiceChange.Remove(ev.Player);
     }
 }
