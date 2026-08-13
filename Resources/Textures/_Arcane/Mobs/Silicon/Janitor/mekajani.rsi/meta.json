@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "janitor_walking",
+            "directions": 4
+        },
+        {
             "name": "janitor-rest",
             "directions": 4,
             "delays": [

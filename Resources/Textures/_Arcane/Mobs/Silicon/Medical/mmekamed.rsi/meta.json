@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "medical_walking",
+            "directions": 4
+        },
+        {
             "name": "medical-rest",
             "directions": 4
         },
