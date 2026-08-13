@@ -29,25 +29,26 @@ objective-condition-maligninfection-description = Ваше прикоснове�
 
 ghost-role-information-colossus-name = Космический Колосс
 ghost-role-information-colossus-description = Установите Космический Идол дабы продлить своё существование и уничтожить всех неверных! У вас будет 15 минут чтобы сделать это или вы погибните.
-ghost-role-information-colossus-rules = Вы [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color]. Содействуйте всем космическим культистам  которые присуствуют в секторе.
+ghost-role-information-colossus-rules = Вы [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color]. Содействуйте всем космическим культистам  которые, присутствуют в секторе.
 
-terror-colossus = Внимание экипаж, похоже, что кто-то на вашей станции обратил внимание на огромную злокачественную аномалию.
+terror-colossus = Внимание экипаж, кто-то на вашей станции привлёк внимание огромной злокачественной аномалии.
 
 ghost-role-colossus-charactermenu = Ты воплощение великого божества посланный дабы возвестить конец всего сущего. Посей неописуемый хаос на своем пути.
 ghost-role-colossus-objective = Установите Космический Идол и защищайте его до конца своего сущего.
 ghost-role-colossus-briefing =
-    Вы - Энтропийный Колосс!
+    Вы - Космический Колосс!
     Ваши цели указаны в меню персонажа.
+    Подробнее о роли читайте в руководстве.
     
 
-ghost-role-colossus-death = Колосс рушится, рассыпаясь на куски. Его космический свет гаснет.. Это конец?..
+ghost-role-colossus-death = Колосс рушится, рассыпаясь на куски. Его космический свет гаснет... Это конец?...
 ghost-role-colossus-hibernate = Колосс начинает пересобирать себя и вытягивать энергию из всесущей материи!
 ghost-role-colossus-effigy-confirm = ВЫ УВЕРЕНЫ ЧТО ХОТИТЕ УСТАНОВИТЬ СТРУКТУРУ?!! НАЖМИТЕ ЕЩЕ РАЗ ДАБЫ ПОДТВЕРДИТЬ!!
 
 ghost-role-colossus-effigy-error-grid = Недопустимое местоположение! Космический Идол должен располагаться на устойчивой поверхности.
-ghost-role-colossus-effigy-error-location = Недопустимое местоположение! Космический Идол должен быть расположене рядом с {$LOCATION}.
+ghost-role-colossus-effigy-error-location = Недопустимое местоположение! Космический Идол должен быть расположен рядом с {$LOCATION}.
 ghost-role-colossus-effigy-error-intersection = Слишком тесно! Для установки Космического Идола требуется пустое простарнство размером 3x1.
-ghost-role-colossus-effigy-error-space = Слишком близко к космосу! Космический Идол должен быть установлен на {$DISTANCE}m дальше.
+ghost-role-colossus-effigy-error-space = Космический Идол должен находиться не менее чем в {$DISTANCE} м от космоса.
 
 objective-condition-effigy-no-target = Установите Космический Идол в любое место.
 objective-condition-effigy = Установите Космический Идол рядом с "{$location}".
