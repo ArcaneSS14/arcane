@@ -225,8 +225,8 @@
 - type: entity
   parent: BaseAction
   id: ActionCosmicColossusSunder
-  name: Entropic Sunder
-  description: Warp to the target location and unleash a cascading detonation of malign energy.
+  name: Энтропийный Каскад
+  description: Перемещает к указанному месту и выпускает зловещую энергию, создавая волну зловещей энергии.
   components:
   - type: Action
     useDelay: 18
@@ -243,11 +243,11 @@
 - type: entity
   parent: BaseAction
   id: ActionCosmicColossusIngress
-  name: Colossal Ingress
-  description: Use your colossal strength to force open a doorway.
+  name: Космическая Длань
+  description: Использует вашу силу дабы открыть любую дверь.
   components:
   - type: Action
-    useDelay: 8
+    useDelay: 5
     itemIconStyle: NoItem
     icon:
       sprite: _DV/CosmicCult/Icons/cosmiccult_abilities.rsi
@@ -263,11 +263,11 @@
 - type: entity
   parent: BaseAction
   id: ActionCosmicColossusHibernate
-  name: Slumber Shell
-  description: Slumber your body for a period of time to regenerate integrity. Must be done on stable ground.
+  name: Всесущая пересборка
+  description: Фиксирует тело к земле на некоторое время, пересобирая кусочки тела дабы восстановить здоровье. Можно использовать только на устойчивой поверхности.
   components:
   - type: Action
-    useDelay: 180
+    useDelay: 120
     checkCanInteract: false
     itemIconStyle: NoItem
     icon:
@@ -282,8 +282,8 @@
 
 - type: entity
   id: ActionCosmicColossusEffigy
-  name: Beckon an Effigy
-  description: Draw out an Effigy of Entropy into realspace.
+  name: Установить Космический Идол
+  description: Материализует Космический Идол в вашу реальность.
   components:
   - type: Action
     useDelay: 999
@@ -293,3 +293,4 @@
       state: nova
   - type: InstantAction
     event: !type:EventCosmicColossusEffigy {}
+
