@@ -23,9 +23,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: PussyLicking
@@ -51,9 +54,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: PussyScissors
@@ -73,13 +79,19 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: PussyTouch
@@ -98,9 +110,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: PussyTailFuck
@@ -120,9 +135,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -155,13 +173,19 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   - !type:ArousalRequirement
 
 - type: panelInteraction
@@ -181,9 +205,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
   - !type:HeldItemRequirement
     tags:

@@ -76,7 +76,7 @@
       Female: FemaleFelinid
       Unsexed: MaleFelinid
       Futanari: FemaleFelinid # Arcane-edit
-  #- type: OwOAccent this is just like that book by jorjorwell... 1984
+  - type: OwOAccent # Arcane-Edit
   - type: Felinid
   - type: NoShoesSilentFootsteps
   - type: Tag
