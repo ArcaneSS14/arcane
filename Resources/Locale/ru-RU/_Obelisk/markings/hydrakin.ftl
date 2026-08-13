@@ -6,7 +6,7 @@ marking-HydrakinEyesRing = Кольцевые глаза
 marking-HydrakinEyesSaint = Святые глаза
 
 marking-HydrakinTailDefault = Хвост
-marking-HydrakinTailNub = Пухлый
+marking-HydrakinTailNub = Обрубленный
 marking-HydrakinTailFeathers = Перистый
 marking-HydrakinTailSpiny = Шипастый
 marking-HydrakinTailFins = Плавники
