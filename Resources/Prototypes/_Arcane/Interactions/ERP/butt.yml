@@ -17,9 +17,12 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   - !type:ArousalRequirement
 
 - type: panelInteraction

@@ -50,9 +50,6 @@ namespace Content.Server.Database
 
         Task SaveConstructionFavoritesAsync(NetUserId userId, List<ProtoId<ConstructionPrototype>> constructionFavorites);
 
-        Task<string?> GetErpOrganPreferencesAsync(NetUserId userId, int slot); // Arcane
-        Task SaveErpOrganPreferencesAsync(NetUserId userId, int slot, string data); // Arcane
-
         // Single method for two operations for transaction.
         Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot);
         Task<PlayerPreferences?> GetPlayerPreferencesAsync(NetUserId userId, CancellationToken cancel);
@@ -542,18 +539,6 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.SaveConstructionFavoritesAsync(userId, constructionFavorites));
-        }
-
-        public Task<string?> GetErpOrganPreferencesAsync(NetUserId userId, int slot)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetErpOrganPreferencesAsync(userId, slot));
-        }
-
-        public Task SaveErpOrganPreferencesAsync(NetUserId userId, int slot, string data)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.SaveErpOrganPreferencesAsync(userId, slot, data));
         }
 
         public Task<PlayerPreferences?> GetPlayerPreferencesAsync(NetUserId userId, CancellationToken cancel)

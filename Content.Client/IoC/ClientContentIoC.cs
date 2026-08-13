@@ -31,7 +31,6 @@ using Content.Shared.Chat;
 using Content.Shared.IoC;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
-using Content.Client._Arcane.ERP.Preferences;
 
 namespace Content.Client.IoC
 {
@@ -71,7 +70,6 @@ namespace Content.Client.IoC
             collection.Register<DiscordRoleManager>(); // Arcane
             collection.Register<ISharedDiscordRoleManager, DiscordRoleManager>(); // Arcane
             collection.Register<ClientsidePlaytimeTrackingManager>();
-            collection.Register<ClientErpOrganPreferencesManager>(); // Arcane-edit
         }
     }
 }

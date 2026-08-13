@@ -74,6 +74,50 @@
         {
             "name": "razor_tail",
             "directions": 4
+        },
+        {
+            "name": "razor_tail_spike",
+            "directions": 4
+        },
+        {
+            "name": "valkyr_tail",
+            "directions": 4
+        },
+        {
+            "name": "valkyr_tail_grad",
+            "directions": 4
+        },
+        {
+            "name": "lord_tail",
+            "directions": 4
+        },
+        {
+            "name": "lord_tail_butt",
+            "directions": 4
+        },
+        {
+            "name": "lord_tail_spikes",
+            "directions": 4
+        },
+        {
+            "name": "opress_tail",
+            "directions": 4
+        },
+        {
+            "name": "opress_tail_grad",
+            "directions": 4
+        },
+        {
+            "name": "burrower_tail",
+            "directions": 4
+        },
+        {
+            "name": "burrower_tail_grad",
+            "directions": 4
+        },
+        {
+            "name": "burrower_tail_spike",
+            "directions": 4
         }
     ]
 }

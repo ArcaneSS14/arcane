@@ -29,26 +29,61 @@
   parent: BaseStockPartRecipe
   id: AdvancedCapacitorStockPart
   result: AdvancedCapacitorStockPart
+  # Arcane-Edit-Start
+  completetime: 5
+  materials:
+    Steel: 50
+    Plastic: 100
+    Gold: 50
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: AdvancedScanningModuleStockPart
   result: AdvancedScanningModuleStockPart
+  # Arcane-Edit-Start
+  completetime: 5
+  materials:
+    Steel: 50
+    Plastic: 100
+    Gold: 50
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: NanoServoStockPart
   result: NanoServoStockPart
+  # Arcane-Edit-Start
+  completetime: 5
+  materials:
+    Steel: 50
+    Plastic: 100
+    Gold: 50
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: HighPowerMicroLaserStockPart
   result: HighPowerMicroLaserStockPart
+  # Arcane-Edit-Start
+  completetime: 5
+  materials:
+    Steel: 50
+    Plastic: 100
+    Gold: 50
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: AdvancedMatterBinStockPart
   result: AdvancedMatterBinStockPart
+  # Arcane-Edit-Start
+  completetime: 5
+  materials:
+    Steel: 50
+    Plastic: 100
+    Gold: 50
+  # Arcane-Edit-End
 
 - type: latheRecipe
   id: RapidPartExchanger
@@ -59,58 +94,139 @@
   materials:
     Steel: 500
     Glass: 250
+    Gold: 50 # Arcane-Edit
 
 # Tier 3
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: SuperCapacitorStockPart
   result: SuperCapacitorStockPart
+  # Arcane-Edit-Start
+  completetime: 10
+  materials:
+    Steel: 50
+    Plastic: 50
+    Gold: 50
+    Silver: 200
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: PhasicScanningModuleStockPart
   result: PhasicScanningModuleStockPart
+  # Arcane-Edit-Start
+  completetime: 10
+  materials:
+    Steel: 50
+    Plastic: 50
+    Gold: 50
+    Silver: 200
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: PicoServoStockPart
   result: PicoServoStockPart
+  # Arcane-Edit-Start
+  completetime: 10
+  materials:
+    Steel: 50
+    Plastic: 50
+    Gold: 50
+    Silver: 200
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: UltraHighPowerMicroLaserStockPart
   result: UltraHighPowerMicroLaserStockPart
+  # Arcane-Edit-Start
+  completetime: 10
+  materials:
+    Steel: 50
+    Plastic: 50
+    Gold: 50
+    Silver: 200
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: SuperMatterBinStockPart
   result: SuperMatterBinStockPart
+  # Arcane-Edit-Start
+  completetime: 10
+  materials:
+    Steel: 50
+    Plastic: 50
+    Gold: 50
+    Silver: 200
+  # Arcane-Edit-End
 
 # Tier 4
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: TriphasicScanningModuleStockPart
   result: TriphasicScanningModuleStockPart
+  # Arcane-Edit-Start
+  completetime: 20
+  materials:
+    Gold: 50
+    Silver: 200
+    Diamond: 50
+    BSCrystal: 100
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: FemtoServoStockPart
   result: FemtoServoStockPart
+  # Arcane-Edit-Start
+  completetime: 20
+  materials:
+    Gold: 50
+    Silver: 200
+    Diamond: 50
+    BSCrystal: 100
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: BluespaceCapacitorStockPart
   result: BluespaceCapacitorStockPart
+  # Arcane-Edit-Start
+  completetime: 20
+  materials:
+    Gold: 50
+    Silver: 200
+    Diamond: 50
+    BSCrystal: 100
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: QuadUltraMicroLaserStockPart
   result: QuadUltraMicroLaserStockPart
+  # Arcane-Edit-Start
+  completetime: 20
+  materials:
+    Gold: 50
+    Silver: 200
+    Diamond: 50
+    BSCrystal: 100
+  # Arcane-Edit-End
 
 - type: latheRecipe
   parent: BaseStockPartRecipe
   id: BluespaceMatterBinStockPart
   result: BluespaceMatterBinStockPart
+  # Arcane-Edit-Start
+  completetime: 20
+  materials:
+    Gold: 50
+    Silver: 200
+    Diamond: 50
+    BSCrystal: 100
+  # Arcane-Edit-End
 
 - type: latheRecipe
   id: BluespaceRapidPartExchanger
@@ -122,4 +238,4 @@
     Steel: 750
     Glass: 250
     Silver: 125
-    BSCrystal: 150
+    BSCrystal: 350 # Arcane-Edit: 150 > 350
