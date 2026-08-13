@@ -44,7 +44,6 @@ using Direction = Robust.Shared.Maths.Direction;
 using Content.Goobstation.Common.CCVar; // Goob Station - Barks
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Orion.RichText;
-using Content.Shared._Arcane.CCVars;
 using Content.Shared._Arcane.ERP;
 using Content.Client._Art.TTS;
 using Content.Shared._Art.TTS;
@@ -902,9 +901,6 @@ namespace Content.Client.Lobby.UI
 
         private void RefreshVoiceTab()
         {
-            if (!_cfgManager.GetCVar(ACCVars.UseTTS))
-                return;
-
             _ttsTab = new TTSTab();
             var children = new List<Control>();
             foreach (var child in TabContainer.Children)
