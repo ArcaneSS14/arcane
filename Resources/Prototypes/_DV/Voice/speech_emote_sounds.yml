@@ -85,6 +85,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: SoundsHarpyMale
@@ -173,6 +177,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleVulpkanin
@@ -225,6 +233,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: MaleVulpkanin
@@ -277,6 +289,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: MobDog
@@ -337,6 +353,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleRodentia
@@ -379,6 +399,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: UnisexChitinid
@@ -467,6 +491,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End
 
 - type: emoteSounds
   id: MaleFeroxi
@@ -511,3 +539,7 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
