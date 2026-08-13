@@ -176,3 +176,15 @@ Entries:
       message: Нианы теперь жжжужжжат по-русски.
   id: 20
   time: '2026-08-12T18:36:46.0000000+00:00'
+- author: seemah
+  changes:
+    - type: Add
+      message: Портированы новые декали.
+  id: 21
+  time: '2026-08-13T10:10:03.0000000+00:00'
+- author: Vecortys
+  changes:
+    - type: Remove
+      message: Система ерп органов вырезана.
+  id: 22
+  time: '2026-08-13T10:25:57.0000000+00:00'
