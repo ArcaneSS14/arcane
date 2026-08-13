@@ -18,9 +18,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: breasts
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Chest
 
 - type: panelInteraction
   id: BoobsPaw
@@ -39,9 +42,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: breasts
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Chest
 
 - type: panelInteraction
   id: BoobsFuck
@@ -65,13 +71,19 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: breasts
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Chest
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   - !type:ArousalRequirement
 
 - type: panelInteraction
@@ -92,9 +104,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: breasts
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Chest
 
 - type: panelInteraction
   id: BoobsKisses
@@ -120,9 +135,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: breasts
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Chest
 
 - type: panelInteraction
   id: BoobsTail
@@ -142,9 +160,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: breasts
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Chest
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -173,9 +194,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: breasts
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Chest
 
 - type: panelInteraction
   id: BoobsSuck
@@ -197,6 +221,9 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: breasts
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Chest

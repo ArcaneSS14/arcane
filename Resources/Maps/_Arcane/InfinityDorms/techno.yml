@@ -3,8 +3,8 @@ meta:
   category: Grid
   engineVersion: 270.1.0
   forkId: arcane
-  forkVersion: 92e4d7063b8db3046aff9ef8f583a8ff6cec2e3e
-  time: 08/06/2026 19:51:43
+  forkVersion: 9467bbe095dd16e4329dc4afa595d0d816f25c7e
+  time: 08/12/2026 16:41:23
   entityCount: 744
 maps: []
 grids:
@@ -2291,13 +2291,6 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: DormNotifierMarker
-  entities:
-  - uid: 4
-    components:
-    - type: Transform
-      pos: 8.5,-3.5
-      parent: 1
 - proto: DoubleBed
   entities:
   - uid: 586
@@ -3136,10 +3129,13 @@ entities:
     - type: Transform
       pos: 9.5,-3.5
       parent: 1
-  - uid: 608
+- proto: InfiniteDormSpawnMarker
+  entities:
+  - uid: 4
     components:
     - type: Transform
-      pos: -3.5,-2.5
+      rot: 3.141592653589793 rad
+      pos: 8.5,-3.5
       parent: 1
 - proto: JanitorialTrolley
   entities:
@@ -5110,6 +5106,14 @@ entities:
     components:
     - type: Transform
       pos: 4.5,3.5
+      parent: 1
+- proto: WoodDoor
+  entities:
+  - uid: 608
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-2.5
       parent: 1
 - proto: WoodenBench
   entities:

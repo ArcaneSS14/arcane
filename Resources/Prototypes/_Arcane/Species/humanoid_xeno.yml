@@ -13,6 +13,10 @@
   sexes: [Unsexed, Male, Female, Futanari]
   category: Unusual
   description: "/ServerInfo/_Arcane/SpeciesDescriptions/HumanoidXeno.xml"
+  minAge: 18
+  maxAge: 1000
+  youngAge: 300
+  oldAge: 600
   minHeight: 0.90
   defaultHeight: 1
   maxHeight: 1.35
@@ -88,8 +92,7 @@
       required: false
     Tracheas:
       points: 1
-      required: true
-      defaultMarkings: [ HumanoidXenoTracheasDrone ]
+      required: false
     LeftFoot:
       points: 1
       required: false

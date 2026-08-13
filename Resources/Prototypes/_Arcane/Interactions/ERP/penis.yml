@@ -19,9 +19,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: SlimeFuckCock
@@ -54,9 +57,12 @@
     species:
     - SlimePerson
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockFap
@@ -78,9 +84,12 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockFootjob
@@ -104,9 +113,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockSwordmanship
@@ -129,13 +141,19 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockFapTail
@@ -151,9 +169,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -185,9 +206,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockBlowjob
@@ -217,9 +241,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockNearAssTail
@@ -238,9 +265,12 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   - !type:SpeciesRequirement
     species:
     - Demon
@@ -278,9 +308,12 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: LegsCockFuckTail
@@ -299,9 +332,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
   - !type:SpeciesRequirement
     species:
