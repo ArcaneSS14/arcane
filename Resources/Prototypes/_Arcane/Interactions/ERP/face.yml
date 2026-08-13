@@ -143,9 +143,12 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   - !type:ArousalRequirement
 
 - type: panelInteraction
@@ -167,9 +170,12 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   - !type:ArousalRequirement
 
 - type: panelInteraction
