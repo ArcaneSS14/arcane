@@ -2,8 +2,8 @@
 - type: entity
   parent: BaseStructure
   id: CosmicEffigy
-  name: effigy of entropy
-  description: An abhorrent malign anomaly. Raw entropy oozes forth, betraying its instability.
+  name: Космический Идол
+  description: Отвратительная и злобная структура. Из нее сочится необузданная энтропия, выдающая её нестабильность.
   components:
   - type: Sprite
     sprite: _DV/CosmicCult/Tileset/cosmiceffigy.rsi
