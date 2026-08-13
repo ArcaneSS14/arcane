@@ -43,6 +43,9 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<TTSAnnouncePlayEvent>(OnTTSAnnouncePlayEvent);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
+
+        SubscribeLocalEvent<TTSVoiceChangeOpenMenuEvent>(OnVoiceChangeMenu);
+        SubscribeNetworkEvent<TTSVoiceChangeSelectedMessage>(OnVoiceChangeSelected);
     }
 
     private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)

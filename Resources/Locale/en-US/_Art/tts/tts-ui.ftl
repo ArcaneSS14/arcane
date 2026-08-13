@@ -1,5 +1,4 @@
 ui-options-tts-volume = TTS volume:
-humanoid-profile-editor-voice-play = ▶
 humanoid-profile-editor-voice-tab = Voice
 humanoid-profile-editor-voice-placeholder = Search voices...
 humanoid-profile-editor-voice-sex-male = Male
@@ -7,3 +6,6 @@ humanoid-profile-editor-voice-sex-female = Female
 humanoid-profile-editor-voice-tooltip-play = Preview
 humanoid-profile-editor-voice-match = Found: {$filtered}/{$all}
 tts-rate-limited = You're generating TTS too fast!
+tts-voice-change-window-title = Voice selection
+ent-ActionTTSVoiceChange = Change Voice
+ent-ActionTTSVoiceChange-desc = Open the voice selection menu.
