@@ -74,6 +74,30 @@
         {
             "name": "prowler_tail",
             "directions": 4
+        },
+        {
+            "name": "defer_tail",
+            "directions": 4
+        },
+        {
+            "name": "defer_tail_grad",
+            "directions": 4
+        },
+        {
+            "name": "defer_tail_ball",
+            "directions": 4
+        },
+        {
+            "name": "warrior_tail",
+            "directions": 4
+        },
+        {
+            "name": "warrior_tail_thin_grad",
+            "directions": 4
+        },
+        {
+            "name": "warrior_tail_thin",
+            "directions": 4
         }
     ]
 }
