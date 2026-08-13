@@ -12,10 +12,6 @@
             "directions": 4
         },
         {
-            "name": "service_walking",
-            "directions": 4
-        },
-        {
             "name": "service-rest",
             "directions": 4
         },
