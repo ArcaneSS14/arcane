@@ -54,6 +54,7 @@
             #supply (6-8)
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 5 ]
+            ShaftMiner: [ 4, 4 ]
             #civilian (3+)
             Passenger: [ -1, -1 ] #infinite, not counted
             Clown: [ 1, 1 ]
