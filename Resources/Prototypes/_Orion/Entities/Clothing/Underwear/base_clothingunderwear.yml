@@ -61,8 +61,3 @@
   - type: Armor
     coverage:
     - Groin
-  # Arcane-start: hide erp groin organs when worn
-  - type: HideLayerClothing
-    layers:
-      ErpGroin: UNDERWEAR
-  # Arcane-end

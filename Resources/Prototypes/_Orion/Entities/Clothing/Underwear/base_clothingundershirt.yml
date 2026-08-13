@@ -59,11 +59,6 @@
   - type: Armor
     coverage:
     - Chest
-  # Arcane-start: hide erp chest organs when worn
-  - type: HideLayerClothing
-    layers:
-      ErpChest: UNDERSHIRT
-  # Arcane-end
 
 - type: entity
   abstract: true
