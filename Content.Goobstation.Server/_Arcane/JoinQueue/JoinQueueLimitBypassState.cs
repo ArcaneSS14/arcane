@@ -11,7 +11,6 @@ internal sealed class JoinQueueLimitBypassState<TSession> where TSession : class
 {
     private readonly Dictionary<NetUserId, TSession> _sessionsByUser = [];
 
-    public IReadOnlyDictionary<NetUserId, TSession> Sessions => _sessionsByUser;
     public int Count => _sessionsByUser.Count;
 
     public void Add(NetUserId userId, TSession session)

@@ -798,35 +798,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("connection_log", (string)null);
                 });
 
-            modelBuilder.Entity("Content.Server.Database.ErpOrganPreference", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("erp_organ_preferences_id");
-
-                    b.Property<string>("Data")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("data");
-
-                    b.Property<int>("Slot")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("slot");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id")
-                        .HasName("PK_erp_organ_preferences");
-
-                    b.HasIndex("UserId", "Slot")
-                        .IsUnique();
-
-                    b.ToTable("erp_organ_preferences", (string)null);
-                });
-
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
                     b.Property<int>("Id")

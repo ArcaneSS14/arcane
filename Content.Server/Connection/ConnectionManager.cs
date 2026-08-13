@@ -10,11 +10,9 @@ using Content.Server._Arcane.DiscordRoles;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection.IPIntel;
 using Content.Server.Database;
-using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
 using Content.Shared._Arcane.DiscordRoles;
-using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -68,10 +66,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly IHttpClientHolder _http = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
-        // Arcane-start
-        [Dependency] private readonly DiscordRoleManager _discordRoles = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        // Arcane-end
+        [Dependency] private readonly DiscordRoleManager _discordRoles = default!; // Arcane
 
         private ISawmill _sawmill = default!;
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
@@ -406,23 +401,18 @@ namespace Content.Server.Connection
 
         private bool HasBuiltInJoinPrivilege(NetUserId userId, bool isAdmin)
         {
-            if (HasTemporaryBypass(userId))
-                return true;
-
-            var adminCanBypass = CanAdminBypassPlayerLimit(
+            return HasExplicitJoinPrivilege(
+                HasTemporaryBypass(userId),
                 isAdmin,
                 _cfg.GetCVar(CCVars.AdminBypassMaxPlayers));
-            if (adminCanBypass)
-                return true;
-
-            var ticker = _entityManager.System<GameTicker>();
-            return ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
-                   status == PlayerGameStatus.JoinedGame;
         }
 
-        internal static bool CanAdminBypassPlayerLimit(bool isAdmin, bool bypassEnabled)
+        internal static bool HasExplicitJoinPrivilege(
+            bool hasTemporaryBypass,
+            bool isAdmin,
+            bool adminBypassEnabled)
         {
-            return isAdmin && bypassEnabled;
+            return hasTemporaryBypass || (isAdmin && adminBypassEnabled);
         }
         // Arcane-Edit-End
     }
