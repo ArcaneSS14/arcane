@@ -1,0 +1,27 @@
+- type: entity
+  parent: FoodBreadBase
+  id: JeezBread
+  name: Jeez Bread
+  abstract: false
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Consumable/Food/Baked/bread.rsi
+    state: jeez-bread
+  - type: Item
+    size: Tiny
+  - type: FlavorProfile
+    flavors:
+      - bread
+  - type: Tag
+    tags:
+    - Bread
+    - Slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Semen
+          Quantity: 4

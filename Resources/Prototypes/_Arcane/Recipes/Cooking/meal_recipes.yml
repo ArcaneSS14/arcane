@@ -1,0 +1,10 @@
+- type: microwaveMealRecipe
+  id: RecipeJeezBread
+  name: Jeez bread
+  result: JeezBread
+  time: 5
+  group: Breads
+  reagents:
+    Semen: 5
+  solids:
+    FoodBreadPlainSlice: 2
