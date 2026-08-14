@@ -22,7 +22,7 @@
   parent: ClothingNeckBase
   id: ClothingCloakCMOHonorable
   name: CMO's honorable cloak
-  description: Only the most experienNTRd doctor can get this.
+  description: Only the most experienced doctor can get this.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Neck/Sponsor/CMO_cloak.rsi
