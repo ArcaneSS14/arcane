@@ -444,6 +444,7 @@
   - type: ActionGrant
     actions:
     - ActionViewLaws
+    - ActionTTSVoiceChange # Arcane
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:
