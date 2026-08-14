@@ -12,12 +12,7 @@
   components:
   - type: Accentless
     removes:
-    # Arcane-Start
-    - type: OwOAccent
-    - type: VulpaAccent
-    - type: TajaranAccent
-    - type: MoldovanAccent
-    # Arcane-End
+    - type: OwOAccent # Arcane
     - type: LizardAccent
     - type: MothAccent
     - type: ReplacementAccent
