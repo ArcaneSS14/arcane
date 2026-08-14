@@ -29,11 +29,9 @@ public sealed class WackyLawRule : StationEventSystem<WackyLawComponent>
         if (department == "All")
             return Loc.GetString("wacky-law-department-all");
 
-        var name = _proto.TryIndex<DepartmentPrototype>(department, out var dept)
+        return _proto.TryIndex<DepartmentPrototype>(department, out var dept)
             ? Loc.GetString(dept.Name)
             : department;
-
-        return Loc.GetString(name);
     }
     private string PickRandomEntityName(ProtoId<DatasetPrototype> datasetId)
     {

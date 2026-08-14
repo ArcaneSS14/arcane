@@ -9,18 +9,6 @@ namespace Content.Server._Arcane.StationEvents.Components;
 public sealed partial class WackyLawComponent : Component
 {
     /// <summary>
-    /// Dataset of objects for event "wacky law"
-    /// </summary>
-    [DataField]
-    public ProtoId<DatasetPrototype> ItemDataset = "ArcaneItem";
-
-    /// <summary>
-    /// Beverage Dataset for event "wacky law" (use text instead of IDs)
-    /// </summary>
-    [DataField]
-    public ProtoId<DatasetPrototype> HalfProhibitionDataset = "ArcaneHalfProhibition";
-
-    /// <summary>
     /// Department Dataset for event "wacky law"
     /// </summary>
     [DataField]
