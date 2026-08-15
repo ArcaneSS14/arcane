@@ -1,5 +1,11 @@
 ui-options-tts-volume = Громкость TTS:
-humanoid-profile-editor-voice-label = ТТС:
-humanoid-profile-editor-voice-play = ▶
-humanoid-profile-editor-tts-enable = Использовать ТТС
+humanoid-profile-editor-voice-tab = Голос
+humanoid-profile-editor-voice-placeholder = Поиск по голосам...
+humanoid-profile-editor-voice-sex-male = Мужские
+humanoid-profile-editor-voice-sex-female = Женские
+humanoid-profile-editor-voice-tooltip-play = Прослушать
+humanoid-profile-editor-voice-match = Найдено: {$filtered}/{$all}
 tts-rate-limited = Вы генерируете TTS слишком быстро!
+tts-voice-change-window-title = Выбор голоса
+ent-ActionTTSVoiceChange = Сменить голос
+ent-ActionTTSVoiceChange-desc = Открыть меню выбора голоса.
