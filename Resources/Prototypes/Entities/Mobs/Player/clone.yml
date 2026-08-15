@@ -84,6 +84,7 @@
   - LanguageKnowledge
   - ForeignerTrait
   # Einstein Engines - Language end
+  - TTS # Art
   blacklist:
     components:
     - AttachedClothing # helmets, which are part of the suit
