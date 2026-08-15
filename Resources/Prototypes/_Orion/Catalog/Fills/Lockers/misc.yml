@@ -7,25 +7,31 @@
       - id: ClothingBackpackInteQ
       - id: ClothingBackpackDuffelInteQ
       - id: ClothingBackpackSatchelInteQ
+      - id: ClothingBeltInteQDropPouch # Arcane
+      - id: ClothingBeltInteQWebbing # Arcane
     - !type:GroupSelector
       children:
       - id: ClothingHeadHatInteQSoft
       - id: ClothingHeadHatInteQMAA
       - id: ClothingHeadInteQHonorableBeret
       - id: ClothingHeadInteQBeret
+      - id: ToolboxInteQFilled # Arcane
     - !type:GroupSelector
       children:
       - id: ClothingUniformJumpsuitInteQFormal
       - id: ClothingUniformJumpskirtInteQFormalDress
       - id: ClothingUniformJumpsuitInteQHonorable
+      - id: ClothingNeckCloakInteQ # Arcane
     - !type:GroupSelector
       children:
       - id: ClothingUniformJumpsuitInteQMedical
       - id: ClothingUniformJumpskirtInteQMedical
+      - id: ToolboxInteQFilled # Arcane
     - !type:GroupSelector
       children:
       - id: ClothingUniformJumpsuitInteQOperative
       - id: ClothingUniformJumpskirtInteQOperative
+      - id: ToolboxInteQFilled # Arcane
     - !type:GroupSelector
       children:
       - id: ClothingOuterCoatInteQBattle
@@ -34,14 +40,13 @@
       - id: ClothingOuterHoodieInteQ
     - !type:GroupSelector
       children:
-      - id: ClothingBeltInteQWebbing
-        prob: 0.005
+      - id: ItemFlagMiniInteQ
+      - id: FoodSnackInteQCookies
+      - id: CigPackInteQ
+      - id: ToolboxInteQFilled 
+    - !type:GroupSelector # Arcane-Start
+      children:
+      - id: BoxInteQEVA
       - id: ClothingBeltInteQDropPouch
-        prob: 0.005
-    - id: ItemFlagMiniInteQ
-    - id: FoodSnackInteQCookies
-    - id: CigPackInteQ
-    - id: ClothingNeckCloakInteQ
-      prob: 0.005
-    - id: BoxInteQEVA
-      prob: 0.005
+      - id: ClothingBeltInteQWebbing
+      - id: ToolboxInteQFilled # Arcane-End
