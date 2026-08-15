@@ -17,11 +17,11 @@ namespace Content.Client._Art.TTS;
 /// Plays TTS audio in world
 /// </summary>
 // ReSharper disable once InconsistentNaming
-public sealed class TTSSystem : EntitySystem
+public sealed partial class TTSSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IResourceManager _res = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IResourceManager _res = default!;
+    [Dependency] private AudioSystem _audio = default!;
 
     private ISawmill _sawmill = default!;
     private readonly MemoryContentRoot _contentRoot = new();
@@ -116,6 +116,8 @@ public sealed class TTSSystem : EntitySystem
 
             if (ev.SourceUid != null)
             {
+                if (!TryGetEntity(ev.SourceUid.Value, out _))
+                    return;
                 var sourceUid = GetEntity(ev.SourceUid.Value);
                 if (sourceUid.IsValid())
                     _audio.PlayEntity(audioResource.AudioStream, sourceUid, null, audioParams);

@@ -57,6 +57,7 @@
       Male: MaleAvaliEmote
       Unsexed: MaleAvaliEmote
       Female: FemaleAvaliEmote
+      Futanari: FemaleAvaliEmote # Arcane
   - type: Tag
     tags:         # Goob - What the fuck is FootstepSound and DoorBumpOpener for if they work without them - rest fixes anoms though.
     - CanPilot
@@ -500,13 +501,3 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_resomi"
       visible: false
-  # Arcane-start: species-specific organ prototypes
-  - type: EroticOrgans
-    groinMale:
-    - proto: OrganPenisResomi
-      slot: penis
-    - proto: OrganTesticles
-      slot: testicles
-    hideWhenFlaccid:
-    - penis
-  # Arcane-end

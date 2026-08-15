@@ -849,37 +849,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         });
                 });
 
-            modelBuilder.Entity("Content.Server.Database.ErpOrganPreference", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("erp_organ_preferences_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Data")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("data");
-
-                    b.Property<int>("Slot")
-                        .HasColumnType("integer")
-                        .HasColumnName("slot");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id")
-                        .HasName("PK_erp_organ_preferences");
-
-                    b.HasIndex("UserId", "Slot")
-                        .IsUnique();
-
-                    b.ToTable("erp_organ_preferences", (string)null);
-                });
-
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
                     b.Property<int>("Id")

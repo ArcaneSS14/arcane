@@ -54,6 +54,10 @@
         {
             "name": "crocodile_tubes",
             "directions": 4
+        },
+        {
+            "name": "warrior_tubes",
+            "directions": 4
         }
     ]
 }

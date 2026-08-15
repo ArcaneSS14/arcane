@@ -38,6 +38,7 @@
       Male: UnisexVox
       Female: UnisexVox
       Unsexed: UnisexVox
+      Futanari: UnisexVox # Arcane
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -132,9 +133,11 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: [ "jumpsuit" ]
+    # Arcane-Edit-Start
     - map: [ "enum.HumanoidVisualLayers.LFoot" ]
     - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: [ "jumpsuit" ]
+    # Arcane-Edit-End
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
     - map: [ "gloves" ]
@@ -213,6 +216,13 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: shoes
+      # Arcane-End
       outerClothing: # Goob
         sizeMaps:
           32:
@@ -305,29 +315,6 @@
       - NewKinPidgin        # Vox language from Floofstation
   - type: CosmicMarkVisuals # DeltaV - cosmic cult
     subtleState: vox
-  # Arcane-start: species-specific organ prototypes
-  - type: EroticOrgans
-    groinCommon:
-    - proto: OrganAnus
-      slot: anus
-    - proto: OrganButt
-      slot: butt
-    groinMale:
-    - proto: OrganPenisVox
-      slot: penis
-    - proto: OrganTesticles
-      slot: testicles
-    groinFemale:
-    - proto: OrganVagina
-      slot: vagina
-    - proto: OrganUterus
-      slot: uterus
-    chestFemale:
-    - proto: OrganBreastsHuman
-      slot: breasts
-    hideWhenFlaccid:
-    - penis
-  # Arcane-end
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -384,6 +371,13 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: shoes
+      # Arcane-End
       outerClothing: # Goob
         sizeMaps:
           32:

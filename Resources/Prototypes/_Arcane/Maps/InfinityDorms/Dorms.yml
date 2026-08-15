@@ -44,6 +44,14 @@
   category: Unusual
   gridPath: /Maps/_Arcane/InfinityDorms/pivo.yml
 
+- type: infinityDorm
+  id: Techno
+  title: Благословение Ратвара
+  author: seemah
+  description: Святыня бога машин.
+  category: Unusual
+  gridPath: /Maps/_Arcane/InfinityDorms/techno.yml
+
 # endregion НЕОБЫЧНЫЕ
 
 # region ЭКЗОТИЧЕСКИЕ
