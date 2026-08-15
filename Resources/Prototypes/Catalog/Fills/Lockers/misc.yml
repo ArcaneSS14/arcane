@@ -213,7 +213,6 @@
     # Recursive
     - id: ClosetMaintenanceFilledRandom
       prob: 0.05
-# Arcane: повышены шансы на каждую категорию ~2 раза.
 
 - type: entity
   id: ClosetMaintenanceFilledRandom
