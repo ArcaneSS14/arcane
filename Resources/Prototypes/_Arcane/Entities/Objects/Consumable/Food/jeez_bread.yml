@@ -7,15 +7,6 @@
   - type: Sprite
     sprite: _Arcane/Objects/Consumable/Food/Baked/bread.rsi
     state: jeez-bread
-  - type: Item
-    size: Tiny
-  - type: FlavorProfile
-    flavors:
-      - bread
-  - type: Tag
-    tags:
-    - Bread
-    - Slice
   - type: SolutionContainerManager
     solutions:
       food:
