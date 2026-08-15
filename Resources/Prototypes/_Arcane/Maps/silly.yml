@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'ABK'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Arcane/Shuttles/emergency_silly.yml
+          emergencyShuttlePath: /Maps/_Arcane/Shuttles/Silly/emergency_silly.yml
         - type: StationJobs
           availableJobs:
             # command
@@ -68,7 +68,7 @@
             # silicon
             Borg: [ 1, 1 ]
         - type: StationCargoShuttle
-          path: /Maps/_Arcane/Shuttles/cargo_silly.yml
+          path: /Maps/_Arcane/Shuttles/Silly/cargo_silly.yml
         - type: StationBlobConfig
           stageBegin: 10
           stageCritical: 300
