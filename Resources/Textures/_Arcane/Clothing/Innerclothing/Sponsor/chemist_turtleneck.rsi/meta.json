@@ -12,8 +12,7 @@
             "directions": 4
         },
         {
-            "name": "inhand-left",
-            "directions": 4
+            "name": "inhand-left"
         },
         {
             "name": "inhand-right",
