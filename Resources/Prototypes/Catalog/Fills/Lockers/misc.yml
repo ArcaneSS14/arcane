@@ -212,7 +212,8 @@
       prob: 0.1 # Arcane-Edit: 0.05 > 0.1
     # Recursive
     - id: ClosetMaintenanceFilledRandom
-      prob: 0.01
+      prob: 0.05
+# Arcane: повышены шансы на каждую категорию ~2 раза.
 
 - type: entity
   id: ClosetMaintenanceFilledRandom

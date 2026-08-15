@@ -2,6 +2,10 @@
 using Content.Shared.Damage.Prototypes;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared._Shitmed.EntityEffects.Effects;
+// Arcane-Start
+using Content.Shared._Shitmed.Targeting;
+using Content.Shared._Shitmed.Damage;
+// Arcane-End
 using Content.Shared.Localizations;
 using Content.Shared.Temperature.Components;
 using Robust.Shared.Prototypes;
@@ -32,12 +36,16 @@ public sealed partial class HealthChangeEntityEffectSystem : EntityEffectSystem<
             damageSpec *= scaleTemp.GetEfficiencyMultiplier(temp.CurrentTemperature, args.Scale, false);
         }
         // Goobstation End
-
         _damageable.TryChangeDamage(
                 entity,
                 damageSpec,
                 args.Effect.IgnoreResistances,
-                interruptsDoAfters: false);
+                interruptsDoAfters: false,
+                // Arcane-Edit-Start
+                targetPart: args.Effect.UseTargeting ? args.Effect.TargetPart : null,
+                ignoreBlockers: args.Effect.IgnoreBlockers,
+                splitDamage: args.Effect.SplitDamage);
+                // Arcane-Edit-End
     }
 }
 
@@ -52,6 +60,20 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
 
     [DataField]
     public bool IgnoreResistances = true;
+
+    // Arcane-Start
+    [DataField]
+    public SplitDamageBehavior SplitDamage = SplitDamageBehavior.SplitEnsureAllOrganic;
+
+    [DataField]
+    public bool UseTargeting = true;
+
+    [DataField]
+    public TargetBodyPart TargetPart = TargetBodyPart.All;
+
+    [DataField]
+    public bool IgnoreBlockers = true;
+    // Arcane-End
 
     [DataField]
     public TemperatureScaling? ScaleByTemperature;

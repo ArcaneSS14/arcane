@@ -62,3 +62,85 @@ Entries:
         Ратвара.
   id: 7
   time: '2026-08-07T13:45:32.0000000+00:00'
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Шрифт был изменён согласно результатам голосования.
+  id: 8
+  time: '2026-08-07T21:11:31.0000000+00:00'
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: Добавлены новые элементы кастомизации аркан.
+    - type: Tweak
+      message: Спрайты аркан были переделаны.
+  id: 9
+  time: '2026-08-09T12:34:43.0000000+00:00'
+- author: Kat_L
+  changes:
+    - type: Fix
+      message: Исправлена локализация консоли восстановления ИИ и Станционного ИИ.
+  id: 10
+  time: '2026-08-09T12:37:44.0000000+00:00'
+- author: ReWAFFlution, shimorio
+  changes:
+    - type: Fix
+      message: Носки отображаются корректно
+    - type: Fix
+      message: Йови, Гарпии и Дионы больше не могут носить носки
+    - type: Fix
+      message: Гигакс снова собирается
+    - type: Fix
+      message: Настроение снова работает
+    - type: Fix
+      message: Футанари получили женские звуки эмоций
+    - type: Fix
+      message: Цель вора Библия починена
+    - type: Fix
+      message: В полукритическом состоянии можно шептать
+    - type: Fix
+      message: Панель в разделённом чате снова отображается
+    - type: Fix
+      message: Сперму можно смыть
+    - type: Fix
+      message: Манифест снова работает
+    - type: Fix
+      message: Описания(не NSFW) снова отображаются корректно
+    - type: Fix
+      message: Метаболизм работает корректно
+  id: 11
+  time: '2026-08-09T13:35:22.0000000+00:00'
+- author: Vecortys
+  changes:
+    - type: Fix
+      message: Давайте сделаем вид что очередь теперь корректно работает
+  id: 12
+  time: '2026-08-09T21:15:17.0000000+00:00'
+- author: seemah
+  changes:
+    - type: Tweak
+      message: Максимальный рост ксено был увеличен.
+  id: 13
+  time: '2026-08-10T07:48:26.0000000+00:00'
+- author: ReWAFFlution, shimorio
+  changes:
+    - type: Add
+      message: Добавлен поиск в послераундный манифест
+  id: 14
+  time: '2026-08-11T08:41:41.0000000+00:00'
+- author: 'Vecortys '
+  changes:
+    - type: Tweak
+      message: >-
+        Речь персонажа теперь не видно/Не слышно через стены. ТТС всё ещё
+        слышно, если ваш персонаж восклицает (соо заканчивается на ! )
+  id: 15
+  time: '2026-08-11T10:36:53.0000000+00:00'
+- author: Vecortys
+  changes:
+    - type: Remove
+      message: >-
+        Коины и Токены вырезаны из игры в связи с множеством абузов и побочных
+        проблем.
+  id: 16
+  time: '2026-08-11T16:56:56.0000000+00:00'
