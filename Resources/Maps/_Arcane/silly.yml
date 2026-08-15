@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Map
   engineVersion: 270.1.0
-  forkId: ""
+  forkId: Orion
   forkVersion: ""
-  time: 08/14/2026 17:41:57
-  entityCount: 8788
+  time: 08/15/2026 12:05:51
+  entityCount: 8784
 maps:
 - 1
 grids:
@@ -798,6 +798,11 @@ entities:
           decals:
             3360: -9,-5
         - node:
+            color: '#0E7F1BFF'
+            id: BrickTileWhiteCornerNe
+          decals:
+            6400: -22,-7
+        - node:
             color: '#A46106DF'
             id: BrickTileWhiteCornerNe
           decals:
@@ -813,6 +818,11 @@ entities:
           decals:
             6169: 13,18
         - node:
+            color: '#0E7F1BFF'
+            id: BrickTileWhiteCornerNw
+          decals:
+            6396: -25,-7
+        - node:
             color: '#DE3A3A96'
             id: BrickTileWhiteCornerNw
           decals:
@@ -825,6 +835,11 @@ entities:
             3655: -33,-9
             3659: -35,-11
         - node:
+            color: '#4B709CFF'
+            id: BrickTileWhiteCornerSe
+          decals:
+            6404: -22,-9
+        - node:
             color: '#DE3A3A96'
             id: BrickTileWhiteCornerSe
           decals:
@@ -835,10 +850,10 @@ entities:
           decals:
             6171: 13,16
         - node:
-            color: '#0E7F1BFF'
+            color: '#4B709CFF'
             id: BrickTileWhiteCornerSw
           decals:
-            4909: -25,-9
+            6394: -25,-9
         - node:
             color: '#DE3A3A96'
             id: BrickTileWhiteCornerSw
@@ -859,6 +874,11 @@ entities:
             id: BrickTileWhiteEndW
           decals:
             451: -13,11
+        - node:
+            color: '#0E7F1BFF'
+            id: BrickTileWhiteInnerNe
+          decals:
+            6401: -22,-8
         - node:
             color: '#A46106DF'
             id: BrickTileWhiteInnerNe
@@ -889,6 +909,11 @@ entities:
           decals:
             6179: 10,18
         - node:
+            color: '#0E7F1BFF'
+            id: BrickTileWhiteInnerNw
+          decals:
+            6397: -25,-8
+        - node:
             color: '#A46106DF'
             id: BrickTileWhiteInnerNw
           decals:
@@ -911,6 +936,11 @@ entities:
             id: BrickTileWhiteInnerNw
           decals:
             6176: 10,16
+        - node:
+            color: '#4B709CFF'
+            id: BrickTileWhiteInnerSe
+          decals:
+            6405: -22,-8
         - node:
             color: '#A46106D3'
             id: BrickTileWhiteInnerSe
@@ -938,6 +968,11 @@ entities:
             id: BrickTileWhiteInnerSe
           decals:
             6174: 10,16
+        - node:
+            color: '#4B709CFF'
+            id: BrickTileWhiteInnerSw
+          decals:
+            6395: -25,-8
         - node:
             color: '#9FED5896'
             id: BrickTileWhiteInnerSw
@@ -1005,6 +1040,12 @@ entities:
           decals:
             6170: 13,17
         - node:
+            color: '#0E7F1BFF'
+            id: BrickTileWhiteLineN
+          decals:
+            6398: -24,-7
+            6399: -23,-7
+        - node:
             color: '#A46106DF'
             id: BrickTileWhiteLineN
           decals:
@@ -1037,12 +1078,11 @@ entities:
             6180: 11,18
             6181: 12,18
         - node:
-            color: '#0E7F1BFF'
+            color: '#4B709CFF'
             id: BrickTileWhiteLineS
           decals:
-            4910: -24,-9
-            4911: -23,-9
-            4912: -22,-9
+            6402: -24,-9
+            6403: -23,-9
         - node:
             color: '#9FED5896'
             id: BrickTileWhiteLineS
@@ -1083,12 +1123,6 @@ entities:
           decals:
             6172: 12,16
             6173: 11,16
-        - node:
-            color: '#0E7F1BFF'
-            id: BrickTileWhiteLineW
-          decals:
-            4913: -25,-8
-            4914: -25,-7
         - node:
             color: '#9FED5896'
             id: BrickTileWhiteLineW
@@ -2425,7 +2459,6 @@ entities:
             887: 32.417877,11.926069
             888: 33.277252,11.863569
             889: 33.792877,11.910444
-            1636: -25,-7
             3372: 34.31073,10.255402
             3373: 34.87323,11.942902
             3374: 36.34198,10.364777
@@ -3815,7 +3848,7 @@ entities:
           1,1:
             0: 47615
           1,2:
-            0: 64443
+            0: 64187
           1,3:
             0: 59647
           0,4:
@@ -3898,7 +3931,7 @@ entities:
             0: 30583
           -1,-1:
             0: 47240
-            2: 51
+            3: 51
           -1,4:
             0: 65351
           -4,-4:
@@ -3907,15 +3940,15 @@ entities:
             0: 65486
           -5,-4:
             0: 32767
-            3: 32768
+            2: 32768
           -4,-3:
             0: 65023
           -5,-3:
-            0: 52991
+            0: 65535
           -4,-2:
             0: 64767
           -5,-2:
-            0: 63240
+            0: 63247
           -4,-1:
             0: 1855
           -5,-1:
@@ -3936,7 +3969,7 @@ entities:
             0: 63692
           -1,-2:
             0: 33023
-            2: 12288
+            3: 12288
           -1,-4:
             0: 52428
           -1,-5:
@@ -3969,7 +4002,7 @@ entities:
             0: 65532
           3,-3:
             0: 4880
-            2: 52416
+            3: 52416
           3,-2:
             0: 61408
           3,-1:
@@ -3979,7 +4012,7 @@ entities:
           4,-4:
             0: 57343
           4,-3:
-            2: 4368
+            3: 4368
             0: 3276
           4,-2:
             0: 57308
@@ -4023,14 +4056,16 @@ entities:
             0: 57582
           7,0:
             0: 3959
+          8,-4:
+            0: 4096
           8,-3:
-            0: 8721
+            0: 61047
           8,-2:
-            0: 63078
+            0: 65262
           8,-1:
             0: 30719
           4,4:
-            0: 64759
+            0: 61559
           5,1:
             0: 49425
             4: 68
@@ -4119,10 +4154,10 @@ entities:
             0: 62271
           1,7:
             0: 32729
-            3: 32768
+            2: 32768
           1,8:
             0: 65407
-            3: 128
+            2: 128
           2,5:
             0: 65535
           2,6:
@@ -4131,7 +4166,7 @@ entities:
             0: 30719
           2,8:
             0: 65139
-            3: 256
+            2: 256
           3,5:
             0: 30591
           3,6:
@@ -4218,7 +4253,7 @@ entities:
             0: 61567
           -6,-5:
             0: 48960
-            3: 16384
+            2: 16384
           -5,-5:
             0: 65280
           5,5:
@@ -4244,8 +4279,7 @@ entities:
           8,5:
             0: 16
           0,-8:
-            0: 64393
-            6: 1024
+            0: 65417
           -1,-8:
             0: 33920
           0,-7:
@@ -4258,7 +4292,7 @@ entities:
             0: 52428
           0,-9:
             0: 27127
-            3: 34304
+            2: 34304
           1,-8:
             0: 47897
           1,-7:
@@ -4311,7 +4345,7 @@ entities:
             0: 4368
           -9,4:
             0: 61439
-            3: 4096
+            2: 4096
           -8,5:
             0: 65535
           -9,5:
@@ -4368,7 +4402,7 @@ entities:
             0: 12544
           -10,-1:
             0: 49035
-            3: 16384
+            2: 16384
           -10,0:
             0: 52428
           -12,3:
@@ -4381,7 +4415,7 @@ entities:
             0: 4096
           -11,4:
             0: 30579
-            3: 32768
+            2: 32768
           -10,2:
             0: 29627
           -10,3:
@@ -4390,7 +4424,7 @@ entities:
             0: 11468
           -10,4:
             0: 59532
-            3: 4096
+            2: 4096
           -13,4:
             0: 56817
           -12,5:
@@ -4403,12 +4437,12 @@ entities:
             0: 3839
           -11,5:
             0: 30591
-            3: 128
+            2: 128
           -11,6:
             0: 119
           -10,5:
             0: 189
-            3: 66
+            2: 66
           -9,8:
             0: 2252
           -8,8:
@@ -4477,16 +4511,16 @@ entities:
           temperature: 293.15
           moles: {}
         - volume: 2500
-          temperature: 235
-          moles:
-            Oxygen: 27.225372
-            Nitrogen: 102.419266
-        - volume: 2500
           immutable: True
           temperature: 288.15
           moles:
             Oxygen: 21.824879
             Nitrogen: 82.10312
+        - volume: 2500
+          temperature: 235
+          moles:
+            Oxygen: 27.225372
+            Nitrogen: 102.419266
         - volume: 2500
           temperature: 293.15
           moles:
@@ -4495,11 +4529,6 @@ entities:
           temperature: 293.15
           moles:
             Oxygen: 6666.982
-        - volume: 2500
-          temperature: 293.15
-          moles:
-            Oxygen: 21.6852
-            Nitrogen: 81.57766
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -8604,6 +8633,11 @@ entities:
     - type: Transform
       pos: -20.5,-7.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
+      access:
+      - - BlueshieldOfficer
+      - - NanotrasenRepresentative
 - proto: AirlockQuartermasterLocked
   entities:
   - uid: 91
@@ -9793,6 +9827,11 @@ entities:
     - type: Transform
       pos: -21.5,-6.5
       parent: 2
+  - uid: 1816
+    components:
+    - type: Transform
+      pos: -21.5,-8.5
+      parent: 2
   - uid: 6590
     components:
     - type: Transform
@@ -9958,6 +9997,11 @@ entities:
       parent: 2
 - proto: BedsheetNT
   entities:
+  - uid: 1819
+    components:
+    - type: Transform
+      pos: -21.5,-8.5
+      parent: 2
   - uid: 8013
     components:
     - type: Transform
@@ -10354,21 +10398,6 @@ entities:
     components:
     - type: Transform
       pos: 7.674737,-1.4089528
-      parent: 2
-- proto: BoxFolderCentCom
-  entities:
-  - uid: 314
-    components:
-    - type: Transform
-      pos: -22.303684,-8.354032
-      parent: 2
-- proto: BoxFolderCentComClipboard
-  entities:
-  - uid: 315
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -21.56931,-8.322782
       parent: 2
 - proto: BoxFolderGrey
   entities:
@@ -20256,6 +20285,26 @@ entities:
       parent: 8520
 - proto: CarpetBlue
   entities:
+  - uid: 315
+    components:
+    - type: Transform
+      pos: -22.5,-8.5
+      parent: 2
+  - uid: 1813
+    components:
+    - type: Transform
+      pos: -23.5,-7.5
+      parent: 2
+  - uid: 1815
+    components:
+    - type: Transform
+      pos: -23.5,-8.5
+      parent: 2
+  - uid: 1817
+    components:
+    - type: Transform
+      pos: -24.5,-7.5
+      parent: 2
   - uid: 1851
     components:
     - type: Transform
@@ -20326,6 +20375,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -18.5,32.5
+      parent: 2
+  - uid: 1877
+    components:
+    - type: Transform
+      pos: -21.5,-8.5
       parent: 2
   - uid: 8106
     components:
@@ -20434,21 +20488,26 @@ entities:
       parent: 2
 - proto: CarpetGreen
   entities:
+  - uid: 1814
+    components:
+    - type: Transform
+      pos: -22.5,-7.5
+      parent: 2
   - uid: 1874
     components:
     - type: Transform
       pos: -21.5,-6.5
-      parent: 2
-  - uid: 1875
-    components:
-    - type: Transform
-      pos: -21.5,-7.5
       parent: 2
   - uid: 1881
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -23.5,-1.5
+      parent: 2
+  - uid: 1882
+    components:
+    - type: Transform
+      pos: -21.5,-7.5
       parent: 2
   - uid: 1894
     components:
@@ -20468,20 +20527,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -8.5,31.5
       parent: 2
-  - uid: 1897
-    components:
-    - type: Transform
-      pos: -22.5,-7.5
-      parent: 2
   - uid: 1898
     components:
     - type: Transform
       pos: -23.5,-6.5
-      parent: 2
-  - uid: 1899
-    components:
-    - type: Transform
-      pos: -23.5,-7.5
       parent: 2
   - uid: 1900
     components:
@@ -37385,16 +37434,16 @@ entities:
       canCollide: False
 - proto: Lamp
   entities:
+  - uid: 314
+    components:
+    - type: Transform
+      pos: -23.563993,-8.358337
+      parent: 2
   - uid: 3986
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -18.318367,11.803941
-      parent: 2
-  - uid: 3987
-    components:
-    - type: Transform
-      pos: -24.44431,-6.400906
       parent: 2
   - uid: 7124
     components:
@@ -38417,12 +38466,6 @@ entities:
           - MaterialSiloUtilizer
 - proto: MaterialWoodPlank
   entities:
-  - uid: 4070
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -24.50681,-7.260281
-      parent: 2
   - uid: 4071
     components:
     - type: Transform
@@ -38445,12 +38488,6 @@ entities:
       parent: 2
 - proto: MaterialWoodPlank1
   entities:
-  - uid: 4075
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -24.709934,-7.604031
-      parent: 2
   - uid: 4076
     components:
     - type: Transform
@@ -38622,14 +38659,6 @@ entities:
     - type: Transform
       rot: 6.283185307179586 rad
       pos: 5.471716,18.07489
-      parent: 2
-- proto: MeleeHammer
-  entities:
-  - uid: 4096
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -24.44431,-7.369656
       parent: 2
 - proto: MiningWindow
   entities:
@@ -39179,8 +39208,7 @@ entities:
   - uid: 4143
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -21.321125,-7.666531
+      pos: -19.589108,-11.363061
       parent: 2
   - uid: 4144
     components:
@@ -39757,6 +39785,12 @@ entities:
       parent: 2
 - proto: Poweredlight
   entities:
+  - uid: 1820
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -24.5,-7.5
+      parent: 2
   - uid: 2810
     components:
     - type: Transform
@@ -40190,13 +40224,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 30.5,-8.5
-      parent: 2
-- proto: PoweredlightEmpty
-  entities:
-  - uid: 4275
-    components:
-    - type: Transform
-      pos: -22.5,-6.5
       parent: 2
 - proto: PoweredlightOrange
   entities:
@@ -44570,9 +44597,9 @@ entities:
       - EnergyManipulation
       - SecurityEquipment
       - Mining
-      - BluespaceTheory
-      - ModularSuit
-      - BiologicalScan
+      - BasicTranslation
+      - ExplorationDrone
+      - OldstationSurgery
       - MusicalInstruments
       supportedDisciplines:
       - Engineering
@@ -44592,8 +44619,8 @@ entities:
       - Hydroponics
       - MechMedical
       - MechCombat
-      - BorgServices
       - FundamentalScience
+      - BorgServices
       - BluespaceTheory
       - CombatHUD
       - ExperimentalSurgery
@@ -44739,29 +44766,29 @@ entities:
       - ScanningReagentHaloperidol
       - ScanningReagentCryostylane
       - ScanningPeopleAndroid
-      - ScanningPointsSlimeHard
-      - ScanningPointsAnomalies
-      - ScanningFishSecond
-      - OrdnanceGaseousNitrousOxide
-      - OrdnanceGaseousPlasma
-      - ScanningPeopleMutant
-      - OrdnanceGaseousFrezon
-      - ScanningRandomPlantsTraits
-      - OrdnanceGaseousBz
-      - ScanningFish
-      - ScanningRandomPlantsWild
-      - ScanningPointsMachineryTieredScanTier2Any
-      - ScanningRandomMechaDamageScan
       - ScanningPointsBluespaceCrystal
-      - OrdnanceExplosiveLowyieldbomb
+      - ScanningFishSecond
+      - OrdnanceGaseousFrezon
       - ScanningPointsMachineryTieredScanTier3Any
-      - PhysicalArcadeWinner
-      - OrdnanceExplosiveHighyieldbomb
-      - ScanningRandomMechaEquippedScan
+      - ScanningPointsAnomalies
+      - OrdnanceExplosiveLowyieldbomb
       - ScanningPeopleSkillchip
+      - ScanningFish
       - ScanningRandomJanitorTrash
       - ScanningCytologySlime
+      - OrdnanceExplosiveHighyieldbomb
+      - OrdnanceGaseousNitrousOxide
+      - PhysicalArcadeWinner
+      - ScanningPeopleMutant
+      - ScanningRandomPlantsTraits
+      - ScanningRandomMechaDamageScan
       - ScanningPeopleAugmentedOrgans
+      - OrdnanceGaseousBz
+      - ScanningPointsMachineryTieredScanTier2Any
+      - ScanningPointsSlimeHard
+      - ScanningRandomMechaEquippedScan
+      - OrdnanceGaseousPlasma
+      - ScanningRandomPlantsWild
       activeExperiments:
       - AutopsyHuman
       - AutopsyNonhuman
@@ -44769,29 +44796,29 @@ entities:
       - ScanningReagentHaloperidol
       - ScanningReagentCryostylane
       - ScanningPeopleAndroid
-      - ScanningPointsSlimeHard
-      - ScanningPointsAnomalies
-      - ScanningFishSecond
-      - OrdnanceGaseousNitrousOxide
-      - OrdnanceGaseousPlasma
-      - ScanningPeopleMutant
-      - OrdnanceGaseousFrezon
-      - ScanningRandomPlantsTraits
-      - OrdnanceGaseousBz
-      - ScanningFish
-      - ScanningRandomPlantsWild
-      - ScanningPointsMachineryTieredScanTier2Any
-      - ScanningRandomMechaDamageScan
       - ScanningPointsBluespaceCrystal
-      - OrdnanceExplosiveLowyieldbomb
+      - ScanningFishSecond
+      - OrdnanceGaseousFrezon
       - ScanningPointsMachineryTieredScanTier3Any
-      - PhysicalArcadeWinner
-      - OrdnanceExplosiveHighyieldbomb
-      - ScanningRandomMechaEquippedScan
+      - ScanningPointsAnomalies
+      - OrdnanceExplosiveLowyieldbomb
       - ScanningPeopleSkillchip
+      - ScanningFish
       - ScanningRandomJanitorTrash
       - ScanningCytologySlime
+      - OrdnanceExplosiveHighyieldbomb
+      - OrdnanceGaseousNitrousOxide
+      - PhysicalArcadeWinner
+      - ScanningPeopleMutant
+      - ScanningRandomPlantsTraits
+      - ScanningRandomMechaDamageScan
       - ScanningPeopleAugmentedOrgans
+      - OrdnanceGaseousBz
+      - ScanningPointsMachineryTieredScanTier2Any
+      - ScanningPointsSlimeHard
+      - ScanningRandomMechaEquippedScan
+      - OrdnanceGaseousPlasma
+      - ScanningRandomPlantsWild
       experimentProgress:
       - completedAt: null
         scannedEntities: []
@@ -44814,15 +44841,9 @@ entities:
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
-        target: 6
+        target: 1
         progress: 0
-        experimentId: ScanningPointsSlimeHard
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 2
-        progress: 0
-        experimentId: ScanningPointsAnomalies
+        experimentId: ScanningPointsBluespaceCrystal
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
@@ -44834,73 +44855,7 @@ entities:
         uniqueProgressKeys: []
         target: 1
         progress: 0
-        experimentId: OrdnanceGaseousNitrousOxide
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: OrdnanceGaseousPlasma
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 2
-        progress: 0
-        experimentId: ScanningPeopleMutant
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
         experimentId: OrdnanceGaseousFrezon
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: ScanningRandomPlantsTraits
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: OrdnanceGaseousBz
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 3
-        progress: 0
-        experimentId: ScanningFish
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 4
-        progress: 0
-        experimentId: ScanningRandomPlantsWild
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 3
-        progress: 0
-        experimentId: ScanningPointsMachineryTieredScanTier2Any
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: ScanningRandomMechaDamageScan
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: ScanningPointsBluespaceCrystal
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: OrdnanceExplosiveLowyieldbomb
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
@@ -44910,27 +44865,27 @@ entities:
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
-        target: 3
+        target: 2
         progress: 0
-        experimentId: PhysicalArcadeWinner
+        experimentId: ScanningPointsAnomalies
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
         target: 1
         progress: 0
-        experimentId: OrdnanceExplosiveHighyieldbomb
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 2
-        progress: 0
-        experimentId: ScanningRandomMechaEquippedScan
+        experimentId: OrdnanceExplosiveLowyieldbomb
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
         target: 1
         progress: 0
         experimentId: ScanningPeopleSkillchip
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 3
+        progress: 0
+        experimentId: ScanningFish
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
@@ -44946,9 +44901,81 @@ entities:
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceExplosiveHighyieldbomb
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceGaseousNitrousOxide
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 3
+        progress: 0
+        experimentId: PhysicalArcadeWinner
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 2
+        progress: 0
+        experimentId: ScanningPeopleMutant
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: ScanningRandomPlantsTraits
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: ScanningRandomMechaDamageScan
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
         target: 2
         progress: 0
         experimentId: ScanningPeopleAugmentedOrgans
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceGaseousBz
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 3
+        progress: 0
+        experimentId: ScanningPointsMachineryTieredScanTier2Any
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 6
+        progress: 0
+        experimentId: ScanningPointsSlimeHard
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 2
+        progress: 0
+        experimentId: ScanningRandomMechaEquippedScan
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceGaseousPlasma
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 4
+        progress: 0
+        experimentId: ScanningRandomPlantsWild
       unlockedRecipes:
       - JetInjector
       - ChemistryEmptyVialSmall
@@ -45321,9 +45348,9 @@ entities:
       - EnergyManipulation
       - SecurityEquipment
       - Mining
-      - BluespaceTheory
-      - ModularSuit
-      - BiologicalScan
+      - BasicTranslation
+      - ExplorationDrone
+      - OldstationSurgery
       - MusicalInstruments
       supportedDisciplines:
       - Engineering
@@ -45343,8 +45370,8 @@ entities:
       - Hydroponics
       - MechMedical
       - MechCombat
-      - BorgServices
       - FundamentalScience
+      - BorgServices
       - BluespaceTheory
       - CombatHUD
       - ExperimentalSurgery
@@ -45490,29 +45517,29 @@ entities:
       - ScanningReagentHaloperidol
       - ScanningReagentCryostylane
       - ScanningPeopleAndroid
-      - ScanningPointsSlimeHard
-      - ScanningPointsAnomalies
-      - ScanningFishSecond
-      - OrdnanceGaseousNitrousOxide
-      - OrdnanceGaseousPlasma
-      - ScanningPeopleMutant
-      - OrdnanceGaseousFrezon
-      - ScanningRandomPlantsTraits
-      - OrdnanceGaseousBz
-      - ScanningFish
-      - ScanningRandomPlantsWild
-      - ScanningPointsMachineryTieredScanTier2Any
-      - ScanningRandomMechaDamageScan
       - ScanningPointsBluespaceCrystal
-      - OrdnanceExplosiveLowyieldbomb
+      - ScanningFishSecond
+      - OrdnanceGaseousFrezon
       - ScanningPointsMachineryTieredScanTier3Any
-      - PhysicalArcadeWinner
-      - OrdnanceExplosiveHighyieldbomb
-      - ScanningRandomMechaEquippedScan
+      - ScanningPointsAnomalies
+      - OrdnanceExplosiveLowyieldbomb
       - ScanningPeopleSkillchip
+      - ScanningFish
       - ScanningRandomJanitorTrash
       - ScanningCytologySlime
+      - OrdnanceExplosiveHighyieldbomb
+      - OrdnanceGaseousNitrousOxide
+      - PhysicalArcadeWinner
+      - ScanningPeopleMutant
+      - ScanningRandomPlantsTraits
+      - ScanningRandomMechaDamageScan
       - ScanningPeopleAugmentedOrgans
+      - OrdnanceGaseousBz
+      - ScanningPointsMachineryTieredScanTier2Any
+      - ScanningPointsSlimeHard
+      - ScanningRandomMechaEquippedScan
+      - OrdnanceGaseousPlasma
+      - ScanningRandomPlantsWild
       activeExperiments:
       - AutopsyHuman
       - AutopsyNonhuman
@@ -45520,29 +45547,29 @@ entities:
       - ScanningReagentHaloperidol
       - ScanningReagentCryostylane
       - ScanningPeopleAndroid
-      - ScanningPointsSlimeHard
-      - ScanningPointsAnomalies
-      - ScanningFishSecond
-      - OrdnanceGaseousNitrousOxide
-      - OrdnanceGaseousPlasma
-      - ScanningPeopleMutant
-      - OrdnanceGaseousFrezon
-      - ScanningRandomPlantsTraits
-      - OrdnanceGaseousBz
-      - ScanningFish
-      - ScanningRandomPlantsWild
-      - ScanningPointsMachineryTieredScanTier2Any
-      - ScanningRandomMechaDamageScan
       - ScanningPointsBluespaceCrystal
-      - OrdnanceExplosiveLowyieldbomb
+      - ScanningFishSecond
+      - OrdnanceGaseousFrezon
       - ScanningPointsMachineryTieredScanTier3Any
-      - PhysicalArcadeWinner
-      - OrdnanceExplosiveHighyieldbomb
-      - ScanningRandomMechaEquippedScan
+      - ScanningPointsAnomalies
+      - OrdnanceExplosiveLowyieldbomb
       - ScanningPeopleSkillchip
+      - ScanningFish
       - ScanningRandomJanitorTrash
       - ScanningCytologySlime
+      - OrdnanceExplosiveHighyieldbomb
+      - OrdnanceGaseousNitrousOxide
+      - PhysicalArcadeWinner
+      - ScanningPeopleMutant
+      - ScanningRandomPlantsTraits
+      - ScanningRandomMechaDamageScan
       - ScanningPeopleAugmentedOrgans
+      - OrdnanceGaseousBz
+      - ScanningPointsMachineryTieredScanTier2Any
+      - ScanningPointsSlimeHard
+      - ScanningRandomMechaEquippedScan
+      - OrdnanceGaseousPlasma
+      - ScanningRandomPlantsWild
       experimentProgress:
       - completedAt: null
         scannedEntities: []
@@ -45565,15 +45592,9 @@ entities:
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
-        target: 6
+        target: 1
         progress: 0
-        experimentId: ScanningPointsSlimeHard
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 2
-        progress: 0
-        experimentId: ScanningPointsAnomalies
+        experimentId: ScanningPointsBluespaceCrystal
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
@@ -45585,73 +45606,7 @@ entities:
         uniqueProgressKeys: []
         target: 1
         progress: 0
-        experimentId: OrdnanceGaseousNitrousOxide
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: OrdnanceGaseousPlasma
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 2
-        progress: 0
-        experimentId: ScanningPeopleMutant
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
         experimentId: OrdnanceGaseousFrezon
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: ScanningRandomPlantsTraits
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: OrdnanceGaseousBz
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 3
-        progress: 0
-        experimentId: ScanningFish
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 4
-        progress: 0
-        experimentId: ScanningRandomPlantsWild
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 3
-        progress: 0
-        experimentId: ScanningPointsMachineryTieredScanTier2Any
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: ScanningRandomMechaDamageScan
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: ScanningPointsBluespaceCrystal
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: OrdnanceExplosiveLowyieldbomb
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
@@ -45661,27 +45616,27 @@ entities:
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
-        target: 3
+        target: 2
         progress: 0
-        experimentId: PhysicalArcadeWinner
+        experimentId: ScanningPointsAnomalies
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
         target: 1
         progress: 0
-        experimentId: OrdnanceExplosiveHighyieldbomb
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 2
-        progress: 0
-        experimentId: ScanningRandomMechaEquippedScan
+        experimentId: OrdnanceExplosiveLowyieldbomb
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
         target: 1
         progress: 0
         experimentId: ScanningPeopleSkillchip
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 3
+        progress: 0
+        experimentId: ScanningFish
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
@@ -45697,9 +45652,81 @@ entities:
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceExplosiveHighyieldbomb
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceGaseousNitrousOxide
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 3
+        progress: 0
+        experimentId: PhysicalArcadeWinner
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 2
+        progress: 0
+        experimentId: ScanningPeopleMutant
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: ScanningRandomPlantsTraits
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: ScanningRandomMechaDamageScan
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
         target: 2
         progress: 0
         experimentId: ScanningPeopleAugmentedOrgans
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceGaseousBz
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 3
+        progress: 0
+        experimentId: ScanningPointsMachineryTieredScanTier2Any
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 6
+        progress: 0
+        experimentId: ScanningPointsSlimeHard
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 2
+        progress: 0
+        experimentId: ScanningRandomMechaEquippedScan
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceGaseousPlasma
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 4
+        progress: 0
+        experimentId: ScanningRandomPlantsWild
       unlockedRecipes:
       - JetInjector
       - ChemistryEmptyVialSmall
@@ -47410,6 +47437,13 @@ entities:
     - type: Transform
       pos: 1.5,9.5
       parent: 2
+- proto: SpawnPointAdjutant
+  entities:
+  - uid: 1897
+    components:
+    - type: Transform
+      pos: -0.5,-3.5
+      parent: 2
 - proto: SpawnPointAtmos
   entities:
   - uid: 5025
@@ -47426,6 +47460,11 @@ entities:
       parent: 2
 - proto: SpawnPointBlueshieldOfficer
   entities:
+  - uid: 1875
+    components:
+    - type: Transform
+      pos: -22.5,-8.5
+      parent: 2
   - uid: 5027
     components:
     - type: Transform
@@ -47516,6 +47555,13 @@ entities:
     - type: Transform
       pos: -18.5,5.5
       parent: 2
+- proto: SpawnPointCommandMaid
+  entities:
+  - uid: 1899
+    components:
+    - type: Transform
+      pos: 1.5,-3.5
+      parent: 2
 - proto: SpawnPointDetective
   entities:
   - uid: 5041
@@ -47593,10 +47639,10 @@ entities:
       parent: 2
 - proto: SpawnPointNanotrasenRepresentative
   entities:
-  - uid: 5051
+  - uid: 1879
     components:
     - type: Transform
-      pos: -22.5,-7.5
+      pos: -22.5,-6.5
       parent: 2
 - proto: SpawnPointObserver
   entities:
@@ -49335,6 +49381,13 @@ entities:
     - type: Transform
       pos: -25.5,17.5
       parent: 2
+- proto: TableFancyBlue
+  entities:
+  - uid: 1818
+    components:
+    - type: Transform
+      pos: -23.5,-8.5
+      parent: 2
 - proto: TableFancyGreen
   entities:
   - uid: 5250
@@ -49351,26 +49404,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,3.5
-      parent: 2
-  - uid: 5253
-    components:
-    - type: Transform
-      pos: -22.5,-8.5
-      parent: 2
-  - uid: 5254
-    components:
-    - type: Transform
-      pos: -21.5,-8.5
-      parent: 2
-  - uid: 5255
-    components:
-    - type: Transform
-      pos: -24.5,-6.5
-      parent: 2
-  - uid: 5256
-    components:
-    - type: Transform
-      pos: -24.5,-7.5
       parent: 2
 - proto: TableFancyRed
   entities:
@@ -50663,9 +50696,9 @@ entities:
       - EnergyManipulation
       - SecurityEquipment
       - Mining
-      - BluespaceTheory
-      - ModularSuit
-      - BiologicalScan
+      - BasicTranslation
+      - ExplorationDrone
+      - OldstationSurgery
       - MusicalInstruments
       supportedDisciplines:
       - Engineering
@@ -50685,8 +50718,8 @@ entities:
       - Hydroponics
       - MechMedical
       - MechCombat
-      - BorgServices
       - FundamentalScience
+      - BorgServices
       - BluespaceTheory
       - CombatHUD
       - ExperimentalSurgery
@@ -50832,29 +50865,29 @@ entities:
       - ScanningReagentHaloperidol
       - ScanningReagentCryostylane
       - ScanningPeopleAndroid
-      - ScanningPointsSlimeHard
-      - ScanningPointsAnomalies
-      - ScanningFishSecond
-      - OrdnanceGaseousNitrousOxide
-      - OrdnanceGaseousPlasma
-      - ScanningPeopleMutant
-      - OrdnanceGaseousFrezon
-      - ScanningRandomPlantsTraits
-      - OrdnanceGaseousBz
-      - ScanningFish
-      - ScanningRandomPlantsWild
-      - ScanningPointsMachineryTieredScanTier2Any
-      - ScanningRandomMechaDamageScan
       - ScanningPointsBluespaceCrystal
-      - OrdnanceExplosiveLowyieldbomb
+      - ScanningFishSecond
+      - OrdnanceGaseousFrezon
       - ScanningPointsMachineryTieredScanTier3Any
-      - PhysicalArcadeWinner
-      - OrdnanceExplosiveHighyieldbomb
-      - ScanningRandomMechaEquippedScan
+      - ScanningPointsAnomalies
+      - OrdnanceExplosiveLowyieldbomb
       - ScanningPeopleSkillchip
+      - ScanningFish
       - ScanningRandomJanitorTrash
       - ScanningCytologySlime
+      - OrdnanceExplosiveHighyieldbomb
+      - OrdnanceGaseousNitrousOxide
+      - PhysicalArcadeWinner
+      - ScanningPeopleMutant
+      - ScanningRandomPlantsTraits
+      - ScanningRandomMechaDamageScan
       - ScanningPeopleAugmentedOrgans
+      - OrdnanceGaseousBz
+      - ScanningPointsMachineryTieredScanTier2Any
+      - ScanningPointsSlimeHard
+      - ScanningRandomMechaEquippedScan
+      - OrdnanceGaseousPlasma
+      - ScanningRandomPlantsWild
       activeExperiments:
       - AutopsyHuman
       - AutopsyNonhuman
@@ -50862,29 +50895,29 @@ entities:
       - ScanningReagentHaloperidol
       - ScanningReagentCryostylane
       - ScanningPeopleAndroid
-      - ScanningPointsSlimeHard
-      - ScanningPointsAnomalies
-      - ScanningFishSecond
-      - OrdnanceGaseousNitrousOxide
-      - OrdnanceGaseousPlasma
-      - ScanningPeopleMutant
-      - OrdnanceGaseousFrezon
-      - ScanningRandomPlantsTraits
-      - OrdnanceGaseousBz
-      - ScanningFish
-      - ScanningRandomPlantsWild
-      - ScanningPointsMachineryTieredScanTier2Any
-      - ScanningRandomMechaDamageScan
       - ScanningPointsBluespaceCrystal
-      - OrdnanceExplosiveLowyieldbomb
+      - ScanningFishSecond
+      - OrdnanceGaseousFrezon
       - ScanningPointsMachineryTieredScanTier3Any
-      - PhysicalArcadeWinner
-      - OrdnanceExplosiveHighyieldbomb
-      - ScanningRandomMechaEquippedScan
+      - ScanningPointsAnomalies
+      - OrdnanceExplosiveLowyieldbomb
       - ScanningPeopleSkillchip
+      - ScanningFish
       - ScanningRandomJanitorTrash
       - ScanningCytologySlime
+      - OrdnanceExplosiveHighyieldbomb
+      - OrdnanceGaseousNitrousOxide
+      - PhysicalArcadeWinner
+      - ScanningPeopleMutant
+      - ScanningRandomPlantsTraits
+      - ScanningRandomMechaDamageScan
       - ScanningPeopleAugmentedOrgans
+      - OrdnanceGaseousBz
+      - ScanningPointsMachineryTieredScanTier2Any
+      - ScanningPointsSlimeHard
+      - ScanningRandomMechaEquippedScan
+      - OrdnanceGaseousPlasma
+      - ScanningRandomPlantsWild
       experimentProgress:
       - completedAt: null
         scannedEntities: []
@@ -50907,15 +50940,9 @@ entities:
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
-        target: 6
+        target: 1
         progress: 0
-        experimentId: ScanningPointsSlimeHard
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 2
-        progress: 0
-        experimentId: ScanningPointsAnomalies
+        experimentId: ScanningPointsBluespaceCrystal
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
@@ -50927,73 +50954,7 @@ entities:
         uniqueProgressKeys: []
         target: 1
         progress: 0
-        experimentId: OrdnanceGaseousNitrousOxide
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: OrdnanceGaseousPlasma
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 2
-        progress: 0
-        experimentId: ScanningPeopleMutant
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
         experimentId: OrdnanceGaseousFrezon
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: ScanningRandomPlantsTraits
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: OrdnanceGaseousBz
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 3
-        progress: 0
-        experimentId: ScanningFish
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 4
-        progress: 0
-        experimentId: ScanningRandomPlantsWild
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 3
-        progress: 0
-        experimentId: ScanningPointsMachineryTieredScanTier2Any
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: ScanningRandomMechaDamageScan
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: ScanningPointsBluespaceCrystal
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 1
-        progress: 0
-        experimentId: OrdnanceExplosiveLowyieldbomb
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
@@ -51003,27 +50964,27 @@ entities:
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
-        target: 3
+        target: 2
         progress: 0
-        experimentId: PhysicalArcadeWinner
+        experimentId: ScanningPointsAnomalies
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
         target: 1
         progress: 0
-        experimentId: OrdnanceExplosiveHighyieldbomb
-      - completedAt: null
-        scannedEntities: []
-        uniqueProgressKeys: []
-        target: 2
-        progress: 0
-        experimentId: ScanningRandomMechaEquippedScan
+        experimentId: OrdnanceExplosiveLowyieldbomb
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
         target: 1
         progress: 0
         experimentId: ScanningPeopleSkillchip
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 3
+        progress: 0
+        experimentId: ScanningFish
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
@@ -51039,9 +51000,81 @@ entities:
       - completedAt: null
         scannedEntities: []
         uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceExplosiveHighyieldbomb
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceGaseousNitrousOxide
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 3
+        progress: 0
+        experimentId: PhysicalArcadeWinner
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 2
+        progress: 0
+        experimentId: ScanningPeopleMutant
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: ScanningRandomPlantsTraits
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: ScanningRandomMechaDamageScan
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
         target: 2
         progress: 0
         experimentId: ScanningPeopleAugmentedOrgans
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceGaseousBz
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 3
+        progress: 0
+        experimentId: ScanningPointsMachineryTieredScanTier2Any
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 6
+        progress: 0
+        experimentId: ScanningPointsSlimeHard
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 2
+        progress: 0
+        experimentId: ScanningRandomMechaEquippedScan
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 1
+        progress: 0
+        experimentId: OrdnanceGaseousPlasma
+      - completedAt: null
+        scannedEntities: []
+        uniqueProgressKeys: []
+        target: 4
+        progress: 0
+        experimentId: ScanningRandomPlantsWild
       unlockedRecipes:
       - JetInjector
       - ChemistryEmptyVialSmall
@@ -51488,6 +51521,11 @@ entities:
       parent: 2
 - proto: UniqueLockerBlueshieldOfficerFilled
   entities:
+  - uid: 1821
+    components:
+    - type: Transform
+      pos: -24.5,-8.5
+      parent: 2
   - uid: 5395
     components:
     - type: Transform
@@ -51495,10 +51533,10 @@ entities:
       parent: 2
 - proto: UniqueLockerNanorepFilled
   entities:
-  - uid: 5396
+  - uid: 1878
     components:
     - type: Transform
-      pos: -24.5,-8.5
+      pos: -24.5,-6.5
       parent: 2
 - proto: UprightPianoInstrument
   entities:
@@ -56276,21 +56314,6 @@ entities:
     - type: Transform
       pos: -7.5,28.5
       parent: 2
-  - uid: 5831
-    components:
-    - type: Transform
-      pos: -18.5,-7.5
-      parent: 2
-  - uid: 5832
-    components:
-    - type: Transform
-      pos: -17.5,-7.5
-      parent: 2
-  - uid: 5833
-    components:
-    - type: Transform
-      pos: -19.5,-7.5
-      parent: 2
   - uid: 5834
     components:
     - type: Transform
@@ -56300,16 +56323,6 @@ entities:
     components:
     - type: Transform
       pos: 23.5,-19.5
-      parent: 2
-  - uid: 5836
-    components:
-    - type: Transform
-      pos: -19.5,-9.5
-      parent: 2
-  - uid: 5837
-    components:
-    - type: Transform
-      pos: -19.5,-8.5
       parent: 2
   - uid: 5838
     components:
@@ -56555,11 +56568,6 @@ entities:
     components:
     - type: Transform
       pos: -49.5,23.5
-      parent: 2
-  - uid: 5887
-    components:
-    - type: Transform
-      pos: -18.5,-8.5
       parent: 2
   - uid: 5888
     components:
@@ -63410,7 +63418,7 @@ entities:
       pos: -24.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -51525.72
+      secondsUntilStateChange: -52146.195
       state: Opening
   - uid: 6547
     components:
