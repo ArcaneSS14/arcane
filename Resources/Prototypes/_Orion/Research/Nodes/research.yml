@@ -213,6 +213,7 @@
   - SchechiTranslator
   - GruntishTranslator
   - YowKriolTranslator
+  - HydraspeakTranslator # Arcane
   position: -1,8
 
 - type: technology
@@ -249,4 +250,5 @@
   - GruntishTranslatorImplanter
   - YowKriolTranslatorImplanter
   - SignTranslatorImplanter
+  - HydraspeakTranslatorImplanter # Arcane
   position: -1,9

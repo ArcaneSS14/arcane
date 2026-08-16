@@ -153,7 +153,7 @@
     possibleSpawns:
     - MobFeroxiRandom
 
-# Arcane-Edit-Start
+# Arcane-Start
 - type: entity
   parent: MonkeyCube
   id: DemonCube
@@ -171,4 +171,22 @@
   - type: Rehydratable
     possibleSpawns:
     - MobHumanoidXenoRandom
-# Arcane-Edit-End
+
+- type: entity
+  parent: MonkeyCube
+  id: OniCube
+  name: oni cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobOniRandom
+
+- type: entity
+  parent: MonkeyCube
+  id: HydrakinCube
+  name: hydrakin cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobHydrakinRandom
+# Arcane-End
