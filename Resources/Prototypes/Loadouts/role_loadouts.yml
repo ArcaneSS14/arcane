@@ -691,7 +691,7 @@
   groups:
   - GroupTankHarness
   - ResearchAssistantJumpsuit
-  - RNDCloakPatron # Arcane
+  - RNDCloak # Arcane
   - ScientistBackpack
   - Glasses
   - Survival
@@ -956,7 +956,6 @@
   # Arcane-Start
   - ChemistBikini
   - MedicalCloak
-  - ParamedicVisor
   # Arcane-End
   - MedicalGloves
   - ChemistBackpack
@@ -989,6 +988,7 @@
   # Arcane-Start
   - MedicalCloak
   - ParamedicBikini
+  - ParamedicVisor
   # Arcane-End
   - MedicalGloves
   - MedicalBackpack
