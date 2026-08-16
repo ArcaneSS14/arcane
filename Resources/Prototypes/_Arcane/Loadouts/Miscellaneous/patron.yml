@@ -14,7 +14,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  :
+  equipment:
     jumpsuit: ClothingUniformBartender
 
 - type: loadout
