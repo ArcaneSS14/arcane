@@ -40,7 +40,6 @@ public sealed class WackyLawRule : StationEventSystem<WackyLawComponent>
 
         if (_proto.TryIndex<EntityPrototype>(protoId, out var proto) && !string.IsNullOrEmpty(proto.Name))
             return Loc.GetString(proto.Name);
-
         return protoId;
     }
 
@@ -50,10 +49,12 @@ public sealed class WackyLawRule : StationEventSystem<WackyLawComponent>
 
         if (!TryGetRandomStation(out var station))
             return;
+
         var lawEntry = _random.Pick(_proto.Index(component.LawsDataset).Values);
         var lawParts = lawEntry.Split('|', 2);
         var contentLoc = lawParts[0];
         var itemName = string.Empty;
+
         if (lawParts.Length == 2 && _proto.TryIndex<DatasetPrototype>(lawParts[1], out _))
             itemName = PickRandomEntityName(lawParts[1]);
 
@@ -68,7 +69,7 @@ public sealed class WackyLawRule : StationEventSystem<WackyLawComponent>
 
         var documentRelease = new FaxPrintout(
             content,
-            "Указ Центрального Командования",
+            Loc.GetString("wacky-law-document-title"),
             label: null,
             prototypeId: "PaperOffice",
             stampState: "paper_stamp-centcom",

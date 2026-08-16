@@ -3,7 +3,7 @@
 # To increase the hit rate, add it to the dataset again
 
 - type: dataset
-  id: ArcaneItem
+  id: WackyLawItems
   values:
   - ClothingUniformJumpsuitColorTeal
   - ClothingSocksAssBlastUSAThigh
@@ -46,7 +46,7 @@
   - ClothingUnderwearPantiesFishnetLowerAlt
 
 - type: dataset
-  id: ArcaneHalfProhibition
+  id: WackyLawDrinks
   values:
   - "Вермут"
   - "Вино"
@@ -62,7 +62,7 @@
   - "Эль"
 
 - type: dataset
-  id: ArcaneDepartments
+  id: WackyLawDepartments
   values:
   - All
   - Cargo
@@ -74,9 +74,9 @@
   - Civilian
 
 - type: dataset
-  id: ArcaneLaws
+  id: WackyLaws
   values:
-  - "wacky-law-content-force-item|ArcaneItem"
-  - "wacky-law-content-ban-item|ArcaneItem"
-  - "wacky-law-content-half-prohibition|ArcaneHalfProhibition"
+  - "wacky-law-content-force-item|WackyLawItems"
+  - "wacky-law-content-ban-item|WackyLawItems"
+  - "wacky-law-content-half-prohibition|WackyLawDrinks"
   - "wacky-law-content-full-prohibition"

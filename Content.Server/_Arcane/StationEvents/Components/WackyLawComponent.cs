@@ -12,12 +12,12 @@ public sealed partial class WackyLawComponent : Component
     /// Department Dataset for event "wacky law"
     /// </summary>
     [DataField]
-    public ProtoId<DatasetPrototype> DepartmentDataset = "ArcaneDepartments";
+    public ProtoId<DatasetPrototype> DepartmentDataset = "WackyLawDepartments";
 
     /// <summary>
     /// Laws dataset for event "wacky law"
     /// </summary>
     [DataField]
-    public ProtoId<DatasetPrototype> LawsDataset = "ArcaneLaws";
+    public ProtoId<DatasetPrototype> LawsDataset = "WackyLaws";
 
 }
