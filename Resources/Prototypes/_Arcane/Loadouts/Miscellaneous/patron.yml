@@ -350,6 +350,8 @@
   equipment:
     neck: ClothingCloakQMWhite
 
+# Service
+
 - type: loadout
   id: TwilightSparklePatron
   effects:
@@ -716,3 +718,214 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+  back: RadioHostMicrophone
+
+- type: loadout
+  id: ServiceCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  neck: ClothingCloakServicePatron
+
+# Medical
+
+- type: loadout
+  id: DoctorBikiniPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  back: ClothingUniformBikiniDoctor
+
+- type: loadout
+  id: ChemistBikiniPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  back: ClothingUniformBikiniChemist
+
+- type: loadout
+  id: ParamedicBikiniPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  back: ClothingUniformBikiniParamedic
+
+- type: loadout
+  id: VirologistBikiniPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  back: ClothingUniformBikiniVirologist
+
+- type: loadout
+  id: ParamedicGlassesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  eyes: ClothingEyesParamedicGlasses
+
+- type: loadout
+  id: VirologistUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformVirologistPatron
+
+- type: loadout
+  id: VirologistUniformSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  eyes: ClothingUniformVirologistSkirtPatron
+
+- type: loadout
+  id: VirologistTurtleneckPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformVirologistTurtleneckPatron
+
+- type: loadout
+  id: VirologistTurtleneckSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformVirologistTurtleneckSkirtPatron
+
+- type: loadout
+  id: ParamedicUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformParamedicPatron
+
+- type: loadout
+  id: ParamedicUniformSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformParamedicSkirtPatron
+
+- type: loadout
+  id: ParamedicTurtleneckPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformParamedicTurtleneckPatron
+
+- type: loadout
+  id: ParamedicTurtleneckSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformParamedicTurtleneckSkirtPatron
+
+- type: loadout
+  id: DoctorTurtleneckPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformDoctorTurtleneckPatron
+
+- type: loadout
+  id: DoctorTurtleneckSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformDoctorTurtleneckSkirtPatron
+
+- type: loadout
+  id: ChemistUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformChemistPatron
+
+- type: loadout
+  id: ChemistUniformSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformChemistSkirtPatron
+
+- type: loadout
+  id: ChemistTurtleneckPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformChemistTurtleneckPatron
+
+- type: loadout
+  id: ChemistTurtleneckSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  jumpsuit: ClothingUniformChemistTurtleneckSkirtPatron
+
+- type: loadout
+  id: MeicalCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  neck: ClothingCloakMedicalPatron
+
+# Cargo
+
+- type: loadout
+  id: CargoCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  neck: ClothingCloakCargoPatron
+
+# RND
+
+- type: loadout
+  id: RNDCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  neck: ClothingCloakRNDPatron
+
+# Engineer
+
+- type: loadout
+  id: EngineerCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  neck: ClothingCloakEngineerPatron
+
+# Security
+
+- type: loadout
+  id: SecurityCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  neck: ClothingCloakSecurityPatron
