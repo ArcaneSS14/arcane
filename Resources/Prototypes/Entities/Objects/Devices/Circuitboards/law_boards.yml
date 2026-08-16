@@ -122,7 +122,7 @@
     laws: AntimovLawset
     lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg
   - type: StaticPrice
-    price: 10000
+    price: 100 # Arcane
 
 - type: entity
   id: NutimovCircuitBoard

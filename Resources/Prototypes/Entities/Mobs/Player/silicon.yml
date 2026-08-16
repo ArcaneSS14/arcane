@@ -444,6 +444,7 @@
   - type: ActionGrant
     actions:
     - ActionViewLaws
+    - ActionTTSVoiceChange # Arcane
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:
@@ -512,6 +513,7 @@
     - Tradeband
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # Arcane
     understands:
     - TauCetiBasic
     - Canilunzt
@@ -533,6 +535,7 @@
     - Sign
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # Arcane
   - type: SpeechSynthesis # Corvax-Frontier-Barks
     voice: Borg
   # Arcane-start
