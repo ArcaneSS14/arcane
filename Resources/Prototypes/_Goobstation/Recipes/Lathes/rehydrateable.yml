@@ -135,3 +135,37 @@
   materials:
     Biomass: 70
     Plasma: 250
+
+# Arcane-Start
+- type: latheRecipe
+  id: DemonCube
+  result: DemonCube
+  completetime: 30
+  materials:
+    Biomass: 70
+    Plasma: 250
+
+- type: latheRecipe
+  id: XenoCube
+  result: XenoCube
+  completetime: 30
+  materials:
+    Biomass: 70
+    Plasma: 250
+
+- type: latheRecipe
+  id: OniCube
+  result: OniCube
+  completetime: 30
+  materials:
+    Biomass: 70
+    Plasma: 250
+
+- type: latheRecipe
+  id: HydrakinCube
+  result: HydrakinCube
+  completetime: 30
+  materials:
+    Biomass: 70
+    Plasma: 250
+# Arcane-End
