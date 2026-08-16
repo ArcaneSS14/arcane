@@ -5,6 +5,13 @@
   id: BaseMobDemon
   abstract: true
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Karshan
+    understands:
+    - TauCetiBasic
+    - Karshan
   - type: HumanoidAppearance
     species: Demon
     hideLayersOnEquip:

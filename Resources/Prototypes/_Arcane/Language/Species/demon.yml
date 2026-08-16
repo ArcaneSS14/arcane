@@ -1,0 +1,36 @@
+- type: language
+  id: Karshan
+  isVisibleLanguage: true
+  speech:
+    color: "#e255b3"
+    fontId: GreatVibes
+    boldFontId: GreatVibes
+    fontSize: 18
+#  icon:
+#    sprite: _Orion/Interface/Chat/language.rsi
+#    state: vox
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 4
+    replacement:
+    - aika
+    - seinä
+    - oikea
+    - uinti
+    - hyi
+    - äi
+    - öi
+    - ällä
+    - ämmä
+    - ännä
+    - ärrä
+    - ässä
+    - tseta
+    - mikä
+    - tämä
+    - minä
+    - tämä
+    - olen
+    - kyllä
+    - töölö
