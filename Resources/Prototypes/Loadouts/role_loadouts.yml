@@ -126,7 +126,11 @@
   id: JobServiceWorker
   groups:
   - GroupTankHarness
-  - BartenderJumpsuit
+  # Arcane-Start
+  - ServiceWorkerJumpsuit
+  - ServiceWorkerShoes
+  - ServiceWorkerBelt
+  # Arcane-End
   - CommonBackpack
   - Glasses
   - Survival
@@ -182,7 +186,17 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
+  # Arcane - Start
+  - LibrarianGlasses
+  - LibrarianShoes
+  - Patron
+  - Animals
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - LibrarianEnvirohelm
+  - LibrarianEnvirosuit
+  - LibrarianEnvirogloves
+  # Arcane - End
   # Orion-Start
   - Undershirt
   - Underwear
@@ -317,7 +331,15 @@
   - Glasses
   - SurvivalClown
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - ClownUnderwear
+  - Animals
+  # Goobstation - EE Plasmeme Change.
+  - ClownEnvirohelm
+  - ClownEnvirosuit
+  - ClownEnvirogloves
+  # Arcane - End
   # Orion-Start
   - Undershirt
   - Underwear
@@ -339,6 +361,7 @@
   - MimeHead
   - MimeMask
   - MimeJumpsuit
+  - MimeHands # Arcane
   - MimeBackpack
   - MimeOuterClothing
   - MimeGloves # Goobstation
@@ -347,7 +370,16 @@
   - Glasses
   - SurvivalMime
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - MimeSocks
+  # Arcane-End
+  - Animals
+  # Goobstation - EE Plasmeme Change.
+  - MimeEnvirohelm
+  - MimeEnvirosuit
+  - MimeEnvirogloves
+  - MimeGloves
   # Orion-Start
   - Undershirt
   - Underwear
@@ -370,6 +402,7 @@
   - MusicianJumpsuit
   - CommonBackpack
   - MusicianOuterClothing
+  - MusicianShoes # Arcane
   - Glasses
   - Survival
   - Trinkets
