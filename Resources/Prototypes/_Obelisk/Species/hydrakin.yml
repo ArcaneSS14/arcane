@@ -17,12 +17,15 @@
   - Unsexed
   - Male
   - Female
+  # Arcane-Start
   minHeight: 0.90
   defaultHeight: 1
   maxHeight: 1.20
   minWidth: 0.90
   defaultWidth: 1
   maxWidth: 1.10
+  category: Unusual
+  description: "/ServerInfo/_Arcane/SpeciesDescriptions/Hydrakin.xml"
   pros:
   - Любят сырую еду.
   - Получают на 10% меньше тупого урона.
@@ -34,6 +37,7 @@
   - Получают на 15% больше колящего урона.
   - Не могут носить очки.
   - Тело постоянно нагревается.
+  # Arcane-End
 
 
 - type: speciesBaseSprites
