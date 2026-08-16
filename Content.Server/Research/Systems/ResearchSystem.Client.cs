@@ -169,6 +169,14 @@ public sealed partial class ResearchSystem
         if (!TryComp(component.Server, out serverComponent))
             return false;
 
+        // Arcane-start
+        if (Transform(uid).GridUid is not { } clientGrid || Transform(component.Server.Value).GridUid != clientGrid)
+        {
+            serverComponent = null;
+            return false;
+        }
+        // Arcane-end
+
         server = component.Server;
         return true;
     }
