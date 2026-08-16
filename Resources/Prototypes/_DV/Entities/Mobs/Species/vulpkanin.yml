@@ -164,6 +164,7 @@
       Male: MaleVulpkanin
       Female: FemaleVulpkanin
       Unsexed: MaleVulpkanin
+      Futanari: FemaleVulpkanin # Arcane
   - type: Tag
     tags:
     - CanPilot
@@ -228,26 +229,3 @@
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
   # Orion-End
-  # Arcane-start: species-specific organ prototypes
-  - type: EroticOrgans
-    groinCommon:
-    - proto: OrganAnus
-      slot: anus
-    - proto: OrganButt
-      slot: butt
-    groinMale:
-    - proto: OrganPenisVulpkanin
-      slot: penis
-    - proto: OrganTesticles
-      slot: testicles
-    groinFemale:
-    - proto: OrganVagina
-      slot: vagina
-    - proto: OrganUterus
-      slot: uterus
-    chestFemale:
-    - proto: OrganBreastsHuman
-      slot: breasts
-    hideWhenFlaccid:
-    - penis
-  # Arcane-end

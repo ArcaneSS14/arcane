@@ -10,6 +10,12 @@ using Content.Shared.Radio.EntitySystems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Shared.Whitelist;
+// Arcane-Start
+using Content.Shared._Art.TTS;
+using Content.Goobstation.Common.Barks;
+using Content.Shared._Orion.Radio;
+using Robust.Shared.Audio;
+// Arcane-End
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -57,8 +63,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && keys.Channels.Contains(args.Channel.ID)
             && _whitelist.IsWhitelistPassOrNull(args.Channel.SendWhitelist, uid)) // Goobstation - Whitelisted channels
         {
-            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
-            args.Channel = null; // prevent duplicate messages from other listeners.
+            // Arcane-Edit-Start
+            if (_radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset))
+            {
+                args.RadioMessageSent = true;
+                args.Channel = null; // prevent duplicate messages from other listeners.
+            }
+            // Arcane-Edit-End
         }
     }
 
@@ -104,6 +115,8 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         }
     }
 
+    private static readonly SoundSpecifier DefaultOnSound = new SoundPathSpecifier("/Audio/_Orion/Radio/basic.ogg"); // Arcane
+
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
         // TODO: change this when a code refactor is done
@@ -126,7 +139,42 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             {
                 Message = canUnderstand ? args.OriginalChatMsg : args.LanguageObfuscatedChatMsg
             };
+
+            // Arcane-Start
+            if (canUnderstand && args.Voice is { } voice)
+            {
+                var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice);
+                RaiseLocalEvent(parent, ref ev);
+            }
+            // Arcane-End
+
             _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
+
+            // Arcane-Start: Radio sound
+            var sound = args.Channel.OnSendSound ?? DefaultOnSound;
+            if (sound is SoundPathSpecifier sps)
+            {
+                RaiseNetworkEvent(new PlayRadioBarkEvent
+                {
+                    Path = sps.Path.ToString(),
+                    Params = sps.Params,
+                    Source = GetNetEntity(args.MessageSource),
+                }, actor.PlayerSession.Channel);
+            }
+            else if (sound is SoundCollectionSpecifier)
+            {
+                Log.Warning($"Radio channel {args.Channel.ID} uses SoundCollectionSpecifier, which is not supported for PlayRadioBarkEvent. Falling back to silent playback.");
+            }
+
+            if (parent != args.MessageSource
+                && TryComp<SpeechSynthesisComponent>(args.MessageSource, out var speech)
+                && speech.VoicePrototypeId is { } barkVoice)
+            {
+                RaiseNetworkEvent(
+                    new PlayBarkEvent(GetNetEntity(args.MessageSource), args.OriginalChatMsg.Message, false, barkVoice),
+                    actor.PlayerSession.Channel);
+            }
+            // Arcane-End
         }
         // Einstein Engines - Language end
     }

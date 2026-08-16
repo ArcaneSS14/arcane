@@ -95,10 +95,10 @@ public sealed partial class ChatSystem : SharedChatSystem
     public readonly Color DefaultSpeakColor = Color.White; // Einstein Engines - Language
 
     // Floofstation - Emotes and Sign Languages Respect LOS begin
-    public const bool SpeakRespectsLOS = false; // You can hear through walls.
-    public const bool WhisperRespectsLOS = false; // You can hear some whispers through walls.
+    public const bool SpeakRespectsLOS = true; // Arcane
+    public const bool WhisperRespectsLOS = true; // Arcane
     public const bool EmoteRespectsLOS = true; // You can still hear the noises, but you don't know who is making them.
-    public const bool LocalOOCRespectsLOS = false; // LOOC can be seen through walls.
+    public const bool LocalOOCRespectsLOS = true; // Arcane
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -669,7 +669,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         Color? colorOverride = null // Goobstation
         )
     {
-        if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
+        if (!_actionBlocker.CanSpeak(source, isWhisper: channel == null) && !ignoreActionBlocker) // Arcane-Edit
             return;
 
         // Goob edit start
@@ -719,6 +719,11 @@ public sealed partial class ChatSystem : SharedChatSystem
 
             if (MessageRangeCheck(session, data, range) != MessageRangeCheckResult.Full)
                 continue; // Won't get logged to chat, and ghosts are too far away to see the pop-up, so we just won't send it to them.
+
+            // Arcane-start
+            if (WhisperRespectsLOS && !data.Observer && !data.InLOS)
+                continue;
+            // Arcane-end
 
             // Goob edit start
             if (TryComp<DeafComponent>(listener, out var modifier) && language.SpeechOverride.RequireSpeech)

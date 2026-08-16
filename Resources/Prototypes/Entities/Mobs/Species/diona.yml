@@ -99,6 +99,7 @@
       Male: UnisexDiona
       Female: UnisexDiona
       Unsexed: UnisexDiona
+      Futanari: UnisexDiona # Arcane
   - type: TypingIndicator
     proto: diona
   - type: LanguageKnowledge # Einstein Engines - Languages
@@ -132,29 +133,6 @@
       - Shard
   - type: SpeedModifierImmunity
   - type: Rootable
-  # Arcane-start: species-specific organ prototypes
-  - type: EroticOrgans
-    groinCommon:
-    - proto: OrganAnus
-      slot: anus
-    - proto: OrganButt
-      slot: butt
-    groinMale:
-    - proto: OrganPenisDiona
-      slot: penis
-    - proto: OrganTesticles
-      slot: testicles
-    groinFemale:
-    - proto: OrganVagina
-      slot: vagina
-    - proto: OrganUterus
-      slot: uterus
-    chestFemale:
-    - proto: OrganBreastsHuman
-      slot: breasts
-    hideWhenFlaccid:
-    - penis
-  # Arcane-end
 
 - type: entity
   parent: BaseSpeciesDummy

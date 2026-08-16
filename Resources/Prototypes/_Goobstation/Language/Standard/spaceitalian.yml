@@ -16,135 +16,137 @@
     minSyllables: 1
     maxSyllables: 1
     replacement:
-    - insomma
-    - allora
-    - via
-    - cioè
-    - però
-    - neanche
-    - invece
-    - ecco
-    - basta
-    - proprio
-    - appena
-    - intanto
-    - ovvio
-    - addirittura
-    - nemmeno
-    - neppure
-    - manco
-    - giusto
-    - perfino
-    - altrimenti
-    - piuttosto
-    - oppure
-    - senz’altro
-    - talvolta
-    - finché
-    - benché
-    - durante
-    - intorno
-    - "come va"
-    - "che cosa"
-    - "a presto"
-    - "non lo so"
-    - "da quanto tempo"
-    - "va bene"
-    - "ti va"
-    - "per favore"
-    - "mi dispiace"
-    - "non importa"
-    - "a domani"
-    - "che ne so"
-    - "magari sì"
-    - "magari no"
-    - "non fa niente"
-    - "ti credo"
-    - "non ci credo"
-    - "perché no"
-    - "a dire il vero"
-    - "in effetti"
-    - "da un po"
-    - "a volte"
-    - "in realtà"
-    - "chissà perché"
-    - "di solito"
-    - "così così"
-    - "un po"
-    - "a caso"
-    - "per caso"
-    - "come sempre"
-    - "tanto meglio"
-    - "benissimo"
-    - "più o meno"
-    - "davvero"
-    - "non ci posso credere"
-    - "fai attenzione"
-    - "stai tranquillo"
-    - "senza dubbio"
-    - "a buon rendere"
-    - "non è detto"
-    - "per carità"
-    - "tutto sommato"
-    - "ad ogni modo"
-    - "in ogni caso"
-    - "come va a finire"
-    - "piano piano"
-    - "con calma"
-    - "senza fretta"
-    - "make-a the pasta"
-    - "make-a the pizza"
-    - "make-a the bread"
-    - "cook-a"
-    - "mamma mia"
-    - bellissimo
-    - pasta
-    - amore
-    - bella
-    - prego
-    - arrivederci
-    - prosciutto
-    - mozzarella
-    - parmigiano
-    - salami
-    - panini
-    - marinara
-    - pizza
-    - spaghetti
-    - penne
-    - fusilli
-    - rigatoni
-    - farfalle
-    - linguine
-    - fettuccine
-    - tortellini
-    - ravioli
-    - gnocchi
-    - orecchiette
-    - conchiglie
-    - bucatini
-    - ziti
-    - cavatappi
-    - tagliatelle
-    - pappardelle
-    - lasagna
-    - capellini
-    - macaroni
-    - cannelloni
-    - trofie
-    - radiatori
-    - passatelli
-    - ditalini
-    - mafaldine
-    - calamarata
-    - gemelli
-    - strozzapreti
-    - malloreddus
-    - bigoli
-    - casarecce
-    - paccheri
-    - lumache
-    - scialatielli
-    - sedanini
-    - tortiglioni
-    - filini
+    # Arcane-Edit-Start
+    - инсомма
+    - аллора
+    - виа
+    - чоэ
+    - перо
+    - неанке
+    - инвече
+    - экко
+    - баста
+    - проприо
+    - аппена
+    - интанто
+    - оввио
+    - аддиритура
+    - немменно
+    - неппуре
+    - манко
+    - джусто
+    - перфино
+    - альтрименти
+    - пьюттосто
+    - оппуре
+    - сензальтро
+    - тальвольта
+    - финке
+    - бенке
+    - дуранте
+    - инторно
+    - "коме ва"
+    - "ке коза"
+    - "а престо"
+    - "нон ло со"
+    - "да куанто темпо"
+    - "ва бене"
+    - "ти ва"
+    - "пер фаворе"
+    - "ми диспьяче"
+    - "нон импорта"
+    - "а домани"
+    - "ке не со"
+    - "магари си"
+    - "магари но"
+    - "нон фа ньенте"
+    - "ти кредо"
+    - "нон чи кредо"
+    - "перке но"
+    - "а дире иль веро"
+    - "ин эффетти"
+    - "да ун по"
+    - "а вольте"
+    - "ин реальта"
+    - "кисса перке"
+    - "ди солито"
+    - "кози кози"
+    - "ун по"
+    - "а казо"
+    - "пер казо"
+    - "коме семпре"
+    - "танто мельо"
+    - "бениссимо"
+    - "пью о мено"
+    - "давверо"
+    - "нон чи поссо кредере"
+    - "фай аттенционе"
+    - "стай транкуилло"
+    - "сенца дуббио"
+    - "а буон рендере"
+    - "нон э детто"
+    - "пер карита"
+    - "тутто соммато"
+    - "ад оньи модо"
+    - "ин оньи казо"
+    - "коме ва а финире"
+    - "пьяно пьяно"
+    - "кон кальма"
+    - "сенца фретта"
+    - "мейк-а зе паста"
+    - "мейк-а зе пицца"
+    - "мейк-а зе бред"
+    - "кук-а"
+    - "мамма миа"
+    - беллиссимо
+    - паста
+    - аморе
+    - белла
+    - прего
+    - арриведерчи
+    - прошутто
+    - моцарелла
+    - пармиджано
+    - салями
+    - панини
+    - маринара
+    - пицца
+    - спагетти
+    - пенне
+    - фузилли
+    - ригатони
+    - фарфалле
+    - лингвине
+    - феттучине
+    - тортеллини
+    - равиоли
+    - ньокки
+    - орекьетте
+    - конкилье
+    - букатини
+    - зити
+    - каватаппи
+    - тальятелле
+    - паппарделле
+    - лазанья
+    - капеллини
+    - макарони
+    - каннеллони
+    - трофи
+    - радиатори
+    - пассателли
+    - диталини
+    - мафальдине
+    - каламарата
+    - джемелли
+    - строццапрети
+    - маллореддус
+    - биголи
+    - касарекче
+    - паккери
+    - люмаке
+    - шиалателли
+    - седанини
+    - тортильони
+    - филини
+    # Arcane-Edit-End

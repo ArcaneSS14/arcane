@@ -25,6 +25,12 @@ using Content.Shared.Chat.RadioIconsEvents; // Goobstation
 using Content.Shared.Whitelist; // Goobstation
 using Content.Shared.StatusIcon; // Goobstation
 using Content.Goobstation.Shared.Radio; // Goobstation
+// Arcane-Start
+using Content.Shared._Art.TTS; // Arcane
+using Content.Goobstation.Common.Barks;
+using Content.Shared._Orion.Radio;
+using Robust.Shared.Audio;
+// Arcane-End
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -64,8 +70,13 @@ public sealed partial class RadioSystem : EntitySystem
             && component.Channels.Contains(args.Channel.ID)
             && _whitelist.IsWhitelistPassOrNull(args.Channel.SendWhitelist, uid)) // Goobstation - Whitelisted radio channels
         {
-            SendRadioMessage(uid, args.Message, args.Channel, uid, args.Language); // Einstein Engines - Language
-            args.Channel = null; // prevent duplicate messages from other listeners.
+            // Arcane-Edit-Start
+            if (SendRadioMessage(uid, args.Message, args.Channel, uid, args.Language)) // Einstein Engines - Language
+            {
+                args.RadioMessageSent = true;
+                args.Channel = null; // prevent duplicate messages from other listeners.
+            }
+            // Arcane-Edit-End
         }
     }
 
@@ -76,11 +87,45 @@ public sealed partial class RadioSystem : EntitySystem
             // Einstein Engines - Languages begin
             var listener = component.Owner;
             var msg = args.OriginalChatMsg;
+            var canUnderstand = listener == null || _language.CanUnderstand(listener, args.Language.ID); // Arcane
 
-            if (listener != null && !_language.CanUnderstand(listener, args.Language.ID))
+            if (!canUnderstand)
                 msg = args.LanguageObfuscatedChatMsg;
 
+            // Arcane-Start
+            if (canUnderstand && args.Voice is { } voice)
+            {
+                var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice);
+                RaiseLocalEvent(uid, ref ev);
+            }
+            // Arcane-End
             _netMan.ServerSendMessage(new MsgChatMessage { Message = msg }, actor.PlayerSession.Channel);
+
+            // Arcane-Start: Radio sound
+            var sound = args.Channel.OnSendSound ?? DefaultOnSound;
+            if (sound is SoundPathSpecifier sps)
+            {
+                RaiseNetworkEvent(new PlayRadioBarkEvent
+                {
+                    Path = sps.Path.ToString(),
+                    Params = sps.Params,
+                    Source = GetNetEntity(args.MessageSource),
+                }, actor.PlayerSession.Channel);
+            }
+            else if (sound is SoundCollectionSpecifier)
+            {
+                Log.Warning($"Radio channel {args.Channel.ID} uses SoundCollectionSpecifier, which is not supported for PlayRadioBarkEvent. Falling back to silent playback.");
+            }
+
+            if (uid != args.MessageSource
+                && TryComp<SpeechSynthesisComponent>(args.MessageSource, out var speech)
+                && speech.VoicePrototypeId is { } barkVoice)
+            {
+                RaiseNetworkEvent(
+                    new PlayBarkEvent(GetNetEntity(args.MessageSource), args.OriginalChatMsg.Message, false, barkVoice),
+                    actor.PlayerSession.Channel);
+            }
+            // Arcane-End
             // Einstein Engines - Languages end
         }
     }
@@ -91,10 +136,12 @@ public sealed partial class RadioSystem : EntitySystem
         args.Cancelled = _whitelist.IsWhitelistFail(args.Channel.ReceiveWhitelist, uid);
     }
 
+    private static readonly SoundSpecifier DefaultOnSound = new SoundPathSpecifier("/Audio/_Orion/Radio/basic.ogg"); // Arcane
+
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
-    public void SendRadioMessage(
+    public bool SendRadioMessage( // Arcane-Edit
         EntityUid messageSource,
         string message,
         ProtoId<RadioChannelPrototype> channel,
@@ -102,7 +149,7 @@ public sealed partial class RadioSystem : EntitySystem
         LanguagePrototype? language = null,
         bool escapeMarkup = true)
     {
-        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language); // Einstein Engines - Language
+        return SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language); // Einstein Engines - Language // Arcane-Edit
     }
 
     /// <summary>
@@ -110,7 +157,8 @@ public sealed partial class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
-    public void SendRadioMessage(
+    /// <returns>Whether the message was transmitted to at least one radio listener. // Arcane-Edit </returns>
+    public bool SendRadioMessage( // Arcane-Edit
         EntityUid messageSource,
         string message,
         RadioChannelPrototype channel,
@@ -123,12 +171,12 @@ public sealed partial class RadioSystem : EntitySystem
             language = _language.GetLanguage(messageSource);
 
         if (!language.SpeechOverride.AllowRadio)
-            return;
+            return false; // Arcane-Edit
         // Einstein Engines - Language end
 
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
-            return;
+            return false; // Arcane-Edit
 
         var evt = new TransformSpeakerNameEvent(messageSource, MetaData(messageSource).EntityName);
         RaiseLocalEvent(messageSource, evt);
@@ -185,7 +233,15 @@ public sealed partial class RadioSystem : EntitySystem
         // Added GetNetEntity(messageSource), to source
         var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, name, obfuscated, language, jobIcon, jobName);
         var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, GetNetEntity(messageSource), null);
-        var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource);
+
+        // Arcane-Start
+        string? voice = null;
+        if (TryComp<TTSComponent>(messageSource, out var ttsComponent)
+            && ttsComponent.VoicePrototype is { } voiceId
+            && _prototype.TryIndex(voiceId, out var voicePrototype))
+            voice = voicePrototype.Speaker;
+        // Arcane-End
+        var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource, voice); // Arcane-Edit
         // Einstein Engines - Language end
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
@@ -198,6 +254,7 @@ public sealed partial class RadioSystem : EntitySystem
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
+        var sent = false; // Arcane
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
             if (!radio.ReceiveAllChannels)
@@ -225,6 +282,7 @@ public sealed partial class RadioSystem : EntitySystem
 
             // send the message
             RaiseLocalEvent(receiver, ref ev);
+            sent = true; // Arcane
         }
 
         if (name != Name(messageSource))
@@ -234,6 +292,7 @@ public sealed partial class RadioSystem : EntitySystem
 
         _replay.RecordServerMessage(msg); // Einstein Engines - Language
         _messages.Remove(message);
+        return sent; // Arcane
     }
 
     // Einstein Engines - Language begin

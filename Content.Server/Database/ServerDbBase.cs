@@ -223,40 +223,6 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
         }
 
-        // Arcane-Start
-        public async Task<string?> GetErpOrganPreferencesAsync(NetUserId userId, int slot)
-        {
-            await using var db = await GetDb();
-            var row = await db.DbContext.ErpOrganPreferences
-                .FirstOrDefaultAsync(e => e.UserId == userId.UserId && e.Slot == slot);
-            return row?.Data;
-        }
-
-        public async Task SaveErpOrganPreferencesAsync(NetUserId userId, int slot, string data)
-        {
-            await using var db = await GetDb();
-            var row = await db.DbContext.ErpOrganPreferences
-                .FirstOrDefaultAsync(e => e.UserId == userId.UserId && e.Slot == slot);
-
-            if (row == null)
-            {
-                row = new ErpOrganPreference
-                {
-                    UserId = userId.UserId,
-                    Slot = slot,
-                    Data = data,
-                };
-                db.DbContext.ErpOrganPreferences.Add(row);
-            }
-            else
-            {
-                row.Data = data;
-            }
-
-            await db.DbContext.SaveChangesAsync();
-        }
-        // Arcane-End
-
         private static async Task SetSelectedCharacterSlotAsync(NetUserId userId, int newSlot, ServerDbContext db)
         {
             var prefs = await db.Preference.SingleAsync(p => p.UserId == userId.UserId);
