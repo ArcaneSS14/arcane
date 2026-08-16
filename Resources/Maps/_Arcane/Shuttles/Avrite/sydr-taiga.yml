@@ -137,7 +137,7 @@ entities:
   - uid: 56736
     components:
     - type: MetaData
-      name: 'SYDR Тайга '
+      name: 'SYDR Тайга'
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5058117,-96.44432

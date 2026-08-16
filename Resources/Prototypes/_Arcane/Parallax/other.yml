@@ -1,5 +1,5 @@
 - type: parallax
-  id: Water
+  id: AzureWater
   layers:
     - texture:
         !type:ImageParallaxTextureSource
