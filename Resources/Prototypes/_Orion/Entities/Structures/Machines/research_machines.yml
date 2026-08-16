@@ -125,3 +125,7 @@
       - state: variant-inteq
       - state: server_o
         map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  # Arcane-start
+  - type: PeriodicAnomalySpawner
+    chance: 0
+  # Arcane-end
