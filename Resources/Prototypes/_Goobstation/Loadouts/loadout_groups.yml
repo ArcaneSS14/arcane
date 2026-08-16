@@ -687,6 +687,26 @@
 
 # Librarian
 
+# Arcane-Start
+
+- type: loadoutGroup
+  id: LibrarianShoes
+  name: loadout-group-librarian-shoes
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - TwilightSparkleBootsPatron
+
+- type: loadoutGroup
+  id: LibrarianGlasses
+  name: loadout-group-librarian-glasses
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - TwilightSparkleGlassesPatron
+
+# Arcane-End
+
 - type: loadoutGroup
   id: LibrarianEnvirohelm
   name: loadout-group-librarian-envirohelm
@@ -946,6 +966,7 @@
   - NanotrasenRepresentativeBowler
   - NanotrasenRepresentativeOutlaw
   - NanotrasenRepresentativeMAA
+  - NTRBlackBeretPatron # Arcane
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeNeck
@@ -954,6 +975,10 @@
   loadouts:
   - ClothingNeckScarfStripedCentcom
   - NanotrasenRepresentativeEnsemble
+  # Arcane-Start
+  - NTRBlackCloakPatron
+  - NTRTricolorCloakPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeBackpack
@@ -972,6 +997,12 @@
   - NanotrasenRepresentativeJumpskirt
   - NTRMJ
   - NanotrasenRepresentativeFancyJumpsuit
+  # Arcane-Start
+  - NTRBlackPatron
+  - NTRBlackSkirtPatron
+  - NTRWhiteSkirtPatron
+  - NTRWhitePatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeBelt
@@ -1555,6 +1586,7 @@
   maxLimit: 1
   loadouts:
   - ZookeeperHead
+  - CamouflageHatPatron # Arcane
 
 - type: loadoutGroup
   id: ZookeeperJumpsuit
@@ -1563,6 +1595,10 @@
   maxLimit: 1
   loadouts:
   - ZookeeperJumpsuit
+  # Arcane-Start
+  - CamouflageUniformPatron
+  - SterileUniformPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ZookeeperEnvirohelm
@@ -1694,6 +1730,23 @@
   - JumpsuitHawaiBlue
   - JumpsuitHawaiRed
   - JumpsuitHawaiYellow
+  - ComfortableUniformPatron # Arcane
+
+# Arcane-Start
+
+- type: loadoutGroup
+  id: RadioHostOuterclothing
+  name: loadout-group-radiohost-outerclothing
+  loadouts:
+  - RadioHostJacketPatron
+
+- type: loadoutGroup
+  id: RadioHostMicrophone
+  name: loadout-group-radiohost-microphone
+  loadouts:
+  - RadioHostMicrophonePatron
+
+# Arcane-End
 
 # Salvage/Shaft Miner
 
