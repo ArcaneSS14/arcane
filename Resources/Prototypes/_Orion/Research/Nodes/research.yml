@@ -213,6 +213,7 @@
   - SchechiTranslator
   - GruntishTranslator
   - YowKriolTranslator
+  - HydraspeakTranslator # Arcane
   - KarshanTranslator # Arcane-Edit
   position: -1,8
 
@@ -250,5 +251,6 @@
   - GruntishTranslatorImplanter
   - YowKriolTranslatorImplanter
   - SignTranslatorImplanter
+  - HydraspeakTranslatorImplanter # Arcane
   - KarshanTranslatorImplanter # Arcane-Edit
   position: -1,9

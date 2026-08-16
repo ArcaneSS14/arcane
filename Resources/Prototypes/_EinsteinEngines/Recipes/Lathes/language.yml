@@ -274,6 +274,14 @@
   subname: lathe-recipe-SchechiTranslatorImplanter-subname
   result: SchechiTranslatorImplanter
 
+# Arcane-Start
+- type: latheRecipe
+  parent: BaseTranslatorImplanter
+  id: HydraspeakTranslatorImplanter
+  subname: lathe-recipe-HydraspeakTranslatorImplanter-subname
+  result: HydraspeakTranslatorImplanter
+# Arcane-End
+
 - type: latheRecipe
   parent: BaseTranslatorImplanter
   id: NewKinPidginTranslatorImplanter
@@ -300,7 +308,17 @@
     Gold: 50
     Silver: 50
 
-# Arcane-Edit-Start
+# Arcane-Start
+- type: latheRecipe
+  id: HydraspeakTranslator
+  result: HydraspeakTranslator
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 100
+    Plastic: 50
+    Gold: 50
+
 - type: latheRecipe
   parent: BaseTranslatorImplanter
   id: KarshanTranslatorImplanter

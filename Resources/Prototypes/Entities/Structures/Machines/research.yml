@@ -87,7 +87,7 @@
     guides:
     - Science
   - type: ResearchPointSource # Goobstation
-    pointspersecond: 15
+    pointspersecond: 3 # Arcane
     pointType: General # Orion
     active: true
 
