@@ -36,6 +36,9 @@ public sealed class PeriodicAnomalySpawnerSystem : EntitySystem
 
             spawner.NextAttempt = now + spawner.Interval;
 
+            if (!transform.Anchored)
+                continue;
+
             if (transform.GridUid is not { } grid || !_random.Prob(spawner.Chance))
                 continue;
 
