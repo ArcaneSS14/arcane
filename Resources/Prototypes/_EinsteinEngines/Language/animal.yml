@@ -75,6 +75,15 @@
     # Arcane-Edit-Start
     - с
     - С
+    - х
+    - Х
+    - ш
+    - Ш
+  speech:
+    color: "#0a0b14"
+    fontId: Rubikmaze
+    boldFontId: Rubikmaze
+    fontSize: 16
     # Arcane-Edit-End
 
 - type: language

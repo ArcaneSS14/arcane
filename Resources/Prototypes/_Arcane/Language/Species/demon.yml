@@ -8,29 +8,29 @@
     fontSize: 18
 #  icon:
 #    sprite: _Orion/Interface/Chat/language.rsi
-#    state: vox
+#    state:
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
-    maxSyllables: 4
+    maxSyllables: 3
     replacement:
-    - aika
-    - seinä
-    - oikea
-    - uinti
-    - hyi
-    - äi
-    - öi
-    - ällä
-    - ämmä
-    - ännä
-    - ärrä
-    - ässä
-    - tseta
-    - mikä
-    - tämä
-    - minä
-    - tämä
-    - olen
-    - kyllä
-    - töölö
+    - аика
+    - сейна
+    - оикея
+    - уинти
+    - хуи
+    - эи
+    - ои
+    - алла
+    - амма
+    - анна
+    - арра
+    - асса
+    - тсета
+    - микё
+    - тэмэ
+    - минё
+    - тамэ
+    - олэн
+    - килла
+    - тйоло
