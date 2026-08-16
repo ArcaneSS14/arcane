@@ -98,7 +98,7 @@
   - BartenderJumpsuit
   - BartenderJumpskirt
   - BartenderJumpsuitPurple
-  - ServiceMJ # goob
+  - ServiceMJ
   - BartenderPatron
   - BartenderSkirtPatron
   - ServiveShirtPatron
@@ -107,11 +107,13 @@
 - type: loadoutGroup
   id: ServiceWorkerShoes
   name: loadout-group-service-worker-shoes
+  minLimit: 0
   loadouts:
   - WorkerBootsPatron
 
 - type: loadoutGroup
   id: ServiceWorkerBelt
   name: loadout-group-service-worker-belt
+  minLimit: 0
   loadouts:
   - ServiceApronPatron

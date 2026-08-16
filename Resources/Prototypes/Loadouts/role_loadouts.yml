@@ -190,13 +190,13 @@
   - LibrarianGlasses
   - LibrarianShoes
   - Patron
-  # Arcane - End
   - Animals
   - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - LibrarianEnvirohelm
   - LibrarianEnvirosuit
   - LibrarianEnvirogloves
+  # Arcane - End
   # Orion-Start
   - Undershirt
   - Underwear
@@ -334,12 +334,12 @@
   # Arcane-Start
   - Patron
   - ClownUnderwear
-  # Arcane-End
   - Animals
   # Goobstation - EE Plasmeme Change.
   - ClownEnvirohelm
   - ClownEnvirosuit
   - ClownEnvirogloves
+  # Arcane - End
   # Orion-Start
   - Undershirt
   - Underwear
