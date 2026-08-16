@@ -14,7 +14,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  equipment:
+  :
     jumpsuit: ClothingUniformBartender
 
 - type: loadout
@@ -718,7 +718,9 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  back: RadioHostMicrophone
+  storage:
+    back:
+    - RadioHostMicrophone
 
 - type: loadout
   id: ServiceCloakPatron
@@ -726,7 +728,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  neck: ClothingCloakServicePatron
+  equipment:
+    neck: ClothingCloakServicePatron
 
 # Medical
 
@@ -736,7 +739,9 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  back: ClothingUniformBikiniDoctor
+  storage:
+    back:
+    - ClothingUniformBikiniDoctor
 
 - type: loadout
   id: ChemistBikiniPatron
@@ -744,7 +749,9 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  back: ClothingUniformBikiniChemist
+  storage:
+    back:
+    - ClothingUniformBikiniChemist
 
 - type: loadout
   id: ParamedicBikiniPatron
@@ -752,7 +759,9 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  back: ClothingUniformBikiniParamedic
+  storage:
+    back:
+    - ClothingUniformBikiniParamedic
 
 - type: loadout
   id: VirologistBikiniPatron
@@ -760,7 +769,9 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  back: ClothingUniformBikiniVirologist
+  storage:
+    back:
+    - ClothingUniformBikiniVirologist
 
 - type: loadout
   id: ParamedicGlassesPatron
@@ -768,7 +779,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  eyes: ClothingEyesParamedicGlasses
+  equipment:
+    eyes: ClothingEyesParamedicGlasses
 
 - type: loadout
   id: VirologistUniformPatron
@@ -776,7 +788,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformVirologistPatron
+  equipment:
+    jumpsuit: ClothingUniformVirologistPatron
 
 - type: loadout
   id: VirologistUniformSkirtPatron
@@ -784,7 +797,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  eyes: ClothingUniformVirologistSkirtPatron
+  equipment:
+    jumpsuit: ClothingUniformVirologistSkirtPatron
 
 - type: loadout
   id: VirologistTurtleneckPatron
@@ -792,7 +806,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformVirologistTurtleneckPatron
+  equipment:
+    jumpsuit: ClothingUniformVirologistTurtleneckPatron
 
 - type: loadout
   id: VirologistTurtleneckSkirtPatron
@@ -800,7 +815,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformVirologistTurtleneckSkirtPatron
+  equipment:
+    jumpsuit: ClothingUniformVirologistTurtleneckSkirtPatron
 
 - type: loadout
   id: ParamedicUniformPatron
@@ -808,7 +824,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformParamedicPatron
+  equipment:
+    jumpsuit: ClothingUniformParamedicPatron
 
 - type: loadout
   id: ParamedicUniformSkirtPatron
@@ -816,7 +833,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformParamedicSkirtPatron
+  equipment:
+    jumpsuit: ClothingUniformParamedicSkirtPatron
 
 - type: loadout
   id: ParamedicTurtleneckPatron
@@ -824,7 +842,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformParamedicTurtleneckPatron
+  equipment:
+    jumpsuit: ClothingUniformParamedicTurtleneckPatron
 
 - type: loadout
   id: ParamedicTurtleneckSkirtPatron
@@ -832,7 +851,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformParamedicTurtleneckSkirtPatron
+  equipment:
+    jumpsuit: ClothingUniformParamedicTurtleneckSkirtPatron
 
 - type: loadout
   id: DoctorTurtleneckPatron
@@ -840,7 +860,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformDoctorTurtleneckPatron
+  equipment:
+    jumpsuit: ClothingUniformDoctorTurtleneckPatron
 
 - type: loadout
   id: DoctorTurtleneckSkirtPatron
@@ -848,7 +869,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformDoctorTurtleneckSkirtPatron
+  equipment:
+    jumpsuit: ClothingUniformDoctorTurtleneckSkirtPatron
 
 - type: loadout
   id: ChemistUniformPatron
@@ -856,7 +878,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformChemistPatron
+  equipment:
+    jumpsuit: ClothingUniformChemistPatron
 
 - type: loadout
   id: ChemistUniformSkirtPatron
@@ -864,7 +887,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformChemistSkirtPatron
+  equipment:
+    jumpsuit: ClothingUniformChemistSkirtPatron
 
 - type: loadout
   id: ChemistTurtleneckPatron
@@ -872,7 +896,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformChemistTurtleneckPatron
+  equipment:
+    jumpsuit: ClothingUniformChemistTurtleneckPatron
 
 - type: loadout
   id: ChemistTurtleneckSkirtPatron
@@ -880,7 +905,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  jumpsuit: ClothingUniformChemistTurtleneckSkirtPatron
+  equipment:
+    jumpsuit: ClothingUniformChemistTurtleneckSkirtPatron
 
 - type: loadout
   id: MeicalCloakPatron
@@ -888,7 +914,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  neck: ClothingCloakMedicalPatron
+  equipment:
+    neck: ClothingCloakMedicalPatron
 
 # Cargo
 
@@ -898,7 +925,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  neck: ClothingCloakCargoPatron
+  equipment:
+    neck: ClothingCloakCargoPatron
 
 # RND
 
@@ -908,7 +936,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  neck: ClothingCloakRNDPatron
+  equipment:
+    neck: ClothingCloakRNDPatron
 
 # Engineer
 
@@ -918,7 +947,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  neck: ClothingCloakEngineerPatron
+  equipment:
+    neck: ClothingCloakEngineerPatron
 
 # Security
 
@@ -928,4 +958,5 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  neck: ClothingCloakSecurityPatron
+  equipment:
+    neck: ClothingCloakSecurityPatron
