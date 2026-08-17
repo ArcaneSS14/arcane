@@ -126,7 +126,12 @@
   id: JobServiceWorker
   groups:
   - GroupTankHarness
-  - BartenderJumpsuit
+  # Arcane-Start
+  - ServiceWorkerJumpsuit
+  - ServiceCloak
+  - ServiceWorkerShoes
+  - ServiceWorkerBelt
+  # Arcane-End
   - CommonBackpack
   - Glasses
   - Survival
@@ -153,6 +158,7 @@
   - ChefHead
   - ChefMask
   - ChefJumpsuit
+  - ServiceCloak # Arcane
   - CommonBackpack
   - ChefOuterClothing
   - Glasses
@@ -178,11 +184,22 @@
   groups:
   - GroupTankHarness
   - LibrarianJumpsuit
+  - ServiceCloak # Arcane
   - CommonBackpack
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
+  # Arcane - Start
+  - LibrarianGlasses
+  - LibrarianShoes
+  - Patron
+  - Animals
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - LibrarianEnvirohelm
+  - LibrarianEnvirosuit
+  - LibrarianEnvirogloves
+  # Arcane - End
   # Orion-Start
   - Undershirt
   - Underwear
@@ -230,6 +247,7 @@
   - ChaplainMask
   - ChaplainNeck
   - ChaplainJumpsuit
+  - ServiceCloak # Arcane
   - CommonBackpack
   - ChaplainOuterClothing
   - ChaplainBible
@@ -257,6 +275,7 @@
   - GroupTankHarness
   - JanitorHead
   - JanitorJumpsuit
+  - ServiceCloak # Arcane
   - JanitorGloves
   - CommonBackpack
   - JanitorOuterClothing
@@ -284,6 +303,7 @@
   - GroupTankHarness
   - BotanistHead
   - BotanistJumpsuit
+  - ServiceCloak # Arcane
   - BotanistBackpack
   - BotanistOuterClothing
   - Glasses
@@ -311,13 +331,22 @@
   - GroupTankHarness
   - ClownHead
   - ClownJumpsuit
+  - ServiceCloak # Arcane
   - ClownBackpack
   - ClownOuterClothing
   - ClownShoes
   - Glasses
   - SurvivalClown
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - ClownUnderwear
+  - Animals
+  # Goobstation - EE Plasmeme Change.
+  - ClownEnvirohelm
+  - ClownEnvirosuit
+  - ClownEnvirogloves
+  # Arcane - End
   # Orion-Start
   - Undershirt
   - Underwear
@@ -339,6 +368,10 @@
   - MimeHead
   - MimeMask
   - MimeJumpsuit
+  # Arcane-Start
+  - ServiceCloak
+  - MimeHands
+  # Arcane-End
   - MimeBackpack
   - MimeOuterClothing
   - MimeGloves # Goobstation
@@ -347,7 +380,16 @@
   - Glasses
   - SurvivalMime
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - MimeSocks
+  # Arcane-End
+  - Animals
+  # Goobstation - EE Plasmeme Change.
+  - MimeEnvirohelm
+  - MimeEnvirosuit
+  - MimeEnvirogloves
+  - MimeGloves
   # Orion-Start
   - Undershirt
   - Underwear
@@ -368,8 +410,10 @@
   groups:
   - GroupTankHarness
   - MusicianJumpsuit
+  - ServiceCloak # Arcane
   - CommonBackpack
   - MusicianOuterClothing
+  - MusicianShoes # Arcane
   - Glasses
   - Survival
   - Trinkets
@@ -424,6 +468,7 @@
   groups:
   - GroupTankHarness
   - CargoTechnicianHead
+  - CargoCloak # Arcane
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
   - CargoTechnicianOuterClothing
@@ -507,6 +552,7 @@
   groups:
   - GroupTankHarness
   - TechnicalAssistantJumpsuit
+  - EngineerCloak # Arcane
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
@@ -531,6 +577,7 @@
   - GroupTankHarness
   - StationEngineerHead
   - StationEngineerJumpsuit
+  - EngineerCloak # Arcane
   - StationEngineerBackpack
   - StationEngineerOuterClothing
   - StationEngineerShoes
@@ -558,6 +605,7 @@
   - GroupTankHarness
   - AtmosphericTechnicianHead # Goobstation
   - AtmosphericTechnicianJumpsuit
+  - EngineerCloak # Arcane
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
@@ -643,6 +691,7 @@
   groups:
   - GroupTankHarness
   - ResearchAssistantJumpsuit
+  - RNDCloak # Arcane
   - ScientistBackpack
   - Glasses
   - Survival
@@ -845,6 +894,10 @@
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
+  # Arcane-Start
+  - MedicalCloak
+  - DoctorBikini
+  # Arcane-End
   - MedicalGloves
   - MedicalBackpack
   - MedicalDoctorOuterClothing
@@ -873,6 +926,7 @@
   groups:
   - GroupTankHarness
   - MedicalInternJumpsuit
+  - MedicalCloak # Arcane
   - MedicalBackpack
   - MedicalEyewear
   - SurvivalMedical
@@ -899,6 +953,10 @@
   - ChemistHead # Goobstation
   - MedicalMask
   - ChemistJumpsuit
+  # Arcane-Start
+  - ChemistBikini
+  - MedicalCloak
+  # Arcane-End
   - MedicalGloves
   - ChemistBackpack
   - ChemistOuterClothing
@@ -927,6 +985,11 @@
   - ParamedicHead
   - MedicalMask
   - ParamedicJumpsuit
+  # Arcane-Start
+  - MedicalCloak
+  - ParamedicBikini
+  - ParamedicVisor
+  # Arcane-End
   - MedicalGloves
   - MedicalBackpack
   - ParamedicOuterClothing
