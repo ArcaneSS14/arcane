@@ -1084,7 +1084,7 @@ namespace Content.Shared.Preferences
 
             // Art-TTS Start
             prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
-            if (voice == null || !CanHaveVoice(voice, Sex))
+            if (voice == null)
                 Voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
             // Art-TTS End
 
