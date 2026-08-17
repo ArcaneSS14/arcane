@@ -55,3 +55,6 @@ ent-NewKinPidginTranslatorImplanter = имплантер
 ent-GruntishTranslatorImplanter = { ent-BaseTranslatorImplanter }
     .suffix = Переводчик Грунтич
     .desc = { ent-BaseTranslatorImplanter.desc }
+ent-HydraspeakTranslatorImplanter = { ent-BaseTranslatorImplanter }
+    .suffix = Переводчик Ги'драв'та
+    .desc = { ent-BaseTranslatorImplanter.desc }

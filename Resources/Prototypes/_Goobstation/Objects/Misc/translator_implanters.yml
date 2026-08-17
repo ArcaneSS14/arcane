@@ -49,3 +49,13 @@
   components:
   - type: Implanter
     implant: SignTranslatorImplant
+
+# Arcane-Start
+- type: entity
+  id: HydraspeakTranslatorImplanter
+  parent: BaseTranslatorImplanter
+  suffix: Hydraspeak
+  components:
+  - type: Implanter
+    implant: HydraspeakTranslatorImplant
+# Arcane-End

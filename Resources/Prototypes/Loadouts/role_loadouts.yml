@@ -128,6 +128,7 @@
   - GroupTankHarness
   # Arcane-Start
   - ServiceWorkerJumpsuit
+  - ServiceCloak
   - ServiceWorkerShoes
   - ServiceWorkerBelt
   # Arcane-End
@@ -157,6 +158,7 @@
   - ChefHead
   - ChefMask
   - ChefJumpsuit
+  - ServiceCloak # Arcane
   - CommonBackpack
   - ChefOuterClothing
   - Glasses
@@ -182,6 +184,7 @@
   groups:
   - GroupTankHarness
   - LibrarianJumpsuit
+  - ServiceCloak # Arcane
   - CommonBackpack
   - Glasses
   - Survival
@@ -244,6 +247,7 @@
   - ChaplainMask
   - ChaplainNeck
   - ChaplainJumpsuit
+  - ServiceCloak # Arcane
   - CommonBackpack
   - ChaplainOuterClothing
   - ChaplainBible
@@ -271,6 +275,7 @@
   - GroupTankHarness
   - JanitorHead
   - JanitorJumpsuit
+  - ServiceCloak # Arcane
   - JanitorGloves
   - CommonBackpack
   - JanitorOuterClothing
@@ -298,6 +303,7 @@
   - GroupTankHarness
   - BotanistHead
   - BotanistJumpsuit
+  - ServiceCloak # Arcane
   - BotanistBackpack
   - BotanistOuterClothing
   - Glasses
@@ -325,6 +331,7 @@
   - GroupTankHarness
   - ClownHead
   - ClownJumpsuit
+  - ServiceCloak # Arcane
   - ClownBackpack
   - ClownOuterClothing
   - ClownShoes
@@ -361,7 +368,10 @@
   - MimeHead
   - MimeMask
   - MimeJumpsuit
-  - MimeHands # Arcane
+  # Arcane-Start
+  - ServiceCloak
+  - MimeHands
+  # Arcane-End
   - MimeBackpack
   - MimeOuterClothing
   - MimeGloves # Goobstation
@@ -400,6 +410,7 @@
   groups:
   - GroupTankHarness
   - MusicianJumpsuit
+  - ServiceCloak # Arcane
   - CommonBackpack
   - MusicianOuterClothing
   - MusicianShoes # Arcane
@@ -457,6 +468,7 @@
   groups:
   - GroupTankHarness
   - CargoTechnicianHead
+  - CargoCloak # Arcane
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
   - CargoTechnicianOuterClothing
@@ -540,6 +552,7 @@
   groups:
   - GroupTankHarness
   - TechnicalAssistantJumpsuit
+  - EngineerCloak # Arcane
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
@@ -564,6 +577,7 @@
   - GroupTankHarness
   - StationEngineerHead
   - StationEngineerJumpsuit
+  - EngineerCloak # Arcane
   - StationEngineerBackpack
   - StationEngineerOuterClothing
   - StationEngineerShoes
@@ -591,6 +605,7 @@
   - GroupTankHarness
   - AtmosphericTechnicianHead # Goobstation
   - AtmosphericTechnicianJumpsuit
+  - EngineerCloak # Arcane
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
@@ -676,6 +691,7 @@
   groups:
   - GroupTankHarness
   - ResearchAssistantJumpsuit
+  - RNDCloak # Arcane
   - ScientistBackpack
   - Glasses
   - Survival
@@ -878,6 +894,10 @@
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
+  # Arcane-Start
+  - MedicalCloak
+  - DoctorBikini
+  # Arcane-End
   - MedicalGloves
   - MedicalBackpack
   - MedicalDoctorOuterClothing
@@ -906,6 +926,7 @@
   groups:
   - GroupTankHarness
   - MedicalInternJumpsuit
+  - MedicalCloak # Arcane
   - MedicalBackpack
   - MedicalEyewear
   - SurvivalMedical
@@ -932,6 +953,10 @@
   - ChemistHead # Goobstation
   - MedicalMask
   - ChemistJumpsuit
+  # Arcane-Start
+  - ChemistBikini
+  - MedicalCloak
+  # Arcane-End
   - MedicalGloves
   - ChemistBackpack
   - ChemistOuterClothing
@@ -960,6 +985,11 @@
   - ParamedicHead
   - MedicalMask
   - ParamedicJumpsuit
+  # Arcane-Start
+  - MedicalCloak
+  - ParamedicBikini
+  - ParamedicVisor
+  # Arcane-End
   - MedicalGloves
   - MedicalBackpack
   - ParamedicOuterClothing

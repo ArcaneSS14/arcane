@@ -17,3 +17,29 @@
   flavor: salty
   color: "#e8dcc8"
   recognizable: true
+
+- type: reagent
+  id: Aphrodisiac
+  name: reagent-name-aphrodisiac
+  group: Narcotics
+  desc: reagent-description-aphrodisiac
+  physicalDesc: reagent-physical-desc-syrupy
+  flavor: sweet
+  color: "#ff69b4"
+  boilingPoint: 100.0
+  recognizable: true
+  metabolisms:
+    Narcotic:
+      metabolismRate: 0.5
+      effects:
+      - !type:IncreaseArousal
+        amount: 2
+        maximum: 60
+        scaling: false
+    Gas:
+      metabolismRate: 1
+      effects:
+      - !type:IncreaseArousal
+        amount: 4
+        maximum: 60
+        scaling: false
