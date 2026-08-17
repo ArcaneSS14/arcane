@@ -53,3 +53,5 @@
     slots:
     - Back
     - Belt
+  - type: UseDelay
+    delay: 1
