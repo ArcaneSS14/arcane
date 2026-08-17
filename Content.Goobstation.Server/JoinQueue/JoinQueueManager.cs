@@ -118,7 +118,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
         _configuration.OnValueChanged(GoobCVars.QueueEnabled, OnQueueCVarChanged, true);
         _configuration.OnValueChanged(GoobCVars.PatreonSkip, OnPatreonCVarChanged, true);
-        _configuration.OnValueChanged(GoobCVars.QueueReconnectGraceSeconds, v => _reconnectGraceSeconds = v, true); // Arcane
+        _configuration.OnValueChanged(GoobCVars.QueueReconnectGraceSeconds, v => _reconnectGraceSeconds = v, true);
         _configuration.OnValueChanged(CCVars.SoftMaxPlayers, OnPlayerLimitCVarChanged);
         _configuration.OnValueChanged(CCVars.AdminsCountForMaxPlayers, OnAdminCountCVarChanged);
         _adminManager.OnPermsChanged += OnAdminPermsChanged;
@@ -313,7 +313,6 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
                 _gracePeriods.Remove(e.Session.UserId);
                 _graceReconnecting.Add(e.Session.UserId);
-                _sawmill.Info("Grace period reconnect for {UserId}", e.Session.UserId);
             }
 
             _connectedSessions[e.Session.UserId] = new ConnectedSessionRecord(
@@ -405,7 +404,6 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
         if (_graceReconnecting.Remove(session.UserId))
         {
-            _sawmill.Info("Sending grace-reconnecting player {UserId} directly to game", session.UserId);
             TrySendToGame(session);
             ProcessQueue();
             return;
