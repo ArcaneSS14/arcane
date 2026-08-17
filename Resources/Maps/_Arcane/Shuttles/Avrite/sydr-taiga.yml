@@ -366,13 +366,6 @@ entities:
           component: ClothingSpeedModifier
         title: null
     - type: Visibility
-- proto: ClothingNeckSyndicakePin
-  entities:
-  - uid: 56751
-    components:
-    - type: Transform
-      pos: 1.3744736,0.22704315
-      parent: 56736
 - proto: ComputerBroken
   entities:
   - uid: 56752
