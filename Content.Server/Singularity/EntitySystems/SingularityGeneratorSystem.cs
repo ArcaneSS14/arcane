@@ -126,19 +126,19 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
             return;
         }
 
-        var contained = true;
+        int foundDirections = 0; /// Arcane-Edit
         if (!generatorComp.FailsafeDisabled)
         {
             var transform = Transform(args.OtherEntity);
             var directions = Enum.GetValues<Direction>().Length;
-            for (var i = 0; i < directions - 1; i += 2) // Skip every other direction, checking only cardinals
+            for (var i = 0; i < directions - 1; i += 2) /// Arcane-Edit-Start
             {
-                if (!CheckContainmentField((Direction)i, new Entity<SingularityGeneratorComponent>(args.OtherEntity, generatorComp), transform))
-                    contained = false;
+                if (CheckContainmentField((Direction) i, new Entity<SingularityGeneratorComponent>(args.OtherEntity, generatorComp), transform))
+                    foundDirections++;
             }
         }
 
-        if (!contained && !generatorComp.FailsafeDisabled)
+        if (foundDirections < 2 && !generatorComp.FailsafeDisabled) /// Arcane-Edit-End
         {
             generatorComp.NextFailsafe = _timing.CurTime + generatorComp.FailsafeCooldown;
             PopupSystem.PopupEntity(Loc.GetString("comp-generator-failsafe", ("target", args.OtherEntity)), args.OtherEntity, PopupType.LargeCaution);

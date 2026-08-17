@@ -51,9 +51,29 @@ public sealed class ContainmentFieldSystem : EntitySystem
         }
     }
 
-    private void HandleEventHorizon(EntityUid uid, ContainmentFieldComponent component, ref EventHorizonAttemptConsumeEntityEvent args)
+private void HandleEventHorizon(EntityUid uid, ContainmentFieldComponent component, ref EventHorizonAttemptConsumeEntityEvent args)
+{
+    if (args.Cancelled) /// Arcane-Start
+        return;
+
+    if (args.EventHorizon.SuppressFieldConsumption)
     {
-        if(!args.Cancelled && !args.EventHorizon.CanBreachContainment)
-            args.Cancelled = true;
+        args.Cancelled = true;
+        return;
     }
+
+    var singularityUid = args.EventHorizon.Owner;
+    var singularityXform = Transform(singularityUid);
+    var fieldXform = Transform(uid);
+
+    var singularityPos = _transformSystem.GetWorldPosition(singularityXform);
+    var fieldPos = _transformSystem.GetWorldPosition(fieldXform);
+    var horizonRadius = args.EventHorizon.Radius;
+
+    var distance = (fieldPos - singularityPos).Length(); /// Arcane-End
+
+    if (distance > horizonRadius)
+        args.Cancelled = true;
+ // if (!args.Cancelled && !args.EventHorizon.CanBreachContainment) Arcane-Edit-Start: Removed
+    /// args.Cancelled = true; Arcane-Edit-End: Removed
 }

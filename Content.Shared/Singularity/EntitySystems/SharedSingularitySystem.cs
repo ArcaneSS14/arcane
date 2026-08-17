@@ -8,6 +8,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing; /// Arcane
 
 namespace Content.Shared.Singularity.EntitySystems;
 
@@ -22,7 +23,8 @@ public abstract class SharedSingularitySystem : EntitySystem
     [Dependency] private readonly SharedEventHorizonSystem _horizons = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] protected readonly IViewVariablesManager Vvm = default!;
-#endregion Dependencies
+    [Dependency] private readonly IGameTiming _timing = default!; /// Arcane
+    #endregion Dependencies
 
     /// <summary>
     /// The minimum level a singularity can be set to.
@@ -124,9 +126,20 @@ public abstract class SharedSingularitySystem : EntitySystem
 
         if (TryComp<EventHorizonComponent>(uid, out var eventHorizon))
         {
-            _horizons.SetRadius(uid, EventHorizonRadius(singularity), false, eventHorizon);
             _horizons.SetCanBreachContainment(uid, CanBreachContainment(singularity), false, eventHorizon);
+            _horizons.SetRadius(uid, EventHorizonRadius(singularity), false, eventHorizon); /// Arcane
             _horizons.UpdateEventHorizonFixture(uid, eventHorizon: eventHorizon);
+
+            if (oldValue == 0) /// Arcane-Start
+            {
+                eventHorizon.SuppressFieldConsumption = false;
+                eventHorizon.SuppressFieldConsumptionUntil = TimeSpan.MaxValue;
+            }
+            else
+            {
+                eventHorizon.SuppressFieldConsumption = true;
+                eventHorizon.SuppressFieldConsumptionUntil = _timing.CurTime + TimeSpan.FromSeconds(2);
+            } /// Arcane-End
         }
 
         if (TryComp<PhysicsComponent>(uid, out var body))
@@ -191,7 +204,7 @@ public abstract class SharedSingularitySystem : EntitySystem
     /// <summary>
     /// The level at and above which a singularity should be capable of breaching containment.
     /// </summary>
-    public const byte SingularityBreachThreshold = 5;
+    public const byte SingularityBreachThreshold = 7; /// Arcane-Edit: 5 > 7
 
     /// <summary>
     /// Derives the proper gravity well radius for a singularity from its state.
