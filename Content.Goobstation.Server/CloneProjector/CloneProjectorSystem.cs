@@ -31,7 +31,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
-using Content.Shared._Art.TTS;
+using Content.Shared._Arcane.TTS;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;

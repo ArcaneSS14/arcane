@@ -1,10 +1,10 @@
-using Content.Shared._Art.TTS;
+using Content.Shared._Arcane.TTS;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._Art.TTS;
+namespace Content.Client._Arcane.TTS;
 
 [UsedImplicitly]
 public sealed class TTSVoiceChangeUIController : UIController

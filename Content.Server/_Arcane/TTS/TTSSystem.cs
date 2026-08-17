@@ -5,8 +5,8 @@ using Content.Server.Chat.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared._EinsteinEngines.Language;
 using Content.Shared._EinsteinEngines.Language.Components;
-using Content.Shared._Art.CVars;
-using Content.Shared._Art.TTS;
+using Content.Shared._Arcane.CVars;
+using Content.Shared._Arcane.TTS;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
@@ -15,7 +15,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Art.TTS;
+namespace Content.Server._Arcane.TTS;
 
 // ReSharper disable once InconsistentNaming
 public sealed partial class TTSSystem : EntitySystem

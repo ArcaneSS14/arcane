@@ -1,9 +1,9 @@
-using Content.Shared._Art.TTS;
+using Content.Shared._Arcane.TTS;
 using Content.Shared.GameTicking;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._Art.TTS;
+namespace Content.Client._Arcane.TTS;
 
 public sealed class TTSVoiceChangeSystem : EntitySystem
 {

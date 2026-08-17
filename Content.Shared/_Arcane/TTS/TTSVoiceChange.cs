@@ -2,7 +2,7 @@ using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Art.TTS;
+namespace Content.Shared._Arcane.TTS;
 
 /// <summary>
 /// Raised when a silicon uses the voice-change action.

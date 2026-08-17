@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using Content.Shared._Art.CVars;
+using Content.Shared._Arcane.CVars;
 using Prometheus;
 using Robust.Shared.Configuration;
 
-namespace Content.Server._Art.TTS;
+namespace Content.Server._Arcane.TTS;
 
 // ReSharper disable once InconsistentNaming
 /// <summary>

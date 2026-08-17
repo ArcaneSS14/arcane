@@ -1,6 +1,6 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared._Art.CVars;
+namespace Content.Shared._Arcane.CVars;
 
 [CVarDefs]
 public sealed class ArtCVars

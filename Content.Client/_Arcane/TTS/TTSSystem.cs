@@ -1,6 +1,6 @@
 using Content.Shared._Arcane.CCVars;
-using Content.Shared._Art.CVars;
-using Content.Shared._Art.TTS;
+using Content.Shared._Arcane.CVars;
+using Content.Shared._Arcane.TTS;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Robust.Client.Audio;
@@ -11,7 +11,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Art.TTS;
+namespace Content.Client._Arcane.TTS;
 
 /// <summary>
 /// Plays TTS audio in world

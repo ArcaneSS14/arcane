@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Art.TTS;
+namespace Content.Shared._Arcane.TTS;
 
 public enum VoiceRequestType
 {

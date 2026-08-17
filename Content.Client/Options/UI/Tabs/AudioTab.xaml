@@ -18,17 +18,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 <ui:OptionSlider Name="SliderVolumeLobby" Title="{Loc 'ui-options-lobby-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeInterface" Title="{Loc 'ui-options-interface-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeBarks" Title="{Loc 'ui-options-barks-volume'}" /><!-- Goob Station - Barks -->
-                <ui:OptionSlider Name="SliderVolumeTTS" Title="{Loc 'ui-options-tts-volume'}" /><!-- Art-TTS -->
-                <ui:OptionSlider Name="SliderVolumeRadioTTS" Title="{Loc 'ui-options-radio-tts-volume'}" /><!-- Aracne -->
-                <!-- Orion-Start -->
-                <ui:OptionSlider Name="SliderVolumeRadio" Title="{Loc 'ui-options-radio-volume'}" />
-                <!-- Orion-End -->
+                <!-- Arcane-Start -->
+                <ui:OptionSlider Name="SliderVolumeTTS" Title="{Loc 'ui-options-tts-volume'}" />
+                <ui:OptionSlider Name="SliderVolumeRadioTTS" Title="{Loc 'ui-options-radio-tts-volume'}" />
+                <!-- Arcane-End -->
+                <ui:OptionSlider Name="SliderVolumeRadio" Title="{Loc 'ui-options-radio-volume'}" /> <!-- Orion -->
                 <ui:OptionSlider Name="SliderMaxAmbienceSounds" Title="{Loc 'ui-options-ambience-max-sounds'}"
                                  Margin="0 0 0 8" />
                 <CheckBox Name="UseTTSCheckBox" Text="{Loc 'ui-options-use-tts'}"/> <!-- Arcane -->
-                <!-- Orion-Start -->
-                <CheckBox Name="CombatModeSoundCheckBox" Text="{Loc 'ui-options-combat-mode-sound'}" />
-                <!-- Orion-End -->
+                <CheckBox Name="CombatModeSoundCheckBox" Text="{Loc 'ui-options-combat-mode-sound'}" /> <!-- Orion -->
                 <ui:OptionSlider Name="SliderHighlightVolume" Title="{Loc 'ui-options-highlight-volume'}" /> <!-- Goobstation - Highlight chat Ping/Audio! -->
                 <CheckBox Name="LobbyMusicCheckBox" Text="{Loc 'ui-options-lobby-music'}" />
                 <CheckBox Name="RestartSoundsCheckBox" Text="{Loc 'ui-options-restart-sounds'}" />

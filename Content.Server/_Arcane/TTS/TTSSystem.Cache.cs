@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Content.Shared._Art.TTS;
+using Content.Shared._Arcane.TTS;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
 
-namespace Content.Server._Art.TTS;
+namespace Content.Server._Arcane.TTS;
 
 // ReSharper disable once InconsistentNaming
 public sealed partial class TTSSystem

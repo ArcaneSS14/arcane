@@ -84,7 +84,7 @@
   - LanguageKnowledge
   - ForeignerTrait
   # Einstein Engines - Language end
-  - TTS # Art
+  - TTS # Arcane
   blacklist:
     components:
     - AttachedClothing # helmets, which are part of the suit

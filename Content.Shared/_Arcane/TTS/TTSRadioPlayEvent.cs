@@ -1,7 +1,7 @@
 using Content.Shared._EinsteinEngines.Language;
 using Robust.Shared.Player;
 
-namespace Content.Shared._Art.TTS;
+namespace Content.Shared._Arcane.TTS;
 
 [ByRefEvent]
 public readonly record struct TTSRadioPlayEvent(string Message, LanguagePrototype Language, string Voice);
