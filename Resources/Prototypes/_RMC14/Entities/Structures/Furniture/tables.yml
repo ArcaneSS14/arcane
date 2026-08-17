@@ -1,0 +1,25 @@
+# Almayer
+- type: entity
+  parent: BaseStructure
+  id: CMTableAlmayer
+  name: table
+  description: A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover.
+  suffix: Almayer
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Furniture/Tables/almayer.rsi
+  - type: Icon
+    sprite: _RMC14/Structures/Furniture/Tables/almayer.rsi
+  - type: Construction
+    graph: Table
+
+# Reinforced Requisition
+- type: entity
+  parent: TableReinforced
+  id: CMTableReinforcedRequisition
+  description: A square metal surface resting on its fat metal bottom.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Furniture/Tables/requisition.rsi
+  - type: Icon
+    sprite: _RMC14/Structures/Furniture/Tables/requisition.rsi

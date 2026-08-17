@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: CMJumpsuitLiaisonBlack
+  name: black suit pants
+  description: A pair of black slacks paired with a white shirt. The most common pairing among corporate workers.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Clothing/Uniforms/Liaison/corporate_black.rsi
+  - type: Clothing
+    sprite: _RMC14/Objects/Clothing/Uniforms/Liaison/corporate_black.rsi

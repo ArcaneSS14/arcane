@@ -1,0 +1,11 @@
+- type: entity
+  parent: WallReinforced
+  id: CMWallReinforcedHeavyAlmayer
+  name: heavy reinforced hull
+  description: A highly reinforced metal wall used to separate rooms and make up the ship. It would take a great impact to weaken this wall.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Walls/almayer_black.rsi
+  - type: Icon
+    sprite: _RMC14/Structures/Walls/almayer_black.rsi
+    state: hull
