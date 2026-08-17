@@ -200,9 +200,9 @@
     storageRemoveSound: *SoundSqueak
 
 - type: entity # Arcane-Start
+  parent: [ToolboxBase, BaseMinorContraband]
   id: ToolboxInteQ
   name: brown toolbox
-  parent: [ToolboxBase, BaseMinorContraband]
   description: A sinister looking toolbox filled with elite InteQ tools.
   components:
   - type: Sprite
