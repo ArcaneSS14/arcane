@@ -21,6 +21,7 @@
       map: ["foldedLayer"]
       visible: false
 
+# Comfy chairs
 - type: entity
   parent: SeatBase
   id: CMChairComfy
@@ -111,3 +112,26 @@
   components:
   - type: Sprite
     state: comfychair_alien
+
+# Office chair
+- type: entity
+  parent: CMSeatBase
+  id: CMChairOfficeDark
+  name: dark office chair
+  components: # RMC14 Non-parity: Not rotatable
+  - type: Sprite
+    state: officechair_dark
+  - type: Construction
+    graph: Seat
+    node: chairOfficeDark
+
+- type: entity
+  parent: CMChairOfficeDark
+  id: CMChairOfficeWhite
+  name: white office chair
+  components:
+  - type: Sprite
+    state: officechair_white
+  - type: Construction
+    graph: Seat
+    node: chairOfficeWhite
