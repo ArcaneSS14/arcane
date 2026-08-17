@@ -229,6 +229,10 @@
    - MedicalDoctorHead
    - MedicalMask
    - VirologistJumpsuit
+   # Arcane-Start
+   - MedicalCloak
+   - VirologistBikini
+   # Arcane-End
    - MedicalGloves
    - VirologistBackpack
    - VirologistOuterClothing

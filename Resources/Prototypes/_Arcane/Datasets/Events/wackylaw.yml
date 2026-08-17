@@ -1,0 +1,82 @@
+# To add a new rule, you need to specify its locale from the FTL and the dataset that will be used.
+# All of this needs to be specified in “ArcaneLaws”; if the law does not specify the use of any particular dataset, just leave the locale as is.
+# To increase the hit rate, add it to the dataset again
+
+- type: dataset
+  id: WackyLawItems
+  values:
+  - ClothingUniformJumpsuitColorTeal
+  - ClothingSocksAssBlastUSAThigh
+  - ClothingHandsBDSMgloves
+  - ClothingJumpsuitBDSMress
+  - ClothingUniformJumpsuitTurtleneckWhite
+  - ClothingUniformJumpsuitColorWhite
+  - ClothingOuterHospitalGown
+  - ClothingHeadHatWitch
+  - ClothingUniformJumpskirtMaidLong
+  - ClothingOuterWinterRobo
+  - ClothingHandsGlovesCaptain
+  - ClothingUniformJumpsuitRoboticist
+  - ClothingUniformJumpsuitAviator
+  - ClothingCloakHOSRed
+  - ClothingShoesBootsWinterMed
+  - ClothingHandsGlovesNitrile
+  - ClothingEyesHudBeer
+  - ClothingSocksBeer
+  - ClothingUniformJumpskirtJanimaid
+  - ClothingBeltJanitor
+  - ClothingHandsGlovesJanitor
+  - ClothingHandsGlovesRobohands
+  - ClothingUniformJumpskirtMaidPink
+  - BlowPink
+  - BlowGreen
+  - BlowPurple
+  - PussyVulpaBlue
+  - PussyVulpaBlue
+  - OnaholeGreen
+  - SlimeDildo
+  - DogDildo
+  - ClothingWristsClockworkSlab
+  - ClothingNeckStoleChaplain
+  - ClothingSocksThinThigh
+  - ClothingShoesColorBlack
+  - ClothingSocksThigh
+  - ClothingSocksCandyCaneGreenThigh
+  - ClothingUnderwearPantiesCommie
+  - ClothingUnderwearPantiesFishnetLowerAlt
+
+- type: dataset
+  id: WackyLawDrinks
+  values:
+  - "Вермут"
+  - "Вино"
+  - "Виски"
+  - "Водка"
+  - "Джин"
+  - "Коньяк"
+  - "Кофейный ликёр"
+  - "Медовуха"
+  - "Пиво"
+  - "Ром"
+  - "Текила"
+  - "Эль"
+
+- type: dataset
+  id: WackyLawDepartments
+  values:
+  - All
+  - Cargo
+  - Command
+  - Engineering
+  - Medical
+  - Science
+  - Security
+  - Civilian
+
+- type: dataset
+  id: WackyLaws
+  values:
+  - "wacky-law-content-force-item|WackyLawItems"
+  - "wacky-law-content-ban-item|WackyLawItems"
+  - "wacky-law-content-half-prohibition|WackyLawDrinks"
+  - "wacky-law-content-full-prohibition"
