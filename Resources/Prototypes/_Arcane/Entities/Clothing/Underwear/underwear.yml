@@ -70,3 +70,14 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Underwear/beer_pants.rsi
+
+# Sponsor
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearJesterPants
+  name: jester's pants
+  description: Jester's pants.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Sponsor/jester_underwear.rsi

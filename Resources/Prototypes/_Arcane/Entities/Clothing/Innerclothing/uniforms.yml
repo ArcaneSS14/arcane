@@ -9,6 +9,8 @@
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/pivozavr.rsi
 
+# Sponsor
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformBartender
@@ -33,47 +35,47 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformCEBlack
-  name: CE's black uniform
+  id: ClothingUniformNTRBlack
+  name: NTR's black uniform
   description: An indicator of skill and sense of style.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_black.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_black.rsi
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformCEBlackSkirt
-  name: CE's black uniform with skirt
+  id: ClothingUniformNTRBlackSkirt
+  name: NTR's black uniform with skirt
   description: An indicator of skill and sense of style.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black_skirt.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_black_skirt.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_black_skirt.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_black_skirt.rsi
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformCEWhiteSkirt
-  name: CE's white uniform with skirt
+  id: ClothingUniformNTRWhiteSkirt
+  name: NTR's white uniform with skirt
   description: An indicator of skill and sense of style.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white_skirt.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_white_skirt.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white_skirt.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_white_skirt.rsi
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformCEWhite
-  name: CE's white uniform
+  id: ClothingUniformNTRWhite
+  name: NTR's white uniform
   description: An indicator of skill and sense of style.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_white.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/CE_white.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/NTR_white.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -132,6 +134,160 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformVirologistPatron
+  name: virologist uniform
+  description: Sterilie uniform for working with microorganisms.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformVirologistTurtleneckPatron
+  name: virologist turtleneck
+  description: Sterilie uniform for working with microorganisms.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_turtleneck.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_turtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformVirologistTurtleneckSkirtPatron
+  name: virologist turtleneck with skirt
+  description: Sterilie uniform for working with microorganisms.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_turtleneck_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_turtleneck_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformVirologistSkirtPatron
+  name: virologist uniform with skirt
+  description: Sterilie uniform for working with microorganisms.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformParamedicPatron
+  name: paramedic uniform
+  description: Rescuer's clothes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformParamedicTurtleneckPatron
+  name: paramedic turtleneck
+  description: Rescuer's clothes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_turtleneck.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_turtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformParamedicTurtleneckSkirtPatron
+  name: paramedic turtleneck with skirt
+  description: Rescuer's clothes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_turtleneck_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_turtleneck_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformParamedicSkirtPatron
+  name: paramedic uniform with skirt
+  description: Rescuer's clothes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformDoctorTurtleneckPatron
+  name: doctor turtleneck
+  description: Medical worker's uniform.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/doctor_turtleneck.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/doctor_turtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformDoctorTurtleneckSkirtPatron
+  name: chemist turtleneck with skirt
+  description: Medical worker's uniform.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/doctor_turtleneck_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/doctor_turtleneck_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformChemistTurtleneckPatron
+  name: chemist turtleneck
+  description: High-quality clothes protecting from chemical burns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_turtleneck.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_turtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformChemistTurtleneckSkirtPatron
+  name: chemist turtleneck with skirt
+  description: High-quality clothes protecting from chemical burns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_turtleneck_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_turtleneck_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformChemistSkirtPatron
+  name: chemist uniform with skirt
+  description: High-quality clothes protecting from chemical burns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformChemistPatron
+  name: chemist uniform
+  description: High-quality clothes protecting from chemical burns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformQMBlackSkirtSleeveles
   name: sleeveles QM's black uniform with skirt
   description: "Get out of here and get me some money too!"
@@ -173,3 +329,179 @@
     sprite: _Arcane/Clothing/Innerclothing/Sponsor/QM.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/Sponsor/QM.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTwilightSparkle
+  name: bookworm's clothes
+  description: For those who love to read and dress brightly.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/twilight_sparkle.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/twilight_sparkle.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBotanist
+  name: botanist uniform
+  description: Special clothes for working with plants.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/botanist.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/botanist.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBotanistWhithStraps
+  name: botanist jumpsuit with straps
+  description: Special clothes for working with plants.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/botanist_straps.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/botanist_straps.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCamouflage
+  name: camouflage jumpsuit
+  description: I am a bush.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/camouflage.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/camouflage.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformChiefCook
+  name: chief's uniform
+  description: FOOLS!!!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chief_cook.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chief_cook.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformFreeClothes
+  name: free clothes
+  description: Cheep and angrily.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/cleaner.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/cleaner.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCook
+  name: cook's uniform
+  description: French restaurant uniform.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/cleaner.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/cleaner.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformDancer
+  name: dancer's dress
+  description: Dress for bright perfomances.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/dancer.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/dancer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformFeminine
+  name: feminine uniform
+  description: Allez venez, Milord.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/feminine_form.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/feminine_form.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformFeminineEmpty
+  name: empty feminine uniform
+  description: Allez venez, Milord.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/feminine_form_empty.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/feminine_form_empty.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJesterCostume
+  name: jester's costume
+  description: Old-fashioned clown costume.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/jester_costume.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/jester_costume.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPerfomanceDress
+  name: perfomance dress
+  description: Chick and shine.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/perfomance_dress.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/perfomance_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformComfortableUniform
+  name: comfortable uniform
+  description: Comfortable uniform.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/radio_host.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/radio_host.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformServiceShirt
+  name: shirt
+  description: White shirt.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/service.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/service.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformServiceShirtSkirt
+  name: shirt with skirt
+  description: White shirt with black skirt.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/service_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/service_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformSterileUniform
+  name: sterile uniform
+  description: Veterinarian clothing.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/sterile.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/sterile.rsi

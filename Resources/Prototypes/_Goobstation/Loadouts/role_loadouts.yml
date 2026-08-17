@@ -149,10 +149,14 @@
   id: JobRadioHost
   groups:
   - RadioHostJumpsuit
+  - RadioHostOuterclothing # Arcane
   - CommonBackpack
   - Survival
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - RadioHostMicrophone
+  - Patron
+  # Arcane-End
   - Animals
   - GroupSpeciesBreathTool
   - Glasses
@@ -225,6 +229,10 @@
    - MedicalDoctorHead
    - MedicalMask
    - VirologistJumpsuit
+   # Arcane-Start
+   - MedicalCloak
+   - VirologistBikini
+   # Arcane-End
    - MedicalGloves
    - VirologistBackpack
    - VirologistOuterClothing

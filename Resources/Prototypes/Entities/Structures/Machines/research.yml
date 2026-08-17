@@ -25,6 +25,7 @@
     color: "#b211b2"
   - type: LitOnPowered
   - type: ResearchServer
+  - type: PeriodicAnomalySpawner # Arcane
   - type: ResearchServerControlStatus # Orion
   - type: TechnologyDatabase
     supportedDisciplines:
@@ -86,7 +87,7 @@
     guides:
     - Science
   - type: ResearchPointSource # Goobstation
-    pointspersecond: 5 # Orion-Edit: 15 > 5
+    pointspersecond: 3 # Arcane
     pointType: General # Orion
     active: true
 
