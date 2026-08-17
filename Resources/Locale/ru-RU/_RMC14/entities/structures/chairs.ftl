@@ -1,0 +1,13 @@
+ent-CMChair = складной стул
+    .desc = Прямоугольная стальная пластина на четырёх ножках с панелью сзади. Создано, чтобы поддерживать сидячее положение, более или менее комфортно.
+ent-CMChairComfy = удобное кресло
+    .desc = Кресло с подушкой и регулируемым подголовником. Вы бы могли сидеть на нём вечно.
+ent-CMChairComfyBlack = чёрное удобное кресло
+ent-CMChairComfyBeige = бежевое удобное кресло
+ent-CMChairComfyBlue = синее удобное кресло
+ent-CMChairComfyLime = лаймовое удобное кресло
+ent-CMChairComfyOrange = оранжевое удобное кресло
+ent-CMChairComfyTeal = сине-зелёное удобное кресло
+ent-RMCChairComfyAlien = удобное инопланетное кресло
+ent-CMChairOfficeDark = тёмное офисное кресло
+ent-CMChairOfficeWhite = белое офисное кресло
