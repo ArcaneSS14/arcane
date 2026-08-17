@@ -6,3 +6,14 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Socks/beer_stokings.rsi
+
+# Sponsor
+
+- type: entity
+  parent: ClothingSocksBase
+  id: ClothingMimeStockings
+  name: mime's stockings
+  description: Stripped stockings.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Socks/Sponsor/mime_stockings.rsi

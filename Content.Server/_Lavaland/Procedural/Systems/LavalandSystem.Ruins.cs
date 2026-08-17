@@ -168,7 +168,7 @@ public sealed partial class LavalandSystem
             return;
         }
 
-        usedSpace.Add(ruinBox);
+        usedSpace.Add(ruinBox.Translated(coord.Value)); // Arcane
         coords.Remove(coord.Value);
 
         // Teleport it into place on preloader map
@@ -232,7 +232,7 @@ public sealed partial class LavalandSystem
 
         Spawn(ruin.SpawnedMarker, new EntityCoordinates(lavaland, coord.Value));
 
-        usedSpace.Add(ruinBox);
+        usedSpace.Add(ruinBox.Translated(coord.Value)); // Arcane
         coords.Remove(coord.Value);
     }
 

@@ -44,8 +44,10 @@ using Direction = Robust.Shared.Maths.Direction;
 using Content.Goobstation.Common.CCVar; // Goob Station - Barks
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Orion.RichText;
-using Content.Shared._Arcane.CCVars;
 using Content.Shared._Arcane.ERP;
+using Content.Client._Art.TTS;
+using Content.Shared._Art.TTS;
+
 namespace Content.Client.Lobby.UI
 {
     [GenerateTypedNameReferences]
@@ -88,6 +90,7 @@ namespace Content.Client.Lobby.UI
 
         // One at a time.
         private LoadoutWindow? _loadoutWindow;
+        private TTSTab? _ttsTab; // Art
 
         private bool _exporting;
         private bool _imaging;
@@ -224,8 +227,6 @@ namespace Content.Client.Lobby.UI
 
             #endregion Sex
 
-            InitializeVoice(); // Art-TTS
-
             #region Age
 
             AgeEdit.OnTextChanged += args =>
@@ -263,15 +264,6 @@ namespace Content.Client.Lobby.UI
             }
 
             #endregion
-
-            // Arcane-start
-            _cfgManager.OnValueChanged(ACCVars.UseTTS, OnUseTTSChanged, true);
-
-            ToggleTTS.OnPressed += _ =>
-            {
-                _cfgManager.SetCVar(ACCVars.UseTTS, ToggleTTS.Pressed);
-            };
-            // Arcane-end
 
             RefreshSpecies();
 
@@ -564,6 +556,8 @@ namespace Content.Client.Lobby.UI
             #endregion Markings
 
             RefreshFlavorText();
+
+            RefreshVoiceTab(); // Art
 
             #region Dummy
 
@@ -901,6 +895,53 @@ namespace Content.Client.Lobby.UI
             UpdateFlavorPreview();
         }
         // Orion-End
+
+        // Art-TTS-Start
+        #region Voice
+
+        private void RefreshVoiceTab()
+        {
+            _ttsTab = new TTSTab();
+            var children = new List<Control>();
+            foreach (var child in TabContainer.Children)
+                children.Add(child);
+
+            TabContainer.RemoveAllChildren();
+
+            for (int i = 0; i < children.Count; i++)
+            {
+                if (i == 1) // Set the tab to the 2nd place.
+                {
+                    TabContainer.AddChild(_ttsTab);
+                }
+                TabContainer.AddChild(children[i]);
+            }
+
+            TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-voice-tab"));
+
+            _ttsTab.OnVoiceSelected += voiceId =>
+            {
+                SetVoice(voiceId);
+                _ttsTab.SetSelectedVoice(voiceId);
+            };
+
+            _ttsTab.OnPreviewRequested += voiceId =>
+            {
+                _entManager.System<TTSSystem>().RequestGlobalTTS(VoiceRequestType.Preview, voiceId);
+            };
+        }
+
+        private void UpdateTTSVoicesControls()
+        {
+            if (Profile is null || _ttsTab is null)
+                return;
+
+            _ttsTab.UpdateControls(Profile, Profile.Sex);
+            _ttsTab.SetSelectedVoice(Profile.Voice);
+        }
+
+        #endregion
+        // Art-TTS-End
 
         /// <summary>
         /// Refreshes traits selector
@@ -2374,12 +2415,5 @@ namespace Content.Client.Lobby.UI
             label.SetMessage(FormattedMessage.FromMarkupPermissive(safeContent), SafeMarkupTags.Basic);
         }
         // Orion-End
-
-        // Arcane-start
-        private void OnUseTTSChanged(bool value)
-        {
-            ToggleTTS.Pressed = value;
-        }
-        // Arcane-end
     }
 }

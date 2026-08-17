@@ -188,6 +188,11 @@ public sealed partial class ResearchSystem
             return;
 
         // Orion-Start
+        // Arcane-start
+        if (Transform(client).GridUid is not { } clientGrid || Transform(server).GridUid != clientGrid)
+            return;
+        // Arcane-end
+
         var authorityServer = GetNetworkAuthority(server, serverComponent);
         if (authorityServer != server)
             serverComponent = null;
@@ -437,11 +442,17 @@ public sealed partial class ResearchSystem
         if (!Resolve(uid, ref component, false))
             return [uid];
 
+        // Arcane-start
+        var grid = Transform(uid).GridUid;
+        if (grid is null)
+            return [uid];
+        // Arcane-end
+
         var servers = new List<EntityUid>();
         var query = EntityQueryEnumerator<ResearchServerComponent>();
         while (query.MoveNext(out var serverUid, out var serverComp))
         {
-            if (serverComp.NetworkId != component.NetworkId)
+            if (serverComp.NetworkId != component.NetworkId || Transform(serverUid).GridUid != grid) // Arcane
                 continue;
 
             servers.Add(serverUid);
