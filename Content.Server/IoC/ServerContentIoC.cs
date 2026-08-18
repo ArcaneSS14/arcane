@@ -2,7 +2,7 @@
 
 using Content.Server._Arcane.Discord;
 using Content.Server._Arcane.DiscordRoles;
-using Content.Server._Art.TTS;
+using Content.Server._Arcane.TTS;
 using Content.Server._Goobstation.Antag;
 using Content.Server._Orion.ServerProtection;
 using Content.Server._Orion.ServerProtection.Administration;
@@ -103,8 +103,10 @@ internal static class ServerContentIoC
         deps.Register<EmoteProtectionSystem>();
         deps.Register<AdminActionProtectionSystem>();
         // Orion-End
-        deps.Register<TTSManager>(); // Art-TTS
-        deps.Register<BanWebhooks>(); // Arcane
-        deps.Register<ChatLogsWebhook>(); // Arcane
+        // Arcane-Start
+        deps.Register<TTSManager>();
+        deps.Register<BanWebhooks>();
+        deps.Register<ChatLogsWebhook>();
+        // Arcane-End
     }
 }

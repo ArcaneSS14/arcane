@@ -312,3 +312,11 @@ Entries:
       message: Апстрим.
   id: 34
   time: '2026-08-18T06:55:14.0000000+00:00'
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Голоса обеих полов стали ТОЧНО доступны всем.
+    - type: Fix
+      message: Близнецу передается голос владельца пояса "gemini"
+  id: 35
+  time: '2026-08-18T08:22:07.0000000+00:00'
