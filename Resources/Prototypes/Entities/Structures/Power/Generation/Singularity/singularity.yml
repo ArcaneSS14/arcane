@@ -50,7 +50,7 @@
     energy: 180
     level: 1
     radsPerLevel: 6 # Goobstation - Radiation Overhaul
-    energyLoss: 1
+    energyLoss: 1.5 # Arcane-Edit: 1 > 1.5
   - type: RandomWalk # To make the singularity move around.
     maxSpeed: 2.5
     minSpeed: 1.875
