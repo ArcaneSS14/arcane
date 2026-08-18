@@ -232,10 +232,10 @@ public abstract class SharedSingularitySystem : EntitySystem
         return singulo.Level switch
         {
             5 => 4.8f,
-            6 => 5.8f, /// Arcane-End
+            6 => 5.6f, /// Arcane-End
             _ => singulo.Level - 0.5f
-        }; /// Arcane-Start
-    } /// Arcane-End
+        };
+    }
 
     /// <summary>
     /// Derives whether a singularity should be able to breach containment from its state.
