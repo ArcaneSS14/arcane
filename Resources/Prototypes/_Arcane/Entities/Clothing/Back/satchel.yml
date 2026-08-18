@@ -1,0 +1,44 @@
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelCE
+  name: senior engineer's bag
+  description: An oblong, battered bag that smelled of burning. It is ideal for emergency carrying of spare parts and heavy cables.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Satchels/ce.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelCMO
+  name: the head doctor's bag
+  description: A roomy sterile bag. There is enough space inside to hide a pair of defibrillators or pack the body of a negligent intern.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Satchels/cmo.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelHoP
+  name: the head of staff's bag
+  description: A tightly sewn trunk designed to transport hundreds of blank ID cards and endless discharge forms.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Satchels/hop.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelQuartermaster
+  name: the quartermaster's bag
+  description: A massive army bag. It seems that it is in such cases that the Head of Cargo secretly brings contraband weapons to the station.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Satchels/quartermaster.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelRD
+  name: supervisor's bag
+  description: A huge bag with lots of fasteners. A suspicious ticking can be heard from the depths, and the fabric vibrates slightly from proximity to the artifacts.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Satchels/rd.rsi

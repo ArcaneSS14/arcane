@@ -1,0 +1,17 @@
+construction-graph-tag-dildo-human = человеческий дилдо
+construction-graph-tag-dildo-avian = авианский дилдо
+construction-graph-tag-dildo-dog = узловой дилдо
+construction-graph-tag-dildo-horse = лошадиный дилдо
+construction-graph-tag-dildo-dragon = драконий дилдо
+construction-graph-tag-dildo-plussize = большое дилдо
+construction-graph-tag-dildo-slime = слайм дилдо
+construction-graph-tag-dildo-xeno = ксено дилдо
+construction-graph-tag-strapon = страпон
+construction-graph-tag-strapon-human = страпон c человеческим дилдо
+construction-graph-tag-strapon-avian = страпон с авианским дилдо
+construction-graph-tag-strapon-dog = страпон с узловым дилдо
+construction-graph-tag-strapon-horse = страпон с лошадиным дилдо
+construction-graph-tag-strapon-dragon = страпон с драконьим дилдо
+construction-graph-tag-strapon-plussize = страпон с большим дилдо
+construction-graph-tag-strapon-slime = страпон с слайм дилдо
+construction-graph-tag-strapon-xeno = страпон с ксено дилдо

@@ -350,6 +350,33 @@
   equipment:
     neck: ClothingCloakQMWhite
 
+- type: loadout
+  id: DetectiveJumpsuitMaintainedPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformWellMaintainedDetective
+
+- type: loadout
+  id: DetectiveJumpskirtMaintainedPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingJumpskirtWellMaintainedDetective
+
+- type: loadout
+  id: ClothingOuterLightBronnikPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    outerClothing: ClothingOuterLightBronnik
+
 # Service
 
 - type: loadout

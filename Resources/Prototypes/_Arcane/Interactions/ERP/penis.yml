@@ -369,3 +369,57 @@
   - !type:SpeciesRequirement
     species:
     - Demon
+
+- type: panelInteraction
+  id: ToyFap
+  category: Penis
+  userArouse: 10
+  targetArouse: 10
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/asscrap1.ogg
+  - /Audio/_Arcane/Interactions/asscrap2.ogg
+  - /Audio/_Arcane/Interactions/asscrap3.ogg
+  selfMessages:
+  - проникает пенисом в секс-игрушку.
+  - пенетрирует в секс-игрушку!
+  - трахает секс-игрушку.
+  - страстно трахает секс-игрушку.
+  - быстро трахает секс-игрушку.
+  - нежно трахает секс-игрушку.
+  icon: _Arcane/Interface/ErpPanel/cock_near_ass.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:HeldItemRequirement
+    tags:
+    - SexToyBlow
+    - SexToyButthole
+    - SexToyOnahole
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: ToySuckCock
+  category: Penis
+  userArouse: 5
+  targetArouse: 5
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/oral1.ogg
+  - /Audio/_Arcane/Interactions/oral2.ogg
+  selfMessages:
+  - проталкивает секс-игрушку в своё горло.
+  - осторожно сосет секс-игрушку.
+  - проводит языком по игрушке во рту.
+  - нежно облизывает головку игрушки.
+  - ритмично двигает головой, лаская секс-игрушку.
+  - обхватывает губами головку игрушки и нежно посасывает.
+  - захватывает секс-игрушку губами и ритмично скользит по нему.
+  icon: _Arcane/Interface/ErpPanel/cock_blowjob.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:HeldItemRequirement
+    tags:
+    - SexToyDildo

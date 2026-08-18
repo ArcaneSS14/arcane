@@ -157,11 +157,11 @@
   - /Audio/_Arcane/Interactions/asscrap2.ogg
   - /Audio/_Arcane/Interactions/asscrap3.ogg
   messages:
-  - вставляет игрушку в анус $target.
+  - вставляет секс-игрушку в анус $target.
   - двигает секс-игрушкой в анусе $target.
-  - ритмично использует игрушку в попе $target.
-  - аккуратно вводит игрушку в анус $target.
-  - медленно работает игрушкой в попке $target.
+  - ритмично использует секс-игрушку в попе $target.
+  - аккуратно вводит секс-игрушку в анус $target.
+  - медленно работает секс-игрушкой в попке $target.
   icon: _Arcane/Interface/ErpPanel/toy_butt.png
   tags:
   - RequiresERP
@@ -171,6 +171,33 @@
   userRequirements:
   - !type:HeldItemRequirement
     tags:
-    - SexToyAnal
     - SexToyDildo
     - SexToyVibrator
+
+- type: panelInteraction
+  id: ToyButtFuck
+  category: Anus
+  userArouse: 5
+  targetArouse: 15
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/asscrap1.ogg
+  - /Audio/_Arcane/Interactions/asscrap2.ogg
+  - /Audio/_Arcane/Interactions/asscrap3.ogg
+  messages:
+  - проникает секс-игрушкой в анус $target.
+  - пенетрирует секс-игрушкой в анус $target!
+  - трахает $target секс-игрушкой в попу.
+  - страстно трахает секс-игрушкой в анус $target.
+  - быстро трахает $target секс-игрушкой в попу.
+  - нежно трахает секс-игрушкой в анал $target.
+  icon: _Arcane/Interface/ErpPanel/toy_butt.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:ClothesWearingRequirements
+    tags:
+    - SexToyAnal
