@@ -45,8 +45,8 @@ using Content.Goobstation.Common.CCVar; // Goob Station - Barks
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Orion.RichText;
 using Content.Shared._Arcane.ERP;
-using Content.Client._Art.TTS;
-using Content.Shared._Art.TTS;
+using Content.Client._Arcane.TTS;
+using Content.Shared._Arcane.TTS;
 
 namespace Content.Client.Lobby.UI
 {
@@ -90,7 +90,7 @@ namespace Content.Client.Lobby.UI
 
         // One at a time.
         private LoadoutWindow? _loadoutWindow;
-        private TTSTab? _ttsTab; // Art
+        private TTSTab? _ttsTab; // Arcane
 
         private bool _exporting;
         private bool _imaging;
@@ -557,7 +557,7 @@ namespace Content.Client.Lobby.UI
 
             RefreshFlavorText();
 
-            RefreshVoiceTab(); // Art
+            RefreshVoiceTab(); // Arcane
 
             #region Dummy
 
@@ -896,7 +896,7 @@ namespace Content.Client.Lobby.UI
         }
         // Orion-End
 
-        // Art-TTS-Start
+        // Arcane-Start
         #region Voice
 
         private void RefreshVoiceTab()
@@ -941,7 +941,7 @@ namespace Content.Client.Lobby.UI
         }
 
         #endregion
-        // Art-TTS-End
+        // Arcane-End
 
         /// <summary>
         /// Refreshes traits selector
@@ -1266,7 +1266,7 @@ namespace Content.Client.Lobby.UI
             UpdateFlavorTextEdit();
             UpdateFlavorPreview(); // Orion
             UpdateSexControls();
-            UpdateTTSVoicesControls(); // Art-TTS
+            UpdateTTSVoicesControls(); // Arcane-TTS
             UpdateGenderControls();
             UpdateSkinColor();
             UpdateSpawnPriorityControls();
@@ -1780,17 +1780,17 @@ namespace Content.Client.Lobby.UI
 
             UpdateGenderControls();
             Markings.SetSex(newSex);
-            UpdateTTSVoicesControls(); // Art-TTS
+            UpdateTTSVoicesControls(); // Arcane
             ReloadPreview();
         }
 
-        // Art-TTS Start
+        // Arcane-Start
         private void SetVoice(string newVoice)
         {
             Profile = Profile?.WithVoice(newVoice);
             IsDirty = true;
         }
-        // Art-TTS End
+        // Arcane-End
 
         private void SetGender(Gender newGender)
         {
