@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: BaseSoap
   id: CMSoap
   name: soap
   description: A cheap bar of soap. Doesn't smell.
