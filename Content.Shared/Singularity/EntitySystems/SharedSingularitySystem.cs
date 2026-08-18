@@ -231,8 +231,8 @@ public abstract class SharedSingularitySystem : EntitySystem
     { /// Arcane-Start
         return singulo.Level switch
         {
-            5 => 4.8f,
-            6 => 5.4f, /// Arcane-End
+            5 => 4.5f,
+            6 => 5.5f, /// Arcane-End
             _ => singulo.Level - 0.5f
         };
     }

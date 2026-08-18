@@ -152,8 +152,8 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
                     ParticleAcceleratorPowerState.Standby => 0,
                     ParticleAcceleratorPowerState.Level0 => 1,
                     ParticleAcceleratorPowerState.Level1 => 2,
-                    ParticleAcceleratorPowerState.Level2 => 4,
-                    ParticleAcceleratorPowerState.Level3 => 8,
+                    ParticleAcceleratorPowerState.Level2 => 3,
+                    ParticleAcceleratorPowerState.Level3 => 5,
                     _ => 0
                 },
                 generatorComp
