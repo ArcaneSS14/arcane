@@ -1,5 +1,5 @@
 - type: entity
-  parent: ArmorHelmetPMC
+  parent: ClothingHeadHelmetBase
   id: ArmorHelmetPMCOfficer
   name: PMC beret
   description: The pinnacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts.

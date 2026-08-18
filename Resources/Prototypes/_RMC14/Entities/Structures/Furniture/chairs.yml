@@ -6,8 +6,6 @@
   components:
   - type: Transform
     anchored: true
-  - type: Transform
-    anchored: true
   - type: Physics
     bodyType: Static
   - type: Foldable
