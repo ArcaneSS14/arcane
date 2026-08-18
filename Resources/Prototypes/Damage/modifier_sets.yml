@@ -207,7 +207,13 @@
     Blunt: 0.7
     Slash: 0.8
     Heat: 1.5
-    Shock: 1.2
+    Shock: 1.4
+  ignoreArmorPierceFlags: All # Goobstation
+
+- type: damageModifierSet
+  id: Arachnid
+  coefficients:
+    Poison: 0
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
@@ -215,6 +221,7 @@
   coefficients:
     Cold: 0.7
     Heat: 1.2
+    Piercing: 1.2
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
