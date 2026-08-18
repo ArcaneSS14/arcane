@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: RMCBaseDoorInvincible
+  parent: Airlock
   id: CMBaseDoor
   name: door
   placement:

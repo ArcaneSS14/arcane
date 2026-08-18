@@ -113,7 +113,7 @@
 
 # Office chair
 - type: entity
-  parent: CMSeatBase
+  parent: SeatBase
   id: CMChairOfficeDark
   name: dark office chair
   components: # RMC14 Non-parity: Not rotatable
