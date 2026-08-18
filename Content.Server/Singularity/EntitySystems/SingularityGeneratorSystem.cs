@@ -150,10 +150,10 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
                 generatorComp.Power + component.State switch
                 {
                     ParticleAcceleratorPowerState.Standby => 0,
-                    ParticleAcceleratorPowerState.Level0 => 1,
-                    ParticleAcceleratorPowerState.Level1 => 2,
-                    ParticleAcceleratorPowerState.Level2 => 3,
-                    ParticleAcceleratorPowerState.Level3 => 5,
+                    ParticleAcceleratorPowerState.Level0 => 0.5,
+                    ParticleAcceleratorPowerState.Level1 => 1,
+                    ParticleAcceleratorPowerState.Level2 => 2, /// Arcane-Edit-Start
+                    ParticleAcceleratorPowerState.Level3 => 3, /// Arcane-Edit-End
                     _ => 0
                 },
                 generatorComp
