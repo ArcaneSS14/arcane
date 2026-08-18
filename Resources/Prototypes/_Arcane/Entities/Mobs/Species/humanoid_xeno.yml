@@ -69,7 +69,7 @@
 #        sprite: Mobs/Effects/brute_damage.rsi
 #        color: "#44944A"
   - type: Stamina
-    baseCritThreshold: 125
+    baseCritThreshold: 110
   - type: Hunger
     baseDecayRate: 0.08
   - type: Thirst
