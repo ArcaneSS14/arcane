@@ -25,7 +25,6 @@ using Content.Goobstation.Maths.FixedPoint;
 
 namespace Content.Shared._Shitmed.Medical.Surgery.Pain.Systems;
 
-[Virtual]
 public sealed partial class PainSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _net = default!;
@@ -49,6 +48,9 @@ public sealed partial class PainSystem : EntitySystem
 
     private bool _screamsEnabled;
     private float _screamChance = 0.20f;
+
+    private static readonly TimeSpan PainUpdateInterval = TimeSpan.FromSeconds(0.2);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -70,10 +72,11 @@ public sealed partial class PainSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        _painJobQueue.Process();
 
         if (!_timing.IsFirstTimePredicted)
             return;
+
+        _painJobQueue.Process();
 
         // Process pain decay for all entities with active decay
         var decayQuery = EntityQueryEnumerator<PainDecayComponent, NerveSystemComponent>();
@@ -89,9 +92,10 @@ public sealed partial class PainSystem : EntitySystem
         using var query = EntityQueryEnumerator<NerveSystemComponent>();
         while (query.MoveNext(out var ent, out var nerveSystem))
         {
-            if (TerminatingOrDeleted(ent))
+            if (TerminatingOrDeleted(ent) || _timing.CurTime < nerveSystem.NextUpdate)
                 continue;
 
+            nerveSystem.NextUpdate = _timing.CurTime + PainUpdateInterval;
             _painJobQueue.EnqueueJob(new PainTimerJob(this, (ent, nerveSystem), PainJobTime));
         }
     }
@@ -164,6 +168,8 @@ public sealed partial class PainSystem : EntitySystem
 
         foreach (var key in keysToRemove)
         {
+            UpdateNerveSystemPain(brainUid.Value, brainUid.Value.Comp);
+            Dirty(brainUid.Value.Owner, brainUid.Value.Comp);
             brainUid.Value.Comp.Modifiers.Remove(key);
         }
         // Orion-Edit-End
@@ -204,7 +210,7 @@ public sealed partial class PainSystem : EntitySystem
             if (!TryComp<NerveComponent>(bodyPart.Id, out var nerve))
                 continue;
 
-            component.Nerves.Add(bodyPart.Id, nerve);
+            component.Nerves.Add(bodyPart.Id);
             hasChanges = true; // Orion-Edit
 
             nerve.ParentedNerveSystem = uid;
@@ -279,6 +285,7 @@ public sealed partial class PainSystem : EntitySystem
             // Orion-Edit-End
 
             RemComp<PainDecayComponent>(uid);
+            UpdatePainConsciousness(uid, nerveSystem);
             return;
         }
 
@@ -297,6 +304,7 @@ public sealed partial class PainSystem : EntitySystem
 
             nerveSystem.Pain = currentPain;
             Dirty(uid, nerveSystem);
+            UpdatePainConsciousness(uid, nerveSystem);
         }
     }
 
