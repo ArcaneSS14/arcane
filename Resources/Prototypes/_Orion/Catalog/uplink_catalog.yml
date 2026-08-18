@@ -154,24 +154,26 @@
   categories:
   - UplinkAmmo
 
-- type: listing
-  id: UplinkReinforcementRadioSyndicateCyborgSaboteur
-  name: uplink-reinforcement-radio-cyborg-saboteur-name
-  description: uplink-reinforcement-radio-cyborg-saboteur-desc
-  productEntity: ReinforcementRadioSyndicateCyborgSaboteur
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-saboteur }
-  cost:
-    Telecrystal: 220
-  categories:
-    - UplinkAllies
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-    blacklist:
-      tags:
-      - ContravendUplink
+# Arcane-Edit-Start: Now from Goob
+#- type: listing
+#  id: UplinkReinforcementRadioSyndicateCyborgSaboteur
+#  name: uplink-reinforcement-radio-cyborg-saboteur-name
+#  description: uplink-reinforcement-radio-cyborg-saboteur-desc
+#  productEntity: ReinforcementRadioSyndicateCyborgSaboteur
+#  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-saboteur }
+#  cost:
+#    Telecrystal: 220
+#  categories:
+#    - UplinkAllies
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    whitelist:
+#      tags:
+#      - NukeOpsUplink
+#    blacklist:
+#      tags:
+#      - ContravendUplink
+# Arcane-Edit-End
 
 - type: listing
   id: UplinkRubberStampChameleon

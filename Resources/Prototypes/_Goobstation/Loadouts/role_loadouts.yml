@@ -12,6 +12,7 @@
   - NanotrasenRepresentativeBelt
   - Glasses
   - Trinkets
+  - NanotrasenRepresentativeJobTrinkets
   - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
@@ -39,6 +40,7 @@
   - BlueshieldOfficerMask
   - BlueshieldOfficerShoes
   - Trinkets
+  - BlueshieldOfficerJobTrinkets
   - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
@@ -67,6 +69,7 @@
   - NanotrasenTrainerGloves
   - NanotrasenTrainerBelt
   - Trinkets
+  - NanotrasenTrainerJobTrinkets
   - Patron # Arcane
   - Animals
   - GroupSpeciesBreathTool
@@ -131,6 +134,7 @@
   - SecurityNeck
   - SurvivalSecurity
   - Trinkets
+  - BrigmedicJobTrinkets
   - Patron # Arcane
   - Animals
   - GroupSpeciesBreathToolSecurity
@@ -238,6 +242,7 @@
    - VirologistOuterClothing
    - MedicalShoes
    - VirologistPDA
+   - VirologistJobTrinkets
    - SurvivalMedical
    - Trinkets
    - Patron # Arcane
