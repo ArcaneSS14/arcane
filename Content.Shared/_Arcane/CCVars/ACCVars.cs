@@ -34,4 +34,10 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<bool> RestartServerOnRoundEnd =
         CVarDef.Create("game.restart_server_on_round_end", false, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Должен ли подбирать игрок предметы в боевом режиме или нет.
+    /// </summary>
+    public static readonly CVarDef<bool> CombatModeBlockItemPickup =
+        CVarDef.Create("accessibility.combat_mode_block_item_pickup", false, CVar.ARCHIVE);
 }
