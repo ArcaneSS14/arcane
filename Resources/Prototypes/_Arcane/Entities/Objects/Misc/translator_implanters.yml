@@ -1,6 +1,7 @@
 - type: entity
-  id: KarshanTranslatorImplanter
   parent: [ BaseTranslatorImplanter ]
+  id: KarshanTranslatorImplanter
+  name: Karshan translator Implanter
   suffix: Karshan
   components:
   - type: Implanter
