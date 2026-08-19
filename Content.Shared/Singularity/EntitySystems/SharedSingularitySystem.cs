@@ -147,24 +147,25 @@ public abstract class SharedSingularitySystem : EntitySystem
             } /// Arcane-End
 
             if (TryComp<PhysicsComponent>(uid, out var body))
-        {
-            if (singularity.Level <= 1 && oldValue > 1) // Apparently keeps singularities from getting stuck in the corners of containment fields.
-                _physics.SetLinearVelocity(uid, Vector2.Zero, body: body); // No idea how stopping the singularities movement keeps it from getting stuck though.
-        }
+            {
+                if (singularity.Level <= 1 && oldValue > 1) // Apparently keeps singularities from getting stuck in the corners of containment fields.
+                    _physics.SetLinearVelocity(uid, Vector2.Zero, body: body); // No idea how stopping the singularities movement keeps it from getting stuck though.
+            }
 
-        if (TryComp<AppearanceComponent>(uid, out var appearance))
-        {
-            _visualizer.SetData(uid, SingularityAppearanceKeys.Singularity, singularity.Level, appearance);
-        }
+            if (TryComp<AppearanceComponent>(uid, out var appearance))
+            {
+                _visualizer.SetData(uid, SingularityAppearanceKeys.Singularity, singularity.Level, appearance);
+            }
 
-        if (TryComp<RadiationSourceComponent>(uid, out var radiationSource))
-        {
-            UpdateRadiation(uid, singularity, radiationSource);
-        }
+            if (TryComp<RadiationSourceComponent>(uid, out var radiationSource))
+            {
+                UpdateRadiation(uid, singularity, radiationSource);
+            }
 
-        RaiseLocalEvent(uid, new SingularityLevelChangedEvent(singularity.Level, oldValue, singularity));
-        if (singularity.Level <= 0)
-            QueueDel(uid);
+            RaiseLocalEvent(uid, new SingularityLevelChangedEvent(singularity.Level, oldValue, singularity));
+            if (singularity.Level <= 0)
+                QueueDel(uid);
+        }
     }
 
     /// <summary>
