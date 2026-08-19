@@ -3,7 +3,7 @@
 using System.IO;
 using System.Linq;
 using System.Numerics;
-using Content.Shared._Art.TTS; // Art-TTS
+using Content.Shared._Arcane.TTS;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared._Shitmed.Humanoid.Events; // Shitmed Change
@@ -51,7 +51,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
     public static readonly ProtoId<BarkPrototype> DefaultBarkVoice = "Alto"; // Goob Station - Barks
 
-    // Art-TTS Start
+    // Arcane-Start
     public const string DefaultVoice = "Zeus_dota_2";
 
     public static readonly Dictionary<Sex, string> DefaultSexVoice = new()
@@ -59,9 +59,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         { Sex.Male, "Zeus_dota_2" },
         { Sex.Female, "Lina_dota_2" },
         { Sex.Unsexed, "Gman" },
-        { Sex.Futanari, "Lina_dota_2" } // Arcane
+        { Sex.Futanari, "Lina_dota_2" }
     };
-    // Art-TTS End
+    // Arcane-End
 
     public override void Initialize()
     {
@@ -412,7 +412,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     }
     // goob edit end
 
-    // Art-TTS Start
+    // Arcane-Start
     // ReSharper disable once InconsistentNaming
     public void SetTTSVoice(
         EntityUid uid,
@@ -430,7 +430,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (sync)
             Dirty(uid, humanoid);
     }
-    // Art-TTS End
+    // Arcane-End
 
     // begin Goobstation: port EE height/width sliders
 
@@ -512,7 +512,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         SetSpecies(uid, profile.Species, false, humanoid);
         SetSex(uid, profile.Sex, false, humanoid);
-        SetTTSVoice(uid, profile.Voice, false, humanoid); // Art-TTS
+        SetTTSVoice(uid, profile.Voice, false, humanoid); // Arcane
         humanoid.EyeColor = profile.Appearance.EyeColor;
 
         SetSkinColor(uid, profile.Appearance.SkinColor, false);

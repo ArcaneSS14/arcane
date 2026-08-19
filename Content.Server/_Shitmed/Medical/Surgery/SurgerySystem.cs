@@ -4,6 +4,9 @@ using System.Linq;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Damage;
+using Content.Shared._Shitmed.Targeting;
 using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
@@ -23,12 +26,9 @@ public sealed class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly WoundSystem _wounds = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-
-    private readonly Dictionary<NetEntity, List<EntProtoId>> _surgeries = new();
 
     public override void Initialize()
     {
@@ -44,7 +44,10 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
     protected override void RefreshUI(EntityUid body)
     {
-        _surgeries.Clear();
+        if (!_ui.IsUiOpen(body, SurgeryUIKey.Key))
+            return;
+
+        var surgeries = new Dictionary<NetEntity, List<EntProtoId>>();
         foreach (var part in _body.GetBodyChildren(body))
         {
             var valid = new List<EntProtoId>();
@@ -61,20 +64,15 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
                 valid.Add(surgery);
             }
-            _surgeries[GetNetEntity(part.Id)] = valid;
+            surgeries[GetNetEntity(part.Id)] = valid;
         }
-        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(_surgeries));
+        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries));
         /*
             Reason we do this is because when applying a BUI State, it rolls back the state on the entity temporarily,
             which just so happens to occur right as we're checking for step completion, so we end up with the UI
             not updating at all until you change tools or reopen the window. I love shitcode.
         */
         _ui.ServerSendUiMessage(body, SurgeryUIKey.Key, new SurgeryBuiRefreshMessage());
-    }
-
-    private DamageGroupPrototype? GetDamageGroupByType(string id)
-    {
-        return (from @group in _prototypes.EnumeratePrototypes<DamageGroupPrototype>() where @group.DamageTypes.Contains(id) select @group).FirstOrDefault();
     }
 
     private void SetDamage(EntityUid body,

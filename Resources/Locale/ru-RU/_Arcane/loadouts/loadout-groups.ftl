@@ -1,3 +1,6 @@
+# Service
+loadout-group-service-cloak = Сервисный отдел, плащ
+
 # Librarian
 loadout-group-librarian-shoes = Библиотекарь, обувь
 loadout-group-librarian-glasses = Библиотекарь, очки
@@ -20,3 +23,28 @@ loadout-group-radiohost-microphone = Радиоведущий, микрофон
 loadout-group-service-worker-jumpsuit = Сервисный работник, униформа
 loadout-group-service-worker-shoes = Сервисный работник, обувь
 loadout-group-service-worker-belt = Сервисный работник, пояс
+
+# Medical
+loadout-group-medical-cloak = Медицинский отдел, плащ
+
+# Doctor
+loadout-group-doctor-bikini = Врач, бикини
+
+# Virologist
+loadout-group-virologist-bikini = Вирусолог, бикини
+
+# Paramedic
+loadout-group-paramedic-bikini = Парамедик, бикини
+loadout-group-paramedic-visor = Парамедик, глаза
+
+# Chemist
+loadout-group-chemist-bikini = Химик, бикини
+
+# RND
+loadout-group-rnd-cloak = Научный отдел, плащ
+
+# Engineer
+loadout-group-engineer-cloak = Инженерный отдел, плащ
+
+# Cargo
+loadout-group-cargo-cloak = Отдел снабжения, плащ

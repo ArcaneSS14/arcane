@@ -384,16 +384,8 @@ public sealed class HealingSystem : EntitySystem
                 targetedWoundable = woundablesQueue.Dequeue();
                 if (!TryComp<WoundableComponent>(targetedWoundable, out var woundableComp2))
                     continue;
-                if (TraumaSystem.TraumasBlockingHealing.Any(traumaType => _trauma.HasWoundableTrauma(targetedWoundable, traumaType, woundableComp2, false)))
-                {
-                    canHeal = false;
-
-                    if (!healedBleedLevel)
-                    {
-                        leftoverHealAndTrauma = true;
-                        continue;
-                    }
-                }
+                if (_trauma.HasHealingBlockingTrauma(targetedWoundable, woundableComp2) && !healedBleedLevel)
+                    leftoverHealAndTrauma = true;
 
                 if (canHeal)
                 {
@@ -403,7 +395,7 @@ public sealed class HealingSystem : EntitySystem
                         continue;
                     }
 
-                    var damageChanged = _damageable.TryChangeDamage(targetedWoundable, healingLeft, true, origin: args.User, ignoreBlockers: healedBleed || healing.BloodlossModifier == 0); // GOOBEDIT
+                    var damageChanged = _damageable.TryChangeDamage(targetedWoundable, healingLeft, true, origin: args.User, ignoreBlockers: false);
 
                     if (damageChanged is not null)
                     {

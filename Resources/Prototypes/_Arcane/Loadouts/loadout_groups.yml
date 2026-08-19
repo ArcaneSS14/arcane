@@ -89,7 +89,7 @@
   loadouts:
   - BoomboxPatron
 
-# Service Worker
+# Service
 
 - type: loadoutGroup
   id: ServiceWorkerJumpsuit
@@ -117,3 +117,81 @@
   minLimit: 0
   loadouts:
   - ServiceApronPatron
+
+- type: loadoutGroup
+  id: ServiceCloak
+  name: loadout-group-service-cloak
+  minLimit: 0
+  loadouts:
+  - ServiceCloakPatron
+
+# Medical
+
+- type: loadoutGroup
+  id: MedicalCloak
+  name: loadout-group-medical-cloak
+  minLimit: 0
+  loadouts:
+  - MeicalCloakPatron
+
+- type: loadoutGroup
+  id: DoctorBikini
+  name: loadout-group-doctor-bikini
+  minLimit: 0
+  loadouts:
+  - DoctorBikiniPatron
+
+- type: loadoutGroup
+  id: VirologistBikini
+  name: loadout-group-virologist-bikini
+  minLimit: 0
+  loadouts:
+  - VirologistBikiniPatron
+
+- type: loadoutGroup
+  id: ParamedicBikini
+  name: loadout-group-paramedic-bikini
+  minLimit: 0
+  loadouts:
+  - ParamedicBikiniPatron
+
+- type: loadoutGroup
+  id: ChemistBikini
+  name: loadout-group-chemist-bikini
+  minLimit: 0
+  loadouts:
+  - ChemistBikiniPatron
+
+- type: loadoutGroup
+  id: ParamedicVisor
+  name: loadout-group-paramedic-visor
+  minLimit: 0
+  loadouts:
+  - ParamedicGlassesPatron
+
+# RND
+
+- type: loadoutGroup
+  id: RNDCloak
+  name: loadout-group-rnd-cloak
+  minLimit: 0
+  loadouts:
+  - RNDCloakPatron
+
+# Cargo
+
+- type: loadoutGroup
+  id: CargoCloak
+  name: loadout-group-cargo-cloak
+  minLimit: 0
+  loadouts:
+  - CargoCloakPatron
+
+# Engineer
+
+- type: loadoutGroup
+  id: EngineerCloak
+  name: loadout-group-engineer-cloak
+  minLimit: 0
+  loadouts:
+  - EngineerCloakPatron
