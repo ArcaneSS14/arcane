@@ -135,14 +135,18 @@ public abstract class SharedSingularitySystem : EntitySystem
                 eventHorizon.SuppressFieldConsumption = false;
                 eventHorizon.SuppressFieldConsumptionUntil = TimeSpan.MaxValue;
             }
-            else
+            else if (singularity.Level > oldValue)
             {
                 eventHorizon.SuppressFieldConsumption = true;
                 eventHorizon.SuppressFieldConsumptionUntil = _timing.CurTime + TimeSpan.FromSeconds(2);
+            }
+            else
+            {
+                eventHorizon.SuppressFieldConsumption = false;
+                eventHorizon.SuppressFieldConsumptionUntil = TimeSpan.MaxValue;
             } /// Arcane-End
-        }
 
-        if (TryComp<PhysicsComponent>(uid, out var body))
+            if (TryComp<PhysicsComponent>(uid, out var body))
         {
             if (singularity.Level <= 1 && oldValue > 1) // Apparently keeps singularities from getting stuck in the corners of containment fields.
                 _physics.SetLinearVelocity(uid, Vector2.Zero, body: body); // No idea how stopping the singularities movement keeps it from getting stuck though.
