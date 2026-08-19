@@ -1,5 +1,3 @@
-ent-ClothingUnderwearBeerPants = пивные трусы
-    .desc = Пивные трусы.
 ent-ClothingUnderwearDriada = трусы дриады
     .desc = Покровительница деревьев.
 ent-ClothingUnderwearEroticPurple = фиолетовые эротические трусы
@@ -14,3 +12,6 @@ ent-ClothingUnderwearRed = красные трусы
     .desc = Красные трусы.
 ent-ClothingUnderwearAx = трусы Акса
     .desc = Уга буга.
+
+ent-ClothingUnderwearBeerPants = пивные трусы
+    .desc = Пивные трусы.

@@ -64,15 +64,6 @@
 
 - type: entity
   parent: ClothingUnderwearBase
-  id: ClothingUnderwearBeerPants
-  name: beer pants
-  description: Beer pants.
-  components:
-  - type: Sprite
-    sprite: _Arcane/Clothing/Underwear/beer_pants.rsi
-
-- type: entity
-  parent: ClothingUnderwearBase
   id: ClothingUnderwearDriada
   name: driada panties
   description: Patroness of trees.
@@ -133,3 +124,12 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Underwear/Underwear/ax.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearBeerPants
+  name: beer pants
+  description: Beer pants.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/beer_pants.rsi
