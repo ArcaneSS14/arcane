@@ -23,7 +23,6 @@
     sprite: _RMC14/Structures/barrel_yard.rsi
     offset: 1, 1
   - type: Clickable
-  - type: DeleteOnExplosion
 
 - type: entity
   parent: RMCBarrelPileBase
