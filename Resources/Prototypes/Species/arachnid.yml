@@ -20,6 +20,7 @@
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Arachnid.xml"
   pros:
   - Не получают дебаффов от передвижения по паутине.
+  - Не получают урон от ядов.
   special:
   - Могут производишь шёлк, взамен голоду.
   - Имеет животный желудок.

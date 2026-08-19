@@ -17,6 +17,7 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Hydrakin
+  - type: Uncloneable
   - type: Butcherable
     butcheringType: Spike
     spawned:
