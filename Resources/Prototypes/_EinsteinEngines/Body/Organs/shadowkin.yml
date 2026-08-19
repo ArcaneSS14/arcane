@@ -44,6 +44,8 @@
     sprite: _EinsteinEngines/Mobs/Species/Shadowkin/organs.rsi
     layers:
     - state: core
+  - type: Metabolizer
+    metabolizerTypes: [Human, Shadowkin]
 
 
 - type: entity
