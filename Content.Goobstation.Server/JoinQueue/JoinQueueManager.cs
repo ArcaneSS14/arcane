@@ -293,6 +293,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
             if (!isGraceReconnect)
             {
+                _gracePeriods.Remove(e.Session.UserId);
                 var removedStaleWaitingState = false;
 
                 if (_queue.TryGet(e.Session.UserId, out var staleEntry) &&
