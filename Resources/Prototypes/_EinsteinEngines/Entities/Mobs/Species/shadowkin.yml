@@ -229,7 +229,7 @@
     - ShadowkinEmotes
   - type: Respirator #Goob edit start - Lore Accurate Shadowkin superdense iron blood.
     updateInterval: 6
-    saturationLoss: 0.2
+    saturationLoss: 0.15
     maxSaturation: 30
     saturation: 30 #Goob Edit end
 

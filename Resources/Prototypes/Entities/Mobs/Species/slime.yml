@@ -18,7 +18,7 @@
   - type: Storage
     clickInsert: false
     grid:
-    - 0,0,1,2
+    - 0,0,2,2
     maxItemSize: Large
     storageInsertSound:
       path: /Audio/Voice/Slime/slime_squish.ogg

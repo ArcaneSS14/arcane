@@ -152,6 +152,8 @@
           False:  {visible: false}
           True:  {visible: true}
   - type: MovementSpeedModifier
+    baseWalkSpeed: 2.6
+    baseSprintSpeed: 4.6
     weightlessAcceleration: 2.5
     weightlessModifier: 1.12
   - type: Inventory
