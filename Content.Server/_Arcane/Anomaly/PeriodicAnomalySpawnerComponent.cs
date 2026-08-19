@@ -9,7 +9,7 @@ public sealed partial class PeriodicAnomalySpawnerComponent : Component
     public TimeSpan Interval = TimeSpan.FromMinutes(5);
 
     [DataField]
-    public float Chance = 0.05f;
+    public float Chance = 0.04f;
 
     [DataField]
     public EntProtoId AnomalySpawnerPrototype = "RandomAnomalySpawner";

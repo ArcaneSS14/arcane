@@ -28,7 +28,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 // Arcane-Start
 using Content.Shared.Holopad;
-using Content.Shared._Art.TTS;
+using Content.Shared._Arcane.TTS;
 // Arcane-End
 
 namespace Content.Server.Telephone;

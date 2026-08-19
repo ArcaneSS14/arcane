@@ -1,0 +1,9 @@
+- type: gas
+  id: Aphrodisiac
+  name: gases-aphrodisiac
+  specificHeat: 40
+  heatCapacityRatio: 1.3
+  molarMass: 46
+  color: "#ff69b4"
+  reagent: Aphrodisiac
+  pricePerMole: 2

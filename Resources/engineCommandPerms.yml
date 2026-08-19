@@ -108,7 +108,7 @@
 - Flags: FUN
   Commands:
   - tippy
-  - loadprototype # Goobstation
+  # - loadprototype # Arcane
   - tip
 
 - Flags: SERVER
@@ -152,6 +152,7 @@
   Commands:
   - uploadfile
   - uploadfolder
+  - loadprototype # Arcane
 
 - Commands:
   - "|"

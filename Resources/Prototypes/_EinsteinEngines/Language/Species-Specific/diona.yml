@@ -18,8 +18,23 @@
     minSyllables: 1
     maxSyllables: 5
     replacement:
-    - hs
-    - zt
-    - kr
-    - st
-    - sh
+    # Arcane-Edit-Start
+    - шш
+    - зз
+    - хш
+    - шт
+    - хр
+    - тш
+    - шу
+    - шо
+    - хь
+    - хрр
+    - зт
+    - кр
+    - пш
+    - фш
+    - цш
+    - шык
+    - шёлк
+    - хвощ
+    # Arcane-Edit-End

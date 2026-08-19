@@ -27,40 +27,40 @@
     jumpsuit: ClothingUniformBartenderSkirt
 
 - type: loadout
-  id: CEBlackPatron
+  id: NTRBlackPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
   equipment:
-    jumpsuit: ClothingUniformCEBlack
+    jumpsuit: ClothingUniformNTRBlack
 
 - type: loadout
-  id: CEBlackSkirtPatron
+  id: NTRBlackSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
   equipment:
-    jumpsuit: ClothingUniformCEBlackSkirt
+    jumpsuit: ClothingUniformNTRBlackSkirt
 
 - type: loadout
-  id: CEWhiteSkirtPatron
+  id: NTRWhiteSkirtPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
   equipment:
-    jumpsuit: ClothingUniformCEWhiteSkirt
+    jumpsuit: ClothingUniformNTRWhiteSkirt
 
 - type: loadout
-  id: CEWhitePatron
+  id: NTRWhitePatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
   equipment:
-    jumpsuit: ClothingUniformCEWhite
+    jumpsuit: ClothingUniformNTRWhite
 
 - type: loadout
   id: ClownPinkPatron
@@ -171,13 +171,13 @@
     shoes: ClothingShoesOldFashionedMedical
 
 - type: loadout
-  id: CEBlackBeretPatron
+  id: NTRBlackBeretPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
   equipment:
-    head: ClothingHatCEBlackBeret
+    head: ClothingHatNTRBlackBeret
 
 - type: loadout
   id: ClownPinkHatPatron
@@ -288,22 +288,22 @@
     outerClothing: ClothingOuterApostolCoat
 
 - type: loadout
-  id: CEBlackCloakPatron
+  id: NTRBlackCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
   equipment:
-    neck: ClothingCloakCEBlack
+    neck: ClothingCloakNTRBlack
 
 - type: loadout
-  id: CETricolorCloakPatron
+  id: NTRTricolorCloakPatron
   effects:
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
   equipment:
-    neck: ClothingCloakCETricolor
+    neck: ClothingCloakNTRTricolor
 
 - type: loadout
   id: CMOHonorableCloakPatron
@@ -349,3 +349,614 @@
     - SponsorTier2
   equipment:
     neck: ClothingCloakQMWhite
+
+# Service
+
+- type: loadout
+  id: TwilightSparklePatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformTwilightSparkle
+
+- type: loadout
+  id: BotanistUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformBotanist
+
+- type: loadout
+  id: BotanistUniformWithStrapsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformBotanistWhithStraps
+
+- type: loadout
+  id: CamouflageUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformCamouflage
+
+- type: loadout
+  id: ChiefCookUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformChiefCook
+
+- type: loadout
+  id: FreeClothesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformFreeClothes
+
+- type: loadout
+  id: CookUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformCook
+
+- type: loadout
+  id: DancerDressPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformDancer
+
+- type: loadout
+  id: FeminineUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformFeminine
+
+- type: loadout
+  id: EmptyFeminineUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformFeminineEmpty
+
+- type: loadout
+  id: JesterCostumePatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformJesterCostume
+
+- type: loadout
+  id: PerfomanceDressPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformPerfomanceDress
+
+- type: loadout
+  id: ComfortableUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformComfortableUniform
+
+- type: loadout
+  id: ServiveShirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformServiceShirt
+
+- type: loadout
+  id: ServiveShirtSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformServiceShirtSkirt
+
+- type: loadout
+  id: SterileUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformSterileUniform
+
+- type: loadout
+  id: ServiceApronPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    belt: ClothingBeltServiceApron
+
+- type: loadout
+  id: MimeMittensPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    gloves: ClothingHandsMimeMittens
+
+- type: loadout
+  id: BotanistHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    head: ClothingHatBotanist
+
+- type: loadout
+  id: CamouflageHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    head: ClothingHatCamouflage
+
+- type: loadout
+  id: ClownCilinderPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    head: ClothingHatClownCilinder
+
+- type: loadout
+  id: FishCookBandanaPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    head: ClothingHatFishCookBandana
+
+- type: loadout
+  id: HighCookHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    head: ClothingHatCookHigh
+
+- type: loadout
+  id: InclinedCookHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    head: ClothingHatCookInclined
+
+- type: loadout
+  id: RedCookHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    head: ClothingHatCookRed
+
+- type: loadout
+  id: JesterHatPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    head: ClothingHatJester
+
+- type: loadout
+  id: IanCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    neck: ClothingCloakIan
+
+- type: loadout
+  id: CleanerJumpsuitPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    outerClothing: ClothingOuterCleanerJumpsuit
+
+- type: loadout
+  id: CookApronPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    outerClothing: ClothingOuterCookApron
+
+- type: loadout
+  id: MusicianJacketPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    outerClothing: ClothingOuterMusicianJacket
+
+- type: loadout
+  id: RadioHostJacketPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    outerClothing: ClothingOuterRadioHostJacket
+
+- type: loadout
+  id: CowCostumePatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    outerClothing: ClothingOuterCow
+
+- type: loadout
+  id: ServiceJacketPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    outerClothing: ClothingOuterServiceJacket
+
+- type: loadout
+  id: MusicianBootsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    shoes: ClothingShoesMusicianBoots
+
+- type: loadout
+  id: JesterShoesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    shoes: ClothingShoesJesters
+
+- type: loadout
+  id: TwilightSparkleBootsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    shoes: ClothingShoesTwilightSparkle
+
+- type: loadout
+  id: WorkerBootsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    shoes: ClothingShoesWorkerBoots
+
+- type: loadout
+  id: MimeStockingsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    socks: ClothingMimeStockings
+
+- type: loadout
+  id: JesterPantsPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    underwear: ClothingUnderwearJesterPants
+
+- type: loadout
+  id: TwilightSparkleGlassesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    eyes: ClothingEyesBookWorm
+
+- type: loadout
+  id: RadioHostMicrophonePatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  storage:
+    back:
+    - RadioHostMicrophone
+
+- type: loadout
+  id: ServiceCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    neck: ClothingCloakServicePatron
+
+# Medical
+
+- type: loadout
+  id: DoctorBikiniPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  storage:
+    back:
+    - ClothingUniformBikiniDoctor
+
+- type: loadout
+  id: ChemistBikiniPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  storage:
+    back:
+    - ClothingUniformBikiniChemist
+
+- type: loadout
+  id: ParamedicBikiniPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  storage:
+    back:
+    - ClothingUniformBikiniParamedic
+
+- type: loadout
+  id: VirologistBikiniPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  storage:
+    back:
+    - ClothingUniformBikiniVirologist
+
+- type: loadout
+  id: ParamedicGlassesPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    eyes: ClothingEyesParamedicGlasses
+
+- type: loadout
+  id: VirologistUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformVirologistPatron
+
+- type: loadout
+  id: VirologistUniformSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformVirologistSkirtPatron
+
+- type: loadout
+  id: VirologistTurtleneckPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformVirologistTurtleneckPatron
+
+- type: loadout
+  id: VirologistTurtleneckSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformVirologistTurtleneckSkirtPatron
+
+- type: loadout
+  id: ParamedicUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformParamedicPatron
+
+- type: loadout
+  id: ParamedicUniformSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformParamedicSkirtPatron
+
+- type: loadout
+  id: ParamedicTurtleneckPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformParamedicTurtleneckPatron
+
+- type: loadout
+  id: ParamedicTurtleneckSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformParamedicTurtleneckSkirtPatron
+
+- type: loadout
+  id: DoctorTurtleneckPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformDoctorTurtleneckPatron
+
+- type: loadout
+  id: DoctorTurtleneckSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformDoctorTurtleneckSkirtPatron
+
+- type: loadout
+  id: ChemistUniformPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformChemistPatron
+
+- type: loadout
+  id: ChemistUniformSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformChemistSkirtPatron
+
+- type: loadout
+  id: ChemistTurtleneckPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformChemistTurtleneckPatron
+
+- type: loadout
+  id: ChemistTurtleneckSkirtPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    jumpsuit: ClothingUniformChemistTurtleneckSkirtPatron
+
+- type: loadout
+  id: MeicalCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    neck: ClothingCloakMedicalPatron
+
+# Cargo
+
+- type: loadout
+  id: CargoCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    neck: ClothingCloakCargoPatron
+
+# RND
+
+- type: loadout
+  id: RNDCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    neck: ClothingCloakRNDPatron
+
+# Engineer
+
+- type: loadout
+  id: EngineerCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    neck: ClothingCloakEngineerPatron
+
+# Security
+
+- type: loadout
+  id: SecurityCloakPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+  equipment:
+    neck: ClothingCloakSecurityPatron
