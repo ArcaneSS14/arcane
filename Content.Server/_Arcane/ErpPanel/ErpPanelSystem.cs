@@ -35,8 +35,7 @@ public sealed partial class ErpPanelSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<ErpPanelOwnerComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<ErpPanelOwnerComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
-
+        SubscribeLocalEvent<ErpPanelOwnerComponent, ErpPanelOpenEvent>(OnOpenPanel);
         SubscribeLocalEvent<ErpPanelOwnerComponent, BoundUIClosedEvent>(OnBoundUIClosedEvent);
 
         Subs.BuiEvents<ErpPanelOwnerComponent>(ErpPanelKey.Key, subs =>
@@ -54,27 +53,16 @@ public sealed partial class ErpPanelSystem : EntitySystem
         _ui.SetUi(entity.Owner, ErpPanelKey.Key, interfaceData);
     }
 
-    private void OnGetVerbs(EntityUid uid, ErpPanelOwnerComponent _, GetVerbsEvent<AlternativeVerb> args)
+    private void OnOpenPanel(Entity<ErpPanelOwnerComponent> entity, ref ErpPanelOpenEvent args)
     {
-        if (!TryComp<ErpPanelOwnerComponent>(args.User, out var userPanel))
+        if (!IsValidUI(entity.Owner, args.Target))
             return;
 
-        if (!IsValidUI(args.User, args.Target))
+        if (!_interaction.InRangeAndAccessible(entity.Owner, args.Target))
             return;
 
-        AlternativeVerb verb = new()
-        {
-            Act = () => {
-                TryOpenPanel(args.User, args.Target);
-                userPanel.Target = args.Target;
-            },
-            Text = Loc.GetString("erp-panel-open-verb"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/_Arcane/Interface/heartIcon.png")),
-            Disabled = !_interaction.InRangeAndAccessible(args.User, args.Target),
-            Priority = 2
-        };
-
-        args.Verbs.Add(verb);
+        TryOpenPanel(entity.Owner, args.Target);
+        entity.Comp.Target = args.Target;
     }
 
     private void OnBoundUIClosedEvent(Entity<ErpPanelOwnerComponent> entity, ref BoundUIClosedEvent args)
