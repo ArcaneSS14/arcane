@@ -261,17 +261,24 @@ public sealed class JoinQueueManager : IJoinQueueManager
             if (hadQueueEntry)
                 ClearMiniGameState(e.Session.UserId);
 
-            var wasAdmitted = _admittedSessions.Remove(e.Session.UserId);
+            var isCurrentRecord = _connectedSessions.TryGetValue(e.Session.UserId, out var connectedRecord) &&
+                                  ReferenceEquals(connectedRecord.Session, e.Session);
+            var wasAdmitted = isCurrentRecord && _admittedSessions.Remove(e.Session.UserId);
 
             if (_reconnectGraceSeconds > 0 &&
                 wasAdmitted &&
-                !wasLimitBypass &&
-                _connectedSessions.ContainsKey(e.Session.UserId))
+                !wasLimitBypass)
             {
                 var now = _gameTiming.RealTime;
                 _gracePeriods[e.Session.UserId] = now + TimeSpan.FromSeconds(_reconnectGraceSeconds);
-                _sawmill.Info("Grace period recorded for {UserId}, expires at {Expiry}", e.Session.UserId, _gracePeriods[e.Session.UserId]);
             }
+
+            else if (isCurrentRecord)
+                _connectedSessions.Remove(e.Session.UserId);
+
+            if (_graceReconnecting.TryGetValue(e.Session.UserId, out var reconnecting) &&
+                ReferenceEquals(reconnecting, e.Session))
+                _graceReconnecting.Remove(e.Session.UserId);
 
             if (!_isEnabled)
                 return;
@@ -464,9 +471,6 @@ public sealed class JoinQueueManager : IJoinQueueManager
         var players = GetCountedPlayerCount();
         var softMax = Math.Max(0, _configuration.GetCVar(CCVars.SoftMaxPlayers));
 
-        _sawmill.Info("ProcessQueue: players={Players}/{SoftMax}, queueCount={Queue}, gracePeriods={Grace}",
-            players, softMax, _queue.Count, _gracePeriods.Count);
-
         while (players < softMax && _queue.TryDequeue(out var entry))
         {
             if (!IsCurrentConnectedSession(entry.Session))
@@ -549,6 +553,19 @@ public sealed class JoinQueueManager : IJoinQueueManager
             if (ReferenceEquals(record.Session, excludedSession) ||
                 _limitBypasses.Contains(userId, record.Session) ||
                 !adminsCountTowardsLimit && _adminManager.IsAdmin(record.Session))
+            {
+                continue;
+            }
+
+            players++;
+        }
+
+        foreach (var (userId, session) in _graceReconnecting)
+        {
+            if (ReferenceEquals(session, excludedSession) ||
+                session.Status == SessionStatus.InGame ||
+                _limitBypasses.Contains(userId, session) ||
+                !adminsCountTowardsLimit && _adminManager.IsAdmin(session))
             {
                 continue;
             }
@@ -822,7 +839,6 @@ public sealed class JoinQueueManager : IJoinQueueManager
                 _connectedSessions.Remove(userId);
                 ClearMiniGameState(userId);
             }
-            _sawmill.Info("Grace period expired for {UserId}, freeing slot", userId);
         }
 
         if (expired.Count > 0)
@@ -850,7 +866,8 @@ public sealed class JoinQueueManager : IJoinQueueManager
             }
 
             _pendingAdmissions.Remove(session.UserId);
-            if (!IsCurrentConnectedSession(session))
+            if (!IsCurrentConnectedSession(session) ||
+                session.Status != SessionStatus.Connected)
                 return;
 
             _player.JoinGame(session);
