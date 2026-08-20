@@ -38,7 +38,7 @@
             ]
         },
         {
-            "name": "medical_walking",
+            "name": "medical_moving",
             "directions": 4,
             "delays": [
                 [
