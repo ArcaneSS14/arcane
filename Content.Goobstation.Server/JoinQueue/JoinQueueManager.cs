@@ -74,7 +74,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
     private long _nextQueueOrder;
     private int _queueWaitRecordOrder;
     private readonly Dictionary<NetUserId, TimeSpan> _gracePeriods = new();
-    private readonly Dictionary<NetUserId, ICommonSession> _graceReconnecting = new();
+    private readonly Dictionary<NetUserId, (ICommonSession Session, TimeSpan Expiry)> _graceReconnecting = new();
     private readonly HashSet<NetUserId> _admittedSessions = new();
     private int _reconnectGraceSeconds;
     private float _graceCleanupTimer;
@@ -119,7 +119,15 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
         _configuration.OnValueChanged(GoobCVars.QueueEnabled, OnQueueCVarChanged, true);
         _configuration.OnValueChanged(GoobCVars.PatreonSkip, OnPatreonCVarChanged, true);
-        _configuration.OnValueChanged(GoobCVars.QueueReconnectGraceSeconds, v => _reconnectGraceSeconds = v, true);
+        _configuration.OnValueChanged(GoobCVars.QueueReconnectGraceSeconds, v =>
+        {
+            _reconnectGraceSeconds = v;
+            if (v == 0)
+            {
+                _gracePeriods.Clear();
+                _graceReconnecting.Clear();
+            }
+        }, true);
         _configuration.OnValueChanged(CCVars.SoftMaxPlayers, OnPlayerLimitCVarChanged);
         _configuration.OnValueChanged(CCVars.AdminsCountForMaxPlayers, OnAdminCountCVarChanged);
         _adminManager.OnPermsChanged += OnAdminPermsChanged;
@@ -176,6 +184,13 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
         if (value)
         {
+            _admittedSessions.Clear();
+            foreach (var session in _player.Sessions)
+            {
+                if (session.Status == SessionStatus.InGame)
+                    _admittedSessions.Add(session.UserId);
+            }
+
             ProcessQueue();
             return;
         }
@@ -185,7 +200,6 @@ public sealed class JoinQueueManager : IJoinQueueManager
         _queue.Clear();
         _gracePeriods.Clear();
         _graceReconnecting.Clear();
-        _admittedSessions.Clear();
         QueueCount.Set(0);
 
         foreach (var session in queuedSessions)
@@ -199,6 +213,12 @@ public sealed class JoinQueueManager : IJoinQueueManager
         {
             if (!queuedUserIds.Contains(record.Session.UserId))
                 TrySendToGame(record.Session);
+        }
+
+        foreach (var (userId, record) in _connectedSessions.ToArray())
+        {
+            if (record.Session.Status != SessionStatus.Connected)
+                _connectedSessions.Remove(userId);
         }
     }
 
@@ -241,9 +261,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
         {
             if (_pendingAdmissions.TryGetValue(e.Session.UserId, out var pending) &&
                 ReferenceEquals(pending, e.Session))
-            {
                 _pendingAdmissions.Remove(e.Session.UserId);
-            }
 
             var wasLimitBypass = _limitBypasses.Contains(e.Session.UserId, e.Session);
             _limitBypasses.Remove(e.Session.UserId, e.Session);
@@ -277,7 +295,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
                 _connectedSessions.Remove(e.Session.UserId);
 
             if (_graceReconnecting.TryGetValue(e.Session.UserId, out var reconnecting) &&
-                ReferenceEquals(reconnecting, e.Session))
+                ReferenceEquals(reconnecting.Session, e.Session))
                 _graceReconnecting.Remove(e.Session.UserId);
 
             if (!_isEnabled)
@@ -326,7 +344,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
                 }
 
                 _gracePeriods.Remove(e.Session.UserId);
-                _graceReconnecting[e.Session.UserId] = e.Session;
+                _graceReconnecting[e.Session.UserId] = (e.Session, graceExpiry);
             }
 
             _connectedSessions[e.Session.UserId] = new ConnectedSessionRecord(
@@ -418,8 +436,8 @@ public sealed class JoinQueueManager : IJoinQueueManager
             return;
         }
 
-        if (_graceReconnecting.TryGetValue(session.UserId, out var graceSession) &&
-            ReferenceEquals(graceSession, session))
+        if (_graceReconnecting.TryGetValue(session.UserId, out var graceEntry) &&
+            ReferenceEquals(graceEntry.Session, session))
         {
             _graceReconnecting.Remove(session.UserId);
             TrySendToGame(session);
@@ -554,22 +572,22 @@ public sealed class JoinQueueManager : IJoinQueueManager
             if (ReferenceEquals(record.Session, excludedSession) ||
                 _limitBypasses.Contains(userId, record.Session) ||
                 !adminsCountTowardsLimit && _adminManager.IsAdmin(record.Session))
-            {
+
                 continue;
-            }
 
             players++;
         }
 
-        foreach (var (userId, session) in _graceReconnecting)
+        foreach (var (userId, entry) in _graceReconnecting)
         {
-            if (ReferenceEquals(session, excludedSession) ||
-                session.Status == SessionStatus.InGame ||
-                _limitBypasses.Contains(userId, session) ||
-                !adminsCountTowardsLimit && _adminManager.IsAdmin(session))
-            {
+            if (entry.Expiry <= now)
                 continue;
-            }
+
+            if (ReferenceEquals(entry.Session, excludedSession) ||
+                entry.Session.Status == SessionStatus.InGame ||
+                _limitBypasses.Contains(userId, entry.Session) ||
+                !adminsCountTowardsLimit && _adminManager.IsAdmin(entry.Session))
+                continue;
 
             players++;
         }
@@ -820,29 +838,54 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
     private void ProcessExpiredGracePeriods()
     {
-        if (_gracePeriods.Count == 0)
-            return;
-
         var now = _gameTiming.RealTime;
-        var expired = new List<NetUserId>();
+        var hadExpired = false;
 
-        foreach (var (userId, expiry) in _gracePeriods)
+        if (_gracePeriods.Count > 0)
         {
-            if (expiry <= now)
-                expired.Add(userId);
-        }
-
-        foreach (var userId in expired)
-        {
-            _gracePeriods.Remove(userId);
-            if (_connectedSessions.TryGetValue(userId, out var record))
+            var expired = new List<NetUserId>();
+            foreach (var (userId, expiry) in _gracePeriods)
             {
-                _connectedSessions.Remove(userId);
-                ClearMiniGameState(userId);
+                if (expiry <= now)
+                    expired.Add(userId);
             }
+
+            foreach (var userId in expired)
+            {
+                _gracePeriods.Remove(userId);
+                if (_connectedSessions.TryGetValue(userId, out var record))
+                {
+                    _connectedSessions.Remove(userId);
+                    ClearMiniGameState(userId);
+                }
+            }
+
+            hadExpired = expired.Count > 0;
         }
 
-        if (expired.Count > 0)
+        if (_graceReconnecting.Count > 0)
+        {
+            var expiredReconnecting = new List<NetUserId>();
+            foreach (var (userId, entry) in _graceReconnecting)
+            {
+                if (entry.Expiry <= now)
+                    expiredReconnecting.Add(userId);
+            }
+
+            foreach (var userId in expiredReconnecting)
+            {
+                _graceReconnecting.Remove(userId);
+                if (_connectedSessions.TryGetValue(userId, out var record))
+                {
+                    _connectedSessions.Remove(userId);
+                    ClearMiniGameState(userId);
+                }
+            }
+
+            hadExpired = hadExpired || expiredReconnecting.Count > 0;
+        }
+
+        if (hadExpired)
             ProcessQueue();
     }
 
@@ -853,18 +896,14 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
         if (_pendingAdmissions.TryGetValue(session.UserId, out var pending) &&
             ReferenceEquals(pending, session))
-        {
             return false;
-        }
 
         _pendingAdmissions[session.UserId] = session;
         Timer.Spawn(0, () =>
         {
             if (!_pendingAdmissions.TryGetValue(session.UserId, out var current) ||
                 !ReferenceEquals(current, session))
-            {
                 return;
-            }
 
             _pendingAdmissions.Remove(session.UserId);
             if (!IsCurrentConnectedSession(session) ||
@@ -881,9 +920,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
         if (session.Status == SessionStatus.Connected &&
             _player.TryGetSessionById(session.UserId, out var current) &&
             ReferenceEquals(current, session))
-        {
             return true;
-        }
 
         return _gracePeriods.ContainsKey(session.UserId) &&
                _connectedSessions.TryGetValue(session.UserId, out var record) &&
