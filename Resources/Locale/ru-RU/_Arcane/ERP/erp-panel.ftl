@@ -1,8 +1,32 @@
 erp-panel-open-verb = Интеракции
 
-erp-panel-title = Панель Интеракций
+erp-panel-title = Панель взаимодействий
 
 erp-panel-header = Взаимодействие с { $target }
+erp-panel-target-label = Цель
+erp-panel-arousal-level = Ваше возбуждение
+
+erp-panel-settings-title = Модификаторы взаимодействий
+erp-panel-hide-modifiers = Скрыть
+erp-panel-show-modifiers = Показать
+erp-panel-arousal-multiplier-label = Возбуждение
+erp-panel-moaning-multiplier-label = Шанс стона
+
+erp-panel-search-placeholder = Поиск действий или категорий...
+erp-panel-search-clear-tooltip = Очистить поиск
+erp-panel-interactions-title = Доступные взаимодействия
+erp-panel-expand-all = Развернуть все
+erp-panel-collapse-all = Свернуть все
+erp-panel-category-heading = { $category } ({ $count })
+erp-panel-results =
+    { $count ->
+        [one] Доступно { $count } взаимодействие
+        [few] Доступно { $count } взаимодействия
+       *[other] Доступно { $count } взаимодействий
+    }
+erp-panel-empty-search = По вашему запросу ничего не найдено.
+erp-panel-empty-available = Сейчас нет доступных взаимодействий.
+erp-panel-interaction-cooldown-tooltip = Доступно через { $seconds } с.
 
 erp-panel-custom-arousal-button = Множ. Возбуждения
 erp-panel-custom-moaning-button = Множ. Стонов

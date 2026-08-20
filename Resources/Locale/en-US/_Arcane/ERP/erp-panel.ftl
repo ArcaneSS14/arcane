@@ -3,6 +3,29 @@ erp-panel-open-verb = Interactions
 erp-panel-title = Interaction Panel
 
 erp-panel-header = Interacting with { $target }
+erp-panel-target-label = Target
+erp-panel-arousal-level = Your arousal
+
+erp-panel-settings-title = Interaction modifiers
+erp-panel-hide-modifiers = Hide
+erp-panel-show-modifiers = Show
+erp-panel-arousal-multiplier-label = Arousal gain
+erp-panel-moaning-multiplier-label = Moan chance
+
+erp-panel-search-placeholder = Search interactions or categories...
+erp-panel-search-clear-tooltip = Clear search
+erp-panel-interactions-title = Available interactions
+erp-panel-expand-all = Expand all
+erp-panel-collapse-all = Collapse all
+erp-panel-category-heading = { $category } ({ $count })
+erp-panel-results =
+    { $count ->
+        [one] 1 interaction available
+       *[other] { $count } interactions available
+    }
+erp-panel-empty-search = No interactions match your search.
+erp-panel-empty-available = No interactions are currently available.
+erp-panel-interaction-cooldown-tooltip = Available in { $seconds } s.
 
 erp-panel-custom-arousal-button = Arousal Mult.
 erp-panel-custom-moaning-button = Moan Mult.
