@@ -73,9 +73,9 @@ public sealed class JoinQueueManager : IJoinQueueManager
     private readonly Dictionary<NetUserId, QueueWaitRecord> _queueWaitRecords = new();
     private long _nextQueueOrder;
     private int _queueWaitRecordOrder;
-    private readonly Dictionary<NetUserId, TimeSpan> _gracePeriods = new();
+    private readonly Dictionary<NetUserId, (ICommonSession Session, TimeSpan Expiry)> _gracePeriods = new();
     private readonly Dictionary<NetUserId, (ICommonSession Session, TimeSpan Expiry)> _graceReconnecting = new();
-    private readonly HashSet<NetUserId> _admittedSessions = new();
+    private readonly Dictionary<NetUserId, ICommonSession> _admittedSessions = new();
     private int _reconnectGraceSeconds;
     private float _graceCleanupTimer;
     private const float GraceCleanupIntervalSeconds = 5f;
@@ -126,6 +126,8 @@ public sealed class JoinQueueManager : IJoinQueueManager
             {
                 _gracePeriods.Clear();
                 _graceReconnecting.Clear();
+                if (_isEnabled)
+                    ProcessQueue();
             }
         }, true);
         _configuration.OnValueChanged(CCVars.SoftMaxPlayers, OnPlayerLimitCVarChanged);
@@ -188,7 +190,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
             foreach (var session in _player.Sessions)
             {
                 if (session.Status == SessionStatus.InGame)
-                    _admittedSessions.Add(session.UserId);
+                    _admittedSessions[session.UserId] = session;
             }
 
             ProcessQueue();
@@ -281,14 +283,17 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
             var isCurrentRecord = _connectedSessions.TryGetValue(e.Session.UserId, out var connectedRecord) &&
                                   ReferenceEquals(connectedRecord.Session, e.Session);
-            var wasAdmitted = isCurrentRecord && _admittedSessions.Remove(e.Session.UserId);
+            var wasAdmitted = isCurrentRecord &&
+                              _admittedSessions.TryGetValue(e.Session.UserId, out var admittedSession) &&
+                              ReferenceEquals(admittedSession, e.Session) &&
+                              _admittedSessions.Remove(e.Session.UserId);
 
             if (_reconnectGraceSeconds > 0 &&
                 wasAdmitted &&
                 !wasLimitBypass)
             {
                 var now = _gameTiming.RealTime;
-                _gracePeriods[e.Session.UserId] = now + TimeSpan.FromSeconds(_reconnectGraceSeconds);
+                _gracePeriods[e.Session.UserId] = (e.Session, now + TimeSpan.FromSeconds(_reconnectGraceSeconds));
             }
 
             else if (isCurrentRecord)
@@ -306,8 +311,9 @@ public sealed class JoinQueueManager : IJoinQueueManager
         else if (e.NewStatus == SessionStatus.Connected)
         {
             var now = _gameTiming.RealTime;
-            var isGraceReconnect = _gracePeriods.TryGetValue(e.Session.UserId, out var graceExpiry) &&
-                                   graceExpiry > now;
+            var isGraceReconnect = _gracePeriods.TryGetValue(e.Session.UserId, out var graceRecord) &&
+                                   graceRecord.Expiry > now;
+            var graceExpiry = graceRecord.Expiry;
 
             if (!isGraceReconnect)
             {
@@ -327,6 +333,13 @@ public sealed class JoinQueueManager : IJoinQueueManager
                     !ReferenceEquals(staleAdmission, e.Session))
                 {
                     _pendingAdmissions.Remove(e.Session.UserId);
+                    removedStaleWaitingState = true;
+                }
+
+                if (_graceReconnecting.TryGetValue(e.Session.UserId, out var staleReconnecting) &&
+                    !ReferenceEquals(staleReconnecting.Session, e.Session))
+                {
+                    _graceReconnecting.Remove(e.Session.UserId);
                     removedStaleWaitingState = true;
                 }
 
@@ -377,7 +390,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
                 _pendingAdmissions.Remove(e.Session.UserId);
             }
 
-            _admittedSessions.Add(e.Session.UserId);
+            _admittedSessions[e.Session.UserId] = e.Session;
 
             if (_isEnabled &&
                 (removedQueueEntry ||
@@ -558,9 +571,9 @@ public sealed class JoinQueueManager : IJoinQueueManager
         }
 
         var now = _gameTiming.RealTime;
-        foreach (var (userId, graceExpiry) in _gracePeriods)
+        foreach (var (userId, graceRecord) in _gracePeriods)
         {
-            if (graceExpiry <= now)
+            if (graceRecord.Expiry <= now)
                 continue;
 
             if (!_connectedSessions.TryGetValue(userId, out var record))
@@ -844,16 +857,18 @@ public sealed class JoinQueueManager : IJoinQueueManager
         if (_gracePeriods.Count > 0)
         {
             var expired = new List<NetUserId>();
-            foreach (var (userId, expiry) in _gracePeriods)
+            foreach (var (userId, record) in _gracePeriods)
             {
-                if (expiry <= now)
+                if (record.Expiry <= now)
                     expired.Add(userId);
             }
 
             foreach (var userId in expired)
             {
+                var record = _gracePeriods[userId];
                 _gracePeriods.Remove(userId);
-                if (_connectedSessions.TryGetValue(userId, out var record))
+                if (_connectedSessions.TryGetValue(userId, out var connectedRecord) &&
+                    ReferenceEquals(connectedRecord.Session, record.Session))
                 {
                     _connectedSessions.Remove(userId);
                     ClearMiniGameState(userId);
@@ -874,8 +889,10 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
             foreach (var userId in expiredReconnecting)
             {
+                var entry = _graceReconnecting[userId];
                 _graceReconnecting.Remove(userId);
-                if (_connectedSessions.TryGetValue(userId, out var record))
+                if (_connectedSessions.TryGetValue(userId, out var record) &&
+                    ReferenceEquals(record.Session, entry.Session))
                 {
                     _connectedSessions.Remove(userId);
                     ClearMiniGameState(userId);

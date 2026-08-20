@@ -516,10 +516,13 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<bool> PatreonSkip =
         CVarDef.Create("queue.patreon_skip", true, CVar.SERVERONLY);
 
+    // Arcane-Edit-Start
     /// <summary>
-    ///     How long in seconds to hold a queue position for a disconnected player.
-    ///     If they reconnect within this window, they are placed at the front of the queue.
+    ///     How long in seconds a disconnected admitted player keeps their slot.
+    ///     If they reconnect within this window they rejoin directly; otherwise the slot is freed.
+    ///     Setting to 0 disables the feature and immediately frees all grace-held slots.
     /// </summary>
+    // Arcane-Edit-End
     public static readonly CVarDef<int> QueueReconnectGraceSeconds =
         CVarDef.Create("queue.reconnect_grace_seconds", 120, CVar.SERVERONLY);
 
