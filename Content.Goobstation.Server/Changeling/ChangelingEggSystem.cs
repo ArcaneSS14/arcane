@@ -87,10 +87,19 @@ public sealed class ChangelingEggSystem : EntitySystem
         identity.IsInLastResort = false;
 
         if (TryComp<ChangelingBiomassComponent>(newUid, out var biomass))
+        {
             biomass.ResourceData = RestoreInternalResources(newUid, biomass.ResourceData);
+            Dirty(newUid, biomass);
+        }
 
         if (TryComp<ChangelingChemicalComponent>(newUid, out var chem))
+        {
             chem.ResourceData = RestoreInternalResources(newUid, chem.ResourceData);
+            Dirty(newUid, chem);
+        }
+
+        if (TryComp<InternalResourcesComponent>(newUid, out var internalRes))
+            Dirty(newUid, internalRes);
         // Arcane-Edit-End
 
         EntityManager.AddComponent(newUid, comp.lingStore);
