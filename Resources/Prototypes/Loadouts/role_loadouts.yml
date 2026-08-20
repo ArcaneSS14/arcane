@@ -552,7 +552,6 @@
   groups:
   - GroupTankHarness
   - TechnicalAssistantJumpsuit
-  - EngineerCloak # Arcane
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
@@ -691,7 +690,6 @@
   groups:
   - GroupTankHarness
   - ResearchAssistantJumpsuit
-  - RNDCloak # Arcane
   - ScientistBackpack
   - Glasses
   - Survival
@@ -926,7 +924,6 @@
   groups:
   - GroupTankHarness
   - MedicalInternJumpsuit
-  - MedicalCloak # Arcane
   - MedicalBackpack
   - MedicalEyewear
   - SurvivalMedical
