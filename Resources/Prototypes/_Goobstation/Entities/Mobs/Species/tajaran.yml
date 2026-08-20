@@ -97,10 +97,17 @@
       types:
         Blunt: 1
   - type: Stamina
-    baseCritThreshold: 75 # Goobstation - Siouxcide, felinids take 3 disabler shots to down
-    animationThreshold: 40 # Goob edit
+    baseCritThreshold: 130
+    animationThreshold: 70 # Goob edit
   - type: TypingIndicator
     proto: felinid
+  - type: NightVision
+    color: Gray
+    activateSound: null
+    deactivateSound: null
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.6
+    baseSprintSpeed: 4.6
   # Orion-Start
   - type: Inventory
     speciesId: tajaran

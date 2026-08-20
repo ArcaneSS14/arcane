@@ -348,3 +348,4 @@
     - type: TTS
     - type: ErpPanelOwner
     # Arcane-end
+    - type: CosmicCenserTarget # DeltaV - Cosmic Cult
