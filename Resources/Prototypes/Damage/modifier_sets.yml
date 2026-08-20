@@ -221,7 +221,7 @@
   coefficients:
     Cold: 0.7
     Heat: 1.2
-    Piercing: 1.2
+    Piercing: 1.1
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
