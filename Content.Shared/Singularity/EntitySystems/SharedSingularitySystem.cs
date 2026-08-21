@@ -124,7 +124,8 @@ public abstract class SharedSingularitySystem : EntitySystem
         if (!Resolve(uid, ref singularity))
             return;
 
-        if (TryComp<EventHorizonComponent>(uid, out var eventHorizon)) /// Arcane-Edit-Start:
+    /// Arcane-Start:
+        if (TryComp<EventHorizonComponent>(uid, out var eventHorizon))
         {
             _horizons.SetCanBreachContainment(uid, CanBreachContainment(singularity), false, eventHorizon);
             _horizons.SetRadius(uid, EventHorizonRadius(singularity), false, eventHorizon);
@@ -166,7 +167,8 @@ public abstract class SharedSingularitySystem : EntitySystem
         RaiseLocalEvent(uid, new SingularityLevelChangedEvent(singularity.Level, oldValue, singularity));
         if (singularity.Level <= 0)
             QueueDel(uid);
-    } /// Arcane-Edit-End
+    }
+    /// Arcane-End
 
     /// <summary>
     /// Alerts the entity hosting the singularity that the level of the singularity has changed without the level actually changing.
@@ -233,11 +235,13 @@ public abstract class SharedSingularitySystem : EntitySystem
     /// <param name="singulo">A singularity.</param>
     /// <returns>The event horizon radius the singularity should have given its state.</returns>
     public float EventHorizonRadius(SingularityComponent singulo)
-    { /// Arcane-Start
+    /// Arcane-Start
+    {
         return singulo.Level switch
         {
             5 => 4.5f,
-            6 => 5.5f, /// Arcane-End
+            6 => 5.5f,
+    /// Arcane-End
             _ => singulo.Level - 0.5f
         };
     }
