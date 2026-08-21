@@ -502,12 +502,12 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
             return false;
 
         referenceFactor = Math.Clamp(referenceFactor, 0f, ent.Comp.MaxVolumeModifier);
-        var ratio = amount / ent.Comp.BloodReferenceSolution.Volume;
+        // var ratio = amount / ent.Comp.BloodReferenceSolution.Volume; // Arcane-Edit
 
         foreach (var (referenceReagent, referenceQuantity) in ent.Comp.BloodReferenceSolution)
         {
             var error = referenceQuantity * referenceFactor - bloodSolution.GetTotalPrototypeQuantity(referenceReagent.Prototype);
-            var adjustedAmount = referenceQuantity * ratio;
+            var adjustedAmount = amount * referenceQuantity / ent.Comp.BloodReferenceSolution.Volume; // Arcane-Edit
 
             if (error > 0)
             {
