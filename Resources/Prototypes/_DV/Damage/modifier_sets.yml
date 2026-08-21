@@ -31,7 +31,7 @@
     Slash: 0.9
     Cold: 1.1
     Shock: 1.15
-    Radiation: 0
+    Radiation: 0.2
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
@@ -40,7 +40,7 @@
     Cold: 0.75
     Blunt: 0.9
     Slash: 1.1
-    Heat: 0.8
+    Heat: 0.95
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
