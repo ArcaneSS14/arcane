@@ -32,7 +32,7 @@
       Futanari: FemaleHuman
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Infernal
+    damageModifierSet: DemonArcana
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/pierce.ogg
@@ -55,8 +55,10 @@
         Heat: 0.3
   - type: Wagging
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
-    baseSprintSpeed: 4.5
+    baseWalkSpeed: 2.4
+    baseSprintSpeed: 4.4
+  - type: Stamina
+    baseCritThreshold: 90
   - type: Inventory
     speciesId: demon
     femaleDisplacements:

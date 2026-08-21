@@ -5,6 +5,9 @@
   save: false
   abstract: true
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.6
+    baseSprintSpeed: 4.6
   - type: HumanoidAppearance
     species: Feroxi
     hideLayersOnEquip:
