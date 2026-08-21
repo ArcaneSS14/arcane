@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "ninja_walking",
+            "directions": 4
+        },
+        {
             "name": "ninja-rest",
             "directions": 4,
             "delays": [
