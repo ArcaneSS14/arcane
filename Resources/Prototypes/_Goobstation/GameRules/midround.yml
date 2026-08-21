@@ -554,6 +554,10 @@
             jumpscareSound:
               path: /Audio/_Goobstation/Effects/Slasher/JasonJumpscare.ogg
         postSelectionComponents:
+          # Arcane-Start
+          - type: GlobalAntagonist
+            antagonistPrototype: globalAntagonistSlasher
+          # Arcane-End
           - type: Slasher
           - type: SlasherSummonMachete
           - type: SlasherStaggerArea

@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "miner_moving",
+            "directions": 4
+        },
+        {
             "name": "miner-rest",
             "directions": 1
         },

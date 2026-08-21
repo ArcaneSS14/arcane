@@ -4,7 +4,7 @@
   id: Delta
   mapName: 'Delta Station'
   mapPath: /Maps/_Arcane/delta.yml # Arcane
-  minPlayers: 55
+  minPlayers: 20 # Arcane-Edit 55 > 20
   stations:
     Delta:
       stationProto: StandardNanotrasenStation
