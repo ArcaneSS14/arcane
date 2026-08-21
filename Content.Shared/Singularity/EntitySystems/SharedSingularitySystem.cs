@@ -124,19 +124,14 @@ public abstract class SharedSingularitySystem : EntitySystem
         if (!Resolve(uid, ref singularity))
             return;
 
-    /// Arcane-Start:
+        /// Arcane-Start:
         if (TryComp<EventHorizonComponent>(uid, out var eventHorizon))
         {
             _horizons.SetCanBreachContainment(uid, CanBreachContainment(singularity), false, eventHorizon);
             _horizons.SetRadius(uid, EventHorizonRadius(singularity), false, eventHorizon);
             _horizons.UpdateEventHorizonFixture(uid, eventHorizon: eventHorizon);
 
-            if (oldValue == 0)
-            {
-                eventHorizon.SuppressFieldConsumption = false;
-                eventHorizon.SuppressFieldConsumptionUntil = TimeSpan.MaxValue;
-            }
-            else if (singularity.Level > oldValue)
+            if (singularity.Level > oldValue)
             {
                 eventHorizon.SuppressFieldConsumption = true;
                 eventHorizon.SuppressFieldConsumptionUntil = _timing.CurTime + TimeSpan.FromSeconds(2);
