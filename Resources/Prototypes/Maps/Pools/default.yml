@@ -3,34 +3,36 @@
 - type: gameMapPool
   id: DefaultMapPool
   maps:
-  - Atlas
-  - Aspid # Arcane
-  - Amber # Arcane-Edit
-  - Bagel
+  - Atlas # 0-20
+  - Aspid # 20-70 # Arcane
+  - Amber # 7-50 # Arcane-Edit
+  - Avrite # 50+ # Arcane
+  - Bagel # 25-90
   # - Box # Arcane remove
-  - Cluster
+  - Cluster # 5-35
   #- Core
-  - Fland
-  - Loop # Arcane-Edit: Now in pool
-  - Marathon
-  - Meta
-  - Oasis
-  - Omega
-  - Origin
-  - Saltern
-  - Packed
+  - Fland # 40-85
+  - Loop # 35-70 # Arcane-Edit: Now in pool
+  - Marathon # 35-70
+  - Meta # 30-85
+  - Oasis # 30-85
+  - Omega # 7-35
+  - Origin # 50-85
+  - Saltern # 0-35
+  - Packed # 7-35
   #- Train # Goobstation - all my friends hate train
-  - FlandHighPop
-  - OasisHighPop
-  - Barratry # Goobstation - Re-add barratry
-  - Kettle # Goobstation - Re-add kettle (before it was gemini!)
-  - Leonid # Goobstation - for goob by goob
-  - Delta # Goobstation - ported from Corvax
-  - Chloris # Goobstation - also Corvax because we love goidamaps
-  - Cog # those who forget to clear their multitool
-  - Serpentcrest # Goobstation when contra
+  - FlandHighPop # 85+
+  - OasisHighPop # 85+
+  - Barratry # 30-60 # Goobstation - Re-add barratry
+  - Kettle # 35+ # Goobstation - Re-add kettle (before it was gemini!)
+  - Leonid # 50+ # Goobstation - for goob by goob
+  - Delta # 20+ # Goobstation - ported from Corvax
+  - Chloris # 80+ # Goobstation - also Corvax because we love goidamaps
+  - Cog # 40+ # those who forget to clear their multitool
+  - Serpentcrest # 30+ # Goobstation when contra
+  - Silly # 0-20 # Arcane
   #- Plasma # Goob - No. Leave it to the mappers.
   #- Reach
   #- Exo # Goobstation - Just no
-  - Snowball
-  - WonderBox # Arcane
+  - Snowball # 15-50
+  - WonderBox # 0+ # Arcane
