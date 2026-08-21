@@ -4,7 +4,7 @@
   id: Serpentcrest
   mapName: 'Serpentcrest'
   mapPath: /Maps/_Goobstation/serpentcrest.yml
-  minPlayers: 50
+  minPlayers: 30 # Arcane-Edit 50 > 30
   stations:
     Serpentcrest:
       stationProto: StandardNanotrasenStation

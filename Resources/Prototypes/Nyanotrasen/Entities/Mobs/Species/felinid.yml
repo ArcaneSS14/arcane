@@ -29,6 +29,9 @@
     prototype: Felinid
   - type: Damageable
     damageModifierSet: Felinid
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.6
+    baseSprintSpeed: 4.6
   # Goobstation - Siouxcide, felinids have standard slow on damage numbers
 # - type: SlowOnDamage
 #   speedModifierThresholds:
@@ -78,7 +81,6 @@
       Futanari: FemaleFelinid # Arcane-edit
   - type: OwOAccent # Arcane-Edit
   - type: Felinid
-  - type: NoShoesSilentFootsteps
   - type: Tag
     tags:
     - CanPilot

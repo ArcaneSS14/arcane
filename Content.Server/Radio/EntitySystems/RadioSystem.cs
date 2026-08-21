@@ -26,7 +26,7 @@ using Content.Shared.Whitelist; // Goobstation
 using Content.Shared.StatusIcon; // Goobstation
 using Content.Goobstation.Shared.Radio; // Goobstation
 // Arcane-Start
-using Content.Shared._Art.TTS; // Arcane
+using Content.Shared._Arcane.TTS; // Arcane
 using Content.Goobstation.Common.Barks;
 using Content.Shared._Orion.Radio;
 using Robust.Shared.Audio;

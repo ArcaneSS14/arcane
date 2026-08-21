@@ -9,6 +9,8 @@
   components:
   - type: HumanoidAppearance
     species: Vulpkanin
+  - type: Stamina
+    baseCritThreshold: 110
   - type: Hunger
   - type: Inventory # Allows vulps to wear properly shaped helmets
     speciesId: vulpkanin
