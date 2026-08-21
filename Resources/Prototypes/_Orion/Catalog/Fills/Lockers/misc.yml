@@ -43,10 +43,12 @@
       - id: ItemFlagMiniInteQ
       - id: FoodSnackInteQCookies
       - id: CigPackInteQ
-      - id: ToolboxInteQFilled 
-    - !type:GroupSelector # Arcane-Start
+      - id: ToolboxInteQFilled
+# Arcane-Start
+    - !type:GroupSelector
       children:
       - id: BoxInteQEVA
       - id: ClothingBeltInteQDropPouch
       - id: ClothingBeltInteQWebbing
-      - id: ToolboxInteQFilled # Arcane-End
+      - id: ToolboxInteQFilled
+# Arcane-End

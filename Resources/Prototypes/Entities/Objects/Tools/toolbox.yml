@@ -199,7 +199,8 @@
         variation: 0.125
     storageRemoveSound: *SoundSqueak
 
-- type: entity # Arcane-Start
+# Arcane-Start
+- type: entity
   parent: [ToolboxBase, BaseMinorContraband]
   id: ToolboxInteQ
   name: brown toolbox
@@ -219,4 +220,5 @@
     heavyStaminaCost: 10
     damage:
       types:
-        Blunt: 20 # Arcane-End
+        Blunt: 20
+# Arcane-End
