@@ -72,7 +72,7 @@
     minSyllables: 1
     maxSyllables: 8 # I was crazy once
     replacement:
-    # Arcane-Edit-Start
+    # Arcane-Start
     - с
     - С
     - х
@@ -84,7 +84,7 @@
     fontId: Rubikmaze
     boldFontId: Rubikmaze
     fontSize: 16
-    # Arcane-Edit-End
+    # Arcane-End
 
 - type: language
   id: Monkey

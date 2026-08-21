@@ -164,7 +164,7 @@
     Gold: 50
     Silver: 50
 
-# Arcane-Edit-Start
+# Arcane-Start
 - type: latheRecipe
   id: KarshanTranslator
   result: KarshanTranslator
@@ -175,7 +175,7 @@
     Plastic: 100
     Gold: 50
     Silver: 50
-# Arcane-Edit-End
+# Arcane-End
 
 # Implanters
 - type: latheRecipe
@@ -331,4 +331,4 @@
     Plastic: 100
     Gold: 50
     Silver: 50
-# Arcane-Edit-End
+# Arcane-End
