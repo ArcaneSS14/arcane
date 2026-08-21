@@ -33,6 +33,7 @@
       Nitrium: danger
       Pluoxium: ignore
       # </Goobstation>
+      Aphrodisiac: ignore # Arcane
   - type: GuideHelp
     guides:
     - DeviceMonitoringAndControl

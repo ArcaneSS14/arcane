@@ -550,13 +550,13 @@ public sealed class PullingSystem : EntitySystem
             if (!TryStopPull(pullableUid, pullableComp, currentPuller))
             {
                 // Not succeed to retake grabbed entity
-                _popup.PopupPredicted(Loc.GetString("popup-grab-retake-fail",
+                _popup.PopupClient(Loc.GetString("popup-grab-retake-fail", // Arcane-Edit
                         ("puller", Identity.Entity(currentPuller, EntityManager)),
                         ("pulled", Identity.Entity(pullableUid, EntityManager))),
                     pullerUid,
                     pullerUid,
                     PopupType.MediumCaution);
-                _popup.PopupPredicted(Loc.GetString("popup-grab-retake-fail-puller",
+                _popup.PopupEntity(Loc.GetString("popup-grab-retake-fail-puller", // Arcane-Edit
                         ("puller", Identity.Entity(pullerUid, EntityManager)),
                         ("pulled", Identity.Entity(pullableUid, EntityManager))),
                     currentPuller,
@@ -566,18 +566,30 @@ public sealed class PullingSystem : EntitySystem
             }
 
             // Successful retake
-            _popup.PopupPredicted(Loc.GetString("popup-grab-retake-success",
+            _popup.PopupClient(Loc.GetString("popup-grab-retake-success", // Arcane-Edit
                     ("puller", Identity.Entity(currentPuller, EntityManager)),
                     ("pulled", Identity.Entity(pullableUid, EntityManager))),
                 pullerUid,
                 pullerUid,
                 PopupType.MediumCaution);
-            _popup.PopupPredicted(Loc.GetString("popup-grab-retake-success-puller",
+            _popup.PopupEntity(Loc.GetString("popup-grab-retake-success-puller", // Arcane-Edit
                     ("puller", Identity.Entity(pullerUid, EntityManager)),
                     ("pulled", Identity.Entity(pullableUid, EntityManager))),
                 currentPuller,
                 currentPuller,
                 PopupType.MediumCaution);
+            // Arcane-Start
+            var retakeFilter = Filter.PvsExcept(pullerUid, entityManager: EntityManager)
+                .RemovePlayerByAttachedEntity(currentPuller);
+            _popup.PopupEntity(Loc.GetString("popup-grab-retake-success-others",
+                    ("puller", Identity.Entity(pullerUid, EntityManager)),
+                    ("oldPuller", Identity.Entity(currentPuller, EntityManager)),
+                    ("pulled", Identity.Entity(pullableUid, EntityManager))),
+                pullableUid,
+                retakeFilter,
+                true,
+                PopupType.MediumCaution);
+            // Arcane-End
             // Goobstation
         }
 

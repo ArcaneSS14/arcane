@@ -4,7 +4,7 @@
   id: Bagel
   mapName: 'Bagel Station'
   mapPath: /Maps/_Goobstation/bagel.yml # Goobstation - custom bagel
-  minPlayers: 35
+  minPlayers: 25 # Arcane-Edit 35 > 25
   maxPlayers: 90 # Arcane-Edit 80 > 90
   stations:
     Bagel:
