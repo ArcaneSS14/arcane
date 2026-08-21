@@ -194,7 +194,7 @@ public sealed class GameMapManager : IGameMapManager
     private bool IsMapEligible(GameMapPrototype map)
     {
         return map.MaxPlayers >= _playerManager.PlayerCount &&
-            //    map.MinPlayers <= _playerManager.PlayerCount && Arcane removed min players check
+               map.MinPlayers <= _playerManager.PlayerCount &&
                map.Conditions.All(x => x.Check(map)) &&
                _entityManager.System<GameTicker>().IsMapEligible(map);
     }
