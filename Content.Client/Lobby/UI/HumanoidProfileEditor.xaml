@@ -167,7 +167,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         <BoxContainer Name="AntagList" Orientation="Vertical" />
                     </ScrollContainer>
                 </BoxContainer>
-                <BoxContainer Orientation="Vertical" Margin="10">
+                <BoxContainer Name="TraitsTab" Orientation="Vertical" Margin="10"> <!-- Arcane-Edit -->
                     <!-- Traits -->
                     <ScrollContainer VerticalExpand="True">
                         <BoxContainer Name="TraitsList" Orientation="Vertical" />
