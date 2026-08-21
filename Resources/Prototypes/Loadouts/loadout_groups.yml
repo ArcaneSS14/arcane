@@ -1295,6 +1295,7 @@
   - ResearchDirectorCloak
   - ResearchDirectorRoyalCloak # Orion
   - ResearchDirectorEnsemble # goob
+  - RNDCloakPatron # Arcane
 
 - type: loadoutGroup
   id: ResearchDirectorJumpsuit
@@ -1467,6 +1468,7 @@
   - HOSRedCloakPatron # Arcane
   - Bodycam # Goobstation - Body cameras
   - HeadOfSecurityEnsemble # goob
+  - SecurityCloakPatron # Arcane
 
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing
@@ -1753,6 +1755,10 @@
   - MedicalGreenScrubs
   - MedicalPurpleScrubs
   - MedicMJ # goob
+  # Arcane-Start
+  - DoctorTurtleneckPatron
+  - DoctorTurtleneckSkirtPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: MedicalDoctorOuterClothing
@@ -1837,6 +1843,12 @@
   - SeniorPhysicianJumpsuit # Goobstation
   - SeniorPhysicianJumpskirt # Goobstation
   - ChemistMJ # goob
+  # Arcane-Start
+  - ChemistUniformPatron
+  - ChemistUniformSkirtPatron
+  - ChemistTurtleneckPatron
+  - ChemistTurtleneckSkirtPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ChemistOuterClothing
@@ -1882,6 +1894,12 @@
   - SeniorPhysicianJumpsuit # Goobstation
   - SeniorPhysicianJumpskirt # Goobstation
   - ParamedMJ # goob
+  # Arcane-Start
+  - ParamedicUniformPatron
+  - ParamedicUniformSkirtPatron
+  - ParamedicTurtleneckPatron
+  - ParamedicTurtleneckSkirtPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ParamedicOuterClothing

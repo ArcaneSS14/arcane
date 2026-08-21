@@ -18,7 +18,7 @@
   - type: Storage
     clickInsert: false
     grid:
-    - 0,0,1,2
+    - 0,0,2,2
     maxItemSize: Large
     storageInsertSound:
       path: /Audio/Voice/Slime/slime_squish.ogg
@@ -115,7 +115,7 @@
         - !type:HasComponentOnEquipmentCondition # goob edit - make suits protect slimes from water damage
           components:
           - type: PressureProtection
-          invert: true
+          inverted: true
       - !type:PopupMessage
         type: Local
         visualType: Large
@@ -125,7 +125,7 @@
         - !type:HasComponentOnEquipmentCondition # goob edit - make suits protect slimes from water damage
           components:
           - type: PressureProtection
-          invert: true
+          inverted: true
   - type: Butcherable
     butcheringType: Spike
     spawned:

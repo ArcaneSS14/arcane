@@ -11,7 +11,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Shared.Whitelist;
 // Arcane-Start
-using Content.Shared._Art.TTS;
+using Content.Shared._Arcane.TTS;
 using Content.Goobstation.Common.Barks;
 using Content.Shared._Orion.Radio;
 using Robust.Shared.Audio;

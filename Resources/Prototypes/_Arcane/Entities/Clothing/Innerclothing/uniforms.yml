@@ -134,6 +134,160 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformVirologistPatron
+  name: virologist uniform
+  description: Sterilie uniform for working with microorganisms.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformVirologistTurtleneckPatron
+  name: virologist turtleneck
+  description: Sterilie uniform for working with microorganisms.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_turtleneck.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_turtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformVirologistTurtleneckSkirtPatron
+  name: virologist turtleneck with skirt
+  description: Sterilie uniform for working with microorganisms.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_turtleneck_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_turtleneck_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformVirologistSkirtPatron
+  name: virologist uniform with skirt
+  description: Sterilie uniform for working with microorganisms.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/virologist_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformParamedicPatron
+  name: paramedic uniform
+  description: Rescuer's clothes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformParamedicTurtleneckPatron
+  name: paramedic turtleneck
+  description: Rescuer's clothes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_turtleneck.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_turtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformParamedicTurtleneckSkirtPatron
+  name: paramedic turtleneck with skirt
+  description: Rescuer's clothes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_turtleneck_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_turtleneck_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformParamedicSkirtPatron
+  name: paramedic uniform with skirt
+  description: Rescuer's clothes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/paramedic_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformDoctorTurtleneckPatron
+  name: doctor turtleneck
+  description: Medical worker's uniform.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/doctor_turtleneck.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/doctor_turtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformDoctorTurtleneckSkirtPatron
+  name: chemist turtleneck with skirt
+  description: Medical worker's uniform.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/doctor_turtleneck_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/doctor_turtleneck_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformChemistTurtleneckPatron
+  name: chemist turtleneck
+  description: High-quality clothes protecting from chemical burns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_turtleneck.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_turtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformChemistTurtleneckSkirtPatron
+  name: chemist turtleneck with skirt
+  description: High-quality clothes protecting from chemical burns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_turtleneck_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_turtleneck_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformChemistSkirtPatron
+  name: chemist uniform with skirt
+  description: High-quality clothes protecting from chemical burns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_skirt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformChemistPatron
+  name: chemist uniform
+  description: High-quality clothes protecting from chemical burns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/chemist.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformQMBlackSkirtSleeveles
   name: sleeveles QM's black uniform with skirt
   description: "Get out of here and get me some money too!"

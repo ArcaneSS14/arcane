@@ -9,7 +9,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
-using Content.Shared._Art.TTS;
+using Content.Shared._Arcane.TTS;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
