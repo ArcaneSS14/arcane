@@ -1,0 +1,75 @@
+uniform highp float intensity;
+uniform highp float motionScale;
+uniform sampler2D heartTexture;
+
+const highp float EffectStrength = 0.7;
+
+highp float hash(highp float seed)
+{
+    return fract(sin(seed * 127.1) * 43758.5453);
+}
+
+highp vec4 heartSample(highp vec2 point, highp float size)
+{
+    highp vec2 spriteUv = point / (size * 2.0) + 0.5;
+    highp float bounds = step(0.0, spriteUv.x) * step(spriteUv.x, 1.0) *
+                         step(0.0, spriteUv.y) * step(spriteUv.y, 1.0);
+    highp vec4 sprite = texture(heartTexture, spriteUv);
+    sprite.a *= bounds;
+    return sprite;
+}
+
+highp vec4 heartLayer(highp vec2 uv, highp float aspect, highp float time)
+{
+    highp vec4 layer = vec4(0.0);
+
+    for (int index = 0; index < 10; index++)
+    {
+        highp float seed = float(index) + 1.0;
+        highp float side = mod(float(index), 2.0);
+        highp float edgeOffset = 0.035 + hash(seed * 3.7) * 0.105;
+        highp float centerX = mix(edgeOffset, 1.0 - edgeOffset, side);
+        highp float speed = 0.035 + hash(seed * 5.3) * 0.045;
+        highp float progress = fract(hash(seed * 8.1) + time * speed);
+        highp float centerY = mix(-0.08, 1.08, progress);
+
+        highp float threshold = 0.22 + hash(seed * 6.9) * 0.48;
+        highp float presence = smoothstep(threshold, threshold + 0.12, intensity);
+        highp float spawnFade = smoothstep(0.0, 0.06, progress);
+        highp float lifetimeFade = pow(1.0 - progress, 1.35) * spawnFade;
+        highp float size = 0.016 + hash(seed * 5.4) * 0.012;
+        highp vec2 point = vec2((uv.x - centerX) * aspect, uv.y - centerY);
+        highp vec4 heart = heartSample(point, size);
+        heart.a *= presence * lifetimeFade;
+
+        layer = mix(layer, heart, step(layer.a, heart.a));
+    }
+
+    return layer;
+}
+
+void fragment()
+{
+    highp vec2 uv = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
+    highp float aspect = SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;
+    highp float time = TIME * motionScale;
+
+    highp float nearestEdge = min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));
+    highp float edgeVignette = 1.0 - smoothstep(0.0, 0.30, nearestEdge);
+    highp vec2 centered = vec2((uv.x - 0.5) * aspect * 0.72, uv.y - 0.5);
+    highp float cornerVignette = smoothstep(0.28, 0.72, length(centered));
+    highp float vignette = max(edgeVignette * 0.88, cornerVignette * 0.45);
+
+    highp float pulse = mix(1.0, 0.96 + sin(time * 2.1) * 0.04, motionScale * intensity);
+    highp float vignetteAlpha = vignette * intensity * (0.10 + intensity * 0.28) *
+                                pulse * EffectStrength;
+    highp vec4 hearts = heartLayer(uv, aspect, time);
+    highp float heartAlpha = hearts.a * intensity * 0.78 * EffectStrength;
+
+    highp float alpha = clamp(vignetteAlpha + heartAlpha * (1.0 - vignetteAlpha), 0.0, 0.82);
+    highp vec3 vignetteColor = vec3(0.91, 0.16, 0.42);
+    highp vec3 heartColor = hearts.rgb;
+    highp float heartMix = heartAlpha / max(alpha, 0.001);
+
+    COLOR = vec4(mix(vignetteColor, heartColor, heartMix), alpha);
+}
