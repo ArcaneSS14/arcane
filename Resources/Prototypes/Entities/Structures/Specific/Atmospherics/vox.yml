@@ -23,6 +23,7 @@
       Nitrium: danger
       Pluoxium: ignore
       # </Goobstation>
+      Aphrodisiac: ignore # Arcane
 
 - type: entity
   parent: [AirSensorVoxBase, AirSensor]

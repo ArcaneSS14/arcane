@@ -61,6 +61,9 @@ global-antagonist-abductor-description = Zonding in progress.
 global-antagonist-contractor-name = Contractor
 global-antagonist-contractor-description = Bounty hunter.
 
+global-antagonist-slasher-name = Slasher
+global-antagonist-slasher-description = Make the crew's biggest fear come true.
+
 global-antagonist-ghost-role-name = Ghost role
 global-antagonist-ghost-role-description = Ghost roles most often have no effect on the station.
 

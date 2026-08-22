@@ -1,7 +1,7 @@
 - type: skinColoration
   id: Hues
   strategy: !type:ClampedHsvColoration
-    value: [0.175, 1]
+    value: [0.1, 1] # Arcane-Edit: 0.175 -> 0.1
 
 - type: skinColoration
   id: TintedHues

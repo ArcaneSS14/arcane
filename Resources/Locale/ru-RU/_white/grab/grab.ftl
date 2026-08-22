@@ -24,5 +24,6 @@ popup-grab-retake-fail = { CAPITALIZE($puller) } не позволяет вам 
 popup-grab-retake-fail-puller = { CAPITALIZE($puller) } пытается выпустить { CAPITALIZE($pulled) }!
 popup-grab-retake-success = Вы освободили { CAPITALIZE($pulled) } из захвата { CAPITALIZE($puller) }!
 popup-grab-retake-success-puller = { CAPITALIZE($puller) } освободил { CAPITALIZE($pulled) } от своего захвата!
+popup-grab-retake-success-others = { CAPITALIZE($puller) } освободил { CAPITALIZE($pulled) } из захвата { CAPITALIZE($oldPuller) }!
 popup-grabbed-cant-speak = Вы не можете дышать!
 popup-grab-need-hand = Вам нужны свободные руки!
