@@ -213,7 +213,7 @@ public sealed class RoboticArmSystem : EntitySystem
 
         // prevent dropping items on walls etc
         var output = _exclusive.GetOutputSlot(ent);
-        if (output != null && IsOutputBlocked(ent))
+        if (output == null && IsOutputBlocked(ent)) // Arcane-Edit
             return false;
 
         var filter = _filter.GetSlot(ent);
