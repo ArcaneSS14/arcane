@@ -99033,7 +99033,6 @@ entities:
       pos: 7.5,33.5
       parent: 2
     - type: SiloUtilizer
-      silo: invalid
 - proto: Carpet
   entities:
   - uid: 12920

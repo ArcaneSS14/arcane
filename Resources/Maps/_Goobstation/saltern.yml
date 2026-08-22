@@ -5751,7 +5751,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       configurators:
-      - invalid
       deviceLists:
       - 37
 - proto: AltarDruid
@@ -46602,7 +46601,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       configurators:
-      - invalid
       deviceLists:
       - 37
 - proto: GasVentScrubber
@@ -47244,7 +47242,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       configurators:
-      - invalid
       deviceLists:
       - 37
     - type: AtmosPipeLayers

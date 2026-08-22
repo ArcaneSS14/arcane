@@ -19451,7 +19451,6 @@ entities:
       pos: -12.5,64.5
       parent: 2
     - type: SiloUtilizer
-      silo: invalid
     - type: TechnologyDatabase
       supportedDisciplines:
       - Industrial
@@ -21341,7 +21340,6 @@ entities:
       pos: -27.5,-9.5
       parent: 2
     - type: SiloUtilizer
-      silo: invalid
   - uid: 988
     components:
     - type: Transform
@@ -21353,14 +21351,12 @@ entities:
       pos: -20.5,20.5
       parent: 2
     - type: SiloUtilizer
-      silo: invalid
   - uid: 990
     components:
     - type: Transform
       pos: -7.5,-40.5
       parent: 2
     - type: SiloUtilizer
-      silo: invalid
   - uid: 991
     components:
     - type: Transform
@@ -61386,7 +61382,6 @@ entities:
       - Experimental
       - CivilianServices
     - type: SiloUtilizer
-      silo: invalid
 - proto: Carpet
   entities:
   - uid: 8779
@@ -69886,7 +69881,6 @@ entities:
       pos: -11.5,-39.5
       parent: 2
     - type: SiloUtilizer
-      silo: invalid
 - proto: ClarkeCentralElectronics
   entities:
   - uid: 10318
@@ -88371,7 +88365,6 @@ entities:
       pos: -14.5,-39.5
       parent: 2
     - type: SiloUtilizer
-      silo: invalid
 - proto: ExperiScanner
   entities:
   - uid: 12769
@@ -132484,7 +132477,6 @@ entities:
       pos: 42.5,-17.5
       parent: 2
     - type: SiloUtilizer
-      silo: invalid
 - proto: Medkit
   entities:
   - uid: 19027
@@ -134109,7 +134101,6 @@ entities:
       - RipleyPeripheralsElectronics
       - MechEquipmentGrabberSmall
     - type: SiloUtilizer
-      silo: invalid
 - proto: OrganSpaceAnimalHeart
   entities:
   - uid: 10807
@@ -150058,7 +150049,6 @@ entities:
       - Service
       - Syndicate
     - type: SiloUtilizer
-      silo: invalid
 - proto: ScrapCanister1
   entities:
   - uid: 21701
@@ -150113,7 +150103,6 @@ entities:
       pos: -18.5,58.5
       parent: 2
     - type: SiloUtilizer
-      silo: invalid
     - type: TechnologyDatabase
       supportedDisciplines:
       - Engineering
@@ -150163,7 +150152,6 @@ entities:
       - Service
       - Syndicate
     - type: SiloUtilizer
-      silo: invalid
 - proto: ShardGlass
   entities:
   - uid: 21710
