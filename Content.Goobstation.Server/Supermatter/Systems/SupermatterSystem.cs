@@ -114,19 +114,19 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     {
         base.Update(frameTime);
 
-        if (_pending.Count == 0)
-            return;
-
-        _accumulator += frameTime;
-        for (var i = _pending.Count - 1; i >= 0; i--)
+        if (_pending.Count > 0)
         {
-            var (entity, expiryTime) = _pending.ElementAt(i);
+            _accumulator += frameTime;
+            for (var i = _pending.Count - 1; i >= 0; i--)
+            {
+                var (entity, expiryTime) = _pending.ElementAt(i);
 
-            if (!(_accumulator >= expiryTime.TotalSeconds))
-                continue;
+                if (!(_accumulator >= expiryTime.TotalSeconds))
+                    continue;
 
-            _pending.Remove(entity);
-            Del(entity);
+                _pending.Remove(entity);
+                Del(entity);
+            }
         }
 
         if (!_gameTiming.IsFirstTimePredicted)
@@ -737,7 +737,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         // your criminal actions will not go unnoticed
         sm.Damage += sm.DelaminationPoint / 10;
         sm.DamageArchived += sm.DelaminationPoint / 10;
-//        sm.SliverRemoved = true; // Arcane-Edit: Removed
+        sm.SliverRemoved = true;
 
         var integrity = GetIntegrity(sm).ToString("0.00");
         SupermatterAnnouncement(uid, Loc.GetString("supermatter-announcement-cc-tamper", ("integrity", integrity)), true, "Central Command");
