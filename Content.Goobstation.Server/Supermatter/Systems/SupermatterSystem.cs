@@ -718,7 +718,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         if (!HasComp<SharpComponent>(args.Used))
             return;
 
-        var dae = new DoAfterArgs(EntityManager, args.User, 30f, new SupermatterDoAfterEvent(), uid)
+        var dae = new DoAfterArgs(EntityManager, args.User, 90f, new SupermatterDoAfterEvent(), uid) // Arcane-Edit: Time increased
         {
             BreakOnDamage = true,
             BreakOnHandChange = false,
@@ -739,7 +739,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         // your criminal actions will not go unnoticed
         sm.Damage += sm.DelaminationPoint / 10;
         sm.DamageArchived += sm.DelaminationPoint / 10;
-        sm.SliverRemoved = true;
+        // sm.SliverRemoved = true; // Arcane-Edit: Removed
 
         var integrity = GetIntegrity(sm).ToString("0.00");
         SupermatterAnnouncement(uid, Loc.GetString("supermatter-announcement-cc-tamper", ("integrity", integrity)), true, "Central Command");
