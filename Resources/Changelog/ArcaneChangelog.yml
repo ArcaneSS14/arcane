@@ -516,3 +516,12 @@ Entries:
   id: 43
   time: '2026-08-22T09:19:45.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/246
+- author: HappyRoach
+  changes:
+    - type: Fix
+      message: Кристалл Суперматерии вновь корректно работает.
+    - type: Tweak
+      message: Время на разделку Кристалла Суперматерии значительно увеличительно.
+  id: 44
+  time: '2026-08-23T14:54:29.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/248
