@@ -30,14 +30,14 @@
   recognizable: true
   metabolisms:
     Narcotic:
-      metabolismRate: 0.5
+      metabolismRate: 0.1
       effects:
       - !type:IncreaseArousal
-        amount: 2
+        amount: 1
         maximum: 60
         scaling: false
     Gas:
-      metabolismRate: 1
+      metabolismRate: 0.2
       effects:
       - !type:IncreaseArousal
         amount: 4

@@ -1,7 +1,7 @@
 - type: panelInteraction
   id: Handshake
   category: Hands
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/handshake.ogg
   messages:
@@ -15,7 +15,7 @@
 - type: panelInteraction
   id: FingerTap
   category: Back
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
   - /Audio/_Arcane/Interactions/pat2.ogg
@@ -33,7 +33,7 @@
 - type: panelInteraction
   id: TailPat
   category: Tail
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
   - /Audio/_Arcane/Interactions/friction2.ogg
@@ -59,7 +59,7 @@
 - type: panelInteraction
   id: TailHug
   category: Tail
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
   - /Audio/_Arcane/Interactions/friction2.ogg
@@ -92,7 +92,7 @@
 - type: panelInteraction
   id: HighFive
   category: Hands
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/bang1.ogg
   - /Audio/_Arcane/Interactions/bang2.ogg
@@ -108,6 +108,7 @@
 - type: panelInteraction
   id: FriendlyFlyingKiss
   category: Face
+  range: 10
   sounds:
   - /Audio/_Arcane/Interactions/kiss1.ogg
   - /Audio/_Arcane/Interactions/kiss2.ogg
