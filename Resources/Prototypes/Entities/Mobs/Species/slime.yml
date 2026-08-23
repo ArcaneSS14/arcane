@@ -104,6 +104,7 @@
       methods: [ Touch ]
       effects:
       - !type:WashCreamPie
+      - !type:WashCumOverlayReaction # Arcane
     - reagents: [ Water ]
       methods: [ Touch ]
       effects:
