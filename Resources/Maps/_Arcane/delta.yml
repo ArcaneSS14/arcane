@@ -99032,7 +99032,6 @@ entities:
     - type: Transform
       pos: 7.5,33.5
       parent: 2
-    - type: SiloUtilizer
 - proto: Carpet
   entities:
   - uid: 12920

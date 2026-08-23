@@ -54307,7 +54307,6 @@ entities:
     - type: Transform
       pos: -33.5,18.5
       parent: 2
-    - type: SiloUtilizer
 - proto: Carpet
   entities:
   - uid: 8514
@@ -75385,7 +75384,6 @@ entities:
     - type: Transform
       pos: 52.5,14.5
       parent: 2
-    - type: SiloUtilizer
 - proto: ExosuitFabricator
   entities:
   - uid: 12108
@@ -139518,7 +139516,6 @@ entities:
     - type: Transform
       pos: 19.5,6.5
       parent: 2
-    - type: SiloUtilizer
     - type: TechnologyDatabase
       supportedDisciplines:
       - Engineering
