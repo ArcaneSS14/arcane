@@ -114,6 +114,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     {
         base.Update(frameTime);
 
+        // Arcane-SM-fix-Start
         if (_pending.Count > 0)
         {
             _accumulator += frameTime;
@@ -128,6 +129,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
                 Del(entity);
             }
         }
+        // Arcane-SM-fix-End
 
         if (!_gameTiming.IsFirstTimePredicted)
             return;
