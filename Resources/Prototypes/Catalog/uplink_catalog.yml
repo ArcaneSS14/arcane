@@ -117,12 +117,12 @@
   #  Telecrystal: 3
   productEntity: WeaponEnergyCrossbow
   cost:
-    Telecrystal: 30 # Goob
+    Telecrystal: 45 # Goob # Arcane-Edit: 30 > 45
   categories:
   - UplinkWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 1
+    stock: 2 # Arcane-Edit: 1 > 2
 
 - type: listing
   id: UplinkThrowingKnivesKit

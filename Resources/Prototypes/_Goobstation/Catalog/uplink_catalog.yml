@@ -330,21 +330,23 @@
       tags:
       - ContractorUplink
 
-- type: listing
-  id: UplinkMiniatureEnergyCrossbow
-  name: uplink-miniature-energy-crossbow-name
-  description: uplink-miniature-energy-crossbow-desc
-  icon: { sprite:  /Textures/_Goobstation/Objects/Weapons/Guns/Battery/miniature_ebow.rsi, state: icon }
-  productEntity: MiniatureEnergyCrossbow
-  cost:
-    Telecrystal: 50
-  categories:
-  - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
+# Arcane-Edit-Start: Replaced from Upstream
+#- type: listing
+#  id: UplinkMiniatureEnergyCrossbow
+#  name: uplink-miniature-energy-crossbow-name
+#  description: uplink-miniature-energy-crossbow-desc
+#  icon: { sprite:  /Textures/_Goobstation/Objects/Weapons/Guns/Battery/miniature_ebow.rsi, state: icon }
+#  productEntity: MiniatureEnergyCrossbow
+#  cost:
+#    Telecrystal: 50
+#  categories:
+#  - UplinkWeaponry
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    blacklist:
+#      tags:
+#      - NukeOpsUplink
+# Arcane-Edit-End
 
 - type: listing
   id: UplinkWSPR
