@@ -740,8 +740,7 @@
     roles:
     - SponsorTier2
   equipment:
-    underwear:
-    - ClothingUnderwearBikiniDoctor
+    underwear: ClothingUnderwearBikiniDoctor
 
 - type: loadout
   id: ChemistBikiniPatron
@@ -750,8 +749,7 @@
     roles:
     - SponsorTier2
   equipment:
-    underwear:
-    - ClothingUnderwearBikiniChemist
+    underwear: ClothingUnderwearBikiniChemist
 
 - type: loadout
   id: ParamedicBikiniPatron
@@ -760,8 +758,7 @@
     roles:
     - SponsorTier2
   equipment:
-    underwear:
-    - ClothingUnderwearBikiniParamedic
+    underwear: ClothingUnderwearBikiniParamedic
 
 - type: loadout
   id: VirologistBikiniPatron
@@ -770,8 +767,7 @@
     roles:
     - SponsorTier2
   equipment:
-    underwear:
-    - ClothingUnderwearBikiniVirologist
+    underwear: ClothingUnderwearBikiniVirologist
 
 - type: loadout
   id: ParamedicGlassesPatron
