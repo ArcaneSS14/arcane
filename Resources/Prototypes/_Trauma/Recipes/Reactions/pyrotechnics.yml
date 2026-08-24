@@ -46,7 +46,7 @@
   reactants:
     NitricAcid:
       amount: 1
-    Vinegar:
+    Cornoil: # Arcane-Edit: Vinegar -> Cornoil
       amount: 1
     AceticAnhydride:
       amount: 1
