@@ -1020,7 +1020,10 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - ServiceCloak
+  - Patron
+  # Arcane-End
   # Orion-Start
   - Undershirt
   - Underwear
@@ -1044,7 +1047,10 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - MedicalCloak
+  - Patron
+  # Arcane-End
   # Orion-Start
   - Undershirt
   - Underwear
