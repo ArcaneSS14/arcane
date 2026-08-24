@@ -3,7 +3,7 @@
   category: Butt
   userArouse: 10
   targetArouse: 5
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
   - /Audio/_Arcane/Interactions/friction2.ogg
@@ -29,7 +29,7 @@
   id: ButtMassage
   category: Butt
   targetArouse: 5
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
   - /Audio/_Arcane/Interactions/pat2.ogg
@@ -48,7 +48,7 @@
   id: ButtTail
   category: Butt
   targetArouse: 5
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
   - /Audio/_Arcane/Interactions/friction2.ogg
@@ -75,7 +75,7 @@
   id: HandsOnButt
   category: Butt
   userArouse: 5
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
   - /Audio/_Arcane/Interactions/pat2.ogg
@@ -93,7 +93,7 @@
   id: KissButt
   category: Butt
   targetArouse: 5
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/kiss1.ogg
   - /Audio/_Arcane/Interactions/kiss2.ogg
@@ -112,7 +112,7 @@
   id: SlapButt
   category: Butt
   userArouse: 5
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/bang1.ogg
   - /Audio/_Arcane/Interactions/bang2.ogg
@@ -135,7 +135,7 @@
   category: Butt
   userArouse: 5
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
   - /Audio/_Arcane/Interactions/friction2.ogg
