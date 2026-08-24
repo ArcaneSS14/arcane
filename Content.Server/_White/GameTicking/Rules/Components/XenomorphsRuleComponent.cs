@@ -24,10 +24,10 @@ public sealed partial class XenomorphsRuleComponent : Component
     public string? Announcement = "xenomorphs-announcement";
 
     [DataField] // Goobstation - play music on announcement
-    public SoundSpecifier? XenomorphInfestationSound;
+    public SoundSpecifier? XenomorphInfestationSound; // Arcane - убрал музыку и оповощение ксено
 
     [DataField] // Goobstation - play music on announcement
-    public SoundSpecifier? XenomorphTakeoverSound;
+    public SoundSpecifier? XenomorphTakeoverSound; // Arcane - убрал музыку и оповощение ксено
 
 
     [DataField]
