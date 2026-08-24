@@ -125,6 +125,12 @@
   weight: 20
 
 - type: antagonist
+  id: globalAntagonistSlasher
+  name: global-antagonist-slasher-name
+  description: global-antagonist-slasher-description
+  weight: 21
+
+- type: antagonist
   id: globalAntagonistGhostRole
   name: global-antagonist-ghost-role-name
   description: global-antagonist-ghost-role-description
