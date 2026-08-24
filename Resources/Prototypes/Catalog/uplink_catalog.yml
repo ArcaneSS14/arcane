@@ -255,22 +255,24 @@
       tags:
       - ContractorUplink
 
-- type: listing
-  id: UplinkBulldog #goob
-  name: uplink-buldog-name #goob
-  description: uplink-buldog-desc #goob
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
-  productEntity: WeaponShotgunBulldog
-  cost:
-    Telecrystal: 60 # goob
-  categories:
-  - UplinkWeaponry
-  #Goobstation
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - ContractorUplink
+# Arcane-Edit-Start: Now it Zauer
+#- type: listing
+#  id: UplinkBulldog #goob
+#  name: uplink-buldog-name #goob
+#  description: uplink-buldog-desc #goob
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+#  productEntity: WeaponShotgunBulldog
+#  cost:
+#    Telecrystal: 60 # goob
+#  categories:
+#  - UplinkWeaponry
+#  #Goobstation
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    blacklist:
+#      tags:
+#      - ContractorUplink
+# Arcane-Edit-End
 
 
 - type: listing
