@@ -20,7 +20,15 @@
       settings: default
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 36000 # 10 hrs
+      time: 108000 # 10 hrs # Arcane-Edit: Now 30 hrs
+  # Arcane-Start
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 10h
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 10h
+  # Arcane-End
   - type: GhostTakeoverAvailable
   - type: Sprite
     scale: 0.6, 0.6
