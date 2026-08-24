@@ -62,7 +62,7 @@
     - id: ColossusSpawn # DeltaV
     - id: NinjaSpawn
     - id: ParadoxCloneSpawn
-    - id: RevenantSpawn  # GoobStation - removed till rework # Arcane-Edit: Now enabled
+    #- id: RevenantSpawn  # GoobStation - removed till rework
     - id: SleeperAgents
     - id: ZombieOutbreak
     - id: LoneOpsSpawn

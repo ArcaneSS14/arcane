@@ -13,7 +13,7 @@
     allowMovement: true
     name: cortical-borer-ghostrole-name
     description: cortical-borer-ghostrole-desc
-    rules: ghost-role-information-antagonist-rules
+    rules: ghost-role-information-cortical-borer-rules
     mindRoles:
     - MindRoleCorticalBorer
     raffle:
@@ -139,7 +139,7 @@
   - type: GhostRole
     name: cortical-borer-ghostrole-name
     description: cortical-borer-ghostrole-desc
-    rules: ghost-role-information-freeagent-rules
+    rules: ghost-role-information-cortical-borer-rules
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000 # 10 hrs
