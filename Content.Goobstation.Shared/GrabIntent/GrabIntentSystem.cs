@@ -118,22 +118,29 @@ public sealed partial class GrabIntentSystem : EntitySystem
             return;
 
         var grabStageOverride = args.GrabStageOverride;
+        var isXenoInstant = false;
+        XenoInstantGrabComponent? xenoGrab = null;
 
-        if (TryComp<XenoInstantGrabComponent>(args.Puller, out var xenoGrab))
+        if (TryComp(args.Puller, out xenoGrab) && _timing.CurTime >= xenoGrab.NextInstantGrab)
         {
-            if (_timing.CurTime >= xenoGrab.NextInstantGrab)
-            {
-                grabStageOverride = GrabStage.Hard;
-                xenoGrab.NextInstantGrab = _timing.CurTime + xenoGrab.Cooldown;
-                Dirty(args.Puller, xenoGrab);
-            }
+            grabStageOverride = GrabStage.Hard;
+            isXenoInstant = true;
         }
 
-        args.Grabbed = TryGrab((ent.Owner, pullable, ent.Comp),
+        var grabbed = TryGrab((ent.Owner, pullable, ent.Comp),
             args.Puller,
             args.IgnoreCombatMode,
             grabStageOverride,
             args.EscapeAttemptModifier);
+
+        args.Grabbed = grabbed;
+
+        // Кулдаун срабатывает только если TryGrab вернул true
+        if (grabbed && isXenoInstant && xenoGrab != null)
+        {
+            xenoGrab.NextInstantGrab = _timing.CurTime + xenoGrab.Cooldown;
+            Dirty(args.Puller, xenoGrab);
+        }
     } // Arcane
 
     private void OnPullableMoveInput(EntityUid uid, GrabbableComponent component, ref MoveInputEvent args)
