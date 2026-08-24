@@ -46,7 +46,7 @@ public abstract partial class SharedHandsSystem
         }
 
         if (freeHands <= 1)
-            args.SpeedModifier *= 1f - 0.5f * (1f - (float)freeHands / totalHands);
+            args.SpeedModifier *= 1f - 0.5f * (totalHands - freeHands) / totalHands;
         // Arcane-Edit-End
     }
 }
