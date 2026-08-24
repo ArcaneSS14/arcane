@@ -1354,7 +1354,7 @@
   minLimit: 0
   loadouts:
   - ScientistTie
-  - RNDCloakPatron
+  - RNDCloakPatron # Arcane
 
 - type: loadoutGroup
   id: ScientistJumpsuit
