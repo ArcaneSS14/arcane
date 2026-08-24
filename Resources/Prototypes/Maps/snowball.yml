@@ -19,6 +19,10 @@
           availableJobs: # 49 roundstart jobs without interns,  75 total jobs including interns
             #command (7)
             Captain: [ 1, 1 ]
+            # Arcane-start
+            Adjutant: [ 1, 1 ]
+            CommandMaid: [ 1, 1 ]
+            # Arcane-end
             HeadOfPersonnel: [ 1, 1 ]
             HeadOfSecurity: [ 1, 1 ]
             ChiefMedicalOfficer: [ 1, 1 ]
@@ -50,6 +54,7 @@
             SecurityOfficer: [ 3, 5 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ] #intern, not counted
+            IAA: [ 1, 1 ] # Arcane
             Lawyer: [ 1, 1 ]
             #supply (6-8)
             SalvageSpecialist: [ 3, 3 ]
