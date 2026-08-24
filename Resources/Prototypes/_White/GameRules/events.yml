@@ -20,6 +20,7 @@
   - type: AntagSpawner
     prototype: MobXenomorphLarva
   - type: XenomorphsRule
+    announcement: null # Arcane - убрал оповещение о ксено
     xenomorphInfestationSound:
       collection: xeno_start #Goobstation
       volume: -2
@@ -30,8 +31,8 @@
     agentName: xenomorph-round-end-agent-name
     definitions:
     - spawnerPrototype: SpawnPointGhostXenomorph
-      min: 1 # Orion-Edit: 2 > 1
-      max: 2 # Orion-Edit: 4 > 2
+      min: 2 # Orion-Edit: 2 > 1 # Arcane-Edit 1 > 2
+      max: 4 # Orion-Edit: 4 > 2 # Arcane-Edit 2 > 4
       pickPlayer: false
       briefing:
         text: xenomorph-role-greeting

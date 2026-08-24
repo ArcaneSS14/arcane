@@ -8,7 +8,13 @@
   - MobFlammable
   id: BaseMobXenomorph
   abstract: true
+  # Arcane
   components:
+  - type: GrabIntent
+  - type: Grabbable
+  - type: XenoInstantGrab
+    cooldown: 5
+  # Arcane
   - type: Xenomorph
     weedHeal: # Goobstation - nerfed healing
       groups:

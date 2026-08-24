@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Goobstation.Common.Grab;
+using Content.Goobstation.Shared.Xenomorph;
 using Content.Shared._EinsteinEngines.Contests;
 using Content.Shared._White.Grab;
 using Content.Shared.ActionBlocker;
@@ -111,17 +112,29 @@ public sealed partial class GrabIntentSystem : EntitySystem
         args.IsGrabbed = component.GrabStage != GrabStage.No;
     }
 
-    private void OnGrabAttempt(Entity<GrabbableComponent> ent, ref GrabAttemptEvent args)
+    private void OnGrabAttempt(Entity<GrabbableComponent> ent, ref GrabAttemptEvent args) // Arcane - хардграб ксеноморфам
     {
         if (!TryComp<PullableComponent>(ent, out var pullable))
             return;
 
+        var grabStageOverride = args.GrabStageOverride;
+
+        if (TryComp<XenoInstantGrabComponent>(args.Puller, out var xenoGrab))
+        {
+            if (_timing.CurTime >= xenoGrab.NextInstantGrab)
+            {
+                grabStageOverride = GrabStage.Hard;
+                xenoGrab.NextInstantGrab = _timing.CurTime + xenoGrab.Cooldown;
+                Dirty(args.Puller, xenoGrab);
+            }
+        }
+
         args.Grabbed = TryGrab((ent.Owner, pullable, ent.Comp),
             args.Puller,
             args.IgnoreCombatMode,
-            args.GrabStageOverride,
+            grabStageOverride,
             args.EscapeAttemptModifier);
-    }
+    } // Arcane
 
     private void OnPullableMoveInput(EntityUid uid, GrabbableComponent component, ref MoveInputEvent args)
     {
