@@ -7,8 +7,8 @@
       - id: ClothingBackpackInteQ
       - id: ClothingBackpackDuffelInteQ
       - id: ClothingBackpackSatchelInteQ
-      - id: ClothingBeltInteQDropPouch # Arcane-Start
-      - id: ClothingBeltInteQWebbing # Arcane-End
+      - id: ClothingBeltInteQDropPouch # Arcane
+      - id: ClothingBeltInteQWebbing # Arcane
     - !type:GroupSelector
       children:
       - id: ClothingHeadHatInteQSoft
@@ -43,12 +43,10 @@
       - id: ItemFlagMiniInteQ
       - id: FoodSnackInteQCookies
       - id: CigPackInteQ
-      - id: ToolboxInteQFilled
-# Arcane-Start
-    - !type:GroupSelector
+      - id: ToolboxInteQFilled 
+    - !type:GroupSelector # Arcane-Start
       children:
       - id: BoxInteQEVA
       - id: ClothingBeltInteQDropPouch
       - id: ClothingBeltInteQWebbing
-      - id: ToolboxInteQFilled
-# Arcane-End
+      - id: ToolboxInteQFilled # Arcane-End
