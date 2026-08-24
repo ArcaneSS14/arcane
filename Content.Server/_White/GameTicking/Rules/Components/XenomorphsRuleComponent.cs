@@ -1,3 +1,4 @@
+using Robust.Shared.Serialization.Manager.Attributes;
 using Robust.Shared.Audio;
 
 namespace Content.Server._White.GameTicking.Rules.Components;
@@ -20,12 +21,11 @@ public sealed partial class XenomorphsRuleComponent : Component
 
     #region Announcement
 
-    [DataField]
-    public string? Announcement = "xenomorphs-announcement";
+    [DataField("announcement")]
+    public string? Announcement { get; set; } = null; // убрал оповещение - Arcane
 
-    [DataField] // Goobstation - play music on announcement
-    public SoundSpecifier? XenomorphInfestationSound; // Arcane - убрал музыку и оповощение ксено
-
+    [DataField("xenomorphInfestationSound")] // Goobstation - play music on announcement
+    public SoundSpecifier? XenomorphInfestationSound { get; set; } = null; // Arcane - убрал музыку
     [DataField] // Goobstation - play music on announcement
     public SoundSpecifier XenomorphTakeoverSound =
         new SoundPathSpecifier("/Audio/_Goobstation/Music/Colonial_Marines_The_Final_Battle.ogg")
@@ -48,10 +48,10 @@ public sealed partial class XenomorphsRuleComponent : Component
     public string? Sender;
 
     [DataField]
-    public TimeSpan MinTimeToAnnouncement = TimeSpan.FromSeconds(400);
+    public TimeSpan MinTimeToAnnouncement = TimeSpan.FromSeconds(450);
 
     [DataField]
-    public TimeSpan MaxTimeToAnnouncement = TimeSpan.FromSeconds(450);
+    public TimeSpan MaxTimeToAnnouncement = TimeSpan.FromSeconds(600);
 
     [ViewVariables]
     public bool Announced;
