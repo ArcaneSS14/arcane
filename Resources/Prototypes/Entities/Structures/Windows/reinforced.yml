@@ -3,7 +3,7 @@
 - type: entity
   id: ReinforcedWindow
   name: reinforced window
-  parent: [BaseDeltaPressureReinforcedGlass, Window]
+  parent: Window # Arcane-Edit
   components:
   - type: Sprite
     drawdepth: WallTops
