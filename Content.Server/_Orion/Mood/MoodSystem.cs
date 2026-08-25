@@ -854,7 +854,8 @@ public sealed class MoodSystem : EntitySystem
 
     private void OnDamageChange(EntityUid uid, MoodComponent component, DamageChangedEvent args)
     {
-        if (!_mobThreshold.TryGetPercentageForState(uid, MobState.Critical, args.Damageable.TotalDamage, out var damage))
+        var vitalDamage = _mobThreshold.CheckVitalDamage(uid, args.Damageable); // Arcane
+        if (!_mobThreshold.TryGetPercentageForState(uid, MobState.Critical, vitalDamage, out var damage)) // Arcane-Edit: Now head, chest, groin
             return;
 
         ProtoId<MoodEffectPrototype> protoId = "HealthNoDamage";
