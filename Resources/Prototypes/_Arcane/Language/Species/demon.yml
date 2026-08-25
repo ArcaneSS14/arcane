@@ -1,0 +1,36 @@
+- type: language
+  id: Karshan
+  isVisibleLanguage: true
+  speech:
+    color: "#e255b3"
+    fontId: GreatVibes
+    boldFontId: GreatVibes
+    fontSize: 18
+#  icon:
+#    sprite: _Orion/Interface/Chat/language.rsi
+#    state:
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - аика
+    - сейна
+    - оикея
+    - уинти
+    - хуи
+    - эи
+    - ои
+    - алла
+    - амма
+    - анна
+    - арра
+    - асса
+    - тсета
+    - микё
+    - тэмэ
+    - минё
+    - тамэ
+    - олэн
+    - килла
+    - тйоло

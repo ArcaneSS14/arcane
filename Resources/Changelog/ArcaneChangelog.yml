@@ -555,3 +555,14 @@ Entries:
   id: 46
   time: '2026-08-24T14:23:00.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/250
+- author: Axilmon
+  changes:
+    - type: Add
+      message: Добавлен язык арканам и переводчики для него
+    - type: Tweak
+      message: >-
+        Изменен визуал языка ксеноморфов. Так же им теперь владеют и станционные
+        ксеноморфы!
+  id: 47
+  time: '2026-08-24T16:22:27.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/227
