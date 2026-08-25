@@ -57,10 +57,12 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
-  - type: DeltaPressure
-    minPressure: 15000
-    minPressureDelta: 10000
-    scalingType: Threshold
+  # Arcane-Edit-Start
+#  - type: DeltaPressure
+#    minPressure: 15000
+#    minPressureDelta: 10000
+#    scalingType: Threshold
+  # Arcane-Edit-End
   - type: Penetratable # Goobstation - Better snipers
     penetrateDamage: 50
     damagePenalty: 0.1
