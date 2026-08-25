@@ -292,9 +292,9 @@ namespace Content.Server.Medical.BiomassReclaimer
             var expectedYield = physics.FixturesMass * component.YieldPerUnitMass;
             if (HasComp<ProduceComponent>(toProcess))
                 expectedYield *= component.ProduceYieldMultiplier;
-            else if (TryComp<BiomassReclaimableComponent>(toProcess, out var reclaimable))
-                expectedYield *= reclaimable.YieldMultiplier;
-            component.CurrentExpectedYield += expectedYield;
+            else if (TryComp<BiomassReclaimableComponent>(toProcess, out var reclaimable)) // Arcane-Start
+                expectedYield *= reclaimable.YieldMultiplier; // Arcane-End
+            component.CurrentExpectedYield += expectedYield; 
 
             component.ProcessingTimer += physics.FixturesMass * component.ProcessingTimePerUnitMass; // Goobstation
 
@@ -313,8 +313,8 @@ namespace Content.Server.Medical.BiomassReclaimer
                 return false;
 
             bool isPlant = HasComp<ProduceComponent>(dragged);
-            bool isReclaimable = HasComp<BiomassReclaimableComponent>(dragged); // Arcane		        
-            if (!isPlant && !isReclaimable && !HasComp<MobStateComponent>(dragged))
+            bool isReclaimable = HasComp<BiomassReclaimableComponent>(dragged); // Arcane-Start		        
+            if (!isPlant && !isReclaimable && !HasComp<MobStateComponent>(dragged))// Arcane-End
                 return false;
 
             if (!Transform(reclaimer).Anchored)
@@ -323,7 +323,7 @@ namespace Content.Server.Medical.BiomassReclaimer
             if (TryComp<ApcPowerReceiverComponent>(reclaimer, out var power) && !power.Powered)
                 return false;
 
-            if (!isPlant && !isReclaimable && reclaimer.Comp.SafetyEnabled && !_mobState.IsDead(dragged))
+            if (!isPlant && !isReclaimable && reclaimer.Comp.SafetyEnabled && !_mobState.IsDead(dragged)) // Arcane-Edit
                 return false;
 
             // Reject souled bodies in easy mode.
