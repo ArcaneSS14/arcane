@@ -59,8 +59,8 @@
   id: BaseDeltaPressureReinforcedGlassQuarter
   components:
   - type: DeltaPressure
-    minPressure: 6000 # Arcane-Edit: 3750 > 6000
-    minPressureDelta: 5000 # Arcane-Edit: 2500 > 5000
+    minPressure: 7000 # Arcane-Edit: 3750 > 7000
+    minPressureDelta: 6000 # Arcane-Edit: 2500 > 6000
 
 ## For glass windows
 - type: entity
