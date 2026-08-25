@@ -61,6 +61,10 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleAvaliEmote
@@ -113,3 +117,7 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End

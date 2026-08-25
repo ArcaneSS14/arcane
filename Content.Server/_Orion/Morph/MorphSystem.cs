@@ -102,7 +102,7 @@ public sealed class MorphSystem : SharedMorphSystem
         SubscribeLocalEvent<MorphComponent, InteractHandEvent>(OnInteract);
 
         SubscribeLocalEvent<MorphComponent, MorphOpenRadialMenuEvent>(OnMimicryRadialMenu);
-        SubscribeLocalEvent<MorphComponent, EventMimicryActivate>(OnMimicryActivate);
+        // SubscribeLocalEvent<MorphComponent, EventMimicryActivate>(OnMimicryActivate);
         SubscribeLocalEvent<MorphComponent, MorphReproduceActionEvent>(OnReproduceAction);
         SubscribeLocalEvent<MorphComponent, MorphMimicryRememberActionEvent>(OnMimicryRememberAction);
         SubscribeLocalEvent<MorphComponent, MorphVentOpenActionEvent>(OnOpenVentAction);
@@ -391,16 +391,16 @@ public sealed class MorphSystem : SharedMorphSystem
         Dirty(uid, morph);
     }
 
-    private void OnMimicryActivate(EntityUid uid, MorphComponent morph, EventMimicryActivate args)
-    {
-        if (!TryComp<ChameleonProjectorComponent>(uid, out var chamel))
-            return;
+    // private void OnMimicryActivate(EntityUid uid, MorphComponent morph, EventMimicryActivate args)
+    // {
+    //    if (!TryComp<ChameleonProjectorComponent>(uid, out var chamel))
+    //        return;
 
-        var targ = GetEntity(args.Target);
+    //    var targ = GetEntity(args.Target);
 
-        if (targ != null)
-            MimicryNonHumanoid((uid, chamel), targ.Value);
-    }
+    //    if (targ != null)
+    //        MimicryNonHumanoid((uid, chamel), targ.Value);
+    //}
 
     public void MimicryNonHumanoid(Entity<ChameleonProjectorComponent> morph, EntityUid toChameleon)
     {

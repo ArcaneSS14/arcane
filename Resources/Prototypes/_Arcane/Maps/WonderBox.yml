@@ -2,7 +2,7 @@
   id: WonderBox
   mapName: 'WonderBox Station'
   mapPath: /Maps/_Arcane/WonderBox.yml
-  minPlayers: 25
+  minPlayers: 0
   stations:
     WonderBoxStation:
       stationProto: StandardNanotrasenStation

@@ -877,7 +877,6 @@ GasThermoMachineHellfireFreezer: GasThermoMachineFreezer
 GasThermoMachineHellfireHeater: GasThermoMachineHeater
 HellfireFreezerMachineCircuitBoard: ThermomachineFreezerMachineCircuitBoard
 HellfireHeaterMachineCircuitBoard: ThermomachineHeaterMachineCircuitBoard
-MachineMaterialSilo: MaterialSilo
 OreProcessorIndustrial: OreProcessor
 XenoEggDestroyed: EggSpider
 BaseSecretDoorAssembly: SolidSecretDoor
@@ -990,7 +989,7 @@ DVSmartFridgeMedical: SmartFridgeMedical
 
 # 2026-02-14 Goobstation, upstreaming. wild.
 MailTeleporter: CargoMailTeleporter
-# MaterialSilo: MachineMaterialSilo # Arcane-Edit: Removed
+MaterialSilo: MachineMaterialSilo
 BoxMailCapsulePrimed: null
 VendingMachineMailDrobe: null
 WeaponMailLake: null

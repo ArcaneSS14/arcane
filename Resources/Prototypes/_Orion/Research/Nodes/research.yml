@@ -214,6 +214,7 @@
   - GruntishTranslator
   - YowKriolTranslator
   - HydraspeakTranslator # Arcane
+  - KarshanTranslator # Arcane
   position: -1,8
 
 - type: technology
@@ -251,4 +252,5 @@
   - YowKriolTranslatorImplanter
   - SignTranslatorImplanter
   - HydraspeakTranslatorImplanter # Arcane
+  - KarshanTranslatorImplanter # Arcane
   position: -1,9

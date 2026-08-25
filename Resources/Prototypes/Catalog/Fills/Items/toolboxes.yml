@@ -263,3 +263,23 @@
     - id: ClothingHandsGlovesJanitor # Janitor
     - id: ClothingUniformJumpsuitReporter # Reporter
     - id: ClothingOuterWinterMime # Mime
+
+- type: entity # Arcane-Start
+  parent: ToolboxInteQ
+  id: ToolboxInteQFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrowbarOrange
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: WelderIndustrialAdvanced
+        - id: Multitool
+        - id: ClothingHandsGlovesCombat
+        - id: ClothingEyesGogglessInteQ
+  - type: StaticPrice
+    price: 1000 # Arcane-End
