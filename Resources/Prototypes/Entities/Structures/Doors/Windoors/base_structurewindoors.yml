@@ -266,7 +266,7 @@
 #Plasma Windoors
 - type: entity
   id: BasePlasmaWindoor
-  parent: BaseWindoor # Arcane-Edit
+  parent: [BaseDeltaPressurePlasmaQuarter, BaseWindoor]
   abstract: true
   components:
   - type: Sprite
@@ -338,7 +338,7 @@
 
 - type: entity
   id: BaseSecurePlasmaWindoor
-  parent: BaseSecureWindoor # Arcane-Edit
+  parent: [BaseDeltaPressureReinforcedPlasmaQuarter, BaseSecureWindoor]
   abstract: true
   components:
   - type: Sprite
@@ -418,7 +418,7 @@
 #Uranium Windoors
 - type: entity
   id: BaseUraniumWindoor
-  parent: BaseWindoor # Arcane-Edit
+  parent: [BaseDeltaPressurePlasmaQuarter, BaseWindoor]
   abstract: true
   components:
   - type: Sprite
@@ -492,7 +492,7 @@
 
 - type: entity
   id: BaseSecureUraniumWindoor
-  parent: BaseSecureWindoor # Arcane-Edit
+  parent: [BaseDeltaPressureReinforcedPlasmaQuarter, BaseSecureWindoor]
   abstract: true
   components:
   - type: Sprite

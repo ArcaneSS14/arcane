@@ -3,7 +3,7 @@
 - type: entity
   id: ShuttleWindow
   name: shuttle window
-  parent: WindowRCDResistant # Arcane-Edit
+  parent: [BaseDeltaPressureReinforcedGlass, WindowRCDResistant]
   components:
   - type: Sprite
     drawdepth: WallTops
