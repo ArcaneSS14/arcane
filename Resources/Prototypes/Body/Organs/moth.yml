@@ -6,6 +6,10 @@
   categories: [ HideSpawnMenu ]
   name: moth stomach # Shitmed
   components:
+  # Arcane-Start
+  - type: BiomassReclaimable
+    yieldMultiplier: 5.0
+  # Arcane-End
   - type: Stomach
     specialDigestible:
       tags:

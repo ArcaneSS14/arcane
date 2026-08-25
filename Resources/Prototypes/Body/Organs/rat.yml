@@ -5,6 +5,10 @@
   parent: OrganHumanLungs
   suffix: "rat"
   components:
+  # Arcane-Start
+  - type: BiomassReclaimable
+    yieldMultiplier: 5.0
+  # Arcane-End
   - type: Metabolizer
     metabolizerTypes: [ Rat ]
 

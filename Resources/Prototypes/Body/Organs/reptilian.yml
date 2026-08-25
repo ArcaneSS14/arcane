@@ -5,6 +5,10 @@
   parent: OrganAnimalStomach
   categories: [ HideSpawnMenu ]
   components:
+  # Arcane-Start
+  - type: BiomassReclaimable
+    yieldMultiplier: 5.0
+  # Arcane-End
   - type: Stomach
 #    specialDigestible: # WWDP-Remove
 #      tags:
