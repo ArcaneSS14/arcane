@@ -7,6 +7,10 @@
   name: "human body part"
   abstract: true
   components:
+  # Arcane-Start
+  - type: BiomassReclaimable
+    yieldMultiplier: 5.0
+  # Arcane-End
   - type: Icon # Shitmed Change
     sprite: Mobs/Species/Human/parts.rsi
   - type: BodyPart # Shitmed Change

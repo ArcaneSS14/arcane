@@ -7,6 +7,10 @@
   name: "reptilian body part"
   abstract: true
   components:
+  # Arcane-Start
+  - type: BiomassReclaimable
+    yieldMultiplier: 5.0
+  # Arcane-End
   - type: Icon # Shitmed Change
     sprite: Mobs/Species/Reptilian/parts.rsi
   - type: BodyPart # Shitmed Change

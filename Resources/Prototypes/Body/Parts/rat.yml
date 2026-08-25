@@ -7,6 +7,10 @@
   parent: ChestAnimal # Shitmed Change
   categories: [ HideSpawnMenu ]
   components:
+  # Arcane-Start
+  - type: BiomassReclaimable
+    yieldMultiplier: 5.0
+  # Arcane-End
   - type: BodyPart
     partType: Chest
   - type: Damageable

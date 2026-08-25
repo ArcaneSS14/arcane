@@ -9,6 +9,10 @@
   parent: BasePart
   id: PartAnimalBase
   components:
+  # Arcane-Start
+  - type: BiomassReclaimable
+    yieldMultiplier: 5.0
+  # Arcane-End
   # yes these sprites dont make sense i dont care its better than them being invisible
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
