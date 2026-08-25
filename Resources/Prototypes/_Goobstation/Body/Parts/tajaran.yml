@@ -5,6 +5,10 @@
   name: "Tajaran body part"
   abstract: true
   components:
+  # Arcane-Start
+  - type: BiomassReclaimable
+    yieldMultiplier: 5.0
+  # Arcane-End
   - type: Sprite
     sprite: _Goobstation/Mobs/Species/Tajaran/parts.rsi
   - type: Icon

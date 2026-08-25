@@ -5,6 +5,10 @@
   parent: OrganHumanStomach
   name: yowie stomach
   components:
+  # Arcane-Start
+  - type: BiomassReclaimable
+    yieldMultiplier: 5.0
+  # Arcane-End
   - type: Sprite
     state: stomach
   - type: Organ

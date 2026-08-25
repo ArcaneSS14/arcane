@@ -8,7 +8,7 @@
   components:
     # Arcane-Start
     - type: BiomassReclaimable
-      yieldMultiplier: 5.0
+      yieldMultiplier: 2.5
     # Arcane-End
     - type: Sprite
       sprite: Mobs/Species/Slime/organs.rsi
