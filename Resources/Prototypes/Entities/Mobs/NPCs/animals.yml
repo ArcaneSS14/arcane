@@ -2163,7 +2163,7 @@
     lifetime: 60
   - type: Hunger
     baseDecayRate: 10 # always hungry
-    starvingSlowdownModifier: 1
+#    starvingSlowdownModifier: 1 # Arcane-Edit
   - type: Thirst
     baseDecayRate: 10 # always thirsty
 
