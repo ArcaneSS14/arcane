@@ -20,7 +20,8 @@
   - type: AntagSpawner
     prototype: MobXenomorphLarva
   - type: XenomorphsRule
-    announcement: null # Arcane - убрал оповещение о ксено
+    #ArcaneStart - removed announcement and music
+    announcement: null
     # xenomorphInfestationSound:
     # collection: xeno_start #Goobstation
     #  volume: -2

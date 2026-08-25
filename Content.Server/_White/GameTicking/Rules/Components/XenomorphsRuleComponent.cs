@@ -22,10 +22,10 @@ public sealed partial class XenomorphsRuleComponent : Component
     #region Announcement
 
     [DataField("announcement")]
-    public string? Announcement { get; set; } = null; // убрал оповещение - Arcane
+    public string? Announcement { get; set; } = null; // Arcane: removed announcement
 
     [DataField("xenomorphInfestationSound")] // Goobstation - play music on announcement
-    public SoundSpecifier? XenomorphInfestationSound { get; set; } = null; // Arcane - убрал музыку
+    public SoundSpecifier? XenomorphInfestationSound { get; set; } = null; // Arcane: removed music on announcement
     [DataField] // Goobstation - play music on announcement
     public SoundSpecifier XenomorphTakeoverSound =
         new SoundPathSpecifier("/Audio/_Goobstation/Music/Colonial_Marines_The_Final_Battle.ogg")

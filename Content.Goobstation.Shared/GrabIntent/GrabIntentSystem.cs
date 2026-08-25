@@ -112,36 +112,49 @@ public sealed partial class GrabIntentSystem : EntitySystem
         args.IsGrabbed = component.GrabStage != GrabStage.No;
     }
 
-    private void OnGrabAttempt(Entity<GrabbableComponent> ent, ref GrabAttemptEvent args) // Arcane - хардграб ксеноморфам
+    // Arcane-Start: Xeno instant hardgrab support
+    private void OnGrabAttempt(Entity<GrabbableComponent> ent, ref GrabAttemptEvent args)
     {
         if (!TryComp<PullableComponent>(ent, out var pullable))
             return;
 
-        var grabStageOverride = args.GrabStageOverride;
-        var isXenoInstant = false;
-        XenoInstantGrabComponent? xenoGrab = null;
+        // Arcane-Start
+        var grabStageOverride = TryGetXenoInstantOverride(args.Puller, out var xenoGrab)
+            ? GrabStage.Hard
+            : args.GrabStageOverride;
 
-        if (TryComp(args.Puller, out xenoGrab) && _timing.CurTime >= xenoGrab.NextInstantGrab)
-        {
-            grabStageOverride = GrabStage.Hard;
-            isXenoInstant = true;
-        }
-
-        var grabbed = TryGrab((ent.Owner, pullable, ent.Comp),
+        var grabbed = TryGrab((ent.Owner, pullable, ent.Comp), // Arcane-Edit
             args.Puller,
             args.IgnoreCombatMode,
-            grabStageOverride,
+            grabStageOverride, // Arcane-Edit
             args.EscapeAttemptModifier);
 
         args.Grabbed = grabbed;
 
-        // Кулдаун срабатывает только если TryGrab вернул true
-        if (grabbed && isXenoInstant && xenoGrab != null)
-        {
-            xenoGrab.NextInstantGrab = _timing.CurTime + xenoGrab.Cooldown;
-            Dirty(args.Puller, xenoGrab);
-        }
-    } // Arcane
+        if (grabbed && xenoGrab != null)
+            ApplyXenoInstantCooldown(args.Puller, xenoGrab);
+        // Arcane-End
+    }
+
+// Arcane: Checks if the puller has an off-cooldown instant hardgrab
+    private bool TryGetXenoInstantOverride(EntityUid puller, out XenoInstantGrabComponent? xenoGrab)
+    {
+        xenoGrab = null;
+
+        if (!TryComp(puller, out XenoInstantGrabComponent? comp) || _timing.CurTime < comp.NextInstantGrab)
+            return false;
+
+        xenoGrab = comp;
+        return true;
+    }
+
+// Arcane: Cooldown only applies if TryGrab succeeded
+    private void ApplyXenoInstantCooldown(EntityUid puller, XenoInstantGrabComponent xenoGrab)
+    {
+        xenoGrab.NextInstantGrab = _timing.CurTime + xenoGrab.Cooldown;
+        Dirty(puller, xenoGrab);
+    }
+    // Arcane-End
 
     private void OnPullableMoveInput(EntityUid uid, GrabbableComponent component, ref MoveInputEvent args)
     {
