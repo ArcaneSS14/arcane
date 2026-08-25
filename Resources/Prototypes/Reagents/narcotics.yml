@@ -196,6 +196,7 @@
   meltingPoint: 170.0
   metabolisms:
     Narcotic:
+      metabolismRate: 0.15 # Arcane
       effects:
       # Main effects
       - !type:HealthChange
@@ -291,6 +292,7 @@
           amount: 1.2
           time: 30 # it accumulated 1.2*quantity and then exists for 30 seconds.
     Medicine:
+      metabolismRate: 0.15 # Arcane
       effects:
       # Main effects
       - !type:ModifyBleed

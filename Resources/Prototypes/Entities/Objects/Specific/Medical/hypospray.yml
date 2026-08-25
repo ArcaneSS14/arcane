@@ -608,10 +608,10 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 10 # Goobstation edit
+        maxVol: 20 # Goobstation edit # Arcane-Edit: 10 > 20
         reagents:
         - ReagentId: Stimulants
-          Quantity: 10 # Goobstation edit
+          Quantity: 20 # Goobstation edit # Arcane-Edit: 10 > 20
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false

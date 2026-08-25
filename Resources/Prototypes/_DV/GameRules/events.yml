@@ -36,9 +36,10 @@
   id: MalignRiftSpawn
   components:
   - type: StationEvent
-    earliestStart: 15
-    minimumPlayers: 15
-    weight: 0.4 #this should be rare to throw people off, otherwise it happens every shift
+    earliestStart: 30 # Arcane-Edit: 15 > 30
+    minimumPlayers: 30 # Arcane-Edit: 15 > 30
+    maxOccurrences: 1 # Arcane
+    weight: 0.1 #this should be rare to throw people off, otherwise it happens every shift # Arcane-Edit: 0.4 > 0.1
     eventType: Neutral
     startAnnouncement: cosmiccult-announce-tier2-warning
     startAnnouncementColor: "#cae8e8"
