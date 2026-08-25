@@ -4,6 +4,8 @@
   name: "demon body part"
   abstract: true
   components:
+  - type: BiomassReclaimable
+    yieldMultiplier: 2.5
   - type: Icon
     sprite: _Arcane/Mobs/Species/Demon/parts.rsi
     state: torso_m

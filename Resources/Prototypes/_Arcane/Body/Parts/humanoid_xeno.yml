@@ -4,6 +4,8 @@
   name: "xenomorph body part"
   abstract: true
   components:
+  - type: BiomassReclaimable
+    yieldMultiplier: 5.0
   - type: Icon
     sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
     state: torso_m
