@@ -6,6 +6,10 @@
   parent: FoodInjectableBase
   id: FoodMeatBase
   components:
+  # Arcane-Start 
+  - type: BiomassReclaimable
+    yieldMultiplier: 1.0
+  # Arcane-End
   - type: FlavorProfile
     flavors:
       - meaty
