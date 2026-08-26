@@ -7,7 +7,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._CorvaxGoob.OfferItem;
+namespace Content.Shared._Arcane.OfferItem;
 
 public abstract partial class SharedOfferItemSystem : EntitySystem
 {

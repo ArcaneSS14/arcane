@@ -4,7 +4,7 @@ using Content.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 
-namespace Content.Shared._CorvaxGoob.OfferItem;
+namespace Content.Shared._Arcane.OfferItem;
 
 public abstract partial class SharedOfferItemSystem
 {

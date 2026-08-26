@@ -1,9 +1,9 @@
-﻿using Content.Shared._CorvaxGoob.OfferItem;
+﻿using Content.Shared._Arcane.OfferItem;
 using Content.Shared.Alert;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 
-namespace Content.Server._CorvaxGoob.OfferItem;
+namespace Content.Server._Arcane.OfferItem;
 
 public sealed class OfferItemSystem : SharedOfferItemSystem
 {

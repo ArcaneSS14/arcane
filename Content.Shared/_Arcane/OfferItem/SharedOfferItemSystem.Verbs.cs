@@ -5,7 +5,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 
-namespace Content.Shared._CorvaxGoob.OfferItem;
+namespace Content.Shared._Arcane.OfferItem;
 
 public abstract partial class SharedOfferItemSystem
 {
@@ -40,7 +40,7 @@ public abstract partial class SharedOfferItemSystem
         args.Verbs.Add(new InteractionVerb
         {
             Text = Loc.GetString("offer-item-verb"),
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_CorvaxGoob/Misc/give_item.rsi"), "give_item_verb"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Arcane/Misc/give_item.rsi"), "give_item_verb"),
             Act = () => TryOfferItemToTarget(user, target, item, handId),
             Priority = 1,
         });
