@@ -2,7 +2,7 @@
   id: WonderBox
   mapName: 'WonderBox Station'
   mapPath: /Maps/_Arcane/WonderBox.yml
-  minPlayers: 25
+  minPlayers: 0
   stations:
     WonderBoxStation:
       stationProto: StandardNanotrasenStation
@@ -13,7 +13,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'TG'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_courser.yml
+          emergencyShuttlePath: /Maps/Shuttles/emergency_box.yml
         - type: StationJobs
           availableJobs:
             # Command
