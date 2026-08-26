@@ -150,7 +150,7 @@
   icon: { sprite: _Orion/Objects/Weapons/Guns/Ammunition/Magazines/Heavy/rpd.rsi, state: base }
   productEntity: MagazineLightMachineGunRPD
   cost:
-    Telecrystal: 22
+    Telecrystal: 25 # 22 > 25
   categories:
   - UplinkAmmo
 

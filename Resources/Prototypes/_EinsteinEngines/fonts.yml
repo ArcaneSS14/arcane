@@ -10,3 +10,8 @@
 #- type: font
 #  id: LDFComicSansBold
 #  path: /Fonts/_EinsteinEngines/LDFComicSans/LDFComicSans-Bold.ttf
+# Arcane-Start
+- type: font
+  id: Rubikmaze
+  path: /Fonts/_Arcane/Languages/RubikMaze-Regular.ttf
+# Arcane-End

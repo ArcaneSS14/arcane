@@ -5,7 +5,7 @@
   icon: { sprite: _Trauma/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: tranq }
   productEntity: MagazinePistolCaselessRifleTranquilizer
   cost:
-    Telecrystal: 20
+    Telecrystal: 17 # Arcane-Edit: 20 > 17
   categories:
   - UplinkAmmo
 
@@ -16,6 +16,6 @@
   icon: { sprite: _Trauma/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: poison }
   productEntity: MagazinePistolCaselessRiflePoison
   cost:
-    Telecrystal: 25
+    Telecrystal: 15 # Arcane-Edit: 25 > 15
   categories:
   - UplinkAmmo

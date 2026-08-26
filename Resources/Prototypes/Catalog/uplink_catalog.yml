@@ -117,12 +117,12 @@
   #  Telecrystal: 3
   productEntity: WeaponEnergyCrossbow
   cost:
-    Telecrystal: 30 # Goob
+    Telecrystal: 45 # Goob # Arcane-Edit: 30 > 45
   categories:
   - UplinkWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 1
+    stock: 2 # Arcane-Edit: 1 > 2
 
 - type: listing
   id: UplinkThrowingKnivesKit
@@ -255,22 +255,24 @@
       tags:
       - ContractorUplink
 
-- type: listing
-  id: UplinkBulldog #goob
-  name: uplink-buldog-name #goob
-  description: uplink-buldog-desc #goob
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
-  productEntity: WeaponShotgunBulldog
-  cost:
-    Telecrystal: 60 # goob
-  categories:
-  - UplinkWeaponry
-  #Goobstation
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - ContractorUplink
+# Arcane-Edit-Start: Now it Zauer
+#- type: listing
+#  id: UplinkBulldog #goob
+#  name: uplink-buldog-name #goob
+#  description: uplink-buldog-desc #goob
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+#  productEntity: WeaponShotgunBulldog
+#  cost:
+#    Telecrystal: 60 # goob
+#  categories:
+#  - UplinkWeaponry
+#  #Goobstation
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    blacklist:
+#      tags:
+#      - ContractorUplink
+# Arcane-Edit-End
 
 
 - type: listing
@@ -642,7 +644,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: red-icon }
   productEntity: MagazinePistolCaselessRifle
   cost:
-    Telecrystal: 3 # goob
+    Telecrystal: 2 # goob # Arcane-Edit: 3 > 2
   categories:
   - UplinkAmmo
   #Goobstation
@@ -851,7 +853,7 @@
   #discountDownTo:
   #  Telecrystal: 1
   cost:
-    Telecrystal: 5 # goob
+    Telecrystal: 10 # goob # Arcane-Edit: 5 > 10
   categories:
   - UplinkChemicals
 

@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "peacekeeper_walking",
+            "directions": 4
+        },
+        {
             "name": "peacekeeper-rest",
             "directions": 1
         },

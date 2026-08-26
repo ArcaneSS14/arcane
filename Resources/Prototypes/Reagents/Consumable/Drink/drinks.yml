@@ -34,7 +34,7 @@
         - !type:ReagentCondition
           reagent: Coffee
           min: 25
-          max: 99
+          max: 50 # Arcane-Edit: 99 > 50
       - !type:GenericStatusEffect
         key: Stutter
         component: StutteringAccent
@@ -48,7 +48,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: Coffee
-          min: 100
+          min: 75 # Arcane-Edit: 100 > 75
       - !type:PopupMessage
         visualType: Medium
         messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"]
@@ -57,7 +57,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: Coffee
-          min: 100
+          min: 75 # Arcane-Edit: 100 > 75
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/coffeeglass.rsi
     state: icon_empty
