@@ -1,3 +1,4 @@
+using Content.Shared._Arcane.ErpPanel;
 using Content.Shared.EntityEffects;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -8,6 +9,7 @@ namespace Content.Shared._Arcane.ERP;
 public sealed partial class IncreaseArousalSystem : EntityEffectSystem<ArousalComponent, IncreaseArousal>
 {
     [Dependency] private readonly ArousalSystem _arousal = default!;
+    [Dependency] private readonly SharedErpPanelSystem _erpPanel = default!;
 
     protected override void Effect(Entity<ArousalComponent> entity, ref EntityEffectEvent<IncreaseArousal> args)
     {
@@ -20,6 +22,7 @@ public sealed partial class IncreaseArousalSystem : EntityEffectSystem<ArousalCo
             return;
 
         _arousal.AddArousal(entity.Owner, amount, entity.Comp);
+        _erpPanel.ProccessMoan(entity.Owner, 15);
     }
 }
 

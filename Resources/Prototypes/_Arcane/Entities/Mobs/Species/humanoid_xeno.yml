@@ -4,6 +4,13 @@
   name: Urist McXeno
   abstract: true
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Xeno
+    understands:
+    - TauCetiBasic
+    - Xeno
   - type: Respirator
     damage:
       types:
@@ -69,7 +76,7 @@
 #        sprite: Mobs/Effects/brute_damage.rsi
 #        color: "#44944A"
   - type: Stamina
-    baseCritThreshold: 125
+    baseCritThreshold: 110
   - type: Hunger
     baseDecayRate: 0.08
   - type: Thirst
@@ -141,11 +148,6 @@
     species: HumanoidXeno
     permanentlyHidden:
     - Eyes
-  - type: LanguageKnowledge
-    speaks:
-    - TauCetiBasic
-    understands:
-    - TauCetiBasic
   - type: CollectiveMind
     defaultChannel: HumanoidXenomind
     channels:
@@ -165,6 +167,13 @@
   components:
   - type: HumanoidAppearance
     species: HumanoidXeno
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Xeno
+    understands:
+    - TauCetiBasic
+    - Xeno
   - type: Inventory
     speciesId: reptilian
     templateId: humanoidxeno

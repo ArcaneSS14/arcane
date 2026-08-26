@@ -34,7 +34,7 @@
     - id: TidemindDevelop # Goobstation - Tidemind
     - id: MothroachSpawn # DeltaV
     - id: DerelictCyborgSyndicateSpawn # Goobstation - usually calm
-#    - id: MalignRiftSpawn # DeltaV | Orion-Edit: Removed
+    - id: MalignRiftSpawn
     - id: FloorGoblinMidRound # Goobstation
     - id: ClownGoblinMigration # Goobstation - New Midrounds
     # - id: SantaClausSpawn # Goobstation, remove after new year
@@ -46,7 +46,7 @@
     children:
     # Orion-Start
     - id: MorphInfestation
-    # - id: CorticalBorerInfestation # Arcane-remove
+    - id: CorticalBorerInfestation
     # Orion-End
     - id: ClosetSkeleton
     - id: KingRatMigration

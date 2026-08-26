@@ -35,11 +35,18 @@ public abstract partial class SharedHandsSystem
         var freeHands = CountFreeHands(ent.AsNullable());
         var totalHands = GetHandCount(ent.AsNullable());
 
-        // Can't crawl around without any hands.
-        // Entities without the HandsComponent will always have full crawling speed.
-        if (totalHands == 0)
-            args.SpeedModifier = 0f;
-        else
-            args.SpeedModifier *= (float)freeHands / totalHands;
+        // Arcane-Edit-Start
+        if (totalHands == 0 || freeHands == totalHands)
+            return;
+
+        if (totalHands <= 2)
+        {
+            args.SpeedModifier *= totalHands == 1 || freeHands == 1 ? 0.85f : 0.5f;
+            return;
+        }
+
+        if (freeHands <= 1)
+            args.SpeedModifier *= 1f - 0.5f * (totalHands - freeHands) / totalHands;
+        // Arcane-Edit-End
     }
 }

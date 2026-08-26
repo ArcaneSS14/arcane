@@ -1,7 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Content.Goobstation.Shared.MisandryBox.JumpScare;
+using Content.Goobstation.Shared.Supermatter;
 using Content.Goobstation.Shared.Supermatter.Components;
 using Content.Goobstation.Shared.Supermatter.Systems;
 using Content.Server.AlertLevel;
@@ -18,19 +22,28 @@ using Content.Shared.Atmos;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
+using Content.Shared.Electrocution;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Radiation.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
+using Robust.Shared.IoC;
+using Robust.Shared.Map;
+using Robust.Shared.Maths;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Player;
+using Robust.Shared.Utility;
+using Content.Goobstation.Shared.MisandryBox.Smites;
 
 namespace Content.Goobstation.Server.Supermatter.Systems;
 
@@ -50,6 +63,18 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private readonly IFullScreenImageJumpscare _jumpscare = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly SharedPointLightSystem _light = default!;
+    [Dependency] private readonly SharedElectrocutionSystem _elect = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ThunderstrikeSystem _thunderstrikeSystem = default!;
+
+    private const string Sound = "/Audio/_Goobstation/Effects/Smites/Thunderstrike/thunderstrike.ogg";
+    private const string ltgsm = "/Textures/_Goobstation/MisandryBox/LTGSM.png";
+
+    private readonly Dictionary<EntityUid, TimeSpan> _pending = new();
+    private float _accumulator;
 
     private DelamType _delamType = DelamType.Explosion;
 
@@ -88,6 +113,23 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // Arcane-SM-fix-Start
+        if (_pending.Count > 0)
+        {
+            _accumulator += frameTime;
+            for (var i = _pending.Count - 1; i >= 0; i--)
+            {
+                var (entity, expiryTime) = _pending.ElementAt(i);
+
+                if (!(_accumulator >= expiryTime.TotalSeconds))
+                    continue;
+
+                _pending.Remove(entity);
+                Del(entity);
+            }
+        }
+        // Arcane-SM-fix-End
 
         if (!_gameTiming.IsFirstTimePredicted)
             return;
@@ -631,8 +673,15 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         if (!HasComp<ProjectileComponent>(target))
         {
             _adminLog.Add(LogType.Supermatter, LogImpact.Medium, $"Supermatter {ToPrettyString(uid)} has consumed {ToPrettyString(target)}");
-            EntityManager.SpawnEntity("Ash", Transform(target).Coordinates);
-            _audio.PlayPvs(sm.DustSound, uid);
+            if (HasComp<ActorComponent>(target))
+            {
+                _thunderstrikeSystem.Smite(target,true,null,ltgsm);
+            }
+            else
+            {
+                EntityManager.SpawnEntity("Ash", Transform(target).Coordinates);
+                _audio.PlayPvs(sm.DustSound, uid);
+            }
         }
 
         EntityManager.QueueDeleteEntity(target);
@@ -669,7 +718,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         if (!HasComp<SharpComponent>(args.Used))
             return;
 
-        var dae = new DoAfterArgs(EntityManager, args.User, 30f, new SupermatterDoAfterEvent(), uid)
+        var dae = new DoAfterArgs(EntityManager, args.User, 90f, new SupermatterDoAfterEvent(), uid) // Arcane-Edit: Time increased
         {
             BreakOnDamage = true,
             BreakOnHandChange = false,
@@ -690,7 +739,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         // your criminal actions will not go unnoticed
         sm.Damage += sm.DelaminationPoint / 10;
         sm.DamageArchived += sm.DelaminationPoint / 10;
-//        sm.SliverRemoved = true; // Arcane-Edit: Removed
+        // sm.SliverRemoved = true; // Arcane-Edit: Removed
 
         var integrity = GetIntegrity(sm).ToString("0.00");
         SupermatterAnnouncement(uid, Loc.GetString("supermatter-announcement-cc-tamper", ("integrity", integrity)), true, "Central Command");

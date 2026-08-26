@@ -34,6 +34,11 @@
         Piercing: 1.25
         Asphyxiation: 1.25
         Structural: 1.25
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      165: Critical
+      170: Dead
   - type: Body
     prototype: Oni
   - type: Damageable # Goob-Fixes

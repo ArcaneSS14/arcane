@@ -1590,6 +1590,10 @@
     damage:
       types:
         Piercing: 2
+        # Arcane-Start
+        Shock: 5
+        Ion: 10
+        # Arcane-End
   - type: StunOnCollide #somewhat mirror to taser stats, meant to be tot 'sidegrade'
     stunAmount: 0
     knockdownAmount: 2.5
@@ -1602,10 +1606,14 @@
   - type: SolutionContainerManager
     solutions:
       bolt:
-        maxVol: 1.5
+        maxVol: 3 # Arcane-Edit: 1.5 > 3
         reagents:
         - ReagentId: Toxin
-          Quantity: 1.5
+          Quantity: 0.5 # Arcane-Edit: 1.5 > 0.5
+        # Arcane-Start
+        - ReagentId: ChloralHydrate
+          Quantity: 2.5
+        # Arcane-End
   - type: SolutionInjectOnProjectileHit
-    transferAmount: 1.5
+    transferAmount: 3 # Arcane-Edit: 1.5 > 3
     solution: bolt

@@ -22,3 +22,6 @@ public sealed partial class ErpPanelSendMessage(string interaction, float custom
     public readonly float CustomArousal = customArousal;
     public readonly float CustomMoaning = customMoaning;
 }
+
+[ByRefEvent]
+public readonly record struct ErpPanelOpenEvent(EntityUid Target);

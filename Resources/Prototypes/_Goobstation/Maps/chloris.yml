@@ -64,6 +64,8 @@
             Clown: [ 1, 1 ]
             Janitor: [ 2, 3 ]
             Librarian: [ 1, 1 ]
+            IAA: [ 1, 1 ] # Arcane
+            Lawyer: [ 2, 2 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 2 ]
             Reporter: [ 1, 2 ]
