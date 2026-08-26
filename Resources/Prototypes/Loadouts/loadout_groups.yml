@@ -260,7 +260,10 @@
   - HoPCloak
   - HoPMantle
   - HeadOfPersonnelEnsemble # goob
-  - IanCloakPatron # Arcane
+  # Arcane-Start
+  - IanCloakPatron
+  - ServiceCloakPatron
+  # Arcane-EndА
 
 - type: loadoutGroup
   id: HoPBackpack
@@ -962,8 +965,11 @@
   loadouts:
   - QuartermasterCloak
   - QuartermasterMantle
-  - QMBlackCloakPatron # Arcane
-  - QMWhiteCloakPatron # Arcane
+  # Arcane-Start
+  - QMBlackCloakPatron
+  - QMWhiteCloakPatron
+  - CargoCloakPatron
+  # Arcane-End
   - QuartermasterEnsemble # goob
 
 - type: loadoutGroup
@@ -1117,6 +1123,7 @@
   - ClothingNeckMantleOrangeCE # goob
   - ClothingNeckEnsembleChiefEngineerWhite # goob
   - ClothingNeckEnsembleChiefEngineerGreen # goob
+  - EngineerCloakPatron # Arcane
 
 - type: loadoutGroup
   id: ChiefEngineerOuterClothing
@@ -1347,6 +1354,7 @@
   minLimit: 0
   loadouts:
   - ScientistTie
+  - RNDCloakPatron # Arcane
 
 - type: loadoutGroup
   id: ScientistJumpsuit
@@ -1619,6 +1627,7 @@
   - DetectiveTie
   - SecurityScarfRed # Orion
   - Bodycam # Goobstation - Body cameras
+  - SecurityCloakPatron # Arcane
 
 - type: loadoutGroup
   id: DetectiveJumpsuit
@@ -1712,7 +1721,10 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
-  - CMOHonorableCloakPatron # Arcane
+  # Arcane-Start
+  - CMOHonorableCloakPatron
+  - MeicalCloakPatron
+  # Arcane-End
   - ChiefMedicalOfficerEnsemble # goob
 
 - type: loadoutGroup
