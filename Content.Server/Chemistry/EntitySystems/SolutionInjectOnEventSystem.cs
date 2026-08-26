@@ -109,7 +109,9 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         // Arcane-Start
         if (_tag.HasTag(suit.Value, HardsuitTag))
         {
-            args.Cancelled = true;
+            var hardsuitTime = TimeSpan.FromSeconds(5f);
+            if (ent.Comp.EmbedTime + hardsuitTime > _timing.CurTime)
+                args.Cancelled = true;
             return;
         }
         // Arcane-End
@@ -189,16 +191,6 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             var pierce = injector.Comp.PierceArmorOverride ?? injector.Comp.PierceArmor;
             if (_inventory.TryGetSlotEntity(target, "outerClothing", out var suit)) // attempt to apply armor injection speed multiplier or block the syringe
             {
-                // Arcane-Start
-                if (_tag.HasTag(suit.Value, HardsuitTag))
-                {
-                    if (source != null)
-                        _popup.PopupEntity(Loc.GetString(injector.Comp.BlockedByArmorPopupMessage, ("weapon", injector.Owner), ("target", target)), target, source.Value, PopupType.SmallCaution);
-
-                    continue;
-                }
-                // Arcane-End
-
                 var blocked = _tag.HasTag(suit.Value, SyringeArmorTag);
                 // bool syringeArmor = _tag.HasTag(suit.Value, "SyringeArmor");
                 // bool blocked = syringeArmor && !pierce; // if we have syringe armor and it's not piercing just block it outright
