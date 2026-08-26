@@ -44,9 +44,9 @@
   - type: PointLight
     enabled: false
     color: "#4080FF"
-    radius: 32
+    radius: 16 # Arcane-Edit: 32 > 16
     energy: 2.0
-    softness: 32.0
+    softness: 8 # Arcane-Edit: 32 > 8
   - type: Appearance
   - type: GenericVisualizer
     visuals:

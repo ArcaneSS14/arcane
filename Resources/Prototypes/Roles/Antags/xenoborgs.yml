@@ -5,9 +5,10 @@
   setPreference: true
   objective: roles-antag-mothership-core-objective
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobBorg
-    time: 18000  # 5 hrs
+  # Arcane-Edit-Start
+  - !type:OverallPlaytimeRequirement
+    time: 10h
+  # Arcane-Edit-End
   guides: [ Xenoborgs ]
 
 - type: antag
@@ -17,7 +18,9 @@
   setPreference: true
   objective: roles-antag-xenoborg-objective
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobBorg
-    time: 18000  # 5 hrs
+  # Arcane-Edit-Start
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 10h
+  # Arcane-Edit-End
   guides: [ Xenoborgs ]

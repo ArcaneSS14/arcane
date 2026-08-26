@@ -59,5 +59,6 @@ bark-name-undertale-toriel = Ториэль (Undertale)
 bark-name-undertale-undyne = Андайн (Undertale)
 bark-name-bleat = Блеяние
 bark-name-moth = Моль
+bark-name-moth-squeak = Писк моли
 bark-name-nomi = Номи
 bark-name-poyo = Пойо
