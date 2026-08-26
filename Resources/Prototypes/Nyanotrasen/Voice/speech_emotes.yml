@@ -117,7 +117,7 @@
     tags:
     - FelinidEmotes
     - HarpyEmotes
-    - ShadowkinEmotes
+    - ShadowkinEmotes # Arcane
   blacklist:
     components:
     - BorgChassis
