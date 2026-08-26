@@ -124,7 +124,7 @@
 - type: listing
   id: UplinkZauer
   name: uplink-zauer-name
-  description: uplink-buldog-desc
+  description: uplink-zauer-desc
   icon: { sprite: _Orion/Objects/Weapons/Guns/Shotguns/zauer/big.rsi, state: icon }
   productEntity: WeaponShotgunZauer
   cost:

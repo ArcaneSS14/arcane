@@ -191,9 +191,10 @@
     - chaos
   name: secretplus-admeme-title
   description: secretplus-admeme-description
-  showInVote: false # 1984
+  showInVote: true # Arcane
   rules:
     - SecretPlusAdmeme
+    - BasicRoundstartVariation # Arcane
 
 - type: gamePreset
   id: SurvivalPlusMid
