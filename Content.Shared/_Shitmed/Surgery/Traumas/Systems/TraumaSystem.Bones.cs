@@ -10,6 +10,7 @@ using Content.Shared.Body.Part;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
@@ -28,6 +29,10 @@ public partial class TraumaSystem
         SubscribeLocalEvent<BoneComponent, GetDoAfterDelayMultiplierEvent>(OnGetDoAfterDelayMultiplier);
         SubscribeLocalEvent<BoneComponent, AttemptHandsMeleeEvent>(OnAttemptHandsMelee);
         SubscribeLocalEvent<BoneComponent, AttemptHandsShootEvent>(OnAttemptHandsShoot);
+        // Arcane-Start
+        SubscribeLocalEvent<BodyComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshLegTraumaSpeed);
+        SubscribeLocalEvent<BodyComponent, RefreshFrictionModifiersEvent>(OnRefreshLegTraumaFriction);
+        // Arcane-End
     }
 
     #region Event Handling
@@ -80,7 +85,7 @@ public partial class TraumaSystem
                 foreach (var trauma in traumas.Where(trauma => trauma.Comp.TraumaTarget == bone))
                     RemoveTrauma(trauma);
         }
-
+        /* // Arcane-Edit-Start
         switch (bodyComp.PartType)
         {
             case BodyPartType.Leg:
@@ -89,7 +94,26 @@ public partial class TraumaSystem
 
                 break;
         }
+        */ // Arcane-Edit-End
     }
+
+    // Arcane-Start
+    private void OnRefreshLegTraumaSpeed(
+        Entity<BodyComponent> body,
+        ref RefreshMovementSpeedModifiersEvent args)
+    {
+        var modifiers = GetLegTraumaModifiers(body);
+        args.ModifySpeed(modifiers.Walk, modifiers.Sprint);
+    }
+
+    private void OnRefreshLegTraumaFriction(
+        Entity<BodyComponent> body,
+        ref RefreshFrictionModifiersEvent args)
+    {
+        var modifiers = GetLegTraumaModifiers(body);
+        args.ModifyAcceleration(modifiers.Acceleration);
+    }
+    // Arcane-End
 
     private void OnGetDoAfterDelayMultiplier(Entity<BoneComponent> bone, ref GetDoAfterDelayMultiplierEvent args)
     {
@@ -277,96 +301,96 @@ public partial class TraumaSystem
         if (boneComp.BoneWoundable != null
             && TryComp<BodyPartComponent>(boneComp.BoneWoundable.Value, out var bodyPartComp)
             && bodyPartComp.Body is { } body)
+        // Arcane-Edit-Start
+        {
+            if (bodyPartComp.PartType is BodyPartType.Leg or BodyPartType.Foot)
+                ProcessLegsState(body);
             UpdateBodyBoneAlert(body);
+        }
+        // Arcane-Edit-End
     }
 
-
-    private void ProcessLegsState(EntityUid body, BodyComponent? bodyComp = null)
+    // Arcane-Edit-Start
+    private (float Walk, float Sprint, float Acceleration, float DamagedWalk, float HealthyWalk)
+        GetLegTraumaModifiers(Entity<BodyComponent> body)
     {
-        if (!Resolve(body, ref bodyComp) || bodyComp.RequiredLegs <= 0)
-            return;
+        if (body.Comp.RequiredLegs <= 0)
+            return (1f, 1f, 1f, 0f, 0f);
 
-        var rawWalkSpeed = 0f; // just used to compare to actual speed values
-        var walkSpeed = 0f;
-        var sprintSpeed = 0f;
-        var acceleration = 0f;
+        var penalty = 0f;
 
-        foreach (var legEntity in bodyComp.LegEntities)
+        foreach (var legEntity in body.Comp.LegEntities)
         {
-            if (!TryComp<MovementBodyPartComponent>(legEntity, out var movement))
+            if (!TryComp<MovementBodyPartComponent>(legEntity, out _))
                 continue;
 
-            var partWalkSpeed = movement.WalkSpeed;
-            var partSprintSpeed = movement.SprintSpeed;
-            var partAcceleration = movement.Acceleration;
+            var legPenalty = 0f;
 
-            if (!TryComp<WoundableComponent>(legEntity, out var legWoundable)
-                || !TryComp<BoneComponent>(legWoundable.Bone.ContainedEntities.FirstOrNull(), out var boneComp))
-                continue;
+            if (TryComp<WoundableComponent>(legEntity, out var legWoundable)
+                && TryComp<BoneComponent>(legWoundable.Bone.ContainedEntities.FirstOrNull(), out var legBone))
+            {
+                legPenalty += legBone.BoneSeverity switch
+                {
+                    BoneSeverity.Damaged => 0.05f,
+                    BoneSeverity.Cracked => 0.125f,
+                    BoneSeverity.Broken => 0.225f,
+                    _ => 0f,
+                };
+            }
+            else
+            {
+                // A leg entity without a valid bone is treated as a missing leg.
+                legPenalty += 0.25f;
+            }
 
-            // Get the foot penalty
-            var penalty = 1f;
-            var footEnt =
-                _body.GetBodyChildrenOfType(body,
-                        BodyPartType.Foot,
-                        symmetry: Comp<BodyPartComponent>(legEntity).Symmetry)
-                    .FirstOrNull();
+            var footEnt = _body.GetBodyChildrenOfType(
+                    body,
+                    BodyPartType.Foot,
+                    symmetry: Comp<BodyPartComponent>(legEntity).Symmetry)
+                .FirstOrNull();
 
             if (footEnt != null)
             {
                 if (TryComp<WoundableComponent>(footEnt.Value.Id, out var footWoundable)
                     && TryComp<BoneComponent>(footWoundable.Bone.ContainedEntities.FirstOrNull(), out var footBone))
                 {
-                    penalty = footBone.BoneSeverity switch
+                    penalty += legPenalty + footBone.BoneSeverity switch
                     {
-                        BoneSeverity.Damaged => 0.77f,
-                        BoneSeverity.Cracked => 0.66f,
-                        BoneSeverity.Broken => 0.55f,
-                        _ => penalty,
+                        BoneSeverity.Damaged => 0.04f,
+                        BoneSeverity.Cracked => 0.08f,
+                        BoneSeverity.Broken => 0.12f,
+                        _ => 0f,
                     };
+
+                    continue;
                 }
             }
-            else
-            {
-                // You are supposed to have one
-                penalty = 0.44f;
-            }
 
-            rawWalkSpeed += partWalkSpeed;
-            partWalkSpeed *= penalty;
-            partSprintSpeed *= penalty;
-            partAcceleration *= penalty;
-
-            switch (boneComp.BoneSeverity)
-            {
-                case BoneSeverity.Cracked:
-                    walkSpeed += partWalkSpeed / 2f;
-                    sprintSpeed += partSprintSpeed / 2f;
-                    acceleration += partAcceleration / 2f;
-                    break;
-
-                case BoneSeverity.Damaged:
-                    walkSpeed += partWalkSpeed / 1.6f;
-                    sprintSpeed += partSprintSpeed / 1.6f;
-                    acceleration += partAcceleration / 1.6f;
-                    break;
-
-                case BoneSeverity.Normal:
-                    walkSpeed += partWalkSpeed;
-                    sprintSpeed += partSprintSpeed;
-                    acceleration += partAcceleration;
-                    break;
-            }
+            penalty += legPenalty + 0.15f;
         }
 
-        rawWalkSpeed /= bodyComp.RequiredLegs;
-        walkSpeed /= bodyComp.RequiredLegs;
-        sprintSpeed /= bodyComp.RequiredLegs;
-        acceleration /= bodyComp.RequiredLegs;
+        // LegEntities normally contains only existing legs, so account for legs that are physically missing from the required set.
+        var missingLegs = Math.Max(0, body.Comp.RequiredLegs - body.Comp.LegEntities.Count);
+        penalty += missingLegs * 0.25f;
 
-        _movementSpeed.ChangeBaseSpeed(body, walkSpeed, sprintSpeed, acceleration);
+        var modifier = Math.Max(0f, 1f - penalty);
 
-        if (walkSpeed < rawWalkSpeed / 3.4)
+        return (modifier, modifier, modifier, modifier, 1f);
+    }
+    // Arcane-Edit-End
+
+    // Arcane-Start
+    private void ProcessLegsState(EntityUid body, BodyComponent? bodyComp = null)
+    {
+        if (!Resolve(body, ref bodyComp) || bodyComp.RequiredLegs <= 0)
+            return;
+
+        var modifiers = GetLegTraumaModifiers((body, bodyComp));
+
+        _movementSpeed.RefreshMovementSpeedModifiers(body);
+        _movementSpeed.RefreshFrictionModifiers(body);
+
+        if (modifiers.DamagedWalk < modifiers.HealthyWalk / 3.4f)
             _standing.Down(body);
         else if (_standing.IsDown(body)
             && !HasComp<KnockedDownComponent>(body)
@@ -374,6 +398,7 @@ public partial class TraumaSystem
             && !_mobState.IsIncapacitated(body))
             _standing.Stand(body);
     }
+    // Arcane-End
 
     #endregion
 }
