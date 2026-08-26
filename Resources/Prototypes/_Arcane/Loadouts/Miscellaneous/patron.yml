@@ -766,9 +766,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  storage:
-    back:
-    - ClothingUniformBikiniDoctor
+  equipment:
+    underwear: ClothingUnderwearBikiniDoctor
 
 - type: loadout
   id: ChemistBikiniPatron
@@ -776,9 +775,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  storage:
-    back:
-    - ClothingUniformBikiniChemist
+  equipment:
+    underwear: ClothingUnderwearBikiniChemist
 
 - type: loadout
   id: ParamedicBikiniPatron
@@ -786,9 +784,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  storage:
-    back:
-    - ClothingUniformBikiniParamedic
+  equipment:
+    underwear: ClothingUnderwearBikiniParamedic
 
 - type: loadout
   id: VirologistBikiniPatron
@@ -796,9 +793,8 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
-  storage:
-    back:
-    - ClothingUniformBikiniVirologist
+  equipment:
+    underwear: ClothingUnderwearBikiniVirologist
 
 - type: loadout
   id: ParamedicGlassesPatron

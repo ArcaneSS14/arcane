@@ -552,7 +552,6 @@
   groups:
   - GroupTankHarness
   - TechnicalAssistantJumpsuit
-  - EngineerCloak # Arcane
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
@@ -691,7 +690,6 @@
   groups:
   - GroupTankHarness
   - ResearchAssistantJumpsuit
-  - RNDCloak # Arcane
   - ScientistBackpack
   - Glasses
   - Survival
@@ -926,7 +924,6 @@
   groups:
   - GroupTankHarness
   - MedicalInternJumpsuit
-  - MedicalCloak # Arcane
   - MedicalBackpack
   - MedicalEyewear
   - SurvivalMedical
@@ -1023,7 +1020,10 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - ServiceCloak
+  - Patron
+  # Arcane-End
   # Orion-Start
   - Undershirt
   - Underwear
@@ -1047,7 +1047,10 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - MedicalCloak
+  - Patron
+  # Arcane-End
   # Orion-Start
   - Undershirt
   - Underwear

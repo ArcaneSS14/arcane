@@ -36,7 +36,7 @@
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             IAA: [ 1, 1 ] # Arcane
-            Lawyer: [ 1, 1 ]
+            Lawyer: [ 2, 2 ]
             ServiceWorker: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -63,8 +63,9 @@
             Brigmedic: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ -1, -1 ]
+            SalvageSpecialist: [ 2, 2 ]
             CargoTechnician: [ 2, 2 ]
+            ShaftMiner: [ 2, 2 ]
             #civillian
             Passenger: [ -1, -1 ]
             Clown: [ 1, 1 ]
