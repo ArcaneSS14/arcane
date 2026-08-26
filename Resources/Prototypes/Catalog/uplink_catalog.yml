@@ -117,12 +117,12 @@
   #  Telecrystal: 3
   productEntity: WeaponEnergyCrossbow
   cost:
-    Telecrystal: 30 # Goob
+    Telecrystal: 45 # Goob # Arcane-Edit: 30 > 45
   categories:
   - UplinkWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 1
+    stock: 2 # Arcane-Edit: 1 > 2
 
 - type: listing
   id: UplinkThrowingKnivesKit
@@ -211,7 +211,7 @@
   id: UplinkHushpup
   name: uplink-hushpup-name
   description: uplink-hushpup-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/hushpup.rsi, state: icon }
+  icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Shotguns/hushpup.rsi, state: icon } #GoobStation resprite
   productEntity: ClothingBackpackDuffelSyndicateFilledHushpup
   #discountCategory: rareDiscounts
   #discountDownTo:
@@ -259,10 +259,10 @@
   id: UplinkBulldog #goob
   name: uplink-buldog-name #goob
   description: uplink-buldog-desc #goob
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+  icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon } #GoobStation resprite
   productEntity: WeaponShotgunBulldog
   cost:
-    Telecrystal: 60 # goob
+    Telecrystal: 80 # goob # Arcane-Edit: 60 > 80
   categories:
   - UplinkWeaponry
   #Goobstation
@@ -642,7 +642,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: red-icon }
   productEntity: MagazinePistolCaselessRifle
   cost:
-    Telecrystal: 3 # goob
+    Telecrystal: 2 # goob # Arcane-Edit: 3 > 2
   categories:
   - UplinkAmmo
   #Goobstation
@@ -851,7 +851,7 @@
   #discountDownTo:
   #  Telecrystal: 1
   cost:
-    Telecrystal: 5 # goob
+    Telecrystal: 10 # goob # Arcane-Edit: 5 > 10
   categories:
   - UplinkChemicals
 
@@ -1563,6 +1563,11 @@
     Telecrystal: 15 # goob - can be useful, but does nothing on its own
   categories:
     - UplinkImplants
+  conditions: # Orion
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
 
 
 - type: listing
