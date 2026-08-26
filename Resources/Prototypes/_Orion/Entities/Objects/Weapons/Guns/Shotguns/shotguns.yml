@@ -11,6 +11,8 @@
     sprite: _Orion/Objects/Weapons/Guns/Shotguns/inteq_bulldog.rsi
   - type: Gun
     fireRate: 2
+  - type: GunSpreadModifier
+    spread: 1
 
 - type: entity
   parent: WeaponShotgunBulldog
@@ -23,6 +25,10 @@
     sprite: _Orion/Objects/Weapons/Guns/Shotguns/zauer/tiny.rsi
   - type: Clothing
     sprite: _Orion/Objects/Weapons/Guns/Shotguns/zauer/tiny.rsi
+  - type: Gun
+    fireRate: 2 # Bulldog have 3
+  - type: GunSpreadModifier
+    spread: 0.8 # Bulldog have 1.3
 
 - type: entity
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]

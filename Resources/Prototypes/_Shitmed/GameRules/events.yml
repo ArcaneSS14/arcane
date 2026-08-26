@@ -7,7 +7,7 @@
   - type: StationEvent
     earliestStart: 15
     reoccurrenceDelay: 45
-    weight: 3 # Goobstation - 7.5 -> 3
+    weight: 1.5 # Goobstation - 7.5 -> 3 # Arcane-Edit: 3 > 1.5
     minimumPlayers: 10
     duration: null # Goobstation - chud
     chaos:
@@ -100,7 +100,7 @@
   - type: StationEvent
     earliestStart: 15
     reoccurrenceDelay: 45
-    weight: 3 # Goobstation - 7.5 -> 3
+    weight: 1.5 # Goobstation - 7.5 -> 3 # Arcane-Edit: 3 > 1.5
     minimumPlayers: 20
     duration: null # Goobstation - chud
     chaos:

@@ -9,7 +9,11 @@
     sprite: Objects/Weapons/Guns/Basic/energy_crossbow.rsi
     size: Small
   - type: Gun
-    fireRate: 5 #high firerate innately bottlenecked by ammo regeneration speed.
+    # Arcane-Start
+    projectileSpeed: 18
+    resetOnHandSelected: false
+    # Arcane-End
+    fireRate: 0.3 #high firerate innately bottlenecked by ammo regeneration speed. # Arcane-Edit: 5 > 0.3
     selectedMode: SemiAuto
     minAngle: 0
     maxAngle: 5
@@ -26,13 +30,24 @@
           True: { visible: False }
           False: { visible: True }
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 5 #2 seconds of KD, should always have CD > KD
+    rechargeCooldown: 0.4 #2 seconds of KD, should always have CD > KD # Arcane-Edit: 5 > 0.4
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/energycrossbow_reload.ogg
   - type: BasicEntityAmmoProvider
     proto: EnergyCrossbowBolt
     capacity: 1
     count: 1
+  # Arcane-Start
+  - type: Multishot
+    missChance: 0
+    spreadAddition: 15
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
+  # Arcane-End
 
 - type: entity
   parent: [WeaponEnergyCrossbowBase, BaseSyndicateContraband]
