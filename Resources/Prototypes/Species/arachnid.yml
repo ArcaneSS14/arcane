@@ -64,11 +64,12 @@
 
 - type: markingPoints
   id: MobArachnidMarkingLimits
-  onlyWhitelisted: true
+  onlyWhitelisted: false
   points:
     Hair:
       points: 1
       required: false
+      onlyWhitelisted: false
     Tail:
       points: 1
       required: true

@@ -50,6 +50,7 @@
     UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobMothChest
     Groin: MobMothGroin # Goob
+    Hair: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
@@ -71,11 +72,12 @@
 
 - type: markingPoints
   id: MobMothMarkingLimits
-  onlyWhitelisted: true
+  onlyWhitelisted: false
   points:
     Hair:
-      points: 0
+      points: 1
       required: false
+      onlyWhitelisted: false
     FacialHair:
       points: 0
       required: false
