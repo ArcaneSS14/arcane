@@ -38,7 +38,7 @@ public sealed partial class PanelInteractionPrototype : IPrototype
     public TimeSpan Cooldown = TimeSpan.FromSeconds(3);
 
     [DataField]
-    public float Range = 1.5f;
+    public float Range = 2f;
 
     [DataField]
     public int UserArouse = 0;

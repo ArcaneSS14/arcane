@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseItem
+  id: AegisOfChampions
+  name: Aegis of Champions
+  description: The Aegis of Champions is the ultimate symbol of victory in the epic struggle between Dire and Radiant. Never given, only earned, the shield is hefted by those who best prove themselves in the great tournament.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Dota2/aegis.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: _Arcane/Dota2/aegis.rsi
+  - type: MultiHandedItem
