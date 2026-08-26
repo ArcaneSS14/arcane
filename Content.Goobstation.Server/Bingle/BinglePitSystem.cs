@@ -105,16 +105,7 @@ public sealed class BinglePitSystem : EntitySystem
 
         var coords = Transform(uid).Coordinates;
         for (var i = 0; i < component.StartingBingles; i++)
-            SpawnGhostRoleMarker(component, coords);
-    }
-
-    private void SpawnGhostRoleMarker(BinglePitComponent component, EntityCoordinates coords)
-    {
-        var proto = _random.Prob(component.RareGhostRoleChance)
-            ? component.RareGhostRoleToSpawn
-            : component.GhostRoleToSpawn;
-
-        Spawn(proto, coords);
+            Spawn(component.GhostRoleToSpawn, coords);
     }
 
     private void OnStepTriggered(EntityUid uid, BinglePitComponent component, ref StepTriggeredOffEvent args)
@@ -175,7 +166,7 @@ public sealed class BinglePitSystem : EntitySystem
 
     public void SpawnBingle(EntityUid uid, BinglePitComponent component)
     {
-        SpawnGhostRoleMarker(component, Transform(uid).Coordinates);
+        Spawn(component.GhostRoleToSpawn, Transform(uid).Coordinates);
         OnSpawnTile(uid, component.Level * 2);
 
         component.MinionsMade++;

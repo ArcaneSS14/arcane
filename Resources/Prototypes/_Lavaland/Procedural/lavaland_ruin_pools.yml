@@ -6,8 +6,7 @@
 - type: lavalandRuinPool
   id: LavalandRuins
   ruinDistance: 14
-  minDistance: 60
-  maxDistance: 256
+  maxDistance: 172
   gridRuins:
     # Orion-Start
     InteQSizo: 1

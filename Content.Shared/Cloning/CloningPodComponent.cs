@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.Damage;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Materials;
 using Robust.Shared.Audio;
@@ -62,6 +63,18 @@ public sealed partial class CloningPodComponent : Component
 
     [ViewVariables]
     public EntityUid? ConnectedConsole;
+
+    /// <summary>
+    /// Goobstation - How much damage a successful clone can receive
+    /// </summary>
+    [DataField]
+    public DamageSpecifier CloneDamage = new()
+    {
+        DamageDict = new()
+        {
+            { "Cellular", 10}, // Orion-Edit: 20 > 10
+        }
+    };
 }
 
 [Serializable, NetSerializable]

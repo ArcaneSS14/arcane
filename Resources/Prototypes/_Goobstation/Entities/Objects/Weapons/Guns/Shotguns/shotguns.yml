@@ -81,16 +81,15 @@
   components:
   - type: Item
     size: Large
-    sprite: _Goobstation/Objects/Weapons/Guns/Lever/combatshotgun.rsi
   - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Lever/combatshotgun_icon_48x.rsi
+    sprite: _Goobstation/Objects/Weapons/Guns/Lever/combatshotgun.rsi
   - type: Clothing
     sprite: _Goobstation/Objects/Weapons/Guns/Lever/combatshotgun.rsi
   - type: GunRequiresWield # remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
   - type: GunSpreadModifier
-    spread: 0.7 # Arcane-Edit: 0.6 > 0.7
+    spread: 0.6
   - type: Tag
     tags:
     - WeaponShotgunKammerer
@@ -103,11 +102,6 @@
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
     autoCycle: false
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
-    zeroNoAmmo: false
 
 - type: entity
   name: NZ CSG-242
@@ -116,7 +110,7 @@
   description: A portable human rights violation. Burst fire, high explosive, and will literally push you back six feet when fired. Feeds from 2 Gauge drum magazines. Holy shit.
   components:
   - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/magshot_icon_48x.rsi
+    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/magshot.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -130,7 +124,6 @@
       shader: unshaded
   - type: Item
     size: Huge
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/magshot.rsi
     shape:
     - 0,0,4,3
   - type: Clothing

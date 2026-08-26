@@ -54,9 +54,6 @@ public sealed class HereticRitualSystem : EntitySystem
         // please don't access stuff directly from the prototypes or else shit will break.
         // regards
 
-        if (!heretic.KnownRituals.Contains(ritualId))
-            return false;
-
         var rit = _proto.Index(ritualId);
 
         List<EntityUid>? limited = null;
@@ -236,9 +233,6 @@ public sealed class HereticRitualSystem : EntitySystem
         var user = args.Actor;
 
         if (!_heretic.TryGetHereticComponent(user, out var heretic, out _))
-            return;
-
-        if (!heretic.KnownRituals.Contains(args.ProtoId))
             return;
 
         heretic.ChosenRitual = args.ProtoId;

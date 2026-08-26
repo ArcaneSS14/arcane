@@ -84,9 +84,6 @@ public sealed class XenomorphEvolutionSystem : EntitySystem
             return;
         }
 
-        if (!IsAvailableEvolution(component.EvolvesTo, args.SelectedItem))
-            return;
-
         if (Evolve(uid, args.SelectedItem, component.EvolutionDelay))
             return;
 
@@ -144,20 +141,6 @@ public sealed class XenomorphEvolutionSystem : EntitySystem
 
             _popup.PopupEntity(Loc.GetString("xenomorphs-evolution-ready"), uid, uid, PopupType.Large);
         }
-    }
-
-    private static bool IsAvailableEvolution(List<RadialSelectorEntry> entries, string? evolveTo)
-    {
-        foreach (var entry in entries)
-        {
-            if (entry.Prototype == evolveTo)
-                return true;
-
-            if (entry.Category != null && IsAvailableEvolution(entry.Category.Entries, evolveTo))
-                return true;
-        }
-
-        return false;
     }
 
     public bool Evolve(EntityUid uid, string? evolveTo, TimeSpan evolutionDelay, bool checkNeedCasteDeath = true)

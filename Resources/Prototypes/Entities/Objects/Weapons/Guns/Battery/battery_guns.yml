@@ -1171,7 +1171,6 @@
   - type: Appearance
   - type: Item
     size: Large
-    sprite: _Goobstation/Objects/Weapons/Guns/Battery/tempgun.rsi # Goobstation
     shape:
     - 0,0,3,1
   - type: MagazineVisuals

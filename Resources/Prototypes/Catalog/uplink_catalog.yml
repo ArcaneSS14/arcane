@@ -211,7 +211,7 @@
   id: UplinkHushpup
   name: uplink-hushpup-name
   description: uplink-hushpup-desc
-  icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Shotguns/hushpup.rsi, state: icon } #GoobStation resprite
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/hushpup.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledHushpup
   #discountCategory: rareDiscounts
   #discountDownTo:
@@ -255,22 +255,24 @@
       tags:
       - ContractorUplink
 
-- type: listing
-  id: UplinkBulldog #goob
-  name: uplink-buldog-name #goob
-  description: uplink-buldog-desc #goob
-  icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon } #GoobStation resprite
-  productEntity: WeaponShotgunBulldog
-  cost:
-    Telecrystal: 80 # goob # Arcane-Edit: 60 > 80
-  categories:
-  - UplinkWeaponry
-  #Goobstation
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - ContractorUplink
+# Arcane-Edit-Start: Now it Zauer
+#- type: listing
+#  id: UplinkBulldog #goob
+#  name: uplink-buldog-name #goob
+#  description: uplink-buldog-desc #goob
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+#  productEntity: WeaponShotgunBulldog
+#  cost:
+#    Telecrystal: 60 # goob
+#  categories:
+#  - UplinkWeaponry
+#  #Goobstation
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    blacklist:
+#      tags:
+#      - ContractorUplink
+# Arcane-Edit-End
 
 
 - type: listing
@@ -1563,11 +1565,6 @@
     Telecrystal: 15 # goob - can be useful, but does nothing on its own
   categories:
     - UplinkImplants
-  conditions: # Orion
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
 
 
 - type: listing

@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 
-using Content.Goobstation.Shared.Parallax; // Goob - background meteors
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Parallax.Data;
@@ -32,11 +31,4 @@ public sealed partial class ParallaxPrototype : IPrototype
     /// </summary>
     [DataField("layersLQUseHQ")]
     public bool LayersLQUseHQ { get; private set; } = true;
-
-    // Goob - background meteors
-    /// <summary>
-    /// Optional cosmetic meteor/asteroid field drawn over this parallax.
-    /// </summary>
-    [DataField]
-    public MeteorParallaxConfig? Meteors { get; private set; }
 }

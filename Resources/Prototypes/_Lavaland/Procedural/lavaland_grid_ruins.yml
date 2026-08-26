@@ -5,8 +5,6 @@
   name: lavaland-ruin-hierophant
   path: /Maps/_Lavaland/Lavaland/ruin_hierophant_arena.yml
   priority: -1 # highest priority
-  minDistance: 180
-  spawnAttempts: 20
   patchToPlanet: false
   componentsToGrant:
   - type: HierophantBeat
@@ -16,8 +14,6 @@
   name: lavaland-ruin-syndicate
   path: /Maps/_Lavaland/Lavaland/ruin_syndicate_base.yml
   priority: -1 # highest priority
-  minDistance: 180
-  spawnAttempts: 20
   patchToPlanet: false
 
 - type: lavalandGridRuin

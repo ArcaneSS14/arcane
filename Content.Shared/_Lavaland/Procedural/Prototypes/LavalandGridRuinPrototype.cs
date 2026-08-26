@@ -21,18 +21,6 @@ public sealed partial class LavalandGridRuinPrototype : IPrototype
     [DataField]
     public int SpawnAttempts = 8;
 
-    /// <summary>
-    /// Overrides the pool's MinDistance for this specific ruin.
-    /// </summary>
-    [DataField]
-    public int? MinDistance;
-
-    /// <summary>
-    /// Overrides the pool's MaxDistance for this specific ruin.
-    /// </summary>
-    [DataField]
-    public int? MaxDistance;
-
     [DataField]
     public bool PatchToPlanet = true;
 

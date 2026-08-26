@@ -14,7 +14,7 @@ using Content.Shared.Movement.Components; // Shitmed - Starlight Abductors Chang
 
 namespace Content.Client.Silicons.StationAi;
 
-public sealed partial class StationAiOverlay : Overlay //goob edit
+public sealed class StationAiOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> CameraStaticShader = "CameraStatic";
     private static readonly ProtoId<ShaderPrototype> StencilMaskShader = "StencilMask";
@@ -155,10 +155,6 @@ public sealed partial class StationAiOverlay : Overlay //goob edit
         // Draw the static
         worldHandle.UseShader(_proto.Index(StencilDrawShader).Instance());
         worldHandle.DrawTextureRect(res.StaticTexture!.Texture, worldBounds);
-
-        // goobstation - AI machine view
-        if (grid != null && broadphase != null)
-            DrawAiMachineView(in args, worldHandle, gridUid, grid);
 
         worldHandle.SetTransform(Matrix3x2.Identity);
         worldHandle.UseShader(null);

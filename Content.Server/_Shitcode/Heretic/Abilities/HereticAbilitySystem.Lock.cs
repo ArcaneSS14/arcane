@@ -40,9 +40,6 @@ public sealed partial class HereticAbilitySystem
         if (!TryComp(ent, out ActionComponent? action) || !_actions.ValidAction((ent, action)))
             return;
 
-        if (!ent.Comp.Polymorphs.Contains(args.ProtoId))
-            return;
-
         // We have to do this shit because otherwise actor isn't removed from client ui actors list and ui remains
         // opened after polymorph
         _pvs.AddSessionOverride(user, session);

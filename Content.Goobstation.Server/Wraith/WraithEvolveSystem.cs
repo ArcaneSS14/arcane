@@ -69,7 +69,6 @@ public sealed class WraithEvolveSystem : EntitySystem
     {
         var uid = ent.Owner;
         if (evolve == null
-            || !IsAvailableEvolution(ent.Comp.AvailableEvolutions, evolve)
             || !_proto.TryIndex(evolve, out _)
             || !_mind.TryGetMind(uid, out var mindUid, out var mind))
             return;
@@ -89,20 +88,6 @@ public sealed class WraithEvolveSystem : EntitySystem
 
         RemComp<EvolveComponent>(newForm);
         Del(uid);
-    }
-
-    private static bool IsAvailableEvolution(List<RadialSelectorEntry> entries, string evolve)
-    {
-        foreach (var entry in entries)
-        {
-            if (entry.Prototype == evolve)
-                return true;
-
-            if (entry.Category != null && IsAvailableEvolution(entry.Category.Entries, evolve))
-                return true;
-        }
-
-        return false;
     }
 
     private void OnWraithEvolveAttempt(Entity<AbsorbCorpseComponent> ent, ref WraithEvolveAttemptEvent args)

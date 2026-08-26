@@ -16,7 +16,7 @@
     shape:
     - 0,0,4,0
   - type: Clothing
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/db_shotgun.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
     quickEquip: false
     slots:
     - Back
@@ -88,7 +88,7 @@
   description: A fully automatic, bullpup shotgun for when you have three seconds to turn eight people into pasta sauce. Kicks like a mule on steroids. Feeds from 12 Gauge drum magazines. # Goobstation
   components:
   - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/bulldog.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -97,7 +97,7 @@
   - type: Item
     size: Large
   - type: Clothing
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/bulldog.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
     quickEquip: false
     slots:
     - Back
@@ -114,8 +114,6 @@
       collection: AutoShotgunShot # Orion-Edit
     soundEmpty:
       path: /Audio/_Orion/Weapons/Guns/Shotguns/v51_empty.ogg # Orion-Edit
-  - type: GunSpreadModifier # Arcane
-    spread: 1.3
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -155,9 +153,9 @@
   description: An immortal classic. Uses 12 Gauge shotgun shells.
   components:
   - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/db_shotgun.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
   - type: Item
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/db_shotgun.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 3
@@ -186,12 +184,12 @@
   description: A premium, semi-automatic shotgun platform designed for law enforcement and counter-terrorism use. Reliable as a pump action, even in extreme conditions. Loads 7 rounds of 12 Gauge. # Goobstation
   components: # intend for Enforcer to have wider choke for semi-auto function
   - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/enforcer.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
     scale: 1.2, 1.2 # Orion
   - type: Clothing
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/enforcer.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Item
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/enforcer.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
     shape: # Goobstation
     - 0,0,4,1
   - type: BallisticAmmoProvider
@@ -217,12 +215,12 @@
   description: An old and faithful pump action, the Kammerer is cheap, light, and would probably still function if you left it in the burn chamber for a week. Popular for civilian use, and loved by NanoTrasen for its minuscule price tag. Loads 12 Gauge rounds. # Goobstation # Orion-Edit
   components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
   - type: Item
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/pump.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
   - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/pump.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
     scale: 1.2, 1.2 # Orion
   - type: Clothing
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/pump.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     soundGunshot: # Orion
@@ -245,14 +243,14 @@
   description: Groovy! Uses 12 Gauge shotgun shells. # Goob edit
   components: # needs to be super inaccurate because you don't need to wield it
   - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/sawn.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: Clothing
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/sawn.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: Item
     size: Small
     shape:
     - 0,0,2,0
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/sawn.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
   - type: Gun
     fireRate: 3
   - type: GunSpreadModifier
@@ -312,7 +310,7 @@
   description: Deadly at close range.
   components:
   - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/blunderbuss.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
@@ -328,11 +326,11 @@
   description: A shitty, hand-made shotgun that uses 12 Gauge shotgun shells. It can only hold one round in the chamber. # Goob edit
   components:
   - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
   - type: Clothing
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
   - type: Item
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
@@ -364,11 +362,11 @@
   description: An obscure modification of the Enforcer, fitted with an experimental muffler. Great for those with a strict moral code. Uses .50 shotgun shells.
   components:
   - type: Sprite
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/hushpup.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/hushpup.rsi
   - type: Clothing
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/hushpup.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/hushpup.rsi
   - type: Item
-    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/hushpup.rsi #GoobStation resprite
+    sprite: Objects/Weapons/Guns/Shotguns/hushpup.rsi
     shape:
     - 0,0,3,0 # smaller than BaseShotgun by 1 tile
   - type: BallisticAmmoProvider

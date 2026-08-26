@@ -34,6 +34,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Chemistry.Reagent;
+using Content.Goobstation.Common.CCVar; // Goobstation
 
 namespace Content.Server.Cloning;
 
@@ -59,9 +60,9 @@ public sealed class CloningPodSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly CloningSystem _cloning = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!; // Goobstation
 
-    // Goobstation - killed
-    //public readonly Dictionary<MindComponent, EntityUid> ClonesWaitingForMind = new();
+    public readonly Dictionary<MindComponent, EntityUid> ClonesWaitingForMind = new();
     public readonly ProtoId<CloningSettingsPrototype> SettingsId = "CloningPod";
     public const float EasyModeCloningCost = 0.7f;
     private static readonly ProtoId<ReagentPrototype> BloodId = "Blood";
@@ -85,38 +86,17 @@ public sealed class CloningPodSystem : EntitySystem
         _signalSystem.EnsureSinkPorts(ent.Owner, ent.Comp.PodPort);
     }
 
-    // <GoobStation> rewrite so it uses BeingClonedComponent instead of a dictionary
-    // Most other edits in this commit are ported from f4f4e258929bdf61177a4fb61467d527dd9d103b
-    // Upstreamer note. Using this because of a few edge cases with cloning and honestly it just handles better
-     internal void TransferMindToClone(EntityUid mindId, MindComponent mind)
+    internal void TransferMindToClone(EntityUid mindId, MindComponent mind)
     {
-        // Goobstation start
-        /*if (!ClonesWaitingForMind.TryGetValue(mind, out var entity) ||
+        if (!ClonesWaitingForMind.TryGetValue(mind, out var entity) ||
             !EntityManager.EntityExists(entity) ||
             !TryComp<MindContainerComponent>(entity, out var mindComp) ||
             mindComp.Mind != null)
-            return;*/
-
-        // find first mob this player is meant to use and doesn't already have a mind via alternate means
-        var query = EntityQueryEnumerator<BeingClonedComponent, MindContainerComponent>();
-        var found = false;
-        EntityUid entity;
-        while (query.MoveNext(out entity, out var cloned, out var mc))
-        {
-            if (cloned.Mind == mind && mc.Mind == null)
-            {
-                found = true;
-                break;
-            }
-        }
-
-        if (!found)
             return;
-        // Goobstation end
 
         _mindSystem.TransferTo(mindId, entity, ghostCheckOverride: true, mind: mind);
         _mindSystem.UnVisit(mindId, mind);
-        // ClonesWaitingForMind.Remove(mind); // Goob
+        ClonesWaitingForMind.Remove(mind);
     }
 
     private void HandleMindAdded(EntityUid uid, BeingClonedComponent clonedComponent, MindAddedMessage message)
@@ -203,8 +183,8 @@ public sealed class CloningPodSystem : EntitySystem
 
         var cloningCost = (int)Math.Round(physics.FixturesMass);
 
-        if (_configManager.GetCVar(CCVars.BiomassEasyMode))
-            cloningCost = (int)Math.Round(cloningCost * EasyModeCloningCost);
+        if (_configManager.GetCVar(GoobCVars.CloneBiomassEasyMode)) // Goobstation - Changed the cvar
+            cloningCost = (int) Math.Round(cloningCost * EasyModeCloningCost);
 
         // biomass checks
         var biomassAmount = _material.GetMaterialAmount(uid, clonePod.RequiredMaterial);
@@ -252,7 +232,7 @@ public sealed class CloningPodSystem : EntitySystem
         cloneMindReturn.Parent = uid;
         cloneMindReturn.Original = bodyToClone; // Goobstation
         _containerSystem.Insert(mob.Value, clonePod.BodyContainer);
-        // ClonesWaitingForMind.Add(mind, mob.Value); // Goobstation, if you want to use old dictionary. Make this a TryAdd else you get infiniclones
+        ClonesWaitingForMind.Add(mind, mob.Value);
         _euiManager.OpenEui(new AcceptCloningEui(mindEnt, mind, this), client);
 
         UpdateStatus(uid, CloningPodStatus.NoMind, clonePod);
@@ -316,6 +296,8 @@ public sealed class CloningPodSystem : EntitySystem
         if (clonePod.BodyContainer.ContainedEntity is not { Valid: true } entity || clonePod.CloningProgress < clonePod.CloningTime)
             return;
 
+        _damage.TryChangeDamage(entity, clonePod.CloneDamage, true); // Goobstation - Damage the clone if successful
+
         RemComp<BeingClonedComponent>(entity);
         _containerSystem.Remove(entity, clonePod.BodyContainer);
         clonePod.CloningProgress = 0f;
@@ -362,6 +344,6 @@ public sealed class CloningPodSystem : EntitySystem
 
     public void Reset(RoundRestartCleanupEvent ev)
     {
-        // ClonesWaitingForMind.Clear(); //Goobstation
+        ClonesWaitingForMind.Clear();
     }
 }
