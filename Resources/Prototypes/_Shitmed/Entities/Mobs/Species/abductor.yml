@@ -64,6 +64,12 @@
       reagents:
       - ReagentId: AlienBlood
         Quantity: 200
+  # Arcane-Start:
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  # Arcane-End
   - type: GrabIntent #goob
   - type: Grabbable #goob
 
