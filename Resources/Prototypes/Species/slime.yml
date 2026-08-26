@@ -34,9 +34,11 @@
   sprites:
     TailBehind: MobHumanoidAnyMarking # floof
     TailOversuit: MobHumanoidAnyMarking # floof
+    Tail: MobHumanoidAnyMarking # Arcane
     Face: MobHumanoidAnyMarking
     Head: MobSlimeHead
     HeadSide: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking # Arcane
     Hair: MobSlimeMarkingFollowSkin
     FacialHair: MobSlimeMarkingFollowSkin
     UndergarmentTop: MobHumanoidAnyMarking
@@ -60,11 +62,21 @@
       points: 1
       required: false
     HeadSide:
+      points: 1
+      required: false
+    # Arcane-Start
+    HeadTop:
       points: 3
       required: false
+    # Arcane-End
     FacialHair:
       points: 1
       required: false
+    # Arcane-Start
+    Tail:
+      points: 1
+      required: false
+    # Arcane-End
     Chest:
       points: 8
       required: false
