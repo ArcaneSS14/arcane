@@ -621,3 +621,14 @@ Entries:
   id: 49
   time: '2026-08-26T10:59:32.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/259
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: >-
+        В ротацию введён секрет+ Хаос. Общее кол-во спокойных/лайтов при этом
+        повысилось.
+    - type: Remove
+      message: Подарочная аномалия перестала выдавать опасные предметы.
+  id: 50
+  time: '2026-08-26T13:05:30.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/262
