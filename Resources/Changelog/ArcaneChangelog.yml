@@ -632,3 +632,20 @@ Entries:
   id: 50
   time: '2026-08-26T13:05:30.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/262
+- author: seemah
+  changes:
+    - type: Fix
+      message: Донатный плащ СБ добавлен в лодаут офицеров, смотрителей и детектива.
+    - type: Fix
+      message: Донатный плащ РНД добавлен учёным и робототехникам.
+    - type: Fix
+      message: У низших ролей отделов убраны плащи.
+    - type: Fix
+      message: Главам добавлены донатные плащи отделов.
+    - type: Fix
+      message: Починена донатная униформа повара (ура ура косплей Огузка).
+    - type: Fix
+      message: Бикини медицинского отдела перемещено в нижнее бельё.
+  id: 51
+  time: '2026-08-26T17:03:40.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/242
