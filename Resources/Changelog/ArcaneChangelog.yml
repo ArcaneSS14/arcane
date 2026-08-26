@@ -614,3 +614,10 @@ Entries:
   id: 48
   time: '2026-08-25T15:11:11.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/249
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Апстрим.
+  id: 49
+  time: '2026-08-26T10:59:32.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/259
