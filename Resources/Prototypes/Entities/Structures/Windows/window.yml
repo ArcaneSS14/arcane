@@ -2,7 +2,7 @@
 
 - type: entity
   id: Window
-  parent: [BaseDeltaPressureGlass, BaseStructure]
+  parent: BaseStructure # Arcane-Edit
   name: window
   description: Don't smudge up the glass down there.
   placement:
