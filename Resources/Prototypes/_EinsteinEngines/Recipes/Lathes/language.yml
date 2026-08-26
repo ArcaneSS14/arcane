@@ -164,6 +164,19 @@
     Gold: 50
     Silver: 50
 
+# Arcane-Start
+- type: latheRecipe
+  id: KarshanTranslator
+  result: KarshanTranslator
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 100
+    Gold: 50
+    Silver: 50
+# Arcane-End
+
 # Implanters
 - type: latheRecipe
   abstract: true
@@ -305,4 +318,17 @@
     Glass: 100
     Plastic: 50
     Gold: 50
+
+- type: latheRecipe
+  parent: BaseTranslatorImplanter
+  id: KarshanTranslatorImplanter
+  subname: lathe-recipe-KarshanTranslatorImplanter-subname
+  result: KarshanTranslatorImplanter
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 100
+    Gold: 50
+    Silver: 50
 # Arcane-End

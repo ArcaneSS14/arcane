@@ -42,7 +42,7 @@
     - Security
     - Antagonists
   - type: UseDelay
-    delay: 3
+    delay: 30 # Arcane-Edit: 3 > 30
 
 - type: entity
   name: makeshift handcuffs
@@ -78,6 +78,8 @@
       right:
         - state: inhand-right
           color: forestgreen
+  - type: UseDelay # Arcane
+    delay: 15
   - type: Sprite
     sprite: Objects/Misc/cablecuffs.rsi
     state: cuff
@@ -111,6 +113,8 @@
   - type: Sprite
     sprite: Objects/Misc/zipties.rsi
     state: cuff
+  - type: UseDelay # Arcane
+    delay: 15
 
 - type: entity
   id: BaseHandcuffsBroken
