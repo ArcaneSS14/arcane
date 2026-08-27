@@ -323,9 +323,6 @@ public partial class TraumaSystem
 
         foreach (var legEntity in body.Comp.LegEntities)
         {
-            if (!TryComp<MovementBodyPartComponent>(legEntity, out _))
-                continue;
-
             var legPenalty = 0f;
 
             if (TryComp<WoundableComponent>(legEntity, out var legWoundable)
@@ -339,42 +336,46 @@ public partial class TraumaSystem
                     _ => 0f,
                 };
             }
-            else
-            {
-                // A leg entity without a valid bone is treated as a missing leg.
-                legPenalty += 0.25f;
-            }
+
+            var symmetry = Comp<BodyPartComponent>(legEntity).Symmetry;
 
             var footEnt = _body.GetBodyChildrenOfType(
                     body,
                     BodyPartType.Foot,
-                    symmetry: Comp<BodyPartComponent>(legEntity).Symmetry)
+                    symmetry: symmetry)
                 .FirstOrNull();
 
-            if (footEnt != null)
+            if (footEnt == null)
             {
-                if (TryComp<WoundableComponent>(footEnt.Value.Id, out var footWoundable)
-                    && TryComp<BoneComponent>(footWoundable.Bone.ContainedEntities.FirstOrNull(), out var footBone))
-                {
-                    penalty += legPenalty + footBone.BoneSeverity switch
-                    {
-                        BoneSeverity.Damaged => 0.04f,
-                        BoneSeverity.Cracked => 0.08f,
-                        BoneSeverity.Broken => 0.12f,
-                        _ => 0f,
-                    };
-
-                    continue;
-                }
+                missingFeet++;
+                penalty += legPenalty + 0.15f;
+                continue;
             }
 
-            missingFeet++;
-            penalty += legPenalty + 0.15f;
-        }
+            var footPenalty = 0f;
 
-        // LegEntities normally contains only existing legs, so account for legs that are physically missing from the required set.
-        var missingLegs = Math.Max(0, body.Comp.RequiredLegs - body.Comp.LegEntities.Count);
+            if (TryComp<WoundableComponent>(footEnt.Value.Id, out var footWoundable)
+                && TryComp<BoneComponent>(
+                    footWoundable.Bone.ContainedEntities.FirstOrNull(),
+                    out var footBone))
+            {
+                footPenalty = footBone.BoneSeverity switch
+                {
+                    BoneSeverity.Damaged => 0.04f,
+                    BoneSeverity.Cracked => 0.08f,
+                    BoneSeverity.Broken => 0.12f,
+                    _ => 0f,
+                };
+            }
+
+            penalty += legPenalty + footPenalty;
+        }
+        var missingLegs = Math.Max(
+            0,
+            body.Comp.RequiredLegs - body.Comp.LegEntities.Count);
+
         penalty += missingLegs * 0.25f;
+        missingFeet += missingLegs;
 
         if (HasComp<IgnoreSlowOnDamageComponent>(body))
             penalty *= 0.5f;
