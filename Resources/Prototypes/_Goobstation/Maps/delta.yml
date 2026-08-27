@@ -1,14 +1,10 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: gameMap
   id: Delta
   mapName: 'Delta Station'
   mapPath: /Maps/_Arcane/delta.yml # Arcane
-  minPlayers: 55
+  minPlayers: 20 # Arcane-Edit 55 > 20
   stations:
     Delta:
       stationProto: StandardNanotrasenStation
@@ -62,7 +58,6 @@
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 1, 1 ]
             Botanist: [ 3, 4 ]
-            Boxer: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
             Chef: [ 2, 3 ]
             Clown: [ 1, 1 ]
@@ -75,7 +70,6 @@
             Reporter: [ 2, 2 ]
             RadioHost: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
-            Zookeeper: [ 1, 1 ]
             Passenger: [ -1, -1 ]
             # silicon
             StationAi: [ 1, 1 ]

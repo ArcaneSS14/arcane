@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -30,6 +26,10 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+// Arcane-Start
+using Content.Shared.Holopad;
+using Content.Shared._Arcane.TTS;
+// Arcane-End
 
 namespace Content.Server.Telephone;
 
@@ -124,7 +124,28 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         var range = args.TelephoneSource.Comp.LinkedTelephones.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimit;
         var volume = entity.Comp.SpeakerVolume == TelephoneVolume.Speak ? InGameICChatType.Speak : InGameICChatType.Whisper;
 
-        _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Eisntein Engines - Language
+        // Arcane-Start: Preserve the original speaker's TTS voice through the relay, so e.g. the station AI is heard
+        // at the receiving holopad with its own voice. The relay entity usually has no TTS component of its own.
+        // Holopad holograms apply a robotic effect to every relayed voice, like a holographic speaker.
+        if (TryComp<TTSComponent>(args.MessageSource, out var sourceTts) && sourceTts.VoicePrototype is { } voiceId)
+        {
+            var speakerTts = TryComp<TTSComponent>(speaker, out var existingTts) ? existingTts : AddComp<TTSComponent>(speaker);
+
+            var oldVoice = speakerTts.VoicePrototype;
+            var oldEffect = speakerTts.Effect;
+            speakerTts.VoicePrototype = voiceId;
+            speakerTts.Effect = HasComp<HolopadHologramComponent>(speaker) ? "robotic" : sourceTts.Effect;
+
+            _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language);
+
+            speakerTts.VoicePrototype = oldVoice;
+            speakerTts.Effect = oldEffect;
+            if (existingTts == null)
+                RemComp<TTSComponent>(speaker);
+        }
+        else
+            // Arcane-End
+            _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Eisntein Engines - Language
     }
 
     #endregion
@@ -350,7 +371,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         name = FormattedMessage.EscapeText(name);
 
         SpeechVerbPrototype speech;
-        if (ev.SpeechVerb != null && _prototype.TryIndex(ev.SpeechVerb, out var evntProto))
+        if (ev.SpeechVerb != null && _prototype.Resolve(ev.SpeechVerb, out var evntProto))
             speech = evntProto;
         else
             speech = _chat.GetSpeechVerb(messageSource, message);

@@ -3,7 +3,7 @@
   category: Anus
   userArouse: 10
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/asscrap1.ogg
   - /Audio/_Arcane/Interactions/asscrap2.ogg
@@ -19,13 +19,15 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: anus
-    requireVisible: true
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   - !type:ArousalRequirement
 
 - type: panelInteraction
@@ -33,7 +35,7 @@
   category: Anus
   userArouse: 5
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
@@ -46,16 +48,15 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: anus
-    requireVisible: true
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: AnusFingering
   category: Anus
   userArouse: 5
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
@@ -67,16 +68,15 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: anus
-    requireVisible: true
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: AnusTailFuck
   category: Anus
   userArouse: 5
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/asscrap1.ogg
   - /Audio/_Arcane/Interactions/asscrap2.ogg
@@ -92,9 +92,8 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: anus
-    requireVisible: true
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -110,7 +109,7 @@
   category: Anus
   userArouse: 5
   targetArouse: 15
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
@@ -123,16 +122,15 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: anus
-    requireVisible: true
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: AnalFingering2
   category: Anus
   userArouse: 5
   targetArouse: 15
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
@@ -145,16 +143,15 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: anus
-    requireVisible: true
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: ToyButt
   category: Anus
   userArouse: 5
   targetArouse: 15
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/asscrap1.ogg
   - /Audio/_Arcane/Interactions/asscrap2.ogg
@@ -169,9 +166,8 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: anus
-    requireVisible: true
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
   - !type:HeldItemRequirement
     tags:

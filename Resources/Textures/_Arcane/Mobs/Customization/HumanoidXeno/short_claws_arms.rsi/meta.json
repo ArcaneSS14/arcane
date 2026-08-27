@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by bulbo44kkey (Discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "short_claws_left",
+            "directions": 4
+        },
+        {
+            "name": "short_claws_right",
+            "directions": 4
+        },
+        {
+            "name": "burrower_claws_l_hand",
+            "directions": 4
+        },
+        {
+            "name": "burrower_claws_r_hand",
+            "directions": 4
+        }
+    ]
+}

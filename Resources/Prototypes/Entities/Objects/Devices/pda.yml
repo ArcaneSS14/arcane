@@ -1958,7 +1958,7 @@
       map: [ "enum.PdaVisualLayers.Pen" ]
   # Orion-End
   - type: Pda
-    id: CBURNIDCard # Arcane-Edit
+    id: CBURNIDcard # Arcane-Edit
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentHColor: "#447987"
@@ -2048,71 +2048,6 @@
         - Write
   - type: PdaBorderColor
     borderColor: "#3f3f74"
-
-- type: entity
-  parent: BasePDA
-  id: ZookeeperPDA
-  name: zookeeper PDA
-  description: Made with genuine synthetic leather. Crikey!
-  components:
-  # Orion-Start
-  - type: Sprite
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-      state: pda_base
-      color: "#ffe685"
-    - state: pda_buttons
-    - map: [ "enum.PdaVisualLayers.Screen" ]
-      state: pda_screen_borders
-    - state: light_overlay
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: unshaded
-      visible: false
-    - state: id_overlay
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: unshaded
-      visible: false
-    - state: "insert_overlay" # Goob
-      map: [ "enum.PdaVisualLayers.Pen" ]
-  # Orion-End
-  - type: Pda
-    id: ZookeeperIDCard
-  - type: PdaBorderColor
-    borderColor: "#ffe685"
-
-- type: entity
-  parent: BasePDA
-  id: BoxerPDA
-  name: boxer PDA
-  description: Float like a butterfly, ringtone like a bee.
-  components:
-  # Orion-Start
-  - type: Sprite
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-      state: pda_base
-      color: "#333333"
-    - state: pda_buttons
-    - state: pda_stripe_thick
-      color: "#390504"
-    - map: [ "enum.PdaVisualLayers.Screen" ]
-      state: pda_screen_borders
-    - state: light_overlay
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: unshaded
-      visible: false
-    - state: id_overlay
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: unshaded
-      visible: false
-    - state: "insert_overlay" # Goob
-      map: [ "enum.PdaVisualLayers.Pen" ]
-  # Orion-End
-  - type: Pda
-    id: BoxerIDCard
-  - type: PdaBorderColor
-    borderColor: "#333333"
-    accentVColor: "#390504"
 
 - type: entity
   parent: BaseSecurityPDA
@@ -2548,3 +2483,49 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+# Orion-Edit-Start: upstream PDA variants ported to the layered Orion PDA sprite.
+- type: entity
+  parent: [ SyndiPDA, BaseSyndicateContraband ]
+  id: SyndiOperativePDA
+  name: syndicate operative PDA
+  description: Death to NT!
+  components:
+  - type: Pda
+    id: SyndiOperativeIDCard
+
+- type: entity
+  parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
+  id: SyndiCorpsmanPDA
+  name: syndicate corpsman PDA
+  description: Commander... I need to cook!
+  components:
+  - type: Pda
+    id: SyndiCorpsmanIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - MedTekCartridge
+
+- type: entity
+  parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
+  id: SyndiCommanderPDA
+  name: syndicate commander PDA
+  description: So what are we, some kind of Nukie squad?
+  components:
+  - type: Pda
+    id: SyndiCommanderIDCard
+
+- type: entity
+  parent: CargoPDA
+  id: SeniorCourierPDA
+  name: senior courier PDA
+  description: Smells like postage stamps and shuttle fuel.
+  components:
+  - type: Pda
+    id: CargoIDCard
+  - type: PdaBorderColor
+    borderColor: "#e39751"
+    accentVColor: "#DFDFDF"
+# Orion-Edit-End

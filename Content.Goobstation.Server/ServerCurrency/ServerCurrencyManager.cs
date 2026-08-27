@@ -1,18 +1,12 @@
-// SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Threading.Tasks;
+using Content.Goobstation.Common.CCVar;
 using Content.Goobstation.Common.ServerCurrency;
 using Content.Server.Database;
 using Robust.Server.Player;
 using Robust.Shared.Asynchronous;
+using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 
 namespace Content.Goobstation.Server.ServerCurrency
@@ -22,6 +16,7 @@ namespace Content.Goobstation.Server.ServerCurrency
         [Dependency] private readonly IServerDbManager _db = default!;
         [Dependency] private readonly ITaskManager _task = default!;
         [Dependency] private readonly IPlayerManager _player = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!; // Arcane
         private readonly List<Task> _pendingSaveTasks = new();
 
         public event Action? ClientBalanceChange;
@@ -42,6 +37,14 @@ namespace Content.Goobstation.Server.ServerCurrency
         /// <inheritdoc/>
         public bool CanAfford(NetUserId? userId, int amount, out int balance)
         {
+            // Arcane-start: Server currency disabled
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+            {
+                balance = 0;
+                return false;
+            }
+            // Arcane-end
+
             balance = GetBalance(userId);
             return balance >= amount && balance - amount >= 0;
         }
@@ -54,6 +57,11 @@ namespace Content.Goobstation.Server.ServerCurrency
         /// <inheritdoc/>
         public int AddCurrency(NetUserId userId, int amount)
         {
+            // Arcane-start
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+                return 0;
+            // Arcane-end
+
             var newBalance = ModifyBalance(userId, amount);
             _sawmill.Info($"Added {amount} currency to {userId} account. Current balance: {newBalance}");
             return newBalance;
@@ -62,6 +70,11 @@ namespace Content.Goobstation.Server.ServerCurrency
         /// <inheritdoc/>
         public int RemoveCurrency(NetUserId userId, int amount)
         {
+            // Arcane-start
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+                return 0;
+            // Arcane-end
+
             var newBalance = ModifyBalance(userId, -amount);
             _sawmill.Info($"Removed {amount} currency from {userId} account. Current balance: {newBalance}");
             return newBalance;
@@ -70,6 +83,11 @@ namespace Content.Goobstation.Server.ServerCurrency
         /// <inheritdoc/>
         public (int, int) TransferCurrency(NetUserId sourceUserId, NetUserId targetUserId, int amount)
         {
+            // Arcane-start
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+                return (0, 0);
+            // Arcane-end
+
             var newAccountValues = (ModifyBalance(sourceUserId, -amount), ModifyBalance(targetUserId, amount));
             _sawmill.Info($"Transferring {amount} currency from {sourceUserId} to {targetUserId}. Current balances: {newAccountValues.Item1}, {newAccountValues.Item2}");
             return newAccountValues;
@@ -78,6 +96,11 @@ namespace Content.Goobstation.Server.ServerCurrency
         /// <inheritdoc/>
         public int SetBalance(NetUserId userId, int amount)
         {
+            // Arcane-start
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+                return 0;
+            // Arcane-end
+
             var oldBalance = Task.Run(() => SetBalanceAsync(userId, amount)).GetAwaiter().GetResult();
             if (_player.TryGetSessionById(userId, out var userSession))
                 BalanceChange?.Invoke(new PlayerBalanceChangeEvent(userSession, userId, amount, oldBalance));
@@ -88,6 +111,11 @@ namespace Content.Goobstation.Server.ServerCurrency
         /// <inheritdoc/>
         public int GetBalance(NetUserId? userId = null)
         {
+            // Arcane-start
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+                return 0;
+            // Arcane-end
+
             return userId == null ? 0 : Task.Run(() => GetBalanceAsync(userId.Value)).GetAwaiter().GetResult();
         }
 

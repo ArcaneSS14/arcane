@@ -1,20 +1,10 @@
-// SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Milon <milonpl.git@proton.me>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Tim <timfalken@hotmail.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Common.CCVar;
 using Content.Goobstation.Common.ServerCurrency;
-using Content.Server._RMC14.LinkAccount;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
+using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared._Arcane.Sponsor;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
@@ -38,7 +28,7 @@ namespace Content.Goobstation.Server.ServerCurrency
         [Dependency] private readonly SharedJobSystem _jobs = default!;
         [Dependency] private readonly IPlayerManager _players = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly LinkAccountManager _linkAccount = default!;
+        [Dependency] private readonly ISharedDiscordRoleManager _discordRoles = default!; // Orion
         [Dependency] private readonly GameTicker _gameTicker = default!;
 
         private int _goobcoinsPerPlayer = 10;
@@ -76,6 +66,11 @@ namespace Content.Goobstation.Server.ServerCurrency
 
         private void OnRoundEndText(RoundEndTextAppendEvent ev)
         {
+            // Arcane-start
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+                return;
+            // Arcane-end
+
             if (_players.PlayerCount < _goobcoinsMinPlayers)
                 return;
 
@@ -132,8 +127,7 @@ namespace Content.Goobstation.Server.ServerCurrency
                         if (_goobcoinsServerMultiplier != 1)
                             money *= _goobcoinsServerMultiplier;
 
-                        if (_linkAccount.GetPatron(session)?.Tier != null) // Orion-Edit
-                            money *= ArcaneSponsorTiers.GetTokenMultiplier(_linkAccount.GetPatron(session)?.Tier?.Tier); // Arcane
+                        money *= SponsorRoleBenefits.GetTokenMultiplier(_discordRoles, session); // Orion
 
                         if (_goobcoinsUseShortRoundPenalty)
                         {

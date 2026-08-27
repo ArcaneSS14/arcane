@@ -5,10 +5,9 @@
   description: Adjutant ID card.
   components:
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
     layers:
     - state: silver
-    - state: idadjutant
+    - state: idheadofpersonnel
   - type: PresetIdCard
     job: Adjutant
 
@@ -19,10 +18,9 @@
   description: Command Maid ID card.
   components:
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
     layers:
-    - state: ert_commaid
-    - state: idcommaid
+    - state: silver
+    - state: idcommandmaid
   - type: PresetIdCard
     job: CommandMaid
 
@@ -32,9 +30,8 @@
   name: internal affairs agent ID card
   components:
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
     layers:
-      - state: silver
-      - state: idiaa
+    - state: silver
+    - state: idlawyer
   - type: PresetIdCard
     job: IAA

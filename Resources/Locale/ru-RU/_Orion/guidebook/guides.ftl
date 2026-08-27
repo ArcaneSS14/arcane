@@ -10,6 +10,7 @@ guide-entry-server-rules-rule-5 = Правило 5
 guide-entry-server-rules-rule-6 = Правило 6
 
 guide-entry-space-law = Космический закон
+guide-entry-space-law-laws-space-rights = Права разумных существ (ПРС)
 guide-entry-space-law-laws-procedures = Процедуры
 
 guide-entry-space-law-table = Таблица законов

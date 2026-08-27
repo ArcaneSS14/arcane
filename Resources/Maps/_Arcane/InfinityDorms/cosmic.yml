@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 266.0.0
+  engineVersion: 270.1.0
   forkId: arcane
-  forkVersion: e9d276cbc089d1e85b4165c1f94c4fbab32f1a96
-  time: 06/22/2026 19:16:19
+  forkVersion: b0755ea876c68a200685316e696e7fdaf19bc5a3
+  time: 08/02/2026 18:04:23
   entityCount: 689
 maps: []
 grids:
@@ -914,44 +914,17 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: TileHistory
+      chunkHistory: {}
+    - type: ExplosionAirtightGrid
 - proto: AirlockHatch
   entities:
   - uid: 2
@@ -2208,8 +2181,8 @@ entities:
     - type: Transform
       parent: 155
     - type: Clothing
-      inSlotFlag: EYES
       inSlot: eyes
+      inSlotFlag: EYES
     - type: Physics
       canCollide: False
 - proto: ClothingOuterWinterCosmic
@@ -2226,8 +2199,8 @@ entities:
     - type: Transform
       parent: 155
     - type: Clothing
-      inSlotFlag: INNERCLOTHING
       inSlot: jumpsuit
+      inSlotFlag: INNERCLOTHING
     - type: Physics
       canCollide: False
 - proto: CosmicChair
@@ -2853,7 +2826,6 @@ entities:
       inletTwoConcentration: 0.78
       inletOneConcentration: 0.22
       targetPressure: 101
-      enabled: True
 - proto: GasPassiveVent
   entities:
   - uid: 357
@@ -3613,6 +3585,8 @@ entities:
     - type: Transform
       pos: 15.5,-0.5
       parent: 1
+    missingComponents:
+    - AccessReader
 - proto: LockerFreezerBase
   entities:
   - uid: 446
@@ -3620,6 +3594,8 @@ entities:
     - type: Transform
       pos: -1.5,-0.5
       parent: 1
+    missingComponents:
+    - AccessReader
 - proto: Mannequin
   entities:
   - uid: 155
@@ -4372,6 +4348,9 @@ entities:
         586:
         - - Pressed
           - Toggle
+        608:
+        - - Pressed
+          - Toggle
     - type: Fixtures
       fixtures: {}
   - uid: 560
@@ -4844,6 +4823,8 @@ entities:
     - type: Transform
       pos: -4.5,-8.5
       parent: 1
+    missingComponents:
+    - AccessReader
 - proto: VendingMachineChefvend
   entities:
   - uid: 632
@@ -4851,6 +4832,8 @@ entities:
     - type: Transform
       pos: -4.5,-0.5
       parent: 1
+    missingComponents:
+    - AccessReader
 - proto: VendingMachineDinnerware
   entities:
   - uid: 633
@@ -4858,6 +4841,8 @@ entities:
     - type: Transform
       pos: -3.5,-0.5
       parent: 1
+    missingComponents:
+    - AccessReader
 - proto: VinylPlayer
   entities:
   - uid: 113

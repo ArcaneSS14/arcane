@@ -1,51 +1,54 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Ilya246 <ilyukarno@gmail.com>
-// SPDX-FileCopyrightText: 2025 Marcus F <199992874+thebiggestbruh@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Rinary <72972221+Rinary1@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 Timfa <timfalken@hotmail.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 the biggest bruh <199992874+thebiggestbruh@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 thebiggestbruh <199992874+thebiggestbruh@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 whateverusername0 <whateveremail>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
 using Content.Goobstation.Common.Weapons.DelayedKnockdown;
-using Content.Goobstation.Maths.FixedPoint;
-using Content.Goobstation.Shared.MartialArts.Components;
-using Content.Server.Actions;
+using Content.Goobstation.Shared.Overlays;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Components;
-using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Cloning;
 using Content.Server.Flash;
 using Content.Server.Hands.Systems;
-using Content.Server.Heretic.Components;
-using Content.Server.Heretic.EntitySystems;
 using Content.Server.Polymorph.Systems;
-using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
-using Content.Server.Temperature.Components;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.DoAfter;
+using Content.Shared.Heretic;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC.Systems;
+using Content.Shared.Store.Components;
+using Robust.Shared.Audio.Systems;
+using Content.Shared.Popups;
+using Robust.Shared.Random;
+using Content.Shared.Body.Systems;
+using Robust.Server.GameObjects;
+using Robust.Server.GameStates;
+using Content.Shared.Stunnable;
+using Robust.Shared.Map;
+using Content.Shared.StatusEffect;
+using Content.Shared.Throwing;
+using Content.Server.Station.Systems;
+using Content.Shared.Localizations;
+using Robust.Shared.Audio;
+using Content.Shared.Mobs.Components;
+using Robust.Shared.Prototypes;
+using Content.Server.Heretic.EntitySystems;
+using Content.Server.Actions;
+using Content.Server.Body.Components;
+using Content.Server.Body.Systems;
 using Content.Server.Temperature.Systems;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Server.Heretic.Components;
+using Content.Server.Temperature.Components;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._Goobstation.Heretic.Components;
 using Content.Shared._Shitcode.Heretic.Components;
 using Content.Shared._Shitcode.Heretic.Systems.Abilities;
 using Content.Shared.Damage.Components;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Goobstation.Shared.MartialArts.Components;
+using Content.Server.Cloning;
+using Content.Server.Database.Migrations.Sqlite;
 using Content.Shared.Chat;
 using Content.Shared.Heretic.Components;
 using Content.Shared.Movement.Pulling.Systems;
@@ -53,33 +56,11 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared._Starlight.CollectiveMind;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
-using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Systems;
-using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
-using Content.Shared.Heretic;
 using Content.Shared.Heretic.Prototypes;
-using Content.Shared.Localizations;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.NPC.Systems;
-using Content.Shared.Popups;
-using Content.Shared.StatusEffect;
-using Content.Shared.Store.Components;
-using Content.Shared.Stunnable;
 using Content.Shared.Tag;
-using Content.Shared.Throwing;
+using Content.Shared.Temperature.Components;
 using Robust.Server.Containers;
-using Robust.Server.GameObjects;
-using Robust.Server.GameStates;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server.Heretic.Abilities;
 
@@ -548,7 +529,7 @@ public sealed partial class HereticAbilitySystem : SharedHereticAbilitySystem
             }
 
             if (bloodQuery.TryComp(uid, out var blood))
-                _blood.FlushChemicals((uid, blood), leech.ExcludedReagent, leech.ChemPurgeRate * multiplier);
+                _blood.FlushChemicals((uid, blood), leech.ChemPurgeRate * multiplier, leech.ExcludedReagent);
 
             if (temperatureQuery.TryComp(uid, out var temperature))
                 _temperature.ForceChangeTemperature(uid, leech.TargetTemperature, temperature);

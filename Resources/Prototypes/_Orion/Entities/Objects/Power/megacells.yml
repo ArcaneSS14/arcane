@@ -36,7 +36,7 @@
       - MegaCell
       - DroneUsable # Goobstation
   - type: Appearance
-  - type: PowerCellVisuals
+  - type: BatteryVisuals # Arcane-Edit: Fix
   - type: Riggable
   - type: StealTarget #Goobstation - IPC steal
     stealGroup: Battery
@@ -196,5 +196,4 @@
     maxCharge: 6000
     startingCharge: 6000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 40

@@ -1,26 +1,13 @@
-// SPDX-FileCopyrightText: 2023 ElectroJr <leonsfriedrich@gmail.com>
-// SPDX-FileCopyrightText: 2023 Emisse <99158783+Emisse@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
-// SPDX-FileCopyrightText: 2023 iller_saver <55444968+illersaver@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 themias <89101928+themias@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Jezithyr <jezithyr@gmail.com>
-// SPDX-FileCopyrightText: 2024 leonidussaks <42278348+leonidussaks@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server.Body.Components;
 using Content.Server.DoAfter;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Shared.Atmos;
 using Content.Shared.Body.Components;
+using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Emag.Systems;
@@ -28,6 +15,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Atmos;
 
 /// <summary>
 /// System for vapes
@@ -57,12 +45,9 @@ namespace Content.Server.Nutrition.EntitySystems
             var exploded = false;
 
             if (!args.CanReach
-                // Arcane-start
                 || !_solutionContainerSystem.TryGetRefillableSolution(entity.Owner, out _, out var solution)
-                || args.Target == null
-                || !HasComp<BloodstreamComponent>(args.Target.Value)
-                || (args.Target != args.User && _ingestion.HasMouthAvailable(args.Target.Value, args.User))
-                // Arcane-end
+                || !HasComp<BloodstreamComponent>(args.Target)
+                || !_ingestion.HasMouthAvailable(args.User, args.Target.Value)
                 )
             {
                 return;

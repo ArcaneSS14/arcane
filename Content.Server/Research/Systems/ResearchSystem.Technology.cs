@@ -228,7 +228,7 @@ public sealed partial class ResearchSystem
         // Orion-End
         Dirty(uid, component);
 
-        var ev = new TechnologyDatabaseModifiedEvent(technology.RecipeUnlocks); // Goobstation - Lathe message on recipes update
+        var ev = new TechnologyDatabaseModifiedEvent(technology.RecipeUnlocks.Select(recipe => recipe.Id).ToList()); // Goobstation - Lathe message on recipes update
         RaiseLocalEvent(uid, ref ev);
     }
 

@@ -5,14 +5,18 @@
   save: false
   abstract: true
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.6
+    baseSprintSpeed: 4.6
   - type: HumanoidAppearance
     species: Feroxi
     hideLayersOnEquip:
     - Snout
+    undergarmentBottom: UndergarmentBottomBoxersReptilian # todo marty doesn't fit needs adjusting
   - type: Hunger
   # - type: Carriable # ShibaStation - disabled because broken, for now.
   - type: Thirst
-    baseDecayRate: 0.2
+    baseDecayRate: 0.25 # Goobstation base rate changed, 2 times more than base
   - type: Icon
     sprite: _Goobstation/Mobs/Species/Feroxi/parts.rsi #RedTerror Goob Resprite
     state: full
@@ -27,7 +31,7 @@
       Male: MaleFeroxi
       Female: FemaleFeroxi
       Unsexed: MaleFeroxi
-      Futanari: FemaleFeroxi # Arcane-edit
+      Futanari: FemaleFeroxi # Arcane
   - type: BodyEmotes #goob edit
     soundsId: FeroxiBodyEmotes
   - type: Sprite
@@ -49,18 +53,13 @@
         # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
         # sprite refactor when
         state: l_leg
-#      - map: [ "enum.HumanoidVisualLayers.Underwear" ] # Goob 120 | Orion-Edit: Replaced with clothes
-#      - map: [ "enum.HumanoidVisualLayers.Undershirt" ] # Goob 120 | Orion-Edit: Replaced with clothes
-      # Orion-Start
-      - map: [ "underwear" ]
-      - map: [ "undershirt" ]
-      # Orion-End
-      # Orion-Edit-Start: Moved under jumpsuit
-      - map: ["enum.HumanoidVisualLayers.LFoot"]
-      - map: ["enum.HumanoidVisualLayers.RFoot"]
-      # Orion-Edit-End
-      - map: [ "socks" ] # Orion
-      - map: ["jumpsuit"]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+      # Arcane-Edit-Start
+      - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+      - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+      # Arcane-Edit-End
+      - map: [ "jumpsuit" ]
       - map: [ "enum.HumanoidVisualLayers.LHand" ]
       - map: [ "enum.HumanoidVisualLayers.RHand" ]
       - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
@@ -71,9 +70,7 @@
       - map: [ "enum.HumanoidVisualLayers.Face" ] # Goob 120
       - map: [ "id" ]
       - map: [ "gloves" ]
-      - map: [ "wrists" ] # Orion
       - map: [ "shoes" ]
-      - map: [ "earsright" ] # Orion
       - map: [ "ears" ]
       - map: [ "outerClothing" ]
       - map: [ "belt" ] # Goob
@@ -112,6 +109,15 @@
     hydratedMetabolizer: Feroxi
     dehydratedMetabolizer: FeroxiDehydrated
     dehydrationThreshold: 150
+  # Arcane-Start
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Feroxi
+  # Arcane-End
   - type: LanguageKnowledge # The Den, give Feroxi their own language.
     speaks:
     - TauCetiBasic
@@ -132,6 +138,13 @@
           32:
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: _White/Mobs/Species/displacement.rsi
+            state: shoes
+      # Arcane-End
     displacements:
       jumpsuit:
         sizeMaps:
@@ -143,6 +156,13 @@
           32:
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: _White/Mobs/Species/displacement.rsi
+            state: shoes
+      # Arcane-End
     # Goob-Feroxi-Resprite-End
 
 - type: entity
@@ -176,18 +196,13 @@
       # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
       # sprite refactor when
       state: l_leg
-#    - map: [ "enum.HumanoidVisualLayers.Underwear" ] # Goob 120 | Orion-Edit: Replaced with clothes
-#    - map: [ "enum.HumanoidVisualLayers.Undershirt" ] # Goob 120 | Orion-Edit: Replaced with clothes
-    # Orion-Start
-    - map: [ "underwear" ]
-    - map: [ "undershirt" ]
-    # Orion-End
-    # Orion-Edit-Start: Moved under jumpsuit
-    - map: ["enum.HumanoidVisualLayers.LFoot"]
-    - map: ["enum.HumanoidVisualLayers.RFoot"]
-    # Orion-Edit-End
-    - map: [ "socks" ] # Orion
-    - map: ["jumpsuit"]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    # Arcane-Edit-Start
+    - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    # Arcane-Edit-End
+    - map: [ "jumpsuit" ]
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
     - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
@@ -198,9 +213,7 @@
     - map: [ "enum.HumanoidVisualLayers.Face" ] # Goob 120
     - map: [ "id" ]
     - map: [ "gloves" ]
-    - map: [ "wrists" ] # Orion
     - map: [ "shoes" ]
-    - map: [ "earsright" ] # Orion
     - map: [ "ears" ]
     - map: [ "outerClothing" ]
     - map: [ "belt" ] # Goob
@@ -234,6 +247,13 @@
           32:
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: _White/Mobs/Species/displacement.rsi
+            state: shoes
+      # Arcane-End
     displacements:
       jumpsuit:
         sizeMaps:
@@ -245,4 +265,11 @@
           32:
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
+      # Arcane-Start
+      socks:
+        sizeMaps:
+          32:
+            sprite: _White/Mobs/Species/displacement.rsi
+            state: shoes
+      # Arcane-End
     # Goob-Feroxi-Resprite-End

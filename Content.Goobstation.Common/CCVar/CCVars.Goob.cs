@@ -111,11 +111,13 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<float> RoundEndNoEorgPopupTime =
         CVarDef.Create("game.round_end_eorg_popup_time", 5f, CVar.SERVER | CVar.REPLICATED);
 
-    /// Easy mode for biomass requirements on cloning. If true, 30% less biomass is required to clone mobs.
+    /// <summary>
+    ///     DEBUG Cvar - Should pathfinding be disabled globally. For SpawnAndDirty cause we need the mem.
     /// </summary>
-    public static readonly CVarDef<bool> CloneBiomassEasyMode =
-        CVarDef.Create("goob.clone_biomass_easy_mode", false, CVar.SERVER | CVar.SERVER);
+    public static readonly CVarDef<bool> DisablePathfinding =
+        CVarDef.Create("goob.disable_pathfinding", false, CVar.SERVER | CVar.SERVERONLY);
 
+  
     #region Player Listener
 
     /// <summary>
@@ -293,6 +295,11 @@ public sealed partial class GoobCVars
 
     #region Goobcoins
 
+    // Arcane-start: Server currency disabled by default
+    public static readonly CVarDef<bool> ServerCurrencyEnabled =
+        CVarDef.Create("servercurrency.enabled", false, CVar.SERVERONLY);
+    // Arcane-end
+
     public static readonly CVarDef<int> GoobcoinsPerPlayer =
         CVarDef.Create("servercurrency.per_player", 10, CVar.SERVERONLY);
 
@@ -458,6 +465,37 @@ public sealed partial class GoobCVars
 
     #endregion
 
+    #region Voicechat
+
+    public static readonly CVarDef<bool> VoiceChatEnabled =
+        CVarDef.Create("voice.enabled", false, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> VoiceChatPort =
+        CVarDef.Create("voice.vc_server_port", 1213, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> VoiceChatVolume =
+        CVarDef.Create("voice.volume", 5f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> VoiceChatBufferTargetMultiplier =
+        CVarDef.Create("voice.buffer_target_multiplier", 1.0f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> VoiceChatMinBufferSize =
+        CVarDef.Create("voice.min_buffer_size", 10, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> VoiceChatMaxBufferSize =
+        CVarDef.Create("voice.max_buffer_size", 50, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> VoiceChatAdvancedTimeStretch =
+        CVarDef.Create("voice.advanced_time_stretch", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> VoiceChatDebugLogging =
+        CVarDef.Create("voice.debug_logging", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> VoiceChatHearSelf =
+        CVarDef.Create("voice.hear_self", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    #endregion
+
     #region Queue
 
     /// <summary>
@@ -548,7 +586,7 @@ public sealed partial class GoobCVars
     /// Applies to Brute and Burn damage
     /// </summary>
     public static readonly CVarDef<float> ExplosionWoundMultiplier =
-        CVarDef.Create("explosion.wounding_multiplier", 4f, CVar.SERVERONLY);
+        CVarDef.Create("explosion.wounding_multiplier", 2.5f, CVar.SERVERONLY);
 
     #endregion
 

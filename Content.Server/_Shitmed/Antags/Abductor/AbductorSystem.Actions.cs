@@ -1,13 +1,10 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared._Shitmed.Antags.Abductor;
 using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Robust.Shared.Audio.Systems;
@@ -21,6 +18,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 {
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!; // Arcane
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
 
     private static readonly EntProtoId<ActionComponent> SendYourself = "ActionSendYourself";
@@ -60,13 +58,17 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(3), new AbductorReturnDoAfterEvent(), ev.Performer)
         {
             MultiplyDelay = false,
+            // Arcane-start
+            BreakOnDamage = false,
+            BreakOnMove = false,
+            // Arcane-end
         };
         _doAfter.TryStartDoAfter(doAfter);
         ev.Handled = true;
     }
     private void OnDoAfterAbductorReturn(Entity<AbductorScientistComponent> ent, ref AbductorReturnDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled)
+        if (args.Handled || args.Cancelled || _mobState.IsCritical(ent) || _mobState.IsDead(ent)) // Arcane-Edit
             return;
 
         _color.RaiseEffect(Color.FromHex("#BA0099"), new List<EntityUid>(1) { ent }, Filter.Pvs(ent, entityManager: EntityManager));

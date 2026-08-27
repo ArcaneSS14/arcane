@@ -8,7 +8,7 @@
   },
   "states": [
     {
-      "name": "jug"
+      "name": "icon_empty"
     },
     {
       "name": "icon"
@@ -73,37 +73,40 @@
       "directions": 4
     },
     {
-      "name": "jug1"
+      "name": "fill-1"
     },
     {
-      "name": "jug2"
+      "name": "fill-2"
     },
     {
-      "name": "jug3"
+      "name": "fill-3"
     },
     {
-      "name": "jug4"
+      "name": "fill-4"
     },
     {
-      "name": "jug5"
+      "name": "fill-5"
     },
     {
-      "name": "jug6"
+      "name": "fill-6"
     },
     {
-      "name": "jug7"
+      "name": "fill-6"
     },
     {
-      "name": "jug8"
+      "name": "fill-7"
     },
     {
-      "name": "jug9"
+      "name": "fill-8"
     },
     {
-      "name": "jug10"
+      "name": "fill-9"
     },
     {
-      "name": "jug11"
+      "name": "fill-10"
+    },
+    {
+      "name": "fill-11"
     }
   ]
 }

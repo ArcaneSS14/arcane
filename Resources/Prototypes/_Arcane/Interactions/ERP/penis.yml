@@ -3,7 +3,7 @@
   category: Penis
   userArouse: 5
   targetArouse: 15
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/oral1.ogg
   - /Audio/_Arcane/Interactions/oral2.ogg
@@ -19,16 +19,19 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: SlimeFuckCock
   category: Penis
   userArouse: 10
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/bj1.ogg
   - /Audio/_Arcane/Interactions/bj2.ogg
@@ -54,16 +57,19 @@
     species:
     - SlimePerson
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockFap
   category: Penis
   userArouse: 10
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   selfMessages:
@@ -78,15 +84,18 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockFootjob
   category: Penis
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/bang1.ogg
   - /Audio/_Arcane/Interactions/bang2.ogg
@@ -104,16 +113,19 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockSwordmanship
   category: Penis
   userArouse: 10
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/bang1.ogg
   - /Audio/_Arcane/Interactions/bang2.ogg
@@ -129,19 +141,25 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockFapTail
   category: Penis
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
@@ -151,9 +169,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -169,7 +190,7 @@
   category: Penis
   userArouse: 5
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/bang1.ogg
   - /Audio/_Arcane/Interactions/bang2.ogg
@@ -185,16 +206,19 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockBlowjob
   category: Penis
   userArouse: 5
   targetArouse: 20
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/bj1.ogg
   - /Audio/_Arcane/Interactions/bj2.ogg
@@ -217,16 +241,19 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: CockNearAssTail
   category: Butt
   userArouse: 10
   targetArouse: 5
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
   - /Audio/_Arcane/Interactions/friction2.ogg
@@ -238,9 +265,12 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   - !type:SpeciesRequirement
     species:
     - Demon
@@ -255,7 +285,7 @@
   category: Mouth
   userArouse: 15
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/bj1.ogg
   - /Audio/_Arcane/Interactions/bj2.ogg
@@ -278,16 +308,19 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: LegsCockFuckTail
   category: Penis
   userArouse: 5
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
   - /Audio/_Arcane/Interactions/friction2.ogg
@@ -299,9 +332,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -316,7 +352,7 @@
   id: HornsBlowjobF
   category: Head
   targetArouse: 10
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/oral1.ogg
   - /Audio/_Arcane/Interactions/oral2.ogg

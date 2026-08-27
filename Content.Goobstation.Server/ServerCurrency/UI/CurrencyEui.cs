@@ -1,16 +1,13 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Goobstation.Common.CCVar;
 using Content.Goobstation.Common.ServerCurrency;
 using Content.Goobstation.Shared.ServerCurrency;
 using Content.Goobstation.Shared.ServerCurrency.UI;
 using Content.Server.Administration.Notes;
 using Content.Server.EUI;
 using Content.Shared.Eui;
+using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -21,6 +18,7 @@ namespace Content.Goobstation.Server.ServerCurrency.UI
         [Dependency] private readonly ICommonCurrencyManager _currencyMan = default!;
         [Dependency] private readonly IAdminNotesManager _notesMan = default!;
         [Dependency] private readonly IPrototypeManager _protoMan = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!; // Arcane
         public CurrencyEui()
         {
             IoCManager.InjectDependencies(this);
@@ -52,6 +50,11 @@ namespace Content.Goobstation.Server.ServerCurrency.UI
 
         private async void BuyToken(ProtoId<TokenListingPrototype> tokenId, ICommonSession playerName)
         {
+            // Arcane-start
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+                return;
+            // Arcane-end
+
             var balance = _currencyMan.GetBalance(Player.UserId);
 
             if (!_protoMan.TryIndex<TokenListingPrototype>(tokenId, out var token))

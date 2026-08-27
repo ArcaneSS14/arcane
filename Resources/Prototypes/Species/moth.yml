@@ -1,21 +1,3 @@
-# SPDX-FileCopyrightText: 2023 LankLTE <135308300+LankLTE@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 lzk <124214523+lzk228@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Froffy025 <scotttaco025@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 MilenVolf <63782763+MilenVolf@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 Skubman <ba.fallaria@gmail.com>
-# SPDX-FileCopyrightText: 2025 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 VMSolidus <evilexecutive@gmail.com>
-# SPDX-FileCopyrightText: 2025 BloodfiendishOperator <141253729+Diggy0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 MilenVolf <63782763+MilenVolf@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-# SPDX-FileCopyrightText: 2025 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Zalycon <84675130+Zalycon@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-#
 # SPDX-License-Identifier: MIT
 
 - type: species
@@ -35,13 +17,15 @@
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Moth.xml"
   pros:
-  - Получают на 30% меньше урона холодом.
+  - Получают на 20% меньше урона холодом.
+  - Обладают ночным зрением.
   - Могут совершать протяжный прыжок благодаря крыльям.
   - Передвигаются гораздо лучше без гравитации, чем человек.
   special:
   - Имеют отличимый от других рас порог температуры. При низкой температуре получают 0.05 холода в секунду; При высокой температуре получают 3 ожогов в секунду.
   cons:
   - Получают на 30% больше урона огнём.
+  - Получают на 10% больше колющего урона.
   - Легко возгораемые.
   # Orion-End
   # begin Goobstation: port EE height/width sliders
@@ -56,13 +40,16 @@
 - type: speciesBaseSprites
   id: MobMothSprites
   sprites:
+    TailBehind: MobHumanoidAnyMarking # floof
+    TailOversuit: MobHumanoidAnyMarking # floof
+    TailBehindBackpack: MobHumanoidAnyMarking #imp
     Head: MobMothHead
     Face: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
-#    Underwear: MobHumanoidAnyMarking # Orion-Edit: Removed
-#    Undershirt: MobHumanoidAnyMarking # Orion-Edit: Removed
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobMothChest
-    Groin: MobMothGroin
+    Groin: MobMothGroin # Goob
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
@@ -107,17 +94,17 @@
       points: 8
       required: false
     Head:
+      points: 1
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
       points: 8
       required: false
     Chest:
       points: 8
       required: false
-#    Underwear: # Orion-Edit: Removed
-#      points: 1
-#      required: false
-#    Undershirt: # Orion-Edit: Removed
-#      points: 1
-#      required: false
     RightLeg:
       points: 2
       required: false

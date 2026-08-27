@@ -15,7 +15,7 @@ public sealed partial class ACCVars
     ///     На каком расстоянии от игрока NPC будет замораживаться.
     /// </summary>
     public static readonly CVarDef<int> NpcSleepRange =
-        CVarDef.Create("npc.sleep_range", 30, CVar.SERVERONLY);
+        CVarDef.Create("npc.sleep_range", 40, CVar.SERVERONLY);
 
     /// <summary>
     ///     Максимальное количество infinity dorms, которые может создать один пользователь.
@@ -28,4 +28,16 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<bool> EndRoundPacification =
         CVarDef.Create("game.end_round_pacifism", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Должен ли сервер автоматически перезапускаться после конца раунда.
+    /// </summary>
+    public static readonly CVarDef<bool> RestartServerOnRoundEnd =
+        CVarDef.Create("game.restart_server_on_round_end", false, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Offer item.
+    /// </summary>
+    public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
+        CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 c4llv07e <igor@c4llv07e.xyz>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Robust.Shared.Configuration;
@@ -17,7 +13,7 @@ public sealed partial class CCVars
         CVarDef.Create("ambience.event_music_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 
     public static readonly CVarDef<bool> TTSSoundsEnabled =
-        CVarDef.Create("audio.tts_sounds_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY); // Art-TTS
+        CVarDef.Create("audio.tts_sounds_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY); // Arcane
 
     /// <summary>
     ///     Round end sound (APC Destroyed)

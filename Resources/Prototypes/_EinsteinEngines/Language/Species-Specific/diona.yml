@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 CerberusWolfie <wb.johnb.willis@gmail.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Spoken by dionas.
@@ -22,8 +18,23 @@
     minSyllables: 1
     maxSyllables: 5
     replacement:
-    - hs
-    - zt
-    - kr
-    - st
-    - sh
+    # Arcane-Edit-Start
+    - шш
+    - зз
+    - хш
+    - шт
+    - хр
+    - тш
+    - шу
+    - шо
+    - хь
+    - хрр
+    - зт
+    - кр
+    - пш
+    - фш
+    - цш
+    - шык
+    - шёлк
+    - хвощ
+    # Arcane-Edit-End

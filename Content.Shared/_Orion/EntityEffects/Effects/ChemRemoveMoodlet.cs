@@ -6,31 +6,30 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Orion.EntityEffects.Effects;
 
 /// <summary>
-///     Removes a moodlet from an entity if present.
+/// Removes a moodlet from an entity if present.
 /// </summary>
 [UsedImplicitly]
-public sealed partial class ChemRemoveMoodlet : EntityEffect
+public sealed partial class ChemRemoveMoodletSystem : EntityEffectSystem<MetaDataComponent, ChemRemoveMoodlet>
 {
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<ChemRemoveMoodlet> args)
     {
-        var moodPrototype = prototype.Index<MoodEffectPrototype>(MoodPrototype.Id);
-        return Loc.GetString("reagent-effect-guidebook-remove-moodlet",
-            ("name", moodPrototype.Description()));
+        RaiseLocalEvent(entity, new MoodRemoveEffectEvent(args.Effect.MoodPrototype));
     }
+}
 
+/// <inheritdoc cref="EntityEffect"/>
+public sealed partial class ChemRemoveMoodlet : EntityEffectBase<ChemRemoveMoodlet>
+{
     /// <summary>
-    ///     The mood prototype to be removed from the entity.
+    /// The mood prototype to remove from the entity.
     /// </summary>
     [DataField(required: true)]
     public ProtoId<MoodEffectPrototype> MoodPrototype;
 
-    public override void Effect(EntityEffectBaseArgs args)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
-        if (args is not EntityEffectReagentArgs _)
-            return;
-
-        var entityManager = IoCManager.Resolve<EntityManager>();
-        var ev = new MoodRemoveEffectEvent(MoodPrototype);
-        entityManager.EventBus.RaiseLocalEvent(args.TargetEntity, ev);
+        var moodPrototype = prototype.Index<MoodEffectPrototype>(MoodPrototype.Id);
+        return Loc.GetString("reagent-effect-guidebook-remove-moodlet",
+            ("name", moodPrototype.Description()));
     }
 }

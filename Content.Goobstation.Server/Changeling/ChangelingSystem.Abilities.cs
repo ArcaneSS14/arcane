@@ -1,34 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2024 Armok <155400926+ARMOKS@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Fishbait <Fishbait@git.ml>
-// SPDX-FileCopyrightText: 2024 TGRCDev <tgrc@tgrc.dev>
-// SPDX-FileCopyrightText: 2024 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 username <113782077+whateverusername0@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 whateverusername0 <whateveremail>
-// SPDX-FileCopyrightText: 2024 yglop <95057024+yglop@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Ilya246 <ilyukarno@gmail.com>
-// SPDX-FileCopyrightText: 2025 Marcus F <199992874+thebiggestbruh@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Marcus F <marcus2008stoke@gmail.com>
-// SPDX-FileCopyrightText: 2025 Misandry <mary@thughunt.ing>
-// SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-// SPDX-FileCopyrightText: 2025 Rinary <72972221+Rinary1@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 Spatison <137375981+Spatison@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
-// SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
-// SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
-// SPDX-FileCopyrightText: 2025 the biggest bruh <199992874+thebiggestbruh@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 thebiggestbruh <199992874+thebiggestbruh@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 thebiggestbruh <marcus2008stoke@gmail.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
@@ -66,6 +35,7 @@ using Content.Shared.Stealth.Components;
 using Content.Shared.Store.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Traits.Assorted;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Actions.Components;
@@ -74,6 +44,7 @@ using Content.Shared.Tools.Systems;
 using Content.Goobstation.Shared.Devour.Events;
 using Content.Shared.Nutrition.Components;
 using Content.Goobstation.Shared.InternalResources.Components;
+using Content.Shared.Light.Components;
 
 namespace Content.Goobstation.Server.Changeling;
 
@@ -299,7 +270,7 @@ public sealed partial class ChangelingSystem
 
         var target = args.Target;
 
-        if (!TryComp<FoodComponent>(target, out var food))
+        if (!TryComp<EdibleComponent>(target, out var food))
             return;
 
         if (!TryComp<SolutionContainerManagerComponent>(target, out var solMan))
@@ -545,7 +516,7 @@ public sealed partial class ChangelingSystem
 
         var pos = _transform.GetMapCoordinates(uid);
         var power = comp.ShriekPower;
-        _emp.EmpPulse(pos, power, 5000f, power * 2);
+        _emp.EmpPulse(pos, power, 5000f,  TimeSpan.FromSeconds(power * 2));
 
         args.Handled = true;
     }
@@ -683,7 +654,7 @@ public sealed partial class ChangelingSystem
         comp.IsInLesserForm = true;
 
         var eggComp = EnsureComp<ChangelingEggComponent>(target);
-        eggComp.lingComp = comp;
+        eggComp.LingComponents = comp.LastResortSnapshot; // Arcane-Edit
         eggComp.lingMind = (EntityUid) mind;
         eggComp.lingStore = _serialization.CreateCopy(storeComp, notNullableOverride: true);
 
@@ -699,6 +670,21 @@ public sealed partial class ChangelingSystem
 
         args.Handled = true;
     }
+
+    // Arcane-Start
+    private List<Component> SnapshotChangelingComponents(EntityUid uid)
+    {
+        var snapshots = new List<Component>();
+        foreach (var type in ChangelingEggSystem.TransferredComponents)
+        {
+            if (!EntityManager.TryGetComponent(uid, type, out var component))
+                continue;
+
+            snapshots.Add((Component) _serialization.CreateCopy(component, notNullableOverride: true)!);
+        }
+        return snapshots;
+    }
+    // Arcane-End
 
     #endregion
 
@@ -732,9 +718,9 @@ public sealed partial class ChangelingSystem
 
         if (TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.Container.ContainedEntities.Count > 0)
         {
-            var cuff = cuffs.LastAddedCuffs;
+            var cuff = cuffs.Container.ContainedEntities[^1];
 
-            _cuffs.Uncuff(uid, cuffs.LastAddedCuffs, cuff);
+            _cuffs.Uncuff(uid, uid, cuff, cuffs);
             QueueDel(cuff);
         }
 
@@ -840,6 +826,8 @@ public sealed partial class ChangelingSystem
 
         comp.IsInLastResort = true;
 
+        var snapshot = SnapshotChangelingComponents(uid); // Arcane
+
         var newUid = TransformEntity(
             uid,
             protoId: "MobHeadcrab",
@@ -853,6 +841,11 @@ public sealed partial class ChangelingSystem
             UpdateChemicals((uid, comp), Comp<InternalResourcesActionComponent>(args.Action).UseAmount);
             return;
         }
+
+        // Arcane-Start
+        if (TryComp<ChangelingIdentityComponent>((EntityUid) newUid, out var headcrabComp))
+            headcrabComp.LastResortSnapshot = snapshot;
+        // Arcane-End
 
         _explosionSystem.QueueExplosion(
             (EntityUid) newUid,

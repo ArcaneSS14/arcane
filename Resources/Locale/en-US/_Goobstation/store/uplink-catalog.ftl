@@ -110,7 +110,7 @@ uplink-WSPR-desc = A silenced, subsonic, and caseless rifle for the operative th
 uplink-c20r-name = C-20R
 uplink-c20r-desc = A one-handed, bullpup SMG that sacrifices accuracy for pure firerate. Feeds from 9mm Auto SMG magazines.
 
-uplink-buldog-name = Bulldog
+uplink-buldog-name = Bulldog 2.0
 uplink-buldog-desc = A fully automatic, bullpup shotgun for when you have three seconds to turn eight people into pasta sauce.
 
 uplink-l6-saw-name = L6 SAW

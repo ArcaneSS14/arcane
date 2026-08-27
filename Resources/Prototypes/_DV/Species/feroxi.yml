@@ -16,8 +16,13 @@
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Feroxi.xml"
   pros:
   - Наносят 7 колющего урона своими укусами.
+  - Устойчивее к холоду на 25%.
   - Получают на 10% меньше урона от ушибов.
-  - Устойчивее к холоду на 10%.
+  - Получают на 5% меньше теплового урона за счет охлаждения тела.
+  - Бегают немного быстрее человека.
+  # Arcane-Start
+  - Не замедляются при передвижении по воде.
+  # Arcane-End
   special:
   - Могут дышать водяным паром.
   - Когда состояние жажды доходит до критического состояния, начинают задыхаться.
@@ -38,6 +43,8 @@
     Chest: MobFeroxiChest
     Groin: MobFeroxiGroin
     HeadTop: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
     Eyes: MobHumanoidEyes
     LArm: MobFeroxiLArm

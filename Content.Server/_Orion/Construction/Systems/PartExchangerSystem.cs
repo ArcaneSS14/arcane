@@ -213,7 +213,7 @@ public sealed class PartExchangerSystem : EntitySystem
 
                     if (state.Stack != null && state.Stack.Count > amount)
                     {
-                        var split = _stack.Split(replacementUid, amount, Transform(target).Coordinates, state.Stack);
+                        var split = _stack.Split((replacementUid, state.Stack), amount, Transform(target).Coordinates);
                         if (split == null)
                         {
                             _container.Insert(replacementUid, storage.Container, force: true);
@@ -339,7 +339,7 @@ public sealed class PartExchangerSystem : EntitySystem
 
                 if (partStack != null && partStack.Count > amount)
                 {
-                    var split = _stack.Split(partUid, amount, Transform(frameUid).Coordinates, partStack);
+                    var split = _stack.Split((partUid, partStack), amount, Transform(frameUid).Coordinates);
                     if (split == null)
                         continue;
 
@@ -372,7 +372,7 @@ public sealed class PartExchangerSystem : EntitySystem
                 {
                     if (stack.Count > materialAmount)
                     {
-                        var split = _stack.Split(partUid, materialAmount, Transform(frameUid).Coordinates, stack);
+                        var split = _stack.Split((partUid, stack), materialAmount, Transform(frameUid).Coordinates);
                         if (split != null)
                             stackToInsert = split.Value;
                     }

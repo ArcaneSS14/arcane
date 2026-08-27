@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 John Willis <143434770+CerberusWolfie@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Marty <martynashagriefer@gmail.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Translators
@@ -168,6 +164,19 @@
     Gold: 50
     Silver: 50
 
+# Arcane-Start
+- type: latheRecipe
+  id: KarshanTranslator
+  result: KarshanTranslator
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 100
+    Gold: 50
+    Silver: 50
+# Arcane-End
+
 # Implanters
 - type: latheRecipe
   abstract: true
@@ -265,6 +274,14 @@
   subname: lathe-recipe-SchechiTranslatorImplanter-subname
   result: SchechiTranslatorImplanter
 
+# Arcane-Start
+- type: latheRecipe
+  parent: BaseTranslatorImplanter
+  id: HydraspeakTranslatorImplanter
+  subname: lathe-recipe-HydraspeakTranslatorImplanter-subname
+  result: HydraspeakTranslatorImplanter
+# Arcane-End
+
 - type: latheRecipe
   parent: BaseTranslatorImplanter
   id: NewKinPidginTranslatorImplanter
@@ -290,3 +307,28 @@
     Plastic: 100
     Gold: 50
     Silver: 50
+
+# Arcane-Start
+- type: latheRecipe
+  id: HydraspeakTranslator
+  result: HydraspeakTranslator
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 100
+    Plastic: 50
+    Gold: 50
+
+- type: latheRecipe
+  parent: BaseTranslatorImplanter
+  id: KarshanTranslatorImplanter
+  subname: lathe-recipe-KarshanTranslatorImplanter-subname
+  result: KarshanTranslatorImplanter
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 100
+    Gold: 50
+    Silver: 50
+# Arcane-End

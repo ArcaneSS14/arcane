@@ -23,9 +23,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: PussyLicking
@@ -51,9 +54,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: PussyScissors
@@ -73,19 +79,25 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: PussyTouch
   category: Pussy
   targetArouse: 5
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
@@ -98,16 +110,19 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: PussyTailFuck
   category: Pussy
   userArouse: 5
   targetArouse: 15
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
@@ -120,9 +135,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -138,7 +156,7 @@
   category: Pussy
   userArouse: 15
   targetArouse: 20
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/bang1.ogg
   - /Audio/_Arcane/Interactions/bang2.ogg
@@ -155,20 +173,26 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
-  - !type:EroticOrganRequirement
-    organ: penis
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   - !type:ArousalRequirement
 
 - type: panelInteraction
   id: ToyPussy
   category: Pussy
   targetArouse: 15
-  range: 1
+  range: 1.5
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
@@ -181,9 +205,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:EroticOrganRequirement
-    organ: vagina
-    requireVisible: true
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
   userRequirements:
   - !type:HeldItemRequirement
     tags:

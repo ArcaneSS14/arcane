@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Factory.Filters;
@@ -217,7 +213,7 @@ public sealed class RoboticArmSystem : EntitySystem
 
         // prevent dropping items on walls etc
         var output = _exclusive.GetOutputSlot(ent);
-        if (output != null && IsOutputBlocked(ent))
+        if (output == null && IsOutputBlocked(ent)) // Arcane-Edit
             return false;
 
         var filter = _filter.GetSlot(ent);

@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "security_walking",
+            "directions": 4
+        },
+        {
             "name": "security-rest",
             "directions": 1
         },

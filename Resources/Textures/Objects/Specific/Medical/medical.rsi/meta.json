@@ -44,9 +44,9 @@
 			"name": "gauze-inhand-right",
 			"directions": 4
 		},
-        {
-            "name": "tourniquet"
-        },
+		{
+			"name": "tourniquet"
+		},
 		{
 			"name": "tourniquet-inhand-left",
 			"directions": 4
@@ -136,7 +136,7 @@
 			"name": "regenerative-mesh-inhand-right",
 			"directions": 4
 		},
-        {
+		{
 			"name": "regenerative-mesh-inhand-left",
 			"directions": 4
 		},
@@ -166,7 +166,7 @@
 		{
 			"name": "bloodpack-liquid-1"
 		},
-                {
+		{
 			"name": "bloodpack-liquid-2"
 		},
 		{
@@ -178,7 +178,7 @@
 		{
 			"name": "bloodpack-liquid-5"
 		},
-        {
+		{
 			"name": "bloodpack-blue"
 		}
 	]

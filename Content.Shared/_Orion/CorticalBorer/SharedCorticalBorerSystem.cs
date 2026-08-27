@@ -55,11 +55,10 @@ public class SharedCorticalBorerSystem : EntitySystem
             return true;
 
         if (!TryComp<BloodstreamComponent>(target, out var blood) ||
-            blood.ChemicalSolution is not { } solutionUid ||
-            !TryComp<SolutionComponent>(solutionUid, out _))
+            blood.BloodSolution is not { } solution)
             return false;
 
-        return blood.ChemicalSolution?.Comp.Solution.ContainsReagent(SugarReagentId) ?? false;
+        return solution.Comp.Solution.ContainsReagent(SugarReagentId);
     }
 
     public void InfestTarget(Entity<CorticalBorerComponent> ent, EntityUid target)

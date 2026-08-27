@@ -1,15 +1,21 @@
 - type: entity
-  parent: DrinkGlassBase
+  parent: DrinkGlass
   id: DrinkKvassGlass
   name: kvass glass
   description: A cool refreshing drink with a taste of socialism.
   components:
-    - type: Sprite
-      sprite: _Orion/Objects/Consumable/Drinks/kvass.rsi
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          maxVol: 30
-          reagents:
-            - ReagentId: Kvass
-              Quantity: 30
+  - type: Sprite
+    sprite: _Orion/Objects/Consumable/Drinks/kvass.rsi
+    state: icon
+    layers:
+      - state: icon
+  - type: SolutionContainerVisuals # Arcane
+    maxFillLevels: 0
+    inHandsMaxFillLevels: 0
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+          - ReagentId: Kvass
+            Quantity: 30

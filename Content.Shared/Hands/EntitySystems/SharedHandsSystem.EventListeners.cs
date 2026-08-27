@@ -11,6 +11,7 @@ public abstract partial class SharedHandsSystem
     private void InitializeEventListeners()
     {
         SubscribeLocalEvent<HandsComponent, GetStandUpTimeEvent>(OnStandupArgs);
+        SubscribeLocalEvent<HandsComponent, KnockedDownRefreshEvent>(OnKnockedDownRefresh);
     }
 
     /// <summary>
@@ -27,5 +28,25 @@ public abstract partial class SharedHandsSystem
             return;
 
         time.DoAfterTime *= (float)ent.Comp.Count / (hands + ent.Comp.Count);
+    }
+
+    private void OnKnockedDownRefresh(Entity<HandsComponent> ent, ref KnockedDownRefreshEvent args)
+    {
+        var freeHands = CountFreeHands(ent.AsNullable());
+        var totalHands = GetHandCount(ent.AsNullable());
+
+        // Arcane-Edit-Start
+        if (totalHands == 0 || freeHands == totalHands)
+            return;
+
+        if (totalHands <= 2)
+        {
+            args.SpeedModifier *= totalHands == 1 || freeHands == 1 ? 0.85f : 0.5f;
+            return;
+        }
+
+        if (freeHands <= 1)
+            args.SpeedModifier *= 1f - 0.5f * (totalHands - freeHands) / totalHands;
+        // Arcane-Edit-End
     }
 }

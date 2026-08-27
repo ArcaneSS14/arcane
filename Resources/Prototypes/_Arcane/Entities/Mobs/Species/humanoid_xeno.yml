@@ -4,6 +4,13 @@
   name: Urist McXeno
   abstract: true
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Xeno
+    understands:
+    - TauCetiBasic
+    - Xeno
   - type: Respirator
     damage:
       types:
@@ -24,6 +31,7 @@
     proto: alien
   - type: Temperature
     currentTemperature: 310.15
+  - type: TemperatureDamage
     coldDamage:
       types:
         Cold: 0
@@ -47,9 +55,13 @@
         Caustic: 1
   - type: LizardAccent
   - type: Bloodstream
-    bloodReagent: FluorosulfuricAcidHumanoidXeno
-    bloodMaxVolume: 300
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FluorosulfuricAcidHumanoidXeno
+        Quantity: 300
   - type: ProtectedFromStepTriggers
+  - type: Puller
+    needsHands: false
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: HumanoidXenomorph
@@ -64,7 +76,7 @@
 #        sprite: Mobs/Effects/brute_damage.rsi
 #        color: "#44944A"
   - type: Stamina
-    critThreshold: 125
+    baseCritThreshold: 110
   - type: Hunger
     baseDecayRate: 0.08
   - type: Thirst
@@ -136,34 +148,6 @@
     species: HumanoidXeno
     permanentlyHidden:
     - Eyes
-  # Arcane-start: xenos have a species-specific ERP organ set.
-  - type: EroticOrgans
-    groinCommon:
-    - proto: OrganAnus
-      slot: anus
-    - proto: OrganButt
-      slot: butt
-    groinMale:
-    - proto: OrganPenisHumanoidXeno
-      slot: penis
-    - proto: OrganTesticles
-      slot: testicles
-    groinFemale:
-    - proto: OrganVagina
-      slot: vagina
-    - proto: OrganUterus
-      slot: uterus
-    chestFemale:
-    - proto: OrganBreastsHumanoidXeno
-      slot: breasts
-    hideWhenFlaccid:
-    - penis
-  # Arcane-end
-  - type: LanguageKnowledge
-    speaks:
-    - TauCetiBasic
-    understands:
-    - TauCetiBasic
   - type: CollectiveMind
     defaultChannel: HumanoidXenomind
     channels:
@@ -183,6 +167,13 @@
   components:
   - type: HumanoidAppearance
     species: HumanoidXeno
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Xeno
+    understands:
+    - TauCetiBasic
+    - Xeno
   - type: Inventory
     speciesId: reptilian
     templateId: humanoidxeno
@@ -236,29 +227,6 @@
             state: shoes
   - type: Body
     prototype: HumanoidXeno
-  # Arcane-start: species-specific organ prototypes
-  - type: EroticOrgans
-    groinCommon:
-    - proto: OrganAnus
-      slot: anus
-    - proto: OrganButt
-      slot: butt
-    groinMale:
-    - proto: OrganPenisHumanoidXeno
-      slot: penis
-    - proto: OrganTesticles
-      slot: testicles
-    groinFemale:
-    - proto: OrganVagina
-      slot: vagina
-    - proto: OrganUterus
-      slot: uterus
-    chestFemale:
-    - proto: OrganBreastsHumanoidXeno
-      slot: breasts
-    hideWhenFlaccid:
-    - penis
-  # Arcane-end
 
 - type: entity
   parent: BaseMobHumanoidXeno

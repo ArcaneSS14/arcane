@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2023 lzk <124214523+lzk228@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 router <messagebus@vk.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-//
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Text.RegularExpressions;
@@ -15,6 +10,12 @@ public sealed class MothAccentSystem : EntitySystem
 {
     private static readonly Regex RegexLowerBuzz = new Regex("z{1,3}");
     private static readonly Regex RegexUpperBuzz = new Regex("Z{1,3}");
+    // Arcane-Start
+    private static readonly Regex RegexLowerBuzzRus = new Regex("з+");
+    private static readonly Regex RegexUpperBuzzRus = new Regex("З+");
+    private static readonly Regex RegexLowerZhRus = new Regex("ж+");
+    private static readonly Regex RegexUpperZhRus = new Regex("Ж+");
+    //Arcane-End
 
     public override void Initialize()
     {
@@ -30,6 +31,12 @@ public sealed class MothAccentSystem : EntitySystem
         message = RegexLowerBuzz.Replace(message, "zzz");
         // buZZZ
         message = RegexUpperBuzz.Replace(message, "ZZZ");
+        // Arcane-Start
+        message = RegexLowerBuzzRus.Replace(message, "ззз");
+        message = RegexUpperBuzzRus.Replace(message, "ЗЗЗ");
+        message = RegexLowerZhRus.Replace(message, "жжж");
+        message = RegexUpperZhRus.Replace(message, "ЖЖЖ");
+        // Arcane-End
 
         args.Message = message;
     }

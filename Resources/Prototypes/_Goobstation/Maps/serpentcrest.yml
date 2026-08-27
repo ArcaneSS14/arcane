@@ -1,13 +1,10 @@
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 TytosB <dunlaintytos@yahoo.com>
-#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: gameMap
   id: Serpentcrest
   mapName: 'Serpentcrest'
   mapPath: /Maps/_Goobstation/serpentcrest.yml
-  minPlayers: 50
+  minPlayers: 30 # Arcane-Edit 50 > 30
   stations:
     Serpentcrest:
       stationProto: StandardNanotrasenStation
@@ -25,6 +22,10 @@
           availableJobs:
             #service
             Captain: [ 1, 1 ]
+            # Arcane-start
+            Adjutant: [ 1, 1 ]
+            CommandMaid: [ 1, 1 ]
+            # Arcane-end
             NanotrasenRepresentative: [ 1, 1 ]
             BlueshieldOfficer: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
@@ -57,6 +58,7 @@
             SecurityOfficer: [ 6, 7 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 3, 3 ]
+            IAA: [ 1, 1 ] # Arcane
             Lawyer: [ 2, 2 ]
             Brigmedic: [ 1, 1 ]
             #supply
