@@ -279,6 +279,7 @@
   abstract: true
   components:
   - type: Absorbable # Goobstation - changelings
+  - type: OfferItem # Arcane
   - type: WraithAbsorbable # Goobstation - wraith
   - type: Barotrauma
     damage:

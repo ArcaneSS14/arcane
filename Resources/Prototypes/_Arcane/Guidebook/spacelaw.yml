@@ -7,6 +7,8 @@
     - SpaceLawTable
     - Procedures
     - SpaceRights
+    - PunishmentTypes
+    - PunishmentTerms
 
 - type: guideEntry
   id: SpaceRights
@@ -34,6 +36,9 @@
     - SpaceLaw_Law-5
     - SpaceLaw_Law-6
     - SpaceLaw_Law-7
+    - SpaceLaw_Law-8
+    - SpaceLaw_Law-9
+    - SpaceLaw_Law-10
 
 - type: guideEntry
   id: SpaceLaw_Law-0
@@ -82,3 +87,33 @@
   name: guide-entry-space-law-laws-7
   priority: 7
   text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T7.xml"
+
+- type: guideEntry
+  id: SpaceLaw_Law-8
+  name: guide-entry-space-law-laws-8
+  priority: 8
+  text: /ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T8.xml
+
+- type: guideEntry
+  id: SpaceLaw_Law-9
+  name: guide-entry-space-law-laws-9
+  priority: 9
+  text: /ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T9.xml
+
+- type: guideEntry
+  id: SpaceLaw_Law-10
+  name: guide-entry-space-law-laws-10
+  priority: 10
+  text: /ServerInfo/_Arcane/Guidebook/SpaceLaw/Laws/Laws-T10.xml
+
+- type: guideEntry
+  id: PunishmentTypes
+  name: guide-entry-space-law-punishment-types
+  priority: 4
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/PunishmentTypes.xml"
+
+- type: guideEntry
+  id: PunishmentTerms
+  name: guide-entry-space-law-punishment-terms
+  priority: 5
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/PunishmentTerms.xml"
