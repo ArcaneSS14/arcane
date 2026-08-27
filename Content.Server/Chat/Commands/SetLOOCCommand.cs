@@ -8,7 +8,7 @@ using Robust.Shared.Console;
 
 namespace Content.Server.Chat.Commands;
 
-[AdminCommand(AdminFlags.Server)]
+[AdminCommand(AdminFlags.Host)] // Arcane
 public sealed class SetLoocCommand : LocalizedCommands
 {
     [Dependency] private readonly IConfigurationManager _configManager = default!;
