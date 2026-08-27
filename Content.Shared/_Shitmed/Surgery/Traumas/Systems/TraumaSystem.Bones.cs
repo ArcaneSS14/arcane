@@ -9,6 +9,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Damage.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
@@ -311,13 +312,14 @@ public partial class TraumaSystem
     }
 
     // Arcane-Edit-Start
-    private (float Walk, float Sprint, float Acceleration, float DamagedWalk, float HealthyWalk)
+    private (float Walk, float Sprint, float Acceleration, float DamagedWalk, float HealthyWalk, int MissingFeet)
         GetLegTraumaModifiers(Entity<BodyComponent> body)
     {
         if (body.Comp.RequiredLegs <= 0)
-            return (1f, 1f, 1f, 0f, 0f);
+            return (1f, 1f, 1f, 0f, 0f, 0);
 
         var penalty = 0f;
+        var missingFeet = 0;
 
         foreach (var legEntity in body.Comp.LegEntities)
         {
@@ -366,6 +368,7 @@ public partial class TraumaSystem
                 }
             }
 
+            missingFeet++;
             penalty += legPenalty + 0.15f;
         }
 
@@ -373,9 +376,12 @@ public partial class TraumaSystem
         var missingLegs = Math.Max(0, body.Comp.RequiredLegs - body.Comp.LegEntities.Count);
         penalty += missingLegs * 0.25f;
 
+        if (HasComp<IgnoreSlowOnDamageComponent>(body))
+            penalty *= 0.5f;
+
         var modifier = Math.Max(0f, 1f - penalty);
 
-        return (modifier, modifier, modifier, modifier, 1f);
+        return (modifier, modifier, modifier, modifier, 1f, missingFeet);
     }
     // Arcane-Edit-End
 
@@ -390,7 +396,7 @@ public partial class TraumaSystem
         _movementSpeed.RefreshMovementSpeedModifiers(body);
         _movementSpeed.RefreshFrictionModifiers(body);
 
-        if (modifiers.DamagedWalk < modifiers.HealthyWalk / 3.4f)
+        if (modifiers.DamagedWalk < modifiers.HealthyWalk * 0.4f || modifiers.MissingFeet >= 2)
             _standing.Down(body);
         else if (_standing.IsDown(body)
             && !HasComp<KnockedDownComponent>(body)
