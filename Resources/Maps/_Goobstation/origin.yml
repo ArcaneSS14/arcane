@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 08/21/2026 10:55:32
-  entityCount: 32545
+  entityCount: 32544
 maps:
 - 1
 grids:
@@ -92895,14 +92895,6 @@ entities:
       parent: 15014
     - type: Physics
       canCollide: False
-- proto: EncryptionKeyCommon
-  entities:
-  - uid: 15017
-    components:
-    - type: Transform
-      parent: 15016
-    - type: Physics
-      canCollide: False
 - proto: EncryptionKeyEngineering
   entities:
   - uid: 15019
@@ -175152,7 +175144,6 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 15017
         machine_board: !type:Container
           showEnts: False
           occludes: True

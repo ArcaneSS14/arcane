@@ -63,7 +63,7 @@
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     channels:
-    - Common
+    # - Common # Arcane-remove
     - Security
   - type: ItemSwitch
     needsPower: true

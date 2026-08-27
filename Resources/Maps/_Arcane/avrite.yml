@@ -5,7 +5,7 @@ meta:
   forkId: Orion
   forkVersion: ""
   time: 08/24/2026 11:04:53
-  entityCount: 54947
+  entityCount: 54946
 maps:
 - 1
 grids:
@@ -163850,14 +163850,6 @@ entities:
     - type: Transform
       pos: 8.754361,-6.450708
       parent: 2
-- proto: EncryptionKeyCommon
-  entities:
-  - uid: 23170
-    components:
-    - type: Transform
-      parent: 23169
-    - type: Physics
-      canCollide: False
 - proto: EncryptionKeyEngineering
   entities:
   - uid: 23172
@@ -299345,7 +299337,6 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 23170
         machine_board: !type:Container
           showEnts: False
           occludes: True

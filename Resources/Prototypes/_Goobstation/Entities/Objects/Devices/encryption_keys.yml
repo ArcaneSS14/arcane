@@ -8,7 +8,7 @@
   components:
   - type: EncryptionKey
     channels:
-    - Common
+    # - Common # Arcane-remove
     - Command
     - Engineering
     - Medical

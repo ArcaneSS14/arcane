@@ -107,12 +107,12 @@
   - type: IntrinsicRadioTransmitter
     channels:
     # - Binary # Goobstation - replaced with collective mind
-    - Common
+    # - Common # Arcane-remove
     - Science
   - type: ActiveRadio
     channels:
     # - Binary # Goobstation - replaced with collective mind
-    - Common
+    # - Common # Arcane-remove
     - Science
   # Goobstation
   - type: CollectiveMind
@@ -513,12 +513,12 @@
   - type: AccessReader
     access: [ [ "SyndicateAgent" ], [ "NuclearOperative" ] ]
   - type: IntrinsicRadioTransmitter # Copy components from base SyndiBorg but without the stuff we don't want
-    channels:
-    - Common # Goobstation i need this to not be null and if theyre derelict its whatever
+    channels: []
+    # - Common # Goobstation i need this to not be null and if theyre derelict its whatever # Arcane-remove
     #- Binary #1984 # Goobstation collectivemind binary
   - type: ActiveRadio
-    channels:
-    - Common # Goobstation i need this to not be null and if theyre derelict its whatever
+    channels: []
+    # - Common # Goobstation i need this to not be null and if theyre derelict its whatever # Arcane-remove
     #- Binary # Goobstation collectivemind binary
   - type: MovementAlwaysTouching
   - type: Speech

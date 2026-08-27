@@ -70,7 +70,7 @@
   - type: ActiveRadio
     channels:
     # - Binary # Goobstation - replaced with collective mind
-    - Common
+    # - Common # Arcane-remove
     - Command
     - CentCom
     - Engineering

@@ -358,7 +358,7 @@
     children:
     - id: SpaceCash100
       weight: 50
-    - id: EncryptionKeyCommon
+    # - id: EncryptionKeyCommon # Arcane-remove
     - id: EncryptionKeyCargo
     - id: EncryptionKeyService
     - id: EncryptionKeyRobo

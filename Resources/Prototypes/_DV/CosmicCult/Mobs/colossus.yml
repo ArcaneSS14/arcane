@@ -184,13 +184,13 @@
   - type: IntrinsicRadioTransmitter
     channels:
     #- Binary # Goob
-    - Common
+    # - Common # Arcane-remove
     - Science
     - CosmicRadio
   - type: ActiveRadio
     channels:
     #- Binary # Goob
-    - Common
+    # - Common # Arcane-remove
     - Science
     - CosmicRadio
   # Goobstation

@@ -47,7 +47,7 @@
       key_slots:
       - EncryptionKeySecurity
       - EncryptionKeyCommand
-      - EncryptionKeyCommon
+      # - EncryptionKeyCommon # Arcane-remove
   - type: Sprite
     sprite: _Goobstation/Clothing/Ears/Headsets/warden.rsi
   - type: Clothing
@@ -79,7 +79,7 @@
     containers:
       key_slots:
       - EncryptionKeySecurity
-      - EncryptionKeyCommon
+      # - EncryptionKeyCommon # Arcane-remove
   - type: Sprite
     sprite: Clothing/Ears/Headsets/security.rsi
   - type: Clothing
@@ -95,7 +95,7 @@
       key_slots:
       - EncryptionKeyCommand
       - EncryptionKeyCentCom
-      - EncryptionKeyCommon
+      # - EncryptionKeyCommon # Arcane-remove
   - type: Sprite
     sprite: _Goobstation/Clothing/Ears/Headsets/blueshield.rsi
   - type: Clothing
@@ -112,7 +112,7 @@
       key_slots:
       - EncryptionKeyCommand
       - EncryptionKeyService
-      - EncryptionKeyCommon
+      # - EncryptionKeyCommon # Arcane-remove
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -120,10 +120,12 @@
   name: Radio host's over-ear headset
   description: An over-ear headset with extra foam padding around the ears.
   components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCommon
+  # Arcane-start
+  # - type: ContainerFill
+  #   containers:
+  #     key_slots:
+  #     - EncryptionKeyCommon
+  # Arcane-end
   - type: Sprite
     sprite: _Goobstation/Clothing/Ears/Headsets/radiohost.rsi
   - type: Clothing

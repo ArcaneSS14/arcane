@@ -356,11 +356,13 @@
   id: BoxEncryptionKeyPassenger
   description: A box of spare encryption keys.
   components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase:
-        id: EncryptionKeyCommon
-        amount: 4
+  # Arcane-start
+  # - type: EntityTableContainerFill
+  #   containers:
+  #     storagebase:
+  #       id: EncryptionKeyCommon
+  #       amount: 4
+  # Arcane-end
   - type: Sprite
     layers:
       - state: box

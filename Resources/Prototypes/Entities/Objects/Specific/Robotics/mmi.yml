@@ -30,9 +30,9 @@
   #  channels:
   #  - Binary # Goobstation - replaced with collective mind
   - type: ActiveRadio
-    channels:
+    channels: []
     # - Binary # Goobstation - replaced with collective mind
-    - Common
+    # - Common # Arcane-remove
   # Goobstation
   - type: CollectiveMind
     defaultChannel: Binary
@@ -121,9 +121,9 @@
     #  channels:
     #  - Binary # Goobstation - replaced with collective mind
     - type: ActiveRadio
-      channels:
+      channels: []
       # - Binary # Goobstation - replaced with collective mind
-      - Common
+      # - Common # Arcane-remove
     # Goobstation
     - type: CollectiveMind
       defaultChannel: Binary

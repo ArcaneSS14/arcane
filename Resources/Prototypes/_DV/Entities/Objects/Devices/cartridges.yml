@@ -44,5 +44,5 @@
       sprite: _DV/Misc/program_icons.rsi
       state: nanochat
   - type: ActiveRadio
-    channels:
-    - Common
+    channels: []
+    # - Common # Arcane-remove

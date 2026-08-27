@@ -6,7 +6,7 @@
   components:
   - type: EncryptionKey
     channels:
-    - Common
+    # - Common # Arcane-remove
     - Command
     - Security
     - Legal

@@ -580,8 +580,8 @@
     chaosScore: 60
   - type: SolarFlareRule
     onlyJamHeadsets: true
-    affectedChannels:
-    - Common
+    affectedChannels: []
+    # - Common # Arcane-remove
     extraChannels:
     - Command
     - Engineering

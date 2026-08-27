@@ -18,7 +18,7 @@
         - EncryptionKeySecurity
       rareChance: 0.1
       prototypes:
-        - EncryptionKeyCommon
+        # - EncryptionKeyCommon # Arcane-remove
         - EncryptionKeyEngineering
         - EncryptionKeyScience
         - EncryptionKeyService

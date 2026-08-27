@@ -9,7 +9,7 @@
   - type: IntrinsicRadioTransmitter
     channels:
     # - Binary # Goobstation - replaced with collective mind
-    - Common
+    # - Common # Arcane-remove
     - Command
     - Engineering
     - Medical
@@ -20,7 +20,7 @@
   - type: ActiveRadio
     channels:
     # - Binary # Goobstation - replaced with collective mind
-    - Common
+    # - Common # Arcane-remove
     - Command
     - Engineering
     - Medical
@@ -104,9 +104,9 @@
   #  channels:
   #  - Binary # Goobstation - replaced with collective mind
   - type: ActiveRadio
-    channels:
+    channels: []
     # - Binary # Goobstation - replaced with collective mind
-    - Common
+    # - Common # Arcane-remove
   # Goobstation
   - type: CollectiveMind
     defaultChannel: Binary

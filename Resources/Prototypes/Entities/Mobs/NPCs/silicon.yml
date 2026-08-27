@@ -91,8 +91,8 @@
   #  channels:
   #  - Binary # Goobstation - replaced with collective mind
   - type: ActiveRadio
-    channels:
-    - Common
+    channels: []
+    # - Common # Arcane-remove
     # - Binary # Goobstation - replaced with collective mind
   # Goobstation
   - type: CollectiveMind
@@ -531,7 +531,7 @@
   - type: ActiveRadio
     channels:
     # - Binary # Goobstation - replaced with collective mind
-    - Common
+    # - Common # Arcane-remove
     - Supply
   - type: StationAiVision # Goobstation - AI can see through NT silicon
     range: 1

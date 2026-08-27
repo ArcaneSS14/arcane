@@ -198,7 +198,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCommon
+      # - EncryptionKeyCommon # Arcane-remove
       - EncryptionKeyCargo
       - EncryptionKeyEngineering
       - EncryptionKeyMedical
@@ -215,8 +215,8 @@
   components:
   - type: ContainerFill
     containers:
-      key_slots:
-      - EncryptionKeyCommon
+      key_slots: []
+      # - EncryptionKeyCommon # Arcane-remove
 
 - type: entity
   parent: TelecomServer
