@@ -51,6 +51,9 @@ public sealed partial class PanelInteractionPrototype : IPrototype
 
     [DataField]
     public List<ErpRequirement>? TargetRequirements;
+
+    [DataField]
+    public float ChanceLickCum { get; private set; } = 0f;
 }
 
 [Prototype]

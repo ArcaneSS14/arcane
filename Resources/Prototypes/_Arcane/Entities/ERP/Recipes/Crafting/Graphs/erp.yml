@@ -41,7 +41,7 @@
       edges:
         - to: erp
           steps:
-            - tag: HumanDildo
+            - tag: AvianDildo
               name: construction-graph-tag-dildo-human
               icon:
                 sprite: _Arcane/ERP/Toys/Dildo/avian.rsi

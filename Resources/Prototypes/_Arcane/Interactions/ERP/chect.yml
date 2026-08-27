@@ -1,6 +1,6 @@
 - type: panelInteraction
   id: BoobsSlap
-  category: Boobs
+  category: Chest
   userArouse: 5
   range: 1.5
   sounds:
@@ -27,7 +27,7 @@
 
 - type: panelInteraction
   id: BoobsPaw
-  category: Boobs
+  category: Chest
   userArouse: 5
   range: 1.5
   sounds:
@@ -51,7 +51,7 @@
 
 - type: panelInteraction
   id: BoobsFuck
-  category: Boobs
+  category: Chest
   userArouse: 10
   targetArouse: 5
   range: 1.5
@@ -88,7 +88,7 @@
 
 - type: panelInteraction
   id: BoobsSqueeze
-  category: Boobs
+  category: Chest
   userArouse: 5
   range: 1.5
   sounds:
@@ -113,7 +113,7 @@
 
 - type: panelInteraction
   id: BoobsKisses
-  category: Boobs
+  category: Chest
   userArouse: 5
   targetArouse: 5
   range: 1.5
@@ -144,7 +144,7 @@
 
 - type: panelInteraction
   id: BoobsTail
-  category: Boobs
+  category: Chest
   targetArouse: 5
   range: 1.5
   sounds:
@@ -178,7 +178,7 @@
 
 - type: panelInteraction
   id: BoobsMassage
-  category: Boobs
+  category: Chest
   userArouse: 5
   targetArouse: 5
   range: 1.5
@@ -203,13 +203,13 @@
 
 - type: panelInteraction
   id: BoobsSuck
-  category: Boobs
+  category: Chest
   userArouse: 5
   targetArouse: 10
   range: 1.5
   sounds:
-  - /Audio/_Arcane/Interactions/oral1.ogg
-  - /Audio/_Arcane/Interactions/oral2.ogg
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  - /Audio/_Arcane/Interactions/pat2.ogg
   messages:
   - захватывает губами сосок $target.
   - нежно сосёт сосок $target.
@@ -225,5 +225,108 @@
     sexes:
     - Female
     - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: FondleBoobs
+  category: Chest
+  userArouse: 5
+  targetArouse: 5
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  - /Audio/_Arcane/Interactions/pat2.ogg
+  selfMessages:
+  - массирует свою грудь.
+  - водит пальцами по своей груди.
+  - водит вокруг своих сосков.
+  - аккуратно сжимает и разжимает свою грудь.
+  icon: _Arcane/Interface/ErpPanel/pat_man_chest.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: RubbingNipples
+  category: Chest
+  userArouse: 5
+  targetArouse: 5
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  - /Audio/_Arcane/Interactions/pat2.ogg
+  selfMessages:
+  - массирует свои соски.
+  - водит пальцами по соскам.
+  - слегка трёт соски.
+  - аккуратно сжимает и разжимает свои соски.
+  icon: _Arcane/Interface/ErpPanel/touch_man_nipples.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: StrikeCoolPose
+  category: Chest
+  sounds:
+  - /Audio/_Arcane/Interactions/click.ogg
+  selfMessages:
+  - пафосно встает в крутую позу.
+  - эпично принимает крутую позу.
+  - высокомерно встает в крутую позу.
+  - шутливо встает в крутую позу.
+  - уверенно принимает крутую позу.
+  - театрально застывает в крутой позе.
+  icon: _Arcane/Interface/ErpPanel/cool_pose.png
+
+- type: panelInteraction
+  id: LickCondensedCum
+  category: Chest
+  userArouse: 5
+  targetArouse: 5
+  range: 1.5
+  chanceLickCum: 0.2 # 20%
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/oral2.ogg
+  messages:
+  - аккуратно слизывает нектар с кожи $target.
+  - жадно и быстро слизывает солёно-сладкую гущу с $target.
+  - нежно проводит языком по коже $target, слизывая выделение.
+  - медленно и дразняще слизывает густое выделение с тела $target.
+  - заботливо очищает кожу $target от липкой гущи своим языком.
+  icon: _Arcane/Interface/ErpPanel/friendly_flying_kiss.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:CumOverlayRequirement
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: LickCondensedCumSelf
+  category: Chest
+  userArouse: 5
+  targetArouse: 5
+  chanceLickCum: 0.2 # 20%
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  selfMessages:
+  - аккуратно слизывает нектар с своей кожи.
+  - жадно и быстро слизывает солёно-сладкую гущу.
+  - нежно проводит языком по коже, слизывая выделение.
+  - медленно и дразняще слизывает жидкость с себя.
+  - очищает кожу от выделений своим языком.
+  icon: _Arcane/Interface/ErpPanel/friendly_flying_kiss.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:CumOverlayRequirement
   - !type:ExposedBodyPartRequirement
     part: Chest

@@ -4,7 +4,7 @@ ent-ClothingBackpackDuffelAdjutant = вещмешок адъютанта
 ent-ClothingBackpackDuffellCE = вещмешок старшего инженера
     .desc = Выглядит избыточно пустым, лишь на дне лежит кусочек проволоки.
 
-ent-ClothingBackpackDuffellCMO = вещмешок глав врача
+ent-ClothingBackpackDuffellCMO = вещмешок главного врача
     .desc = Выглядит избыточно пустым, лишь на дне приклеен лейкопластырь.
 
 ent-ClothingBackpackDuffellHoP = вещмешок главы персонала
