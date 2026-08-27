@@ -29,15 +29,15 @@
       - !type:ChemAddMoodlet
         moodPrototype: DrankBloodVampiric
         conditions:
-        - !type:OrganType
-          type: Bloodsucker
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
       - !type:ChemAddMoodlet
         moodPrototype: DrankBlood
         conditions:
-        - !type:OrganType
-          type: Bloodsucker
-          shouldHave: false
-        - !type:ReagentThreshold
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+          inverted: true
+        - !type:ReagentCondition
           reagent: Blood
           min: 0.1
       # Orion-End

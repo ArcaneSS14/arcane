@@ -895,7 +895,8 @@
         - !type:ChemRemoveMoodlet # Orion
           moodPrototype: RomerolEffect
           conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: Ambuzol
             min: 10
         - !type:CureZombieInfection
           cureZombies: true # Goob
@@ -919,7 +920,8 @@
         - !type:ChemRemoveMoodlet # Orion
           moodPrototype: RomerolEffect
           conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: AmbuzolPlus
             min: 5
         - !type:CureZombieInfection
           innoculate: true
@@ -1047,7 +1049,7 @@
         type: Remove
       - !type:ChemPurgeMoodlets # Orion
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Synaptizine
           min: 10
 
