@@ -191,10 +191,12 @@
     - chaos
   name: secretplus-admeme-title
   description: secretplus-admeme-description
-  showInVote: true # Arcane
+  # Arcane-start
+  showInVote: true
   rules:
-    - SecretPlusAdmeme
-    - BasicRoundstartVariation # Arcane
+    - SecretPlusAdmemeArcane
+    - BasicRoundstartVariation
+  # Arcane-end
 
 - type: gamePreset
   id: SurvivalPlusMid
