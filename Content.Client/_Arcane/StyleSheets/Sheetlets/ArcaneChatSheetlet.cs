@@ -17,7 +17,7 @@ public sealed class ArcaneChatSheetlet : Sheetlet<ArcaneStylesheet>
         var separatedShell = Panel(sheet.SecondaryPalette.BackgroundLight,
             sheet.PrimaryPalette.Base.WithAlpha(0.5f));
         var output = Panel(sheet.SecondaryPalette.Element.WithAlpha(0.96f),
-            sheet.PrimaryPalette.Base.WithAlpha(0.38f), 6);
+            sheet.PrimaryPalette.Base.WithAlpha(0.38f), 8);
         var input = Panel(sheet.SecondaryPalette.HoveredElement.WithAlpha(0.98f),
             sheet.PrimaryPalette.Base.WithAlpha(0.5f), 2);
         var auxiliary = Panel(sheet.SecondaryPalette.Element,
@@ -25,7 +25,7 @@ public sealed class ArcaneChatSheetlet : Sheetlet<ArcaneStylesheet>
         var lobbyShell = Panel(sheet.SecondaryPalette.BackgroundLight.WithAlpha(0.35f),
             sheet.PrimaryPalette.Base.WithAlpha(0.42f));
         var lobbyOutput = Panel(sheet.SecondaryPalette.Element.WithAlpha(0.35f),
-            sheet.PrimaryPalette.Base.WithAlpha(0.38f), 6);
+            sheet.PrimaryPalette.Base.WithAlpha(0.38f), 8);
 
         return
         [

@@ -12,7 +12,7 @@ public sealed class ArcaneAHelpSheetlet : Sheetlet<ArcaneStylesheet>
     {
         var border = sheet.PrimaryPalette.Base.WithAlpha(0.5f);
         var surface = Panel(sheet.SecondaryPalette.BackgroundLight, border);
-        var output = Panel(sheet.SecondaryPalette.Element, border, 6);
+        var output = Panel(sheet.SecondaryPalette.Element, border, 8);
         var toolbar = Panel(sheet.SecondaryPalette.Background, border, 4);
         var listSurface = Panel(sheet.SecondaryPalette.BackgroundDark, border, 4);
 

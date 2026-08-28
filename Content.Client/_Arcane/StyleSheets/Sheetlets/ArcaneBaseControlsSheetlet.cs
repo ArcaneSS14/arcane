@@ -20,17 +20,18 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         var buttonBorder = sheet.PrimaryPalette.Base.WithAlpha(0.42f);
         var button = StrictBox(ArcanePalette.Buttons.Element, buttonBorder);
         var buttonSmall = StrictBox(ArcanePalette.Buttons.Element, buttonBorder, 1, 8, 2);
+        var menuButton = StrictBox(ArcanePalette.Buttons.Element, buttonBorder, 1, 8, 4);
         var modulatedPanel = StrictBox(Color.White, buttonBorder, 1, 0, 0);
         var panelLight = StrictBox(sheet.SecondaryPalette.BackgroundLight, buttonBorder, 1, 0, 0);
         var panelDark = StrictBox(sheet.SecondaryPalette.Background, buttonBorder, 1, 0, 0);
         var panelDarker = StrictBox(sheet.SecondaryPalette.BackgroundDark, buttonBorder, 1, 0, 0);
-        var lineEdit = StrictBox(sheet.SecondaryPalette.Element, buttonBorder, 1, 7, 3);
+        var lineEdit = StrictBox(sheet.SecondaryPalette.Element, buttonBorder, 1, 8, 4);
         var sliderBackground = StrictBox(sheet.SecondaryPalette.BackgroundDark, buttonBorder, 1, 0, 6);
         var sliderFill = StrictBox(sheet.HighlightPalette.Element, sheet.HighlightPalette.Base.WithAlpha(0.65f), 1, 0, 6);
         var sliderOutline = StrictBox(Color.Transparent, sheet.PrimaryPalette.TextDark.WithAlpha(0.68f), 1, 0, 6);
         var sliderGrabber = StrictBox(sheet.HighlightPalette.TextDark, ArcanePalette.NeonOutline, 1, 4, 8);
-        var tabActive = StrictBox(sheet.PrimaryPalette.Element, sheet.PrimaryPalette.Base.WithAlpha(0.7f), 1, 7, 3);
-        var tabInactive = StrictBox(sheet.SecondaryPalette.Element, buttonBorder, 1, 7, 3);
+        var tabActive = StrictBox(sheet.PrimaryPalette.Element, sheet.PrimaryPalette.Base.WithAlpha(0.7f), 1, 8, 4);
+        var tabInactive = StrictBox(sheet.SecondaryPalette.Element, buttonBorder, 1, 8, 4);
         var progressBackground = StrictBox(sheet.SecondaryPalette.BackgroundDark, buttonBorder, 1, 0, 14);
         var progressForeground = StrictBox(sheet.HighlightPalette.Element, sheet.HighlightPalette.Base.WithAlpha(0.7f), 1, 0, 14);
         var scrollbar = StrictBox(sheet.PrimaryPalette.Element.WithAlpha(0.6f), buttonBorder, 1, 0, 0);
@@ -45,9 +46,9 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         var windowHeader = StrictBox(sheet.PrimaryPalette.BackgroundLight, buttonBorder, 1, 8, 3);
         var alertHeader = StrictBox(sheet.NegativePalette.BackgroundLight, sheet.NegativePalette.Base.WithAlpha(0.6f), 1, 8, 3);
         var itemListBackground = StrictBox(sheet.SecondaryPalette.BackgroundDark, buttonBorder, 1, 0, 0);
-        var itemListItem = StrictBox(sheet.SecondaryPalette.Background, buttonBorder, 1, 5, 3);
-        var itemListSelected = StrictBox(sheet.PrimaryPalette.Element, ArcanePalette.NeonOutline, 1, 5, 3);
-        var itemListDisabled = StrictBox(sheet.SecondaryPalette.DisabledElement, buttonBorder.WithAlpha(0.25f), 1, 5, 3);
+        var itemListItem = StrictBox(sheet.SecondaryPalette.Background, buttonBorder, 1, 4, 4);
+        var itemListSelected = StrictBox(sheet.PrimaryPalette.Element, ArcanePalette.NeonOutline, 1, 4, 4);
+        var itemListDisabled = StrictBox(sheet.SecondaryPalette.DisabledElement, buttonBorder.WithAlpha(0.25f), 1, 4, 4);
 
         var rules = new List<StyleRule>
         {
@@ -57,11 +58,11 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
             Button().Class(StyleClass.ButtonOpenBoth).Box(button),
             Button().Class(StyleClass.ButtonSquare).Box(button),
             Button().Class(StyleClass.ButtonSmall).Box(buttonSmall),
-            E<MenuButton>().Box(button),
-            E<MenuButton>().Class(StyleClass.ButtonOpenLeft).Box(button),
-            E<MenuButton>().Class(StyleClass.ButtonOpenRight).Box(button),
-            E<MenuButton>().Class(StyleClass.ButtonOpenBoth).Box(button),
-            E<MenuButton>().Class(StyleClass.ButtonSquare).Box(button),
+            E<MenuButton>().Box(menuButton),
+            E<MenuButton>().Class(StyleClass.ButtonOpenLeft).Box(menuButton),
+            E<MenuButton>().Class(StyleClass.ButtonOpenRight).Box(menuButton),
+            E<MenuButton>().Class(StyleClass.ButtonOpenBoth).Box(menuButton),
+            E<MenuButton>().Class(StyleClass.ButtonSquare).Box(menuButton),
 
             E<LineEdit>()
                 .Prop(LineEdit.StylePropertyStyleBox, lineEdit)
@@ -166,7 +167,12 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         };
 
         rules.AddRange(StrictButtonStateRules(Button, ArcanePalette.Buttons, ArcanePalette.NeonOutline));
-        rules.AddRange(StrictButtonStateRules(() => E<MenuButton>(), ArcanePalette.Buttons, ArcanePalette.NeonOutline));
+        rules.AddRange(StrictButtonStateRules(
+            () => E<MenuButton>(),
+            ArcanePalette.Buttons,
+            ArcanePalette.NeonOutline,
+            8,
+            4));
         rules.AddRange(StrictButtonStateRules(() => Button().Class(StyleClass.Positive),
             sheet.PositivePalette, ArcanePalette.NeonOutline));
         rules.AddRange(StrictButtonStateRules(() => Button().Class(StyleClass.Negative),
