@@ -683,3 +683,16 @@ Entries:
   id: 55
   time: '2026-08-28T11:35:16.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/270
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Авторестарт был возвращён - теперь будет происходить каждые 8 раундов.
+    - type: Fix
+      message: >-
+        Исправлена ширина окна чата в стандартном Худе (админы успели офигеть от
+        его ширины!!!)
+    - type: Fix
+      message: Исправлено отображение нестандартного scale'а UI.
+  id: 56
+  time: '2026-08-28T13:39:06.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/271

@@ -12,7 +12,7 @@ public sealed class RoundEndServerRestartSystem : EntitySystem
 
     private bool _restartOnRoundEnd;
     private int _rounds = 0;
-    private int _restartOn = 4;
+    private int _restartOn;
 
     public override void Initialize()
     {
@@ -22,11 +22,17 @@ public sealed class RoundEndServerRestartSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         Subs.CVar(_cfg, ACCVars.RestartServerOnRoundEnd, OnRestartServerOnRoundEnd, true);
+        Subs.CVar(_cfg, ACCVars.RoundsToRestart, OnRoundsToRestart, true);
     }
 
     private void OnRestartServerOnRoundEnd(bool value)
     {
         _restartOnRoundEnd = value;
+    }
+
+    private void OnRoundsToRestart(int value)
+    {
+        _restartOn = value;
     }
 
     private void OnRoundStarted(RoundStartedEvent args)
