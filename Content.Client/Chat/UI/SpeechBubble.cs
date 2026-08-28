@@ -208,7 +208,7 @@ namespace Content.Client.Chat.UI
         // Arcane-start
         protected void SetRevealedMessage(RichTextLabel label, FormattedMessage message)
         {
-            label.SetMessage(message);
+            label.SetMessage(message, tagsAllowed: null);
 
             var revealWeight = CountRevealWeight(message);
             if (revealWeight <= 0f)
@@ -256,7 +256,7 @@ namespace Content.Client.Chat.UI
                     continue;
 
                 reveal.LastVisibleRunes = visibleRunes;
-                reveal.Label.SetMessage(CreateRevealedMessage(reveal.Message, visibleRunes));
+                reveal.Label.SetMessage(CreateRevealedMessage(reveal.Message, visibleRunes), tagsAllowed: null);
             }
         }
 

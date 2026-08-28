@@ -669,3 +669,17 @@ Entries:
   id: 53
   time: '2026-08-27T07:56:34.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/258
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Полная переработка стиля UI в формат Arcane!
+  id: 54
+  time: '2026-08-28T11:26:55.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/268
+- author: Vecortys
+  changes:
+    - type: Add
+      message: Бабл всплывашка сообщения берёт шрифт языка.
+  id: 55
+  time: '2026-08-28T11:35:16.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/270
