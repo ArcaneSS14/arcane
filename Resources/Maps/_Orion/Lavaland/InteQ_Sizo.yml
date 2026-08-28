@@ -2549,7 +2549,7 @@ entities:
     - type: Transform
       pos: -17.5,1.5
       parent: 1
-- proto: BlastDoorInteQ
+- proto: BlastDoorInteQIndestructible
   entities:
   - uid: 33
     components:

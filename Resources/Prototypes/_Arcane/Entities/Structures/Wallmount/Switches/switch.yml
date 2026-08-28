@@ -5,3 +5,6 @@
   components:
   - type: AccessReader
     access: [["InteQVanguard"]]
+  - type: Tag
+    tags:
+    - EmagImmune
