@@ -12,6 +12,10 @@ public sealed partial class PdaSettingsButton : ContainerButton
 {
     public const string StylePropertyFgColor = "foregroundColor";
     public const string StylePropertyBgColor = "backgroundColor";
+    // Arcane-Edit-Start
+    public const string StylePropertyBorderColor = "borderColor";
+    public const string StylePropertyBorderThickness = "borderThickness";
+    // Arcane-Edit-End
     public const string NormalBgColor = "#313138";
     public const string HoverColor = "#3E6C45";
     public const string PressedColor = "#3E6C45";
@@ -67,5 +71,12 @@ public sealed partial class PdaSettingsButton : ContainerButton
         if (TryGetStyleProperty<Color>(StylePropertyFgColor, out var fgColor))
             ForegroundColor = fgColor;
 
+        // Arcane-Edit-Start
+        if (TryGetStyleProperty<Color>(StylePropertyBorderColor, out var borderColor))
+            _styleBox.BorderColor = borderColor;
+
+        if (TryGetStyleProperty<float>(StylePropertyBorderThickness, out var borderThickness))
+            _styleBox.BorderThickness = new Thickness(borderThickness);
+        // Arcane-Edit-End
     }
 }

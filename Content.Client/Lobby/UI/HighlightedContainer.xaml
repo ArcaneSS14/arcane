@@ -4,7 +4,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <PanelContainer
     xmlns="https://spacestation14.io"
+    StyleClasses="PanelLight ArcaneElevatedPanel"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
+    <!-- Arcane-remove
     <PanelContainer.PanelOverride>
         <graphics:StyleBoxFlat BackgroundColor="#2F2F35"
                                ContentMarginTopOverride="10"
@@ -12,4 +14,5 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                ContentMarginLeftOverride="10"
                                ContentMarginRightOverride="10"/>
     </PanelContainer.PanelOverride>
+    -->
 </PanelContainer>
