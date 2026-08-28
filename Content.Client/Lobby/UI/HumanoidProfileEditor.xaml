@@ -17,7 +17,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     <ui:HighlightedContainer>
                         <BoxContainer Orientation="Vertical">
                             <ui:HighlightedContainer>
-                                <BoxContainer Orientation="Vertical" SeparationOverride="4">
+                                <BoxContainer Orientation="Vertical" SeparationOverride="4"> <!-- Arcane -->
                                     <BoxContainer Orientation="Horizontal" VerticalExpand="True">
                                         <Label Text="{Loc 'humanoid-profile-editor-name-label'}" />
                                         <LineEdit Name="NameEdit" MinSize="270 0" VerticalAlignment="Center" Margin="5 0 0 0" />
@@ -37,7 +37,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 <!-- Import/Export -->
                 <BoxContainer Orientation="Vertical" MinSize="60 0" HorizontalExpand="True" HorizontalAlignment="Right">
                     <ui:HighlightedContainer Name="ProfileHighlight">
-                        <BoxContainer Orientation="Vertical" SeparationOverride="4">
+                        <BoxContainer Orientation="Vertical" SeparationOverride="4"> <!-- Arcane -->
                             <Button Name="SaveButton" Text="{Loc 'humanoid-profile-editor-save-button'}"/>
                             <Button Name="ResetButton" Disabled="True" Text="{Loc 'humanoid-profile-editor-reset-button'}"/>
                             <Button Name="ImportButton" Text="{Loc 'humanoid-profile-editor-import-button'}"/>
@@ -55,8 +55,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     <ScrollContainer VerticalExpand="True">
                         <!-- appearanceList -->
                         <BoxContainer Orientation="Vertical">
-                            <!-- Arcane -->
-                            <BoxContainer Margin="10" Orientation="Vertical" HorizontalExpand="True" SeparationOverride="4">
+                            <BoxContainer Margin="10" Orientation="Vertical" HorizontalExpand="True" SeparationOverride="4"> <!-- Arcane -->
                                 <!-- Species -->
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-species-label'}" />
@@ -66,7 +65,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                                    ToolTip="{Loc 'humanoid-profile-editor-guidebook-button-tooltip'}"
                                                    Visible="False"/>                                        <!-- Orion-Edit: True > False -->
                                     <OptionButton Name="SpeciesButton" HorizontalAlignment="Right" Visible="False"/>    <!-- Orion | True > False -->
-                                    <Button Name="NewSpeciesButton" HorizontalAlignment="Right" ToggleMode="True" />    <!-- Arcane -->
+                                    <Button Name="NewSpeciesButton" HorizontalAlignment="Right" ToggleMode="True" />    <!-- Orion -->
                                 </BoxContainer>
                                 <!-- Age -->
                                 <BoxContainer HorizontalExpand="True">
@@ -91,8 +90,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                     <Label Text="{Loc 'humanoid-profile-editor-clothing'}" />
                                     <Control HorizontalExpand="True"/>
                                     <!-- <Control HorizontalExpand="True"/> Arcane-remove -->
-                                    <!-- Arcane -->
-                                    <OptionButton Name="ClothingDisplayButton" HorizontalAlignment="Right" />
+                                    <OptionButton Name="ClothingDisplayButton" HorizontalAlignment="Right" /> <!-- Arcane -->
                                 </BoxContainer>
                                 <!-- Spawn Priority -->
                                 <BoxContainer HorizontalExpand="True">

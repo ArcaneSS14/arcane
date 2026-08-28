@@ -68,8 +68,7 @@ namespace Content.Client.Administration.UI.Bwoink
 
         private void UpdateTypingIndicator()
         {
-            // Arcane
-            TypingIndicator.Visible = PeopleTyping.Count > 0;
+            TypingIndicator.Visible = PeopleTyping.Count > 0; // Arcane
 
             var msg = new FormattedMessage();
             msg.PushColor(Color.LightGray);
