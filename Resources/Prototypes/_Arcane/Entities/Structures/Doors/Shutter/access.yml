@@ -1,0 +1,8 @@
+- type: entity
+  parent: BlastDoor
+  id: BlastDoorInteQ
+  suffix: InteQ, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInteQVanguard ]
