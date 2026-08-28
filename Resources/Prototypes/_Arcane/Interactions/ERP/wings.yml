@@ -10,7 +10,7 @@
   - расправляет крылья.
   - мягко шуршит крыльями.
   - встряхивает крыльями.
-  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  icon: _Arcane/Interface/ErpPanel/heart_icon.png
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -28,7 +28,7 @@
   - задевает крылом лицо $target при взмахе.
   - яростно бьет крылом прямо по лицу $target.
   - резко закрывается крылом, попадая им по лицу $target.
-  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  icon: _Arcane/Interface/ErpPanel/heart_icon.png
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -46,7 +46,7 @@
   - грубо тянет $target за крыло, заставляя вздрогнуть.
   - подергивает $target за кончик крыла.
   - неосторожно тянет $target за крыло.
-  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  icon: _Arcane/Interface/ErpPanel/heart_icon.png
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -65,7 +65,9 @@
   - трепетно проводит ладонью по изгибу крыла $target.
   - заботливо очищает и разглаживает крылья $target.
   - поглаживает основание его крыльев.
-  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  icon: _Arcane/Interface/ErpPanel/heart_icon.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:SpeciesRequirement
     species:

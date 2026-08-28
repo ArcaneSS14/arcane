@@ -15,11 +15,11 @@
   name: lightweight body armor of an SB patrol officer
   description: It is intended exclusively for everyday station detours.
   components:
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
   - type: Sprite
     sprite: _Arcane/Clothing/OuterClothing/Sponsor/light_bronnik.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/OuterClothing/Sponsor/light_bronnik.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon

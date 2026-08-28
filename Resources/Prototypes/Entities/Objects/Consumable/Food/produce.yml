@@ -366,7 +366,7 @@
     tags:
     - Fruit
     - Banana
-    - SexToyDildo
+    - SexToyDildo # Arcane
   - type: FoodSequenceElement
     entries:
       Burger: Banana
@@ -574,7 +574,7 @@
     tags:
     - Carrot
     - Vegetable
-    - SexToyDildo
+    - SexToyDildo # Arcane
   - type: SolutionContainerManager
     solutions:
       food:
@@ -631,7 +631,7 @@
   - type: Tag
     tags:
     - Vegetable
-    - SexToyOnahole
+    - SexToyOnahole # Arcane
   - type: FoodSequenceElement
     entries:
       Burger: CabbageBurger
@@ -877,7 +877,7 @@
   - type: Tag
     tags:
     - Fruit
-    - SexToyOnahole
+    - SexToyOnahole # Arcane
 
 - type: entity
   name: potato
@@ -1109,7 +1109,7 @@
     tags:
     - Fruit
     - Vegetable
-    - SexToyDildo
+    - SexToyDildo # Arcane
 
 - type: entity
   name: apple
@@ -1252,7 +1252,7 @@
     tags:
     - Corn
     - Vegetable
-    - SexToyDildo
+    - SexToyDildo # Arcane
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/corn.rsi
   - type: Produce
@@ -1520,7 +1520,7 @@
   - type: Tag
     tags:
     - Vegetable
-    - SexToyDildo
+    - SexToyDildo # Arcane
   - type: FoodSequenceElement
     entries:
       Taco: ChiliPepper
@@ -2188,7 +2188,7 @@
   - type: Tag
     tags:
     - Fruit
-    - SexToyOnahole
+    - SexToyOnahole # Arcane
 
 - type: entity
   name: watermelon slice
@@ -2579,7 +2579,7 @@
     tags:
     - Fruit
     - Vegetable
-    - SexToyOnahole
+    - SexToyOnahole # Arcane
 
 - type: entity
   name: blue pumpkin
@@ -2631,7 +2631,7 @@
   - type: Tag
     tags:
     - Fruit
-    - SexToyOnahole
+    - SexToyOnahole # Arcane
 
 - type: entity
   name: cotton boll

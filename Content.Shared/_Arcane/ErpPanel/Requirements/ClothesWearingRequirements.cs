@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 
 [Serializable, NetSerializable]
-public sealed partial class ClothesWearingRequirements : ErpRequirement
+public sealed partial class ClothesWearingRequirements : InvertableErpRequirement
 {
     [DataField(required: true)]
     public HashSet<ProtoId<TagPrototype>> Tags = new();
@@ -16,17 +16,23 @@ public sealed partial class ClothesWearingRequirements : ErpRequirement
         var inventory = entityManager.System<InventorySystem>();
         var tags = entityManager.System<TagSystem>();
 
-        if (!inventory.TryGetSlots(uid, out var slotDefinitions))
-            return false;
+        var hasMatchingClothes = false;
 
-        foreach (var slot in slotDefinitions)
+        if (inventory.TryGetSlots(uid, out var slotDefinitions))
         {
-            if (!inventory.TryGetSlotEntity(uid, slot.Name, out var wornItem))
-                continue;
+            foreach (var slot in slotDefinitions)
+            {
+                if (!inventory.TryGetSlotEntity(uid, slot.Name, out var wornItem))
+                    continue;
 
-            if (tags.HasAnyTag(wornItem.Value, Tags))
-                return true;
+                if (tags.HasAnyTag(wornItem.Value, Tags))
+                {
+                    hasMatchingClothes = true;
+                    break;
+                }
+            }
         }
-        return false;
+
+        return Inverted ? !hasMatchingClothes : hasMatchingClothes;
     }
 }

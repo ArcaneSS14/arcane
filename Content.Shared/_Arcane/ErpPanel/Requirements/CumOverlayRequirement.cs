@@ -4,13 +4,12 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 
 [Serializable, NetSerializable]
-public sealed partial class CumOverlayRequirement : ErpRequirement
+public sealed partial class CumOverlayRequirement : InvertableErpRequirement
 {
     public override bool IsAvailable(EntityUid uid, IEntityManager entityManager)
     {
-        if (!entityManager.HasComponent<CumOverlayComponent>(uid))
-            return false;
+        var hasOverlay = entityManager.HasComponent<CumOverlayComponent>(uid);
 
-        return true;
+        return Inverted ? !hasOverlay : hasOverlay;
     }
 }

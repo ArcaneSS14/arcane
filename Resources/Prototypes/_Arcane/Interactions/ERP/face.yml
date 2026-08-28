@@ -45,6 +45,8 @@
   - слегка хлопает $target по щёчкам.
   - игриво похлопывает $target по щеке.
   icon: _Arcane/Interface/ErpPanel/cheeks_pat.png
+  tags:
+  - RequiresERP
 
 - type: panelInteraction
   id: CheeksPress
@@ -58,6 +60,8 @@
   - мнёт щёки $target.
   - игриво сжимает лицо $target ладонями.
   icon: _Arcane/Interface/ErpPanel/cheeks_press.png
+  tags:
+  - RequiresERP
 
 - type: panelInteraction
   id: GentleKiss
@@ -331,9 +335,7 @@
   id: ShedTear
   category: Face
   sounds:
-  - /Audio/_Arcane/Interactions/bang1.ogg
-  - /Audio/_Arcane/Interactions/bang2.ogg
-  - /Audio/_Arcane/Interactions/bang3.ogg
+  - /Audio/_Arcane/Interactions/disappointment.ogg
   messages:
   - смотрит на $target, выпуская слезу.
   - жалобно глядит на $target, пуская большую слезу.

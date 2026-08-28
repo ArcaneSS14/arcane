@@ -57,6 +57,7 @@
   userArouse: 5
   targetArouse: 15
   range: 1.5
+  chanceLickCum: 0.2 # 20%
   sounds:
   - /Audio/_Arcane/Interactions/bang1.ogg
   messages:
@@ -98,28 +99,5 @@
     sexes:
     - Male
     - Futanari
-  - !type:ExposedBodyPartRequirement
-    part: Groin
-
-- type: panelInteraction
-  id: LickCondensedCumSelf
-  category: Chest
-  userArouse: 5
-  targetArouse: 5
-  chanceLickCum: 0.2 # 20%
-  sounds:
-  - /Audio/_Arcane/Interactions/kiss1.ogg
-  - /Audio/_Arcane/Interactions/kiss2.ogg
-  selfMessages:
-  - аккуратно слизывает нектар с кожи.
-  - жадно и быстро слизывает солёно-сладкую гущу.
-  - нежно проводит языком по коже, слизывая выделение.
-  - медленно и дразняще слизывает жидкость с себя.
-  - очищает кожу от выделений своим языком.
-  icon: _Arcane/Interface/ErpPanel/friendly_flying_kiss.png
-  tags:
-  - RequiresERP
-  userRequirements:
-  - !type:CumOverlayRequirement
   - !type:ExposedBodyPartRequirement
     part: Groin

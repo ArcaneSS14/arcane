@@ -8,7 +8,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 
 [Serializable, NetSerializable]
-public sealed partial class NearbyTargetRequirement : ErpRequirement
+public sealed partial class NearbyTargetRequirement : InvertableErpRequirement
 {
     [DataField(required: true)]
     public HashSet<ProtoId<TagPrototype>> Tags = new();
@@ -24,6 +24,8 @@ public sealed partial class NearbyTargetRequirement : ErpRequirement
 
         var nearbyEntities = lookupSystem.GetEntitiesInRange(uid, Range).ToList();
 
+        var hasNearbyTarget = false;
+
         foreach (var entity in nearbyEntities)
         {
             if (entity == uid)
@@ -35,8 +37,10 @@ public sealed partial class NearbyTargetRequirement : ErpRequirement
             if (!tagSystem.HasAnyTag(entity, Tags))
                 continue;
 
-            return true;
+            hasNearbyTarget = true;
+            break;
         }
-        return false;
+
+        return Inverted ? !hasNearbyTarget : hasNearbyTarget;
     }
 }

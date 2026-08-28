@@ -69,14 +69,13 @@
   - RequiresERP
   userRequirements:
   - !type:SpeciesRequirement
+    inverted: true
     species:
     - Felinid
     - Vulpkanin
     - Tajaran
     - HumanoidXeno
     - Rodentia
-  - !type:SpeciesRequirement
-    inverted: true
 
 - type: panelInteraction
   id: NuzzleNeckVulpa
@@ -163,19 +162,3 @@
   - RequiresERP
   targetRequirements:
   - !type:TargetOnFloorRequirement
-
-- type: panelInteraction
-  id: PlayfulNibble
-  category: Neck
-  targetArouse: 3
-  sounds:
-  - /Audio/_Arcane/Interactions/pat1.ogg
-  messages:
-  - игриво покусывает шею $target.
-  - тихонько кусает за шею $target.
-  - слегка прикусывает шею $target.
-  - игриво цапает шею $target своими зубками.
-  - нежно жуёт шею $target.
-  icon: _Arcane/Interface/ErpPanel/bite_neck.png
-  tags:
-  - RequiresERP

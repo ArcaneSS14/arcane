@@ -13,7 +13,7 @@ loadout-group-command-maid-neck = Горничная командования, �
 loadout-group-iaa-jumpsuit = Агент внутренних дел, комбинезон
 
 loadout-group-chief-engineer-backpack = Старший инженер, рюкзак
-loadout-group-chief-medical-officer-backpack = Главый врач, рюкзак
+loadout-group-chief-medical-officer-backpack = Главный врач, рюкзак
 loadout-group-head-of-personnel-backpack = Глава персонала, рюкзак
 loadout-group-quartermaster-backpack = Квартирмейстер, рюкзак
 loadout-group-research-director-backpack = Научный руководитель, рюкзак

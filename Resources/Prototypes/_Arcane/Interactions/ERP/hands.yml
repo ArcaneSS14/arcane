@@ -46,8 +46,9 @@
   id: PushUpsFloor
   category: Hands
   sounds:
-  - /Audio/_Arcane/Interactions/kiss1.ogg
-  - /Audio/_Arcane/Interactions/kiss2.ogg
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  - /Audio/_Arcane/Interactions/bang2.ogg
+  - /Audio/_Arcane/Interactions/bang3.ogg
   selfMessages:
   - размашисто отжимается на ладонях.
   - тяжело отжимается до пола.

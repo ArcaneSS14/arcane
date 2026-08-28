@@ -12,7 +12,7 @@ using Robust.Shared.Physics.Components;
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 
 [Serializable, NetSerializable]
-public sealed partial class NearbyStaticEntityRequirement : ErpRequirement
+public sealed partial class NearbyStaticEntityRequirement : InvertableErpRequirement
 {
     [DataField]
     public float Range = 0.5f;
@@ -28,6 +28,8 @@ public sealed partial class NearbyStaticEntityRequirement : ErpRequirement
 
         var nearbyEntities = lookupSystem.GetEntitiesInRange(uid, Range).ToList();
 
+        var hasNearbyStatic = false;
+
         foreach (var entity in nearbyEntities)
         {
             if (entity == uid)
@@ -42,9 +44,11 @@ public sealed partial class NearbyStaticEntityRequirement : ErpRequirement
                 if (!tagSystem.HasAnyTag(entity, Tags))
                     continue;
 
-                return true;
+                hasNearbyStatic = true;
+                break;
             }
         }
-        return false;
+
+        return Inverted ? !hasNearbyStatic : hasNearbyStatic;
     }
 }
