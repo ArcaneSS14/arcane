@@ -649,3 +649,57 @@ Entries:
   id: 51
   time: '2026-08-26T17:03:40.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/242
+- author: GrinDers
+  changes:
+    - type: Add
+      message: >-
+        В гайдбук добавлены статьи должностных обязанностей основных отделов и
+        три под пункта КЗ (xx8, xx9, xx10).
+    - type: Tweak
+      message: Актуализированы коды угроз под наше вики.
+    - type: Tweak
+      message: Изменена таблица законов.
+  id: 52
+  time: '2026-08-27T07:54:07.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/264
+- author: ReWAFFlution, oldschool_otaku, Snorkcom
+  changes:
+    - type: Add
+      message: Добавлена возможность передачи предмета из рук в руки.
+  id: 53
+  time: '2026-08-27T07:56:34.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/258
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Полная переработка стиля UI в формат Arcane!
+  id: 54
+  time: '2026-08-28T11:26:55.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/268
+- author: Vecortys
+  changes:
+    - type: Add
+      message: Бабл всплывашка сообщения берёт шрифт языка.
+  id: 55
+  time: '2026-08-28T11:35:16.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/270
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Авторестарт был возвращён - теперь будет происходить каждые 8 раундов.
+    - type: Fix
+      message: >-
+        Исправлена ширина окна чата в стандартном Худе (админы успели офигеть от
+        его ширины!!!)
+    - type: Fix
+      message: Исправлено отображение нестандартного scale'а UI.
+  id: 56
+  time: '2026-08-28T13:39:06.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/271
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Усложнён гриф базы InteQ.
+  id: 57
+  time: '2026-08-28T14:35:19.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/269
