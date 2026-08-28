@@ -9,6 +9,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -31,6 +32,7 @@ public sealed partial class SlimeRegrowSystem : SharedSlimeRegrowSystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ThirstSystem _thirst = default!;
+    [Dependency] private readonly TraumaSystem _trauma = default!;
 
     public override void Initialize()
     {
@@ -165,6 +167,14 @@ public sealed partial class SlimeRegrowSystem : SharedSlimeRegrowSystem
             Log.Error($"Failed to regrow part {partId} into slot {slotId} of {ToPrettyString(parentId)}");
             QueueDel(childPart);
             return false;
+        }
+
+        // Regrowing a limb also heals the stump (Dismemberment trauma) its removal left behind,
+        // otherwise it would still need surgery to clean up before the socket is usable again.
+        if (_trauma.TryGetWoundableTrauma(parentId, out var stumpTraumas, TraumaSystem.Dismemberment))
+        {
+            foreach (var trauma in stumpTraumas)
+                _trauma.RemoveTrauma(trauma);
         }
 
         foreach (var (organSlotId, organProtoId) in slot.Organs)
