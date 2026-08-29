@@ -22,6 +22,7 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
     private void OnMapInit(Entity<SlimeRegrowComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.ActionEnt = _actions.AddAction(ent, ent.Comp.ActionId);
+        Dirty(ent, ent.Comp);
     }
 
     private void OnShutdown(Entity<SlimeRegrowComponent> ent, ref ComponentShutdown args)

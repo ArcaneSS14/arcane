@@ -618,6 +618,12 @@
           - Hydrakin # Go fuck yourself
         reagent: Protein
         amount: 0.5
+      - !type:AdjustReagent # Arcane
+        conditions:
+        - !type:MetabolizerTypeCondition # Arcane
+          type: [ Slime ]
+        reagent: Protein
+        amount: 0.5
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition

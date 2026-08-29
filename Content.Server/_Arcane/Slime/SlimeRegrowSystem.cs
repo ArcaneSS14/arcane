@@ -57,7 +57,7 @@ public sealed partial class SlimeRegrowSystem : SharedSlimeRegrowSystem
 
         if (candidates.Count == 0)
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
             args.Handled = true;
             return;
         }
@@ -65,7 +65,7 @@ public sealed partial class SlimeRegrowSystem : SharedSlimeRegrowSystem
         if (!TryComp<HungerComponent>(user, out var hunger)
             || _hunger.GetHunger(hunger) < ent.Comp.HungerCost)
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.TooHungryPopup), user, user);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.TooHungryPopup), user, user);
             args.Handled = true;
             return;
         }
@@ -73,25 +73,26 @@ public sealed partial class SlimeRegrowSystem : SharedSlimeRegrowSystem
         if (!TryComp<ThirstComponent>(user, out var thirst)
             || thirst.CurrentThirst < ent.Comp.ThirstCost)
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.TooThirstyPopup), user, user);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.TooThirstyPopup), user, user);
             args.Handled = true;
             return;
         }
 
         var candidate = _random.Pick(candidates);
 
-        _hunger.ModifyHunger(user, -ent.Comp.HungerCost, hunger);
-        _thirst.ModifyThirst(user, thirst, -ent.Comp.ThirstCost);
-
         if (!TryGrowLimb(candidate.ParentId, candidate.SlotId, candidate.Slot))
         {
-            _popup.PopupClient(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
+            _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
             args.Handled = true;
             return;
         }
 
-        _audio.PlayPredicted(ent.Comp.Sound, user, user);
-        _popup.PopupClient(Loc.GetString(ent.Comp.RegrowPopup), user, user);
+        // Resources are only spent once the limb actually regrew.
+        _hunger.ModifyHunger(user, -ent.Comp.HungerCost, hunger);
+        _thirst.ModifyThirst(user, thirst, -ent.Comp.ThirstCost);
+
+        _audio.PlayPvs(ent.Comp.Sound, user);
+        _popup.PopupEntity(Loc.GetString(ent.Comp.RegrowPopup), user, user);
 
         args.Handled = true;
     }
@@ -171,10 +172,17 @@ public sealed partial class SlimeRegrowSystem : SharedSlimeRegrowSystem
 
         // Regrowing a limb also heals the stump (Dismemberment trauma) its removal left behind,
         // otherwise it would still need surgery to clean up before the socket is usable again.
+        // Only clear the trauma matching the regrown part so unrelated dismemberments stay intact.
         if (_trauma.TryGetWoundableTrauma(parentId, out var stumpTraumas, TraumaSystem.Dismemberment))
         {
             foreach (var trauma in stumpTraumas)
+            {
+                if (trauma.Comp.TargetType is not { } targetType
+                    || targetType != (childPartComp.PartType, childPartComp.Symmetry))
+                    continue;
+
                 _trauma.RemoveTrauma(trauma);
+            }
         }
 
         foreach (var (organSlotId, organProtoId) in slot.Organs)
