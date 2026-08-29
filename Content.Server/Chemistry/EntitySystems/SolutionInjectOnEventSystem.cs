@@ -111,7 +111,14 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         {
             var hardsuitTime = TimeSpan.FromSeconds(5f);
             if (ent.Comp.EmbedTime + hardsuitTime > _timing.CurTime)
+            {
                 args.Cancelled = true;
+                return;
+            }
+
+            if (_tag.HasTag(suit.Value, SyringeArmorTag))
+                args.Cancelled = true;
+
             return;
         }
         // Arcane-End

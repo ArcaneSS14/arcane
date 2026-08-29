@@ -145,6 +145,9 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
 
     private void OnCombatModeComponentInit(EntityUid uid, CombatModeComponent component, ComponentInit args)
     {
+        if (_playerManager.LocalEntity != uid)
+            return;
+
         _blockPickupSynced = false;
     }
 

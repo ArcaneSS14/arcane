@@ -25,7 +25,7 @@ namespace Content.Server._Arcane.Teleportation;
 ///     The action event is only marked handled on a successful teleport, so the action does not spend a
 ///     charge or start a cooldown when no valid destination can be found.
 /// </summary>
-public sealed class ScramImplantSystem : EntitySystem
+public sealed class ScramImplantSystem : SharedScramImplantSystem
 {
     /// <summary>
     ///     The minimum distance (in world units) the user can be teleported.
@@ -42,32 +42,16 @@ public sealed class ScramImplantSystem : EntitySystem
     /// </summary>
     private const int TeleportAttempts = 60;
 
-    [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<ScramImplantEvent>(OnEscapeTeleport);
-    }
-
-    private void OnEscapeTeleport(ScramImplantEvent args)
-    {
-        args.Handled = TryEscapeTeleport(args.Performer, args.TeleportSound);
-    }
-
-    /// <summary>
-    ///     Attempts to teleport the user to a random free tile on the grid they are currently on.
-    /// </summary>
-    /// <returns>True if the user was actually teleported, false otherwise.</returns>
-    private bool TryEscapeTeleport(EntityUid user, SoundSpecifier teleportSound)
+    protected override bool TryEscapeTeleport(EntityUid user, SoundSpecifier teleportSound)
     {
         // No teleport when the user is in space (no grid underneath), and no free-tile check without a body.
         var gridUid = Transform(user).GridUid;
@@ -108,8 +92,8 @@ public sealed class ScramImplantSystem : EntitySystem
         if (targetCoords is not { } coords)
             return false;
 
-        // We need to stop the user from being pulled so they don't just get "attached" with whoever is pulling them.
-        // This can for example happen when the user is cuffed and being pulled.
+        // We need to stop the user from being pulled so they don't just get "pulled back" with whoever
+        // is pulling them. This can for example happen when the user is cuffed and being pulled.
         if (TryComp<PullableComponent>(user, out var pull) && _pulling.IsPulled(user, pull))
             _pulling.TryStopPull(user, pull);
 
@@ -121,8 +105,6 @@ public sealed class ScramImplantSystem : EntitySystem
         if (TryComp<BuckleComponent>(user, out var buckle))
             _buckle.TryUnbuckle(user, null, buckle, false);
 
-        _audio.PlayPvs(teleportSound, Transform(user).Coordinates);
-
         if (_container.TryGetContainingContainer(user, out var container))
         {
             // Yank the user out of a locker/container in one step, placing them at the destination.
@@ -133,6 +115,7 @@ public sealed class ScramImplantSystem : EntitySystem
             _transform.SetCoordinates(user, coords);
         }
 
+        // A single arrival sound at the destination, only once the user has actually been teleported.
         _audio.PlayPvs(teleportSound, coords);
         return true;
     }
