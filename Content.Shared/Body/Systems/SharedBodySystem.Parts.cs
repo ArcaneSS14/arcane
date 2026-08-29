@@ -258,13 +258,15 @@ public partial class SharedBodySystem
         Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false);
         Dirty(partEnt, partEnt.Comp);
 
+        RemoveLeg(partEnt, bodyEnt); // Arcane
+
         var ev = new BodyPartRemovedEvent(slotId, partEnt);
         RaiseLocalEvent(bodyEnt, ref ev);
 
         var ev1 = new BodyPartRemovedEvent(slotId, partEnt);
         RaiseLocalEvent(partEnt, ref ev1);
 
-        RemoveLeg(partEnt, bodyEnt);
+//        RemoveLeg(partEnt, bodyEnt); // Arcane-Edit
     }
 
     private void AddLeg(Entity<BodyPartComponent> legEnt, Entity<BodyComponent?> bodyEnt)

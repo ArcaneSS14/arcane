@@ -374,7 +374,7 @@ public partial class TraumaSystem
             0,
             body.Comp.RequiredLegs - body.Comp.LegEntities.Count);
 
-        penalty += missingLegs * 0.25f;
+        penalty += missingLegs * 0.4f;
         missingFeet += missingLegs;
 
         if (HasComp<IgnoreSlowOnDamageComponent>(body))
