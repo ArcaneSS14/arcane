@@ -64,7 +64,6 @@
 
 - type: markingPoints
   id: MobArachnidMarkingLimits
-  onlyWhitelisted: false
   points:
     Hair:
       points: 1
