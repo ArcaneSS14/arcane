@@ -95,11 +95,11 @@ public sealed class ScramImplantSystem : SharedScramImplantSystem
         // We need to stop the user from being pulled so they don't just get "pulled back" with whoever
         // is pulling them. This can for example happen when the user is cuffed and being pulled.
         if (TryComp<PullableComponent>(user, out var pull) && _pulling.IsPulled(user, pull))
-            _pulling.TryStopPull(user, pull);
+            _pulling.TryStopPull(user, pull, ignoreGrab: true);
 
         // Check if the user is pulling anything, and drop it if so.
         if (TryComp<PullerComponent>(user, out var puller) && TryComp<PullableComponent>(puller.Pulling, out var pullable))
-            _pulling.TryStopPull(puller.Pulling.Value, pullable);
+            _pulling.TryStopPull(puller.Pulling.Value, pullable, ignoreGrab: true);
 
         // Escape a buckle (chair, bed, ...) so the user does not snap back to it after teleporting.
         if (TryComp<BuckleComponent>(user, out var buckle))
