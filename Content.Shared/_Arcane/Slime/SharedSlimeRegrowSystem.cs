@@ -78,7 +78,6 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
             if (_net.IsServer)
                 _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
 
-            args.Handled = true;
             return;
         }
 
@@ -88,7 +87,6 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
             if (_net.IsServer)
                 _popup.PopupEntity(Loc.GetString(ent.Comp.TooHungryPopup), user, user);
 
-            args.Handled = true;
             return;
         }
 
@@ -98,7 +96,6 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
             if (_net.IsServer)
                 _popup.PopupEntity(Loc.GetString(ent.Comp.TooThirstyPopup), user, user);
 
-            args.Handled = true;
             return;
         }
 
@@ -111,7 +108,6 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
             if (!TryGrowLimb(candidate.ParentId, candidate.SlotId, candidate.Slot))
             {
                 _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
-                args.Handled = true;
                 return;
             }
 
