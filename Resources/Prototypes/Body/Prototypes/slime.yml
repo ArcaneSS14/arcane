@@ -22,7 +22,6 @@
       part: GroinSlime
       organs:
         core: SentientSlimeCore
-        stomach: OrganAnimalStomach # Arcane
       connections:
       - right leg
       - left leg
