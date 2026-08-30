@@ -5,12 +5,15 @@ using System.Numerics;
 using Content.Client.CombatMode;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
+using Content.Client.UserInterface.Systems.Actions;
 using Content.Client.Verbs;
 using Content.Client.Verbs.UI;
+using Content.Shared._Arcane.CCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Input;
+using Content.Shared.Interaction;
 using Content.Shared.Verbs;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -53,7 +56,12 @@ namespace Content.Client.ContextMenu.UI
         [UISystemDependency] private readonly ExamineSystem _examineSystem = default!;
         [UISystemDependency] private readonly TransformSystem _xform = default!;
         [UISystemDependency] private readonly CombatModeSystem _combatMode = default!;
+        // Arcane-Start
+        [UISystemDependency] private readonly InputSystem _inputSystem = default!;
 
+        private bool NovaTGControls => _cfg.GetCVar(ACCVars.NovaTGControls);
+        private bool _suppressAltMenu;
+        // Arcane-End
         private bool _updating;
 
         /// <summary>
@@ -71,7 +79,14 @@ namespace Content.Client.ContextMenu.UI
             _context.OnContextKeyEvent += OnKeyBindDown;
 
             CommandBinds.Builder
-                .Bind(EngineKeyFunctions.UseSecondary,  new PointerInputCmdHandler(HandleOpenEntityMenu, outsidePrediction: true))
+                .Bind(EngineKeyFunctions.UseSecondary, new PointerInputCmdHandler(HandleOpenEntityMenu, outsidePrediction: true))
+                // Arcane-Start
+                .Bind(new CommandBind(
+                    ContentKeyFunctions.AltActivateItemInWorld,
+                    new PointerInputCmdHandler(HandleAltOpenEntityMenu, outsidePrediction: true),
+                    before: new[] { typeof(SharedInteractionSystem) },
+                    after: new[] { typeof(ActionUIController) }))
+                // Arcane-End
                 .Register<EntityMenuUIController>();
         }
 
@@ -163,6 +178,75 @@ namespace Content.Client.ContextMenu.UI
         }
 
         private bool HandleOpenEntityMenu(in PointerInputCmdHandler.PointerInputCmdArgs args)
+        // Arcane-Start
+        {
+            if (NovaTGControls)
+            {
+                if (args.State != BoundKeyState.Down)
+                    return false;
+
+                if (_stateManager.CurrentState is not GameplayStateBase)
+                    return false;
+
+                if (_combatMode.IsInCombatMode(args.Session?.AttachedEntity))
+                    return false;
+
+                if (args.Session is not { } session)
+                    return false;
+
+                // Outside combat the regular RMB secondary action is the alternative interaction, the same
+                // one Alt+LMB used to perform before the swap. Re-dispatch it through the input system so the
+                // client predicts it and the server executes it, exactly like a real Alt+LMB press.
+                var inputSys = _inputSystem;
+                var function = ContentKeyFunctions.AltActivateItemInWorld;
+                var wasAltDown = inputSys.CmdStates.GetState(function) == BoundKeyState.Down;
+                var funcId = _inputManager.NetworkBindMap.KeyFunctionID(function);
+
+                var message = new ClientFullInputCmdMessage(
+                    _gameTiming.CurTick,
+                    _gameTiming.TickFraction,
+                    funcId)
+                {
+                    State = BoundKeyState.Down,
+                    Coordinates = args.Coordinates,
+                    ScreenCoordinates = args.ScreenCoordinates,
+                    Uid = args.EntityUid,
+                };
+
+                _suppressAltMenu = true;
+                try
+                {
+                    inputSys.HandleInputCommand(session, function, message);
+                }
+                finally
+                {
+                    _suppressAltMenu = false;
+                    // Restore the unchanged key state so a subsequent real Alt+LMB press is not swallowed.
+                    if (!wasAltDown)
+                        inputSys.CmdStates.SetState(function, BoundKeyState.Up);
+                }
+
+                return true;
+            }
+
+            return TryOpenEntityMenu(args);
+        }
+
+        private bool HandleAltOpenEntityMenu(in PointerInputCmdHandler.PointerInputCmdArgs args)
+        {
+            if (!NovaTGControls || _suppressAltMenu)
+                return false;
+
+            // The menu is client-only UI; while prediction is replaying buffered input commands do not
+            // reopen it (the replayed synthetic Alt+LMB command must only repeat the predicted right-click action).
+            if (_inputSystem.Predicted)
+                return false;
+
+            return TryOpenEntityMenu(args);
+        }
+
+        private bool TryOpenEntityMenu(in PointerInputCmdHandler.PointerInputCmdArgs args)
+        // Arcane-End
         {
             if (args.State != BoundKeyState.Down)
                 return false;

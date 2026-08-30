@@ -16,7 +16,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
             <BoxContainer Orientation="Vertical" Margin="8">
                 <CheckBox Name="CombatIndicatorCheckBox" Text="{Loc 'ui-options-combat-indicator'}" /> <!-- Orion -->
-                <CheckBox Name="CombatModeBlockPickupCheckBox" Text="{Loc 'ui-options-combat-mode-block-pickup'}" /> <!-- Arcane -->
+                <!-- Arcane-Start -->
+                <CheckBox Name="CombatModeBlockPickupCheckBox" Text="{Loc 'ui-options-combat-mode-block-pickup'}" />
+                <CheckBox Name="NovaTGControlsCheckBox" Text="{Loc 'ui-options-novatg-controls'}" />
+                <!-- Arcane-End -->
                 <CheckBox Name="ReducedMotionCheckBox" Text="{Loc 'ui-options-reduced-motion'}" />
                 <CheckBox Name="EnableColorNameCheckBox" Text="{Loc 'ui-options-enable-color-name'}" />
                 <CheckBox Name="ColorblindFriendlyCheckBox" Text="{Loc 'ui-options-colorblind-friendly'}" />

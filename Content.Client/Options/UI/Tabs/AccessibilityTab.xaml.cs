@@ -18,7 +18,10 @@ public sealed partial class AccessibilityTab : Control
         Control.AddOptionCheckBox(CCVars.ChatEnableColorName, EnableColorNameCheckBox);
         Control.AddOptionCheckBox(CCVars.AccessibilityColorblindFriendly, ColorblindFriendlyCheckBox);
         Control.AddOptionCheckBox(CCVars.CombatIndicator, CombatIndicatorCheckBox); // Orion
-        Control.AddOptionCheckBox(ACCVars.CombatModeBlockItemPickup, CombatModeBlockPickupCheckBox); // Arcane
+        // Arcane-Start
+        Control.AddOptionCheckBox(ACCVars.CombatModeBlockItemPickup, CombatModeBlockPickupCheckBox);
+        Control.AddOptionCheckBox(ACCVars.NovaTGControls, NovaTGControlsCheckBox);
+        // Arcane-End
         Control.AddOptionCheckBox(CCVars.ReducedMotion, ReducedMotionCheckBox);
         Control.AddOptionPercentSlider(CCVars.ScreenShakeIntensity, ScreenShakeIntensitySlider);
         Control.AddOptionPercentSlider(CCVars.ChatWindowOpacity, ChatWindowOpacitySlider);
