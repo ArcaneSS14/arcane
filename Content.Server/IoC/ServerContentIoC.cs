@@ -106,7 +106,6 @@ internal static class ServerContentIoC
         // Arcane-Start
         deps.Register<TTSManager>();
         deps.Register<BanWebhooks>();
-        deps.Register<ChatLogsWebhook>();
         // Arcane-End
     }
 }
