@@ -722,3 +722,12 @@ Entries:
   id: 58
   time: '2026-08-30T07:59:03.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/235
+- author: Vecortys
+  changes:
+    - type: Add
+      message: >-
+        Добавлены спрайты для газообразного афродизиака, стакана метаморфа и
+        бутылки. Бутылка афродизиака теперь появляется во взломанном алкомате.
+  id: 59
+  time: '2026-08-30T13:04:37.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/275
