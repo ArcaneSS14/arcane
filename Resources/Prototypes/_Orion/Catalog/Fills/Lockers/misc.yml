@@ -24,6 +24,7 @@
       - id: ClothingUniformJumpskirtInteQFormalDress
       - id: ClothingUniformJumpsuitInteQHonorable
       - id: ClothingNeckCloakInteQ # Arcane
+        prob: 0.1
     - !type:GroupSelector
       children:
       - id: ClothingUniformJumpsuitInteQMedical
