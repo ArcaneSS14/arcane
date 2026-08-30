@@ -36,6 +36,12 @@ public sealed partial class ACCVars
         CVarDef.Create("game.restart_server_on_round_end", false, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
+    ///     После скольких раундов сервер будет перезапускаться, если включена опция автоматического перезапуска.
+    /// </summary>
+    public static readonly CVarDef<int> RoundsToRestart =
+        CVarDef.Create("game.rounds_to_restart", 8, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Offer item.
     /// </summary>
     public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
