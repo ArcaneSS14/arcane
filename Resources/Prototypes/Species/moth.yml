@@ -50,7 +50,7 @@
     UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobMothChest
     Groin: MobMothGroin # Goob
-    Hair: MobHumanoidAnyMarking
+    Hair: MobHumanoidAnyMarking # Arcane
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
@@ -72,12 +72,12 @@
 
 - type: markingPoints
   id: MobMothMarkingLimits
-  onlyWhitelisted: false
+  onlyWhitelisted: true
   points:
     Hair:
-      points: 1
+      points: 1 # Arcane-Edit: 0 > 1
       required: false
-      onlyWhitelisted: false
+      onlyWhitelisted: false # Arcane
     FacialHair:
       points: 0
       required: false
