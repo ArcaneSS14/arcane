@@ -3,8 +3,9 @@ using Content.Shared._Arcane.Slime;
 namespace Content.Client._Arcane.Slime;
 
 /// <summary>
-/// Client part of the slime limb regrow. The shared system runs during prediction and
-/// shows the popup/audio feedback immediately so the action feels responsive.
+/// Client part of the slime limb regrow. All decisions and feedback are server-authoritative;
+/// the client never predicts which limb regrows or the success popup, so it cannot show a
+/// result the server would reject.
 /// </summary>
 public sealed partial class SlimeRegrowSystem : SharedSlimeRegrowSystem
 {

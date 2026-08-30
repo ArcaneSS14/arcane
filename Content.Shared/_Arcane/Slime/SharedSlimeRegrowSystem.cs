@@ -14,14 +14,14 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Arcane.Slime;
 
 /// <summary>
 /// Handles granting and removing the slime limb regrow action, and the action itself.
-/// The client predicts the popup/audio feedback for instant responsiveness while the server
-/// remains authoritative: it alone decides which limb regrows and spends the hunger/thirst.
+/// The server is authoritative: it alone finds the missing limb, picks one, grows it and
+/// spends the hunger/thirst, and drives the popup/audio feedback. The client performs no
+/// predicted feedback, so it can't show a success that the server would reject.
 /// </summary>
 public abstract partial class SharedSlimeRegrowSystem : EntitySystem
 {
@@ -36,7 +36,6 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ThirstSystem _thirst = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
 
     public override void Initialize()
@@ -71,60 +70,45 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
             || !_body.TryGetRootPart(user, out _, body))
             return;
 
+        if (!_net.IsServer)
+            return;
+
         var candidates = FindMissingLimbs(user, body);
 
         if (candidates.Count == 0)
         {
-            if (_net.IsServer)
-                _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
-
+            _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
             return;
         }
 
         if (!TryComp<HungerComponent>(user, out var hunger)
             || _hunger.GetHunger(hunger) < ent.Comp.HungerCost)
         {
-            if (_net.IsServer)
-                _popup.PopupEntity(Loc.GetString(ent.Comp.TooHungryPopup), user, user);
-
+            _popup.PopupEntity(Loc.GetString(ent.Comp.TooHungryPopup), user, user);
             return;
         }
 
         if (!TryComp<ThirstComponent>(user, out var thirst)
             || thirst.CurrentThirst < ent.Comp.ThirstCost)
         {
-            if (_net.IsServer)
-                _popup.PopupEntity(Loc.GetString(ent.Comp.TooThirstyPopup), user, user);
-
+            _popup.PopupEntity(Loc.GetString(ent.Comp.TooThirstyPopup), user, user);
             return;
         }
 
-        // Only the server grows the limb and spends resources; the client just predicts
-        // the feedback and reconciles with the server state once it arrives.
-        if (_net.IsServer)
-        {
-            var candidate = _random.Pick(candidates);
+        var candidate = _random.Pick(candidates);
 
-            if (!TryGrowLimb(candidate.ParentId, candidate.SlotId, candidate.Slot))
-            {
-                _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
-                return;
-            }
-
-            // Resources are only spent once the limb actually regrew.
-            _hunger.ModifyHunger(user, -ent.Comp.HungerCost, hunger);
-            _thirst.ModifyThirst(user, thirst, -ent.Comp.ThirstCost);
-        }
-        else if (!_timing.IsFirstTimePredicted)
+        if (!TryGrowLimb(candidate.ParentId, candidate.SlotId, candidate.Slot))
         {
-            // State replay/application: don't re-show feedback that was already predicted.
+            _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
             return;
         }
 
-        // The local client shows this popup to the player during prediction; the server
-        // broadcasts it to everyone else in PVS range.
-        _popup.PopupPredicted(Loc.GetString(ent.Comp.RegrowPopup), user, user);
-        _audio.PlayPredicted(ent.Comp.Sound, user, user);
+        // Resources are only spent once the limb actually regrew.
+        _hunger.ModifyHunger(user, -ent.Comp.HungerCost, hunger);
+        _thirst.ModifyThirst(user, thirst, -ent.Comp.ThirstCost);
+
+        _popup.PopupEntity(Loc.GetString(ent.Comp.RegrowPopup), user, user);
+        _audio.PlayEntity(ent.Comp.Sound, user, user);
 
         args.Handled = true;
     }
@@ -146,13 +130,12 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
         var frontier = new Queue<string>();
         frontier.Enqueue(prototype.Root);
 
-        // Child -> Parent connection.
-        var cameFrom = new Dictionary<string, string>();
-        cameFrom[prototype.Root] = prototype.Root;
+        // Slots already traversed.
+        var visited = new HashSet<string> { prototype.Root };
 
         // Maps slot to its relevant entity.
-        var cameFromEntities = new Dictionary<string, EntityUid>();
-        cameFromEntities[prototype.Root] = rootPart.Value.Owner;
+        var slotEntities = new Dictionary<string, EntityUid>();
+        slotEntities[prototype.Root] = rootPart.Value.Owner;
 
         while (frontier.TryDequeue(out var currentSlotId))
         {
@@ -160,16 +143,16 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
 
             foreach (var connection in currentSlot.Connections)
             {
-                if (!cameFrom.TryAdd(connection, currentSlotId))
+                if (!visited.Add(connection))
                     continue;
 
                 var connectionSlot = prototype.Slots[connection];
-                var parentEntity = cameFromEntities[currentSlotId];
+                var parentEntity = slotEntities[currentSlotId];
 
                 if (_container.TryGetContainer(parentEntity, SharedBodySystem.GetPartSlotContainerId(connection), out var container)
                     && container.ContainedEntities.Count > 0)
                 {
-                    cameFromEntities[connection] = container.ContainedEntities[0];
+                    slotEntities[connection] = container.ContainedEntities[0];
                     frontier.Enqueue(connection);
                     continue;
                 }
