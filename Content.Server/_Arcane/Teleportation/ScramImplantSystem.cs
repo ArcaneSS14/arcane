@@ -83,15 +83,15 @@ public sealed class ScramImplantSystem : SharedScramImplantSystem
         if (targetCoords is not { } coords)
             return false;
 
+        if (TryComp<BuckleComponent>(user, out var buckle) && buckle.Buckled
+            && !_buckle.TryUnbuckle(user, null, buckle, false))
+            return false;
+
         if (TryComp<PullableComponent>(user, out var pull) && _pulling.IsPulled(user, pull))
             _pulling.TryStopPull(user, pull, ignoreGrab: true);
 
         if (TryComp<PullerComponent>(user, out var puller) && TryComp<PullableComponent>(puller.Pulling, out var pullable))
             _pulling.TryStopPull(puller.Pulling.Value, pullable, ignoreGrab: true);
-
-        if (TryComp<BuckleComponent>(user, out var buckle) && buckle.Buckled
-            && !_buckle.TryUnbuckle(user, null, buckle, false))
-            return false;
 
         if (_container.TryGetContainingContainer(user, out var container))
         {

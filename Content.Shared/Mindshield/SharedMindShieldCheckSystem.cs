@@ -26,7 +26,8 @@ public sealed class SharedMindShieldCheckSystem : EntitySystem
         if (_mind.TryGetMind(user, out var mindId, out _))
         {
             if (_role.MindHasRole<TraitorRoleComponent>(mindId)
-                || _role.MindHasRole<NukeopsRoleComponent>(mindId))
+                || _role.MindHasRole<NukeopsRoleComponent>(mindId)
+                || _role.MindHasRole<WizardRoleComponent>(mindId))
                 return false;
         }
 

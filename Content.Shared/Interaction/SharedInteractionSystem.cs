@@ -398,7 +398,7 @@ namespace Content.Shared.Interaction
                 return false;
 
             // Arcane-Start
-            if (_combatQuery.TryComp(user, out var combat) && combat.BlockItemPickup)
+            if (_combatQuery.TryComp(user, out var combat) && combat.IsInCombatMode && combat.BlockItemPickup)
                 return false;
             // Arcane-End
 

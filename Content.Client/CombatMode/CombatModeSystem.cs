@@ -43,10 +43,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
         SubscribeLocalEvent<CombatModeComponent, GetStatusIconsEvent>(UpdateCombatModeIndicator); // Orion
         Subs.CVar(_cfg, CCVars.CombatModeIndicatorsPointShow, OnShowCombatIndicatorsChanged, true);
         Subs.CVar(_cfg, CCVars.CombatIndicator, (bool value) => OnShowCombatIndicatorChanged(value), true); // Orion
-        // Arcane-Start
-        Subs.CVar(_cfg, ACCVars.CombatModeBlockItemPickup, OnBlockItemPickupChanged, true);
-        SubscribeLocalEvent<CombatModeComponent, ComponentInit>(OnCombatModeComponentInit);
-        // Arcane-End
+        Subs.CVar(_cfg, ACCVars.CombatModeBlockItemPickup, OnBlockItemPickupChanged, true); // Arcane
 
         // Orion-Start
         _spriteQuery = GetEntityQuery<SpriteComponent>();
@@ -118,7 +115,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
 
     // Orion-Start
     private bool _combatIndicatorEnabled = false;
-    private bool _blockPickupSynced; // Arcane
+    private EntityUid? _blockPickupSyncedFor; // Arcane
 
     private void OnShowCombatIndicatorChanged(bool value)
     {
@@ -130,25 +127,19 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
     {
         base.Update(frameTime);
 
-        if (_blockPickupSynced)
-            return;
-
         var entity = _playerManager.LocalEntity;
         if (entity == null || !TryComp<CombatModeComponent>(entity.Value, out var comp))
             return;
 
-        _blockPickupSynced = true;
+        // Only sync once per controlled entity; on respawn/transfer the LocalEntity changes and the
+        // alternative interaction window setting has to be sent to the server for the new entity too.
+        if (_blockPickupSyncedFor == entity.Value)
+            return;
+
+        _blockPickupSyncedFor = entity.Value;
         var value = _cfg.GetCVar(ACCVars.CombatModeBlockItemPickup);
         comp.BlockItemPickup = value;
         RaiseNetworkEvent(new CombatModeBlockItemPickupChangedMessage(value));
-    }
-
-    private void OnCombatModeComponentInit(EntityUid uid, CombatModeComponent component, ComponentInit args)
-    {
-        if (_playerManager.LocalEntity != uid)
-            return;
-
-        _blockPickupSynced = false;
     }
 
     private void OnBlockItemPickupChanged(bool value)
