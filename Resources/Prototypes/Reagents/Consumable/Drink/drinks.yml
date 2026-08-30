@@ -231,7 +231,7 @@
       - !type:AdjustTemperature
         amount: -15
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           min: 310.15
       # Arcane-End
 
@@ -276,7 +276,7 @@
       - !type:AdjustTemperature
         amount: -15
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           min: 310.15
       # Arcane-End
 
@@ -654,7 +654,7 @@
       - !type:AdjustTemperature
         amount: -20
         conditions:
-        - !type:Temperature
+        - !type:TemperatureCondition
           min: 310.15
   # Arcane-End
 
