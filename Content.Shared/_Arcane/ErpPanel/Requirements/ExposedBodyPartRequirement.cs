@@ -5,7 +5,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 
 [Serializable, NetSerializable]
-public sealed partial class ExposedBodyPartRequirement : ErpRequirement
+public sealed partial class ExposedBodyPartRequirement : InvertableErpRequirement
 {
     [DataField(required: true)]
     public BodyPartType Part;
@@ -26,6 +26,8 @@ public sealed partial class ExposedBodyPartRequirement : ErpRequirement
         if (!inventory.TryGetContainerSlotEnumerator(uid, out var slots, coveringSlots))
             return false;
 
-        return !slots.NextItem(out _);
+        var isExposed = !slots.NextItem(out _);
+
+        return Inverted ? !isExposed : isExposed;
     }
 }

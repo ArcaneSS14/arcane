@@ -1,0 +1,16 @@
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: DrinkAphrodisiacBottleFull
+  name: aphrodisiac bottle
+  description: A heart-shaped bottle full of sweet, pink aphrodisiac.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Aphrodisiac
+          Quantity: 100
+  - type: Label
+    currentLabel: reagent-name-aphrodisiac
+  - type: Sprite
+    sprite: _Arcane/Objects/Consumable/Drinks/aphrodisiac_bottle.rsi
