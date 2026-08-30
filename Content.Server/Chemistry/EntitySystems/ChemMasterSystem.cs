@@ -85,7 +85,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
             var state = new ChemMasterBoundUserInterfaceState(
                 chemMaster.Mode, chemMaster.SortingType, BuildInputContainerInfo(inputContainer), BuildOutputContainerInfo(outputContainer),
-                bufferReagents, bufferCurrentVolume, bufferMaxVolume, chemMaster.PillType, chemMaster.PillDosageLimit, updateLabel, chemMaster.DrawSource); // Arcane-Edit: Added bufferMaxVolume
+                bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, updateLabel, chemMaster.DrawSource, bufferMaxVolume); // Arcane-Edit: Added bufferMaxVolume
 
             _userInterfaceSystem.SetUiState(owner, ChemMasterUiKey.Key, state);
         }

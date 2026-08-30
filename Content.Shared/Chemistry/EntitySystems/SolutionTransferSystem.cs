@@ -237,7 +237,7 @@ public sealed class SolutionTransferSystem : EntitySystem
             }
             else
             {
-                var transferred = Transfer(transferData, solution);
+                var transferred = RefillTransfer(transferData, solution); // Arcane-Edit
 
                 if (transferred > 0) // Arcane
                     _audio.PlayPredicted(LiquidPourSound, target, args.User);

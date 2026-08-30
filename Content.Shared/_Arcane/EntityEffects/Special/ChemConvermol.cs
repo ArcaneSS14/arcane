@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.EntityEffects;
-using JetBrains.Annotations;
-using Robust.Shared.IoC;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Arcane.EntityEffects.Effects;
@@ -16,8 +17,7 @@ namespace Content.Shared._Arcane.EntityEffects.Effects;
 /// current damage + buffer, ensuring a minimum tox even with no airloss damage.
 /// Overdose removes the cap.
 /// </summary>
-[UsedImplicitly]
-public sealed partial class ChemConvermol : EntityEffect
+public sealed partial class ChemConvermol : EntityEffectBase<ChemConvermol>
 {
     [DataField]
     public ProtoId<DamageGroupPrototype> HealDamageGroup = "Airloss";
@@ -37,48 +37,65 @@ public sealed partial class ChemConvermol : EntityEffect
     [DataField]
     public float OverdoseThreshold = 35f;
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-convermol",
             ("chance", Probability),
             ("rate", HealPerTick),
             ("ratio", ToxRatio),
             ("od", OverdoseThreshold));
+}
 
-    public override void Effect(EntityEffectBaseArgs args)
+public sealed partial class ChemConvermolEntityEffectSystem
+    : EntityEffectSystem<DamageableComponent, ChemConvermol>
+{
+    private static readonly ReagentId Convermol = new("Convermol", null);
+
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+
+    protected override void Effect(Entity<DamageableComponent> entity, ref EntityEffectEvent<ChemConvermol> args)
     {
-        if (args is not EntityEffectReagentArgs r)
+        if (!TryComp<BloodstreamComponent>(entity, out var bloodstream))
             return;
 
-        if (!args.EntityManager.TryGetComponent<DamageableComponent>(args.TargetEntity, out var dmg))
+        if (!_solution.ResolveSolution(
+                entity.Owner,
+                bloodstream.BloodSolutionName,
+                ref bloodstream.BloodSolution,
+                out var bloodSolution))
             return;
 
-        var prototype = IoCManager.Resolve<IPrototypeManager>();
-        var groupProto = prototype.Index(HealDamageGroup);
-        var damSys = args.EntityManager.System<DamageableSystem>();
+        var effect = args.Effect;
+        var groupProto = _prototype.Index(effect.HealDamageGroup);
+        var convermolQuantity = FixedPoint2.Zero;
+
+        if (bloodSolution.TryGetReagentQuantity(Convermol, out var quantity))
+            convermolQuantity = quantity;
 
         float currentDamage = 0f;
         var damageByType = new Dictionary<string, float>();
 
         foreach (var damageTypeId in groupProto.DamageTypes)
         {
-            if (!dmg.Damage.DamageDict.TryGetValue(damageTypeId, out var v))
+            if (!entity.Comp.Damage.DamageDict.TryGetValue(damageTypeId, out var value))
                 continue;
-            var val = v.Float();
-            if (val <= 0f)
+
+            var damage = value.Float();
+            if (damage <= 0f)
                 continue;
-            damageByType[damageTypeId] = val;
-            currentDamage += val;
+
+            damageByType[damageTypeId] = damage;
+            currentDamage += damage;
         }
 
-        var potential = HealPerTick * r.Scale.Float();
-        var overdosed = r.Quantity.Float() >= OverdoseThreshold;
+        var potential = effect.HealPerTick * args.Scale;
+        var overdosed = convermolQuantity.Float() >= effect.OverdoseThreshold;
+        var actualHeal = overdosed
+            ? potential
+            : Math.Max(0f, Math.Min(potential, currentDamage + effect.Buffer));
 
-        float actualHeal;
-        if (!overdosed)
-            actualHeal = Math.Max(0f, Math.Min(potential, currentDamage + Buffer));
-        else
-            actualHeal = potential;
-
+        // Buffer must produce Poison even when Airloss is zero.
         if (actualHeal > 0f && currentDamage > 0f)
         {
             var healSpec = new DamageSpecifier();
@@ -86,15 +103,16 @@ public sealed partial class ChemConvermol : EntityEffect
             {
                 healSpec.DamageDict[typeId] = FixedPoint2.New(-(actualHeal * damage / currentDamage));
             }
-            damSys.TryChangeDamage(args.TargetEntity, healSpec, true, interruptsDoAfters: false);
+
+            _damageable.TryChangeDamage(entity.Owner, healSpec, true, interruptsDoAfters: false);
         }
 
-        var tox = actualHeal / ToxRatio;
+        var tox = actualHeal / effect.ToxRatio;
         if (tox > 0f)
         {
             var toxSpec = new DamageSpecifier();
-            toxSpec.DamageDict[ToxDamageType] = FixedPoint2.New(tox);
-            damSys.TryChangeDamage(args.TargetEntity, toxSpec, true, interruptsDoAfters: false);
+            toxSpec.DamageDict[effect.ToxDamageType] = FixedPoint2.New(tox);
+            _damageable.TryChangeDamage(entity.Owner, toxSpec, true, interruptsDoAfters: false);
         }
     }
 }
