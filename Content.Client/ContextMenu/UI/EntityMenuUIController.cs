@@ -26,6 +26,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Client.ContextMenu.UI
@@ -60,7 +61,7 @@ namespace Content.Client.ContextMenu.UI
         [UISystemDependency] private readonly InputSystem _inputSystem = default!;
 
         private bool NovaTGControls => _cfg.GetCVar(ACCVars.NovaTGControls);
-        private bool _suppressAltMenu;
+        private int _suppressAltMenu;
         // Arcane-End
         private bool _updating;
 
@@ -169,7 +170,7 @@ namespace Content.Client.ContextMenu.UI
                 var session = _playerManager.LocalSession;
                 if (session != null)
                 {
-                    inputSys.HandleInputCommand(session, func, message);
+                    RedispatchInputCommand(inputSys, session, func, message); // Arcane
                 }
 
                 _context.Close();
@@ -213,14 +214,14 @@ namespace Content.Client.ContextMenu.UI
                     Uid = args.EntityUid,
                 };
 
-                _suppressAltMenu = true;
+                _suppressAltMenu++;
                 try
                 {
                     inputSys.HandleInputCommand(session, function, message);
                 }
                 finally
                 {
-                    _suppressAltMenu = false;
+                    _suppressAltMenu--;
                     // Restore the unchanged key state so a subsequent real Alt+LMB press is not swallowed.
                     if (!wasAltDown)
                         inputSys.CmdStates.SetState(function, BoundKeyState.Up);
@@ -234,7 +235,7 @@ namespace Content.Client.ContextMenu.UI
 
         private bool HandleAltOpenEntityMenu(in PointerInputCmdHandler.PointerInputCmdArgs args)
         {
-            if (!NovaTGControls || _suppressAltMenu)
+            if (!NovaTGControls || _suppressAltMenu > 0)
                 return false;
 
             // The menu is client-only UI; while prediction is replaying buffered input commands do not
@@ -264,6 +265,23 @@ namespace Content.Client.ContextMenu.UI
 
             return true;
         }
+        // Arcane-Start
+
+        private void RedispatchInputCommand(InputSystem inputSys, ICommonSession session, BoundKeyFunction function, IFullInputCmdMessage message)
+        {
+            // Suppress the interaction-window toggle while re-dispatching so a command replayed from the
+            // context menu performs the interaction instead of reopening the menu.
+            _suppressAltMenu++;
+            try
+            {
+                inputSys.HandleInputCommand(session, function, message);
+            }
+            finally
+            {
+                _suppressAltMenu--;
+            }
+        }
+        // Arcane-End
 
         /// <summary>
         ///     Check that entities in the context menu are still visible. If not, remove them from the context menu.
