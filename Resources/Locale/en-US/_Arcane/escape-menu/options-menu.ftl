@@ -1,3 +1,3 @@
 ui-options-combat-mode-block-pickup = Disable item pickup in combat mode
 
-ui-options-novatg-controls = NovaTG13-style controls
+ui-options-tg13-controls = TG13-style controls

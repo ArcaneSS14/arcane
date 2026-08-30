@@ -1,3 +1,3 @@
 ui-options-combat-mode-block-pickup = Отключить подбор предметов в боевом режиме
 
-ui-options-novatg-controls = Управление как в НоваТГ13
+ui-options-tg13-controls = Управление как в ТГ13

@@ -60,7 +60,7 @@ namespace Content.Client.ContextMenu.UI
         // Arcane-Start
         [UISystemDependency] private readonly InputSystem _inputSystem = default!;
 
-        private bool NovaTGControls => _cfg.GetCVar(ACCVars.NovaTGControls);
+        private bool TG13Controls => _cfg.GetCVar(ACCVars.TG13Controls);
         private int _suppressAltMenu;
         // Arcane-End
         private bool _updating;
@@ -181,7 +181,7 @@ namespace Content.Client.ContextMenu.UI
         private bool HandleOpenEntityMenu(in PointerInputCmdHandler.PointerInputCmdArgs args)
         // Arcane-Start
         {
-            if (NovaTGControls)
+            if (TG13Controls)
             {
                 if (args.State != BoundKeyState.Down)
                     return false;
@@ -235,7 +235,7 @@ namespace Content.Client.ContextMenu.UI
 
         private bool HandleAltOpenEntityMenu(in PointerInputCmdHandler.PointerInputCmdArgs args)
         {
-            if (!NovaTGControls || _suppressAltMenu > 0)
+            if (!TG13Controls || _suppressAltMenu > 0)
                 return false;
 
             // The menu is client-only UI; while prediction is replaying buffered input commands do not

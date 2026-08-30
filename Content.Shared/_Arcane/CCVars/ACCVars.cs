@@ -56,6 +56,6 @@ public sealed partial class ACCVars
     /// <summary>
     ///     Swaps the secondary action (RMB) and opening the interaction window (Alt+LMB) in non-combat mode.
     /// </summary>
-    public static readonly CVarDef<bool> NovaTGControls =
-        CVarDef.Create("accessibility.novatg_controls", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+    public static readonly CVarDef<bool> TG13Controls =
+        CVarDef.Create("accessibility.tg13_controls", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

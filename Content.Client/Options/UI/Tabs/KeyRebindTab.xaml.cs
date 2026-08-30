@@ -47,9 +47,9 @@ namespace Content.Client.Options.UI.Tabs
         }
 
         // Arcane-Start
-        private void HandleToggleNovaTGControls(BaseButton.ButtonToggledEventArgs args)
+        private void HandleToggleTG13Controls(BaseButton.ButtonToggledEventArgs args)
         {
-            _cfg.SetCVar(ACCVars.NovaTGControls, args.Pressed);
+            _cfg.SetCVar(ACCVars.TG13Controls, args.Pressed);
             _cfg.SaveToFile();
         }
 
@@ -176,7 +176,7 @@ namespace Content.Client.Options.UI.Tabs
             AddHeader("ui-options-header-general");
             AddCheckBox("ui-options-hotkey-keymap", _cfg.GetCVar(CVars.DisplayUSQWERTYHotkeys), HandleToggleUSQWERTYCheckbox);
             // Arcane-Start
-            AddCheckBox("ui-options-novatg-controls", _cfg.GetCVar(ACCVars.NovaTGControls), HandleToggleNovaTGControls);
+            AddCheckBox("ui-options-tg13-controls", _cfg.GetCVar(ACCVars.TG13Controls), HandleToggleTG13Controls);
             AddCheckBox("ui-options-combat-mode-block-pickup", _cfg.GetCVar(ACCVars.CombatModeBlockItemPickup), HandleToggleCombatModeBlockPickup);
             // Arcane-End
 
