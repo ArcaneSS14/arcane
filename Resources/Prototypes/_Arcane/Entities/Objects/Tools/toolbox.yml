@@ -1,0 +1,21 @@
+- type: entity
+  parent: [ToolboxBase, BaseMinorContraband]
+  id: ToolboxInteQ
+  name: brown toolbox
+  description: A sinister looking toolbox filled with elite InteQ tools.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Tools/Toolboxes/toolbox_inteq.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Tools/Toolboxes/toolbox_inteq.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,3
+  - type: MeleeWeapon
+    flipAnimation: false
+    heavyStaminaCost: 10
+    damage:
+      types:
+        Blunt: 20

@@ -1,0 +1,5 @@
+- type: constructionGraph
+  id: BlastDoorInteQ
+  start: blastdoor
+  graph:
+  - node: blastdoor
