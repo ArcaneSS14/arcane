@@ -703,3 +703,22 @@ Entries:
   id: 57
   time: '2026-08-28T14:35:19.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/269
+- author: Kat_L
+  changes:
+    - type: Add
+      message: >-
+        @Bulbo44key пополнила ассортимент ЛавМата, а также некоторые интеракции
+        под них. Подробности в PR
+    - type: Add
+      message: Добавлены сумки/рюкзаки/вещмешки для глав отделов (ГВ, ГП, КМ, НР, СИ)
+    - type: Add
+      message: Добавлен элитный, спонсорский шмот СБ
+    - type: Add
+      message: >-
+        Добавлены более 40+ интеракции и 5 требований к выполнению. Подробности
+        в PR
+    - type: Fix
+      message: Исправлен баг на выполнение self интеракции на своей пешке
+  id: 58
+  time: '2026-08-30T07:59:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/235
