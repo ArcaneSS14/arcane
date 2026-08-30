@@ -43,6 +43,10 @@
       - id: ClothingOuterHoodieInteQ
     - !type:GroupSelector
       children:
+      - id: ClothingBeltInteQWebbing
+        prob: 0.005
+      - id: ClothingBeltInteQDropPouch
+        prob: 0.005
       - id: ItemFlagMiniInteQ
       - id: FoodSnackInteQCookies
       - id: CigPackInteQ
