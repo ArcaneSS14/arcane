@@ -12,6 +12,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared;
 using Robust.Shared.Prototypes;
 using Content.Goobstation.Common.CCVar;
+using Content.Shared._Arcane.CCVars;
 
 namespace Content.Client.Options.UI.Tabs;
 
@@ -63,6 +64,7 @@ public sealed partial class MiscTab : Control
         Control.AddOptionCheckBox(CCVars.ChatFancyNameBackground, FancyNameBackgroundsCheckBox);
         Control.AddOptionCheckBox(CCVars.StaticStorageUI, StaticStorageUI);
 
+        Control.AddOptionCheckBox(ACCVars.OfferModeIndicatorsPointShow, ShowOfferModeIndicatorsCheckBox); // Arcane
         Control.Initialize();
     }
 }

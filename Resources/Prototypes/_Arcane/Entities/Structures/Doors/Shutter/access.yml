@@ -1,0 +1,22 @@
+- type: entity
+  parent: BlastDoor
+  id: BlastDoorInteQ
+  suffix: InteQ, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInteQVanguard ]
+
+- type: entity
+  parent:  BlastDoorInteQ
+  id: BlastDoorInteQIndestructible
+  suffix: InteQ, Locked, Indestructible
+  components:
+  - type: Tag
+    tags:
+    - EmagImmune
+  - type: Godmode
+  - type: Construction
+    graph: BlastDoorInteQ
+    node: blastdoor
+    deconstructionTarget: null
