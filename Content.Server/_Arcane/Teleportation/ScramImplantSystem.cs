@@ -16,31 +16,25 @@ using Robust.Shared.Random;
 namespace Content.Server._Arcane.Teleportation;
 
 /// <summary>
-///     Teleports the user of an escape scram implant away from danger.
-///
 ///     This is a drop-in replacement for the upstream <c>ScramOnTriggerSystem</c> that only teleports to
 ///     a free, non-space tile on the same grid the user is standing on, at least <see cref="MinTeleportDistance"/>
 ///     tiles away. It also handles users that are buckled or stuffed into a container (e.g. a locker).
+///     Uniformly random spots are sampled in the teleport range until one satisfies every condition;
+///     candidates that fail the conditions are skipped.
 ///
 ///     The action event is only marked handled on a successful teleport, so the action does not spend a
 ///     charge or start a cooldown when no valid destination can be found.
 /// </summary>
 public sealed class ScramImplantSystem : SharedScramImplantSystem
 {
-    /// <summary>
-    ///     The minimum distance (in world units) the user can be teleported.
-    /// </summary>
     private const float MinTeleportDistance = 20f;
-
-    /// <summary>
-    ///     The upper bound of the random teleport range.
-    /// </summary>
     private const float MaxTeleportDistance = 200f;
 
     /// <summary>
-    ///     How many random candidate locations are attempted before giving up.
+    ///     How many random candidate locations are sampled before giving up. Keeps the search bounded so a
+    ///     destination is not spun up forever on a grid with no valid tile.
     /// </summary>
-    private const int TeleportAttempts = 60;
+    private const int TeleportAttempts = 10;
 
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
@@ -63,17 +57,14 @@ public sealed class ScramImplantSystem : SharedScramImplantSystem
         var userWorldPos = _transform.GetWorldPosition(user);
         var collisionMask = (CollisionGroup) physics.CollisionMask;
 
+        // Sample uniformly random spots in the teleport range until one satisfies every condition: on the
+        // same grid, not space, not blocked. Candidates that fail the conditions are skipped; if no
+        // candidate fits after <see cref="TeleportAttempts"/> tries the teleport is cancelled so the
+        // action is not spent.
         EntityCoordinates? targetCoords = null;
         for (var i = 0; i < TeleportAttempts; i++)
         {
-            // The maximum search distance shrinks on every attempt so that small grids are still
-            // reachable: early tries look far away, later tries keep searching closer in.
-            var searchRadius = MaxTeleportDistance * (1 - (float) i / TeleportAttempts);
-            if (searchRadius <= MinTeleportDistance)
-                break;
-
-            // Square root of a random number gives a distribution that trends towards the outer range.
-            var distance = MinTeleportDistance + (searchRadius - MinTeleportDistance) * MathF.Sqrt(_random.NextFloat());
+            var distance = MinTeleportDistance + (MaxTeleportDistance - MinTeleportDistance) * _random.NextFloat();
             var candidateWorldPos = userWorldPos + _random.NextAngle().ToVec() * distance;
 
             var tileIndices = _map.WorldToTile(uid, grid, candidateWorldPos);
@@ -92,18 +83,15 @@ public sealed class ScramImplantSystem : SharedScramImplantSystem
         if (targetCoords is not { } coords)
             return false;
 
-        // We need to stop the user from being pulled so they don't just get "pulled back" with whoever
-        // is pulling them. This can for example happen when the user is cuffed and being pulled.
         if (TryComp<PullableComponent>(user, out var pull) && _pulling.IsPulled(user, pull))
             _pulling.TryStopPull(user, pull, ignoreGrab: true);
 
-        // Check if the user is pulling anything, and drop it if so.
         if (TryComp<PullerComponent>(user, out var puller) && TryComp<PullableComponent>(puller.Pulling, out var pullable))
             _pulling.TryStopPull(puller.Pulling.Value, pullable, ignoreGrab: true);
 
-        // Escape a buckle (chair, bed, ...) so the user does not snap back to it after teleporting.
-        if (TryComp<BuckleComponent>(user, out var buckle))
-            _buckle.TryUnbuckle(user, null, buckle, false);
+        if (TryComp<BuckleComponent>(user, out var buckle) && buckle.Buckled
+            && !_buckle.TryUnbuckle(user, null, buckle, false))
+            return false;
 
         if (_container.TryGetContainingContainer(user, out var container))
         {

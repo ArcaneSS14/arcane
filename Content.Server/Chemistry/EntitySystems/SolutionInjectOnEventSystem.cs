@@ -109,7 +109,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         // Arcane-Start
         if (_tag.HasTag(suit.Value, HardsuitTag))
         {
-            var hardsuitTime = TimeSpan.FromSeconds(5f);
+            var hardsuitTime = TimeSpan.FromSeconds(9f);
             if (ent.Comp.EmbedTime + hardsuitTime > _timing.CurTime)
             {
                 args.Cancelled = true;
