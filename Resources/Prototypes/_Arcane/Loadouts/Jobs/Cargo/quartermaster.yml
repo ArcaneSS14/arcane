@@ -1,0 +1,17 @@
+# Back
+- type: loadout
+  id: QuartermasterBackpack
+  equipment:
+    back: ClothingBackpackQuartermaster
+
+# Back
+- type: loadout
+  id: QuartermasterSatchel
+  equipment:
+    back: ClothingBackpackSatchelQuartermaster
+
+# Back
+- type: loadout
+  id: QuartermasterDuffel
+  equipment:
+    back: ClothingBackpackDuffellQuartermaster

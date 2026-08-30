@@ -15,7 +15,7 @@
   - страстно трахает анус $target.
   - быстро трахает $target в попу.
   - нежно трахает анал $target.
-  icon: _Arcane/Interface/ErpPanel/cock_near_ass.png
+  icon: _Arcane/Interface/ErpPanel/fuck_ass.png
   tags:
   - RequiresERP
   targetRequirements:
@@ -36,6 +36,7 @@
   userArouse: 5
   targetArouse: 10
   range: 1.5
+  chanceLickCum: 0.1 # 10%
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
@@ -110,6 +111,7 @@
   userArouse: 5
   targetArouse: 15
   range: 1.5
+  chanceLickCum: 0.1 # 10%
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
@@ -157,11 +159,11 @@
   - /Audio/_Arcane/Interactions/asscrap2.ogg
   - /Audio/_Arcane/Interactions/asscrap3.ogg
   messages:
-  - вставляет игрушку в анус $target.
+  - вставляет секс-игрушку в анус $target.
   - двигает секс-игрушкой в анусе $target.
-  - ритмично использует игрушку в попе $target.
-  - аккуратно вводит игрушку в анус $target.
-  - медленно работает игрушкой в попке $target.
+  - ритмично использует секс-игрушку в попе $target.
+  - аккуратно вводит секс-игрушку в анус $target.
+  - медленно работает секс-игрушкой в попке $target.
   icon: _Arcane/Interface/ErpPanel/toy_butt.png
   tags:
   - RequiresERP
@@ -171,6 +173,155 @@
   userRequirements:
   - !type:HeldItemRequirement
     tags:
-    - SexToyAnal
     - SexToyDildo
     - SexToyVibrator
+
+- type: panelInteraction
+  id: ToyButtFuck
+  category: Anus
+  userArouse: 5
+  targetArouse: 15
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/asscrap1.ogg
+  - /Audio/_Arcane/Interactions/asscrap2.ogg
+  - /Audio/_Arcane/Interactions/asscrap3.ogg
+  messages:
+  - проникает секс-игрушкой в анус $target.
+  - пенетрирует секс-игрушкой в анус $target!
+  - трахает $target секс-игрушкой в попу.
+  - страстно трахает секс-игрушкой в анус $target.
+  - быстро трахает $target секс-игрушкой в попу.
+  - нежно трахает секс-игрушкой в анал $target.
+  icon: _Arcane/Interface/ErpPanel/toy_butt.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:ClothesWearingRequirements
+    tags:
+    - SexToyAnal
+
+- type: panelInteraction
+  id: AnusToySitting
+  category: Anus
+  userArouse: 10
+  targetArouse: 10
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/asscrap1.ogg
+  - /Audio/_Arcane/Interactions/asscrap2.ogg
+  - /Audio/_Arcane/Interactions/asscrap3.ogg
+  selfMessages:
+  - садится на секс-игрушку
+  - усаживается на игрушку
+  - приседает прямиком на секс-игрушку
+  - плавно опускается всем весом вниз на секс-игрушку
+  - скользит на секс-игрушке вверх-вниз
+  icon: _Arcane/Interface/ErpPanel/toy_butt.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:NearbyTargetRequirement
+    tags:
+    - SexToyDildo
+
+- type: panelInteraction
+  id: InsertFingersAnus
+  category: Anus
+  userArouse: 10
+  targetArouse: 10
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  selfMessages:
+  - проникает пальцами в анус.
+  - вводит пальчики в анус.
+  - трахает анус своими пальцами.
+  - двигает пальцами внутри ануса.
+  icon: _Arcane/Interface/ErpPanel/anal_fingering.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: RunningFingerAnus
+  category: Anus
+  userArouse: 5
+  targetArouse: 5
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  selfMessages:
+  - ласкает пальцами свой анус.
+  - вводит пальчики вокруг ануса.
+  - слегка вводит палец в свой анус.
+  - поглаживает пальцами свой анус.
+  icon: _Arcane/Interface/ErpPanel/anal_fingering.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: WallAnusFuck
+  category: Anus
+  userArouse: 10
+  targetArouse: 10
+  sounds:
+  - /Audio/_Arcane/Interactions/asscrap1.ogg
+  - /Audio/_Arcane/Interactions/asscrap2.ogg
+  - /Audio/_Arcane/Interactions/asscrap3.ogg
+  messages:
+  - прижимает $target у стены и страстно трахает в анус.
+  - вжимает $target в стену, блокируя пути к отходу, загоняя свой член в анус.
+  - владно прижимает $target к стене, трахая прямо в задницу.
+  - настойчиво прижимает $target у стены, вставляя член прямо в задницу.
+  - собственнически вжимает в ближайшую стену, проникая своим членом в анус $target.
+  - загоняет $target в угол и прижимает к стене, вставляя свой член в дырку.
+  icon: _Arcane/Interface/ErpPanel/kabedon.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:NearbyStaticEntityRequirement
+    tags:
+    - Wall
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:ArousalRequirement
+
+- type: panelInteraction
+  id: LickAnusCondensedCum
+  category: Anus
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  chanceLickCum: 0.2 # 20%
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  messages:
+  - слизывает нектар с ануса $target.
+  - жадно и быстро слизывает солёно-сладкую гущу с дырочки $target.
+  - проводит языком по заднице $target, слизывая выделение.
+  - медленно и дразняще слизывает густое выделение промеж булочек $target.
+  - заботливо очищает задницу $target от липкой гущи своим языком.
+  icon: _Arcane/Interface/ErpPanel/heart_icon.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:CumOverlayRequirement
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari

@@ -26,6 +26,12 @@
   physicalDesc: reagent-physical-desc-syrupy
   flavor: sweet
   color: "#ff69b4"
+  metamorphicSprite:
+    sprite: _Arcane/Objects/Consumable/Drinks/aphrodisiac_glass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   boilingPoint: 100.0
   recognizable: true
   metabolisms:
