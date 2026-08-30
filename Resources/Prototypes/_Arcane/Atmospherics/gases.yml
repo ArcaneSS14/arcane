@@ -4,6 +4,8 @@
   specificHeat: 40
   heatCapacityRatio: 1.3
   molarMass: 46
+  gasOverlaySprite: /Textures/_Arcane/Effects/aphrodisiac_gas.rsi
+  gasOverlayState: aphrodisiac
   color: "#ff69b4"
   reagent: Aphrodisiac
   pricePerMole: 2
