@@ -104,7 +104,7 @@
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesCombat
     head: ClothingHeadHelmetAbductor
-    outerClothing: ClothingOuterCoatAbductor
+    outerClothing: ClothingOuterCoatAbductorUnremoveable # Arcane-Edit
     back: ClothingBackpackAbductor
     pocket1: AbductorGizmo
     pocket2: WeaponAlien
@@ -119,7 +119,7 @@
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesCombat
     head: ClothingHeadMirror
-    outerClothing: ClothingOuterCoatAbductor
+    outerClothing: ClothingOuterCoatAbductorUnremoveable # Arcane-Edit
     back: ClothingBackpackDuffelAbductor
     pocket1: AbductorGizmo
     suitstorage: WeaponDecloner

@@ -330,21 +330,23 @@
       tags:
       - ContractorUplink
 
-- type: listing
-  id: UplinkMiniatureEnergyCrossbow
-  name: uplink-miniature-energy-crossbow-name
-  description: uplink-miniature-energy-crossbow-desc
-  icon: { sprite:  /Textures/_Goobstation/Objects/Weapons/Guns/Battery/miniature_ebow.rsi, state: icon }
-  productEntity: MiniatureEnergyCrossbow
-  cost:
-    Telecrystal: 50
-  categories:
-  - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
+# Arcane-Edit-Start: Replaced from Upstream
+#- type: listing
+#  id: UplinkMiniatureEnergyCrossbow
+#  name: uplink-miniature-energy-crossbow-name
+#  description: uplink-miniature-energy-crossbow-desc
+#  icon: { sprite:  /Textures/_Goobstation/Objects/Weapons/Guns/Battery/miniature_ebow.rsi, state: icon }
+#  productEntity: MiniatureEnergyCrossbow
+#  cost:
+#    Telecrystal: 50
+#  categories:
+#  - UplinkWeaponry
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    blacklist:
+#      tags:
+#      - NukeOpsUplink
+# Arcane-Edit-End
 
 - type: listing
   id: UplinkWSPR
@@ -381,7 +383,7 @@
   id: UplinkWeaponShotgunHeavy
   name: uplink-weapon-heavy-shotgun-name
   description: uplink-weapon-heavy-shotgun-desc
-  icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Shotguns/magshot.rsi, state: icon }
+  icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Shotguns/magshot_icon_48x.rsi, state: icon }
   productEntity: WeaponShotgunHeavy
   cost:
     Telecrystal: 175
@@ -1009,7 +1011,7 @@
   icon: { sprite: /Textures/_Goobstation/Clothing/Hands/Gloves/kravgloves.rsi, state: icon }
   productEntity: KravMagaImplanter
   cost:
-    Telecrystal: 40
+    Telecrystal: 35 # Arcane-Edit: 40 > 35
   categories:
     - UplinkImplants
 
@@ -1228,7 +1230,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: blast }
   productEntity: GrenadeBlast
   cost:
-    Telecrystal: 10 # Buying granades this way is ~14% cheaper than getting them from china-lake bundles # Orion-Edit: 12 > 10
+    Telecrystal: 9 # Buying granades this way is ~14% cheaper than getting them from china-lake bundles # Arcane-Edit: 12 > 9
   categories:
   - UplinkAmmo
   conditions:
@@ -1244,7 +1246,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: frag }
   productEntity: GrenadeFrag
   cost:
-    Telecrystal: 10 # Buying granades this way is ~14% cheaper than getting them from china-lake bundles # Orion-Edit: 12 > 10
+    Telecrystal: 9 # Buying granades this way is ~14% cheaper than getting them from china-lake bundles # Arcane-Edit: 12 > 9
   categories:
   - UplinkAmmo
   conditions:

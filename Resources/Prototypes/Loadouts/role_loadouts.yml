@@ -442,7 +442,7 @@
   - QuartermasterNeck
   - QuartermasterJumpsuit
   - QuartermasterHands # Arcane
-  - CargoTechnicianBackpack
+  - QuartermasterBackpack # Arcane
   - QuartermasterOuterClothing
   - QuartermasterShoes
   - Glasses
@@ -526,7 +526,7 @@
   - GroupTankHarness
   - ChiefEngineerHead
   - ChiefEngineerJumpsuit
-  - StationEngineerBackpack
+  - ChiefEngineerBackpack # Arcane
   - ChiefEngineerNeck
   - ChiefEngineerOuterClothing
   - ChiefEngineerShoes
@@ -552,7 +552,6 @@
   groups:
   - GroupTankHarness
   - TechnicalAssistantJumpsuit
-  - EngineerCloak # Arcane
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
@@ -634,7 +633,7 @@
   - ResearchDirectorHead
   - ResearchDirectorNeck
   - ResearchDirectorJumpsuit
-  - ScientistBackpack
+  - ResearchDirectorBackpack # Arcane
   - ResearchDirectorOuterClothing
   - ScientistGloves
   - ResearchDirectorShoes
@@ -691,7 +690,6 @@
   groups:
   - GroupTankHarness
   - ResearchAssistantJumpsuit
-  - RNDCloak # Arcane
   - ScientistBackpack
   - Glasses
   - Survival
@@ -865,7 +863,7 @@
   - MedicalMask
   - ChiefMedicalOfficerJumpsuit
   - MedicalGloves
-  - MedicalBackpack
+  - ChiefMedicalOfficerBackpack # Arcane
   - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes
@@ -926,7 +924,6 @@
   groups:
   - GroupTankHarness
   - MedicalInternJumpsuit
-  - MedicalCloak # Arcane
   - MedicalBackpack
   - MedicalEyewear
   - SurvivalMedical
@@ -1023,7 +1020,10 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - ServiceCloak
+  - Patron
+  # Arcane-End
   # Orion-Start
   - Undershirt
   - Underwear
@@ -1047,7 +1047,10 @@
   - Glasses
   - Survival
   - Trinkets
-  - Patron # Arcane
+  # Arcane-Start
+  - MedicalCloak
+  - Patron
+  # Arcane-End
   # Orion-Start
   - Undershirt
   - Underwear

@@ -26,7 +26,6 @@ using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Shared.Damage;
 using Content.Goobstation.Maths.FixedPoint;
-using Content.Server._Arcane.Discord;
 
 namespace Content.Server.Chat.Managers;
 
@@ -50,7 +49,6 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly LinkAccountManager _linkAccount = default!; // RMC - Patreon
     [Dependency] private readonly ISharedDiscordRoleManager _discordRoles = default!; // Arcane
     [Dependency] private readonly ChatProtectionSystem _chatProtection = default!; // Orion
-    [Dependency] private readonly ChatLogsWebhook _chatLogsWebhook = default!; // Arcane
 
     private ISawmill _sawmill = default!;
 
@@ -311,7 +309,6 @@ internal sealed partial class ChatManager : IChatManager
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);
         _discordLink.SendMessage(message, player.Name, ChatChannel.OOC);
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"OOC from {player:Player}: {message}");
-        _chatLogsWebhook.CreateChatWebhookMessage(ChatChannel.OOC, message, player); // Arcane
     }
 
     private void SendAdminChat(ICommonSession player, string message)
@@ -343,7 +340,6 @@ internal sealed partial class ChatManager : IChatManager
 
         _discordLink.SendMessage(message, player.Name, ChatChannel.AdminChat);
         _adminLogger.Add(LogType.Chat, $"Admin chat from {player:Player}: {message}");
-        _chatLogsWebhook.CreateChatWebhookMessage(ChatChannel.AdminChat, message, player); // Arcane
     }
 
     #endregion
