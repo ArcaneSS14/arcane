@@ -170,7 +170,7 @@ namespace Content.Client.ContextMenu.UI
                 var session = _playerManager.LocalSession;
                 if (session != null)
                 {
-                    RedispatchInputCommand(inputSys, session, func, message); // Arcane
+                    RedispatchInputCommand(inputSys, session, func, message); // Arcane-Edit
                 }
 
                 _context.Close();
