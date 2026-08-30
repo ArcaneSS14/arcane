@@ -14,6 +14,11 @@
   - type: Construction
     graph: PumpkinAddLight
     node: start
+  # Arcane-Start
+  - type: Tag
+    tags:
+    - SexToyOnahole
+  # Arcane-End
 
 - type: entity
   parent: CarvedPumpkin

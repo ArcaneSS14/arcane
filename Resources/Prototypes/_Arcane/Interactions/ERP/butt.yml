@@ -152,3 +152,79 @@
   - !type:SpeciesRequirement
     species:
     - Demon
+
+- type: panelInteraction
+  id: ToyButtNearCock
+  category: Butt
+  userArouse: 5
+  targetArouse: 5
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - водит своей секс-игрушкой по попке $target.
+  - проводит своей секс-игрушкой по булкам $target.
+  - ласкает булки $target своей секс-игрушкой.
+  - дразнит $target, проводя своей секс-игрушкой по ягодицам.
+  - трётся своей секс-игрушкой о булки $target.
+  icon: _Arcane/Interface/ErpPanel/pat_butt_with_toy.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:ClothesWearingRequirements
+    tags:
+    - SexToyAnal
+
+- type: panelInteraction
+  id: CockNearAssTail
+  category: Butt
+  userArouse: 10
+  targetArouse: 5
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - водит пенисом по попке $target, обвивая хвостом.
+  - проводит членом по булкам $target, хвостом помогая.
+  - трётся членом о ягодицы $target, хвостом обвивая.
+  icon: _Arcane/Interface/ErpPanel/cock_near_ass_tail.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+    - Felinid
+    - Vulpkanin
+    - Tajaran
+    - HumanoidXeno
+    - Rodentia
+
+- type: panelInteraction
+  id: Fart
+  category: Butt
+  sounds:
+  - /Audio/_Arcane/Interactions/Wisp-1.ogg
+  - /Audio/_Arcane/Interactions/Wisp-2.ogg
+  - /Audio/_Arcane/Interactions/Wisp-3.ogg
+  - /Audio/_Arcane/Interactions/Wisp-4.ogg
+  - /Audio/_Arcane/Interactions/Wisp-5.ogg
+  - /Audio/_Arcane/Interactions/Wisp-6.ogg
+  selfMessages:
+  - громко пердит.
+  - шумно испускает газы.
+  - испускает злобного духа.
+  - выпускает газы.
+  - громко пердит.
+  - ощутимо пускает шептуна.
+  icon: _Arcane/Interface/ErpPanel/butt_massage.png
+  tags:
+  - RequiresERP
