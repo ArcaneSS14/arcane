@@ -688,3 +688,8 @@ binds:
   type: State
   key: E
 # Orion-End
+# Arcane-Start
+- function: OfferItem
+  type: State
+  key: H
+# Arcane-End
