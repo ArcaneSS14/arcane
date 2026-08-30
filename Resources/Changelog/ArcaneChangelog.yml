@@ -738,3 +738,23 @@ Entries:
   id: 60
   time: '2026-08-30T14:53:02.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/273
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Сумеречникам изменены звуки рычания
+    - type: Tweak
+      message: Слаймолюды не могут отравиться от сырого мяса
+    - type: Add
+      message: Сумеречники могут тянуть предметы хвостами
+    - type: Add
+      message: Молям и арахнидам добавлены человеческие причёски
+    - type: Add
+      message: КПБ могут заменить себе батарею
+    - type: Add
+      message: >-
+        Слаймолюдам добавлены кошачьи ушки и хвост. Ещё могут отрастить себе
+        конечность засчёт еды и воды, а их сердце невозможно уничтожить как и
+        мозг.
+  id: 61
+  time: '2026-08-30T18:21:20.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/263
