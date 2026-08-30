@@ -51,6 +51,7 @@
     DrinkWineCan: 5
   contrabandInventory:
     ChemistryBottleEthanol: 3
+    DrinkAphrodisiacBottleFull: 1 # Arcane
     DrinkBottleOfNothingFull: 1
     DrinkPoisonWinebottleFull: 2
   # Orion-Start
