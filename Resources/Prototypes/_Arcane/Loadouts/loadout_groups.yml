@@ -83,6 +83,38 @@
   - IAAJumpsuit
 
 - type: loadoutGroup
+  id: ChiefEngineerBackpack
+  name: loadout-group-chief-engineer-backpack
+  loadouts:
+  - ChiefEngineerBackpack
+  - ChiefEngineerSatchel
+  - ChiefEngineerDuffel
+
+- type: loadoutGroup
+  id: ChiefMedicalOfficerBackpack
+  name: loadout-group-chief-medical-officer-backpack
+  loadouts:
+  - ChiefMedicalOfficerBackpack
+  - ChiefMedicalOfficerSatchel
+  - ChiefMedicalOfficerDuffel
+
+- type: loadoutGroup
+  id: QuartermasterBackpack
+  name: loadout-group-quartermaster-backpack
+  loadouts:
+  - QuartermasterBackpack
+  - QuartermasterSatchel
+  - QuartermasterDuffel
+
+- type: loadoutGroup
+  id: ResearchDirectorBackpack
+  name: loadout-group-research-director-backpack
+  loadouts:
+  - ResearchDirectorBackpack
+  - ResearchDirectorSatchel
+  - ResearchDirectorDuffel
+
+- type: loadoutGroup
   id: Patron
   name: loadout-group-patron
   minLimit: 0

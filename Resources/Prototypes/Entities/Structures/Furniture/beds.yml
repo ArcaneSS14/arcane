@@ -64,7 +64,11 @@
     noRot: true
   - type: Anchorable
   - type: Pullable
-
+  # Arcane-Start
+  - type: Tag
+    tags:
+    - Bed
+  # Arcane-End
 
 - type: entity
   parent: Bed
