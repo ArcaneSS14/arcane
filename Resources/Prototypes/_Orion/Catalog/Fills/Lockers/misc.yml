@@ -7,8 +7,10 @@
       - id: ClothingBackpackInteQ
       - id: ClothingBackpackDuffelInteQ
       - id: ClothingBackpackSatchelInteQ
-      - id: ClothingBeltInteQDropPouch # Arcane
-      - id: ClothingBeltInteQWebbing # Arcane
+      # Arcane-Start
+      - id: ClothingBeltInteQDropPouch
+      - id: ClothingBeltInteQWebbing
+      # Arcane-End
     - !type:GroupSelector
       children:
       - id: ClothingHeadHatInteQSoft
@@ -34,8 +36,8 @@
       - id: ToolboxInteQFilled # Arcane
     - !type:GroupSelector
       children:
-      - id: ClothingOuterCoatInteQBattle # Arcane-Edit-Start
-      - id: ClothingOuterCoatInteQMedical # Arcane-Edit-End
+      - id: ClothingOuterCoatInteQBattle
+      - id: ClothingOuterCoatInteQMedical
       - id: ClothingOuterWinterInteQ
       - id: ClothingOuterHoodieInteQ
     - !type:GroupSelector
@@ -43,10 +45,16 @@
       - id: ItemFlagMiniInteQ
       - id: FoodSnackInteQCookies
       - id: CigPackInteQ
-      - id: ToolboxInteQFilled 
-    - !type:GroupSelector # Arcane-Start
+      - id: ToolboxInteQFilled
+      - id: ClothingNeckCloakInteQ
+        prob: 0.005
+      - id: BoxInteQEVA
+        prob: 0.005
+    # Arcane-Start
+    - !type:GroupSelector
       children:
       - id: BoxInteQEVA
       - id: ClothingBeltInteQDropPouch
       - id: ClothingBeltInteQWebbing
-      - id: ToolboxInteQFilled # Arcane-End
+      - id: ToolboxInteQFilled
+    # Arcane-End
