@@ -1,253 +1,648 @@
+# Whip
+
 - type: entity
-  parent: [BaseItem]
+  parent: BaseItem
   id: Whip
   name: whip
   description: Please no.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/whip.rsi
+    sprite: _Arcane/ERP/Toys/Whip/whip.rsi
     state: icon
-    scale: 0.8,0.8
   - type: Item
     size: Normal
-    sprite: _Arcane/ERP/whip.rsi
+    sprite: _Arcane/ERP/Toys/Whip/whip.rsi
   - type: StaminaDamageOnHit
     damage: 8
   - type: MeleeWeapon
+    canWideSwing: false
+    soundHit:
+      path: /Audio/_Arcane/Items/other/Handcuffs/blow-whip.ogg
     damage:
       types:
         Blunt: 0
 
 - type: entity
-  parent: [BaseItem]
+  parent: Whip
+  id: LongWhip
+  name: long whip
+  description: Please no.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Whip/long_whip.rsi
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Whip/long_whip.rsi
+
+- type: entity
+  parent: Whip
+  id: PaddleStack
+  name: paddle stack
+  description: Please no.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Whip/paddle_stack.rsi
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Whip/paddle_stack.rsi
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/_Arcane/Items/other/Handcuffs/blow-whip-hard.ogg
+
+# Handcuffs
+
+- type: entity
+  parent: BaseItem
+  id: SoftHandcuffs
+  name: soft handcuffs
+  description: Please no.
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/other/Handcuffs/pickup.ogg
+      params:
+        volume: -4
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/other/Handcuffs/drop.ogg
+      params:
+        volume: -4
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Handcuffs/soft_handcuffs.rsi
+    size: Small
+    storedRotation: 90
+  - type: Handcuff
+    cuffedRSI: _Arcane/ERP/Toys/Handcuffs/soft_handcuffs.rsi
+    bodyIconState: body-overlay
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Handcuffs/soft_handcuffs.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - Handcuffs
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    resetOnHandSelected: false
+    damage:
+      types:
+        Blunt: 0
+  - type: UseDelay
+    delay: 7
+
+- type: entity
+  parent: BaseItem
+  id: Shibari
+  name: shibari
+  description: Please no.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Handcuffs/shibari.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Handcuffs/shibari.rsi
+    size: Small
+    storedRotation: 90
+  - type: Handcuff
+    cuffedRSI: _Arcane/ERP/Toys/Handcuffs/shibari.rsi
+    bodyIconState: body-overlay
+    startCuffSound: /Audio/_Arcane/Items/other/Handcuffs/rope-winding.ogg
+    endCuffSound: /Audio/_Arcane/Items/other/Handcuffs/rope-winding.ogg
+    endUncuffSound: /Audio/_Arcane/Items/other/Handcuffs/rope-winding.ogg
+    startUncuffSound: /Audio/_Arcane/Items/other/Handcuffs/rope-winding.ogg
+    startBreakoutSound: /Audio/_Arcane/Items/other/Handcuffs/rope-winding.ogg
+  - type: Tag
+    tags:
+    - Handcuffs
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    resetOnHandSelected: false
+    damage:
+      types:
+        Blunt: 0
+  - type: UseDelay
+    delay: 7
+
+# Muzzle
+
+- type: entity
+  parent: ClothingMaskMuzzle
+  id: SexyMuzzle
+  name: sexy muzzle
+  description: Please no.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Muzzle/sexy_muzzle.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Muzzle/sexy_muzzle.rsi
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Muzzle/sexy_muzzle.rsi
+    size: Normal
+
+- type: entity
+  parent: SexyMuzzle
+  id: Gag
+  name: sexy gag
+  description: Please no.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Muzzle/gag.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Muzzle/gag.rsi
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Muzzle/gag.rsi
+
+- type: entity
+  parent: SexyMuzzle
+  id: GagRing
+  name: gag with ring
+  description: Please no.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Muzzle/gag_with_ring.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Muzzle/gag_with_ring.rsi
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Muzzle/gag_with_ring.rsi
+
+# Blindfold
+
+- type: entity
+  parent: ClothingEyesBlindfold
+  id: SexyBlindfold
+  name: sexy blindfold
+  description: Please no.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Blindfold/sexy_blindfold.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Blindfold/sexy_blindfold.rsi
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Blindfold/sexy_blindfold.rsi
+    size: Small
+
+# Blow
+
+- type: entity
+  parent: BaseItem
   id: BlowGreen
   name: green blow
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/blow_green.rsi
+    sprite: _Arcane/ERP/Toys/Blow/blow_green.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/blow_green.rsi
+    sprite: _Arcane/ERP/Toys/Blow/blow_green.rsi
+    size: Normal
+  - type: Tag
+    tags:
+    - SexToyBlow
 
 - type: entity
-  parent: [BaseItem]
+  parent: BlowGreen
   id: BlowPink
   name: pink blow
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/blow_pink.rsi
+    sprite: _Arcane/ERP/Toys/Blow/blow_pink.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/blow_pink.rsi
+    sprite: _Arcane/ERP/Toys/Blow/blow_pink.rsi
 
 - type: entity
-  parent: [BaseItem]
+  parent: BlowGreen
   id: BlowPurple
   name: purple blow
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/blow_purple.rsi
+    sprite: _Arcane/ERP/Toys/Blow/blow_purple.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/blow_purple.rsi
+    sprite: _Arcane/ERP/Toys/Blow/blow_purple.rsi
+
+# Vibrator
 
 - type: entity
-  parent: [BaseItem]
+  parent: BaseItem
   id: BunnyVibrator
   name: bunny vibrator
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/bunny_vibrator.rsi
+    sprite: _Arcane/ERP/Toys/Vibrator/bunny_vibrator.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/bunny_vibrator.rsi
+    size: Small
+    sprite: _Arcane/ERP/Toys/Vibrator/bunny_vibrator.rsi
+  - type: Tag
+    tags:
+    - SexToyDildo
 
 - type: entity
-  parent: [BaseItem]
+  parent: BunnyVibrator
+  id: TentacleVibrator
+  name: tentacle vibrator
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Vibrator/tentacle_vibrator.rsi
+    state: tentacledildo_off
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Vibrator/tentacle_vibrator.rsi
+
+# Butthole
+
+- type: entity
+  parent: BaseItem
   id: ButtholeGreen
   name: green butthole
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/butthole_green.rsi
+    sprite: _Arcane/ERP/Toys/Butthole/butthole_green.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/butthole_green.rsi
+    size: Normal
+    sprite: _Arcane/ERP/Toys/Butthole/butthole_green.rsi
+  - type: Tag
+    tags:
+    - SexToyButthole
 
 - type: entity
-  parent: [BaseItem]
+  parent: ButtholeGreen
   id: ButtholePink
   name: pink butthole
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/butthole_pink.rsi
+    sprite: _Arcane/ERP/Toys/Butthole/butthole_pink.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/butthole_pink.rsi
+    sprite: _Arcane/ERP/Toys/Butthole/butthole_pink.rsi
 
 - type: entity
-  parent: [BaseItem]
+  parent: ButtholeGreen
   id: ButtholePurple
   name: purple butthole
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/butthole_purple.rsi
+    sprite: _Arcane/ERP/Toys/Butthole/butthole_purple.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/butthole_purple.rsi
+    sprite: _Arcane/ERP/Toys/Butthole/butthole_purple.rsi
+
+# Dildo
 
 - type: entity
-  parent: [BaseItem]
+  parent: BaseItem
+  id: HumanDildo
+  name: human dildo
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Dildo/human.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Dildo/human.rsi
+    size: Small
+  - type: Tag
+    tags:
+    - HumanDildo
+    - SexToyDildo
+
+- type: entity
+  parent: HumanDildo
+  id: AvianDildo
+  name: avian dildo
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Dildo/avian.rsi
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Dildo/avian.rsi
+  - type: Tag
+    tags:
+    - AvianDildo
+    - SexToyDildo
+
+- type: entity
+  parent: HumanDildo
   id: DogDildo
   name: dog dildo
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/dog_dildo.rsi
-    state: icon
+    sprite: _Arcane/ERP/Toys/Dildo/dog.rsi
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/dog_dildo.rsi
+    sprite: _Arcane/ERP/Toys/Dildo/dog.rsi
+  - type: Tag
+    tags:
+    - DogDildo
+    - SexToyDildo
 
 - type: entity
-  parent: [BaseItem]
+  parent: HumanDildo
+  id: DoubleDildo
+  name: double dildo
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Dildo/double.rsi
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Dildo/double.rsi
+  - type: Tag
+    tags:
+    - SexToyDildo
+
+- type: entity
+  parent: HumanDildo
+  id: DragonDildo
+  name: dragon dildo
+  description: You'd better work.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Dildo/dragon.rsi
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Dildo/dragon.rsi
+  - type: Tag
+    tags:
+    - DragonDildo
+    - SexToyDildo
+
+- type: entity
+  parent: HumanDildo
   id: HorseDildo
   name: horse dildo
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/horse_dildo.rsi
-    state: icon
+    sprite: _Arcane/ERP/Toys/Dildo/horse.rsi
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/horse_dildo.rsi
+    sprite: _Arcane/ERP/Toys/Dildo/horse.rsi
+  - type: Tag
+    tags:
+    - HorseDildo
+    - SexToyDildo
 
 - type: entity
-  parent: [BaseItem]
-  id: TentacleSDildo
-  name: tentacle dildo
+  parent: HumanDildo
+  id: PlussizeDildo
+  name: plussize dildo
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/tentacle_dildo.rsi
-    state: icon
+    sprite: _Arcane/ERP/Toys/Dildo/plussize.rsi
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/tentacle_dildo.rsi
+    sprite: _Arcane/ERP/Toys/Dildo/plussize.rsi
+  - type: Tag
+    tags:
+    - PlussizeDildo
+    - SexToyDildo
 
 - type: entity
-  parent: [BaseItem]
+  parent: HumanDildo
   id: SlimeDildo
   name: slime dildo
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/slime_dildo.rsi
-    state: icon
+    sprite: _Arcane/ERP/Toys/Dildo/slime.rsi
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/slime_dildo.rsi
+    sprite: _Arcane/ERP/Toys/Dildo/slime.rsi
+  - type: Tag
+    tags:
+    - SlimeDildo
+    - SexToyDildo
 
 - type: entity
-  parent: [BaseItem]
+  parent: HumanDildo
   id: XenoDildo
   name: xeno dildo
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/xeno_dildo.rsi
-    state: icon
+    sprite: _Arcane/ERP/Toys/Dildo/xeno.rsi
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/xeno_dildo.rsi
+    sprite: _Arcane/ERP/Toys/Dildo/xeno.rsi
+  - type: Tag
+    tags:
+    - XenoDildo
+    - SexToyDildo
+
+# Onahole
 
 - type: entity
-  parent: [BaseItem]
+  parent: BaseItem
   id: OnaholeGreen
   name: green onahole
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/onahole_green.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/onahole_green.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/onahole_green.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/onahole_green.rsi
+    size: Normal
+  - type: Tag
+    tags:
+    - SexToyOnahole
 
 - type: entity
-  parent: [BaseItem]
+  parent: OnaholeGreen
   id: OnaholePink
   name: pink onahole
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/onahole_pink.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/onahole_pink.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/onahole_pink.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/onahole_pink.rsi
 
 - type: entity
-  parent: [BaseItem]
+  parent: OnaholeGreen
   id: OnaholePurple
   name: purple onahole
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/onahole_purple.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/onahole_purple.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/onahole_purple.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/onahole_purple.rsi
 
 - type: entity
-  parent: [BaseItem]
+  parent: OnaholeGreen
   id: PussyVulpaBlue
   name: blue vulpkanin pussy
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/vulp_blue.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/vulp_blue.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/vulp_blue.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/vulp_blue.rsi
 
 - type: entity
-  parent: [BaseItem]
+  parent: OnaholeGreen
   id: PussyVulpaPink
   name: pink vulpkanin pussy
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/vulp_pink.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/vulp_pink.rsi
     state: icon
   - type: Item
     size: Tiny
-    sprite: _Arcane/ERP/Toys/vulp_pink.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/vulp_pink.rsi
 
 - type: entity
-  parent: [BaseItem]
+  parent: OnaholeGreen
   id: PussyVulpaRed
   name: red vulpkanin pussy
   description: You'd better work.
   components:
   - type: Sprite
-    sprite: _Arcane/ERP/Toys/vulp_red.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/vulp_red.rsi
     state: icon
   - type: Item
-    size: Tiny
-    sprite: _Arcane/ERP/Toys/vulp_red.rsi
+    sprite: _Arcane/ERP/Toys/Onahole/vulp_red.rsi
+
+# Strapon
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingStrapon
+  name: strapon
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+    slots:
+    - underwear
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+    size: Normal
+  - type: Tag
+    tags:
+    - Strapon
+
+- type: entity
+  parent: ClothingStrapon
+  id: ClothingStraponHuman
+  name: human strapon
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_human.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_human.rsi
+  - type: Construction
+    graph: ClothingStraponHuman
+    node: erp
+  - type: Tag
+    tags:
+    - SexToyAnal
+
+- type: entity
+  parent: ClothingStraponHuman
+  id: ClothingStraponAvian
+  name: avian strapon
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_avian.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_avian.rsi
+  - type: Construction
+    graph: ClothingStraponAvian
+    node: erp
+
+- type: entity
+  parent: ClothingStraponHuman
+  id: ClothingStraponDog
+  name: dog strapon
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_dog.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_dog.rsi
+  - type: Construction
+    graph: ClothingStraponDog
+    node: erp
+
+- type: entity
+  parent: ClothingStraponHuman
+  id: ClothingStraponDragon
+  name: dragon strapon
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_dragon.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_dragon.rsi
+  - type: Construction
+    graph: ClothingStraponDragon
+    node: erp
+
+- type: entity
+  parent: ClothingStraponHuman
+  id: ClothingStraponHorse
+  name: horse strapon
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_horse.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_horse.rsi
+  - type: Construction
+    graph: ClothingStraponHorse
+    node: erp
+
+- type: entity
+  parent: ClothingStraponHuman
+  id: ClothingStraponPlussize
+  name: plussize strapon
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_plussize.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_plussize.rsi
+  - type: Construction
+    graph: ClothingStraponPlussize
+    node: erp
+
+- type: entity
+  parent: ClothingStraponHuman
+  id: ClothingStraponSlime
+  name: slime strapon
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_slime.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_slime.rsi
+  - type: Construction
+    graph: ClothingStraponSlime
+    node: erp
+
+- type: entity
+  parent: ClothingStraponHuman
+  id: ClothingStraponXeno
+  name: xeno strapon
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_xeno.rsi
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Strapon/strapon_xeno.rsi
+  - type: Construction
+    graph: ClothingStraponXeno
+    node: erp

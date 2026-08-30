@@ -26,6 +26,7 @@ public sealed partial class ErpPanelWindow : FancyWindow
 
     private static readonly Color ExplicitAccentColor = new(208, 100, 134);
     private static readonly Color FriendlyAccentColor = new(121, 203, 209);
+    private static readonly Color HostileAccentColor = new(196, 79, 55);
     private static readonly Color DisabledControlColor = Color.FromHex("#FFFFFF66");
     private static readonly StyleBoxFlat CategoryStyle = CreateStyle(
         new Color(31, 37, 43),
@@ -51,6 +52,14 @@ public sealed partial class ErpPanelWindow : FancyWindow
         new Color(39, 58, 62),
         FriendlyAccentColor,
         new Thickness(1));
+    private static readonly StyleBoxFlat HostileButtonStyle = CreateStyle(
+        new Color(99, 40, 28),
+        new Color(130, 53, 38),
+        new Thickness(1));
+    private static readonly StyleBoxFlat HostileButtonHoverStyle = CreateStyle(
+        new Color(69, 28, 19),
+        HostileAccentColor,
+        new Thickness(1));
     private static readonly StyleBoxFlat DisabledButtonStyle = CreateStyle(
         new Color(28, 31, 35),
         new Color(54, 57, 61),
@@ -63,6 +72,10 @@ public sealed partial class ErpPanelWindow : FancyWindow
         FriendlyAccentColor,
         FriendlyAccentColor,
         new Thickness());
+    private static readonly StyleBoxFlat HostileAccentStyle = CreateStyle(
+        HostileAccentColor,
+        HostileAccentColor,
+        new Thickness());
     private static readonly StyleBoxFlat ExplicitIconStyle = CreateStyle(
         new Color(30, 25, 29),
         new Color(112, 70, 90),
@@ -70,6 +83,10 @@ public sealed partial class ErpPanelWindow : FancyWindow
     private static readonly StyleBoxFlat FriendlyIconStyle = CreateStyle(
         new Color(24, 31, 35),
         new Color(70, 106, 112),
+        new Thickness(1));
+    private static readonly StyleBoxFlat HostilelyIconStyle = CreateStyle(
+        new Color(46, 19, 13),
+        new Color(120, 49, 34),
         new Thickness(1));
     private static readonly TimeSpan ReloadCooldown = TimeSpan.FromMilliseconds(100);
     private static readonly TimeSpan ArousalUpdateCooldown = TimeSpan.FromMilliseconds(50);
@@ -286,7 +303,7 @@ public sealed partial class ErpPanelWindow : FancyWindow
 
     private bool IsInteractionAvailable(EntityUid user, EntityUid target, PanelInteractionPrototype interaction)
     {
-        if (interaction.Messages.Count == 0)
+        if (user != target && interaction.Messages.Count == 0)
             return false;
 
         if (user == target && interaction.SelfMessages.Count == 0)
@@ -397,9 +414,13 @@ public sealed partial class ErpPanelWindow : FancyWindow
     {
         var interactionName = GetInteractionName(interaction);
         var isExplicit = IsErpInteraction(interaction);
-        var accentColor = isExplicit ? ExplicitAccentColor : FriendlyAccentColor;
-        var normalStyle = isExplicit ? ExplicitButtonStyle : FriendlyButtonStyle;
-        var hoverStyle = isExplicit ? ExplicitButtonHoverStyle : FriendlyButtonHoverStyle;
+
+        var isHostile = interaction.UserArouse < 0 || interaction.TargetArouse < 0;
+
+        var accentColor = isHostile ? HostileAccentColor : (isExplicit ? ExplicitAccentColor : FriendlyAccentColor);
+        var normalStyle = isHostile ? HostileButtonStyle : (isExplicit ? ExplicitButtonStyle : FriendlyButtonStyle);
+        var hoverStyle = isHostile ? HostileButtonHoverStyle : (isExplicit ? ExplicitButtonHoverStyle : FriendlyButtonHoverStyle);
+
         var button = new Button
         {
             HorizontalExpand = true,
@@ -422,14 +443,14 @@ public sealed partial class ErpPanelWindow : FancyWindow
         {
             MinWidth = 3,
             VerticalExpand = true,
-            PanelOverride = isExplicit ? ExplicitAccentStyle : FriendlyAccentStyle,
+            PanelOverride = isHostile ? HostileAccentStyle : (isExplicit ? ExplicitAccentStyle : FriendlyAccentStyle),
             MouseFilter = MouseFilterMode.Ignore,
         };
         var iconFrame = new PanelContainer
         {
             MinWidth = 40,
             MinHeight = 40,
-            PanelOverride = isExplicit ? ExplicitIconStyle : FriendlyIconStyle,
+            PanelOverride = isHostile ? HostilelyIconStyle : (isExplicit ? ExplicitIconStyle : FriendlyIconStyle),
             MouseFilter = MouseFilterMode.Ignore,
         };
         var icon = new TextureRect
