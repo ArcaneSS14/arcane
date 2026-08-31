@@ -222,8 +222,10 @@
     - id: ChemistryBottleEphedrine
       amount: 2
     - id: ChemistryBottleOmnizine
-    - id: ChemistryBottleTramadol
-    - id: ChemistryBottleOxycodone
+    # Arcane-Edit-Start: Don't used
+#    - id: ChemistryBottleTramadol
+#    - id: ChemistryBottleOxycodone
+    # Arcane-Edit-End
     - id: MedicalPatchBasic
       amount: 3
 

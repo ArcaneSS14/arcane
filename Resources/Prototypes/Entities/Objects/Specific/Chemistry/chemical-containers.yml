@@ -8,16 +8,45 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Chemistry/jug.rsi
+    # Arcane-Start
+    layers:
+    - state: icon_empty
+    - state: fill-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+    - state: lid
+      map: ["enum.OpenableVisuals.Layer"]
+      visible: false
+    # Arcane-End
   - type: Item
     size: Normal
     sprite: Objects/Specific/Chemistry/jug.rsi
+    # Arcane-Start
+    shape:
+    - 0,0,2,1
+    # Arcane-End
   - type: SolutionContainerManager
     solutions:
       drink:
         maxVol: 200
   - type: SolutionContainerVisuals
-    maxFillLevels: 6
+    maxFillLevels: 11 # Arcane-Edit: 6 > 11
     inHandsMaxFillLevels: 5
+  # Arcane-Start
+  - type: Openable
+    opened: false
+    closeable: true
+    sound:
+      collection: bottleOpenSounds
+    closeSound:
+      collection: bottleCloseSounds
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: { visible: false }
+          False: { visible: true }
+  # Arcane-End
   - type: ExaminableSolution
     exactVolume: true # Chemistry item
   - type: StaticPrice
