@@ -26,8 +26,12 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: advmedipen_empty
-  - type: Hypospray
-    transferAmount: 40
+  - type: Injector
+    solutionName: pen
+    currentTransferAmount: 40
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -116,8 +120,8 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: meth_empty
-  - type: Hypospray
-    transferAmount: 30
+  - type: Injector
+    currentTransferAmount: 30
   - type: SolutionContainerManager
     solutions:
       pen:
