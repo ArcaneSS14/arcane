@@ -1,116 +1,165 @@
 ﻿job-alt-title-reminder =  Мы не рекомендуем вам использовать звание [color=#33ccff]"{$altTitle}"[/color] в качестве предлога для того, чтобы отказываться от вашей основной работы (ваша должность - [color=#ffffff]{$jobName}[/color]).
 
-job-name-alt-medical-1 = Хирург
-job-name-alt-medical-2 = Медбрат
-job-name-alt-medical-2-f = Медсестра
-job-name-alt-medical-2-m = Медбрат
-job-name-alt-medical-3 = Медик
+job-name-alt-medical-1 = хирург
+job-name-alt-medical-2 = медбрат
+job-name-alt-medical-2-f = медсестра
+job-name-alt-medical-2-m = медбрат
+job-name-alt-medical-3 = медик
 
-job-name-alt-chemist-1 = Фармацевт
-job-name-alt-chemist-2 = Лаборант
+job-name-alt-chemist-1 = фармацевт
+job-name-alt-chemist-2 = лаборант
 
-job-name-alt-paramedic-1 = Травматолог
-job-name-alt-paramedic-2 = Член поисково-спасательной службы
+job-name-alt-paramedic-1 = травматолог
+job-name-alt-paramedic-2 = член поисково-спасательной службы
 
-job-name-alt-qm-1 = Офицер рассмотра заявок
-job-name-alt-qm-2 = Заведующий стойкой
-job-name-alt-qm-2-f = Заведующая стойкой
-job-name-alt-qm-2-m = Заведующий стойкой
-job-name-alt-qm-3 = Начальник склада
-job-name-alt-qm-3-f = Начальница склада
-job-name-alt-qm-3-m = Начальник склада
-job-name-alt-qm-4 = Глава снабжения
-job-name-alt-qm-5 = Координатор логистики
+job-name-alt-qm-1 = офицер рассмотра заявок
+job-name-alt-qm-2 = заведующий стойкой
+job-name-alt-qm-2-f = заведующая стойкой
+job-name-alt-qm-2-m = заведующий стойкой
+job-name-alt-qm-3 = начальник склада
+job-name-alt-qm-3-f = начальница склада
+job-name-alt-qm-3-m = начальник склада
+job-name-alt-qm-4 = глава снабжения
+job-name-alt-qm-5 = координатор логистики
 
-job-name-alt-cargotech-1 = Курьер
-job-name-alt-cargotech-2 = Пилот шаттла
-job-name-alt-cargotech-3 = Логист
+job-name-alt-cargotech-1 = курьер
+job-name-alt-cargotech-2 = пилот шаттла
+job-name-alt-cargotech-3 = логист
 
-job-name-alt-salvage-1 = Утилизатор
+job-name-alt-salvage-1 = утилизатор
 
-job-name-alt-atmos-1 = Специалист по пожаротушению
-job-name-alt-ce-1 = Глава инженерного отдела
-job-name-alt-ce-2 = Инженер-бригадир
-job-name-alt-ce-3 = Технический руководитель
+job-name-alt-atmos-1 = специалист по пожаротушению
+job-name-alt-ce-1 = глава инженерного отдела
+job-name-alt-ce-2 = инженер-бригадир
+job-name-alt-ce-3 = технический руководитель
 
-job-name-alt-engineer-1 = Техобслуживающий
-job-name-alt-engineer-2 = Механик
-job-name-alt-engineer-3 = Электрик
-job-name-alt-engineer-4 = Оператор двигателя
+job-name-alt-engineer-1 = техобслуживающий
+job-name-alt-engineer-2 = механик
+job-name-alt-engineer-3 = электрик
+job-name-alt-engineer-4 = оператор двигателя
 
-job-name-alt-scientist-1 = Ксеноархеолог
-job-name-alt-scientist-2 = Исследователь аномалий
-job-name-alt-scientist-3 = Ксенобиолог
+job-name-alt-scientist-1 = ксеноархеолог
+job-name-alt-scientist-2 = исследователь аномалий
+job-name-alt-scientist-3 = ксенобиолог
 
-job-name-alt-secoff-1 = Смотрящий за коридорами
+job-name-alt-secoff-1 = смотрящий за коридорами
 
-job-name-alt-warden-1 = Диспетчер
+job-name-alt-warden-1 = диспетчер
 
-job-name-alt-detective-1 = Судмедэксперт
+job-name-alt-detective-1 = судмедэксперт
 
-job-name-alt-assistant-1 = Пассажир
-job-name-alt-assistant-2 = Посетитель
-job-name-alt-assistant-3 = Предприниматель
-job-name-alt-assistant-4 = Экипаж вне смены
+job-name-alt-assistant-1 = пассажир
+job-name-alt-assistant-2 = посетитель
+job-name-alt-assistant-3 = предприниматель
+job-name-alt-assistant-4 = экипаж вне смены
 
-job-name-alt-bartender-1 = Миксолог
-job-name-alt-bartender-2 = Оператор оборудования для регидратации
-job-name-alt-bartender-3 = Бариста
+job-name-alt-bartender-1 = миксолог
+job-name-alt-bartender-2 = оператор оборудования для регидратации
+job-name-alt-bartender-3 = бариста
 
-job-name-alt-botanist-1 = Гидропонист
-job-name-alt-botanist-2 = Травник
+job-name-alt-botanist-1 = гидропонист
+job-name-alt-botanist-2 = травник
 
-job-name-alt-chaplain-1 = Проповедник
-job-name-alt-chaplain-2 = Духовный советник
-job-name-alt-chaplain-3 = Хранитель храма
+job-name-alt-chaplain-1 = проповедник
+job-name-alt-chaplain-2 = духовный советник
+job-name-alt-chaplain-3 = хранитель храма
 
-job-name-alt-chef-1 = Су-шеф
-job-name-alt-chef-2 = Раздающий повар
-job-name-alt-chef-3 = Ланч-мэн
-job-name-alt-chef-3-f = Ланч-леди
-job-name-alt-chef-3-m = Ланч-мэн
+job-name-alt-chef-1 = су-шеф
+job-name-alt-chef-2 = раздающий повар
+job-name-alt-chef-3 = ланч-мэн
+job-name-alt-chef-3-f = ланч-леди
+job-name-alt-chef-3-m = ланч-мэн
 
-job-name-alt-clown-1 = Шут
-job-name-alt-clown-2 = Джокер
+job-name-alt-clown-1 = шут
+job-name-alt-clown-2 = джокер
 
-job-name-alt-janitor-1 = Дормработник
-job-name-alt-janitor-2 = Сантехник
-job-name-alt-janitor-3 = Специалист по уборке
+job-name-alt-janitor-1 = дормработник
+job-name-alt-janitor-2 = сантехник
+job-name-alt-janitor-3 = специалист по уборке
 
-job-name-alt-lawyer-1 = Юрист
-job-name-alt-lawyer-2 = Юридический представитель
-job-name-alt-lawyer-3 = Советник
+job-name-alt-lawyer-1 = юрист
+job-name-alt-lawyer-2 = юридический представитель
 
-job-name-alt-librarian-1 = Клерк
-job-name-alt-librarian-2 = Писатель
-job-name-alt-librarian-3 = Профессор
-job-name-alt-librarian-4 = Куратор
+job-name-alt-librarian-1 = клерк
+job-name-alt-librarian-2 = писатель
+job-name-alt-librarian-3 = профессор
+job-name-alt-librarian-4 = куратор
 
-job-name-alt-musician-1 = Радио-диджей
-job-name-alt-musician-2 = Прибывшая знаменитость
-job-name-alt-musician-3 = Исполнитель
+job-name-alt-musician-1 = радио-диджей
+job-name-alt-musician-2 = прибывшая знаменитость
+job-name-alt-musician-3 = исполнитель
 
-job-name-alt-serviceworker-1 = Официант
-job-name-alt-serviceworker-2 = Младший повар
-job-name-alt-serviceworker-3 = Ученик бармена
-job-name-alt-serviceworker-4 = Крупье
-job-name-alt-serviceworker-5 = Стюард
+job-name-alt-serviceworker-1 = официант
+job-name-alt-serviceworker-2 = младший повар
+job-name-alt-serviceworker-3 = ученик бармена
+job-name-alt-serviceworker-4 = крупье
+job-name-alt-serviceworker-5 = стюард
 
-job-name-alt-reporter-1 = Инфлюэнсер
-job-name-alt-reporter-2 = Документалист
-job-name-alt-reporter-3 = Координатор СМИ
+job-name-alt-reporter-1 = инфлюэнсер
+job-name-alt-reporter-2 = документалист
+job-name-alt-reporter-3 = координатор СМИ
 
-job-name-alt-boxer-1 = Фитнес-инструктор
-job-name-alt-boxer-2 = Инструктор йоги
-job-name-alt-boxer-3 = Лайф-тренер
-job-name-alt-boxer-4 = Персональный тренер
-job-name-alt-boxer-5 = Спарринг-партнёр
+job-name-alt-psychologist-1 = психотерапевт
+job-name-alt-psychologist-2 = консультант по профориентации
+job-name-alt-psychologist-3 = психиатр
 
-job-name-alt-psychologist-1 = Психотерапевт
-job-name-alt-psychologist-2 = Консультант по профориентации
-job-name-alt-psychologist-3 = Психиатр
+job-name-alt-captain-1 = руководитель станции
+job-name-alt-captain-2 = шериф
 
-job-name-alt-zookeeper-1 = Член службы отлова животных
-job-name-alt-zookeeper-2 = Менажерист
-job-name-alt-zookeeper-3 = Ксенозоолог
-job-name-alt-zookeeper-4 = Специалист по дикой природе
+job-name-alt-hop-1 = координатор персонала
+
+job-name-alt-cmo-1 = медицинский директор
+job-name-alt-cmo-2 = старший врач
+job-name-alt-cmo-3 = старший медицинский офицер
+job-name-alt-cmo-4 = смотрящий за палатами
+
+job-name-alt-hos-1 = командир службы безопасности
+job-name-alt-hos-2 = старший надзиратель
+
+job-name-alt-rd-1 = ведущий исследователь
+job-name-alt-rd-2 = директор науки
+
+job-name-alt-adjutant-1 = секретарь
+job-name-alt-adjutant-2 = исполнительный помощник
+job-name-alt-adjutant-3 = советник
+
+job-name-alt-commandmaid-1 = главная горничная
+job-name-alt-commandmaid-2 = мажордом
+
+job-name-alt-blueshield-1 = телохранитель командования
+job-name-alt-blueshield-2 = авангард
+
+job-name-alt-ntrep-1 = корпоративный связной
+job-name-alt-ntrep-2 = корпоративный аудитор
+job-name-alt-ntrep-3 = консультант НаноТрейзен
+
+job-name-alt-brigmedic-1 = полевой медик
+job-name-alt-brigmedic-2 = тюремный врач
+
+job-name-alt-seccadet-1 = стажёр СБ
+
+job-name-alt-iaa-1 = инспектор
+job-name-alt-iaa-2 = ревизор
+
+job-name-alt-technicalassistant-1 = инженер-стажёр
+job-name-alt-technicalassistant-2 = стажёр инженерного отдела
+
+job-name-alt-researchassistant-1 = интерн лаборатории
+job-name-alt-researchassistant-2 = стажёр научного отдела
+
+job-name-alt-roboticist-1 = инженер-мехатроник
+job-name-alt-roboticist-2 = техник по киборгам
+
+job-name-alt-virologist-1 = специалист по заболеваниям
+job-name-alt-virologist-2 = эпидемиолог
+
+job-name-alt-medicalintern-1 = младший врач
+job-name-alt-medicalintern-2 = ординатор
+
+job-name-alt-shaftminer-1 = рудокоп
+
+job-name-alt-mime-1 = пантомимист
+job-name-alt-mime-2 = молчаливый актёр
+
+job-name-alt-radiohost-1 = диджей станции
+job-name-alt-radiohost-2 = ведущий радиопередач

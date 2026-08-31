@@ -35,7 +35,6 @@
   alternateTitles:
   - LawyerAttorney
   - LawyerLegalRepresentative
-  - LawyerCounsel
   # Arcane-end
 
 - type: startingGear
@@ -70,8 +69,4 @@
 - type: jobAlternateTitle
   id: LawyerLegalRepresentative
   name: job-name-alt-lawyer-2
-
-- type: jobAlternateTitle
-  id: LawyerCounsel
-  name: job-name-alt-lawyer-3
 # Arcane-End

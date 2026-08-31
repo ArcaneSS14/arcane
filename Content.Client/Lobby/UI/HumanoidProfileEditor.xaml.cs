@@ -44,9 +44,10 @@ using Direction = Robust.Shared.Maths.Direction;
 using Content.Goobstation.Common.CCVar; // Goob Station - Barks
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Orion.RichText;
-using Content.Shared._Arcane.ERP;
 using Content.Client._Arcane.TTS;
+using Content.Shared._Arcane.ERP;
 using Content.Shared._Arcane.TTS;
+using Content.Shared._Arcane.CCVars;
 
 namespace Content.Client.Lobby.UI
 {
@@ -1412,7 +1413,7 @@ namespace Content.Client.Lobby.UI
 
                 Array.Sort(jobs, JobUIComparer.Instance);
 
-                var altJobTitlesEnable = _cfgManager.GetCVar(CCVars.ICAlternateJobTitlesEnable); // Arcane
+                var altJobTitlesEnable = _cfgManager.GetCVar(ACCVars.ICAlternateJobTitlesEnable); // Arcane
 
                 foreach (var job in jobs)
                 {
@@ -1462,7 +1463,7 @@ namespace Content.Client.Lobby.UI
                                 if (_prototypeManager.TryIndex(titleId, out var titleProto) &&
                                     titleProto.Requirements != null)
                                 {
-                                    if (!_requirements.CheckRoleRequirements(titleProto.Requirements, Profile, out _))
+                                    if (!_requirements.IsAllowed(titleProto.Requirements, Profile, out _))
                                     {
                                         isLocked = true;
                                     }

@@ -60,6 +60,9 @@
         - CorporateCodespeak
   contracts: # Arcane
   - DocumentContractEmploymentCommand
+  alternateTitles: # Arcane
+  - CaptainStationDirector
+  - CaptainCommander
 
 - type: startingGear
   id: CaptainGear
@@ -84,3 +87,13 @@
     eyes: ClothingEyesGlassesCommand
     mask: ClothingMaskGasCaptain
     neck: ClothingNeckCloakCap
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: CaptainStationDirector
+  name: job-name-alt-captain-1
+
+- type: jobAlternateTitle
+  id: CaptainCommander
+  name: job-name-alt-captain-2
+# Arcane-End

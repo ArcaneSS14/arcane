@@ -81,6 +81,8 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentCommand
+  alternateTitles:
+  - HoPPersonnelCoordinator
   # Arcane-end
 
 - type: startingGear
@@ -107,3 +109,9 @@
     mask: ClothingMaskNeckGaiterRed
     neck: ClothingNeckCloakHop
     outerClothing: ClothingOuterWinterHoP
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: HoPPersonnelCoordinator
+  name: job-name-alt-hop-1
+# Arcane-End

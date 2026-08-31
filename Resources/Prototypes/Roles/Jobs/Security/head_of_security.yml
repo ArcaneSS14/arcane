@@ -58,6 +58,9 @@
       - type: SecurityStaff # goobstation
   contracts: # Arcane
   - DocumentContractEmploymentCommand
+  alternateTitles: # Arcane
+  - HOSSecurityCommander
+  - HOSChiefWarden
 
 - type: startingGear
   id: HoSGear
@@ -79,3 +82,13 @@
   equipment:
     mask: ClothingMaskGasSecurity
     neck: ClothingNeckCloakHos
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: HOSSecurityCommander
+  name: job-name-alt-hos-1
+
+- type: jobAlternateTitle
+  id: HOSChiefWarden
+  name: job-name-alt-hos-2
+# Arcane-End

@@ -76,7 +76,6 @@ job-name-alt-janitor-3 = Custodial Technician
 
 job-name-alt-lawyer-1 = Attorney
 job-name-alt-lawyer-2 = Legal Representative
-job-name-alt-lawyer-3 = Counsel
 
 job-name-alt-librarian-1 = Clerk
 job-name-alt-librarian-2 = Writer
@@ -97,17 +96,67 @@ job-name-alt-reporter-1 = Influencer
 job-name-alt-reporter-2 = Documentarian
 job-name-alt-reporter-3 = Media Coordinator
 
-job-name-alt-boxer-1 = Fitness Instructor
-job-name-alt-boxer-2 = Yoga Instructor
-job-name-alt-boxer-3 = Life Coach
-job-name-alt-boxer-4 = Personal Trainer
-job-name-alt-boxer-5 = Heel
-
 job-name-alt-psychologist-1 = Therapist
 job-name-alt-psychologist-2 = Guidance Counselor
 job-name-alt-psychologist-3 = Psychiatrist
 
-job-name-alt-zookeeper-1 = Animal Control
-job-name-alt-zookeeper-2 = Menagerist
-job-name-alt-zookeeper-3 = Xenobiologist
-job-name-alt-zookeeper-4 = Wildlife Specialist
+job-name-alt-captain-1 = Station Manager
+job-name-alt-captain-2 = Sheriff
+
+job-name-alt-hop-1 = Personnel Coordinator
+
+job-name-alt-cmo-1 = Medical Director
+job-name-alt-cmo-2 = Head Physician
+job-name-alt-cmo-3 = Chief Medical Officer
+job-name-alt-cmo-4 = Ward Supervisor
+
+job-name-alt-hos-1 = Security Commander
+job-name-alt-hos-2 = Chief Warden
+
+job-name-alt-rd-1 = Research Lead
+job-name-alt-rd-2 = Science Director
+
+job-name-alt-adjutant-1 = Secretary
+job-name-alt-adjutant-2 = Executive Assistant
+job-name-alt-adjutant-3 = Counselor
+
+job-name-alt-commandmaid-1 = Head Maid
+job-name-alt-commandmaid-2 = Majordomo
+
+job-name-alt-blueshield-1 = Command Bodyguard
+job-name-alt-blueshield-2 = Vanguard
+
+job-name-alt-ntrep-1 = Corporate Liaison
+job-name-alt-ntrep-2 = Corporate Auditor
+job-name-alt-ntrep-3 = NanoTrasen Consultant
+
+job-name-alt-brigmedic-1 = Field Medic
+job-name-alt-brigmedic-2 = Prison Doctor
+
+job-name-alt-seccadet-1 = Security Trainee
+
+job-name-alt-iaa-1 = Inspector
+job-name-alt-iaa-2 = Auditor
+
+job-name-alt-technicalassistant-1 = Apprentice Engineer
+job-name-alt-technicalassistant-2 = Engineering Trainee
+
+job-name-alt-researchassistant-1 = Lab Intern
+job-name-alt-researchassistant-2 = Science Trainee
+
+job-name-alt-roboticist-1 = Mechatronic Engineer
+job-name-alt-roboticist-2 = Cyborg Technician
+
+job-name-alt-virologist-1 = Disease Specialist
+job-name-alt-virologist-2 = Epidemiologist
+
+job-name-alt-medicalintern-1 = Junior Doctor
+job-name-alt-medicalintern-2 = Resident
+
+job-name-alt-shaftminer-1 = Excavator
+
+job-name-alt-mime-1 = Pantomimist
+job-name-alt-mime-2 = Silent Actor
+
+job-name-alt-radiohost-1 = Station DJ
+job-name-alt-radiohost-2 = Broadcaster
