@@ -198,6 +198,8 @@
       - !type:SuppressPain # Shitmed Change
         amount: 1.2
         time: 10 # it accumulated 1.2*quantity and then exists for 30 seconds.
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: StrongStimulant
     Medicine:
       effects:
       # Side effects
@@ -402,6 +404,8 @@
             Shock: -0.1
             Cold: -0.1
             Radiation: -0.1
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: NicotineBenefit
 
 # TODO: Replace these nonstandardized effects with generic brain damage
 - type: reagent
@@ -476,6 +480,8 @@
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 5
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: SpaceDrugsBenefit
 
 - type: reagent
   id: Bananadine
@@ -669,6 +675,8 @@
         - !type:ReagentCondition
           reagent: TearGas
           min: 4
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: TearGasEffect
 
 - type: reagent
   id: Happiness
@@ -730,6 +738,8 @@
         - !type:ReagentCondition
           reagent: Happiness
           max: 20
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: PsicodineEffect
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
         type: Add
