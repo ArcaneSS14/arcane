@@ -105,6 +105,10 @@
       reagents:
       - ReagentId: BlackBlood
         Quantity: 200
+  # Arcane-Start
+  - type: Puller
+    needsHands: false
+  # Arcane-End
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 46

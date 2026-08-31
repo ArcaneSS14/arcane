@@ -4,6 +4,7 @@ using Content.Client.Hands.Systems;
 using Content.Client.NPC.HTN;
 using Content.Shared.CCVar;
 using Content.Shared.CombatMode;
+using Content.Shared._Arcane.CCVars;
 using Content.Shared.StatusIcon.Components;
 using Robust.Client.Audio;
 using Robust.Client.GameObjects;
@@ -42,6 +43,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
         SubscribeLocalEvent<CombatModeComponent, GetStatusIconsEvent>(UpdateCombatModeIndicator); // Orion
         Subs.CVar(_cfg, CCVars.CombatModeIndicatorsPointShow, OnShowCombatIndicatorsChanged, true);
         Subs.CVar(_cfg, CCVars.CombatIndicator, (bool value) => OnShowCombatIndicatorChanged(value), true); // Orion
+        Subs.CVar(_cfg, ACCVars.CombatModeBlockItemPickup, OnBlockItemPickupChanged, true); // Arcane
 
         // Orion-Start
         _spriteQuery = GetEntityQuery<SpriteComponent>();
@@ -113,11 +115,43 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
 
     // Orion-Start
     private bool _combatIndicatorEnabled = false;
+    private EntityUid? _blockPickupSyncedFor; // Arcane
 
     private void OnShowCombatIndicatorChanged(bool value)
     {
         _combatIndicatorEnabled = value;
     }
+
+    // Arcane-Start
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var entity = _playerManager.LocalEntity;
+        if (entity == null || !TryComp<CombatModeComponent>(entity.Value, out var comp))
+            return;
+
+        // Only sync once per controlled entity; on respawn/transfer the LocalEntity changes and the
+        // alternative interaction window setting has to be sent to the server for the new entity too.
+        if (_blockPickupSyncedFor == entity.Value)
+            return;
+
+        _blockPickupSyncedFor = entity.Value;
+        var value = _cfg.GetCVar(ACCVars.CombatModeBlockItemPickup);
+        comp.BlockItemPickup = value;
+        RaiseNetworkEvent(new CombatModeBlockItemPickupChangedMessage(value));
+    }
+
+    private void OnBlockItemPickupChanged(bool value)
+    {
+        var entity = _playerManager.LocalEntity;
+        if (entity == null || !TryComp<CombatModeComponent>(entity.Value, out var comp))
+            return;
+
+        comp.BlockItemPickup = value;
+        RaiseNetworkEvent(new CombatModeBlockItemPickupChangedMessage(value));
+    }
+    // Arcane-End
 
     private void UpdateCombatModeIndicator(EntityUid uid, CombatModeComponent comp, ref GetStatusIconsEvent _)
     {
