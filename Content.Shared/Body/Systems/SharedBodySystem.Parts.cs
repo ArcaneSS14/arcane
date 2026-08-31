@@ -124,6 +124,10 @@ public partial class SharedBodySystem
         {
             AddPart(body.Value, (insertedUid, part), slotId);
             RecursiveBodyUpdate((insertedUid, part), body.Value);
+            // Arcane-Start
+            var ev = new BodyTopologyChangedEvent();
+            RaiseLocalEvent(body.Value, ev);
+            // Arcane-End
         }
 #if DEBUG
         else if(HasComp<BodyPartComponent>(insertedUid))
