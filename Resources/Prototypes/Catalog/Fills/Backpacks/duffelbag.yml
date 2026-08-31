@@ -394,7 +394,7 @@
       - id: MedkitCombatFilled
       - id: DefibrillatorSyndicate
       - id: ClothingEyesNightVisionGogglesNukie
-      - id: HandheldHealthAnalyzerUnpowered
+      - id: HandheldHealthAnalyzer
         amount: 2
       - id: SalbutamolAutoInjector
         amount: 3
