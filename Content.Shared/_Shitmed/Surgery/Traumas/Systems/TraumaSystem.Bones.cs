@@ -339,8 +339,6 @@ public partial class TraumaSystem
                 };
             }
 
-            var symmetry = Comp<BodyPartComponent>(legEntity).Symmetry;
-
             var footEnt = _body.GetBodyChildrenOfType(
                     body,
                     BodyPartType.Foot,
