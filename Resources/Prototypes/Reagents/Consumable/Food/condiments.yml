@@ -28,6 +28,16 @@
   physicalDesc: reagent-physical-desc-cold
   flavor: cold
   color: skyblue
+  # Arcane-Start
+  metabolisms:
+    Drink:
+      effects:
+      - !type:AdjustTemperature
+        amount: -25
+        conditions:
+        - !type:TemperatureCondition
+          min: 270
+  # Arcane-End
 
 - type: reagent
   id: Cornoil

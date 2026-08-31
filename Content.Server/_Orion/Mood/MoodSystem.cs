@@ -10,6 +10,7 @@ using Content.Shared._DV.Roles;
 using Content.Shared.Alert;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -206,22 +207,22 @@ public sealed class MoodSystem : EntitySystem
             || _jetpack.IsUserFlying(uid))
             return;
 
-        var modifier = 1f;
-        if (component.CurrentMoodThreshold != MoodThreshold.Dead && component.CurrentMoodThreshold is <= MoodThreshold.Meh or >= MoodThreshold.Great) // Arcane-Edit
+        var decreasesSpeed = _config.GetCVar(CCVars.MoodDecreasesSpeed);
+        var increasesSpeed = _config.GetCVar(CCVars.MoodIncreasesSpeed);
+
+        var modifier = component.CurrentMoodThreshold switch
         {
-            // This ridiculous math serves a purpose making high mood less impactful on movement speed than low mood
-            modifier =
-                Math.Clamp(
-                    (component.CurrentMoodLevel >= component.MoodThresholds[MoodThreshold.Neutral])
-                        ? _config.GetCVar(CCVars.MoodIncreasesSpeed)
-                            ? MathF.Pow(component.SpeedBonusGrowth, component.CurrentMoodLevel - component.MoodThresholds[MoodThreshold.Neutral])
-                            : 1
-                        : _config.GetCVar(CCVars.MoodDecreasesSpeed)
-                            ? 2 - component.MoodThresholds[MoodThreshold.Neutral] / MathF.Max(component.CurrentMoodLevel, 1f)
-                            : 1,
-                    component.MinimumSpeedModifier,
-                    component.MaximumSpeedModifier);
-        }
+            MoodThreshold.Dead or MoodThreshold.Horrible when decreasesSpeed => 0.50f,
+            MoodThreshold.Terrible when decreasesSpeed => 0.65f,
+            MoodThreshold.Bad when decreasesSpeed => 0.78f,
+            MoodThreshold.Meh when decreasesSpeed => 0.90f,
+            >= MoodThreshold.Great when increasesSpeed => Math.Min(
+                MathF.Pow(
+                    component.SpeedBonusGrowth,
+                    component.CurrentMoodLevel - component.MoodThresholds[MoodThreshold.Neutral]),
+                component.MaximumSpeedModifier),
+            _ => 1f,
+        };
 
         switch (component.CurrentSanityThreshold)
         {
@@ -626,10 +627,11 @@ public sealed class MoodSystem : EntitySystem
 
         var modifier = GetMovementThreshold(component.CurrentMoodThreshold);
 
-        // Modify mob stats
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
+
+        // Modify crit thresholds only when the mood group changes.
         if (modifier != GetMovementThreshold(component.LastThreshold))
         {
-            _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
             SetCritThreshold(uid, component, modifier);
         }
 
@@ -854,7 +856,16 @@ public sealed class MoodSystem : EntitySystem
 
     private void OnDamageChange(EntityUid uid, MoodComponent component, DamageChangedEvent args)
     {
-        if (!_mobThreshold.TryGetPercentageForState(uid, MobState.Critical, args.Damageable.TotalDamage, out var damage))
+        // Arcane-Start
+        if (HasComp<IgnoreSlowOnDamageComponent>(uid))
+        {
+            RaiseLocalEvent(uid, new MoodEffectEvent("HealthNoDamage"));
+            return;
+        }
+        // Arcane-End
+
+        var vitalDamage = _mobThreshold.CheckVitalDamage(uid, args.Damageable); // Arcane
+        if (!_mobThreshold.TryGetPercentageForState(uid, MobState.Critical, vitalDamage, out var damage)) // Arcane-Edit: Now head, chest, groin
             return;
 
         ProtoId<MoodEffectPrototype> protoId = "HealthNoDamage";
