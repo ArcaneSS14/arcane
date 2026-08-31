@@ -322,9 +322,14 @@ public partial class TraumaSystem
 
         var penalty = 0f;
         var missingFeet = 0;
+        var presentLegs = 0;
 
         foreach (var legEntity in body.Comp.LegEntities)
         {
+            if (!TryComp<BodyPartComponent>(legEntity, out var legPart))
+                continue;
+
+            presentLegs++;
             var legPenalty = 0f;
 
             if (TryComp<WoundableComponent>(legEntity, out var legWoundable)
@@ -342,7 +347,7 @@ public partial class TraumaSystem
             var footEnt = _body.GetBodyChildrenOfType(
                     body,
                     BodyPartType.Foot,
-                    symmetry: symmetry)
+                    symmetry: legPart.Symmetry)
                 .FirstOrNull();
 
             if (footEnt == null)
@@ -372,7 +377,7 @@ public partial class TraumaSystem
         }
         var missingLegs = Math.Max(
             0,
-            body.Comp.RequiredLegs - body.Comp.LegEntities.Count);
+            body.Comp.RequiredLegs - presentLegs);
 
         penalty += missingLegs * 0.4f;
         missingFeet += missingLegs;
