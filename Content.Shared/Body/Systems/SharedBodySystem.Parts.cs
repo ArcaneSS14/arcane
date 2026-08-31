@@ -285,7 +285,7 @@ public partial class SharedBodySystem
             return;
 
         bodyEnt.Comp.LegEntities.Add(legEnt);
-        UpdateMovementSpeed(bodyEnt);
+//        UpdateMovementSpeed(bodyEnt); // Arcane-Edit
         Dirty(bodyEnt, bodyEnt.Comp);
     }
 
@@ -298,7 +298,7 @@ public partial class SharedBodySystem
             return;
 
         bodyEnt.Comp.LegEntities.Remove(legEnt);
-        UpdateMovementSpeed(bodyEnt);
+//        UpdateMovementSpeed(bodyEnt); // Arcane-Edit
         Dirty(bodyEnt, bodyEnt.Comp);
 
         if (bodyEnt.Comp.LegEntities.Count != 0)

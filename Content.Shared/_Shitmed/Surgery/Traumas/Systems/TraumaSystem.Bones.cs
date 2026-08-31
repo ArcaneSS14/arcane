@@ -382,7 +382,7 @@ public partial class TraumaSystem
         if (HasComp<IgnoreSlowOnDamageComponent>(body))
             penalty *= 0.5f;
 
-        var modifier = Math.Max(0f, 1f - penalty);
+        var modifier = 1f - Math.Min(0.8f, penalty);
 
         return (modifier, modifier, modifier, modifier, 1f, missingFeet);
     }
