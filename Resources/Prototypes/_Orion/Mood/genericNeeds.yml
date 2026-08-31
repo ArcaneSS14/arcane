@@ -11,12 +11,12 @@
 
 - type: moodEffect
   id: HungerPeckish
-  moodChange: -2 # Arcane-Edit: -3 > -2
+  moodChange: -3
   category: "Hunger"
 
 - type: moodEffect
   id: HungerStarving
-  moodChange: -45 # Arcane-Edit: -10 > -45
+  moodChange: -35 # Arcane-Edit: -10 > -35
   category: "Hunger"
 
 # Thirst
@@ -37,7 +37,7 @@
 
 - type: moodEffect
   id: ThirstParched
-  moodChange: -25 # Arcane-Edit: -10 > -25
+  moodChange: -20 # Arcane-Edit: -10 > -20
   category: "Thirst"
 
 # Health
