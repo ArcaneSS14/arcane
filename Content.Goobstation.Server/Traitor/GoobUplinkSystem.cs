@@ -6,8 +6,10 @@ using Content.Server.PDA.Ringer;
 using Content.Server.Preferences.Managers;
 using Content.Server.Store.Systems;
 using Content.Shared.Mind;
+using Content.Shared.Mindshield;
 using Content.Shared.PDA;
 using Content.Shared.PDA.Ringer;
+using Content.Shared.Popups;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Store;
@@ -27,6 +29,10 @@ public sealed class GoobUplinkSystem : GoobCommonUplinkSystem
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    // Arcane-Start
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedMindShieldCheckSystem _mindShieldCheck = default!;
+    // Arcane-End
 
     private static readonly ProtoId<RoleLoadoutPrototype> AntagTraitorLoadout = "AntagTraitor";
     private static readonly ProtoId<LoadoutGroupPrototype> TraitorUplinkGroup = "TraitorUplink";
@@ -170,6 +176,14 @@ public sealed class GoobUplinkSystem : GoobCommonUplinkSystem
 
     private void OnSubmitDegree(Entity<PenComponent> ent, ref PenSpinSubmitDegreeMessage args)
     {
+        // Arcane-Start
+        if (_mindShieldCheck.IsMindShieldBlocked(args.Actor))
+        {
+            _popup.PopupEntity(Loc.GetString("mindshield-blocks-syndicate"), ent.Owner, args.Actor);
+            return;
+        }
+        // Arcane-End
+
         if (!IsValidDegree(ent.Comp, args.Degree))
             return;
 

@@ -9,6 +9,7 @@ using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Timing;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.CombatMode;
 
@@ -127,6 +128,14 @@ public abstract class SharedCombatModeSystem : EntitySystem
     // todo: When we stop making fucking garbage abstract shared components, remove this shit too.
     protected abstract bool IsNpc(EntityUid uid);
 }
+
+// Arcane-Start
+[Serializable, NetSerializable]
+public sealed class CombatModeBlockItemPickupChangedMessage(bool blockPickup) : EntityEventArgs
+{
+    public bool BlockPickup { get; } = blockPickup;
+}
+// Arcane-End
 
 public sealed partial class ToggleCombatActionEvent : InstantActionEvent
 {

@@ -72,5 +72,14 @@ namespace Content.Shared.CombatMode
         public SoundSpecifier? CombatDeactivationSound = new SoundPathSpecifier
             ("/Audio/_Orion/Effects/Actions/CombatMode/combatmode-off.ogg");
         // Orion-End
+
+        // Arcane-Start
+        /// <summary>
+        ///     When true, disables item pickup while in combat mode.
+        ///     Set from client CVar and networked to server.
+        /// </summary>
+        [DataField, AutoNetworkedField]
+        public bool BlockItemPickup;
+        // Arcane-End
     }
 }

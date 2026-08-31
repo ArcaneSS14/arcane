@@ -50,6 +50,7 @@
     UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobMothChest
     Groin: MobMothGroin # Goob
+    Hair: MobHumanoidAnyMarking # Arcane
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
@@ -71,17 +72,20 @@
 
 - type: markingPoints
   id: MobMothMarkingLimits
-  onlyWhitelisted: true
+  # onlyWhitelisted: true # Arcane-Edit
   points:
     Hair:
-      points: 0
+      points: 1 # Arcane-Edit: 0 > 1
       required: false
+      onlyWhitelisted: false # Arcane
     FacialHair:
       points: 0
       required: false
+      onlyWhitelisted: true # Arcane
     Tail:
       points: 1
       required: true
+      onlyWhitelisted: true # Arcane
       defaultMarkings: [ MothWingsDefault ]
     Snout:
       points: 1
@@ -89,46 +93,60 @@
     HeadTop:
       points: 6
       required: true
+      onlyWhitelisted: true # Arcane
       defaultMarkings: [ MothAntennasDefault ]
     HeadSide:
       points: 8
       required: false
+      onlyWhitelisted: true # Arcane
     Head:
       points: 1
       required: false
+      onlyWhitelisted: true # Arcane
     UndergarmentTop:
       points: 1
       required: false
+      onlyWhitelisted: true # Arcane
     UndergarmentBottom:
       points: 8
       required: false
+      onlyWhitelisted: true # Arcane
     Chest:
       points: 8
       required: false
+      onlyWhitelisted: true # Arcane
     RightLeg:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     RightFoot:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     LeftLeg:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     LeftFoot:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     RightArm:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     RightHand:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     LeftArm:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     LeftHand:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
 
 - type: humanoidBaseSprite
   id: MobMothHead

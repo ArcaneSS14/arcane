@@ -17,6 +17,7 @@
         Normal: 120
         Damaged: 60
         Destroyed: 0
+      indestructible: true # Arcane
       slotId: core
     - type: Metabolizer
       maxPoisonsProcessable: 2 # Shitmed

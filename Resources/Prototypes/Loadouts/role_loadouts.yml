@@ -442,7 +442,7 @@
   - QuartermasterNeck
   - QuartermasterJumpsuit
   - QuartermasterHands # Arcane
-  - CargoTechnicianBackpack
+  - QuartermasterBackpack # Arcane
   - QuartermasterOuterClothing
   - QuartermasterShoes
   - Glasses
@@ -526,7 +526,7 @@
   - GroupTankHarness
   - ChiefEngineerHead
   - ChiefEngineerJumpsuit
-  - StationEngineerBackpack
+  - ChiefEngineerBackpack # Arcane
   - ChiefEngineerNeck
   - ChiefEngineerOuterClothing
   - ChiefEngineerShoes
@@ -633,7 +633,7 @@
   - ResearchDirectorHead
   - ResearchDirectorNeck
   - ResearchDirectorJumpsuit
-  - ScientistBackpack
+  - ResearchDirectorBackpack # Arcane
   - ResearchDirectorOuterClothing
   - ScientistGloves
   - ResearchDirectorShoes
@@ -863,7 +863,7 @@
   - MedicalMask
   - ChiefMedicalOfficerJumpsuit
   - MedicalGloves
-  - MedicalBackpack
+  - ChiefMedicalOfficerBackpack # Arcane
   - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes

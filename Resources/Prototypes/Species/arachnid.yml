@@ -64,55 +64,70 @@
 
 - type: markingPoints
   id: MobArachnidMarkingLimits
-  onlyWhitelisted: true
+  # onlyWhitelisted: true # Arcane-Edit
   points:
     Hair:
       points: 1
       required: false
+      onlyWhitelisted: false # Arcane
     Tail:
       points: 1
       required: true
       defaultMarkings: [ ArachnidAppendagesDefault ]
+      onlyWhitelisted: true # Arcane
     HeadTop:
       points: 6
       required: false
+      onlyWhitelisted: true # Arcane
     HeadSide:
       points: 3
       required: true
+      onlyWhitelisted: true # Arcane
       defaultMarkings: [ ArachnidCheliceraeDownwards ]
     Chest:
       points: 10
       required: false
+      onlyWhitelisted: true # Arcane
     UndergarmentBottom:
       points: 1
       required: false
+      onlyWhitelisted: true # Arcane
     UndergarmentTop:
       points: 1
       required: false
+      onlyWhitelisted: true # Arcane
     RightLeg:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     RightFoot:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     LeftLeg:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     LeftFoot:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     RightArm:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     RightHand:
       points: 3
       required: false
+      onlyWhitelisted: true # Arcane
     LeftArm:
       points: 2
       required: false
+      onlyWhitelisted: true # Arcane
     LeftHand:
       points: 3
       required: false
+      onlyWhitelisted: true # Arcane
 
 - type: humanoidBaseSprite
   id: MobArachnidHead

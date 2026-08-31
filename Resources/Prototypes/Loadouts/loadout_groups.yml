@@ -269,9 +269,14 @@
   id: HoPBackpack
   name: loadout-group-hop-backpack
   loadouts:
-  - CommonBackpack
-  - CommonSatchel
-  - CommonDuffel
+  # Arcane-Edit-Start
+  - HeadOfPersonnelBackpack
+  - HeadOfPersonnelSatchel
+  - HeadOfPersonnelDuffel
+# - CommonBackpack
+# - CommonSatchel
+# - CommonDuffel
+  # Arcane-Edit-End
   - CommonMessenger # Frontier
   - HoPBackpackIan
 
@@ -1582,6 +1587,7 @@
   - SecurityOfficerWintercoat
   - WinterCoatSeniorSecArmored # Goobstation
   - VeteranOfficerArmor # Goobstation
+  - ClothingOuterLightBronnikPatron # Arcane
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1637,6 +1643,10 @@
   - DetectiveJumpskirt
   - NoirJumpsuit
   - NoirJumpskirt
+  # Arcane-Start
+  - DetectiveJumpsuitMaintainedPatron
+  - DetectiveJumpskirtMaintainedPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: DetectiveOuterClothing
