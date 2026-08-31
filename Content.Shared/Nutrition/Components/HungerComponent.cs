@@ -113,12 +113,14 @@ public sealed partial class HungerComponent : Component
         { HungerThreshold.Dead, 0.6f }
     };
 
+    /* // Arcane-Edit-Start
     /// <summary>
     /// The amount of slowdown applied when an entity is starving
     /// </summary>
     [DataField("starvingSlowdownModifier"), ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public float StarvingSlowdownModifier = 0.75f;
+    */ // Arcane-Edit-End
 
     /// <summary>
     /// Damage dealt when your current threshold is at HungerThreshold.Dead

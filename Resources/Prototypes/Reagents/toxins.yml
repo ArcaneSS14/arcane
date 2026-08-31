@@ -683,6 +683,8 @@
         gainRateModifier: -0.00111111111111 #double spaceacilin penalty
         strengthModifier: -0.0088888888888 #ditto
         statusLifetime: 1.5 # 1.5s per 1u
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: PaxEffect
 
 - type: reagent
   id: Honk
