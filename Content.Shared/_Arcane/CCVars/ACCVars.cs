@@ -42,7 +42,7 @@ public sealed partial class ACCVars
         CVarDef.Create("game.rounds_to_restart", 8, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Offer item.
+    ///     Offer item.
     /// </summary>
     public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
         CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
@@ -59,7 +59,7 @@ public sealed partial class ACCVars
         CVarDef.Create("accessibility.tg13_controls", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Enables alternate job titles for players.
+    ///     Enables alternate job titles for players.
     /// </summary>
     public static readonly CVarDef<bool> ICAlternateJobTitlesEnable =
         CVarDef.Create("ic.alternate_job_titles_enable", true, CVar.SERVER | CVar.REPLICATED);
