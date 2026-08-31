@@ -52,13 +52,21 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: JugBicaridine
+        # Arcane-Edit-Start
+        - id: JugTrico
         - id: JugPuncturase
-        - id: JugDermaline
-        - id: JugDylovene
-        - id: JugHyronalin
-        - id: JugDexPlusSaline # Arcane-Edit: 2 in 1
+        - id: JugPyraDerma
+        - id: JugSaline
+        - id: JugDexalinPlus
         - id: JugTranexamicAcid
+        - id: AdvancedEmergencyMedipen
+          amount: 3
+        - id: SalbutamolAutoInjector
+          amount: 3
+        - id: SyriniverChemistryVial
+        - id: SyriniverChemistryVial
+        - id: ChemistryBottleOmnizine
+        # Arcane-Edit-End
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -399,6 +407,8 @@
         amount: 3
       - id: CombatMedipen
         amount: 3
+      - id: VestineChemistryVial
+      - id: ChemistryBottleEphedrine
       # Arcane-Edit-End
 
 - type: entity
