@@ -14,6 +14,8 @@ public sealed partial class PresetIdCardComponent : Component
     [DataField("name")]
     public string? IdName;
 
+    // Arcane-Start
     [DataField("alternateTitle")]
     public ProtoId<JobAlternateTitlePrototype>? AlternateTitleId;
+    // Arcane-End
 }

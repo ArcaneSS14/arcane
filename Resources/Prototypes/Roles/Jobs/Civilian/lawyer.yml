@@ -62,6 +62,7 @@
     outerClothing: ClothingOuterWinterColorBlack
     gloves: ClothingHandsGlovesColorBlack
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: LawyerAttorney
   name: job-name-alt-lawyer-1
@@ -73,3 +74,4 @@
 - type: jobAlternateTitle
   id: LawyerCounsel
   name: job-name-alt-lawyer-3
+# Arcane-End

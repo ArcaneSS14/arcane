@@ -54,7 +54,7 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
-                .Include(p => p.Profiles).ThenInclude(h => h.AltTitles)
+                .Include(p => p.Profiles).ThenInclude(h => h.AltTitles) // Arcane
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -116,7 +116,7 @@ namespace Content.Server.Database
                 .Include(p => p.Jobs)
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
-                .Include(p => p.AltTitles)
+                .Include(p => p.AltTitles) // Arcane
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
@@ -269,6 +269,7 @@ namespace Content.Server.Database
                 }
             }
 
+            // Arcane-Start
             var altTitles = profile.AltTitles
                 .GroupBy(r => r.RoleName)
                 .ToDictionary(
@@ -277,6 +278,7 @@ namespace Content.Server.Database
                         .OrderByDescending(x => x.Id)
                         .First().AlternateTitle)
                 );
+            // Arcane-End
 
             var loadouts = new Dictionary<string, RoleLoadout>();
 
@@ -341,7 +343,7 @@ namespace Content.Server.Database
                 spawnPriority,
                 jobs,
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
-                altTitles,
+                altTitles, // Arcane
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts,
@@ -416,6 +418,7 @@ namespace Content.Server.Database
             profile.BarkVoice = humanoid.BarkVoice; // Goob Station - Barks
             profile.ErpPreference = (int) humanoid.ErpPreference; // Arcane
 
+            // Arcane-Start
             profile.AltTitles.Clear();
             foreach (var (role, title) in humanoid.JobAlternateTitles)
             {
@@ -427,6 +430,7 @@ namespace Content.Server.Database
 
                 profile.AltTitles.Add(newTitle);
             }
+            // Arcane-End
 
             profile.Loadouts.Clear();
 

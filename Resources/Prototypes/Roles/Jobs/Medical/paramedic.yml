@@ -62,6 +62,7 @@
     outerClothing: ClothingOuterCoatParamedicWB
     gloves: ClothingHandsGlovesLatex
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: ParamedicTraumaSpecialist
   name: job-name-alt-paramedic-1
@@ -69,3 +70,4 @@
 - type: jobAlternateTitle
   id: ParamedicEmergencyMedicalTechnician
   name: job-name-alt-paramedic-2
+# Arcane-End

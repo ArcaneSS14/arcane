@@ -1412,7 +1412,7 @@ namespace Content.Client.Lobby.UI
 
                 Array.Sort(jobs, JobUIComparer.Instance);
 
-                var altJobTitlesEnable = _cfgManager.GetCVar(CCVars.ICAlternateJobTitlesEnable);
+                var altJobTitlesEnable = _cfgManager.GetCVar(CCVars.ICAlternateJobTitlesEnable); // Arcane
 
                 foreach (var job in jobs)
                 {
@@ -1424,7 +1424,7 @@ namespace Content.Client.Lobby.UI
                     var selector = new RequirementsSelector()
                     {
                         Margin = new Thickness(3f, 3f, 3f, 0f),
-                        HorizontalExpand = true,
+                        HorizontalExpand = true, // Arcane
                     };
                     selector.OnOpenGuidebook += OnOpenGuidebook;
 
@@ -1434,6 +1434,12 @@ namespace Content.Client.Lobby.UI
                         VerticalAlignment = VAlignment.Center
                     };
                     var jobIcon = _prototypeManager.Index(job.Icon);
+                    // Arcane-Edit-Start
+                    // icon.Texture = _sprite.Frame0(jobIcon.Icon);
+                    // selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
+                    // Arcane-Edit-End
+
+                    // Arcane-Start
                     icon.Texture = jobIcon.Icon.Frame0();
                     var hasDefaultAltTitle = Profile?.JobAlternateTitles.ContainsKey(job.ID);
 
@@ -1467,6 +1473,7 @@ namespace Content.Client.Lobby.UI
                     }
 
                     selector.Setup(items, job.LocalizedName, 280, job.LocalizedDescription, icon, job.Guides, altTitleInfo, currentAlt, _prototypeManager, Profile?.Gender);
+                    // Arcane-End
 
                     if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter, out var reason))
                     {
@@ -1477,6 +1484,7 @@ namespace Content.Client.Lobby.UI
                         selector.UnlockRequirements();
                     }
 
+                    // Arcane-Start
                     selector.OnSelectedTitle += selectedTitle =>
                     {
                         if (!altJobTitlesEnable)
@@ -1484,6 +1492,7 @@ namespace Content.Client.Lobby.UI
                         Profile = Profile?.WithJobAltTitle(job.ID, selectedTitle);
                         SetDirty();
                     };
+                    // Arcane-End
 
                     selector.OnSelected += selectedPrio =>
                     {
@@ -1838,7 +1847,7 @@ namespace Content.Client.Lobby.UI
         {
             Profile = Profile?.WithGender(newGender);
             ReloadPreview();
-            RefreshJobs(); // So gender-specific job titles get corrected without having to save your character.
+            RefreshJobs(); // Arcane
         }
 
         private void SetSpecies(string newSpecies)

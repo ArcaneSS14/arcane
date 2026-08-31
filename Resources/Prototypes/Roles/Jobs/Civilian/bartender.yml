@@ -46,7 +46,6 @@
     #back:
     #- Stuff
 
-
 - type: chameleonOutfit
   id: BartenderChameleonOutfit
   job: Bartender
@@ -58,6 +57,7 @@
     outerClothing: ClothingOuterArmorBasicSlim
     gloves: ClothingHandsGlovesColorBlack
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: BartenderMixologist
   name: job-name-alt-bartender-1
@@ -69,3 +69,4 @@
 - type: jobAlternateTitle
   id: BartenderBarista
   name: job-name-alt-bartender-3
+# Arcane-End

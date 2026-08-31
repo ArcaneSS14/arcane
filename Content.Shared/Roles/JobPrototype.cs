@@ -38,8 +38,13 @@ namespace Content.Shared.Roles
         [ViewVariables(VVAccess.ReadOnly)]
         public string LocalizedName => Loc.GetString(Name);
 
+        // Arcane-Start
+        /// <summary>
+        ///     The alt name of this job.
+        /// </summary>
         [DataField]
         public HashSet<ProtoId<JobAlternateTitlePrototype>> AlternateTitles { get; private set; } = [];
+        // Arcane-End
 
         /// <summary>
         ///     The name of this job as displayed to players.

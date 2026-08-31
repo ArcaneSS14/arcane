@@ -59,6 +59,8 @@
     outerClothing: ClothingOuterSuitAtmosFire
     gloves: ClothingHandsGlovesColorYellow
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: AtmosphericTechnicianFirefighter
   name: job-name-alt-atmos-1
+# Arcane-End

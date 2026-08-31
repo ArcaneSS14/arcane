@@ -1,18 +1,27 @@
 job-name-futureagent = агент будущего
-job-name-salvagediver = утилизатор-десантинк
+job-name-salvagediver = спасатель
 job-name-ntr = представитель НаноТрейзен
-job-name-bs = офицер Синего Щита
-job-name-overall = общий
-job-name-tider = тайдер
+job-name-bs = офицер Синий Щит
+job-name-overall = общее
+job-name-tider = грейтайд
+job-name-exec = служебный доступ
 
-# Флот
+# Navy Stuff
 
-job-name-navyofficer = офицер ВКФ
-job-name-navy-officer-undercover = офицер ВКФ под прикрытием
+job-name-navy-officer = офицер ЦК
+job-name-navyofficer = офицер ЦК
+job-name-navy-captain = капитан ВКФ
+job-name-navy-officer-undercover = офицер под прикрытием
 job-name-navycaptain = капитан ВКФ
-job-name-diplomat = дипломат
-job-name-inspector = аудитор Центрального Командования
-job-name-nct = карьерный тренер Nanotrasen
+job-name-diplomat = дипломат НаноТрейзен
+job-name-inspector = инспектор ЦК
+job-name-nct = наставник ЦК
+job-name-special-operations-officer = офицер спецопераций
+job-name-outercommander = внешний командующий
+
+# Syndicate
+
+job-name-highcommander = Офицер Синдиката
 
 # Half Life
 

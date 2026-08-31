@@ -74,7 +74,7 @@ public sealed class PresetIdCardSystem : EntitySystem
         if (id.JobName == null)
             return;
 
-        if (!_prototypeManager.TryIndex(id.JobName.Value, out JobPrototype? job))
+        if (!_prototypeManager.TryIndex(id.JobName.Value, out JobPrototype? job)) // Arcane-Edit: id.JobName > id.JobName.Value
         {
             Log.Error($"Invalid job id ({id.JobName}) for preset card");
             return;
@@ -82,7 +82,8 @@ public sealed class PresetIdCardSystem : EntitySystem
 
         _accessSystem.SetAccessToJob(uid, job, extended);
 
-        // Reserve start - alternative titles
+        // _cardSystem.TryChangeJobTitle(uid, job.LocalizedName); // Arcane-Edit
+        // Arcane-Start
         if (!TryComp<IdCardComponent>(uid, out var card))
         {
             Log.Warning($"Entity {uid} does not have IdCardComponent, skipping title setup.");
@@ -118,11 +119,11 @@ public sealed class PresetIdCardSystem : EntitySystem
 
         if (!string.IsNullOrEmpty(titleToSet))
             _cardSystem.TryChangeJobTitle(uid, titleToSet);
-        // Reserve end - alternative titles
+        // Arcane-End
 
         _cardSystem.TryChangeJobDepartment(uid, job);
 
-        if (!string.IsNullOrEmpty(job.Icon) && _prototypeManager.Resolve(job.Icon, out var jobIcon))
+        if (!string.IsNullOrEmpty(job.Icon) && _prototypeManager.Resolve(job.Icon, out var jobIcon)) // Arcane-Edit
             _cardSystem.TryChangeJobIcon(uid, jobIcon);
     }
 }

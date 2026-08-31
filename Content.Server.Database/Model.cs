@@ -51,7 +51,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
-        public DbSet<DBJobAlternateTitle> DBJobAlternateTitle { get; set; } = null!;
+        public DbSet<DBJobAlternateTitle> DBJobAlternateTitle { get; set; } = null!; // Arcane
 
         // RMC14
         public DbSet<RMCDiscordAccount> RMCDiscordAccounts { get; set; } = default!;
@@ -118,6 +118,7 @@ namespace Content.Server.Database
                 .HasIndex(j => new { j.ProfileId, j.JobName })
                 .IsUnique();
 
+            // Arcane-Start
             modelBuilder.Entity<DBJobAlternateTitle>()
                 .HasOne(e => e.Profile)
                 .WithMany(e => e.AltTitles)
@@ -127,6 +128,7 @@ namespace Content.Server.Database
             modelBuilder.Entity<DBJobAlternateTitle>()
                 .HasIndex(p => new { p.ProfileId, p.RoleName, p.AlternateTitle })
                 .IsUnique();
+            // Arcane-End
 
             modelBuilder.Entity<AssignedUserId>()
                 .HasIndex(p => p.UserName)
@@ -505,7 +507,7 @@ namespace Content.Server.Database
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
 
-        public List<DBJobAlternateTitle> AltTitles { get; } = new();
+        public List<DBJobAlternateTitle> AltTitles { get; } = new(); // Arcane
         public List<ProfileRoleLoadout> Loadouts { get; } = new();
 
         [Column("pref_unavailable")] public DbPreferenceUnavailableMode PreferenceUnavailable { get; set; }
@@ -551,6 +553,7 @@ namespace Content.Server.Database
         public string TraitName { get; set; } = null!;
     }
 
+    // Arcane-Start
     public class DBJobAlternateTitle
     {
         public int Id { get; set; }
@@ -561,6 +564,7 @@ namespace Content.Server.Database
 
         public string AlternateTitle { get; set; } = string.Empty;
     }
+    // Arcane-End
 
     #region Loadouts
 

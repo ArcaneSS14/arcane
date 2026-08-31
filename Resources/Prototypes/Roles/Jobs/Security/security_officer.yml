@@ -64,6 +64,8 @@
     neck: Dinkystar
     gloves: ClothingHandsGlovesColorBlack
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: SecurityOfficerHallMonitor
   name: job-name-alt-secoff-1
+# Arcane-End

@@ -50,6 +50,7 @@
     outerClothing: ClothingOuterWinterMusician
     gloves: ClothingHandsGlovesColorBlack
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: MusicianRadioDJ
   name: job-name-alt-musician-1
@@ -61,3 +62,4 @@
 - type: jobAlternateTitle
   id: MusicianPerformer
   name: job-name-alt-musician-3
+# Arcane-End

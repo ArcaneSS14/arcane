@@ -50,6 +50,7 @@
     neck: ClothingNeckTieRed
     gloves: ClothingHandsGlovesFingerless
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: ReporterInfluencer
   name: job-name-alt-reporter-1
@@ -61,3 +62,4 @@
 - type: jobAlternateTitle
   id: ReporterMediaCoordinator
   name: job-name-alt-reporter-3
+# Arcane-End

@@ -80,6 +80,8 @@
     gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesBootsJack
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: WardenDispatch
   name: job-name-alt-warden-1
+# Arcane-End

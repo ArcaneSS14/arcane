@@ -56,7 +56,6 @@
     - RubberStampClown
     - CrayonRainbow
 
-
 - type: chameleonOutfit
   id: ClownChameleonOutfit
   job: Clown
@@ -67,6 +66,7 @@
     outerClothing: ClothingOuterClownPriest
     gloves: ClothingHandsGlovesColorYellowBudget
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: ClownJester
   name: job-name-alt-clown-1
@@ -74,3 +74,4 @@
 - type: jobAlternateTitle
   id: ClownBouffon
   name: job-name-alt-clown-2
+# Arcane-End

@@ -73,7 +73,6 @@
     - Flash
     - TelescopicBaton # Goobstation
 
-
 - type: chameleonOutfit
   id: ChiefEngineerChameleonOutfit
   job: ChiefEngineer
@@ -86,6 +85,7 @@
     gloves: ClothingHandsGlovesColorYellow
     shoes: ClothingShoesBootsMagAdv
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: ChiefEngineerHeadOfEngineering
   name: job-name-alt-ce-1
@@ -97,3 +97,4 @@
 - type: jobAlternateTitle
   id: ChiefEngineerEngineeringSupervisor
   name: job-name-alt-ce-3
+# Arcane-End

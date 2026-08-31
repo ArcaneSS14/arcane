@@ -50,6 +50,7 @@
     outerClothing: ClothingOuterWinterCoat
     gloves: ClothingHandsGlovesColorYellowBudget
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: AssistantPassenger
   name: job-name-alt-assistant-1
@@ -65,3 +66,4 @@
 - type: jobAlternateTitle
   id: AssistantOffDuty
   name: job-name-alt-assistant-4
+# Arcane-End

@@ -68,6 +68,7 @@
     gloves: ClothingHandsGlovesColorWhite
     shoes: ClothingShoesChef
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: ChefSousChef
   name: job-name-alt-chef-1
@@ -81,3 +82,4 @@
   name: job-name-alt-chef-3
   femaleName: job-name-alt-chef-3-f
   maleName: job-name-alt-chef-3-m
+# Arcane-End

@@ -49,6 +49,7 @@
     belt: ClothingBeltMedical
     gloves: ClothingHandsGlovesLatex
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: PsychologistTherapist
   name: job-name-alt-psychologist-1
@@ -60,3 +61,4 @@
 - type: jobAlternateTitle
   id: PsychologistPsychatrist
   name: job-name-alt-psychologist-3
+# Arcane-End

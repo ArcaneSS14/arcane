@@ -46,4 +46,10 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
         CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /// <summary>
+    /// Enables alternate job titles for players.
+    /// </summary>
+    public static readonly CVarDef<bool> ICAlternateJobTitlesEnable =
+        CVarDef.Create("ic.alternate_job_titles_enable", true, CVar.SERVER | CVar.REPLICATED);
 }

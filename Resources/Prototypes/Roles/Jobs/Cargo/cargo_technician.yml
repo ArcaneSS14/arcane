@@ -54,6 +54,7 @@
     neck: ClothingNeckScarfStripedBrown
     gloves: ClothingHandsGlovesFingerless
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: CargoTechnicianCourier
   name: job-name-alt-cargotech-1
@@ -65,3 +66,4 @@
 - type: jobAlternateTitle
   id: CargoTechnicianClerk
   name: job-name-alt-cargotech-3
+# Arcane-End

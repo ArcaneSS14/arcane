@@ -60,6 +60,7 @@
     outerClothing: ClothingOuterVest
     gloves: ClothingHandsGlovesColorBlack
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: ServiceWorkerWaiter
   name: job-name-alt-serviceworker-1
@@ -79,3 +80,4 @@
 - type: jobAlternateTitle
   id: ServiceWorkerSteward
   name: job-name-alt-serviceworker-5
+# Arcane-End

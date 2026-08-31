@@ -152,6 +152,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             return;
         }
 
+        // Arcane-Start
         string? jobTitle = null;
 
         Entity<IdCardComponent>? card = null;
@@ -176,12 +177,13 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         {
             jobTitle = jobPrototype.LocalizedName;
         }
+        // Arcane-End
 
         var record = new GeneralStationRecord
         {
             Name = name,
             Age = age,
-            JobTitle = jobTitle,
+            JobTitle = jobTitle, // Arcane-Edit: jobPrototype.LocalizedName > jobTitle
             JobIcon = jobPrototype.Icon,
             JobPrototype = jobId,
             Species = species,

@@ -87,6 +87,7 @@
     neck: ClothingNeckCloakQm
     gloves: ClothingHandsKnuckleDustersQM
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: QuartermasterRequisitionsOfficer
   name: job-name-alt-qm-1
@@ -110,3 +111,4 @@
 - type: jobAlternateTitle
   id: QuartermasterLogisticsCoordinator
   name: job-name-alt-qm-5
+# Arcane-End

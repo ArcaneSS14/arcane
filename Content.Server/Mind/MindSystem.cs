@@ -412,8 +412,10 @@ public sealed class MindSystem : SharedMindSystem
         mindComp.OwnedEntity = newReturn ?? mindComp.OwnedEntity;
     }
 
+    // Arcane-Start
     internal bool TryGetMind(EntityUid mindId, out object mind)
     {
         throw new NotImplementedException();
     }
+    // Arcane-End
 }

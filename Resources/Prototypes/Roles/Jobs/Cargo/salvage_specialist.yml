@@ -25,8 +25,10 @@
   - Salvage
   - Maintenance
   - External
-  alternateTitles: # Reserve - alternate titles
+# Arcane-Start
+  alternateTitles:
   - SalvageSpecialistMiner
+# Arcane-End
 
 - type: startingGear
   id: SalvageSpecialistGear
@@ -48,10 +50,9 @@
     outerClothing: ClothingOuterWinterMiner
     neck: ClothingNeckScarfStripedBrown
     gloves: ClothingHandsGlovesColorBlack
-  #storage:
-    #back:
-    #- Stuff
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: SalvageSpecialistMiner
   name: job-name-alt-salvage-1
+# Arcane-End

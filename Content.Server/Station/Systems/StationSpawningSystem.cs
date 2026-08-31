@@ -25,7 +25,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Robust.Shared.Enums; // Funkystation
+using Robust.Shared.Enums;
 
 namespace Content.Server.Station.Systems;
 
@@ -160,12 +160,15 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);
 
+        //  if (prototype != null && TryComp(entity.Value, out MetaDataComponent? metaData)) // Arcane-Edit
+        // Arcane-Start
         JobAlternateTitlePrototype? altTitle = null;
         if (profile != null && prototype != null && profile.JobAlternateTitles.TryGetValue(prototype.ID, out var altId))
             _prototypeManager.TryIndex(altId, out altTitle);
 
         if (profile != null)
         {
+            // SetPdaAndIdCardData(entity.Value, metaData.EntityName, prototype, station); // Arcane-Edit
             if (prototype != null)
                 SetPdaAndIdCardData(entity.Value, profile.Name, prototype, station, profile.Gender, altTitle);
 
@@ -175,6 +178,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
             }
+            // Arcane-End
         }
 
         DoJobSpecials(job, entity.Value);
@@ -200,7 +204,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     /// <param name="characterName">Character name to use for the ID.</param>
     /// <param name="jobPrototype">Job prototype to use for the PDA and ID.</param>
     /// <param name="station">The station this player is being spawned on.</param>
-    public void SetPdaAndIdCardData(EntityUid entity, string characterName, JobPrototype jobPrototype, EntityUid? station, Gender gender, JobAlternateTitlePrototype? jobAltTitle = null)
+    public void SetPdaAndIdCardData(EntityUid entity, string characterName, JobPrototype jobPrototype, EntityUid? station, Gender gender, JobAlternateTitlePrototype? jobAltTitle = null) // Arcane-Edit
     {
         if (!InventorySystem.TryGetSlotEntity(entity, "id", out var idUid))
             return;
@@ -213,10 +217,13 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             return;
 
         _cardSystem.TryChangeFullName(cardId, characterName, card);
+        // _cardSystem.TryChangeJobTitle(cardId, jobPrototype.LocalizedName, card); // Arcane-Edit
+        // Arcane-Start
         if (jobAltTitle != null)
             _cardSystem.TryChangeJobTitle(cardId, jobAltTitle.LocalizedName(gender), card);
         else
             _cardSystem.TryChangeJobTitle(cardId, jobPrototype.LocalizedName, card);
+        // Arcane-End
 
         if (_prototypeManager.Resolve(jobPrototype.Icon, out var jobIcon))
             _cardSystem.TryChangeJobIcon(cardId, jobIcon, card);

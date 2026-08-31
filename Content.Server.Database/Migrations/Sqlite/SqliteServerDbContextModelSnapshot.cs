@@ -798,6 +798,7 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("connection_log", (string)null);
                 });
 
+            // Arcane-Start
             modelBuilder.Entity("Content.Server.Database.DBJobAlternateTitle", b =>
                 {
                     b.Property<int>("Id")
@@ -827,6 +828,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.ToTable("dbjob_alternate_title", (string)null);
                 });
+            // Arcane-End
 
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
@@ -2279,6 +2281,7 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Server");
                 });
 
+            // Arcane-Start
             modelBuilder.Entity("Content.Server.Database.DBJobAlternateTitle", b =>
                 {
                     b.HasOne("Content.Server.Database.Profile", "Profile")
@@ -2290,6 +2293,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.Navigation("Profile");
                 });
+            // Arcane-End
 
             modelBuilder.Entity("Content.Server.Database.Job", b =>
                 {
@@ -2753,7 +2757,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
             modelBuilder.Entity("Content.Server.Database.Profile", b =>
                 {
-                    b.Navigation("AltTitles");
+                    b.Navigation("AltTitles"); // Arcane
 
                     b.Navigation("Antags");
 

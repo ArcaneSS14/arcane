@@ -102,6 +102,7 @@ namespace Content.Shared.Preferences
             }
         };
 
+        // Arcane-Start
         /// <summary>
         /// Prefered job title for each job.
         /// </summary>
@@ -110,6 +111,7 @@ namespace Content.Shared.Preferences
 
         [DataField("alternateJobTitle")]
         public string? AlternateJobTitle { get; set; }
+        // Arcane-End
 
         /// <summary>
         /// Antags we have opted in to.
@@ -276,7 +278,7 @@ namespace Content.Shared.Preferences
             SpawnPriorityPreference spawnPriority,
             Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities,
             PreferenceUnavailableMode preferenceUnavailable,
-            Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>> jobAlternateTitles,
+            Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>> jobAlternateTitles, // Arcanes
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
@@ -309,7 +311,7 @@ namespace Content.Shared.Preferences
             SpawnPriority = spawnPriority;
             _jobPriorities = jobPriorities;
             PreferenceUnavailable = preferenceUnavailable;
-            JobAlternateTitles = jobAlternateTitles;
+            JobAlternateTitles = jobAlternateTitles; // Arcane
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
@@ -359,7 +361,7 @@ namespace Content.Shared.Preferences
                 other.SpawnPriority,
                 new Dictionary<ProtoId<JobPrototype>, JobPriority>(other.JobPriorities),
                 other.PreferenceUnavailable,
-                new Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>>(other.JobAlternateTitles),
+                new Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>>(other.JobAlternateTitles), // Arcane
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
@@ -793,7 +795,7 @@ namespace Content.Shared.Preferences
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
-            if (!JobAlternateTitles.SequenceEqual(other.JobAlternateTitles)) return false;
+            if (!JobAlternateTitles.SequenceEqual(other.JobAlternateTitles)) return false; // Arcane
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
@@ -1076,6 +1078,7 @@ namespace Content.Shared.Preferences
                 hasHighPrio = true;
             }
 
+            // Arcane-Start
             var altTitles = new Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>>();
             foreach (var (key, value) in JobAlternateTitles)
             {
@@ -1088,6 +1091,7 @@ namespace Content.Shared.Preferences
                     altTitles.Add(key, value);
                 }
             }
+            // Arcane-End
 
             var antags = AntagPreferences
                 .Where(id => prototypeManager.TryIndex(id, out var antag) && antag.SetPreference)
@@ -1130,12 +1134,14 @@ namespace Content.Shared.Preferences
 
             PreferenceUnavailable = prefsUnavailableMode;
 
+            // Arcane-Start
             JobAlternateTitles.Clear();
 
             foreach (var (job, title) in altTitles)
             {
                 JobAlternateTitles.Add(job, title);
             }
+            // Arcane-End
 
             _antagPreferences.Clear();
             _antagPreferences.UnionWith(antags);
@@ -1253,7 +1259,7 @@ namespace Content.Shared.Preferences
         {
             var hashCode = new HashCode();
             hashCode.Add(_jobPriorities);
-            hashCode.Add(JobAlternateTitles);
+            hashCode.Add(JobAlternateTitles); // Arcane
             hashCode.Add(_antagPreferences);
             hashCode.Add(_traitPreferences);
             hashCode.Add(_loadouts);

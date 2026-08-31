@@ -52,6 +52,7 @@
     outerClothing: ClothingOuterWinterColorGreen
     gloves: ClothingHandsGlovesColorBlack
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: LibrarianClerk
   name: job-name-alt-librarian-1
@@ -67,3 +68,4 @@
 - type: jobAlternateTitle
   id: LibrarianCurator
   name: job-name-alt-librarian-4
+# Arcane-End

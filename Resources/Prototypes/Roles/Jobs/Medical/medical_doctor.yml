@@ -64,6 +64,7 @@
     outerClothing: ClothingOuterCoatLab
     gloves: ClothingHandsGlovesLatex
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: MedicalDoctorSurgeon
   name: job-name-alt-medical-1
@@ -77,3 +78,4 @@
 - type: jobAlternateTitle
   id: MedicalDoctorPhysician
   name: job-name-alt-medical-3
+# Arcane-End

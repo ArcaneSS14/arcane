@@ -387,6 +387,7 @@ namespace Content.Server.GameTicking
 
             var jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
 
+            // Arcane-Start
             string jobName = jobPrototype.LocalizedName;
 
             if (character.JobAlternateTitles.TryGetValue(jobId, out var altTitleId))
@@ -396,6 +397,7 @@ namespace Content.Server.GameTicking
                     jobName = altTitle.LocalizedName(character.Gender);
                 }
             }
+            // Arcane-End
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
@@ -407,6 +409,7 @@ namespace Content.Server.GameTicking
             _admin.UpdatePlayerList(player);
 
             _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
+            // var jobName = _jobs.MindTryGetJobName(newMind); // Arcane-Edit
             _admin.UpdatePlayerList(player);
 
             if (lateJoin && !silent)

@@ -59,6 +59,7 @@
     gloves: ClothingHandsGlovesColorYellow
     shoes: ClothingShoesBootsMag
 
+# Arcane-Start
 - type: jobAlternateTitle
   id: StationEngineerMaintenanceTechnician
   name: job-name-alt-engineer-1
@@ -74,3 +75,4 @@
 - type: jobAlternateTitle
   id: StationEngineerEngineOperator
   name: job-name-alt-engineer-4
+# Arcane-End
