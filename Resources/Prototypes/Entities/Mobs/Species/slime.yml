@@ -14,6 +14,11 @@
   - type: Body
     prototype: Slime
     requiredLegs: 2
+  # Arcane-Start
+  - type: SlimeRegrow
+    hungerCost: 60
+    thirstCost: 100
+  # Arcane-End
   # they like eat it idk lol
   - type: Storage
     clickInsert: false

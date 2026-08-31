@@ -117,6 +117,7 @@
     tags:
     - FelinidEmotes
     - HarpyEmotes
+    - ShadowkinEmotes # Arcane
   blacklist:
     components:
     - BorgChassis
@@ -136,6 +137,12 @@
     - зарычала
     - зарычала.
     - зарычала!
+    - урчит
+    - урчит.
+    - урчит!
+    - урчание
+    - урчание.
+    - урчание!
     # Orion-End
 
 - type: emote
