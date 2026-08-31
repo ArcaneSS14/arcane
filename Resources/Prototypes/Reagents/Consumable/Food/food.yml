@@ -95,7 +95,6 @@
         key: CorticalBorerProtection
         type: Add
         time: 3 # May be too much, needs testing
-        refresh: false
       - !type:ChemAddMoodlet # Orion
         moodPrototype: SweetenerEffect
   plantMetabolism:
