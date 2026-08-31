@@ -56,13 +56,15 @@
     components:
     - type: SurgerySpeedModifier
       speedModifier: 2
-  contracts: # Arcane
+  # Arcane-Start
+  contracts:
   - DocumentContractEmploymentCommand
-  alternateTitles: # Arcane
+  alternateTitles:
   - CMOMedicalDirector
   - CMOHeadPhysician
   - CMOSeniorMedicalOfficer
   - CMOWardSupervisor
+  # Arcane-End
 
 - type: startingGear
   id: CMOGear

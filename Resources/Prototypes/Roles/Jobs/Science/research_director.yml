@@ -46,11 +46,13 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-  contracts: # Arcane
+  # Arcane-Start
+  contracts:
   - DocumentContractEmploymentCommand
-  alternateTitles: # Arcane
+  alternateTitles:
   - RDResearchLead
   - RDScienceDirector
+  # Arcane-End
 
 - type: startingGear
   id: ResearchDirectorGear

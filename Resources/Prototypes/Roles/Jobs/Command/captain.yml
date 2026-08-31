@@ -58,11 +58,13 @@
         - CorporateCodespeak
         understands:
         - CorporateCodespeak
-  contracts: # Arcane
+  # Arcane-Start
+  contracts:
   - DocumentContractEmploymentCommand
-  alternateTitles: # Arcane
+  alternateTitles:
   - CaptainStationDirector
   - CaptainCommander
+  # Arcane-End
 
 - type: startingGear
   id: CaptainGear

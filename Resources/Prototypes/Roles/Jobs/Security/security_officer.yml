@@ -39,7 +39,7 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentSecurity
-  alternateTitles: # Reserve - alternate titles
+  alternateTitles:
   - SecurityOfficerHallMonitor
   # Arcane-end
 
