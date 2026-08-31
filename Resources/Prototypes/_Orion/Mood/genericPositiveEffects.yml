@@ -13,7 +13,7 @@
 - type: moodEffect
   id: ArcadePlay
   moodChange: 3
-  timeout: 480
+  timeout: 180
 
 - type: moodEffect
   id: GotBlessed

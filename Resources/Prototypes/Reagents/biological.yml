@@ -25,6 +25,22 @@
           - !type:MetabolizerTypeCondition
             type: [ Human ]
             inverted: true
+      # Orion-Start
+      - !type:ChemAddMoodlet
+        moodPrototype: DrankBloodVampiric
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+      - !type:ChemAddMoodlet
+        moodPrototype: DrankBlood
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+          inverted: true
+        - !type:ReagentCondition
+          reagent: Blood
+          min: 0.1
+      # Orion-End
     Food:
       effects:
         - !type:AdjustReagent
@@ -58,6 +74,13 @@
   color: "#808A51"
   recognizable: true
   physicalDesc: reagent-physical-desc-slimy
+  # Orion-Start
+  metabolisms:
+    Drink:
+      effects:
+      - !type:ChemAddMoodlet
+        moodPrototype: DrankInsectBlood
+  # Orion-End
 
 - type: reagent
   id: Slime
@@ -153,6 +176,8 @@
       effects:
       - !type:SatiateThirst
         factor: -0.5
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: DrankZombieBlood
     Poison:
       effects:
       - !type:HealthChange
@@ -248,6 +273,8 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: DrankVomit
   footstepSound:
     collection: FootstepBlood
     params:

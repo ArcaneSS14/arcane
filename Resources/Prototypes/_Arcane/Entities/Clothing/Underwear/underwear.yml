@@ -64,6 +64,69 @@
 
 - type: entity
   parent: ClothingUnderwearBase
+  id: ClothingUnderwearDriada
+  name: driada panties
+  description: Patroness of trees.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/driada.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearEroticPurple
+  name: purple erotic panties
+  description: A thin panties that barely covers the genitals.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/erotic_purple.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearMedusa
+  name: medusa panties
+  description: Jelly panties.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/medusa.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearLeafs
+  name: leafs panties
+  description: 100% natural.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/leafs.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearPinkFancy
+  name: fancy pink panties
+  description: Pink like Barbie.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/pink_fancy.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearRed
+  name: red panties
+  description: Red panties.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/red.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearAx
+  name: ax panties
+  description: Uga buga.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/ax.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
   id: ClothingUnderwearBeerPants
   name: beer pants
   description: Beer pants.

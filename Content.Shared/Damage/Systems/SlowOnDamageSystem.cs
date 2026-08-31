@@ -5,6 +5,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Examine;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Inventory;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 
 namespace Content.Shared.Damage
@@ -12,6 +13,7 @@ namespace Content.Shared.Damage
     public sealed class SlowOnDamageSystem : EntitySystem
     {
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
+        [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!; // Arcane
 
         public override void Initialize()
         {
@@ -35,12 +37,14 @@ namespace Content.Shared.Damage
             if (!TryComp<DamageableComponent>(uid, out var damage))
                 return;
 
-            if (damage.TotalDamage == FixedPoint2.Zero)
+            var total = _mobThresholdSystem.CheckVitalDamage(uid, damage); // Arcane
+
+            if (total == FixedPoint2.Zero) // Arcane-Edit
                 return;
 
             // Get closest threshold
             FixedPoint2 closest = FixedPoint2.Zero;
-            var total = damage.TotalDamage;
+//          var total = damage.TotalDamage; // Arcane-Edit
             foreach (var thres in component.SpeedModifierThresholds)
             {
                 if (total >= thres.Key && thres.Key > closest)
