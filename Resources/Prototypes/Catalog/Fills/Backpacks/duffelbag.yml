@@ -57,8 +57,7 @@
         - id: JugDermaline
         - id: JugDylovene
         - id: JugHyronalin
-        - id: JugSaline
-        - id: JugDexalinPlus
+        - id: JugDexPlusSaline # Arcane-Edit: 2 in 1
         - id: JugTranexamicAcid
 
 - type: entity
