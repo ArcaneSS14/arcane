@@ -28,6 +28,10 @@
   - AssistantVisitor
   - AssistantEntrepreneur
   - AssistantOffDuty
+  - AssistantCivilian
+  - AssistantFreelancer
+  - AssistantTourist
+  - AssistantTraveler
   # Arcane-End
 
 - type: startingGear
@@ -66,4 +70,20 @@
 - type: jobAlternateTitle
   id: AssistantOffDuty
   name: job-name-alt-assistant-4
+
+- type: jobAlternateTitle
+  id: AssistantCivilian
+  name: job-name-alt-assistant-5
+
+- type: jobAlternateTitle
+  id: AssistantFreelancer
+  name: job-name-alt-assistant-6
+
+- type: jobAlternateTitle
+  id: AssistantTourist
+  name: job-name-alt-assistant-7
+
+- type: jobAlternateTitle
+  id: AssistantTraveler
+  name: job-name-alt-assistant-8
 # Arcane-End

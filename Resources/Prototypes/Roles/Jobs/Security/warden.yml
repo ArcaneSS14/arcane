@@ -52,6 +52,8 @@
   - DocumentContractEmploymentSecurity
   alternateTitles:
   - WardenDispatch
+  - WardenJailer
+  - WardenDungeonMaster
   # Arcane-End
 
 - type: startingGear
@@ -84,4 +86,12 @@
 - type: jobAlternateTitle
   id: WardenDispatch
   name: job-name-alt-warden-1
+
+- type: jobAlternateTitle
+  id: WardenJailer
+  name: job-name-alt-warden-2
+
+- type: jobAlternateTitle
+  id: WardenDungeonMaster
+  name: job-name-alt-warden-3
 # Arcane-End

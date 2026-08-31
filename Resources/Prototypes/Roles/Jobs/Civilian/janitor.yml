@@ -29,6 +29,7 @@
   - JanitorMaid
   - JanitorMaintenanceWorker
   - JanitorCustodialTechnician
+  - JanitorRatCatcher
   # Arcane-end
 
 - type: startingGear
@@ -74,4 +75,8 @@
 - type: jobAlternateTitle
   id: JanitorCustodialTechnician
   name: job-name-alt-janitor-3
+
+- type: jobAlternateTitle
+  id: JanitorRatCatcher
+  name: job-name-alt-janitor-4
 # Arcane-End

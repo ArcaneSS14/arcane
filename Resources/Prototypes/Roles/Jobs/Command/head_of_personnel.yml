@@ -83,6 +83,7 @@
   - DocumentContractEmploymentCommand
   alternateTitles:
   - HoPPersonnelCoordinator
+  - HoPHumanResourcesOfficer
   # Arcane-end
 
 - type: startingGear
@@ -114,4 +115,8 @@
 - type: jobAlternateTitle
   id: HoPPersonnelCoordinator
   name: job-name-alt-hop-1
+
+- type: jobAlternateTitle
+  id: HoPHumanResourcesOfficer
+  name: job-name-alt-hop-2
 # Arcane-End

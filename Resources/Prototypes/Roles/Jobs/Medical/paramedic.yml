@@ -39,6 +39,7 @@
   alternateTitles:
   - ParamedicTraumaSpecialist
   - ParamedicEmergencyMedicalTechnician
+  - ParamedicTraumaTeamResponder
   # Arcane-end
 
 - type: startingGear
@@ -70,4 +71,8 @@
 - type: jobAlternateTitle
   id: ParamedicEmergencyMedicalTechnician
   name: job-name-alt-paramedic-2
+
+- type: jobAlternateTitle
+  id: ParamedicTraumaTeamResponder
+  name: job-name-alt-paramedic-4
 # Arcane-End

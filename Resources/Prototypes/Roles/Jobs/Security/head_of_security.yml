@@ -62,6 +62,7 @@
   alternateTitles:
   - HOSSecurityCommander
   - HOSChiefWarden
+  - HOSSheriff
   # Arcane-End
 
 - type: startingGear
@@ -93,4 +94,8 @@
 - type: jobAlternateTitle
   id: HOSChiefWarden
   name: job-name-alt-hos-2
+
+- type: jobAlternateTitle
+  id: HOSSheriff
+  name: job-name-alt-hos-3
 # Arcane-End
