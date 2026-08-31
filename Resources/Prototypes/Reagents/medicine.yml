@@ -1041,7 +1041,7 @@
       # Arcane-Start
       - !type:ModifyStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Haloperidol
           max: 0.01
         effectProto: StatusEffectDrowsiness

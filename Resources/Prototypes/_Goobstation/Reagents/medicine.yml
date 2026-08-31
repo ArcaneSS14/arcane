@@ -214,7 +214,7 @@
           min: 15
         probability: 0.2
         time: 4
-      - !type:ModifyBleedAmount
+      - !type:ModifyBleed
         amount: -0.1 # Arcane-Edit: -0.25 > -0.1
 
 # Patch/microdose meds, hilariously strong due to difficulties in making and using them
