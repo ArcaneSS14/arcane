@@ -50,7 +50,7 @@
   description: Patroness of trees.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Undershirt/undershirt/driada.rsi
+    sprite: _Arcane/Clothing/Underwear/undershirt/driada.rsi
 
 - type: entity
   parent: ClothingBraBase
