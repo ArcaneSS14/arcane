@@ -170,8 +170,15 @@ public partial class SharedBodySystem
 
             if (part.Body is not null)
             {
-                RemovePart(part.Body.Value, (removedUid, part), slotId);
+                var body = part.Body.Value; // Arcane
+
+                RemovePart(body, (removedUid, part), slotId); // Arcane-Edit
                 RecursiveBodyUpdate((removedUid, part), null);
+
+                // Arcane-Start
+                var ev = new BodyTopologyChangedEvent();
+                RaiseLocalEvent(body, ev);
+                // Arcane-End
             }
         }
 

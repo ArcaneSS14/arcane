@@ -6,6 +6,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Weapons.Melee.Events;
 using Content.Shared._Shitmed.Weapons.Ranged.Events;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Events;
 using Content.Shared.Body.Part;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Bed.Sleep;
@@ -33,6 +34,7 @@ public partial class TraumaSystem
         // Arcane-Start
         SubscribeLocalEvent<BodyComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshLegTraumaSpeed);
         SubscribeLocalEvent<BodyComponent, RefreshFrictionModifiersEvent>(OnRefreshLegTraumaFriction);
+        SubscribeLocalEvent<BodyComponent, BodyTopologyChangedEvent>(OnBodyTopologyChanged);
         // Arcane-End
     }
 
@@ -387,6 +389,9 @@ public partial class TraumaSystem
     // Arcane-Edit-End
 
     // Arcane-Start
+    private void OnBodyTopologyChanged(Entity<BodyComponent> body, ref BodyTopologyChangedEvent args) =>
+        ProcessLegsState(body);
+
     private void ProcessLegsState(EntityUid body, BodyComponent? bodyComp = null)
     {
         if (!Resolve(body, ref bodyComp) || bodyComp.RequiredLegs <= 0)
