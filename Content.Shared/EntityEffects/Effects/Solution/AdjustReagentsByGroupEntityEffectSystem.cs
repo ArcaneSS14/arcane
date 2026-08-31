@@ -25,6 +25,10 @@ public sealed partial class AdjustReagentsByGroupEntityEffectSystem : EntityEffe
 
         foreach (var quant in solution.Contents.ToArray())
         {
+            // Arcane-Start
+            if (args.Effect.ExcludeReagent == quant.Reagent.Prototype)
+                continue;
+            // Arcane-End
             var proto = _proto.Index<ReagentPrototype>(quant.Reagent.Prototype);
             if (proto.Metabolisms == null || !proto.Metabolisms.ContainsKey(group))
                 continue;
@@ -49,4 +53,9 @@ public sealed partial class AdjustReagentsByGroup : EntityEffectBase<AdjustReage
 
     [DataField(required: true)]
     public FixedPoint2 Amount;
+
+    // Arcane-Start
+    [DataField]
+    public ProtoId<ReagentPrototype>? ExcludeReagent;
+    // Arcane-End
 }

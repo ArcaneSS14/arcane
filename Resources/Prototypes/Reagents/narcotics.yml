@@ -87,16 +87,14 @@
       - !type:ChemAddMoodlet # Orion
         moodPrototype: StrongStimulant
       # Arcane-Start
-      - !type:AdjustReagent
-        reagent: Desoxyephedrine
+      - !type:AdjustReagentsByGroup
         group: Narcotic
         amount: -1
         conditions:
         - !type:ReagentCondition
           reagent: Dylovene
           min: 0.5
-      - !type:AdjustReagent
-        reagent: Desoxyephedrine
+      - !type:AdjustReagentsByGroup
         group: Narcotic
         amount: -1
         conditions:

@@ -502,7 +502,7 @@
       - !type:AdjustReagentsByGroup
         group: Medicine
         amount: -3
-        excludeSelf: true # Arcane
+        excludeReagent: Multiver # Arcane
         conditions:
         - !type:UniqueBloodstreamChemThreshold
           max: 3 # the gist is, 2 and below this sucks, 3 and above it's great; mix with water etc for good results
@@ -1281,7 +1281,6 @@
           - type: PressureProtection # can't get through this to reach the bodyparts!
           inverted: true
       - !type:HealthChange
-        scaleByQuantity: true
         ignoreResistances: false
         ignoreBlockers: false
         conditions:
@@ -1367,7 +1366,6 @@
           - type: PressureProtection # can't get through this to reach the bodyparts!
           inverted: true
       - !type:HealthChange
-        scaleByQuantity: true
         ignoreResistances: false
         ignoreBlockers: false
         conditions:
