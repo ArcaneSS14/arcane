@@ -10,9 +10,14 @@
     Blob: 0.5
     Slasher: 0.4
     Dragon: 0.3
+    Ninja: 0.25
+    Xenoborgs: 0.3
     SlaughterDemon: 0.3
     LaughterDemon: 0.3
-    WizardMidRoundThreat: 0.1 # HOLY SHIT ITS FULL WIZARD
+    Revolutionary: 0.20
+    Nukeops: 0.15
+    WizardMidRoundThreat: 0.15
+    # HOLY SHIT ITS FULL WIZARD
 
 # Threats
 
@@ -60,6 +65,26 @@
   id: SyndicateSleeperAgent
   announcement: terror-sleeper-agent
   rule: SleeperAgents
+
+- type: ninjaHackingThreat
+  id: Ninja
+  announcement: terror-Ninja
+  rule: NinjaSpawn
+
+- type: ninjaHackingThreat
+  id: Xenoborgs
+  announcement: terror-Xenoborgs
+  rule: Xenoborgs
+
+- type: ninjaHackingThreat
+  id: Nukeops
+  announcement: terror-Nukeops
+  rule: Nukeops
+
+  - type: ninjaHackingThreat
+  id: Revolutionary
+  announcement: terror-Revolutionary
+  rule: Revolutionary
 
 #- type: ninjaHackingThreat
 #  id: Wraith
