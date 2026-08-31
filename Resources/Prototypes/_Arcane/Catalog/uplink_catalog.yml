@@ -1,0 +1,19 @@
+- type: listing
+  id: UplinkCombatStandardMedkit
+  name: uplink-combat-standard-medkit-name
+  description: uplink-combat-standard-medkit-desc
+  productEntity: MedkitCombatStandardFilled
+  cost:
+    Telecrystal: 30
+  categories:
+  - UplinkChemicals
+
+- type: listing
+  id: UplinkCombatAdvancedMedkit
+  name: uplink-combat-advanced-medkit-name
+  description: uplink-combat-advanced-medkit-desc
+  productEntity: MedkitCombatAdvancedFilled
+  cost:
+    Telecrystal: 60
+  categories:
+  - UplinkChemicals

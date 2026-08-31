@@ -6,7 +6,6 @@ using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
 using Content.Shared.StatusIcon;
@@ -26,8 +25,10 @@ public sealed class HungerSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    /* // Arcane-Edit-Start: Optimization
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
+    */ // Arcane-Edit-End
     [Dependency] private readonly IConfigurationManager _config = default!; // Orion
     [Dependency] private readonly INetManager _net = default!; // Orion
 
@@ -36,12 +37,14 @@ public sealed class HungerSystem : EntitySystem
     private static readonly ProtoId<SatiationIconPrototype> HungerIconStarvingId = "HungerIconStarving";
 
     // Orion-Start
+    /* // Arcane-Edit-Start
     private static readonly HashSet<HungerThreshold> MovementAffectingThresholds = new()
     {
         HungerThreshold.Overfed,
         HungerThreshold.Okay,
         HungerThreshold.Peckish,
     };
+    */ // Arcane-Edit-End
 
     private SatiationIconPrototype? _overfedIcon;
     private SatiationIconPrototype? _peckishIcon;
@@ -60,7 +63,7 @@ public sealed class HungerSystem : EntitySystem
 
         SubscribeLocalEvent<HungerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<HungerComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<HungerComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
+//        SubscribeLocalEvent<HungerComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed); // Arcane-Edit
         SubscribeLocalEvent<HungerComponent, RejuvenateEvent>(OnRejuvenate);
     }
 
@@ -84,6 +87,7 @@ public sealed class HungerSystem : EntitySystem
         _alerts.ClearAlertCategory(uid, component.HungerAlertCategory);
     }
 
+    /* // Arcane-Edit-Start
     private void OnRefreshMovespeed(EntityUid uid, HungerComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         // Orion-Start
@@ -99,6 +103,7 @@ public sealed class HungerSystem : EntitySystem
 
         args.ModifySpeed(component.StarvingSlowdownModifier, component.StarvingSlowdownModifier);
     }
+    */ // Arcane-Edit-End
 
     private void OnRejuvenate(EntityUid uid, HungerComponent component, RejuvenateEvent args)
     {
@@ -180,8 +185,10 @@ public sealed class HungerSystem : EntitySystem
         if (component.CurrentThreshold == component.LastThreshold && !force)
             return;
 
+        /* // Arcane-Edit-Start
         if (GetMovementThreshold(component.CurrentThreshold) != GetMovementThreshold(component.LastThreshold))
             _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
+        */ // Arcane-Edit-End
 
         // Orion-Start
         if (_config.GetCVar(CCVars.MoodEnabled) && _net.IsServer)
@@ -263,12 +270,14 @@ public sealed class HungerSystem : EntitySystem
         return GetHungerThreshold(comp, food) < threshold;
     }
 
+    /* // Arcane-Edit-Start
     // Orion-Edit-Start
     private static bool GetMovementThreshold(HungerThreshold threshold)
     {
         return MovementAffectingThresholds.Contains(threshold);
     }
     // Orion-Edit-End
+    */ // Arcane-Edit-End
 
     public bool TryGetStatusIconPrototype(HungerComponent component, [NotNullWhen(true)] out SatiationIconPrototype? prototype)
     {

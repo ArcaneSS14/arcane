@@ -11,6 +11,7 @@
     size: Small
     sprite: Objects/Specific/Medical/medical.rsi
     heldPrefix: ointment
+  - type: Appearance # Arcane
   # Inherited
   - type: StaticPrice
     price: 0
@@ -26,7 +27,12 @@
     tags:
     - Ointment
   - type: Sprite
-    state: ointment
+    state: ointment-3 # Arcane-Edit
+    # Arcane-Start
+    layers:
+    - state: ointment-3
+      map: ["base"]
+    # Arcane-End
   - type: Item
     heldPrefix: ointment
     storedRotation: 45
@@ -35,10 +41,10 @@
       - Biological
     damage:
       types:
-        Heat: -10
-        Cold: -10
-        Shock: -10
-        Caustic: -5 #Was 5 per type & 1.5 caustic, Buffed due to limb damage changes (Goobstation)
+        Heat: -5 # Arcane-Edit: 10 > 5
+        Cold: -5 # Arcane-Edit: 10 > 5
+        Shock: -5 # Arcane-Edit: 10 > 5
+        Caustic: -2 #Was 5 per type & 1.5 caustic, Buffed due to limb damage changes (Goobstation) # Arcane-Edit: 5 > 2
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
       params:
@@ -52,6 +58,13 @@
   - type: Stack
     stackType: Ointment
     count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
+    # Arcane-Start
+    baseLayer: base
+    layerStates:
+    - ointment
+    - ointment-2
+    - ointment-3
+    # Arcane-End
   - type: StackPrice
     price: 5
 
@@ -65,19 +78,24 @@
     count: 1
 
 - type: entity
-  name: regenerative mesh
+  name: advanced regenerative mesh # Arcane-Edit: Med rework
   description: Used to treat even the nastiest burns. Also effective against caustic burns.
   parent: BaseHealingItem
-  id: RegenerativeMesh
+  id: AdvancedRegenerativeMeshOpened # Arcane-Edit
   suffix: Full
   components:
   - type: Tag
     tags:
     - Ointment
   - type: Sprite
-    state: regenerative-mesh
+    state: aloe-mesh-3 # Arcane-Edit
+    # Arcane-Start
+    layers:
+    - state: aloe-mesh-3
+      map: ["base"]
+    # Arcane-End
   - type: Item
-    heldPrefix: regenerative-mesh
+    heldPrefix: aloe-mesh # Arcane-Edit
   - type: Healing
     damageContainers:
       - Biological
@@ -88,28 +106,51 @@
         Shock: -15
         Caustic: -15 #Was 10 per type, Buffed due to limb damage changes (Goobstation)
     healingBeginSound:
-      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      collection: RegenerativeMeshBegin # Arcane-Edit
       params:
-        volume: 1.0
+        volume: 4.0 # Arcane-Edit: 1.0 > 4.0
         variation: 0.125
     healingEndSound:
-      path: "/Audio/Items/Medical/ointment_end.ogg"
+      collection: RegenerativeMeshContinuous # Arcane-Edit
       params:
-        volume: 1.0
+        volume: 4.0 # Arcane-Edit: 1.0 > 4.0
         variation: 0.125
+    # Arcane-Start
+    healingFullEndSound:
+      collection: RegenerativeMeshEnd
+      params:
+        volume: 4.0 # Arcane-Edit: 1.0 > 4.0
+        variation: 0.125
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Arcane/Items/Medical/regenerative_mesh/regen_mesh_drop1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Arcane/Items/Medical/regenerative_mesh/regen_mesh_drop1.ogg
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Arcane/Items/Medical/regenerative_mesh/regen_mesh_pickup1.ogg
+    # Arcane-End
   - type: Stack
-    stackType: RegenerativeMesh
+    stackType: AdvancedRegenerativeMesh # Arcane-Edit
     count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
+    # Arcane-Start
+    baseLayer: base
+    layerStates:
+    - aloe-mesh
+    - aloe-mesh-2
+    - aloe-mesh-3
+    # Arcane-End
   - type: StackPrice
-    price: 20
+    price: 40 # Arcane-Edit: 20 > 40
 
 - type: entity
   id: OintmentAdvanced1
-  parent: RegenerativeMesh
+  parent: AdvancedRegenerativeMeshOpened # Arcane-Edit
   suffix: Single
   components:
   - type: Stack
-    stackType: RegenerativeMesh
+    stackType: AdvancedRegenerativeMesh # Arcane-Edit
     count: 1
 
 - type: entity
@@ -123,7 +164,12 @@
     tags:
     - Brutepack
   - type: Sprite
-    state: brutepack
+    state: brutepack-3 # Arcane-Edit
+    # Arcane-Start
+    layers:
+    - state: brutepack-3
+      map: ["base"]
+    # Arcane-End
   - type: Item
     heldPrefix: brutepack
   - type: Healing
@@ -131,7 +177,7 @@
       - Biological
     damage:
       groups:
-        Brute: -30 # was 5 (-15 Brute) for each, Buffed due to limb damage changes (Goobstation)
+        Brute: -15 # was 5 (-15 Brute) for each, Buffed due to limb damage changes (Goobstation) # Arcane-Edit: 30 > 15
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -145,6 +191,13 @@
   - type: Stack
     stackType: Brutepack
     count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
+    # Arcane-Start
+    baseLayer: base
+    layerStates:
+    - brutepack
+    - brutepack-2
+    - brutepack-3
+    # Arcane-End
   - type: StackPrice
     price: 5
 
@@ -168,7 +221,12 @@
     tags:
     - Brutepack
   - type: Sprite
-    state: medicated-suture
+    state: medicated-suture-3 # Arcane-Edit
+    # Arcane-Start
+    layers:
+    - state: medicated-suture-3
+      map: ["base"]
+    # Arcane-End
   - type: Item
     heldPrefix: medicated-suture
     storedRotation: -90
@@ -180,32 +238,55 @@
         Brute: -45 # was 10 for each, Buffed due to Limb Damage Changes (Goobstation)
     bloodlossModifier: -10 # a suture should stop ongoing bleeding
     healingBeginSound:
-      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      collection: SutureBegin # Arcane-Edit
       params:
-        volume: 1.0
+        volume: 4.0 # Arcane-Edit: 1.0 > 4.0
         variation: 0.125
     healingEndSound:
-      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      collection: SutureContinuous # Arcane-Edit
       params:
-        volume: 1.0
+        volume: 4.0 # Arcane-Edit: 1.0 > 4.0
         variation: 0.125
+    # Arcane-Start
+    healingFullEndSound:
+      collection: SutureEnd
+      params:
+        volume: 4.0 # Arcane-Edit: 1.0 > 4.0
+        variation: 0.125
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Arcane/Items/Medical/regenerative_mesh/regen_mesh_drop1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Arcane/Items/Medical/regenerative_mesh/regen_mesh_drop1.ogg
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Arcane/Items/Medical/suture/needle_pickup1.ogg
+    # Arcane-End
   - type: Stack
     stackType: MedicatedSuture
-    count: 15 #Was 10, Buffed due to surgery changes (Goobstation)
+    count: 10 #Was 10, Buffed due to surgery changes (Goobstation) # Arcane-Edit: 15 > 10
+    # Arcane-Start
+    baseLayer: base
+    layerStates:
+    - medicated-suture
+    - medicated-suture-2
+    - medicated-suture-3
+    # Arcane-End
   - type: StackPrice
-    price: 20
+    price: 40 # Arcane-Edit: 20 > 40
   # <Shitmed>
   - type: Stitches
     speed: 2 # actual stitches cost nothing to use so these are faster, shits expensive
     used: true
   - type: SurgeryTool
     startSound:
-      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      collection: SutureBegin # Arcane-Edit
       params:
         volume: 1.0
         variation: 0.125
     endSound:
-      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      collection: SutureContinuous # Arcane-Edit
       params:
         volume: 1.0
         variation: 0.125
@@ -302,7 +383,12 @@
     tags:
     - Gauze
   - type: Sprite
-    state: gauze
+    state: gauze-3 # Arcane-Edit
+    # Arcane-Start
+    layers:
+    - state: gauze-3
+      map: ["base"]
+    # Arcane-End
   - type: Clothing # Orion
     sprite: _Orion/Clothing/Hands/Gloves/gauze.rsi
     slots: gloves
@@ -317,8 +403,9 @@
       - Biological
     damage:
       types:
-        Slash: -10 # Was 5
-        Piercing: -15 # Was 10, Buffed due to limb damage changes (Goobstation)
+        Slash: -2 # Was 5 # Arcane-Edit: -10 > -2
+        Piercing: -4 # Was 10, Buffed due to limb damage changes (Goobstation) # Arcane-Edit: -15 > -4
+    delay: 0.5 # Arcane
     bloodlossModifier: -10
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -333,6 +420,13 @@
   - type: Stack
     stackType: Gauze
     count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
+    # Arcane-Start
+    baseLayer: base
+    layerStates:
+    - gauze
+    - gauze-2
+    - gauze-3
+    # Arcane-End
   - type: StackPrice
     price: 10
 
@@ -353,9 +447,30 @@
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/aloe.rsi
     state: cream
+    # Arcane-Start
+    layers:
+    - state: cream
+      map: ["base"]
+  - type: Item
+    sprite: Objects/Specific/Hydroponics/aloe.rsi
+    heldPrefix: produce
+    # Arcane-End
   - type: Stack
     stackType: AloeCream
     count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
+    # Arcane-Start
+    baseLayer: base
+    layerStates:
+    - cream
+    - cream
+  - type: Healing
+    damage:
+      types:
+        Heat: -7
+        Cold: -6
+        Shock: -6
+        Caustic: -5
+    # Arcane-End
 
 - type: entity
   parent: BaseHealingItem
