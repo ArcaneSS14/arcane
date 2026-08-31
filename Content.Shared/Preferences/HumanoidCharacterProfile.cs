@@ -278,7 +278,7 @@ namespace Content.Shared.Preferences
             SpawnPriorityPreference spawnPriority,
             Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities,
             PreferenceUnavailableMode preferenceUnavailable,
-            Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>> jobAlternateTitles, // Arcanes
+            Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>> jobAlternateTitles, // Arcane
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
