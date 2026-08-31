@@ -788,3 +788,10 @@ Entries:
   id: 63
   time: '2026-08-31T15:29:01.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/178
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: 'Переработано замедление от повреждений:'
+  id: 64
+  time: '2026-08-31T16:09:32.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/254
