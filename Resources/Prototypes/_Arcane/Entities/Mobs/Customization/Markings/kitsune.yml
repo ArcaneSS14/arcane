@@ -1,0 +1,21 @@
+- type: marking
+  id: KitsuneTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human, Oni]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
+    state: Tail
+  - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
+    state: TipTail
+
+- type: marking
+  id: KitsuneTripleTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human, Oni]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
+    state:  TripleTail
+  - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
+    state: TipTripleTail
