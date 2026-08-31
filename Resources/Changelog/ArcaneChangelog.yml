@@ -781,3 +781,10 @@ Entries:
   id: 62
   time: '2026-08-31T04:06:11.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/257
+- author: seemah
+  changes:
+    - type: Add
+      message: Добавлен автомат с нижним бельём - нижнемат.
+  id: 63
+  time: '2026-08-31T15:29:01.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/178
