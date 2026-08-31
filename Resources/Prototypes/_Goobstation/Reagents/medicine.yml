@@ -1289,10 +1289,9 @@
           components:
           - type: PressureProtection # can't get through this to reach the bodyparts!
           inverted: true
-        - !type:TypedDamageThreshold
-          damage:
-            types:
-              Heat: 50
+        - !type:DamageTypeCondition
+          damageType: Heat
+          min: 50
         damage:
           types:
             Heat: -0.5
@@ -1376,10 +1375,9 @@
           components:
           - type: PressureProtection # can't get through this to reach the bodyparts!
           inverted: true
-        - !type:TypedDamageThreshold
-          damage:
-            types:
-              Cold: 50
+        - !type:DamageTypeCondition
+          damageType: Cold
+          min: 50
         damage:
           types:
             Cold: -0.5

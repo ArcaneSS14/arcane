@@ -21,18 +21,19 @@
         reagent: Convermol
         amount: -0.5
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: Convermol
           min: 35
       - !type:AdjustReagent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Dylovene
           min: 0.5
         reagent: Histamine
         amount: 4
       - !type:AdjustReagent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: Dylovene
           min: 0.5
         reagent: Dylovene

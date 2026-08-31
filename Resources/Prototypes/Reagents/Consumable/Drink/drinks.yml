@@ -616,12 +616,13 @@
       effects:
       - !type:SatiateThirst
         factor: 3 # Slightly worse for quenching thirst than just straight water
-# Arcane-Start
+      # Arcane-Start
       - !type:AdjustTemperature
+        amount: -20
         conditions:
         - !type:TemperatureCondition
-          min: 273.15
-        amount: -500
+          min: 310.15
+      # Arcane-End
   reactiveEffects:
     Acidic:
       methods: [ Touch ]
@@ -635,7 +636,6 @@
           - type: PressureProtection
           inverted: true
         amount: -500
-# Arcane-End
   plantMetabolism:
   - !type:PlantAdjustWater
     amount: 1 # The internet tells me I should avoid watering plants with ice, but mostly because of temperature, so this value being the same as water should probably be fine?
@@ -645,18 +645,6 @@
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Arcane-Start
-  metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateThirst
-        factor: 3
-      - !type:AdjustTemperature
-        amount: -20
-        conditions:
-        - !type:TemperatureCondition
-          min: 310.15
-  # Arcane-End
 
 - type: reagent
   id: DryRamen

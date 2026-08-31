@@ -91,10 +91,15 @@
         group: Narcotic
         amount: -1
         conditions:
-        - !type:ReagentThreshold
-          reagents:
-          - Dylovene
-          - Tricordrazine
+        - !type:ReagentCondition
+          reagent: Dylovene
+          min: 0.5
+      - !type:AdjustReagent
+        group: Narcotic
+        amount: -1
+        conditions:
+        - !type:ReagentCondition
+          reagent: Tricordrazine
           min: 0.5
       - !type:AdjustReagent
         reagent: Histamine
