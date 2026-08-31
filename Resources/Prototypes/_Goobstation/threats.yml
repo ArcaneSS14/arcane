@@ -81,7 +81,7 @@
   announcement: terror-Nukeops
   rule: Nukeops
 
-  - type: ninjaHackingThreat
+- type: ninjaHackingThreat
   id: Revolutionary
   announcement: terror-Revolutionary
   rule: Revolutionary
