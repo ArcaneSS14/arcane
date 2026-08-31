@@ -35,6 +35,7 @@
   category: Pussy
   userArouse: 3
   targetArouse: 10
+  chanceLickCum: 0.1 # 10%
   sounds:
   - /Audio/_Arcane/Interactions/bj5.ogg
   - /Audio/_Arcane/Interactions/bj6.ogg
@@ -196,10 +197,10 @@
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
-  - вставляет игрушку в вагину $target.
+  - вставляет секс-игрушку в вагину $target.
   - двигает вибратором внутри вагины $target.
-  - ритмично использует игрушку во влагалище $target.
-  - медленно вводит игрушку в мокрую вагину $target.
+  - ритмично использует секс-игрушку во влагалище $target.
+  - медленно вводит секс-игрушку в мокрую вагину $target.
   - аккуратно работает игрушкой во влагалище $target.
   icon: _Arcane/Interface/ErpPanel/toy_pussy.png
   tags:
@@ -216,3 +217,142 @@
     tags:
     - SexToyDildo
     - SexToyVibrator
+
+- type: panelInteraction
+  id: ToyPussyFuck
+  category: Pussy
+  userArouse: 5
+  targetArouse: 15
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  messages:
+  - входит секс-игрушкой в вагину $target.
+  - медленно проникает секс-игрушкой в вагину $target.
+  - ритмично двигает секс-игрушкой внутри вагины $target.
+  - прижимается к $target, трахая вагину секс-игрушкой.
+  - глубоко входит секс-игрушкой в вагину $target.
+  icon: _Arcane/Interface/ErpPanel/toy_pussy.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:ClothesWearingRequirements
+    tags:
+    - SexToyAnal
+
+- type: panelInteraction
+  id: ToyPussyLicking
+  category: Pussy
+  userArouse: 5
+  targetArouse: 5
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/oral1.ogg
+  - /Audio/_Arcane/Interactions/oral2.ogg
+  selfMessages:
+  - жадно лижет влажную секс-игрушку.
+  - медленно проводит языком по мокрой щели секс-игрушки.
+  - глубоко проникает языком внутрь секс-игрушки.
+  - активно ласкает языком секс-игрушку.
+  - ритмично лижет и посасывает секс-игрушку.
+  - быстро водит языком по мокрой секс-игрушке.
+  icon: _Arcane/Interface/ErpPanel/pussy_lick.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:HeldItemRequirement
+    tags:
+    - SexToyBlow
+    - SexToyButthole
+    - SexToyOnahole
+
+- type: panelInteraction
+  id: PussyToySitting
+  category: Pussy
+  userArouse: 10
+  targetArouse: 10
+  range: 1
+  sounds:
+  - /Audio/_Arcane/Interactions/asscrap1.ogg
+  - /Audio/_Arcane/Interactions/asscrap2.ogg
+  - /Audio/_Arcane/Interactions/asscrap3.ogg
+  selfMessages:
+  - садится вагиной на секс-игрушку
+  - усаживается клитором на игрушку
+  - приседает киской прямиком на секс-игрушку
+  - плавно опускает киску вниз на секс-игрушку
+  - скользит клитором на секс-игрушке вверх-вниз
+  icon: _Arcane/Interface/ErpPanel/toy_pussy.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:NearbyTargetRequirement
+    tags:
+    - SexToyDildo
+
+- type: panelInteraction
+  id: WallPussyFuck
+  category: Pussy
+  userArouse: 10
+  targetArouse: 10
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  messages:
+  - грубо прижимает $target у стены и страстно трахает в киску.
+  - резко вжимает $target в стену, блокируя пути к отходу, вставляя свой член в вагину.
+  - владно прижимает $target к стене, трахая прямо в задницу.
+  - аккуратно, но настойчиво прижимает $target у стены, вставляя член прямо в вагину.
+  - собственнически вжимает в ближайшую стену, проникая своим членом в вагину $target.
+  - мягко загоняет $target в угол и прижимает к стене, загоняя свой член в киску.
+  icon: _Arcane/Interface/ErpPanel/kabedon.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:NearbyStaticEntityRequirement
+    tags:
+    - Wall
+  userRequirements:
+  - !type:ArousalRequirement
+
+- type: panelInteraction
+  id: LickPussyCondensedCum
+  category: Pussy
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  chanceLickCum: 0.2 # 20%
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  messages:
+  - аккуратно слизывает нектар с вагины $target.
+  - жадно и быстро слизывает солёно-сладкую гущу с киски $target.
+  - нежно проводит языком по клитору $target, слизывая выделение.
+  - медленно и дразняще слизывает густое выделение с вагины $target.
+  - заботливо очищает киску $target от липкой гущи своим языком.
+  icon: _Arcane/Interface/ErpPanel/heart_icon.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:CumOverlayRequirement
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin

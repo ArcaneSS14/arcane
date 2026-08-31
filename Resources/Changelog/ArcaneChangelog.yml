@@ -649,3 +649,135 @@ Entries:
   id: 51
   time: '2026-08-26T17:03:40.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/242
+- author: GrinDers
+  changes:
+    - type: Add
+      message: >-
+        В гайдбук добавлены статьи должностных обязанностей основных отделов и
+        три под пункта КЗ (xx8, xx9, xx10).
+    - type: Tweak
+      message: Актуализированы коды угроз под наше вики.
+    - type: Tweak
+      message: Изменена таблица законов.
+  id: 52
+  time: '2026-08-27T07:54:07.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/264
+- author: ReWAFFlution, oldschool_otaku, Snorkcom
+  changes:
+    - type: Add
+      message: Добавлена возможность передачи предмета из рук в руки.
+  id: 53
+  time: '2026-08-27T07:56:34.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/258
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Полная переработка стиля UI в формат Arcane!
+  id: 54
+  time: '2026-08-28T11:26:55.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/268
+- author: Vecortys
+  changes:
+    - type: Add
+      message: Бабл всплывашка сообщения берёт шрифт языка.
+  id: 55
+  time: '2026-08-28T11:35:16.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/270
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Авторестарт был возвращён - теперь будет происходить каждые 8 раундов.
+    - type: Fix
+      message: >-
+        Исправлена ширина окна чата в стандартном Худе (админы успели офигеть от
+        его ширины!!!)
+    - type: Fix
+      message: Исправлено отображение нестандартного scale'а UI.
+  id: 56
+  time: '2026-08-28T13:39:06.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/271
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Усложнён гриф базы InteQ.
+  id: 57
+  time: '2026-08-28T14:35:19.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/269
+- author: Kat_L
+  changes:
+    - type: Add
+      message: >-
+        @Bulbo44key пополнила ассортимент ЛавМата, а также некоторые интеракции
+        под них. Подробности в PR
+    - type: Add
+      message: Добавлены сумки/рюкзаки/вещмешки для глав отделов (ГВ, ГП, КМ, НР, СИ)
+    - type: Add
+      message: Добавлен элитный, спонсорский шмот СБ
+    - type: Add
+      message: >-
+        Добавлены более 40+ интеракции и 5 требований к выполнению. Подробности
+        в PR
+    - type: Fix
+      message: Исправлен баг на выполнение self интеракции на своей пешке
+  id: 58
+  time: '2026-08-30T07:59:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/235
+- author: Vecortys
+  changes:
+    - type: Add
+      message: >-
+        Добавлены спрайты для газообразного афродизиака, стакана метаморфа и
+        бутылки. Бутылка афродизиака теперь появляется во взломанном алкомате.
+  id: 59
+  time: '2026-08-30T13:04:37.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/275
+- author: Kideo000
+  changes:
+    - type: Tweak
+      message: Обновлены спрайты структур ксеноморфов.
+  id: 60
+  time: '2026-08-30T14:53:02.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/273
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Сумеречникам изменены звуки рычания
+    - type: Tweak
+      message: Слаймолюды не могут отравиться от сырого мяса
+    - type: Add
+      message: Сумеречники могут тянуть предметы хвостами
+    - type: Add
+      message: Молям и арахнидам добавлены человеческие причёски
+    - type: Add
+      message: КПБ могут заменить себе батарею
+    - type: Add
+      message: >-
+        Слаймолюдам добавлены кошачьи ушки и хвост. Ещё могут отрастить себе
+        конечность засчёт еды и воды, а их сердце невозможно уничтожить как и
+        мозг.
+  id: 61
+  time: '2026-08-30T18:21:20.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/263
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: >-
+        Добавлены фукнции в настройки управления "Отключить подбор предметов в
+        боевом режиме" и "Управление ТГ13"
+    - type: Add
+      message: >-
+        Импланты Сандевистан и Берсерк не могут быть активированными носителями
+        "Щита Разума"
+    - type: Add
+      message: Носители "Щита Разума" не могут открыть аплинк
+    - type: Tweak
+      message: Урон лимитки порезан в 3 раза
+    - type: Tweak
+      message: >-
+        Шприцы из шприцемёта вводят вещества в сущностей в скафандре с задержкой
+        5 секунд
+    - type: Tweak
+      message: Имплант Побега был переработан и улучшен
+  id: 62
+  time: '2026-08-31T04:06:11.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/257

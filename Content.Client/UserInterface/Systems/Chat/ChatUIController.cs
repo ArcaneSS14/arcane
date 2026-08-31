@@ -12,6 +12,7 @@ using Content.Client.Examine;
 using Content.Client.Gameplay;
 using Content.Client.Ghost;
 using Content.Client.Mind;
+using Content.Client.Lobby.UI; // Arcane
 using Content.Client.Roles;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Screens;
@@ -292,19 +293,22 @@ public sealed partial class ChatUIController : UIController
         if (panel is null)
             return;
 
-        Color color;
+        // Arcane-Edit-Start
+        if (UIManager.ActiveScreen is LobbyGui)
+            opacity = Math.Min(opacity, 0.35f);
+
+        StyleBoxFlat panelStyle;
         if (panel.PanelOverride is StyleBoxFlat styleBoxFlat)
-            color = styleBoxFlat.BackgroundColor;
+            panelStyle = new StyleBoxFlat(styleBoxFlat);
         else if (panel.TryGetStyleProperty<StyleBox>(PanelContainer.StylePropertyPanel, out var style)
                  && style is StyleBoxFlat propStyleBoxFlat)
-            color = propStyleBoxFlat.BackgroundColor;
+            panelStyle = new StyleBoxFlat(propStyleBoxFlat);
         else
-            color = Color.FromHex("#25252ADD");
+            panelStyle = new StyleBoxFlat(Color.FromHex("#252A2F"));
 
-        panel.PanelOverride = new StyleBoxFlat
-        {
-            BackgroundColor = color.WithAlpha(opacity)
-        };
+        panelStyle.BackgroundColor = panelStyle.BackgroundColor.WithAlpha(opacity);
+        panel.PanelOverride = panelStyle;
+        // Arcane-Edit-End
     }
 
     public void SetMainChat(bool setting)

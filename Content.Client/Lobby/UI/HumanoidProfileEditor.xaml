@@ -17,7 +17,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     <ui:HighlightedContainer>
                         <BoxContainer Orientation="Vertical">
                             <ui:HighlightedContainer>
-                                <BoxContainer Orientation="Vertical">
+                                <BoxContainer Orientation="Vertical" SeparationOverride="4"> <!-- Arcane -->
                                     <BoxContainer Orientation="Horizontal" VerticalExpand="True">
                                         <Label Text="{Loc 'humanoid-profile-editor-name-label'}" />
                                         <LineEdit Name="NameEdit" MinSize="270 0" VerticalAlignment="Center" Margin="5 0 0 0" />
@@ -37,7 +37,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 <!-- Import/Export -->
                 <BoxContainer Orientation="Vertical" MinSize="60 0" HorizontalExpand="True" HorizontalAlignment="Right">
                     <ui:HighlightedContainer Name="ProfileHighlight">
-                        <BoxContainer Orientation="Vertical">
+                        <BoxContainer Orientation="Vertical" SeparationOverride="4"> <!-- Arcane -->
                             <Button Name="SaveButton" Text="{Loc 'humanoid-profile-editor-save-button'}"/>
                             <Button Name="ResetButton" Disabled="True" Text="{Loc 'humanoid-profile-editor-reset-button'}"/>
                             <Button Name="ImportButton" Text="{Loc 'humanoid-profile-editor-import-button'}"/>
@@ -55,7 +55,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     <ScrollContainer VerticalExpand="True">
                         <!-- appearanceList -->
                         <BoxContainer Orientation="Vertical">
-                            <BoxContainer Margin="10" Orientation="Vertical" HorizontalExpand="True">
+                            <BoxContainer Margin="10" Orientation="Vertical" HorizontalExpand="True" SeparationOverride="4"> <!-- Arcane -->
                                 <!-- Species -->
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-species-label'}" />
@@ -89,12 +89,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-clothing'}" />
                                     <Control HorizontalExpand="True"/>
-                                    <!-- Orion-Edit-Start: Clothing display -->
-                                    <BoxContainer HorizontalExpand="True">
-                                        <Control HorizontalExpand="True"/>
-                                        <OptionButton Name="ClothingDisplayButton" HorizontalAlignment="Right" />
-                                    </BoxContainer>
-                                    <!-- Orion-Edit-End -->
+                                    <!-- <Control HorizontalExpand="True"/> Arcane-remove -->
+                                    <OptionButton Name="ClothingDisplayButton" HorizontalAlignment="Right" /> <!-- Arcane -->
                                 </BoxContainer>
                                 <!-- Spawn Priority -->
                                 <BoxContainer HorizontalExpand="True">
@@ -181,13 +177,16 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 </BoxContainer>
             </TabContainer>
         </BoxContainer>
-        <!-- Right side -->
-        <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Center">
-            <SpriteView Name="SpriteView" Scale="8 8" Margin="4" SizeFlagsStretchRatio="1" />
-            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5">
-                <Button Name="SpriteRotateLeft" Text="◀" StyleClasses="OpenRight" />
-                <cc:VSeparator Margin="2 0 3 0" />
-                <Button Name="SpriteRotateRight" Text="▶" StyleClasses="OpenLeft" />
+        <!-- Arcane-Edit-Start -->
+        <PanelContainer StyleClasses="PanelLight ArcaneElevatedPanel" Margin="0 10 10 10" MinWidth="260">
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Center">
+                <SpriteView Name="SpriteView" Scale="8 8" Margin="4" SizeFlagsStretchRatio="1" />
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5">
+                    <Button Name="SpriteRotateLeft" Text="◀" StyleClasses="OpenRight" />
+                    <cc:VSeparator Margin="2 0 3 0" />
+                    <Button Name="SpriteRotateRight" Text="▶" StyleClasses="OpenLeft" />
+                </BoxContainer>
             </BoxContainer>
-        </BoxContainer>
+        </PanelContainer>
+        <!-- Arcane-Edit-End -->
 </BoxContainer>
