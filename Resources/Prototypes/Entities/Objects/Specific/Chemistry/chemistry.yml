@@ -96,6 +96,26 @@
     damage:
       types:
         Blunt: 5
+  # Arcane-Start
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_place.ogg
+      params:
+        volume: -4
+        variation: 0.125
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_place.ogg
+      params:
+        volume: -4
+        variation: 0.125
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_pickup.ogg
+      params:
+        volume: -6
+        variation: 0.125
+  # Arcane-End
   - type: StaticPrice
     price: 30
   - type: DnaSubstanceTrace
@@ -179,16 +199,48 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Glass
+  # Arcane-Start
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_place.ogg
+      params:
+        volume: -4
+        variation: 0.125
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_place.ogg
+      params:
+        volume: -4
+        variation: 0.125
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_pickup.ogg
+      params:
+        volume: -6
+        variation: 0.125
+  # Arcane-End
   - type: StaticPrice
     price: 30
   - type: DnaSubstanceTrace
 
 - type: entity
   name: beaker
-  parent: BaseBeaker
+  parent: [BaseBeaker, BaseOpenableBeaker] # Arcane-Edit
   description: Used to contain a moderate amount of chemicals and solutions.
   id: Beaker
   components:
+  # Arcane-Start
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/beaker.rsi
+    layers:
+      - state: beaker
+      - state: beaker1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+      - state: lid_beaker
+        map: ["enum.OpenableVisuals.Layer"]
+        visible: false
+  # Arcane-End
   - type: Spillable
     solution: beaker
   - type: StaticPrice
@@ -309,7 +361,7 @@
 
 - type: entity
   name: large beaker
-  parent: BaseBeaker
+  parent: [BaseBeaker, BaseOpenableBeaker] # Arcane-Edit
   description: Used to contain a large amount of chemicals or solutions.
   id: LargeBeaker
   components:
@@ -322,6 +374,11 @@
       - state: beakerlarge1
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
+      # Arcane-Start
+      - state: lid_beakerlarge
+        map: ["enum.OpenableVisuals.Layer"]
+        visible: false
+      # Arcane-End
   - type: Item
     size: Normal
     sprite: Objects/Specific/Chemistry/beaker_large.rsi
@@ -343,7 +400,7 @@
 
 - type: entity
   name: cryostasis beaker
-  parent: BaseBeakerMetallic
+  parent: [BaseBeakerMetallic, BaseOpenableBeaker] # Arcane-Edit
   description: Used to contain chemicals or solutions without reactions.
   id: CryostasisBeaker
   components:
@@ -353,6 +410,11 @@
     sprite: Objects/Specific/Chemistry/beaker_cryostasis.rsi
     layers:
       - state: beakernoreact
+      # Arcane-Start
+      - state: lid_beakernoreact
+        map: ["enum.OpenableVisuals.Layer"]
+        visible: false
+      # Arcane-End
   # Orion-Start
   - type: Item
     sprite: Objects/Specific/Chemistry/beaker_cryostasis.rsi
@@ -371,7 +433,7 @@
 
 - type: entity
   name: bluespace beaker
-  parent: BaseBeakerMetallic
+  parent: [BaseBeakerMetallic, BaseOpenableBeaker] # Arcane-Edit
   description: Powered by experimental bluespace technology.
   id: BluespaceBeaker
   components:
@@ -381,8 +443,14 @@
     sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
     layers:
       - state: beakerbluespace
+      # Arcane-Start
+      - state: lid_beakerbluespace
+        map: ["enum.OpenableVisuals.Layer"]
+        visible: false
+      # Arcane-End
   # Orion-Start
   - type: Item
+    size: Normal # Arcane
     sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
   # Orion-End
   - type: SolutionContainerVisuals
@@ -390,7 +458,7 @@
   - type: SolutionContainerManager
     solutions:
       beaker:
-        maxVol: 1000
+        maxVol: 300 # Arcane-Edit: 1000 > 300
   - type: PhysicalComposition #Goobstation - Recycle update
     materialComposition:
       Steel: 125
@@ -773,7 +841,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 50 # Arcane-Edit: 20 > 50
         canReact: false
   - type: ExplosionResistance
     damageCoefficient: 0.025 # survives conventional explosives but not minibombs and nukes

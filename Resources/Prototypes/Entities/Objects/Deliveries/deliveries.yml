@@ -94,7 +94,7 @@
   - type: Item
     size: Huge
   - type: Delivery
-    baseSpesoReward: 1000
+    baseSpesoReward: 1250 # Arcane-Edit: 1000 > 1250
     baseSpesoPenalty: 250 # So low due to dept economy splitting all the earnings, but not splitting the penalty.
   - type: Speech
     speechVerb: Robotic
@@ -148,7 +148,7 @@
   - type: Item
     storedRotation: 90
   - type: Delivery
-    baseSpesoReward: 500
+    baseSpesoReward: 750 # Arcane-Edit: 500 > 750
     baseSpesoPenalty: 125 # So low due to dept economy splitting all the earnings, but not splitting the penalty.
   - type: Speech
     speechVerb: Robotic

@@ -1,0 +1,39 @@
+- type: reaction
+  id: Convermol
+  reactants:
+    Oil:
+      amount: 1
+    Fluorine:
+      amount: 1
+    Hydrogen:
+      amount: 1
+  products:
+    Convermol: 3
+
+- type: reaction
+  id: Salbutamol
+  reactants:
+    SalicylicAcid:
+      amount: 1
+    Ammonia:
+      amount: 1
+    Aluminium:
+      amount: 1
+    Iodine:
+      amount: 1
+    Lithium:
+      amount: 1
+  products:
+    Salbutamol: 5
+
+- type: reaction
+  id: Synthflesh
+  reactants:
+    Probital:
+      amount: 1
+    Blood:
+      amount: 1
+    Carbon:
+      amount: 1
+  products:
+    Synthflesh: 3

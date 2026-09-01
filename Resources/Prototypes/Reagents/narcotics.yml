@@ -34,7 +34,7 @@
           inverted: true
         damage:
           types:
-            Poison: 2 # Goobstation
+            Poison: 0.75 # Goobstation # Arcane-Edit: 2 > 0.75
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -45,7 +45,7 @@
           inverted: true
         damage:
           types:
-            Poison: 2.75 # this is added to the base damage of the meth. // Goobstation +0.75  damage
+            Poison: 2 # this is added to the base damage of the meth. // Goobstation +0.75  damage# Goobstation # Arcane-Edit: 2.75 > 2
             Asphyxiation: 2
     Narcotic:
       effects:
@@ -86,6 +86,28 @@
         locale: reagent-effect-guidebook-remove-delayed-knockdown
       - !type:ChemAddMoodlet # Orion
         moodPrototype: StrongStimulant
+      # Arcane-Start
+      - !type:AdjustReagentsByGroup
+        group: Narcotic
+        amount: -1
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dylovene
+          min: 0.5
+      - !type:AdjustReagentsByGroup
+        group: Narcotic
+        amount: -1
+        conditions:
+        - !type:ReagentCondition
+          reagent: Tricordrazine
+          min: 0.5
+      - !type:AdjustReagent
+        reagent: Histamine
+        amount: 5
+        conditions:
+        - !type:UniqueBloodstreamChemThreshold
+          min: 4
+      # Arcane-End
     Medicine:
       effects:
       # Side effects

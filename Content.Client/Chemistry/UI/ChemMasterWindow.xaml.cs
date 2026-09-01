@@ -138,6 +138,15 @@ namespace Content.Client.Chemistry.UI
             return buttons;
         }
 
+        // Arcane-Start: You can see max volume
+        private static string FormatVolume(FixedPoint2 current, FixedPoint2? max)
+        {
+            return max is { } m && m > FixedPoint2.Zero
+                ? $"{current}/{m}u"
+                : $"{current}u";
+        }
+        // Arcane-End
+
         /// <summary>
         /// Update the UI state when new state data is received from the server.
         /// </summary>
@@ -278,9 +287,14 @@ namespace Content.Client.Chemistry.UI
 
             var bufferLabel = new Label { Text = $"{Loc.GetString("chem-master-window-buffer-label")} " };
             bufferHBox.AddChild(bufferLabel);
+            // Arcane-Start
+            var bufVolText = state.BufferMaxVolume is { } maxVol && maxVol > FixedPoint2.Zero
+                ? $"{state.BufferCurrentVolume}/{maxVol}u"
+                : $"{state.BufferCurrentVolume}u";
+            // Arcane-End
             var bufferVol = new Label
             {
-                Text = $"{state.BufferCurrentVolume}u",
+                Text = bufVolText, // Arcane-Edit
                 StyleClasses = { StyleClass.LabelWeak }
             };
             bufferHBox.AddChild(bufferVol);

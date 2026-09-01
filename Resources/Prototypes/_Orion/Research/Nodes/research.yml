@@ -83,16 +83,22 @@
   recipeUnlocks:
   - MaterialSiloMachineCircuitboard
   - OreBagOfHolding
-  - BluespaceBeaker
-  - SyringeBluespace
+  # Arcane-Edit-Start: Relocated
+#  - BluespaceBeaker
+#  - SyringeBluespace
+  # Arcane-Edit-End
   - BluespaceBodyBag
   - ConstructionBagOfHolding
   - ClothingBeltChemBagXenobiologyHolding
   - PlantBagOfHolding
-  - VialBluespace
+#  - VialBluespace # Arcane-Edit
   - ClothingBackpackHarmpack
+  # Arcane-Start
+  - WeaponParticleDecelerator
+  - VehicleHoverchairSci
+  # Arcane-End
   - CrayonRainbowLarge
-  - DrinkShakerBluespace
+#  - DrinkShakerBluespace # Arcane-Edit
   position: 0,6
 
 - type: technology
@@ -173,10 +179,18 @@
   - ClothingBackpackMessengerHolding
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
+  # Arcane-Start
+  - BluespaceBeaker
+  - DrinkShakerBluespace
+  - VialBluespace
+  - SyringeBluespace
+  # Arcane-End
   - WeaponTetherGun
 #  - PolymorphBelt # TODO
-  - VehicleHoverchairSci
-  - WeaponParticleDecelerator
+  # Arcane-Edit-Start
+#  - VehicleHoverchairSci
+#  - WeaponParticleDecelerator
+  # Arcane-Edit-End
   - WeaponForceGun
   - WeaponGauntletGorilla
   position: 1,8

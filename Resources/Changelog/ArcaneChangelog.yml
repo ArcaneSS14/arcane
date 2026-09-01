@@ -795,3 +795,26 @@ Entries:
   id: 64
   time: '2026-08-31T16:09:32.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/254
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Крупная переработка всего медблока.
+  id: 65
+  time: '2026-08-31T18:27:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/101
+- author: badjuju
+  changes:
+    - type: Fix
+      message: Демон резни теперь может перемещаться по крови ксеноморфов, дион и слизи
+  id: 66
+  time: '2026-09-01T04:34:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/272
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Награда за почту увеличена
+    - type: Fix
+      message: Стоимость платы пользовательских законов составляет 100 кредитов
+  id: 67
+  time: '2026-09-01T04:36:15.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/280
