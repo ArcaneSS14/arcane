@@ -358,7 +358,7 @@
           inverted: true
         damage:
           types:
-            Asphyxiation: 12 # Arcane-Edit: 5 > 12
+            Asphyxiation: 8 # Arcane-Edit: 5 > 8
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: 10
