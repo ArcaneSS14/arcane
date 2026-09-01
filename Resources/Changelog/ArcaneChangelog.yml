@@ -802,3 +802,10 @@ Entries:
   id: 65
   time: '2026-08-31T18:27:03.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/101
+- author: badjuju
+  changes:
+    - type: Fix
+      message: Демон резни теперь может перемещаться по крови ксеноморфов, дион и слизи
+  id: 66
+  time: '2026-09-01T04:34:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/272
