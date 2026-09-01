@@ -26,6 +26,11 @@
       - AlienBlood
       - BlackBlood
       - BloodChangeling
+      # Arcane-Start
+      - FluorosulfuricAcidHumanoidXeno
+      - Slime
+      - Sap
+      # Arcane-End
   - type: StaticPrice
     price: 10000
 
@@ -46,6 +51,11 @@
       - AlienBlood
       - BlackBlood
       - BloodChangeling
+      # Arcane-Start
+      - FluorosulfuricAcidHumanoidXeno
+      - Slime
+      - Sap
+      # Arcane-End
     - type: SlaughterDevour # allows the demon to devour
       toHeal: # Healing done when eating someone
         groups:
