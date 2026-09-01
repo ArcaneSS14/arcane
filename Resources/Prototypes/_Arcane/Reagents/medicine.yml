@@ -1,0 +1,59 @@
+- type: reagent
+  id: Convermol
+  name: reagent-name-convermol
+  group: Medicine
+  desc: reagent-desc-convermol
+  physicalDesc: reagent-physical-desc-sour
+  flavor: medicine
+  color: "#FF6464"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.2
+      effects:
+      - !type:ChemConvermol
+        healDamageGroup: Airloss
+        toxDamageType: Poison
+        healPerTick: 6.5
+        buffer: 0.5
+        toxRatio: 5
+        overdoseThreshold: 35
+      - !type:AdjustReagent
+        reagent: Convermol
+        amount: -0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: Convermol
+          min: 35
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dylovene
+          min: 0.5
+        reagent: Histamine
+        amount: 4
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dylovene
+          min: 0.5
+        reagent: Dylovene
+        amount: -0.5
+
+- type: reagent
+  id: Salbutamol
+  name: reagent-name-salbutamol
+  group: Medicine
+  desc: reagent-desc-salbutamol
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: medicine
+  color: "#00FFFF"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.15
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: -6
+      - !type:Oxygenate
+        factor: 4

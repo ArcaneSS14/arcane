@@ -43,18 +43,18 @@
 # Non-Addictive Drugs
 - type: moodEffect
   id: EthanolBenefit
-  moodChange: 3
-  timeout: 300 #5 minutes
+  moodChange: 5
+  timeout: 180 #3 minutes
 
 - type: moodEffect
   id: SpaceDrugsBenefit
   moodChange: 7
-  timeout: 300 #5 minutes
+  timeout: 180 #3 minutes
 
 - type: moodEffect
   id: StrongStimulant
-  moodChange: 10
-  timeout: 300 #5 minutes
+  moodChange: 6
+  timeout: 60 #1 minute
 
 # Floor Juice
 - type: moodEffect
@@ -110,23 +110,23 @@
 
 - type: moodEffect
   id: StrongPainkiller
-  moodChange: 5
-  timeout: 300 #5 minutes
+  moodChange: 6
+  timeout: 180 #3 minutes
 
 # Poisons
 - type: moodEffect
   id: LacerinolEffect
-  moodChange: -20
+  moodChange: -5
   timeout: 60 #1 minute
 
 - type: moodEffect
   id: PuncturaseEffect
-  moodChange: -20
+  moodChange: -10
   timeout: 60 #1 minute
 
 - type: moodEffect
   id: BruizineEffect
-  moodChange: -20
+  moodChange: -5
   timeout: 60 #1 minute
 
 - type: moodEffect
@@ -141,61 +141,61 @@
 
 - type: moodEffect
   id: RomerolEffect
-  moodChange: -200
+  moodChange: -100
   timeout: 1800 #30 minutes
 
 - type: moodEffect
   id: PaxEffect
-  moodChange: 100
+  moodChange: 50
   timeout: 60 #1 minute
 
 # Food
 - type: moodEffect
   id: SweetenerEffect
-  moodChange: 0.5
+  moodChange: 2
   timeout: 1800 #30 minutes
 
 - type: moodEffect
   id: SpicyEffect
-  moodChange: 0.5
+  moodChange: 2
   timeout: 1800 #30 minutes
 
 - type: moodEffect
   id: OilyEffect
-  moodChange: 0.5
+  moodChange: 3
   timeout: 1800 #30 minutes
 
 - type: moodEffect
   id: SaltyEffect
-  moodChange: 0.5
+  moodChange: 1
   timeout: 1800 #30 minutes
 
 - type: moodEffect
   id: MintyEffect
-  moodChange: 0.5
+  moodChange: 1
   timeout: 1800 #30 minutes
 
 - type: moodEffect
   id: PepperEffect
-  moodChange: 0.5
+  moodChange: 1
   timeout: 1800 #30 minutes
 
 - type: moodEffect
   id: ChocolateEffect
-  moodChange: 3
-  timeout: 1800 #30 minutes
-
-- type: moodEffect
-  id: ButterEffect
   moodChange: 4
   timeout: 1800 #30 minutes
 
 - type: moodEffect
+  id: ButterEffect
+  moodChange: 6
+  timeout: 1800 #30 minutes
+
+- type: moodEffect
   id: DeepFriedEffect
-  moodChange: 5
+  moodChange: 7
   timeout: 1800 #30 minutes
 
 - type: moodEffect
   id: TastyEffect
-  moodChange: 3
+  moodChange: 5
   timeout: 1800 #30 minutes

@@ -134,6 +134,10 @@
   - MedkitCombat #goob - Move combat kit to research
   - VialBluespace # goob edit - bluespace vials
   - CryostasisCigarette # goob - cryo cig
+  # Arcane-Start
+  - XLargeBeaker
+  - MetamaterialBeaker
+  # Arcane-End
 
 - type: latheRecipePack
   id: MedicalBoards
