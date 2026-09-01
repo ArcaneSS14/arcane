@@ -192,6 +192,9 @@ namespace Content.Shared.Chemistry
         public readonly ChemMasterSortingType SortingType;
 
         public readonly FixedPoint2? BufferCurrentVolume;
+
+        public readonly FixedPoint2? BufferMaxVolume; // Arcane
+
         public readonly uint SelectedPillType;
 
         public readonly uint PillDosageLimit;
@@ -203,7 +206,8 @@ namespace Content.Shared.Chemistry
         public ChemMasterBoundUserInterfaceState(
             ChemMasterMode mode, ChemMasterSortingType sortingType, ContainerInfo? inputContainerInfo, ContainerInfo? outputContainerInfo,
             IReadOnlyList<ReagentQuantity> bufferReagents, FixedPoint2 bufferCurrentVolume,
-            uint selectedPillType, uint pillDosageLimit, bool updateLabel, ChemMasterDrawSource drawSource)
+            uint selectedPillType, uint pillDosageLimit, bool updateLabel, ChemMasterDrawSource drawSource, // Arcane-Edit
+            FixedPoint2 bufferMaxVolume = default) // Arcane
         {
             InputContainerInfo = inputContainerInfo;
             OutputContainerInfo = outputContainerInfo;
@@ -211,6 +215,7 @@ namespace Content.Shared.Chemistry
             Mode = mode;
             SortingType = sortingType;
             BufferCurrentVolume = bufferCurrentVolume;
+            BufferMaxVolume = bufferMaxVolume; // Arcane
             SelectedPillType = selectedPillType;
             PillDosageLimit = pillDosageLimit;
             UpdateLabel = updateLabel;

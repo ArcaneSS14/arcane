@@ -245,6 +245,8 @@
           - Cybernetic # Shitmed - Cybernetic Organs
           - Yowie # Goobstation - Yowie
           inverted: true
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: EthanolBenefit
       - !type:Drunk
         boozePower: 2
 

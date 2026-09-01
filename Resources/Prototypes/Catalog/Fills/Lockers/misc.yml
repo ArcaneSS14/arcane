@@ -52,12 +52,16 @@
       - id: OxygenTankFilled
     - id: ToolboxEmergencyFilled
       prob: 0.5
-    - id: MedkitOxygenFilled
-      prob: 0.2
+    - id: MedkitEmergencyFilled # Arcane-Edit
+      prob: 0.3 # Arcane-Edit: 0.2 > 0.3
     - id: WeaponFlareGun
       prob: 0.1
     - id: BoxMRE
       prob: 0.1
+    # Arcane-Start
+    - id: MedkitOxygenFilled
+      prob: 0.005
+    # Arcane-End
 
 - type: entity
   id: ClosetEmergencyFilledRandom
@@ -189,13 +193,13 @@
     # Fluff
     - !type:NestedSelector
       tableId: MaintFluffTable
-      prob: 0.33
+      prob: 0.4 # Arcane-Edit: 0.33 > 0.4
       rolls: !type:RangeNumberSelector
         range: 0, 2
     # Plushies
     - !type:NestedSelector
       tableId: AllPlushiesTable
-      prob: 0.10
+      prob: 0.2 # Arcane-Edit: 0.1 > 0.2
       rolls: !type:RangeNumberSelector
         range: 1, 2
     # Weapons
@@ -205,11 +209,11 @@
     # Syndie Loot
     - !type:NestedSelector
       tableId: SyndieMaintLoot
-      prob: 0.05
+      prob: 0.065 # Arcane-Edit: 0.05 > 0.065
     # InteQ Loot | Orion
     - !type:NestedSelector
       tableId: InteQMaintLoot
-      prob: 0.05
+      prob: 0.5
     # Recursive
     - id: ClosetMaintenanceFilledRandom
       prob: 0.01

@@ -153,6 +153,7 @@
           defaultPrototype: Beaker
       partRequirements: # Orion
         Servo: 1
+        Capacitor: 1 # Arcane
 
 - type: entity
   id: TelecomTransmitterCircuitboard

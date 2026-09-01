@@ -1,0 +1,99 @@
+- type: marking
+  id: SlimeCatEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [SlimePerson]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      ears_slime_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+    state: ears_slime_cat_outer
+  - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+    state: ears_slime_cat_inner
+
+- type: marking
+  id: SlimeCurledEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [SlimePerson]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      ears_slime_curled_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+    state: ears_slime_curled_outer
+  - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+    state: ears_slime_curled_inner
+
+- type: marking
+  id: SlimeStubbyEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [SlimePerson]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      ears_slime_stubby_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+    state: ears_slime_stubby_outer
+  - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+    state: ears_slime_stubby_inner
+
+- type: marking
+  id: SlimeTornEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [SlimePerson]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      ears_slime_torn_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+    state: ears_slime_torn_outer
+  - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+    state: ears_slime_torn_inner
+
+- type: marking
+  id: SlimeCatTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [SlimePerson]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+    state: slime_tail_cat_wag
+
+- type: marking
+  id: SlimeCatTailStripes
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [SlimePerson]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+      state: slime_tail_cat_wag_stripes_prime
+    - sprite: _Arcane/Mobs/Customization/slime_cat_parts.rsi
+      state: slime_tail_cat_wag_stripes_second

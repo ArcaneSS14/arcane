@@ -11,6 +11,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Popups;
 
 namespace Content.Shared._Arcane.ErpPanel;
 
@@ -25,6 +26,7 @@ public sealed class SharedErpPanelSystem : EntitySystem
     [Dependency] private readonly SharedChatSystem _chat = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private static readonly EntProtoId HeartsProto = new("EffectHearts");
 
@@ -130,10 +132,18 @@ public sealed class SharedErpPanelSystem : EntitySystem
         customArousal = Math.Clamp(customArousal, 0, 300);
         customMoaning = Math.Clamp(customMoaning, 0, 300);
 
-        if (interaction.TargetArouse > 0 && _arousal.CanAddArousal(target))
+        if (interaction.TargetArouse != 0 && TryComp<ArousalComponent>(target, out var targetArousalComp))
         {
-            Spawn(HeartsProto, _transform.GetMapCoordinates(target));
-            _arousal.AddArousal(target, interaction.TargetArouse * customArousal / 100);
+            var targetDelta = interaction.TargetArouse * customArousal / 100;
+            var currentTargetArousal = _arousal.GetArousal(targetArousalComp);
+
+            if (targetDelta < 0 && Math.Abs(targetDelta) > currentTargetArousal)
+                targetDelta = -currentTargetArousal;
+
+            if (targetDelta > 0)
+                Spawn(HeartsProto, _transform.GetMapCoordinates(target));
+
+            _arousal.AddArousal(target, targetDelta);
             ProccessMoan(target, customMoaning);
         }
 
@@ -143,12 +153,33 @@ public sealed class SharedErpPanelSystem : EntitySystem
         ProccessMessages(user, target, interaction);
         ProccessSounds(user, interaction);
 
+        if (interaction.ChanceLickCum > 0f && TryComp<CumOverlayComponent>(target, out var cumComp))
+        {
+            if (_random.Prob(interaction.ChanceLickCum))
+            {
+                cumComp.Count--;
+                Dirty(target, cumComp);
+
+                if (cumComp.Count <= 0)
+                {
+                    RemComp(target, cumComp);
+                    _popup.PopupEntity(Loc.GetString("erp-panel-lick-cum-success", ("user", user), ("target", target)), target);
+                }
+            }
+        }
+
         if (user == target)
             return;
 
-        if (interaction.UserArouse > 0 && _arousal.CanAddArousal(user))
+        if (interaction.UserArouse != 0 && TryComp<ArousalComponent>(user, out var userArousalComp))
         {
-            _arousal.AddArousal(user, interaction.UserArouse * customArousal / 100);
+            var userDelta = interaction.UserArouse * customArousal / 100;
+            var currentUserArousal = _arousal.GetArousal(userArousalComp);
+
+            if (userDelta < 0 && Math.Abs(userDelta) > currentUserArousal)
+                userDelta = -currentUserArousal;
+
+            _arousal.AddArousal(user, userDelta);
             ProccessMoan(user, customMoaning);
         }
     }
@@ -245,10 +276,10 @@ public sealed class SharedErpPanelSystem : EntitySystem
         if (!_interaction.InRangeAndAccessible(user, target, interaction.Range))
             return false;
 
-        if (interaction.Messages.Count == 0)
+        if (user == target && interaction.SelfMessages.Count == 0)
             return false;
 
-        if (user == target && interaction.SelfMessages.Count == 0 || interaction.Messages.Count == 0)
+        if (user != target && interaction.Messages.Count == 0)
             return false;
 
         if (!TryComp<ErpPanelOwnerComponent>(user, out var userPanel))

@@ -129,6 +129,8 @@
         - !type:ReagentCondition
           min: 0.01
           reagent: Fiber
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: BuzzochloricBeesEffect
       - !type:HealthChange
         damage:
           types:

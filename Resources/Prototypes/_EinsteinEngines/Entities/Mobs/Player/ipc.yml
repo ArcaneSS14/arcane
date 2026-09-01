@@ -43,22 +43,21 @@
         type: SurgeryBui
       enum.RadarConsoleUiKey.Key: #goob - contractor
         type: RadarConsoleBoundUserInterface
-  # Goobstation Start - Energycrit
-  # - type: PowerCellSlot
-  #   cellSlotId: cell_slot
-  #   fitsInCharger: true
-  # - type: ItemSlots
-  #   slots:
-  #     cell_slot:
-  #       locked: true
-  #       name: power-cell-slot-component-slot-name-default
-  #       startingItem: PowerCellMedium
-  # - type: BatterySlotRequiresLock
-  #   itemSlot: cell_slot
-  - type: Battery # Power cell slot replaced with high capacity battery
-    maxCharge: 1080
-    startingCharge: 1080
-  # Goobstation End - Energycrit
+  # Arcane-Start
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: true
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+  - type: ItemSlotsRequirePanel
+    slots:
+      cell_slot: true
+  - type: WiresPanel
+  - type: LockedWiresPanel
+  # Arcane-End
   - type: EncryptionHolderRequiresLock
   #- Goobstation - Energycrit
   #- type: SiliconEmitSoundOnDrained

@@ -110,7 +110,7 @@
     Mew:
       collection: FelinidMews
     Growl:
-      collection: FelinidGrowls
+      collection: ShadowkinGrowls # Arcane-Edit: <- FelinidGrowls
     Purr:
       collection: FelinidPurrs
     Mars:
@@ -162,7 +162,7 @@
     Mew:
       collection: FelinidMews
     Growl:
-      collection: FelinidGrowls
+      collection: ShadowkinGrowls # Arcane-Edit: <- FelinidGrowls
     Purr:
       collection: FelinidPurrs
     Mars:

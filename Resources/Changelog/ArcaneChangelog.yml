@@ -703,3 +703,118 @@ Entries:
   id: 57
   time: '2026-08-28T14:35:19.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/269
+- author: Kat_L
+  changes:
+    - type: Add
+      message: >-
+        @Bulbo44key пополнила ассортимент ЛавМата, а также некоторые интеракции
+        под них. Подробности в PR
+    - type: Add
+      message: Добавлены сумки/рюкзаки/вещмешки для глав отделов (ГВ, ГП, КМ, НР, СИ)
+    - type: Add
+      message: Добавлен элитный, спонсорский шмот СБ
+    - type: Add
+      message: >-
+        Добавлены более 40+ интеракции и 5 требований к выполнению. Подробности
+        в PR
+    - type: Fix
+      message: Исправлен баг на выполнение self интеракции на своей пешке
+  id: 58
+  time: '2026-08-30T07:59:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/235
+- author: Vecortys
+  changes:
+    - type: Add
+      message: >-
+        Добавлены спрайты для газообразного афродизиака, стакана метаморфа и
+        бутылки. Бутылка афродизиака теперь появляется во взломанном алкомате.
+  id: 59
+  time: '2026-08-30T13:04:37.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/275
+- author: Kideo000
+  changes:
+    - type: Tweak
+      message: Обновлены спрайты структур ксеноморфов.
+  id: 60
+  time: '2026-08-30T14:53:02.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/273
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Сумеречникам изменены звуки рычания
+    - type: Tweak
+      message: Слаймолюды не могут отравиться от сырого мяса
+    - type: Add
+      message: Сумеречники могут тянуть предметы хвостами
+    - type: Add
+      message: Молям и арахнидам добавлены человеческие причёски
+    - type: Add
+      message: КПБ могут заменить себе батарею
+    - type: Add
+      message: >-
+        Слаймолюдам добавлены кошачьи ушки и хвост. Ещё могут отрастить себе
+        конечность засчёт еды и воды, а их сердце невозможно уничтожить как и
+        мозг.
+  id: 61
+  time: '2026-08-30T18:21:20.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/263
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: >-
+        Добавлены фукнции в настройки управления "Отключить подбор предметов в
+        боевом режиме" и "Управление ТГ13"
+    - type: Add
+      message: >-
+        Импланты Сандевистан и Берсерк не могут быть активированными носителями
+        "Щита Разума"
+    - type: Add
+      message: Носители "Щита Разума" не могут открыть аплинк
+    - type: Tweak
+      message: Урон лимитки порезан в 3 раза
+    - type: Tweak
+      message: >-
+        Шприцы из шприцемёта вводят вещества в сущностей в скафандре с задержкой
+        5 секунд
+    - type: Tweak
+      message: Имплант Побега был переработан и улучшен
+  id: 62
+  time: '2026-08-31T04:06:11.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/257
+- author: seemah
+  changes:
+    - type: Add
+      message: Добавлен автомат с нижним бельём - нижнемат.
+  id: 63
+  time: '2026-08-31T15:29:01.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/178
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: 'Переработано замедление от повреждений:'
+  id: 64
+  time: '2026-08-31T16:09:32.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/254
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Крупная переработка всего медблока.
+  id: 65
+  time: '2026-08-31T18:27:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/101
+- author: badjuju
+  changes:
+    - type: Fix
+      message: Демон резни теперь может перемещаться по крови ксеноморфов, дион и слизи
+  id: 66
+  time: '2026-09-01T04:34:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/272
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Награда за почту увеличена
+    - type: Fix
+      message: Стоимость платы пользовательских законов составляет 100 кредитов
+  id: 67
+  time: '2026-09-01T04:36:15.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/280
