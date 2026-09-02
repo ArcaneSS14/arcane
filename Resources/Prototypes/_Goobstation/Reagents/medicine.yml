@@ -214,8 +214,17 @@
           min: 15
         probability: 0.2
         time: 4
-      - !type:ModifyBleed
-        amount: -0.1 # Arcane-Edit: -0.25 > -0.1
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: HeartbreakerToxin
+          min: 1
+        reagent: HeartbreakerToxin
+        amount: -2
+      # Arcane-Edit-Start
+#      - !type:ModifyBleed
+#        amount: -0.25
+      # Arcane-Edit-End
 
 # Patch/microdose meds, hilariously strong due to difficulties in making and using them
 
@@ -1007,7 +1016,8 @@
             Poison: 1
       - !type:HealthChange
         damage:
-          Poison: -0.7 # Arcane
+          types:
+            Poison: -0.7
         conditions:
         - !type:MobStateCondition
           mobstate: Dead
