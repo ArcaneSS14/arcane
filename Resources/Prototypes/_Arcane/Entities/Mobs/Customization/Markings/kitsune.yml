@@ -2,7 +2,7 @@
   id: KitsuneTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human, Oni, Felinid]
+  speciesRestriction: [Human, Oni, Felinid, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
     state: Tail
@@ -13,9 +13,20 @@
   id: KitsuneTripleTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human, Oni, Felinid]
+  speciesRestriction: [Human, Oni, Felinid, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
     state:  TripleTail
   - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
     state: TipTripleTail
+
+- type: marking
+  id: KitsuneNineTails
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human, Oni, Felinid, Vulpkanin]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
+    state:  NineTails
+  - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
+    state: TipNineTails

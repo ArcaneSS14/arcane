@@ -22,6 +22,14 @@
         {
             "name": "TipTripleTail",
             "directions": 4
+        },
+        {
+            "name": "NineTails",
+            "directions": 4
+        },
+        {
+            "name": "TipNineTails",
+            "directions": 4
         }
     ]
 }
