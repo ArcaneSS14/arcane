@@ -116,12 +116,12 @@
   id: NukeOpsMedkitTableBrute
   table: !type:GroupSelector
     children:
-    - id: MedkitFilled
+    - id: MedkitCombatFilled # Arcane-Edit
       weight: 1.5
     - id: MedkitBruteFilled
       weight: 1.5
     - id: MedkitAdvancedFilled
-    - id: MedkitCombatFilled
+    - id: MedkitCombatStandardFilled # Arcane-Edit
       weight: 0.2
 
 - type: entityTable

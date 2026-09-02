@@ -101,11 +101,11 @@
   suffix: Synthflesh
   components:
   - type: Label
-    currentLabel: Synthflesh 30u
+    currentLabel: Synthflesh 40u
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 30
+        maxVol: 40
         reagents:
           - ReagentId: Synthflesh
-            Quantity: 30
+            Quantity: 40

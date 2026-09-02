@@ -26,6 +26,11 @@
     - AlienBlood
     - BlackBlood
     - BloodChangeling
+    # Arcane-Start
+    - FluorosulfuricAcidHumanoidXeno
+    - Slime
+    - Sap
+    # Arcane-End
   - type: DemonicWhisper
   - type: Visibility
     layer: 2 # Ghost visflag
