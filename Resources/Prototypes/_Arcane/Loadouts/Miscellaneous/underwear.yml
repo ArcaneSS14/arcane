@@ -68,7 +68,3 @@
   equipment:
     underwear: ClothingUnderwearBeerPants
 
-- type: loadout
-  id: JesterPants
-  equipment:
-    underwear: ClothingUnderwearJesterPants
