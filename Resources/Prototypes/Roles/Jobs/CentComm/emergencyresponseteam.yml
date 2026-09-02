@@ -56,7 +56,7 @@
     - PowerCellHigh
     - PowerCellHigh
     - MedkitCombatFilled # End of first line
-    - MedkitCombatFilled
+    - MedkitCombatStandardFilled # Arcane-Edit
     - TelescopicShield
     #belt: # Goobstation prefilled
     #- Stunbaton
@@ -83,7 +83,7 @@
     - MagazineRifle
     - MagazineRifleIncendiary
     - MagazineRifleUranium
-    - MedkitCombatFilled # End of first line
+    - MedkitCombatStandardFilled # End of first line # Arcane-Edit
     - GrenadeShrapnel
     - EmpGrenade
     - ERTSecurityUndeterminedWeapon # Goobstation?
@@ -343,7 +343,7 @@
     - GrenadeFlashBang
     - TearGasGrenade
     - GrenadeStinger
-    - MedkitCombatFilled # End of first line
+    - MedkitCombatStandardFilled # End of first line # Arcane-Edit
     - TelescopicShield
     - HoloprojectorSecurity
     - PowerCellHigh
@@ -400,7 +400,7 @@
     - GrenadeBlast
     - GrenadeBlast
     - MagazinePistol
-    - MedkitCombatFilled # End of first line
+    - MedkitCombatStandardFilled # End of first line # Arcane-Edit
     - GrenadeEMP
     - GrenadeEMP
     - GrenadeEMP
@@ -432,7 +432,7 @@
     - TelescopicShield
     - TelescopicShield
     - TelescopicShield
-    - MedkitCombatFilled # End of first line
+    - MedkitCombatStandardFilled # End of first line # Arcane-Edit
     - MagazinePistolSubMachineGunTopMounted
     - MagazinePistolSubMachineGunTopMounted
     - MagazinePistolSubMachineGunTopMounted
@@ -576,7 +576,7 @@
     - JugTrico # End of first line
     - BeakerSmallArith
     - DefibrillatorCompact
-    - MedkitCombatFilled
+    - MedkitCombatStandardFilled # Arcane-Edit
     - ClothingEyesGlassesChemical
     - ChemistryBottleOmnizine
     #belt: # Goobstation

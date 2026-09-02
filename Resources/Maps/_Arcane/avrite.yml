@@ -289012,7 +289012,7 @@ entities:
     - type: Transform
       pos: 42.5,-28.5
       parent: 2
-- proto: SuitStorageResponsoryEngineering
+- proto: SuitStorageEngi
   entities:
   - uid: 40514
     components:

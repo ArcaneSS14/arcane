@@ -484,7 +484,7 @@
         - id: SyndicateJawsOfLife
         - id: C4
           amount: 2
-        - id: MedkitCombatFilled
+        - id: MedkitCombatAdvancedFilled # Arcane-Edit
         - id: EmpImplanter
         - id: ClothingShoesBootsMagSyndie
         - id: AgentIDCard
