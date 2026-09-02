@@ -19,7 +19,7 @@
   - type: StorageFill
     contents:
       - id: MedicatedSuture
-      - id: AdvancedRegenerativeMeshOpened
+      - id: AdvancedRegenerativeMesh
       - id: AirlossAutoInjector
       - id: StimulatorAutoInjector
       - id: BruteAutoInjector
@@ -39,7 +39,7 @@
       - id: EmergencyNitriumTankFilled
       - id: EmergencyHealiumTankFilled
       - id: MedicatedSuture
-      - id: AdvancedRegenerativeMeshOpened
+      - id: AdvancedRegenerativeMesh
       - id: MedicalPatchPrefilledProcenylLazide
       - id: MedicalPatchPrefilledEbifin
       - id: MedicalPatchPrefilledProcenylLazide
