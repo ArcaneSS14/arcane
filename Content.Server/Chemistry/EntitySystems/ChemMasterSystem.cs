@@ -185,7 +185,7 @@ namespace Content.Server.Chemistry.EntitySystems
                     return;
 
                 _solutionContainerSystem.RemoveReagent(containerSoln.Value, id, amount);
-                _solutionContainerSystem.TryAddReagent(bufferSoln.Value, id, amount, out _);
+                bufferSolution.AddReagent(id, amount);
             }
 
             if (actor.HasValue)
