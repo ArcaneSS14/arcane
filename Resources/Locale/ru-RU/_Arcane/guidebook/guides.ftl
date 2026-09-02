@@ -16,3 +16,4 @@ guide-entry-space-law-punishment-types = Типы наказаний
 guide-entry-space-law-punishment-terms = Сроки заключений
 guide-entry-sop-alerts-delta = Дельта код
 guide-entry-sop-alerts-protocol = Протокол уровней угроз
+guide-entry-space-law-use-of-force = Уровни Применения Силы (УПС)

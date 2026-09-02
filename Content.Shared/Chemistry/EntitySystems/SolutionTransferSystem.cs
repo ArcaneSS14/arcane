@@ -131,35 +131,11 @@ public sealed class SolutionTransferSystem : EntitySystem
                 out var targetSoln,
                 out _))
         {
-            // Arcane-Start
-            var isChemMasterTarget = HasComp<ChemMasterTransferTargetComponent>(target);
-            var isInsertableBeaker = HasComp<FitsInDispenserComponent>(ent.Owner);
-
-            if (isChemMasterTarget && isInsertableBeaker)
-                return;
-            // Arcane-End
-
             args.Handled = true; // If we reach this point, the interaction counts as handled.
 
             var transferAmount = ent.Comp.TransferAmount;
             if (targetRefillable.MaxRefill is {} maxRefill)
                 transferAmount = FixedPoint2.Min(transferAmount, maxRefill);
-
-            // Arcane-Start
-            if (isChemMasterTarget)
-            {
-                var targetSolution = targetSoln.Value.Comp.Solution;
-                var ownerSolution = ownerSoln.Value.Comp.Solution;
-
-                var available = FixedPoint2.Max(targetSolution.AvailableVolume, FixedPoint2.Zero);
-                if (available <= FixedPoint2.Zero || ownerSolution.Volume <= FixedPoint2.Zero)
-                    return;
-
-                transferAmount = FixedPoint2.Min(transferAmount, ownerSolution.Volume, available);
-                if (transferAmount <= FixedPoint2.Zero)
-                    return;
-            }
-            // Arcane-End
 
             var transferData = new SolutionTransferData(args.User, ent.Owner, ownerSoln.Value, target, targetSoln.Value, transferAmount);
             var transferTime = targetRefillable.RefillTime + heldDrainable.DrainTime;

@@ -8,7 +8,7 @@
     currentLabel: reagent-name-plasma
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Plasma
           Quantity: 200
@@ -22,7 +22,7 @@
     currentLabel: reagent-incendiary
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Napalm
           Quantity: 196
