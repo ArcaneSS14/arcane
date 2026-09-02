@@ -41,3 +41,36 @@ slasher-massacre-already-activated = Бойня уже активна!
 slasher-relentless-grab-activate = Вы готовитесь схватить свою следующую жертву!
 alerts-slasher-seen-name = Статус наблюдения
 alerts-slasher-seen-desc = Показывает, наблюдают ли за вами в данный момент. Вы не можете входить в бестелесную форму или выходить из неё, пока за вами наблюдают.
+
+slasher-round-end-agent-name = Мясник
+
+slasher-kit-select-title = Выбери свой набор!
+slasher-kit-select-header = Выберите набор. Каждый из них имеет уникальную композицию и неповторимый внешний вид.
+slasher-kit-select-button = Выбрать
+
+slasher-kit-butcher = Мясник
+slasher-kit-butcher-desc = Классика. Сварочная маска и фартук для серьезной машины для убийства.
+
+slasher-kit-spring = Заяц
+slasher-kit-spring-desc = Поставляется со специальным костюмом на пружинном замке. Пружины выдержат.. возможно
+
+slasher-kit-billy = Билли
+slasher-kit-billy-desc = "Монтировка.. И.. Всё?.."
+
+slasher-kit-cult = Культист
+slasher-kit-cult-desc = В комплекте идёт стильная роба. #мбкульт
+
+slasher-kit-maintenance = Пакетоголовый
+slasher-kit-maintenance-desc = В комплекте идёт милый пакетик. "Две минуты. Не больше"
+
+slasher-kit-cannibal = Каннибал
+slasher-kit-cannibal-desc = Ужин подан, и секретный ингредиент - космонавты.
+
+slasher-kit-clown = Клоун
+slasher-kit-clown-desc = ХА-ХА-ХА. ХОНКОМАМА! СМЕШНО! ХОНК!
+
+slasher-kit-glutton = Обжора
+slasher-kit-glutton-desc = Что-то голодное бродит по залам. Оно носит чужую оболочку и никогда не бывает сытым.
+
+slasher-kit-hockey = Хокейная маска
+slasher-kit-hockey-desc = Хоккейная маска и мачете. Чего еще можно желать?
