@@ -836,3 +836,18 @@ Entries:
   id: 69
   time: '2026-09-01T18:31:59.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/285
+- author: GrinDers
+  changes:
+    - type: Add
+      message: Добавлена вкладка Уровней Применения Силы (УПС).
+    - type: Add
+      message: Модификаторы перенесены в раздел Космического закона.
+    - type: Tweak
+      message: Обновлена вкладка Космического закона.
+    - type: Tweak
+      message: Актуализировано СРП Офицера "Синий Щит".
+    - type: Tweak
+      message: Актуализировано СРП Представителя NanoTrasen.
+  id: 70
+  time: '2026-09-02T06:53:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/286
