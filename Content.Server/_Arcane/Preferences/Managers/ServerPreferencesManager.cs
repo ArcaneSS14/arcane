@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
@@ -38,10 +39,17 @@ namespace Content.Server.Preferences.Managers
         // Cache player prefs on the server so we don't need as much async hell related to them.
         private readonly Dictionary<NetUserId, PlayerPrefData> _cachedPlayerPrefs =
             new();
+        private readonly ConcurrentDictionary<NetUserId, SemaphoreSlim> _userLocks = new();
 
         private ISawmill _sawmill = default!;
 
         private int MaxCharacterSlots => _cfg.GetCVar(CCVars.GameMaxCharacterSlots);
+        private async Task<SemaphoreSlim> AcquireUserLock(NetUserId userId)
+        {
+            var userLock = _userLocks.GetOrAdd(userId, _ => new SemaphoreSlim(1, 1));
+            await userLock.WaitAsync();
+            return userLock;
+        }
 
         public void Init()
         {
@@ -69,19 +77,25 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            var curPrefs = prefsData.Prefs!;
-
-            if (!curPrefs.Characters.ContainsKey(index))
+            if (!prefsData.Prefs!.Characters.ContainsKey(index))
             {
                 // Non-existent slot.
                 return;
             }
 
-            prefsData.Prefs = curPrefs.WithSlot(index); // Orion-Edit
-
-            if (ShouldStorePrefs(message.MsgChannel.AuthType))
+            var userLock = await AcquireUserLock(userId);
+            try
             {
-                await _db.SaveSelectedCharacterIndexAsync(message.MsgChannel.UserId, message.SelectedCharacterIndex);
+                prefsData.Prefs = prefsData.Prefs!.WithSlot(index); // Orion-Edit
+
+                if (ShouldStorePrefs(message.MsgChannel.AuthType))
+                {
+                    await _db.SaveSelectedCharacterIndexAsync(message.MsgChannel.UserId, message.SelectedCharacterIndex);
+                }
+            }
+            finally
+            {
+                userLock.Release();
             }
         }
 
@@ -107,22 +121,30 @@ namespace Content.Server.Preferences.Managers
             if (slot < 0 || slot >= MaxCharacterSlots)
                 return;
 
-            var curPrefs = prefsData.Prefs!;
-            var session = _playerManager.GetSessionById(userId);
-
-            profile.EnsureValid(session, _dependencies);
-
-            var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
+            var userLock = await AcquireUserLock(userId);
+            try
             {
-                [slot] = profile
-            };
+                var curPrefs = prefsData.Prefs!;
+                var session = _playerManager.GetSessionById(userId);
 
-            prefsData.Prefs = curPrefs.WithCharacters(profiles).WithSlot(slot); // Orion-Edit
+                profile.EnsureValid(session, _dependencies);
 
-            if (ShouldStorePrefs(session.Channel.AuthType))
-                await _db.SaveCharacterSlotAsync(userId, profile, slot);
+                var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
+                {
+                    [slot] = profile
+                };
 
-            CharacterProfileSaved?.Invoke(new CharacterProfileSavedEventArgs(session, slot, profile)); // Arcane
+                prefsData.Prefs = curPrefs.WithCharacters(profiles).WithSlot(slot); // Orion-Edit
+
+                if (ShouldStorePrefs(session.Channel.AuthType))
+                    await _db.SaveCharacterSlotAsync(userId, profile, slot);
+
+                CharacterProfileSaved?.Invoke(new CharacterProfileSavedEventArgs(session, slot, profile)); // Arcane
+            }
+            finally
+            {
+                userLock.Release();
+            }
         }
 
         public async Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites)
@@ -133,21 +155,27 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            var curPrefs = prefsData.Prefs!;
-            // Orion-Edit-Start
-            var session = _playerManager.GetSessionById(userId);
+            var userLock = await AcquireUserLock(userId);
+            try
+            {
+                var curPrefs = prefsData.Prefs!;
+                var session = _playerManager.GetSessionById(userId);
 
-            prefsData.Prefs = new PlayerPreferences(
-                curPrefs.Characters,
-                curPrefs.SelectedCharacterIndex,
-                curPrefs.AdminOOCColor,
-                curPrefs.CustomGhost,
-                favorites
-            );
-            // Orion-Edit-End
+                prefsData.Prefs = new PlayerPreferences(
+                    curPrefs.Characters,
+                    curPrefs.SelectedCharacterIndex,
+                    curPrefs.AdminOOCColor,
+                    curPrefs.CustomGhost,
+                    favorites
+                );
 
-            if (ShouldStorePrefs(session.Channel.AuthType))
-                await _db.SaveConstructionFavoritesAsync(userId, favorites);
+                if (ShouldStorePrefs(session.Channel.AuthType))
+                    await _db.SaveConstructionFavoritesAsync(userId, favorites);
+            }
+            finally
+            {
+                userLock.Release();
+            }
         }
 
         private async void HandleDeleteCharacterMessage(MsgDeleteCharacter message)
@@ -166,47 +194,53 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            var curPrefs = prefsData.Prefs!;
-
-            // If they try to delete the slot they have selected then we switch to another one.
-            // Of course, that's only if they HAVE another slot.
-            int? nextSlot = null;
-            if (curPrefs.SelectedCharacterIndex == slot)
+            var userLock = await AcquireUserLock(userId);
+            try
             {
-                // That ! on the end is because Rider doesn't like .NET 5.
-                var (ns, profile) = curPrefs.Characters.FirstOrDefault(p => p.Key != message.Slot)!;
-                if (profile == null)
+                var curPrefs = prefsData.Prefs!;
+
+                // If they try to delete the slot they have selected then we switch to another one.
+                // Of course, that's only if they HAVE another slot.
+                int? nextSlot = null;
+                if (curPrefs.SelectedCharacterIndex == slot)
                 {
-                    // Only slot left, can't delete.
-                    return;
+                    // That ! on the end is because Rider doesn't like .NET 5.
+                    var (ns, profile) = curPrefs.Characters.FirstOrDefault(p => p.Key != message.Slot)!;
+                    if (profile == null)
+                    {
+                        // Only slot left, can't delete.
+                        return;
+                    }
+
+                    nextSlot = ns;
                 }
 
-                nextSlot = ns;
+                var arr = new Dictionary<int, ICharacterProfile>(curPrefs.Characters);
+                arr.Remove(slot);
+
+                prefsData.Prefs = new PlayerPreferences(
+                    arr,
+                    nextSlot ?? curPrefs.SelectedCharacterIndex,
+                    curPrefs.AdminOOCColor,
+                    curPrefs.CustomGhost,
+                    curPrefs.ConstructionFavorites
+                );
+
+                if (ShouldStorePrefs(message.MsgChannel.AuthType))
+                {
+                    if (nextSlot != null)
+                    {
+                        await _db.DeleteSlotAndSetSelectedIndex(userId, slot, nextSlot.Value);
+                    }
+                    else
+                    {
+                        await _db.SaveCharacterSlotAsync(userId, null, slot);
+                    }
+                }
             }
-
-            var arr = new Dictionary<int, ICharacterProfile>(curPrefs.Characters);
-            arr.Remove(slot);
-
-            // Orion-Edit-Start
-            prefsData.Prefs = new PlayerPreferences(
-                arr,
-                nextSlot ?? curPrefs.SelectedCharacterIndex,
-                curPrefs.AdminOOCColor,
-                curPrefs.CustomGhost,
-                curPrefs.ConstructionFavorites
-            );
-            // Orion-Edit-End
-
-            if (ShouldStorePrefs(message.MsgChannel.AuthType))
+            finally
             {
-                if (nextSlot != null)
-                {
-                    await _db.DeleteSlotAndSetSelectedIndex(userId, slot, nextSlot.Value);
-                }
-                else
-                {
-                    await _db.SaveCharacterSlotAsync(userId, null, slot);
-                }
+                userLock.Release();
             }
         }
 
@@ -235,20 +269,26 @@ namespace Content.Server.Preferences.Managers
                 validatedList = validatedSet.ToList();
             }
 
-            var curPrefs = prefsData.Prefs!;
-            // Orion-Edit-Start
-            prefsData.Prefs = new PlayerPreferences(
-                curPrefs.Characters,
-                curPrefs.SelectedCharacterIndex,
-                curPrefs.AdminOOCColor,
-                curPrefs.CustomGhost,
-                validatedList
-            );
-            // Orion-Edit-End
-
-            if (ShouldStorePrefs(message.MsgChannel.AuthType))
+            var userLock = await AcquireUserLock(userId);
+            try
             {
-                await _db.SaveConstructionFavoritesAsync(userId, validatedList);
+                var curPrefs = prefsData.Prefs!;
+                prefsData.Prefs = new PlayerPreferences(
+                    curPrefs.Characters,
+                    curPrefs.SelectedCharacterIndex,
+                    curPrefs.AdminOOCColor,
+                    curPrefs.CustomGhost,
+                    validatedList
+                );
+
+                if (ShouldStorePrefs(message.MsgChannel.AuthType))
+                {
+                    await _db.SaveConstructionFavoritesAsync(userId, validatedList);
+                }
+            }
+            finally
+            {
+                userLock.Release();
             }
         }
 
@@ -263,7 +303,7 @@ namespace Content.Server.Preferences.Managers
                     PrefsLoaded = true,
                     Prefs = new PlayerPreferences(
                         new[] { new KeyValuePair<int, ICharacterProfile>(0, HumanoidCharacterProfile.Random()) },
-                        0, Color.Transparent, "default", []) // Orion-Edit
+                        0, Color.Transparent, CustomGhostPrototype.DefaultPrototype, []) // Orion-Edit
                 };
 
                 _cachedPlayerPrefs[session.UserId] = prefsData;
@@ -307,11 +347,13 @@ namespace Content.Server.Preferences.Managers
         public void OnClientDisconnected(ICommonSession session)
         {
             _cachedPlayerPrefs.Remove(session.UserId);
+            _userLocks.TryRemove(session.UserId, out _);
         }
 
         public bool HavePreferencesLoaded(ICommonSession session)
         {
-            return _cachedPlayerPrefs.ContainsKey(session.UserId);
+            return _cachedPlayerPrefs.TryGetValue(session.UserId, out var prefsData)
+                && prefsData.PrefsLoaded;
         }
 
 
@@ -389,7 +431,7 @@ namespace Content.Server.Preferences.Managers
                 prefs.AdminOOCColor,
                 _prototypeManager.TryIndex(prefs.CustomGhost, out var ghostProto) && ghostProto?.CanUse(session) == true
                     ? prefs.CustomGhost
-                    : _prototypeManager.Index<CustomGhostPrototype>("default"),
+                    : CustomGhostPrototype.DefaultPrototype,
                 prefs.ConstructionFavorites
             );
         }

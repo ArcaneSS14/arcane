@@ -1831,6 +1831,7 @@ namespace Content.Client.Lobby.UI
             }
 
             UpdateGenderControls();
+            RefreshJobs(); // Job names are localized by gender; update after sex changes.
             Markings.SetSex(newSex);
             UpdateTTSVoicesControls(); // Arcane
             ReloadPreview();
