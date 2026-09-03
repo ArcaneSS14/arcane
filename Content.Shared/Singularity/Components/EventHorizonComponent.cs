@@ -11,7 +11,7 @@ namespace Content.Shared.Singularity.Components;
 /// Also makes the associated entity destroy other entities upon contact.
 /// Primarily managed by <see cref="SharedEventHorizonSystem"/> and its server/client versions.
 /// </summary>
-[Access(friends: new[] { typeof(SharedEventHorizonSystem), typeof(SharedSingularitySystem) })] /// Arcane-Edit
+[Access(friends: new[] { typeof(SharedEventHorizonSystem), typeof(SharedSingularitySystem) })] // Arcane-Edit
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
 public sealed partial class EventHorizonComponent : Component
 {
@@ -83,7 +83,7 @@ public sealed partial class EventHorizonComponent : Component
     [AutoPausedField]
     public TimeSpan NextConsumeWaveTime;
 
-    /// Arcane-Edit-Start
+    // Arcane-Edit-Start
     /// <summary>
     /// If true, the singularity cannot destroy containment fields (walls and generators) during the delay.
     /// </summary>
@@ -96,7 +96,7 @@ public sealed partial class EventHorizonComponent : Component
     [DataField("suppressFieldConsumptionUntil", customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan SuppressFieldConsumptionUntil;
-    /// Arcane-Edit-End
+    // Arcane-Edit-End
   
     #endregion Update Timing
 }

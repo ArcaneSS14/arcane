@@ -86,12 +86,14 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
         {
             var curTime = _timing.CurTime;
 
-            if (eventHorizon.SuppressFieldConsumption && eventHorizon.SuppressFieldConsumptionUntil <= curTime) /// Arcane-Start
+            // Arcane-Start
+            if (eventHorizon.SuppressFieldConsumption && eventHorizon.SuppressFieldConsumptionUntil <= curTime)
             {
                 eventHorizon.SuppressFieldConsumption = false;
                 eventHorizon.SuppressFieldConsumptionUntil = TimeSpan.MaxValue;
                 Dirty(uid, eventHorizon);
-            } /// Arcane-End
+            }
+            // Arcane-End
 
             if (eventHorizon.NextConsumeWaveTime <= curTime)
                 Update(uid, eventHorizon, xform);

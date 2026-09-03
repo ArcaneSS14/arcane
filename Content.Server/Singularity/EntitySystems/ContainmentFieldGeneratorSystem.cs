@@ -419,7 +419,8 @@ public sealed class ContainmentFieldGeneratorSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (args.EventHorizon.SuppressFieldConsumption) /// Arcane-Start
+        // Arcane-Start
+        if (args.EventHorizon.SuppressFieldConsumption)
         {
             args.Cancelled = true;
             return;
@@ -438,6 +439,7 @@ public sealed class ContainmentFieldGeneratorSystem : EntitySystem
         var distance = (generatorPos - singularityPos).Length();
 
         if (distance > effectiveRadius)
-            args.Cancelled = true; /// Arcane-End
+            args.Cancelled = true;
+        // Arcane-End
     }
 }

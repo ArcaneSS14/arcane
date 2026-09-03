@@ -269,9 +269,9 @@ public sealed class SingularitySystem : SharedSingularitySystem
     {
         comp.EnergyDrain = args.NewValue switch
         {
-            6 => 35, /// Arcane-Edit: 0 > 35
-            5 => 25, /// Arcane-Edit: 0 > 25
-            4 => 15, /// Arcane-Edit: 20 > 15
+            6 => 35, // Arcane-Edit: 0 > 35
+            5 => 25, // Arcane-Edit: 0 > 25
+            4 => 15, // Arcane-Edit: 20 > 15
             3 => 10,
             2 => 5,
             1 => 1,

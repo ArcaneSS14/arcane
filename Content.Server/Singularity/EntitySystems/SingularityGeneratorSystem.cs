@@ -126,12 +126,12 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
             return;
         }
 
-        int foundDirections = 0; /// Arcane-Edit
+        int foundDirections = 0; // Arcane-Edit
         if (!generatorComp.FailsafeDisabled)
         {
             var transform = Transform(args.OtherEntity);
             var directions = Enum.GetValues<Direction>().Length;
-    /// Arcane-Edit-Start
+        // Arcane-Edit-Start
             for (var i = 0; i < directions - 1; i += 2)
             {
                 if (CheckContainmentField((Direction) i, new Entity<SingularityGeneratorComponent>(args.OtherEntity, generatorComp), transform))
@@ -140,7 +140,7 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
         }
 
         if (foundDirections < 2 && !generatorComp.FailsafeDisabled)
-    /// Arcane-Edit-End
+        // Arcane-Edit-End
         {
             generatorComp.NextFailsafe = _timing.CurTime + generatorComp.FailsafeCooldown;
             PopupSystem.PopupEntity(Loc.GetString("comp-generator-failsafe", ("target", args.OtherEntity)), args.OtherEntity, PopupType.LargeCaution);

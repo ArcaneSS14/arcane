@@ -8,7 +8,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
-using Robust.Shared.Timing; /// Arcane
+using Robust.Shared.Timing; // Arcane
 
 namespace Content.Shared.Singularity.EntitySystems;
 
@@ -23,7 +23,7 @@ public abstract class SharedSingularitySystem : EntitySystem
     [Dependency] private readonly SharedEventHorizonSystem _horizons = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] protected readonly IViewVariablesManager Vvm = default!;
-    [Dependency] private readonly IGameTiming _timing = default!; /// Arcane
+    [Dependency] private readonly IGameTiming _timing = default!; // Arcane
     #endregion Dependencies
 
     /// <summary>
@@ -124,7 +124,7 @@ public abstract class SharedSingularitySystem : EntitySystem
         if (!Resolve(uid, ref singularity))
             return;
 
-        /// Arcane-Start:
+        // Arcane-Edit-Start
         if (TryComp<EventHorizonComponent>(uid, out var eventHorizon))
         {
             _horizons.SetCanBreachContainment(uid, CanBreachContainment(singularity), false, eventHorizon);
@@ -163,7 +163,7 @@ public abstract class SharedSingularitySystem : EntitySystem
         if (singularity.Level <= 0)
             QueueDel(uid);
     }
-    /// Arcane-End
+    // Arcane-Edit-End
 
     /// <summary>
     /// Alerts the entity hosting the singularity that the level of the singularity has changed without the level actually changing.
@@ -206,7 +206,7 @@ public abstract class SharedSingularitySystem : EntitySystem
     /// <summary>
     /// The level at and above which a singularity should be capable of breaching containment.
     /// </summary>
-    public const byte SingularityBreachThreshold = 7; /// Arcane-Edit: 5 > 7
+    public const byte SingularityBreachThreshold = 7; // Arcane-Edit: 5 > 7
 
     /// <summary>
     /// Derives the proper gravity well radius for a singularity from its state.
@@ -230,16 +230,16 @@ public abstract class SharedSingularitySystem : EntitySystem
     /// <param name="singulo">A singularity.</param>
     /// <returns>The event horizon radius the singularity should have given its state.</returns>
     public float EventHorizonRadius(SingularityComponent singulo)
-    /// Arcane-Start
+    // Arcane-Start
     {
         return singulo.Level switch
         {
             5 => 4.5f,
             6 => 5.5f,
-    /// Arcane-End
             _ => singulo.Level - 0.5f
         };
     }
+    // Arcane-End
 
     /// <summary>
     /// Derives whether a singularity should be able to breach containment from its state.
