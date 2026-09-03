@@ -138,7 +138,12 @@ public sealed class ChemMasterBeakerCapacitySystem : EntitySystem
             ? ent.Comp.FallbackCapacity
             : total * ent.Comp.Multiplier;
 
-        targetCapacity = FixedPoint2.Max(targetCapacity, buffer.Volume);
+        var excess = buffer.Volume - targetCapacity;
+        if (excess > FixedPoint2.Zero)
+        {
+            var coords = Transform(ent.Owner).Coordinates;
+            _puddle.TrySpillAt(coords, _solutions.SplitSolution(bufferSoln.Value, excess), out _);
+        }
         _solutions.SetCapacity(bufferSoln.Value, targetCapacity);
     }
 

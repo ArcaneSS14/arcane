@@ -9,6 +9,7 @@
     - SpaceRights
     - PunishmentTypes
     - PunishmentTerms
+    - UseOfForce
 
 - type: guideEntry
   id: SpaceRights
@@ -117,3 +118,9 @@
   name: guide-entry-space-law-punishment-terms
   priority: 5
   text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/PunishmentTerms.xml"
+
+- type: guideEntry
+  id: UseOfForce
+  name: guide-entry-space-law-use-of-force
+  priority: 7
+  text: "/ServerInfo/_Arcane/Guidebook/SpaceLaw/UseOfForce.xml"
