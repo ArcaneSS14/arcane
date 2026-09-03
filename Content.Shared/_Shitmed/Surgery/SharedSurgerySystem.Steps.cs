@@ -33,6 +33,7 @@ using Content.Shared._Orion.CorticalBorer;
 using Content.Shared._Orion.CorticalBorer.Components;
 using Content.Shared._Shitmed.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
+using Content.Shared.Ghost;
 
 namespace Content.Shared._Shitmed.Medical.Surgery;
 
@@ -143,6 +144,7 @@ public abstract partial class SharedSurgerySystem
 
         if (!_ignoreQuery.HasComp(args.User)
             && !_ignoreQuery.HasComp(args.Tool)
+            && !(TryComp<GhostComponent>(args.User, out var ghost) && ghost.CanGhostInteract) // Arcane: aghosts bypass clothing
             && _inventory.TryGetContainerSlotEnumerator(args.Body, out var containerSlotEnumerator, args.TargetSlots))
         {
             while (containerSlotEnumerator.MoveNext(out var containerSlot))
