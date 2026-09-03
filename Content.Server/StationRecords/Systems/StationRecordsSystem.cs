@@ -174,6 +174,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             jobTitle = altTitle.LocalizedName(gender);
         }
         else if (string.IsNullOrEmpty(jobTitle) && profile.AlternateJobTitle is { } altTitleLegacy &&
+            jobPrototype.AlternateTitles.Contains(altTitleLegacy) &&
             _prototypeManager.TryIndex(altTitleLegacy, out var legacyTitle))
         {
             jobTitle = legacyTitle.LocalizedName(gender);

@@ -5,6 +5,7 @@ using Content.Server.Humanoid;
 using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
+using Content.Shared._Arcane.CCVars;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
@@ -163,7 +164,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         //  if (prototype != null && TryComp(entity.Value, out MetaDataComponent? metaData)) // Arcane-Edit
         // Arcane-Start
         JobAlternateTitlePrototype? altTitle = null;
-        if (profile != null && prototype != null && profile.JobAlternateTitles.TryGetValue(prototype.ID, out var altId))
+        if (_configurationManager.GetCVar(ACCVars.ICAlternateJobTitlesEnable) &&
+            profile != null && prototype != null && profile.JobAlternateTitles.TryGetValue(prototype.ID, out var altId))
             _prototypeManager.TryIndex(altId, out altTitle);
 
         if (profile != null)
