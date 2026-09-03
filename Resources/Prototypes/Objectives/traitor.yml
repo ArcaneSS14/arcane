@@ -94,6 +94,7 @@
     title: objective-condition-maroon-person-title
   - type: PickRandomPerson
     filters:
+    - !type:StationMindFilter # Arcane
     # Can't have multiple objectives to kill the same person.
     - !type:TargetObjectiveMindFilter
       blacklist:
@@ -116,6 +117,7 @@
     title: objective-condition-kill-maroon-title
   - type: PickRandomPerson
     filters:
+    - !type:StationMindFilter # Arcane
     - !type:BodyMindFilter
       whitelist:
         components:
