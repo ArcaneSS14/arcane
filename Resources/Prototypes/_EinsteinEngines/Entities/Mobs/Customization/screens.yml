@@ -38,6 +38,10 @@
   bodyPart: Face
   markingCategory: Face
   sprites:
+  # Arcane-Start
+    - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
+      state: ipc_screen
+  # Arcane-End
     - sprite: _EinsteinEngines/Mobs/Customization/ipc_screens.rsi
       state: ipc_screen_eight
   shader: unshaded # Arcane
