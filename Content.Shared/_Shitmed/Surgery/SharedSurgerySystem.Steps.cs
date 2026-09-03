@@ -222,7 +222,7 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        if (_wounds.HasDamageOfGroup(args.Part, ent.Comp.MainGroup))
+        if (_wounds.GetWoundableSeverityPoint(args.Part, damageGroup: ent.Comp.MainGroup, healable: true) > 0) // Arcane-Edit
             args.Cancelled = true;
     }
 
