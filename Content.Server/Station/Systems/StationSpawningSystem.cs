@@ -173,6 +173,9 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // SetPdaAndIdCardData(entity.Value, metaData.EntityName, prototype, station); // Arcane-Edit
             if (prototype != null)
                 SetPdaAndIdCardData(entity.Value, profile.Name, prototype, station, profile.Gender, altTitle);
+
+            _humanoidSystem.LoadProfile(entity.Value, profile);
+            _metaSystem.SetEntityName(entity.Value, profile.Name);
             // Arcane-End
         }
 
