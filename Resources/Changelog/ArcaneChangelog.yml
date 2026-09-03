@@ -889,3 +889,14 @@ Entries:
   id: 72
   time: '2026-09-02T18:54:13.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/289
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Отдел СБ выбирается целью для убийства в 3 раза чаще чем обычный экипаж.
+    - type: Fix
+      message: >-
+        Целями на убийство у агентов синдиката могут быть только сотрудники
+        станции.
+  id: 73
+  time: '2026-09-03T03:23:26.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/291
