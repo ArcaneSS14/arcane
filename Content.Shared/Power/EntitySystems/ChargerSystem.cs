@@ -50,6 +50,7 @@ public sealed class ChargerSystem : EntitySystem
     // Orion-Edit-Start
     private void OnPartsRefresh(EntityUid uid, ChargerComponent component, RefreshPartsEvent args)
     {
+        component.BaseChargeRate = component.ChargeRate; // Arcane
         var capTier = args.GetPartRating(component.ChargePart);
         component.ChargeRate = component.BaseChargeRate *
             RefreshPartsEvent.GetPositiveTierMultiplier(capTier);
