@@ -26,18 +26,24 @@
   physicalDesc: reagent-physical-desc-syrupy
   flavor: sweet
   color: "#ff69b4"
+  metamorphicSprite:
+    sprite: _Arcane/Objects/Consumable/Drinks/aphrodisiac_glass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   boilingPoint: 100.0
   recognizable: true
   metabolisms:
     Narcotic:
-      metabolismRate: 0.5
+      metabolismRate: 0.1
       effects:
       - !type:IncreaseArousal
-        amount: 2
+        amount: 1
         maximum: 60
         scaling: false
     Gas:
-      metabolismRate: 1
+      metabolismRate: 0.2
       effects:
       - !type:IncreaseArousal
         amount: 4

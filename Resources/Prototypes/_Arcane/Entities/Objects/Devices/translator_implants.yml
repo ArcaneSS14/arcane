@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseSubdermalImplant
+  id: KarshanTranslatorImplant
+  name: karshan translator implant
+  description: An implant giving the ability to understand and speak Karshan.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Karshan
+    spoken:
+    - Karshan
+    requires:
+    - TauCetiBasic

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Client.Stylesheets.Stylesheets;
+using Content.Client._Arcane.StyleSheets; // Arcane
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Shared.Reflection;
@@ -49,8 +50,10 @@ namespace Content.Client.Stylesheets
             UnusedSheetlets = [..tys];
 
             Stylesheets = new Dictionary<string, Stylesheet>();
-            SheetNanotrasen = Init(new NanotrasenStylesheet(new BaseStylesheet.NoConfig(), this));
-            SheetSystem = Init(new SystemStylesheet(new BaseStylesheet.NoConfig(), this));
+            // Arcane-Edit-Start
+            SheetNanotrasen = Init(new ArcaneStylesheet(new BaseStylesheet.NoConfig(), this, "Nanotrasen"));
+            SheetSystem = Init(new ArcaneStylesheet(new BaseStylesheet.NoConfig(), this, "System"));
+            // Arcane-Edit-End
             SheetNano = new StyleNano(_resCache).Stylesheet; // TODO: REMOVE (obsolete)
             SheetSpace = new StyleSpace(_resCache).Stylesheet; // TODO: REMOVE (obsolete)
 

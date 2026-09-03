@@ -4,13 +4,21 @@
   priority: 0
   text: "/ServerInfo/_Arcane/Guidebook/SOP/Alerts/Alerts.xml"
   children:
+    - SOP-Alerts-Protocol
     - SOP-Alerts-Green
     - SOP-Alerts-Blue
     - SOP-Alerts-Amber
     - SOP-Alerts-Red
     - SOP-Alerts-Gamma
+    - SOP-Alerts-Delta
     - SOP-Alerts-Purple
     - SOP-Alerts-Yellow
+
+- type: guideEntry
+  id: SOP-Alerts-Protocol
+  name: guide-entry-sop-alerts-protocol
+  priority: 0
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Alerts/Protocol.xml"
 
 - type: guideEntry
   id: SOP-Alerts-Green
@@ -43,13 +51,19 @@
   text: "/ServerInfo/_Arcane/Guidebook/SOP/Alerts/Gamma.xml"
 
 - type: guideEntry
+  id: SOP-Alerts-Delta
+  name: guide-entry-sop-alerts-delta
+  priority: 6
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Alerts/Delta.xml"
+
+- type: guideEntry
   id: SOP-Alerts-Purple
   name: guide-entry-sop-alerts-purple
-  priority: 6
+  priority: 7
   text: "/ServerInfo/_Arcane/Guidebook/SOP/Alerts/Purple.xml"
 
 - type: guideEntry
   id: SOP-Alerts-Yellow
   name: guide-entry-sop-alerts-yellow
-  priority: 7
+  priority: 8
   text: "/ServerInfo/_Arcane/Guidebook/SOP/Alerts/Yellow.xml"

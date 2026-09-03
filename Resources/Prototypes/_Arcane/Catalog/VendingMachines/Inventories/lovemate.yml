@@ -1,21 +1,34 @@
 - type: vendingMachineInventory
   id: LoveMateInventory
   startingInventory:
+    SexyMuzzle: 3
+    Gag: 3
+    GagRing: 3
+    SexyBlindfold: 3
     ClothingJumpsuitBDSMress: 3
     ClothingJumpsuitBlackShirt: 3
     ClothingJumpsuitWhiteShirt: 3
     ClothingHandsBDSMgloves: 3
-    Whip: 3
+    Whip: 2
+    LongWhip: 2
+    PaddleStack: 2
+    SoftHandcuffs: 2
+    Shibari: 2
     BlowGreen: 3
     BlowPink: 3
     BlowPurple: 3
     BunnyVibrator: 3
+    TentacleVibrator: 3
     ButtholeGreen: 3
     ButtholePink: 3
     ButtholePurple: 3
+    HumanDildo: 3
+    AvianDildo: 3
     DogDildo: 3
+    DoubleDildo: 3
+    DragonDildo: 3
     HorseDildo: 3
-    TentacleSDildo: 3
+    PlussizeDildo: 3
     SlimeDildo: 3
     XenoDildo: 3
     OnaholeGreen: 3
@@ -24,4 +37,5 @@
     PussyVulpaBlue: 3
     PussyVulpaPink: 3
     PussyVulpaRed: 3
+    ClothingStrapon: 5
     Condom: 10

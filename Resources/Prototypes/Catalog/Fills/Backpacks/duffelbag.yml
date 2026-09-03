@@ -52,14 +52,21 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: JugBicaridine
+        # Arcane-Edit-Start
+        - id: JugTrico
         - id: JugPuncturase
-        - id: JugDermaline
-        - id: JugDylovene
-        - id: JugHyronalin
+        - id: JugPyraDerma
         - id: JugSaline
         - id: JugDexalinPlus
         - id: JugTranexamicAcid
+        - id: AdvancedEmergencyMedipen
+          amount: 3
+        - id: SalbutamolAutoInjector
+          amount: 3
+        - id: SyriniverChemistryVial
+        - id: SyriniverChemistryVial
+        - id: ChemistryBottleOmnizine
+        # Arcane-Edit-End
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -386,23 +393,23 @@
   name: medical bundle
   description: "All you need to get your comrades back in the fight."
   components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: DefibrillatorSyndicate
-        - id: MedkitCombatFilled
-          amount: 4
-        - id: Tourniquet
-          amount: 4
-        - id: CombatMedipen
-          amount: 4
-        - id: PunctAutoInjector
-          amount: 4
-        - id: PyraAutoInjector
-          amount: 4
-        - id: AirlossAutoInjector
-          amount: 4
+  - type: StorageFill
+    contents:
+      # Arcane-Edit-Start
+      - id: MedkitCombatAdvancedFilled
+      - id: MedkitCombatStandardFilled
+      - id: MedkitCombatFilled
+      - id: DefibrillatorSyndicate
+      - id: ClothingEyesNightVisionGogglesNukie
+      - id: HandheldHealthAnalyzer
+        amount: 2
+      - id: SalbutamolAutoInjector
+        amount: 3
+      - id: CombatMedipen
+        amount: 3
+      - id: VestineChemistryVial
+      - id: ChemistryBottleEphedrine
+      # Arcane-Edit-End
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

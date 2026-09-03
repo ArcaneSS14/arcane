@@ -55,6 +55,5 @@
   id: RegenerativeMesh
   name: stack-regenerative-mesh
   icon: {sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: regenerative-mesh}
-  spawn: RegenerativeMesh
+  spawn: RegenerativeMeshOpened # Arcane-Edit
   maxCount: 15 # Arcane
-

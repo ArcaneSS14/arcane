@@ -1,0 +1,19 @@
+- type: cargoProduct
+  id: CombatKit
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: blackkit
+  product: MedkitCombatFilled
+  cost: 800
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: StandardCombatKit
+  icon:
+    sprite: _Orion/Objects/Specific/Medical/firstaidkits.rsi
+    state: blackkitstandard
+  product: MedkitCombatStandardFilled
+  cost: 20000
+  category: cargoproduct-category-name-medical
+  group: market

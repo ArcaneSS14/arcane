@@ -9,6 +9,8 @@ using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Shared.Audio; // Arcane
+using Robust.Shared.Audio.Systems; // Arcane
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chemistry.EntitySystems;
@@ -24,6 +26,9 @@ public sealed class SolutionTransferSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // Arcane
+
+    private static readonly SoundSpecifier LiquidPourSound = new SoundCollectionSpecifier("LiquidPour", AudioParams.Default.WithVariation(0.2f)); // Arcane
 
     private EntityQuery<RefillableSolutionComponent> _refillableQuery;
     private EntityQuery<DrainableSolutionComponent> _drainableQuery;
@@ -126,11 +131,35 @@ public sealed class SolutionTransferSystem : EntitySystem
                 out var targetSoln,
                 out _))
         {
-            args.Handled = true; //If we reach this point, the interaction counts as handled.
+            // Arcane-Start
+            var isChemMasterTarget = HasComp<ChemMasterTransferTargetComponent>(target);
+            var isInsertableBeaker = HasComp<FitsInDispenserComponent>(ent.Owner);
+
+            if (isChemMasterTarget && isInsertableBeaker)
+                return;
+            // Arcane-End
+
+            args.Handled = true; // If we reach this point, the interaction counts as handled.
 
             var transferAmount = ent.Comp.TransferAmount;
             if (targetRefillable.MaxRefill is {} maxRefill)
                 transferAmount = FixedPoint2.Min(transferAmount, maxRefill);
+
+            // Arcane-Start
+            if (isChemMasterTarget)
+            {
+                var targetSolution = targetSoln.Value.Comp.Solution;
+                var ownerSolution = ownerSoln.Value.Comp.Solution;
+
+                var available = FixedPoint2.Max(targetSolution.AvailableVolume, FixedPoint2.Zero);
+                if (available <= FixedPoint2.Zero || ownerSolution.Volume <= FixedPoint2.Zero)
+                    return;
+
+                transferAmount = FixedPoint2.Min(transferAmount, ownerSolution.Volume, available);
+                if (transferAmount <= FixedPoint2.Zero)
+                    return;
+            }
+            // Arcane-End
 
             var transferData = new SolutionTransferData(args.User, ent.Owner, ownerSoln.Value, target, targetSoln.Value, transferAmount);
             var transferTime = targetRefillable.RefillTime + heldDrainable.DrainTime;
@@ -140,18 +169,28 @@ public sealed class SolutionTransferSystem : EntitySystem
                 if (!CanTransfer(transferData))
                     return;
 
-                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, transferTime, new SolutionDrainTransferDoAfterEvent(transferAmount), ent.Owner, target)
+                var doAfterArgs = new DoAfterArgs(
+                    EntityManager,
+                    args.User,
+                    transferTime,
+                    new SolutionDrainTransferDoAfterEvent(transferAmount),
+                    ent.Owner,
+                    target)
                 {
                     BreakOnDamage = true,
                     BreakOnMove = true,
                     NeedHand = true,
                     Hidden = true,
                 };
+
                 _doAfter.TryStartDoAfter(doAfterArgs);
             }
             else
             {
-                DrainTransfer(transferData);
+                var transferred = Transfer(transferData);
+
+                if (transferred > 0) // Arcane
+                    _audio.PlayPredicted(LiquidPourSound, target, args.User);
             }
 
             return;
@@ -166,7 +205,7 @@ public sealed class SolutionTransferSystem : EntitySystem
                 out ownerSoln,
                 out var solution))
         {
-            args.Handled = true; //If we reach this point, the interaction counts as handled.
+            args.Handled = true; // If we reach this point, the interaction counts as handled.
 
             var transferAmount = ent.Comp.TransferAmount; // This is the player-configurable transfer amount of "uid," not the target drainable.
             if (heldRefillable.MaxRefill is {} maxRefill) // if the receiver has a smaller transfer limit, use that instead
@@ -180,18 +219,28 @@ public sealed class SolutionTransferSystem : EntitySystem
                 if (!CanTransfer(transferData))
                     return;
 
-                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, transferTime, new SolutionRefillTransferDoAfterEvent(transferAmount), ent.Owner, target)
+                var doAfterArgs = new DoAfterArgs(
+                    EntityManager,
+                    args.User,
+                    transferTime,
+                    new SolutionRefillTransferDoAfterEvent(transferAmount),
+                    ent.Owner,
+                    target)
                 {
                     BreakOnDamage = true,
                     BreakOnMove = true,
                     NeedHand = true,
                     Hidden = true,
                 };
+
                 _doAfter.TryStartDoAfter(doAfterArgs);
             }
             else
             {
-                RefillTransfer(transferData, solution);
+                var transferred = RefillTransfer(transferData, solution); // Arcane-Edit
+
+                if (transferred > 0) // Arcane
+                    _audio.PlayPredicted(LiquidPourSound, target, args.User);
             }
         }
     }
@@ -204,7 +253,16 @@ public sealed class SolutionTransferSystem : EntitySystem
         // Have to check again, in case something has changed.
         if (CanSend(ent, target, out var ownerSoln, out var targetSoln))
         {
-            DrainTransfer(new SolutionTransferData(args.User, ent.Owner, ownerSoln.Value, args.Target.Value, targetSoln.Value, args.Amount));
+            var transferred = DrainTransfer(new SolutionTransferData(
+                args.User,
+                ent.Owner,
+                ownerSoln.Value,
+                args.Target.Value,
+                targetSoln.Value,
+                args.Amount));
+
+            if (transferred > 0) // Arcane
+                _audio.PlayPredicted(LiquidPourSound, target, args.User);
         }
     }
 
@@ -217,10 +275,22 @@ public sealed class SolutionTransferSystem : EntitySystem
         if (!CanRecieve(ent, target, out var ownerSoln, out var targetSoln, out var solution))
             return;
 
-        RefillTransfer(new SolutionTransferData(args.User, target, targetSoln.Value, ent.Owner, ownerSoln.Value, args.Amount), solution);
+        var transferred = RefillTransfer(
+            new SolutionTransferData(
+                args.User,
+                target,
+                targetSoln.Value,
+                ent.Owner,
+                ownerSoln.Value,
+                args.Amount),
+            solution);
+
+        if (transferred > 0) // Arcane
+            _audio.PlayPredicted(LiquidPourSound, target, args.User);
     }
 
-    private bool CanSend(Entity<SolutionTransferComponent, DrainableSolutionComponent?> ent,
+    private bool CanSend(
+        Entity<SolutionTransferComponent, DrainableSolutionComponent?> ent,
         Entity<RefillableSolutionComponent?> target,
         [NotNullWhen(true)] out Entity<SolutionComponent>? drainable,
         [NotNullWhen(true)] out Entity<SolutionComponent>? refillable)
@@ -228,10 +298,12 @@ public sealed class SolutionTransferSystem : EntitySystem
         drainable = null;
         refillable = null;
 
-        return ent.Comp1.CanReceive && TryGetTransferrableSolutions(ent.Owner, target, out drainable, out refillable, out _);
+        return ent.Comp1.CanReceive
+            && TryGetTransferrableSolutions(ent.Owner, target, out drainable, out refillable, out _);
     }
 
-    private bool CanRecieve(Entity<SolutionTransferComponent> ent,
+    private bool CanRecieve(
+        Entity<SolutionTransferComponent> ent,
         EntityUid source,
         [NotNullWhen(true)] out Entity<SolutionComponent>? drainable,
         [NotNullWhen(true)] out Entity<SolutionComponent>? refillable,
@@ -241,10 +313,12 @@ public sealed class SolutionTransferSystem : EntitySystem
         refillable = null;
         solution = null;
 
-        return ent.Comp.CanReceive && TryGetTransferrableSolutions(source, ent.Owner, out drainable, out refillable, out solution);
+        return ent.Comp.CanReceive
+            && TryGetTransferrableSolutions(source, ent.Owner, out drainable, out refillable, out solution);
     }
 
-    private bool TryGetTransferrableSolutions(Entity<DrainableSolutionComponent?> source,
+    private bool TryGetTransferrableSolutions(
+        Entity<DrainableSolutionComponent?> source,
         Entity<RefillableSolutionComponent?> target,
         [NotNullWhen(true)] out Entity<SolutionComponent>? drainable,
         [NotNullWhen(true)] out Entity<SolutionComponent>? refillable,
@@ -254,7 +328,8 @@ public sealed class SolutionTransferSystem : EntitySystem
         refillable = null;
         solution = null;
 
-        if (!_drainableQuery.Resolve(source, ref source.Comp) || !_refillableQuery.Resolve(target, ref target.Comp))
+        if (!_drainableQuery.Resolve(source, ref source.Comp)
+            || !_refillableQuery.Resolve(target, ref target.Comp))
             return false;
 
         if (!_solution.TryGetDrainableSolution(source, out drainable, out _))
@@ -272,14 +347,20 @@ public sealed class SolutionTransferSystem : EntitySystem
     /// </summary>
     /// <param name="data">The transfer data making up the transfer.</param>
     /// <returns>The actual amount transferred.</returns>
-    private void DrainTransfer(SolutionTransferData data)
+    private FixedPoint2 DrainTransfer(SolutionTransferData data)
     {
         var transferred = Transfer(data);
         if (transferred <= 0)
-            return;
+            return FixedPoint2.Zero;
 
-        var message = Loc.GetString("comp-solution-transfer-transfer-solution", ("amount", transferred), ("target", data.TargetEntity));
+        var message = Loc.GetString(
+            "comp-solution-transfer-transfer-solution",
+            ("amount", transferred),
+            ("target", data.TargetEntity));
+
         _popup.PopupClient(message, data.SourceEntity, data.User);
+
+        return transferred;
     }
 
     /// <summary>
@@ -289,23 +370,32 @@ public sealed class SolutionTransferSystem : EntitySystem
     /// <param name="data">The transfer data making up the transfer.</param>
     /// <param name="targetSolution">The target solution,included for LoC pop-up purposes.</param>
     /// <returns>The actual amount transferred.</returns>
-    private void RefillTransfer(SolutionTransferData data, Solution targetSolution)
+    private FixedPoint2 RefillTransfer(SolutionTransferData data, Solution targetSolution)
     {
         var transferred = Transfer(data);
         if (transferred <= 0)
-            return;
+            return FixedPoint2.Zero;
 
         var toTheBrim = targetSolution.AvailableVolume == 0;
         var msg = toTheBrim
             ? "comp-solution-transfer-fill-fully"
             : "comp-solution-transfer-fill-normal";
 
-        _popup.PopupClient(Loc.GetString(msg, ("owner", data.SourceEntity), ("amount", transferred), ("target", data.TargetEntity)), data.TargetEntity, data.User);
+        _popup.PopupClient(
+            Loc.GetString(
+                msg,
+                ("owner", data.SourceEntity),
+                ("amount", transferred),
+                ("target", data.TargetEntity)),
+            data.TargetEntity,
+            data.User);
+
+        return transferred;
     }
 
     /// <summary>
     /// Transfer from a solution to another, allowing either entity to cancel.
-    /// Includes a pop-up if the transfer failed.
+    /// Includes a pop-up if the transfer failed or succeeded.
     /// </summary>
     /// <returns>The actual amount transferred.</returns>
     public FixedPoint2 Transfer(SolutionTransferData data)
@@ -316,15 +406,23 @@ public sealed class SolutionTransferSystem : EntitySystem
         if (!CanTransfer(data))
             return FixedPoint2.Zero;
 
-        var actualAmount = FixedPoint2.Min(data.Amount, FixedPoint2.Min(sourceSolution.Volume, targetSolution.AvailableVolume));
+        var actualAmount = FixedPoint2.Min(
+            data.Amount,
+            FixedPoint2.Min(sourceSolution.Volume, targetSolution.AvailableVolume));
 
         var solution = _solution.SplitSolution(data.Source, actualAmount);
         _solution.AddSolution(data.Target, solution);
 
-        var ev = new SolutionTransferredEvent(data.SourceEntity, data.TargetEntity, data.User, actualAmount);
+        var ev = new SolutionTransferredEvent(
+            data.SourceEntity,
+            data.TargetEntity,
+            data.User,
+            actualAmount);
+
         RaiseLocalEvent(data.TargetEntity, ref ev);
 
-        _adminLogger.Add(LogType.Action,
+        _adminLogger.Add(
+            LogType.Action,
             LogImpact.Medium,
             $"{ToPrettyString(data.User):player} transferred {SharedSolutionContainerSystem.ToPrettyString(solution)} to {ToPrettyString(data.TargetEntity):target}, which now contains {SharedSolutionContainerSystem.ToPrettyString(targetSolution)}");
 
@@ -336,10 +434,13 @@ public sealed class SolutionTransferSystem : EntitySystem
     /// </summary>
     private bool CanTransfer(SolutionTransferData data)
     {
-        var transferAttempt = new SolutionTransferAttemptEvent(data.SourceEntity, data.TargetEntity);
+        var transferAttempt = new SolutionTransferAttemptEvent(
+            data.SourceEntity,
+            data.TargetEntity);
 
         // Check if the source is cancelling the transfer
         RaiseLocalEvent(data.SourceEntity, ref transferAttempt);
+
         if (transferAttempt.CancelReason is {} reason)
         {
             _popup.PopupClient(reason, data.SourceEntity, data.User);
@@ -347,14 +448,22 @@ public sealed class SolutionTransferSystem : EntitySystem
         }
 
         var sourceSolution = data.Source.Comp.Solution;
+
         if (sourceSolution.Volume == 0)
         {
-            _popup.PopupClient(Loc.GetString("comp-solution-transfer-is-empty", ("target", data.SourceEntity)), data.SourceEntity, data.User);
+            _popup.PopupClient(
+                Loc.GetString(
+                    "comp-solution-transfer-is-empty",
+                    ("target", data.SourceEntity)),
+                data.SourceEntity,
+                data.User);
+
             return false;
         }
 
         // Check if the target is cancelling the transfer
         RaiseLocalEvent(data.TargetEntity, ref transferAttempt);
+
         if (transferAttempt.CancelReason is {} targetReason)
         {
             _popup.PopupClient(targetReason, data.TargetEntity, data.User);
@@ -362,16 +471,22 @@ public sealed class SolutionTransferSystem : EntitySystem
         }
 
         var targetSolution = data.Target.Comp.Solution;
+
         if (targetSolution.AvailableVolume == 0)
         {
-            _popup.PopupClient(Loc.GetString("comp-solution-transfer-is-full", ("target", data.TargetEntity)), data.TargetEntity, data.User);
+            _popup.PopupClient(
+                Loc.GetString(
+                    "comp-solution-transfer-is-full",
+                    ("target", data.TargetEntity)),
+                data.TargetEntity,
+                data.User);
+
             return false;
         }
 
         return true;
     }
 }
-
 
 /// <summary>
 /// A collection of data containing relevant entities and values for transferring reagents.
@@ -382,7 +497,13 @@ public sealed class SolutionTransferSystem : EntitySystem
 /// <param name="targetEntity">The entity holding the solution container which reagents are being moved to.</param>
 /// <param name="target">The entity holding the solution which reagents are being moved to</param>
 /// <param name="amount">The amount being moved.</param>
-public struct SolutionTransferData(EntityUid user, EntityUid sourceEntity, Entity<SolutionComponent> source, EntityUid targetEntity, Entity<SolutionComponent> target, FixedPoint2 amount)
+public struct SolutionTransferData(
+    EntityUid user,
+    EntityUid sourceEntity,
+    Entity<SolutionComponent> source,
+    EntityUid targetEntity,
+    Entity<SolutionComponent> target,
+    FixedPoint2 amount)
 {
     public EntityUid User = user;
     public EntityUid SourceEntity = sourceEntity;
@@ -398,7 +519,10 @@ public struct SolutionTransferData(EntityUid user, EntityUid sourceEntity, Entit
 /// To not mispredict this should always be cancelled in shared code and not server or client.
 /// </summary>
 [ByRefEvent]
-public record struct SolutionTransferAttemptEvent(EntityUid From, EntityUid To, string? CancelReason = null)
+public record struct SolutionTransferAttemptEvent(
+    EntityUid From,
+    EntityUid To,
+    string? CancelReason = null)
 {
     /// <summary>
     /// Cancels the transfer.
@@ -413,7 +537,11 @@ public record struct SolutionTransferAttemptEvent(EntityUid From, EntityUid To, 
 /// Raised on the target entity when a non-zero amount of solution gets transferred.
 /// </summary>
 [ByRefEvent]
-public record struct SolutionTransferredEvent(EntityUid From, EntityUid To, EntityUid User, FixedPoint2 Amount);
+public record struct SolutionTransferredEvent(
+    EntityUid From,
+    EntityUid To,
+    EntityUid User,
+    FixedPoint2 Amount);
 
 /// <summary>
 /// Doafter event for solution transfers where the held item is drained into the target. Checks for validity both when initiating and when finishing the event.

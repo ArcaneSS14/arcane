@@ -21,3 +21,48 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband]
+  id: ClothingBackpackCE
+  name: senior engineer's backpack
+  description: A heavy backpack, soaked through with the smell of fuel oil, engine oil and the mournful spirit of inevitable depressurization.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Backpacks/ce.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband]
+  id: ClothingBackpackCMO
+  name: the head doctor's backpack
+  description: It smells of alcohol, medications, and pure panic. Empty death certificate forms rustle at the bottom.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Backpacks/cmo.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband]
+  id: ClothingBackpackHoP
+  name: head of staff's backpack
+  description: Ample storage for hundreds of access denials. The endless clatter of the stamp still echoes inside.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Backpacks/hop.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband]
+  id: ClothingBackpackQuartermaster
+  name: The quartermaster's backpack
+  description: Half of the mining could fit in here, but now there are only cargo debts and cigarette ashes inside.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Backpacks/quartermaster.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband]
+  id: ClothingBackpackRD
+  name: the supervisor's backpack
+  description: A backpack that survived three explosions of the RND department and one singularity. A barely noticeable purple glow of unknown nature emanates from inside.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Backpacks/rd.rsi

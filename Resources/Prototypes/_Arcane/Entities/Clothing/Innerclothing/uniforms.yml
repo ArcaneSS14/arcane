@@ -403,9 +403,9 @@
   description: French restaurant uniform.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/cleaner.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/cook.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Innerclothing/Sponsor/cleaner.rsi
+    sprite: _Arcane/Clothing/Innerclothing/Sponsor/cook.rsi
 
 - type: entity
   parent: ClothingUniformBase

@@ -260,15 +260,23 @@
   - HoPCloak
   - HoPMantle
   - HeadOfPersonnelEnsemble # goob
-  - IanCloakPatron # Arcane
+  # Arcane-Start
+  - IanCloakPatron
+  - ServiceCloakPatron
+  # Arcane-EndА
 
 - type: loadoutGroup
   id: HoPBackpack
   name: loadout-group-hop-backpack
   loadouts:
-  - CommonBackpack
-  - CommonSatchel
-  - CommonDuffel
+  # Arcane-Edit-Start
+  - HeadOfPersonnelBackpack
+  - HeadOfPersonnelSatchel
+  - HeadOfPersonnelDuffel
+# - CommonBackpack
+# - CommonSatchel
+# - CommonDuffel
+  # Arcane-Edit-End
   - CommonMessenger # Frontier
   - HoPBackpackIan
 
@@ -962,8 +970,11 @@
   loadouts:
   - QuartermasterCloak
   - QuartermasterMantle
-  - QMBlackCloakPatron # Arcane
-  - QMWhiteCloakPatron # Arcane
+  # Arcane-Start
+  - QMBlackCloakPatron
+  - QMWhiteCloakPatron
+  - CargoCloakPatron
+  # Arcane-End
   - QuartermasterEnsemble # goob
 
 - type: loadoutGroup
@@ -1117,6 +1128,7 @@
   - ClothingNeckMantleOrangeCE # goob
   - ClothingNeckEnsembleChiefEngineerWhite # goob
   - ClothingNeckEnsembleChiefEngineerGreen # goob
+  - EngineerCloakPatron # Arcane
 
 - type: loadoutGroup
   id: ChiefEngineerOuterClothing
@@ -1347,6 +1359,7 @@
   minLimit: 0
   loadouts:
   - ScientistTie
+  - RNDCloakPatron # Arcane
 
 - type: loadoutGroup
   id: ScientistJumpsuit
@@ -1574,6 +1587,7 @@
   - SecurityOfficerWintercoat
   - WinterCoatSeniorSecArmored # Goobstation
   - VeteranOfficerArmor # Goobstation
+  - ClothingOuterLightBronnikPatron # Arcane
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1619,6 +1633,7 @@
   - DetectiveTie
   - SecurityScarfRed # Orion
   - Bodycam # Goobstation - Body cameras
+  - SecurityCloakPatron # Arcane
 
 - type: loadoutGroup
   id: DetectiveJumpsuit
@@ -1628,6 +1643,10 @@
   - DetectiveJumpskirt
   - NoirJumpsuit
   - NoirJumpskirt
+  # Arcane-Start
+  - DetectiveJumpsuitMaintainedPatron
+  - DetectiveJumpskirtMaintainedPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: DetectiveOuterClothing
@@ -1712,7 +1731,10 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
-  - CMOHonorableCloakPatron # Arcane
+  # Arcane-Start
+  - CMOHonorableCloakPatron
+  - MeicalCloakPatron
+  # Arcane-End
   - ChiefMedicalOfficerEnsemble # goob
 
 - type: loadoutGroup
