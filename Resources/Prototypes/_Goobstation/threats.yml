@@ -65,26 +65,6 @@
   announcement: terror-sleeper-agent
   rule: SleeperAgents
 
-- type: ninjaHackingThreat
-  id: Ninja
-  announcement: terror-Ninja
-  rule: NinjaSpawn
-
-- type: ninjaHackingThreat
-  id: Xenoborgs
-  announcement: terror-Xenoborgs
-  rule: Xenoborgs
-
-- type: ninjaHackingThreat
-  id: Nukeops
-  announcement: terror-Nukeops
-  rule: Nukeops
-
-- type: ninjaHackingThreat
-  id: Revolutionary
-  announcement: terror-Revolutionary
-  rule: Revolutionary
-
 #- type: ninjaHackingThreat
 #  id: Wraith
 #  announcement: terror-wraith
