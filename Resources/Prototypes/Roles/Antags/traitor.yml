@@ -58,7 +58,7 @@
   equipment:
     pocket1: WeaponPistolViper
   inhand:
-    - MedkitCombatFilled
+    - MedkitCombatStandardFilled # Arcane-Edit
 
 - type: startingGear
   id: SyndicateReinforcementSpy

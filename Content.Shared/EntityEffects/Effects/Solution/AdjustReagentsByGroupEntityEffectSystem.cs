@@ -1,4 +1,5 @@
-﻿using Content.Shared.Body.Prototypes;
+﻿using Content.Shared.Body.Components;
+using Content.Shared.Body.Prototypes;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -22,11 +23,24 @@ public sealed partial class AdjustReagentsByGroupEntityEffectSystem : EntityEffe
         var quantity = args.Effect.Amount * args.Scale;
         var group = args.Effect.Group;
         var solution = entity.Comp.Solution;
+        // Arcane-Start
+        Chemistry.Components.Solution? bloodReferenceSolution = null;
+
+        var container = Transform(entity).ParentUid;
+        if (TryComp<BloodstreamComponent>(container, out var bloodstream) &&
+            _solutionContainer.ResolveSolution(container, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out _)
+            && bloodstream.BloodSolution.Value.Owner == entity.Owner)
+        {
+            bloodReferenceSolution = bloodstream.BloodReferenceSolution;
+        }
+        // Arcane-End
 
         foreach (var quant in solution.Contents.ToArray())
         {
             // Arcane-Start
             if (args.Effect.ExcludeReagent == quant.Reagent.Prototype)
+                continue;
+            if (bloodReferenceSolution?.ContainsPrototype(quant.Reagent.Prototype) == true)
                 continue;
             // Arcane-End
             var proto = _proto.Index<ReagentPrototype>(quant.Reagent.Prototype);
