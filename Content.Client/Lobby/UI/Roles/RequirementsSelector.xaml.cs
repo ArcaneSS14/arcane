@@ -170,6 +170,7 @@ public sealed partial class RequirementsSelector : BoxContainer
                 else
                 {
                     titleOptions.SelectId(0);
+                    OnSelectedTitle?.Invoke(null);
                 }
             }
             else

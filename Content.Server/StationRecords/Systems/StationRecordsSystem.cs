@@ -167,10 +167,16 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             if (!string.IsNullOrEmpty(cardComp.LocalizedJobTitle))
                 jobTitle = cardComp.LocalizedJobTitle;
         }
-        if (string.IsNullOrEmpty(jobTitle) && profile.AlternateJobTitle != null &&
-            _prototypeManager.TryIndex<JobAlternateTitlePrototype>(profile.AlternateJobTitle, out var altTitle))
+        if (string.IsNullOrEmpty(jobTitle) &&
+            profile.JobAlternateTitles.TryGetValue(new ProtoId<JobPrototype>(jobId), out var altTitleId) &&
+            _prototypeManager.TryIndex(altTitleId, out var altTitle))
         {
             jobTitle = altTitle.LocalizedName(gender);
+        }
+        else if (string.IsNullOrEmpty(jobTitle) && profile.AlternateJobTitle is { } altTitleLegacy &&
+            _prototypeManager.TryIndex(altTitleLegacy, out var legacyTitle))
+        {
+            jobTitle = legacyTitle.LocalizedName(gender);
         }
 
         if (string.IsNullOrEmpty(jobTitle))

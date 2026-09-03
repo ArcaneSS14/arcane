@@ -24,7 +24,7 @@
   alternateTitles:
   - PsychologistTherapist
   - PsychologistGuidanceCounselor
-  - PsychologistPsychatrist
+  - PsychologistPsychiatrist
   # Arcane-end
 
 - type: startingGear
@@ -59,6 +59,6 @@
   name: job-name-alt-psychologist-2
 
 - type: jobAlternateTitle
-  id: PsychologistPsychatrist
+  id: PsychologistPsychiatrist
   name: job-name-alt-psychologist-3
 # Arcane-End

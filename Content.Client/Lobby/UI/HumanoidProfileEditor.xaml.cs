@@ -1473,6 +1473,16 @@ namespace Content.Client.Lobby.UI
                         }
                     }
 
+                    // Arcane-Start
+                    selector.OnSelectedTitle += selectedTitle =>
+                    {
+                        if (!altJobTitlesEnable)
+                            return;
+                        Profile = Profile?.WithJobAltTitle(job.ID, selectedTitle);
+                        SetDirty();
+                    };
+                    // Arcane-End
+
                     selector.Setup(items, job.LocalizedName, 280, job.LocalizedDescription, icon, job.Guides, altTitleInfo, currentAlt, _prototypeManager, Profile?.Gender);
                     // Arcane-End
 
@@ -1484,16 +1494,6 @@ namespace Content.Client.Lobby.UI
                     {
                         selector.UnlockRequirements();
                     }
-
-                    // Arcane-Start
-                    selector.OnSelectedTitle += selectedTitle =>
-                    {
-                        if (!altJobTitlesEnable)
-                            return;
-                        Profile = Profile?.WithJobAltTitle(job.ID, selectedTitle);
-                        SetDirty();
-                    };
-                    // Arcane-End
 
                     selector.OnSelected += selectedPrio =>
                     {

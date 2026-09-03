@@ -60,12 +60,14 @@
 
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._Arcane.CCVars;
 using Content.Shared._Arcane.TTS;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
+using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Arcane.ERP; // Arcane-edit
@@ -73,6 +75,7 @@ using Content.Shared.Traits;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -110,7 +113,7 @@ namespace Content.Shared.Preferences
         public Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>> JobAlternateTitles = new();
 
         [DataField("alternateJobTitle")]
-        public string? AlternateJobTitle { get; set; }
+        public ProtoId<JobAlternateTitlePrototype>? AlternateJobTitle { get; set; }
         // Arcane-End
 
         /// <summary>
@@ -795,7 +798,14 @@ namespace Content.Shared.Preferences
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
-            if (!JobAlternateTitles.SequenceEqual(other.JobAlternateTitles)) return false; // Arcane
+            // Arcane-Start
+            if (!JobAlternateTitles.Count.Equals(other.JobAlternateTitles.Count)) return false;
+            foreach (var (job, title) in JobAlternateTitles)
+            {
+                if (!other.JobAlternateTitles.TryGetValue(job, out var otherTitle) || otherTitle != title)
+                    return false;
+            }
+            // Arcane-End
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
@@ -1080,15 +1090,29 @@ namespace Content.Shared.Preferences
 
             // Arcane-Start
             var altTitles = new Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>>();
-            foreach (var (key, value) in JobAlternateTitles)
+            if (collection.Resolve<IConfigurationManager>().GetCVar(ACCVars.ICAlternateJobTitlesEnable))
             {
-                if (value.Id == null || value.Id == string.Empty)
-                    continue;
-                if (!prototypeManager.TryIndex(key, out var job))
-                    continue;
-                if (job.AlternateTitles.Contains(value))
+                var playTimes = collection.Resolve<ISharedPlaytimeManager>().GetPlayTimes(session);
+                var entManager = collection.Resolve<IEntityManager>();
+                foreach (var (key, value) in JobAlternateTitles)
                 {
-                    altTitles.Add(key, value);
+                    if (value.Id == null || value.Id == string.Empty)
+                        continue;
+                    if (!prototypeManager.TryIndex(key, out var job))
+                        continue;
+                    if (job.AlternateTitles.Contains(value) &&
+                        prototypeManager.TryIndex(value, out var altTitleProto) &&
+                        JobRequirements.TryRequirementsMet(
+                            altTitleProto.Requirements,
+                            playTimes,
+                            out _,
+                            entManager,
+                            prototypeManager,
+                            profile: this,
+                            ignorePlaytimeRequirements: false))
+                    {
+                        altTitles.Add(key, value);
+                    }
                 }
             }
             // Arcane-End

@@ -11,8 +11,8 @@ job-name-alt-chemist-1 = фармацевт
 job-name-alt-chemist-2 = лаборант
 
 job-name-alt-paramedic-1 = травматолог
-job-name-alt-paramedic-2 = член поисково-спасательной службы
-job-name-alt-paramedic-4 = сотрудник Trauma
+job-name-alt-paramedic-2 = техник скорой медицинской помощи
+job-name-alt-paramedic-4 = сотрудник Trauma Team
 
 job-name-alt-qm-1 = офицер рассмотра заявок
 job-name-alt-qm-2 = заведующий стойкой

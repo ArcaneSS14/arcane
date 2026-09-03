@@ -823,7 +823,7 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.HasKey("Id")
                         .HasName("PK_dbjob_alternate_title");
 
-                    b.HasIndex("ProfileId", "RoleName", "AlternateTitle")
+                    b.HasIndex("ProfileId", "RoleName")
                         .IsUnique();
 
                     b.ToTable("dbjob_alternate_title", (string)null);

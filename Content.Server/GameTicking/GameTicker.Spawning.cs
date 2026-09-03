@@ -98,6 +98,7 @@ using System.Numerics;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
+using Content.Shared._Arcane.CCVars;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
@@ -390,7 +391,8 @@ namespace Content.Server.GameTicking
             // Arcane-Start
             string jobName = jobPrototype.LocalizedName;
 
-            if (character.JobAlternateTitles.TryGetValue(jobId, out var altTitleId))
+            if (_cfg.GetCVar(ACCVars.ICAlternateJobTitlesEnable) &&
+                character.JobAlternateTitles.TryGetValue(jobId, out var altTitleId))
             {
                 if (_prototypeManager.TryIndex<JobAlternateTitlePrototype>(altTitleId, out var altTitle))
                 {

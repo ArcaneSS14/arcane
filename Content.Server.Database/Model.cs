@@ -126,7 +126,7 @@ namespace Content.Server.Database
                 .IsRequired();
 
             modelBuilder.Entity<DBJobAlternateTitle>()
-                .HasIndex(p => new { p.ProfileId, p.RoleName, p.AlternateTitle })
+                .HasIndex(p => new { p.ProfileId, p.RoleName })
                 .IsUnique();
             // Arcane-End
 

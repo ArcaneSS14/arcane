@@ -1,8 +1,10 @@
 using Content.Server.Chat.Managers;
+using Content.Shared._Arcane.CCVars;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Preferences;
@@ -12,6 +14,7 @@ public sealed class AltTitleReminderSystem : EntitySystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {
@@ -25,6 +28,9 @@ public sealed class AltTitleReminderSystem : EntitySystem
             return;
 
         if (string.IsNullOrEmpty(ev.JobId) || !_prototype.TryIndex<JobPrototype>(ev.JobId, out var jobProto))
+            return;
+
+        if (!_cfg.GetCVar(ACCVars.ICAlternateJobTitlesEnable))
             return;
 
         if (profile.JobAlternateTitles.TryGetValue(jobProto.ID, out var altTitleId) &&

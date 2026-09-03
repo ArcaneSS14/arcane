@@ -41,9 +41,9 @@ namespace Content.Server.Database.Migrations.Postgres
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_dbjob_alternate_title_profile_id_role_name_alternate_title",
+                name: "IX_dbjob_alternate_title_profile_id_role_name",
                 table: "dbjob_alternate_title",
-                columns: new[] { "profile_id", "role_name", "alternate_title" },
+                columns: new[] { "profile_id", "role_name" },
                 unique: true);
         }
 
