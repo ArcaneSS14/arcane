@@ -907,3 +907,14 @@ Entries:
   id: 74
   time: '2026-09-03T08:36:18.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/292
+- author: badjuju
+  changes:
+    - type: Tweak
+      message: Повышен шанс на присутствие дьявола в игре
+    - type: Tweak
+      message: Актуализация контрактов дьявола в руководстве.
+    - type: Fix
+      message: Контракты вновь полностью функционируют.
+  id: 75
+  time: '2026-09-03T18:12:56.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/287
