@@ -900,3 +900,10 @@ Entries:
   id: 73
   time: '2026-09-03T03:23:26.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/291
+- author: Valklria
+  changes:
+    - type: Tweak
+      message: Изменен спрайт обычной боевой аптечки.
+  id: 74
+  time: '2026-09-03T08:36:18.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/292
