@@ -931,3 +931,10 @@ Entries:
   id: 76
   time: '2026-09-03T19:33:49.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/256
+- author: ReWAFFlution, thxmqninq, FunkyStation
+  changes:
+    - type: Add
+      message: Добавлены альтернативные названия должностей
+  id: 77
+  time: '2026-09-04T02:21:47.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/276
