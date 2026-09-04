@@ -12,11 +12,13 @@
     Dragon: 0.3
     SlaughterDemon: 0.3
     LaughterDemon: 0.3
+    # WizardMidRoundThreat: 0.1 # Arcane-Edit
+    # Arcane-Start
     Revolutionary: 0.20
     Nukeops: 0.15
     Ninja: 0.25
     Xenoborgs: 0.3
-    # WizardMidRoundThreat: 0.15 # Arcane-Edit
+    # Arcane-End
 
 # Threats
 

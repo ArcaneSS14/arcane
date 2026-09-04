@@ -17,12 +17,13 @@
     Nukeops: 1
     WizardMidRoundThreat: 1
     # Arcane-End
-# Arcane-Start
+
 - type: ninjaHackingThreat
   id: Dragon
   announcement: terror-dragon
   rule: DragonSpawn
 
+# Arcane-Start
 - type: ninjaHackingThreat
   id: Ninja
   announcement: terror-Ninja
