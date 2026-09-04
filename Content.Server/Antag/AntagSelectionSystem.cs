@@ -471,6 +471,26 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             return;
         }
 
+        // Arcane-Start
+        var checkMind = session?.GetMind() ?? _mind.GetMind(player);
+        if (checkMind.HasValue && def.MindRoles != null)
+        {
+            if (TryComp<MindComponent>(checkMind.Value, out var mindComp))
+            {
+                foreach (var roleEntity in mindComp.MindRoleContainer.ContainedEntities)
+                {
+                    var roleProto = EntityManager.GetComponent<MetaDataComponent>(roleEntity).EntityPrototype?.ID;
+
+                    if (roleProto != null && def.MindRoles.Contains(roleProto))
+                    {
+                        Log.Debug($"Player {player} already has a role {roleProto} inside the MindRoleContainer.");
+                        return;
+                    }
+                }
+            }
+        }
+        // Arcane-End
+
         if (def.UnequipOldGear && TryComp(player, out InventoryComponent? inventory) &&
             _inventory.TryGetSlots(player, out var slots))
         {
