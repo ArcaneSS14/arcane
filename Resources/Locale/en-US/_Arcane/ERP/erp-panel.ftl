@@ -4,17 +4,17 @@ erp-panel-title = Interaction Panel
 
 erp-panel-header = Interacting with { $target }
 erp-panel-target-label = Target
-erp-panel-arousal-level = Your Arousal
+erp-panel-arousal-level = Your arousal
 
 erp-panel-settings-title = Interaction Modifiers
 erp-panel-hide-modifiers = Hide
 erp-panel-show-modifiers = Show
 erp-panel-arousal-multiplier-label = Arousal
-erp-panel-moaning-multiplier-label = Moan Chance
+erp-panel-moaning-multiplier-label = Moan chance
 
-erp-panel-search-placeholder = Search actions or categories...
+erp-panel-search-placeholder = Search for actions or categories...
 erp-panel-search-clear-tooltip = Clear search
-erp-panel-interactions-title = Available Interactions
+erp-panel-interactions-title = Available interactions
 erp-panel-expand-all = Expand all
 erp-panel-collapse-all = Collapse all
 erp-panel-category-heading = { $category } ({ $count })
@@ -24,26 +24,26 @@ erp-panel-results =
         [few] { $count } interactions available
        *[other] { $count } interactions available
     }
-erp-panel-empty-search = No results found for your query.
+erp-panel-empty-search = Nothing found for your query.
 erp-panel-empty-available = No interactions available right now.
-erp-panel-interaction-cooldown-tooltip = Available in { $seconds } sec.
+erp-panel-interaction-cooldown-tooltip = Available in { $seconds } s.
 
 erp-panel-custom-arousal-button = Arousal Mult.
 erp-panel-custom-moaning-button = Moan Mult.
 
-erp-panel-custom-arousal-button-tooltip = Arousal multiplier from interacting with your interactions.
-erp-panel-custom-moaning-button-tooltip = Chance multiplier for moaning after interaction.
+erp-panel-custom-arousal-button-tooltip = Arousal multiplier from your interactions.
+erp-panel-custom-moaning-button-tooltip = Multiplier for moan chance after interaction.
 
 moan-message = moans!
 orgasm-popup-self = You have reached orgasm. You need time to recover.
 orgasm-message-1 = cums!
 orgasm-message-2 = reaches orgasm!
 orgasm-message-3 = shudders from orgasm!
-orgasm-message-4 = shakes all over!
+orgasm-message-4 = trembles all over!
 orgasm-message-5 = moans quietly, finishing!
-orgasm-message-6 = moans loudly, reaching peak pleasure!
+orgasm-message-6 = moans loudly, reaching the peak of pleasure!
 
-erp-panel-lick-cum-success = {$user} licks the remaining secretions from {$target}.
+erp-panel-lick-cum-success = {$user} licks up the remaining secretions from {$target}.
 
 
 # Interaction category
@@ -73,18 +73,18 @@ erp-panel-interaction-anus-fingering-name = Finger anus
 erp-panel-interaction-anus-tail-fuck-name = Fuck anus with tail
 erp-panel-interaction-anal-fingering2-name = Two fingers in anus
 erp-panel-interaction-anus-toy-sitting-name = Sit on sex toy with butt
-erp-panel-interaction-insert-fingers-anus-name = Fuck butt with your fingers 
+erp-panel-interaction-insert-fingers-anus-name = Fuck ass with your fingers 
 erp-panel-interaction-running-finger-anus-name = Caress anus
 erp-panel-interaction-wall-anus-fuck-name = Fuck anus against wall
-erp-panel-interaction-lick-anus-condensed-cum-name = Lick secretions from butt
+erp-panel-interaction-lick-anus-condensed-cum-name = Lick secretions from ass
 
 # Interaction back
-erp-panel-interaction-finger-tap-name = Knead back
+erp-panel-interaction-finger-tap-name = Rub back
 erp-panel-interaction-stretch-body-name = Stretch whole body
 
 # Interaction chest
 erp-panel-interaction-boobs-slap-name = Slap chest
-erp-panel-interaction-boobs-paw-name = Stroke chest
+erp-panel-interaction-boobs-paw-name = Paw chest
 erp-panel-interaction-boobs-fuck-name = Fuck chest
 erp-panel-interaction-boobs-squeeze-name = Squeeze chest
 erp-panel-interaction-boobs-kisses-name = Kiss chest all over
@@ -93,27 +93,27 @@ erp-panel-interaction-boobs-massage-name = Massage chest
 erp-panel-interaction-boobs-suck-name = Suck nipple
 erp-panel-interaction-fondle-boobs-name = Fondle chest
 erp-panel-interaction-rubbing-nipples-name = Rub nipples
-erp-panel-interaction-strike-cool-pose-name = Strike a cool pose
+erp-panel-interaction-strike-cool-pose-name = Strike cool pose
 erp-panel-interaction-lick-condensed-cum-name = Lick secretions
 erp-panel-interaction-lick-condensed-cum-self-name = Lick secretions from self
+erp-panel-interaction-hug-wings-name = Hug with wings
 
 # Interaction butt
 erp-panel-interaction-toy-butt-name = Use sex toy in butt
 erp-panel-interaction-butt-near-cock-name = Rub with cock
-erp-panel-interaction-butt-massage-name = Knead butt
+erp-panel-interaction-butt-massage-name = Massage ass
 erp-panel-interaction-butt-tail-name = Caress with tail
-erp-panel-interaction-hands-on-butt-name = Grab butt
-erp-panel-interaction-kiss-butt-name = Kiss butt
-erp-panel-interaction-slap-butt-name = Slap butt
+erp-panel-interaction-hands-on-butt-name = Grab ass
+erp-panel-interaction-kiss-butt-name = Kiss ass
+erp-panel-interaction-slap-butt-name = Slap ass
 erp-panel-interaction-horns-ass-f-name = Rub with horn
-erp-panel-interaction-toy-butt-near-cock-name = Rub your sex toy on buttocks
-erp-panel-interaction-fart-name = Fart
+erp-panel-interaction-toy-butt-near-cock-name = Run your sex toy over buttocks
 
 # Interaction ears
 erp-panel-interaction-bite-ears-name = Bite ear
 erp-panel-interaction-bite-ears-human-name = Bite ear
 erp-panel-interaction-ears-kiss-name = Kiss ear
-erp-panel-interaction-pat-ears-name = Pet ears
+erp-panel-interaction-pat-ears-name = Pat ears
 erp-panel-interaction-pat-ears-human-name = Fondle ears
 erp-panel-interaction-scratching-ears-name = Scratch behind ear
 
@@ -122,20 +122,21 @@ erp-panel-interaction-face-rub-cat-name = Rub face
 erp-panel-interaction-face-sitting-name = Sit on face
 erp-panel-interaction-face-pussy-sitting-name = Sit on face with pussy
 erp-panel-interaction-face-dick-slap-name = Slap face with cock
-erp-panel-interaction-cheeks-kiss-name = Kiss cheek
+erp-panel-interaction-cheeks-kiss-name = Peck cheek
 erp-panel-interaction-cheeks-kiss-both-name = Kiss both cheeks
 erp-panel-interaction-cheeks-pat-name = Pat cheeks
-erp-panel-interaction-cheeks-press-name = Press cheeks
+erp-panel-interaction-cheeks-press-name = Press cheeks together
 erp-panel-interaction-gentle-kiss-name = Kiss gently
-erp-panel-interaction-kiss-lips-name = Make out
+erp-panel-interaction-kiss-lips-name = Kiss passionately
 erp-panel-interaction-legs-squeezeface-name = Squeeze face with thighs
-erp-panel-interaction-mewing-name = Meow in face
-erp-panel-interaction-kitty-name = Rub muzzle
+erp-panel-interaction-mewing-name = Make a mewing
+erp-panel-interaction-kitty-name = Rub face
 erp-panel-interaction-blow-slap-name = Slap face
 erp-panel-interaction-blow-slap-users-name = Hit cheek with palm
 erp-panel-interaction-hitting-face-name = Hit face with palm
 erp-panel-interaction-shed-tear-name = Shed a tear
-erp-panel-interaction-kiss-forehead-name = Kiss forehead
+erp-panel-interaction-kiss-forehead-name = Peck forehead
+erp-panel-interaction-suspicious-look-name = Suspicious look
 
 # Interaction feet
 erp-panel-interaction-feet-mouth-name = Suck feet
@@ -145,7 +146,7 @@ erp-panel-interaction-shift-weight-name = Put hand on thigh
 erp-panel-interaction-handshake-name = Shake hands
 erp-panel-interaction-kiss-hand-name = Kiss hand
 erp-panel-interaction-high-five-name = High five
-erp-panel-interaction-friendly-flying-kiss-name = Blow a kiss
+erp-panel-interaction-friendly-flying-kiss-name = Blow kiss
 erp-panel-interaction-friendly-nose-boop-name = Boop nose
 erp-panel-interaction-push-ups-floor-name = Do push-ups
 erp-panel-interaction-pin-to-wall-name = Pin against wall
@@ -153,11 +154,12 @@ erp-panel-interaction-pin-to-wall-name = Pin against wall
 # Interaction head
 erp-panel-interaction-pet-head-name = Pet head
 erp-panel-interaction-horns-pat-name = Pat horns
-erp-panel-interaction-horns-blowjob-f-name = Lick horn
-erp-panel-interaction-give-slap-head-name = Give a smack on the head
+erp-panel-interaction-horns-blowjob-f-name = Fuck mouth holding horns
+erp-panel-interaction-give-slap-head-name = Give a slap on the head
 erp-panel-interaction-ruffle-hair-name = Ruffle hair
 erp-panel-interaction-tap-crown-name = Tap crown
 erp-panel-interaction-kiss-back-of-head-name = Kiss back of head
+erp-panel-interaction-lick-horns-name = Lick horns
 
 # Interaction mouth
 erp-panel-interaction-hair-face-fuck-name = Fuck mouth holding hair
@@ -170,7 +172,7 @@ erp-panel-interaction-bite-neck-name = Bite neck
 erp-panel-interaction-lick-neck-name = Lick neck
 erp-panel-interaction-kiss-neck-name = Kiss neck
 erp-panel-interaction-nuzzle-neck-name = Nuzzle neck
-erp-panel-interaction-nuzzle-neck-vulpa-name = Snout into neck
+erp-panel-interaction-nuzzle-neck-vulpa-name = Snout nuzzle
 erp-panel-interaction-playful-nibble-name = Playful nibble
 erp-panel-interaction-stretch-neck-name = Stretch neck
 erp-panel-interaction-grabs-neck-name = Grab neck
@@ -182,13 +184,13 @@ erp-panel-interaction-suck-cock-name = Suck cock
 erp-panel-interaction-slime-fuck-cock-name = Fuck cock with slime
 erp-panel-interaction-cock-fap-name = Jerk off
 erp-panel-interaction-cock-footjob-name = Footjob
-erp-panel-interaction-cock-swordmanship-name = Sword fight with cocks
-erp-panel-interaction-cock-fap-tail-name = Jerk with tail
-erp-panel-interaction-cock-fuck-legs-name = Thigh job
+erp-panel-interaction-cock-swordmanship-name = Swordfight with cocks
+erp-panel-interaction-cock-fap-tail-name = Jerk off with tail
+erp-panel-interaction-cock-fuck-legs-name = Fuck thighs
 erp-panel-interaction-cock-blowjob-name = Give blowjob
 erp-panel-interaction-legs-cock-fuck-tail-name = Fuck thighs with tail
 erp-panel-interaction-toy-suck-cock-name = Suck sex toy
-erp-panel-interaction-pillow-fap-name = Jerk with pillow
+erp-panel-interaction-pillow-fap-name = Jerk off with pillow
 erp-panel-interaction-toy-fap-name = Fuck sex toy
 erp-panel-interaction-lick-penis-condensed-cum-name = Lick secretions from cock
 
@@ -219,7 +221,7 @@ erp-panel-interaction-shoulder-massage-name = Massage shoulders
 erp-panel-interaction-hug-shoulders-name = Hug shoulders
 
 # Interaction tail
-erp-panel-interaction-cock-near-ass-tail-name = Rub cock on butt with tail
+erp-panel-interaction-cock-near-ass-tail-name = Rub cock on ass with tail
 erp-panel-interaction-tail-pat-name = Pat tail
 erp-panel-interaction-tail-hug-name = Entwine tails
 erp-panel-interaction-friendly-tail-pull-name = Pull tail
