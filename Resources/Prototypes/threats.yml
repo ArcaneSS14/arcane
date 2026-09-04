@@ -17,7 +17,6 @@
     Nukeops: 1
     WizardMidRoundThreat: 1
     # Arcane-End
-
 - type: ninjaHackingThreat
   id: Dragon
   announcement: terror-dragon
