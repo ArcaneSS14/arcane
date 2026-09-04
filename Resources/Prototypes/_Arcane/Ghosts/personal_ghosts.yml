@@ -17,7 +17,7 @@
     sprite: _Arcane/Ghosts/ckey/Vecortys.rsi
     color: "#ffffff80" # 0.5 alpha
   - type: MovementSpeedModifier
-    baseSprintSpeed: 22
+    baseSprintSpeed: 20
 
 - type: customGhost
   parent: CkeyPersonal

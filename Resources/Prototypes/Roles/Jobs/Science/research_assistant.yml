@@ -25,6 +25,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentRnd
+  alternateTitles:
+  - ResearchAssistantLabIntern
+  - ResearchAssistantScienceTrainee
   # Arcane-end
 
 - type: startingGear
@@ -48,3 +51,13 @@
     neck: ClothingNeckScarfStripedPurple
     outerClothing: ClothingOuterCoatLab
     gloves: ClothingHandsGlovesLatex
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: ResearchAssistantLabIntern
+  name: job-name-alt-researchassistant-1
+
+- type: jobAlternateTitle
+  id: ResearchAssistantScienceTrainee
+  name: job-name-alt-researchassistant-2
+# Arcane-End

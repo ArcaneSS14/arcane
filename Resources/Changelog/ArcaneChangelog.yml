@@ -918,3 +918,41 @@ Entries:
   id: 75
   time: '2026-09-03T18:12:56.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/287
+- author: badjuju
+  changes:
+    - type: Add
+      message: >-
+        Ксеноморфы стали чуточку сильнее. Добавлен мгновенный хардграб всем
+        особям кроме охотника (кд 3 секунды)
+    - type: Remove
+      message: >-
+        Удалено первоначальное оповещение о ксеноморфах. Они пришли из
+        ниоткуда...
+  id: 76
+  time: '2026-09-03T19:33:49.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/256
+- author: ReWAFFlution, thxmqninq, FunkyStation
+  changes:
+    - type: Add
+      message: Добавлены альтернативные названия должностей
+  id: 77
+  time: '2026-09-04T02:21:47.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/276
+- author: Willow18
+  changes:
+    - type: Tweak
+      message: >-
+        Переведены энтити связанные с Космическим колоссом, а так же менюшка
+        маньяка
+  id: 78
+  time: '2026-09-04T02:54:24.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/290
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Стиль UI был переработан, многие проблемы исправлены.
+    - type: Tweak
+      message: Саунды после конца раунда заменились на РОФЕЛЬСЫ...
+  id: 79
+  time: '2026-09-04T06:42:01.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/296
