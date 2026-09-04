@@ -15,7 +15,6 @@
     Xenoborgs: 1
     Revolutionary: 1
     Nukeops: 1
-    WizardMidRoundThreat: 1
     # Arcane-End
 - type: ninjaHackingThreat
   id: Dragon
@@ -25,22 +24,22 @@
 # Arcane-Start
 - type: ninjaHackingThreat
   id: Ninja
-  announcement: terror-Ninja
+  announcement: terror-ninja
   rule: NinjaSpawn
 
 - type: ninjaHackingThreat
   id: Xenoborgs
-  announcement: terror-Xenoborgs
+  announcement: terror-xenoborgs
   rule: Xenoborgs
 
 - type: ninjaHackingThreat
   id: Nukeops
-  announcement: terror-Nukeops
+  announcement: terror-nukeops
   rule: Nukeops
 
 - type: ninjaHackingThreat
   id: Revolutionary
-  announcement: terror-Revolutionary
+  announcement: terror-revolutionary
   rule: Revolutionary
 # Arcane-End
 # Goobstation - Revenant was disabled.
