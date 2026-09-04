@@ -7,15 +7,17 @@
     # Revenant: 1 # Goob - Removed in favor of LoneOperative
     SlaughterDemon: 1 # Goobstation begin
     # Wraith: 1
-    Ninja: 1
     LoneOperative: 1
     Slasher: 1
     # Goobstation end
+    #Arcane-Start
+    Ninja: 1
     Xenoborgs: 1
     Revolutionary: 1
     Nukeops: 1
     WizardMidRoundThreat: 1
-
+    # Arcane-End
+# Arcane-Start
 - type: ninjaHackingThreat
   id: Dragon
   announcement: terror-dragon
@@ -40,7 +42,7 @@
   id: Revolutionary
   announcement: terror-Revolutionary
   rule: Revolutionary
-
+# Arcane-End
 # Goobstation - Revenant was disabled.
 #- type: ninjaHackingThreat
 #  id: Revenant
