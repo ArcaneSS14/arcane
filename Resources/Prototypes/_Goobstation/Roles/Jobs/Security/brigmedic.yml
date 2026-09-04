@@ -47,6 +47,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentSecurity
+  alternateTitles:
+  - BrigmedicFieldMedic
+  - BrigmedicPrisonDoctor
   # Arcane-end
 
 - type: chameleonOutfit
@@ -63,3 +66,13 @@
     back: ClothingBackpackBrigmedic
     shoes: ClothingShoesBootsJack
     head: ClothingHeadHatBeretBrigmedic
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: BrigmedicFieldMedic
+  name: job-name-alt-brigmedic-1
+
+- type: jobAlternateTitle
+  id: BrigmedicPrisonDoctor
+  name: job-name-alt-brigmedic-2
+# Arcane-End
