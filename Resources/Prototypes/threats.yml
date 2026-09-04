@@ -16,6 +16,7 @@
     Revolutionary: 1
     Nukeops: 1
     # Arcane-End
+
 - type: ninjaHackingThreat
   id: Dragon
   announcement: terror-dragon
