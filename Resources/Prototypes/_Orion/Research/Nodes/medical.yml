@@ -120,6 +120,8 @@
   - ElectrolysisUnitMachineCircuitboard
   - CentrifugeMachineCircuitboard
   - ServiceEnergyChemMachineCircuitboard
+  - EnergyBoozeDispenserMachineCircuitboard
+  - EnergySodaDispenserMachineCircuitboard
   position: 7,9
 
 - type: technology
