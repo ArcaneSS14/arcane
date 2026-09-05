@@ -99,13 +99,6 @@
   recipes:
   - WeaponParticleDecelerator
 
-# Arcane-Start
-- type: latheRecipePack
-  id: PaintingTools
-  recipes:
-  - SprayPainterInfinite
-# Arcane-End
-
 - type: latheRecipePack
   parent:
   - EngineeringBoardsGoob # Goobstation

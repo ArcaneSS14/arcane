@@ -176,18 +176,6 @@
     Steel: 150
     Plastic: 50
 
-# Arcane-Start
-- type: latheRecipe
-  parent: BaseToolRecipe
-  id: SprayPainterInfinite
-  result: SprayPainterInfinite
-  completetime: 4
-  materials:
-    Steel: 400
-    Plastic: 600
-    Plasma: 400
-# Arcane-End
-
 - type: latheRecipe
   parent: BaseToolRecipe
   id: UtilityBelt
