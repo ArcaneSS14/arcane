@@ -694,15 +694,6 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
             sm.Power += projcomp.EnergyDamage.Value;
         }
 
-        if (TryComp<AngeringProjectileComponent>(target, out var projcomp))
-        {
-            if (projcomp.IntegDamage is not null)
-                sm.Damage += projcomp.IntegDamage.Value;
-
-            if (projcomp.EnergyDamage is not null)
-            sm.Power += projcomp.EnergyDamage.Value;
-        }
-
 /* // Orion-Edit
         if (TryComp<SupermatterFoodComponent>(target, out var food))
             sm.Power += food.Energy;
