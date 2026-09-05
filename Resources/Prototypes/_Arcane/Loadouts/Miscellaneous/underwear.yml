@@ -27,3 +27,44 @@
   id: WarmThongs
   equipment:
     underwear: ClothingUnderwearWarmThongs
+
+- type: loadout
+  id: Driada
+  equipment:
+    underwear: ClothingUnderwearDriada
+
+- type: loadout
+  id: EroticPurple
+  equipment:
+    underwear: ClothingUnderwearEroticPurple
+
+- type: loadout
+  id: Medusa
+  equipment:
+    underwear: ClothingUnderwearMedusa
+
+- type: loadout
+  id: Leafs
+  equipment:
+    underwear: ClothingUnderwearLeafs
+
+- type: loadout
+  id: PinkFancy
+  equipment:
+    underwear: ClothingUnderwearPinkFancy
+
+- type: loadout
+  id: Red
+  equipment:
+    underwear: ClothingUnderwearRed
+
+- type: loadout
+  id: UnderwearAx
+  equipment:
+    underwear: ClothingUnderwearAx
+
+- type: loadout
+  id: BeerPants
+  equipment:
+    underwear: ClothingUnderwearBeerPants
+

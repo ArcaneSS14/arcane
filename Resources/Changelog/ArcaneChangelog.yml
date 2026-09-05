@@ -836,3 +836,123 @@ Entries:
   id: 69
   time: '2026-09-01T18:31:59.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/285
+- author: GrinDers
+  changes:
+    - type: Add
+      message: Добавлена вкладка Уровней Применения Силы (УПС).
+    - type: Add
+      message: Модификаторы перенесены в раздел Космического закона.
+    - type: Tweak
+      message: Обновлена вкладка Космического закона.
+    - type: Tweak
+      message: Актуализировано СРП Офицера "Синий Щит".
+    - type: Tweak
+      message: Актуализировано СРП Представителя NanoTrasen.
+  id: 70
+  time: '2026-09-02T06:53:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/286
+- author: UmbiMax
+  changes:
+    - type: Fix
+      message: >-
+        Полный фикс химмастера + удаление мёртвого кода после багов и рефактора
+        апстрима. (Реакций в буфере более не будет)
+    - type: Fix
+      message: >-
+        Химикаты более не учитывают внутреннюю кровь как вещество - фикс
+        моновера, мультивера и многих других, взаимодействующих с кровью. 
+  id: 71
+  time: '2026-09-02T08:03:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/284
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Изменены точки появления некоторых аптечек
+    - type: Tweak
+      message: >-
+        Доработка синтеплоти(имеет рецепт как на TG13 + бафф внешнего лечения
+        трупов/критованных) и иных химикатов с наружным применением.
+    - type: Tweak
+      message: >-
+        Тиримол теперь выводит Токсин Хартбрейкер. Конвермол кроме него ещё и
+        лексорин.
+    - type: Tweak
+      message: >-
+        Бафф конвермола. Ныне серьёзный препарат против удушья и кровопотери, но
+        не мешайте его с диловеном.
+    - type: Fix
+      message: >-
+        В карго более не поставляются пустые аптечки за 20 000. Теперь вместо
+        них полные.
+    - type: Fix
+      message: Исправлены кувшины с плазмой, напалмом и другие.
+  id: 72
+  time: '2026-09-02T18:54:13.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/289
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Отдел СБ выбирается целью для убийства в 3 раза чаще чем обычный экипаж.
+    - type: Fix
+      message: >-
+        Целями на убийство у агентов синдиката могут быть только сотрудники
+        станции.
+  id: 73
+  time: '2026-09-03T03:23:26.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/291
+- author: Valklria
+  changes:
+    - type: Tweak
+      message: Изменен спрайт обычной боевой аптечки.
+  id: 74
+  time: '2026-09-03T08:36:18.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/292
+- author: badjuju
+  changes:
+    - type: Tweak
+      message: Повышен шанс на присутствие дьявола в игре
+    - type: Tweak
+      message: Актуализация контрактов дьявола в руководстве.
+    - type: Fix
+      message: Контракты вновь полностью функционируют.
+  id: 75
+  time: '2026-09-03T18:12:56.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/287
+- author: badjuju
+  changes:
+    - type: Add
+      message: >-
+        Ксеноморфы стали чуточку сильнее. Добавлен мгновенный хардграб всем
+        особям кроме охотника (кд 3 секунды)
+    - type: Remove
+      message: >-
+        Удалено первоначальное оповещение о ксеноморфах. Они пришли из
+        ниоткуда...
+  id: 76
+  time: '2026-09-03T19:33:49.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/256
+- author: ReWAFFlution, thxmqninq, FunkyStation
+  changes:
+    - type: Add
+      message: Добавлены альтернативные названия должностей
+  id: 77
+  time: '2026-09-04T02:21:47.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/276
+- author: Willow18
+  changes:
+    - type: Tweak
+      message: >-
+        Переведены энтити связанные с Космическим колоссом, а так же менюшка
+        маньяка
+  id: 78
+  time: '2026-09-04T02:54:24.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/290
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Стиль UI был переработан, многие проблемы исправлены.
+    - type: Tweak
+      message: Саунды после конца раунда заменились на РОФЕЛЬСЫ...
+  id: 79
+  time: '2026-09-04T06:42:01.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/296

@@ -145,6 +145,13 @@
   # Arcane-Start
   - WarmBra
   - CowSwimsuit
+  - BraBeer
+  - BraDriada
+  - BraEroticPurple
+  - BraMedusa
+  - BraLeafs
+  - BraPinkFancy
+  - BraRed
   # Arcane-End
 
 - type: loadoutGroup
@@ -191,6 +198,14 @@
   - boxerfrance
   - boxermaidwithsuspenders
   - WarmThongs
+  - Driada
+  - EroticPurple
+  - Medusa
+  - Leafs
+  - PinkFancy
+  - Red
+  - UnderwearAx
+  - BeerPants
   # Arcane-end
 
 - type: loadoutGroup
