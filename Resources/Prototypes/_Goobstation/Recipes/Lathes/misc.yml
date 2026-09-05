@@ -36,18 +36,22 @@
     sprite: _Goobstation/Structures/Machines/service_dispenser.rsi
     state: industrial-working
 
+# Arcane-Start
 - type: latheRecipe
   id: EnergyBoozeDispenserMachineCircuitboard
   parent: BaseGoldCircuitboardRecipe
   result: EnergyBoozeDispenserMachineCircuitboard
   icon:
-    sprite: _Goobstation/Structures/Machines/service_dispenser.rsi
-    state: industrial-working
+    sprite: Structures/smalldispensers.rsi
+    drawdepth: SmallObjects
+    state: booze
 
 - type: latheRecipe
   id: EnergySodaDispenserMachineCircuitboard
   parent: BaseGoldCircuitboardRecipe
   result: EnergySodaDispenserMachineCircuitboard
   icon:
-    sprite: _Goobstation/Structures/Machines/service_dispenser.rsi
-    state: industrial-working
+    sprite: Structures/smalldispensers.rsi
+    drawdepth: SmallObjects
+    state: soda
+# Arcane-End  

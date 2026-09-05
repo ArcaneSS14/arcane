@@ -184,6 +184,7 @@
         amount: 2
         defaultPrototype: Beaker
 
+# Arcane-Start
 - type: entity  # Energy booze dispenser
   parent: BaseMachineCircuitboard
   id: EnergyBoozeDispenserMachineCircuitboard
@@ -217,3 +218,4 @@
       GlassBeaker:
         amount: 2
         defaultPrototype: Beaker
+# Arcane-End
