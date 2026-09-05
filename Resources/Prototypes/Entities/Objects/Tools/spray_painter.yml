@@ -71,6 +71,17 @@
   - type: LimitedCharges
     lastCharges: -1
 
+# Arcane-Start
+- type: entity
+  parent: SprayPainter
+  id: SprayPainterInfinite
+  suffix: Infinite
+  description: An industrial-grade spray painter with a bottomless paint tank. Rumor has it one engineer used it to repaint the entire station pink overnight the Captain still hasn't found it funny.
+  components:
+  - type: AutoRecharge
+    rechargeDuration: 1
+# Arcane-End
+
 - type: entity
   parent: BaseItem
   id: SprayPainterAmmo
