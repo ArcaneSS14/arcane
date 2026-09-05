@@ -270,6 +270,7 @@
       HorseradishSauce: 4
       Cornoil: 4
 
+# Arcane-Start
 - type: entity
   id: EnergyBoozeDispenser
   parent: SmallConstructibleMachine
@@ -280,9 +281,9 @@
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: _Goobstation/Structures/Machines/service_dispenser.rsi
-    state: industrial-working
-    snapCardinals: true
+    sprite: Structures/smalldispensers.rsi
+    drawdepth: SmallObjects
+    state: booze
   - type: Transform
     anchored: true
     noRot: true
@@ -362,13 +363,20 @@
         components:
         - FitsInDispenser
     reagents:
+      Absinthe: 24
       Ale: 12
       Beer: 8
+      BlueCuracao: 14
+      Champagne: 26
       CoffeeLiqueur: 16
       Cognac: 22
+      Gildlager: 26
       Gin: 16
       Mead: 15
+      MelonLiquor: 14
+      Patron: 24
       Rum: 18
+      Sake: 12
       Tequila: 20
       Vermouth: 14
       Vodka: 18
@@ -385,9 +393,9 @@
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: _Goobstation/Structures/Machines/service_dispenser.rsi
-    state: industrial-working
-    snapCardinals: true
+    sprite: Structures/smalldispensers.rsi
+    drawdepth: SmallObjects
+    state: soda
   - type: Transform
     anchored: true
     noRot: true
@@ -484,3 +492,4 @@
       Tea: 3
       TonicWater: 4
       JuiceWatermelon: 6
+# Arcane-End
