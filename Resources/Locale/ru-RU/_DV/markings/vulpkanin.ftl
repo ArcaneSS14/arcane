@@ -30,6 +30,10 @@ marking-VulpEarFennec-fennec-inner = Внутри
 marking-VulpEarFennec = Фенек
 marking-VulpEarFox-fox = Основной
 marking-VulpEarFox = Лиса
+# Arcane-Start
+marking-VulpEarFox-fox-inner = Внутри
+marking-VulpEarFox-fox-tips = Кончики
+# Arcane-End
 marking-VulpEarOtie-otie = Основной
 marking-VulpEarOtie-otie-inner = Внутри
 marking-VulpEarOtie = Оти
