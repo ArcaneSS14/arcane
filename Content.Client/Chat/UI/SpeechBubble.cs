@@ -220,15 +220,15 @@ namespace Content.Client.Chat.UI
         }
 
         // Arcane-start
-        protected void SetRevealedMessage(RichTextLabel label, FormattedMessage message)
+        protected void SetRevealedMessage(RichTextLabel label, FormattedMessage message, Type[]? allowedTags = null)
         {
-            label.SetMessage(message, tagsAllowed: null);
+            label.SetMessage(message, allowedTags);
 
             var revealWeight = CountRevealWeight(message);
             if (revealWeight <= 0f)
                 return;
 
-            _textReveals.Add(new SpeechTextReveal(label, message, revealWeight));
+            _textReveals.Add(new SpeechTextReveal(label, message, revealWeight, allowedTags));
         }
 
         private float GetMaxRevealWeight()
@@ -270,7 +270,7 @@ namespace Content.Client.Chat.UI
                     continue;
 
                 reveal.LastVisibleRunes = visibleRunes;
-                reveal.Label.SetMessage(CreateRevealedMessage(reveal.Message, visibleRunes), tagsAllowed: null);
+                reveal.Label.SetMessage(CreateRevealedMessage(reveal.Message, visibleRunes), reveal.AllowedTags);
             }
         }
 
@@ -377,11 +377,12 @@ namespace Content.Client.Chat.UI
                 : 1f;
         }
 
-        private sealed class SpeechTextReveal(RichTextLabel label, FormattedMessage message, float revealWeight)
+        private sealed class SpeechTextReveal(RichTextLabel label, FormattedMessage message, float revealWeight, Type[]? allowedTags)
         {
             public readonly RichTextLabel Label = label;
             public readonly FormattedMessage Message = message;
             public readonly float RevealWeight = revealWeight;
+            public readonly Type[]? AllowedTags = allowedTags;
             public int LastVisibleRunes = -1;
         }
         // Arcane-end
@@ -459,11 +460,7 @@ namespace Content.Client.Chat.UI
                     MaxWidth = SpeechMaxWidth
                 };
 
-<<<<<<< HEAD
-                SetRevealedMessage(label, ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor)); // Arcane
-=======
-                label.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor), AllowedTags); // Goob - added AllowedTags
->>>>>>> goob
+                SetRevealedMessage(label, ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor), AllowedTags); // Arcane-Edit
 
                 var unfanciedPanel = new PanelContainer
                 {
@@ -489,13 +486,8 @@ namespace Content.Client.Chat.UI
             };
 
             //We'll be honest. *Yes* this is hacky. Doing this in a cleaner way would require a bottom-up refactor of how saycode handles sending chat messages. -Myr
-<<<<<<< HEAD
-            bubbleHeader.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleHeader", fontColor));
-            SetRevealedMessage(bubbleContent, ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor)); // Arcane
-=======
             bubbleHeader.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleHeader", fontColor), AllowedTags); // Goob - added AllowedTags
-            bubbleContent.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor), AllowedTags); // Goob - added AllowedTags
->>>>>>> goob
+            SetRevealedMessage(bubbleContent, ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor), AllowedTags); // Arcane: AllowedTags
 
             //As for below: Some day this could probably be converted to xaml. But that is not today. -Myr
             var mainPanel = new PanelContainer
