@@ -162,5 +162,6 @@
   recipeUnlocks:
   - AdvancedMineralScannerEmpty
   - MiningDrillDiamond
+  - PickaxeDiamond
   - MechEquipmentDrillDiamond
   position: 5,8

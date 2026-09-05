@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Robust.Client.UserInterface.RichText; // Goob
 using System.Numerics;
 using System.Text;
 using Content.Shared.CCVar;
@@ -21,6 +22,19 @@ namespace Content.Client.Chat.UI
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] protected readonly IConfigurationManager ConfigManager = default!;
         private readonly SharedTransformSystem _transformSystem;
+
+        // <Goob>
+        public static readonly Type[] AllowedTags =
+        [
+            typeof(BoldItalicTag),
+            typeof(BoldTag),
+            typeof(BulletTag),
+            typeof(ColorTag),
+            typeof(HeadingTag),
+            typeof(ItalicTag),
+            typeof(FontTag),
+        ];
+        // </Goob>
 
         public enum SpeechType : byte
         {
@@ -445,7 +459,11 @@ namespace Content.Client.Chat.UI
                     MaxWidth = SpeechMaxWidth
                 };
 
+<<<<<<< HEAD
                 SetRevealedMessage(label, ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor)); // Arcane
+=======
+                label.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor), AllowedTags); // Goob - added AllowedTags
+>>>>>>> goob
 
                 var unfanciedPanel = new PanelContainer
                 {
@@ -471,8 +489,13 @@ namespace Content.Client.Chat.UI
             };
 
             //We'll be honest. *Yes* this is hacky. Doing this in a cleaner way would require a bottom-up refactor of how saycode handles sending chat messages. -Myr
+<<<<<<< HEAD
             bubbleHeader.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleHeader", fontColor));
             SetRevealedMessage(bubbleContent, ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor)); // Arcane
+=======
+            bubbleHeader.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleHeader", fontColor), AllowedTags); // Goob - added AllowedTags
+            bubbleContent.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor), AllowedTags); // Goob - added AllowedTags
+>>>>>>> goob
 
             //As for below: Some day this could probably be converted to xaml. But that is not today. -Myr
             var mainPanel = new PanelContainer

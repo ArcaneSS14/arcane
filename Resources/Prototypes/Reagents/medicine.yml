@@ -268,15 +268,29 @@
             Brute: -3
             Burn: -2
             Toxin: -1.5
-        - !type:GenericStatusEffect # Mono edit
+        - !type:ModifyBleed
           conditions:
-          - !type:MetabolizerTypeCondition
-            type:
-            - Hydrakin # i hate them
           - !type:TemperatureCondition
             max: 213.0
-          key: ForcedSleep
-          component: ForcedSleeping
+          amount: -1
+        # Arcane-End
+        - !type:GenericStatusEffect # Mono edit
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          amount: 8
+        - !type:ModifyBleed
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          amount: -1
+        - !type:ModifyStatusEffect # goob
+          conditions:
+          - !type:MetabolizerTypeCondition # Fuck you
+            type: [Hydrakin]
+          - !type:TemperatureCondition
+            max: 213.0
+          effectProto: StatusEffectForcedSleeping
           type: Add
 
 - type: reagent
@@ -304,14 +318,13 @@
                 Cellular: -2
             groups: # Frontier
                 Brute: 1 # Frontier
-        - !type:GenericStatusEffect # Mono edit
+        - !type:ModifyStatusEffect # goob
           conditions:
           - !type:MetabolizerTypeCondition # Fuck you
             type: [Hydrakin]
           - !type:TemperatureCondition
             max: 213.0
-          key: ForcedSleep
-          component: ForcedSleeping
+          effectProto: StatusEffectForcedSleeping
           type: Add
 
 - type: reagent
@@ -1729,14 +1742,13 @@
               Brute: -20.0 # Arcane-Edit: -5.0 > -20.0
               Burn: -15.0 # Arcane-Edit: -5.0 > -15.0
               Toxin: -10.0 # Arcane-Edit: -5.0 > -10.0
-        - !type:GenericStatusEffect # Mono edit
+        - !type:ModifyStatusEffect # goob
           conditions:
           - !type:MetabolizerTypeCondition # Fuck you
             type: [Hydrakin]
           - !type:TemperatureCondition
-            max: 217.15
-          key: ForcedSleep
-          component: ForcedSleeping
+            max: 213.0
+          effectProto: StatusEffectForcedSleeping
           type: Add
 
 
@@ -1752,7 +1764,8 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:EvenHealthChange
+      # - !type:EvenHealthChange # Goob, return Aloxadone to its pre-upstream strength
+      - !type:HealthChange
         conditions:
         - !type:TemperatureCondition
           max: 213.0
@@ -1761,16 +1774,19 @@
           max: 213.0
           scale: 1.6
         damage: # Goobstation - Cryo rebalance
-          Burn: -10.0
-      - !type:GenericStatusEffect # Mono edit
+          # Burn: -10.0
+          types: # Goob start; return Aloxadone to its pre-upstream strength
+            Heat: -10.0
+            Cold: -10.0
+            Shock: -10.0
+            Caustic: -10.0 # Goob end
+      - !type:ModifyStatusEffect # goob
         conditions:
-        - !type:MetabolizerTypeCondition
-          type:
-          - Hydrakin # i hate them
+        - !type:MetabolizerTypeCondition # Fuck you
+          type: [Hydrakin]
         - !type:TemperatureCondition
           max: 213.0
-        key: ForcedSleep
-        component: ForcedSleeping
+        effectProto: StatusEffectForcedSleeping
         type: Add
 
 - type: reagent
