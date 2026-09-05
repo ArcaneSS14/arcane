@@ -1322,6 +1322,20 @@
   solids:
     FoodMeatFish: 2
 
+# Arcane-Start
+- type: microwaveMealRecipe
+  id: RecipeMisoSoup
+  name: Miso soup recipe
+  result: FoodSoupMiso
+  time: 10
+  group: Savory
+  reagents:
+    Water: 10
+  solids:
+    FoodTofuSlice: 2
+    FoodBowlBig: 1
+# Arcane-End
+
 - type: microwaveMealRecipe
   id: RecipeMisoColaSoup
   name: salty sweet misocola soup recipe
