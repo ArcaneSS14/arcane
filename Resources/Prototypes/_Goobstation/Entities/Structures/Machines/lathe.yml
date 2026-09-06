@@ -61,7 +61,7 @@
     - BluespaceTheory
     - ScienceClothing
     - UpgradeKits
-    - PaintingTools # Arcane-Edit
+    - PaintingTools # Arcane
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NailgunEvilStatic
@@ -298,7 +298,7 @@
     - ServiceBoardsGoob # goob
     - EntertainmentPack # goob
     - BartendingPack # goob
-    - PaintingTools # Arcane-Edit
+    - PaintingTools # Arcane
     # Einstein Engines Packs
     - Translators
   - type: EmagLatheRecipes
