@@ -39,7 +39,7 @@ marking-VulpEarFox-fox = Fox ears
 marking-VulpEarFox = Vulpkanin Fox
 # Arcane-Start
 marking-VulpEarFox-fox-inner = Fox ears (inner)
-marking-VulpEarFox-fox-Tips =  Fox ears (tips)
+marking-VulpEarFox-fox-tips =  Fox ears (tips)
 # Arcane-End
 
 marking-VulpEarOtie-otie = Otie ears (base)

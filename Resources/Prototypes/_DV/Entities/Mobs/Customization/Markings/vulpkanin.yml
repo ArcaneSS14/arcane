@@ -87,12 +87,12 @@
   sprites:
     - sprite: _DV/Mobs/Customization/Vulpkanin/ear_markings.rsi
       state: fox
-    # Arcane-Edit-Start
+    # Arcane-Start
     - sprite: _DV/Mobs/Customization/Vulpkanin/ear_markings.rsi
       state: fox-tips
     - sprite: _DV/Mobs/Customization/Vulpkanin/ear_markings.rsi
       state: fox-inner
-    # Arcane-Edit-Start
+    # Arcane-End
 
 - type: marking
   id: VulpEarOtie

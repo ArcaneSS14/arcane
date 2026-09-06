@@ -1,6 +1,6 @@
 # Tails
 marking-KitsuneTail = Хвост кицунэ
-marking-KitsuneTripleTail = Tройной хвост кицунэ
+marking-KitsuneTripleTail = Тройной хвост кицунэ
 marking-KitsuneNineTails = Девятерной хвост кицунэ
 
 # Ears
