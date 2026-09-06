@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Administration.Logs;
+using Content.Goobstation.Shared.AlertLevel;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Systems;
@@ -50,6 +51,7 @@ namespace Content.Server.Communications
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
             SubscribeLocalEvent<RoundEndSystemChangedEvent>(_ => OnGenericBroadcastEvent());
             SubscribeLocalEvent<AlertLevelDelayFinishedEvent>(_ => OnGenericBroadcastEvent());
+            SubscribeLocalEvent<AlertLevelGateUnlockedEvent>(OnAlertLevelGateUnlocked); // Arcane
 
             // Messages from the BUI
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSelectAlertLevelMessage>(OnSelectAlertLevelMessage);
@@ -121,6 +123,18 @@ namespace Content.Server.Communications
                     UpdateCommsConsoleInterface(uid, comp);
             }
         }
+
+        // Arcane-Start
+        private void OnAlertLevelGateUnlocked(ref AlertLevelGateUnlockedEvent args)
+        {
+            var query = EntityQueryEnumerator<CommunicationsConsoleComponent>();
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                if (_stationSystem.GetOwningStation(uid) == args.Station)
+                    UpdateCommsConsoleInterface(uid, comp);
+            }
+        }
+        // Arcane-End
 
         /// <summary>
         /// Updates the UI for all comms consoles.
@@ -229,6 +243,12 @@ namespace Content.Server.Communications
             var stationUid = _stationSystem.GetOwningStation(uid);
             if (stationUid != null)
             {
+                // Arcane-Edit: Allow systems to veto the alert-level selection.
+                var attempt = new AlertLevelSelectAttemptEvent(stationUid.Value, uid, mob, message.Level);
+                RaiseLocalEvent(ref attempt);
+                if (attempt.Cancelled)
+                    return;
+
                 _alertLevelSystem.SetLevel(stationUid.Value, message.Level, true, true);
                 // Goob
                 _adminLogger.Add(LogType.Chat,
@@ -362,13 +382,52 @@ namespace Content.Server.Communications
 
             var (uid, comp) = ent;
             args.Repeatable = true;
+            var stationUid = _stationSystem.GetOwningStation(uid);
+
+            if (_emag.CompareFlag(args.Type, EmagType.Access))
+            {
+                // Arcane-Edit-Start
+                if (stationUid != null
+                    && TryComp<AlertLevelGateComponent>(stationUid, out var gate)
+                    && !gate.Unlocked)
+                // Arcane-Edit-End
+                {
+                    // Arcane-Edit-Start
+                    var unlock = new AlertLevelGateUnlockRequestEvent(
+                        stationUid.Value,
+                        true);
+                    RaiseLocalEvent(ref unlock);
+
+                    if (unlock.Unlocked)
+                    {
+                        _popupSystem.PopupEntity(
+                            Loc.GetString("alert-level-gate-unlocked"),
+                            uid,
+                            args.UserUid,
+                            PopupType.Medium);
+                        args.Handled = true;
+                    }
+                    // Arcane-Edit-End
+                }
+            }
 
             if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
                 return;
 
-            var stationUid = _stationSystem.GetOwningStation(uid);
+//            var stationUid = _stationSystem.GetOwningStation(uid); // Arcane-Edit
             if (stationUid != null)
+            // Arcane-Edit-Start
+            {
+                var attempt = new AlertLevelSelectAttemptEvent(stationUid.Value, uid, args.UserUid, comp.AlertLevelOnEmag);
+                RaiseLocalEvent(ref attempt);
+                if (attempt.Cancelled)
+                {
+                    args.Handled = true;
+                    return;
+                }
                 _alertLevelSystem.SetLevel(stationUid.Value, comp.AlertLevelOnEmag, true, true);
+            }
+            // Arcane-Edit-End
 
             args.Handled = true;
         }
