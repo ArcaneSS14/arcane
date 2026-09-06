@@ -418,7 +418,28 @@ public sealed class ContainmentFieldGeneratorSystem : EntitySystem
     {
         if (args.Cancelled)
             return;
-        if (comp.IsConnected && !args.EventHorizon.CanBreachContainment)
+
+        // Arcane-Start
+        if (args.EventHorizon.SuppressFieldConsumption)
+        {
             args.Cancelled = true;
+            return;
+        }
+
+        var singularityUid = args.EventHorizon.Owner;
+        var singularityXform = Transform(singularityUid);
+        var generatorXform = Transform(uid);
+
+        var singularityPos = _transformSystem.GetWorldPosition(singularityXform);
+        var generatorPos = _transformSystem.GetWorldPosition(generatorXform);
+        var horizonRadius = args.EventHorizon.Radius;
+
+        var effectiveRadius = horizonRadius + 1.5f;
+
+        var distance = (generatorPos - singularityPos).Length();
+
+        if (distance > effectiveRadius)
+            args.Cancelled = true;
+        // Arcane-End
     }
 }

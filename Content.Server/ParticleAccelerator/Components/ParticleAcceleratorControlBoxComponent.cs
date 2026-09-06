@@ -100,7 +100,7 @@ public sealed partial class ParticleAcceleratorControlBoxComponent : Component
     // I have reflected that here to be authentic.
     [DataField("chargeTime")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan ChargeTime = TimeSpan.FromSeconds(6.0);
+    public TimeSpan ChargeTime = TimeSpan.FromSeconds(10.0); /// Arcane-Edit: 6.0 > 10.0
 
     /// <summary>
     /// Whether the interface has been disabled via a cut wire or not.

@@ -126,19 +126,21 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
             return;
         }
 
-        var contained = true;
+        int foundDirections = 0; // Arcane-Edit
         if (!generatorComp.FailsafeDisabled)
         {
             var transform = Transform(args.OtherEntity);
             var directions = Enum.GetValues<Direction>().Length;
-            for (var i = 0; i < directions - 1; i += 2) // Skip every other direction, checking only cardinals
+        // Arcane-Edit-Start
+            for (var i = 0; i < directions - 1; i += 2)
             {
-                if (!CheckContainmentField((Direction)i, new Entity<SingularityGeneratorComponent>(args.OtherEntity, generatorComp), transform))
-                    contained = false;
+                if (CheckContainmentField((Direction) i, new Entity<SingularityGeneratorComponent>(args.OtherEntity, generatorComp), transform))
+                    foundDirections++;
             }
         }
 
-        if (!contained && !generatorComp.FailsafeDisabled)
+        if (foundDirections < 2 && !generatorComp.FailsafeDisabled)
+        // Arcane-Edit-End
         {
             generatorComp.NextFailsafe = _timing.CurTime + generatorComp.FailsafeCooldown;
             PopupSystem.PopupEntity(Loc.GetString("comp-generator-failsafe", ("target", args.OtherEntity)), args.OtherEntity, PopupType.LargeCaution);
@@ -150,10 +152,10 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
                 generatorComp.Power + component.State switch
                 {
                     ParticleAcceleratorPowerState.Standby => 0,
-                    ParticleAcceleratorPowerState.Level0 => 1,
-                    ParticleAcceleratorPowerState.Level1 => 2,
-                    ParticleAcceleratorPowerState.Level2 => 4,
-                    ParticleAcceleratorPowerState.Level3 => 8,
+                    ParticleAcceleratorPowerState.Level0 => 0.5f, // Arcane-Edit: 1 > 0.5
+                    ParticleAcceleratorPowerState.Level1 => 1, // Arcane-Edit: 2 > 1
+                    ParticleAcceleratorPowerState.Level2 => 2, // Arcane-Edit: 4 > 2
+                    ParticleAcceleratorPowerState.Level3 => 3.5f, // Arcane-Edit: 8 > 3.5
                     _ => 0
                 },
                 generatorComp

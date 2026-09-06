@@ -8,6 +8,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing; // Arcane
 
 namespace Content.Shared.Singularity.EntitySystems;
 
@@ -22,7 +23,8 @@ public abstract class SharedSingularitySystem : EntitySystem
     [Dependency] private readonly SharedEventHorizonSystem _horizons = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] protected readonly IViewVariablesManager Vvm = default!;
-#endregion Dependencies
+    [Dependency] private readonly IGameTiming _timing = default!; // Arcane
+    #endregion Dependencies
 
     /// <summary>
     /// The minimum level a singularity can be set to.
@@ -122,17 +124,29 @@ public abstract class SharedSingularitySystem : EntitySystem
         if (!Resolve(uid, ref singularity))
             return;
 
+        // Arcane-Edit-Start
         if (TryComp<EventHorizonComponent>(uid, out var eventHorizon))
         {
-            _horizons.SetRadius(uid, EventHorizonRadius(singularity), false, eventHorizon);
             _horizons.SetCanBreachContainment(uid, CanBreachContainment(singularity), false, eventHorizon);
+            _horizons.SetRadius(uid, EventHorizonRadius(singularity), false, eventHorizon);
             _horizons.UpdateEventHorizonFixture(uid, eventHorizon: eventHorizon);
+
+            if (singularity.Level > oldValue)
+            {
+                eventHorizon.SuppressFieldConsumption = true;
+                eventHorizon.SuppressFieldConsumptionUntil = _timing.CurTime + TimeSpan.FromSeconds(2);
+            }
+            else
+            {
+                eventHorizon.SuppressFieldConsumption = false;
+                eventHorizon.SuppressFieldConsumptionUntil = TimeSpan.MaxValue;
+            }
         }
 
         if (TryComp<PhysicsComponent>(uid, out var body))
         {
-            if (singularity.Level <= 1 && oldValue > 1) // Apparently keeps singularities from getting stuck in the corners of containment fields.
-                _physics.SetLinearVelocity(uid, Vector2.Zero, body: body); // No idea how stopping the singularities movement keeps it from getting stuck though.
+            if (singularity.Level <= 1 && oldValue > 1)
+                _physics.SetLinearVelocity(uid, Vector2.Zero, body: body);
         }
 
         if (TryComp<AppearanceComponent>(uid, out var appearance))
@@ -149,6 +163,7 @@ public abstract class SharedSingularitySystem : EntitySystem
         if (singularity.Level <= 0)
             QueueDel(uid);
     }
+    // Arcane-Edit-End
 
     /// <summary>
     /// Alerts the entity hosting the singularity that the level of the singularity has changed without the level actually changing.
@@ -191,7 +206,7 @@ public abstract class SharedSingularitySystem : EntitySystem
     /// <summary>
     /// The level at and above which a singularity should be capable of breaching containment.
     /// </summary>
-    public const byte SingularityBreachThreshold = 5;
+    public const byte SingularityBreachThreshold = 7; // Arcane-Edit: 5 > 7
 
     /// <summary>
     /// Derives the proper gravity well radius for a singularity from its state.
@@ -215,7 +230,16 @@ public abstract class SharedSingularitySystem : EntitySystem
     /// <param name="singulo">A singularity.</param>
     /// <returns>The event horizon radius the singularity should have given its state.</returns>
     public float EventHorizonRadius(SingularityComponent singulo)
-        => singulo.Level - 0.5f;
+    // Arcane-Start
+    {
+        return singulo.Level switch
+        {
+            5 => 4.5f,
+            6 => 5.5f,
+            _ => singulo.Level - 0.5f
+        };
+    }
+    // Arcane-End
 
     /// <summary>
     /// Derives whether a singularity should be able to breach containment from its state.
