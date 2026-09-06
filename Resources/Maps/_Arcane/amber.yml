@@ -4,7 +4,7 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 08/21/2026 11:15:04
+  time: 09/06/2026 12:58:28
   entityCount: 23764
 maps:
 - 1
@@ -19264,7 +19264,7 @@ entities:
       pos: -25.5,-25.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11357.144
+      secondsUntilStateChange: -11547.594
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -138526,6 +138526,13 @@ entities:
     - type: Transform
       pos: 29.5,13.5
       parent: 2
+- proto: VendingMachineLove
+  entities:
+  - uid: 23393
+    components:
+    - type: Transform
+      pos: 13.5,-25.5
+      parent: 2
 - proto: VendingMachineMedical
   entities:
   - uid: 20452
@@ -138670,6 +138677,13 @@ entities:
     components:
     - type: Transform
       pos: 13.5,-26.5
+      parent: 2
+- proto: VendingMachineUnderwear
+  entities:
+  - uid: 23392
+    components:
+    - type: Transform
+      pos: 16.5,-25.5
       parent: 2
 - proto: VendingMachineVendomat
   entities:
@@ -153385,16 +153399,6 @@ entities:
     components:
     - type: Transform
       pos: 14.5,-49.5
-      parent: 2
-  - uid: 23392
-    components:
-    - type: Transform
-      pos: 16.5,-25.5
-      parent: 2
-  - uid: 23393
-    components:
-    - type: Transform
-      pos: 13.5,-25.5
       parent: 2
 - proto: WardrobePrisonFilled
   entities:
