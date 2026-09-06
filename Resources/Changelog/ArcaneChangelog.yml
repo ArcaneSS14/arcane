@@ -1009,3 +1009,24 @@ Entries:
   id: 83
   time: '2026-09-06T15:30:35.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/303
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: >-
+        Операция теперь проводится в два раза медленее. Если цель прикреплена к
+        кровати, то значение в два раза выше.
+    - type: Tweak
+      message: >-
+        Самооперация стала медленее в 5 раз(было 3). Это не учитывая изменения
+        выше.
+    - type: Fix
+      message: Агосты могут проводить операции.
+    - type: Fix
+      message: Операция не залагивает.
+    - type: Fix
+      message: Кровь теперь восстанавливается корректно.
+    - type: Fix
+      message: КПБ починена скорость бега.
+  id: 84
+  time: '2026-09-06T15:37:59.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/293
