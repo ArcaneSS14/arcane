@@ -16,9 +16,10 @@
   color: "#1f8016"
   metabolisms:
     Medicine:
+      metabolismRate: 0.25
       effects:
       - !type:ModifyBloodLevel
-        amount: 2
+        amount: 6
         conditions:
         - !type:HasComponentCondition
           checkMind: true
@@ -29,12 +30,12 @@
       - !type:HealthChange
         damage:
           groups:
-            Burn: -3
-            Toxin: -3
-            Airloss: -3
-            Brute: -3
-            Genetic: -3
-            Metaphysical: -5
+            Burn: -4
+            Toxin: -4
+            Airloss: -4
+            Brute: -4
+            Genetic: -4
+            Metaphysical: -8
         conditions:
         - !type:HasComponentCondition
           checkMind: true
@@ -43,7 +44,7 @@
           - type: Ghoul
           guidebookComponentName: reagent-comp-condition-heretic-or-ghoul
       - !type:ModifyBleed
-        amount: -1
+        amount: -3
         conditions:
         - !type:HasComponentCondition
           checkMind: true
@@ -83,6 +84,7 @@
           - type: Ghoul
           guidebookComponentName: reagent-comp-condition-heretic-or-ghoul
     Poison:
+      metabolismRate: 0.25
       effects:
       - !type:Electrocute
         conditions:
