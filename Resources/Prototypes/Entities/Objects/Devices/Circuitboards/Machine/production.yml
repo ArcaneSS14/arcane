@@ -1678,3 +1678,16 @@
       Glass: 125
       Gold: 25
 # Orion-Edit-End
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: WashingMachineCircuitboard
+  name: washing machine board
+  components:
+  - type: MachineBoard
+    prototype: WashingMachine
+    stackRequirements:
+      Steel: 1
+      Cable: 1
+    partRequirements:
+      Servo: 1 # Arcane-Edit

@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.DoAfter;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Inventory;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization;
+using Content.Goobstation.Maths.FixedPoint;
 
 namespace Content.Shared.Fluids;
 
@@ -41,10 +43,26 @@ public sealed partial class AbsorbantDoAfterEvent : DoAfterEvent
 /// Raised when trying to spray something, for example a fire extinguisher.
 /// </summary>
 [ByRefEvent]
-public record struct SprayAttemptEvent(EntityUid? User, bool Cancelled = false, string? CancelPopupMessage = null)
+public record struct SprayAttemptEvent(EntityUid User, bool Cancelled = false)
 {
     public void Cancel()
     {
         Cancelled = true;
+    }
+
+    public string? CancelPopupMessage { get; set; }
+}
+
+public sealed partial class SpilledOnEvent : EntityEventArgs, IInventoryRelayEvent
+{
+    public SlotFlags TargetSlots { get; } = SlotFlags.WITHOUT_POCKET;
+
+    public EntityUid Source;
+    public Solution Solution;
+
+    public SpilledOnEvent(EntityUid source, Solution solution)
+    {
+        Source = source;
+        Solution = solution;
     }
 }

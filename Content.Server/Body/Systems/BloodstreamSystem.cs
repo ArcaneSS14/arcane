@@ -45,7 +45,6 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
         bloodSolution.AddSolution(solution, PrototypeManager);
     }
 
-    // forensics is not predicted yet
     private void OnDnaGenerated(Entity<BloodstreamComponent> entity, ref GenerateDnaEvent args)
     {
         if (SolutionContainer.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))

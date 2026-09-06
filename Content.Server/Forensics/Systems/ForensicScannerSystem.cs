@@ -3,12 +3,14 @@
 using System.Linq;
 using System.Text;
 using Content.Server.Popups;
+using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
 using Content.Shared.Forensics;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
+using Content.Shared.Verbs;
 using Content.Shared.Tag;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
@@ -17,7 +19,9 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-
+using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Shared.Forensics.Components;
+using Robust.Shared.Prototypes;
 // todo: remove this stinky LINQy
 
 namespace Content.Server.Forensics
@@ -35,7 +39,7 @@ namespace Content.Server.Forensics
         [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
         [Dependency] private readonly TagSystem _tag = default!;
 
-        private static readonly ProtoId<TagPrototype> DNASolutionScannableTag = "DNASolutionScannable";
+        public static readonly ProtoId<TagPrototype> DNASolutionScannableTag = "DNASolutionScannable";
 
         public override void Initialize()
         {
@@ -121,7 +125,7 @@ namespace Content.Server.Forensics
             if (!args.CanInteract || !args.CanAccess || component.CancelToken != null)
                 return;
 
-            var verb = new UtilityVerb
+            var verb = new UtilityVerb()
             {
                 Act = () => StartScan(uid, component, args.User, args.Target),
                 IconEntity = GetNetEntity(uid),

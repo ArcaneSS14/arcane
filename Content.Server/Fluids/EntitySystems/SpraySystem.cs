@@ -149,7 +149,7 @@ public sealed class SpraySystem : SharedSpraySystem
         //if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out var soln, out var solution))
         //    return;
 
-        var ev = new SprayAttemptEvent(user);
+        var ev = new SprayAttemptEvent(user.Value);
         RaiseLocalEvent(entity, ref ev);
         if (ev.Cancelled)
         {

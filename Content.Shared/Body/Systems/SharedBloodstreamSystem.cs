@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2026 Space Station 14 Contributors
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Goobstation.Common.Bloodstream;
 using Content.Goobstation.Common.CCVar; // Goobstation
 using Content.Goobstation.Maths.FixedPoint;
@@ -13,10 +17,12 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.EntityEffects.Effects.Solution;
 using Content.Shared.Fluids;
+using Content.Shared.Inventory;
 using Content.Shared.Forensics.Components;
 using Content.Shared.HealthExaminable;
 using Content.Shared.Mobs.Systems;
@@ -30,6 +36,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Chemistry.Reaction;
+using Content.Shared.Drunk;
+using Content.Shared.Speech.EntitySystems;
 
 namespace Content.Shared.Body.Systems;
 // todo marty clean up this warzone.
@@ -47,6 +55,9 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly SharedDrunkSystem _drunkSystem = default!;
+    [Dependency] private readonly SharedStutteringSystem _stutteringSystem = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private float _bloodlossMultiplier = 4f; // Goobstation
 
@@ -572,6 +583,30 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
                 dna.Freshness = _timing.CurTime;
             }
             // Goobstation end
+
+            // stain clothes on bleed
+            var stainEv = new SpilledOnEvent(ent.Owner, tempSolution);
+            RaiseLocalEvent(ent.Owner, stainEv);
+
+            // stain neighbors
+            var xform = Transform(ent.Owner);
+            var lookup = _lookup.GetEntitiesInRange(xform.Coordinates, 1.5f);
+            foreach (var uid in lookup)
+            {
+                if (ent.Owner == uid)
+                    continue;
+
+                // only try staining things that have an inventory
+                // event is relayed by InventoryComponent
+                if (!HasComp<InventoryComponent>(uid)) // Arcane-Edit: ent -> uid
+                    continue;
+
+                var neighborStainEv = new SpilledOnEvent(uid, tempSolution);
+                RaiseLocalEvent(uid, neighborStainEv); // Arcane-Edit: ent > uid
+
+                if (tempSolution.Volume <= 0)
+                    break;
+            }
 
             _puddle.TrySpillAt(ent.Owner, tempSolution, out _, sound: false);
 

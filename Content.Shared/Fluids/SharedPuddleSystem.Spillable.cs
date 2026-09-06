@@ -6,6 +6,8 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Prototypes;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -19,11 +21,15 @@ using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Player;
+using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Player;
+using Robust.Shared.Network; // Gaby
 
 namespace Content.Shared.Fluids;
 
 public abstract partial class SharedPuddleSystem
 {
+    [Dependency] private readonly INetManager _net = default!; // Gaby
     private static readonly FixedPoint2 MeleeHitTransferProportion = 0.25;
     [Dependency] private readonly InjectorSystem _injectorSystem = default!;
 

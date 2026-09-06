@@ -11,9 +11,11 @@ using Content.Shared.Contraband;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Electrocution;
+using Content.Shared.Emoting;
 using Content.Shared.Explosion;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Flash;
+using Content.Shared.Fluids;
 using Content.Shared.Gravity;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Implants;
@@ -66,6 +68,9 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, BeforeEmoteEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, StoodEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, DownedEvent>(RelayInventoryEvent);
+
+        SubscribeLocalEvent<InventoryComponent, SlippedEvent>(RelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, SpilledOnEvent>(RelayInventoryEvent);
 
         // by-ref events
         SubscribeLocalEvent<InventoryComponent, RefreshFrictionModifiersEvent>(RefRelayInventoryEvent);

@@ -13,13 +13,13 @@ public abstract partial class SharedPuddleSystem
 {
     private static readonly TimeSpan EvaporationCooldown = TimeSpan.FromSeconds(1);
 
-    private void OnEvaporationMapInit(Entity<EvaporationComponent> ent, ref MapInitEvent args)
+    public void OnEvaporationMapInit(Entity<EvaporationComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextTick = _timing.CurTime + EvaporationCooldown;
         Dirty(ent);
     }
 
-    private void UpdateEvaporation(EntityUid uid, Solution solution)
+    public void UpdateEvaporation(EntityUid uid, Solution solution)
     {
         if (_evaporationQuery.HasComp(uid))
             return;
@@ -35,7 +35,7 @@ public abstract partial class SharedPuddleSystem
         RemComp<EvaporationComponent>(uid);
     }
 
-    private void TickEvaporation()
+    public void TickEvaporation()
     {
         var query = EntityQueryEnumerator<EvaporationComponent, PuddleComponent>();
         var curTime = _timing.CurTime;

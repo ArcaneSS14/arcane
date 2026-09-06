@@ -8,6 +8,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
+using Content.Shared.DragDrop;
 using Content.Shared.Examine;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Fluids.Components;
@@ -18,6 +19,8 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
+using Content.Shared.Popups;
+using Content.Shared._Arcane.Stains;
 using Content.Shared.StepTrigger.Components;
 using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Audio.Systems;
@@ -68,6 +71,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         SubscribeLocalEvent<PuddleComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<PuddleComponent, SolutionContainerChangedEvent>(OnSolutionUpdate);
         SubscribeLocalEvent<PuddleComponent, GetFootstepSoundEvent>(OnGetFootstepSound);
+        SubscribeLocalEvent<PuddleComponent, GetStainableSolutionEvent>(OnGetStainableSolution);
         SubscribeLocalEvent<PuddleComponent, ExaminedEvent>(HandlePuddleExamined);
         SubscribeLocalEvent<PuddleComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
 
@@ -114,7 +118,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         _standoutReagents = [.. _prototypeManager.EnumeratePrototypes<ReagentPrototype>().Where(x => x.Standsout).Select(x => x.ID)];
     }
 
-    private void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionContainerChangedEvent args)
+    public void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionContainerChangedEvent args)
     {
         if (args.SolutionId != entity.Comp.SolutionName)
             return;
@@ -149,6 +153,18 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         {
             args.Sound = proto.FootstepSound;
         }
+    }
+
+    private void OnGetStainableSolution(Entity<PuddleComponent> entity, ref GetStainableSolutionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution, out var solution))
+            return;
+
+        args.Solution = solution;
+        args.Handled = true;
     }
 
     private void HandlePuddleExamined(Entity<PuddleComponent> entity, ref ExaminedEvent args)
