@@ -1002,3 +1002,10 @@ Entries:
   id: 82
   time: '2026-09-06T14:24:07.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/298
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: Для КПБ добавлены новые хвосты.
+  id: 83
+  time: '2026-09-06T15:30:35.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/303
