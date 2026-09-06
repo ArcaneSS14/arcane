@@ -162,7 +162,7 @@
   - type: OwnInteractionVerbs
     allowedVerbs: []
   - type: Sprinter # Goob Change: slight nerf to speed because heavy robot, mass contest when
-    sprintSpeedMultiplier: 1.2
+    sprintSpeedMultiplier: 1.3 # Arcane-Edit: 1.2 > 1.3
   - type: Tag
     tags:
     - SiliconMob

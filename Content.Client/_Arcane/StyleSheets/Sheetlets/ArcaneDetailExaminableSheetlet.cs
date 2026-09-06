@@ -11,13 +11,13 @@ public sealed class ArcaneDetailExaminableSheetlet : Sheetlet<ArcaneStylesheet>
 {
     public override StyleRule[] GetRules(ArcaneStylesheet sheet, object config)
     {
-        var softBorder = sheet.PrimaryPalette.Base.WithAlpha(0.38f);
-        var strongBorder = sheet.PrimaryPalette.Base.WithAlpha(0.55f);
-        var surface = Panel(sheet.PrimaryPalette.BackgroundLight, softBorder);
-        var sidebar = Panel(sheet.SecondaryPalette.BackgroundLight, softBorder);
-        var content = Panel(sheet.SecondaryPalette.Element, softBorder, 4);
-        var preview = Panel(sheet.SecondaryPalette.HoveredElement, strongBorder, 4);
-        var stripe = Panel(sheet.PrimaryPalette.Element, strongBorder);
+        var softBorder = sheet.PrimaryPalette.Base.WithAlpha(0.48f);
+        var strongBorder = sheet.PrimaryPalette.Base.WithAlpha(0.68f);
+        var surface = Panel(sheet.PrimaryPalette.BackgroundLight, softBorder, new Thickness(1));
+        var sidebar = Panel(sheet.SecondaryPalette.BackgroundLight, softBorder, new Thickness(0, 0, 1, 0));
+        var content = Panel(sheet.SecondaryPalette.Element, contentMargin: 4);
+        var preview = Panel(sheet.SecondaryPalette.HoveredElement, strongBorder, new Thickness(1), 4);
+        var stripe = Panel(sheet.PrimaryPalette.Element, strongBorder, new Thickness(0, 0, 0, 1));
 
         return
         [
@@ -31,13 +31,18 @@ public sealed class ArcaneDetailExaminableSheetlet : Sheetlet<ArcaneStylesheet>
         ];
     }
 
-    private static StyleBoxFlat Panel(Color background, Color border, float contentMargin = 0)
+    private static StyleBoxFlat Panel(
+        Color background,
+        Color? border = null,
+        Thickness? borderThickness = null,
+        float contentMargin = 0)
     {
-        var box = new StyleBoxFlat(background)
+        var box = new StyleBoxFlat(background);
+        if (border is not null)
         {
-            BorderColor = border,
-            BorderThickness = new Thickness(1),
-        };
+            box.BorderColor = border.Value;
+            box.BorderThickness = borderThickness ?? new Thickness(1);
+        }
 
         if (contentMargin > 0)
             box.SetContentMarginOverride(StyleBox.Margin.All, contentMargin);

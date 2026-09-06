@@ -34,6 +34,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentMedical
+  alternateTitles:
+  - MedicalInternJuniorDoctor
+  - MedicalInternResident
   # Arcane-end
 
 - type: startingGear
@@ -58,3 +61,13 @@
     neck: ClothingNeckStethoscope
     outerClothing: ClothingOuterCoatLabOpened
     gloves: ClothingHandsGlovesLatex
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: MedicalInternJuniorDoctor
+  name: job-name-alt-medicalintern-1
+
+- type: jobAlternateTitle
+  id: MedicalInternResident
+  name: job-name-alt-medicalintern-2
+# Arcane-End
