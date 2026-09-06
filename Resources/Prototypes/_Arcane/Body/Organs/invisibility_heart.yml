@@ -1,0 +1,11 @@
+- type: entity
+  parent: OrganHumanHeart
+  id: OrganInvisibilityHeart
+  name: ent-OrganInvisibilityHeart
+  description: ent-OrganInvisibilityHeart-desc
+  components:
+  - type: Sprite
+    sprite: _White/Mobs/Species/Xenomorph/organs.rsi
+  - type: Organ
+    onAdd:
+    - type: ArcaneInvisibility
