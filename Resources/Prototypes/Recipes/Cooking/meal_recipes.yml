@@ -1116,6 +1116,20 @@
     FoodButter: 1
     FoodMeatSnailCooked: 1
 
+# Arcane-Start
+- type: microwaveMealRecipe
+  id: RecipeMisoSoup
+  name: Miso soup recipe
+  result: FoodSoupMiso
+  time: 10
+  group: Soup
+  reagents:
+    Water: 10
+  solids:
+    FoodTofuSlice: 2
+    FoodBowlBig: 1
+# Arcane-End
+
 #Pies
 
 - type: microwaveMealRecipe
@@ -1322,16 +1336,18 @@
   solids:
     FoodMeatFish: 2
 
-- type: microwaveMealRecipe
-  id: RecipeMisoColaSoup
-  name: salty sweet misocola soup recipe
-  result: DisgustingSweptSoup
-  time: 15
-  group: Savory
-  reagents:
-    Cola: 5
-  solids:
-    FoodSoupMiso: 1
+# Arcane-Edit-Start: Removed
+#- type: microwaveMealRecipe
+#  id: RecipeMisoColaSoup
+#  name: salty sweet misocola soup recipe
+#  result: DisgustingSweptSoup
+#  time: 15
+# group: Savory
+#  reagents:
+#    Cola: 5
+#  solids:
+#    FoodSoupMiso: 1
+# Arcane-Edit-End
 
 - type: microwaveMealRecipe
   id: RecipeLoadedBakedPotato
