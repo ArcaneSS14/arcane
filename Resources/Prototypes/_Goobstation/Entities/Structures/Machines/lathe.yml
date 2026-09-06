@@ -62,6 +62,7 @@
     - ScienceClothing
     - UpgradeKits
     - PaintingTools # Arcane
+    - AdvancedEmitters # Omu - advanced emitters
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NailgunEvilStatic
@@ -104,6 +105,7 @@
     - ToolsStatic
     - SharedBoardsStatic
     - CargoBoardsStatic
+    - CargoBoardsStaticGoob
     - CablesStatic
     - PartsStatic
     - LatheMiscStatic
@@ -116,6 +118,7 @@
     # Orion-End
     - AdvancedTools
     - Mining
+    - MiningLavaland # Lavaland Change
     - PowerCells
     - Equipment
     # - ServiceWeapons
