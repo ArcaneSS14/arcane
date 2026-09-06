@@ -369,11 +369,11 @@ namespace Content.Server.Communications
 
             var (uid, comp) = ent;
             args.Repeatable = true;
+            var stationUid = _stationSystem.GetOwningStation(uid);
 
             if (_emag.CompareFlag(args.Type, EmagType.Access))
             {
                 // Arcane-Edit-Start
-                var stationUid = _stationSystem.GetOwningStation(uid);
                 if (stationUid != null
                     && TryComp<AlertLevelGateComponent>(stationUid, out var gate)
                     && !gate.Unlocked)
@@ -390,14 +390,17 @@ namespace Content.Server.Communications
             if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
                 return;
 
-            var stationUid = _stationSystem.GetOwningStation(uid);
+//            var stationUid = _stationSystem.GetOwningStation(uid); // Arcane-Edit
             if (stationUid != null)
             // Arcane-Edit-Start
             {
                 var attempt = new AlertLevelSelectAttemptEvent(stationUid.Value, uid, args.UserUid, comp.AlertLevelOnEmag);
                 RaiseLocalEvent(ref attempt);
                 if (attempt.Cancelled)
+                {
+                    args.Handled = true;
                     return;
+                }
                 _alertLevelSystem.SetLevel(stationUid.Value, comp.AlertLevelOnEmag, true, true);
             }
             // Arcane-Edit-End
