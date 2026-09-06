@@ -931,3 +931,65 @@ Entries:
   id: 76
   time: '2026-09-03T19:33:49.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/256
+- author: ReWAFFlution, thxmqninq, FunkyStation
+  changes:
+    - type: Add
+      message: Добавлены альтернативные названия должностей
+  id: 77
+  time: '2026-09-04T02:21:47.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/276
+- author: Willow18
+  changes:
+    - type: Tweak
+      message: >-
+        Переведены энтити связанные с Космическим колоссом, а так же менюшка
+        маньяка
+  id: 78
+  time: '2026-09-04T02:54:24.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/290
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Стиль UI был переработан, многие проблемы исправлены.
+    - type: Tweak
+      message: Саунды после конца раунда заменились на РОФЕЛЬСЫ...
+  id: 79
+  time: '2026-09-04T06:42:01.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/296
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Апстрим!!!
+    - type: Tweak
+      message: >-
+        Очищены губовские системы блокировки активации кода угрозы от щиткода.
+        Триггер заменён на "Красный код".
+    - type: Tweak
+      message: >-
+        В консоли связи "Красный код" может быть инициирован Капитаном, ГСБ или
+        ЦК через Alt-клик или ПКМ. Подтвердить активацию может любая личность в
+        течении 10 секунд с командным доступом через Alt-клик или ПКМ.
+    - type: Tweak
+      message: >-
+        Красный код автоматически разблокируется при объявлении ксеноморфов,
+        войны и вознесении еретика, тенеморфа, маньяка.
+    - type: Tweak
+      message: >-
+        Полная актуализация и переработка гайдбука с информацией об уровнях
+        угроз, кроме условий антагонистов.
+    - type: Tweak
+      message: >-
+        Полная переработка объявлений смены кода. Более без никакой воды и
+        лишней информации.
+    - type: Fix
+      message: Тестов
+  id: 80
+  time: '2026-09-06T14:19:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/304
+- author: badjuju
+  changes:
+    - type: Tweak
+      message: Абдукторы теперь не так часто будут прилетать на станцию
+  id: 81
+  time: '2026-09-06T14:21:27.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/301

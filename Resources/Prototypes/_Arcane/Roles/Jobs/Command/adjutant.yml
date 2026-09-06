@@ -48,6 +48,10 @@
         - CorporateCodespeak
   contracts:
   - DocumentContractEmploymentCommand
+  alternateTitles:
+  - AdjutantAide
+  - AdjutantExecutiveAssistant
+  - AdjutantCounsel
 
 - type: startingGear
   id: AdjutantGear
@@ -70,3 +74,15 @@
     head: ClothingHeadHatBeretAdjutant
     eyes: ClothingEyesGlassesSunglasses
     neck: ClothingNeckMantleAdjutant
+
+- type: jobAlternateTitle
+  id: AdjutantAide
+  name: job-name-alt-adjutant-1
+
+- type: jobAlternateTitle
+  id: AdjutantExecutiveAssistant
+  name: job-name-alt-adjutant-2
+
+- type: jobAlternateTitle
+  id: AdjutantCounsel
+  name: job-name-alt-adjutant-3

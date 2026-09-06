@@ -60,3 +60,17 @@ alert-level-octarine-instructions = Crewmembers are advised to listen to heads o
 alert-level-honk = Honk
 alert-level-honk-announcement = A devious clown is on the loose and will cause cataclysmic damage if not executed! All crewmembers must collaborate in executing the clown if possible, or else evacuate.
 alert-level-honk-instructions = Crewmembers are advised to execute the clown.
+
+alert-level-gate-locked = Red alert is locked. It must be unlocked by command authorization or a station-ending threat before it can be activated.
+alert-level-gate-unlocked = Red alert unlocked. It can now be activated from any communications console.
+alert-level-gate-no-id = No ID card detected. Hold or wear an ID to swipe.
+alert-level-gate-needs-command = Unlocking red alert must be initiated with a Captain, Head of Security, or Central Command ID.
+alert-level-gate-first-swipe = First ID accepted. Swipe a second, different command ID to unlock the red alert.
+alert-level-gate-same-id = That ID was already swiped. A second, different command ID is required.
+alert-level-gate-needs-second-command = The second ID must have command access.
+alert-level-gate-verb-text = Unlock Red Alert
+alert-level-gate-verb-message = Swipe your ID to unlock red alert so it can be activated. Requires a Captain, Head of Security, or Central Command ID plus a second, different command ID.
+alert-level-gate-authorized-initiated-announcement = {$name} initiated the red alert unlock. Progress: 1/2.
+alert-level-gate-authorized-announcement = {$name} confirmed the red alert unlock. Progress: 2/2.
+alert-level-gate-unknown-name = Unknown
+alert-level-gate-unlocked-announcement = Red alert has been unlocked and can now be activated from any communications console.

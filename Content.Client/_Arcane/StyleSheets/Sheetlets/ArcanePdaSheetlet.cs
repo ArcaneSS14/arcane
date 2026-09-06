@@ -12,7 +12,7 @@ public sealed class ArcanePdaSheetlet : Sheetlet<ArcaneStylesheet>
     public override StyleRule[] GetRules(ArcaneStylesheet sheet, object config)
     {
         var content = new StyleBoxFlat(sheet.SecondaryPalette.BackgroundDark);
-        var normalBorder = sheet.PrimaryPalette.Base.WithAlpha(0.48f);
+        var normalBorder = sheet.PrimaryPalette.Base.WithAlpha(0.72f);
 
         return
         [
@@ -20,22 +20,22 @@ public sealed class ArcanePdaSheetlet : Sheetlet<ArcaneStylesheet>
 
             E<PdaSettingsButton>()
                 .Pseudo(ContainerButton.StylePseudoClassNormal)
-                .Prop(PdaSettingsButton.StylePropertyBgColor, sheet.SecondaryPalette.BackgroundLight)
+                .Prop(PdaSettingsButton.StylePropertyBgColor, ArcanePalette.Buttons.Element)
                 .Prop(PdaSettingsButton.StylePropertyFgColor, sheet.SecondaryPalette.Text)
                 .Prop(PdaSettingsButton.StylePropertyBorderColor, normalBorder)
                 .Prop(PdaSettingsButton.StylePropertyBorderThickness, 1f),
             E<PdaSettingsButton>()
                 .Pseudo(ContainerButton.StylePseudoClassHover)
-                .Prop(PdaSettingsButton.StylePropertyBgColor, sheet.SecondaryPalette.BackgroundLight)
+                .Prop(PdaSettingsButton.StylePropertyBgColor, ArcanePalette.Buttons.HoveredElement)
                 .Prop(PdaSettingsButton.StylePropertyFgColor, sheet.SecondaryPalette.Text)
                 .Prop(PdaSettingsButton.StylePropertyBorderColor, ArcanePalette.NeonOutline)
-                .Prop(PdaSettingsButton.StylePropertyBorderThickness, 2f),
+                .Prop(PdaSettingsButton.StylePropertyBorderThickness, 1f),
             E<PdaSettingsButton>()
                 .Pseudo(ContainerButton.StylePseudoClassPressed)
                 .Prop(PdaSettingsButton.StylePropertyBgColor, ArcanePalette.Buttons.PressedElement)
                 .Prop(PdaSettingsButton.StylePropertyFgColor, sheet.SecondaryPalette.Text)
                 .Prop(PdaSettingsButton.StylePropertyBorderColor, ArcanePalette.NeonOutline)
-                .Prop(PdaSettingsButton.StylePropertyBorderThickness, 2f),
+                .Prop(PdaSettingsButton.StylePropertyBorderThickness, 1f),
             E<PdaSettingsButton>()
                 .Pseudo(ContainerButton.StylePseudoClassDisabled)
                 .Prop(PdaSettingsButton.StylePropertyBgColor, ArcanePalette.Buttons.DisabledElement)
@@ -45,19 +45,24 @@ public sealed class ArcanePdaSheetlet : Sheetlet<ArcaneStylesheet>
 
             E<PdaProgramItem>()
                 .Pseudo(ContainerButton.StylePseudoClassNormal)
-                .Prop(PdaProgramItem.StylePropertyBgColor, sheet.SecondaryPalette.BackgroundLight)
+                .Prop(PdaProgramItem.StylePropertyBgColor, ArcanePalette.Buttons.Element)
                 .Prop(PdaProgramItem.StylePropertyBorderColor, normalBorder)
                 .Prop(PdaProgramItem.StylePropertyBorderThickness, 1f),
             E<PdaProgramItem>()
                 .Pseudo(ContainerButton.StylePseudoClassHover)
-                .Prop(PdaProgramItem.StylePropertyBgColor, sheet.SecondaryPalette.BackgroundLight)
+                .Prop(PdaProgramItem.StylePropertyBgColor, ArcanePalette.Buttons.HoveredElement)
                 .Prop(PdaProgramItem.StylePropertyBorderColor, ArcanePalette.NeonOutline)
-                .Prop(PdaProgramItem.StylePropertyBorderThickness, 2f),
+                .Prop(PdaProgramItem.StylePropertyBorderThickness, 1f),
             E<PdaProgramItem>()
                 .Pseudo(ContainerButton.StylePseudoClassPressed)
                 .Prop(PdaProgramItem.StylePropertyBgColor, ArcanePalette.Buttons.PressedElement)
                 .Prop(PdaProgramItem.StylePropertyBorderColor, ArcanePalette.NeonOutline)
-                .Prop(PdaProgramItem.StylePropertyBorderThickness, 2f),
+                .Prop(PdaProgramItem.StylePropertyBorderThickness, 1f),
+            E<PdaProgramItem>()
+                .Pseudo(ContainerButton.StylePseudoClassDisabled)
+                .Prop(PdaProgramItem.StylePropertyBgColor, ArcanePalette.Buttons.DisabledElement)
+                .Prop(PdaProgramItem.StylePropertyBorderColor, normalBorder.WithAlpha(0.3f))
+                .Prop(PdaProgramItem.StylePropertyBorderThickness, 1f),
 
             E<Label>()
                 .Class("PdaContentFooterText")
