@@ -21,7 +21,7 @@
     - prefRoles: [ Thief ]
       max: 3
       playerRatio: 15
-      chaosScore: 100 # Goobstation
+      chaosScore: 50 # Arcane-Edit: (150 -> 50)
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
