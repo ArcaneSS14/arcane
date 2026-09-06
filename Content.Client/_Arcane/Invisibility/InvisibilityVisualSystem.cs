@@ -98,6 +98,9 @@ public sealed class InvisibilityVisualSystem : EntitySystem
 
     private void RemoveShader(EntityUid uid)
     {
+        if (_shaders.Remove(uid, out var cached))
+            cached.Dispose();
+
         if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid) ||
             !TryComp<SpriteComponent>(uid, out var sprite))
         {
