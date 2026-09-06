@@ -414,6 +414,8 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (configuration.EffectProto != null)
             SpawnAttachedTo(configuration.EffectProto, child.ToCoordinates());
 
+        SyncPolymorphActions(uid, child); // Arcane
+
         return child;
     }
 
@@ -542,6 +544,8 @@ public sealed partial class PolymorphSystem : EntitySystem
             _popup.PopupEntity(popup, parent);
         QueueDel(uid);
 
+        SyncPolymorphActions(uid, parent); // Arcane
+
         return parent;
     }
 
@@ -630,4 +634,82 @@ public sealed partial class PolymorphSystem : EntitySystem
         return copy;
     }
     // goob edit end
+    // Arcane-Start
+    private void SyncPolymorphActions(EntityUid source, EntityUid destination)
+    {
+        if (!TryComp<ActionsComponent>(destination, out var destActionsComp) ||
+            !TryComp<ActionsComponent>(source, out var sourceActionsComp))
+            return;
+
+        var sourceMap = new Dictionary<string, EntityUid>(sourceActionsComp.Actions.Count);
+        foreach (var srcActionId in sourceActionsComp.Actions)
+        {
+            if (TryComp<MetaDataComponent>(srcActionId, out var srcMeta) && srcMeta.EntityPrototype != null)
+                sourceMap[srcMeta.EntityPrototype.ID] = srcActionId;
+        }
+
+        var seenPrototypes = new HashSet<string>(destActionsComp.Actions.Count);
+        var actionsToRemove = new List<EntityUid>();
+
+        foreach (var actionId in destActionsComp.Actions)
+        {
+            if (!TryComp<MetaDataComponent>(actionId, out var actionMeta) || actionMeta.EntityPrototype == null)
+                continue;
+
+
+            if (!seenPrototypes.Add(actionMeta.EntityPrototype.ID))
+                actionsToRemove.Add(actionId);
+        }
+
+        foreach (var actionId in actionsToRemove)
+            _actions.RemoveAction(destination, actionId);
+
+        foreach (var actionId in destActionsComp.Actions)
+        {
+            if (!TryComp<MetaDataComponent>(actionId, out var actionMeta) || actionMeta.EntityPrototype == null)
+                continue;
+
+            if (!sourceMap.TryGetValue(actionMeta.EntityPrototype.ID, out var sourceActionId))
+                continue;
+
+            if (TryComp<ActionComponent>(sourceActionId, out var sourceAction) && sourceAction.Cooldown != null)
+            {
+                if (TryComp<ActionComponent>(actionId, out var destAction))
+                {
+                    _actions.SetCooldown(actionId, sourceAction.Cooldown.Value.Start, sourceAction.Cooldown.Value.End);
+                    Dirty(actionId, destAction);
+                }
+            }
+
+            var chargesReflCache = new Dictionary<Type, (System.Reflection.PropertyInfo? Prop, System.Reflection.FieldInfo? Field)>();
+
+            foreach (var sourceComp in EntityManager.GetComponents(sourceActionId))
+            {
+                var compType = sourceComp.GetType();
+
+                if (!chargesReflCache.TryGetValue(compType, out var cachedRefl))
+                {
+                    var prop = compType.GetProperty("LastCharges");
+                    var field = compType.GetField("LastCharges");
+                    cachedRefl = (prop, field);
+                    chargesReflCache[compType] = cachedRefl;
+                }
+
+                if (!EntityManager.TryGetComponent(actionId, compType, out var destActionComp))
+                    continue;
+
+                if (cachedRefl.Prop != null && cachedRefl.Prop.CanRead && cachedRefl.Prop.CanWrite)
+                    cachedRefl.Prop!.SetValue(destActionComp, cachedRefl.Prop.GetValue(sourceComp));
+
+                else if (cachedRefl.Field != null)
+                    cachedRefl.Field.SetValue(destActionComp, cachedRefl.Field.GetValue(sourceComp));
+
+                else
+                    continue;
+
+                Dirty(actionId, destActionComp);
+            }
+        }
+    }
+    // Arcane-End
 }

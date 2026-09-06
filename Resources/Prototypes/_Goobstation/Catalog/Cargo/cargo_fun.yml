@@ -83,7 +83,7 @@
   icon:
     sprite: _Goobstation/Objects/Fun/tennis_racket.rsi
     state: tennis_racket
-  product: ClothingBackpackDuffelTennisGame
+  product: CratePlasticTennisGame
   cost: 1000
   category: cargoproduct-category-name-fun
   group: market

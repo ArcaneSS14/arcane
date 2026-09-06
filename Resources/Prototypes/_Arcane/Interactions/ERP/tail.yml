@@ -68,11 +68,11 @@
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
   messages:
-  - игриво дёргает $target за хвост.
+  - дёргает $target за хвост.
   - тянет за кончик хвоста $target.
   - слегка тянет хвостик $target.
-  - хватает $target за хвост и несильно тянет.
-  - теребит хвостик $target.
+  - хватает $target за хвост и тянет.
+  - дёргает хвостик $target.
   icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
   tags:
   - RequiresERP
@@ -96,7 +96,7 @@
   - взволнованно обмахивает хвостом.
   - дружелюбно помахивает хвостом.
   - игриво крутит хвостом.
-  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  icon: _Arcane/Interface/ErpPanel/wagging-tail.png
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -117,7 +117,7 @@
   - прячет хвост между ног.
   - робко прижимает хвост к телу.
   - боязливо подгибает хвост.
-  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  icon: _Arcane/Interface/ErpPanel/tail-down.png
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -141,7 +141,7 @@
   - не глядя делает шаг назад и наступает на хвост $target.
   - намеренно прижимает подошвой хвост $target к полу.
   - резко наступает на самый кончик хвоста $target.
-  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  icon: _Arcane/Interface/ErpPanel/step-on-tail.png
   targetRequirements:
   - !type:SpeciesRequirement
     species:
