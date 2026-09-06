@@ -230,7 +230,7 @@ namespace Content.Server.Communications
             var stationUid = _stationSystem.GetOwningStation(uid);
             if (stationUid != null)
             {
-                // Goobstation - allow systems (e.g. amber alert gating) to veto the selection.
+                // Arcane-Edit: Allow systems to veto the alert-level selection.
                 var attempt = new AlertLevelSelectAttemptEvent(stationUid.Value, uid, mob, message.Level);
                 RaiseLocalEvent(ref attempt);
                 if (attempt.Cancelled)
@@ -372,13 +372,17 @@ namespace Content.Server.Communications
 
             if (_emag.CompareFlag(args.Type, EmagType.Access))
             {
-                var amberStation = _stationSystem.GetOwningStation(uid);
-                if (amberStation != null
-                    && TryComp<AmberAlertComponent>(amberStation, out var amber)
-                    && !amber.Unlocked)
+                // Arcane-Edit-Start
+                var stationUid = _stationSystem.GetOwningStation(uid);
+                if (stationUid != null
+                    && TryComp<AlertLevelGateComponent>(stationUid, out var gate)
+                    && !gate.Unlocked)
+                // Arcane-Edit-End
                 {
-                    amber.Unlocked = true;
-                    _popupSystem.PopupEntity(Loc.GetString("alert-level-amber-unlocked"), uid, args.UserUid, PopupType.Medium);
+                    // Arcane-Edit-Start
+                    gate.Unlocked = true;
+                    _popupSystem.PopupEntity(Loc.GetString("alert-level-gate-unlocked"), uid, args.UserUid, PopupType.Medium);
+                    // Arcane-Edit-End
                     args.Handled = true;
                 }
             }
@@ -388,7 +392,15 @@ namespace Content.Server.Communications
 
             var stationUid = _stationSystem.GetOwningStation(uid);
             if (stationUid != null)
+            // Arcane-Edit-Start
+            {
+                var attempt = new AlertLevelSelectAttemptEvent(stationUid.Value, uid, args.UserUid, comp.AlertLevelOnEmag);
+                RaiseLocalEvent(ref attempt);
+                if (attempt.Cancelled)
+                    return;
                 _alertLevelSystem.SetLevel(stationUid.Value, comp.AlertLevelOnEmag, true, true);
+            }
+            // Arcane-Edit-End
 
             args.Handled = true;
         }

@@ -6,10 +6,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Goobstation.Shared.AlertLevel;
 
 /// <summary>
-/// Tracks whether the amber alert level is unlocked for a station.
+/// Tracks whether the gated alert level is unlocked for a station.
 /// </summary>
 [RegisterComponent]
-public sealed partial class AmberAlertComponent : Component
+public sealed partial class AlertLevelGateComponent : Component
 {
     [DataField]
     public bool Unlocked;
@@ -27,10 +27,10 @@ public sealed partial class AmberAlertComponent : Component
     public TimeSpan? PendingExpiry;
 
     /// <summary>
-    /// The alert level this component gates.
+    /// The alert level that this component gates.
     /// </summary>
     [DataField]
-    public string AmberLevel = "amber";
+    public string GatedLevel = "red"; // Arcane-Edit
 
     /// <summary>
     /// How long a first authorization is held while waiting for a second command member.
