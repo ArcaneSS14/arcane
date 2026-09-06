@@ -34,6 +34,11 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentEngineering
+  alternateTitles:
+  - AtmosphericTechnicianFirefighter
+  - AtmosphericTechnicianEmergencyFireTech
+  - AtmosphericTechnicianGasSynthesisTech
+  - AtmosphericTechnicianLifeSupportTech
   # Arcane-end
 
 - type: startingGear
@@ -56,3 +61,21 @@
     neck: ClothingNeckScarfStripedLightBlue
     outerClothing: ClothingOuterSuitAtmosFire
     gloves: ClothingHandsGlovesColorYellow
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: AtmosphericTechnicianFirefighter
+  name: job-name-alt-atmos-1
+
+- type: jobAlternateTitle
+  id: AtmosphericTechnicianEmergencyFireTech
+  name: job-name-alt-atmos-2
+
+- type: jobAlternateTitle
+  id: AtmosphericTechnicianGasSynthesisTech
+  name: job-name-alt-atmos-3
+
+- type: jobAlternateTitle
+  id: AtmosphericTechnicianLifeSupportTech
+  name: job-name-alt-atmos-4
+# Arcane-End
