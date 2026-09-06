@@ -18,6 +18,11 @@
   jobEntity: StationAiBrain
   jobPreviewEntity: PlayerStationAiPreview
   applyTraits: false
+  # Arcane-start
+  alternateTitles:
+  - StationAiAutomatedOverseer
+  - StationAiStationIntelligence
+  # Arcane-end
 
 - type: job
   id: Borg
@@ -33,3 +38,31 @@
   supervisors: job-supervisors-rd
   jobEntity: PlayerBorgBattery
   applyTraits: true
+  # Arcane-start
+  alternateTitles:
+  - BorgCyborg
+  - BorgAndroid
+  - BorgRobot
+  # Arcane-end
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: StationAiAutomatedOverseer
+  name: job-name-alt-stationai-1
+
+- type: jobAlternateTitle
+  id: StationAiStationIntelligence
+  name: job-name-alt-stationai-2
+
+- type: jobAlternateTitle
+  id: BorgCyborg
+  name: job-name-alt-borg-1
+
+- type: jobAlternateTitle
+  id: BorgAndroid
+  name: job-name-alt-borg-2
+
+- type: jobAlternateTitle
+  id: BorgRobot
+  name: job-name-alt-borg-3
+# Arcane-End

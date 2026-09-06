@@ -102,6 +102,10 @@
             Burn: -4 # healing obviously up to discussion # Shitmed value
             Brute: -3 # these groups are the only 2 possible ways to damage a skeleton # Shitmed value
             Metaphysical: -2 # Gameplay: skeletons need some way to heal holy damage. Lore: milk is an unholy liquid that shuns the light of god. (/j)
+        # Arcane-Start: Skeleton heal fix
+        ignoreBlockers: true
+        splitDamage: SplitEnsureAll
+        # Arcane-End
       - !type:PopupMessage
         type: Local
         visualType: Large

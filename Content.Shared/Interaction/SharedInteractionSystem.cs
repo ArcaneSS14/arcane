@@ -397,6 +397,11 @@ namespace Content.Shared.Interaction
             if (target == null || !_handsQuery.TryComp(user, out var hands) || _hands.GetActiveItem((user, hands)) is not null)
                 return false;
 
+            // Arcane-Start
+            if (_combatQuery.TryComp(user, out var combat) && combat.IsInCombatMode && combat.BlockItemPickup)
+                return false;
+            // Arcane-End
+
             // Only eat input if:
             // - Target isn't an item
             // - Target doesn't cancel should-interact event

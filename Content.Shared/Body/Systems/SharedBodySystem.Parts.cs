@@ -124,6 +124,10 @@ public partial class SharedBodySystem
         {
             AddPart(body.Value, (insertedUid, part), slotId);
             RecursiveBodyUpdate((insertedUid, part), body.Value);
+            // Arcane-Start
+            var ev = new BodyTopologyChangedEvent();
+            RaiseLocalEvent(body.Value, ev);
+            // Arcane-End
         }
 #if DEBUG
         else if(HasComp<BodyPartComponent>(insertedUid))
@@ -170,8 +174,15 @@ public partial class SharedBodySystem
 
             if (part.Body is not null)
             {
-                RemovePart(part.Body.Value, (removedUid, part), slotId);
+                var body = part.Body.Value; // Arcane
+
+                RemovePart(body, (removedUid, part), slotId); // Arcane-Edit
                 RecursiveBodyUpdate((removedUid, part), null);
+
+                // Arcane-Start
+                var ev = new BodyTopologyChangedEvent();
+                RaiseLocalEvent(body, ev);
+                // Arcane-End
             }
         }
 
@@ -258,13 +269,15 @@ public partial class SharedBodySystem
         Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false);
         Dirty(partEnt, partEnt.Comp);
 
+        RemoveLeg(partEnt, bodyEnt); // Arcane
+
         var ev = new BodyPartRemovedEvent(slotId, partEnt);
         RaiseLocalEvent(bodyEnt, ref ev);
 
         var ev1 = new BodyPartRemovedEvent(slotId, partEnt);
         RaiseLocalEvent(partEnt, ref ev1);
 
-        RemoveLeg(partEnt, bodyEnt);
+//        RemoveLeg(partEnt, bodyEnt); // Arcane-Edit
     }
 
     private void AddLeg(Entity<BodyPartComponent> legEnt, Entity<BodyComponent?> bodyEnt)
@@ -276,7 +289,7 @@ public partial class SharedBodySystem
             return;
 
         bodyEnt.Comp.LegEntities.Add(legEnt);
-        UpdateMovementSpeed(bodyEnt);
+//        UpdateMovementSpeed(bodyEnt); // Arcane-Edit
         Dirty(bodyEnt, bodyEnt.Comp);
     }
 
@@ -289,7 +302,7 @@ public partial class SharedBodySystem
             return;
 
         bodyEnt.Comp.LegEntities.Remove(legEnt);
-        UpdateMovementSpeed(bodyEnt);
+//        UpdateMovementSpeed(bodyEnt); // Arcane-Edit
         Dirty(bodyEnt, bodyEnt.Comp);
 
         if (bodyEnt.Comp.LegEntities.Count != 0)

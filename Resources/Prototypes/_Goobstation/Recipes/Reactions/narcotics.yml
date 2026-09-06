@@ -25,10 +25,10 @@
       amount: 1
     Atropine:
       amount: 1
-    Desoxyephedrine:
+    Morphine: # Arcane-Edit: Desoxyephedrine > Morphine
       amount: 1
   products:
-    Aranesp: 1
+    Aranesp: 3 # Arcane-Edit: 1 > 3
 
 - type: reaction
   id: Amnestizine

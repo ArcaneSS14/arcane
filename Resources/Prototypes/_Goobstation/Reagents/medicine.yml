@@ -59,7 +59,11 @@
       - !type:HealthChange
         damage:
           groups:
-            Brute: -1.5 # Lower than Bicardine, offloading healing onto mitotrophin
+            Brute: -5 # Lower than Bicardine, offloading healing onto mitotrophin # Arcane-Edit: -1.5 > -5
+      # Arcane-Start
+      - !type:TakeStaminaDamage
+        amount: 4
+      # Arcane-End
       - !type:TakeStaminaDamage
         conditions:
         - !type:ReagentCondition
@@ -178,11 +182,14 @@
   color: "#ff6060"
   metabolisms:
     Medicine:
+      metabolismRate: 0.25 # Arcane
       effects:
       - !type:HealthChange
         damage:
-          types:
-            Asphyxiation: -6 # intended to be stronger, but more annoying than inapr
+          # Arcane-Edit-Start
+          groups:
+            Airloss: -8 # intended to be stronger, but more annoying than inapr
+          # Arcane-Edit-End
       - !type:TakeStaminaDamage
         conditions:
         - !type:MetabolizerTypeCondition # Goobstation - Yowie
@@ -207,8 +214,17 @@
           min: 15
         probability: 0.2
         time: 4
-      - !type:ModifyBleed
-        amount: -0.25
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: HeartbreakerToxin
+          min: 1
+        reagent: HeartbreakerToxin
+        amount: -2
+      # Arcane-Edit-Start
+#      - !type:ModifyBleed
+#        amount: -0.25
+      # Arcane-Edit-End
 
 # Patch/microdose meds, hilariously strong due to difficulties in making and using them
 
@@ -495,12 +511,18 @@
       - !type:AdjustReagentsByGroup
         group: Medicine
         amount: -3
+        excludeReagent: Multiver # Arcane
         conditions:
         - !type:UniqueBloodstreamChemThreshold
           max: 3 # the gist is, 2 and below this sucks, 3 and above it's great; mix with water etc for good results
       - !type:AdjustReagentsByGroup
         group: Poison
         amount: -3
+      # Arcane-Start
+        conditions:
+        - !type:UniqueBloodstreamChemThreshold
+          max: 3
+      # Arcane-End
       - !type:AdjustReagentsByGroup
         group: Narcotic
         amount: -3
@@ -782,15 +804,25 @@
         ignoreResistances: false
         damage:
           types:
-            Heat: -1.5
+            Heat: -1 # Arcane-Edit: -1.5 > -1
             Cold: -1.5
             Shock: -1
-            Caustic: -1
+            Caustic: -0.75 # Arcane-Edit: -1 > -0.75
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
           - type: PressureProtection # can't get through this to reach the bodyparts!
           inverted: true
+      # Arcane-Start
+      - !type:AdjustTemperature
+        conditions:
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          inverted: true
+        - !type:TemperatureCondition
+        amount: -2000
+      # Arcane-End
   metabolisms:
     Medicine:
       metabolismRate: 3
@@ -846,13 +878,23 @@
         damage:
           types:
             Blunt: -2
-            Piercing: -1 # limits combat effectivness
+            Piercing: -0.75 # limits combat effectivness # Arcane-Edit: -1 > -0.75
             Slash: -2
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
           - type: PressureProtection # can't get through this to reach the bodyparts!
           inverted: true
+      # Arcane-Start
+      - !type:AdjustTemperature
+        conditions:
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          inverted: true
+        - !type:TemperatureCondition
+        amount: 3500
+      # Arcane-End
       - !type:ModifyBleed
         amount: -2
         conditions:
@@ -905,6 +947,7 @@
             Cold: -0.38
             Shock: -0.25
             Caustic: -0.25
+            Poison: 0.3 # Arcane
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
@@ -917,6 +960,68 @@
           components:
           - type: PressureProtection
           inverted: true
+      # Arcane-Start
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          types:
+            Blunt: -0.25
+            Piercing: -0.25
+            Slash: -0.25
+            Heat: -0.25
+            Cold: -0.25
+            Shock: -0.25
+            Caustic: -0.25
+            Poison: -0.1
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Dead
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection
+          inverted: true
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          types:
+            Blunt: -0.25
+            Piercing: -0.25
+            Slash: -0.25
+            Heat: -0.25
+            Cold: -0.25
+            Shock: -0.25
+            Caustic: -0.25
+            Poison: -0.1
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection
+          inverted: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Blunt: -2.5
+            Piercing: -1.25
+            Slash: -2.5
+            Heat: -1.5
+            Cold: -2
+            Shock: -1.25
+            Caustic: -0.4
+            Poison: 1
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -0.7
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Dead
+      # Arcane-End
 
 - type: reagent
   id: Synthcells
@@ -941,8 +1046,8 @@
         damage:
           types:
             Blunt: 0.25
-            Poison: -2
-            Radiation: -1
+            Poison: -0.2 # Arcane-Edit: -2 > -0.2
+            Radiation: -0.4 # Arcane-Edit: -1 > -0.4
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
@@ -950,11 +1055,15 @@
           inverted: true
   metabolisms:
     Medicine:
+      metabolismRate: 1 # Arcane
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Toxin: -2
+          # Arcane-Edit-Start
+          types:
+            Poison: -0.25
+            Radiation: -0.5
+          # Arcane-Edit-End
       - !type:HealthChange
         damage:
           types:
@@ -1035,7 +1144,7 @@
             Heat: -4
             Shock: -4
             Cold: -4
-            Caustic: -3
+            Caustic: -1 # Arcane-Edit: -3 > -1
         conditions:
         - !type:TypedDamageThresholdCondition
           damage:
@@ -1231,11 +1340,40 @@
       effects:
       - !type:HealthChange
         ignoreResistances: false
+        ignoreBlockers: false # Arcane
         damage:
           types:
             Cold: 0.05
+            Heat: -0.5 # Arcane
+        # Arcane-Start
+        conditions:
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          inverted: true
+      - !type:HealthChange
+        ignoreResistances: false
+        ignoreBlockers: false
+        conditions:
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          inverted: true
+        - !type:DamageTypeCondition
+          damageType: Heat
+          min: 50
+        damage:
+          types:
+            Heat: -0.5
+        # Arcane-End
       - !type:AdjustTemperature
         conditions:
+        # Arcane-Start
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          inverted: true
+        # Arcane-End
         - !type:TemperatureCondition
           min: 160.15
         amount: -10000
@@ -1287,11 +1425,40 @@
       effects:
       - !type:HealthChange
         ignoreResistances: false
+        ignoreBlockers: false # Arcane
         damage:
           types:
             Heat: 0.05
+            Cold: -0.5 # Arcane
+        # Arcane-Start
+        conditions:
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          inverted: true
+      - !type:HealthChange
+        ignoreResistances: false
+        ignoreBlockers: false
+        conditions:
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          inverted: true
+        - !type:DamageTypeCondition
+          damageType: Cold
+          min: 50
+        damage:
+          types:
+            Cold: -0.5
+        # Arcane-End
       - !type:AdjustTemperature
         conditions:
+        # Arcane-Start
+        - !type:HasComponentOnEquipmentCondition
+          components:
+          - type: PressureProtection # can't get through this to reach the bodyparts!
+          inverted: true
+        # Arcane-End
         - !type:TemperatureCondition
           max: 420
         amount: 10000

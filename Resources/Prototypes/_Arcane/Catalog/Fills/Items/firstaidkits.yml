@@ -1,0 +1,58 @@
+- type: entity
+  parent: MedkitEmergency
+  id: MedkitEmergencyFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Gauze5
+        - id: EmergencyMedipen
+        - id: SyringeTramadol
+        - id: PillHerignis
+        - id: PillCharcoal
+
+- type: entity
+  parent: MedkitCombatStandard
+  id: MedkitCombatStandardFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+        - id: AdvancedRegenerativeMesh
+        - id: AirlossAutoInjector
+        - id: StimulatorAutoInjector
+        - id: BruteAutoInjector
+        - id: BurnAutoInjector
+        - id: AdvancedEmergencyMedipen
+          amount: 2
+        - id: MedicalPatchPrefilledBicaridine
+        - id: MedicalPatchPrefilledDermaline
+
+- type: entity
+  parent: MedkitCombatAdvanced
+  id: MedkitCombatAdvancedFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyNitriumTankFilled
+        - id: EmergencyHealiumTankFilled
+        - id: MedicatedSuture
+        - id: AdvancedRegenerativeMesh
+        - id: MedicalPatchPrefilledProcenylLazide
+        - id: MedicalPatchPrefilledEbifin
+        - id: MedicalPatchPrefilledProcenylLazide
+        - id: MedicalPatchPrefilledEbifin
+        - id: ClothingMaskBreathMedical
+        - id: MedicalPatchPrefilledSyriniver
+        - id: PunctAutoInjector
+        - id: PyraAutoInjector
+        - id: MedicalPatchPrefilledSalbutamol
+          amount: 2
