@@ -6,6 +6,6 @@ reagent-effect-guidebook-oxygenate =
 
 reagent-effect-guidebook-convermol =
     { $chance ->
-        [1] Heals asphyxiation ({ $rate } u/u reagent), producing toxins at a 1:{ $ratio } ratio. Overdose threshold: { $od } u.
+        [1] Heals asphyxiation ({ $rate } u/tick), producing toxins at a 1:{ $ratio } ratio. Overdose threshold: { $od } u.
        *[other] With { NATURALPERCENT($chance, 1) } chance, heals asphyxiation with toxic side effects.
     }

@@ -87,6 +87,10 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentCentCom
+  alternateTitles:
+  - NTRepLiason
+  - NTRepAuditor
+  - NTRepConsultant
   # Arcane-end
 
 - type: startingGear
@@ -117,3 +121,17 @@
     shoes: ClothingShoesBootsLaceup
     head: ClothingHeadHatTophat
     neck: ClothingNeckScarfStripedCentcom
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: NTRepLiason
+  name: job-name-alt-ntrep-1
+
+- type: jobAlternateTitle
+  id: NTRepAuditor
+  name: job-name-alt-ntrep-2
+
+- type: jobAlternateTitle
+  id: NTRepConsultant
+  name: job-name-alt-ntrep-3
+# Arcane-End
