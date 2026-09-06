@@ -75,6 +75,8 @@
   recipeUnlocks:
   - SurveillanceWirelessCameraBodySecurity
   - ContrabandDetectorCircuitboard
+  - CriminalRecordsComputerCircuitboard
+  - WeaponEnergyTurretSecurityMachineCircuitboard
   - PepperSpray
   - Zipties
   - FlashlightSeclite
