@@ -23,3 +23,22 @@
     sprite: _Goobstation/Objects/Weapons/Melee/breverb.rsi
   - type: DisarmMalus
   - type: Execution
+  - type: Clothing # Arcane
+    sprite: _Goobstation/Objects/Weapons/Melee/breverb.rsi
+    slots:
+    - back
+
+# Arcane
+- type: entity
+  parent: ReverbScythe
+  id: ReverbScytheToy
+  suffix: Toy
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 65
+    attackRate: 1.25
+    damage:
+      types:
+        Slash: 5
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
