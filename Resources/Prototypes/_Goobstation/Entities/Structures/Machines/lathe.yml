@@ -61,7 +61,8 @@
     - BluespaceTheory
     - ScienceClothing
     - UpgradeKits
-    - AdvancedEmitters        # Omu - advanced emitters
+    - PaintingTools # Arcane
+    - AdvancedEmitters # Omu - advanced emitters
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NailgunEvilStatic
@@ -300,6 +301,7 @@
     - ServiceBoardsGoob # goob
     - EntertainmentPack # goob
     - BartendingPack # goob
+    - PaintingTools # Arcane
     # Einstein Engines Packs
     - Translators
   - type: EmagLatheRecipes
