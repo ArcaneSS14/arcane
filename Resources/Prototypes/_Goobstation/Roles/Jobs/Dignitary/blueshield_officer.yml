@@ -71,6 +71,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentDSO
+  alternateTitles:
+  - BlueshieldBodyguard
+  - BlueshieldVanguard
   # Arcane-end
 
 - type: startingGear
@@ -103,3 +106,13 @@
     id: BlueshieldPDA
     back: ClothingBackpackBlueshield
     shoes: ClothingShoesBootsJack
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: BlueshieldBodyguard
+  name: job-name-alt-blueshield-1
+
+- type: jobAlternateTitle
+  id: BlueshieldVanguard
+  name: job-name-alt-blueshield-2
+# Arcane-End

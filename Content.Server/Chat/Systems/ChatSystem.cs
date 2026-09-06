@@ -726,10 +726,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             // Arcane-end
 
             // Goob edit start
-            if (TryComp<DeafComponent>(listener, out var modifier) && language.SpeechOverride.RequireSpeech)
-                continue; // blocks anyone with the deaf component from hearing.
-            if (HasComp<PermanentBlindnessComponent>(listener) || HasComp<TemporaryBlindnessComponent>(listener))
-                continue; // block blind people from seeing subtle sign language gestures
+            var evSight = new ChatMessageOverrideInRange(language.SpeechOverride.RequireSpeech, language.SpeechOverride.RequireSight);
+            RaiseLocalEvent(listener, ref evSight);
+            if (evSight.Cancelled) continue;
             // Goob edit end
 
             // Einstein Engines - Language begin

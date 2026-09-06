@@ -93,6 +93,8 @@
         reagents:
           - ReagentId: Formaldehyde
             Quantity: 30
+  - type: MedicalPatch
+    transferAmount: 0.1
 
 - type: entity
   parent: MedicalPatchPrefilledBase
@@ -101,11 +103,13 @@
   suffix: Synthflesh
   components:
   - type: Label
-    currentLabel: Synthflesh 30u
+    currentLabel: Synthflesh 40u
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 30
+        maxVol: 40
         reagents:
           - ReagentId: Synthflesh
-            Quantity: 30
+            Quantity: 40
+  - type: MedicalPatch
+    transferAmount: 1

@@ -13,6 +13,8 @@ namespace Content.Shared._Orion.CustomGhost;
 [Prototype("customGhost")]
 public sealed partial class CustomGhostPrototype : IPrototype, IInheritingPrototype
 {
+    public static ProtoId<CustomGhostPrototype> DefaultPrototype { get; } = new("default");
+
     [IdDataField]
     public string ID { get; private set; } = default!;
 
