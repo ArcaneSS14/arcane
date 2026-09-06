@@ -1,0 +1,135 @@
+- type: entity
+  parent: [ SeatBase, ChairFolding ]
+  id: CMChair
+  name: chair
+  description: A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Foldable
+    anchorOnUnfold: true
+  - type: Sprite
+    sprite: _RMC14/Structures/Furniture/folding_chair.rsi
+    layers:
+    - state: chair
+      map: ["unfoldedLayer"]
+    - state: chair_folded
+      map: ["foldedLayer"]
+      visible: false
+
+# Comfy chairs
+- type: entity
+  parent: SeatBase
+  id: CMChairComfy
+  name: comfy chair
+  description: A chair with leather padding and adjustable headrest. You could probably sit in one of these for ages.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Furniture/chairs.rsi
+    state: comfychair
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Construction
+    graph: Seat
+    node: chairComfy
+
+- type: entity
+  parent: CMChairComfy
+  id: CMChairComfyBlack
+  name: comfy black chair
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Furniture/chairs.rsi
+    state: comfychair_black
+
+- type: entity
+  parent: CMChairComfy
+  id: CMChairComfyARES
+  name: ARES comfy chair
+  description: A functional chair designed for comfortably sitting a single person with intent to facilitate interactions with the ship AI.
+  components:
+  - type: Sprite
+    state: comfychair_ares
+
+- type: entity
+  parent: CMChairComfyARES
+  id: RMCChairComfyAI
+  name: AI interface chair
+  components:
+  - type: Sprite
+    state: ai_interface_chair
+
+- type: entity
+  parent: CMChairComfy
+  id: CMChairComfyBeige
+  name: beige comfy chair
+  components:
+  - type: Sprite
+    state: comfychair_beige
+
+- type: entity
+  parent: CMChairComfy
+  id: CMChairComfyBlue
+  name: blue comfy chair
+  components:
+  - type: Sprite
+    state: comfychair_blue
+
+- type: entity
+  parent: CMChairComfy
+  id: CMChairComfyLime
+  name: lime comfy chair
+  components:
+  - type: Sprite
+    state: comfychair_lime
+
+- type: entity
+  parent: CMChairComfy
+  id: CMChairComfyOrange
+  name: orange comfy chair
+  components:
+  - type: Sprite
+    state: comfychair_orange
+
+- type: entity
+  parent: CMChairComfy
+  id: CMChairComfyTeal
+  name: teal comfy chair
+  components:
+  - type: Sprite
+    state: comfychair_teal
+
+- type: entity
+  parent: CMChairComfy
+  id: RMCChairComfyAlien
+  name: alien chair
+  components:
+  - type: Sprite
+    state: comfychair_alien
+
+# Office chair
+- type: entity
+  parent: SeatBase
+  id: CMChairOfficeDark
+  name: dark office chair
+  components: # RMC14 Non-parity: Not rotatable
+  - type: Sprite
+    state: officechair_dark
+  - type: Construction
+    graph: Seat
+    node: chairOfficeDark
+
+- type: entity
+  parent: CMChairOfficeDark
+  id: CMChairOfficeWhite
+  name: white office chair
+  components:
+  - type: Sprite
+    state: officechair_white
+  - type: Construction
+    graph: Seat
+    node: chairOfficeWhite

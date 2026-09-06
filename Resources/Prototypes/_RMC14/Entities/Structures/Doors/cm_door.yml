@@ -1,0 +1,59 @@
+- type: entity
+  abstract: true
+  parent: Airlock
+  id: CMBaseDoor
+  name: door
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Weldable
+    time: 3
+  - type: WiresVisuals
+  - type: ExtensionCableReceiver
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+  - type: Wires
+    boardName: wires-board-name-airlock
+    layoutId: Airlock
+  - type: DoorSignalControl
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: DeviceLinkSink
+    ports:
+    - Open
+    - Close
+    - Toggle
+    - AutoClose
+    - DoorBolt
+  - type: DeviceLinkSource
+    ports:
+    - DoorStatus
+  - type: SoundOnOverload
+  - type: SpawnOnOverload
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/smash.ogg"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  abstract: true
+  id: CMBaseDoorConstructible
+  components:
+  - type: Construction
+    graph: CMAirlock
+    node: airlock
+    containers:
+    - board
