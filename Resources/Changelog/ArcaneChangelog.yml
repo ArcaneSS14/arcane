@@ -986,3 +986,10 @@ Entries:
   id: 80
   time: '2026-09-06T14:19:03.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/304
+- author: badjuju
+  changes:
+    - type: Tweak
+      message: Абдукторы теперь не так часто будут прилетать на станцию
+  id: 81
+  time: '2026-09-06T14:21:27.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/301
