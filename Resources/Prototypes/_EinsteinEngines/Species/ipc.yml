@@ -116,6 +116,9 @@
       points: 1
       required: false
       defaultMarkings: [ MobIPCLHandDefault ]
+    Tail:
+      points: 1
+      required: false
 
 - type: humanoidBaseSprite
   id: MobIPCMarkingFollowSkin
