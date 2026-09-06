@@ -32,12 +32,10 @@
   contracts:
   - DocumentContractEmploymentEngineering
   alternateTitles:
-  - StationEngineerMaintenanceTechnician
-  - StationEngineerMechanic
-  - StationEngineerElectrician
-  - StationEngineerEngineOperator
-  - StationEngineerDamageControlTechnician
-  - StationEngineerArchitect
+  - StationEngineerMaintenanceSpecialist
+  - StationEngineerDesignEngineer
+  - StationEngineerElectricalEngineer
+  - StationEngineerConstructionEngineer
   # Arcane-end
 
 - type: startingGear
@@ -63,26 +61,18 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: StationEngineerMaintenanceTechnician
+  id: StationEngineerMaintenanceSpecialist
   name: job-name-alt-engineer-1
 
 - type: jobAlternateTitle
-  id: StationEngineerMechanic
+  id: StationEngineerDesignEngineer
   name: job-name-alt-engineer-2
 
 - type: jobAlternateTitle
-  id: StationEngineerElectrician
+  id: StationEngineerElectricalEngineer
   name: job-name-alt-engineer-3
 
 - type: jobAlternateTitle
-  id: StationEngineerEngineOperator
+  id: StationEngineerConstructionEngineer
   name: job-name-alt-engineer-4
-
-- type: jobAlternateTitle
-  id: StationEngineerDamageControlTechnician
-  name: job-name-alt-engineer-5
-
-- type: jobAlternateTitle
-  id: StationEngineerArchitect
-  name: job-name-alt-engineer-6
 # Arcane-End

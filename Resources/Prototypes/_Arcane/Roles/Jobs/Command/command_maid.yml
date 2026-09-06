@@ -40,8 +40,7 @@
   contracts:
   - DocumentContractEmploymentService
   alternateTitles:
-  - CommandMaidHeadMaid
-  - CommandMaidMajordomo
+  - CommandMaidButler
 
 - type: startingGear
   id: CommandMaidGear
@@ -61,9 +60,7 @@
     gloves: ClothingHandsGlovesCommandMaid
 
 - type: jobAlternateTitle
-  id: CommandMaidHeadMaid
+  id: CommandMaidButler
   name: job-name-alt-commandmaid-1
-
-- type: jobAlternateTitle
-  id: CommandMaidMajordomo
-  name: job-name-alt-commandmaid-2
+  maleName: job-name-alt-commandmaid-1-m
+  femaleName: job-name-alt-commandmaid-1-f

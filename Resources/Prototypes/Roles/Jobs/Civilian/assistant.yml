@@ -26,10 +26,7 @@
   alternateTitles:
   - AssistantPassenger
   - AssistantVisitor
-  - AssistantEntrepreneur
   - AssistantOffDuty
-  - AssistantCivilian
-  - AssistantFreelancer
   - AssistantTourist
   - AssistantTraveler
   # Arcane-End
@@ -64,26 +61,14 @@
   name: job-name-alt-assistant-2
 
 - type: jobAlternateTitle
-  id: AssistantEntrepreneur
+  id: AssistantOffDuty
   name: job-name-alt-assistant-3
 
 - type: jobAlternateTitle
-  id: AssistantOffDuty
+  id: AssistantTourist
   name: job-name-alt-assistant-4
 
 - type: jobAlternateTitle
-  id: AssistantCivilian
-  name: job-name-alt-assistant-5
-
-- type: jobAlternateTitle
-  id: AssistantFreelancer
-  name: job-name-alt-assistant-6
-
-- type: jobAlternateTitle
-  id: AssistantTourist
-  name: job-name-alt-assistant-7
-
-- type: jobAlternateTitle
   id: AssistantTraveler
-  name: job-name-alt-assistant-8
+  name: job-name-alt-assistant-5
 # Arcane-End

@@ -39,6 +39,7 @@
   alternateTitles:
   - ClownJester
   - ClownBouffon
+  - ClownActor
   # Arcane-end
 
 - type: startingGear
@@ -74,4 +75,8 @@
 - type: jobAlternateTitle
   id: ClownBouffon
   name: job-name-alt-clown-2
+
+- type: jobAlternateTitle
+  id: ClownActor
+  name: job-name-alt-clown-3
 # Arcane-End
