@@ -42,6 +42,8 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentSecurity
+  alternateTitles:
+  - SecurityCadetTrainee
   # Arcane-end
 
 - type: startingGear
@@ -72,3 +74,9 @@
     neck: ClothingNeckScarfStripedRed
     belt: ClothingBeltSecurity
     gloves: ClothingHandsGlovesColorBlack
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: SecurityCadetTrainee
+  name: job-name-alt-seccadet-1
+# Arcane-End
