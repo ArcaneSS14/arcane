@@ -993,3 +993,12 @@ Entries:
   id: 81
   time: '2026-09-06T14:21:27.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/301
+- author: 18egor05
+  changes:
+    - type: Tweak
+      message: Порезаны множители урона у зомби. Теперь они не состоят из ваты
+    - type: Tweak
+      message: Симплмобов (макаки, питомцы, прочее) снова можно заражать
+  id: 82
+  time: '2026-09-06T14:24:07.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/298
