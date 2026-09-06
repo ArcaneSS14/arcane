@@ -512,7 +512,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         foreach (var (referenceReagent, referenceQuantity) in ent.Comp.BloodReferenceSolution)
         {
             var error = referenceQuantity * referenceFactor - bloodSolution.GetTotalPrototypeQuantity(referenceReagent.Prototype);
-            var adjustedAmount = amount * referenceQuantity / ent.Comp.BloodReferenceSolution.Volume; // Arcane-Edit
+            var adjustedAmount = referenceQuantity * ratio;
 
             if (error > 0)
             {
