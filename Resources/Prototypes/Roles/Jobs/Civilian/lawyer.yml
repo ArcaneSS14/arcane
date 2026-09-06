@@ -32,6 +32,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentService
+  alternateTitles:
+  - LawyerAttorney
+  - LawyerLegalRepresentative
   # Arcane-end
 
 - type: startingGear
@@ -57,3 +60,13 @@
     neck: ClothingNeckLawyerbadge
     outerClothing: ClothingOuterWinterColorBlack
     gloves: ClothingHandsGlovesColorBlack
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: LawyerAttorney
+  name: job-name-alt-lawyer-1
+
+- type: jobAlternateTitle
+  id: LawyerLegalRepresentative
+  name: job-name-alt-lawyer-2
+# Arcane-End

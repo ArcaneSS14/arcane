@@ -8,6 +8,7 @@ using Content.Server._Goobstation.Wizard.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Shared._Goobstation.Wizard.Spellblade;
+using Content.Shared._Shitmed.Damage;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
@@ -28,6 +29,10 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SpellbladeSystem _spellblade = default!; // Goobstation
         private const float UpdateTimer = 1f;
+        // Arcane-Start
+        private const float LowPressureRampTime = 40f;
+        private const float LowPressureMaxMultiplier = 2.5f;
+        // Arcane-End
         private float _timer;
 
         public override void Initialize()
@@ -282,11 +287,28 @@ namespace Content.Server.Atmos.EntitySystems
                     RaiseLocalEvent(uid, ref resistEv);
 
                     if (resistEv.Cancelled)
-                        return;
+                    // Arcane-Edit-Start
+                    {
+                        barotrauma.SecondsInLowPressure = 0f;
+
+                        if (barotrauma.TakingDamage)
+                        {
+                            barotrauma.TakingDamage = false;
+                            _adminLogger.Add(LogType.Barotrauma, $"{ToPrettyString(uid):entity} stopped taking pressure damage");
+                        }
+
+                        _alertsSystem.ClearAlertCategory(uid, barotrauma.PressureAlertCategory);
+                        continue;
+                    }
+                    // Arcane-Edit-End
                     // goob end
 
+                    var lowPressureScale = MathF.Min(1f + (barotrauma.SecondsInLowPressure / LowPressureRampTime), LowPressureMaxMultiplier); // Arcane
+
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
-                    _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * Atmospherics.LowPressureDamage, true, false, targetPart: TargetBodyPart.All); // Shitmed Change
+                    _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * Atmospherics.LowPressureDamage * lowPressureScale, true, false, targetPart: TargetBodyPart.All); // Shitmed Change // Arcane-Edit
+
+                    barotrauma.SecondsInLowPressure += UpdateTimer; // Arcane
 
                     if (!barotrauma.TakingDamage)
                     {
@@ -304,10 +326,24 @@ namespace Content.Server.Atmos.EntitySystems
                     RaiseLocalEvent(uid, ref resistEv);
 
                     if (resistEv.Cancelled)
-                        return;
+                    // Arcane-Edit-Start
+                    {
+                        barotrauma.SecondsInLowPressure = 0f;
+
+                        if (barotrauma.TakingDamage)
+                        {
+                            barotrauma.TakingDamage = false;
+                            _adminLogger.Add(LogType.Barotrauma, $"{ToPrettyString(uid):entity} stopped taking pressure damage");
+                        }
+
+                        _alertsSystem.ClearAlertCategory(uid, barotrauma.PressureAlertCategory);
+                        continue;
+                    }
+                    // Arcane-Edit-End
                     // goob end
 
                     var damageScale = MathF.Min(((pressure / Atmospherics.HazardHighPressure) - 1) * Atmospherics.PressureDamageCoefficient, Atmospherics.MaxHighPressureDamage);
+                    barotrauma.SecondsInLowPressure = 0f; // Arcane
 
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
                     _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * damageScale, true, false, targetPart: TargetBodyPart.All); // Shitmed Change
@@ -326,6 +362,8 @@ namespace Content.Server.Atmos.EntitySystems
                     var pressureEv = new SendSafePressureEvent(pressure);
                     RaiseLocalEvent(uid, ref pressureEv);
                     // goob end
+
+                    barotrauma.SecondsInLowPressure = 0f; // Arcane
 
                     // Within safe pressure limits
                     if (barotrauma.TakingDamage)

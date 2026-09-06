@@ -16,7 +16,7 @@
 
 - type: moodEffect
   id: HungerStarving
-  moodChange: -10
+  moodChange: -35 # Arcane-Edit: -10 > -35
   category: "Hunger"
 
 # Thirst
@@ -32,12 +32,12 @@
 
 - type: moodEffect
   id: ThirstThirsty
-  moodChange: -4
+  moodChange: -2 # Arcane-Edit: -4 > -2
   category: "Thirst"
 
 - type: moodEffect
   id: ThirstParched
-  moodChange: -10
+  moodChange: -20 # Arcane-Edit: -10 > -20
   category: "Thirst"
 
 # Health
@@ -54,10 +54,10 @@
 
 - type: moodEffect
   id: HealthSevereDamage
-  moodChange: -7
+  moodChange: -25 # Arcane-Edit: -7 > -25
   category: "Health"
 
 - type: moodEffect
   id: HealthHeavyDamage
-  moodChange: -20
+  moodChange: -55  # Arcane-Edit: -20 > -55
   category: "Health"

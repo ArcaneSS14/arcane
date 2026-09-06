@@ -10,6 +10,9 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Roles;
+using System.Linq;
+using Robust.Shared.Enums;
 
 namespace Content.Client.Lobby.UI.Roles;
 
@@ -22,8 +25,10 @@ public sealed partial class RequirementsSelector : BoxContainer
     private readonly RadioOptions<int> _options;
     private readonly StripeBack _lockStripe;
     private List<ProtoId<GuideEntryPrototype>>? _guides;
+    private List<ProtoId<JobAlternateTitlePrototype>>? _altTitles; // Arcane
 
     public event Action<int>? OnSelected;
+    public event Action<ProtoId<JobAlternateTitlePrototype>?>? OnSelectedTitle; // Arcane
     public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
 
     public int Selected => _options.SelectedId;
@@ -83,7 +88,13 @@ public sealed partial class RequirementsSelector : BoxContainer
         int titleSize,
         string? description,
         TextureRect? icon = null,
-        List<ProtoId<GuideEntryPrototype>>? guides = null)
+        List<ProtoId<GuideEntryPrototype>>? guides = null,
+        // Arcane-Start
+        List<(ProtoId<JobAlternateTitlePrototype> Id, bool Locked)>? altTitles = null,
+        ProtoId<JobAlternateTitlePrototype>? defaultAltTitle = null,
+        IPrototypeManager? protoMan = null,
+        Gender? gender = null)
+        // Arcane-End
     {
         foreach (var (text, value) in items)
         {
@@ -93,9 +104,103 @@ public sealed partial class RequirementsSelector : BoxContainer
         Help.Visible = guides != null;
         _guides = guides;
 
-        TitleLabel.Text = title;
-        TitleLabel.MinSize = new Vector2(titleSize, 0f);
-        TitleLabel.ToolTip = description;
+        // Arcane-Edit-Start
+        // TitleLabel.Text = title;
+        // TitleLabel.MinSize = new Vector2(titleSize, 0f);
+        // TitleLabel.ToolTip = description;
+        // Arcane-Edit-End
+
+        // Arcane-Start
+        // FIXED WIDTH LOGIC
+        // We use the 'titleSize' passed from HumanoidProfileEditor (which is 280)
+        // We lock both Min and Max to prevent any shrinking or growing.
+        var fixedWidth = (float) titleSize;
+        TitleContent.MinWidth = fixedWidth;
+        TitleContent.MaxWidth = fixedWidth;
+
+        if (altTitles != null && altTitles.Count > 0 && protoMan != null)
+        {
+            _altTitles = altTitles.Select(x => x.Id).ToList();
+
+            var titleOptions = new OptionButton
+            {
+                ToolTip = description,
+                // These three lines ensure the blue box fills the 280px exactly
+                HorizontalExpand = true,
+                MinWidth = fixedWidth,
+                HorizontalAlignment = HAlignment.Stretch
+            };
+
+            titleOptions.AddItem(title);
+
+            int idx = 1;
+            foreach (var (id, locked) in altTitles)
+            {
+                var altTitle = protoMan.Index(id);
+                var name = altTitle.LocalizedName(gender);
+
+                titleOptions.AddItem(name);
+
+                if (locked)
+                {
+                    titleOptions.SetItemDisabled(idx, true);
+                }
+                idx++;
+            }
+
+            TitleContent.AddChild(titleOptions);
+
+            if (defaultAltTitle != null)
+            {
+                var index = _altTitles.FindIndex(x => x == defaultAltTitle);
+
+                if (index >= 0)
+                {
+                    var isLocked = altTitles[index].Locked;
+                    if (isLocked)
+                    {
+                        titleOptions.SelectId(0);
+                        OnSelectedTitle?.Invoke(null);
+                    }
+                    else
+                    {
+                        titleOptions.SelectId(index + 1);
+                    }
+                }
+                else
+                {
+                    titleOptions.SelectId(0);
+                    OnSelectedTitle?.Invoke(null);
+                }
+            }
+            else
+            {
+                titleOptions.SelectId(0);
+            }
+
+            titleOptions.OnItemSelected += args =>
+            {
+                titleOptions.SelectId(args.Id);
+                if (args.Id == 0)
+                    OnSelectedTitle?.Invoke(null);
+                else
+                    OnSelectedTitle?.Invoke(_altTitles[args.Id - 1]);
+            };
+        }
+        else
+        {
+            var titleLabel = new Label
+            {
+                ToolTip = description,
+                Text = title,
+                // Ensure plain text titles (like "Mime") also occupy the same 280px
+                HorizontalExpand = true,
+                MinWidth = fixedWidth,
+                HorizontalAlignment = HAlignment.Left
+            };
+            TitleContent.AddChild(titleLabel);
+        }
+        // Arcane-End
 
         if (icon != null)
         {
@@ -127,8 +232,10 @@ public sealed partial class RequirementsSelector : BoxContainer
         return new Button
         {
             Text = text,
-            MinWidth = 90,
-            HorizontalExpand = true,
+            // Arcane-Edit-Start
+            MinWidth = 60,
+            HorizontalExpand = false,
+            // Arcane-Edit-End
         };
     }
 

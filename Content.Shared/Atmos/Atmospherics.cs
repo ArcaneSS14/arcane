@@ -361,7 +361,7 @@ namespace Content.Shared.Atmos
         ///     (The pressure threshold is so low that it doesn't make sense to do any calculations,
         ///     so it just applies this flat value).
         /// </summary>
-        public const int LowPressureDamage = 4;
+        public const int LowPressureDamage = 8; // Arcane-Edit: 4 > 8
 
         public const float WindowHeatTransferCoefficient = 0.1f;
 

@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Taken from BlueMoon-Labs https://github.com/BlueMoon-Labs/BlueMoon-Station/blob/master/modular_citadel/icons/mob/mam_tails.dmi",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "Tail",
+            "directions": 4
+        },
+        {
+            "name": "TipTail",
+            "directions": 4
+        },
+        {
+            "name": "TripleTail",
+            "directions": 4
+        },
+        {
+            "name": "TipTripleTail",
+            "directions": 4
+        },
+        {
+            "name": "NineTails",
+            "directions": 4
+        },
+        {
+            "name": "TipNineTails",
+            "directions": 4
+        }
+    ]
+}

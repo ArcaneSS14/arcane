@@ -34,7 +34,7 @@
       - !type:HealthChange
         damage:
           types:
-            Poison: -1.5 # Was 1, Slight Buff as it should heal for half the amount as Dip or Stelli(GoobStation)
+            Poison: -1 # Was 1, Slight Buff as it should heal for half the amount as Dip or Stelli(GoobStation) # Arcane-Edit: -1.5 > -1
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -93,7 +93,7 @@
       effects:
       - !type:AdjustReagent
         reagent: Histamine
-        amount: -3.0
+        amount: -4.0 # Arcane-Edit: -3.0 > -4.0
       - !type:GenericStatusEffect
         key: Jitter
         time: 3.0
@@ -147,6 +147,8 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: StrongPaincauser
       - !type:HealthChange
         damage:
           types:
@@ -205,6 +207,8 @@
           reagent: Bicaridine
           min: 15
       - !type:Drunk
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: MildPainkiller
       - !type:AdjustConsciousness
         conditions:
         - !type:ReagentCondition
@@ -236,29 +240,52 @@
       effects:
         - !type:EvenHealthChange
           conditions:
+          # Arcane-Edit-Start
           - !type:TemperatureCondition
-            # this is a little arbitrary but they gotta be pretty cold
-            max: 213.0
-          scaleByTemperature: # Shitmed Change
+            max: 273
+          scaleByTemperature:
             min: 100.0
-            max: 213.0
-            scale: 1.6
+            max: 273
+            scale: 3
           damage:
-          # todo scale with temp like SS13
-          # Goob - Cryo buff till temp scaling is implemented
-            Airloss: -9 # Goob - Cryobuff
-            Brute: -9 # Goob - Cryobuff
-            Burn: -9 # Goob - Cryobuff
-            Toxin: -6 # Goob - Cryobuff
-        - !type:GenericStatusEffect # Mono edit
+            Airloss: -3
+            Brute: -6
+            Burn: -4
+          # Arcane-Edit-End
+        # Arcane-Start
+        - !type:EvenHealthChange
           conditions:
-          - !type:MetabolizerTypeCondition
-            type:
-            - Hydrakin # i hate them
+          - !type:TemperatureCondition
+            max: 273
+          - !type:MobStateCondition
+            mobstate: Critical
+          scaleByTemperature:
+            min: 100.0
+            max: 273
+            scale: 3
+          damage:
+            Airloss: -6
+            Brute: -3
+            Burn: -2
+            Toxin: -1.5
+        - !type:ModifyBleed
+          conditions:
           - !type:TemperatureCondition
             max: 213.0
-          key: ForcedSleep
-          component: ForcedSleeping
+          amount: -1
+        # Arcane-End
+        - !type:ModifyBleed
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          amount: -1
+        - !type:ModifyStatusEffect # goob
+          conditions:
+          - !type:MetabolizerTypeCondition # Fuck you
+            type: [Hydrakin]
+          - !type:TemperatureCondition
+            max: 213.0
+          effectProto: StatusEffectForcedSleeping
           type: Add
 
 - type: reagent
@@ -286,14 +313,13 @@
                 Cellular: -2
             groups: # Frontier
                 Brute: 1 # Frontier
-        - !type:GenericStatusEffect # Mono edit
+        - !type:ModifyStatusEffect # goob
           conditions:
           - !type:MetabolizerTypeCondition # Fuck you
             type: [Hydrakin]
           - !type:TemperatureCondition
             max: 213.0
-          key: ForcedSleep
-          component: ForcedSleeping
+          effectProto: StatusEffectForcedSleeping
           type: Add
 
 - type: reagent
@@ -319,9 +345,9 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: -2
-            Shock: -2
-            Cold: -2 # Was 1.5, Buffed due to limb damage changes(GoobStation)
+            Heat: -1.5 # Arcane-Edit: -2 > -1.5
+            Shock: -1.5 # Arcane-Edit: -2 > -1.5
+            Cold: -1.5 # Was 1.5, Buffed due to limb damage changes(GoobStation) # Arcane-Edit: -2 > -1.5
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition # Goobstation - Yowie
@@ -474,7 +500,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: Histamine
-          min: 45
+          min: 30 # Arcane-Edit: 45 > 30
         reagent: Histamine
         amount: -5
       - !type:HealthChange
@@ -536,6 +562,10 @@
       - !type:MovementSpeedModifier # Goob edit
         walkSpeedModifier: 1.1
         sprintSpeedModifier: 1.1
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: EpinephrineEffect
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: MildPaincauser
       - !type:AdjustConsciousness
         conditions:
         - !type:ReagentCondition
@@ -884,6 +914,12 @@
   metabolisms:
     Medicine:
       effects:
+        - !type:ChemRemoveMoodlet # Orion
+          moodPrototype: RomerolEffect
+          conditions:
+          - !type:ReagentCondition
+            reagent: Ambuzol
+            min: 10
         - !type:CureZombieInfection
           cureZombies: true # Goob
           conditions:
@@ -903,6 +939,12 @@
   metabolisms:
     Medicine:
       effects:
+        - !type:ChemRemoveMoodlet # Orion
+          moodPrototype: RomerolEffect
+          conditions:
+          - !type:ReagentCondition
+            reagent: AmbuzolPlus
+            min: 5
         - !type:CureZombieInfection
           innoculate: true
           cureZombies: true # Goob
@@ -948,7 +990,7 @@
             type: [ Feroxi ]
           factor: 2
         - !type:ModifyBloodLevel
-          amount: 12 # Goobstation - buffed by two times due to shitmed changes
+          amount: 6 # Goobstation - buffed by two times due to shitmed changes # Arcane-Edit: 12 > 6
 
 - type: reagent
   id: Siderlac
@@ -966,7 +1008,7 @@
       - !type:HealthChange
         damage:
           types:
-            Caustic: -5
+            Caustic: -6 # Arcane-Edit: -5 > -6
 
 - type: reagent
   id: Stellibinin
@@ -1013,6 +1055,7 @@
         - !type:MetabolizerTypeCondition # Goobstation - Yowie
           type: [ Yowie ]
           inverted: true
+        probability: 0.3 # Arcane
         damage:
           types:
             Poison: 2
@@ -1023,10 +1066,25 @@
       - !type:ModifyKnockdown
         time: 3.0
         type: Remove
+      # Arcane-Start
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Haloperidol
+          max: 0.01
+        effectProto: StatusEffectDrowsiness
+        time: 3
+        type: Remove
+      # Arcane-End
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
         time: 15.0
         type: Remove
+      - !type:ChemPurgeMoodlets # Orion
+        conditions:
+        - !type:ReagentCondition
+          reagent: Synaptizine
+          min: 10
 
 - type: reagent
   id: TranexamicAcid
@@ -1066,7 +1124,7 @@
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
-          max: 100 # Goobstation
+          max: 75 # Goobstation # Arcane-Edit: 100 > 75
         damage:
           groups:
             Brute: -1
@@ -1286,7 +1344,7 @@
       - !type:HealthChange
         damage:
           types:
-            Caustic: -3 # Goob
+            Caustic: -4 #Goob # Arcane-Edit: -3 > -4
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -1369,6 +1427,8 @@
         damage:
           types:
             Cold: 3 # Goobstation - 30 per u?
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: LacerinolEffect
 
 - type: reagent
   id: Puncturase
@@ -1398,6 +1458,8 @@
         damage:
           types:
             Blunt: 5 # Goob
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: PuncturaseEffect
 
 - type: reagent
   id: Bruizine
@@ -1428,6 +1490,8 @@
         damage:
           types:
             Poison: 4 # Goob
+      - !type:ChemAddMoodlet # Orion
+        moodPrototype: BruizineEffect
 
 - type: reagent
   id: Holywater
@@ -1493,7 +1557,7 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: -1
+            Heat: -1.5 # Arcane-Edit: -1 > -1.5
       # od causes massive bleeding
       - !type:HealthChange
         conditions:
@@ -1543,7 +1607,7 @@
       - !type:HealthChange
         damage:
           types:
-            Shock: -4 # Goob
+            Shock: -6 # Goob # Arcane-Edit: -4 > -6
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -2
@@ -1670,17 +1734,16 @@
           damage: # Goobstation - Cryo rebalance
             groups:
               Airloss: -10.0
-              Brute: -5.0
-              Burn: -5.0
-              Toxin: -5.0
-        - !type:GenericStatusEffect # Mono edit
+              Brute: -20.0 # Arcane-Edit: -5.0 > -20.0
+              Burn: -15.0 # Arcane-Edit: -5.0 > -15.0
+              Toxin: -10.0 # Arcane-Edit: -5.0 > -10.0
+        - !type:ModifyStatusEffect # goob
           conditions:
           - !type:MetabolizerTypeCondition # Fuck you
             type: [Hydrakin]
           - !type:TemperatureCondition
-            max: 217.15
-          key: ForcedSleep
-          component: ForcedSleeping
+            max: 213.0
+          effectProto: StatusEffectForcedSleeping
           type: Add
 
 
@@ -1696,7 +1759,8 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:EvenHealthChange
+      # - !type:EvenHealthChange # Goob, return Aloxadone to its pre-upstream strength
+      - !type:HealthChange
         conditions:
         - !type:TemperatureCondition
           max: 213.0
@@ -1705,16 +1769,19 @@
           max: 213.0
           scale: 1.6
         damage: # Goobstation - Cryo rebalance
-          Burn: -10.0
-      - !type:GenericStatusEffect # Mono edit
+          # Burn: -10.0
+          types: # Goob start; return Aloxadone to its pre-upstream strength
+            Heat: -10.0
+            Cold: -10.0
+            Shock: -10.0
+            Caustic: -10.0 # Goob end
+      - !type:ModifyStatusEffect # goob
         conditions:
-        - !type:MetabolizerTypeCondition
-          type:
-          - Hydrakin # i hate them
+        - !type:MetabolizerTypeCondition # Fuck you
+          type: [Hydrakin]
         - !type:TemperatureCondition
           max: 213.0
-        key: ForcedSleep
-        component: ForcedSleeping
+        effectProto: StatusEffectForcedSleeping
         type: Add
 
 - type: reagent

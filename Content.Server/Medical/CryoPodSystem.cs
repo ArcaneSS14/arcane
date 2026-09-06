@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Administration.Logs;
+using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Unary.EntitySystems;
@@ -8,11 +9,14 @@ using Content.Server.Medical.Components;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
+using Content.Server.Temperature.Components;
+using Content.Server.Temperature.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Actions; // Shitmed Change
 using Content.Shared.UserInterface;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Inventory;
 using Content.Shared.Medical.Cryogenics;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Temperature.Components;
@@ -29,6 +33,10 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly GasCanisterSystem _gasCanisterSystem = default!;
+    // Arcane-Start
+    [Dependency] private readonly TemperatureSystem _temperature = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    // Arcane-End
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
@@ -88,6 +96,43 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
         {
             _gasCanisterSystem.MixContainerWithPipeNet(cryoPodAir.Air, net.Air);
         }
+        // Arcane-Start
+        if (HasComp<ActiveCryoPodComponent>(entity)
+            && entity.Comp.BodyContainer.ContainedEntity is { } patient
+            && TryComp<TemperatureComponent>(patient, out var patientTemperature))
+        {
+            TryCryoCool(patient, patientTemperature, cryoPodAir.Air.Temperature, entity.Comp);
+        }
+    }
+
+    private void TryCryoCool(EntityUid patient, TemperatureComponent patientTemperature, float targetTemperature, CryoPodComponent cryoPod)
+    {
+        var currentTemperature = patientTemperature.CurrentTemperature;
+        if (currentTemperature <= targetTemperature)
+            return;
+
+        var ignoreResistance = true;
+
+        if (_inventory.TryGetSlotEntity(patient, "outerClothing", out var suit))
+        {
+            var hasTemp = HasComp<TemperatureProtectionComponent>(suit);
+            var hasPress = HasComp<PressureProtectionComponent>(suit);
+
+            if (hasTemp && hasPress)
+                ignoreResistance = false;
+        }
+
+        var temperatureStep = MathF.Min(
+            currentTemperature - targetTemperature,
+            MathF.Max(0.1f, (currentTemperature - targetTemperature) * 0.1f * cryoPod.CoolingEfficiency));
+
+        var heatCapacity = _temperature.GetHeatCapacity(patient, patientTemperature);
+        _temperature.ChangeHeat(
+            patient,
+            -temperatureStep * heatCapacity,
+            ignoreHeatResistance: ignoreResistance,
+            temperature: patientTemperature);
+        // Arcane-End
     }
 
     private void OnGasAnalyzed(Entity<CryoPodComponent> entity, ref GasAnalyzerScanEvent args)

@@ -23,6 +23,7 @@
   - ChemistryEmptyVialSmall
   # Arcane-End
   - LargeBeaker
+  - XLargeBeaker # Arcane
   - Beaker
   - Bloodpack
   - Bonesetter
@@ -49,6 +50,7 @@
   - BiomassReclaimerMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
+  - CrewMonitoringComputerCircuitboard
   - Brutepack
   - Ointment
   - Gauze
@@ -110,6 +112,7 @@
   - SprayBottleRed
   - SprayBottleBlue
   - SprayBottleOrange
+  - MetamaterialBeaker # Arcane
   - BoneGel
   - SodaDispenserMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
