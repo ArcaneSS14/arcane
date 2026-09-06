@@ -12,11 +12,10 @@ public sealed class ArcaneLobbySheetlet : Sheetlet<ArcaneStylesheet>
     {
         var canvas = Panel(sheet.SecondaryPalette.Background);
         var lobbySurface = Panel(sheet.SecondaryPalette.BackgroundLight.WithAlpha(0.76f),
-            sheet.PrimaryPalette.Base.WithAlpha(0.5f));
-        var lobbyInset = Panel(sheet.SecondaryPalette.Element.WithAlpha(0.86f),
-            sheet.PrimaryPalette.Base.WithAlpha(0.38f));
+            sheet.PrimaryPalette.Base.WithAlpha(0.62f));
+        var lobbyInset = Panel(sheet.SecondaryPalette.Element.WithAlpha(0.86f));
         var elevated = Panel(sheet.SecondaryPalette.HoveredElement,
-            sheet.PrimaryPalette.Base.WithAlpha(0.5f));
+            sheet.PrimaryPalette.Base.WithAlpha(0.62f));
 
         return
         [

@@ -58,8 +58,13 @@
         - CorporateCodespeak
         understands:
         - CorporateCodespeak
-  contracts: # Arcane
+  # Arcane-Start
+  contracts:
   - DocumentContractEmploymentCommand
+  alternateTitles:
+  - CaptainStationDirector
+  - CaptainCommander
+  # Arcane-End
 
 - type: startingGear
   id: CaptainGear
@@ -84,3 +89,13 @@
     eyes: ClothingEyesGlassesCommand
     mask: ClothingMaskGasCaptain
     neck: ClothingNeckCloakCap
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: CaptainStationDirector
+  name: job-name-alt-captain-1
+
+- type: jobAlternateTitle
+  id: CaptainCommander
+  name: job-name-alt-captain-2
+# Arcane-End

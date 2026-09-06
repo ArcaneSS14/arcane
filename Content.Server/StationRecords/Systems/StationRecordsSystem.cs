@@ -146,17 +146,51 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
 
         // when adding a record that already exists use the old one
         // this happens when respawning as the same character
-        if (GetRecordByName(station, name, records) is {} id)
+        if (GetRecordByName(station, name, records) is { } id)
         {
             SetIdKey(idUid, new StationRecordKey(id, station));
             return;
         }
 
+        // Arcane-Start
+        string? jobTitle = null;
+
+        Entity<IdCardComponent>? card = null;
+        if (idUid != null && _idCard.TryFindIdCard(idUid.Value, out var cardUid) && TryComp(cardUid, out IdCardComponent? comp))
+        {
+            card = (cardUid, comp);
+        }
+
+        if (card.HasValue)
+        {
+            var cardComp = card.Value.Comp;
+            if (!string.IsNullOrEmpty(cardComp.LocalizedJobTitle))
+                jobTitle = cardComp.LocalizedJobTitle;
+        }
+        if (string.IsNullOrEmpty(jobTitle) &&
+            profile.JobAlternateTitles.TryGetValue(new ProtoId<JobPrototype>(jobId), out var altTitleId) &&
+            _prototypeManager.TryIndex(altTitleId, out var altTitle))
+        {
+            jobTitle = altTitle.LocalizedName(gender);
+        }
+        else if (string.IsNullOrEmpty(jobTitle) && profile.AlternateJobTitle is { } altTitleLegacy &&
+            jobPrototype.AlternateTitles.Contains(altTitleLegacy) &&
+            _prototypeManager.TryIndex(altTitleLegacy, out var legacyTitle))
+        {
+            jobTitle = legacyTitle.LocalizedName(gender);
+        }
+
+        if (string.IsNullOrEmpty(jobTitle))
+        {
+            jobTitle = jobPrototype.LocalizedName;
+        }
+        // Arcane-End
+
         var record = new GeneralStationRecord
         {
             Name = name,
             Age = age,
-            JobTitle = jobPrototype.LocalizedName,
+            JobTitle = jobTitle, // Arcane-Edit: jobPrototype.LocalizedName > jobTitle
             JobIcon = jobPrototype.Icon,
             JobPrototype = jobId,
             Species = species,
