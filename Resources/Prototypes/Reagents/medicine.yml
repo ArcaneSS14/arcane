@@ -274,11 +274,6 @@
             max: 213.0
           amount: -1
         # Arcane-End
-        - !type:GenericStatusEffect # Mono edit
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
-          amount: 8
         - !type:ModifyBleed
           conditions:
           - !type:TemperatureCondition

@@ -1,6 +1,7 @@
 - type: technology
   id: AdvancedEmitters
   name: research-technology-advanced-emitters
+  description: research-technology-advanced-emitters-description # Arcane
   icon:
     sprite: _Omu/Objects/Tools/diodedisc.rsi
     state: icon

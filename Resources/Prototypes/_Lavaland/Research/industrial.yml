@@ -1,6 +1,7 @@
 - type: technology
   id: SuperSalvageEquipment
   name: research-technology-space-scanning
+  description: research-technology-space-scanning-description # Arcane
   icon:
     sprite: _Lavaland/Objects/Tools/handdrill_super.rsi
     state: handdrill
