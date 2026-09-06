@@ -30,8 +30,8 @@
       damageModifierSet: IPC
     - type: InteractionOutline
     - type: MovementSpeedModifier
-      baseWalkSpeed: 4
-      baseSprintSpeed: 3
+      baseWalkSpeed: 2.5 # Arcane-Edit: 3 > 2.5
+      baseSprintSpeed: 4
     - type: MindControllable # Goobstation - shadowling
     - type: ZombieImmune
     - type: DoAfter
