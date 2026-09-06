@@ -36,7 +36,7 @@ public sealed partial class AlertLevelGateComponent : Component
     /// How long a first authorization is held while waiting for a second command member.
     /// </summary>
     [DataField]
-    public TimeSpan PendingTimeout = TimeSpan.FromSeconds(6);
+    public TimeSpan PendingTimeout = TimeSpan.FromSeconds(10); // Arcane-Edit: 6 > 10
 
     /// <summary>
     /// Any one of these access levels is required to begin the authorization (the first swipe).
@@ -62,7 +62,7 @@ public sealed partial class AlertLevelGateComponent : Component
     public ProtoId<RadioChannelPrototype> CommandChannel = "Command";
 
     /// <summary>
-    /// The sound played to anyone with command comms when an authorization is made.
+    /// The sound played to everyone on the station when the gate is unlocked. // Arcane-Edit
     /// </summary>
     [DataField]
     public SoundSpecifier UnlockSound = new SoundPathSpecifier("/Audio/_Goobstation/Ambience/Alert/amber_unlock_alert.ogg")

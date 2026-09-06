@@ -51,6 +51,7 @@ namespace Content.Server.Communications
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
             SubscribeLocalEvent<RoundEndSystemChangedEvent>(_ => OnGenericBroadcastEvent());
             SubscribeLocalEvent<AlertLevelDelayFinishedEvent>(_ => OnGenericBroadcastEvent());
+            SubscribeLocalEvent<AlertLevelGateUnlockedEvent>(OnAlertLevelGateUnlocked); // Arcane
 
             // Messages from the BUI
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSelectAlertLevelMessage>(OnSelectAlertLevelMessage);
@@ -122,6 +123,18 @@ namespace Content.Server.Communications
                     UpdateCommsConsoleInterface(uid, comp);
             }
         }
+
+        // Arcane-Start
+        private void OnAlertLevelGateUnlocked(ref AlertLevelGateUnlockedEvent args)
+        {
+            var query = EntityQueryEnumerator<CommunicationsConsoleComponent>();
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                if (_stationSystem.GetOwningStation(uid) == args.Station)
+                    UpdateCommsConsoleInterface(uid, comp);
+            }
+        }
+        // Arcane-End
 
         /// <summary>
         /// Updates the UI for all comms consoles.
@@ -380,10 +393,21 @@ namespace Content.Server.Communications
                 // Arcane-Edit-End
                 {
                     // Arcane-Edit-Start
-                    gate.Unlocked = true;
-                    _popupSystem.PopupEntity(Loc.GetString("alert-level-gate-unlocked"), uid, args.UserUid, PopupType.Medium);
+                    var unlock = new AlertLevelGateUnlockRequestEvent(
+                        stationUid.Value,
+                        true);
+                    RaiseLocalEvent(ref unlock);
+
+                    if (unlock.Unlocked)
+                    {
+                        _popupSystem.PopupEntity(
+                            Loc.GetString("alert-level-gate-unlocked"),
+                            uid,
+                            args.UserUid,
+                            PopupType.Medium);
+                        args.Handled = true;
+                    }
                     // Arcane-Edit-End
-                    args.Handled = true;
                 }
             }
 
