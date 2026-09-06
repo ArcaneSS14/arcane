@@ -1336,16 +1336,18 @@
   solids:
     FoodMeatFish: 2
 
-- type: microwaveMealRecipe
-  id: RecipeMisoColaSoup
-  name: salty sweet misocola soup recipe
-  result: DisgustingSweptSoup
-  time: 15
-  group: Savory
-  reagents:
-    Cola: 5
-  solids:
-    FoodSoupMiso: 1
+# Arcane-Edit-Start: Removed
+#- type: microwaveMealRecipe
+#  id: RecipeMisoColaSoup
+#  name: salty sweet misocola soup recipe
+#  result: DisgustingSweptSoup
+#  time: 15
+# group: Savory
+#  reagents:
+#    Cola: 5
+#  solids:
+#    FoodSoupMiso: 1
+# Arcane-Edit-End
 
 - type: microwaveMealRecipe
   id: RecipeLoadedBakedPotato
