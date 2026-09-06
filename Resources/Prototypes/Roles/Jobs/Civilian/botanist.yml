@@ -30,7 +30,6 @@
   - DocumentContractEmploymentService
   alternateTitles:
   - BotanistHydroponicsSpecialist
-  - BotanistHerbologist
   # Arcane-end
 
 - type: startingGear
@@ -59,8 +58,4 @@
 - type: jobAlternateTitle
   id: BotanistHydroponicsSpecialist
   name: job-name-alt-botanist-1
-
-- type: jobAlternateTitle
-  id: BotanistHerbologist
-  name: job-name-alt-botanist-2
 # Arcane-End

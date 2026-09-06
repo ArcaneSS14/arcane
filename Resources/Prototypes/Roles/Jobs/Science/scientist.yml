@@ -28,6 +28,7 @@
   - ScientistXenoarchaeologist
   - ScientistAnomalyResearcher
   - ScientistHardwareTechnician
+  - ScientistResearchScientist
   # Arcane-end
 
 - type: startingGear
@@ -61,4 +62,8 @@
 - type: jobAlternateTitle
   id: ScientistHardwareTechnician
   name: job-name-alt-scientist-3
+
+- type: jobAlternateTitle
+  id: ScientistResearchScientist
+  name: job-name-alt-scientist-4
 # Arcane-End

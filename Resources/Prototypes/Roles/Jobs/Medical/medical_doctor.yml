@@ -42,6 +42,8 @@
   - MedicalDoctorPhysician
   - MedicalDoctorNurse
   - MedicalDoctorSurgeon
+  - MedicalDoctorTherapist
+  - MedicalDoctorPathologist
   # Arcane-end
 
 - type: startingGear
@@ -78,4 +80,12 @@
 - type: jobAlternateTitle
   id: MedicalDoctorPhysician
   name: job-name-alt-medical-3
+
+- type: jobAlternateTitle
+  id: MedicalDoctorTherapist
+  name: job-name-alt-medical-4
+
+- type: jobAlternateTitle
+  id: MedicalDoctorPathologist
+  name: job-name-alt-medical-5
 # Arcane-End

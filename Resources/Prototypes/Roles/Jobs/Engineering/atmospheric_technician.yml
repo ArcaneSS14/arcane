@@ -35,10 +35,8 @@
   contracts:
   - DocumentContractEmploymentEngineering
   alternateTitles:
-  - AtmosphericTechnicianFirefighter
-  - AtmosphericTechnicianEmergencyFireTech
-  - AtmosphericTechnicianGasSynthesisTech
-  - AtmosphericTechnicianLifeSupportTech
+  - AtmosphericTechnicianGasTechnician
+  - AtmosphericTechnicianAtmosphereSpecialist
   # Arcane-end
 
 - type: startingGear
@@ -64,18 +62,10 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: AtmosphericTechnicianFirefighter
+  id: AtmosphericTechnicianGasTechnician
   name: job-name-alt-atmos-1
 
 - type: jobAlternateTitle
-  id: AtmosphericTechnicianEmergencyFireTech
+  id: AtmosphericTechnicianAtmosphereSpecialist
   name: job-name-alt-atmos-2
-
-- type: jobAlternateTitle
-  id: AtmosphericTechnicianGasSynthesisTech
-  name: job-name-alt-atmos-3
-
-- type: jobAlternateTitle
-  id: AtmosphericTechnicianLifeSupportTech
-  name: job-name-alt-atmos-4
 # Arcane-End

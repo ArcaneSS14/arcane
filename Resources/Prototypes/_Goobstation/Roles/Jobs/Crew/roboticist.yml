@@ -24,8 +24,8 @@
   contracts:
   - DocumentContractEmploymentRnd
   alternateTitles:
-  - RoboticistMechatronicist
-  - RoboticistCyborgTechnician
+  - RoboticistMechanicalEngineeringSpecialist
+  - RoboticistMechConstructionSpecialist
   # Arcane-end
 
 - type: startingGear
@@ -51,10 +51,10 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: RoboticistMechatronicist
+  id: RoboticistMechanicalEngineeringSpecialist
   name: job-name-alt-roboticist-1
 
 - type: jobAlternateTitle
-  id: RoboticistCyborgTechnician
+  id: RoboticistMechConstructionSpecialist
   name: job-name-alt-roboticist-2
 # Arcane-End

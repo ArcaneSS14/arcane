@@ -48,7 +48,8 @@
   contracts:
   - DocumentContractEmploymentSecurity
   alternateTitles:
-  - BrigmedicFieldMedic
+  - BrigmedicSecurityParamedic
+  - BrigmedicSecurityDutyPhysician
   - BrigmedicPrisonDoctor
   # Arcane-end
 
@@ -69,10 +70,14 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: BrigmedicFieldMedic
+  id: BrigmedicSecurityParamedic
   name: job-name-alt-brigmedic-1
 
 - type: jobAlternateTitle
-  id: BrigmedicPrisonDoctor
+  id: BrigmedicSecurityDutyPhysician
   name: job-name-alt-brigmedic-2
+
+- type: jobAlternateTitle
+  id: BrigmedicPrisonDoctor
+  name: job-name-alt-brigmedic-3
 # Arcane-End

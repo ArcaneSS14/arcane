@@ -61,9 +61,7 @@
   - DocumentContractEmploymentCommand
   alternateTitles:
   - CMOMedicalDirector
-  - CMOHeadPhysician
-  - CMOSeniorMedicalOfficer
-  - CMOWardSupervisor
+  - CMOMedicalOfficeChief
   # Arcane-End
 
 - type: startingGear
@@ -96,14 +94,6 @@
   name: job-name-alt-cmo-1
 
 - type: jobAlternateTitle
-  id: CMOHeadPhysician
+  id: CMOMedicalOfficeChief
   name: job-name-alt-cmo-2
-
-- type: jobAlternateTitle
-  id: CMOSeniorMedicalOfficer
-  name: job-name-alt-cmo-3
-
-- type: jobAlternateTitle
-  id: CMOWardSupervisor
-  name: job-name-alt-cmo-4
 # Arcane-End

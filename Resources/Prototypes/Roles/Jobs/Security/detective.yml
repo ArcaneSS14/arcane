@@ -41,7 +41,8 @@
   contracts:
   - DocumentContractEmploymentSecurity
   alternateTitles:
-  - DetectiveForensicInvestigator
+  - DetectiveSecurityInvestigator
+  - DetectiveSecurityInspector
   # Arcane-end
 
 - type: startingGear
@@ -72,6 +73,10 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: DetectiveForensicInvestigator
+  id: DetectiveSecurityInvestigator
   name: job-name-alt-detective-1
+
+- type: jobAlternateTitle
+  id: DetectiveSecurityInspector
+  name: job-name-alt-detective-2
 # Arcane-End
