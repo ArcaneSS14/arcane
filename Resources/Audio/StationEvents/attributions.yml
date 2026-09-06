@@ -5,6 +5,16 @@
   copyright: "Created by Bolgarich"
   source: "https://www.youtube.com/watch?v=SzEp2nv6oZ4"
 
+- files: ["Running-Out-V2.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Created by Bolgarich"
+  source: "https://www.youtube.com/watch?v=DyLoa7ybbdk"
+
+- files: ["Level !.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Created by Dapper Husky"
+  source: "https://www.youtube.com/watch?v=Lyj-MZSAA9o"
+
 - files: ["sound_station_14.ogg"]
   license: "CC-BY-3.0"
   copyright: "Created by Donchan"
