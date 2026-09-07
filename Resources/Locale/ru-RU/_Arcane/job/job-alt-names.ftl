@@ -58,6 +58,7 @@ job-name-alt-assistant-2 = посетитель
 job-name-alt-assistant-3 = экипаж вне смены
 job-name-alt-assistant-4 = турист
 job-name-alt-assistant-5 = путешественник
+job-name-alt-assistant-6 = гражданский
 
 job-name-alt-bartender-1 = бариста
 
@@ -76,6 +77,9 @@ job-name-alt-clown-3 = актёр
 
 job-name-alt-janitor-1 = сантехник
 job-name-alt-janitor-2 = специалист по уборке
+job-name-alt-janitor-3 = горничная
+job-name-alt-janitor-3-m = горничный
+job-name-alt-janitor-3-f = горничная
 
 job-name-alt-lawyer-1 = юрист
 job-name-alt-lawyer-2 = юридический представитель
@@ -87,6 +91,7 @@ job-name-alt-librarian-4 = куратор
 
 job-name-alt-musician-1 = прибывшая знаменитость
 job-name-alt-musician-2 = исполнитель
+job-name-alt-musician-3 = диджей
 
 job-name-alt-serviceworker-1 = официант
 job-name-alt-serviceworker-2 = младший повар
@@ -109,6 +114,7 @@ job-name-alt-hop-2 = менеджер по персоналу
 
 job-name-alt-cmo-1 = медицинский директор
 job-name-alt-cmo-2 = шеф медицинского офиса
+job-name-alt-cmo-3 = старший медицинский офицер
 
 job-name-alt-hos-1 = командир службы безопасности
 job-name-alt-hos-2 = директор по безопасности
@@ -119,11 +125,9 @@ job-name-alt-rd-1 = научный директор
 job-name-alt-adjutant-1 = секретарь командования
 
 job-name-alt-commandmaid-1 = дворецкий командования
-job-name-alt-commandmaid-1-m = дворецкий командования
-job-name-alt-commandmaid-1-f = экономка командования
 
 job-name-alt-blueshield-1 = телохранитель командования
-job-name-alt-blueshield-2 = авангард
+job-name-alt-blueshield-2 = авангард командования
 
 job-name-alt-ntrep-1 = корпоративный связной
 job-name-alt-ntrep-2 = корпоративный аудитор
@@ -148,6 +152,7 @@ job-name-alt-roboticist-1 = специалист машиностроения
 job-name-alt-roboticist-2 = специалист мехостроения
 
 job-name-alt-virologist-1 = эпидемиолог
+job-name-alt-virologist-2 = специалист по заболеваниям
 
 job-name-alt-medicalintern-1 = стажёр медицинского отдела
 job-name-alt-medicalintern-2 = ординатор

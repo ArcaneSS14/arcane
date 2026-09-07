@@ -26,8 +26,9 @@
   contracts:
   - DocumentContractEmploymentService
   alternateTitles:
-  - JanitorMaintenanceWorker
+  - JanitorPlumber
   - JanitorCustodialTechnician
+  - JanitorMaid
   # Arcane-end
 
 - type: startingGear
@@ -63,10 +64,16 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: JanitorMaintenanceWorker
+  id: JanitorPlumber
   name: job-name-alt-janitor-1
 
 - type: jobAlternateTitle
   id: JanitorCustodialTechnician
   name: job-name-alt-janitor-2
+
+- type: jobAlternateTitle
+  id: JanitorMaid
+  name: job-name-alt-janitor-3
+  femaleName: job-name-alt-janitor-3-f
+  maleName: job-name-alt-janitor-3-m
 # Arcane-End

@@ -3,6 +3,8 @@
 
 job-name-alt-medical-1 = Surgeon
 job-name-alt-medical-2 = Nurse
+job-name-alt-medical-2-m = Nurse
+job-name-alt-medical-2-f = Nurse
 job-name-alt-medical-3 = Physician
 job-name-alt-medical-4 = Therapist
 job-name-alt-medical-5 = Pathologist
@@ -56,6 +58,7 @@ job-name-alt-assistant-2 = Visitor
 job-name-alt-assistant-3 = Off-duty Crew
 job-name-alt-assistant-4 = Tourist
 job-name-alt-assistant-5 = Traveler
+job-name-alt-assistant-6 = Civilian
 
 job-name-alt-bartender-1 = Barista
 
@@ -72,8 +75,11 @@ job-name-alt-clown-1 = Jester
 job-name-alt-clown-2 = Bouffon
 job-name-alt-clown-3 = Actor
 
-job-name-alt-janitor-1 = Maintenance Worker
+job-name-alt-janitor-1 = Plumber
 job-name-alt-janitor-2 = Custodial Technician
+job-name-alt-janitor-3 = Maid
+job-name-alt-janitor-3-m = Maid
+job-name-alt-janitor-3-f = Maid
 
 job-name-alt-lawyer-1 = Attorney
 job-name-alt-lawyer-2 = Legal Representative
@@ -85,6 +91,7 @@ job-name-alt-librarian-4 = Curator
 
 job-name-alt-musician-1 = Visiting Celebrity
 job-name-alt-musician-2 = Performer
+job-name-alt-musician-3 = DJ
 
 job-name-alt-serviceworker-1 = Waiter
 job-name-alt-serviceworker-2 = Junior Cook
@@ -107,6 +114,7 @@ job-name-alt-hop-2 = Personnel Manager
 
 job-name-alt-cmo-1 = Medical Director
 job-name-alt-cmo-2 = Medical Office Chief
+job-name-alt-cmo-3 = Senior Medical Officer
 
 job-name-alt-hos-1 = Security Commander
 job-name-alt-hos-2 = Security Director
@@ -117,11 +125,9 @@ job-name-alt-rd-1 = Scientific Director
 job-name-alt-adjutant-1 = Command Secretary
 
 job-name-alt-commandmaid-1 = Command Butler
-job-name-alt-commandmaid-1-m = Command Butler
-job-name-alt-commandmaid-1-f = Command Housekeeper
 
 job-name-alt-blueshield-1 = Command Bodyguard
-job-name-alt-blueshield-2 = Vanguard
+job-name-alt-blueshield-2 = Command Vanguard
 
 job-name-alt-ntrep-1 = Corporate Liaison
 job-name-alt-ntrep-2 = Corporate Auditor
@@ -146,6 +152,7 @@ job-name-alt-roboticist-1 = Mechanical Engineering Specialist
 job-name-alt-roboticist-2 = Mech Construction Specialist
 
 job-name-alt-virologist-1 = Epidemiologist
+job-name-alt-virologist-2 = Disease Specialist
 
 job-name-alt-medicalintern-1 = Medical Department Trainee
 job-name-alt-medicalintern-2 = Resident

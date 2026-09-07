@@ -29,6 +29,7 @@
   - AssistantOffDuty
   - AssistantTourist
   - AssistantTraveler
+  - AssistantCivilian
   # Arcane-End
 
 - type: startingGear
@@ -71,4 +72,8 @@
 - type: jobAlternateTitle
   id: AssistantTraveler
   name: job-name-alt-assistant-5
+
+- type: jobAlternateTitle
+  id: AssistantCivilian
+  name: job-name-alt-assistant-6
 # Arcane-End

@@ -26,6 +26,7 @@
   alternateTitles:
   - MusicianVisitingCelebrity
   - MusicianPerformer
+  - MusicianRadioDJ
   # Arcane-end
 
 - type: startingGear
@@ -57,4 +58,8 @@
 - type: jobAlternateTitle
   id: MusicianPerformer
   name: job-name-alt-musician-2
+
+- type: jobAlternateTitle
+  id: MusicianRadioDJ
+  name: job-name-alt-musician-3
 # Arcane-End

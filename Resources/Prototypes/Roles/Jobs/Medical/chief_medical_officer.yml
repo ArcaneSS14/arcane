@@ -62,6 +62,7 @@
   alternateTitles:
   - CMOMedicalDirector
   - CMOMedicalOfficeChief
+  - CMOSeniorMedicalOfficer
   # Arcane-End
 
 - type: startingGear
@@ -96,4 +97,8 @@
 - type: jobAlternateTitle
   id: CMOMedicalOfficeChief
   name: job-name-alt-cmo-2
+
+- type: jobAlternateTitle
+  id: CMOSeniorMedicalOfficer
+  name: job-name-alt-cmo-3
 # Arcane-End
