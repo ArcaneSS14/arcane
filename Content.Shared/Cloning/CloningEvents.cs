@@ -20,3 +20,9 @@ public record struct CloningEvent(CloningSettingsPrototype Settings, EntityUid C
 /// </summary>
 [ByRefEvent]
 public record struct CloningItemEvent(EntityUid CloneUid);
+
+/// <summary>
+///    Raised on the original item after the cloned item's storage contents have been fully copied.
+/// </summary>
+[ByRefEvent]
+public record struct CloningItemStoragePopulatedEvent(EntityUid CloneUid);

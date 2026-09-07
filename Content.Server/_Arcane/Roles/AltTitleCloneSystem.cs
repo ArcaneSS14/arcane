@@ -17,10 +17,10 @@ public sealed class AltTitleCloneSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PdaComponent, CloningItemEvent>(OnClonePda);
+        SubscribeLocalEvent<PdaComponent, CloningItemStoragePopulatedEvent>(OnClonePda);
     }
 
-    private void OnClonePda(Entity<PdaComponent> original, ref CloningItemEvent args)
+    private void OnClonePda(Entity<PdaComponent> original, ref CloningItemStoragePopulatedEvent args)
     {
         if (original.Comp.ContainedId is not { } originalId
             || !TryComp<IdCardComponent>(originalId, out var card)
