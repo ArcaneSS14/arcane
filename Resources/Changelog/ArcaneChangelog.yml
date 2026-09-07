@@ -1058,3 +1058,10 @@ Entries:
   id: 87
   time: '2026-09-07T07:17:56.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/312
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлена роль призрака "Невидимка"
+  id: 88
+  time: '2026-09-07T10:02:41.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/310
