@@ -1037,3 +1037,24 @@ Entries:
   id: 85
   time: '2026-09-06T15:44:28.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/277
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Изменены названия множества альтернативных должностей.
+  id: 86
+  time: '2026-09-07T07:15:50.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/311
+- author: ChangelingRUES
+  changes:
+    - type: Add
+      message: >-
+        На всех картах пула были расставлены вендоматы нижнего белья и love-маты
+        (ищите фиолетовые шторки в дормах). Также добавлены и расставлены роли
+        робототехников. На карте Аврит добавлены роли шахтёров
+    - type: Tweak
+      message: >-
+        Шаттл-лавы на Аврите больше не в космосе и не требует скафа. Расположен
+        внутри утильской.
+  id: 87
+  time: '2026-09-07T07:17:56.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/312
