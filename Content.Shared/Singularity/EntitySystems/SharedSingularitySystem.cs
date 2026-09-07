@@ -8,7 +8,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
-using Robust.Shared.Timing; // Arcane
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Singularity.EntitySystems;
 
@@ -163,7 +163,7 @@ public abstract class SharedSingularitySystem : EntitySystem
         if (singularity.Level <= 0)
             QueueDel(uid);
     }
-    // Arcane-Edit-End
+        // Arcane-Edit-End
 
     /// <summary>
     /// Alerts the entity hosting the singularity that the level of the singularity has changed without the level actually changing.
@@ -230,7 +230,7 @@ public abstract class SharedSingularitySystem : EntitySystem
     /// <param name="singulo">A singularity.</param>
     /// <returns>The event horizon radius the singularity should have given its state.</returns>
     public float EventHorizonRadius(SingularityComponent singulo)
-    // Arcane-Start
+    // Arcane-Edit-Start
     {
         return singulo.Level switch
         {
@@ -239,7 +239,7 @@ public abstract class SharedSingularitySystem : EntitySystem
             _ => singulo.Level - 0.5f
         };
     }
-    // Arcane-End
+    // Arcane-Edit-End
 
     /// <summary>
     /// Derives whether a singularity should be able to breach containment from its state.

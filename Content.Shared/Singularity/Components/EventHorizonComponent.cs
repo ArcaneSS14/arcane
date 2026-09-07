@@ -83,7 +83,7 @@ public sealed partial class EventHorizonComponent : Component
     [AutoPausedField]
     public TimeSpan NextConsumeWaveTime;
 
-    // Arcane-Edit-Start
+    // Arcane-Start
     /// <summary>
     /// If true, the singularity cannot destroy containment fields (walls and generators) during the delay.
     /// </summary>
@@ -96,7 +96,7 @@ public sealed partial class EventHorizonComponent : Component
     [DataField("suppressFieldConsumptionUntil", customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan SuppressFieldConsumptionUntil;
-    // Arcane-Edit-End
+    // Arcane-End
   
     #endregion Update Timing
 }

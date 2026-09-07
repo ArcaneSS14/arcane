@@ -155,7 +155,7 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
                     ParticleAcceleratorPowerState.Level0 => 0.5f, // Arcane-Edit: 1 > 0.5
                     ParticleAcceleratorPowerState.Level1 => 1, // Arcane-Edit: 2 > 1
                     ParticleAcceleratorPowerState.Level2 => 2, // Arcane-Edit: 4 > 2
-                    ParticleAcceleratorPowerState.Level3 => 3.5f, // Arcane-Edit: 8 > 3.5
+                    ParticleAcceleratorPowerState.Level3 => 3.5f, // Arcane-Edit: 8 > 4
                     _ => 0
                 },
                 generatorComp
