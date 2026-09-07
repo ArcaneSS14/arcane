@@ -50,6 +50,7 @@
   - BiomassReclaimerMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
+  - CrewMonitoringComputerCircuitboard
   - Brutepack
   - Ointment
   - Gauze
@@ -122,6 +123,10 @@
   - ElectrolysisUnitMachineCircuitboard
   - CentrifugeMachineCircuitboard
   - ServiceEnergyChemMachineCircuitboard
+# Arcane-Start
+  - EnergyBoozeDispenserMachineCircuitboard
+  - EnergySodaDispenserMachineCircuitboard
+# Arcane-End
   position: 7,9
 
 - type: technology

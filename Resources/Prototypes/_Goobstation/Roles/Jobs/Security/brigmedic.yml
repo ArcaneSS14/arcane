@@ -43,7 +43,7 @@
   - !type:AddComponentSpecial
     components:
     - type: SurgerySpeedModifier
-      speedModifier: 1.25 # Same as Paramedic
+      speedModifier: 1.5
   # Arcane-start
   contracts:
   - DocumentContractEmploymentSecurity

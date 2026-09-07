@@ -1,0 +1,11 @@
+- type: entity
+  parent: MobHuman
+  id: MobInvisible
+  name: Invisible
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: InvisibilityHeart
+  - type: Loadout
+    prototypes:
+    - LimitedPassengerGear

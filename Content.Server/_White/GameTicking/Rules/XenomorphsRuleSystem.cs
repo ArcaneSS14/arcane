@@ -244,6 +244,8 @@ public sealed class XenomorphsRuleSystem : GameRuleSystem<XenomorphsRuleComponen
         if (!component.Announced && component.AnnouncementTime <= _timing.CurTime)
         {
             component.Announced = true;
+
+            RaiseLocalEvent(new XenomorphsAnnouncedEvent());
             // Arcane-Edit-Start: Removed xeno announcement and music
           //  if (!string.IsNullOrEmpty(component.Announcement)
         // _chat.DispatchGlobalAnnouncement(Loc.GetString(component.Announcement), component.Sender != null ? Loc.GetString(component.Sender) : null, colorOverride: component.AnnouncementColor);

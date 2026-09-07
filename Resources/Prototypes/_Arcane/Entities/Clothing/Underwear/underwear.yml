@@ -55,6 +55,15 @@
 
 - type: entity
   parent: ClothingUnderwearBase
+  id: ClothingUnderwearNinjaThongs
+  name: Ninja thongs
+  description: Warm thongs with fur lining.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Underwear/warm_thongs_ninja.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
   id: ClothingUnderwearPussystickers
   name: pussy stickers
   description: Stickers on the most intimate place for your perverted pleasures.
