@@ -70,6 +70,7 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
 
 - type: panelInteraction
   id: HandsOnButt
@@ -207,3 +208,4 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi

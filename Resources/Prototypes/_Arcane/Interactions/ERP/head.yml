@@ -57,6 +57,13 @@
   - !type:SpeciesRequirement
     species:
     - Demon
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
 
 - type: panelInteraction
   id: LickHorns

@@ -45,7 +45,7 @@
   - вылизывает анал $target.
   - аккуратно вводит язычок в анус $target.
   - игриво водит язычком вокруг ануса $target.
-  icon: _Arcane/Interface/ErpPanel/anal_lick2.png
+  icon: _Arcane/Interface/ErpPanel/anal_lick.png
   tags:
   - RequiresERP
   targetRequirements:
@@ -104,6 +104,8 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
+    - Feroxi
 
 - type: panelInteraction
   id: AnalLick2
@@ -120,7 +122,7 @@
   - жадно лижет анус $target.
   - плотно прижимается языком к анусу $target, проникая глубже.
   - ритмично ласкает анус $target языком.
-  icon: _Arcane/Interface/ErpPanel/anal_lick.png
+  icon: _Arcane/Interface/ErpPanel/deep_anal_lick.png
   tags:
   - RequiresERP
   targetRequirements:

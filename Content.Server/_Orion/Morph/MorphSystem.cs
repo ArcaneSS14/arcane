@@ -629,9 +629,12 @@ public sealed class MorphSystem : SharedMorphSystem
                 if (_mobState.IsDead(entUid, mobState))
                     return false;
             }
-            else if (TryComp<MindContainerComponent>(entUid, out var mindContainer))
+
+            if (TryComp<MindContainerComponent>(entUid, out var mindContainer))
+            {
                 if (!_mind.TryGetMind(entUid, out _, out var mind))
                     return false;
+            }
 
             // Arcane-Edit-End
 

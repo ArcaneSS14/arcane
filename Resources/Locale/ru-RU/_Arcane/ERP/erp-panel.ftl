@@ -159,7 +159,7 @@ erp-panel-interaction-give-slap-head-name = Дать подзатыльник
 erp-panel-interaction-ruffle-hair-name = Взъерошить волосы
 erp-panel-interaction-tap-crown-name = Постучать по макушке
 erp-panel-interaction-kiss-back-of-head-name = Целовать в затылок
-erp-panel-interaction-lick-horns-name = Гладить рога
+erp-panel-interaction-lick-horns-name = Лизать рога
 
 # Interaction mouth
 erp-panel-interaction-hair-face-fuck-name = Трахать в рот держа за волосы

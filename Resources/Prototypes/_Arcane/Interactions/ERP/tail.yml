@@ -25,6 +25,8 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
+    - Feroxi
 
 - type: panelInteraction
   id: TailHug
@@ -51,6 +53,8 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
+    - Feroxi
   userRequirements:
   - !type:SpeciesRequirement
     species:
@@ -60,6 +64,8 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
+    - Feroxi
 
 - type: panelInteraction
   id: FriendlyTailPull
@@ -85,6 +91,8 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
+    - Feroxi
 
 - type: panelInteraction
   id: WagTail
@@ -106,6 +114,8 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
+    - Feroxi
 
 - type: panelInteraction
   id: TuckTail
@@ -127,6 +137,8 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
+    - Feroxi
 
 - type: panelInteraction
   id: StepOnTail
@@ -151,3 +163,5 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
+    - Feroxi

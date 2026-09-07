@@ -154,7 +154,11 @@ public sealed partial class MorphComponent : Component
 [Serializable, NetSerializable]
 public sealed class EventMimicryActivate : BoundUserInterfaceMessage
 {
-    public EntProtoId PrototypeId { get; set; } // Arcane-Edit EntityUid > EntProtoId
+    // Arcane-Edit-Start
+    public EntProtoId PrototypeId { get; set; }
+
+    public new NetEntity Actor { get; set; }
+    // Arcane-Edit-End
 }
 
 [Serializable, NetSerializable]

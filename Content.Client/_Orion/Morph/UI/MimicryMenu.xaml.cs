@@ -2,10 +2,8 @@ using Content.Client.UserInterface.Controls;
 using Content.Shared._Orion.Morph;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-// Arcane-Start
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
-// Arcane-End
 using System.Numerics;
 
 namespace Content.Client._Orion.Morph.UI;
@@ -17,6 +15,7 @@ namespace Content.Client._Orion.Morph.UI;
 public sealed partial class MimicryMenu : RadialMenu
 {
     [Dependency] private readonly EntityManager _ent = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     public EntityUid Entity { get; private set; }
     public event Action<EntProtoId>? SendActivateMessageAction; // Arcane-Edit NetEntity > EntProtoId
@@ -33,7 +32,6 @@ public sealed partial class MimicryMenu : RadialMenu
         UpdateUI();
     }
 
-    // Arcane-Edit-Start
     private void UpdateUI()
     {
         var main = FindControl<RadialContainer>("Main");
@@ -42,13 +40,12 @@ public sealed partial class MimicryMenu : RadialMenu
 
         if (!_ent.TryGetComponent<MorphComponent>(Entity, out var morph))
             return;
-
-        var protoManager = IoCManager.Resolve<IPrototypeManager>();
+        // Arcane-Edit-Start
         var spriteSys = _ent.System<SpriteSystem>();
 
         foreach (var protoId in morph.MemoryObjects)
         {
-            if (!protoManager.TryIndex<EntityPrototype>(protoId, out var prototype))
+            if (!_protoManager.TryIndex<EntityPrototype>(protoId, out var prototype))
                 continue;
 
             var button = new EmbeddedEntityMenuButton

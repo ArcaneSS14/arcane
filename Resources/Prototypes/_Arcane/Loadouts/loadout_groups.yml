@@ -50,6 +50,7 @@
 - type: loadoutGroup
   id: CommandMaidHead
   name: loadout-group-command-maid-head
+  minLimit: 0
   loadouts:
   - CommandMaidCap
   - CommandMaidBowsCap
@@ -57,6 +58,7 @@
 
 - type: loadoutGroup
   id: CommandMaidGloves
+  minLimit: 0
   name: loadout-group-command-maid-gloves
   loadouts:
   - CommandMaidGloves
@@ -71,6 +73,7 @@
 - type: loadoutGroup
   id: CommandMaidneck
   name: loadout-group-command-maid-neck
+  minLimit: 0
   loadouts:
   - CommandMaidNeckBowTie
   - CommandMaidNeckShortTie
