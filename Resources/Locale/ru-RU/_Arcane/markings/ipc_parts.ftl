@@ -250,3 +250,15 @@ marking-AndroidDefaultLLeg = Андроид, левая нога
 marking-AndroidDefaultRLeg = Андроид, правая нога
 marking-AndroidDefaultLFoot = Андроид, левая стопа
 marking-AndroidDefaultRFoot = Андроид, правая стопа
+
+# Хвост
+marking-IPCTailClawTailAnim = Хвост-клешня (анимированный)
+marking-IPCTailClawTail = Хвост-клешня
+marking-IPCTailCordOutlet = Вилка
+marking-IPCTailCutWire = Порванный
+marking-IPCTailHologram = Голограмма
+marking-IPCTailJST = JST
+marking-IPCTailMiniJack = Штекер
+marking-IPCTailRat = Крысиный
+marking-IPCTailSegmented = Сегментированный
+marking-IPCTailUSB = USB
