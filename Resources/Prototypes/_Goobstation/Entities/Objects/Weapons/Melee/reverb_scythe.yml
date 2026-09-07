@@ -28,7 +28,7 @@
     slots:
     - back
 
-# Arcane
+# Arcane-Start
 - type: entity
   parent: ReverbScythe
   id: ReverbScytheToy
@@ -42,3 +42,4 @@
         Slash: 5
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
+# Arcane-End
