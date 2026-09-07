@@ -183,3 +183,39 @@
       GlassBeaker:
         amount: 2
         defaultPrototype: Beaker
+
+# Arcane-Start
+- type: entity  # Energy booze dispenser
+  parent: BaseMachineCircuitboard
+  id: EnergyBoozeDispenserMachineCircuitboard
+  name: energy booze dispenser machine board
+  description: A machine printed circuit board for an energy booze dispenser.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: EnergyBoozeDispenser
+    partRequirements:
+      Servo: 3
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: entity  # Energy soda dispenser
+  parent: BaseMachineCircuitboard
+  id: EnergySodaDispenserMachineCircuitboard
+  name: energy soda dispenser machine board
+  description: A machine printed circuit board for an energy soda dispenser.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: EnergySodaDispenser
+    partRequirements:
+      Servo: 3
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+# Arcane-End
