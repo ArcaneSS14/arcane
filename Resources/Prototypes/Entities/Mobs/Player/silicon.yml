@@ -44,6 +44,7 @@
     - ActionAIViewLaws
     - ActionOpenRemoteDevicesMenu # Corvax-Next-AiRemoteControl
     - ActionOpenCameraWarpMenu # Goobstation-Ai-Camera-Jumping
+    - ActionTTSVoiceChange # Arcane
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -116,6 +117,7 @@
   - type: ActionGrant
     actions:
     - ActionAIViewLaws
+    - ActionTTSVoiceChange # Arcane
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:
@@ -444,7 +446,6 @@
   - type: ActionGrant
     actions:
     - ActionViewLaws
-    - ActionTTSVoiceChange # Arcane
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:

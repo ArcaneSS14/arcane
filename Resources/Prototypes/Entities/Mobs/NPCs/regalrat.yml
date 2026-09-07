@@ -156,6 +156,10 @@
         Burn: -0.3
   - type: GlobalAntagonist # Orion
     antagonistPrototype: globalAntagonistRats
+  # Arcane-Start
+  - type: TTS
+    voice: Twitch
+  # Arcane-End
 
 #- type: entity # Orion-Edit: NC license sprites
 #  id: MobRatKingBuff
