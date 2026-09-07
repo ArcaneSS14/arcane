@@ -7,6 +7,8 @@ using Content.Goobstation.Shared.Roles.Components;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared._DV.Carrying;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Containers.ItemSlots;
@@ -63,6 +65,7 @@ public sealed partial class CloneProjectorSystem : SharedCloneProjectorSystem
     [Dependency] private readonly MobThresholdSystem _thresholds = default!;
     [Dependency] private readonly GhostRoleSystem _ghost = default!;
     [Dependency] private readonly SharedRoleSystem _role = default!;
+    [Dependency] private readonly SharedIdCardSystem _idCard = default!;
 
     private ISawmill _sawmill = default!;
     public override void Initialize()
@@ -298,6 +301,15 @@ public sealed partial class CloneProjectorSystem : SharedCloneProjectorSystem
             _sawmill.Error($"Failed to equip items for holographic clone of {ToPrettyString(clone)}");
             return false;
         }
+
+        // Arcane-Start
+        var hostTitle = projector.Comp.CurrentHost is { } host && _idCard.TryFindIdCard(host, out var hostCard)
+            ? hostCard.Comp.LocalizedJobTitle
+            : null;
+
+        if (!string.IsNullOrEmpty(hostTitle) && _idCard.TryFindIdCard(clone, out var cloneCard))
+            _idCard.TryChangeJobTitle(cloneCard.Owner, hostTitle, cloneCard.Comp);
+        // Arcane-End
 
         var ghostRole = EnsureComp<GhostRoleComponent>(clone); // todo marty unfuck this and make gemini mindrole
         ghostRole.RoleName = Loc.GetString(projector.Comp.GhostRoleName);
