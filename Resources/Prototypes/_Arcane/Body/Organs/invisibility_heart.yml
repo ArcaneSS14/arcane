@@ -1,0 +1,11 @@
+- type: entity
+  parent: OrganHumanHeart
+  id: OrganInvisibilityHeart
+  name: mysterious heart
+  description: A strange, faintly pulsing heart from somewhere else entirely.
+  components:
+  - type: Sprite
+    sprite: _White/Mobs/Species/Xenomorph/organs.rsi
+  - type: Organ
+    onAdd:
+    - type: ArcaneInvisibility

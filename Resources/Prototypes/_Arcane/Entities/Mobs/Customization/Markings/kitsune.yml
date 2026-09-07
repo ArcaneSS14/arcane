@@ -2,7 +2,7 @@
   id: KitsuneTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human, Oni, Felinid, Vulpkanin]
+  speciesRestriction: [Human, Oni, Felinid, Vulpkanin, SlimePerson]
   sprites:
   - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
     state: Tail
@@ -13,7 +13,7 @@
   id: KitsuneTripleTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human, Oni, Felinid, Vulpkanin]
+  speciesRestriction: [Human, Oni, Felinid, Vulpkanin, SlimePerson]
   sprites:
   - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
     state:  TripleTail
@@ -24,9 +24,23 @@
   id: KitsuneNineTails
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human, Oni, Felinid, Vulpkanin]
+  speciesRestriction: [Human, Oni, Felinid, Vulpkanin, SlimePerson]
   sprites:
   - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
     state:  NineTails
   - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
     state: TipNineTails
+
+- type: marking
+  id: KitsuneEarsFox
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human, Oni, Felinid, Vulpkanin, SlimePerson]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
+    state: ears
+  - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
+    state: ears-tips
+  - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
+    state: ears-inner
+
