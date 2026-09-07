@@ -1,0 +1,17 @@
+# Ghost role spawner for the invisible person. The mob itself only spawns once
+# a ghost takes the role, so nobody is standing around at the station beforehand.
+- type: entity
+  id: InvisibleSpawner
+  name: invisible ghost role spawner
+  suffix: Invisible
+  components:
+  - type: GhostRole
+    name: ghost-role-information-invisible-name
+    description: ghost-role-information-invisible-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleNeutral
+  - type: GhostRoleMobSpawner
+    prototype: MobInvisible
