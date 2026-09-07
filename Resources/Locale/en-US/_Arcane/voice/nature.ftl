@@ -1,7 +1,7 @@
-trait-category-nature = Дополнительная натура
+trait-category-nature = Additional nature
 
-trait-catnature-name = Кошачья натура
-trait-catnature-desc = Кажется в Вас пробудилось что-то кошачее!
+trait-catnature-name = Feline nature
+trait-catnature-desc = It seems something feline has awakened in you!
 
-trait-foxnature-name = Лисья натура
-trait-foxnature-desc = Кажется теперь вы немного лиса?
+trait-foxnature-name = Foxy nature
+trait-foxnature-desc = It seems you're a bit of a Vulpkanin now?
