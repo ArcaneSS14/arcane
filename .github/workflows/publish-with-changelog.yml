@@ -35,6 +35,7 @@ jobs:
     env:
       ROBUST_CDN_URL: http://127.0.0.1:8080/
       NO_PROXY: 127.0.0.1,localhost
+      DOTNET_INSTALL_DIR: ${{ runner.temp }}/dotnet
 
     steps:
     - name: Fail if we are attempting to run on the master branch
@@ -92,7 +93,18 @@ jobs:
         python3 Tools/_arcane/apply_private_overlay.py \
           --source .private/arcane-anticheat
 
+    - name: Check .NET SDK
+      id: check-dotnet
+      shell: bash
+      run: |
+        if dotnet --list-sdks 2>/dev/null | grep -Eq '^10\.0\.'; then
+          echo "available=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "available=false" >> "$GITHUB_OUTPUT"
+        fi
+
     - name: Setup .NET
+      if: ${{ steps.check-dotnet.outputs.available != 'true' }}
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 10.0.x
