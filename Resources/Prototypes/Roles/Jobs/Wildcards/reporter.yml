@@ -20,6 +20,10 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentService
+  alternateTitles:
+  - ReporterInfluencer
+  - ReporterDocumentarian
+  - ReporterMediaCoordinator
   # Arcane-end
 
 - type: startingGear
@@ -45,3 +49,17 @@
     outerClothing: ClothingOuterCoatTrench
     neck: ClothingNeckTieRed
     gloves: ClothingHandsGlovesFingerless
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: ReporterInfluencer
+  name: job-name-alt-reporter-1
+
+- type: jobAlternateTitle
+  id: ReporterDocumentarian
+  name: job-name-alt-reporter-2
+
+- type: jobAlternateTitle
+  id: ReporterMediaCoordinator
+  name: job-name-alt-reporter-3
+# Arcane-End

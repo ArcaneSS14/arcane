@@ -5,13 +5,13 @@
 
 - type: clause
   id: soulownership
-  name: Право владения душой # Orion
+  name: Soul Ownership # Orion
   clauseWeight: 25
   event: !type:DevilContractSoulOwnershipEvent
 
 - type: clause
   id: weakness
-  name: Слабость # Orion
+  name: Weakness # Orion
   clauseWeight: -35
   damageModifierSet: DevilDealPositive
 
@@ -42,7 +42,7 @@
 
 - type: clause
   id: fearoffire
-  name: Страх огня # Orion
+  name: Fear of Fire # Orion
   clauseWeight: -20
   damageModifierSet: HellSpawn
   addedComponents:
@@ -50,14 +50,14 @@
 
 - type: clause
   id: brokeness
-  name: Поломка # Orion
+  name: Brokeness # Orion
   clauseWeight: -20
   spawnedItems:
   - ClothingShoesRealJordansAutographed
 
 - type: clause
   id: fearofdeath
-  name: Страх смерти # Orion
+  name: Fear of Death # Orion
   clauseWeight: -25
   addedComponents:
   - type: MobThresholds
@@ -68,21 +68,21 @@
 
 - type: clause
   id: fearoflight
-  name: Страх света # Orion
+  name: Fear of Light # Orion
   clauseWeight: -15
   addedComponents:
   - type: FlashImmunity
 
 - type: clause
   id: fearofelectricity
-  name: Страх электричества # Orion
+  name: Fear of Electricity # Orion
   clauseWeight: -15
   addedComponents:
   - type: Insulated
 
 - type: clause
   id: gluttony
-  name: Обжорство # Orion
+  name: Gluttony # Orion
   clauseWeight: -10
   removedComponents:
   - type: Hunger
@@ -90,42 +90,42 @@
 
 - type: clause
   id: fearofdrowning
-  name: Страх удушения # Orion
+  name: Fear of Drowning # Orion
   clauseWeight: -10
   addedComponents:
   - type: SpecialBreathingImmunity
 
 - type: clause
   id: fearofclowns
-  name: Страх клоунов # Orion
+  name: Fear of Clowns # Orion
   clauseWeight: -10
   addedComponents:
   - type: NoSlip
 
 - type: clause
   id: fearofcrushing
-  name: Страх быть раздавленным # Orion
+  name: Fear of Crushing # Orion
   clauseWeight: -10
   addedComponents:
   - type: SpecialPressureImmunity
 
 - type: clause
   id: fearoffreezing
-  name: Страх холода # Orion
+  name: Fear of Freezing # Orion
   clauseWeight: -10
   addedComponents:
   - type: SpecialLowTempImmunity
 
 - type: clause
   id: greed
-  name: Жадность # Orion
+  name: Greed # Orion
   clauseWeight: -10
   spawnedItems:
   - SpaceCash30000
 
 - type: clause
   id: pain
-  name: Боль # Orion
+  name: Pain # Orion
   clauseWeight: -5
   addedComponents:
   - type: PainNumbnessStatusEffect
@@ -136,13 +136,13 @@
 
 - type: clause
   id: chance
-  name: Удача # Orion
+  name: Chance # Orion
   clauseWeight: -20
   event: !type:DevilContractChanceEvent
 
 - type: clause
   id: shadows
-  name: Тени # Orion
+  name: Shadows # Orion
   clauseWeight: -25
   addedComponents:
   - type: Stealth
@@ -150,33 +150,33 @@
 
 - type: clause
   id: humanity
-  name: Человечность # Orion
+  name: Humanity # Orion
   clauseWeight: 80
   polymorph: MobFrogPolymorph
 
 - type: clause
   id: strength
-  name: Сила # Orion
+  name: Strength # Orion
   clauseWeight: 30
   damageModifierSet: DevilDealNegative
 
 - type: clause
   id: willtofight
-  name: Воля к борьбе # Orion
+  name: Will to Fight # Orion
   clauseWeight: 60
   addedComponents:
   - type: Pacified
 
 - type: clause
   id: sight
-  name: Зрение # Orion
+  name: Sight # Orion
   clauseWeight: 60
   addedComponents:
   - type: PermanentBlindness
 
 - type: clause
   id: coherence
-  name: Связность # Orion
+  name: Coherence # Orion
   clauseWeight: 30
   addedComponents:
   - type: BackwardsAccent
@@ -184,26 +184,26 @@
 
 - type: clause
   id: voice
-  name: Голос # Orion
+  name: Voice # Orion
   clauseWeight: 20
   addedComponents:
   - type: Muted
 
 - type: clause
-  id: aleg
-  name: Нога # Orion
+  id: leg
+  name: Leg # Orion
   clauseWeight: 20
   event: !type:DevilContractLoseLegEvent
 
 - type: clause
-  id: ahand
-  name: Рука # Orion
+  id: hand
+  name: Hand # Orion
   clauseWeight: 20
   event: !type:DevilContractLoseHandEvent
 
 - type: clause
   id: awake
-  name: Бодрость # Orion
+  name: Awake # Orion
   clauseWeight: 35
   addedComponents:
   - type: Narcolepsy
@@ -213,28 +213,28 @@
     minDurationOfIncident: 10
 
 - type: clause
-  id: anorgan
-  name: Орган # Orion
+  id: organ
+  name: Organ # Orion
   clauseWeight: 30
   event: !type:DevilContractLoseOrganEvent
 
 - type: clause
   id: legs
-  name: Ноги # Orion
+  name: Legs # Orion
   clauseWeight: 40
   addedComponents:
   - type: LegsParalyzed
 
 - type: clause
   id: innerpeace
-  name: Внутренний покой # Orion
+  name: Inner Peace # Orion
   clauseWeight: 5
   addedComponents:
   - type: TileMovement
 
 - type: clause
   id: death
-  name: Смерть # Orion
+  name: Death # Orion
   clauseWeight: -25
   addedComponents:
   - type: CheatDeath
@@ -242,7 +242,7 @@
 
 - type: clause
   id: mortality
-  name: Смертность # Orion
+  name: Mortality # Orion
   clauseWeight: -135
   addedComponents:
   - type: CheatDeath
@@ -250,7 +250,7 @@
 
 - type: clause
   id: time
-  name: Время # Orion
+  name: Time # Orion
   clauseWeight: 150
   addedComponents:
   - type: DelayedDeath

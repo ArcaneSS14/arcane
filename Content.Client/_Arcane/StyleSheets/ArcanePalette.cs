@@ -4,89 +4,89 @@ namespace Content.Client._Arcane.StyleSheets;
 
 public static class ArcanePalette
 {
-    public static readonly Color NeonOutline = Color.FromHex("#68D9EE");
+    public static readonly Color NeonOutline = Color.FromHex("#66D9EF");
 
     public static readonly ColorPalette Primary = new(
-        Base: Color.FromHex("#647E87"),
+        Base: Color.FromHex("#5E8797"),
         LightnessShift: 0f,
         ChromaShift: 0f,
-        Element: Color.FromHex("#314A55"),
-        HoveredElement: Color.FromHex("#3B5964"),
-        PressedElement: Color.FromHex("#29414A"),
-        DisabledElement: Color.FromHex("#20272B"),
-        Background: Color.FromHex("#151A1E"),
-        BackgroundLight: Color.FromHex("#20272B"),
-        BackgroundDark: Color.FromHex("#0E1215"),
-        Text: Color.FromHex("#BCCFD6"),
-        TextDark: Color.FromHex("#84979F"));
+        Element: Color.FromHex("#294651"),
+        HoveredElement: Color.FromHex("#345966"),
+        PressedElement: Color.FromHex("#203D48"),
+        DisabledElement: Color.FromHex("#202B30"),
+        Background: Color.FromHex("#121A1F"),
+        BackgroundLight: Color.FromHex("#1A252B"),
+        BackgroundDark: Color.FromHex("#0B1115"),
+        Text: Color.FromHex("#C5DCE4"),
+        TextDark: Color.FromHex("#88A3AE"));
 
     public static readonly ColorPalette Secondary = new(
-        Base: Color.FromHex("#727A80"),
+        Base: Color.FromHex("#6B7780"),
         LightnessShift: 0f,
         ChromaShift: 0f,
-        Element: Color.FromHex("#2A2F34"),
-        HoveredElement: Color.FromHex("#343B41"),
-        PressedElement: Color.FromHex("#242A2F"),
-        DisabledElement: Color.FromHex("#1C1F22"),
-        Background: Color.FromHex("#1B1D21"),
-        BackgroundLight: Color.FromHex("#25282D"),
-        BackgroundDark: Color.FromHex("#121519"),
-        Text: Color.FromHex("#D8DEE3"),
-        TextDark: Color.FromHex("#959FA6"));
+        Element: Color.FromHex("#263239"),
+        HoveredElement: Color.FromHex("#303F47"),
+        PressedElement: Color.FromHex("#1F2A30"),
+        DisabledElement: Color.FromHex("#1B2226"),
+        Background: Color.FromHex("#151C21"),
+        BackgroundLight: Color.FromHex("#1D272D"),
+        BackgroundDark: Color.FromHex("#0D1317"),
+        Text: Color.FromHex("#DCE5E9"),
+        TextDark: Color.FromHex("#96A7AF"));
 
     public static readonly ColorPalette Buttons = new(
-        Base: Color.FromHex("#717A80"),
+        Base: Color.FromHex("#718993"),
         LightnessShift: 0f,
         ChromaShift: 0f,
-        Element: Color.FromHex("#2D3338"),
-        HoveredElement: Color.FromHex("#39434A"),
-        PressedElement: Color.FromHex("#31515C"),
-        DisabledElement: Color.FromHex("#202428"),
-        Background: Color.FromHex("#1B1D21"),
-        BackgroundLight: Color.FromHex("#25282D"),
-        BackgroundDark: Color.FromHex("#121519"),
-        Text: Color.FromHex("#D8DEE3"),
-        TextDark: Color.FromHex("#959FA6"));
+        Element: Color.FromHex("#29363D"),
+        HoveredElement: Color.FromHex("#34464F"),
+        PressedElement: Color.FromHex("#21424D"),
+        DisabledElement: Color.FromHex("#1C252A"),
+        Background: Color.FromHex("#151C21"),
+        BackgroundLight: Color.FromHex("#1D272D"),
+        BackgroundDark: Color.FromHex("#0D1317"),
+        Text: Color.FromHex("#DCE5E9"),
+        TextDark: Color.FromHex("#96A7AF"));
 
     public static readonly ColorPalette Positive = new(
-        Base: Color.FromHex("#729D90"),
+        Base: Color.FromHex("#5FB98A"),
         LightnessShift: 0f,
         ChromaShift: 0f,
-        Element: Color.FromHex("#345A4F"),
-        HoveredElement: Color.FromHex("#3E685B"),
-        PressedElement: Color.FromHex("#2B4B42"),
-        DisabledElement: Color.FromHex("#24312D"),
-        Background: Color.FromHex("#17231F"),
-        BackgroundLight: Color.FromHex("#20312B"),
-        BackgroundDark: Color.FromHex("#101713"),
-        Text: Color.FromHex("#91C1B3"),
-        TextDark: Color.FromHex("#6E9F91"));
+        Element: Color.FromHex("#285941"),
+        HoveredElement: Color.FromHex("#326C4F"),
+        PressedElement: Color.FromHex("#204936"),
+        DisabledElement: Color.FromHex("#1D2D26"),
+        Background: Color.FromHex("#12251D"),
+        BackgroundLight: Color.FromHex("#193329"),
+        BackgroundDark: Color.FromHex("#0D1914"),
+        Text: Color.FromHex("#A1E1BD"),
+        TextDark: Color.FromHex("#71B792"));
 
     public static readonly ColorPalette Negative = new(
-        Base: Color.FromHex("#A77B83"),
+        Base: Color.FromHex("#D1737F"),
         LightnessShift: 0f,
         ChromaShift: 0f,
-        Element: Color.FromHex("#5B3A42"),
-        HoveredElement: Color.FromHex("#704750"),
-        PressedElement: Color.FromHex("#4B3037"),
-        DisabledElement: Color.FromHex("#30252A"),
-        Background: Color.FromHex("#26191D"),
-        BackgroundLight: Color.FromHex("#352329"),
-        BackgroundDark: Color.FromHex("#190F12"),
-        Text: Color.FromHex("#D2A3AB"),
-        TextDark: Color.FromHex("#AE7D86"));
+        Element: Color.FromHex("#63363E"),
+        HoveredElement: Color.FromHex("#7A424B"),
+        PressedElement: Color.FromHex("#522C33"),
+        DisabledElement: Color.FromHex("#342329"),
+        Background: Color.FromHex("#27181D"),
+        BackgroundLight: Color.FromHex("#372128"),
+        BackgroundDark: Color.FromHex("#190E12"),
+        Text: Color.FromHex("#F2B7C0"),
+        TextDark: Color.FromHex("#C98994"));
 
     public static readonly ColorPalette Highlight = new(
-        Base: Color.FromHex("#648F99"),
+        Base: Color.FromHex("#5AC5DC"),
         LightnessShift: 0f,
         ChromaShift: 0f,
-        Element: Color.FromHex("#3A6370"),
-        HoveredElement: Color.FromHex("#477580"),
-        PressedElement: Color.FromHex("#31545E"),
-        DisabledElement: Color.FromHex("#27383E"),
-        Background: Color.FromHex("#172327"),
-        BackgroundLight: Color.FromHex("#203137"),
-        BackgroundDark: Color.FromHex("#10181B"),
-        Text: Color.FromHex("#83B7C1"),
-        TextDark: Color.FromHex("#6598A3"));
+        Element: Color.FromHex("#285866"),
+        HoveredElement: Color.FromHex("#326D7D"),
+        PressedElement: Color.FromHex("#214B57"),
+        DisabledElement: Color.FromHex("#23363C"),
+        Background: Color.FromHex("#10242A"),
+        BackgroundLight: Color.FromHex("#17323A"),
+        BackgroundDark: Color.FromHex("#0A181C"),
+        Text: Color.FromHex("#9ADFED"),
+        TextDark: Color.FromHex("#67B7C8"));
 }

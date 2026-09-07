@@ -170,6 +170,11 @@
   - type: Puller
     needsHands: false
   - type: IdExaminable
+    # Arcane-Start: Add grab intents to xeno and starting hardgrab
+  - type: GrabIntent
+  - type: GrabModifier
+    startingGrabStage: Hard
+    # Arcane-End
   - type: Inventory
     templateId: xenomorph
   - type: Stripping

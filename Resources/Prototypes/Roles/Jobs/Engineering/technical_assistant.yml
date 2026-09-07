@@ -35,6 +35,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentEngineering
+  alternateTitles:
+  - TechnicalAssistantApprentice
+  - TechnicalAssistantTrainee
   # Arcane-end
 
 - type: startingGear
@@ -59,3 +62,13 @@
     neck: ClothingNeckScarfStripedOrange
     outerClothing: ClothingOuterVestHazard
     gloves: ClothingHandsGlovesColorYellow
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: TechnicalAssistantApprentice
+  name: job-name-alt-technicalassistant-1
+
+- type: jobAlternateTitle
+  id: TechnicalAssistantTrainee
+  name: job-name-alt-technicalassistant-2
+# Arcane-End

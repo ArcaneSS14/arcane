@@ -46,8 +46,13 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-  contracts: # Arcane
+  # Arcane-Start
+  contracts:
   - DocumentContractEmploymentCommand
+  alternateTitles:
+  - RDResearchLead
+  - RDScienceDirector
+  # Arcane-End
 
 - type: startingGear
   id: ResearchDirectorGear
@@ -71,3 +76,13 @@
     neck: ClothingNeckCloakRd
     outerClothing: ClothingOuterCoatRD
     gloves: ClothingHandsGlovesColorPurple
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: RDResearchLead
+  name: job-name-alt-rd-1
+
+- type: jobAlternateTitle
+  id: RDScienceDirector
+  name: job-name-alt-rd-2
+# Arcane-End

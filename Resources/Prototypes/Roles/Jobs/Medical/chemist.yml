@@ -33,6 +33,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentMedical
+  alternateTitles:
+  - ChemistPharmacist
+  - ChemistLabTechnician
   # Arcane-end
 
 - type: startingGear
@@ -56,3 +59,13 @@
     neck: ClothingNeckStethoscope
     outerClothing: ClothingOuterCoatLabChem
     gloves: ClothingHandsGlovesLatex
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: ChemistPharmacist
+  name: job-name-alt-chemist-1
+
+- type: jobAlternateTitle
+  id: ChemistLabTechnician
+  name: job-name-alt-chemist-2
+# Arcane-End

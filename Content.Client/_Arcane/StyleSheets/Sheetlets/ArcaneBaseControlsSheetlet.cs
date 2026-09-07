@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Client.ContextMenu.UI;
 using Content.Client.Stylesheets;
 using Content.Client.Stylesheets.Fonts;
@@ -15,13 +16,34 @@ namespace Content.Client._Arcane.StyleSheets.Sheetlets;
 
 public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
 {
+    private static readonly (string StyleClass, Color Color)[] DepartmentButtonColors =
+    [
+        ("ButtonColorCentralCommandDepartment", Color.FromHex("#57B85E")),
+        ("ButtonColorCommandDepartment", Color.FromHex("#4F8FD6")),
+        ("ButtonColorSecurityDepartment", Color.FromHex("#D65353")),
+        ("ButtonColorMedicalDepartment", Color.FromHex("#60B7E4")),
+        ("ButtonColorEngineeringDepartment", Color.FromHex("#D6B93F")),
+        ("ButtonColorCargoDepartment", Color.FromHex("#D99038")),
+        ("ButtonColorScienceDepartment", Color.FromHex("#B15AB5")),
+        ("ButtonColorSiliconDepartment", Color.FromHex("#39B9AD")),
+        ("ButtonColorCivilianDepartment", Color.FromHex("#79B58F")),
+        ("ButtonColorJusticeDepartment", Color.FromHex("#D85A7B")),
+        ("ButtonColorLegalDepartment", Color.FromHex("#EB6B8D")),
+        ("ButtonColorSpecificDepartment", Color.FromHex("#9BA3A8")),
+        ("ButtonColorAntagonistDepartment", Color.FromHex("#B85A63")),
+    ];
+
     public override StyleRule[] GetRules(ArcaneStylesheet sheet, object config)
     {
-        var buttonBorder = sheet.PrimaryPalette.Base.WithAlpha(0.42f);
-        var button = StrictBox(ArcanePalette.Buttons.Element, buttonBorder);
-        var buttonSmall = StrictBox(ArcanePalette.Buttons.Element, buttonBorder, 1, 8, 2);
-        var menuButton = StrictBox(ArcanePalette.Buttons.Element, buttonBorder, 1, 8, 4);
+        var buttonTexture = sheet.GetTextureOr(new("button.svg.96dpi.png"), NanotrasenStylesheet.TextureRoot);
+        var buttonBorderTexture = sheet.GetTextureOr(new("button_bordered.svg.96dpi.png"),
+            ArcaneStylesheet.TextureRoot);
+        var buttonBorder = sheet.PrimaryPalette.Base.WithAlpha(0.62f);
         var modulatedPanel = StrictBox(Color.White, buttonBorder, 1, 0, 0);
+        var modulatedPanelOpenLeft = StrictBox(Color.White, buttonBorder,
+            new Thickness(0, 1, 1, 1), 0, 0);
+        var modulatedPanelOpenRight = StrictBox(Color.White, buttonBorder,
+            new Thickness(1, 1, 0, 1), 0, 0);
         var panelLight = StrictBox(sheet.SecondaryPalette.BackgroundLight, buttonBorder, 1, 0, 0);
         var panelDark = StrictBox(sheet.SecondaryPalette.Background, buttonBorder, 1, 0, 0);
         var panelDarker = StrictBox(sheet.SecondaryPalette.BackgroundDark, buttonBorder, 1, 0, 0);
@@ -42,7 +64,15 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         scrollbarPressed.SetContentMarginOverride(StyleBox.Margin.Left | StyleBox.Margin.Top, 10);
         var tooltip = StrictBox(sheet.SecondaryPalette.BackgroundDark.WithAlpha(0.96f), buttonBorder, 1, 8, 5);
         var windowPanel = StrictBox(sheet.SecondaryPalette.Background.WithAlpha(0.98f), buttonBorder, 1, 8, 6);
-        var contextMenuPanel = StrictBox(sheet.SecondaryPalette.Background.WithAlpha(0.98f), buttonBorder, 1, 0, 0);
+        var contextMenuPanel = StrictBox(sheet.SecondaryPalette.BackgroundDark.WithAlpha(0.99f),
+            sheet.SecondaryPalette.Base.WithAlpha(0.68f), 1, 0, 0);
+        var contextMenuPalette = ArcanePalette.Buttons with
+        {
+            Element = sheet.SecondaryPalette.Background,
+            HoveredElement = sheet.PrimaryPalette.Element,
+            PressedElement = sheet.PrimaryPalette.PressedElement,
+            DisabledElement = sheet.SecondaryPalette.BackgroundDark,
+        };
         var windowHeader = StrictBox(sheet.PrimaryPalette.BackgroundLight, buttonBorder, 1, 8, 3);
         var alertHeader = StrictBox(sheet.NegativePalette.BackgroundLight, sheet.NegativePalette.Base.WithAlpha(0.6f), 1, 8, 3);
         var itemListBackground = StrictBox(sheet.SecondaryPalette.BackgroundDark, buttonBorder, 1, 0, 0);
@@ -52,18 +82,6 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
 
         var rules = new List<StyleRule>
         {
-            Button().Box(button),
-            Button().Class(StyleClass.ButtonOpenLeft).Box(button),
-            Button().Class(StyleClass.ButtonOpenRight).Box(button),
-            Button().Class(StyleClass.ButtonOpenBoth).Box(button),
-            Button().Class(StyleClass.ButtonSquare).Box(button),
-            Button().Class(StyleClass.ButtonSmall).Box(buttonSmall),
-            E<MenuButton>().Box(menuButton),
-            E<MenuButton>().Class(StyleClass.ButtonOpenLeft).Box(menuButton),
-            E<MenuButton>().Class(StyleClass.ButtonOpenRight).Box(menuButton),
-            E<MenuButton>().Class(StyleClass.ButtonOpenBoth).Box(menuButton),
-            E<MenuButton>().Class(StyleClass.ButtonSquare).Box(menuButton),
-
             E<LineEdit>()
                 .Prop(LineEdit.StylePropertyStyleBox, lineEdit)
                 .Prop("font-color", sheet.SecondaryPalette.Text)
@@ -91,8 +109,8 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
             E<PanelContainer>().Class(StyleClass.PanelDark).Panel(panelDark),
             E<PanelContainer>().Class("BackgroundDark").Panel(panelDarker),
             E().Class(StyleClass.BackgroundPanel).Panel(modulatedPanel),
-            E().Class(StyleClass.BackgroundPanelOpenLeft).Panel(modulatedPanel),
-            E().Class(StyleClass.BackgroundPanelOpenRight).Panel(modulatedPanel),
+            E().Class(StyleClass.BackgroundPanelOpenLeft).Panel(modulatedPanelOpenLeft),
+            E().Class(StyleClass.BackgroundPanelOpenRight).Panel(modulatedPanelOpenRight),
             E<PanelContainer>().Class(OptionButton.StyleClassOptionsBackground).Panel(panelDarker),
             E<ItemList>()
                 .Prop(ItemList.StylePropertyBackground, itemListBackground)
@@ -166,38 +184,58 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
             E<Label>().Class(StyleClass.LabelKeyText).FontColor(sheet.HighlightPalette.Text),
         };
 
-        rules.AddRange(StrictButtonStateRules(Button, ArcanePalette.Buttons, ArcanePalette.NeonOutline));
-        rules.AddRange(StrictButtonStateRules(
+        rules.AddRange(TexturedButtonStateRules(buttonTexture, buttonBorderTexture, Button,
+            ArcanePalette.Buttons, ArcanePalette.NeonOutline));
+        rules.AddRange(TexturedButtonStateRules(
+            buttonTexture,
+            buttonBorderTexture,
             () => E<MenuButton>(),
             ArcanePalette.Buttons,
             ArcanePalette.NeonOutline,
             8,
             4));
-        rules.AddRange(StrictButtonStateRules(() => Button().Class(StyleClass.Positive),
-            sheet.PositivePalette, ArcanePalette.NeonOutline));
-        rules.AddRange(StrictButtonStateRules(() => Button().Class(StyleClass.Negative),
-            sheet.NegativePalette, ArcanePalette.NeonOutline));
-        rules.AddRange(StrictButtonStateRules(() => Button().Class(StyleClass.ButtonSmall),
-            ArcanePalette.Buttons, ArcanePalette.NeonOutline, 8, 2));
-        rules.AddRange(StrictButtonStateRules(
+        rules.AddRange(TexturedButtonStateRules(buttonTexture, buttonBorderTexture,
+            () => Button().Class(StyleClass.Positive), sheet.PositivePalette, sheet.PositivePalette.Base));
+        rules.AddRange(TexturedButtonStateRules(buttonTexture, buttonBorderTexture,
+            () => Button().Class(StyleClass.Negative), sheet.NegativePalette, sheet.NegativePalette.Base));
+        rules.AddRange(TexturedButtonStateRules(buttonTexture, buttonBorderTexture,
+            () => Button().Class(StyleClass.ButtonSmall), ArcanePalette.Buttons, ArcanePalette.NeonOutline, 8, 2));
+
+        AddComposedButtonRules(rules, buttonTexture, buttonBorderTexture, Button, ArcanePalette.Buttons,
+            ArcanePalette.NeonOutline);
+        AddComposedButtonRules(rules, buttonTexture, buttonBorderTexture,
+            () => Button().Class(StyleClass.Positive), sheet.PositivePalette, sheet.PositivePalette.Base);
+        AddComposedButtonRules(rules, buttonTexture, buttonBorderTexture,
+            () => Button().Class(StyleClass.Negative), sheet.NegativePalette, sheet.NegativePalette.Base);
+        AddComposedButtonRules(rules, buttonTexture, buttonBorderTexture, () => E<MenuButton>(),
+            ArcanePalette.Buttons, ArcanePalette.NeonOutline, 8, 4);
+
+        foreach (var (styleClass, color) in DepartmentButtonColors)
+            rules.AddRange(DepartmentButtonStateRules(buttonTexture, buttonBorderTexture, styleClass, color));
+
+        rules.AddRange(TexturedButtonStateRules(
+            buttonTexture,
+            buttonBorderTexture,
             () => E<ContextMenuElement>().Class(ContextMenuElement.StyleClassContextMenuButton),
-            ArcanePalette.Buttons,
-            ArcanePalette.NeonOutline,
+            contextMenuPalette,
+            contextMenuPalette.Base,
             0,
-            0));
-        rules.AddRange(StrictButtonStateRules(
+            0,
+            ButtonGeometry.Borderless));
+        rules.AddRange(TexturedButtonStateRules(
+            buttonTexture,
+            buttonBorderTexture,
             () => E<ContextMenuElement>().Class(ConfirmationMenuElement.StyleClassConfirmationContextMenuButton),
             sheet.NegativePalette,
-            ArcanePalette.NeonOutline,
+            sheet.NegativePalette.Base,
             0,
-            0));
+            0,
+            ButtonGeometry.Borderless));
 
-        var confirmNormal = StrictBox(sheet.NegativePalette.Element,
-            sheet.NegativePalette.Base.WithAlpha(0.55f));
-        var confirmHovered = StrictBox(sheet.NegativePalette.Element, ArcanePalette.NeonOutline, 2);
-        var confirmPressed = StrictBox(sheet.NegativePalette.PressedElement, ArcanePalette.NeonOutline, 2);
-        var confirmDisabled = StrictBox(sheet.NegativePalette.DisabledElement,
-            sheet.NegativePalette.Base.WithAlpha(0.25f));
+        var confirmNormal = TexturedButtonBox(buttonTexture, sheet.NegativePalette.Element);
+        var confirmHovered = TexturedButtonBox(buttonBorderTexture, sheet.NegativePalette.Base);
+        var confirmPressed = TexturedButtonBox(buttonBorderTexture, sheet.NegativePalette.Base.WithAlpha(0.82f));
+        var confirmDisabled = TexturedButtonBox(buttonTexture, sheet.NegativePalette.DisabledElement);
         rules.AddRange(
         [
             E<ConfirmButton>().Pseudo(ConfirmButton.ConfirmPrefix + ContainerButton.StylePseudoClassNormal)
@@ -218,18 +256,35 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         return E<ContainerButton>().Class(ContainerButton.StyleClassButton);
     }
 
-    private static StyleRule[] StrictButtonStateRules(
+    private static StyleRule[] TexturedButtonStateRules(
+        Texture texture,
+        Texture borderTexture,
         Func<MutableSelectorElement> selector,
         ColorPalette palette,
-        Color neonBorder,
+        Color outlineColor,
         float horizontalContentMargin = 14,
-        float verticalContentMargin = 4)
+        float verticalContentMargin = 4,
+        ButtonGeometry geometry = ButtonGeometry.Standard)
     {
-        var normalBorder = palette.Base.WithAlpha(0.48f);
-        var normal = StrictBox(palette.Element, normalBorder, 1, horizontalContentMargin, verticalContentMargin);
-        var hovered = StrictBox(palette.Element, neonBorder, 2, horizontalContentMargin, verticalContentMargin);
-        var pressed = StrictBox(palette.PressedElement, neonBorder, 2, horizontalContentMargin, verticalContentMargin);
-        var disabled = StrictBox(palette.DisabledElement, normalBorder.WithAlpha(0.3f), 1,
+        var normal = TexturedButtonBox(texture, palette.Element, geometry,
+            horizontalContentMargin, verticalContentMargin);
+        StyleBox hovered = geometry is ButtonGeometry.OpenLeft or ButtonGeometry.OpenRight
+            ? StrictBox(palette.Element, outlineColor, 1, horizontalContentMargin, verticalContentMargin)
+            : TexturedButtonBox(
+                borderTexture,
+                outlineColor,
+                geometry,
+                horizontalContentMargin,
+                verticalContentMargin);
+        StyleBox pressed = geometry is ButtonGeometry.OpenLeft or ButtonGeometry.OpenRight
+            ? StrictBox(palette.PressedElement, outlineColor, 1, horizontalContentMargin, verticalContentMargin)
+            : TexturedButtonBox(
+                borderTexture,
+                outlineColor.WithAlpha(0.82f),
+                geometry,
+                horizontalContentMargin,
+                verticalContentMargin);
+        var disabled = TexturedButtonBox(texture, palette.DisabledElement, geometry,
             horizontalContentMargin, verticalContentMargin);
 
         return
@@ -241,6 +296,74 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         ];
     }
 
+    private static void AddComposedButtonRules(
+        List<StyleRule> rules,
+        Texture texture,
+        Texture borderTexture,
+        Func<MutableSelectorElement> selector,
+        ColorPalette palette,
+        Color outlineColor,
+        float horizontalContentMargin = 8,
+        float verticalContentMargin = 4)
+    {
+        rules.AddRange(TexturedButtonStateRules(
+            texture,
+            borderTexture,
+            () => selector().Class(StyleClass.ButtonOpenLeft),
+            palette,
+            outlineColor,
+            horizontalContentMargin,
+            verticalContentMargin,
+            ButtonGeometry.OpenLeft));
+        rules.AddRange(TexturedButtonStateRules(
+            texture,
+            borderTexture,
+            () => selector().Class(StyleClass.ButtonOpenRight),
+            palette,
+            outlineColor,
+            horizontalContentMargin,
+            verticalContentMargin,
+            ButtonGeometry.OpenRight));
+        rules.AddRange(TexturedButtonStateRules(
+            texture,
+            borderTexture,
+            () => selector().Class(StyleClass.ButtonOpenBoth),
+            palette,
+            outlineColor,
+            horizontalContentMargin,
+            verticalContentMargin,
+            ButtonGeometry.OpenBoth));
+        rules.AddRange(TexturedButtonStateRules(
+            texture,
+            borderTexture,
+            () => selector().Class(StyleClass.ButtonSquare),
+            palette,
+            outlineColor,
+            horizontalContentMargin,
+            verticalContentMargin,
+            ButtonGeometry.OpenBoth));
+    }
+
+    private static StyleRule[] DepartmentButtonStateRules(
+        Texture texture,
+        Texture borderTexture,
+        string styleClass,
+        Color color)
+    {
+        var normal = TexturedButtonBox(texture, color.WithAlpha(0.52f));
+        var hovered = TexturedButtonBox(borderTexture, color);
+        var pressed = TexturedButtonBox(borderTexture, color.WithAlpha(0.82f));
+        var disabled = TexturedButtonBox(texture, color.WithAlpha(0.24f));
+
+        return
+        [
+            Button().Class(styleClass).PseudoNormal().Box(normal).Modulate(Color.White),
+            Button().Class(styleClass).PseudoHovered().Box(hovered).Modulate(Color.White),
+            Button().Class(styleClass).PseudoPressed().Box(pressed).Modulate(Color.White),
+            Button().Class(styleClass).PseudoDisabled().Box(disabled).Modulate(Color.White),
+        ];
+    }
+
     private static StyleBoxFlat StrictBox(
         Color background,
         Color border,
@@ -248,15 +371,78 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         float horizontalContentMargin = 14,
         float verticalContentMargin = 4)
     {
+        return StrictBox(background, border, new Thickness(borderThickness), horizontalContentMargin,
+            verticalContentMargin);
+    }
+
+    private static StyleBoxFlat StrictBox(
+        Color background,
+        Color border,
+        Thickness borderThickness,
+        float horizontalContentMargin,
+        float verticalContentMargin)
+    {
         var box = new StyleBoxFlat(background)
         {
             BorderColor = border,
-            BorderThickness = new Thickness(borderThickness),
+            BorderThickness = borderThickness,
         };
 
         box.SetContentMarginOverride(StyleBox.Margin.Horizontal, horizontalContentMargin);
         box.SetContentMarginOverride(StyleBox.Margin.Vertical, verticalContentMargin);
         return box;
+    }
+
+    private static StyleBoxTexture TexturedButtonBox(
+        Texture texture,
+        Color color,
+        ButtonGeometry geometry = ButtonGeometry.Standard,
+        float horizontalContentMargin = 14,
+        float verticalContentMargin = 4)
+    {
+        var box = new StyleBoxTexture
+        {
+            Texture = texture,
+            Modulate = color,
+        };
+
+        box.SetPatchMargin(StyleBox.Margin.All, 10);
+
+        switch (geometry)
+        {
+            case ButtonGeometry.OpenLeft:
+                box.Texture = new AtlasTexture(texture,
+                    UIBox2.FromDimensions(new Vector2(10, 0), new Vector2(14, 24)));
+                box.SetPatchMargin(StyleBox.Margin.Left, 0);
+                break;
+            case ButtonGeometry.OpenRight:
+                box.Texture = new AtlasTexture(texture,
+                    UIBox2.FromDimensions(Vector2.Zero, new Vector2(14, 24)));
+                box.SetPatchMargin(StyleBox.Margin.Right, 0);
+                break;
+            case ButtonGeometry.OpenBoth:
+                box.Texture = new AtlasTexture(texture,
+                    UIBox2.FromDimensions(new Vector2(10, 0), new Vector2(3, 24)));
+                box.SetPatchMargin(StyleBox.Margin.Horizontal, 0);
+                break;
+            case ButtonGeometry.Borderless:
+                box.Texture = Texture.White;
+                box.SetPatchMargin(StyleBox.Margin.All, 0);
+                break;
+        }
+
+        box.SetContentMarginOverride(StyleBox.Margin.Horizontal, horizontalContentMargin);
+        box.SetContentMarginOverride(StyleBox.Margin.Vertical, verticalContentMargin);
+        return box;
+    }
+
+    private enum ButtonGeometry : byte
+    {
+        Standard,
+        OpenLeft,
+        OpenRight,
+        OpenBoth,
+        Borderless,
     }
 
 }

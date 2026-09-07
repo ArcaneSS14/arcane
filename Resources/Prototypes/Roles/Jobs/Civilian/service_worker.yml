@@ -31,6 +31,12 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentService
+  alternateTitles:
+  - ServiceWorkerWaiter
+  - ServiceWorkerJuniorCook
+  - ServiceWorkerBartenderApprentice
+  - ServiceWorkerCroupier
+  - ServiceWorkerSteward
   # Arcane-end
 
 - type: startingGear
@@ -53,3 +59,25 @@
     neck: ClothingNeckScarfStripedBrown
     outerClothing: ClothingOuterVest
     gloves: ClothingHandsGlovesColorBlack
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: ServiceWorkerWaiter
+  name: job-name-alt-serviceworker-1
+
+- type: jobAlternateTitle
+  id: ServiceWorkerJuniorCook
+  name: job-name-alt-serviceworker-2
+
+- type: jobAlternateTitle
+  id: ServiceWorkerBartenderApprentice
+  name: job-name-alt-serviceworker-3
+
+- type: jobAlternateTitle
+  id: ServiceWorkerCroupier
+  name: job-name-alt-serviceworker-4
+
+- type: jobAlternateTitle
+  id: ServiceWorkerSteward
+  name: job-name-alt-serviceworker-5
+# Arcane-End

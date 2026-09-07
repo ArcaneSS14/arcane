@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Goobstation.Common.Grab;
 using Content.Goobstation.Common.MartialArts;
 using Content.Shared._White.Grab;
+using Content.Shared._White.Xenomorphs.Xenomorph;
 using Content.Shared.Alert;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage.Components;
@@ -124,6 +125,22 @@ public sealed partial class GrabIntentSystem
         GrabStage stage,
         float escapeAttemptModifier = 1f)
     {
+        // Arcane-Start: 3 sec cooldown for xeno hardgrab after throw
+        var grabberUid = puller.Owner;
+
+        if (TryComp<XenomorphComponent>(grabberUid, out var xeno))
+        {
+            if (xeno.Caste.ToString().Equals("Hunter", StringComparison.OrdinalIgnoreCase))
+            {
+                stage = GrabStage.Soft;
+            }
+
+            if (stage > GrabStage.Soft && _timing.CurTime < puller.Comp2.NextStageChange)
+            {
+                stage = GrabStage.Soft;
+            }
+        }
+        // Arcane-End
         puller.Comp2.GrabStage = stage;
         pullable.Comp2.GrabStage = stage;
         pullable.Comp2.EscapeAttemptModifier *= escapeAttemptModifier;

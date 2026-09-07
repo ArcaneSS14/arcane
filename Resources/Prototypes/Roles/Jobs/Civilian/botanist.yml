@@ -28,6 +28,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentService
+  alternateTitles:
+  - BotanistHydroponicsSpecialist
+  - BotanistHerbologist
   # Arcane-end
 
 - type: startingGear
@@ -51,3 +54,13 @@
     neck: ClothingNeckScarfStripedGreen
     outerClothing: ClothingOuterApronBotanist
     gloves: ClothingHandsGlovesLeather
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: BotanistHydroponicsSpecialist
+  name: job-name-alt-botanist-1
+
+- type: jobAlternateTitle
+  id: BotanistHerbologist
+  name: job-name-alt-botanist-2
+# Arcane-End

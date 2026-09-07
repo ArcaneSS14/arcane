@@ -49,6 +49,9 @@
         - CorporateCodespeak
   contracts:
   - DocumentContractEmploymentJusticeDepartment
+  alternateTitles:
+  - IAAComplianceOfficer
+  - IAAAuditor
 
 - type: startingGear
   id: IAAGear
@@ -70,3 +73,11 @@
   job: IAA
   equipment:
     eyes: ClothingEyesGlassesSunglasses
+
+- type: jobAlternateTitle
+  id: IAAComplianceOfficer
+  name: job-name-alt-iaa-1
+
+- type: jobAlternateTitle
+  id: IAAAuditor
+  name: job-name-alt-iaa-2

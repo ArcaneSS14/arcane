@@ -28,6 +28,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentService
+  alternateTitles:
+  - MimePantomimist
+  - MimeSilentActor
   # Arcane-end
 
 - type: startingGear
@@ -65,3 +68,13 @@
     eyes: ClothingEyesGlassesCheapSunglasses
     neck: ClothingNeckScarfStripedZebra
     outerClothing: ClothingOuterWinterMime
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: MimePantomimist
+  name: job-name-alt-mime-1
+
+- type: jobAlternateTitle
+  id: MimeSilentActor
+  name: job-name-alt-mime-2
+# Arcane-End

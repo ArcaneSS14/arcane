@@ -54,6 +54,7 @@ public sealed class ArcaneStylesheet : CommonStylesheet, IButtonConfig
             new StyleRule[]
             {
                 Element().Prop(Label.StylePropertyFont, BaseFont.GetFont(PrimaryFontSize)),
+                Element<Label>().Prop(Label.StylePropertyFontColor, SecondaryPalette.Text),
             },
             GetAllSheetletRules<PalettedStylesheet, CommonSheetletAttribute>(manager),
             GetAllSheetletRules<ArcaneStylesheet, CommonSheetletAttribute>(manager),

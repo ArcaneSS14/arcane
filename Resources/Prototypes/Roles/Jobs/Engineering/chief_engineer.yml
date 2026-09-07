@@ -52,8 +52,14 @@
     components:
       - type: CommandStaff
       - type: EngineeringStaff # Goobstation
-  contracts: # Arcane
+  # Arcane-Start
+  contracts:
   - DocumentContractEmploymentCommand
+  alternateTitles:
+  - ChiefEngineerHeadOfEngineering
+  - ChiefEngineerEngineeringForeman
+  - ChiefEngineerEngineeringSupervisor
+  # Arcane-End
 
 - type: startingGear
   id: ChiefEngineerGear
@@ -78,3 +84,17 @@
     outerClothing: ClothingOuterWinterCE
     gloves: ClothingHandsGlovesColorYellow
     shoes: ClothingShoesBootsMagAdv
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: ChiefEngineerHeadOfEngineering
+  name: job-name-alt-ce-1
+
+- type: jobAlternateTitle
+  id: ChiefEngineerEngineeringForeman
+  name: job-name-alt-ce-2
+
+- type: jobAlternateTitle
+  id: ChiefEngineerEngineeringSupervisor
+  name: job-name-alt-ce-3
+# Arcane-End

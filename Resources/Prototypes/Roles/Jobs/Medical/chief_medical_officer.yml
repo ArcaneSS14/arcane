@@ -56,8 +56,15 @@
     components:
     - type: SurgerySpeedModifier
       speedModifier: 2
-  contracts: # Arcane
+  # Arcane-Start
+  contracts:
   - DocumentContractEmploymentCommand
+  alternateTitles:
+  - CMOMedicalDirector
+  - CMOHeadPhysician
+  - CMOSeniorMedicalOfficer
+  - CMOWardSupervisor
+  # Arcane-End
 
 - type: startingGear
   id: CMOGear
@@ -82,3 +89,21 @@
     neck: ClothingCloakCmo
     outerClothing: ClothingOuterCoatLabCmo
     gloves: ClothingHandsGlovesNitrile
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: CMOMedicalDirector
+  name: job-name-alt-cmo-1
+
+- type: jobAlternateTitle
+  id: CMOHeadPhysician
+  name: job-name-alt-cmo-2
+
+- type: jobAlternateTitle
+  id: CMOSeniorMedicalOfficer
+  name: job-name-alt-cmo-3
+
+- type: jobAlternateTitle
+  id: CMOWardSupervisor
+  name: job-name-alt-cmo-4
+# Arcane-End

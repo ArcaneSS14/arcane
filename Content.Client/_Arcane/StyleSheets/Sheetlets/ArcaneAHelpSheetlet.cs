@@ -10,11 +10,11 @@ public sealed class ArcaneAHelpSheetlet : Sheetlet<ArcaneStylesheet>
 {
     public override StyleRule[] GetRules(ArcaneStylesheet sheet, object config)
     {
-        var border = sheet.PrimaryPalette.Base.WithAlpha(0.5f);
-        var surface = Panel(sheet.SecondaryPalette.BackgroundLight, border);
-        var output = Panel(sheet.SecondaryPalette.Element, border, 8);
-        var toolbar = Panel(sheet.SecondaryPalette.Background, border, 4);
-        var listSurface = Panel(sheet.SecondaryPalette.BackgroundDark, border, 4);
+        var border = sheet.PrimaryPalette.Base.WithAlpha(0.62f);
+        var surface = Panel(sheet.SecondaryPalette.BackgroundLight, border, new Thickness(1));
+        var output = Panel(sheet.SecondaryPalette.Element, contentMargin: 8);
+        var toolbar = Panel(sheet.SecondaryPalette.Background, border, new Thickness(0, 1, 0, 0), 4);
+        var listSurface = Panel(sheet.SecondaryPalette.BackgroundDark, contentMargin: 4);
 
         return
         [
@@ -27,13 +27,18 @@ public sealed class ArcaneAHelpSheetlet : Sheetlet<ArcaneStylesheet>
         ];
     }
 
-    private static StyleBoxFlat Panel(Color background, Color border, float contentMargin = 0)
+    private static StyleBoxFlat Panel(
+        Color background,
+        Color? border = null,
+        Thickness? borderThickness = null,
+        float contentMargin = 0)
     {
-        var box = new StyleBoxFlat(background)
+        var box = new StyleBoxFlat(background);
+        if (border is not null)
         {
-            BorderColor = border,
-            BorderThickness = new Thickness(1),
-        };
+            box.BorderColor = border.Value;
+            box.BorderThickness = borderThickness ?? new Thickness(1);
+        }
 
         if (contentMargin > 0)
             box.SetContentMarginOverride(StyleBox.Margin.All, contentMargin);

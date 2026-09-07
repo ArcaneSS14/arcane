@@ -39,6 +39,9 @@
         - CorporateCodespeak
   contracts:
   - DocumentContractEmploymentService
+  alternateTitles:
+  - CommandMaidHeadMaid
+  - CommandMaidMajordomo
 
 - type: startingGear
   id: CommandMaidGear
@@ -56,3 +59,11 @@
     head: ClothingHeadHatCommandMaid
     neck: ClothingNeckTieBowCommandMaid
     gloves: ClothingHandsGlovesCommandMaid
+
+- type: jobAlternateTitle
+  id: CommandMaidHeadMaid
+  name: job-name-alt-commandmaid-1
+
+- type: jobAlternateTitle
+  id: CommandMaidMajordomo
+  name: job-name-alt-commandmaid-2
