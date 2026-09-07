@@ -1072,3 +1072,10 @@ Entries:
   id: 89
   time: '2026-09-07T10:09:17.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/302
+- author: HappyRoach
+  changes:
+    - type: Tweak
+      message: Жуткая Эссенция из фляги Еретика лечит сильнее.
+  id: 90
+  time: '2026-09-07T14:07:53.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/308
