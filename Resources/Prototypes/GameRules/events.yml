@@ -38,7 +38,10 @@
     - id: FloorGoblinMidRound # Goobstation
     - id: ClownGoblinMigration # Goobstation - New Midrounds
     # - id: SantaClausSpawn # Goobstation, remove after new year
-    - id: WackyCentComLaw # Arcane
+    # Arcane-Start
+    - id: WackyCentComLaw
+    - id: InvisibleSpawn
+    # Arcane-End
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -1113,4 +1116,18 @@
   - type: GameRule
     chaosScore: 50
   - type: WackyLaw
+
+- type: entity
+  parent: BaseGameRule
+  id: InvisibleSpawn
+  components:
+  - type: StationEvent
+    weight: 6
+    duration: 1
+    earliestStart: 10
+    eventType: Neutral
+  - type: GameRule
+    chaosScore: 100
+  - type: RandomSpawnRule
+    prototype: InvisibleSpawner
 # Arcane-end
