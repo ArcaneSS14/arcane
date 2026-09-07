@@ -46,7 +46,7 @@
     </ColorBox>
     <ColorBox Color="#222222">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Добавляется 15 минут к общему сроку
+        Добавляется 15% к общему сроку или штрафу
       </Box>
     </ColorBox>
 
@@ -73,12 +73,12 @@
     </ColorBox>
     <ColorBox Color="#222222">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Действие совершено без прямого умысла нанести вред, но в результате небрежности или легкомыслию наступило общественно-опасное деяние. Не применяется к статьям Халатность, Грубая Халатность. В случаях непредумышленного убийства запрещается садить в пермабриг.
+        Действие совершно против должностного лица в связи с исполнением им функций представителя власти. Не применяется к статьям 303, 203 КЗ.
       </Box>
     </ColorBox>
     <ColorBox Color="#222222">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Снижение срока на 25%
+        Увеличение срока или штрафа на 25%
       </Box>
     </ColorBox>
 
@@ -100,23 +100,7 @@
 
     <ColorBox Color="#138808">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        [bold]СМ-1. Неумышленное причинение вреда[/bold]
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#222222">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Деяние совершено без умысла, а также без признаков легкомыслия или небрежности. Лицо не предвидело, не желало и объективно не могло предвидеть наступления опасных последствий.
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#222222">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Освобождение
-      </Box>
-    </ColorBox>
-
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        [bold]СМ-1.1. Преступление по неосторожности[/bold]
+        [bold]СМ-1. Преступление по неосторожности[/bold]
       </Box>
     </ColorBox>
     <ColorBox Color="#222222">
