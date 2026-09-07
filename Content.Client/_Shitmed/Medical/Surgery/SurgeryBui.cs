@@ -282,8 +282,11 @@ public sealed class SurgeryBui : BoundUserInterface
             || !_window.IsOpen
             || _part == null
             || !_entities.HasComponent<SurgeryComponent>(_surgery?.Ent)
-            || !_entities.TryGetComponent(_player.LocalEntity, out SurgeryTargetComponent? surgeryComp)
-            || !surgeryComp.CanOperate)
+            // Arcane-Edit-Start
+            || !_entities.TryGetComponent(Owner, out SurgeryTargetComponent? surgeryComp)
+            || !surgeryComp.CanOperate
+            || _player.LocalEntity == null)
+            // Arcane-Edit-End
             return;
 
         var next = _system.GetNextStep(Owner, _part.Value, _surgery.Value.Ent, _player.LocalEntity.Value);

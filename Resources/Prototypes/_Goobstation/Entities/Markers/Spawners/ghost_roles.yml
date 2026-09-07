@@ -52,7 +52,7 @@
   - type: GhostRole
     name: ghost-role-information-tunnel-clown-name
     description: ghost-role-information-tunnel-clown-description
-    rules: ghost-role-information-antagonist-rules
+    rules: ghost-role-information-tunnel-clown-rules # Arcane-Edit
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     - MindRoleGhostRoleSoloAntagonistClownGoob

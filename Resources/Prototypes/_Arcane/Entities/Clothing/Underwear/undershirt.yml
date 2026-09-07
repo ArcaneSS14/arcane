@@ -9,6 +9,15 @@
 
 - type: entity
   parent: ClothingBraBase
+  id: ClothingUndershirtNinjaBra
+  name: Ninja bra
+  description: Warm bra with fur lining.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/undershirt/warm_bra_ninja.rsi
+
+- type: entity
+  parent: ClothingBraBase
   id: ClothingUndershirtCowSwimsuit
   name: cow swimsuit
   description: Sexy cow spot print swimsuit.

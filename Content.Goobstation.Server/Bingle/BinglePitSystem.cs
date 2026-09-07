@@ -58,6 +58,7 @@ public sealed class BinglePitSystem : EntitySystem
 
     private readonly List<Entity<BinglePitComponent>> _pits = new();
     public static readonly ProtoId<ContentTileDefinition> FloorTile = "FloorBingle";
+    public static readonly EntProtoId Bingle = "MobBingle";
 
     public override void Initialize()
     {
@@ -114,7 +115,8 @@ public sealed class BinglePitSystem : EntitySystem
             ? component.RareGhostRoleToSpawn
             : component.GhostRoleToSpawn;
 
-        Spawn(proto, coords);
+        var role = Spawn(proto, coords);
+        component.BingleGhostRoles.Add(role);
     }
 
     private void OnStepTriggered(EntityUid uid, BinglePitComponent component, ref StepTriggeredOffEvent args)
@@ -235,10 +237,13 @@ public sealed class BinglePitSystem : EntitySystem
     {
         var query = EntityQueryEnumerator<GhostRoleMobSpawnerComponent>();
         while (query.MoveNext(out var queryGRMSUid, out var queryGRMScomp))
-            if (queryGRMScomp.Prototype == "MobBingle")
-                if (Transform(uid).Coordinates == Transform(queryGRMSUid).Coordinates)
+            if (queryGRMScomp.Prototype == Bingle)
+                if (component.BingleGhostRoles.Contains(queryGRMSUid))
                     QueueDel(queryGRMSUid); // remove any unspanned bingle when pit is destroyed
+
+        component.BingleGhostRoles.Clear();
     }
+
     private void OnAttacked(EntityUid uid, BinglePitComponent component, AttackedEvent args)
     {
         if (_containerSystem.ContainsEntity(uid, args.User))
