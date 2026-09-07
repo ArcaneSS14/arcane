@@ -21,8 +21,10 @@ public record struct CloningEvent(CloningSettingsPrototype Settings, EntityUid C
 [ByRefEvent]
 public record struct CloningItemEvent(EntityUid CloneUid);
 
+// Arcane-Start
 /// <summary>
 ///    Raised on the original item after the cloned item's storage contents have been fully copied.
 /// </summary>
 [ByRefEvent]
 public record struct CloningItemStoragePopulatedEvent(EntityUid CloneUid);
+// Arcane-End
