@@ -29,6 +29,9 @@ internal static class TTSRadioChannelSettings
             if (!float.TryParse(part.AsSpan(sep + 1), NumberStyles.Float, CultureInfo.InvariantCulture, out var volume))
                 continue;
 
+            if (!float.IsFinite(volume))
+                continue;
+
             volumes[frequency] = Math.Clamp(volume, 0f, 1f);
         }
 
@@ -59,6 +62,9 @@ internal static class TTSRadioChannelSettings
 
     public static string UpsertVolume(string value, int frequency, float volume)
     {
+        if (!float.IsFinite(volume))
+            volume = 1f;
+
         var volumes = ParseVolumes(value);
         volumes[frequency] = Math.Clamp(volume, 0f, 1f);
         return FormatVolumes(volumes);

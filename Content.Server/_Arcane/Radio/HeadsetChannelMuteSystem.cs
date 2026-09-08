@@ -5,11 +5,14 @@ using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Verbs;
 using Content.Shared._Arcane.Radio;
+using Robust.Shared.Enums;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
 
 namespace Content.Server._Arcane.Radio;
 
@@ -21,6 +24,8 @@ namespace Content.Server._Arcane.Radio;
 public sealed class HeadsetChannelMuteSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
     private readonly Dictionary<NetUserId, HashSet<int>> _mutedFrequencies = new();
 
@@ -30,10 +35,12 @@ public sealed class HeadsetChannelMuteSystem : EntitySystem
         SubscribeLocalEvent<HeadsetComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<HeadsetComponent, HeadsetChannelMuteMessage>(OnToggleMute);
         SubscribeLocalEvent<HeadsetComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
+        _players.PlayerStatusChanged += OnPlayerStatusChanged;
     }
 
     public override void Shutdown()
     {
+        _players.PlayerStatusChanged -= OnPlayerStatusChanged;
         _mutedFrequencies.Clear();
         base.Shutdown();
     }
@@ -74,16 +81,33 @@ public sealed class HeadsetChannelMuteSystem : EntitySystem
         UpdateUiState(ent, args.Actor);
     }
 
+    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
+    {
+        if (e.NewStatus != SessionStatus.Disconnected)
+            return;
+
+        _mutedFrequencies.Remove(e.Session.UserId);
+    }
+
     private void OnToggleMute(Entity<HeadsetComponent> ent, ref HeadsetChannelMuteMessage args)
     {
         if (args.Frequency <= 0 || !TryComp<ActorComponent>(args.Actor, out var actor))
             return;
 
-        if (!_mutedFrequencies.TryGetValue(actor.PlayerSession.UserId, out var muted))
-            _mutedFrequencies[actor.PlayerSession.UserId] = muted = new HashSet<int>();
+        var frequency = args.Frequency;
+        if (!TryComp<EncryptionKeyHolderComponent>(ent.Owner, out var keys)
+            || !keys.Channels.Any(channel => _prototypes.Index(channel).Frequency == frequency))
+            return;
+
+        var userId = actor.PlayerSession.UserId;
+        if (!_mutedFrequencies.TryGetValue(userId, out var muted))
+            _mutedFrequencies[userId] = muted = new HashSet<int>();
 
         if (args.Muted)
-            muted.Add(args.Frequency);
+        {
+            if (muted.Count < keys.Channels.Count)
+                muted.Add(args.Frequency);
+        }
         else
             muted.Remove(args.Frequency);
 

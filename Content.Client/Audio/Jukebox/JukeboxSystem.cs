@@ -42,10 +42,6 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
         var multiplier = _cfg.GetCVar(ACCVars.JukeboxVolume);
 
-        // 100% (сток) — сетевой стрим не трогаем.
-        if (Math.Abs(multiplier - 1f) < 1e-6f)
-            return;
-
         var query = AllEntityQuery<JukeboxComponent>();
         while (query.MoveNext(out _, out var jukebox))
         {
