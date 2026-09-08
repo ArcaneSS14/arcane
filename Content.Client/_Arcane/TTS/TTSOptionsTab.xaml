@@ -12,6 +12,12 @@
                 <CheckBox Name="UseTTSCheckBox"
                           Text="{Loc 'ui-options-use-tts'}"/>
             </BoxContainer>
+            <Label Text="{Loc 'ui-options-tts-radio-channels-header'}"
+                   StyleClasses="LabelKeyText"
+                   Margin="0 10 0 0"/>
+            <ScrollContainer Name="RadioChannelsScroll" VerticalExpand="True" HorizontalExpand="True" Margin="0 3 0 0">
+                <BoxContainer Name="ChannelList" Orientation="Vertical" />
+            </ScrollContainer>
         </BoxContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />
     </BoxContainer>
