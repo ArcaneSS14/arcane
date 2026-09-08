@@ -8,4 +8,13 @@
 # - /Prototypes/Guidebook
 # - /Prototypes/Catalog/uplink_catalog.yml
 
-- /Prototypes/lobbyscreens.yml # Arcane
+# Arcane-start
+- /Prototypes/lobbyscreens.yml
+- /Prototypes/Guidebook/rules.yml
+- /Prototypes/_Goobstation/Guidebook/rules.yml
+- /Prototypes/_Goobstation/Guidebook/RevealingConditions.yml
+- /Prototypes/_Orion/Guidebook/orion.yml
+- /Prototypes/_Orion/Guidebook/science.yml
+- /Prototypes/_Orion/Guidebook/rules.yml
+- /Prototypes/_Orion/Guidebook/Antagonist/antagonist.yml
+# Arcane-end
