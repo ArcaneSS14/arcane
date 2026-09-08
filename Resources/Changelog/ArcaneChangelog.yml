@@ -1079,3 +1079,12 @@ Entries:
   id: 90
   time: '2026-09-07T14:07:53.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/308
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Голос пилота меха озвучивается со специальным эффектом
+    - type: Add
+      message: ИИ может менять себе голос
+  id: 91
+  time: '2026-09-08T04:43:50.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/317
