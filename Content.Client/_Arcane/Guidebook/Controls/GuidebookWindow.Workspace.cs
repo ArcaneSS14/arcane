@@ -55,12 +55,7 @@ public sealed partial class GuidebookWindow
 
         WorkspaceToolbar.Search.OnTextChanged += _ => QueueWorkspaceSearch();
         WorkspaceToolbar.Favorites.OnPressed += _ => RefreshWorkspaceSearch();
-        WorkspaceToolbar.ToggleAddress.OnPressed += _ =>
-        {
-            WorkspaceToolbar.Address.Visible = WorkspaceToolbar.ToggleAddress.Pressed;
-        };
 
-        WorkspaceToolbar.Address.OnTextEntered += args => HandleClick(args.Text.Trim());
 
         Split.OnSplitResizeFinished += () =>
         {
@@ -308,7 +303,6 @@ public sealed partial class GuidebookWindow
         _sectionAnchors.Clear();
 
         WorkspaceToolbar.Favorite.Disabled = true;
-        WorkspaceToolbar.Address.Text = "";
     }
 
     private void RefreshWorkspaceArticle(GuideEntry entry)
@@ -319,7 +313,6 @@ public sealed partial class GuidebookWindow
         if (_popOutWindow != null)
             _popOutWindow.Title = Title;
 
-        WorkspaceToolbar.Address.Text = entry.Id;
         WorkspaceToolbar.Status.Visible = false;
         WorkspaceToolbar.Favorite.Disabled = _preferences == null;
         WorkspaceToolbar.Favorite.Pressed = _preferences?.Favorites.Contains(entry.Id) == true;
@@ -378,7 +371,6 @@ public sealed partial class GuidebookWindow
         var anchor = parts[1];
         if (_sectionAnchors.TryGetValue(anchor, out var control))
         {
-            WorkspaceToolbar.Address.Text = $"{entry}#{anchor}";
             ScrollToSection(control);
             return;
         }
