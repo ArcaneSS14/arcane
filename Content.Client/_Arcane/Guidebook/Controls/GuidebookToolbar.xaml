@@ -1,0 +1,27 @@
+<BoxContainer 
+    xmlns="https://spacestation14.io" 
+    Orientation="Vertical">
+    <BoxContainer Orientation="Horizontal" Margin="0 8 0 4" SeparationOverride="8">
+        <ScrollContainer HScrollEnabled="True" VScrollEnabled="False" HorizontalExpand="True" MinHeight="40" MaxHeight="40">
+            <BoxContainer Name="Categories" Access="Public" Orientation="Horizontal" VerticalAlignment="Top" SeparationOverride="4" />
+        </ScrollContainer>
+        <Button Name="Favorites" Access="Public" ToggleMode="True" VerticalAlignment="Top" Text="{Loc 'arcane-guidebook-favorites'}" />
+    </BoxContainer>
+    <BoxContainer Orientation="Horizontal" Margin="0 0 0 4" SeparationOverride="2">
+        <Button Name="ToggleSidebar" Access="Public" ToggleMode="True" Text="{Loc 'arcane-guidebook-sidebar'}" />
+        <LineEdit Name="Search" Access="Public" HorizontalExpand="True" MinWidth="160" Margin="4 0 4 0" PlaceHolder="{Loc 'arcane-guidebook-search'}" />
+        <Button Name="Favorite" Access="Public" ToggleMode="True" Disabled="True" Text="{Loc 'arcane-guidebook-favorite'}" ToolTip="{Loc 'arcane-guidebook-favorite-hint'}" />
+        <Button Name="NewWindow" Access="Public" Text="{Loc 'arcane-guidebook-new-window'}" ToolTip="{Loc 'arcane-guidebook-new-window-hint'}" />
+        <Button Name="ToggleAddress" Access="Public" ToggleMode="True" Text="{Loc 'arcane-guidebook-link'}" />
+        <Button Name="PopOut" Access="Public" ToolTip="{Loc 'arcane-guidebook-pop-out-hint'}">
+            <TextureRect TexturePath="/Textures/Interface/VerbIcons/dot.svg.192dpi.png"
+                         SetSize="20 20" Stretch="KeepAspectCentered" />
+        </Button>
+    </BoxContainer>
+    <ScrollContainer Name="ResultsScroll" Access="Public" HScrollEnabled="False" Visible="False" MinHeight="140" MaxHeight="140">
+        <BoxContainer Name="Results" Access="Public" Orientation="Vertical" HorizontalExpand="True" />
+    </ScrollContainer>
+    <LineEdit Name="Address" Access="Public" HorizontalExpand="True" Editable="True" Visible="False" Margin="0 4 0 4"
+              PlaceHolder="{Loc 'arcane-guidebook-address'}" ToolTip="{Loc 'arcane-guidebook-address-hint'}" />
+    <Label Name="Status" Access="Public" Visible="False" />
+</BoxContainer>
