@@ -36,6 +36,7 @@
   - StationEngineerDesignEngineer
   - StationEngineerElectricalEngineer
   - StationEngineerConstructionEngineer
+  - StationEngineerMechanic
   # Arcane-end
 
 - type: startingGear
@@ -75,4 +76,8 @@
 - type: jobAlternateTitle
   id: StationEngineerConstructionEngineer
   name: job-name-alt-engineer-4
+
+- type: jobAlternateTitle
+  id: StationEngineerMechanic
+  name: job-name-alt-engineer-5
 # Arcane-End

@@ -41,6 +41,8 @@
   - DocumentContractEmploymentService
   alternateTitles:
   - CommandMaidButler
+  - CommandMaidCommandJanitor
+  - CommandMaidCorporateMaid
 
 - type: startingGear
   id: CommandMaidGear
@@ -62,3 +64,11 @@
 - type: jobAlternateTitle
   id: CommandMaidButler
   name: job-name-alt-commandmaid-1
+
+- type: jobAlternateTitle
+  id: CommandMaidCommandJanitor
+  name: job-name-alt-commandmaid-2
+
+- type: jobAlternateTitle
+  id: CommandMaidCorporateMaid
+  name: job-name-alt-commandmaid-3

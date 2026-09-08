@@ -43,6 +43,7 @@
   alternateTitles:
   - DetectiveSecurityInvestigator
   - DetectiveSecurityInspector
+  - DetectiveSecuritySleuth
   # Arcane-end
 
 - type: startingGear
@@ -79,4 +80,8 @@
 - type: jobAlternateTitle
   id: DetectiveSecurityInspector
   name: job-name-alt-detective-2
+
+- type: jobAlternateTitle
+  id: DetectiveSecuritySleuth
+  name: job-name-alt-detective-3
 # Arcane-End

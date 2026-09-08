@@ -84,6 +84,9 @@
   alternateTitles:
   - HoPPersonnelCoordinator
   - HoPHumanResourcesOfficer
+  - HoPPersonnelChief
+  - HoPHRDirector
+  - HoPStaffAdministrator
   # Arcane-end
 
 - type: startingGear
@@ -119,4 +122,16 @@
 - type: jobAlternateTitle
   id: HoPHumanResourcesOfficer
   name: job-name-alt-hop-2
+
+- type: jobAlternateTitle
+  id: HoPPersonnelChief
+  name: job-name-alt-hop-3
+
+- type: jobAlternateTitle
+  id: HoPHRDirector
+  name: job-name-alt-hop-4
+
+- type: jobAlternateTitle
+  id: HoPStaffAdministrator
+  name: job-name-alt-hop-5
 # Arcane-End

@@ -42,6 +42,9 @@
   alternateTitles:
   - SecurityOfficerOperative
   - SecurityOfficerSpecialist
+  - SecurityOfficerGuard
+  - SecurityOfficerLawEnforcer
+  - SecurityOfficerStaff
   # Arcane-end
 
 - type: startingGear
@@ -73,4 +76,16 @@
 - type: jobAlternateTitle
   id: SecurityOfficerSpecialist
   name: job-name-alt-secoff-2
+
+- type: jobAlternateTitle
+  id: SecurityOfficerGuard
+  name: job-name-alt-secoff-3
+
+- type: jobAlternateTitle
+  id: SecurityOfficerLawEnforcer
+  name: job-name-alt-secoff-4
+
+- type: jobAlternateTitle
+  id: SecurityOfficerStaff
+  name: job-name-alt-secoff-5
 # Arcane-End

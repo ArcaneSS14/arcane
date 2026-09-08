@@ -31,6 +31,8 @@
   alternateTitles:
   - MimePantomimist
   - MimeSilentActor
+  - MimeSilentOne
+  - MimePantomimeArtist
   # Arcane-end
 
 - type: startingGear
@@ -77,4 +79,12 @@
 - type: jobAlternateTitle
   id: MimeSilentActor
   name: job-name-alt-mime-2
+
+- type: jobAlternateTitle
+  id: MimeSilentOne
+  name: job-name-alt-mime-3
+
+- type: jobAlternateTitle
+  id: MimePantomimeArtist
+  name: job-name-alt-mime-4
 # Arcane-End

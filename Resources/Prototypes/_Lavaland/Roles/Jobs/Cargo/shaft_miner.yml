@@ -31,6 +31,7 @@
   - ShaftMinerExcavator
   - ShaftMinerProspector
   - ShaftMinerMaterialSupportSpecialist
+  - ShaftMinerDriller
   # Arcane-end
 
 - type: startingGear
@@ -66,4 +67,8 @@
 - type: jobAlternateTitle
   id: ShaftMinerMaterialSupportSpecialist
   name: job-name-alt-shaftminer-3
+
+- type: jobAlternateTitle
+  id: ShaftMinerDriller
+  name: job-name-alt-shaftminer-4
 # Arcane-End

@@ -50,6 +50,7 @@
   - DocumentContractEmploymentCommand
   alternateTitles:
   - AdjutantCommandSecretary
+  - AdjutantCommandAssistant
 
 - type: startingGear
   id: AdjutantGear
@@ -76,3 +77,7 @@
 - type: jobAlternateTitle
   id: AdjutantCommandSecretary
   name: job-name-alt-adjutant-1
+
+- type: jobAlternateTitle
+  id: AdjutantCommandAssistant
+  name: job-name-alt-adjutant-2

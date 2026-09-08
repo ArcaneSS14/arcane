@@ -58,6 +58,8 @@
   alternateTitles:
   - ChiefEngineerHeadOfEngineering
   - ChiefEngineerChiefEngineer
+  - ChiefEngineerTechnicalDirector
+  - ChiefEngineerHeadOfEngDept
   # Arcane-End
 
 - type: startingGear
@@ -92,4 +94,12 @@
 - type: jobAlternateTitle
   id: ChiefEngineerChiefEngineer
   name: job-name-alt-ce-2
+
+- type: jobAlternateTitle
+  id: ChiefEngineerTechnicalDirector
+  name: job-name-alt-ce-3
+
+- type: jobAlternateTitle
+  id: ChiefEngineerHeadOfEngDept
+  name: job-name-alt-ce-4
 # Arcane-End

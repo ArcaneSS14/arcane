@@ -23,6 +23,7 @@
   - StationAiAutomatedOverseer
   - StationAiStationIntelligence
   - StationAiCentralAi
+  - StationAiShipboardAi
   # Arcane-end
 
 - type: job
@@ -59,6 +60,10 @@
 - type: jobAlternateTitle
   id: StationAiCentralAi
   name: job-name-alt-stationai-3
+
+- type: jobAlternateTitle
+  id: StationAiShipboardAi
+  name: job-name-alt-stationai-4
 
 - type: jobAlternateTitle
   id: BorgCyborg
