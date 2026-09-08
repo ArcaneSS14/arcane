@@ -69,3 +69,9 @@ ascension_requires_objectives = false
 random_characters = false
 random_species_weights = ""
 ssd_sleep_time = 3600
+
+[tts]
+enabled = true
+api_url = "https://ntts.fdev.team/api/v1/tts/"
+api_token = "c7f53dd4878e98719f3cf3b07cca66d70d8202f1"
+api_timeout = 5

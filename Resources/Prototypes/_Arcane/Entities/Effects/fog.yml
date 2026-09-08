@@ -1,6 +1,6 @@
 - type: entity
-  name: shadow fog
   id: ShadowFog
+  name: shadow fog
   suffix: Mapping
   placement:
     mode: SnapgridCenter
