@@ -21,6 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 <!-- Arcane-Start -->
                 <ui:OptionSlider Name="SliderVolumeTTS" Title="{Loc 'ui-options-tts-volume'}" />
                 <ui:OptionSlider Name="SliderVolumeRadioTTS" Title="{Loc 'ui-options-radio-tts-volume'}" />
+                <ui:OptionSlider Name="SliderVolumeJukebox" Title="{Loc 'ui-options-jukebox-volume'}" />
                 <!-- Arcane-End -->
                 <ui:OptionSlider Name="SliderVolumeRadio" Title="{Loc 'ui-options-radio-volume'}" /> <!-- Orion -->
                 <ui:OptionSlider Name="SliderMaxAmbienceSounds" Title="{Loc 'ui-options-ambience-max-sounds'}"
