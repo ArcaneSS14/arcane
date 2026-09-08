@@ -185,6 +185,8 @@
     children:
     - id: StrangePill
       prob: 0.15
+    - id: ClothingOuterArmorRU6B2Vest # Goobstation
+      prob: 0.04
     # Tools
     - !type:NestedSelector
       tableId: MaintToolsTable
@@ -209,11 +211,11 @@
     # Syndie Loot
     - !type:NestedSelector
       tableId: SyndieMaintLoot
-      prob: 0.065 # Arcane-Edit: 0.05 > 0.065
+      prob: 0.065 # Arcane-Edit: 0.05 > 0.05
     # InteQ Loot | Orion
     - !type:NestedSelector
       tableId: InteQMaintLoot
-      prob: 0.5
+      prob: 0.05
     # Recursive
     - id: ClosetMaintenanceFilledRandom
       prob: 0.01
