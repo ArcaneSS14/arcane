@@ -33,10 +33,10 @@
   - type: Sealable
   - type: Openable
     sound:
-      path: /Audio/Effects/pop_high.ogg
+      path: /Audio/Effects/pop.ogg
     closeable: true
     closeSound:
-      path: /Audio/Effects/pop_high.ogg
+      path: /Audio/Effects/pop.ogg
 
 # Paints
 
