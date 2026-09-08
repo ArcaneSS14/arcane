@@ -1127,3 +1127,10 @@ Entries:
   id: 93
   time: '2026-09-08T18:02:12.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/319
+- author: Hero_010
+  changes:
+    - type: Add
+      message: Добавлена резонансная коса в театрошкаф.
+  id: 94
+  time: '2026-09-08T18:07:04.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/309
