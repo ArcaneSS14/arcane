@@ -6,7 +6,7 @@
   author: seemah
   description: Приятный отдых на природе.
   category: General
-  gridPath: /Maps/_Arcane/InfinityDorms/narure.yml
+  gridPath: /Maps/_Arcane/InfinityDorms/nature.yml
 
 - type: infinityDorm
   id: Retro
@@ -24,6 +24,14 @@
   category: General
   gridPath: /Maps/_Arcane/InfinityDorms/hotel.yml
 
+- type: infinityDorm
+  id: Apartment
+  title: Станционная квартира
+  author: Anto, ChangelingRUES
+  description: Просторная квартира, на космической станции.
+  category: General
+  gridPath: /Maps/_Arcane/InfinityDorms/apartment.yml
+  
 # endregion КЛАССИКА
 
 # region НЕОБЫЧНЫЕ
@@ -51,6 +59,14 @@
   description: Святыня бога машин.
   category: Unusual
   gridPath: /Maps/_Arcane/InfinityDorms/techno.yml
+  
+- type: infinityDorm
+  id: Beach
+  title: Пляж
+  author: ChangelingRUES
+  description: Выдолбленный внутри горы пляж.
+  category: Unusual
+  gridPath: /Maps/_Arcane/InfinityDorms/beach.yml
 
 # endregion НЕОБЫЧНЫЕ
 
