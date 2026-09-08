@@ -39,7 +39,7 @@ public sealed partial class GrabIntentComponent : Component
     public Dictionary<GrabStage, float> EscapeChances = new()
     {
         { GrabStage.No, 1f },
-        { GrabStage.Soft, 1f },
+        { GrabStage.Soft, 0.8f }, // Arcane-Edit: 1 > 0.8
         { GrabStage.Hard, 0.6f },
         { GrabStage.Suffocate, 0.2f },
     };
@@ -63,10 +63,10 @@ public sealed partial class GrabIntentComponent : Component
     };
 
     [DataField]
-    public float GrabThrownSpeed = 7f;
+    public float GrabThrownSpeed = 12f; // Arcane-Edit: 7 > 12
 
     [DataField]
-    public float ThrowingDistance = 4f;
+    public float ThrowingDistance = 5f; // Arcane-Edit: 4 > 5
 
     [DataField]
     public float SoftGrabSpeedModifier = 0.9f;
@@ -75,17 +75,17 @@ public sealed partial class GrabIntentComponent : Component
     public float HardGrabSpeedModifier = 0.7f;
 
     [DataField]
-    public float ChokeGrabSpeedModifier = 0.4f;
+    public float ChokeGrabSpeedModifier = 0.5f; // Arcane-Edit: 0.4 > 0.5
 
     [NonSerialized]
     public readonly SoundPathSpecifier GrabSoundEffect = new("/Audio/Effects/thudswoosh.ogg");
 
     #region Table Slamming
     [DataField]
-    public float TableSlamCooldown = 3f;
+    public float TableSlamCooldown = 1f; // Arcane-Edit: 3 > 1
 
     [DataField]
-    public float TableSlamRange = 2f;
+    public float TableSlamRange = 3.5f; // Arcane-Edit: 2 > 3.5
 
     [DataField]
     public GrabStage TableSlamRequiredStage = GrabStage.Hard;

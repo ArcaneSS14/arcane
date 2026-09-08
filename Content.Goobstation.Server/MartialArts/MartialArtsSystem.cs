@@ -28,10 +28,22 @@ public sealed class MartialArtsSystem : SharedMartialArtsSystem
     }
 
     private void OnPolymorphedCPC(Entity<CanPerformComboComponent> ent, ref PolymorphedEvent args)
-        => _polymorph.CopyPolymorphComponent<CanPerformComboComponent>(ent, args.NewEntity);
+    // Arcane-Edit-Start
+    {
+        if (HasComp<CanPerformComboComponent>(args.NewEntity))
+            return;
+        _polymorph.CopyPolymorphComponent<CanPerformComboComponent>(ent, args.NewEntity);
+    }
+    // Arcane-Edit-End
 
     private void OnPolymorphedMAK(Entity<MartialArtsKnowledgeComponent> ent, ref PolymorphedEvent args)
-        => _polymorph.CopyPolymorphComponent<MartialArtsKnowledgeComponent>(ent, args.NewEntity);
+    // Arcane-Edit-Start
+    {
+        if (HasComp<MartialArtsKnowledgeComponent>(args.NewEntity))
+            return;
+        _polymorph.CopyPolymorphComponent<MartialArtsKnowledgeComponent>(ent, args.NewEntity);
+    }
+    // Arcane-Edit-End
 
     private void OnSleepingCarpSaying(Entity<CanPerformComboComponent> ent, ref SleepingCarpSaying args)
     {
