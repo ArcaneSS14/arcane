@@ -131,7 +131,7 @@ public partial class SharedMartialArtsSystem
         var targetPos = _transform.GetMapCoordinates(target).Position;
         var direction = targetPos - entPos; // vector from ent to target
 
-        _grabThrowing.Throw(target, ent, direction, 25, behavior: proto.DropItems);
+        _grabThrowing.Throw(target, ent, direction, 20, behavior: proto.DropItems); // Arcane-Edit: 25 > 20
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/demon_attack1.ogg"), ent);
         ComboPopup(ent, target, proto.ID); // Orion-Edit: proto.Name -> proto.ID
