@@ -9,10 +9,10 @@ namespace Content.Shared._Arcane.Speech;
 [RegisterComponent]
 public sealed partial class NatureComponent : Component
 {
-    [DataField("EmoteTag")]
+    [DataField]
     public ProtoId<TagPrototype>? EmoteTag;
 
-    [DataField("NewSounds")]
+    [DataField]
     public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? NewSounds;
 
     public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? OriginalSounds;
