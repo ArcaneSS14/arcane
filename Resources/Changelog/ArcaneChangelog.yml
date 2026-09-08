@@ -1111,3 +1111,26 @@ Entries:
   id: 92
   time: '2026-09-08T17:58:57.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/320
+- author: ChangelingRUES
+  changes:
+    - type: Add
+      message: >-
+        Добавлены две новые инфинити-дормы - Космическая
+        [квартира](https://i.postimg.cc/52GSBR89/Apartament-infi-dorm.png) и
+        [Пляж](https://i.postimg.cc/R0cr28Qv/Beach-infi-dorm.png).
+    - type: Tweak
+      message: >-
+        Доработаны все старые инфинити-дормы - теперь везде рабочий атмос и
+        дистра, с зарядками боргов и батареек для КПБ (ну и доступные ЛКП в
+        придачу). Плюс совсем мелкие
+        [изменения](https://github.com/ArcaneSS14/arcane/pull/319).
+  id: 93
+  time: '2026-09-08T18:02:12.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/319
+- author: Hero_010
+  changes:
+    - type: Add
+      message: Добавлена резонансная коса в театрошкаф.
+  id: 94
+  time: '2026-09-08T18:07:04.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/309
