@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Audio;
+using Content.Client._Arcane.Radio;
 using Content.Shared._Arcane.CCVars;
 using Content.Shared._Arcane.CVars;
 using Content.Shared.Radio;
@@ -32,29 +33,6 @@ public sealed partial class TTSOptionsTab : Control
 
     private static readonly Color SeparatorColor = Color.FromHex("#3D4059");
 
-    /// <summary>
-    ///     Preferred order of radio channels in the mixer. Common first, then station
-    ///     frequencies, then CentCom and Syndicate, then any other channel by frequency.
-    /// </summary>
-    private static readonly Dictionary<string, int> ChannelOrder = new()
-    {
-        ["Common"] = 0,
-        ["Command"] = 1,
-        ["Security"] = 2,
-        ["Medical"] = 3,
-        ["Engineering"] = 4,
-        ["Science"] = 5,
-        ["Service"] = 6,
-        ["Supply"] = 7,
-        ["Legal"] = 8,
-        ["CentCom"] = 9,
-        ["Syndicate"] = 10,
-        ["InteQ"] = 11,
-        ["Freelance"] = 12,
-        ["RadioShow"] = 13,
-        ["Handheld"] = 14,
-    };
-
     public TTSOptionsTab()
     {
         RobustXamlLoader.Load(this);
@@ -82,7 +60,7 @@ public sealed partial class TTSOptionsTab : Control
 
         var channels = _prototypes.EnumeratePrototypes<RadioChannelPrototype>()
             .Where(channel => channel.Frequency > 0)
-            .OrderBy(channel => ChannelOrder.GetValueOrDefault(channel.ID, int.MaxValue))
+            .OrderBy(channel => RadioChannelOrder.Channels.GetValueOrDefault(channel.ID, int.MaxValue))
             .ThenBy(channel => channel.Frequency)
             .ToList();
 
