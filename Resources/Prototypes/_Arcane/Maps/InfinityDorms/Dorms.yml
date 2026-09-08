@@ -28,7 +28,7 @@
   id: Apartment
   title: Станционная квартира
   author: Anto, ChangelingRUES
-  description: Просторная квартира, на космической станции.
+  description: Просторная квартира на космической станции.
   category: General
   gridPath: /Maps/_Arcane/InfinityDorms/apartment.yml
   
