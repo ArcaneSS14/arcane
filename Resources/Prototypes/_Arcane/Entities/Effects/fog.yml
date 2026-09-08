@@ -1,0 +1,31 @@
+- type: entity
+  name: shadow fog
+  id: ShadowFog
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Occluder
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/spookysmoke.rsi
+    layers:
+    - state: spookysmoke
+      color: "#793a80dd"
+      map: [base]
+  - type: Tag
+    tags:
+    - HideContextMenu
+  - type: OptionsVisualizer
+    visuals:
+      base:
+      - options: Default
+        data: { state: spookysmoke }
+      - options: ReducedMotion
+        data: { state: spookysmoke_static }

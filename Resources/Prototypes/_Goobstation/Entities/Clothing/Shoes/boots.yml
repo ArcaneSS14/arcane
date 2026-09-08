@@ -19,9 +19,13 @@
   - type: Tag
     tags:
     - WhitelistChameleon
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepHeavySuit
+  # Arcane-Edit-Start
+  - type: ComponentToggler
+    components:
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepHeavySuit
+  # Arcane-Edit-End
 
 - type: entity
   parent: ClothingShoesBootsChrono
