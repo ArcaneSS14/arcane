@@ -1079,3 +1079,51 @@ Entries:
   id: 90
   time: '2026-09-07T14:07:53.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/308
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Голос пилота меха озвучивается со специальным эффектом
+    - type: Add
+      message: ИИ может менять себе голос
+  id: 91
+  time: '2026-09-08T04:43:50.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/317
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Апстрим.
+    - type: Tweak
+      message: >-
+        Небольшой бафф грабов. (Доработанная новинка: если в хардграбе ударить
+        иную личность - она улетит.)
+    - type: Tweak
+      message: Немного уменьшена эффективность голодания.
+    - type: Fix
+      message: Рассинхрон скорости после граба.
+    - type: Fix
+      message: Боевое искусство демона. Теперь работает и у мага.
+    - type: Fix
+      message: >-
+        Возможность использовать магазины неправильных калибров у различного
+        вооружения. (БАГУ 8 МЕСЯЦЕВ)
+    - type: Fix
+      message: Срач в АЧат от СМ.
+  id: 92
+  time: '2026-09-08T17:58:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/320
+- author: ChangelingRUES
+  changes:
+    - type: Add
+      message: >-
+        Добавлены две новые инфинити-дормы - Космическая
+        [квартира](https://i.postimg.cc/52GSBR89/Apartament-infi-dorm.png) и
+        [Пляж](https://i.postimg.cc/R0cr28Qv/Beach-infi-dorm.png).
+    - type: Tweak
+      message: >-
+        Доработаны все старые инфинити-дормы - теперь везде рабочий атмос и
+        дистра, с зарядками боргов и батареек для КПБ (ну и доступные ЛКП в
+        придачу). Плюс совсем мелкие
+        [изменения](https://github.com/ArcaneSS14/arcane/pull/319).
+  id: 93
+  time: '2026-09-08T18:02:12.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/319
