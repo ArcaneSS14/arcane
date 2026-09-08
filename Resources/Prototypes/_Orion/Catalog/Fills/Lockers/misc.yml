@@ -44,17 +44,17 @@
     - !type:GroupSelector
       children:
       - id: ClothingBeltInteQWebbing
-        prob: 0.005
+        prob: 0.01
       - id: ClothingBeltInteQDropPouch
-        prob: 0.005
+        prob: 0.01
       - id: ItemFlagMiniInteQ
       - id: FoodSnackInteQCookies
       - id: CigPackInteQ
       - id: ToolboxInteQFilled
       - id: ClothingNeckCloakInteQ
-        prob: 0.005
+        prob: 0.01
       - id: BoxInteQEVA
-        prob: 0.005
+        prob: 0.01
     # Arcane-Start
     - !type:GroupSelector
       children:
