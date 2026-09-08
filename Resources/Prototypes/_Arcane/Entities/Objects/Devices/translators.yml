@@ -1,0 +1,16 @@
+- type: entity
+  parent: [ TranslatorPoweredBase ]
+  id: KarshanTranslator
+  name: Karshan translator
+  description: Translates speech between Karshan and Tau-Ceti Basic. For talking to Demons!
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Karshan
+    understood:
+    - TauCetiBasic
+    - Karshan
+    requires:
+    - TauCetiBasic
+    - Karshan

@@ -4,41 +4,43 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-- type: entity
-  id: MaterialSilo
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: material silo
-  description: Bluespace storage connected to most lathes on the station.
-  components:
-  - type: Physics
-    bodyType: Static
-  - type: Transform
-    anchored: true
-    noRot: true
-  - type: Sprite
-    sprite: _Goobstation/Structures/Machines/silo.rsi
-    layers:
-    - state: ore_silo
-    - state: inserting
-      visible: false
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-  - type: WirelessNetworkConnection
-    range: 1000
-  - type: DeviceLinkSource
-    range: 1000
-    ports:
-      - MaterialSilo
-  - type: Machine
-    board: MaterialSiloMachineCircuitboard
-  - type: Appearance
-  - type: MaterialStorage
-    ignoreColor: true
-  - type: Silo
-  - type: DeviceLinkSink
-    ports:
-      - FillbotAnyItem
+# Arcane-Edit-Start: Migration MaterialSilo -> MachineMaterialSilo
+# - type: entity
+#   id: MaterialSilo
+#   parent: [ BaseMachinePowered, ConstructibleMachine ]
+#   name: material silo
+#   description: Bluespace storage connected to most lathes on the station.
+#   components:
+#   - type: Physics
+#     bodyType: Static
+#   - type: Transform
+#     anchored: true
+#     noRot: true
+#   - type: Sprite
+#     sprite: _Goobstation/Structures/Machines/silo.rsi
+#     layers:
+#     - state: ore_silo
+#     - state: inserting
+#       visible: false
+#       map: ["enum.MaterialStorageVisualLayers.Inserting"]
+#   - type: DeviceNetwork
+#     deviceNetId: Wireless
+#   - type: WirelessNetworkConnection
+#     range: 1000
+#   - type: DeviceLinkSource
+#     range: 1000
+#     ports:
+#       - MaterialSilo
+#   - type: Machine
+#     board: MaterialSiloMachineCircuitboard
+#   - type: Appearance
+#   - type: MaterialStorage
+#     ignoreColor: true
+#   - type: Silo
+#   - type: DeviceLinkSink
+#     ports:
+#       - FillbotAnyItem
+# Arcane-Edit-End
 
 - type: entity
   id: BaseSiloUtilizer

@@ -26,6 +26,8 @@
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Shadekin.xml"
   pros:
   - Обладают ночным зрением.
+  - Могут дышать как азотом, так и кислородом.
+  - Могут прожить в вакууме дольше человека.
   special:
   - Обладают коллективным разумом Эмпатии.
   cons:

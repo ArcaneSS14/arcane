@@ -43,6 +43,10 @@
     - id: BookSpaceLaw
     - id: ClothingBackpackElectropack
       amount: 2
+    # Arcane-Start
+    - id: ClothingAggressionInhibitor
+      amount: 2
+    # Arcane-End
     - id: RemoteSignaller
       amount: 2
     #- id: NetworkConfigurator # Goobstation?

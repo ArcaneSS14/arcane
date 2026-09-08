@@ -4,6 +4,9 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Objectives.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
+using Content.Shared.Roles;
+using Content.Shared.Roles.Jobs;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Objectives.Systems;
@@ -16,6 +19,19 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
 {
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    // Arcane-Start
+    [Dependency] private readonly SharedJobSystem _job = default!;
+
+    public static readonly ProtoId<JobPrototype>[] SecurityTargetJobs =
+    {
+        "HeadOfSecurity",
+        "Warden",
+        "Detective",
+        "Brigmedic",
+        "SecurityOfficer",
+        "SecurityCadet",
+    };
+    // Arcane-End
 
     public override void Initialize()
     {
@@ -67,13 +83,35 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
         if (target.Target != null)
             return;
 
+        // Arcane-Start
+        Entity<MindComponent>? picked = HasComp<KillPersonConditionComponent>(ent.Owner)
+            ? _mind.WeightedPickFromPool(ent.Comp.Pool, ent.Comp.Filters, args.MindId, IsSecurityTargetWeight)
+            : _mind.PickFromPool(ent.Comp.Pool, ent.Comp.Filters, args.MindId);
+        // Arcane-End
+
         // couldn't find a target :(
-        if (_mind.PickFromPool(ent.Comp.Pool, ent.Comp.Filters, args.MindId) is not {} picked)
+        if (picked is not { } valid) // Arcane-Edit
         {
             args.Cancelled = true;
             return;
         }
 
-        _target.SetTarget(ent, picked, target);
+        _target.SetTarget(ent, valid, target); // Arcane-Edit
     }
+
+    // Arcane-Start
+    private float IsSecurityTargetWeight(Entity<MindComponent> mind)
+    {
+        if (!_job.MindTryGetJob(mind.Owner, out var job))
+            return 1f;
+
+        foreach (var jobId in SecurityTargetJobs)
+        {
+            if (job.ID == jobId)
+                return 3f;
+        }
+
+        return 1f;
+    }
+    // Arcane-End
 }

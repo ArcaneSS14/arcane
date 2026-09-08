@@ -75,10 +75,13 @@
   recipeUnlocks:
   - SurveillanceWirelessCameraBodySecurity
   - ContrabandDetectorCircuitboard
+  - CriminalRecordsComputerCircuitboard
+  - WeaponEnergyTurretSecurityMachineCircuitboard
   - PepperSpray
   - Zipties
   - FlashlightSeclite
   - ClothingBackpackElectropack
+  - ClothingAggressionInhibitor # Arcane
   - ForensicPad
   - TargetClown
   - TargetHuman
@@ -184,8 +187,12 @@
   announceChannels:
   - Security
   pointCosts:
+  # Arcane-start
   - type: General
-    amount: 10000
+    amount: 15000
+  - type: Experimental
+    amount: 50
+  # Arcane-end
   technologyPrerequisites:
   - Explosives
   discountExperiments:
@@ -256,7 +263,7 @@
   - Security
   pointCosts:
   - type: General
-    amount: 7500
+    amount: 15000 # Arcane
   technologyPrerequisites:
   - RiotSuppression
   recipeUnlocks:
@@ -305,7 +312,7 @@
   - Security
   pointCosts:
   - type: General
-    amount: 7500
+    amount: 15000 # Arcane
   technologyPrerequisites:
   - ExoticAmmo
   recipeUnlocks:
@@ -325,8 +332,12 @@
   announceChannels:
   - Security
   pointCosts:
+  # Arcane-start
   - type: General
-    amount: 20000
+    amount: 40000
+  - type: Experimental
+    amount: 50
+  # Arcane-end
   technologyPrerequisites:
   - BeamWeapons
   - WeaponizedLaserManipulation

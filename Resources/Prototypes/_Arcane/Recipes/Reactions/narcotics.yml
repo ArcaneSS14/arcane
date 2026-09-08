@@ -1,0 +1,11 @@
+- type: reaction
+  id: Dopamine
+  reactants:
+    Aranesp:
+      amount: 1
+    Salbutamol:
+      amount: 1
+    Diphenhydramine:
+      amount: 1
+  products:
+    Dopamine: 3

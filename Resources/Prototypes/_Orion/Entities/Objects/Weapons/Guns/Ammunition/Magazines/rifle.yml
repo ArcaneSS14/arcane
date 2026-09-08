@@ -24,7 +24,6 @@
   - type: Tag
     tags:
       - MagazineRifle762
-      - MagazineRifle
 
 - type: entity
   parent: MagazineRifle762

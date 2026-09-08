@@ -51,13 +51,6 @@
     - Recyclable
     - WhitelistChameleon
     - Skirt # Goobstation
-  # Arcane-start: hide erp organs under jumpsuit
-  - type: HideLayerClothing
-    layers:
-      ErpGroin: INNERCLOTHING
-      ErpChest: INNERCLOTHING
-  # Arcane-end
-
 - type: entity
   abstract: true
   parent: UnsensoredClothingUniformBase

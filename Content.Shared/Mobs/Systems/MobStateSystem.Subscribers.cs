@@ -194,7 +194,7 @@ public partial class MobStateSystem
             // Orion-End
             // Orion-Edit-Start
             case MobState.SoftCritical:
-                if (args is not UpdateCanMoveEvent)
+                if (args is not UpdateCanMoveEvent && args is not SpeakAttemptEvent { IsWhisper: true })
                     args.Cancel();
                 break;
             // Orion-Edit-End

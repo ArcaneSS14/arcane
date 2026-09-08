@@ -87,7 +87,18 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
 
     private void OnDisguiseShutdown(Entity<ChameleonDisguiseComponent> ent, ref ComponentShutdown args)
     {
-        _actions.RemoveProvidedActions(ent.Comp.User, ent.Comp.Projector);
+        if (ent.Comp.RemoveActions) // Arcane
+            _actions.RemoveProvidedActions(ent.Comp.User, ent.Comp.Projector);
+        // Arcane-Start
+        else
+        {
+            if (!TryComp<ChameleonProjectorComponent>(ent.Comp.Projector, out var comp))
+                return;
+
+            _actions.RemoveAction(comp.AnchorActionEntity);
+            _actions.RemoveAction(comp.NoRotActionEntity);
+        }
+        // Arcane-End
     }
 
     #endregion
@@ -261,7 +272,9 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
         CopyComp<ItemComponent>((disguise, comp));
 
         _appearance.CopyData(entity, disguise);
-        _sparks.DoSparks(Transform(user).Coordinates); // goob edit - sparks everywhere!
+
+        if (comp.DoSparks) // Arcane
+            _sparks.DoSparks(Transform(user).Coordinates); // goob edit - sparks everywhere!
     }
 
     /// <summary>

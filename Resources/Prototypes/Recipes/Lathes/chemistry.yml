@@ -54,7 +54,8 @@
     Steel: 500
     Plastic: 500
     Plasma: 150
-    Silver: 50
+    Uranium: 50 # Arcane-Edit: Silver > Uranium
+    BSCrystal: 50 # Arcane
 
 - type: latheRecipe
   id: SyringeBluespace

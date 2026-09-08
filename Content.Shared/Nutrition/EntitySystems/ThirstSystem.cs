@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Alert;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
 using Content.Shared.StatusIcon;
@@ -26,8 +24,10 @@ public sealed class ThirstSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    /* // Arcane-Edit-Start: Optimization. Slowdown in mood system
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
+    */ // Arcane-Edit-End
     [Dependency] private readonly IConfigurationManager _config = default!; // Orion
     [Dependency] private readonly INetManager _net = default!; // Orion
     [Dependency] private readonly MobStateSystem _mobState = default!; // Orion
@@ -37,11 +37,13 @@ public sealed class ThirstSystem : EntitySystem
     private static readonly ProtoId<SatiationIconPrototype> ThirstIconParchedId = "ThirstIconParched";
 
     // Orion-Start
+    /* // Arcane-Edit-Start
     private static readonly HashSet<ThirstThreshold> MovementThresholds = new()
     {
         ThirstThreshold.Dead,
         ThirstThreshold.Parched,
     };
+    */ // Arcane-Edit-End
 
     private SatiationIconPrototype? _overhydratedIcon;
     private SatiationIconPrototype? _thirstyIcon;
@@ -58,7 +60,7 @@ public sealed class ThirstSystem : EntitySystem
         _prototype.TryIndex(ThirstIconParchedId, out _parchedIcon);
         // Orion-End
 
-        SubscribeLocalEvent<ThirstComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
+//        SubscribeLocalEvent<ThirstComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed); // Arcane-Edit
         SubscribeLocalEvent<ThirstComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ThirstComponent, RejuvenateEvent>(OnRejuvenate);
     }
@@ -82,12 +84,15 @@ public sealed class ThirstSystem : EntitySystem
 
         DirtyFields(uid, component, null, nameof(ThirstComponent.NextUpdateTime), nameof(ThirstComponent.CurrentThirstThreshold), nameof(ThirstComponent.LastThirstThreshold));
 
+        /* // Arcane-Edit-Start
         // Orion-Edit-Start
         if (TryComp(uid, out MovementSpeedModifierComponent? moveMod))
             _movement.RefreshMovementSpeedModifiers(uid, moveMod);
         // Orion-Edit-End
+        */ // Arcane-Edit-End
     }
 
+    /* // Arcane-Edit-Start
     private void OnRefreshMovespeed(EntityUid uid, ThirstComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         // Orion-Start
@@ -102,6 +107,7 @@ public sealed class ThirstSystem : EntitySystem
         var mod = component.CurrentThirstThreshold <= ThirstThreshold.Parched ? 0.75f : 1.0f;
         args.ModifySpeed(mod, mod);
     }
+    */ // Arcane-Edit-End
 
     private void OnRejuvenate(EntityUid uid, ThirstComponent component, RejuvenateEvent args)
     {
@@ -141,12 +147,14 @@ public sealed class ThirstSystem : EntitySystem
         DirtyField(uid, component, nameof(ThirstComponent.CurrentThirst));
     }
 
+    /* // Arcane-Edit-Start
     // Orion-Edit-Start
     private static bool IsMovementThreshold(ThirstThreshold threshold)
     {
         return MovementThresholds.Contains(threshold);
     }
     // Orion-Edit-End
+    */ // Arcane-Edit-End
 
     // Orion-Edit-Start
     public bool TryGetStatusIconPrototype(ThirstComponent component, [NotNullWhen(true)] out SatiationIconPrototype? prototype)
@@ -165,6 +173,7 @@ public sealed class ThirstSystem : EntitySystem
 
     private void UpdateEffects(EntityUid uid, ThirstComponent component)
     {
+        /* // Arcane-Edit-Start
         // Orion-Start
         var wasMovementAffected = IsMovementThreshold(component.LastThirstThreshold);
         var isMovementAffected = IsMovementThreshold(component.CurrentThirstThreshold);
@@ -177,6 +186,7 @@ public sealed class ThirstSystem : EntitySystem
                 _movement.RefreshMovementSpeedModifiers(uid, movementSlowdownComponent);
             // Orion-Edit-End
         }
+        */ // Arcane-Edit-End
 
         // Orion-Start
         if (_config.GetCVar(CCVars.MoodEnabled) && _net.IsServer)

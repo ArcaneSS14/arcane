@@ -9,11 +9,13 @@
     containers:
       storagebase: !type:AllSelector
         children:
+        # Arcane-Edit-Start
+        - id: Gauze
         - id: Brutepack
         - id: Ointment
-        - id: Gauze
         - id: PillCanisterTricordrazine
-        - id: PillCanisterIron # Goobstation
+        - id: EmergencyMedipen
+        # Arcane-Edit-End
       # see https://github.com/tgstation/blob/master/code/game/objects/items/storage/firstaid.dm for example contents
 
 - type: entity
@@ -25,12 +27,14 @@
     containers:
       storagebase: !type:AllSelector
         children:
+        # Arcane-Edit-Start
         - id: Ointment
+        - id: SprayBottleSilverSulfadiazine
+        - id: MedicalPatchPrefilledDermaline
           amount: 2
-        #- id: PillCanisterKelotane # Goobstation
-        - id: PillCanisterDermaline
-        - id: SprayBottleSilverSulfadiazine # Goobstation
-        - id: BurnAutoInjector # Goobstation
+        - id: BurnAutoInjector
+        - id: PillCanisterHercuri
+        # Arcane-Edit-End
 
 - type: entity
   id: MedkitBruteFilled
@@ -41,12 +45,14 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: Brutepack
+        # Arcane-Edit-Start
         - id: Gauze
-        - id: PillCanisterIron
-        #- id: PillCanisterCopper # Goobstation
-        - id: SprayBottleStypticPowder # Goobstation
-        - id: BruteAutoInjector # Goobstation
+        - id: SprayBottleStypticPowder
+        - id: MedicalPatchPrefilledBicaridine
+          amount: 2
+        - id: BruteAutoInjector
+        - id: PillCanisterProbital
+        # Arcane-Edit-End
 
 - type: entity
   id: MedkitToxinFilled
@@ -57,11 +63,16 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: SyringeIpecac
+        # Arcane-Edit-Start
+        - id: PillAmmoniatedMercury
+        - id: PillSyriniver
+        - id: PillCanisterMultiver
+        - id: ChemistryBottleIpecac
+        - id: SyringeHaloperidol
         - id: SyringeEthylredoxrazine
         - id: AntiPoisonMedipen
         - id: PillCanisterDylovene
-        - id: PillCanisterCharcoal
+        # Arcane-Edit-End
 
 - type: entity
   id: MedkitOxygenFilled
@@ -72,11 +83,16 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: ClothingMaskBreathMedical
-        - id: EmergencyOxygenTankFilled
+        # Arcane-Edit-Start
+        - id: SyringeConvermol
+        - id: SalbutamolAutoInjector
         - id: EmergencyMedipen
-        - id: SyringeInaprovaline
         - id: PillCanisterDexalin
+        - id: SyringeConvermol
+          amount: 2
+        - id: SyringeInaprovaline
+        - id: PillCanisterIron
+        # Arcane-Edit-End
 
 - type: entity
   id: MedkitRadiationFilled
@@ -87,10 +103,16 @@
     containers:
       storagebase: !type:AllSelector
         children:
+        # Arcane-Edit-Start
         - id: SyringePhalanximine
-        - id: RadAutoInjector
+        - id: PillGenecide
         - id: PillCanisterPotassiumIodide
-        - id: PillCanisterHyronalin
+        - id: PillPentenicAcid
+        - id: MedicalPatchPrefilledFormaldehyde
+        - id: RadAutoInjector
+        - id: MedicalPatchPrefilledHyronalin
+          amount: 2
+        # Arcane-Edit-End
 
 - type: entity
   id: MedkitAdvancedFilled
@@ -101,11 +123,17 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MedicatedSuture
-        - id: RegenerativeMesh
-        - id: Bloodpack
+        # Arcane-Edit-Start
+        - id: Suture
           amount: 2
-        - id: Tourniquet # Shitmed Change
+        - id: RegenerativeMesh
+          amount: 2
+        - id: MedicalPatchPrefilledSynthflesh
+          amount: 3
+        - id: PillCanisterIron
+        - id: SyringeSaline
+        - id: AdvancedEmergencyMedipen
+        # Arcane-Edit-End
 
 - type: entity
   id: MedkitCombatFilled
@@ -116,12 +144,14 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MedicatedSuture
+        # Arcane-Edit-Start
+        - id: Suture
         - id: RegenerativeMesh
         - id: SyringeEphedrine
         - id: SyringeSaline
-        - id: BruteAutoInjector
-        - id: BurnAutoInjector
+        - id: PillAntiBrute
+        - id: PillAntiBurn
+        # Arcane-Edit-End
 
 - type: entity
   id: StimkitFilled

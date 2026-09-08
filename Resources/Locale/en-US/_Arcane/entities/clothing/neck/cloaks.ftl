@@ -1,6 +1,6 @@
-ent-ClothingCloakCEBlack = CE's black cloak
+ent-ClothingCloakNTRBlack = NTR's black cloak
     .desc = A black cloak with gold trim, made for the best in his field.
-ent-ClothingCloakCETricolor = CE's tricolor cloak
+ent-ClothingCloakNTRTricolor = NTR's tricolor cloak
     .desc = Green stripe? Looks exquisitely.
 ent-ClothingCloakCMOHonorable = CMO's honorable cloak
     .desc = Only the most experienced doctor can get this.

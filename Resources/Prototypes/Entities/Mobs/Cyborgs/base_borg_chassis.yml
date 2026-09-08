@@ -91,6 +91,7 @@
   - type: ActionGrant
     actions:
     - ActionViewLaws
+    - ActionTTSVoiceChange # Arcane
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
@@ -287,6 +288,7 @@
     - Tradeband
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # Arcane
     understands:
     - TauCetiBasic
     - Canilunzt
@@ -307,6 +309,7 @@
     - Sign
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # Arcane
   - type: ProtectedFromStepTriggers
   - type: DamageOnInteractProtection
     damageProtection:
@@ -550,15 +553,18 @@
   - type: Sprite
     sprite: Mobs/Silicon/chassis.rsi
   - type: MobThresholds
-    thresholds: # slightly tankier than a normal borg
+    thresholds: # goob - tankier than a normal borg
       0: Alive
-      125: Critical
-      375: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
-  - type: EmagSiliconLaw # should xenoborgs be emagable?
-    stunTime: 5
+      175: Critical # goob - increased to match overall goob balance
+      400: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
+#  - type: EmagSiliconLaw # should xenoborgs be emagable? # goob - No
+ #   stunTime: 5
   - type: SiliconLawProvider
     laws: XenoborgLawset # custom laws here
     subverted: true
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: Xenoborg # Goob - xenoborg buff
   - type: IntrinsicRadioReceiver # Goob - moved binary to CM
   - type: CollectiveMind
     defaultChannel: Binary
@@ -617,7 +623,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 90
+        damage: 150 # goob
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -626,7 +632,7 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 375
+        damage: 400 # goob
       behaviors:
       - !type:PlaySoundBehavior
         sound:

@@ -115,6 +115,7 @@ namespace Content.IntegrationTests.Tests
             "Amber",          // Arcane-Edit: In pool!!!
             "Aspid",          // Arcane
             "Atlas",
+            "Avrite",         // Arcane
             "Bagel",
             "Barratry",
             "Box",            // Not in pool
@@ -147,6 +148,7 @@ namespace Content.IntegrationTests.Tests
             "Reach",
             "Saltern",
             "Serpentcrest",
+            "Silly",           // Arcane
             "Snowball",
             "TestTeg",        // Dev map
             "Train",           // Not in pool
@@ -160,6 +162,7 @@ namespace Content.IntegrationTests.Tests
               "Amber",          // Arcane-Edit: Now in Pool
               "Atlas",
               "Aspid",          // Arcane
+              "Avrite",         // Arcane
               "Bagel",
              //  "Barratry", kill memory concerns
               "Box",            // Arcane-Edit: Now in Pool
@@ -194,6 +197,7 @@ namespace Content.IntegrationTests.Tests
               "Reach",
               "Saltern",
               "Serpentcrest",
+              "Silly",           // Arcane
              // "Snowball", // fuck off not in pool
               "WonderBox",       // Arcane
         };

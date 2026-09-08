@@ -1,0 +1,17 @@
+# Back
+- type: loadout
+  id: HeadOfPersonnelBackpack
+  equipment:
+    back: ClothingBackpackHoP
+
+# Back
+- type: loadout
+  id: HeadOfPersonnelSatchel
+  equipment:
+    back: ClothingBackpackSatchelHoP
+
+# Back
+- type: loadout
+  id: HeadOfPersonnelDuffel
+  equipment:
+    back: ClothingBackpackDuffellHoP

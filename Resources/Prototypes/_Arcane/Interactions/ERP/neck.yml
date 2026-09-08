@@ -53,28 +53,6 @@
   - RequiresERP
 
 - type: panelInteraction
-  id: ShoulderMassage
-  category: Shoulders
-  messages:
-  - мягко разминает плечи $target.
-  - осторожно массирует напряжённые плечи $target.
-  - проводит ладонями по плечам $target, снимая напряжение.
-  - медленно массирует шею и плечи $target.
-  - нежно надавливает пальцами на плечи $target.
-  - ласково разминает мышцы плеч $target.
-  - успокаивающе массирует плечи $target.
-  - проводит руками вдоль плеч $target, расслабляя их.
-  - аккуратно массирует плечи $target круговыми движениями.
-  - заботливо разминает плечи $target.
-  selfMessages:
-  - устало разминает собственные плечи.
-  - медленно массирует себе плечи, расслабляясь.
-  - потирает собственные плечи, снимая напряжение.
-  - осторожно разминает затёкшие плечи.
-  - довольно массирует собственные плечи.
-  icon: _Arcane/Interface/ErpPanel/shoulder_massage.png
-
-- type: panelInteraction
   id: NuzzleNeck
   category: Neck
   targetArouse: 3
@@ -86,9 +64,18 @@
   - прижимается лицом к шее $target.
   - мягко утыкается в шею $target.
   - уткнувшись, прижимается к шее $target.
-  icon: _Arcane/Interface/ErpPanel/nuzzle_neck.png
+  icon: _Arcane/Interface/ErpPanel/sniff_neck.png
   tags:
   - RequiresERP
+  userRequirements:
+  - !type:SpeciesRequirement
+    inverted: true
+    species:
+    - Felinid
+    - Vulpkanin
+    - Tajaran
+    - HumanoidXeno
+    - Rodentia
 
 - type: panelInteraction
   id: NuzzleNeckVulpa
@@ -102,7 +89,7 @@
   - утыкается мордашкой в шею $target, мурча.
   - прижимает мордочку к шее $target.
   - водит носиком по шее $target.
-  icon: _Arcane/Interface/ErpPanel/nuzzle_neck_vulpa.png
+  icon: _Arcane/Interface/ErpPanel/sniff_neck_vulp.png
   tags:
   - RequiresERP
   userRequirements:
@@ -115,16 +102,63 @@
     - Rodentia
 
 - type: panelInteraction
-  id: BlowSlap
-  category: Face
+  id: PlayfulNibble
+  category: Neck
+  targetArouse: 3
   sounds:
-  - /Audio/_Arcane/Interactions/bang1.ogg
-  - /Audio/_Arcane/Interactions/bang2.ogg
-  - /Audio/_Arcane/Interactions/bang3.ogg
+  - /Audio/_Arcane/Interactions/pat1.ogg
   messages:
-  - отвешивает пощёчину $target!
-  - резко бьёт $target по щеке.
-  - звонко даёт пощёчину $target.
-  - хлёстко бьёт $target по щеке.
-  - с размаху шлёпает $target по щеке.
-  icon: _Arcane/Interface/ErpPanel/blow_slap.png
+  - игриво покусывает шею $target.
+  - тихонько кусает за шею $target.
+  - слегка прикусывает шею $target.
+  - игриво цапает шею $target своими зубками.
+  - нежно жуёт шею $target.
+  icon: _Arcane/Interface/ErpPanel/bite_neck.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: StretchNeck
+  category: Neck
+  sounds:
+  - /Audio/_Arcane/Interactions/stretch_neck.ogg
+  selfMessages:
+  - плавно водит ладонями по кругу шеи, разогревая кожу и мышцы.
+  - медленно склоняет голову к плечам, растягивая боковые линии шеи.
+  - интенсивно растирает шею руками.
+  - плавно перекатывает голову по груди.
+  - плотно обхватывает ладонями шею.
+  - медленно вращает плечами назад.
+  - осторожно тянет подбородок к потолку. 
+  icon: _Arcane/Interface/ErpPanel/pat_neck.png
+
+- type: panelInteraction
+  id: GrabsNeck
+  category: Neck
+  targetArouse: -15
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - грубо хватает за шею $target!
+  - яростно сжимает пальцы на горле $target!
+  - жестко захватывает шею $target!
+  - агрессивно сдавливает шею $target!
+  icon: _Arcane/Interface/ErpPanel/grab_neck.png
+
+- type: panelInteraction
+  id: StepOnNeck
+  category: Neck
+  targetArouse: -15
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - ударяет и держит стопу в области шеи $target.
+  - жестоко давит шею $target при помощи стопы.
+  - Давит ногой на область шеи $target.
+  - удерживает шею $target стопой в одном положении.
+  - ограничивает движение шеи $target своей ногой.
+  icon: _Arcane/Interface/ErpPanel/step_on_neck.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:TargetOnFloorRequirement

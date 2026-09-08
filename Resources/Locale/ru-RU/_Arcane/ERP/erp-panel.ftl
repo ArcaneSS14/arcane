@@ -1,8 +1,32 @@
 erp-panel-open-verb = Интеракции
 
-erp-panel-title = Панель Интеракций
+erp-panel-title = Панель взаимодействий
 
 erp-panel-header = Взаимодействие с { $target }
+erp-panel-target-label = Цель
+erp-panel-arousal-level = Ваше возбуждение
+
+erp-panel-settings-title = Модификаторы взаимодействий
+erp-panel-hide-modifiers = Скрыть
+erp-panel-show-modifiers = Показать
+erp-panel-arousal-multiplier-label = Возбуждение
+erp-panel-moaning-multiplier-label = Шанс стона
+
+erp-panel-search-placeholder = Поиск действий или категорий...
+erp-panel-search-clear-tooltip = Очистить поиск
+erp-panel-interactions-title = Доступные взаимодействия
+erp-panel-expand-all = Развернуть все
+erp-panel-collapse-all = Свернуть все
+erp-panel-category-heading = { $category } ({ $count })
+erp-panel-results =
+    { $count ->
+        [one] Доступно { $count } взаимодействие
+        [few] Доступно { $count } взаимодействия
+       *[other] Доступно { $count } взаимодействий
+    }
+erp-panel-empty-search = По вашему запросу ничего не найдено.
+erp-panel-empty-available = Сейчас нет доступных взаимодействий.
+erp-panel-interaction-cooldown-tooltip = Доступно через { $seconds } с.
 
 erp-panel-custom-arousal-button = Множ. Возбуждения
 erp-panel-custom-moaning-button = Множ. Стонов
@@ -19,98 +43,192 @@ orgasm-message-4 = дрожит всем телом!
 orgasm-message-5 = тихо стонет, заканчивая!
 orgasm-message-6 = громко стонет, достигнув пика наслаждения!
 
-# Interaction names
-erp-panel-interaction-anus-fuck-name = Трахать в анус
-erp-panel-interaction-anus-lick-name = Лизать анус
-erp-panel-interaction-anus-fingering-name = Трахать анус пальцами
-erp-panel-interaction-anus-tail-fuck-name = Трахать анус хвостом
-erp-panel-interaction-anal-lick2-name = Глубоко вылизать анус
-erp-panel-interaction-anal-fingering2-name = Двумя пальцами в анус
-erp-panel-interaction-toy-butt-name = Использовать игрушку в попе
-erp-panel-interaction-boobs-slap-name = Шлёпнуть по груди
-erp-panel-interaction-boobs-paw-name = Погладить по груди
-erp-panel-interaction-boobs-fuck-name = Трахать грудь
-erp-panel-interaction-boobs-squeeze-name = Сжать грудь
-erp-panel-interaction-boobs-kisses-name = Расцеловать грудь
-erp-panel-interaction-boobs-tail-name = Ласкать грудь хвостом
-erp-panel-interaction-boobs-massage-name = Массировать грудь
-erp-panel-interaction-boobs-suck-name = Сосать сосок
-erp-panel-interaction-butt-near-cock-name = Водить член по ягодицам
-erp-panel-interaction-butt-massage-name = Массировать попку
-erp-panel-interaction-butt-tail-name = Гладить попу хвостом
-erp-panel-interaction-hands-on-butt-name = Схватить за попку
-erp-panel-interaction-kiss-butt-name = Поцеловать попку
-erp-panel-interaction-slap-butt-name = Шлёпнуть по попе
-erp-panel-interaction-horns-ass-f-name = Водить рогом по попе
+erp-panel-lick-cum-success = {$user} слизывает остатки выделений с {$target}.
+
+
+# Interaction category
 erp-panel-category-face-name = Лицо
 erp-panel-category-butt-name = Попа
-erp-panel-category-boobs-name = Грудь
+erp-panel-category-chest-name = Грудь
 erp-panel-category-tail-name = Хвост
+erp-panel-category-wings-name = Крылья
 erp-panel-category-anus-name = Анус
 erp-panel-category-mouth-name = Рот
 erp-panel-category-head-name = Голова
 erp-panel-category-hands-name = Руки
 erp-panel-category-back-name = Спина
 erp-panel-category-shoulders-name = Плечи
-erp-panel-category-feet-name = Ступни
+erp-panel-category-feet-name = Ноги
 erp-panel-category-ears-name = Уши
+erp-panel-category-scrotum-name = Мошонка
 erp-panel-category-penis-name = Член
 erp-panel-category-neck-name = Шея
 erp-panel-category-pussy-name = Вагина
-erp-panel-interaction-bite-ears-name = Укусить ухо
-erp-panel-interaction-bite-ears-human-name = Укусить ухо
-erp-panel-interaction-ears-kiss-name = Поцеловать в ухо
-erp-panel-interaction-pat-ears-name = Погладить ушки
-erp-panel-interaction-pat-ears-human-name = Потеребить уши
-erp-panel-interaction-cheeks-kiss-name = Поцеловать в щёку
-erp-panel-interaction-cheeks-kiss-both-name = Поцеловать в обе щёки
-erp-panel-interaction-cheeks-pat-name = Похлопать по щекам
-erp-panel-interaction-cheeks-press-name = Сжать щёки
-erp-panel-interaction-gentle-kiss-name = Нежный поцелуй
-erp-panel-interaction-kiss-lips-name = Страстный поцелуй
-erp-panel-interaction-face-rub-cat-name = Потереться мордочкой о лицо
-erp-panel-interaction-face-sitting-name = Сесть лицом
+
+# Interaction anus
+erp-panel-interaction-anus-fuck-name = Трахать в анус
+erp-panel-interaction-anus-lick-name = Лизать анус
+erp-panel-interaction-anal-lick2-name = Глубоко вылизать анус
+erp-panel-interaction-anus-fingering-name = Трахать анус пальцами
+erp-panel-interaction-anus-tail-fuck-name = Трахать анус хвостом
+erp-panel-interaction-anal-fingering2-name = Двумя пальцами в анус
+erp-panel-interaction-anus-toy-sitting-name = Сесть задницей на секс-игрушку
+erp-panel-interaction-insert-fingers-anus-name = Трахать задницу своими пальцами 
+erp-panel-interaction-running-finger-anus-name = Ласкать анус
+erp-panel-interaction-wall-anus-fuck-name = Трахать в анус у стены
+erp-panel-interaction-lick-anus-condensed-cum-name = Слизать выделения с задницы
+
+# Interaction back
+erp-panel-interaction-finger-tap-name = Мять спину
+erp-panel-interaction-stretch-body-name = Потянуться всем телом
+
+# Interaction chest
+erp-panel-interaction-boobs-slap-name = Шлёпнуть по груди
+erp-panel-interaction-boobs-paw-name = Погладить по груди
+erp-panel-interaction-boobs-fuck-name = Трахать грудь
+erp-panel-interaction-boobs-squeeze-name = Сжать грудь
+erp-panel-interaction-boobs-kisses-name = Расцеловать грудь
+erp-panel-interaction-boobs-tail-name = Ласкать хвостом
+erp-panel-interaction-boobs-massage-name = Мять грудь
+erp-panel-interaction-boobs-suck-name = Сосать сосок
+erp-panel-interaction-fondle-boobs-name = Ласкать грудь
+erp-panel-interaction-rubbing-nipples-name = Тереть соски
+erp-panel-interaction-strike-cool-pose-name = Встать в крутую позу
+erp-panel-interaction-lick-condensed-cum-name = Слизать выделения
+erp-panel-interaction-lick-condensed-cum-self-name = Слизать выделения с себя
+
+# Interaction butt
+erp-panel-interaction-toy-butt-name = Использовать секс-игрушку в попе
+erp-panel-interaction-butt-near-cock-name = Тереться членом
+erp-panel-interaction-butt-massage-name = Мять жопу
+erp-panel-interaction-butt-tail-name = Ласкать хвостом
+erp-panel-interaction-hands-on-butt-name = Схватить за жопу
+erp-panel-interaction-kiss-butt-name = Целовать жопу
+erp-panel-interaction-slap-butt-name = Шлёпнуть по жопе
+erp-panel-interaction-horns-ass-f-name = Тереться рогом
+erp-panel-interaction-toy-butt-near-cock-name = Водить своей секс-игрушкой по ягодицам
+erp-panel-interaction-fart-name = Пёрнуть
+
+# Interaction ears
+erp-panel-interaction-bite-ears-name = Куснуть ухо
+erp-panel-interaction-bite-ears-human-name = Куснуть ухо
+erp-panel-interaction-ears-kiss-name = Целовать ухо
+erp-panel-interaction-pat-ears-name = Гладить уши
+erp-panel-interaction-pat-ears-human-name = Трепать уши
+erp-panel-interaction-scratching-ears-name = Почесать за ухо
+
+# Interaction face
+erp-panel-interaction-face-rub-cat-name = Тереться мордочкой
+erp-panel-interaction-face-sitting-name = Сесть на лицо
+erp-panel-interaction-face-pussy-sitting-name = Сесть вагиной на лицо
 erp-panel-interaction-face-dick-slap-name = Шлёпнуть членом по лицу
-erp-panel-interaction-legs-squeezeface-name = Сдавить лицо ляжками
-erp-panel-interaction-mewing-name = Замяукать в лицо
-erp-panel-interaction-handshake-name = Пожать руку
-erp-panel-interaction-finger-tap-name = Массировать спину
-erp-panel-interaction-tail-pat-name = Погладить хвост
-erp-panel-interaction-tail-hug-name = Сплестись хвостами
+erp-panel-interaction-cheeks-kiss-name = Чмокнуть в щёку
+erp-panel-interaction-cheeks-kiss-both-name = Расцеловать щёки
+erp-panel-interaction-cheeks-pat-name = Хлопать по щекам
+erp-panel-interaction-cheeks-press-name = Сжать щёки
+erp-panel-interaction-gentle-kiss-name = Нежно целовать
+erp-panel-interaction-kiss-lips-name = Засосать
+erp-panel-interaction-legs-squeezeface-name = Сжать лицо ляжками
+erp-panel-interaction-mewing-name = Мяукнуть в лицо
+erp-panel-interaction-kitty-name = Тереться мордой
+erp-panel-interaction-blow-slap-name = Влепить пощёчину
+erp-panel-interaction-blow-slap-users-name = Ударить ладонью по щеке
+erp-panel-interaction-hitting-face-name = Ударить ладонью по лицу
+erp-panel-interaction-shed-tear-name = Пустить слезу
+erp-panel-interaction-kiss-forehead-name = Чмокнуть в лоб
+
+# Interaction feet
+erp-panel-interaction-feet-mouth-name = Сосать ступни
+erp-panel-interaction-shift-weight-name = Положить ладонь на бедро
+
+# Interaction hands
+erp-panel-interaction-handshake-name = Жать руку
+erp-panel-interaction-kiss-hand-name = Целовать руку
 erp-panel-interaction-high-five-name = Дать пять
-erp-panel-interaction-friendly-flying-kiss-name = Послать воздушный поцелуй
-erp-panel-interaction-friendly-nose-boop-name = Дать по носику
-erp-panel-interaction-friendly-tail-pull-name = Потянуть за хвост
-erp-panel-interaction-kiss-hand-name = Поцеловать руку
-erp-panel-interaction-pat-shoulder-name = Похлопать по плечу
-erp-panel-interaction-pet-head-name = Погладить по голове
-erp-panel-interaction-playful-nibble-name = Игриво укусить
-erp-panel-interaction-horns-pat-name = Погладить рога
-erp-panel-interaction-kitty-name = Потереться мордочкой
-erp-panel-interaction-feet-mouth-name = Футфетиш
-erp-panel-interaction-bite-neck-name = Укусить шею
-erp-panel-interaction-lick-neck-name = Облизать шею
-erp-panel-interaction-kiss-neck-name = Поцеловать шею
-erp-panel-interaction-shoulder-massage-name = Помассировать плечи
-erp-panel-interaction-nuzzle-neck-name = Уткнуться в шею
-erp-panel-interaction-nuzzle-neck-vulpa-name = Ткнуться мордочкой в шею
-erp-panel-interaction-blow-slap-name = Дать пощёчину
-erp-panel-interaction-suck-cock-name = Сосать член
-erp-panel-interaction-slime-fuck-cock-name = Трахать член плазмой
-erp-panel-interaction-cock-fap-name = Подрочить член
-erp-panel-interaction-cock-footjob-name = Подрочить член ногой
-erp-panel-interaction-cock-swordmanship-name = Фехтовать членами
-erp-panel-interaction-cock-fap-tail-name = Подрочить член хвостом
-erp-panel-interaction-cock-fuck-legs-name = Трахнуть член ляжками
-erp-panel-interaction-cock-blowjob-name = Сделать минет
-erp-panel-interaction-cock-near-ass-tail-name = Водить членом по попе с хвостом
-erp-panel-interaction-hair-face-fuck-name = Трахать в рот держа за волосы
-erp-panel-interaction-legs-cock-fuck-tail-name = Трахать ляжками с хвостом
+erp-panel-interaction-friendly-flying-kiss-name = Слать поцелуй
+erp-panel-interaction-friendly-nose-boop-name = Ткнуть в нос
+erp-panel-interaction-push-ups-floor-name = Отжаться с пола
+erp-panel-interaction-pin-to-wall-name = Прижать у стены
+
+# Interaction head
+erp-panel-interaction-pet-head-name = Гладить голову
+erp-panel-interaction-horns-pat-name = Гладить рога
 erp-panel-interaction-horns-blowjob-f-name = Лизать рог
+erp-panel-interaction-give-slap-head-name = Дать подзатыльник
+erp-panel-interaction-ruffle-hair-name = Взъерошить волосы
+erp-panel-interaction-tap-crown-name = Постучать по макушке
+erp-panel-interaction-kiss-back-of-head-name = Целовать в затылок
+
+# Interaction mouth
+erp-panel-interaction-hair-face-fuck-name = Трахать в рот держа за волосы
+erp-panel-interaction-lick-lips-name = Облизать губы
+erp-panel-interaction-lick-their-lips-name = Облизнуться
+erp-panel-interaction-xenomorph-kiss-name = Поцелуй ксеноморфов
+
+# Interaction neck
+erp-panel-interaction-bite-neck-name = Куснуть шею
+erp-panel-interaction-lick-neck-name = Лизнуть шею
+erp-panel-interaction-kiss-neck-name = Целовать шею
+erp-panel-interaction-nuzzle-neck-name = Прильнуть к шее
+erp-panel-interaction-nuzzle-neck-vulpa-name = Уткнуться мордой
+erp-panel-interaction-playful-nibble-name = Игриво куснуть
+erp-panel-interaction-stretch-neck-name = Размять шею
+erp-panel-interaction-grabs-neck-name = Схватить за шею
+erp-panel-interaction-step-on-neck-name = Придавить шею ногой
+erp-panel-interaction-sniff-neck-name = Вдыхать запах шеи
+
+# Interaction penis
+erp-panel-interaction-suck-cock-name = Отсосать
+erp-panel-interaction-slime-fuck-cock-name = Трахнуть член плазмой
+erp-panel-interaction-cock-fap-name = Дрочить
+erp-panel-interaction-cock-footjob-name = Дрочить ногами
+erp-panel-interaction-cock-swordmanship-name = Фехтовать членами
+erp-panel-interaction-cock-fap-tail-name = Дрочить хвостом
+erp-panel-interaction-cock-fuck-legs-name = Дрочить ляжками
+erp-panel-interaction-cock-blowjob-name = Сделать минет
+erp-panel-interaction-legs-cock-fuck-tail-name = Трахать ляжками с хвостом
+erp-panel-interaction-toy-suck-cock-name = Сосать секс-игрушку
+erp-panel-interaction-pillow-fap-name = Дрочить с помощью подушек
+erp-panel-interaction-toy-fap-name = Трахать секс-игрушку
+erp-panel-interaction-lick-penis-condensed-cum-name = Слизать выделения c члена
+
+# Interaction pussy
 erp-panel-interaction-pussy-fingering-name = Ласкать вагину пальцами
 erp-panel-interaction-pussy-licking-name = Ласкать вагину языком
 erp-panel-interaction-pussy-scissors-name = Тереться вагиной о киску
 erp-panel-interaction-pussy-touch-name = Потрогать вагину
 erp-panel-interaction-pussy-tail-fuck-name = Трахать вагину хвостом
 erp-panel-interaction-cock-pussy-fuck-name = Трахнуть вагину
-erp-panel-interaction-toy-pussy-name = Использовать игрушку
+erp-panel-interaction-toy-pussy-name = Использовать секс-игрушку
+erp-panel-interaction-toy-butt-fuck-name = Трахать анус при помощи секс-игрушки
+erp-panel-interaction-toy-pussy-fuck-name = Трахать вагину при помощи секс-игрушки
+erp-panel-interaction-toy-pussy-licking-name = Ласкать щель секс-игрушки
+erp-panel-interaction-pussy-toy-sitting-name = Сесть вагиной на секс-игрушку
+erp-panel-interaction-wall-pussy-fuck-name = Трахать в вагину у стены
+erp-panel-interaction-lick-pussy-condensed-cum-name = Слизать выделения с вагины
+
+# Interaction scrotum
+erp-panel-interaction-fondle-scrotum-name = Ласкать яйца
+erp-panel-interaction-massage-scrotum-name = Массаж мошонки
+erp-panel-interaction-suck-scrotum-name = Отлизать яйца
+erp-panel-interaction-rubbing-face-scrotum-name = Тереться лицом
+
+# Interaction shoulders
+erp-panel-interaction-pat-shoulder-name = Хлопнуть по плечу
+erp-panel-interaction-shoulder-massage-name = Размять плечи
+erp-panel-interaction-hug-shoulders-name = Обнять за плечи
+
+# Interaction tail
+erp-panel-interaction-cock-near-ass-tail-name = Водить членом по попе с хвостом
+erp-panel-interaction-tail-pat-name = Гладить хвост
+erp-panel-interaction-tail-hug-name = Сплестись хвостами
+erp-panel-interaction-friendly-tail-pull-name = Дёрнуть за хвост
+erp-panel-interaction-wag-tail-name = Вилять хвостом
+erp-panel-interaction-tuck-tail-name = Поджать хвост
+erp-panel-interaction-step-on-tail-name = Наступить на хвост
+
+# Interaction wings
+erp-panel-interaction-flutter-wings-name = Встрепенуться крыльями
+erp-panel-interaction-slap-face-with-wing-name = Хлопнуть крылом по лицу
+erp-panel-interaction-pet-wings-name = Погладить крылья
+erp-panel-interaction-pull-wing-name = Дернуть за крыло

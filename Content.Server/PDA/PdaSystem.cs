@@ -19,6 +19,8 @@ using Content.Shared.Light;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.PDA;
 using Content.Shared.PDA.Ringer;
+using Content.Shared.Mindshield;
+using Content.Shared.Popups;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -39,6 +41,10 @@ namespace Content.Server.PDA
         [Dependency] private readonly UnpoweredFlashlightSystem _unpoweredFlashlight = default!;
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCard = default!;
+        // Arcane-Start
+        [Dependency] private readonly SharedMindShieldCheckSystem _mindShieldCheck = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
+        // Arcane-End
 
         public override void Initialize()
         {
@@ -295,6 +301,14 @@ namespace Content.Server.PDA
         {
             if (!PdaUiKey.Key.Equals(msg.UiKey))
                 return;
+
+            // Arcane-Start
+            if (_mindShieldCheck.IsMindShieldBlocked(msg.Actor))
+            {
+                _popup.PopupEntity(Loc.GetString("mindshield-blocks-syndicate"), uid, msg.Actor);
+                return;
+            }
+            // Arcane-End
 
             // check if its locked again to prevent malicious clients opening locked uplinks
             if (HasComp<UplinkComponent>(uid) && IsUnlocked(uid))

@@ -16,7 +16,7 @@
     pocket2: FlashlightSeclite
   storage:
     back:
-    - MedkitCombatFilled # Goobstation - No reason not to.
+    - MedkitCombatStandardFilled # Goobstation - No reason not to.
     - BoxZiptie
     - CrowbarRed
     - ERTSecurityUndeterminedWeapon
@@ -89,7 +89,7 @@
     pocket2: FlashlightSeclite
   storage:
     back:
-    - MedkitCombatFilled # Goobstation - No reason not to.
+    - MedkitCombatStandardFilled # Goobstation - No reason not to.
     - BoxZiptie
     - CrowbarRed
     - ERTSecurityUndeterminedWeapon

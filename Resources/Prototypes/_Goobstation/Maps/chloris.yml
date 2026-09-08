@@ -46,8 +46,9 @@
             Virologist: [ 1, 1 ]
             # science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 6, 8 ]
+            Scientist: [ 5, 5 ]
             ResearchAssistant: [ 3, 4 ]
+            Roboticist: [ 3, 3 ]
             # security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -64,6 +65,8 @@
             Clown: [ 1, 1 ]
             Janitor: [ 2, 3 ]
             Librarian: [ 1, 1 ]
+            IAA: [ 1, 1 ] # Arcane
+            Lawyer: [ 2, 2 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 2 ]
             Reporter: [ 1, 2 ]

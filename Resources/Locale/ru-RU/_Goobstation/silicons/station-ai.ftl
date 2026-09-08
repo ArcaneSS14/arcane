@@ -3,6 +3,12 @@ station-ai-hologram-cat = Внешность кота
 station-ai-hologram-dog = Внешность корги
 station-ai-hologram-kobold = Внешность кобольда
 station-ai-hologram-monkey = Внешность обезьяны
+station-ai-hologram-queen = Внешность королевы
+station-ai-hologram-performer = Внешность исполнителя
+
+station-ai-icon-blank = Пустая оболочка
+station-ai-icon-bingle = Бингл
+station-ai-icon-performer = Всеобщий кумир
 
 station-ai-earlyleave-button = Отключение ИИ
 station-ai-earlyleave-menu-title = Отключение ИИ

@@ -59,10 +59,12 @@
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
       - map: [ "underpants" ]
       - map: [ "undershirt" ]
-      - map: [ "socks" ]
-      - map: [ "jumpsuit" ]
+      # Arcane-Edit-Start
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
+      # - map: [ "socks" ]
+      - map: [ "jumpsuit" ]
+      # Arcane-Edit-End
       - map: ["enum.HumanoidVisualLayers.LHand"]
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
@@ -135,6 +137,7 @@
       Male: SoundsHarpyMale
       Female: SoundsHarpyFemale
       Unsexed: SoundsHarpyFemale
+      Futanari: SoundsHarpyFemale # Arcane
   - type: LanguageKnowledge # Einstein Engines - Language
     speaks:
     - TauCetiBasic
@@ -149,6 +152,8 @@
           False:  {visible: false}
           True:  {visible: true}
   - type: MovementSpeedModifier
+    baseWalkSpeed: 2.6
+    baseSprintSpeed: 4.6
     weightlessAcceleration: 2.5
     weightlessModifier: 1.12
   - type: Inventory
@@ -219,10 +224,12 @@
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "underpants" ]
       - map: [ "undershirt" ]
-      - map: [ "socks" ]
-      - map: [ "jumpsuit" ]
+      # Arcane-Edit-Start
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
+      # - map: [ "socks" ]
+      - map: [ "jumpsuit" ]
+      # Arcane-Edit-End
       - map: ["enum.HumanoidVisualLayers.LHand"]
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "id" ]

@@ -1,15 +1,21 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Goobstation.Common.CCVar;
 using Content.Goobstation.Server.ServerCurrency.UI;
+using Content.Server.Administration;
 using Content.Server.EUI;
 using Content.Shared.Administration;
+using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 
 namespace Content.Goobstation.Server.ServerCurrency.Commands
 {
-    [AnyCommand]
+    // [AnyCommand] // Arcane: token shop hidden from players
+    [AdminCommand(AdminFlags.Host)] // Arcane
     public sealed class CurrencyUiCommand : IConsoleCommand
     {
+        [Dependency] private readonly IConfigurationManager _cfg = default!; // Arcane
+
         public string Command => "balanceui";
 
         public string Description => "Open the currency UI";
@@ -18,6 +24,11 @@ namespace Content.Goobstation.Server.ServerCurrency.Commands
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
+            // Arcane-start
+            if (!_cfg.GetCVar(GoobCVars.ServerCurrencyEnabled))
+                return;
+            // Arcane-end
+
             var player = shell.Player;
             if (player == null)
             {

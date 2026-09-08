@@ -41,7 +41,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Cuffs
 {
@@ -63,7 +62,6 @@ namespace Content.Shared.Cuffs
         [Dependency] private readonly UseDelaySystem _delay = default!;
         [Dependency] private readonly SharedHulkSystem _hulk = default!;
         [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
-        [Dependency] private readonly IGameTiming _timing = default!; // Arcane
 
         public override void Initialize()
         {
@@ -665,13 +663,6 @@ namespace Content.Shared.Cuffs
                 {
                     return;
                 }
-
-                // Arcane-start
-                if (target.Comp.LastSelfUncuffTry + target.Comp.SelfUncuffDelay > _timing.CurTime)
-                    return;
-
-                target.Comp.LastSelfUncuffTry = _timing.CurTime;
-                // Arcane-end
 
                 if (TryComp(user, out HulkComponent? hulk)) // Goobstation
                 {

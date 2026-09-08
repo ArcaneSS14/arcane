@@ -79,10 +79,11 @@
   reactants:
     Acetone:
       amount: 2
-    SodiumPolyacrylate:
-      amount: 1
+    Nitrogen: # Arcane-Edit: SodiumPolyacrylate > Nitrogen
+      amount: 3
     SulfuricAcid:
       amount: 1
+      catalyst: true
   products:
     Tirimol: 4
 
@@ -287,9 +288,9 @@
     Synthflesh:
       amount: 6
   products:
-    Synthcells: 4
-    Sodium: 1
-    Carbon: 1
+    Synthcells: 2 # Arcane-Edit: 4 > 2
+    Sodium: 2 # Arcane-Edit: 1 > 2
+    Carbon: 2 # Arcane-Edit: 1 > 2
 
 - type: reaction
   id: SalicylicAcid

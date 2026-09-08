@@ -44,10 +44,8 @@
       - Mouse
       - Monkey
       - Kobold
-      # Orion-Start
-      - CorporateCodespeak
-      # Orion-End
-
+      - CorporateCodespeak # Orion
+      - Hydraspeak # Arcane
     understood:
       - TauCetiBasic # Common Languages -
       - SolCommon
@@ -84,13 +82,8 @@
       - Mouse
       - Monkey
       - Kobold
-      # Orion-Start
-      - CorporateCodespeak
-      # Orion-End
-
-
-
-
+      - CorporateCodespeak # Orion
+      - Hydraspeak # Arcane
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -158,3 +151,20 @@
     - Sign
     requires:
     - TauCetiBasic
+
+# Arcane-Start
+- type: entity
+  parent: BaseSubdermalImplant
+  id: HydraspeakTranslatorImplant
+  name: hydraspeak translator implant
+  description: A translator implant giving the ability to speak with Hydrakin.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Hydraspeak
+    spoken:
+    - Hydraspeak
+    requires:
+    - TauCetiBasic
+# Arcane-End

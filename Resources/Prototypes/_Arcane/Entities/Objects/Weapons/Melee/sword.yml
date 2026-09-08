@@ -1,0 +1,57 @@
+- type: entity
+  id: BlueShieldKatana
+  parent: [ Katana, BaseCentcommContraband ]
+  name: blue shield katana
+  description: A katana infused with strong energy.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Weapons/Melee/blue_shield_katana.rsi
+  - type: Clothing
+    sprite: _Arcane/Objects/Weapons/Melee/blue_shield_katana.rsi
+    slots:
+    - Back
+    - Belt
+
+- type: entity
+  id: CentCommKatana
+  parent: [ EnergyKatana, BaseCentcommContraband ]
+  name: centcomm katana
+  description: A katana infused with strong energy.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Weapons/Melee/centcomm_katana.rsi
+  - type: Clothing
+    sprite: _Arcane/Objects/Weapons/Melee/centcomm_katana.rsi
+    slots:
+    - Back
+    - Belt
+
+- type: entity
+  id: CosmicCultKatana
+  parent: Katana
+  name: esoteric katana
+  description: An eerie katana wrought of indescribable material, forcibly extruded down into reality. Your instincts tell you that it does not belong here.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Weapons/Melee/cosmic_cult_katana.rsi
+  - type: Clothing
+    sprite: _Arcane/Objects/Weapons/Melee/cosmic_cult_katana.rsi
+    slots:
+    - Back
+    - Belt
+
+- type: entity
+  id: JadeKatana
+  parent: [ EnergyKatana, ShadowKatana ]
+  name: jade katana
+  description: An expensive, handcrafted ceremonial weapon featuring jade ornamentation on the blade.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Weapons/Melee/jade_katana.rsi
+  - type: Clothing
+    sprite: _Arcane/Objects/Weapons/Melee/jade_katana.rsi
+    slots:
+    - Back
+    - Belt
+  - type: UseDelay
+    delay: 1

@@ -1,0 +1,45 @@
+# Sponsor
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearBikiniChemist
+  name: chemist bikini
+  description: Hot swimming suit.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Sponsor/chemist_bikini.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Underwear/Sponsor/chemist_bikini.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearBikiniDoctor
+  name: doctor bikini
+  description: Hot swimming suit.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Sponsor/doctor_bikini.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Underwear/Sponsor/doctor_bikini.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearBikiniParamedic
+  name: paramedic bikini
+  description: Hot swimming suit.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Sponsor/paramedic_bikini.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Underwear/Sponsor/paramedic_bikini.rsi
+
+- type: entity
+  parent: ClothingUnderwearBase
+  id: ClothingUnderwearBikiniVirologist
+  name: virologist bikini
+  description: Hot swimming suit.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/Sponsor/virologist_bikini.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Underwear/Sponsor/virologist_bikini.rsi

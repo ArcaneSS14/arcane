@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "syndicate_walking",
+            "directions": 4
+        },
+        {
             "name": "syndicate-rest",
             "directions": 4,
             "delays": [

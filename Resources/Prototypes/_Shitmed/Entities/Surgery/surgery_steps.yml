@@ -180,7 +180,45 @@
   - type: SurgeryRepeatableStep
   - type: SurgeryTraumaTreatmentStep
     traumaType: OrganDamage
-    amount: 17
+    amount: 30
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractForeignBody
+  name: Extract foreign body
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Hemostat
+    duration: 7
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
+    state: hemostat
+  - type: SurgeryStepPainInflicter
+    amount: 20
+    painType: TraumaticPain
+    sleepModifier: 0
+  - type: SurgeryTraumaExtractStep
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRepairBrain
+  name: Repair the brain
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Tending
+    duration: 12
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
+    state: hemostat
+  - type: SurgeryStepPainInflicter
+    amount: 40
+    painType: TraumaticPain
+    sleepModifier: 0
+  - type: SurgeryTraumaTreatmentStep
+    traumaType: Braindeath
+    amount: 60
 
 - type: entity
   parent: SurgeryStepBase
@@ -375,14 +413,14 @@
     - type: Hemostat
     add:
     - type: InternalBleedersClamped
-    duration: 2
+    duration: 3 # Arcane-Edit: 2 > 3
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryDamageChangeEffect
     damage:
       types:
-        Bloodloss: -5
+        Bloodloss: -10 # Arcane-Edit: -5 > -10
     sleepModifier: 2
 
 - type: entity
@@ -439,14 +477,14 @@
   - type: SurgeryStep
     tool:
     - type: Tending
-    duration: 1
+    duration: 2 # Arcane-Edit: 1 > 2
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryTendWoundsEffect
     damage:
       groups:
-        Brute: -15
+        Brute: -30 # Arcane-Edit: -15 > -30
   - type: SurgeryRepeatableStep
 
 - type: entity
@@ -457,7 +495,7 @@
   - type: SurgeryStep
     tool:
     - type: Tending
-    duration: 1
+    duration: 2 # Arcane-Edit: 1 > 2
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
@@ -465,7 +503,7 @@
     mainGroup: Burn
     damage:
       groups:
-        Burn: -20
+        Burn: -40 # Arcane-Edit: -20 > -40
   - type: SurgeryRepeatableStep
 
 - type: entity

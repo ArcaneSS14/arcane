@@ -15,12 +15,12 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 20
+        maxVol: 40 # Arcane-Edit: 20 > 40
   - type: ExaminableSolution
     solution: drink
   - type: Sticky
-    stickDelay: 3
-    unstickDelay: 2
+    stickDelay: 2 # Arcane-Edit: 3 > 2
+    unstickDelay: 1.5 # Arcane-Edit 2 > 1.5
     stickPopupStart: goobstation-medicalpatch-sticy-trystick
     stickPopupSuccess: goobstation-medicalpatch-sticy-trystick-success
     unstickPopupStart: goobstation-medicalpatch-sticy-tryremove
@@ -60,7 +60,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:  #drink is the same as Bottle solution, this is to prevent recoding chem master. TODO: recode chem master
-        maxVol: 20
+        maxVol: 40 # Arcane-Edit: 20 > 40
   - type: Tag
     tags:
     - MedicalPatch
@@ -150,7 +150,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 40 # +50% from basic
+        maxVol: 80 # +50% from basic # Arcane-Edit: 40 > 80
   - type: MedicalPatch
     injectPercentageOnAttatch: 10 # 4u when full
   - type: Item
@@ -172,7 +172,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 20  # lasts for 40 seconds, effectively half as good as a normal patch
+        maxVol: 30  # lasts for 40 seconds, effectively half as good as a normal patch # Arcane-Edit: 20 > 30
   - type: Construction
     graph: MedicalPatchMakeshift
     node: medicalPatchMakeshift

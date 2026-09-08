@@ -1,0 +1,9 @@
+ent-Suture = нить
+    .desc = Обычная классика прямо с завода! Универсальное решение от ушибов да кровотёка, хоть и не особо эффективное.
+    .suffix = Полный
+ent-RegenerativeMeshOpened = { ent-RegenerativeMesh }
+    .desc = { ent-RegenerativeMesh.desc }
+    .suffix = Полный, Открытый
+ent-AdvancedRegenerativeMeshOpened = { ent-AdvancedRegenerativeMesh }
+    .desc = { ent-AdvancedRegenerativeMesh.desc }
+    .suffix = Полный, Открытый

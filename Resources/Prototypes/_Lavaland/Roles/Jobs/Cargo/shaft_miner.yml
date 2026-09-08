@@ -27,6 +27,8 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentCargo
+  alternateTitles:
+  - ShaftMinerExcavator
   # Arcane-end
 
 - type: startingGear
@@ -49,3 +51,9 @@
     outerClothing: ClothingOuterWinterMiner
     neck: ClothingNeckScarfStripedBrown
     gloves: ClothingHandsGlovesColorBlack
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: ShaftMinerExcavator
+  name: job-name-alt-shaftminer-1
+# Arcane-End

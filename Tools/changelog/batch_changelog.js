@@ -85,7 +85,7 @@ async function getMergedPRNumbers(repo, startDate) {
 }
 
 function buildEntry(pr, id) {
-    const { merged_at, body, user, number } = pr;
+    const { merged_at, body, user, number, html_url } = pr;
 
     if (!body) {
         console.log(`PR #${number}: empty body, skipping`);
@@ -121,6 +121,7 @@ function buildEntry(pr, id) {
         changes: changes,
         id: id,
         time: time,
+        url: html_url,
     };
 }
 

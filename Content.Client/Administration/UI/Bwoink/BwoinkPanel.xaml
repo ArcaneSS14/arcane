@@ -6,9 +6,12 @@ SPDX-License-Identifier: MIT
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Orientation="Vertical"
-    HorizontalExpand="True">
-    <OutputPanel Name="TextOutput" VerticalExpand="true" />
-    <RichTextLabel Name="TypingIndicator" Access="Public" />
-    <HistoryLineEdit Name="SenderLineEdit" />
+    HorizontalExpand="True"
+    Margin="4"
+    SeparationOverride="4">
+    <!-- Arcane-Edit -->
+    <OutputPanel Name="TextOutput" VerticalExpand="true" StyleClasses="ArcaneAHelpOutput" />
+    <RichTextLabel Name="TypingIndicator" Access="Public" Visible="False" />
+    <HistoryLineEdit Name="SenderLineEdit" PlaceHolder="{Loc 'bwoink-message-input-placeholder'}" />
     <RichTextLabel Name="RelayedToDiscordLabel" Access="Public" Visible="False" />
 </BoxContainer>

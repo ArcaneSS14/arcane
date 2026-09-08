@@ -4,14 +4,21 @@
   weights:
     LoneOperative: 1
     ShuttleInstigator: 0.8
-    VoxRaiders: 0.8
-    GreyTide: 0.65
-    #TODO When Slasher is ready Slasher: 0.6 # Goobstation
+    # VoxRaiders: 0.8 Chuddy
+    # GreyTide: 0.65 out of the gane
+    SyndicateSleeperAgent: 0.6
     Blob: 0.5
+    Slasher: 0.4
     Dragon: 0.3
     SlaughterDemon: 0.3
     LaughterDemon: 0.3
-    WizardMidRoundThreat: 0.1
+    # WizardMidRoundThreat: 0.1 # Arcane-Edit
+    # Arcane-Start
+    Revolutionary: 0.20
+    Nukeops: 0.15
+    Ninja: 0.25
+    Xenoborgs: 0.3
+    # Arcane-End
 
 # Threats
 
@@ -54,6 +61,11 @@
   id: Slasher
   announcement: terror-slasher
   rule: SlasherSpawn
+
+- type: ninjaHackingThreat
+  id: SyndicateSleeperAgent
+  announcement: terror-sleeper-agent
+  rule: SleeperAgents
 
 #- type: ninjaHackingThreat
 #  id: Wraith

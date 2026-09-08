@@ -34,8 +34,10 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float BarksMultiplier = 3f; // Goob Station - Barks
     public const float RadioMultiplier = 2f; // Orion
     public const float AdminNotificationsMultiplier = 1f; // Goobstation - Admin Notifications
-    public const float TTSMultiplier = 1f; // Art-TTS
-    public const float TTSRadioMultiplier = 1f; // Arcane
+    // Arcane-Start
+    public const float TTSMultiplier = 1f;
+    public const float TTSRadioMultiplier = 1f;
+    // Arcane-End
 
     public override void Initialize()
     {

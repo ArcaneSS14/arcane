@@ -1,0 +1,17 @@
+# Back
+- type: loadout
+  id: ResearchDirectorBackpack
+  equipment:
+    back: ClothingBackpackRD
+
+# Back
+- type: loadout
+  id: ResearchDirectorSatchel
+  equipment:
+    back: ClothingBackpackSatchelRD
+
+# Back
+- type: loadout
+  id: ResearchDirectorDuffel
+  equipment:
+    back: ClothingBackpackDuffellRD

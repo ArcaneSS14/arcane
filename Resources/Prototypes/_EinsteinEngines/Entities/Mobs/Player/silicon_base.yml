@@ -18,6 +18,7 @@
           methods: [Touch]
           effects:
             - !type:WashCreamPie
+            - !type:WashCumOverlayReaction # Arcane
     - type: DamageOnHighSpeedImpact
       damage:
         types:
@@ -29,8 +30,8 @@
       damageModifierSet: IPC
     - type: InteractionOutline
     - type: MovementSpeedModifier
-      baseWalkSpeed: 4
-      baseSprintSpeed: 3
+      baseWalkSpeed: 2.5 # Arcane-Edit: 3 > 2.5
+      baseSprintSpeed: 4
     - type: MindControllable # Goobstation - shadowling
     - type: ZombieImmune
     - type: DoAfter
@@ -263,6 +264,7 @@
         Male: UnisexIPC
         Female: UnisexIPC
         Unsexed: UnisexIPC
+        Futanari: UnisexIPC # Arcane
     - type: MeleeWeapon
       hidden: true
       soundHit:
@@ -343,5 +345,7 @@
     - type: ExaminableCharacter # WWDP
     # Arcane-start
     - type: DirectionalEmote
+    - type: TTS
     - type: ErpPanelOwner
     # Arcane-end
+    - type: CosmicCenserTarget # DeltaV - Cosmic Cult

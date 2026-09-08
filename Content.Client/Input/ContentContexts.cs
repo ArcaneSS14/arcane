@@ -97,6 +97,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade1);
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
+            human.AddFunction(ContentKeyFunctions.OfferItem); // Arcane
             human.AddFunction(ContentKeyFunctions.TogglePosing); // Orion
             // Shitmed Change Start - TODO: Add hands, feet and groin targeting.
             human.AddFunction(ContentKeyFunctions.TargetHead);

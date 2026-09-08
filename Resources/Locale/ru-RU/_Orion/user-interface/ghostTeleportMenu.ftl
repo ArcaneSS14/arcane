@@ -61,6 +61,9 @@ global-antagonist-abductor-description = Зондирование в проце�
 global-antagonist-contractor-name = Контрактник
 global-antagonist-contractor-description = Охотник за головами, в каком состоянии - не важно.
 
+global-antagonist-slasher-name = Мясник
+global-antagonist-slasher-description = Воплотите главный страх экипажа в реальность.
+
 global-antagonist-ghost-role-name = Вне станционный
 global-antagonist-ghost-role-description = Роли для призраков, чаще всего не несут никакого влияния на станцию.
 

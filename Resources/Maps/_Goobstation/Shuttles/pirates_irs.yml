@@ -4034,7 +4034,7 @@ entities:
     - type: Transform
       pos: 11.5299635,-11.417603
       parent: 2
-- proto: MedkitCombatFilled
+- proto: MedkitCombatStandardFilled
   entities:
   - uid: 486
     components:

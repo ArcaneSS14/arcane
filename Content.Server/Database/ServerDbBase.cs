@@ -54,6 +54,7 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
+                .Include(p => p.Profiles).ThenInclude(h => h.AltTitles) // Arcane
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -115,6 +116,7 @@ namespace Content.Server.Database
                 .Include(p => p.Jobs)
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
+                .Include(p => p.AltTitles) // Arcane
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
@@ -223,40 +225,6 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
         }
 
-        // Arcane-Start
-        public async Task<string?> GetErpOrganPreferencesAsync(NetUserId userId, int slot)
-        {
-            await using var db = await GetDb();
-            var row = await db.DbContext.ErpOrganPreferences
-                .FirstOrDefaultAsync(e => e.UserId == userId.UserId && e.Slot == slot);
-            return row?.Data;
-        }
-
-        public async Task SaveErpOrganPreferencesAsync(NetUserId userId, int slot, string data)
-        {
-            await using var db = await GetDb();
-            var row = await db.DbContext.ErpOrganPreferences
-                .FirstOrDefaultAsync(e => e.UserId == userId.UserId && e.Slot == slot);
-
-            if (row == null)
-            {
-                row = new ErpOrganPreference
-                {
-                    UserId = userId.UserId,
-                    Slot = slot,
-                    Data = data,
-                };
-                db.DbContext.ErpOrganPreferences.Add(row);
-            }
-            else
-            {
-                row.Data = data;
-            }
-
-            await db.DbContext.SaveChangesAsync();
-        }
-        // Arcane-End
-
         private static async Task SetSelectedCharacterSlotAsync(NetUserId userId, int newSlot, ServerDbContext db)
         {
             var prefs = await db.Preference.SingleAsync(p => p.UserId == userId.UserId);
@@ -279,11 +247,11 @@ namespace Content.Server.Database
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
-            // Art-TTS Start
+            // Arcane-Start
             var voice = profile.Voice;
             if (string.IsNullOrEmpty(voice))
                 voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
-            // Art-TTS End
+            // Arcane-End
 
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             var markingsRaw = profile.Markings?.Deserialize<List<string>>();
@@ -300,6 +268,17 @@ namespace Content.Server.Database
                     markings.Add(parsed);
                 }
             }
+
+            // Arcane-Start
+            var altTitles = profile.AltTitles
+                .GroupBy(r => r.RoleName)
+                .ToDictionary(
+                    g => new ProtoId<JobPrototype>(g.Key),
+                    g => new ProtoId<JobAlternateTitlePrototype>(g
+                        .OrderByDescending(x => x.Id)
+                        .First().AlternateTitle)
+                );
+            // Arcane-End
 
             var loadouts = new Dictionary<string, RoleLoadout>();
 
@@ -349,7 +328,7 @@ namespace Content.Server.Database
                 profile.Width, // Goobstation: port EE height/width sliders
                 profile.Age,
                 sex,
-                voice, // Art-TTS
+                voice, // Arcane
                 gender,
                 new HumanoidCharacterAppearance
                 (
@@ -364,6 +343,7 @@ namespace Content.Server.Database
                 spawnPriority,
                 jobs,
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
+                altTitles, // Arcane
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts,
@@ -403,7 +383,7 @@ namespace Content.Server.Database
             profile.Width = humanoid.Width; // Goobstation: port EE height/width sliders
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
-            profile.Voice = humanoid.Voice; // Art-TTS
+            profile.Voice = humanoid.Voice; // Arcane
             profile.Gender = humanoid.Gender.ToString();
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();
@@ -437,6 +417,20 @@ namespace Content.Server.Database
 
             profile.BarkVoice = humanoid.BarkVoice; // Goob Station - Barks
             profile.ErpPreference = (int) humanoid.ErpPreference; // Arcane
+
+            // Arcane-Start
+            profile.AltTitles.Clear();
+            foreach (var (role, title) in humanoid.JobAlternateTitles)
+            {
+                var newTitle = new DBJobAlternateTitle()
+                {
+                    RoleName = role.Id,
+                    AlternateTitle = title.Id
+                };
+
+                profile.AltTitles.Add(newTitle);
+            }
+            // Arcane-End
 
             profile.Loadouts.Clear();
 

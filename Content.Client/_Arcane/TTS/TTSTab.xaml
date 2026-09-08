@@ -1,0 +1,19 @@
+<Control xmlns="https://spacestation14.io">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5">
+            <LineEdit Name="SearchEdit" MinWidth="600" PlaceHolder="{Loc 'humanoid-profile-editor-voice-placeholder'}"/>
+            <Label Name="ResultsLabel" MinWidth="100" HorizontalExpand="True" HorizontalAlignment="Right"/>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 5 0 20">
+            <Button Name="MaleButton" ToggleMode="True" Text="{Loc 'humanoid-profile-editor-voice-sex-male'}"
+                    StyleClasses="OpenRight" HorizontalExpand="True"/>
+            <Button Name="FemaleButton" ToggleMode="True" Text="{Loc 'humanoid-profile-editor-voice-sex-female'}"
+                    StyleClasses="OpenLeft" HorizontalExpand="True"/>
+        </BoxContainer>
+
+        <ScrollContainer VerticalExpand="True" Margin="5">
+            <GridContainer Name="VoicesGrid" Columns="3" HorizontalExpand="True"/>
+        </ScrollContainer>
+    </BoxContainer>
+</Control>

@@ -31,6 +31,16 @@ public sealed partial class HealingComponent : Component
     [DataField, AutoNetworkedField]
     public float ModifyBloodLevel = 0.0f;
 
+    // Arcane-Start
+    /// <summary>
+    /// If true, when auto-targeting body parts, bleeding limbs are prioritized
+    /// (sorted descending by bleed amount) over damage-only limbs.
+    /// Only falls back to damage priority when no limb has active bleeding.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool PrioritizeBleeding = false;
+    // Arcane-End
+
     /// <remarks>
     /// The supported damage types are specified using a <see cref="DamageContainerPrototype"/>s. For a
     /// HealingComponent this filters what damage container type this component should work on. If null,
@@ -43,13 +53,13 @@ public sealed partial class HealingComponent : Component
     /// How long it takes to apply the damage.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public TimeSpan Delay = TimeSpan.FromSeconds(2f); //Was 3f, changed due to Surgery Changes (Goobstation)
+    public TimeSpan Delay = TimeSpan.FromSeconds(1f); //Was 3f, changed due to Surgery Changes (Goobstation) // Arcane-Edit: 2 > 1
 
     /// <summary>
     /// Delay multiplier when healing yourself.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float SelfHealPenaltyMultiplier = 2f; //Was 3f, changed due to Surgery Changes (Goobstation)
+    public float SelfHealPenaltyMultiplier = 6f; //Was 3f, changed due to Surgery Changes (Goobstation) // Arcane-Edit: 2 > 6
 
     /// <summary>
     /// Sound played on healing begin.
@@ -62,4 +72,12 @@ public sealed partial class HealingComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? HealingEndSound = null;
+
+    // Arcane-Start
+    /// <summary>
+    /// Sound played on full healing end.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier? HealingFullEndSound = null;
+    // Arcane-End
 }

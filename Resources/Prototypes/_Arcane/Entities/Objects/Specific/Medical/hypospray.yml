@@ -1,0 +1,131 @@
+- type: entity
+  parent: EmergencyMedipen
+  id: AdvancedEmergencyMedipen
+  name: advanced emergency medipen
+  description: No slowdown. No whining. Just get back in the fight before someone steals your ass.
+  components:
+  - type: Sprite
+    layers:
+    - state: advmedipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#5d81c7"
+      - state: base-colorB-inhand-left
+        color: "#8f01b3"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#5d81c7"
+      - state: base-colorB-inhand-right
+        color: "#8f01b3"
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: advmedipen_empty
+  - type: Injector
+    solutionName: pen
+    currentTransferAmount: 40
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 40
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 10
+        - ReagentId: Ephedrine
+          Quantity: 10
+        - ReagentId: Atropine
+          Quantity: 5
+        - ReagentId: DexalinPlus
+          Quantity: 10
+        - ReagentId: Leporazine
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Medipen
+    - EmergencyMedipen
+    - Trash
+
+- type: entity
+  parent: ChemicalMedipen
+  id: SalbutamolAutoInjector
+  name: airloss auto-injector
+  description: No air? No problem. One pen, one breath, one more chance to be an idiot. Don't choke on it.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#5d81c7"
+      - state: base-colorB-inhand-left
+        color: "#00FFFF"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#5d81c7"
+      - state: base-colorB-inhand-right
+        color: "#00FFFF"
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: salbpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: salbpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Salbutamol
+          Quantity: 20
+
+- type: entity
+  parent: ChemicalMedipen
+  id: StimulatorAutoInjector
+  name: standard stimulator autoinjector
+  description: Fast, reckless, and probably a bad idea. This pen doesn't care about your health. Neither do you? Use it!
+  components:
+  - type: Sprite
+    layers:
+    - state: meth
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#2d2a30"
+      - state: base-colorB-inhand-left
+        color: "#7c5a75"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#2d2a30"
+      - state: base-colorB-inhand-right
+        color: "#7c5a75"
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: meth_empty
+  - type: Injector
+    currentTransferAmount: 30
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 15
+        - ReagentId: Diphenhydramine
+          Quantity: 15

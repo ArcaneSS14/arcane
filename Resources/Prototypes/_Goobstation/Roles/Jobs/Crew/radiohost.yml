@@ -17,6 +17,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentService
+  alternateTitles:
+  - RadioHostStationDJ
+  - RadioHostBroadcaster
   # Arcane-end
 
 - type: startingGear
@@ -37,4 +40,14 @@
     jumpsuit: ClothingUniformJumpsuitHawaiBlack
     shoes: ClothingShoesColorBlack
     id: RadioHostPDA
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: RadioHostStationDJ
+  name: job-name-alt-radiohost-1
+
+- type: jobAlternateTitle
+  id: RadioHostBroadcaster
+  name: job-name-alt-radiohost-2
+# Arcane-End
 

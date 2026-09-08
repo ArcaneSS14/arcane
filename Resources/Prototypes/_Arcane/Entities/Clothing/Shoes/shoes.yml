@@ -9,6 +9,8 @@
   - type: Clothing
     sprite: _Arcane/Clothing/Shoes/beer_shoes.rsi
 
+# Sponsor
+
 - type: entity
   parent: ClothingShoesBase
   id: ClothingShoesOldFashionedMedical
@@ -30,3 +32,47 @@
     sprite: _Arcane/Clothing/Shoes/Sponsor/QM_boots.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Shoes/Sponsor/QM_boots.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesMusicianBoots
+  name: musician boots
+  description: High boots with buckles.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/Sponsor/musician_boots.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/Sponsor/musician_boots.rsi
+
+- type: entity
+  parent: ClothingShoesClown
+  id: ClothingShoesJesters
+  name: jester's shoes
+  description: Old-fashioned clown shoes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/Sponsor/jester_shoes.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/Sponsor/jester_shoes.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesTwilightSparkle
+  name: bookworm's boots
+  description: Why do they so high?.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/Sponsor/twilight_sparkle.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/Sponsor/twilight_sparkle.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesWorkerBoots
+  name: worker boots
+  description: Comfortable boots to run around the station.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/Sponsor/worker_boots.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/Sponsor/worker_boots.rsi

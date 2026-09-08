@@ -17,7 +17,7 @@
     radius: 1.5
     energy: 1.6
     color: "#FF69B4"
-    
+
 - type: entity
   parent: VendingMachine
   id: VendingMachineLove
@@ -56,3 +56,37 @@
     defaultPrice: 35
     extraPrice: 100
   # Orion-Edit-End
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineUnderwear
+  name: UnderMate
+  description: Underclothes for you!
+  components:
+  - type: VendingMachine
+    pack: UnderMateInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _Arcane/Structures/Machines/VendingMachines/pantymate.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 2
+    energy: 1.6
+    color: "#a625e2"
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+  - type: Tag
+    tags:
+      - DroneUsable # Goobstation

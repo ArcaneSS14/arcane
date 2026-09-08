@@ -9,6 +9,10 @@ cosmic-examine-text-malignecho = [color=#4cabb3]Эхо в мембране ре�
 cosmic-examine-text-forthecult = [color=#4cabb3]Это наше дело. Как и должно быть.[/color]
 cosmic-examine-text-imposition = [color=#4cabb3]Барьер астральной энергии защищает их от повреждений![/color]
 cosmic-examine-text-god = [color=#4cabb3]это конец это конец это конец это конец это конец это конец это конец это конец это конец это конец это конец [/color]
+cosmic-examine-text-chantry = [color=#4cabb3]У тебя возникает ужасное чувство, что внутри кто-то заперт![/color]
+cosmic-examine-text-effigy = [color=#4cabb3]Он расплёскивает нестабильную аномальную энергию![/color]
+cosmic-examine-text-subtle-mark = [color=#4cabb3]В их глазах вспыхивают потусторонние силы![/color]
+cosmic-examine-text-injector = [color=#4cabb3]Тебе кажется, что лучше не стоит трогать это.[/color]
 
 ## GLYPH EXAMINES
 

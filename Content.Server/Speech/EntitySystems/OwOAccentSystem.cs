@@ -4,6 +4,7 @@ using Content.Server.Speech.Components;
 using Content.Shared.Speech;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
+using System.Text.RegularExpressions; // Arcane
 
 namespace Content.Server.Speech.EntitySystems
 {
@@ -34,9 +35,12 @@ namespace Content.Server.Speech.EntitySystems
             }
 
             return message.Replace("!", _random.Pick(Faces))
-                .Replace("r", "w").Replace("R", "W")
-                .Replace("l", "w").Replace("L", "W");
+                // Arcane-Start
+                .Replace("р", "в").Replace("Р", "В")
+                .Replace("л", "в").Replace("Л", "В");
+                // Arcane-End
         }
+
 
         private void OnAccent(Entity<OwOAccentComponent> entity, ref AccentGetEvent args)
         {
@@ -47,6 +51,5 @@ namespace Content.Server.Speech.EntitySystems
         {
             args.Args.Message = Accentuate(args.Args.Message);
         }
-
     }
 }

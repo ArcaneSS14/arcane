@@ -1,6 +1,8 @@
 - type: panelInteraction
   id: BiteEars
   category: Ears
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
   messages:
   - кусает ухо $target!
   - покусывает ухо $target.
@@ -13,6 +15,8 @@
   - внезапно кусает $target за ушко.
   - медленно покусывает ухо $target.
   icon: _Arcane/Interface/ErpPanel/bite_ears.png
+  tags:
+  - RequiresERP
 
 - type: panelInteraction
   id: BiteEarsHuman
@@ -64,6 +68,8 @@
   - проводит пальцем по ушку $target.
   - почёсывает $target за ушком.
   icon: _Arcane/Interface/ErpPanel/pat_ears.png
+  tags:
+  - RequiresERP
   targetRequirements:
   - !type:SpeciesRequirement
     species:
@@ -85,4 +91,19 @@
   - лёгонько мнёт ухо $target.
   - игриво тянет $target за ухо.
   - нежно трогает мочку уха $target.
+  icon: _Arcane/Interface/ErpPanel/pat_ears_human.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: ScratchingEars
+  category: Ears
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  selfMessages:
+  - чешет за ухом.
+  - слегка почесывает ухо.
+  - почесывает мочку уха.
+  - почесывает за ухом.
+  - трет кожу за ухом.
   icon: _Arcane/Interface/ErpPanel/pat_ears_human.png

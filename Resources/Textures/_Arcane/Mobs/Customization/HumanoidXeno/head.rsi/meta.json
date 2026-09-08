@@ -234,6 +234,58 @@
         {
             "name": "razor_teeth",
             "directions": 4
+        },
+        {
+            "name": "burrower_head_shine",
+            "directions": 4
+        },
+        {
+            "name": "burrower_head",
+            "directions": 4
+        },
+        {
+            "name": "burrower_teeth",
+            "directions": 4
+        },
+        {
+            "name": "defer_head_shine",
+            "directions": 4
+        },
+        {
+            "name": "defer_head",
+            "directions": 4
+        },
+        {
+            "name": "defer_teeth",
+            "directions": 4
+        },
+        {
+            "name": "valkyr_head_plates",
+            "directions": 4
+        },
+        {
+            "name": "valkyr_head_shine",
+            "directions": 4
+        },
+        {
+            "name": "valkyr_head",
+            "directions": 4
+        },
+        {
+            "name": "valkyr_teeth",
+            "directions": 4
+        },
+        {
+            "name": "warrior_head_shine",
+            "directions": 4
+        },
+        {
+            "name": "warrior_head",
+            "directions": 4
+        },
+        {
+            "name": "warrior_teeth",
+            "directions": 4
         }
     ]
 }

@@ -4,6 +4,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.EntityConditions;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Goobstation.Server.EntityEffects.EffectConditions;
 
@@ -15,8 +16,15 @@ public sealed partial class UniqueBloodstreamChemThresholdSystem : EntityConditi
     {
         if (_solution.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var chemSolution))
         {
-            args.Result = chemSolution.Contents.Count > args.Condition.Min &&
-                          chemSolution.Contents.Count < args.Condition.Max;
+            // Arcane-Edit-Start
+            var bloodReferenceSolution = entity.Comp.BloodReferenceSolution;
+
+            var chemicalCount = chemSolution.Contents.Count(quant =>
+                !bloodReferenceSolution.ContainsPrototype(quant.Reagent.Prototype));
+
+            args.Result = chemicalCount > args.Condition.Min &&
+                chemicalCount < args.Condition.Max;
+            // Arcane-Edit-End
             return;
         }
         args.Result = false;

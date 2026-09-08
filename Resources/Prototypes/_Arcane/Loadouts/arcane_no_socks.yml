@@ -1,0 +1,9 @@
+- type: loadoutEffectGroup
+  id: ArcaneSocksNoSpecies
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Harpy
+    - Diona
+    - Yowie
+    inverted: true

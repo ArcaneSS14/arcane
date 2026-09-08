@@ -25,7 +25,7 @@ namespace Content.Client.Lobby.UI
         [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly IEntityManager _entManager = default!;
         [Dependency] private readonly IPrototypeManager _protomanager = default!;
-        [Dependency] private readonly IResourceCache _resourceCache = default!;
+        // [Dependency] private readonly IResourceCache _resourceCache = default!; // Arcane-remove
         [Dependency] private readonly IConfigurationManager _cfg = default!;
 
         private readonly Button _createNewCharacterButton;
@@ -38,6 +38,7 @@ namespace Content.Client.Lobby.UI
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
 
+            /* Arcane-remove
             var panelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png");
             var back = new StyleBoxTexture
             {
@@ -47,7 +48,7 @@ namespace Content.Client.Lobby.UI
             back.SetPatchMargin(StyleBox.Margin.All, 10);
 
             BackgroundPanel.PanelOverride = back;
-
+            */
             _createNewCharacterButton = new Button
             {
                 Text = Loc.GetString("character-setup-gui-create-new-character-button"),

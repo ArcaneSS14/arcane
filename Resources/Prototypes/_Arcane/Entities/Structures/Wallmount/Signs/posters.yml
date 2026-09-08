@@ -1,0 +1,98 @@
+# Ported from ADT
+
+- type: entity
+  parent: BaseSign
+  id: ADTPosterBase
+  abstract: true
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: ADT/Structures/Wallmounts/posters.rsi
+    snapCardinals: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/poster_broken.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PosterBroken:
+            min: 1
+            max: 1
+        offset: 0
+
+#Флажки ко дню рождения от Овая
+
+- type: entity
+  parent: ADTPosterBase
+  id: ADTPosterBirhtdayTrianglesPB1
+  name: purple-blue triangles left
+  description: purple-blue triangles left
+  suffix: One Year
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Wallmounts/triangles_birthday.rsi
+    state: pbleft
+
+- type: entity
+  parent: ADTPosterBase
+  id: ADTPosterBirhtdayTrianglesPB2
+  name: purple-blue triangles center
+  description: purple-blue triangles center
+  suffix: One Year
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Wallmounts/triangles_birthday.rsi
+    state: pbcenter
+
+- type: entity
+  parent: ADTPosterBase
+  id: ADTPosterBirhtdayTrianglesPB3
+  name: purple-blue triangles right
+  description: purple-blue triangles right
+  suffix: One Year
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Wallmounts/triangles_birthday.rsi
+    state: pbright
+
+- type: entity
+  parent: ADTPosterBase
+  id: ADTPosterBirhtdayTrianglesRY1
+  name: red-yellow triangles left
+  description: red-yellow triangles left
+  suffix: One Year
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Wallmounts/triangles_birthday.rsi
+    state: ryleft
+
+- type: entity
+  parent: ADTPosterBase
+  id: ADTPosterBirhtdayTrianglesRY2
+  name: red-yellow triangles center
+  description: red-yellow triangles center
+  suffix: One Year
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Wallmounts/triangles_birthday.rsi
+    state: rycenter
+
+- type: entity
+  parent: ADTPosterBase
+  id: ADTPosterBirhtdayTrianglesRY3
+  name: red-yellow triangles right
+  description: red-yellow triangles right
+  suffix: One Year
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Wallmounts/triangles_birthday.rsi
+    state: ryright

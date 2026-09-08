@@ -18,7 +18,12 @@
   - ScanningReagentHaloperidol
   - ScanningReagentCryostylane
   recipeUnlocks:
+  # Arcane-Start
+  - JetInjector
+  - ChemistryEmptyVialSmall
+  # Arcane-End
   - LargeBeaker
+  - XLargeBeaker # Arcane
   - Beaker
   - Bloodpack
   - Bonesetter
@@ -45,6 +50,7 @@
   - BiomassReclaimerMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
+  - CrewMonitoringComputerCircuitboard
   - Brutepack
   - Ointment
   - Gauze
@@ -106,6 +112,7 @@
   - SprayBottleRed
   - SprayBottleBlue
   - SprayBottleOrange
+  - MetamaterialBeaker # Arcane
   - BoneGel
   - SodaDispenserMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
@@ -116,6 +123,10 @@
   - ElectrolysisUnitMachineCircuitboard
   - CentrifugeMachineCircuitboard
   - ServiceEnergyChemMachineCircuitboard
+# Arcane-Start
+  - EnergyBoozeDispenserMachineCircuitboard
+  - EnergySodaDispenserMachineCircuitboard
+# Arcane-End
   position: 7,9
 
 - type: technology
@@ -137,6 +148,7 @@
   requiredExperiments:
   - ScanningReagentHaloperidol
   recipeUnlocks:
+  - AdvancedJetInjector # Arcane
   - HandheldCrewMonitor
   - SyringeGun
   - DefibrillatorCompact

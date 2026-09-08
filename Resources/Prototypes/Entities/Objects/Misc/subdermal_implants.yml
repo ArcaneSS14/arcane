@@ -205,10 +205,13 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
-    implantAction: ActionActivateScramImplant
-  - type: TriggerOnActivateImplant
-  - type: ScramOnTrigger
-    targetUser: true
+  # Arcane-Edit-Start: Old realisation -> ActionArcaneScramImplant
+    implantAction: ActionArcaneScramImplant
+  #   implantAction: ActionActivateScramImplant
+  # - type: TriggerOnActivateImplant
+  # - type: ScramOnTrigger
+  #   targetUser: true
+  # Arcane-Edit-End
 
 - type: entity
   parent: BaseSubdermalImplant

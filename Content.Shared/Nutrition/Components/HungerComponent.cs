@@ -36,7 +36,7 @@ public sealed partial class HungerComponent : Component
     /// </summary>
     /// <remarks>Any time this is modified, <see cref="HungerSystem.SetAuthoritativeHungerValue"/> should be called.</remarks>
     [DataField("baseDecayRate"), ViewVariables(VVAccess.ReadWrite)]
-    public float BaseDecayRate = 0.04166666666f; // Goobstation changed to 150/3600
+    public float BaseDecayRate = 0.03f; // Goobstation changed to 150/3600 # Arcane-Edit: 0.04166666666 > 0.03
 
     /// <summary>
     /// The actual amount at which <see cref="LastAuthoritativeHungerValue"/> decays.
@@ -113,12 +113,14 @@ public sealed partial class HungerComponent : Component
         { HungerThreshold.Dead, 0.6f }
     };
 
+    /* // Arcane-Edit-Start
     /// <summary>
     /// The amount of slowdown applied when an entity is starving
     /// </summary>
     [DataField("starvingSlowdownModifier"), ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public float StarvingSlowdownModifier = 0.75f;
+    */ // Arcane-Edit-End
 
     /// <summary>
     /// Damage dealt when your current threshold is at HungerThreshold.Dead

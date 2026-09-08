@@ -186,6 +186,83 @@
     state: razor_tail
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
     state: razor_tail_grad
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: razor_tail_spike
+
+- type: marking
+  id: HumanoidXenoTailBurrower
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: burrower_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: burrower_tail_grad
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: burrower_tail_spike
+
+- type: marking
+  id: HumanoidXenoTailLord
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: lord_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: lord_tail_butt
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: lord_tail_spikes
+
+- type: marking
+  id: HumanoidXenoTailOpress
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: opress_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: opress_tail_grad
+
+- type: marking
+  id: HumanoidXenoTailValkyr
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: valkyr_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/long_tails.rsi
+    state: valkyr_tail_grad
+
+- type: marking
+  id: HumanoidXenoTailDefender
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: defer_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: defer_tail_grad
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: defer_tail_ball
+
+- type: marking
+  id: HumanoidXenoTailWarrior
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: warrior_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: warrior_tail_thin
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: warrior_tail_thin_grad
+
 
 # Head
 
@@ -435,6 +512,60 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: razor_shine
 
+- type: marking
+  id: HumanoidXenoHeadBurrower
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: burrower_head
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: burrower_teeth
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: burrower_head_shine
+
+- type: marking
+  id: HumanoidXenoHeadDefender
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: defer_head
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: defer_teeth
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: defer_head_shine
+
+- type: marking
+  id: HumanoidXenoHeadValkyr
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: valkyr_head
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: valkyr_teeth
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: valkyr_head_plates
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: valkyr_head_shine
+
+- type: marking
+  id: HumanoidXenoHeadWarrior
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: warrior_head
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: warrior_teeth
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: warrior_head_shine
+
 # Chest
 
 - type: marking
@@ -603,6 +734,15 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
     state: bers_tubes_veins
 
+- type: marking
+  id: HumanoidXenoTracheasWarrior
+  bodyPart: Chest
+  markingCategory: Tracheas
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
+    state: warrior_tubes
+
 # Legs
 
 - type: marking
@@ -669,6 +809,24 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
     state: razor_feet_right
+
+- type: marking
+  id: HumanoidXenoLegsBurrowerRight
+  bodyPart: RFoot
+  markingCategory: RightFoot
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
+    state: burrower_claws_r_foot
+
+- type: marking
+  id: HumanoidXenoLegsBurrowerLeft
+  bodyPart: LFoot
+  markingCategory: LeftFoot
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/claws_legs.rsi
+    state: burrower_claws_l_foot
 
 # Arms
 
@@ -754,3 +912,21 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/short_claws_arms.rsi
     state: short_claws_right
+
+- type: marking
+  id: HumanoidXenoHandBurrowerRight
+  bodyPart: RHand
+  markingCategory: RightHand
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/short_claws_arms.rsi
+    state: burrower_claws_r_hand
+
+- type: marking
+  id: HumanoidXenoHandBurrowerLeft
+  bodyPart: LHand
+  markingCategory: LeftHand
+  speciesRestriction: [HumanoidXeno]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/short_claws_arms.rsi
+    state: burrower_claws_l_hand

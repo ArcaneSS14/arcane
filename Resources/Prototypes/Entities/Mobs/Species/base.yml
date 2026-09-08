@@ -25,9 +25,11 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: ["jumpsuit"]
+    # Arcane-Edit-Start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["jumpsuit"]
+    # Arcane-Edit-End
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: ["enum.HumanoidVisualLayers.Face"] #Goob 120 - why did we have face on dummy but not basespecies
@@ -93,10 +95,12 @@
   - type: HumanoidAppearance
     species: Human
   - type: TypingIndicator
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+  # Arcane-Edit-Start: Now in mood system
+#  - type: SlowOnDamage
+#    speedModifierThresholds:
+#      60: 0.7
+#      80: 0.5
+  # Arcane-Edit-End
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
@@ -129,6 +133,7 @@
       methods: [Touch]
       effects:
       - !type:WashCreamPie
+      - !type:WashCumOverlayReaction # Arcane
   - type: StatusEffects
     allowed:
     - Electrocution
@@ -222,6 +227,7 @@
       Male: MaleHuman
       Female: FemaleHuman
       Unsexed: MaleHuman
+      Futanari: FemaleHuman # Arcane
   - type: LanguageKnowledge # Einstein Engines - Languages (all mobs should speak TauCeti unless otherwise specified, to prevent universal.)
     speaks:
     - TauCetiBasic
@@ -275,6 +281,7 @@
   abstract: true
   components:
   - type: Absorbable # Goobstation - changelings
+  - type: OfferItem # Arcane
   - type: WraithAbsorbable # Goobstation - wraith
   - type: Barotrauma
     damage:
@@ -353,25 +360,7 @@
   - type: ObraDinnBody # Goobstation
   # </Goobstation>
   # Arcane-start
-  - type: EroticOrgans
-    groinCommon:
-    - proto: OrganAnus
-      slot: anus
-    - proto: OrganButt
-      slot: butt
-    groinMale:
-    - proto: OrganPenisHuman
-      slot: penis
-    - proto: OrganTesticles
-      slot: testicles
-    groinFemale:
-    - proto: OrganVagina
-      slot: vagina
-    - proto: OrganUterus
-      slot: uterus
-    chestFemale:
-    - proto: OrganBreastsHuman
-      slot: breasts
+  - type: Mood
   # Arcane-end
 
 - type: entity
@@ -403,9 +392,11 @@
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: ["jumpsuit"]
+    # Arcane-Edit-Start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["jumpsuit"]
+    # Arcane-Edit-End
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: ["enum.HumanoidVisualLayers.Handcuffs"]

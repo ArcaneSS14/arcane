@@ -13,7 +13,7 @@ public sealed partial class CCVars
         CVarDef.Create("ambience.event_music_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 
     public static readonly CVarDef<bool> TTSSoundsEnabled =
-        CVarDef.Create("audio.tts_sounds_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY); // Art-TTS
+        CVarDef.Create("audio.tts_sounds_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY); // Arcane
 
     /// <summary>
     ///     Round end sound (APC Destroyed)

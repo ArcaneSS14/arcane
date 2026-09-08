@@ -15,12 +15,21 @@
   - Salvage
   - Cargo
   goobcoins: 20 #Goob content
+  # Orion-Start
+  salary: 90
+  payrollDepartmentAccount: Cargo
+  # Orion-End
   supervisors: job-supervisors-qm
   access:
   - Cargo
   - Salvage
   - Maintenance
   - External
+# Arcane-Start
+  alternateTitles:
+  - SalvageSpecialistMiner
+# Arcane-End
+
 - type: startingGear
   id: SalvageSpecialistGear
   equipment:
@@ -30,6 +39,7 @@
   storage: # DeltaV: Add mining voucher
     back:
     - MiningVoucher
+
 - type: chameleonOutfit
   id: SalvageSpecialistChameleonOutfit
   job: SalvageSpecialist
@@ -40,3 +50,9 @@
     outerClothing: ClothingOuterWinterMiner
     neck: ClothingNeckScarfStripedBrown
     gloves: ClothingHandsGlovesColorBlack
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: SalvageSpecialistMiner
+  name: job-name-alt-salvage-1
+# Arcane-End

@@ -1652,7 +1652,7 @@ entities:
     - type: Transform
       pos: 3.5,-5.5
       parent: 1
-- proto: MedkitCombatFilled
+- proto: MedkitCombatStandardFilled
   entities:
   - uid: 179
     components:

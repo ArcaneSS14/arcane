@@ -929,6 +929,11 @@ public abstract partial class SharedMoverController : VirtualController
         float movementSpeed
     )
     {
+        // Arcane-start
+        if (!float.IsFinite(movementSpeed) || movementSpeed <= 0f)
+            return false;
+        // Arcane-end
+
         // minPressedTime will be 1.05x the time it should take for you to go from 1 tile to another. Need to
         // account for diagonals being sqrt(2) length as well. Max of 10 seconds just in case.
         var distanceToDestination = (tileMovement.Destination - tileMovement.Origin.Position).Length();

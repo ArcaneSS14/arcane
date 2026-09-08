@@ -1,0 +1,279 @@
+- type: constructionGraph
+  id: ClothingStraponHuman
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: erp
+          steps:
+            - tag: HumanDildo
+              name: construction-graph-tag-dildo-human
+              icon:
+                sprite: _Arcane/ERP/Toys/Dildo/human.rsi
+                state: icon
+            - tag: Strapon
+              name: construction-graph-tag-strapon
+              icon:
+                sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+                state: icon
+              doAfter: 3
+    - node: erp
+      entity: ClothingStraponHuman
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: HumanDildo
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: ClothingStrapon
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Cutting
+              doAfter: 3
+
+- type: constructionGraph
+  id: ClothingStraponAvian
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: erp
+          steps:
+            - tag: AvianDildo
+              name: construction-graph-tag-dildo-human
+              icon:
+                sprite: _Arcane/ERP/Toys/Dildo/avian.rsi
+                state: icon
+            - tag: Strapon
+              name: construction-graph-tag-strapon
+              icon:
+                sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+                state: icon
+              doAfter: 3
+    - node: erp
+      entity: ClothingStraponAvian
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: AvianDildo
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: ClothingStrapon
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Cutting
+              doAfter: 3
+
+- type: constructionGraph
+  id: ClothingStraponDog
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: erp
+          steps:
+            - tag: DogDildo
+              name: construction-graph-tag-dildo-dog
+              icon:
+                sprite: _Arcane/ERP/Toys/Dildo/dog.rsi
+                state: icon
+            - tag: Strapon
+              name: construction-graph-tag-strapon
+              icon:
+                sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+                state: icon
+              doAfter: 3
+    - node: erp
+      entity: ClothingStraponDog
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: DogDildo
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: ClothingStrapon
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Cutting
+              doAfter: 3
+
+- type: constructionGraph
+  id: ClothingStraponDragon
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: erp
+          steps:
+            - tag: DragonDildo
+              name: construction-graph-tag-dildo-dragon
+              icon:
+                sprite: _Arcane/ERP/Toys/Dildo/dragon.rsi
+                state: icon
+            - tag: Strapon
+              name: construction-graph-tag-strapon
+              icon:
+                sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+                state: icon
+              doAfter: 3
+    - node: erp
+      entity: ClothingStraponDragon
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: DragonDildo
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: ClothingStrapon
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Cutting
+              doAfter: 3
+
+- type: constructionGraph
+  id: ClothingStraponHorse
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: erp
+          steps:
+            - tag: HorseDildo
+              name: construction-graph-tag-dildo-horse
+              icon:
+                sprite: _Arcane/ERP/Toys/Dildo/horse.rsi
+                state: icon
+            - tag: Strapon
+              name: construction-graph-tag-strapon
+              icon:
+                sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+                state: icon
+              doAfter: 3
+    - node: erp
+      entity: ClothingStraponHorse
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: HorseDildo
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: ClothingStrapon
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Cutting
+              doAfter: 3
+
+- type: constructionGraph
+  id: ClothingStraponPlussize
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: erp
+          steps:
+            - tag: PlussizeDildo
+              name: construction-graph-tag-dildo-plussize
+              icon:
+                sprite: _Arcane/ERP/Toys/Dildo/plussize.rsi
+                state: icon
+            - tag: Strapon
+              name: construction-graph-tag-strapon
+              icon:
+                sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+                state: icon
+              doAfter: 3
+    - node: erp
+      entity: ClothingStraponPlussize
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: PlussizeDildo
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: ClothingStrapon
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Cutting
+              doAfter: 3
+
+- type: constructionGraph
+  id: ClothingStraponSlime
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: erp
+          steps:
+            - tag: SlimeDildo
+              name: construction-graph-tag-dildo-slime
+              icon:
+                sprite: _Arcane/ERP/Toys/Dildo/slime.rsi
+                state: icon
+            - tag: Strapon
+              name: construction-graph-tag-strapon
+              icon:
+                sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+                state: icon
+              doAfter: 3
+    - node: erp
+      entity: ClothingStraponSlime
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SlimeDildo
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: ClothingStrapon
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Cutting
+              doAfter: 3
+
+- type: constructionGraph
+  id: ClothingStraponXeno
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: erp
+          steps:
+            - tag: XenoDildo
+              name: construction-graph-tag-dildo-xeno
+              icon:
+                sprite: _Arcane/ERP/Toys/Dildo/xeno.rsi
+                state: icon
+            - tag: Strapon
+              name: construction-graph-tag-strapon
+              icon:
+                sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
+                state: icon
+              doAfter: 3
+    - node: erp
+      entity: ClothingStraponXeno
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: XenoDildo
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: ClothingStrapon
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Cutting
+              doAfter: 3

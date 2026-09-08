@@ -24,19 +24,21 @@ namespace Content.Server.Speech.EntitySystems
 
         private string InsertS(string message)
         {
+            // Arcane-Edit-Start
             // Replace every new Word that starts with s/S
-            var msg = message.Replace(" s", " es").Replace(" S", " Es");
+            var msg = message.Replace(" с", " ес").Replace(" С", " Ес");
 
             // Still need to check if the beginning of the message starts
-            if (msg.StartsWith("s", StringComparison.Ordinal))
+            if (msg.StartsWith("с", StringComparison.Ordinal))
             {
-                return msg.Remove(0, 1).Insert(0, "es");
+                return msg.Remove(0, 1).Insert(0, "ес");
             }
 
-            if (msg.StartsWith("S", StringComparison.Ordinal))
+            if (msg.StartsWith("С", StringComparison.Ordinal))
             {
-                return msg.Remove(0, 1).Insert(0, "Es");
+                return msg.Remove(0, 1).Insert(0, "Ес");
             }
+            // Arcane-Edit-End
 
             return msg;
         }

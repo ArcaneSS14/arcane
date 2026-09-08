@@ -19,6 +19,12 @@
   - ShadowkinCube
   - ChitinidCube
   - FeroxiCube
+  # Arcane-Start
+  - DemonCube
+  - XenoCube
+  - OniCube
+  - HydrakinCube
+  # Arcane-End
 
 - type: latheRecipePack
   id: EmagCubesStatic

@@ -670,15 +670,57 @@ public abstract partial class SharedMindSystem : EntitySystem
     /// Returns null if no valid mind could be found.
     /// </summary>
     public Entity<MindComponent>? PickFromPool(IMindPool pool, List<MindFilter> filters, EntityUid? exclude = null)
+    // Arcane-Start
+    {
+        var candidates = GetFilteredMinds(pool, filters, exclude);
+
+        if (candidates.Count == 0)
+            return null;
+
+        return _random.Pick(candidates);
+    }
+
+    /// <summary>
+    /// Picks a random mind from a pool after applying a list of filters, weighing each
+    /// candidate with <paramref name="weight"/>.
+    /// Returns null if no valid mind could be found.
+    /// </summary>
+    public Entity<MindComponent>? WeightedPickFromPool(IMindPool pool, List<MindFilter> filters, EntityUid? exclude, Func<Entity<MindComponent>, float> weight)
+    {
+        var candidates = GetFilteredMinds(pool, filters, exclude);
+
+        if (candidates.Count == 0)
+            return null;
+
+        var total = 0f;
+        foreach (var candidate in candidates)
+            total += Math.Max(0f, weight(candidate));
+
+        if (total <= 0f)
+            return _random.Pick(candidates);
+
+        var roll = _random.NextFloat(total);
+        foreach (var candidate in candidates)
+        {
+            roll -= Math.Max(0f, weight(candidate));
+            if (roll < 0f)
+                return candidate;
+        }
+
+        return _random.Pick(candidates);
+    }
+
+    private HashSet<Entity<MindComponent>> GetFilteredMinds(IMindPool pool, List<MindFilter> filters, EntityUid? exclude)
+    // Arcane-End
     {
         _pickingMinds.Clear();
         pool.FindMinds(_pickingMinds, exclude, EntityManager, this);
         FilterMinds(_pickingMinds, filters, exclude);
-
-        if (_pickingMinds.Count == 0)
-            return null;
-
-        return _random.Pick(_pickingMinds);
+        // Arcane-Edit-Start
+        // if (_pickingMinds.Count == 0)
+        //     return null;
+        // Arcane-Edit-End
+        return _pickingMinds;
     }
 
     /// <summary>

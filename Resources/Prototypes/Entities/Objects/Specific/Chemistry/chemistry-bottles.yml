@@ -100,6 +100,14 @@
         transferForensics: true
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  # Arcane-Start
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Arcane/Items/ReagentContainers/beaker_place.ogg
+      params:
+        volume: -4
+        variation: 0.125
+  # Arcane-End
   - type: DnaSubstanceTrace
   - type: ThrowableBlocked # Goobstation
     behavior: Damage

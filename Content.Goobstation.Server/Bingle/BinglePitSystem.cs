@@ -58,6 +58,7 @@ public sealed class BinglePitSystem : EntitySystem
 
     private readonly List<Entity<BinglePitComponent>> _pits = new();
     public static readonly ProtoId<ContentTileDefinition> FloorTile = "FloorBingle";
+    public static readonly EntProtoId Bingle = "MobBingle";
 
     public override void Initialize()
     {
@@ -105,7 +106,17 @@ public sealed class BinglePitSystem : EntitySystem
 
         var coords = Transform(uid).Coordinates;
         for (var i = 0; i < component.StartingBingles; i++)
-            Spawn(component.GhostRoleToSpawn, coords);
+            SpawnGhostRoleMarker(component, coords);
+    }
+
+    private void SpawnGhostRoleMarker(BinglePitComponent component, EntityCoordinates coords)
+    {
+        var proto = _random.Prob(component.RareGhostRoleChance)
+            ? component.RareGhostRoleToSpawn
+            : component.GhostRoleToSpawn;
+
+        var role = Spawn(proto, coords);
+        component.BingleGhostRoles.Add(role);
     }
 
     private void OnStepTriggered(EntityUid uid, BinglePitComponent component, ref StepTriggeredOffEvent args)
@@ -166,7 +177,7 @@ public sealed class BinglePitSystem : EntitySystem
 
     public void SpawnBingle(EntityUid uid, BinglePitComponent component)
     {
-        Spawn(component.GhostRoleToSpawn, Transform(uid).Coordinates);
+        SpawnGhostRoleMarker(component, Transform(uid).Coordinates);
         OnSpawnTile(uid, component.Level * 2);
 
         component.MinionsMade++;
@@ -226,10 +237,13 @@ public sealed class BinglePitSystem : EntitySystem
     {
         var query = EntityQueryEnumerator<GhostRoleMobSpawnerComponent>();
         while (query.MoveNext(out var queryGRMSUid, out var queryGRMScomp))
-            if (queryGRMScomp.Prototype == "MobBingle")
-                if (Transform(uid).Coordinates == Transform(queryGRMSUid).Coordinates)
+            if (queryGRMScomp.Prototype == Bingle)
+                if (component.BingleGhostRoles.Contains(queryGRMSUid))
                     QueueDel(queryGRMSUid); // remove any unspanned bingle when pit is destroyed
+
+        component.BingleGhostRoles.Clear();
     }
+
     private void OnAttacked(EntityUid uid, BinglePitComponent component, AttackedEvent args)
     {
         if (_containerSystem.ContainsEntity(uid, args.User))

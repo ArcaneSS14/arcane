@@ -20,6 +20,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared._Orion.Construction.Events;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 
 namespace Content.Goobstation.Server.Chemistry.EntitySystems
 {
@@ -36,6 +37,7 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly BatterySystem _battery = default!;
+        [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!; // Arcane
 
         public override void Initialize()
         {
@@ -189,7 +191,7 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
                 || !_solutionContainerSystem.TryGetFitsInDispenser(outputContainer, out var solution, out var soln))
                 return;
 
-            var refundedPower = soln.Sum(reagent => GetPowerCostForReagent(reagent.Reagent.Prototype, (int) reagent.Quantity, reagentDispenser.Comp)) // Orion-Edit
+            var refundedPower = soln.Sum(reagent => GetRefundCostForReagent(reagent.Reagent.Prototype, (int) reagent.Quantity, reagentDispenser.Comp)) // Orion-Edit // Arcane-Edit
                                 * reagentDispenser.Comp.RefundEnergyEfficiency; // Orion
             if (refundedPower > 0)
             {
@@ -208,10 +210,22 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
             _audioSystem.PlayPvs(reagentDispenser.Comp.ClickSound, reagentDispenser, AudioParams.Default.WithVolume(-2f));
 
         private static float GetPowerCostForReagent(string reagentId, int amount, EnergyReagentDispenserComponent comp)
+        // Arcane-Start
+        {
+            return GetReagentCost(reagentId, amount, comp, unknownFallback: float.MaxValue);
+        }
+
+        private static float GetRefundCostForReagent(string reagentId, int amount, EnergyReagentDispenserComponent comp)
+        {
+            return GetReagentCost(reagentId, amount, comp, unknownFallback: 0f);
+        }
+
+        private static float GetReagentCost(string reagentId, int amount, EnergyReagentDispenserComponent comp, float unknownFallback)
+        // Arcane-End
         {
             return comp.Reagents.TryGetValue(reagentId, out var cost)
                 ? cost * amount * comp.FinalEnergyCostMultiplier // Orion-Edit
-                : float.MaxValue;
+                : unknownFallback; // Arcane-Edit
         }
 
         private void OnMapInit(Entity<EnergyReagentDispenserComponent> entity, ref MapInitEvent args)
@@ -236,7 +250,9 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
             var matterBinTier = args.GetPartRating(component.MatterBinPart);
 
             component.FinalRechargeRate = component.BaseRechargeRate * RefreshPartsEvent.GetPositiveTierMultiplier(capacitorTier);
-            component.FinalEnergyCostMultiplier = RefreshPartsEvent.GetLinearMultiplier(matterBinTier, 0.1f, 0.5f, 1.2f);
+            component.FinalEnergyCostMultiplier = Math.Clamp(1.1f - matterBinTier * 0.1f, 0.5f, 1.2f); // Arcane-Edit
+
+            _powerReceiver.SetBatteryRechargeRate(uid, component.FinalRechargeRate); // Arcane
 
             UpdateUiState((uid, component));
         }

@@ -1,0 +1,343 @@
+# Ported from ADT
+
+- type: entity
+  parent: BaseStructure
+  id: ADTmarblelady
+  name: beutiful marble lady
+  description: She's so pretty
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_lady.rsi
+    state: marlady
+    offset: "0.0,0.5"
+    drawdepth: Mobs
+  - type: Damageable
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/break_stone.ogg
+              params:
+                volume: -2
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTmarbleLadyFlower
+  name: marble lady in flowers
+  description: She's so pretty
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marblelady_flower.rsi
+    state: marlady_flowers
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTmarblepillar
+  name: marble pillar
+  description: pillar out of marble
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/pillar_marble.rsi
+    state: pillar_marble
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTmarbleStand
+  name: marble stand
+  description: stand for someone
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_stand.rsi
+    offset: "0.0,0.0"
+    state: marstand
+    drawdepth: SmallObjects
+  - type: PlaceableSurface
+    isPlaceable: True
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/break_stone.ogg
+              params:
+                volume: -2
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTmarbleMan
+  name: marble man
+  description: he stands
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marbleman.rsi
+    offset: "0.0,0.0"
+    state: marman
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTmarbleManDamage
+  name: marble man crack
+  description: he stands
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marblemandamage.rsi
+    offset: "0.0,0.0"
+    state: marmandmg
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTpeacemakermarble
+  name: Statue of Peacemaker
+  description: for the peace in world!
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/peacemaker.rsi
+    state: peacemaker
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTKnightMarble
+  name: marble knight
+  description: marble knight
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_knight.rsi
+    state: marble_knight
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTHunterMarble
+  name: marble hunter
+  description: marble hunter
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_hunter.rsi
+    state: marble_hunter
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTMachineMarble
+  name: marble machine
+  description: marble machine
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_machine.rsi
+    state: marble_machine
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTLegionaryMarble
+  name: marble legionary
+  description: marble legionary
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_legionary.rsi
+    state: marble_legionary
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTBirdMarble
+  name: marble bird
+  description: marble bird
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_bird.rsi
+    state: marble_bird
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/break_stone.ogg
+              params:
+                volume: -2
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTCunningMarble
+  name: marble cunning
+  description: marble cunning
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_cunning.rsi
+    state: marble_cunning
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTScientistMarble
+  name: marble scientist
+  description: marble scientist
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_scientist.rsi
+    state: marble_scientist
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/break_stone.ogg
+              params:
+                volume: -2
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTEyeMarble
+  name: marble eye
+  description: marble eye
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_eye.rsi
+    state: marble_eye
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/break_stone.ogg
+              params:
+                volume: -2
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTUndoneMarble
+  name: marble undone
+  description: marble undone
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_undone.rsi
+    state: marble_undone
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTAncestorMarble
+  name: marble ancestor
+  description: marble ancestor
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_ancestor.rsi
+    state: marble_ancestor
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/break_stone.ogg
+              params:
+                volume: -2
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTPlafeimMarble
+  name: marble plafeim
+  description: marble plafeim
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_plafeim.rsi
+    state: marble_plafeim
+
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTThinkerMarble
+  name: marble thinker
+  description: marble thinker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_thinker.rsi
+    state: marble_thinker
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTThinkerTwoMarble
+  name: marble thinker two
+  description: marble thinker two
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_thinker_two.rsi
+    state: marble_thinker_two
+
+- type: entity
+  parent: ADTmarblelady
+  id: ADTHeroMarble
+  name: marble hero
+  description: marble hero
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _ADT/Structures/Decoration/marble_structures/marble_hero.rsi
+    state: marble_hero

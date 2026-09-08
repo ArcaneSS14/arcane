@@ -4,8 +4,10 @@ using Content.Server.Access.Components;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Roles;
+using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Access.Systems;
@@ -72,7 +74,7 @@ public sealed class PresetIdCardSystem : EntitySystem
         if (id.JobName == null)
             return;
 
-        if (!_prototypeManager.TryIndex(id.JobName, out JobPrototype? job))
+        if (!_prototypeManager.TryIndex(id.JobName.Value, out JobPrototype? job)) // Arcane-Edit: id.JobName > id.JobName.Value
         {
             Log.Error($"Invalid job id ({id.JobName}) for preset card");
             return;
@@ -80,10 +82,48 @@ public sealed class PresetIdCardSystem : EntitySystem
 
         _accessSystem.SetAccessToJob(uid, job, extended);
 
-        _cardSystem.TryChangeJobTitle(uid, job.LocalizedName);
+        // _cardSystem.TryChangeJobTitle(uid, job.LocalizedName); // Arcane-Edit
+        // Arcane-Start
+        if (!TryComp<IdCardComponent>(uid, out var card))
+        {
+            Log.Warning($"Entity {uid} does not have IdCardComponent, skipping title setup.");
+            return;
+        }
+
+        string? titleToSet = null;
+
+        if (id.AlternateTitleId != null &&
+            _prototypeManager.TryIndex(id.AlternateTitleId.Value, out JobAlternateTitlePrototype? altTitle))
+        {
+            titleToSet = altTitle.LocalizedName(Gender.Neuter);
+        }
+        // Disabled this so new cards have a default job name, not first alternative.
+        // else if (job.AlternateTitles != null && job.AlternateTitles.Count > 0)
+        // {
+        //     JobAlternateTitlePrototype? altFromJob = null;
+        //     foreach (var altId in job.AlternateTitles)
+        //     {
+        //         if (_prototypeManager.TryIndex(altId, out var proto))
+        //         {
+        //             altFromJob = proto;
+        //             break;
+        //         }
+        //     }
+
+        //     titleToSet = altFromJob?.LocalizedName(Gender.Neuter) ?? job.LocalizedName;
+        // }
+        else
+        {
+            titleToSet = job.LocalizedName;
+        }
+
+        if (!string.IsNullOrEmpty(titleToSet))
+            _cardSystem.TryChangeJobTitle(uid, titleToSet);
+        // Arcane-End
+
         _cardSystem.TryChangeJobDepartment(uid, job);
 
-        if (_prototypeManager.Resolve(job.Icon, out var jobIcon))
+        if (!string.IsNullOrEmpty(job.Icon) && _prototypeManager.Resolve(job.Icon, out var jobIcon)) // Arcane-Edit
             _cardSystem.TryChangeJobIcon(uid, jobIcon);
     }
 }

@@ -31,6 +31,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
+using Content.Shared._Arcane.TTS;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
@@ -266,6 +267,13 @@ public sealed partial class CloneProjectorSystem : SharedCloneProjectorSystem
         _container.Insert(clone, projector.Comp.CloneContainer);
 
         _humanoidAppearance.CloneAppearance(performer, clone);
+
+        // Arcane-Start
+        if (TryComp<TTSComponent>(performer, out var hostTts)
+            && hostTts.VoicePrototype is { } voiceId
+            && TryComp<TTSComponent>(clone, out var cloneTts))
+            cloneTts.VoicePrototype = voiceId;
+        // Arcane-End
 
         if (projector.Comp.AddedComponents != null)
             EntityManager.AddComponents(clone, projector.Comp.AddedComponents);

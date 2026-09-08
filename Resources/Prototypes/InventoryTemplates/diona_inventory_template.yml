@@ -138,15 +138,17 @@
       strippingWindowPos: 3,2
       displayName: Shirt
       stripTime: 6
-    - name: socks
-      slotTexture: socks
-      fullTextureName: template_small
-      slotFlags: SOCKS
-      slotGroup: Extra
-      uiWindowPos: 0,2
-      strippingWindowPos: 3,3
-      displayName: Socks
-      stripTime: 3
+    # Arcane-Edit-Start
+    # - name: socks
+    #   slotTexture: socks
+    #   fullTextureName: template_small
+    #   slotFlags: SOCKS
+    #   slotGroup: Extra
+    #   uiWindowPos: 0,2
+    #   strippingWindowPos: 3,3
+    #   displayName: Socks
+    #   stripTime: 3
+    # Arcane-Edit-End
     - name: underwear
       slotTexture: underwear
       fullTextureName: template_small

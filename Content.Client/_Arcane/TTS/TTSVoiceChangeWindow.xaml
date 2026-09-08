@@ -1,0 +1,8 @@
+<ui:FancyWindow xmlns="https://spacestation14.io"
+                xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+                Title="{Loc tts-voice-change-window-title}"
+                MinSize="320 220">
+    <ScrollContainer>
+        <BoxContainer Name="VoiceList" Orientation="Vertical" Margin="10" />
+    </ScrollContainer>
+</ui:FancyWindow>

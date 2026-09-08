@@ -1236,7 +1236,7 @@
         maxAmount: 5
         maxRange: 5
       spawns:
-      - PresentRandomUnsafe
+      # - PresentRandomUnsafe # Arcane-remove
       - PresentRandom
       - PresentRandomCoal
       - PresentRandomCash
@@ -1248,7 +1248,7 @@
         maxAmount: 20
         maxRange: 6
       spawns:
-      - PresentRandomInsane
+      - PresentRandomCash # Arcane-edit
   - type: ProjectileAnomaly
     projectilePrototype: DrinkLemonLimeCranberryCan
     minProjectiles: 1

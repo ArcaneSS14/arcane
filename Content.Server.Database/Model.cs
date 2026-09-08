@@ -51,6 +51,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<DBJobAlternateTitle> DBJobAlternateTitle { get; set; } = null!; // Arcane
 
         // RMC14
         public DbSet<RMCDiscordAccount> RMCDiscordAccounts { get; set; } = default!;
@@ -69,16 +70,8 @@ namespace Content.Server.Database
         public DbSet<PollVote> PollVotes { get; set; } = default!;
         public DbSet<PollSeen> PollSeen { get; set; } = default!;
 
-        public DbSet<ErpOrganPreference> ErpOrganPreferences { get; set; } = default!; // Arcane-edit
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Arcane-Start
-            modelBuilder.Entity<ErpOrganPreference>()
-                .HasIndex(e => new { e.UserId, e.Slot })
-                .IsUnique();
-            // Arcane-End
-
             modelBuilder.Entity<Preference>()
                 .HasIndex(p => p.UserId)
                 .IsUnique();
@@ -124,6 +117,18 @@ namespace Content.Server.Database
             modelBuilder.Entity<Job>()
                 .HasIndex(j => new { j.ProfileId, j.JobName })
                 .IsUnique();
+
+            // Arcane-Start
+            modelBuilder.Entity<DBJobAlternateTitle>()
+                .HasOne(e => e.Profile)
+                .WithMany(e => e.AltTitles)
+                .HasForeignKey(e => e.ProfileId)
+                .IsRequired();
+
+            modelBuilder.Entity<DBJobAlternateTitle>()
+                .HasIndex(p => new { p.ProfileId, p.RoleName })
+                .IsUnique();
+            // Arcane-End
 
             modelBuilder.Entity<AssignedUserId>()
                 .HasIndex(p => p.UserName)
@@ -483,7 +488,7 @@ namespace Content.Server.Database
         // Orion-End
         public int Age { get; set; }
         public string Sex { get; set; } = null!;
-        public string Voice { get; set; } = null!; // Art-TTS
+        public string Voice { get; set; } = null!; // Arcane
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
         public float Height { get; set; } = 1f; // Goobstation: port EE height/width sliders
@@ -502,6 +507,7 @@ namespace Content.Server.Database
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
 
+        public List<DBJobAlternateTitle> AltTitles { get; } = new(); // Arcane
         public List<ProfileRoleLoadout> Loadouts { get; } = new();
 
         [Column("pref_unavailable")] public DbPreferenceUnavailableMode PreferenceUnavailable { get; set; }
@@ -546,6 +552,19 @@ namespace Content.Server.Database
 
         public string TraitName { get; set; } = null!;
     }
+
+    // Arcane-Start
+    public class DBJobAlternateTitle
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+
+        public string RoleName { get; set; } = string.Empty;
+
+        public string AlternateTitle { get; set; } = string.Empty;
+    }
+    // Arcane-End
 
     #region Loadouts
 
@@ -1198,27 +1217,6 @@ namespace Content.Server.Database
             return new ImmutableTypedHwid(hwid.Hwid.ToImmutableArray(), hwid.Type);
         }
     }
-
-
-    // Arcane-Start
-    /// <summary>Per-character organ appearance preferences (variant, size).</summary>
-    public class ErpOrganPreference
-    {
-        [Key]
-        public int Id { get; set; }
-
-        /// <summary>Player user id.</summary>
-        public Guid UserId { get; set; }
-
-        /// <summary>Character slot index matching HumanoidCharacterProfile slot.</summary>
-        public int Slot { get; set; }
-
-        /// <summary>JSON-serialized ErpOrganPreferences.</summary>
-        [Required]
-        public string Data { get; set; } = "{}";
-    }
-    // Arcane-End
-
     /// <summary>
     ///  Cache for the IPIntel system
     /// </summary>

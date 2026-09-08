@@ -44,6 +44,15 @@
 // SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
 // SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
 // SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Lyndomen <49795619+Lyndomen@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Quantum-cross <7065792+Quantum-cross@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Tay <td12233a@gmail.com>
+// SPDX-FileCopyrightText: 2025 YaraaraY <158123176+YaraaraY@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 corresp0nd <46357632+corresp0nd@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 pa.pecherskij <pa.pecherskij@interfax.ru>
+// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 taydeo <td12233a@gmail.com>
 // SPDX-FileCopyrightText: 2025 āda <ss.adasts@gmail.com>
 // SPDX-FileCopyrightText: 2025 Zekins <zekins3366@gmail.com>
 // SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
@@ -51,12 +60,14 @@
 
 using System.Linq;
 using System.Text.RegularExpressions;
-using Content.Shared._Art.TTS; // Art-TTS
+using Content.Shared._Arcane.CCVars;
+using Content.Shared._Arcane.TTS;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
+using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Arcane.ERP; // Arcane-edit
@@ -64,6 +75,7 @@ using Content.Shared.Traits;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -92,6 +104,17 @@ namespace Content.Shared.Preferences
                 SharedGameTicker.FallbackOverflowJob, JobPriority.High
             }
         };
+
+        // Arcane-Start
+        /// <summary>
+        /// Prefered job title for each job.
+        /// </summary>
+        [DataField]
+        public Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>> JobAlternateTitles = new();
+
+        [DataField("alternateJobTitle")]
+        public ProtoId<JobAlternateTitlePrototype>? AlternateJobTitle { get; set; }
+        // Arcane-End
 
         /// <summary>
         /// Antags we have opted in to.
@@ -177,10 +200,10 @@ namespace Content.Shared.Preferences
         [DataField]
         public Sex Sex { get; private set; } = Sex.Male;
 
-        // Art-TTS Start
+        // Arcane-Start
         [DataField]
         public string Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
-        // Art-TTS End
+        // Arcane-End
 
         [DataField]
         public Gender Gender { get; private set; } = Gender.Male;
@@ -252,12 +275,13 @@ namespace Content.Shared.Preferences
             float width, // Goobstation: port EE height/width sliders
             int age,
             Sex sex,
-            string voice, // Art-TTS
+            string voice, // Arcane
             Gender gender,
             HumanoidCharacterAppearance appearance,
             SpawnPriorityPreference spawnPriority,
             Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities,
             PreferenceUnavailableMode preferenceUnavailable,
+            Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>> jobAlternateTitles, // Arcane
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
@@ -284,12 +308,13 @@ namespace Content.Shared.Preferences
             Width = width; // Goobstation: port EE height/width sliders
             Age = age;
             Sex = sex;
-            Voice = voice; // Art-TTS
+            Voice = voice; // Arcane
             Gender = gender;
             Appearance = appearance;
             SpawnPriority = spawnPriority;
             _jobPriorities = jobPriorities;
             PreferenceUnavailable = preferenceUnavailable;
+            JobAlternateTitles = jobAlternateTitles; // Arcane
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
@@ -333,12 +358,13 @@ namespace Content.Shared.Preferences
                 other.Width, // Goobstation: port EE height/width sliders
                 other.Age,
                 other.Sex,
-                other.Voice, // Art-TTS
+                other.Voice, // Arcane
                 other.Gender,
                 other.Appearance.Clone(),
                 other.SpawnPriority,
                 new Dictionary<ProtoId<JobPrototype>, JobPriority>(other.JobPriorities),
                 other.PreferenceUnavailable,
+                new Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>>(other.JobAlternateTitles), // Arcane
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
@@ -430,7 +456,7 @@ namespace Content.Shared.Preferences
                     break;
             }
 
-            // Art-TTS Start
+            // Arcane-Start
             var voiceCandidates = prototypeManager
                 .EnumeratePrototypes<TTSVoicePrototype>()
                 .Where(o => o.RoundStart && CanHaveVoice(o, sex))
@@ -439,7 +465,7 @@ namespace Content.Shared.Preferences
             var voiceId = voiceCandidates.Length > 0
                 ? random.Pick(voiceCandidates).ID
                 : SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
-            // Art-TTS End
+            // Arcane-End
 
             var name = GetName(species, gender);
 
@@ -448,7 +474,7 @@ namespace Content.Shared.Preferences
             {
                 Name = name,
                 Sex = sex,
-                Voice = voiceId, // Art-TTS
+                Voice = voiceId, // Arcane
                 Age = age,
                 Gender = gender,
                 Species = species,
@@ -566,12 +592,12 @@ namespace Content.Shared.Preferences
         {
             return new(this) { SpawnPriority = spawnPriority };
         }
-        // Art-TTS Start
+        // Arcane-Start
         public HumanoidCharacterProfile WithVoice(string voiceId)
         {
             return new(this) { Voice = voiceId };
         }
-        // Art-TTS End
+        // Arcane-End
 
         // Goob Station - Barks Start
         public HumanoidCharacterProfile WithBarkVoice(BarkPrototype barkVoice)
@@ -584,6 +610,25 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile WithErpPreference(ErpPreference preference)
         {
             return new(this) { ErpPreference = preference };
+        }
+
+        public HumanoidCharacterProfile WithJobAltTitle(ProtoId<JobPrototype> jobId, ProtoId<JobAlternateTitlePrototype>? jobTitle)
+        {
+            var dictionary = new Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>>(JobAlternateTitles);
+
+            if (jobTitle == null || jobTitle.Value.Id == null)
+            {
+                dictionary.Remove(jobId);
+            }
+            else
+            {
+                dictionary[jobId] = jobTitle.Value;
+            }
+
+            return new(this)
+            {
+                JobAlternateTitles = dictionary
+            };
         }
         // Arcane-End
 
@@ -744,7 +789,7 @@ namespace Content.Shared.Preferences
             if (Name != other.Name) return false;
             if (Age != other.Age) return false;
             if (Sex != other.Sex) return false;
-            if (Voice != other.Voice) return false; // Art-TTS
+            if (Voice != other.Voice) return false; // Arcane
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (Height != other.Height) return false; // Goobstation: port EE height/width sliders
@@ -753,6 +798,14 @@ namespace Content.Shared.Preferences
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
+            // Arcane-Start
+            if (!JobAlternateTitles.Count.Equals(other.JobAlternateTitles.Count)) return false;
+            foreach (var (job, title) in JobAlternateTitles)
+            {
+                if (!other.JobAlternateTitles.TryGetValue(job, out var otherTitle) || otherTitle != title)
+                    return false;
+            }
+            // Arcane-End
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
@@ -1035,6 +1088,35 @@ namespace Content.Shared.Preferences
                 hasHighPrio = true;
             }
 
+            // Arcane-Start
+            var altTitles = new Dictionary<ProtoId<JobPrototype>, ProtoId<JobAlternateTitlePrototype>>();
+            if (collection.Resolve<IConfigurationManager>().GetCVar(ACCVars.ICAlternateJobTitlesEnable))
+            {
+                var playTimes = collection.Resolve<ISharedPlaytimeManager>().GetPlayTimes(session);
+                var entManager = collection.Resolve<IEntityManager>();
+                foreach (var (key, value) in JobAlternateTitles)
+                {
+                    if (value.Id == null || value.Id == string.Empty)
+                        continue;
+                    if (!prototypeManager.TryIndex(key, out var job))
+                        continue;
+                    if (job.AlternateTitles.Contains(value) &&
+                        prototypeManager.TryIndex(value, out var altTitleProto) &&
+                        JobRequirements.TryRequirementsMet(
+                            altTitleProto.Requirements,
+                            playTimes,
+                            out _,
+                            entManager,
+                            prototypeManager,
+                            profile: this,
+                            ignorePlaytimeRequirements: false))
+                    {
+                        altTitles.Add(key, value);
+                    }
+                }
+            }
+            // Arcane-End
+
             var antags = AntagPreferences
                 .Where(id => prototypeManager.TryIndex(id, out var antag) && antag.SetPreference)
                 .ToList();
@@ -1076,17 +1158,26 @@ namespace Content.Shared.Preferences
 
             PreferenceUnavailable = prefsUnavailableMode;
 
+            // Arcane-Start
+            JobAlternateTitles.Clear();
+
+            foreach (var (job, title) in altTitles)
+            {
+                JobAlternateTitles.Add(job, title);
+            }
+            // Arcane-End
+
             _antagPreferences.Clear();
             _antagPreferences.UnionWith(antags);
 
             _traitPreferences.Clear();
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
-            // Art-TTS Start
+            // Arcane-Start
             prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
-            if (voice == null || !CanHaveVoice(voice, Sex))
+            if (voice == null)
                 Voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
-            // Art-TTS End
+            // Arcane-End
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.
             var toRemove = new ValueList<string>();
@@ -1111,7 +1202,7 @@ namespace Content.Shared.Preferences
             }
         }
 
-        // Art-TTS Start
+        // Arcane-Start
         public static bool CanHaveVoice(TTSVoicePrototype voice, Sex sex)
         {
             return voice.RoundStart
@@ -1120,7 +1211,7 @@ namespace Content.Shared.Preferences
             || voice.Sex == Sex.Female && sex == Sex.Futanari // Arcane
             || voice.Sex == Sex.Unsexed);
         }
-        // Art-TTS End
+        // Arcane-End
 
         /// <summary>
         /// Takes in an IEnumerable of traits and returns a List of the valid traits.
@@ -1192,6 +1283,7 @@ namespace Content.Shared.Preferences
         {
             var hashCode = new HashCode();
             hashCode.Add(_jobPriorities);
+            hashCode.Add(JobAlternateTitles); // Arcane
             hashCode.Add(_antagPreferences);
             hashCode.Add(_traitPreferences);
             hashCode.Add(_loadouts);
@@ -1215,7 +1307,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Width); // Goobstation: port EE height/width sliders
             hashCode.Add(Age);
             hashCode.Add((int) Sex);
-            hashCode.Add(Voice); // Art-TTS
+            hashCode.Add(Voice); // Arcane
             hashCode.Add((int) Gender);
             hashCode.Add(Appearance);
             hashCode.Add(BarkVoice); // Goob Station - Barks

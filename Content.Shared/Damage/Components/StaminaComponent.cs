@@ -110,7 +110,7 @@ public sealed partial class StaminaComponent : Component
     /// Thresholds that determine an entity's slowdown as a function of stamina damage, in percentages.
     /// </summary>
     [DataField, AutoNetworkedField] // Goob edit. No slowdown. todo goobstation refactor sprint shit so it isnt as dependent on stamina its kinda annoying to wrangle both at the same time. // Orion-Edit: Added (AutoNetworkedField)
-    public Dictionary<FixedPoint2, float> StunModifierThresholds = new() { {0, 1f }, { 65, 0.7f }, { 80, 0.55f } }; // Goob edit, 0.7 -> 1, 0.5 -> 1 // Orion-Edit: {60 > 65, 1 > 0.7}, 1 > 0.55
+    public Dictionary<FixedPoint2, float> StunModifierThresholds = new() { { 0, 1f }, { 0.65, 0.75f }, { 0.80, 0.55f } }; // Goob edit, 0.7 -> 1, 0.5 -> 1 // Arcane-Edit: {60 > 0.65, 1 > 0.75}, 1 > 0.55
 
     #region Animation Data
 

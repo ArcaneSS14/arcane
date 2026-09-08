@@ -1008,7 +1008,7 @@
       NerveDamage: 1
     modifiers:
       coefficients:
-        Blunt: 0.2 
+        Blunt: 0.2
         Slash: 0.2
         Piercing: 0.15 # Orion-Edit: 0.2 > 0.15
         Heat: 0.2
@@ -1348,7 +1348,8 @@
   - type: ModifyDelayedKnockdown # Goobstation - End
     cancel: true
   - type: Tag
-    tags: [] # ignore "WhitelistChameleon" tag
+    tags: # [] # ignore "WhitelistChameleon" tag # Arcane-Edit: Not so critical, but we need protection from syringe
+    - Hardsuit
 
 #CBURN Hardsuit
 - type: entity

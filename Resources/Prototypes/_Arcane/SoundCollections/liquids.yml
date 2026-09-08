@@ -1,0 +1,7 @@
+- type: soundCollection
+  id: LiquidPour
+  files:
+  - /Audio/_Arcane/Effects/liquid_pour/liquid_pour1.ogg
+  - /Audio/_Arcane/Effects/liquid_pour/liquid_pour2.ogg
+  - /Audio/_Arcane/Effects/liquid_pour/liquid_pour3.ogg
+  - /Audio/_Arcane/Effects/liquid_pour/liquid_pour4.ogg

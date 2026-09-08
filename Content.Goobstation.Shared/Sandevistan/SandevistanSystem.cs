@@ -3,6 +3,7 @@ using Content.Shared.Abilities;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Events;
 using Content.Shared.Doors.Components;
+using Content.Shared.Mindshield;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
@@ -35,6 +36,7 @@ public sealed class SandevistanSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedMindShieldCheckSystem _mindShieldCheck = default!; // Arcane
 
     private const string SlowfieldFixtureId = "sandevistan-slowfield";
 
@@ -178,6 +180,14 @@ public sealed class SandevistanSystem : EntitySystem
             Dirty(ent);
             return;
         }
+
+        // Arcane-Start
+        if (_mindShieldCheck.IsMindShieldBlocked(ent))
+        {
+            _popup.PopupClient(Loc.GetString("mindshield-blocks-syndicate"), ent);
+            return;
+        }
+        // Arcane-End
 
         ent.Comp.Active = true;
         EnsureComp<ActiveSandevistanUserComponent>(ent);

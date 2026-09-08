@@ -1,3 +1,5 @@
+# Tail
+
 - type: marking
   id: DemonTail1
   bodyPart: Tail
@@ -124,6 +126,39 @@
     state: tail_trident
 
 - type: marking
+  id: DemonTailTrientBig
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings_big.rsi
+    state: devil_trident_tail
+
+- type: marking
+  id: DemonTailHimera
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings_big.rsi
+    state: himera_tail
+  - sprite: _Arcane/Mobs/Species/Demon/markings_big.rsi
+    state: himera_tail_hair
+
+- type: marking
+  id: DemonTailMermaidAnimatedBase
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings_big.rsi
+    state: mermaid_animated_base
+  - sprite: _Arcane/Mobs/Species/Demon/markings_big.rsi
+    state: mermaid_animated_fluff
+
+# HeadSide
+
+- type: marking
   id: DemonCowEars
   bodyPart: HeadSide
   markingCategory: HeadSide
@@ -158,6 +193,35 @@
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: arcana_ears
+
+- type: marking
+  id: DemonBiggerCowEars
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: bigger_cow_ears
+
+- type: marking
+  id: DemonFinEars
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: fin_ears
+
+- type: marking
+  id: DemonOxEars
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: ox_ears
+
+# HeadTop
 
 - type: marking
   id: DemonCowHorns
@@ -403,12 +467,25 @@
     state: small_horns_alt
 
 - type: marking
+  id: DemonHornsLongOx
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: long_ox_horns
+
+# FacialHair
+
+- type: marking
   id: DemonGoatee
   bodyPart: FacialHair
   markingCategory: FacialHair
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: goatee
+
+# Chest
 
 - type: marking
   id: DemonChestCowSpots
@@ -465,6 +542,35 @@
     state: trinity_spots
 
 - type: marking
+  id: DemonChestAratakiPainting
+  bodyPart: LLeg
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: arataki_painting
+
+- type: marking
+  id: DemonChestGradientPainting
+  bodyPart: LLeg
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: gradient_paint
+
+- type: marking
+  id: DemonChestSkeleton
+  bodyPart: LLeg
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: skeleton
+
+# Wings
+
+- type: marking
   id: SuccubusWingsDemon
   bodyPart: Wings
   markingCategory: Wings
@@ -508,3 +614,39 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/succubus.rsi
     state: succubus_not_tail
+
+- type: marking
+  id: SuccubusWingsWingsBig
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/demonwings.rsi
+    state: succubus_wings_big
+
+- type: marking
+  id: SuccubusWingsWingsFin
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/demonwings.rsi
+    state: succubus_wings_fin
+
+- type: marking
+  id: SuccubusWingsWingsLower
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/demonwings.rsi
+    state: succubus_wings_lower
+
+- type: marking
+  id: SuccubusWingsWingsLowerTwo
+  bodyPart: Wings
+  markingCategory: Wings
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/demonwings.rsi
+    state: succubus_wings_lower2

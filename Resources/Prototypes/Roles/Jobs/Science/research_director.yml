@@ -12,10 +12,12 @@
   - !type:DepartmentTimeRequirement
     department: Science
     time: 10h
-  - !type:SpeciesRequirement # Goob - None Felinid
-    inverted: true
-    species:
-    - Felinid
+      # Arcane-start
+    # - !type:SpeciesRequirement # Goob - None Felinid
+      # inverted: true
+      # species:
+      # - Felenid
+      # Arcane-end
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
@@ -44,8 +46,13 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-  contracts: # Arcane
+  # Arcane-Start
+  contracts:
   - DocumentContractEmploymentCommand
+  alternateTitles:
+  - RDResearchLead
+  - RDScienceDirector
+  # Arcane-End
 
 - type: startingGear
   id: ResearchDirectorGear
@@ -69,3 +76,13 @@
     neck: ClothingNeckCloakRd
     outerClothing: ClothingOuterCoatRD
     gloves: ClothingHandsGlovesColorPurple
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: RDResearchLead
+  name: job-name-alt-rd-1
+
+- type: jobAlternateTitle
+  id: RDScienceDirector
+  name: job-name-alt-rd-2
+# Arcane-End

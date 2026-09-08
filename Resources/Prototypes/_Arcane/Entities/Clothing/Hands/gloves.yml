@@ -11,17 +11,6 @@
 
 - type: entity
   parent: ClothingHandsButcherable
-  id: ClothingHandsQMLongGloves
-  name: QM's long gloves
-  description: Gloves made to protect against cuts from banknotes.
-  components:
-  - type: Sprite
-    sprite: _Arcane/Clothing/Hands/Sponsor/QM_long_gloves.rsi
-  - type: Clothing
-    sprite: _Arcane/Clothing/Hands/Sponsor/QM_long_gloves.rsi
-    
-- type: entity
-  parent: ClothingHandsButcherable
   id: ClothingHandsGlovesCommandMaid
   name: gloves of the maid of command
   description: Thin, breathable latex gloves, the touch of which gives incomparable emotions.
@@ -36,3 +25,27 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+
+# Sponsor
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsQMLongGloves
+  name: QM's long gloves
+  description: Gloves made to protect against cuts from banknotes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Hands/Sponsor/QM_long_gloves.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Hands/Sponsor/QM_long_gloves.rsi
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsMimeMittens
+  name: mime's mittens
+  description: Long striped gloves without fingers.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Hands/Sponsor/mime_mittens.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Hands/Sponsor/mime_mittens.rsi

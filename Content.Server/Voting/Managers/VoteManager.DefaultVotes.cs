@@ -37,9 +37,15 @@ namespace Content.Server.Voting.Managers
 
         // Arcane-start
         const int PresetMemory = 5;
-        const int MapMemory = 8;
-        const int MapAvailableCount = 2; // Макс кол-во раундов на этой карте в памяти
-        const int PresetAvailableCount = 2; // Макс кол-во раундов в памяти с этим режимом
+        const int MapMemory = 6;
+        const int MapAvailableCount = 1; // Макс кол-во раундов на определённой карте в памяти
+        private Dictionary<string, int> _presetAvailableCount = new() // Макс кол-во раундов в памяти с режимом
+        {
+            { "TheGhost", 2 },
+            { "SecretPlusLow", 3 },
+            { "SecretPlusMid", 1 },
+            { "SecretPlusAdmeme", 1 }
+        };
         private List<string> _mapStory = new();
         private List<string> _gameruleStory = new();
         // Arcane-end
@@ -236,7 +242,8 @@ namespace Content.Server.Voting.Managers
                 Title = Loc.GetString("ui-vote-gamemode-title"),
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
-                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerPreset))
+                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerPreset)),
+                DisplayVotes = false // Arcane
             };
 
             if (alone)
@@ -288,7 +295,8 @@ namespace Content.Server.Voting.Managers
                 Title = Loc.GetString("ui-vote-map-title"),
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
-                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap))
+                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap)),
+                DisplayVotes = false // Arcane
             };
 
             if (alone)
@@ -297,7 +305,7 @@ namespace Content.Server.Voting.Managers
             foreach (var (k, v) in maps)
             {
                 // Arcane-start
-                if (_mapStory.Count(el => el == v) >= MapAvailableCount)
+                if (_mapStory.Count(el => el == k.ID) >= MapAvailableCount)
                     continue;
                 // Arcane-end
                 options.Options.Add((v, k));
@@ -625,7 +633,7 @@ namespace Content.Server.Voting.Managers
                     continue;
 
                 // Arcane-start
-                if (_gameruleStory.Count(el => el == preset.ID) >= PresetAvailableCount)
+                if (_gameruleStory.Count(el => el == preset.ID) >= _presetAvailableCount.GetValueOrDefault(preset.ID, 1))
                     continue;
                 // Arcane-end
 

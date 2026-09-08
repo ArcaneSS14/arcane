@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "clown_walking",
+            "directions": 4
+        },
+        {
             "name": "clown-rest",
             "directions": 4
         },

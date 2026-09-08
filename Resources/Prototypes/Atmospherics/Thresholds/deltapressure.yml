@@ -39,8 +39,8 @@
   id: BaseDeltaPressurePlasmaQuarter
   components:
   - type: DeltaPressure
-    minPressure: 18750
-    minPressureDelta: 12500
+    minPressure: 25000 # Arcane-Edit: 18750 > 25000
+    minPressureDelta: 20000 # Arcane-Edit: 12500 > 20000
     scalingType: Threshold
 
 ## For reinforced glass windows
@@ -49,8 +49,8 @@
   id: BaseDeltaPressureReinforcedGlass
   components:
   - type: DeltaPressure
-    minPressure: 15000
-    minPressureDelta: 10000
+    minPressure: 30000 # Arcane-Edit: 15000 > 30000
+    minPressureDelta: 20000 # Arcane-Edit: 10000 > 20000
     scalingType: Threshold
 
 ## For quarter reinforced glass windows
@@ -68,8 +68,8 @@
   id: BaseDeltaPressureGlass
   components:
   - type: DeltaPressure
-    minPressure: 1000
-    minPressureDelta: 750
+    minPressure: 5000 # Arcane-Edit: 1000 > 5000
+    minPressureDelta: 4000 # Arcane-Edit: 750 > 4000
     scalingType: Linear
     scalingPower: 0.0005
 
@@ -79,7 +79,7 @@
   id: BaseDeltaPressureGlassQuarter
   components:
   - type: DeltaPressure
-    minPressure: 250
-    minPressureDelta: 187.5
+    minPressure: 1000 # Arcane-Edit: 250 > 1000
+    minPressureDelta: 700 # Arcane-Edit: 187.5 > 700
     scalingType: Threshold
 

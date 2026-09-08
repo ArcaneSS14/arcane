@@ -44,12 +44,11 @@ using Direction = Robust.Shared.Maths.Direction;
 using Content.Goobstation.Common.CCVar; // Goob Station - Barks
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Orion.RichText;
-using Content.Shared._Arcane.CCVars;
+using Content.Client._Arcane.TTS;
 using Content.Shared._Arcane.ERP;
-using Content.Client._Arcane.ERP.UI;
-using Content.Client._Arcane.ERP.OrgansAppearance;
-using Content.Client._Arcane.ERP.Preferences;
-using Content.Shared._Arcane.ERP.Preferences;
+using Content.Shared._Arcane.TTS;
+using Content.Shared._Arcane.CCVars;
+
 namespace Content.Client.Lobby.UI
 {
     [GenerateTypedNameReferences]
@@ -90,14 +89,9 @@ namespace Content.Client.Lobby.UI
         private TextEdit? _nsfwTagsTextEdit;
         // Orion-End
 
-        // Arcane-Start
-        private readonly ClientErpOrganPreferencesManager _erpOrganPreferences;
-        private ErpOrganSection? _erpOrganSection;
-        private Action<int, ErpOrganPreferences>? _erpPrefsReceivedHandler;
-        // Arcane-End
-
         // One at a time.
         private LoadoutWindow? _loadoutWindow;
+        private TTSTab? _ttsTab; // Arcane
 
         private bool _exporting;
         private bool _imaging;
@@ -174,7 +168,6 @@ namespace Content.Client.Lobby.UI
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
-            _erpOrganPreferences = IoCManager.Resolve<ClientErpOrganPreferencesManager>(); // Arcane
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
@@ -207,13 +200,6 @@ namespace Content.Client.Lobby.UI
             SaveButton.OnPressed += args =>
             {
                 Save?.Invoke();
-                // Arcane-Start: save ERP prefs after profile so server normalization sees the updated species/sex
-                if (CharacterSlot != null)
-                {
-                    _erpOrganPreferences.SaveSlot(CharacterSlot.Value, _erpOrganPrefs);
-                    _erpOrganPrefsDirty = false; // Arcane-edit: reset after confirmed save
-                }
-                // Arcane-End
             };
 
             #region Left
@@ -241,8 +227,6 @@ namespace Content.Client.Lobby.UI
             };
 
             #endregion Sex
-
-            InitializeVoice(); // Art-TTS
 
             #region Age
 
@@ -281,15 +265,6 @@ namespace Content.Client.Lobby.UI
             }
 
             #endregion
-
-            // Arcane-start
-            _cfgManager.OnValueChanged(ACCVars.UseTTS, OnUseTTSChanged, true);
-
-            ToggleTTS.OnPressed += _ =>
-            {
-                _cfgManager.SetCVar(ACCVars.UseTTS, ToggleTTS.Pressed);
-            };
-            // Arcane-end
 
             RefreshSpecies();
 
@@ -573,32 +548,17 @@ namespace Content.Client.Lobby.UI
             #region Markings
 
             TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
-            // Arcane-Start
-            TabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-erp-tab"));
-            // Arcane-End
 
             Markings.OnMarkingAdded += OnMarkingChange;
             Markings.OnMarkingRemoved += OnMarkingChange;
             Markings.OnMarkingColorChange += OnMarkingChange;
             Markings.OnMarkingRankChange += OnMarkingChange;
 
-            // Arcane-Start: refresh ERP organ section when server sends updated prefs
-            _erpPrefsReceivedHandler = (slot, prefs) =>
-            {
-                if (slot != CharacterSlot)
-                    return;
-                if (_erpOrganPrefsDirty) // Arcane-edit: don't overwrite in-progress edits
-                    return;
-                _erpOrganPrefs = prefs;
-                UpdateErpOrganSection();
-                RefreshErpOrganPreview();
-            };
-            _erpOrganPreferences.OnPreferencesReceived += _erpPrefsReceivedHandler;
-            // Arcane-End
-
             #endregion Markings
 
             RefreshFlavorText();
+
+            RefreshVoiceTab(); // Arcane
 
             #region Dummy
 
@@ -736,54 +696,6 @@ namespace Content.Client.Lobby.UI
                 _flavorText = null;
             }
         }
-
-        // Arcane-Start
-        private void InitErpOrganSection()
-        {
-            if (_erpOrganSection != null)
-                return;
-
-            _erpOrganSection = new ErpOrganSection();
-            var erpScroll = new ScrollContainer { VerticalExpand = true };
-            erpScroll.AddChild(_erpOrganSection);
-            ErpTab.AddChild(erpScroll);
-
-            _erpOrganSection.OnPreferencesChanged += prefs =>
-            {
-                if (Profile == null || CharacterSlot == null)
-                    return;
-                _erpOrganPrefs = prefs;
-                _erpOrganPrefsDirty = true; // Arcane-edit
-                IsDirty = true;
-                RefreshErpOrganPreview();
-            };
-
-            _erpOrganSection.OnPenisArousedPreviewChanged += aroused =>
-            {
-                _erpPenisArousedPreview = aroused;
-                RefreshErpOrganPreview();
-            };
-        }
-
-        private void UpdateErpOrganSection()
-        {
-            if (_erpOrganSection == null || Profile == null)
-                return;
-
-            _erpOrganSection.Update(Profile.Species, Profile.Sex, _erpOrganPrefs);
-            _erpOrganSection.SetPenisArousedPreview(_erpPenisArousedPreview);
-        }
-
-        private ErpOrganPreferences _erpOrganPrefs = ErpOrganPreferences.Default();
-        private bool _erpOrganPrefsDirty; // Arcane-edit
-        private bool _erpPenisArousedPreview; // Arcane-edit
-
-        private void RefreshErpOrganPreview()
-        {
-            var phase = _erpPenisArousedPreview ? ArousalPhase.Aroused : ArousalPhase.Calm;
-            _entManager.System<ErpOrganVisualsSystem>().RefreshPreview(PreviewDummy, _erpOrganPrefs, CharacterSlot, phase);
-        }
-        // Arcane-End
 
         // Orion-Start
         private void UpdateFlavorPreview()
@@ -985,6 +897,53 @@ namespace Content.Client.Lobby.UI
         }
         // Orion-End
 
+        // Arcane-Start
+        #region Voice
+
+        private void RefreshVoiceTab()
+        {
+            _ttsTab = new TTSTab();
+            var children = new List<Control>();
+            foreach (var child in TabContainer.Children)
+                children.Add(child);
+
+            TabContainer.RemoveAllChildren();
+
+            for (int i = 0; i < children.Count; i++)
+            {
+                if (i == 1) // Set the tab to the 2nd place.
+                {
+                    TabContainer.AddChild(_ttsTab);
+                }
+                TabContainer.AddChild(children[i]);
+            }
+
+            TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-voice-tab"));
+
+            _ttsTab.OnVoiceSelected += voiceId =>
+            {
+                SetVoice(voiceId);
+                _ttsTab.SetSelectedVoice(voiceId);
+            };
+
+            _ttsTab.OnPreviewRequested += voiceId =>
+            {
+                _entManager.System<TTSSystem>().RequestGlobalTTS(VoiceRequestType.Preview, voiceId);
+            };
+        }
+
+        private void UpdateTTSVoicesControls()
+        {
+            if (Profile is null || _ttsTab is null)
+                return;
+
+            _ttsTab.UpdateControls(Profile, Profile.Sex);
+            _ttsTab.SetSelectedVoice(Profile.Voice);
+        }
+
+        #endregion
+        // Arcane-End
+
         /// <summary>
         /// Refreshes traits selector
         /// </summary>
@@ -993,7 +952,7 @@ namespace Content.Client.Lobby.UI
             TraitsList.RemoveAllChildren();
 
             var traits = _prototypeManager.EnumeratePrototypes<TraitPrototype>().OrderBy(t => Loc.GetString(t.Name)).ToList();
-            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab"));
+            TabContainer.SetTabTitle(TraitsTab, Loc.GetString("humanoid-profile-editor-traits-tab")); // Arcane-Edit
 
             if (traits.Count < 1)
             {
@@ -1239,12 +1198,6 @@ namespace Content.Client.Lobby.UI
 
         private void SetDirty()
         {
-            if (_erpOrganPrefsDirty) // Arcane-edit: ERP-only changes must keep dirty regardless of profile match
-            {
-                IsDirty = true;
-                return;
-            }
-
             // If it equals default then reset the button.
             if (Profile == null || _preferencesManager.Preferences?.SelectedCharacter.MemberwiseEquals(Profile) == true)
             {
@@ -1288,8 +1241,6 @@ namespace Content.Client.Lobby.UI
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
             SetDirty();
-
-            RefreshErpOrganPreview(); // Arcane-edit
         }
 
         /// <summary>
@@ -1310,22 +1261,13 @@ namespace Content.Client.Lobby.UI
             Profile = profile?.Clone();
             CharacterSlot = slot;
             IsDirty = false;
-            _erpOrganPrefsDirty = false; // Arcane-edit
-            _erpPenisArousedPreview = false; // Arcane-edit
             JobOverride = null;
-
-            // Arcane-Start
-            if (slot != null)
-                _erpOrganPrefs = _erpOrganPreferences.GetSlot(slot.Value);
-            else
-                _erpOrganPrefs = ErpOrganPreferences.Default();
-            // Arcane-End
 
             UpdateNameEdit();
             UpdateFlavorTextEdit();
             UpdateFlavorPreview(); // Orion
             UpdateSexControls();
-            UpdateTTSVoicesControls(); // Art-TTS
+            UpdateTTSVoicesControls(); // Arcane-TTS
             UpdateGenderControls();
             UpdateSkinColor();
             UpdateSpawnPriorityControls();
@@ -1347,8 +1289,6 @@ namespace Content.Client.Lobby.UI
             RefreshSpecies();
             RefreshTraits();
             RefreshFlavorText();
-            InitErpOrganSection(); // Arcane-edit
-            UpdateErpOrganSection(); // Arcane-edit
             ReloadPreview();
 
             if (Profile != null)
@@ -1473,6 +1413,8 @@ namespace Content.Client.Lobby.UI
 
                 Array.Sort(jobs, JobUIComparer.Instance);
 
+                var altJobTitlesEnable = _cfgManager.GetCVar(ACCVars.ICAlternateJobTitlesEnable); // Arcane
+
                 foreach (var job in jobs)
                 {
                     var jobContainer = new BoxContainer()
@@ -1483,6 +1425,7 @@ namespace Content.Client.Lobby.UI
                     var selector = new RequirementsSelector()
                     {
                         Margin = new Thickness(3f, 3f, 3f, 0f),
+                        HorizontalExpand = true, // Arcane
                     };
                     selector.OnOpenGuidebook += OnOpenGuidebook;
 
@@ -1492,8 +1435,56 @@ namespace Content.Client.Lobby.UI
                         VerticalAlignment = VAlignment.Center
                     };
                     var jobIcon = _prototypeManager.Index(job.Icon);
-                    icon.Texture = _sprite.Frame0(jobIcon.Icon);
-                    selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
+                    // Arcane-Edit-Start
+                    // icon.Texture = _sprite.Frame0(jobIcon.Icon);
+                    // selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
+                    // Arcane-Edit-End
+
+                    // Arcane-Start
+                    icon.Texture = jobIcon.Icon.Frame0();
+                    var hasDefaultAltTitle = Profile?.JobAlternateTitles.ContainsKey(job.ID);
+
+                    List<(ProtoId<JobAlternateTitlePrototype> Id, bool Locked)>? altTitleInfo = null;
+                    ProtoId<JobAlternateTitlePrototype>? currentAlt = null;
+
+                    if (altJobTitlesEnable)
+                    {
+                        if (hasDefaultAltTitle.HasValue && hasDefaultAltTitle.Value)
+                        {
+                            currentAlt = Profile?.JobAlternateTitles[job.ID];
+                        }
+
+                        if (job.AlternateTitles != null)
+                        {
+                            altTitleInfo = new List<(ProtoId<JobAlternateTitlePrototype>, bool)>();
+                            foreach (var titleId in job.AlternateTitles)
+                            {
+                                var isLocked = false;
+                                if (_prototypeManager.TryIndex(titleId, out var titleProto) &&
+                                    titleProto.Requirements != null)
+                                {
+                                    if (!_requirements.IsAllowed(titleProto.Requirements, Profile, out _))
+                                    {
+                                        isLocked = true;
+                                    }
+                                }
+                                altTitleInfo.Add((titleId, isLocked));
+                            }
+                        }
+                    }
+
+                    // Arcane-Start
+                    selector.OnSelectedTitle += selectedTitle =>
+                    {
+                        if (!altJobTitlesEnable)
+                            return;
+                        Profile = Profile?.WithJobAltTitle(job.ID, selectedTitle);
+                        SetDirty();
+                    };
+                    // Arcane-End
+
+                    selector.Setup(items, job.LocalizedName, 280, job.LocalizedDescription, icon, job.Guides, altTitleInfo, currentAlt, _prototypeManager, Profile?.Gender);
+                    // Arcane-End
 
                     if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter, out var reason))
                     {
@@ -1801,14 +1792,6 @@ namespace Content.Client.Lobby.UI
 
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
-
-            // Arcane-Start
-            if (_erpPrefsReceivedHandler != null)
-            {
-                _erpOrganPreferences.OnPreferencesReceived -= _erpPrefsReceivedHandler;
-                _erpPrefsReceivedHandler = null;
-            }
-            // Arcane-End
         }
 
         protected override void EnteredTree()
@@ -1848,24 +1831,25 @@ namespace Content.Client.Lobby.UI
             }
 
             UpdateGenderControls();
+            RefreshJobs(); // Job names are localized by gender; update after sex changes.
             Markings.SetSex(newSex);
-            UpdateErpOrganSection(); // Arcane-edit
-            UpdateTTSVoicesControls(); // Art-TTS
+            UpdateTTSVoicesControls(); // Arcane
             ReloadPreview();
         }
 
-        // Art-TTS Start
+        // Arcane-Start
         private void SetVoice(string newVoice)
         {
             Profile = Profile?.WithVoice(newVoice);
             IsDirty = true;
         }
-        // Art-TTS End
+        // Arcane-End
 
         private void SetGender(Gender newGender)
         {
             Profile = Profile?.WithGender(newGender);
             ReloadPreview();
+            RefreshJobs(); // Arcane
         }
 
         private void SetSpecies(string newSpecies)
@@ -1879,7 +1863,6 @@ namespace Content.Client.Lobby.UI
             RefreshLoadouts();
             UpdateSexControls(); // update sex for new species
             UpdateSpeciesGuidebookIcon();
-            UpdateErpOrganSection(); // Arcane-edit
             ReloadPreview();
             UpdateBarkVoice(); // Goob Station - Barks
             // begin Goobstation: port EE height/width sliders
@@ -2486,12 +2469,5 @@ namespace Content.Client.Lobby.UI
             label.SetMessage(FormattedMessage.FromMarkupPermissive(safeContent), SafeMarkupTags.Basic);
         }
         // Orion-End
-
-        // Arcane-start
-        private void OnUseTTSChanged(bool value)
-        {
-            ToggleTTS.Pressed = value;
-        }
-        // Arcane-end
     }
 }

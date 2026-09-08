@@ -260,14 +260,23 @@
   - HoPCloak
   - HoPMantle
   - HeadOfPersonnelEnsemble # goob
+  # Arcane-Start
+  - IanCloakPatron
+  - ServiceCloakPatron
+  # Arcane-EndА
 
 - type: loadoutGroup
   id: HoPBackpack
   name: loadout-group-hop-backpack
   loadouts:
-  - CommonBackpack
-  - CommonSatchel
-  - CommonDuffel
+  # Arcane-Edit-Start
+  - HeadOfPersonnelBackpack
+  - HeadOfPersonnelSatchel
+  - HeadOfPersonnelDuffel
+# - CommonBackpack
+# - CommonSatchel
+# - CommonDuffel
+  # Arcane-Edit-End
   - CommonMessenger # Frontier
   - HoPBackpackIan
 
@@ -425,6 +434,12 @@
   minLimit: 0
   loadouts:
   - ChefHead
+  # Arcane-Start
+  - FishCookBandanaPatron
+  - HighCookHatPatron
+  - InclinedCookHatPatron
+  - RedCookHatPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ChefMask
@@ -440,6 +455,10 @@
   - ChefJumpsuit
   - ChefJumpskirt
   - ServiceMJ # goob
+  # Arcane-Start
+  - ChiefCookUniformPatron
+  - CookUniformPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ChefOuterClothing
@@ -449,6 +468,10 @@
   - ChefApron
   - ChefJacket
   - ChefWintercoat
+  # Arcane-Start
+  - CookApronPatron
+  - CowCostumePatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ChefJobTrinkets
@@ -466,6 +489,7 @@
   - CuratorJumpsuit
   - CuratorJumpskirt
   - ServiceMJ # goob
+  - TwilightSparklePatron # Arcane
 
 - type: loadoutGroup
   id: LibrarianJobTrinkets
@@ -588,6 +612,10 @@
   - JanitorJumpsuit
   - JanitorJumpskirt
   - ServiceMJ # goob
+  # Arcane-Start
+  - FreeClothesPatron
+  - SterileUniformPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: JanitorGloves
@@ -604,6 +632,7 @@
   minLimit: 0
   loadouts:
   - JanitorWintercoat
+  - CleanerJumpsuitPatron # Arcane
 
 - type: loadoutGroup
   id: JanitorJobTrinkets
@@ -621,6 +650,10 @@
   - BotanistHead
   - BotanistBandana
   - BotanistBeret # Goobstation
+  # Arcane-Start
+  - BotanistHatPatron
+  - CamouflageHatPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: BotanistJumpsuit
@@ -631,6 +664,11 @@
   - BotanistOveralls
   - ServiceMJ # goob
   - HydroMJ # goob
+  # Arcane-Start
+  - BotanistUniformPatron
+  - BotanistUniformWithStrapsPatron
+  - CamouflageUniformPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: BotanistBackpack
@@ -663,7 +701,11 @@
   loadouts:
   - JesterHat
   - JesterAltHat
-  - ClownPinkHatPatron # Arcane
+  # Arcane-Start
+  - ClownPinkHatPatron
+  - JesterHatPatron
+  - ClownCilinderPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ClownJumpsuit
@@ -673,7 +715,10 @@
   - ClownSkirt
   - JesterSuit
   - JesterAltSuit
-  - ClownPinkPatron # Arcane
+  # Arcane-Start
+  - ClownPinkPatron
+  - JesterCostumePatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ClownBackpack
@@ -698,6 +743,17 @@
   loadouts:
   - ClownShoes
   - JesterShoes
+  - JesterShoesPatron # Arcane
+
+# Arcane-Start
+
+- type: loadoutGroup
+  id: ClownUnderwear
+  name: loadout-group-clown-underwear
+  loadouts:
+  - JesterPantsPatron
+
+# Arcane-End
 
 - type: loadoutGroup
   id: SurvivalClown
@@ -744,6 +800,24 @@
   loadouts:
   - MimeJumpsuit
   - MimeJumpskirt
+  # Arcane-Start
+  - FeminineUniformPatron
+  - EmptyFeminineUniformPatron
+  # Arcane-End
+
+# Arcane-Start
+- type: loadoutGroup
+  id: MimeHands
+  name: loadout-group-mime-hands
+  loadouts:
+  - MimeMittensPatron
+
+- type: loadoutGroup
+  id: MimeSocks
+  name: loadout-group-mime-socks
+  loadouts:
+  - MimeStockingsPatron
+# Arcane-End
 
 - type: loadoutGroup
   id: MimeBackpack
@@ -797,6 +871,10 @@
   - MusicianJumpsuit
   - MusicianJumpskirt
   - ServiceMJ # goob
+  # Arcane-Start
+  - DancerDressPatron
+  - PerfomanceDressPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: MusicianOuterClothing
@@ -804,6 +882,18 @@
   minLimit: 0
   loadouts:
   - MusicianWintercoat
+  - MusicianJacketPatron # Arcane
+
+# Arcane-Start
+
+- type: loadoutGroup
+  id: MusicianShoes
+  name: loadout-group-musician-shoes
+  minLimit: 0
+  loadouts:
+  - MusicianBootsPatron
+
+# Arcane-End
 
 - type: loadoutGroup
   id: Instruments
@@ -880,8 +970,11 @@
   loadouts:
   - QuartermasterCloak
   - QuartermasterMantle
-  - QMBlackCloakPatron # Arcane
-  - QMWhiteCloakPatron # Arcane
+  # Arcane-Start
+  - QMBlackCloakPatron
+  - QMWhiteCloakPatron
+  - CargoCloakPatron
+  # Arcane-End
   - QuartermasterEnsemble # goob
 
 - type: loadoutGroup
@@ -1012,7 +1105,6 @@
   - ChiefEngineerHead
   - ChiefEngineerBeret
   - EngineeringBeret # Orion
-  - CEBlackBeretPatron # Arcane
 
 - type: loadoutGroup
   id: ChiefEngineerJumpsuit
@@ -1022,10 +1114,6 @@
   - ChiefEngineerJumpskirt
   - ChiefEngineerTurtleneck
   - ChiefEngineerTurtleneckSkirt
-  - CEBlackPatron # Arcane
-  - CEBlackSkirtPatron # Arcane
-  - CEWhiteSkirtPatron # Arcane
-  - CEWhitePatron # Arcane
   - ChiefEngineerMJ # goob
   - CESummerShirt # goob
 
@@ -1036,12 +1124,11 @@
   loadouts:
   - ClothingNeckCloakWhiteCe # goob
   - ClothingNeckCloakGreenCe # goob
-  - CEBlackCloakPatron # Arcane
-  - CETricolorCloakPatron # Arcane
   - ClothingNeckMantleWhiteCE # goob
   - ClothingNeckMantleOrangeCE # goob
   - ClothingNeckEnsembleChiefEngineerWhite # goob
   - ClothingNeckEnsembleChiefEngineerGreen # goob
+  - EngineerCloakPatron # Arcane
 
 - type: loadoutGroup
   id: ChiefEngineerOuterClothing
@@ -1220,6 +1307,7 @@
   - ResearchDirectorCloak
   - ResearchDirectorRoyalCloak # Orion
   - ResearchDirectorEnsemble # goob
+  - RNDCloakPatron # Arcane
 
 - type: loadoutGroup
   id: ResearchDirectorJumpsuit
@@ -1271,6 +1359,7 @@
   minLimit: 0
   loadouts:
   - ScientistTie
+  - RNDCloakPatron # Arcane
 
 - type: loadoutGroup
   id: ScientistJumpsuit
@@ -1392,6 +1481,7 @@
   - HOSRedCloakPatron # Arcane
   - Bodycam # Goobstation - Body cameras
   - HeadOfSecurityEnsemble # goob
+  - SecurityCloakPatron # Arcane
 
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing
@@ -1497,6 +1587,7 @@
   - SecurityOfficerWintercoat
   - WinterCoatSeniorSecArmored # Goobstation
   - VeteranOfficerArmor # Goobstation
+  - ClothingOuterLightBronnikPatron # Arcane
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1542,6 +1633,7 @@
   - DetectiveTie
   - SecurityScarfRed # Orion
   - Bodycam # Goobstation - Body cameras
+  - SecurityCloakPatron # Arcane
 
 - type: loadoutGroup
   id: DetectiveJumpsuit
@@ -1551,6 +1643,10 @@
   - DetectiveJumpskirt
   - NoirJumpsuit
   - NoirJumpskirt
+  # Arcane-Start
+  - DetectiveJumpsuitMaintainedPatron
+  - DetectiveJumpskirtMaintainedPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: DetectiveOuterClothing
@@ -1635,7 +1731,10 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
-  - CMOHonorableCloakPatron # Arcane
+  # Arcane-Start
+  - CMOHonorableCloakPatron
+  - MeicalCloakPatron
+  # Arcane-End
   - ChiefMedicalOfficerEnsemble # goob
 
 - type: loadoutGroup
@@ -1678,6 +1777,10 @@
   - MedicalGreenScrubs
   - MedicalPurpleScrubs
   - MedicMJ # goob
+  # Arcane-Start
+  - DoctorTurtleneckPatron
+  - DoctorTurtleneckSkirtPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: MedicalDoctorOuterClothing
@@ -1762,6 +1865,12 @@
   - SeniorPhysicianJumpsuit # Goobstation
   - SeniorPhysicianJumpskirt # Goobstation
   - ChemistMJ # goob
+  # Arcane-Start
+  - ChemistUniformPatron
+  - ChemistUniformSkirtPatron
+  - ChemistTurtleneckPatron
+  - ChemistTurtleneckSkirtPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ChemistOuterClothing
@@ -1807,6 +1916,12 @@
   - SeniorPhysicianJumpsuit # Goobstation
   - SeniorPhysicianJumpskirt # Goobstation
   - ParamedMJ # goob
+  # Arcane-Start
+  - ParamedicUniformPatron
+  - ParamedicUniformSkirtPatron
+  - ParamedicTurtleneckPatron
+  - ParamedicTurtleneckSkirtPatron
+  # Arcane-End
 
 - type: loadoutGroup
   id: ParamedicOuterClothing

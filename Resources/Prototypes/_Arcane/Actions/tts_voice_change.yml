@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseAction
+  id: ActionTTSVoiceChange
+  categories: [ HideSpawnMenu ]
+  name: Change Voice
+  description: Open the voice selection menu.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/voice-mask.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:TTSVoiceChangeOpenMenuEvent

@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateInteQSecure
+  name: secure inteq crate
+  description: A brown steel crate with the signature orange shield of the InteQ PMC.
+  components:
+  - type: Icon
+    sprite: _Arcane/Structures/Storage/Crates/inteq_secure.rsi
+  - type: Sprite
+    sprite: _Arcane/Structures/Storage/Crates/inteq_secure.rsi
+  - type: AccessReader
+    access: [["InteQVanguardLeader"], ["InteQVanguard"]]
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateInteQ
+  name: inteq crate
+  description: A brown steel crate with the signature orange shield of the InteQ PMC.
+  components:
+  - type: Icon
+    sprite: _Arcane/Structures/Storage/Crates/inteq.rsi
+  - type: Sprite
+    sprite: _Arcane/Structures/Storage/Crates/inteq.rsi

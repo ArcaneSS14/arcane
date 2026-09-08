@@ -2,6 +2,7 @@ using Content.Shared._Goobstation.Wizard.Projectiles;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Jittering;
+using Content.Shared.Mindshield;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -20,6 +21,7 @@ public abstract class SharedBerserkerImplantSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
+    [Dependency] private readonly SharedMindShieldCheckSystem _mindShieldCheck = default!; // Arcane
 
     public override void Initialize()
     {
@@ -41,6 +43,15 @@ public abstract class SharedBerserkerImplantSystem : EntitySystem
 
         if (TryComp<BerserkerImplantActiveComponent>(args.Performer, out var berserker))
             return;
+
+        // Arcane-Start
+        if (_mindShieldCheck.IsMindShieldBlocked(args.Performer))
+        {
+            Popup.PopupClient(Loc.GetString("mindshield-blocks-syndicate"), args.Performer);
+            args.Handled = true;
+            return;
+        }
+        // Arcane-End
 
         args.Handled = true;
 

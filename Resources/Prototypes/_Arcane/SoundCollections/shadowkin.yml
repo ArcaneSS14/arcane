@@ -1,0 +1,5 @@
+- type: soundCollection
+  id: ShadowkinGrowls
+  files:
+    - /Audio/_Arcane/Voice/Shadowkin/cat_growl1.ogg
+    - /Audio/_Arcane/Voice/Shadowkin/cat_growl2.ogg

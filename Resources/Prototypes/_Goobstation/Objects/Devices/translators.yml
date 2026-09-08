@@ -14,3 +14,22 @@
     requires:
     - TauCetiBasic
     - YowKriol
+
+# Arcane-Start
+- type: entity
+  id: HydraspeakTranslator
+  parent: [ TranslatorPoweredBase ]
+  name: hydraspeak translator
+  description: Translates speech between Hydraspeak and TauCetiBasic Common.
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Hydraspeak
+    understood:
+    - TauCetiBasic
+    - Hydraspeak
+    requires:
+    - TauCetiBasic
+    - Hydraspeak
+# Arcane-End

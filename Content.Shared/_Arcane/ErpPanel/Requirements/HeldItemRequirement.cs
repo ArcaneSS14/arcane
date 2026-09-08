@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 
 [Serializable, NetSerializable]
-public sealed partial class HeldItemRequirement : ErpRequirement
+public sealed partial class HeldItemRequirement : InvertableErpRequirement
 {
     [DataField(required: true)]
     public HashSet<ProtoId<TagPrototype>> Tags = new();
@@ -16,12 +16,17 @@ public sealed partial class HeldItemRequirement : ErpRequirement
         var hands = entityManager.System<SharedHandsSystem>();
         var tags = entityManager.System<TagSystem>();
 
+        var hasHeldItem = false;
+
         foreach (var held in hands.EnumerateHeld(uid))
         {
             if (tags.HasAnyTag(held, Tags))
-                return true;
+            {
+                hasHeldItem = true;
+                break;
+            }
         }
 
-        return false;
+        return Inverted ? !hasHeldItem : hasHeldItem;
     }
 }

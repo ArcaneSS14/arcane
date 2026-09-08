@@ -19,7 +19,7 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Human, Animal, Rat, Plant,
-                  Feroxi, Hydrakin ] # DeltaV - Feroxi Still need to breathe # And hydrakin fucks
+                  Feroxi, Hydrakin, Shadowkin ] # DeltaV - Feroxi Still need to breathe # And hydrakin fucks
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -65,7 +65,7 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Human, Animal, Rat, Plant,
-                  Feroxi, Hydrakin]  # DeltaV - Feroxi Still need to breathe # fuck hydrakin
+                  Feroxi, Hydrakin, Shadowkin]  # DeltaV - Feroxi Still need to breathe # fuck hydrakin
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -391,6 +391,7 @@
           - Yowie # Goobstation - Yowie
           - Cybernetic # Shitmed - Cybernetic Organs
           - Hydrakin # Bro
+          - Shadowkin
           inverted: true
         # Don't want people to get toxin damage from the gas they just
         # exhaled, right?
@@ -438,6 +439,7 @@
           - Slime
           - Cybernetic # Shitmed - Cybernetic Organs
           - Hydrakin # Bro
+          - Shadowkin
       # Converts Nitrogen into Ammonia
       - !type:ModifyLungGas
         conditions:

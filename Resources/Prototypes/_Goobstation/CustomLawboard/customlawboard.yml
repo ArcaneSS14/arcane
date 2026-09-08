@@ -15,7 +15,7 @@
     inHandsOnly: false
     key: enum.CustomLawboardUiKey.Key
   - type: StaticPrice
-    price: 5000
+    price: 100 # Arcane-Edit: 5000 > 100
 
 - type: entity
   id: SyndicateCustomLawboard
@@ -34,7 +34,7 @@
       lawString: law-antimov-2
     - order: 3
       lawString: law-antimov-3
-        
+
 - type: entity
   id: NTCustomLawboard
   parent: [BaseCustomLawboard, BaseCommandContraband]

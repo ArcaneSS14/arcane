@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BaseAction
+  id: ActionSlimeRegrowLimb
+  categories: [ HideSpawnMenu ]
+  name: Regrow Limb
+  description: Regrow a missing limb, eating your own food and water reserves.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Arcane/Interface/Actions/slime_regrow.rsi
+      state: regrow
+    useDelay: 120
+  - type: InstantAction
+    event: !type:SlimeRegrowLimbEvent

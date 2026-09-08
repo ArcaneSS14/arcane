@@ -94,6 +94,7 @@
     title: objective-condition-maroon-person-title
   - type: PickRandomPerson
     filters:
+    - !type:StationMindFilter # Arcane
     # Can't have multiple objectives to kill the same person.
     - !type:TargetObjectiveMindFilter
       blacklist:
@@ -116,6 +117,7 @@
     title: objective-condition-kill-maroon-title
   - type: PickRandomPerson
     filters:
+    - !type:StationMindFilter # Arcane
     - !type:BodyMindFilter
       whitelist:
         components:
@@ -243,18 +245,21 @@
 
 ## hos
 
-- type: entity
-  parent: BaseTraitorStealObjective
-  id: EnergyMagnumStealObjective
-  components:
-  - type: Objective
-    # HoS will have this on them a lot of the time so..
-    difficulty: 3
-  - type: NotJobRequirement
-    jobs: [ HeadOfSecurity ]
-  - type: StealCondition
-    stealGroup: WeaponEnergyMagnum
-    owner: job-name-hos
+# Goob Start - Removing Energy Magnum
+
+# - type: entity
+#   parent: BaseTraitorStealObjective
+#   id: EnergyMagnumStealObjective
+#   components:
+#   - type: Objective
+#     difficulty: 3
+#   - type: NotJobRequirement
+#     jobs: [ HeadOfSecurity ]
+#   - type: StealCondition
+#     stealGroup: WeaponEnergyMagnum
+#     owner: job-name-hos
+
+# Goob End - Removing Energy Magnum
 
 # Goob Start warden todo move this.
 

@@ -10,3 +10,4 @@ round-end-summary-window-death = { GENDER($entity) ->
        *[neuter] Оно погибло
     } { $severity } { $type } смертью.
 round-end-summary-window-death-unknown = Их тела не были найдены.
+round-end-summary-window-player-manifest-search = Поиск по имени, должности, сикею

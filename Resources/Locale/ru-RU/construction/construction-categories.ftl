@@ -8,6 +8,7 @@ construction-category-machines = Оборудование
 construction-category-weapons = Оружие
 construction-category-tiles = Плитки
 construction-category-utilities = Утилиты
+construction-category-erp = ERP
 construction-category-misc = Разное
 construction-category-clothing = Одежда
 construction-category-favorites = Избранное

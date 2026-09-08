@@ -5,9 +5,9 @@
   description: Sewn to perfection with breathable fabric that will keep you on your feet for your entire shift.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Uniforms/Jumpskirt/adjutant.rsi
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirts/adjutant.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Uniforms/Jumpskirt/adjutant.rsi
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirts/adjutant.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -19,9 +19,9 @@
   description: It is made of breathable fabric, which will allow you to stay on your feet for the entire shift.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Uniforms/Jumpskirt/command_maid.rsi
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirts/command_maid.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Uniforms/Jumpskirt/command_maid.rsi
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirts/command_maid.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -36,3 +36,14 @@
     sprite: _Arcane/Clothing/Uniforms/Jumpskirts/blueshieldcommonskirt.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Uniforms/Jumpskirts/blueshieldcommonskirt.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpskirtWellMaintainedDetective
+  name: detective's well-groomed jumpskirt
+  description: Stylish and immaculately clean jumpsuit skirt. He smells faintly of expensive cologne, cheap tobacco, and the unsolved mysteries of the shift.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirts/Sponsor/detective.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirts/Sponsor/detective.rsi

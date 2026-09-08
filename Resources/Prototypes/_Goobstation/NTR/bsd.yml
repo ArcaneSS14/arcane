@@ -44,7 +44,7 @@
     - DefibrillatorCompact # wow personal doctor for NTR
     - SecHypo
   inhand:
-    - MedkitCombatFilled
+    - MedkitCombatStandardFilled
 
 - type: ghostRole
   id: BlueShieldDeputyGhostRole

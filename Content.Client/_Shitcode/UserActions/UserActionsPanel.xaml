@@ -3,7 +3,7 @@
     xmlns:controls="clr-namespace:Content.Client._Shitcode.UserActions"
     xmlns:tabs="clr-namespace:Content.Client._Shitcode.UserActions.Tabs">
 
-    <PanelContainer StyleClasses="BackgroundDark" Name="MainPanel" MinWidth="300" MinHeight="190" VerticalExpand="True" HorizontalExpand="True">
+    <PanelContainer StyleClasses="ArcaneChatAuxiliary" Name="MainPanel" MinWidth="300" MinHeight="190" VerticalExpand="True" HorizontalExpand="True"> <!-- Arcane -->
 
         <BoxContainer Orientation="Vertical" Name="BoxContainer" Margin="4" VerticalExpand="True">
 

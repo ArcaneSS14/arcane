@@ -37,11 +37,24 @@ public sealed class LogWindowTest : InteractionTest
         var refresh = logWindow.Logs.RefreshButton;
         var cont = logWindow.Logs.LogsContainer;
 
+        // Arcane-Edit-Start
+        await WaitForCondition(
+            () => logWindow.Logs.SelectedRoundId > 0 &&
+                  logWindow.Logs.SelectedPlayers.Contains(ServerSession.UserId.UserId),
+            "the initial admin logs state to load");
+        // Arcane-Edit-End
+
         // Search for the log we added earlier.
         await Client.WaitPost(() => search.Text = guid.ToString());
         await ClickControl(refresh);
-        await RunTicks(10);
-        var searchResult = cont.Children.Where(x => x.Visible && x is AdminLogLabel).Cast<AdminLogLabel>().ToArray();
+        // Arcane-Edit-Start
+        AdminLogLabel[] searchResult = [];
+        await WaitForCondition(() =>
+        {
+            searchResult = cont.Children.Where(x => x.Visible && x is AdminLogLabel).Cast<AdminLogLabel>().ToArray();
+            return searchResult.Length == 1 && searchResult[0].Log.Message.Contains(guid.ToString());
+        }, "the first admin log search result");
+        // Arcane-Edit-End
         Assert.That(searchResult, Has.Length.EqualTo(1));
         Assert.That(searchResult[0].Log.Message, Contains.Substring($" test log 1: {guid}"));
 
@@ -52,9 +65,29 @@ public sealed class LogWindowTest : InteractionTest
         // Update the search and refresh
         await Client.WaitPost(() => search.Text = guid.ToString());
         await ClickControl(refresh);
-        await RunTicks(10);
-        searchResult = cont.Children.Where(x => x.Visible && x is AdminLogLabel).Cast<AdminLogLabel>().ToArray();
+        // Arcane-Edit-Start
+        await WaitForCondition(() =>
+        {
+            searchResult = cont.Children.Where(x => x.Visible && x is AdminLogLabel).Cast<AdminLogLabel>().ToArray();
+            return searchResult.Length == 1 && searchResult[0].Log.Message.Contains(guid.ToString());
+        }, "the second admin log search result");
+        // Arcane-Edit-End
         Assert.That(searchResult, Has.Length.EqualTo(1));
         Assert.That(searchResult[0].Log.Message, Contains.Substring($" test log 2: {guid}"));
     }
+
+    // Arcane-Edit-Start
+    private async Task WaitForCondition(Func<bool> condition, string description, int maxTicks = 600)
+    {
+        for (var i = 0; i < maxTicks; i++)
+        {
+            if (condition())
+                return;
+
+            await RunTicks(1);
+        }
+
+        Assert.Fail($"Timed out waiting for {description} after {maxTicks} ticks.");
+    }
+    // Arcane-Edit-End
 }

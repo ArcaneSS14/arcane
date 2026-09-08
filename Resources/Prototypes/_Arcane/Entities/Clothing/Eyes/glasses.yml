@@ -1,0 +1,12 @@
+# Sponsor
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesBookWorm
+  name: bookworm's glasses
+  description: Huge and ridiculous. But it allows you to see normaly.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Eyes/Sponsor/twilight_sparkle.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Eyes/Sponsor/twilight_sparkle.rsi

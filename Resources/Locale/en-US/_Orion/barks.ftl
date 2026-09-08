@@ -59,5 +59,6 @@ bark-name-undertale-toriel = Toriel (Undertale)
 bark-name-undertale-undyne = Undyne (Undertale)
 bark-name-bleat = Bleat
 bark-name-moth = Moth
+bark-name-moth-squeak = Moth Squeak
 bark-name-nomi = Nomi
 bark-name-poyo = Poyo

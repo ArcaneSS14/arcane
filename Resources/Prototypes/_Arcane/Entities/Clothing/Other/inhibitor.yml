@@ -1,0 +1,34 @@
+- type: entity
+  parent: Clothing
+  id: ClothingAggressionInhibitor
+  name: The aggression inhibitor
+  description: Stabilizes the behavior of assistants with the help of amperage! An ID card reader is visible on the case.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Arcane/Clothing/Neck/Misc/petcollar.rsi
+  - type: Clothing
+    quickEquip: true
+    equipDelay: 2.5
+    slots:
+    - neck
+    - gloves
+    sprite: _Arcane/Clothing/Neck/Misc/petcollar.rsi
+  - type: Sprite
+    state: icon
+    sprite: _Arcane/Clothing/Neck/Misc/petcollar.rsi
+    scale: 0.75,0.75
+  - type: AggressionInhibitor
+    damage: 5
+    timeStun: 5.0
+    lockAccess:
+      - Security
+    unlockAccess:
+      - Armory
+      - HeadOfSecurity
+      - Captain
+      - CentralCommand
+  - type: CuttableItem
+    toolQualities:
+      - Sawing
+    delay: 45.0

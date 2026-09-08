@@ -1,0 +1,19 @@
+- type: entity
+  id: CrateCombatKit
+  parent: CrateMedical
+  name: combat kit
+  description: Crate filled with a combat kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedkitCombatFilled
+
+- type: entity
+  id: CrateStandardCombatKit
+  parent: CrateMedical
+  name: standard combat kit
+  description: Nanotrasen doesn't exactly hand out combat gear for free. The Standard Combat Kit costs extra for a reason - they'd rather you didn't have it at all.
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedkitCombatStandardFilled

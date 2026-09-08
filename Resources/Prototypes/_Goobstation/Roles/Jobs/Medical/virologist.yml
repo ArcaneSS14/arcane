@@ -34,6 +34,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentMedical
+  alternateTitles:
+  - VirologistDiseaseSpecialist
+  - VirologistEpidemiologist
   # Arcane-end
 
 
@@ -53,3 +56,13 @@
     ears: ClothingHeadsetMedical
     eyes: ClothingEyesHudViro
     belt: ClothingBeltMedicalFilled #No request and still medical so uh delete if want them with no belt I guess
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: VirologistDiseaseSpecialist
+  name: job-name-alt-virologist-1
+
+- type: jobAlternateTitle
+  id: VirologistEpidemiologist
+  name: job-name-alt-virologist-2
+# Arcane-End

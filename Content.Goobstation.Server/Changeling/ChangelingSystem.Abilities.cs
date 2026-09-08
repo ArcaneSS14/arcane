@@ -35,6 +35,7 @@ using Content.Shared.Stealth.Components;
 using Content.Shared.Store.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Traits.Assorted;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Actions.Components;
@@ -653,7 +654,7 @@ public sealed partial class ChangelingSystem
         comp.IsInLesserForm = true;
 
         var eggComp = EnsureComp<ChangelingEggComponent>(target);
-        eggComp.lingComp = comp;
+        eggComp.LingComponents = comp.LastResortSnapshot; // Arcane-Edit
         eggComp.lingMind = (EntityUid) mind;
         eggComp.lingStore = _serialization.CreateCopy(storeComp, notNullableOverride: true);
 
@@ -669,6 +670,21 @@ public sealed partial class ChangelingSystem
 
         args.Handled = true;
     }
+
+    // Arcane-Start
+    private List<Component> SnapshotChangelingComponents(EntityUid uid)
+    {
+        var snapshots = new List<Component>();
+        foreach (var type in ChangelingEggSystem.TransferredComponents)
+        {
+            if (!EntityManager.TryGetComponent(uid, type, out var component))
+                continue;
+
+            snapshots.Add((Component) _serialization.CreateCopy(component, notNullableOverride: true)!);
+        }
+        return snapshots;
+    }
+    // Arcane-End
 
     #endregion
 
@@ -810,6 +826,8 @@ public sealed partial class ChangelingSystem
 
         comp.IsInLastResort = true;
 
+        var snapshot = SnapshotChangelingComponents(uid); // Arcane
+
         var newUid = TransformEntity(
             uid,
             protoId: "MobHeadcrab",
@@ -823,6 +841,11 @@ public sealed partial class ChangelingSystem
             UpdateChemicals((uid, comp), Comp<InternalResourcesActionComponent>(args.Action).UseAmount);
             return;
         }
+
+        // Arcane-Start
+        if (TryComp<ChangelingIdentityComponent>((EntityUid) newUid, out var headcrabComp))
+            headcrabComp.LastResortSnapshot = snapshot;
+        // Arcane-End
 
         _explosionSystem.QueueExplosion(
             (EntityUid) newUid,

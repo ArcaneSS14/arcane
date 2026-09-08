@@ -22,6 +22,14 @@
         {
             "name": "razor_feet_right",
             "directions": 4
+        },
+        {
+            "name": "burrower_claws_l_foot",
+            "directions": 4
+        },
+        {
+            "name": "burrower_claws_r_foot",
+            "directions": 4
         }
     ]
 }

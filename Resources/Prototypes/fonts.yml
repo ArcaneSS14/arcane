@@ -2,19 +2,19 @@
 
 - type: font
   id: Default
-  path: /Fonts/NotoSans/NotoSans-Regular.ttf
+  path: /Fonts/_Arcane/Exo2/Exo2-Regular.ttf
 
 - type: font
   id: DefaultItalic
-  path: /Fonts/NotoSans/NotoSans-Italic.ttf
+  path: /Fonts/_Arcane/Exo2/Exo2-Italic.ttf
 
 - type: font
   id: DefaultBold
-  path: /Fonts/NotoSans/NotoSans-Bold.ttf
+  path: /Fonts/_Arcane/Exo2/Exo2-Bold.ttf
 
 - type: font
   id: DefaultBoldItalic
-  path: /Fonts/NotoSans/NotoSans-BoldItalic.ttf
+  path: /Fonts/_Arcane/Exo2/Exo2-BoldItalic.ttf
 
 - type: font
   id: NotoSansDisplay

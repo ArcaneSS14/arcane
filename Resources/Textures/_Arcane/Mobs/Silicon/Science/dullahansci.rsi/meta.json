@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "science_walking",
+            "directions": 4
+        },
+        {
             "name": "science-rest",
             "directions": 4
         },

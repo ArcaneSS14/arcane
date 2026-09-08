@@ -106,6 +106,23 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         if (!_inventory.TryGetSlotEntity(args.EmbeddedIntoUid, "outerClothing", out var suit))
             return;
 
+        // Arcane-Start
+        if (_tag.HasTag(suit.Value, HardsuitTag))
+        {
+            var hardsuitTime = TimeSpan.FromSeconds(9f);
+            if (ent.Comp.EmbedTime + hardsuitTime > _timing.CurTime)
+            {
+                args.Cancelled = true;
+                return;
+            }
+
+            if (_tag.HasTag(suit.Value, SyringeArmorTag))
+                args.Cancelled = true;
+
+            return;
+        }
+        // Arcane-End
+
         if (_tag.HasTag(suit.Value, SyringeArmorTag))
         {
             args.Cancelled = true;

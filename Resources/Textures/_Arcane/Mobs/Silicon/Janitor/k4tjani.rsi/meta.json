@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "janitor_moving",
+            "directions": 4
+        },
+        {
             "name": "janitor-rest",
             "directions": 1
         },

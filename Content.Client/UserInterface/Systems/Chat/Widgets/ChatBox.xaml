@@ -11,12 +11,13 @@ SPDX-License-Identifier: MIT
     MouseFilter="Stop"
     HorizontalExpand="True"
     VerticalExpand="True"
-    MinSize="465 225">
+    MinSize="300 225"> <!-- Arcane -->
     <PanelContainer Name="ChatWindowPanel" Access="Public" HorizontalExpand="True" VerticalExpand="True"
-                    StyleClasses="StyleNano.StyleClassChatPanel">
+                    StyleClasses="ArcaneChatSurface"> <!-- Arcane -->
         <BoxContainer Orientation="Vertical" SeparationOverride="4" HorizontalExpand="True" VerticalExpand="True">
             <!-- Goobstation Change - Output Panel -->
-            <goobcontrols:CustomOutputPanel Name="Contents" HorizontalExpand="True" VerticalExpand="True" Margin="8 8 8 4" />
+            <goobcontrols:CustomOutputPanel Name="Contents" Access="Public" HorizontalExpand="True" VerticalExpand="True"
+                                            Margin="8 8 8 4" StyleClasses="ArcaneChatOutput" /> <!-- Arcane -->
             <controls:ChatInputBox HorizontalExpand="True" Name="ChatInput" Access="Public" Margin="2"/>
         </BoxContainer>
     </PanelContainer>

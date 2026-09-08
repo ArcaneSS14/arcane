@@ -3,6 +3,7 @@
 using Content.Shared.Humanoid;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
+using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -59,6 +60,8 @@ public sealed partial class ChangelingIdentityComponent : Component
 
     [DataField]
     public bool IsInLastResort = false;
+
+    public List<Component> LastResortSnapshot = new(); // Arcane
 
     public List<EntityUid>? ActiveArmor = null;
 

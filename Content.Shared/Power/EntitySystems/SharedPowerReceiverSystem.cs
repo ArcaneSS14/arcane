@@ -44,6 +44,17 @@ public abstract class SharedPowerReceiverSystem : EntitySystem
         Dirty(uid, receiver);
     }
 
+    // Arcane-Start
+    public void SetBatteryRechargeRate(EntityUid uid, float value, ApcPowerReceiverBatteryComponent? battery = null)
+    {
+        if (!Resolve(uid, ref battery) || battery.BatteryRechargeRate == value)
+            return;
+
+        battery.BatteryRechargeRate = value;
+        Dirty(uid, battery);
+    }
+    // Arcane-End
+
     /// <summary>
     /// Turn this machine on or off.
     /// Returns true if we turned it on, false if we turned it off.

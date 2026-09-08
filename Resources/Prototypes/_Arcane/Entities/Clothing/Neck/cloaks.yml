@@ -1,20 +1,22 @@
-- type: entity
-  parent: ClothingNeckBase
-  id: ClothingCloakCEBlack
-  name: CE's black cloak
-  description: A black cloak with gold trim, made for the best in his field.
-  components:
-  - type: Sprite
-    sprite: _Arcane/Clothing/Neck/Sponsor/CE_black_cloak.rsi
+# Sponsor
 
 - type: entity
   parent: ClothingNeckBase
-  id: ClothingCloakCETricolor
-  name: CE's tricolor cloak
+  id: ClothingCloakNTRBlack
+  name: NTR's black cloak
+  description: A black cloak with gold trim, made for the best in his field.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/NTR_black_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakNTRTricolor
+  name: NTR's tricolor cloak
   description: Green stripe? Looks exquisitely.
   components:
   - type: Sprite
-    sprite: _Arcane/Clothing/Neck/Sponsor/CE_white_cloak.rsi
+    sprite: _Arcane/Clothing/Neck/Sponsor/NTR_white_cloak.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -45,6 +47,78 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: ClothingCloakCargoPatron
+  name: honorable cargo cloak
+  description: Expensive high-quality cloak.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/cargo.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakEngineerPatron
+  name: honorable engineer cloak
+  description: Expensive high-quality cloak.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/engineer.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakMedicalPatron
+  name: honorable medical cloak
+  description: Expensive high-quality cloak.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/med.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakRNDPatron
+  name: honorable science cloak
+  description: Expensive high-quality cloak.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/rnd.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakSecurityPatron
+  name: honorable security cloak
+  description: Expensive high-quality cloak.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/sec.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakServicePatron
+  name: honorable service cloak
+  description: Expensive high-quality cloak.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/service.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakVirologistPatron
+  name: virologist cloak
+  description: Expensive high-quality cloak.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/virologist.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakParamedicPatron
+  name: paramedic cloak
+  description: Expensive high-quality cloak.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/paramedic.rsi
+
+- type: entity
+  parent: ClothingNeckBase
   id: ClothingCloakQMBlack
   name: QM's black cloak
   description: Black feathers! You are definately boss here.
@@ -60,3 +134,12 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Neck/Sponsor/QM_white_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakIan
+  name: Ian cloak
+  description: We assure you that this is not a real dog, but a plush toy sewn into a coat.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/ian_cloak.rsi

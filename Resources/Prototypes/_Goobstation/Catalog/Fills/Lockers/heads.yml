@@ -34,7 +34,7 @@
     children:
     - id: DefibrillatorCompact
     - id: ParamedHypo
-    - id: MedkitBSOFilled
+    - id: MedkitCombatStandardFilled # Arcane-Edit: MedBay Rework
     - id: MedkitBSOIPCFilled
     - id: FlippoLighterBlueshield
     - id: CigPackBlueshield

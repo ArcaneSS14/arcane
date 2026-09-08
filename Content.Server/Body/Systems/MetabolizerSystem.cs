@@ -262,6 +262,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                             _entityEffects.ApplyEffect(ent, effect, scale);
                             break;
                         case AdjustReagent:
+                        case AdjustReagentsByGroup: // Arcane
                             _entityEffects.ApplyEffect(soln.Value, effect, scale);
                             break;
                         default:

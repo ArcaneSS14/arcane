@@ -10,7 +10,8 @@ using Robust.Shared.Console;
 
 namespace Content.Goobstation.Server.ServerCurrency.Commands
 {
-    [AnyCommand]
+    // [AnyCommand] // Arcane: hidden from players
+    [AdminCommand(AdminFlags.Host)] // Arcane
     public sealed class BalanceServerCurrencyCommand : IConsoleCommand
     {
         [Dependency] private readonly ICommonCurrencyManager _currencyMan = default!;
@@ -40,7 +41,8 @@ namespace Content.Goobstation.Server.ServerCurrency.Commands
         }
     }
 
-    [AnyCommand]
+    // [AnyCommand] // Arcane: hidden from players
+    [AdminCommand(AdminFlags.Host)] // Arcane
     public sealed class GiftServerCurrencyCommand : IConsoleCommand
     {
         [Dependency] private readonly ICommonCurrencyManager _currencyMan = default!;

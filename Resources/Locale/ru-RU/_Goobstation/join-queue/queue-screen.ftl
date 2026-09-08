@@ -1,5 +1,6 @@
 queue-title = Вступить в очередь
 queue-quit = Отключиться
+queue-disabled-disconnect-reason = Очередь подключения была отключена.
 queue-position-label = Позиция
 queue-total-label = В очереди
 queue-position = Позиция в очереди:

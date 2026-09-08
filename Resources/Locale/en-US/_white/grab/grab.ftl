@@ -24,5 +24,6 @@ popup-grab-retake-fail = {CAPITALIZE($puller)} is not letting you to pull {CAPIT
 popup-grab-retake-fail-puller = {CAPITALIZE($puller)} is trying to release {CAPITALIZE($pulled)}!
 popup-grab-retake-success = You released {CAPITALIZE($pulled)} from {CAPITALIZE($puller)}'s grab!
 popup-grab-retake-success-puller = {CAPITALIZE($puller)} released {CAPITALIZE($pulled)} from your grab!
+popup-grab-retake-success-others = {CAPITALIZE($puller)} released {CAPITALIZE($pulled)} from {CAPITALIZE($oldPuller)}'s grab!
 popup-grabbed-cant-speak = You can't breathe!
 popup-grab-need-hand = You need a free hand!

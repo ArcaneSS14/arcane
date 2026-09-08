@@ -21,11 +21,12 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 8h # Goobstation
-    - !type:SpeciesRequirement # Goob - None Felinid
-      inverted: true
-      species:
-      - Felinid
-      #any MRP using our code might eventually want to use it
+      # Arcane-start
+    # - !type:SpeciesRequirement # Goob - None Felinid
+      # inverted: true
+      # species:
+      # - Felenid
+      # Arcane-end
     # - !type:SaturationRequirement # MisandryBox - no neon hair on captain
     #   hairColorSaturation: 0.30
   # guides: # Orion-Edit: this fork does not ship the upstream SOP entries
@@ -57,8 +58,13 @@
         - CorporateCodespeak
         understands:
         - CorporateCodespeak
-  contracts: # Arcane
+  # Arcane-Start
+  contracts:
   - DocumentContractEmploymentCommand
+  alternateTitles:
+  - CaptainStationDirector
+  - CaptainCommander
+  # Arcane-End
 
 - type: startingGear
   id: CaptainGear
@@ -83,3 +89,13 @@
     eyes: ClothingEyesGlassesCommand
     mask: ClothingMaskGasCaptain
     neck: ClothingNeckCloakCap
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: CaptainStationDirector
+  name: job-name-alt-captain-1
+
+- type: jobAlternateTitle
+  id: CaptainCommander
+  name: job-name-alt-captain-2
+# Arcane-End

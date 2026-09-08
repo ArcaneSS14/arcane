@@ -207,7 +207,13 @@
     Blunt: 0.7
     Slash: 0.8
     Heat: 1.5
-    Shock: 1.2
+    Shock: 1.4
+  ignoreArmorPierceFlags: All # Goobstation
+
+- type: damageModifierSet
+  id: Arachnid
+  coefficients:
+    Poison: 0
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
@@ -215,6 +221,7 @@
   coefficients:
     Cold: 0.7
     Heat: 1.2
+    Piercing: 1.1
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
@@ -226,11 +233,13 @@
 - type: damageModifierSet
   id: Zombie #Goob change, make zombies great again
   coefficients:
-    Blunt: 2
-    Piercing: 2
-    Slash: 2
+  # Arcane-Edit-Start: (2 -> 1.2)
+    Blunt: 1.2 
+    Piercing: 1.2
+    Slash: 1.2
+  # Arcane-Edit-End
     Cold: 0.3
-    Heat: 2
+    Heat: 1.5 # Arcane-Edit: (2 -> 1.5)
     Poison: 0.0
     Radiation: 0.0
   ignoreArmorPierceFlags: All # Goobstation

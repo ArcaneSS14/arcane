@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatArmored
   id: ClothingHeadHatBeretAdjutant
   name: adjutant beret
   description: Awarded by passing difficult qualification tests and is a matter of extreme pride.
@@ -13,7 +13,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatArmored
   id: ClothingHeadHatGarrisonCapAdjutant
   name: adjutant garrisoncap
   description: A little cotton cap that's just about to fall off his head.
@@ -27,7 +27,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatArmored
   id: ClothingHeadHatCapAdjutant
   name: adjutant cap
   description: Blue and white, suspiciously reminiscent of the captain's.
@@ -104,19 +104,21 @@
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Hats/blueshieldhatcap.rsi
 
-- type: entity
-  parent: ClothingHeadHatCentcom
-  id: ClothingHatCEBlackBeret
-  name: CE's black beret
-  description: CE's black beret.
-  components:
-  - type: Sprite
-    sprite: _Arcane/Clothing/Head/Sponsor/CE_beret.rsi
-  - type: Clothing
-    sprite: _Arcane/Clothing/Head/Sponsor/CE_beret.rsi
+# Sponsor
 
 - type: entity
-  parent: ClothingHeadHatCentcom
+  parent: ClothingHeadHatArmoredPlus
+  id: ClothingHatNTRBlackBeret
+  name: NTR's black beret
+  description: NTR's black beret.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Sponsor/NTR_beret.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Sponsor/NTR_beret.rsi
+
+- type: entity
+  parent: ClothingHeadBase
   id: ClothingHatClownPink
   name: pink clown hat
   description: Pink clown hat.
@@ -127,7 +129,7 @@
     sprite: _Arcane/Clothing/Head/Sponsor/clown.rsi
 
 - type: entity
-  parent: ClothingHeadHatCentcom
+  parent: ClothingHeadBase
   id: ClothingHatCMO
   name: CMO's hat
   description: CMO's hat.
@@ -138,7 +140,7 @@
     sprite: _Arcane/Clothing/Head/Sponsor/CMO_hat.rsi
 
 - type: entity
-  parent: ClothingHeadHatCentcom
+  parent: ClothingHeadHatArmoredPlus
   id: ClothingHatHOSCap
   name: HOS' cap.
   description: HOS' cap.
@@ -149,7 +151,7 @@
     sprite: _Arcane/Clothing/Head/Sponsor/HOS_cap.rsi
 
 - type: entity
-  parent: ClothingHeadHatCentcom
+  parent: ClothingHeadBase
   id: ClothingHatQMBlackBeret
   name: QM's black beret
   description: QM's black beret.
@@ -171,7 +173,106 @@
     sprite: _Arcane/Clothing/Head/Sponsor/sanitar_hat.rsi
 
 - type: entity
-  parent: ClothingHeadHatCentcom
+  parent: ClothingHeadBase
+  id: ClothingHatBotanist
+  name: botanical hat
+  description: A wide-brimmed hat for working in the sun.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Sponsor/botanist.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Sponsor/botanist.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHatCamouflage
+  name: camouflage hat
+  description: Camouflage hat.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Sponsor/camouflage.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Sponsor/camouflage.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHatClownCilinder
+  name: clown's cilinder
+  description: Funny stripped cilinder.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Sponsor/clown_cilinder.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Sponsor/clown_cilinder.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHatCow
+  name: cow helmet
+  description: Cow.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Sponsor/cow.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Sponsor/cow.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHatFishCookBandana
+  name: cook's fish bandana
+  description: Fish cutter's bandana.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Sponsor/fish_cook_bandana.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Sponsor/fish_cook_bandana.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHatCookHigh
+  name: high cook hat
+  description: Probably hides a rat.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Sponsor/high_cook_hat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Sponsor/high_cook_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHatCookInclined
+  name: inclined cook hat
+  description: Inclined cook hat.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Sponsor/inclined_cook_hat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Sponsor/inclined_cook_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHatJester
+  name: jester's hat
+  description: Old-fashioned clown hat.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Sponsor/jester_hat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Sponsor/jester_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHatCookRed
+  name: red cook hat
+  description: Red cook hat.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Sponsor/red_cook_hat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Sponsor/red_cook_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
   id: ClothingHatFlyAgaric
   name: fly agaric hat
   description: A hat resempling a cap of a poisonous mushroom.

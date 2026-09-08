@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: [ BaseMobSpeciesNonPerishable ]
   id: BaseMobPlasmaman
   name: Urist McPlasma
   abstract: true
@@ -62,7 +62,6 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-  - type: Carriable
   - type: Body
     prototype: Plasmaman
     requiredLegs: 2
@@ -77,11 +76,6 @@
         Quantity: 300
   - type: Damageable
     damageModifierSet: Plasmaman
-  # Arcane-start: plasmamen need a separate ERP implementation later.
-  - type: ErpPanelOwner
-    enabled: false
-  - type: EroticOrgans
-  # Arcane-end
   - type: MeleeWeapon
     soundHit:
       collection: FirePunch
@@ -104,6 +98,7 @@
       Male: UnisexPlasmaman
       Female: UnisexPlasmaman
       Unsexed: UnisexPlasmaman
+      Futanari: UnisexPlasmaman # Arcane
   - type: Butcherable
     butcheringType: Spike
     spawned:

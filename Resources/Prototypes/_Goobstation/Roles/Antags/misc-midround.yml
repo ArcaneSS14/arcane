@@ -32,7 +32,7 @@
   - SingulothsHammer
   storage:
     back:
-    - MedkitCombatFilled
+    - MedkitCombatStandardFilled
 
 - type: startingGear
   id: DarkLordAntagGear

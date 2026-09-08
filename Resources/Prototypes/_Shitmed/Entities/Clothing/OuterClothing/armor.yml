@@ -126,3 +126,12 @@
   - type: ModifyDelayedKnockdown
     delayDelta: 3
     knockdownTimeDelta: -3
+
+# Arcane-Start
+- type: entity
+  parent: ClothingOuterCoatAbductor
+  id: ClothingOuterCoatAbductorUnremoveable
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable
+# Arcane-End

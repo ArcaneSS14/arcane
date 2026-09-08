@@ -21,7 +21,7 @@
           - FitsInDispenser
   - type: Appearance
   - type: ChemMaster
-    pillDosageLimit: 20
+    pillDosageLimit: 50 # Arcane-Edit: 20 > 50
   - type: Destructible
     thresholds:
     - trigger:

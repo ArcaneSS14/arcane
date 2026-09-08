@@ -7,3 +7,39 @@
   id: CowSwimsuit
   equipment:
     undershirt: ClothingUndershirtCowSwimsuit
+
+- type: loadout
+  id: BraBeer
+  equipment:
+    undershirt: ClothingBraBeer
+
+- type: loadout
+  id: BraDriada
+  equipment:
+    undershirt: ClothingBraDriada
+
+- type: loadout
+  id: BraEroticPurple
+  equipment:
+    undershirt: ClothingBraEroticPurple
+
+- type: loadout
+  id: BraMedusa
+  equipment:
+    undershirt: ClothingBraMedusa
+
+- type: loadout
+  id: BraLeafs
+  equipment:
+    undershirt: ClothingBraLeafs
+
+- type: loadout
+  id: BraPinkFancy
+  equipment:
+    undershirt: ClothingBraPinkFancy
+
+- type: loadout
+  id: BraRed
+  equipment:
+    undershirt: ClothingBraRed
+

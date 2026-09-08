@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 
 [Serializable, NetSerializable]
-public sealed partial class SpeciesRequirement : ErpRequirement
+public sealed partial class SpeciesRequirement : InvertableErpRequirement
 {
     [DataField(required: true)]
     public HashSet<ProtoId<SpeciesPrototype>> Species = new();
@@ -16,6 +16,8 @@ public sealed partial class SpeciesRequirement : ErpRequirement
         if (!entityManager.TryGetComponent<HumanoidAppearanceComponent>(uid, out var humanoid))
             return false;
 
-        return Species.Contains(humanoid.Species);
+        var hasSpecies = Species.Contains(humanoid.Species);
+
+        return Inverted ? !hasSpecies : hasSpecies;
     }
 }

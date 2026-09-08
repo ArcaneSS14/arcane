@@ -52,5 +52,9 @@
       amount: 1
     Hexamine:
       amount: 1
+  # Arcane-Edit-Start
+#    Vestine:
+#      amount: 1
+  # Arcane-Edit-End
   products:
-    Octogen: 4
+    Octogen: 4 # Arcane-Edit: 5 > 4

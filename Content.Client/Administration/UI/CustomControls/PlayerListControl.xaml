@@ -10,7 +10,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
               MinSize="100 0"
               HorizontalExpand="True"
               PlaceHolder="{Loc player-list-filter}"/>
+    <!-- Arcane -->
     <PanelContainer Name="BackgroundPanel"
+                    StyleClasses="ArcaneAdminListSurface"
                     VerticalExpand="True"
                     HorizontalExpand="True">
         <controls:ListContainer Name="PlayerListContainer"

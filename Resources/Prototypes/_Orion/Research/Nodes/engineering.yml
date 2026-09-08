@@ -28,6 +28,7 @@
   - TimerTrigger
   - VoiceSignaller
   - VoiceTrigger
+  - VoiceSensor # Arcane
   - ProximitySignaller
   position: 12,4
 
@@ -194,6 +195,7 @@
   - CableStack
   - CableMVStack
   - CableHVStack
+  - CableDetStack1 # Arcane
   - ClothingHeadHatWelding
   - Welder
   - WelderMini
@@ -212,6 +214,16 @@
   - LightTube
   - ClothingMaskWeldingGas
   - SignallerAdvanced
+  # Arcane-Start
+  - EmptyDetonator
+  - TowelColorWhite
+  - MaterialDurathread
+  - FauxTileDarkAstroGrass
+  - FauxTileLightAstroGrass
+  - FauxTileDesertAstroSand
+  - FauxTileAstroIronsand
+  - FauxTileAstroIronsandBorderless
+  # Arcane-End
   - FauxTileAstroGrass
   - FauxTileMowedAstroGrass
   - FauxTileJungleAstroGrass

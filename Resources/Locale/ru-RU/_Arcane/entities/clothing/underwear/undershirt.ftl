@@ -1,2 +1,14 @@
 ent-ClothingBraBeer = пивной лифчик
     .desc = Вы однозначно этого хотите.
+ent-ClothingBraDriada = бюстгальтер дриады
+    .desc = Покровительница деревьев.
+ent-ClothingBraEroticPurple = эротический фиолетовый бюстгальтер
+    .desc = Тонкий бюстгальтер, едва прикрывающий соски.
+ent-ClothingBraMedusa = бюстгальтер медузы
+    .desc = Желейный бюстгальтер.
+ent-ClothingBraLeafs = бюстгальтер из листьев
+    .desc = 100% натуральный.
+ent-ClothingBraPinkFancy = модный розовый бюстгальтер
+    .desc = Розовый, как Барби.
+ent-ClothingBraRed = красный бюстгальтер
+    .desc = Красный бюстгальтер.

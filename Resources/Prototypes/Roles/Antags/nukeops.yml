@@ -142,7 +142,7 @@
     #- HandheldHealthAnalyzer # Goobstation
     - CombatMedipen
     - DeathAcidifierImplanter
-    - MedkitCombatFilled # Goobstation
+    - MedkitCombatStandardFilled # Goobstation # Arcane-Edit
 
 - type: chameleonOutfit
   id: NukeopsMedicOutfit

@@ -44,6 +44,7 @@
     - ActionAIViewLaws
     - ActionOpenRemoteDevicesMenu # Corvax-Next-AiRemoteControl
     - ActionOpenCameraWarpMenu # Goobstation-Ai-Camera-Jumping
+    - ActionTTSVoiceChange # Arcane
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -116,6 +117,7 @@
   - type: ActionGrant
     actions:
     - ActionAIViewLaws
+    - ActionTTSVoiceChange # Arcane
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:
@@ -512,6 +514,7 @@
     - Tradeband
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # Arcane
     understands:
     - TauCetiBasic
     - Canilunzt
@@ -533,8 +536,13 @@
     - Sign
     - Schechi
     - NewKinPidgin
+    - Hydraspeak # Arcane
   - type: SpeechSynthesis # Corvax-Frontier-Barks
     voice: Borg
+  # Arcane-start
+  - type: TTS
+    voice: Glados
+  # Arcane-end
 
 # Hologram projection that the AI's eye tracks.
 - type: entity
@@ -626,6 +634,9 @@
       borg_brain:
         - PositronicBrain
       borg_module:
+        # <Trauma>
+        - BorgModuleStickyGrenadeLauncher
+        # </Trauma>
         - BorgModuleL6C
         - BorgModuleDoubleEsword
         - BorgModuleOperative
@@ -660,8 +671,14 @@
       borg_brain:
         - PositronicBrain
       borg_module:
+        # <Trauma>
+        - BorgModuleRCD
+        - BorgModuleSyndicateChameleonProjector
+        - BorgModuleSyndicateJammer
+        - BorgModuleSyndicateDoorControl
+        # </Trauma>
         - BorgModuleSyndicateWeapon
-        - BorgModuleTool
+        - BorgModuleAdvancedTool # Trauma - was BorgModuleTool
         - BorgModuleOperative
   - type: ItemSlots
     slots:

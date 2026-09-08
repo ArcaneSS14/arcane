@@ -51,8 +51,9 @@
             Virologist: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 5, 5 ]
+            Scientist: [ 4, 4 ]
             ResearchAssistant: [2, 4]
+            Roboticist: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -62,8 +63,9 @@
             Brigmedic: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 6, 6 ]
+            SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 2, 2 ]
+            ShaftMiner: [ 3, 3 ]
             #civillian
             Passenger: [ -1, -1 ]
             Clown: [ 1, 1 ]

@@ -8,6 +8,7 @@ using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
+using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Content.Shared.Store.Events;
 using Content.Shared.UserInterface;
@@ -16,7 +17,10 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Server._White.StoreDiscount;
+using Content.Goobstation.Shared.NTR;
 using Content.Shared.Mind;
+using Content.Shared.Mindshield;
+using Content.Shared.PDA;
 using Content.Shared.Polymorph;
 using Content.Server.Polymorph.Systems;
 
@@ -32,6 +36,7 @@ public sealed partial class StoreSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedMindShieldCheckSystem _mindShieldCheck = default!; // Arcane
     [Dependency] private readonly StoreDiscountSystem _storeDiscount = default!; // WD EDIT
     [Dependency] private readonly PolymorphSystem _polymorph = default!; // goob edit
 
@@ -91,6 +96,19 @@ public sealed partial class StoreSystem : EntitySystem
 
     private void OnStoreOpenAttempt(EntityUid uid, StoreComponent component, ActivatableUIOpenAttemptEvent args)
     {
+        // Arcane-Start
+        if (!HasComp<PdaComponent>(uid)
+            && !HasComp<NtrClientAccountComponent>(uid)
+            && _mindShieldCheck.IsMindShieldBlocked(args.User))
+        {
+            if (!args.Silent)
+                _popup.PopupEntity(Loc.GetString("mindshield-blocks-syndicate"), uid, args.User);
+
+            args.Cancel();
+            return;
+        }
+        // Arcane-End
+
         if (!component.OwnerOnly)
             return;
 
@@ -132,6 +150,14 @@ public sealed partial class StoreSystem : EntitySystem
 
     private void OnImplantActivate(EntityUid uid, StoreComponent component, OpenUplinkImplantEvent args)
     {
+        // Arcane-Start
+        if (_mindShieldCheck.IsMindShieldBlocked(args.Performer))
+        {
+            _popup.PopupEntity(Loc.GetString("mindshield-blocks-syndicate"), uid, args.Performer);
+            return;
+        }
+        // Arcane-End
+
         ToggleUi(args.Performer, uid, component);
     }
 

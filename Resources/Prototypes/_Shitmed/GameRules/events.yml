@@ -7,7 +7,7 @@
   - type: StationEvent
     earliestStart: 15
     reoccurrenceDelay: 45
-    weight: 3 # Goobstation - 7.5 -> 3
+    weight: 1.5 # Goobstation - 7.5 -> 3 # Arcane-Edit: 3 > 1.5
     minimumPlayers: 10
     duration: null # Goobstation - chud
     chaos:
@@ -15,7 +15,7 @@
       Medical: 75
     eventType: HostilesSpawn
   - type: GameRule
-    chaosScore: 100
+    chaosScore: 300 # Arcane-Edit: 100 > 300
   - type: RuleGrids
   - type: LoadMapRule
     mapPath: /Maps/_Shitmed/Shuttles/ShuttleEvent/abductor_shuttle.yml
@@ -100,7 +100,7 @@
   - type: StationEvent
     earliestStart: 15
     reoccurrenceDelay: 45
-    weight: 3 # Goobstation - 7.5 -> 3
+    weight: 1.5 # Goobstation - 7.5 -> 3 # Arcane-Edit: 3 > 1.5
     minimumPlayers: 20
     duration: null # Goobstation - chud
     chaos:
@@ -108,7 +108,7 @@
       Medical: 150
     eventType: HostilesSpawn
   - type: GameRule
-    chaosScore: 150
+    chaosScore: 450 # Arcane-Edit: 150 > 450
   - type: RuleGrids
   - type: LoadMapRule
     mapPath: /Maps/_Shitmed/Shuttles/ShuttleEvent/duo_abductor_shuttle.yml

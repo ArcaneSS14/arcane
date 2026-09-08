@@ -11,7 +11,6 @@ ent-ClothingHeadHatCommandMaid = чепчик
     .desc = Изысканная шапочка для безупречной особы.
 
 ent-ClothingHeadHatBowsCommandMaid = чепчик с бантиками
-
     .desc = Изысканная шапочка с бантами для безупречной особы.
 
 ent-ClothingHeadHatBlackCommandMaid = чёрный чепчик
@@ -23,8 +22,10 @@ ent-ClothingHatBeretBlueShield = берет офицера "Синий Щит"
 ent-ClothingHatCapBlueShield = фуражка офицера "Синий Щит"
     .desc = Деловая фуражка, созданная специально для сотрудников «Синий Щит».
 
-ent-ClothingHatCEBlackBeret = чёрный берет старшего инженера
-    .desc = Элегантный головной убор, контрастирующий на фоне светлой формы.
+# Sponsor
+
+ent-ClothingHatNTRBlackBeret = чёрный берет представителя NanoTrasen
+    .desc = Элегантный головной убор.
 ent-ClothingHatClownPink = розовая шапка клоуна
     .desc = Розовый - значит забавный!
 ent-ClothingHatCMO = шапочка главного врача
@@ -35,6 +36,25 @@ ent-ClothingHatQMBlackBeret = альтернативный берет кварт
     .desc = Берет главы отдела снабжения.
 ent-ClothingHatSanitar = шапочка санитара
     .desc = Головной убор маньяка из слэшера.
+ent-ClothingHatBotanist = ботаническая шляпа
+    .desc = Шляпа с широкими полями для работы на солнце.
+ent-ClothingHatCamouflage = камуфляжная шляпа
+    .desc = Камуфляжная шляпа.
+ent-ClothingHatClownCilinder = клоунский цилиндр
+    .desc = Забавный полосатый цилиндр.
+ent-ClothingHatCow = коровий шлем
+    .desc = Корова.
+ent-ClothingHatFishCookBandana = рыбная бандана повара
+    .desc = Бандана резчика рыбы.
+ent-ClothingHatCookHigh = высокий поварской колпак
+    .desc = Возможно, под ним прячется крыса.
+ent-ClothingHatCookInclined = наклоненный поварской колпак
+    .desc = Наклоненный поварской колпак.
+ent-ClothingHatJester = колпак шута
+    .desc = Старомодный клоунский колпак.
+ent-ClothingHatCookRed = красный поварской колпак
+    .desc = Красный поварской колпак.
+
 
 ent-ClothingHatFlyAgaric = шляпа-мухомор
     .desc = Головной убор, напоминающий шляпку ядовитого гриба.

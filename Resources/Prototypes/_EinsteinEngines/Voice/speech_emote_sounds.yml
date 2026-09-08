@@ -110,7 +110,7 @@
     Mew:
       collection: FelinidMews
     Growl:
-      collection: FelinidGrowls
+      collection: ShadowkinGrowls # Arcane-Edit: <- FelinidGrowls
     Purr:
       collection: FelinidPurrs
     Mars:
@@ -123,6 +123,10 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansMale
+    # Arcane-End
 
 - type: emoteSounds
   id: FemaleShadowkin
@@ -158,7 +162,7 @@
     Mew:
       collection: FelinidMews
     Growl:
-      collection: FelinidGrowls
+      collection: ShadowkinGrowls # Arcane-Edit: <- FelinidGrowls
     Purr:
       collection: FelinidPurrs
     Mars:
@@ -171,3 +175,7 @@
       path: /Audio/_Goobstation/Voice/surprised.ogg
     Belch: # Frontier
       collection: Belch # Frontier
+    # Arcane-Start
+    Moan:
+      collection: MoansFemale
+    # Arcane-End

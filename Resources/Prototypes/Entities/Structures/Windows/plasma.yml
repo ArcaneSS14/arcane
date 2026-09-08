@@ -3,7 +3,7 @@
 - type: entity
   id: PlasmaWindow
   name: plasma window
-  parent: [BaseDeltaPressurePlasma, WindowRCDResistant]
+  parent: WindowRCDResistant # Arcane-Edit
   components:
   - type: Sprite
     drawdepth: WallTops

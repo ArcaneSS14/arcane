@@ -169,12 +169,13 @@ public sealed class NavMapSystem : SharedNavMapSystem
 
     private void OnNavMapBeaconMapInit(EntityUid uid, NavMapBeaconComponent component, MapInitEvent args)
     {
-        if (component.DefaultText == null || component.Text != null)
-            return;
-
-        component.Text = Loc.GetString(component.DefaultText);
-        Dirty(uid, component);
-
+        // Arcane-Edit-Start
+        if (component.DefaultText != null && component.Text == null)
+        {
+            component.Text = Loc.GetString(component.DefaultText);
+            Dirty(uid, component);
+        }
+        // Arcane-Edit-End
         UpdateNavMapBeaconData(uid, component);
     }
 

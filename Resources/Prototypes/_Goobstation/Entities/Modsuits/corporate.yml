@@ -34,7 +34,7 @@
         back:
         - state: equipped-BACKPACK-sealed
         - state: equipped-BACKPACK-sealed-unshaded
-          shader: unshaded      
+          shader: unshaded
 
 - type: entity
   parent: [ClothingModsuitGauntletsStandard, BaseCentcommContraband]
@@ -286,7 +286,7 @@
           - id: WelderExperimental
           - id: Multitool
           - id: MedkitCombatFilled
-          
+
 #NCT
 - type: entity
   parent: [ClothingModsuitCorporate, ClothingModsuitStandard, BaseCentcommContraband]
@@ -417,4 +417,4 @@
           - id: PowerDrill
           - id: WelderExperimental
           - id: Multitool
-          - id: MedkitCombatFilled
+          - id: MedkitCombatStandardFilled # Arcane-Edit

@@ -116,6 +116,10 @@
     - id: CrateEmergencyBruteKit
     - id: CrateEmergencyO2Kit
     - id: CrateEmergencyRadiationKit
+    # Arcane-Start
+    - id: CrateCombatKit
+      weight: 0.5
+    # Arcane-End
     - id: CrateBodyBags
     - id: CrateChemistrySupplies
     - id: CrateChemistryP

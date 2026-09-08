@@ -398,7 +398,7 @@ public sealed class ListContainerButton : ContainerButton, IEntityControl
         AddStyleClass(StyleClassButton);
         Data = data;
         Index = index;
-        StyleBoxOverride = new StyleBoxFlat(Color.White);
+        // StyleBoxOverride = new StyleBoxFlat(Color.White); // Arcane-remove
         // AddChild(Background = new PanelContainer
         // {
         //     HorizontalExpand = true,

@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "cargo_walking",
+            "directions": 4
+        },
+        {
             "name": "cargo-rest",
             "directions": 4
         },

@@ -15,7 +15,21 @@
     minSyllables: 1 # Replacements are really short
     maxSyllables: 2
     replacement:
-    - click
-    - clack
-    - buzz
-    - bizz
+    # Arcane-Edit-Start
+    - цык
+    - цак
+    - цок
+    - ззык
+    - жжж
+    - ччик
+    - цыц
+    - тц
+    - тськ
+    - кц
+    - дзы
+    - вжж
+    - щик
+    - цви
+    - кшш
+    - цжж
+    # Arcane-Edit-End

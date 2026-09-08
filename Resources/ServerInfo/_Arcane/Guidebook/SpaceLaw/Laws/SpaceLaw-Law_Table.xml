@@ -1,8 +1,8 @@
 <Document>
   # Таблица законов
 
-  <Table Columns="6">
-    <ColorBox Color="#7f7f7f">
+  <Table Columns="7">
+    <ColorBox Color="#404040">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         Код
       </Box>
@@ -12,7 +12,7 @@
         1XX
       </Box>
     </ColorBox>
-    <ColorBox Color="#bf9821">
+    <ColorBox Color="#cf8a3c">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         2XX
       </Box>
@@ -22,7 +22,7 @@
         3XX
       </Box>
     </ColorBox>
-    <ColorBox Color="#af3c3c">
+    <ColorBox Color="#c74f55">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         4XX
       </Box>
@@ -32,248 +32,433 @@
         5XX
       </Box>
     </ColorBox>
+    <ColorBox Color="#555555">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        6XX
+      </Box>
+    </ColorBox>
 
-    <ColorBox Color="#7f7f7f">
+    <ColorBox Color="#404040">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         X00
       </Box>
     </ColorBox>
     <ColorBox Color="#138808">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Ущерб станции
+        § 100. Причинение вреда станции
       </Box>
     </ColorBox>
-    <ColorBox Color="#bf9821">
+    <ColorBox Color="#cf8a3c">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Мелкий саботаж
+        § 200. Мелкий саботаж
       </Box>
     </ColorBox>
     <ColorBox Color="#cc7500">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Саботаж
+        § 300. Саботаж
       </Box>
     </ColorBox>
-    <ColorBox Color="#af3c3c">
+    <ColorBox Color="#c74f55">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Грандиозный Саботаж
+        § 400. Участие в преступной организации
       </Box>
     </ColorBox>
     <ColorBox Color="#b11e13">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Вопиющий Саботаж
+        § 500. Измена корпорации
       </Box>
     </ColorBox>
+    <ColorBox Color="#222222">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center"></Box>
+    </ColorBox>
 
-    <ColorBox Color="#7f7f7f">
+    <ColorBox Color="#404040">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         X01
       </Box>
     </ColorBox>
     <ColorBox Color="#138808">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Неподобающее поведение
+        § 101. Мелкое хулиганство
       </Box>
     </ColorBox>
-    <ColorBox Color="#bf9821">
+    <ColorBox Color="#cf8a3c">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Антисоциальное поведение
+        § 201. Пропаганда запрещенных организаций
       </Box>
     </ColorBox>
     <ColorBox Color="#cc7500">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Суицид
+        § 301. Хулиганство
       </Box>
     </ColorBox>
-    <ColorBox Color="#af3c3c">
+    <ColorBox Color="#c74f55">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Похищение
+        § 401. Незаконное прослушивание закрытых каналов
       </Box>
     </ColorBox>
     <ColorBox Color="#b11e13">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Взятие заложников
+        § 501. Массовые беспорядки
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#555555">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 601. Терроризм
       </Box>
     </ColorBox>
 
-    <ColorBox Color="#7f7f7f">
+    <ColorBox Color="#404040">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         X02
       </Box>
     </ColorBox>
     <ColorBox Color="#138808">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Рукоприкладство
+        § 102. Побои
       </Box>
     </ColorBox>
-    <ColorBox Color="#bf9821">
+    <ColorBox Color="#cf8a3c">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Драка
+        § 202. Причинение легкого вреда здоровью
       </Box>
     </ColorBox>
     <ColorBox Color="#cc7500">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Нанесение увечий
+        § 302. Причинение среднего вреда здоровью
       </Box>
     </ColorBox>
-    <ColorBox Color="#af3c3c">
+    <ColorBox Color="#c74f55">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Нанесение тяжких увечий
+        § 402. Причинение тяжкого вреда здоровью
       </Box>
     </ColorBox>
     <ColorBox Color="#b11e13">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Убийство
+        § 502. Убийство второй степени
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#555555">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 602. Убийство первой степени
       </Box>
     </ColorBox>
 
-    <ColorBox Color="#7f7f7f">
+    <ColorBox Color="#404040">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         X03
       </Box>
     </ColorBox>
     <ColorBox Color="#138808">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 103. Неисполнение приказа руководителя
       </Box>
     </ColorBox>
-    <ColorBox Color="#bf9821">
+    <ColorBox Color="#cf8a3c">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Невыполнение прямого приказа
+        § 203. Воспрепятствование правосудию
       </Box>
     </ColorBox>
     <ColorBox Color="#cc7500">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Сопротивление законной власти
+        § 303. Воспрепятствование правосудию с отягчающими обстоятельствами
       </Box>
     </ColorBox>
-    <ColorBox Color="#af3c3c">
+    <ColorBox Color="#c74f55">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Мятеж
+        § 403. Незаконная забастовка
       </Box>
     </ColorBox>
     <ColorBox Color="#b11e13">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Нарушение трудового контракта
+        § 503. Неподчинение властям в ЧС
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#555555">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 603. Вооруженный мятеж
       </Box>
     </ColorBox>
 
-    <ColorBox Color="#7f7f7f">
+    <ColorBox Color="#404040">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         X04
       </Box>
     </ColorBox>
     <ColorBox Color="#138808">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 104. Мелкое злоупотребление
       </Box>
     </ColorBox>
-    <ColorBox Color="#bf9821">
+    <ColorBox Color="#cf8a3c">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Ношение или использование ограниченных предметов/химикатов
+        § 204. Халатность
       </Box>
     </ColorBox>
     <ColorBox Color="#cc7500">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Хранение запрещённой к использованию контрабанды/химикатов
+        § 304. Грубая халатность
       </Box>
     </ColorBox>
-    <ColorBox Color="#af3c3c">
+    <ColorBox Color="#c74f55">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Хранение контрабанды вражеской корпорации
+        § 404. Превышение полномочий
       </Box>
     </ColorBox>
     <ColorBox Color="#b11e13">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 504. Присвоение власти
       </Box>
     </ColorBox>
+    <ColorBox Color="#222222">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center"></Box>
+    </ColorBox>
 
-    <ColorBox Color="#7f7f7f">
+    <ColorBox Color="#404040">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         X05
       </Box>
     </ColorBox>
     <ColorBox Color="#138808">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Преследование
+        § 105. Организация азартных игр
       </Box>
     </ColorBox>
-    <ColorBox Color="#bf9821">
+    <ColorBox Color="#cf8a3c">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Домогательства
+        § 205. Развратные действия
       </Box>
     </ColorBox>
     <ColorBox Color="#cc7500">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Понуждение к действиям сексуального характера
+        § 305. Домогательства
       </Box>
     </ColorBox>
-    <ColorBox Color="#af3c3c">
+    <ColorBox Color="#c74f55">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Изнасилование
+        § 405. Похищение
       </Box>
     </ColorBox>
     <ColorBox Color="#b11e13">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 505. Изнасилование
       </Box>
     </ColorBox>
+    <ColorBox Color="#222222">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center"></Box>
+    </ColorBox>
 
-    <ColorBox Color="#7f7f7f">
+    <ColorBox Color="#404040">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         X06
       </Box>
     </ColorBox>
     <ColorBox Color="#138808">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 106. Мелкое хищение
       </Box>
     </ColorBox>
-    <ColorBox Color="#bf9821">
+    <ColorBox Color="#cf8a3c">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Кража имущества отдела
+        § 206. Кража
       </Box>
     </ColorBox>
     <ColorBox Color="#cc7500">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Кража имущества станции и вещей глав
+        § 306. Мошенничество
       </Box>
     </ColorBox>
-    <ColorBox Color="#af3c3c">
+    <ColorBox Color="#c74f55">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Крупная кража
+        § 406. Грабеж
       </Box>
     </ColorBox>
     <ColorBox Color="#b11e13">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Кража станционных объектов критической важности
+        § 506. Грабеж с отягчающими обстоятельствами
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#555555">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 606. Хищение особо важных объектов
       </Box>
     </ColorBox>
 
-    <ColorBox Color="#7f7f7f">
+    <ColorBox Color="#404040">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         X07
       </Box>
     </ColorBox>
     <ColorBox Color="#138808">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Незаконное пребывание в отсеке
+        § 107. Злоупотребление снаряжением
       </Box>
     </ColorBox>
-    <ColorBox Color="#bf9821">
+    <ColorBox Color="#cf8a3c">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Незаконное пребывание в ЗОД
+        § 207. Незаконное владение предметами 1-ой категории
       </Box>
     </ColorBox>
     <ColorBox Color="#cc7500">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Вторжение в отсек
+        § 307. Незаконное владение предметами 2-ой категории
       </Box>
     </ColorBox>
-    <ColorBox Color="#af3c3c">
+    <ColorBox Color="#c74f55">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Вторжение в ЗОД
+        § 407. Незаконное владение предметами 3-ей категории
       </Box>
     </ColorBox>
     <ColorBox Color="#b11e13">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 507. Владение контрабандным снаряжением
       </Box>
     </ColorBox>
-  </Table>
+    <ColorBox Color="#555555">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 607. Владение террористическим снаряжением
+      </Box>
+    </ColorBox>
 
+    <ColorBox Color="#404040">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        X08
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#138808">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 108. Вандализм
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#cf8a3c">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 208. Уничтожение имущества
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#cc7500">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 308. Повреждение корпоративного имущества
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#c74f55">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 408. Уничтожение корпоративного имущества
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#b11e13">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 508. Уничтожение важного имущества
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#222222">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center"></Box>
+    </ColorBox>
+
+    <ColorBox Color="#404040">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        X09
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#138808">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 109. Неуважение к суду
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#cf8a3c">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 209. Грубое неуважение к суду
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#cc7500">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 309. Побег и уклонение от правосудия
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#c74f55">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 409. Лжесвидетельство
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#b11e13">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 509. Неисполнение решения суда
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#555555">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 609. Побег из места пожизненного лишения свободы
+      </Box>
+    </ColorBox>
+
+    <ColorBox Color="#404040">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        X10
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#138808">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 110. Необоснованное посещение закрытого отсека или космоса
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#cf8a3c">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 210. Проникновение в отдел
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#cc7500">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 310. Проникновение в стратегическую точку
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#c74f55">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 410. Вторжение в стратегическую точку
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#b11e13">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 510. Проникновение на объект NanoTrasen с злым умыслом
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#555555">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        § 610. Пиратство
+      </Box>
+    </ColorBox>
+
+    <ColorBox Color="#222222">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center"></Box>
+    </ColorBox>
+    <ColorBox Color="#404040">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        ПРОСТУПОК
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#404040">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        ЛЕГКОЕ НАРУШЕНИЕ
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#404040">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        ТЯЖКОЕ НАРУШЕНИЕ
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#404040">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        ТЯЖКОЕ ПРЕСТУПЛЕНИЕ
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#404040">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        ОСОБО ТЯЖКОЕ ПРЕСТУПЛЕНИЕ
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#404040">
+      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
+        ОСОБЫЙ КЛАСС
+      </Box>
+    </ColorBox>
+
+  </Table>
 </Document>

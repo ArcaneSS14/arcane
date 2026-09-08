@@ -23,6 +23,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentRnd
+  alternateTitles:
+  - RoboticistMechatronicist
+  - RoboticistCyborgTechnician
   # Arcane-end
 
 - type: startingGear
@@ -45,3 +48,13 @@
     jumpsuit: ClothingUniformJumpsuitRoboticist
     shoes: ClothingShoesColorBlack
     id: RoboticistPDA
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: RoboticistMechatronicist
+  name: job-name-alt-roboticist-1
+
+- type: jobAlternateTitle
+  id: RoboticistCyborgTechnician
+  name: job-name-alt-roboticist-2
+# Arcane-End

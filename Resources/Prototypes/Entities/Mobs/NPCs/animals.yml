@@ -1463,9 +1463,11 @@
       sprite: /Textures/Mobs/Animals/monkey.rsi
       visible: false
       map: [ "enum.ToggleableVisuals.Layer" ]
-    - map: ["jumpsuit"]
+    # Arcane-Edit-Start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    # Arcane-Edit-End
+    - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: ["enum.HumanoidVisualLayers.Handcuffs"]
@@ -1558,6 +1560,7 @@
     - VimPilot
     - DoorBumpOpener
     - AnomalyHost
+    - XenobioSlimeFavoriteFood # Goobstation
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -1580,6 +1583,7 @@
   - type: Crawler
   - type: StatusIcon
   - type: DiseaseCarrier # Goobstation
+  - type: XenovacTarget # Goobstation - Xenobio
 
 - type: entity
   name: monkey
@@ -2161,7 +2165,7 @@
     lifetime: 60
   - type: Hunger
     baseDecayRate: 10 # always hungry
-    starvingSlowdownModifier: 1
+#    starvingSlowdownModifier: 1 # Arcane-Edit
   - type: Thirst
     baseDecayRate: 10 # always thirsty
 
@@ -4082,6 +4086,12 @@
     understands:
     - RootSpeak
     - TauCetiBasic
+  - type: VentCrawler # goob
+  - type: Carriable # goob
+  - type: PseudoItem # goob
+    storedOffset: 0,3
+    shape:
+    - 0,0,3,3
 
 - type: entity
   parent: MobDionaNymph

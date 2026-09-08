@@ -12,6 +12,10 @@
             "directions": 4
         },
         {
+            "name": "engineer_walking",
+            "directions": 4
+        },
+        {
             "name": "engineer-rest",
             "directions": 4
         },

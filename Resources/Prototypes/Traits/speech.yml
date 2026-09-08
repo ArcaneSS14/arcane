@@ -12,6 +12,7 @@
   components:
   - type: Accentless
     removes:
+    - type: OwOAccent # Arcane
     - type: LizardAccent
     - type: MothAccent
     - type: ReplacementAccent

@@ -32605,6 +32605,8 @@ entities:
   entities:
   - uid: 820
     components:
+    - type: PeriodicAnomalySpawner
+      chance: 0
     - type: Transform
       pos: -3.5,-23.5
       parent: 1668

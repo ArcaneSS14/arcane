@@ -22,6 +22,7 @@
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Resomi.xml"
   pros:
   - Невосприимчивы к урону от холода и другим воздействиям.
+  - Бегают немного быстрее человека.
   special:
   - Могут поместится в вещмешок.
   cons:

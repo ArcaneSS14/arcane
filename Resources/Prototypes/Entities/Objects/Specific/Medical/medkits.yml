@@ -10,6 +10,12 @@
     sprite: Objects/Specific/Medical/firstaidkits.rsi
     state: firstaid
   - type: Storage
+    # Arcane-Start
+    storageInsertSound:
+      path: /Audio/_Arcane/Items/Storage/medkit_rustle.ogg
+    storageOpenSound:
+      path: /Audio/_Arcane/Items/Storage/medkit_open.ogg
+    # Arcane-End
     maxItemSize: Small
     grid:
     - 0,0,3,1
@@ -17,6 +23,17 @@
     size: Large
     sprite: Objects/Specific/Medical/firstaidkits.rsi
     heldPrefix: firstaid
+  # Arcane-Start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Arcane/Items/Storage/medkit_pick_up.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Arcane/Items/Storage/medkit_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Arcane/Items/Storage/medkit_drop.ogg
+  # Arcane-End
   - type: PhysicalComposition #Goobstation - Recycle update
     materialComposition:
       Plastic: 75
@@ -81,7 +98,7 @@
   - type: Storage # Shitmed Change
     maxItemSize: Small
     grid:
-    - 0,0,5,1
+    - 0,0,6,1 # Arcane-edit: 0,0,5,1 > 0,0,6,1
 
 - type: entity
   name: radiation treatment kit

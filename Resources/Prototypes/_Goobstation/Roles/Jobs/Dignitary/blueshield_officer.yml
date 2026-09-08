@@ -17,10 +17,12 @@
       time: 90000 # 25 hours
     - !type:AgeRequirement
       requiredAge: 21
-    - !type:SpeciesRequirement # Goob - None Felinid
-      inverted: true
-      species:
-      - Felinid
+      # Arcane-start
+    # - !type:SpeciesRequirement # Goob - None Felinid
+      # inverted: true
+      # species:
+      # - Felenid
+      # Arcane-end
 #  guides: # Orion-Edit: Removed because dont have this SOP
 #  - BlueshieldOfficerSOP
 #  - Command
@@ -69,6 +71,9 @@
   # Arcane-start
   contracts:
   - DocumentContractEmploymentDSO
+  alternateTitles:
+  - BlueshieldBodyguard
+  - BlueshieldVanguard
   # Arcane-end
 
 - type: startingGear
@@ -101,3 +106,13 @@
     id: BlueshieldPDA
     back: ClothingBackpackBlueshield
     shoes: ClothingShoesBootsJack
+
+# Arcane-Start
+- type: jobAlternateTitle
+  id: BlueshieldBodyguard
+  name: job-name-alt-blueshield-1
+
+- type: jobAlternateTitle
+  id: BlueshieldVanguard
+  name: job-name-alt-blueshield-2
+# Arcane-End
