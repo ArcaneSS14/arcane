@@ -27,6 +27,7 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: [self-hosted, linux, x64, arcane-publish]
     permissions:
       actions: read
@@ -35,7 +36,6 @@ jobs:
     env:
       ROBUST_CDN_URL: http://127.0.0.1:8080/
       NO_PROXY: 127.0.0.1,localhost
-      DOTNET_INSTALL_DIR: ${{ runner.temp }}/dotnet
 
     steps:
     - name: Fail if we are attempting to run on the master branch
@@ -106,6 +106,8 @@ jobs:
     - name: Setup .NET
       if: ${{ steps.check-dotnet.outputs.available != 'true' }}
       uses: actions/setup-dotnet@v4
+      env:
+        DOTNET_INSTALL_DIR: ${{ runner.temp }}/dotnet
       with:
         dotnet-version: 10.0.x
 
