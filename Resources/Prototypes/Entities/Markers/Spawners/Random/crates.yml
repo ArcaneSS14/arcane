@@ -66,6 +66,7 @@
     - id: CrateMaterialBasicResource
     - id: CrateMaterialRandom
       weight: 4
+    - id: CrateFunSprayPaints # Arcane
 
 - type: entityTable
   id: LowValueEmergencyCrateTable

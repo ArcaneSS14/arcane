@@ -97,8 +97,10 @@ namespace Content.Server.Storage.EntitySystems
                 QueueDel(uid);
             }
 
-            if (entityToPlaceInHands != null)
-                _hands.PickupOrDrop(args.User, entityToPlaceInHands.Value);
+            // Arcane-Edit-Start
+            if (entityToPlaceInHands is { } spawned)
+                _hands.PickupOrDrop(args.User, spawned);
+            // Arcane-Edit-End
 
             args.Handled = true;
         }

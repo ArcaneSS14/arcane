@@ -49,6 +49,11 @@
   - type: Construction # Frontier
     graph: FiresGraph # Frontier
     node: BonfireNode # Frontier
+  # Arcane-Start
+  - type: Tag
+    tags:
+      - NoPaint
+  # Arcane-End
 
 - type: entity
   parent: BaseBonfire

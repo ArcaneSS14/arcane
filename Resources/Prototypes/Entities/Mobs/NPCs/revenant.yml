@@ -97,6 +97,7 @@
     tags:
     - SlowImmune
     - KnockdownImmune
+    - NoPaint # Arcane
   - type: WeakToHoly # Goobstation Shitchap
     alwaysTakeHoly: true
   - type: GlobalAntagonist # Orion

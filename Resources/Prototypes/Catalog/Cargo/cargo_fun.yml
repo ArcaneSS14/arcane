@@ -390,3 +390,15 @@
   cost: 1000
   category: cargoproduct-category-name-fun
   group: market
+
+# Arcane-Start
+- type: cargoProduct
+  id: FunSprayPaints
+  icon:
+    sprite: Objects/Fun/spraycans.rsi
+    state: death2_cap
+  product: CrateFunSprayPaints
+  cost: 2000
+  category: Fun
+  group: market
+# Arcane-End

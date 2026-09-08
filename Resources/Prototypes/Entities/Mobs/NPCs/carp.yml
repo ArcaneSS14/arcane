@@ -80,6 +80,7 @@
         - Carp
         - DoorBumpOpener
         - CannotSuicide
+        - NoPaint # Arcane
     # - type: ReplacementAccent
     #   accent: genericAggressive
     - type: LanguageKnowledge # goob edit - swap replacement accent for language

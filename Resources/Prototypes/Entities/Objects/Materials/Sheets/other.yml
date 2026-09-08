@@ -16,6 +16,7 @@
     - Sheet
     - ConstructionMaterial
     - DroneUsable # Goobstation
+    - NoPaint # Arcane
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -114,6 +115,7 @@
   - type: Tag # Goobstation
     tags:
     - SheetPlasma # Goobstation
+    - NoPaint # Arcane
 
 - type: entity
   parent: SheetPlasma
@@ -148,6 +150,7 @@
     - Sheet
     - ConstructionMaterial
     - DroneUsable # Goobstation
+    - NoPaint # Arcane
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -267,6 +270,7 @@
       tags:
       - Sheet
       - DroneUsable # Goobstation
+      - NoPaint # Arcane
     - type: Material
     - type: PhysicalComposition
       materialComposition:

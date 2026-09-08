@@ -75,6 +75,7 @@
     cleanDelay: 12
   - type: Residue
     residueAdjective: residue-slippery
+  - type: PaintRemover # Arcane
 
 - type: entity
   parent: BaseSoap

@@ -30,6 +30,7 @@
   - type: Tag # Goobstation
     tags:
       - Holosign
+      - NoPaint # Arcane
 
 - type: entity
   id: HoloFan

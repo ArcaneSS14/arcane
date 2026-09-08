@@ -19,6 +19,7 @@
     - Metal
     - ConstructionMaterial
     - DroneUsable # Goobstation
+    - NoPaint # Arcane
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic

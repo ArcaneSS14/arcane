@@ -187,6 +187,12 @@
       prob: 0.15
     - id: ClothingOuterArmorRU6B2Vest # Goobstation
       prob: 0.04
+    # Arcane-Start
+    - id: DeathPaint
+      prob: 0.05
+    - id: DeathPaintTwo
+      prob: 0.05
+    # Arcane-End
     # Tools
     - !type:NestedSelector
       tableId: MaintToolsTable

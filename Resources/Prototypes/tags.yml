@@ -1629,6 +1629,11 @@
 - type: Tag
   id: XenoborgModuleStealth # Cyborg module category for evil stealth xenoborg
 
+# Arcane-Start
+- type: Tag
+  id: NoPaint
+# Arcane-End
+
 ## Y ##
 ## Z ##
 # ALPHABETICAL

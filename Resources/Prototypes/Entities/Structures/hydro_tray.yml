@@ -99,6 +99,11 @@
     guides:
     - Botany
     - Chemicals
+  # Arcane-Start
+  - type: Tag
+    tags:
+      - NoPaint
+  # Arcane-End
 
 - type: entity
   parent: hydroponicsTray

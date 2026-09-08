@@ -20,6 +20,7 @@
     - ConstructionMaterial
     - SheetGlass # Goobstation
     - DroneUsable # Goobstation
+    - NoPaint # Arcane
   - type: Material
   - type: Damageable
     damageContainer: Inorganic

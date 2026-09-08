@@ -22,6 +22,7 @@
   - type: Tag
     tags:
       - DroneUsable # Goobstation
+      - NoPaint # Arcane
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
