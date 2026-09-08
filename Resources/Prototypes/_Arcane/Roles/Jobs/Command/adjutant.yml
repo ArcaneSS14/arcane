@@ -49,7 +49,9 @@
   contracts:
   - DocumentContractEmploymentCommand
   alternateTitles:
-  - AdjutantCommandSecretary
+  - AdjutantAide
+  - AdjutantExecutiveAssistant
+  - AdjutantCounsel
 
 - type: startingGear
   id: AdjutantGear
@@ -74,5 +76,13 @@
     neck: ClothingNeckMantleAdjutant
 
 - type: jobAlternateTitle
-  id: AdjutantCommandSecretary
+  id: AdjutantAide
   name: job-name-alt-adjutant-1
+
+- type: jobAlternateTitle
+  id: AdjutantExecutiveAssistant
+  name: job-name-alt-adjutant-2
+
+- type: jobAlternateTitle
+  id: AdjutantCounsel
+  name: job-name-alt-adjutant-3

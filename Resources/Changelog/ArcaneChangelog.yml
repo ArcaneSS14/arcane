@@ -1058,3 +1058,33 @@ Entries:
   id: 87
   time: '2026-09-07T07:17:56.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/312
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлена роль призрака "Невидимка"
+  id: 88
+  time: '2026-09-07T10:02:41.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/310
+- author: Kinar
+  changes:
+    - type: Add
+      message: 'Добавлено веселье. Психомаляр. Краскопульт с бесконечным зарядом '
+  id: 89
+  time: '2026-09-07T10:09:17.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/302
+- author: HappyRoach
+  changes:
+    - type: Tweak
+      message: Жуткая Эссенция из фляги Еретика лечит сильнее.
+  id: 90
+  time: '2026-09-07T14:07:53.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/308
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Голос пилота меха озвучивается со специальным эффектом
+    - type: Add
+      message: ИИ может менять себе голос
+  id: 91
+  time: '2026-09-08T04:43:50.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/317

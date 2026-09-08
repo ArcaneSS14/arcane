@@ -57,7 +57,8 @@
   - DocumentContractEmploymentCommand
   alternateTitles:
   - ChiefEngineerHeadOfEngineering
-  - ChiefEngineerChiefEngineer
+  - ChiefEngineerEngineeringForeman
+  - ChiefEngineerEngineeringSupervisor
   # Arcane-End
 
 - type: startingGear
@@ -90,6 +91,10 @@
   name: job-name-alt-ce-1
 
 - type: jobAlternateTitle
-  id: ChiefEngineerChiefEngineer
+  id: ChiefEngineerEngineeringForeman
   name: job-name-alt-ce-2
+
+- type: jobAlternateTitle
+  id: ChiefEngineerEngineeringSupervisor
+  name: job-name-alt-ce-3
 # Arcane-End

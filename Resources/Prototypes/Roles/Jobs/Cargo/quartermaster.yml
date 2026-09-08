@@ -56,7 +56,9 @@
   contracts:
   - DocumentContractEmploymentCommand
   alternateTitles:
-  - QuartermasterSupplyDirector
+  - QuartermasterRequisitionsOfficer
+  - QuartermasterDeckChief
+  - QuartermasterWarehouseSupervisor
   - QuartermasterSupplyForeman
   - QuartermasterLogisticsCoordinator
   # Arcane-End
@@ -87,14 +89,26 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: QuartermasterSupplyDirector
+  id: QuartermasterRequisitionsOfficer
   name: job-name-alt-qm-1
 
 - type: jobAlternateTitle
-  id: QuartermasterSupplyForeman
+  id: QuartermasterDeckChief
   name: job-name-alt-qm-2
+  femaleName: job-name-alt-qm-2-f
+  maleName: job-name-alt-qm-2-m
+
+- type: jobAlternateTitle
+  id: QuartermasterWarehouseSupervisor
+  name: job-name-alt-qm-3
+  femaleName: job-name-alt-qm-3-f
+  maleName: job-name-alt-qm-3-m
+
+- type: jobAlternateTitle
+  id: QuartermasterSupplyForeman
+  name: job-name-alt-qm-4
 
 - type: jobAlternateTitle
   id: QuartermasterLogisticsCoordinator
-  name: job-name-alt-qm-3
+  name: job-name-alt-qm-5
 # Arcane-End

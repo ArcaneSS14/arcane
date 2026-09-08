@@ -32,7 +32,6 @@
   - CargoTechnicianCourier
   - CargoTechnicianPilot
   - CargoTechnicianClerk
-  - CargoTechnicianOrderingSpecialist
   # Arcane-end
 
 - type: startingGear
@@ -67,8 +66,4 @@
 - type: jobAlternateTitle
   id: CargoTechnicianClerk
   name: job-name-alt-cargotech-3
-
-- type: jobAlternateTitle
-  id: CargoTechnicianOrderingSpecialist
-  name: job-name-alt-cargotech-4
 # Arcane-End

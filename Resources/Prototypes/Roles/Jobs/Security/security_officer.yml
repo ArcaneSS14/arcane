@@ -40,6 +40,7 @@
   contracts:
   - DocumentContractEmploymentSecurity
   alternateTitles:
+  - SecurityOfficerHallMonitor
   - SecurityOfficerOperative
   - SecurityOfficerSpecialist
   # Arcane-end
@@ -67,10 +68,14 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: SecurityOfficerOperative
+  id: SecurityOfficerHallMonitor
   name: job-name-alt-secoff-1
 
 - type: jobAlternateTitle
-  id: SecurityOfficerSpecialist
+  id: SecurityOfficerOperative
   name: job-name-alt-secoff-2
+
+- type: jobAlternateTitle
+  id: SecurityOfficerSpecialist
+  name: job-name-alt-secoff-3
 # Arcane-End

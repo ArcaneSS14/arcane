@@ -36,6 +36,7 @@
   - ServiceWorkerJuniorCook
   - ServiceWorkerBartenderApprentice
   - ServiceWorkerCroupier
+  - ServiceWorkerSteward
   # Arcane-end
 
 - type: startingGear
@@ -75,4 +76,8 @@
 - type: jobAlternateTitle
   id: ServiceWorkerCroupier
   name: job-name-alt-serviceworker-4
+
+- type: jobAlternateTitle
+  id: ServiceWorkerSteward
+  name: job-name-alt-serviceworker-5
 # Arcane-End

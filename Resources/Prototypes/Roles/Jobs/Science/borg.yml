@@ -22,7 +22,6 @@
   alternateTitles:
   - StationAiAutomatedOverseer
   - StationAiStationIntelligence
-  - StationAiCentralAi
   # Arcane-end
 
 - type: job
@@ -44,7 +43,6 @@
   - BorgCyborg
   - BorgAndroid
   - BorgRobot
-  - BorgUnit
   # Arcane-end
 
 # Arcane-Start
@@ -57,10 +55,6 @@
   name: job-name-alt-stationai-2
 
 - type: jobAlternateTitle
-  id: StationAiCentralAi
-  name: job-name-alt-stationai-3
-
-- type: jobAlternateTitle
   id: BorgCyborg
   name: job-name-alt-borg-1
 
@@ -71,8 +65,4 @@
 - type: jobAlternateTitle
   id: BorgRobot
   name: job-name-alt-borg-3
-
-- type: jobAlternateTitle
-  id: BorgUnit
-  name: job-name-alt-borg-4
 # Arcane-End

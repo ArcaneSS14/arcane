@@ -50,6 +50,7 @@
   contracts:
   - DocumentContractEmploymentCommand
   alternateTitles:
+  - RDResearchLead
   - RDScienceDirector
   # Arcane-End
 
@@ -78,6 +79,10 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: RDScienceDirector
+  id: RDResearchLead
   name: job-name-alt-rd-1
+
+- type: jobAlternateTitle
+  id: RDScienceDirector
+  name: job-name-alt-rd-2
 # Arcane-End

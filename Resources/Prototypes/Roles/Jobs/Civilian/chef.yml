@@ -42,6 +42,7 @@
   alternateTitles:
   - ChefSousChef
   - ChefLineCook
+  - ChefNutritionist
   # Arcane-end
 
 - type: startingGear
@@ -75,4 +76,10 @@
 - type: jobAlternateTitle
   id: ChefLineCook
   name: job-name-alt-chef-2
+
+- type: jobAlternateTitle
+  id: ChefNutritionist
+  name: job-name-alt-chef-3
+  femaleName: job-name-alt-chef-3-f
+  maleName: job-name-alt-chef-3-m
 # Arcane-End
