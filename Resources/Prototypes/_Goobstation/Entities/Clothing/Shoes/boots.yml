@@ -20,11 +20,9 @@
     tags:
     - WhitelistChameleon
   # Arcane-Edit-Start
-  - type: ComponentToggler
-    components:
-    - type: FootstepModifier
-      footstepSoundCollection:
-        collection: FootstepHeavySuit
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSilence
   # Arcane-Edit-End
 
 - type: entity

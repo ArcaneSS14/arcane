@@ -79,6 +79,12 @@
   - type: Clothing
     clothingVisuals:
       back: []
+
+- type: entity
+  parent: ClothingBackpackBluespace
+  id: ClothingBackpackBluespaceERT
+  suffix: ERT
+  components:
   - type: Storage
     grid:
     - 0,0,8,3
