@@ -5,6 +5,11 @@
     ClothingUniformJumpskirtMaidLong: 3
     ClothingUniformJumpskirtMaidPink: 3
     ClothingUniformJumpskirtSexyDress: 3
+    ClothingUniformDressCommandMaid: 3
+    ClothingUniformJumpskirtJanimaid: 3
+    ClothingUniformJumpskirtJanimaidmini: 3
+    ClothingUniformJumpskirtElegantMaid: 3
+    ClothingUniformMajordomCommandMaid: 3
     ClothingUniformJumpskirtSuccubusBlack: 2
     ClothingUniformJumpskirtSuccubusWhite: 2
     ClothingUniformJumpskirtTangoDress: 3
@@ -35,3 +40,28 @@
     ClothingHeadBlackVeil: 2
     ClothingHeadBeerVeil: 2
     ClothingUniformDressesWithFlowers: 2
+    ClothingUniformJumpskirtPurpleElegantDress: 2
+    ClothingUniformJumpskirtBlueElegantDress: 2
+    ClothingUniformJumpskirtGreenElegantDress: 2
+    ClothingUniformJumpskirtRedElegantDress: 2
+    ClothingUniformJumpskirtBlackElegantDress: 2
+    ClothingUniformJumpskirtOrangeStripedDress: 2
+    ClothingUniformJumpskirtPinkStripedDress: 2
+    ClothingUniformJumpskirtGreenStripedDress: 2
+    ClothingUniformJumpskirtRedStripedDress: 2
+    ClothingUniformJumpskirtCyanStripedDress: 2
+    ClothingUniformJumpskirtYellowTurtleneckDress: 2
+    ClothingUniformJumpskirtGreenTurtleneckDress: 2
+    ClothingUniformJumpskirtRedTurtleneckDress: 2
+    ClothingUniformJumpskirtPurpleTurtleneckDress: 2
+    ClothingUniformJumpskirtBlueTurtleneckDress: 2
+    ClothingHeadHatCommandMaid: 2
+    ClothingHeadHatBowsCommandMaid: 2
+    ClothingHeadHatBlackCommandMaid: 2
+    ClothingNeckTieBowCommandMaid: 2
+    ClothingNeckShortTieCommandMaid: 2
+    ClothingNeckMediumTieCommandMaid: 2
+    ClothingHandsGlovesCommandMaid: 4
+    ClothingShoesBootsJackTallHeels: 4
+    ClothingShoesBootsLaceup: 4
+    ClothingShoesBootsCommandMaid: 4
