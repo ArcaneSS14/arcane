@@ -1188,3 +1188,12 @@ Entries:
   id: 99
   time: '2026-09-09T21:54:33.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/329
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: >-
+        Добавлена резервация слота после выхода из игры. При перезаходе в
+        течение 30-ти секунд вы не попадёте в очередь. 
+  id: 100
+  time: '2026-09-09T21:56:17.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/330
