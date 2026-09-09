@@ -21,7 +21,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.Systems.Guidebook;
 
-public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyState>, IOnStateEntered<GameplayState>, IOnStateExited<LobbyState>, IOnStateExited<GameplayState>, IOnSystemChanged<GuidebookSystem>
+public sealed partial class GuidebookUIController : UIController, IOnStateEntered<LobbyState>, IOnStateEntered<GameplayState>, IOnStateExited<LobbyState>, IOnStateExited<GameplayState>, IOnSystemChanged<GuidebookSystem> // Arcane-edit
 {
     [UISystemDependency] private readonly GuidebookSystem _guidebookSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -50,6 +50,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
 
         // setup window
         _guideWindow = UIManager.CreateWindow<GuidebookWindow>();
+        ConfigureWorkspaceWindow(_guideWindow, true); // Arcane
         _guideWindow.OnClose += OnWindowClosed;
         _guideWindow.OnOpen += OnWindowOpen;
 
@@ -80,6 +81,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
 
     private void HandleStateExited()
     {
+        CloseWorkspaceWindows(); // Arcane
         if (_guideWindow == null)
             return;
 
@@ -210,9 +212,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         }
         _guideWindow.UpdateGuides(guides, rootEntries, forceRoot, selected);
 
-        // Expand up to depth-2.
-        _guideWindow.Tree.SetAllExpanded(false);
-        _guideWindow.Tree.SetAllExpanded(true, 1);
+        // Arcane-remove: the workspace restores expansion state per category.
 
         _guideWindow.OpenCenteredRight();
     }

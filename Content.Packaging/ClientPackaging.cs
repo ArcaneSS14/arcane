@@ -64,13 +64,19 @@ public static class ClientPackaging
         var graph = new RobustClientAssetGraph();
         pass.Dependencies.Add(new AssetPassDependency(graph.Output.Name));
 
+        // Arcane-Start
+        var passes = graph.AllPasses.Where(p => p != graph.MergePrototypeDirectories).ToArray();
+        graph.Output.Dependencies.Remove(graph.Output.Dependencies.Single(
+            dependency => dependency.Name == graph.MergePrototypeDirectories.Name));
+        // Arcane-End
+
         var dropSvgPass = new AssetPassFilterDrop(f => f.Path.EndsWith(".svg"))
         {
             Name = "DropSvgPass",
         };
         dropSvgPass.AddDependency(graph.Input).AddBefore(graph.PresetPasses);
 
-        AssetGraph.CalculateGraph([pass, dropSvgPass, ..graph.AllPasses], logger);
+        AssetGraph.CalculateGraph([pass, dropSvgPass, ..passes], logger); // Arcane-edit
 
         var inputPass = graph.Input;
 

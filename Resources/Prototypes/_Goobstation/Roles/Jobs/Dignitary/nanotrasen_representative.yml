@@ -91,6 +91,7 @@
   - NTRepLiason
   - NTRepAuditor
   - NTRepConsultant
+  - NTRepCorporateAdvisor
   # Arcane-end
 
 - type: startingGear
@@ -134,4 +135,8 @@
 - type: jobAlternateTitle
   id: NTRepConsultant
   name: job-name-alt-ntrep-3
+
+- type: jobAlternateTitle
+  id: NTRepCorporateAdvisor
+  name: job-name-alt-ntrep-4
 # Arcane-End
