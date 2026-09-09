@@ -31,7 +31,6 @@ public sealed class HeadsetChannelMuteSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<HeadsetComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<HeadsetComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<HeadsetComponent, HeadsetChannelMuteMessage>(OnToggleMute);
         SubscribeLocalEvent<HeadsetComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
@@ -50,16 +49,13 @@ public sealed class HeadsetChannelMuteSystem : EntitySystem
         return _mutedFrequencies.TryGetValue(userId, out var muted) && muted.Contains(frequency);
     }
 
-    private void OnComponentInit(Entity<HeadsetComponent> ent, ref ComponentInit args)
-    {
-        _ui.SetUi(ent.Owner, HeadsetChannelUiKey.Key,
-            new InterfaceData("HeadsetChannelBoundUserInterface", interactionRange: 0, requireInputValidation: false));
-    }
-
     private void OnGetVerbs(EntityUid uid, HeadsetComponent component, GetVerbsEvent<Verb> args)
     {
         if (!args.CanAccess || !args.CanInteract || args.Hands == null)
             return;
+
+        _ui.SetUi(uid, HeadsetChannelUiKey.Key,
+            new InterfaceData("HeadsetChannelBoundUserInterface", interactionRange: 0, requireInputValidation: false));
 
         var verb = new Verb
         {
@@ -96,7 +92,8 @@ public sealed class HeadsetChannelMuteSystem : EntitySystem
 
         var frequency = args.Frequency;
         if (!TryComp<EncryptionKeyHolderComponent>(ent.Owner, out var keys)
-            || !keys.Channels.Any(channel => _prototypes.Index(channel).Frequency == frequency))
+            || !keys.Channels.Any(channel =>
+                _prototypes.TryIndex(channel, out var proto) && proto.Frequency == frequency))
             return;
 
         var userId = actor.PlayerSession.UserId;
@@ -105,11 +102,11 @@ public sealed class HeadsetChannelMuteSystem : EntitySystem
 
         if (args.Muted)
         {
-            if (muted.Count < keys.Channels.Count)
-                muted.Add(args.Frequency);
+            if (muted.Count < _prototypes.Count<RadioChannelPrototype>())
+                muted.Add(frequency);
         }
         else
-            muted.Remove(args.Frequency);
+            muted.Remove(frequency);
 
         UpdateUiState(ent, args.Actor);
     }
