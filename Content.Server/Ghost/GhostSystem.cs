@@ -531,11 +531,13 @@ namespace Content.Server.Ghost
 
                 var playerDepartmentId = _prototypeManager.Index<DepartmentPrototype>("Specific").ID;
                 var playerJobName = Loc.GetString("generic-unknown-title");
+                var playerJobIcon = "JobIconUnknown"; // Arcane
 
                 if (_jobs.MindTryGetJob(mindContainer.Mind ?? mindContainer.LastMindStored,
                         out var jobPrototype))
                 {
                     playerJobName = Loc.GetString(jobPrototype.Name);
+                    playerJobIcon = jobPrototype.Icon; // Arcane
 
                     if (_jobs.TryGetDepartment(jobPrototype.ID, out var departmentPrototype))
                     {
@@ -553,6 +555,7 @@ namespace Content.Server.Ghost
                     Comp<MetaDataComponent>(entity).EntityName,
                     playerJobName,
                     playerDepartmentId,
+                    playerJobIcon,
                     HasComp<GhostComponent>(entity),
                     isLeft,
                     isDead,
