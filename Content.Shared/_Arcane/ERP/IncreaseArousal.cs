@@ -21,7 +21,7 @@ public sealed partial class IncreaseArousalSystem : EntityEffectSystem<ArousalCo
         if (amount <= 0f)
             return;
 
-        _arousal.AddArousal(entity.Owner, amount, entity.Comp);
+        _arousal.AddArousal(entity.Owner, amount, entity.Comp, ignoreErpPreference: true);
         _erpPanel.ProccessMoan(entity.Owner, 15);
     }
 }
