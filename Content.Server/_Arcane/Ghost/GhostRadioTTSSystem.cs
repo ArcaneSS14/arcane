@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
 using Content.Shared.Ghost;
 using Robust.Shared.GameObjects;
 
@@ -15,14 +14,11 @@ public sealed class GhostRadioTTSSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ActionsComponent, ComponentInit>(OnActionsComponentInit);
+        SubscribeLocalEvent<GhostComponent, ComponentInit>(OnGhostComponentInit);
     }
 
-    private void OnActionsComponentInit(EntityUid uid, ActionsComponent component, ComponentInit args)
+    private void OnGhostComponentInit(EntityUid uid, GhostComponent component, ComponentInit args)
     {
-        if (!HasComp<GhostComponent>(uid))
-            return;
-
         EntityUid? actionId = null;
         _actions.AddAction(uid, ref actionId, ToggleGhostRadioTTSAction);
     }
