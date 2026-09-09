@@ -194,7 +194,7 @@ public sealed class PaintSystem : SharedPaintSystem
             || !_solutionContainer.TryGetSolution(reagent.Owner, reagent.Comp.Solution, out _, out var solution))
             return false;
 
-        var available = _solutionContainer.GetTotalPrototypeQuantity(reagent.Owner, reagent.Comp.Reagent);
+        var available = solution.GetTotalPrototypeQuantity(reagent.Comp.Reagent);
         if (available < reagent.Comp.ConsumptionUnit)
             return false;
 

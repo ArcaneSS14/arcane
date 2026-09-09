@@ -1,3 +1,4 @@
+using Content.Client.Items.Systems;
 using Robust.Client.GameObjects;
 using static Robust.Client.GameObjects.SpriteComponent;
 using Content.Shared.Clothing;
@@ -13,6 +14,7 @@ public sealed class PaintedVisualizerSystem : VisualizerSystem<ArcanePaintedComp
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly ItemSystem _itemSystem = default!;
 
 
     public override void Initialize()
@@ -20,10 +22,16 @@ public sealed class PaintedVisualizerSystem : VisualizerSystem<ArcanePaintedComp
         base.Initialize();
 
         SubscribeLocalEvent<ArcanePaintedComponent, HeldVisualsUpdatedEvent>(OnHeldVisualsUpdated);
+        SubscribeLocalEvent<ArcanePaintedComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ArcanePaintedComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ArcanePaintedComponent, EquipmentVisualsUpdatedEvent>(OnEquipmentVisualsUpdated);
     }
 
+
+    private void OnStartup(EntityUid uid, ArcanePaintedComponent component, ComponentStartup args)
+    {
+        _itemSystem.VisualsChanged(uid);
+    }
 
     protected override void OnAppearanceChange(EntityUid uid, ArcanePaintedComponent component, ref AppearanceChangeEvent args)
     {
@@ -82,6 +90,7 @@ public sealed class PaintedVisualizerSystem : VisualizerSystem<ArcanePaintedComp
         }
 
         component.LayerColors.Clear();
+        _itemSystem.VisualsChanged(uid);
     }
 
     private void OnHeldVisualsUpdated(EntityUid uid, ArcanePaintedComponent component, HeldVisualsUpdatedEvent args) =>

@@ -40,7 +40,4 @@ public sealed partial class PaintComponent : Component
     /// Reagent consumption per use
     [DataField]
     public FixedPoint2 ConsumptionUnit = FixedPoint2.New(5);
-
-    [DataField]
-    public TimeSpan DurationPerUnit = TimeSpan.FromSeconds(6);
 }
