@@ -141,6 +141,7 @@ public abstract class SharedSingularitySystem : EntitySystem
                 eventHorizon.SuppressFieldConsumption = false;
                 eventHorizon.SuppressFieldConsumptionUntil = TimeSpan.MaxValue;
             }
+        // Arcane-Edit-End
         }
 
         if (TryComp<PhysicsComponent>(uid, out var body))
@@ -163,7 +164,6 @@ public abstract class SharedSingularitySystem : EntitySystem
         if (singularity.Level <= 0)
             QueueDel(uid);
     }
-        // Arcane-Edit-End
 
     /// <summary>
     /// Alerts the entity hosting the singularity that the level of the singularity has changed without the level actually changing.
