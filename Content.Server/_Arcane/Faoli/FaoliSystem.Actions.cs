@@ -11,6 +11,8 @@ using Content.Server.Temperature.Systems;
 using Content.Shared.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared._Shitmed.Targeting;
+using Content.Shared._Arcane.Faoli;
+using Content.Shared._Arcane.Faoli.Components;
 
 namespace Content.Server._Arcane.Faoli;
 
@@ -38,7 +40,7 @@ public sealed partial class FaoliSystem
         if (args.Handled)
             return;
 
-        if (!UseAbility(args.Performer, args.Cost))
+        if (!_faoli.TryCheckFaoliAmount(args.Performer, args.Cost))
         {
             args.Handled = true;
             return;
@@ -50,6 +52,7 @@ public sealed partial class FaoliSystem
             QueueDel(ent);
             _popup.PopupEntity(Loc.GetString("faoli-no-hands"), args.Performer, args.Performer);
             args.Handled = true;
+
             return;
         }
 
@@ -68,6 +71,12 @@ public sealed partial class FaoliSystem
             timedDespawn.Lifetime = args.TimedDespawn;
         }
 
+        if (!OnUseAbility(args.Performer, args.Cost))
+        {
+            args.Handled = true;
+            return;
+        }
+
         args.Handled = true;
     }
 
@@ -82,13 +91,19 @@ public sealed partial class FaoliSystem
             return;
         }
 
-        if (!UseAbility(args.Performer, args.Cost))
+        if (!_faoli.TryCheckFaoliAmount(args.Performer, args.Amount + args.Cost))
         {
             args.Handled = true;
             return;
         }
 
-        if (!TransferFaoli(args.Performer, args.Target, args.Amount))
+        if (!OnUseAbility(args.Performer, args.Cost))
+        {
+            args.Handled = true;
+            return;
+        }
+
+        if (!TryTransferFaoli(args.Performer, args.Target, args.Amount))
         {
             args.Handled = true;
             return;
@@ -123,7 +138,7 @@ public sealed partial class FaoliSystem
             return;
         }
 
-        if (!UseAbility(args.Performer, args.Cost))
+        if (!OnUseAbility(args.Performer, args.Cost))
         {
             args.Handled = true;
             return;
@@ -148,7 +163,7 @@ public sealed partial class FaoliSystem
             return;
         }
 
-        if (!UseAbility(args.Performer, args.Cost))
+        if (!_faoli.TryCheckFaoliAmount(args.Performer, args.Cost))
         {
             args.Handled = true;
             return;
@@ -157,6 +172,7 @@ public sealed partial class FaoliSystem
         _quickDialog.OpenDialog(performer.PlayerSession, Loc.GetString("faoli-message"), "Message", (string message) =>
         {
             _prayer.SendSubtleMessage(target.PlayerSession, target.PlayerSession, message, Loc.GetString("faoli-message-whisper"));
+            OnUseAbility(args.Performer, args.Cost);
         });
 
         if (args.Sound != null)
@@ -176,7 +192,7 @@ public sealed partial class FaoliSystem
             return;
         }
 
-        if (!UseAbility(args.Performer, args.Cost))
+        if (!OnUseAbility(args.Performer, args.Cost))
         {
             args.Handled = true;
             return;
@@ -201,7 +217,7 @@ public sealed partial class FaoliSystem
             return;
         }
 
-        if (!UseAbility(args.Performer, args.Cost))
+        if (!OnUseAbility(args.Performer, args.Cost))
         {
             args.Handled = true;
             return;

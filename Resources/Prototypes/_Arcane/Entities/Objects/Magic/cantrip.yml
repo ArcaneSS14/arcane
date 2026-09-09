@@ -72,7 +72,6 @@
   - type: Item
     sprite: _Starlight/Objects/Magic/luminous_orb.rsi
     size: Tiny
-    color: "#00CCFF"
     inhandVisuals:
       left:
       - state: inhand-left

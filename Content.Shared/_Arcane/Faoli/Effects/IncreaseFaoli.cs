@@ -13,16 +13,23 @@ public sealed partial class IncreaseFaoliSystem : EntityEffectSystem<FaoliCompon
 
     protected override void Effect(Entity<FaoliComponent> ent, ref EntityEffectEvent<IncreaseFaoli> args)
     {
-        var current = ent.Comp.Faoli;
-        if (current >= args.Effect.Maximum)
-            return;
+        var amount = args.Effect.Amount * args.Scale;
 
+        if (amount > 0)
+        {
+            var current = ent.Comp.Faoli;
+            var maxIncrease = args.Effect.Maximum - current;
 
-        var amount = FixedPoint2.Min(args.Effect.Amount * args.Scale, args.Effect.Maximum - current);
+            if (maxIncrease <= 0)
+                return;
+
+            amount = FixedPoint2.Min(amount, maxIncrease);
+        }
+
         if (amount == 0f)
             return;
 
-        _faoli.ChangeFaoliAmount(ent.Owner, amount, ent.Comp);
+        _faoli.TryChangeFaoliAmount(ent.Owner, amount, ent.Comp);
     }
 }
 

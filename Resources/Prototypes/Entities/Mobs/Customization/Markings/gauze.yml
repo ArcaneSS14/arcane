@@ -200,7 +200,7 @@
   id: GauzeBoxerWrapRight
   bodyPart: RHand
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, SlimePerson, Felinid, Vulpkanin, Rodentia, Tajaran, Feroxi, Yowie, Demon, Demon] # Delta V - Felinid, Vulpkanin, Rodentia; Goob - Tajaran, Yowies; Arcane - Demon
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, SlimePerson, Felinid, Vulpkanin, Rodentia, Tajaran, Feroxi, Yowie, Demon] # Delta V - Felinid, Vulpkanin, Rodentia; Goob - Tajaran, Yowies; Arcane - Demon
   coloring:
     default:
       type:

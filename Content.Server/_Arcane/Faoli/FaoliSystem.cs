@@ -1,4 +1,3 @@
-using Content.Server.Actions;
 using Content.Server.Hands.Systems;
 using Content.Shared._Arcane.Faoli.Components;
 using Content.Shared.Alert;
@@ -8,7 +7,6 @@ using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Damage;
 using Content.Server.Administration;
-using Content.Server._Orion.Mood;
 using Content.Shared._Arcane.Faoli;
 
 namespace Content.Server._Arcane.Faoli;
@@ -16,7 +14,6 @@ namespace Content.Server._Arcane.Faoli;
 public sealed partial class FaoliSystem : EntitySystem
 {
     [Dependency] private readonly SharedFaoliSystem _faoli = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -24,7 +21,6 @@ public sealed partial class FaoliSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly MoodSystem _mood = default!;
 
     public override void Initialize()
     {
@@ -53,14 +49,14 @@ public sealed partial class FaoliSystem : EntitySystem
             if (comp.Faoli < comp.Low) // 20
             {
                 comp.NextTickTime = _gameTiming.CurTime + TimeSpan.FromSeconds(comp.LowInterval);
-                _faoli.ChangeFaoliAmount(uid, comp.Regeneartion, comp);
+                _faoli.TryChangeFaoliAmount(uid, comp.Regeneartion, comp);
                 continue;
             }
 
             if (comp.Faoli < comp.Maximum) // 50
             {
                 comp.NextTickTime = _gameTiming.CurTime + TimeSpan.FromSeconds(comp.Interval);
-                _faoli.ChangeFaoliAmount(uid, comp.Regeneartion, comp);
+                _faoli.TryChangeFaoliAmount(uid, comp.Regeneartion, comp);
                 continue;
             }
 
@@ -73,7 +69,7 @@ public sealed partial class FaoliSystem : EntitySystem
             if (comp.Faoli <= comp.OverflowLimit) // 150
             {
                 comp.NextTickTime = _gameTiming.CurTime + TimeSpan.FromSeconds(comp.OverflowInterval);
-                _faoli.ChangeFaoliAmount(uid, -comp.Regeneartion, comp);
+                _faoli.TryChangeFaoliAmount(uid, -comp.Regeneartion, comp);
                 continue;
             }
 
@@ -81,13 +77,13 @@ public sealed partial class FaoliSystem : EntitySystem
         }
     }
 
-    public bool UseAbility(EntityUid uid, FixedPoint2 cost)
+    public bool OnUseAbility(EntityUid uid, FixedPoint2 cost)
     {
         if (cost > 0 && TryComp<FaoliComponent>(uid, out var comp))
         {
             if (comp.Faoli >= cost)
             {
-                _faoli.ChangeFaoliAmount(uid, -cost, comp);
+                _faoli.TryChangeFaoliAmount(uid, -cost, comp);
                 return true;
             }
 
@@ -98,14 +94,14 @@ public sealed partial class FaoliSystem : EntitySystem
         return true;
     }
 
-    public bool TransferFaoli(EntityUid performer, EntityUid target, FixedPoint2 amount, bool popup = true)
+    public bool TryTransferFaoli(EntityUid performer, EntityUid target, FixedPoint2 amount, bool popup = true)
     {
         if (TryComp<FaoliComponent>(performer, out var comp) && TryComp<FaoliComponent>(target, out var targetComp))
         {
             if (comp.Faoli >= amount)
             {
-                _faoli.ChangeFaoliAmount(performer, -amount, comp);
-                _faoli.ChangeFaoliAmount(target, amount, targetComp);
+                _faoli.TryChangeFaoliAmount(performer, -amount, comp);
+                _faoli.TryChangeFaoliAmount(target, amount, targetComp);
                 return true;
             }
 
