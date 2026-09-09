@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSelectInclothingTool
+  name: Select tool
+  desctiprion: Take a tool built into your clothing out.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SelectInclothingToolEvent

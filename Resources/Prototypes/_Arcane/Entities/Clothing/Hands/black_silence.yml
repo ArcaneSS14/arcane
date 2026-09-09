@@ -1,0 +1,7 @@
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesBlackSilence
+  name: sorrowful gloves
+  description: "I have nothing but my sorrow..."
+  components:
+  - type: InclothingTools
