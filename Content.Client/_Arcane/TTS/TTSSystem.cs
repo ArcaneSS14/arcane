@@ -1,3 +1,4 @@
+using Content.Client.Ghost;
 using Content.Shared._Arcane.CCVars;
 using Content.Shared._Arcane.CVars;
 using Content.Shared._Arcane.TTS;
@@ -22,6 +23,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IResourceManager _res = default!;
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private GhostSystem _ghostSystem = default!;
 
     private ISawmill _sawmill = default!;
     private readonly MemoryContentRoot _contentRoot = new();
@@ -35,6 +37,7 @@ public sealed partial class TTSSystem : EntitySystem
     private float _volume = 0.0f;
     private float _radioVolume = 0.0f;
     private bool _useTTS = false;
+    private bool _ghostRadioUseTTS = false;
     private readonly HashSet<int> _mutedRadioChannels = new();
     private readonly Dictionary<int, float> _radioChannelVolumes = new();
     private ulong _fileIdx = 0;
@@ -50,6 +53,7 @@ public sealed partial class TTSSystem : EntitySystem
         _cfg.OnValueChanged(ACCVars.UseTTS, OnUseTTSChanged, true);
         _cfg.OnValueChanged(ACCVars.TTSRadioChannelMuted, OnTTSRadioChannelMutedChanged, true);
         _cfg.OnValueChanged(ACCVars.TTSRadioChannelVolumes, OnTTSRadioChannelVolumesChanged, true);
+        _cfg.OnValueChanged(ACCVars.TTSGhostRadioUseTTS, OnGhostRadioUseTTSChanged, true);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
@@ -67,6 +71,7 @@ public sealed partial class TTSSystem : EntitySystem
         _cfg.UnsubValueChanged(ACCVars.UseTTS, OnUseTTSChanged);
         _cfg.UnsubValueChanged(ACCVars.TTSRadioChannelMuted, OnTTSRadioChannelMutedChanged);
         _cfg.UnsubValueChanged(ACCVars.TTSRadioChannelVolumes, OnTTSRadioChannelVolumesChanged);
+        _cfg.UnsubValueChanged(ACCVars.TTSGhostRadioUseTTS, OnGhostRadioUseTTSChanged);
         _contentRoot.Clear();
         _contentRoot.Dispose();
     }
@@ -91,6 +96,11 @@ public sealed partial class TTSSystem : EntitySystem
         _useTTS = value;
     }
 
+    private void OnGhostRadioUseTTSChanged(bool value)
+    {
+        _ghostRadioUseTTS = value;
+    }
+
     private void OnTTSRadioChannelMutedChanged(string value)
     {
         _mutedRadioChannels.Clear();
@@ -106,8 +116,25 @@ public sealed partial class TTSSystem : EntitySystem
 
     private void OnPlayTTS(PlayTTSEvent ev)
     {
-        if (!_useTTS)
+        var isRadio = ev.SourceUid == null && ev.Frequency is { };
+        var isGhost = _ghostSystem.IsGhost;
+
+        if (isRadio)
+        {
+            if (isGhost)
+            {
+                if (!_ghostRadioUseTTS)
+                    return;
+            }
+            else if (!_useTTS)
+            {
+                return;
+            }
+        }
+        else if (!_useTTS)
+        {
             return;
+        }
 
         if (ev.SourceUid == null && ev.Frequency is { } frequency && _mutedRadioChannels.Contains(frequency))
             return;

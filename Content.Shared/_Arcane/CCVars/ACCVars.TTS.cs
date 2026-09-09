@@ -27,4 +27,11 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<string> TTSRadioChannelVolumes =
         CVarDef.Create("tts.radio_channel_volumes", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Whether radio transmissions are read out loud with TTS while the local player is a ghost.
+    ///     Defaults to enabled; reset back to true whenever the player stops being a ghost.
+    /// </summary>
+    public static readonly CVarDef<bool> TTSGhostRadioUseTTS =
+        CVarDef.Create("tts.ghost_radio_use_tts", true, CVar.CLIENTONLY);
 }
