@@ -1134,3 +1134,10 @@ Entries:
   id: 94
   time: '2026-09-08T18:07:04.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/309
+- author: Vecortys
+  changes:
+    - type: Add
+      message: Окно гайдбука полностью переработано для удобства использования.
+  id: 95
+  time: '2026-09-08T21:51:30.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/324

@@ -6,17 +6,25 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
                 xmlns:fancyTree="clr-namespace:Content.Client.UserInterface.Controls.FancyTree"
                 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                xmlns:arcane="clr-namespace:Content.Client._Arcane.Guidebook.Controls"
                 SetSize="1000 700"
-                MinSize="100 200"
+                MinSize="640 400"
                 Resizable="True"
                 Title="{Loc 'guidebook-window-title'}">
-    <SplitContainer Orientation="Horizontal" HorizontalExpand="True" Name="Split">
+    <!-- Arcane-Edit-Start -->
+    <BoxContainer Orientation="Vertical">
+    <arcane:GuidebookToolbar Name="WorkspaceToolbar" />
+    <BoxContainer Name="ContentHost" VerticalExpand="True">
+    <SplitContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True" Name="Split">
         <!-- Guide select -->
-        <BoxContainer Orientation="Horizontal" Name="TreeBox">
+        <BoxContainer Orientation="Horizontal" Name="TreeBox" MinWidth="140">
+            <ScrollContainer HScrollEnabled="True" HorizontalExpand="True" VerticalExpand="True">
+    <!-- Arcane-Edit-End -->
             <fancyTree:FancyTree Name="Tree" VerticalExpand="True" HorizontalExpand="True" Access="Public"/>
+            </ScrollContainer> <!-- Arcane -->
             <cc:VSeparator StyleClasses="LowDivider" Margin="0 -2"/>
         </BoxContainer>
-        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Name="ArticleBox" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True"> <!-- Arcane-edit -->
             <BoxContainer Name="SearchContainer" Visible="False" HorizontalExpand="True">
                 <LineEdit
                     Name="SearchBar"
@@ -40,4 +48,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             </ScrollContainer>
         </BoxContainer>
     </SplitContainer>
+    <!-- Arcane-Edit-Start -->
+    </BoxContainer>
+    </BoxContainer>
+    <!-- Arcane-Edit-End -->
 </controls:FancyWindow>
