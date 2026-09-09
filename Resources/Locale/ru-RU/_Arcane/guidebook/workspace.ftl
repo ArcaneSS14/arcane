@@ -1,0 +1,12 @@
+arcane-guidebook-sidebar = Содержание
+arcane-guidebook-new-window = Новое окно
+arcane-guidebook-new-window-hint = Открыть текущую статью в другом окне руководства.
+arcane-guidebook-pop-out-hint = Поп-Аут.
+arcane-guidebook-favorite = В избранное
+arcane-guidebook-favorite-hint = Добавить текущую статью в избранное или убрать из него.
+arcane-guidebook-favorites = Избранное
+arcane-guidebook-search = Поиск по всем статьям...
+arcane-guidebook-link-missing = Не удалось найти статью или раздел.
+arcane-guidebook-title = Руководство - { $article }
+arcane-guidebook-result = { $article } - { $category }
+arcane-guidebook-no-results = Статьи не найдены.
