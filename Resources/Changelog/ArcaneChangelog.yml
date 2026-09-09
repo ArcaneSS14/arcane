@@ -1179,3 +1179,12 @@ Entries:
   id: 98
   time: '2026-09-09T09:16:57.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/327
+- author: Vecortys
+  changes:
+    - type: Fix
+      message: >-
+        В бс дормы теперь нельзя пронести игрока на руках - больше без
+        прикольного гиба.
+  id: 99
+  time: '2026-09-09T21:54:33.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/329
