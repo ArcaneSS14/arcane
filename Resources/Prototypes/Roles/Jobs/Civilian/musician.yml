@@ -24,9 +24,9 @@
   contracts:
   - DocumentContractEmploymentService
   alternateTitles:
-  - MusicianRadioDJ
   - MusicianVisitingCelebrity
   - MusicianPerformer
+  - MusicianRadioDJ
   # Arcane-end
 
 - type: startingGear
@@ -52,14 +52,14 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: MusicianRadioDJ
+  id: MusicianVisitingCelebrity
   name: job-name-alt-musician-1
 
 - type: jobAlternateTitle
-  id: MusicianVisitingCelebrity
+  id: MusicianPerformer
   name: job-name-alt-musician-2
 
 - type: jobAlternateTitle
-  id: MusicianPerformer
+  id: MusicianRadioDJ
   name: job-name-alt-musician-3
 # Arcane-End

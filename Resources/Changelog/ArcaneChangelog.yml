@@ -1150,3 +1150,14 @@ Entries:
   id: 96
   time: '2026-09-09T03:17:03.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/323
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Изменены названия множества альтернативных должностей.
+    - type: Fix
+      message: >-
+        Парадоксальному клону и близнецу теперь выдается альтернативная
+        должность оригинала.
+  id: 97
+  time: '2026-09-09T07:23:51.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/315

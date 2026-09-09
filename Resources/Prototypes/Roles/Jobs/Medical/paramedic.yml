@@ -37,8 +37,8 @@
   contracts:
   - DocumentContractEmploymentMedical
   alternateTitles:
-  - ParamedicTraumaSpecialist
-  - ParamedicEmergencyMedicalTechnician
+  - ParamedicParamedic
+  - ParamedicDutyPhysician
   - ParamedicTraumaTeamResponder
   # Arcane-end
 
@@ -65,14 +65,14 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: ParamedicTraumaSpecialist
+  id: ParamedicParamedic
   name: job-name-alt-paramedic-1
 
 - type: jobAlternateTitle
-  id: ParamedicEmergencyMedicalTechnician
+  id: ParamedicDutyPhysician
   name: job-name-alt-paramedic-2
 
 - type: jobAlternateTitle
   id: ParamedicTraumaTeamResponder
-  name: job-name-alt-paramedic-4
+  name: job-name-alt-paramedic-3
 # Arcane-End
