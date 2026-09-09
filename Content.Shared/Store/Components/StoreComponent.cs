@@ -95,6 +95,11 @@ public sealed partial class StoreComponent : Component
     [DataField] public SalesSpecifier Sales { get; private set; } = new();
     // WD EDIT END
 
+    // ARCANE-EDIT-START
+    [ViewVariables(VVAccess.ReadWrite), DataField("blockMindShield")]
+    public bool BlockMindShield = true;
+    // ARCANE-EDIT-END
+
     #region audio
     /// <summary>
     /// The sound played to the buyer when a purchase is succesfully made.

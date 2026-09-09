@@ -52,20 +52,16 @@
     currentTemperature: 310.15
     specificHeat: 46
   - type: TemperatureDamage
-    heatDamageThreshold: 400
-    coldDamageThreshold: 193
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
     coldDamage:
       types:
         Cold: 0.1
     heatDamage:
       types:
-        Heat: 0.3
+        Heat: 0.2
   - type: Wagging
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2.4
-    baseSprintSpeed: 4.4
-  - type: Stamina
-    baseCritThreshold: 90
+  - type: Faoli
   - type: Inventory
     speciesId: demon
     femaleDisplacements:
@@ -74,6 +70,14 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: BonusMeleeDamage
+    damageModifierSet:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.90
+        Asphyxiation: 0.90
+        Structural: 0.90
 
 - type: entity
   parent: BaseMobDemon

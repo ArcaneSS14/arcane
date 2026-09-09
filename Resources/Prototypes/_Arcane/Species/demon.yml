@@ -23,13 +23,14 @@
   defaultWidth: 1
   maxWidth: 1.10
   pros:
-  - Получают на 40% меньше урона от огня и тепла.
+  - Получают на 25% меньше урона от тепла и холода.
   - Наносят колющий урон безоружными атаками.
+  special:
+  - Обладают энергией Фаоля, которая позволяет им творить простые заклинания.
   cons:
-  - Стамина меньше на 10%, чем у человека.
-  - Бегают немного медленнее человека.
+  - Наносят на 10% меньше урона в ближним бою.
+  - Получают на 10% больше колющих и рубящих повреждений.
   - Получают на 50% больше урона от святого оружия и источников.
-  - Получают на 20% больше урона от холода.
 
 - type: speciesBaseSprites
   id: MobDemonSprites
@@ -69,10 +70,10 @@
       points: 1
       required: false
     HeadSide:
-      points: 1
+      points: 4
       required: false
     Chest:
-      points: 1
+      points: 4
       required: false
     Tail:
       points: 1
@@ -90,6 +91,31 @@
     Wings:
       points: 1
       required: false
+    RightLeg:
+      points: 2
+      required: false
+    RightFoot:
+      points: 2
+      required: false
+    LeftLeg:
+      points: 2
+      required: false
+    LeftFoot:
+      points: 2
+      required: false
+    RightArm:
+      points: 2
+      required: false
+    RightHand:
+      points: 3
+      required: false
+    LeftArm:
+      points: 2
+      required: false
+    LeftHand:
+      points: 3
+      required: false
+
 
 - type: humanoidBaseSprite
   id: MobDemonHead

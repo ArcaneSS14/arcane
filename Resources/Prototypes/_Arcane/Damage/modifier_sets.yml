@@ -11,10 +11,8 @@
 - type: damageModifierSet
   id: DemonArcana
   coefficients:
-    Piercing: 1.0
-    Cold: 1.2
-    Heat: 0.6
-    Shock: 1.0
-    Blunt: 1.0
-    Slash: 1.0
+    Piercing: 1.1
+    Cold: 0.75
+    Heat: 0.75
+    Slash: 1.1
     Holy: 1.5
