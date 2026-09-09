@@ -99,6 +99,9 @@ public sealed class PaintedVisualizerSystem : VisualizerSystem<ArcanePaintedComp
         UpdateVisuals(component, args);
     private void UpdateVisuals(ArcanePaintedComponent component, EntityEventArgs args)
     {
+        if (component.LifeStage >= ComponentLifeStage.Stopping)
+            return;
+
         var layers = new HashSet<string>();
         var entity = EntityUid.Invalid;
 
