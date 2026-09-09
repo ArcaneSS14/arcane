@@ -1141,3 +1141,12 @@ Entries:
   id: 95
   time: '2026-09-08T21:51:30.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/324
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлен блюспейс-рюкзак.
+    - type: Fix
+      message: Сумки и рюкзаки глав имеют подходящий спрайт.
+  id: 96
+  time: '2026-09-09T03:17:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/323
