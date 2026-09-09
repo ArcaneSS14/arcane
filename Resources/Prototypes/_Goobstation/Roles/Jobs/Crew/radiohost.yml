@@ -20,6 +20,8 @@
   alternateTitles:
   - RadioHostStationDJ
   - RadioHostBroadcaster
+  - RadioHostAnnouncer
+  - RadioHostShowHost
   # Arcane-end
 
 - type: startingGear
@@ -49,5 +51,13 @@
 - type: jobAlternateTitle
   id: RadioHostBroadcaster
   name: job-name-alt-radiohost-2
+
+- type: jobAlternateTitle
+  id: RadioHostAnnouncer
+  name: job-name-alt-radiohost-3
+
+- type: jobAlternateTitle
+  id: RadioHostShowHost
+  name: job-name-alt-radiohost-4
 # Arcane-End
 

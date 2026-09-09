@@ -38,6 +38,8 @@
   alternateTitles:
   - TechnicalAssistantApprentice
   - TechnicalAssistantTrainee
+  - TechnicalAssistantTechIntern
+  - TechnicalAssistantTechApprentice
   # Arcane-end
 
 - type: startingGear
@@ -71,4 +73,12 @@
 - type: jobAlternateTitle
   id: TechnicalAssistantTrainee
   name: job-name-alt-technicalassistant-2
+
+- type: jobAlternateTitle
+  id: TechnicalAssistantTechIntern
+  name: job-name-alt-technicalassistant-3
+
+- type: jobAlternateTitle
+  id: TechnicalAssistantTechApprentice
+  name: job-name-alt-technicalassistant-4
 # Arcane-End

@@ -1141,3 +1141,41 @@ Entries:
   id: 95
   time: '2026-09-08T21:51:30.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/324
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлен блюспейс-рюкзак.
+    - type: Fix
+      message: Сумки и рюкзаки глав имеют подходящий спрайт.
+  id: 96
+  time: '2026-09-09T03:17:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/323
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Изменены названия множества альтернативных должностей.
+    - type: Fix
+      message: >-
+        Парадоксальному клону и близнецу теперь выдается альтернативная
+        должность оригинала.
+  id: 97
+  time: '2026-09-09T07:23:51.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/315
+- author: ChangelingRUES
+  changes:
+    - type: Tweak
+      message: >-
+        Изменена оружейка Аврита и Сноуболла - теперь там рандомные пушки. Ещё
+        были добавлены раздатчики капсицина в СБ.
+    - type: Tweak
+      message: >-
+        Холодильник на кухне Марафона больше не требует мед. доступ. Добавлен
+        раздатчик капсицина в СБ.
+    - type: Tweak
+      message: >-
+        Дымка на инфи дормах Aurora, Beach и Hotel заменена на Mapping вариант,
+        больше не будет спавнить деревья и порталы и её нельзя развеять
+        вспышкой.
+  id: 98
+  time: '2026-09-09T09:16:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/327
