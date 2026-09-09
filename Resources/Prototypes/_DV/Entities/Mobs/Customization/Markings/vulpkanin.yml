@@ -83,10 +83,16 @@
   id: VulpEarFox
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Vulpkanin, Human, Oni, Felinid] # Arcane-Edit
+  speciesRestriction: [Vulpkanin, Human, Oni, Felinid, SlimePerson] # Arcane-Edit
   sprites:
     - sprite: _DV/Mobs/Customization/Vulpkanin/ear_markings.rsi
       state: fox
+    # Arcane-Start
+    - sprite: _DV/Mobs/Customization/Vulpkanin/ear_markings.rsi
+      state: fox-tips
+    - sprite: _DV/Mobs/Customization/Vulpkanin/ear_markings.rsi
+      state: fox-inner
+    # Arcane-End
 
 - type: marking
   id: VulpEarOtie

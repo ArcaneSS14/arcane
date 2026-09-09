@@ -46,8 +46,9 @@
             Virologist: [ 1, 1 ]
             # science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 6, 8 ]
+            Scientist: [ 5, 5 ]
             ResearchAssistant: [ 3, 4 ]
+            Roboticist: [ 3, 3 ]
             # security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
