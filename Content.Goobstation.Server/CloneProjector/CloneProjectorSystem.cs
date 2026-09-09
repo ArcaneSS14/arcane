@@ -65,7 +65,7 @@ public sealed partial class CloneProjectorSystem : SharedCloneProjectorSystem
     [Dependency] private readonly MobThresholdSystem _thresholds = default!;
     [Dependency] private readonly GhostRoleSystem _ghost = default!;
     [Dependency] private readonly SharedRoleSystem _role = default!;
-    [Dependency] private readonly SharedIdCardSystem _idCard = default!; // Arcane-Edit
+    [Dependency] private readonly SharedIdCardSystem _idCard = default!; // Arcane
 
     private ISawmill _sawmill = default!;
     public override void Initialize()
