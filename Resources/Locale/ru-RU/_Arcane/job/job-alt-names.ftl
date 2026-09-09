@@ -140,7 +140,7 @@ job-name-alt-captain-3 = начальник станции
 
 job-name-alt-hop-1 = координатор персонала
 job-name-alt-hop-2 = менеджер по персоналу
-job-name-alt-hop-3 = начальник кадров
+job-name-alt-hop-3 = начальник отдела кадров
 job-name-alt-hop-4 = кадровый директор
 job-name-alt-hop-5 = управляющий персоналом
 
