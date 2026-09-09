@@ -209,6 +209,7 @@
       tags:
         - Carp
         - DoorBumpOpener
+        - NoPaint # Arcane
     - type: CollectiveMind
       defaultChannel: Dragonmind
       channels:

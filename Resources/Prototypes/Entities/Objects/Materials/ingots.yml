@@ -17,6 +17,7 @@
     tags:
     - Ingot
     - ConstructionMaterial
+    - NoPaint # Arcane
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic

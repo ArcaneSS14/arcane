@@ -490,10 +490,10 @@
 
 # Arcane-Start
 - type: entity
+  parent: CratePlastic
   id: CrateFunSprayPaints
   name: spray paint crate
-  description: a crate filled with spray paint.
-  parent: CratePlastic
+  description: A case of spray paint cans. What color? Guess for yourself.
   suffix: Spray Paint
   components:
   - type: StorageFill

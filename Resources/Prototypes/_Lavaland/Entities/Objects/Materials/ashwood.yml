@@ -29,6 +29,7 @@
     - Wooden
     - RawMaterial
     - DroneUsable # Goobstation
+    - NoPaint # Arcane
   - type: Extractable
     grindableSolutionName: wood
   - type: SolutionContainerManager
@@ -87,6 +88,7 @@
     - Wooden
     - RawMaterial
     - DroneUsable # Goobstation
+    - NoPaint # Arcane
   - type: Extractable
     grindableSolutionName: wood
   - type: SolutionContainerManager
@@ -148,6 +150,7 @@
     - Wooden
     - RawMaterial
     - DroneUsable # Goobstation
+    - NoPaint # Arcane
   - type: Extractable
     grindableSolutionName: wood
   - type: SolutionContainerManager

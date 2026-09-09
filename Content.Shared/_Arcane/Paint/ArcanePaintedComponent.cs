@@ -10,16 +10,18 @@ public sealed partial class ArcanePaintedComponent : Component
     [DataField, AutoNetworkedField]
     public Color Color = Color.FromHex("#2cdbd5");
 
-    /// Used to remove the color when the component is removed
-    [DataField, AutoNetworkedField]
-    public Color BeforeColor;
-
     [DataField, AutoNetworkedField]
     public bool Enabled;
 
     // Not using ProtoId because ShaderPrototype is in Robust.Client
     [DataField, AutoNetworkedField]
     public string ShaderName = "Greyscale";
+
+    /// Client-only per-layer original colors keyed by layer index.
+    /// Populated by PaintVisualizerSystem before paint is applied
+    /// and restored on component shutdown.
+    [DataField]
+    public Dictionary<int, Color> LayerColors = new();
 }
 
 [Serializable, NetSerializable]

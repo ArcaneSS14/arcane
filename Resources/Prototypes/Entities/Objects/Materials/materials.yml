@@ -163,6 +163,7 @@
       - RawMaterial
       - ConstructionMaterial
       - DroneUsable # Goobstation
+      - NoPaint # Arcane
   - type: Construction
     graph: WebObjects # not sure if I should either keep this here or just make another prototype. Will keep it here just in case.
     node: cloth
@@ -235,6 +236,7 @@
       - RawMaterial
       - ConstructionMaterial
       - DroneUsable # Goobstation
+      - NoPaint # Arcane
   - type: Item
     heldPrefix: durathread
 
@@ -284,6 +286,7 @@
     - RawMaterial
     - ConstructionMaterial
     - DroneUsable # Goobstation
+    - NoPaint # Arcane
   - type: Extractable
     grindableSolutionName: wood
   - type: SolutionContainerManager
@@ -433,6 +436,7 @@
     tags:
     - RawMaterial
     - Diamond
+    - NoPaint # Arcane
   - type: Enchanter # Goobstation
     maxLevel: 3
     enchants:
@@ -493,6 +497,7 @@
       - RawMaterial
       - DroneUsable # Goobstation
       - Boll
+      - NoPaint # Arcane
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -557,6 +562,7 @@
     tags:
       - ClothMade
       - RawMaterial
+      - NoPaint # Arcane
   - type: Item
     heldPrefix: pyrotton
 
@@ -681,6 +687,7 @@
     tags:
       - ClothMade
       - RawMaterial
+      - NoPaint # Arcane
   - type: Item
     sprite: Objects/Materials/silk.rsi
     heldPrefix: silk
@@ -735,6 +742,7 @@
   - type: Tag
     tags:
     - ToothSpaceCarp
+    - NoPaint # Arcane
 
 - type: entity
   parent: MaterialToothSpaceCarp
@@ -783,6 +791,7 @@
     tags:
     - Knife
     - ToothSharkminnow
+    - NoPaint # Arcane
 
 - type: entity
   parent: MaterialToothSharkminnow
@@ -898,6 +907,7 @@
   - type: Tag
     tags:
     - GoliathPlate
+    - NoPaint # Arcane
 
 - type: entity
   parent: MaterialGoliathHide

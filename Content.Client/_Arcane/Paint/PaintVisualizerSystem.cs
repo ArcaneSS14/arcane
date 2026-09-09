@@ -32,13 +32,18 @@ public sealed class PaintedVisualizerSystem : VisualizerSystem<ArcanePaintedComp
             return;
 
         var shader = _protoMan.Index<ShaderPrototype>(component.ShaderName).Instance();
+        var layerIndex = 0;
         foreach (var spriteLayer in args.Sprite.AllLayers)
         {
             if (spriteLayer is not Layer layer)
+            {
+                layerIndex++;
                 continue;
+            }
 
             if (isPainted && (layer.Shader == null || layer.Shader == shader))
             {
+                component.LayerColors.TryAdd(layerIndex, layer.Color);
                 layer.Shader = shader;
                 layer.Color = component.Color;
             }
@@ -46,6 +51,8 @@ public sealed class PaintedVisualizerSystem : VisualizerSystem<ArcanePaintedComp
             {
                 layer.Shader = null;
             }
+
+            layerIndex++;
         }
     }
 
@@ -53,21 +60,28 @@ public sealed class PaintedVisualizerSystem : VisualizerSystem<ArcanePaintedComp
     {
         if (!TryComp(uid, out SpriteComponent? sprite))
             return;
-        component.BeforeColor = sprite.Color;
 
         if (Terminating(uid))
             return;
 
+        var shader = _protoMan.Index<ShaderPrototype>(component.ShaderName).Instance();
+        var layerIndex = 0;
         foreach (var spriteLayer in sprite.AllLayers)
         {
-            if (spriteLayer is not Layer layer
-                || layer.Shader != _protoMan.Index<ShaderPrototype>(component.ShaderName).Instance())
+            if (spriteLayer is not Layer layer || layer.Shader != shader)
+            {
+                layerIndex++;
                 continue;
+            }
 
             layer.Shader = null;
-            if (layer.Color == component.Color)
-                layer.Color = component.BeforeColor;
+            if (component.LayerColors.TryGetValue(layerIndex, out var originalColor))
+                layer.Color = originalColor;
+
+            layerIndex++;
         }
+
+        component.LayerColors.Clear();
     }
 
     private void OnHeldVisualsUpdated(EntityUid uid, ArcanePaintedComponent component, HeldVisualsUpdatedEvent args) =>

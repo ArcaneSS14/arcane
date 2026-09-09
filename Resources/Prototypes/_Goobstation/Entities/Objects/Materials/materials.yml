@@ -38,6 +38,7 @@
     tags:
     - Ore
     - Ingot
+    - NoPaint # Arcane
   # Orion-Start
   - type: Extractable
     grindableSolutionName: bluespace

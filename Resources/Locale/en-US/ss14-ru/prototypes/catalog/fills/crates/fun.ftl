@@ -48,3 +48,5 @@ ent-CrateFunDartsSet = dartboard box set
     .desc = A box with everything you need for a fun game of darts.
 ent-CrateFunScurret = hydrated scurret
     .desc = Wait, what?
+ent-CrateFunSprayPaints = spray paint
+    .desc = A case of spray paint cans. What color? Guess for yourself.

@@ -193,7 +193,12 @@ public sealed class PaintSystem : SharedPaintSystem
             || HasComp<SubFloorHideComponent>(target)
             || !_solutionContainer.TryGetSolution(reagent.Owner, reagent.Comp.Solution, out _, out var solution))
             return false;
+
+        var available = _solutionContainer.GetTotalPrototypeQuantity(reagent.Owner, reagent.Comp.Reagent);
+        if (available < reagent.Comp.ConsumptionUnit)
+            return false;
+
         var quantity = solution.RemoveReagent(reagent.Comp.Reagent, reagent.Comp.ConsumptionUnit);
-        return (quantity > 0);
+        return quantity > 0;
     }
 }

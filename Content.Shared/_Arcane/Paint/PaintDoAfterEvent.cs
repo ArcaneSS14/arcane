@@ -4,4 +4,6 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Arcane.Paint;
 
 [Serializable, NetSerializable]
-public sealed partial class PaintDoAfterEvent : SimpleDoAfterEvent;
+public sealed partial class PaintDoAfterEvent : SimpleDoAfterEvent
+{
+}

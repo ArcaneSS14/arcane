@@ -82,6 +82,7 @@
     - Metal
     - Steel
     - ConstructionMaterial # Goob
+    - NoPaint # Arcane
 
 - type: entity
   parent: SheetSteel

@@ -3,6 +3,7 @@ using Content.Shared.Interaction;
 using Content.Shared.DoAfter;
 using Content.Shared.Verbs;
 using Content.Shared.Sprite;
+using Content.Shared.Inventory;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 
@@ -14,6 +15,7 @@ public sealed class PaintRemoverSystem : SharedPaintSystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
 
     public override void Initialize()
@@ -55,6 +57,18 @@ public sealed class PaintRemoverSystem : SharedPaintSystem
         _popup.PopupClient(Loc.GetString("paint-removed", ("target", target)), args.User, args.User, PopupType.Medium);
         RemComp<ArcanePaintedComponent>(target);
         _appearanceSystem.SetData(target, PaintVisuals.Painted, false);
+
+        if (HasComp<InventoryComponent>(target)
+            && _inventory.TryGetSlots(target, out var slotDefinitions))
+            foreach (var slot in slotDefinitions)
+            {
+                if (!_inventory.TryGetSlotEntity(target, slot.Name, out var slotEnt)
+                    || !HasComp<ArcanePaintedComponent>(slotEnt.Value))
+                    continue;
+
+                RemComp<ArcanePaintedComponent>(slotEnt.Value);
+                _appearanceSystem.SetData(slotEnt.Value, PaintVisuals.Painted, false);
+            }
 
         args.Handled = true;
     }
