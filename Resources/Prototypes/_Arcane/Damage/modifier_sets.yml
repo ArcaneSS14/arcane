@@ -13,6 +13,6 @@
   coefficients:
     Cold: 0.85
     Heat: 0.80
-    Slash: 1.15
-    Blunt: 1.15
+    Slash: 1.2
+    Blunt: 1.2
     Holy: 1.5
