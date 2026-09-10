@@ -1197,3 +1197,14 @@ Entries:
   id: 100
   time: '2026-09-09T21:56:17.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/330
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: >-
+        Секрет+ Хаос был убран из пулла голосования. Секрет+ средний получил доп
+        слот в ротации. Два слота лайта смещены в спокойный.
+    - type: Fix
+      message: Фултоны больше нельзя использовать внутри бс дорм.
+  id: 101
+  time: '2026-09-10T21:22:08.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/334
