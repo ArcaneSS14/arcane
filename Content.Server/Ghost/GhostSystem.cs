@@ -556,7 +556,7 @@ namespace Content.Server.Ghost
                     Comp<MetaDataComponent>(entity).EntityName,
                     playerJobName,
                     playerDepartmentId,
-                    playerJobIcon,
+                    playerJobIcon, // Arcane
                     HasComp<GhostComponent>(entity),
                     isLeft,
                     isDead,
