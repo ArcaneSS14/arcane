@@ -150,6 +150,14 @@ public abstract partial class SharedFultonSystem : EntitySystem
 
         args.Handled = true;
 
+        // Arcane-start
+        var beforeFultonedEvent = new BeforeFultonedEvent(args.Target.Value);
+        RaiseLocalEvent(args.User, beforeFultonedEvent);
+
+        if (beforeFultonedEvent.Cancelled)
+            return;
+        // Arcane-end
+
         var ev = new FultonedDoAfterEvent();
         _doAfter.TryStartDoAfter(
             new DoAfterArgs(EntityManager, args.User, component.ApplyFultonDuration, ev, args.Target, args.Target, args.Used)
@@ -214,3 +222,10 @@ public abstract partial class SharedFultonSystem : EntitySystem
         public NetCoordinates Coordinates;
     }
 }
+
+// Arcane-start
+public sealed class BeforeFultonedEvent(EntityUid entity) : CancellableEntityEventArgs
+{
+    public EntityUid? Entity { get; } = entity;
+}
+// Arcane-end
