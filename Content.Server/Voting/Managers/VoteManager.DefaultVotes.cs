@@ -41,10 +41,9 @@ namespace Content.Server.Voting.Managers
         const int MapAvailableCount = 1; // Макс кол-во раундов на определённой карте в памяти
         private Dictionary<string, int> _presetAvailableCount = new() // Макс кол-во раундов в памяти с режимом
         {
-            { "TheGhost", 2 },
-            { "SecretPlusLow", 3 },
-            { "SecretPlusMid", 1 },
-            { "SecretPlusAdmeme", 1 }
+            { "TheGhost", 4 },
+            { "SecretPlusLow", 1 },
+            { "SecretPlusMid", 2 }
         };
         private List<string> _mapStory = new();
         private List<string> _gameruleStory = new();
