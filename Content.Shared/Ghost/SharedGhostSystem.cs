@@ -6,7 +6,9 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.InteractionVerbs.Events;
 using Content.Shared.Item;
 using Content.Shared.Popups;
+using Content.Shared.StatusIcon;
 using Content.Shared.UserInterface;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Ghost
@@ -130,7 +132,7 @@ namespace Content.Shared.Ghost
     [Serializable, NetSerializable]
     public struct GhostWarpPlayer
     {
-        public GhostWarpPlayer(NetEntity entity, string playerName, string playerJobName, string playerDepartmentID, string playerJobIcon, bool isGhost, bool isLeft, bool isDead, bool isAlive) // Arcane-Edit: playerJobIcon
+        public GhostWarpPlayer(NetEntity entity, string playerName, string playerJobName, string playerDepartmentID, ProtoId<JobIconPrototype> playerJobIcon, bool isGhost, bool isLeft, bool isDead, bool isAlive) // Arcane-Edit
         {
             Entity = entity;
             Name = playerName;
@@ -170,7 +172,7 @@ namespace Content.Shared.Ghost
         /// <summary>
         /// The job icon prototype id for the player.
         /// </summary>
-        public string JobIcon { get; }
+        public ProtoId<JobIconPrototype> JobIcon { get; }
         // Arcane-End
 
         /// <summary>

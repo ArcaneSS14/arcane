@@ -970,6 +970,7 @@ public sealed partial class ShuttleSystem
         var transform = _physics.GetRelativePhysicsTransform((uid, xform), xform.MapUid.Value);
         var aabbs = new List<Box2>(manager.Fixtures.Count);
         var tileSet = new List<(Vector2i, Tile)>();
+        var thrownMobs = new HashSet<EntityUid>(); // Arcane
 
         foreach (var fixture in manager.Fixtures.Values)
         {
@@ -1017,12 +1018,14 @@ public sealed partial class ShuttleSystem
                     //                                             $" {ToPrettyString(uid)} arriving from FTL at {xform.Coordinates:coordinates}");
                     // var gibs = _bobby.GibBody(ent, body: mob);
                     // _immuneEnts.UnionWith(gibs);
+                    if (!thrownMobs.Add(ent))
+                        continue;
                     var throwDirection = _transform.GetWorldPosition(ent) - _transform.GetWorldPosition(uid);
 
                     if (throwDirection == Vector2.Zero)
                         throwDirection = _random.NextAngle().ToVec();
 
-                    _throwing.TryThrow(ent, throwDirection.Normalized() * 10f, 50f);
+                    _throwing.TryThrow(ent, throwDirection.Normalized() * 2f, 10f);
                     // Arcane-Edit-End
                     continue;
                 }
