@@ -1012,10 +1012,18 @@ public sealed partial class ShuttleSystem
 
                 if (_bodyQuery.TryGetComponent(ent, out var mob))
                 {
-                    _logger.Add(LogType.Gib, LogImpact.Extreme, $"{ToPrettyString(ent):player} got gibbed by the shuttle" +
-                                                                $" {ToPrettyString(uid)} arriving from FTL at {xform.Coordinates:coordinates}");
-                    var gibs = _bobby.GibBody(ent, body: mob);
-                    _immuneEnts.UnionWith(gibs);
+                    // Arcane-Edit-Start: throw mobs clear of the arriving shuttle instead of gibbing them.
+                    // _logger.Add(LogType.Gib, LogImpact.Extreme, $"{ToPrettyString(ent):player} got gibbed by the shuttle" +
+                    //                                             $" {ToPrettyString(uid)} arriving from FTL at {xform.Coordinates:coordinates}");
+                    // var gibs = _bobby.GibBody(ent, body: mob);
+                    // _immuneEnts.UnionWith(gibs);
+                    var throwDirection = _transform.GetWorldPosition(ent) - _transform.GetWorldPosition(uid);
+
+                    if (throwDirection == Vector2.Zero)
+                        throwDirection = _random.NextAngle().ToVec();
+
+                    _throwing.TryThrow(ent, throwDirection.Normalized() * 10f, 50f);
+                    // Arcane-Edit-End
                     continue;
                 }
 
