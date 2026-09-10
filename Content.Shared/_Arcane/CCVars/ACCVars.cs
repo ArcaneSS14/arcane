@@ -63,4 +63,10 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<bool> ICAlternateJobTitlesEnable =
         CVarDef.Create("ic.alternate_job_titles_enable", true, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    ///     Restricts custom species names so players cannot use the name of another species.
+    /// </summary>
+    public static readonly CVarDef<bool> RestrictedCustomSpeciesNames =
+        CVarDef.Create("content.restricted_custom_species_names", true, CVar.SERVER | CVar.REPLICATED);
 }

@@ -97,7 +97,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         TryComp<FingerprintComponent>(player, out var fingerprintComponent);
         TryComp<DnaComponent>(player, out var dnaComponent);
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
+        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.CustomSpeciesName, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Arcane-Edit: profile.CustomSpeciesName
     }
 
 
@@ -113,6 +113,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     /// <param name="idUid">The entity uid of an entity's ID card. Can be null.</param>
     /// <param name="name">Name of the character.</param>
     /// <param name="species">Species of the character.</param>
+    /// <param name="customSpeciesName">Custom display species name of the character, if any. // Orion</param>
     /// <param name="gender">Gender of the character.</param>
     /// <param name="jobId">
     ///     The job to initially tie this record to. This must be a valid job loaded in, otherwise
@@ -134,6 +135,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         string name,
         int age,
         string species,
+        string customSpeciesName, // Orion
         Gender gender,
         string jobId,
         string? mobFingerprint,
@@ -194,6 +196,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             JobIcon = jobPrototype.Icon,
             JobPrototype = jobId,
             Species = species,
+            CustomSpeciesName = customSpeciesName, // Orion
             Gender = gender,
             DisplayPriority = jobPrototype.RealDisplayWeight,
             Fingerprint = mobFingerprint,
