@@ -113,7 +113,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     /// <param name="idUid">The entity uid of an entity's ID card. Can be null.</param>
     /// <param name="name">Name of the character.</param>
     /// <param name="species">Species of the character.</param>
-    /// <param name="customSpeciesName">Custom display species name of the character, if any. // Orion</param>
+    /// <param name="customSpeciesName">Custom display species name of the character, if any. // Arcane</param>
     /// <param name="gender">Gender of the character.</param>
     /// <param name="jobId">
     ///     The job to initially tie this record to. This must be a valid job loaded in, otherwise

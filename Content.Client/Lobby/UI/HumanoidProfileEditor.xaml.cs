@@ -1975,9 +1975,7 @@ namespace Content.Client.Lobby.UI
 
             if (species != null)
             {
-                CustomSpeciesNameEdit.Text = string.IsNullOrEmpty(Profile.CustomSpeciesName)
-                    ? Loc.GetString(species.Name)
-                    : Profile.CustomSpeciesName;
+                CustomSpeciesNameEdit.Text = Profile.CustomSpeciesName;
             }
         }
         // Arcane-End

@@ -146,7 +146,7 @@ public sealed partial class DetailExaminableWindow : FancyWindow
         // Arcane-Start
         if (entManager.TryGetComponent<HumanoidAppearanceComponent>(_currentEntity, out var humanoid)
             && !string.IsNullOrWhiteSpace(humanoid.CustomSpeciesName))
-            species = FormattedMessage.EscapeText(humanoid.CustomSpeciesName) + " (" + species + ")";
+            species = humanoid.CustomSpeciesName + " (" + species + ")";
         // Arcane-End
         var sex = Loc.GetString($"humanoid-profile-editor-sex-{state.Sex.ToString().ToLower()}-text");
         var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{state.Gender.ToString().ToLower()}-text");
