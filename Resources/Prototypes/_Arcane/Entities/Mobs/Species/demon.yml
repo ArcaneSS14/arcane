@@ -56,10 +56,10 @@
     coldDamageThreshold: 260
     coldDamage:
       types:
-        Cold: 0.2
+        Cold: 0.085
     heatDamage:
       types:
-        Heat: 0.1
+        Heat: 0.8
   - type: Wagging
   - type: Faoli
   - type: Inventory
