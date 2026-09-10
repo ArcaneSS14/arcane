@@ -81,6 +81,12 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
                 font = _largeFont;
                 color = Color.Red;
                 break;
+            // Arcane-Start
+            case PopupType.MediumGreen:
+                font = _mediumFont;
+                color = Color.FromHex("#4CAF50");
+                break;
+            // Arcane-End
         }
 
         var dimensions = handle.GetDimensions(font, popup.Text, scale);

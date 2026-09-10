@@ -50,6 +50,7 @@ namespace Content.Client.Popups
         {
             { PopupType.Medium, "12" },
             { PopupType.MediumCaution, "12" },
+            { PopupType.MediumGreen, "12" }, // Arcane
             { PopupType.Large, "15" },
             { PopupType.LargeCaution, "15" }
         };
@@ -133,7 +134,9 @@ namespace Content.Client.Popups
                 var fontsize = FontSizeDict.GetValueOrDefault(type, "10");
                 var fontcolor = type is PopupType.LargeCaution or PopupType.MediumCaution or PopupType.SmallCaution
                     ? "#C62828"
-                    : "#AEABC4";
+                    : type is PopupType.MediumGreen
+                        ? "#4CAF50"
+                        : "#AEABC4";
 
                 var wrappedMessage = $"[font size={fontsize}][color={fontcolor}]{message}[/color][/font]";
                 var chatMsg = new ChatMessage(ChatChannel.Emotes, message, wrappedMessage, GetNetEntity(EntityUid.Invalid), null);
