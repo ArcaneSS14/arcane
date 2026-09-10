@@ -52,6 +52,8 @@
   alternateTitles:
   - IAAComplianceOfficer
   - IAAAuditor
+  - IAAInternalAffairsRepresentative
+  - IAAInternalAffairsInspector
 
 - type: startingGear
   id: IAAGear
@@ -81,3 +83,11 @@
 - type: jobAlternateTitle
   id: IAAAuditor
   name: job-name-alt-iaa-2
+
+- type: jobAlternateTitle
+  id: IAAInternalAffairsRepresentative
+  name: job-name-alt-iaa-3
+
+- type: jobAlternateTitle
+  id: IAAInternalAffairsInspector
+  name: job-name-alt-iaa-4

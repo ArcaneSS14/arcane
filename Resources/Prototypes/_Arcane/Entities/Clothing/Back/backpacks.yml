@@ -66,3 +66,26 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Back/Backpacks/rd.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackBluespace
+  name: bluespace backpack
+  description: A backpack that conceals itself from the naked eye when worn, opening into a localized pocket of bluespace.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/holding.rsi
+    state: holding
+  - type: Clothing
+    clothingVisuals:
+      back: []
+
+- type: entity
+  parent: ClothingBackpackBluespace
+  id: ClothingBackpackBluespaceERT
+  suffix: ERT
+  components:
+  - type: Storage
+    grid:
+    - 0,0,8,3
+    maxItemSize: Huge

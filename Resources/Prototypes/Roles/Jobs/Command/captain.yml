@@ -64,6 +64,7 @@
   alternateTitles:
   - CaptainStationDirector
   - CaptainCommander
+  - CaptainStationChief
   # Arcane-End
 
 - type: startingGear
@@ -98,4 +99,8 @@
 - type: jobAlternateTitle
   id: CaptainCommander
   name: job-name-alt-captain-2
+
+- type: jobAlternateTitle
+  id: CaptainStationChief
+  name: job-name-alt-captain-3
 # Arcane-End
