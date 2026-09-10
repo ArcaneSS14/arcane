@@ -9,3 +9,18 @@
     useDelay: 1
   - type: InstantAction
     event: !type:SelectInclothingToolEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionRandomInclothingTool
+  name: Select tool randomly
+  desctiprion: Take a random tool built into your clothing out.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    useDelay: 1
+    icon: 
+      sprite: Objects/Fun/dice.rsi
+      state: d20_20
+  - type: InstantAction
+    event: !type:RandomInclothingToolEvent

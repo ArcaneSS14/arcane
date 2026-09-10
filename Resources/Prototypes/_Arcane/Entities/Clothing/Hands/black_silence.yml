@@ -5,3 +5,4 @@
   description: "I have nothing but my sorrow..."
   components:
   - type: InclothingTools
+  - type: RandomInclothingTools
