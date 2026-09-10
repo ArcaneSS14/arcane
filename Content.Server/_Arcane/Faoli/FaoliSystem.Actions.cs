@@ -171,8 +171,8 @@ public sealed partial class FaoliSystem
 
         _quickDialog.OpenDialog(performer.PlayerSession, Loc.GetString("faoli-message"), "Message", (string message) =>
         {
-            _prayer.SendSubtleMessage(target.PlayerSession, target.PlayerSession, message, Loc.GetString("faoli-message-whisper"));
-            OnUseAbility(args.Performer, args.Cost);
+            if (OnUseAbility(args.Performer, args.Cost))
+                _prayer.SendSubtleMessage(target.PlayerSession, target.PlayerSession, message, Loc.GetString("faoli-message-whisper"));
         });
 
         if (args.Sound != null)
