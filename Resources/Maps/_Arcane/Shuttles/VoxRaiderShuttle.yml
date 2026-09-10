@@ -2198,32 +2198,6 @@ entities:
     - type: Transform
       pos: -1.5617311,-0.46096683
       parent: 1
-- proto: ManualCodespeak
-  entities:
-  - uid: 287
-    components:
-    - type: Transform
-      pos: -3.209282,5.6130157
-      parent: 1
-    - type: StoreRefund
-      balanceSpent:
-        Telecrystal: 2
-      data:
-        description: uplink-book-codespeak-language-desc
-        categories:
-        - UplinkDeception
-        cost:
-          Telecrystal: 2
-        icon:
-          sprite: /Textures/_Orion/Objects/Misc/books.rsi
-          state: syndicate
-        productEntity: ManualCodespeak
-        id: UplinkBookCodespeakLanguage
-        purchaseAmount: 1
-        components: []
-        blockRefundListings: []
-        name: uplink-book-codespeak-language-name
-      storeEntity: invalid
 - proto: Mattress
   entities:
   - uid: 474
@@ -2280,32 +2254,6 @@ entities:
         actions: !type:Container
           ents:
           - 7
-- proto: ObservationKitSyndie
-  entities:
-  - uid: 292
-    components:
-    - type: Transform
-      pos: 1.2994785,3.3363032
-      parent: 1
-    - type: StoreRefund
-      balanceSpent:
-        Telecrystal: 20
-      data:
-        description: uplink-observation-kit-desc-trauma
-        categories:
-        - UplinkDeception
-        cost:
-          Telecrystal: 20
-        icon:
-          sprite: Objects/Storage/boxicons.rsi
-          state: tracks
-        productEntity: ObservationKitSyndie
-        id: UplinkObservationKitSyndie
-        purchaseAmount: 1
-        components: []
-        blockRefundListings: []
-        name: uplink-observation-kit-name
-      storeEntity: invalid
 - proto: OmnimedToolSyndie
   entities:
   - uid: 293
