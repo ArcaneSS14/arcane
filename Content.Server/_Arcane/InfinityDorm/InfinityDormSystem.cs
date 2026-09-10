@@ -54,6 +54,7 @@ public sealed partial class InfinityDormSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<InfinityDormTeleporterComponent, InfinityDormTeleportMessage>(HandleTeleporterMessage);
         SubscribeNetworkEvent<RequestDormsAmountEvent>(HandleDormsAmountRequest);
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
@@ -71,7 +72,6 @@ public sealed partial class InfinityDormSystem : EntitySystem
         }
 
         EnsureDormsMap();
-
         if (!TryCreateDorm(uid, args.Actor, args.Room, args.Number))
             return;
 
