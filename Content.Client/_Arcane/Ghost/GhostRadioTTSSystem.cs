@@ -3,9 +3,11 @@ using Content.Client.Ghost;
 using Content.Shared._Arcane.CCVars;
 using Content.Shared._Arcane.Ghost;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Popups;
+using Robust.Client.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
@@ -21,6 +23,7 @@ public sealed class GhostRadioTTSSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
 
     public override void Initialize()
     {
@@ -30,6 +33,7 @@ public sealed class GhostRadioTTSSystem : EntitySystem
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnLocalPlayerDetached);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
+        _ghostSystem.PlayerAttached += OnGhostPlayerAttached;
         _ghostSystem.PlayerDetached += OnPlayerDetached;
         _ghostSystem.PlayerRemoved += OnPlayerRemoved;
         _actionsSystem.OnActionAdded += OnActionAdded;
@@ -39,6 +43,7 @@ public sealed class GhostRadioTTSSystem : EntitySystem
     {
         base.Shutdown();
 
+        _ghostSystem.PlayerAttached -= OnGhostPlayerAttached;
         _ghostSystem.PlayerDetached -= OnPlayerDetached;
         _ghostSystem.PlayerRemoved -= OnPlayerRemoved;
         _actionsSystem.OnActionAdded -= OnActionAdded;
@@ -54,6 +59,22 @@ public sealed class GhostRadioTTSSystem : EntitySystem
 
         var locId = enabled ? "ghost-radio-tts-toggle-on" : "ghost-radio-tts-toggle-off";
         _popup.PopupEntity(Loc.GetString(locId), uid, uid);
+    }
+
+    private void OnGhostPlayerAttached(GhostComponent component)
+    {
+        if (_player.LocalEntity is not { } user)
+            return;
+
+        var enabled = _cfg.GetCVar(ACCVars.TTSGhostRadioUseTTS);
+        if (CompOrNull<ActionsComponent>(user) is not { } actions)
+            return;
+
+        foreach (var actionId in actions.Actions)
+        {
+            if (IsGhostRadioTTSAction(actionId))
+                _actions.SetToggled((actionId, null), enabled);
+        }
     }
 
     private void OnActionAdded(EntityUid actionId)
