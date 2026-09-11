@@ -3,6 +3,7 @@
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using Content.Shared.CCVar;
 using Content.Shared._Arcane.TTS;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid.Markings;
@@ -580,7 +581,14 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.Age = profile.Age;
 
-        humanoid.CustomSpeciesName = profile.CustomSpeciesName; // Arcane
+        // Arcane-Start
+        humanoid.CustomSpeciesName = HumanoidCharacterProfile.SanitizeCustomSpeciesName(
+            humanoid.Species,
+            profile.CustomSpeciesName,
+            _proto,
+            _cfgManager,
+            _cfgManager.GetCVar(CCVars.MaxNameLength));
+        // Arcane-End
 
         // begin Goobstation: port EE height/width sliders
         var species = _proto.Index(humanoid.Species);

@@ -2,6 +2,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Access.Systems;
+using Content.Server.Preferences.Managers;
 using Content.Shared.Access.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
@@ -11,6 +12,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -42,6 +44,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IServerPreferencesManager _preferences = default!; // Arcane
 
     public override void Initialize()
     {
@@ -49,6 +52,17 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
 
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
         SubscribeLocalEvent<EntityRenamedEvent>(OnRename);
+
+        // Arcane-Start
+        _preferences.CharacterProfileSaved += OnCharacterProfileSaved;
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _preferences.CharacterProfileSaved -= OnCharacterProfileSaved;
+        // Arcane-End
     }
 
     private void OnPlayerSpawn(PlayerSpawnCompleteEvent args)
@@ -82,6 +96,37 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             }
         }
     }
+
+    // Arcane-Start
+    private void OnCharacterProfileSaved(CharacterProfileSavedEventArgs args)
+    {
+        if (args.Profile is not HumanoidCharacterProfile profile
+            || args.Session.AttachedEntity is not { } player)
+            return;
+
+        if (!_idCard.TryFindIdCard(player, out var idCard)
+            || !TryComp(idCard, out StationRecordKeyStorageComponent? keyStorage)
+            || keyStorage.Key is not { } key)
+            return;
+
+        TryUpdateGeneralRecord(key, profile.Name, profile.Age, profile.Species, profile.CustomSpeciesName, profile.Gender);
+    }
+
+    private bool TryUpdateGeneralRecord(StationRecordKey key, string name, int age, string species, string customSpeciesName, Gender gender)
+    {
+        if (!TryGetRecord<GeneralStationRecord>(key, out var record))
+            return false;
+
+        record.Name = name;
+        record.Age = age;
+        record.Species = species;
+        record.CustomSpeciesName = customSpeciesName;
+        record.Gender = gender;
+
+        Synchronize(key);
+        return true;
+    }
+    // Arcane-End
 
     private void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
         string? jobId, StationRecordsComponent records)
@@ -135,7 +180,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         string name,
         int age,
         string species,
-        string customSpeciesName, // Orion
+        string customSpeciesName, // Arcane
         Gender gender,
         string jobId,
         string? mobFingerprint,
@@ -150,7 +195,11 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         // this happens when respawning as the same character
         if (GetRecordByName(station, name, records) is { } id)
         {
-            SetIdKey(idUid, new StationRecordKey(id, station));
+            // Arcane-Edit-Start
+            var recordKey = new StationRecordKey(id, station);
+            SetIdKey(idUid, recordKey);
+            TryUpdateGeneralRecord(recordKey, name, age, species, customSpeciesName, gender);
+            // Arcane-Edit-End
             return;
         }
 
@@ -196,7 +245,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             JobIcon = jobPrototype.Icon,
             JobPrototype = jobId,
             Species = species,
-            CustomSpeciesName = customSpeciesName, // Orion
+            CustomSpeciesName = customSpeciesName, // Arcane
             Gender = gender,
             DisplayPriority = jobPrototype.RealDisplayWeight,
             Fingerprint = mobFingerprint,

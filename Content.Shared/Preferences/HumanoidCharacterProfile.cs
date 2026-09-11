@@ -848,6 +848,40 @@ namespace Content.Shared.Preferences
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
+        // Arcane-Start
+        public static string SanitizeCustomSpeciesName(
+            ProtoId<SpeciesPrototype> speciesId,
+            string? customSpeciesName,
+            IPrototypeManager prototypeManager,
+            IConfigurationManager configManager,
+            int maxNameLength)
+        {
+            if (!prototypeManager.TryIndex(speciesId, out var speciesPrototype)
+                || !speciesPrototype.CustomName
+                || string.IsNullOrWhiteSpace(customSpeciesName))
+                return "";
+
+            var result = customSpeciesName.Length > maxNameLength
+                ? customSpeciesName[..maxNameLength]
+                : customSpeciesName;
+
+            if (configManager.GetCVar(ACCVars.RestrictedCustomSpeciesNames))
+            {
+                result = RestrictedCustomSpeciesNameRegex.Replace(result, string.Empty);
+
+                foreach (var speciesPrototypes in prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
+                {
+                    if (Loc.GetString(speciesPrototypes.Name).ToLower() == result.ToLower())
+                    {
+                        return "";
+                    }
+                }
+            }
+
+            return result;
+        }
+        // Arcane-End
+
         public void EnsureValid(ICommonSession session, IDependencyCollection collection)
         {
             var configManager = collection.Resolve<IConfigurationManager>();
@@ -917,30 +951,7 @@ namespace Content.Shared.Preferences
                 name = GetName(Species, gender);
             }
 
-            // Arcane-Start
-            var customSpeciesName =
-                !speciesPrototype.CustomName
-                || string.IsNullOrWhiteSpace(CustomSpeciesName)
-                    ? ""
-                    : CustomSpeciesName.Length > maxNameLength
-                        ? CustomSpeciesName[..maxNameLength]
-                        : CustomSpeciesName;
-
-            if (!string.IsNullOrWhiteSpace(customSpeciesName) && configManager.GetCVar(ACCVars.RestrictedCustomSpeciesNames))
-            {
-                customSpeciesName = RestrictedCustomSpeciesNameRegex.Replace(customSpeciesName, string.Empty);
-
-                foreach (var speciesPrototypes in prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
-                {
-                    if (Loc.GetString(speciesPrototypes.Name).ToLower() == customSpeciesName.ToLower())
-                    {
-                        customSpeciesName = "";
-                        break;
-                    }
-                }
-            }
-            // Arcane-End
-
+            var customSpeciesName = SanitizeCustomSpeciesName(Species, CustomSpeciesName, prototypeManager, configManager, maxNameLength); // Arcane
 
             string flavortext;
             var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength);
