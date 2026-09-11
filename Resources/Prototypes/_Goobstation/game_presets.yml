@@ -191,7 +191,7 @@
     - chaos
   name: secretplus-admeme-title
   description: secretplus-admeme-description
-  showInVote: true # Arcane
+  showInVote: false
   rules:
     - SecretPlusAdmeme
     - BasicRoundstartVariation # Arcane
