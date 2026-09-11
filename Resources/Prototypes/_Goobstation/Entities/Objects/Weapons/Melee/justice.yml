@@ -119,7 +119,7 @@
           overtime: 15
         # Arcane-Start
         - type: DelayedKnockdownOnHit
-          useDelay: Justice
+          useDelay: stunbaton
         # Arcane-End
         soundStateActivate:
           collection: sparks
