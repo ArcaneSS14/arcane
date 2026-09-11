@@ -1267,3 +1267,14 @@ Entries:
       https://github.com/user-attachments/assets/a1c3293f-2d07-4748-a90b-817199571cca
     - >-
       https://github.com/user-attachments/assets/f5ebe9f4-e4ab-4451-b817-240149105dd6
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Сердце невидимки нельзя вырезать.
+    - type: Fix
+      message: Визоры СБ и Меда не показывают невидимку.
+    - type: Tweak
+      message: Невидимка теперь спавнится с пассажирским лодаутом.
+  id: 107
+  time: '2026-09-11T13:38:45.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/340
