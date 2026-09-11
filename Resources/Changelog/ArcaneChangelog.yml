@@ -1208,3 +1208,18 @@ Entries:
   id: 101
   time: '2026-09-10T21:22:08.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/334
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлен регулятор громкости бумбокса в настройки аудио.
+    - type: Add
+      message: Добавлена настройка громкости ТТСа на определенной частоте.
+    - type: Add
+      message: >-
+        В гарнитуре можно переключить каналы частоты которые хочет слышать
+        пользователь.
+    - type: Add
+      message: Призраки могут переключать ТТС рации способностью.
+  id: 102
+  time: '2026-09-11T06:44:34.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/322
