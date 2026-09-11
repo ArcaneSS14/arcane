@@ -10,12 +10,11 @@ using Content.Shared.Radio.EntitySystems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Shared.Whitelist;
-// Arcane-Start
+using Content.Server._Arcane.Radio;
 using Content.Shared._Arcane.TTS;
 using Content.Goobstation.Common.Barks;
 using Content.Shared._Orion.Radio;
 using Robust.Shared.Audio;
-// Arcane-End
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -25,6 +24,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Goobstation
+    [Dependency] private readonly HeadsetChannelMuteSystem _channelMute = default!; // Arcane
 
     public override void Initialize()
     {
@@ -134,6 +134,11 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
         if (TryComp(parent, out ActorComponent? actor))
         {
+            // Arcane-Start
+            if (_channelMute.IsMuted(actor.PlayerSession.UserId, args.Channel.Frequency))
+                return;
+            // Arcane-End
+
             var canUnderstand = _language.CanUnderstand(parent, args.Language.ID);
             var msg = new MsgChatMessage
             {
@@ -143,7 +148,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             // Arcane-Start
             if (canUnderstand && args.Voice is { } voice)
             {
-                var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice);
+                var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice, args.Channel.Frequency);
                 RaiseLocalEvent(parent, ref ev);
             }
             // Arcane-End

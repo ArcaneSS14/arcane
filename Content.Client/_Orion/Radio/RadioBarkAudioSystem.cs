@@ -1,4 +1,6 @@
 using Content.Client.Audio;
+using Content.Client.Ghost;
+using Content.Shared._Arcane.CCVars;
 using Content.Shared._Orion.Radio;
 using Content.Shared.CCVar;
 using Robust.Shared.Audio;
@@ -14,6 +16,7 @@ public sealed class RadioBarkAudioSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!; // Arcane
 
     public override void Initialize()
     {
@@ -23,6 +26,11 @@ public sealed class RadioBarkAudioSystem : EntitySystem
 
     private void OnPlayRadioBark(PlayRadioBarkEvent ev)
     {
+        // Arcane-Start
+        if (_ghostSystem.IsGhost && !_cfg.GetCVar(ACCVars.TTSGhostRadioUseTTS))
+            return;
+        // Arcane-End
+
         var cvarValue = _cfg.GetCVar(CCVars.RadioVolume) * ContentAudioSystem.RadioMultiplier;
         var volumeOffset = (cvarValue - 1f) * 20f;
         var audioParams = ev.Params.WithVolume(ev.Params.Volume + volumeOffset);

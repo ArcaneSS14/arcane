@@ -1,8 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Audio.Jukebox;
+using Content.Shared._Arcane.CCVars;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Audio.Jukebox;
@@ -15,6 +17,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Arcane
 
     public override void Initialize()
     {
@@ -31,6 +34,35 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         base.Shutdown();
         _protoManager.PrototypesReloaded -= OnProtoReload;
     }
+
+    // Arcane-Start
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var multiplier = _cfg.GetCVar(ACCVars.JukeboxVolume);
+
+        var query = AllEntityQuery<JukeboxComponent>();
+        while (query.MoveNext(out _, out var jukebox))
+        {
+            if (jukebox.AudioStream is not { } stream)
+                continue;
+
+            if (multiplier <= 0.01f)
+            {
+                Audio.SetVolume(stream, float.NegativeInfinity);
+                continue;
+            }
+
+            Audio.SetVolume(
+                stream,
+                MapToRange(
+                    jukebox.Volume * multiplier,
+                    jukebox.MinSlider, jukebox.MaxSlider,
+                    jukebox.MinVolume, jukebox.MaxVolume));
+        }
+    }
+    // Arcane-End
 
     private void OnProtoReload(PrototypesReloadedEventArgs obj)
     {
