@@ -14,6 +14,7 @@
   - Trinkets
   - NanotrasenRepresentativeJobTrinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   - Animals
   - GroupSpeciesBreathTool
   - Survival
@@ -42,6 +43,7 @@
   - Trinkets
   - BlueshieldOfficerJobTrinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   - Animals
   - GroupSpeciesBreathTool
   - SurvivalSecurity
@@ -71,6 +73,7 @@
   - Trinkets
   - NanotrasenTrainerJobTrinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   - Animals
   - GroupSpeciesBreathTool
   - Survival
@@ -108,6 +111,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   - GroupSpeciesBreathTool
   # Plasmaman
   - ScientistEnvirohelm
@@ -136,6 +140,7 @@
   - Trinkets
   - BrigmedicJobTrinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   - Animals
   - GroupSpeciesBreathToolSecurity
   # Goobstation - EE Plasmeme Change.
@@ -159,6 +164,7 @@
   - Trinkets
   # Arcane-Start
   - ServiceCloak
+  - GroupGrimoire
   - RadioHostMicrophone
   - Patron
   # Arcane-End
@@ -190,6 +196,7 @@
   groups:
   - ClownBackpack
   - SurvivalSecurity
+  - GroupGrimoire # Arcane
   - GroupSpeciesBreathToolSecurity
   # Orion-Start
   - Undershirt
@@ -219,6 +226,7 @@
   - GroupTankHarness
   - CommonBackpack
   - Survival
+  - GroupGrimoire # Arcane
   - GroupSpeciesBreathTool
   # Orion-Start
   - Undershirt
@@ -237,6 +245,7 @@
    # Arcane-Start
    - MedicalCloak
    - VirologistBikini
+   - GroupGrimoire
    # Arcane-End
    - MedicalGloves
    - VirologistBackpack

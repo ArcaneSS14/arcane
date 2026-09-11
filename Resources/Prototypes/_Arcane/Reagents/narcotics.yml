@@ -29,3 +29,48 @@
           types:
             Asphyxiation: 1
             Poison: 0.5
+
+- type: reagent
+  id: Faoli
+  name: reagent-name-faoli
+  group: Narcotics
+  desc: reagent-desc-faoli
+  physicalDesc: reagent-physical-desc-enigmatic
+  flavor: singulo
+  color: "#00CCFF"
+  metabolisms:
+    Narcotic:
+      metabolismRate: 0.5
+      effects:
+      - !type:IncreaseFaoli
+        amount: 1
+
+- type: reagent
+  id: UnstableFaoli
+  name: reagent-name-unstable-faoli
+  group: Narcotics
+  desc: reagent-desc-unstable-faoli
+  physicalDesc: reagent-physical-desc-enigmatic
+  flavor: singulo
+  color: "#00CCFF"
+  metabolisms:
+    Narcotic:
+      metabolismRate: 0.1
+      effects:
+      - !type:IncreaseFaoli
+        amount: -2
+
+- type: reagent
+  id: PhasedFaoli
+  name: reagent-name-phased-faoli
+  group: Narcotics
+  desc: reagent-desc-phased-faoli
+  physicalDesc: reagent-physical-desc-phased
+  flavor: singulo
+  color: "#6a329f"
+  metabolisms:
+    Narcotic:
+      metabolismRate: 0.20
+      effects:
+      - !type:IncreaseFaoli
+        amount: 2
