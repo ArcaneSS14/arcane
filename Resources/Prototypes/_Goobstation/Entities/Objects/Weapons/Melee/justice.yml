@@ -89,7 +89,7 @@
           attackRate: 1.5
           damage:
             types:
-              Slash: 12
+              Slash: 15 # Arcane-Edit: 12 -> 15
             woundSeverityMultipliers:
               Slash: 2
           soundHit:
@@ -189,8 +189,10 @@
           attackRate: 1.5
           damage:
             types:
-              Slash: 6
-              Heat: 12
+              # Arcane-Edit-Start
+              Slash: 15 # 6 -> 15
+              Heat: 7 # 12 -> 7
+              # Arcane-Edit-End
             woundSeverityMultipliers:
               Slash: 2
           angle: 60
