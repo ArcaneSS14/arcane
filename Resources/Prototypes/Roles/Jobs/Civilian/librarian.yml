@@ -27,6 +27,7 @@
   - LibrarianWriter
   - LibrarianProfessor
   - LibrarianCurator
+  - LibrarianHistorian
   # Arcane-end
 
 - type: startingGear
@@ -68,4 +69,8 @@
 - type: jobAlternateTitle
   id: LibrarianCurator
   name: job-name-alt-librarian-4
+
+- type: jobAlternateTitle
+  id: LibrarianHistorian
+  name: job-name-alt-librarian-5
 # Arcane-End

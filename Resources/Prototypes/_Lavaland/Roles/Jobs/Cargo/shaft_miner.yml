@@ -29,6 +29,9 @@
   - DocumentContractEmploymentCargo
   alternateTitles:
   - ShaftMinerExcavator
+  - ShaftMinerProspector
+  - ShaftMinerMaterialSupportSpecialist
+  - ShaftMinerDriller
   # Arcane-end
 
 - type: startingGear
@@ -56,4 +59,16 @@
 - type: jobAlternateTitle
   id: ShaftMinerExcavator
   name: job-name-alt-shaftminer-1
+
+- type: jobAlternateTitle
+  id: ShaftMinerProspector
+  name: job-name-alt-shaftminer-2
+
+- type: jobAlternateTitle
+  id: ShaftMinerMaterialSupportSpecialist
+  name: job-name-alt-shaftminer-3
+
+- type: jobAlternateTitle
+  id: ShaftMinerDriller
+  name: job-name-alt-shaftminer-4
 # Arcane-End

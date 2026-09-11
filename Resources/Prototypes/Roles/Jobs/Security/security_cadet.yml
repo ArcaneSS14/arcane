@@ -44,6 +44,10 @@
   - DocumentContractEmploymentSecurity
   alternateTitles:
   - SecurityCadetTrainee
+  - SecurityCadetRecruit
+  - SecurityCadetRookie
+  - SecurityCadetCadet
+  - SecurityCadetJuniorOfficer
   # Arcane-end
 
 - type: startingGear
@@ -79,4 +83,20 @@
 - type: jobAlternateTitle
   id: SecurityCadetTrainee
   name: job-name-alt-seccadet-1
+
+- type: jobAlternateTitle
+  id: SecurityCadetRecruit
+  name: job-name-alt-seccadet-2
+
+- type: jobAlternateTitle
+  id: SecurityCadetRookie
+  name: job-name-alt-seccadet-3
+
+- type: jobAlternateTitle
+  id: SecurityCadetCadet
+  name: job-name-alt-seccadet-4
+
+- type: jobAlternateTitle
+  id: SecurityCadetJuniorOfficer
+  name: job-name-alt-seccadet-5
 # Arcane-End

@@ -1150,3 +1150,85 @@ Entries:
   id: 96
   time: '2026-09-09T03:17:03.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/323
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Изменены названия множества альтернативных должностей.
+    - type: Fix
+      message: >-
+        Парадоксальному клону и близнецу теперь выдается альтернативная
+        должность оригинала.
+  id: 97
+  time: '2026-09-09T07:23:51.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/315
+- author: ChangelingRUES
+  changes:
+    - type: Tweak
+      message: >-
+        Изменена оружейка Аврита и Сноуболла - теперь там рандомные пушки. Ещё
+        были добавлены раздатчики капсицина в СБ.
+    - type: Tweak
+      message: >-
+        Холодильник на кухне Марафона больше не требует мед. доступ. Добавлен
+        раздатчик капсицина в СБ.
+    - type: Tweak
+      message: >-
+        Дымка на инфи дормах Aurora, Beach и Hotel заменена на Mapping вариант,
+        больше не будет спавнить деревья и порталы и её нельзя развеять
+        вспышкой.
+  id: 98
+  time: '2026-09-09T09:16:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/327
+- author: Vecortys
+  changes:
+    - type: Fix
+      message: >-
+        В бс дормы теперь нельзя пронести игрока на руках - больше без
+        прикольного гиба.
+  id: 99
+  time: '2026-09-09T21:54:33.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/329
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: >-
+        Добавлена резервация слота после выхода из игры. При перезаходе в
+        течение 30-ти секунд вы не попадёте в очередь. 
+  id: 100
+  time: '2026-09-09T21:56:17.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/330
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: >-
+        Секрет+ Хаос был убран из пулла голосования. Секрет+ средний получил доп
+        слот в ротации. Два слота лайта смещены в спокойный.
+    - type: Fix
+      message: Фултоны больше нельзя использовать внутри бс дорм.
+  id: 101
+  time: '2026-09-10T21:22:08.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/334
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлен регулятор громкости бумбокса в настройки аудио.
+    - type: Add
+      message: Добавлена настройка громкости ТТСа на определенной частоте.
+    - type: Add
+      message: >-
+        В гарнитуре можно переключить каналы частоты которые хочет слышать
+        пользователь.
+    - type: Add
+      message: Призраки могут переключать ТТС рации способностью.
+  id: 102
+  time: '2026-09-11T06:44:34.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/322
+- author: ChangelingRUES
+  changes:
+    - type: Fix
+      message: >-
+        Инфи-дормы Квартира и Пляж были исправлены, Пробки света больше выбивать
+        не должно, вместо кубиков в холодильнике было положено мясо.
+  id: 103
+  time: '2026-09-11T07:00:20.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/336
