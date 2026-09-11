@@ -54,7 +54,7 @@
   - type: Unremoveable
   - type: Cautery
     speed: 0.20
-  - type: SurgeryTool # Shitmed
+  - type: SurgeryTool
     startSound:
       path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
     endSound:
