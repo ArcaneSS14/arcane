@@ -1,6 +1,7 @@
 const fs = require("fs");
 const yaml = require("js-yaml");
 const axios = require("axios");
+const { getMedia } = require("./media");
 
 if (process.env.GITHUB_TOKEN) axios.defaults.headers.common["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
 
@@ -116,13 +117,17 @@ function buildEntry(pr, id) {
 
     const time = merged_at.replace("z", ".0000000+00:00").replace("Z", ".0000000+00:00");
 
-    return {
+    const entry = {
         author: author,
         changes: changes,
         id: id,
         time: time,
         url: html_url,
     };
+
+    const media = getMedia(body);
+    if (media.length) entry.media = media;
+    return entry;
 }
 
 function getChanges(body) {
