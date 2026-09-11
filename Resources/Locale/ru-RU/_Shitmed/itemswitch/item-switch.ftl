@@ -16,6 +16,7 @@ itemswitch-component-state-claws = когти
 itemswitch-component-state-ion = ионный
 itemswitch-component-state-lethal = летальный
 itemswitch-component-state-empowered = уничтожение
+itemswitch-component-state-scuf = кование
 
 # # also for security
 itemswitch-component-state-off = выключен
