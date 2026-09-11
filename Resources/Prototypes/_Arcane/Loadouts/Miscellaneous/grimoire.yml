@@ -1,0 +1,15 @@
+- type: loadoutEffectGroup
+  id: DemonGrimoire
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Demon
+
+- type: loadout
+  id: CantripGrimoire
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DemonGrimoire
+  storage:
+    back:
+    - BookDemonGrimoire
