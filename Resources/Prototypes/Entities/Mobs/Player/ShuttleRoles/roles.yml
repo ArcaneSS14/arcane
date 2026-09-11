@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 ## See also ../settings.yml and ../spawners.yml
 
+# Arcane-Start UP TO FUCKING 953
 ### Visitors with Visitor ID
 
 # Command
@@ -949,6 +950,7 @@
         - type: Loadout
           prototypes: [ BananaClown ]
           roleLoadout: [ RoleSurvivalClown ]
+# Arcane-End 
 
 ### Visitors missing equipment for challenges
 
