@@ -27,6 +27,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Ghost;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
+using Content.Shared.Salvage.Fulton;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
@@ -56,7 +57,9 @@ public sealed class SharedInfinityDormSystem : EntitySystem
         SubscribeLocalEvent<InfinityDormExitComponent, InfinityDormExitDoAfterEvent>(OnExitDoAfter);
         SubscribeLocalEvent<InfinityDormVisitorComponent, ComponentInit>(OnVisitorInit);
         SubscribeLocalEvent<InfinityDormVisitorComponent, DidEquipHandEvent>(OnDidEquipHandEvent);
+
         SubscribeLocalEvent<EntParentChangedMessage>(OnVisitorParentChanged);
+        SubscribeLocalEvent<InfinityDormVisitorComponent, BeforeFultonedEvent>(OnBeforeFultoned);
     }
 
     private void OnExitInteract(EntityUid uid, InfinityDormExitComponent component, InteractHandEvent args)
@@ -134,6 +137,11 @@ public sealed class SharedInfinityDormSystem : EntitySystem
             return;
 
         _body.GibBody(args.Entity);
+    }
+
+    private void OnBeforeFultoned(EntityUid uid, InfinityDormVisitorComponent component, BeforeFultonedEvent args)
+    {
+        args.Cancel();
     }
 
     private void MarkInitItems(EntityUid user)

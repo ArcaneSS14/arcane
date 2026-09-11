@@ -142,7 +142,7 @@
   id: LizardTailSmooth
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Reptilian, Human, Dwarf, Felinid, SlimePerson] # Arcane-Edit
+  speciesRestriction: [Reptilian, Human, Dwarf, Felinid, SlimePerson, Demon] # Arcane-Edit
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_smooth_primary
@@ -153,7 +153,7 @@
   id: LizardTailLarge
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Demon] # Arcane-Edit
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_large
@@ -162,7 +162,7 @@
   id: LizardTailSpikes
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Demon] # Arcane-Edit
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_spikes
@@ -189,7 +189,7 @@
   id: LizardTailAquatic
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Reptilian, Demon] # Arcane-Edit
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_aquatic

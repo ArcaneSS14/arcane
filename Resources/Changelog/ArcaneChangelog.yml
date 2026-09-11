@@ -1179,3 +1179,102 @@ Entries:
   id: 98
   time: '2026-09-09T09:16:57.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/327
+- author: Vecortys
+  changes:
+    - type: Fix
+      message: >-
+        В бс дормы теперь нельзя пронести игрока на руках - больше без
+        прикольного гиба.
+  id: 99
+  time: '2026-09-09T21:54:33.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/329
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: >-
+        Добавлена резервация слота после выхода из игры. При перезаходе в
+        течение 30-ти секунд вы не попадёте в очередь. 
+  id: 100
+  time: '2026-09-09T21:56:17.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/330
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: >-
+        Секрет+ Хаос был убран из пулла голосования. Секрет+ средний получил доп
+        слот в ротации. Два слота лайта смещены в спокойный.
+    - type: Fix
+      message: Фултоны больше нельзя использовать внутри бс дорм.
+  id: 101
+  time: '2026-09-10T21:22:08.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/334
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлен регулятор громкости бумбокса в настройки аудио.
+    - type: Add
+      message: Добавлена настройка громкости ТТСа на определенной частоте.
+    - type: Add
+      message: >-
+        В гарнитуре можно переключить каналы частоты которые хочет слышать
+        пользователь.
+    - type: Add
+      message: Призраки могут переключать ТТС рации способностью.
+  id: 102
+  time: '2026-09-11T06:44:34.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/322
+- author: ChangelingRUES
+  changes:
+    - type: Fix
+      message: >-
+        Инфи-дормы Квартира и Пляж были исправлены, Пробки света больше выбивать
+        не должно, вместо кубиков в холодильнике было положено мясо.
+  id: 103
+  time: '2026-09-11T07:00:20.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/336
+- author: Kinar_7
+  changes:
+    - type: Tweak
+      message: Респрайт всех альтернативных вариаций подкованных сапогов.
+  id: 104
+  time: '2026-09-11T07:20:06.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/337
+- author: Vecortys
+  changes:
+    - type: Add
+      message: Kartinka
+  id: 105
+  time: '2026-09-11T08:51:41.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/339
+  media:
+    - >-
+      https://github.com/user-attachments/assets/d3de3e47-8925-413c-ad5f-c3b0a0e3af2d
+- author: HappyRoach
+  changes:
+    - type: Add
+      message: Арканы могут использовать большую часть кастомизации людей.
+    - type: Add
+      message: >-
+        Добавлена новая уникальная механика для аркан - Фаоль, за счёт которой
+        они могут творить простые заклинания.
+    - type: Tweak
+      message: Полностью изменены характеристики Аркан.
+  id: 106
+  time: '2026-09-11T13:37:07.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/331
+  media:
+    - >-
+      https://github.com/user-attachments/assets/a1c3293f-2d07-4748-a90b-817199571cca
+    - >-
+      https://github.com/user-attachments/assets/f5ebe9f4-e4ab-4451-b817-240149105dd6
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Сердце невидимки нельзя вырезать.
+    - type: Fix
+      message: Визоры СБ и Меда не показывают невидимку.
+    - type: Tweak
+      message: Невидимка теперь спавнится с пассажирским лодаутом.
+  id: 107
+  time: '2026-09-11T13:38:45.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/340
