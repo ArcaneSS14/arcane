@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by HappyRoach",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+    {
+          "name": "drake_spine",
+          "directions": 4
+    },
+    {
+          "name": "l_drake_arm",
+          "directions": 4
+    },
+    {
+          "name": "r_drake_arm",
+          "directions": 4
+    }
+    ]
+}
