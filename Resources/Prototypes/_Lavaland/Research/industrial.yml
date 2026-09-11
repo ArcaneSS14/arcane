@@ -1,0 +1,22 @@
+- type: technology
+  id: SuperSalvageEquipment
+  name: research-technology-space-scanning
+  description: research-technology-space-scanning-description # Arcane
+  icon:
+    sprite: _Lavaland/Objects/Tools/handdrill_super.rsi
+    state: handdrill
+  discipline: Shaft # Arcane-Edit
+  tier: 2
+  # Arcane-Edit-Start
+  pointCosts:
+  - type: General
+    amount: 15000
+  # Arcane-Edit-End
+  recipeUnlocks:
+  - MiningDrillSuper
+  - WeaponSuperPlasmaCutter
+  # Goobstation R&D Console rework start
+  position: 0,-7
+  technologyPrerequisites:
+  - AdvancedMining # Arcane-Edit
+  # Goobstation R&D Console rework end

@@ -43,13 +43,15 @@
   - !type:AddComponentSpecial
     components:
     - type: SurgerySpeedModifier
-      speedModifier: 1.25 # Same as Paramedic
+      speedModifier: 1.5
   # Arcane-start
   contracts:
   - DocumentContractEmploymentSecurity
   alternateTitles:
-  - BrigmedicFieldMedic
+  - BrigmedicSecurityParamedic
+  - BrigmedicSecurityDutyPhysician
   - BrigmedicPrisonDoctor
+  - BrigmedicBrigMedic
   # Arcane-end
 
 - type: chameleonOutfit
@@ -69,10 +71,18 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: BrigmedicFieldMedic
+  id: BrigmedicSecurityParamedic
   name: job-name-alt-brigmedic-1
 
 - type: jobAlternateTitle
-  id: BrigmedicPrisonDoctor
+  id: BrigmedicSecurityDutyPhysician
   name: job-name-alt-brigmedic-2
+
+- type: jobAlternateTitle
+  id: BrigmedicPrisonDoctor
+  name: job-name-alt-brigmedic-3
+
+- type: jobAlternateTitle
+  id: BrigmedicBrigMedic
+  name: job-name-alt-brigmedic-4
 # Arcane-End

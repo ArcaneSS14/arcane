@@ -4,7 +4,6 @@
   priority: 0
   text: "/ServerInfo/_Arcane/Guidebook/SOP/Alerts/Alerts.xml"
   children:
-    - SOP-Alerts-Protocol
     - SOP-Alerts-Green
     - SOP-Alerts-Blue
     - SOP-Alerts-Amber
@@ -13,6 +12,7 @@
     - SOP-Alerts-Delta
     - SOP-Alerts-Purple
     - SOP-Alerts-Yellow
+    - SOP-Alerts-Protocol
 
 - type: guideEntry
   id: SOP-Alerts-Protocol

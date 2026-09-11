@@ -31,9 +31,7 @@
   contracts:
   - DocumentContractEmploymentService
   alternateTitles:
-  - BartenderMixologist
   - BartenderBarista
-  - BartenderHydrationEquipmentOperator
   # Arcane-End
 
 - type: startingGear
@@ -59,14 +57,6 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: BartenderMixologist
-  name: job-name-alt-bartender-1
-
-- type: jobAlternateTitle
-  id: BartenderHydrationEquipmentOperator
-  name: job-name-alt-bartender-2
-
-- type: jobAlternateTitle
   id: BartenderBarista
-  name: job-name-alt-bartender-3
+  name: job-name-alt-bartender-1
 # Arcane-End

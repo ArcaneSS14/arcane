@@ -38,6 +38,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
         _sawmill = Logger.GetSawmill("Guidebook");
+        InitializeWorkspace(); // Arcane
 
         Tree.OnSelectedItemChanged += OnSelectionChanged;
 
@@ -49,9 +50,17 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
     public void HandleClick(string link)
     {
+        // Arcane-Edit-Start
+        HandleWorkspaceLink(link);
+    }
+
+    private void SelectGuide(string link)
+    {
+        // Arcane-Edit-End
         if (!_entries.TryGetValue(link, out var entry))
             return;
 
+        SelectEntryCategory(entry); // Arcane
         if (Tree.TryGetIndexFromMetadata(entry, out var index))
         {
             Tree.ExpandParentEntries(index.Value);
@@ -101,7 +110,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
             var isRulesEntry = entry.RuleEntry;
             ReturnContainer.Visible = isRulesEntry;
-            HomeButton.OnPressed += _ => ShowGuide(entry);
+            _ruleHomeEntry = entry.RuleEntry ? entry.Id : null; // Arcane-edit
         }
         else
             ClearSelectedGuide();
@@ -109,6 +118,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
     public void ClearSelectedGuide()
     {
+        ClearWorkspaceArticle(); // Arcane
         Placeholder.Visible = true;
         EntryContainer.Visible = false;
         SearchContainer.Visible = false;
@@ -117,6 +127,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
     private void ShowGuide(GuideEntry entry)
     {
+        RememberArticleScroll(); // Arcane
         Scroll.SetScrollValue(default);
         Placeholder.Visible = false;
         EntryContainer.Visible = true;
@@ -134,6 +145,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         }
 
         LastEntry = entry.Id;
+        RefreshWorkspaceArticle(entry); // Arcane
 
         var (linkableControls, linkControls) = GetLinkableControlsAndLinks(EntryContainer);
 
@@ -160,27 +172,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         ProtoId<GuideEntryPrototype>? selected = null)
     {
         _entries = entries;
-        RepopulateTree(rootEntries, forceRoot);
-        ClearSelectedGuide();
-
-        Split.State = SplitContainer.SplitState.Auto;
-        if (entries.Count == 1)
-        {
-            TreeBox.Visible = false;
-            Split.ResizeMode = SplitContainer.SplitResizeMode.NotResizable;
-            selected = entries.Keys.First();
-        }
-        else
-        {
-            TreeBox.Visible = true;
-            Split.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
-        }
-
-        if (selected != null)
-        {
-            var item = Tree.Items.FirstOrDefault(x => x.Metadata is GuideEntry entry && entry.Id == selected);
-            Tree.SetSelectedIndex(item?.Index);
-        }
+        UpdateWorkspaceGuides(rootEntries, forceRoot, selected); // Arcane-edit
     }
 
     private IEnumerable<GuideEntry> GetSortedEntries(List<ProtoId<GuideEntryPrototype>>? rootEntries)
@@ -190,18 +182,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
             HashSet<ProtoId<GuideEntryPrototype>> entries = new(_entries.Keys);
             foreach (var entry in _entries.Values)
             {
-                if (entry.Children.Count > 0)
-                {
-                    var sortedChildren = entry.Children
-                        .Select(childId => _entries[childId])
-                        .OrderBy(childEntry => childEntry.Priority)
-                        .ThenBy(childEntry => Loc.GetString(childEntry.Name))
-                        .Select(childEntry => new ProtoId<GuideEntryPrototype>(childEntry.Id))
-                        .ToList();
-
-                    entry.Children = sortedChildren;
-                }
-
+                // Arcane-remove
                 entries.ExceptWith(entry.Children);
             }
 
@@ -209,6 +190,7 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         }
 
         return rootEntries
+            .Where(_entries.ContainsKey) // Arcane
             .Select(rootEntryId => _entries[rootEntryId])
             .OrderBy(rootEntry => rootEntry.Priority)
             .ThenBy(rootEntry => Loc.GetString(rootEntry.Name));
@@ -254,10 +236,12 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         var name = Loc.GetString(entry.Name);
         item.Label.Text = name;
 
-        foreach (var child in entry.Children)
+        // Arcane-Edit-Start
+        foreach (var child in GetSortedEntries(entry.Children))
         {
-            AddEntry(child, item, addedEntries);
+            AddEntry(child.Id, item, addedEntries);
         }
+        // Arcane-Edit-End
 
         return item;
     }

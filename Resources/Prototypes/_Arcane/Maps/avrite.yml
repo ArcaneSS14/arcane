@@ -25,6 +25,7 @@
           Quartermaster: [ 1, 1 ]
           SalvageSpecialist: [ 4, 4 ]
           CargoTechnician: [ 4, 5 ]
+          ShaftMiner: [ 4, 4 ]
           # engineering
           ChiefEngineer: [ 1, 1 ]
           AtmosphericTechnician: [ 3, 3 ]
@@ -39,8 +40,9 @@
           Chemist: [ 3, 3 ]
           # science
           ResearchDirector: [ 1, 1 ]
-          Scientist: [ 5, 6 ]
-          ResearchAssistant: [ 3, 4 ]
+          Scientist: [ 5, 5 ]
+          ResearchAssistant: [ 3, 3 ]
+          Roboticist: [ 3, 3 ]
           # security
           HeadOfSecurity: [ 1, 1 ]
           Warden: [ 1, 1 ]

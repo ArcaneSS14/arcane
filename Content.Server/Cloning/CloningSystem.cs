@@ -344,6 +344,11 @@ public sealed partial class CloningSystem : SharedCloningSystem
             }
         }
 
+        // Arcane-Start
+        var populatedEv = new CloningItemStoragePopulatedEvent(spawned);
+        RaiseLocalEvent(original, ref populatedEv);
+        // Arcane-End
+
         return spawned;
     }
 
