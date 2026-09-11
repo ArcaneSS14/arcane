@@ -2,7 +2,9 @@
   parent: ClothingHandsGlovesCombat
   id: ClothingHandsGlovesBlackSilence
   name: sorrowful gloves
-  description: "I have nothing but my sorrow..."
+  description: I have nothing but my sorrow...
   components:
   - type: InclothingTools
+    toolPrototypes:
+      ClothingEyesHudMedical
   - type: RandomInclothingTools

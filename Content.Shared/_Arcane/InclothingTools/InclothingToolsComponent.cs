@@ -21,4 +21,10 @@ public sealed partial class InclothingToolsComponent : Component
 
     [ViewVariables]
     public Container Container;
+
+    [DataField, AutoNetworkedField]
+    public List<EntProtoId> ToolPrototypes;
+
+    [DataField, AutoNetworkedField]
+    public List<EntityUid> ToolsUids;
 }
