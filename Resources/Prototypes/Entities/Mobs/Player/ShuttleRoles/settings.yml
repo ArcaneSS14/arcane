@@ -1,7 +1,5 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 ## See also ../roles.yml and ../spawners.yml
-## "Visitors with Visitor ID" ghost roles are defined directly as entities in roles.yml
-## (using CloningAppearance, like hermit.yml) rather than through randomHumanoidSettings.
 
 # Misc
 

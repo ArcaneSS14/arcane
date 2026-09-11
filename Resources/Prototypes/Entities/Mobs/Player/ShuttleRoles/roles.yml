@@ -2,10 +2,6 @@
 ## See also ../settings.yml and ../spawners.yml
 
 ### Visitors with Visitor ID
-## These are ghost-role markers (parent: MarkerBase), invisible to players like any other
-## marker, until a ghost actually takes the role. CloningAppearanceSystem then spawns the
-## real body from the taking player's own character profile - see hermit.yml for the same
-## pattern. Nothing stands around as a random stranger before that happens.
 
 # Command
 
