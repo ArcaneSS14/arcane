@@ -1,3 +1,4 @@
+using Content.Client.Ghost;
 using Content.Shared._Arcane.CCVars;
 using Content.Shared._Arcane.CVars;
 using Content.Shared._Arcane.TTS;
@@ -22,6 +23,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IResourceManager _res = default!;
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private GhostSystem _ghostSystem = default!;
 
     private ISawmill _sawmill = default!;
     private readonly MemoryContentRoot _contentRoot = new();
@@ -33,10 +35,11 @@ public sealed partial class TTSSystem : EntitySystem
     private const float WhisperVolumeReduction = 4f;
 
     private float _volume = 0.0f;
-    // Arcane-start
     private float _radioVolume = 0.0f;
     private bool _useTTS = false;
-    // Arcane-end
+    private bool _ghostRadioUseTTS = false;
+    private readonly HashSet<int> _mutedRadioChannels = new();
+    private readonly Dictionary<int, float> _radioChannelVolumes = new();
     private ulong _fileIdx = 0;
     private static ulong _shareIdx = 0;
 
@@ -46,10 +49,11 @@ public sealed partial class TTSSystem : EntitySystem
         _sawmill = Logger.GetSawmill("tts");
         _res.AddRoot(_prefix, _contentRoot);
         _cfg.OnValueChanged(ArtCVars.TTSVolume, OnTtsVolumeChanged, true);
-        // Arcane-start
         _cfg.OnValueChanged(ACCVars.TTSRadioVolume, OnTtsRadioVolumeChanged, true);
         _cfg.OnValueChanged(ACCVars.UseTTS, OnUseTTSChanged, true);
-        // Arcane-end
+        _cfg.OnValueChanged(ACCVars.TTSRadioChannelMuted, OnTTSRadioChannelMutedChanged, true);
+        _cfg.OnValueChanged(ACCVars.TTSRadioChannelVolumes, OnTTSRadioChannelVolumesChanged, true);
+        _cfg.OnValueChanged(ACCVars.TTSGhostRadioUseTTS, OnGhostRadioUseTTSChanged, true);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
@@ -63,10 +67,11 @@ public sealed partial class TTSSystem : EntitySystem
     {
         base.Shutdown();
         _cfg.UnsubValueChanged(ArtCVars.TTSVolume, OnTtsVolumeChanged);
-        // Arcane-start
         _cfg.UnsubValueChanged(ACCVars.TTSRadioVolume, OnTtsRadioVolumeChanged);
         _cfg.UnsubValueChanged(ACCVars.UseTTS, OnUseTTSChanged);
-        // Arcane-end
+        _cfg.UnsubValueChanged(ACCVars.TTSRadioChannelMuted, OnTTSRadioChannelMutedChanged);
+        _cfg.UnsubValueChanged(ACCVars.TTSRadioChannelVolumes, OnTTSRadioChannelVolumesChanged);
+        _cfg.UnsubValueChanged(ACCVars.TTSGhostRadioUseTTS, OnGhostRadioUseTTSChanged);
         _contentRoot.Clear();
         _contentRoot.Dispose();
     }
@@ -81,7 +86,6 @@ public sealed partial class TTSSystem : EntitySystem
         _volume = volume;
     }
 
-    // Arcane-start
     private void OnTtsRadioVolumeChanged(float volume)
     {
         _radioVolume = volume;
@@ -91,14 +95,49 @@ public sealed partial class TTSSystem : EntitySystem
     {
         _useTTS = value;
     }
-    // Arcane-end
+
+    private void OnGhostRadioUseTTSChanged(bool value)
+    {
+        _ghostRadioUseTTS = value;
+    }
+
+    private void OnTTSRadioChannelMutedChanged(string value)
+    {
+        _mutedRadioChannels.Clear();
+        _mutedRadioChannels.UnionWith(TTSRadioChannelSettings.ParseMuted(value));
+    }
+
+    private void OnTTSRadioChannelVolumesChanged(string value)
+    {
+        _radioChannelVolumes.Clear();
+        foreach (var (frequency, volume) in TTSRadioChannelSettings.ParseVolumes(value))
+            _radioChannelVolumes[frequency] = volume;
+    }
 
     private void OnPlayTTS(PlayTTSEvent ev)
     {
-        // Arcane-start
-        if (!_useTTS)
+        var isRadio = ev.SourceUid == null && ev.Frequency is { };
+        var isGhost = _ghostSystem.IsGhost;
+
+        if (isRadio)
+        {
+            if (isGhost)
+            {
+                if (!_ghostRadioUseTTS)
+                    return;
+            }
+            else if (!_useTTS)
+            {
+                return;
+            }
+        }
+        else if (!_useTTS)
+        {
             return;
-        // Arcane-end
+        }
+
+        if (ev.SourceUid == null && ev.Frequency is { } frequency && _mutedRadioChannels.Contains(frequency))
+            return;
 
         _sawmill.Verbose($"Play TTS audio {ev.Data.Length} bytes from {ev.SourceUid} entity");
 
@@ -111,7 +150,7 @@ public sealed partial class TTSSystem : EntitySystem
             audioResource.Load(IoCManager.Instance!, _prefix / filePath);
 
             var audioParams = AudioParams.Default
-                .WithVolume(AdjustVolume(ev.IsWhisper, ev.SourceUid == null)) // Arcane
+                .WithVolume(AdjustVolume(ev.IsWhisper, ev.SourceUid == null, ev.Frequency))
                 .WithMaxDistance(AdjustDistance(ev.IsWhisper));
 
             if (ev.SourceUid != null)
@@ -133,17 +172,21 @@ public sealed partial class TTSSystem : EntitySystem
         }
     }
 
-    private float AdjustVolume(bool isWhisper, bool isRadio = false) // Arcane
+    private float AdjustVolume(bool isWhisper, bool isRadio = false, int? frequency = null)
     {
         var volume = SharedAudioSystem.GainToVolume(_volume);
 
         if (isWhisper)
             volume -= SharedAudioSystem.GainToVolume(WhisperVolumeReduction);
 
-        // Arcane-start
         if (isRadio)
-            volume = SharedAudioSystem.GainToVolume(_radioVolume);
-        // Arcane-end
+        {
+            var multiplier = 1f;
+            if (frequency is { } freq && _radioChannelVolumes.TryGetValue(freq, out var channelVolume))
+                multiplier = channelVolume;
+
+            volume = SharedAudioSystem.GainToVolume(_radioVolume * multiplier);
+        }
 
         return volume;
     }

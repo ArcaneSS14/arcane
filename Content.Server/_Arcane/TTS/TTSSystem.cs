@@ -27,7 +27,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private LanguageSystem _language = default!;
     [Dependency] private ExamineSystemShared _examineSystem = default!;
 
-    private const int MaxMessageChars = 300; // Arcane
+    private const int MaxMessageChars = 300;
     private bool _isEnabled;
 
 
@@ -84,10 +84,9 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_isEnabled || args.Message.Length > MaxMessageChars)
             return;
 
-        HandleReceiveRadio(Filter.SinglePlayer(comp.PlayerSession), args.Message, args.Voice, "radio_headset", args.Language); // Arcane
+        HandleReceiveRadio(Filter.SinglePlayer(comp.PlayerSession), args.Message, args.Voice, "radio_headset", args.Language, args.Frequency);
     }
 
-    // Arcane-start
     private void OnTTSAnnouncePlayEvent(ref TTSAnnouncePlayEvent args)
     {
         string? voice = null;
@@ -106,7 +105,7 @@ public sealed partial class TTSSystem : EntitySystem
         }
     }
 
-    private async void HandleReceiveRadio(Filter filter, string message, string speaker, string effect, LanguagePrototype? language = null)
+    private async void HandleReceiveRadio(Filter filter, string message, string speaker, string effect, LanguagePrototype? language = null, int? frequency = null)
     {
         var soundData = await GenerateTTS(message, speaker, effect);
         if (soundData is null)
@@ -121,10 +120,9 @@ public sealed partial class TTSSystem : EntitySystem
             if (language != null && !_language.CanUnderstand(uid.Value, language.ID))
                 continue;
 
-            RaiseNetworkEvent(new PlayTTSEvent(soundData, null), recipient);
+            RaiseNetworkEvent(new PlayTTSEvent(soundData, null, false, frequency), recipient);
         }
     }
-    // Arcane-end
 
     private async void HandleSay(EntityUid uid, string message, LanguagePrototype language, string speaker, string? effect)
     {
