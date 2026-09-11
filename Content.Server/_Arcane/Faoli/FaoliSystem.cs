@@ -79,8 +79,11 @@ public sealed partial class FaoliSystem : EntitySystem
 
     public bool OnUseAbility(EntityUid uid, FixedPoint2 cost)
     {
-        if (cost > 0 && TryComp<FaoliComponent>(uid, out var comp))
+        if (cost > 0)
         {
+            if (!TryComp<FaoliComponent>(uid, out var comp))
+                return false;
+
             if (comp.Faoli >= cost)
             {
                 _faoli.TryChangeFaoliAmount(uid, -cost, comp);
