@@ -1223,3 +1223,12 @@ Entries:
   id: 102
   time: '2026-09-11T06:44:34.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/322
+- author: ChangelingRUES
+  changes:
+    - type: Fix
+      message: >-
+        Инфи-дормы Квартира и Пляж были исправлены, Пробки света больше выбивать
+        не должно, вместо кубиков в холодильнике было положено мясо.
+  id: 103
+  time: '2026-09-11T07:00:20.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/336
