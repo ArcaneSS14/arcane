@@ -1868,6 +1868,10 @@ namespace Content.Client.Lobby.UI
         private void SetSpecies(string newSpecies)
         {
             Profile = Profile?.WithSpecies(newSpecies);
+            // Arcane-Start
+            Profile = Profile?.WithCustomSpeciesName("");
+            UpdateFlavorPreview();
+            // Arcane-End
             OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
             Markings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
             // In case there's job restrictions for the species
