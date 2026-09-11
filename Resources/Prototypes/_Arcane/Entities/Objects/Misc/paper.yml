@@ -1,0 +1,12 @@
+﻿- type: entity
+  name: ethereal paper
+  parent: Paper
+  id: EtherealPaper
+  description: "Paper woven from the threads of reality and Faoli. What won't you do for bureaucracy?"
+  components:
+  - type: Sprite
+    color: "#191919"
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_Goobstation/Interface/Paper/paper_background_grey.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 16.0, 16.0, 16.0, 16.0
