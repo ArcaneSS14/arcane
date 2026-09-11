@@ -1,3 +1,5 @@
+loadout-group-grimoire = Гримуар
+
 # Service
 loadout-group-service-cloak = Сервисный отдел, плащ
 

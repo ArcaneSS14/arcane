@@ -98,7 +98,7 @@ public sealed partial class StoreSystem : EntitySystem
     {
         // Arcane-Start
         if (!HasComp<PdaComponent>(uid)
-            && !HasComp<NtrClientAccountComponent>(uid)
+            && component.BlockMindShield
             && _mindShieldCheck.IsMindShieldBlocked(args.User))
         {
             if (!args.Silent)
@@ -151,7 +151,7 @@ public sealed partial class StoreSystem : EntitySystem
     private void OnImplantActivate(EntityUid uid, StoreComponent component, OpenUplinkImplantEvent args)
     {
         // Arcane-Start
-        if (_mindShieldCheck.IsMindShieldBlocked(args.Performer))
+        if (_mindShieldCheck.IsMindShieldBlocked(args.Performer) && component.BlockMindShield)
         {
             _popup.PopupEntity(Loc.GetString("mindshield-blocks-syndicate"), uid, args.Performer);
             return;
