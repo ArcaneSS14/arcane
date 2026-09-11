@@ -2,450 +2,944 @@
 ## See also ../settings.yml and ../spawners.yml
 
 ### Visitors with Visitor ID
+## These are ghost-role markers (parent: MarkerBase), invisible to players like any other
+## marker, until a ghost actually takes the role. CloningAppearanceSystem then spawns the
+## real body from the taking player's own character profile - see hermit.yml for the same
+## pattern. Nothing stands around as a random stranger before that happens.
 
 # Command
 
 - type: entity
+  id: VisitorCommandBase
+  abstract: true
+  parent: MarkerBase
+  categories: [ Spawner ]
+  components:
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-command-name
+      description: ghost-role-information-command-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: default
+    - type: CloningAppearance
+      components:
+        - type: IdBind
+        - type: AutoImplant
+          implants:
+          - MindShieldImplant
+        - type: AntagImmune
+        - type: RandomMetadata
+          nameSegments:
+          - NamesFirst
+          - NamesLast
+          nameFormat: name-format-standard
+
+- type: entity
   id: RandomHumanoidVisitorCaptain
   name: visiting Captain ghost role
+  parent: VisitorCommandBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: captain
-    - type: RandomHumanoidSpawner
-      settings: VisitorCaptain
+    - type: GhostRole
+      name: job-name-captain
+      description: ghost-role-information-command-description
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorCaptain, VisitorCaptainAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorCE
   name: visiting CE ghost role
+  parent: VisitorCommandBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ce
-    - type: RandomHumanoidSpawner
-      settings: VisitorCE
+    - type: GhostRole
+      name: job-name-ce
+      description: ghost-role-information-command-description
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorCE, VisitorCEAlt ]
+          roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidVisitorCMO
   name: visiting CMO ghost role
+  parent: VisitorCommandBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: cmo
-    - type: RandomHumanoidSpawner
-      settings: VisitorCMO
+    - type: GhostRole
+      name: job-name-cmo
+      description: ghost-role-information-command-description
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorCMO, VisitorCMOAlt ]
+          roleLoadout: [ RoleSurvivalMedical ]
 
 - type: entity
   id: RandomHumanoidVisitorHOP
   name: visiting HOP ghost role
+  parent: VisitorCommandBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: hop
-    - type: RandomHumanoidSpawner
-      settings: VisitorHOP
+    - type: GhostRole
+      name: job-name-hop
+      description: ghost-role-information-command-description
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorHOP, VisitorHOPAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorHOS
   name: visiting HOS ghost role
+  parent: VisitorCommandBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: hos
-    - type: RandomHumanoidSpawner
-      settings: VisitorHOS
+    - type: GhostRole
+      name: job-name-hos
+      description: ghost-role-information-command-description
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorHOS, VisitorHOSAlt ]
+          roleLoadout: [ RoleSurvivalSecurity ]
 
 - type: entity
   id: RandomHumanoidVisitorRD
   name: visiting RD ghost role
+  parent: VisitorCommandBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: rd
-    - type: RandomHumanoidSpawner
-      settings: VisitorResearchDirector
+    - type: GhostRole
+      name: job-name-rd
+      description: ghost-role-information-command-description
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorRD, VisitorRDAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorQM
   name: visiting QM ghost role
+  parent: VisitorCommandBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: qm
-    - type: RandomHumanoidSpawner
-      settings: VisitorQM
+    - type: GhostRole
+      name: job-name-qm
+      description: ghost-role-information-command-description
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorQM, VisitorQMAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 # Security
 
 - type: entity
+  id: VisitorSecurityBase
+  abstract: true
+  parent: MarkerBase
+  categories: [ Spawner ]
+  components:
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-security-name
+      description: ghost-role-information-security-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: default
+    - type: CloningAppearance
+      components:
+        - type: IdBind
+        - type: AutoImplant
+          implants:
+          - MindShieldImplant
+        - type: AntagImmune
+        - type: RandomMetadata
+          nameSegments:
+          - NamesFirst
+          - NamesLast
+          nameFormat: name-format-standard
+
+- type: entity
   id: RandomHumanoidVisitorSecurityCadet
   name: visiting security cadet role
+  parent: VisitorSecurityBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: security_cadet
-    - type: RandomHumanoidSpawner
-      settings: VisitorSecurityCadet
+    - type: GhostRole
+      name: job-name-cadet
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorSecurityCadet, VisitorSecurityCadetAlt ]
+          roleLoadout: [ RoleSurvivalSecurity ]
 
 - type: entity
   id: RandomHumanoidVisitorSecurityOfficer
   name: visiting security officer ghost role
+  parent: VisitorSecurityBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: security_officer
-    - type: RandomHumanoidSpawner
-      settings: VisitorSecurityOfficer
+    - type: GhostRole
+      name: job-name-security
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorSecurityOfficer, VisitorSecurityOfficerAlt ]
+          roleLoadout: [ RoleSurvivalSecurity ]
 
 - type: entity
   id: RandomHumanoidVisitorDetective
   name: visiting detective role
+  parent: VisitorSecurityBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: detective
-    - type: RandomHumanoidSpawner
-      settings: VisitorDetective
+    - type: GhostRole
+      name: job-name-detective
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorDetective, VisitorDetectiveAlt ]
+          roleLoadout: [ RoleSurvivalSecurity ]
 
 - type: entity
   id: RandomHumanoidVisitorWarden
   name: visiting warden ghost role
+  parent: VisitorSecurityBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: warden
-    - type: RandomHumanoidSpawner
-      settings: VisitorWarden
+    - type: GhostRole
+      name: job-name-warden
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorWarden, VisitorWardenAlt ]
+          roleLoadout: [ RoleSurvivalSecurity ]
 
 # Cargo
 
 - type: entity
+  id: VisitorCargoBase
+  abstract: true
+  parent: MarkerBase
+  categories: [ Spawner ]
+  components:
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-cargo-name
+      description: ghost-role-information-cargo-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: CloningAppearance
+      components:
+        - type: IdBind
+        - type: RandomMetadata
+          nameSegments:
+          - NamesFirst
+          - NamesLast
+          nameFormat: name-format-standard
+
+- type: entity
   id: RandomHumanoidVisitorCargoTechnician
   name: visiting cargo technician ghost role
+  parent: VisitorCargoBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: cargo_tech
-    - type: RandomHumanoidSpawner
-      settings: VisitorCargoTechnician
+    - type: GhostRole
+      name: job-name-cargotech
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorCargoTech, VisitorCargoTechAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorSalvageSpecialist
   name: visiting salvage specialist ghost role
+  parent: VisitorCargoBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: salvagespecialist
-    - type: RandomHumanoidSpawner
-      settings: VisitorSalvageSpecialist
+    - type: GhostRole
+      name: job-name-salvagespec
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorSalvageSpecialist, VisitorSalvageSpecialistAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 # Engineering
 
 - type: entity
+  id: VisitorEngineeringBase
+  abstract: true
+  parent: MarkerBase
+  categories: [ Spawner ]
+  components:
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-engineering-name
+      description: ghost-role-information-engineering-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: CloningAppearance
+      components:
+        - type: IdBind
+        - type: RandomMetadata
+          nameSegments:
+          - NamesFirst
+          - NamesLast
+          nameFormat: name-format-standard
+
+- type: entity
   id: RandomHumanoidVisitorAtmosTech
   name: visiting atmospheric technician ghost role
+  parent: VisitorEngineeringBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: atmospherics
-    - type: RandomHumanoidSpawner
-      settings: VisitorAtmosTech
+    - type: GhostRole
+      name: job-name-atmostech
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorAtmosTech, VisitorAtmosTechAlt ]
+          roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidVisitorTechnicalAssistant
   name: visiting technical assistant ghost role
+  parent: VisitorEngineeringBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: technicalassistant
-    - type: RandomHumanoidSpawner
-      settings: VisitorTechnicalAssistant
+    - type: GhostRole
+      name: job-name-technical-assistant
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorTechnicalAssistant, VisitorTechnicalAssistantAlt ]
+          roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidVisitorEngineer
   name: visiting engineer ghost role
+  parent: VisitorEngineeringBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: engineer
-    - type: RandomHumanoidSpawner
-      settings: VisitorEngineer
+    - type: GhostRole
+      name: job-name-engineer
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorEngineer, VisitorEngineerAlt ]
+          roleLoadout: [ RoleSurvivalExtended ]
 
 # Medical
 
 - type: entity
+  id: VisitorMedicalBase
+  abstract: true
+  parent: MarkerBase
+  categories: [ Spawner ]
+  components:
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-medical-name
+      description: ghost-role-information-medical-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: CloningAppearance
+      components:
+        - type: IdBind
+        - type: RandomMetadata
+          nameSegments:
+          - NamesFirst
+          - NamesLast
+          nameFormat: name-format-standard
+
+- type: entity
   id: RandomHumanoidVisitorMedicalIntern
   name: visiting medical intern ghost role
+  parent: VisitorMedicalBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: medicalintern
-    - type: RandomHumanoidSpawner
-      settings: VisitorMedicalIntern
+    - type: GhostRole
+      name: job-name-intern
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorMedicalIntern, VisitorMedicalInternAlt ]
+          roleLoadout: [ RoleSurvivalMedical ]
 
 - type: entity
   id: RandomHumanoidVisitorMedicalDoctor
   name: visiting medical doctor ghost role
+  parent: VisitorMedicalBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: doctor
-    - type: RandomHumanoidSpawner
-      settings: VisitorMedicalDoctor
+    - type: GhostRole
+      name: job-name-doctor
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorMedicalDoctor, VisitorMedicalDoctorAlt , VisitorScrubsPurple, VisitorScrubsGreen, VisitorScrubsBlue]
+          roleLoadout: [ RoleSurvivalMedical ]
 
 - type: entity
   id: RandomHumanoidVisitorParamedic
   name: visiting paramedic ghost role
+  parent: VisitorMedicalBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: paramedic
-    - type: RandomHumanoidSpawner
-      settings: VisitorParamedic
+    - type: GhostRole
+      name: job-name-paramedic
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorParamedic, VisitorParamedicAlt ]
+          roleLoadout: [ RoleSurvivalMedical ]
 
 - type: entity
   id: RandomHumanoidVisitorPsychologist
   name: visiting psychologist ghost role
+  parent: VisitorMedicalBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: psychologist
-    - type: RandomHumanoidSpawner
-      settings: VisitorPsychologist
+    - type: GhostRole
+      name: job-name-psychologist
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorPsychologist, VisitorPsychologistAlt ]
+          roleLoadout: [ RoleSurvivalMedical ]
 
 - type: entity
   id: RandomHumanoidVisitorChemist
   name: visiting chemist ghost role
+  parent: VisitorMedicalBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: chemist
-    - type: RandomHumanoidSpawner
-      settings: VisitorChemist
+    - type: GhostRole
+      name: job-name-chemist
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorChemist, VisitorChemistAlt ]
+          roleLoadout: [ RoleSurvivalMedical ]
 
 - type: entity
   id: RandomHumanoidVisitorVirologist
   name: visiting virologist ghost role
+  parent: VisitorMedicalBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: virologist
-    - type: RandomHumanoidSpawner
-      settings: VisitorVirologist
+    - type: GhostRole
+      name: ghost-role-information-medical-virologist-name
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorVirologist, VisitorVirologistAlt ]
+          roleLoadout: [ RoleSurvivalMedical ]
 
 - type: entity
   id: RandomHumanoidVisitorGeneticist
   name: visiting geneticist ghost role
+  parent: VisitorMedicalBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: geneticist
-    - type: RandomHumanoidSpawner
-      settings: VisitorGeneticist
+    - type: GhostRole
+      name: ghost-role-information-medical-geneticist-name
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorGeneticist, VisitorGeneticistAlt ]
+          roleLoadout: [ RoleSurvivalMedical ]
 
 - type: entity
   id: RandomHumanoidVisitorDentist
   name: visiting dentist ghost role
+  parent: VisitorMedicalBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: seniorphysician
-    - type: RandomHumanoidSpawner
-      settings: VisitorDentist
+    - type: GhostRole
+      name: ghost-role-information-medical-dentist-name
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorDentist ]
+          roleLoadout: [ RoleSurvivalMedical ]
 
 # Science
 
 - type: entity
+  id: VisitorScienceBase
+  abstract: true
+  parent: MarkerBase
+  categories: [ Spawner ]
+  components:
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-science-name
+      description: ghost-role-information-science-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: CloningAppearance
+      components:
+        - type: IdBind
+        - type: RandomMetadata
+          nameSegments:
+          - NamesFirst
+          - NamesLast
+          nameFormat: name-format-standard
+
+- type: entity
   id: RandomHumanoidVisitorResearchAssistant
   name: visiting research assistant ghost role
+  parent: VisitorScienceBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: researchassistant
-    - type: RandomHumanoidSpawner
-      settings: VisitorResearchAssistant
+    - type: GhostRole
+      name: job-name-research-assistant
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorResearchAssistant, VisitorResearchAssistantAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorScientist
   name: visiting scientist ghost role
+  parent: VisitorScienceBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: scientist
-    - type: RandomHumanoidSpawner
-      settings: VisitorScientist
+    - type: GhostRole
+      name: job-name-scientist
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorScientist, VisitorScientistAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 # Civilian
 
 - type: entity
+  id: VisitorCivilianBase
+  abstract: true
+  parent: MarkerBase
+  categories: [ Spawner ]
+  components:
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-civilian-name
+      description: ghost-role-information-civilian-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: CloningAppearance
+      components:
+        - type: IdBind
+        - type: RandomMetadata
+          nameSegments:
+          - NamesFirst
+          - NamesLast
+          nameFormat: name-format-standard
+
+#Goobstation start
+- type: entity
+  id: VisitorCivilianLibrarianBase
+  abstract: true
+  parent: MarkerBase
+  categories: [ Spawner ]
+  components:
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-civilian-name
+      description: ghost-role-information-civilian-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: CloningAppearance
+      components:
+        - type: IdBind
+        - type: AutoImplant
+          implants:
+          - LibrarianTranslatorImplant
+        - type: RandomMetadata
+          nameSegments:
+          - NamesFirst
+          - NamesLast
+          nameFormat: name-format-standard
+
+- type: entity
+  id: VisitorCivilianChefBase
+  abstract: true
+  parent: MarkerBase
+  categories: [ Spawner ]
+  components:
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-civilian-name
+      description: ghost-role-information-civilian-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+    - type: CloningAppearance
+      components:
+        - type: IdBind
+        - type: AutoImplant
+          implants:
+          - SpaceItalianTranslatorImplant
+        - type: GrantCqc
+        - type: RandomMetadata
+          nameSegments:
+          - NamesFirst
+          - NamesLast
+          nameFormat: name-format-standard
+#Goobstation end
+
+- type: entity
   id: RandomHumanoidVisitorBartender
   name: visiting bartender ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: bartender
-    - type: RandomHumanoidSpawner
-      settings: VisitorBartender
+    - type: GhostRole
+      name: job-name-bartender
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorBartender, VisitorBartenderAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorBotanist
   name: visiting botanist ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: botanist
-    - type: RandomHumanoidSpawner
-      settings: VisitorBotanist
+    - type: GhostRole
+      name: job-name-botanist
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorBotanist, VisitorBotanistAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorBoxer
   name: visiting boxer ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: boxer
-    - type: RandomHumanoidSpawner
-      settings: VisitorBoxer
+    - type: GhostRole
+      name: job-name-boxer
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorBoxer, VisitorBoxerAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorChaplain
   name: visiting chaplain ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: chaplain
-    - type: RandomHumanoidSpawner
-      settings: VisitorChaplain
+    - type: GhostRole
+      name: job-name-chaplain
+    - type: CloningAppearance
+      components:
+        - type: BibleUser
+        - type: CurseImmune # Goobstation - Wraith
+        - type: CanEnchant
+        - type: Loadout
+          prototypes: [ VisitorChaplain, VisitorChaplainAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorChef
   name: visiting chef ghost role
+  parent: VisitorCivilianChefBase #Goobstation
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: chef
-    - type: RandomHumanoidSpawner
-      settings: VisitorChef
+    - type: GhostRole
+      name: job-name-chef
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorChef, VisitorChefAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorClown
   name: visiting clown ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: clown
-    - type: RandomHumanoidSpawner
-      settings: VisitorClown
+    - type: GhostRole
+      name: job-name-clown
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorClown ]
+          roleLoadout: [ RoleSurvivalClown ]
+        # Overrides VisitorCivilianBase's default first/last name RandomMetadata with a clown name instead.
+        - type: RandomMetadata
+          nameSegments:
+          - NamesClown
+          nameFormat: random-metadata-name-format-default
 
 - type: entity
   id: RandomHumanoidVisitorJanitor
   name: visiting janitor ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: janitor
-    - type: RandomHumanoidSpawner
-      settings: VisitorJanitor
+    - type: GhostRole
+      name: job-name-janitor
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorJanitor, VisitorJanitorAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorLawyer
   name: visiting lawyer ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: lawyer
-    - type: RandomHumanoidSpawner
-      settings: VisitorLawyer
+    - type: GhostRole
+      name: job-name-lawyer
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorLawyerAltA, VisitorLawyerAltB, VisitorLawyerAltC, VisitorLawyerAltD, VisitorLawyerAltE ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorLawyerCentcom
   name: visiting centcom lawyer ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: lawyer
-    - type: RandomHumanoidSpawner
-      settings: VisitorLawyerCentcom
+    - type: GhostRole
+      name: ghost-role-information-civilian-centcom-lawyer-name
+      description: ghost-role-information-civilian-centcom-lawyer-description
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorLawyerCentcom ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorLibrarian
   name: visiting librarian ghost role
+  parent: VisitorCivilianLibrarianBase #Goobstation
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: librarian
-    - type: RandomHumanoidSpawner
-      settings: VisitorLibrarian
+    - type: GhostRole
+      name: job-name-librarian
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorLibrarian, VisitorLibrarianAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorMusician
   name: visiting musician ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: musician
-    - type: RandomHumanoidSpawner
-      settings: VisitorMusician
+    - type: GhostRole
+      name: job-name-musician
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorMusicianFancyAltA, VisitorMusicianFancyAltB, VisitorMusicianFancyAltC, VisitorMusicianFancyAltD, VisitorMusicianFancyAltE, VisitorMusicianFancyAltF, VisitorMusicianFancyAltG, VisitorMusicianFancyAltH, VisitorMusicianFancyAltI, VisitorMusicianRelaxedAltA, VisitorMusicianRelaxedAltB, VisitorMusicianRelaxedAltC, VisitorMusicianRelaxedAltD, VisitorMusicianRelaxedAltE, VisitorMusicianRelaxedAltF, VisitorMusicianMariachi ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorMusicianFancy
   name: visiting fancy musician ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: musician
-    - type: RandomHumanoidSpawner
-      settings: VisitorMusicianFancy
+    - type: GhostRole
+      name: job-name-musician
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorMusicianFancyAltA, VisitorMusicianFancyAltB, VisitorMusicianFancyAltC, VisitorMusicianFancyAltD, VisitorMusicianFancyAltE, VisitorMusicianFancyAltF, VisitorMusicianFancyAltG, VisitorMusicianFancyAltH, VisitorMusicianFancyAltI ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorMusicianRelaxed
   name: visiting relaxed musician ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: musician
-    - type: RandomHumanoidSpawner
-      settings: VisitorMusicianRelaxed
+    - type: GhostRole
+      name: job-name-musician
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorMusicianRelaxedAltA, VisitorMusicianRelaxedAltB, VisitorMusicianRelaxedAltC, VisitorMusicianRelaxedAltD, VisitorMusicianRelaxedAltE, VisitorMusicianRelaxedAltF, VisitorMusicianMariachi ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorMime
   name: visiting mime ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: mime
-    - type: RandomHumanoidSpawner
-      settings: VisitorMime
+    - type: GhostRole
+      name: job-name-mime
+    - type: CloningAppearance
+      components:
+        - type: MimePowers
+        - type: Loadout
+          prototypes: [ VisitorMime, VisitorMimeAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorReporter
   name: visiting reporter ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: reporter
-    - type: RandomHumanoidSpawner
-      settings: VisitorReporter
+    - type: GhostRole
+      name: job-name-reporter
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorReporter, VisitorReporterAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorServiceWorker
   name: visiting service worker ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: serviceworker
-    - type: RandomHumanoidSpawner
-      settings: VisitorServiceWorker
+    - type: GhostRole
+      name: job-name-serviceworker
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorServiceWorker, VisitorServiceWorkerAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 - type: entity
   id: RandomHumanoidVisitorZookeeper
   name: visiting zookeeper ghost role
+  parent: VisitorCivilianBase
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: zookeeper
-    - type: RandomHumanoidSpawner
-      settings: VisitorZookeeper
+    - type: GhostRole
+      name: job-name-zookeeper
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ VisitorZookeeper, VisitorZookeeperAlt ]
+          roleLoadout: [ RoleSurvivalStandard ]
 
 # Misc
 
@@ -454,8 +948,11 @@
   name: banana clown troupe
   parent: RandomHumanoidVisitorClown
   components:
-    - type: RandomHumanoidSpawner
-      settings: ClownTroupeBanana
+    - type: CloningAppearance
+      components:
+        - type: Loadout
+          prototypes: [ BananaClown ]
+          roleLoadout: [ RoleSurvivalClown ]
 
 ### Visitors missing equipment for challenges
 
