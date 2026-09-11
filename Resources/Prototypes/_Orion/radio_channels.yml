@@ -4,4 +4,5 @@
   keycode: 'ш'
   frequency: 1454
   color: "#FF8C00"
+  icon: JobIconInteQ # Arcane
   longRange: true
