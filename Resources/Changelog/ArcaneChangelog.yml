@@ -1232,3 +1232,10 @@ Entries:
   id: 103
   time: '2026-09-11T07:00:20.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/336
+- author: Kinar_7
+  changes:
+    - type: Tweak
+      message: Респрайт всех альтернативных вариаций подкованных сапогов.
+  id: 104
+  time: '2026-09-11T07:20:06.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/337
