@@ -56,7 +56,7 @@ public sealed class LeashOverlay : Overlay
 
             // Тень
             var shadowColor = Color.Black.WithAlpha(0.35f);
-            var shadowVerts = new[]
+            Span<Vector2> shadowVerts = stackalloc[]
             {
                 p1 + shadowOffset,
                 p2 + shadowOffset,
@@ -67,7 +67,7 @@ public sealed class LeashOverlay : Overlay
 
             // Поводок
             var leashColor = Color.SaddleBrown;
-            var leashVerts = new[]
+            Span<Vector2> leashVerts = stackalloc[]
             {
                 p1, p2, p4, p3
             };
