@@ -383,7 +383,7 @@ namespace Content.Server.Database
             profile.NSFWTagsFlavorText = humanoid.NsfwTagsFlavorText;
             // Orion-End
             profile.Species = humanoid.Species;
-            profile.CustomSpeciesName = humanoid.CustomSpeciesName; // Orion
+            profile.CustomSpeciesName = humanoid.CustomSpeciesName; // Arcane
             profile.Height = humanoid.Height; // Goobstation: port EE height/width sliders
             profile.Width = humanoid.Width; // Goobstation: port EE height/width sliders
             profile.Age = humanoid.Age;

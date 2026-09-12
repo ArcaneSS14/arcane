@@ -1911,7 +1911,16 @@ namespace Content.Client.Lobby.UI
         // Arcane-Start
         private void SetCustomSpeciesName(string customSpeciesName)
         {
-            Profile = Profile?.WithCustomSpeciesName(customSpeciesName);
+            if (Profile is null)
+                return;
+
+            customSpeciesName = HumanoidCharacterProfile.SanitizeCustomSpeciesName(
+                Profile.Species,
+                customSpeciesName,
+                _prototypeManager,
+                _cfgManager,
+                _maxNameLength);
+            Profile = Profile.WithCustomSpeciesName(customSpeciesName);
             UpdateFlavorPreview();
             SetDirty();
         }
