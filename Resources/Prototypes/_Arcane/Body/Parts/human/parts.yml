@@ -1,0 +1,43 @@
+- type: entity
+  parent: [PartHuman, BaseHeadHuman]
+  id: HeadHuman
+
+- type: entity
+  parent: [PartHuman, BaseChestHuman]
+  id: ChestHuman
+
+- type: entity
+  parent: [PartHuman, BaseGroinHuman]
+  id: GroinHuman
+
+- type: entity
+  parent: [PartHuman, BaseRightArmHuman]
+  id: RightArmHuman
+
+- type: entity
+  parent: [PartHuman, BaseLeftArmHuman]
+  id: LeftArmHuman
+
+- type: entity
+  parent: [PartHuman, BaseRightHandHuman]
+  id: RightHandHuman
+
+- type: entity
+  parent: [PartHuman, BaseLeftHandHuman]
+  id: LeftHandHuman
+
+- type: entity
+  parent: [PartHuman, BaseRightLegHuman]
+  id: RightLegHuman
+
+- type: entity
+  parent: [PartHuman, BaseLeftLegHuman]
+  id: LeftLegHuman
+
+- type: entity
+  parent: [PartHuman, BaseRightFootHuman]
+  id: RightFootHuman
+
+- type: entity
+  parent: [PartHuman, BaseLeftFootHuman]
+  id: LeftFootHuman

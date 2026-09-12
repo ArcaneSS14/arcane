@@ -18,13 +18,13 @@
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Vulpkanin.xml"
   pros:
+  - Получают меньше урона - режущий -20%, холодовой -20%. # Arcane
   - Наносят урон тупым и режущим уроном.
-  - Получают на 20% меньше холодного урона.
   - Стамина больше на 10%, чем у человека.
   special:
   - Видят мир в красных и зеленых цветах.
   cons:
-  - Получают на 30% больше теплового урона.
+  - Получают больше урона - тепловой +30%. # Arcane
   # Orion-End
 
 - type: speciesBaseSprites

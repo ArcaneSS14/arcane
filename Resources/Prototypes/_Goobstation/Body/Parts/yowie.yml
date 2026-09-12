@@ -2,7 +2,7 @@
 
 - type: entity
   id: PartYowie
-  parent: PartHuman
+  parent: BasePartHuman # Arcane
   abstract: true
   components:
   - type: BodyPart
