@@ -5,8 +5,6 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Audio.Jukebox;
 using Content.Shared.Power;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -32,7 +30,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, JukeboxSetVolumeMessage>(OnJukeboxSetVolume); // Orion
         SubscribeLocalEvent<JukeboxComponent, JukeboxToggleLoopMessage>(OnJukeboxToggleLoop); // Orion
         SubscribeLocalEvent<JukeboxComponent, ComponentInit>(OnComponentInit);
-        SubscribeLocalEvent<JukeboxComponent, ComponentShutdown>(OnComponentShutdown);
+        // SubscribeLocalEvent<JukeboxComponent, ComponentShutdown>(OnComponentShutdown); // Arcane-Edit
 
         SubscribeLocalEvent<JukeboxComponent, PowerChangedEvent>(OnPowerChanged);
     }
@@ -47,78 +45,63 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxPlay(EntityUid uid, JukeboxComponent component, ref JukeboxPlayingMessage args)
     {
-        if (Exists(component.AudioStream))
-        {
-            Audio.SetState(component.AudioStream, AudioState.Playing);
+        // Arcane-Edit-Start
+        if (component.Active && component.Playing)
+            return;
 
-            // Orion-Start
-            if (component.PlaybackStartTime == null && component.CurrentPlaybackOffset > 0)
-            {
-                Audio.SetPlaybackPosition(component.AudioStream, component.CurrentPlaybackOffset);
-            }
-            component.PlaybackStartTime = _gameTiming.CurTime;
-            Dirty(uid, component);
-            // Orion-End
-        }
-        else
+        if (!component.Active)
         {
-            component.AudioStream = Audio.Stop(component.AudioStream);
-
-            if (string.IsNullOrEmpty(component.SelectedSongId) ||
-                !_protoManager.Resolve(component.SelectedSongId, out var jukeboxProto))
-            {
+            if (string.IsNullOrEmpty(component.SelectedSongId))
                 return;
-            }
 
-            component.AudioStream = Audio.PlayPvs(jukeboxProto.Path, uid, AudioParams.Default.WithMaxDistance(10f).WithVolume(MapToRange(component.Volume, component.MinSlider, component.MaxSlider, component.MinVolume, component.MaxVolume)))?.Entity; // Orion-Edit
-            // Orion-Start
-            component.PlaybackStartTime = _gameTiming.CurTime;
+            component.Active = true;
             component.CurrentPlaybackOffset = 0f;
-            // Orion-End
-            Dirty(uid, component);
         }
+
+        component.Playing = true;
+        component.PlaybackStartTime = _gameTiming.CurTime;
+        // Arcane-Edit-End
+        Dirty(uid, component);
     }
 
     private void OnJukeboxPause(Entity<JukeboxComponent> ent, ref JukeboxPauseMessage args)
     {
-        Audio.SetState(ent.Comp.AudioStream, AudioState.Paused);
-
-        // Orion-Start
-        if (!ent.Comp.PlaybackStartTime.HasValue)
+        // Arcane-Edit-Start
+        if (!ent.Comp.Active || !ent.Comp.Playing)
             return;
 
-        var elapsed = (float)(_gameTiming.CurTime - ent.Comp.PlaybackStartTime.Value).TotalSeconds;
-        ent.Comp.CurrentPlaybackOffset += elapsed;
-        ent.Comp.PlaybackStartTime = null;
-        Dirty(ent);
+        // Orion-Start
+        if (ent.Comp.PlaybackStartTime is { } start)
+        {
+            ent.Comp.CurrentPlaybackOffset += (float) (_gameTiming.CurTime - start).TotalSeconds;
+            ent.Comp.PlaybackStartTime = null;
+        }
+
+        ent.Comp.Playing = false;
         // Orion-End
+        Dirty(ent);
+        // Arcane-Edit-End
     }
 
     private void OnJukeboxSetTime(EntityUid uid, JukeboxComponent component, JukeboxSetTimeMessage args)
     {
+        // Arcane-Edit-Start
         if (!TryComp(args.Actor, out ActorComponent? actorComp))
             return;
 
         var offset = actorComp.PlayerSession.Channel.Ping * 1.5f / 1000f;
-        var newPosition = args.SongTime + offset; // Orion
-        Audio.SetPlaybackPosition(component.AudioStream, newPosition); // Orion-Edit
-
         // Orion-Start
-        component.CurrentPlaybackOffset = newPosition;
+        component.CurrentPlaybackOffset = MathF.Max(0f, args.SongTime + offset);
         component.PlaybackStartTime = _gameTiming.CurTime;
-        Dirty(uid, component);
         // Orion-End
+        Dirty(uid, component);
+        // Arcane-Edit-End
     }
 
     // Orion-Start
     private void OnJukeboxSetVolume(EntityUid uid, JukeboxComponent component, JukeboxSetVolumeMessage args)
     {
         SetJukeboxVolume(uid, component, args.Volume);
-
-        if (!TryComp<AudioComponent>(component.AudioStream, out _))
-            return;
-
-        Audio.SetVolume(component.AudioStream, MapToRange(args.Volume, component.MinSlider, component.MaxSlider, component.MinVolume, component.MaxVolume));
     }
 
     private void OnJukeboxToggleLoop(EntityUid uid, JukeboxComponent component, JukeboxToggleLoopMessage args)
@@ -144,8 +127,12 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void Stop(Entity<JukeboxComponent> entity)
     {
-        Audio.SetState(entity.Comp.AudioStream, AudioState.Stopped);
+        // Audio.SetState(entity.Comp.AudioStream, AudioState.Stopped); // Arcane-Edit
         // Orion-Start
+        // Arcane-Start
+        entity.Comp.Active = false;
+        entity.Comp.Playing = false;
+        // Arcane-End
         entity.Comp.CurrentPlaybackOffset = 0f;
         entity.Comp.PlaybackStartTime = null;
         // Orion-End
@@ -154,13 +141,22 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxSelected(EntityUid uid, JukeboxComponent component, JukeboxSelectedMessage args)
     {
-        if (!Audio.IsPlaying(component.AudioStream))
-        {
-            component.SelectedSongId = args.SongId;
-            DirectSetVisualState(uid, JukeboxVisualState.Select);
-            component.Selecting = true;
-            component.AudioStream = Audio.Stop(component.AudioStream);
-        }
+        // Arcane-Edit-Start
+        if (component.Playing)
+            return;
+
+        component.SelectedSongId = args.SongId;
+
+        // Orion-Start
+        // A paused track is being replaced, so wipe its bookkeeping.
+        component.Active = false;
+        component.CurrentPlaybackOffset = 0f;
+        component.PlaybackStartTime = null;
+        // Orion-End
+
+        DirectSetVisualState(uid, JukeboxVisualState.Select);
+        component.Selecting = true;
+        // Arcane-Edit-End
 
         Dirty(uid, component);
     }
@@ -184,32 +180,23 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
                 }
             }
 
-            // Orion-Start
-            if (!comp.LoopEnabled || !comp.PlaybackStartTime.HasValue || !Exists(comp.AudioStream) ||
-                !TryComp<AudioComponent>(comp.AudioStream, out var audioComp))
-                continue;
 
-            var audioLength = Audio.GetAudioLength(audioComp.FileName);
-            var elapsed = (float)(_gameTiming.CurTime - comp.PlaybackStartTime.Value).TotalSeconds;
-            var currentPosition = comp.CurrentPlaybackOffset + elapsed;
-
-            if (!(currentPosition >= audioLength.TotalSeconds))
-                continue;
-
-            // Restart track
-            Audio.SetPlaybackPosition(comp.AudioStream, 0f);
-            Audio.SetState(comp.AudioStream, AudioState.Playing);
-            comp.CurrentPlaybackOffset = 0f;
-            comp.PlaybackStartTime = _gameTiming.CurTime;
-            Dirty(uid, comp);
-            // Orion-End
+            // Arcane-Start
+            if (comp.Active && comp.Playing && !comp.LoopEnabled && comp.PlaybackStartTime is { } start &&
+                comp.SelectedSongId is { } songId && _protoManager.Resolve(songId, out var songProto) &&
+                Audio.GetAudioLength(songProto.Path.Path.ToString()).TotalSeconds <=
+                comp.CurrentPlaybackOffset + (float) (_gameTiming.CurTime - start).TotalSeconds)
+            {
+                Stop((uid, comp));
+            }
+            // Arcane-End
         }
     }
 
     // Orion-Start
     private void SetJukeboxVolume(EntityUid uid, JukeboxComponent component, float volume)
     {
-        component.Volume = volume;
+        component.Volume = Math.Clamp(volume, component.MinSlider, component.MaxSlider); // Arcane-Edit
         Dirty(uid, component);
     }
 
@@ -220,10 +207,12 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     }
     // Orion-End
 
-    private void OnComponentShutdown(EntityUid uid, JukeboxComponent component, ComponentShutdown args)
-    {
-        component.AudioStream = Audio.Stop(component.AudioStream);
-    }
+    // Arcane-Edit-Start
+    // private void OnComponentShutdown(EntityUid uid, JukeboxComponent component, ComponentShutdown args)
+    // {
+    //     component.AudioStream = Audio.Stop(component.AudioStream);
+    // }
+    // Arcane-Edit-End
 
     private void DirectSetVisualState(EntityUid uid, JukeboxVisualState state)
     {

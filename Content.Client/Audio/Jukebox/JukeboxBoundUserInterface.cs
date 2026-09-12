@@ -66,7 +66,10 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
         if (_menu == null || !EntMan.TryGetComponent(Owner, out JukeboxComponent? jukebox))
             return;
 
-        _menu.SetAudioStream(jukebox.AudioStream);
+        // Arcane-Edit-Start
+        _menu.SetAudioStream(EntMan.System<JukeboxSystem>().GetLocalStream(Owner));
+        _menu.SetPlayPauseButton(jukebox.Playing, force: true);
+        // Arcane-Edit-End
         _menu.SetVolumeSlider(jukebox.Volume); // Orion
         _menu.SetLoopButton(jukebox.LoopEnabled); // Orion
 
@@ -95,14 +98,10 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
     {
         var sentTime = time;
 
-        // You may be wondering, what the fuck is this
-        // Well we want to be able to predict the playback slider change, of which there are many ways to do it
-        // We can't just use SendPredictedMessage because it will reset every tick and audio updates every frame
-        // so it will go BRRRRT
-        // Using ping gets us close enough that it SHOULD, MOST OF THE TIME, fall within the 0.1 second tolerance
-        // that's still on engine so our playback position never gets corrected.
-        if (EntMan.TryGetComponent(Owner, out JukeboxComponent? jukebox) &&
-            EntMan.TryGetComponent(jukebox.AudioStream, out AudioComponent? audioComp))
+        // Arcane-Edit-Start
+        if (EntMan.System<JukeboxSystem>().GetLocalStream(Owner) is { } stream &&
+            EntMan.TryGetComponent(stream, out AudioComponent? audioComp))
+        // Arcane-Edit-End
         {
             audioComp.PlaybackPosition = time;
         }
@@ -111,24 +110,14 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
     }
 
     // Orion-Start
-    /// First applies the volume locally for prediction (if components are available),
-    /// then sends a message to the server for synchronization.
-    /// Uses MapToRange to convert the slider value to the actual audio component volume range.
+    /// <summary>
+    /// Sends the boombox's shared volume to the server. The client jukebox system continuously
+    /// re-applies this (plus the listener's personal volume) to the local audio source, so no
+    /// separate prediction is needed here.
     /// </summary>
-    /// <param name="volume">Volume value from the UI slider (typically from 0 to 1).</param>
-
     public void SetVolume(float volume)
     {
-        var sentVolume = volume;
-
-        // Prediction
-        if (EntMan.TryGetComponent(Owner, out JukeboxComponent? jukebox) &&
-            EntMan.TryGetComponent(jukebox.AudioStream, out AudioComponent? audioComp))
-        {
-            audioComp.Volume = SharedJukeboxSystem.MapToRange(volume, jukebox.MinSlider, jukebox.MaxSlider, jukebox.MinVolume, jukebox.MaxVolume);
-        }
-
-        SendMessage(new JukeboxSetVolumeMessage(sentVolume));
+        SendMessage(new JukeboxSetVolumeMessage(volume)); // Arcane-Edit
     }
     // Orion-End
 }
