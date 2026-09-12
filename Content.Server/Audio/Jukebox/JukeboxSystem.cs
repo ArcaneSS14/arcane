@@ -5,6 +5,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Audio.Jukebox;
 using Content.Shared.Power;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -37,6 +38,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnComponentInit(EntityUid uid, JukeboxComponent component, ComponentInit args)
     {
+        EnsureTrackLength(uid, component); // Arcane
         if (HasComp<ApcPowerReceiverComponent>(uid))
         {
             TryUpdateVisualState(uid, component);
@@ -61,6 +63,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         component.Playing = true;
         component.PlaybackStartTime = _gameTiming.CurTime;
         // Arcane-Edit-End
+        EnsureTrackLength(uid, component); // Arcane
         Dirty(uid, component);
     }
 
@@ -94,6 +97,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         component.CurrentPlaybackOffset = MathF.Max(0f, args.SongTime + offset);
         component.PlaybackStartTime = _gameTiming.CurTime;
         // Orion-End
+        EnsureTrackLength(uid, component); // Arcane
         Dirty(uid, component);
         // Arcane-Edit-End
     }
@@ -136,6 +140,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         entity.Comp.CurrentPlaybackOffset = 0f;
         entity.Comp.PlaybackStartTime = null;
         // Orion-End
+        entity.Comp.TrackLength = 0f; // Arcane
         Dirty(entity);
     }
 
@@ -152,7 +157,9 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         component.Active = false;
         component.CurrentPlaybackOffset = 0f;
         component.PlaybackStartTime = null;
+        component.TrackLength = 0f; // Arcane
         // Orion-End
+        EnsureTrackLength(uid, component); // Arcane
 
         DirectSetVisualState(uid, JukeboxVisualState.Select);
         component.Selecting = true;
@@ -183,15 +190,31 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
             // Arcane-Start
             if (comp.Active && comp.Playing && !comp.LoopEnabled && comp.PlaybackStartTime is { } start &&
-                comp.SelectedSongId is { } songId && _protoManager.Resolve(songId, out var songProto) &&
-                Audio.GetAudioLength(songProto.Path.Path.ToString()).TotalSeconds <=
-                comp.CurrentPlaybackOffset + (float) (_gameTiming.CurTime - start).TotalSeconds)
+                comp.TrackLength > 0f &&
+                comp.TrackLength <= comp.CurrentPlaybackOffset + (float) (_gameTiming.CurTime - start).TotalSeconds)
             {
                 Stop((uid, comp));
             }
             // Arcane-End
         }
     }
+
+    // Arcane-Start
+    private void EnsureTrackLength(EntityUid uid, JukeboxComponent component)
+    {
+        if (component.TrackLength > 0f)
+            return;
+
+        if (component.SelectedSongId is not { } songId ||
+            !_protoManager.Resolve(songId, out var songProto))
+        {
+            component.TrackLength = 0f;
+            return;
+        }
+
+        component.TrackLength = (float) Audio.GetAudioLength(new ResolvedPathSpecifier(songProto.Path.Path)).TotalSeconds;
+    }
+    // Arcane-End
 
     // Orion-Start
     private void SetJukeboxVolume(EntityUid uid, JukeboxComponent component, float volume)

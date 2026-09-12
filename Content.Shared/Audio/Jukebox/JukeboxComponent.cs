@@ -74,8 +74,8 @@ public sealed partial class JukeboxComponent : Component
     public float CurrentPlaybackOffset;
 
     // Arcane-Start
-    public float GetAudioVolume() =>
-        SharedJukeboxSystem.MapToRange(Volume, MinSlider, MaxSlider, MinVolume, MaxVolume);
+    [ViewVariables]
+    public float TrackLength;
     // Arcane-End
     // Orion-End
 }

@@ -56,8 +56,19 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     public EntityUid? GetLocalStream(EntityUid jukebox)
     {
         return _localStreams.GetValueOrDefault(jukebox);
-        // Arcane-End
     }
+
+    public void ApplyLocalVolume(EntityUid jukebox, float volume)
+    {
+        if (!_localStreams.TryGetValue(jukebox, out var stream) || !Exists(stream))
+            return;
+
+        if (!TryComp<JukeboxComponent>(jukebox, out var comp))
+            return;
+
+        Audio.SetVolume(stream, GetEffectiveVolume(comp, volume));
+    }
+    // Arcane-End
 
     public override void Shutdown()
     {
@@ -112,9 +123,9 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxAfterState(Entity<JukeboxComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        // Arcane-Start
+        // Arcane-Edit-Start
         ApplyJukeboxState(ent);
-        // Arcane-End
+        // Arcane-Edit-End
 
         if (!_uiSystem.TryGetOpenUi<JukeboxBoundUserInterface>(ent.Owner, JukeboxUiKey.Key, out var bui))
             return;
@@ -180,7 +191,13 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         _localStreams[uid] = stream.Value;
 
         if (!comp.Playing)
+        // Arcane-Edit-Start
+        {
+            Audio.SetVolume(stream.Value, float.NegativeInfinity);
             Audio.SetState(stream.Value, AudioState.Paused);
+            Audio.SetVolume(stream.Value, GetEffectiveVolume(comp));
+        }
+        // Arcane-Edit-End
 
         var (_, target) = GetPlaybackPosition(comp);
         if (target > 0.1f)
@@ -201,14 +218,20 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             Audio.SetPlaybackPosition(stream, target);
     }
 
-    private float GetEffectiveVolume(JukeboxComponent comp)
+    private float GetEffectiveVolume(JukeboxComponent comp, float? volumeOverride = null) // Arcane-Edit
     {
         var multiplier = _cfg.GetCVar(ACCVars.JukeboxVolume);
         var personal = multiplier <= 0.01f
             ? float.NegativeInfinity
             : SharedAudioSystem.GainToVolume(multiplier);
 
-        return comp.GetAudioVolume() + personal;
+        // Arcane-Edit-Start
+        var shared = volumeOverride is { } volume
+            ? SharedJukeboxSystem.MapToRange(volume, comp.MinSlider, comp.MaxSlider, comp.MinVolume, comp.MaxVolume)
+            : SharedJukeboxSystem.GetAudioVolume(comp);
+
+        return shared + personal;
+        // Arcane-Edit-End
     }
 
     /// <summary>
@@ -226,7 +249,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
         var length = 0f;
         if (comp.SelectedSongId is { } songId && _protoManager.Resolve(songId, out var songProto))
-            length = MathF.Max((float) Audio.GetAudioLength(songProto.Path.Path.ToString()).TotalSeconds, 0.01f);
+            length = MathF.Max((float) Audio.GetAudioLength(new ResolvedPathSpecifier(songProto.Path.Path)).TotalSeconds, 0.01f);
 
         if (length > 0f)
         {

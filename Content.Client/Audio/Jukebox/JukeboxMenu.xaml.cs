@@ -214,7 +214,7 @@ public sealed partial class JukeboxMenu : FancyWindow
 
             if (PlaybackSlider.MaxValue > 0f)
                 position %= PlaybackSlider.MaxValue;
-            // Arcane-Edit-End
+            // Arcane-End
 
             PlaybackSlider.SetValueWithoutEvent(position); // Arcane-Edit
         }
