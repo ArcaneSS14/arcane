@@ -36,7 +36,7 @@ public sealed class SharedLeashSystem : EntitySystem
         SubscribeLocalEvent<LeashComponent, UseInHandEvent>(OnLeashUseInHand);
         SubscribeLocalEvent<LeashComponent, GetVerbsEvent<InteractionVerb>>(AddLeashVerbs);
         SubscribeLocalEvent<LeashComponent, DroppedEvent>(OnLeashDropped);
-        SubscribeLocalEvent<LeashComponent, EntInsertedIntoContainerMessage>(OnLeashContainerInserted);
+        SubscribeLocalEvent<LeashComponent, EntGotInsertedIntoContainerMessage>(OnLeashContainerInserted);
         SubscribeLocalEvent<CollarComponent, GotUnequippedEvent>(OnCollarUnequipped);
         // Удаление
         SubscribeLocalEvent<LeashComponent, ComponentShutdown>(OnLeashShutdown);
@@ -145,17 +145,17 @@ public sealed class SharedLeashSystem : EntitySystem
     /// <summary>
     /// Перемещение поводка в контейнер или в руку другого существа
     /// </summary>
-    private void OnLeashContainerInserted(EntityUid uid, LeashComponent component, EntInsertedIntoContainerMessage args)
+    private void OnLeashContainerInserted(EntityUid uid, LeashComponent component, ref EntGotInsertedIntoContainerMessage args)
     {
         if (component.AttachedEntity == null)
             return;
 
+        var containerOwner = args.Container.Owner;
+
         // Если поводок передали
-        if (_containerSystem.TryGetContainingContainer(uid, out var container) &&
-            _handsSystem.IsHolding(container.Owner, uid, out _))
+        if (_handsSystem.IsHolding(containerOwner, uid, out _))
         {
-            var newHolder = container.Owner;
-            ReanchorJoint(uid, component, newAnchor: newHolder);
+            ReanchorJoint(uid, component, newAnchor: containerOwner);
         }
         else
         {
@@ -255,10 +255,14 @@ public sealed class SharedLeashSystem : EntitySystem
         if (leash.JointId != null)
         {
             _jointSystem.RemoveJoint(target, leash.JointId);
+            _jointSystem.RemoveJoint(leashUid, leash.JointId);
+            _jointSystem.RemoveJoint(newAnchor, leash.JointId);
         }
 
         if (!HasComp<PhysicsComponent>(newAnchor) || !HasComp<PhysicsComponent>(target))
             return;
+
+        leash.JointId = $"leash_{leashUid}_{Guid.NewGuid()}";
 
         var joint = _jointSystem.CreateDistanceJoint(newAnchor, target, id: leash.JointId!);
         joint.MaxLength = leash.MaxDistance;
