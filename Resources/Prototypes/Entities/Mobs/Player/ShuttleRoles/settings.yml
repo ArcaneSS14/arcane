@@ -6,7 +6,7 @@
 # Following use EventHumanoidMindShielded since they are heads and probably should have mindshields
 
 
-# Arcane-Edit-Start
+# Arcane-Start
 
 
 # - type: randomHumanoidSettings
@@ -578,7 +578,7 @@
 #     - type: Loadout
 #       prototypes: [ BananaClown ]
 #       roleLoadout: [ RoleSurvivalClown ]
-
+# Arcane-End
 # Misc
 
 ### Visitors missing equipment for challenges
