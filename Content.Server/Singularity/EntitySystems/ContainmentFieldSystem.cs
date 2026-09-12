@@ -47,13 +47,38 @@ public sealed class ContainmentFieldSystem : EntitySystem
             var fieldDir = _transformSystem.GetWorldPosition(uid);
             var playerDir = _transformSystem.GetWorldPosition(otherBody);
 
-            _throwing.TryThrow(otherBody, playerDir-fieldDir, baseThrowSpeed: component.ThrowForce);
+            _throwing.TryThrow(otherBody, playerDir - fieldDir, baseThrowSpeed: component.ThrowForce);
         }
     }
 
     private void HandleEventHorizon(EntityUid uid, ContainmentFieldComponent component, ref EventHorizonAttemptConsumeEntityEvent args)
     {
-        if(!args.Cancelled && !args.EventHorizon.CanBreachContainment)
+        // Arcane-Start
+        if (args.Cancelled)
+            return;
+
+        if (args.EventHorizon.SuppressFieldConsumption)
+        {
             args.Cancelled = true;
+            return;
+        }
+
+        var singularityUid = args.EventHorizon.Owner;
+        var singularityXform = Transform(singularityUid);
+        var fieldXform = Transform(uid);
+
+        var singularityPos = _transformSystem.GetWorldPosition(singularityXform);
+        var fieldPos = _transformSystem.GetWorldPosition(fieldXform);
+        var horizonRadius = args.EventHorizon.Radius;
+
+        var distance = (fieldPos - singularityPos).Length();
+        // Arcane-End
+
+        if (distance > horizonRadius)
+            args.Cancelled = true;
+        // Arcane - Edit - Start: Removed
+        // if (!args.Cancelled && !args.EventHorizon.CanBreachContainment)
+        // args.Cancelled = true;
+        // Arcane - Edit - End: Removed
     }
 }
