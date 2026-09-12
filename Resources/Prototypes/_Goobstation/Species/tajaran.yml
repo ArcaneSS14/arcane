@@ -8,7 +8,6 @@
   sprites: MobTajaranSprites
   markingLimits: MobTajaranMarkingLimits
   dollPrototype: MobTajaranDummy
-  customName: true # Arcane
   skinColoration: AnimalFur
   maleFirstNames: NamesTajaranFirst
   femaleFirstNames: NamesTajaranFirst

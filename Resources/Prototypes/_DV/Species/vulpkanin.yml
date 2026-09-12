@@ -9,7 +9,6 @@
   defaultSkinTone: "#985629"
   markingLimits: MobVulpkaninMarkingLimits
   dollPrototype: MobVulpkaninDummy
-  customName: true # Arcane
   skinColoration: Hues
   maleFirstNames: NamesVulpakinMale
   femaleFirstNames: NamesVulpakinFemale
