@@ -3,6 +3,7 @@
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using Content.Shared.CCVar;
 using Content.Shared._Arcane.TTS;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid.Markings;
@@ -130,7 +131,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 		// Goob Station - Identity Fix
 		// Fix for incorrect pronouns PR #5999
         var identity = ("user", Identity.Entity(uid, EntityManager));
-        var species = ("species", GetSpeciesRepresentation(component.Species).ToLower());
+        var species = ("species", GetSpeciesRepresentation(component.Species, component.CustomSpeciesName).ToLower()); // Arcane-Edit
         var age = ("age", GetAgeRepresentation(component.Species, component.Age));
 
         // WWDP EDIT
@@ -580,6 +581,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.Age = profile.Age;
 
+        // Arcane-Start
+        humanoid.CustomSpeciesName = HumanoidCharacterProfile.SanitizeCustomSpeciesName(
+            humanoid.Species,
+            profile.CustomSpeciesName,
+            _proto,
+            _cfgManager,
+            _cfgManager.GetCVar(CCVars.MaxNameLength));
+        // Arcane-End
+
         // begin Goobstation: port EE height/width sliders
         var species = _proto.Index(humanoid.Species);
 
@@ -694,10 +704,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <summary>
     /// Takes ID of the species prototype, returns UI-friendly name of the species.
     /// </summary>
-    public string GetSpeciesRepresentation(string speciesId)
+    public string GetSpeciesRepresentation(string speciesId, string? customSpeciesName = null) // Arcane-Edit
     {
         if (_proto.TryIndex<SpeciesPrototype>(speciesId, out var species))
         {
+            // Arcane-Start
+            if (!string.IsNullOrWhiteSpace(customSpeciesName))
+                return FormattedMessage.EscapeText(customSpeciesName) + " (" + Loc.GetString(species.Name) + ")";
+            // Arcane-End
+
             return Loc.GetString(species.Name);
         }
 
