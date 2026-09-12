@@ -1,0 +1,8 @@
+- type: microwaveMealRecipe
+  id: RecipeKillerTomatoBurger
+  name: vegan burger recipe
+  result: FoodBurgerKillerTomato
+  time: 15
+  solids:
+    FoodMeatTomatoKiller: 1
+    FoodBreadBun: 1
