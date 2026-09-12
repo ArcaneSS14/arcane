@@ -3,6 +3,7 @@
   name: vegan burger recipe
   result: FoodBurgerKillerTomato
   time: 15
+  group: Savory
   solids:
     FoodMeatTomato: 1
     FoodBreadBun: 1
