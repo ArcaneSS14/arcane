@@ -1278,3 +1278,15 @@ Entries:
   id: 107
   time: '2026-09-11T13:38:45.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/340
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Починены дикие пролаги связанные с бумбоксом.
+    - type: Fix
+      message: Нету микро-заломов звука при измененной громкости бумбокса на клиенте.
+  id: 108
+  time: '2026-09-12T16:26:49.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/345
+  media:
+    - >-
+      https://discord.com/channels/1500050446444658711/1502261682397909112/1548307405652238376
