@@ -80,10 +80,12 @@ public sealed partial class JukeboxMenu : FancyWindow
         SetPlayPauseButton(_audioSystem.IsPlaying(_audio), force: true);
     }
 
-    public JukeboxMenu(AudioSystem audioSystem)
-    {
-        _audioSystem = audioSystem;
-    }
+    // Arcane-Edit-Start
+    // public JukeboxMenu(AudioSystem audioSystem)
+    // {
+    //     _audioSystem = audioSystem;
+    // }
+    // Arcane-Edit-End
 
     public void SetAudioStream(EntityUid? audio)
     {
@@ -182,7 +184,15 @@ public sealed partial class JukeboxMenu : FancyWindow
 
         if (_entManager.TryGetComponent(_audio, out AudioComponent? audio))
         {
-            DurationLabel.Text = $@"{TimeSpan.FromSeconds(audio.PlaybackPosition):mm\:ss} / {_audioSystem.GetAudioLength(audio.FileName):mm\:ss}";
+            // Arcane-Start
+            var length = PlaybackSlider.MaxValue;
+            var position = audio.PlaybackPosition;
+
+            if (length > 0f)
+                position %= length;
+            // Arcane-End
+
+            DurationLabel.Text = $@"{TimeSpan.FromSeconds(position):mm\:ss} / {TimeSpan.FromSeconds(length):mm\:ss}"; // Arcane-Edit
         }
         else
         {
@@ -199,7 +209,14 @@ public sealed partial class JukeboxMenu : FancyWindow
 
         if (audio != null || _entManager.TryGetComponent(_audio, out audio))
         {
-            PlaybackSlider.SetValueWithoutEvent(audio.PlaybackPosition);
+            // Arcane-Start
+            var position = audio.PlaybackPosition;
+
+            if (PlaybackSlider.MaxValue > 0f)
+                position %= PlaybackSlider.MaxValue;
+            // Arcane-End
+
+            PlaybackSlider.SetValueWithoutEvent(position); // Arcane-Edit
         }
         else
         {
