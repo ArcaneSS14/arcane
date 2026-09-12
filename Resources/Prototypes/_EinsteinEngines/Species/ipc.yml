@@ -8,7 +8,6 @@
   sprites: MobIPCSprites
   markingLimits: MobIPCMarkingLimits
   dollPrototype: MobIPCDummy
-  customName: true # Arcane
   skinColoration: Hues
   minAge: 18 # Arcane-edit: 1 > 18
   maxAge: 1000 # Arcane-Edit: 240 > 1000

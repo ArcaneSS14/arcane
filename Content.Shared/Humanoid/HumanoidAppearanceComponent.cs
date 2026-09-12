@@ -36,11 +36,6 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField, AutoNetworkedField]
     public int Age = 18;
 
-    // Arcane-Start
-    [DataField, AutoNetworkedField]
-    public string CustomSpeciesName = "";
-    // Arcane-End
-
     [DataField] // Goob Station - Barks
     public ProtoId<BarkPrototype> BarkVoice { get; set; } = SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
 

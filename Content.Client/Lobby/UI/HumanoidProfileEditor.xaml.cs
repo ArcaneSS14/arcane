@@ -214,14 +214,6 @@ namespace Content.Client.Lobby.UI
 
             #endregion Name
 
-            // Arcane-Start
-            #region Custom species name
-
-            CustomSpeciesNameEdit.OnTextChanged += args => SetCustomSpeciesName(args.Text); // Orion
-
-            #endregion Custom species name
-            // Arcane-End
-
             #region Appearance
 
             TabContainer.SetTabTitle(0, Loc.GetString("humanoid-profile-editor-appearance-tab"));
@@ -734,10 +726,6 @@ namespace Content.Client.Lobby.UI
             var species = _prototypeManager.TryIndex(Profile.Species, out var speciesProto)
                 ? Loc.GetString(speciesProto.Name)
                 : Profile.Species.ToString();
-            // Arcane-Start
-            if (!string.IsNullOrWhiteSpace(Profile.CustomSpeciesName))
-                species = FormattedMessage.EscapeText(Profile.CustomSpeciesName) + " (" + species + ")";
-            // Arcane-End
             var sex = Loc.GetString($"humanoid-profile-editor-sex-{Profile.Sex.ToString().ToLower()}-text");
             var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{Profile.Gender.ToString().ToLower()}-text");
 
@@ -1278,7 +1266,6 @@ namespace Content.Client.Lobby.UI
             UpdateNameEdit();
             UpdateFlavorTextEdit();
             UpdateFlavorPreview(); // Orion
-            UpdateCustomSpeciesNameEdit(); // Arcane
             UpdateSexControls();
             UpdateTTSVoicesControls(); // Arcane-TTS
             UpdateGenderControls();
@@ -1868,10 +1855,6 @@ namespace Content.Client.Lobby.UI
         private void SetSpecies(string newSpecies)
         {
             Profile = Profile?.WithSpecies(newSpecies);
-            // Arcane-Start
-            Profile = Profile?.WithCustomSpeciesName("");
-            UpdateFlavorPreview();
-            // Arcane-End
             OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
             Markings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
             // In case there's job restrictions for the species
@@ -1888,7 +1871,6 @@ namespace Content.Client.Lobby.UI
             UpdateWeight();
             // end Goobstation: port EE height/width sliders
             RefreshTraits(); // Goobstation: ported from DeltaV - Species trait exclusion
-            UpdateCustomSpeciesNameEdit(); // Orion
         }
 
         private void SetName(string newName)
@@ -1909,13 +1891,6 @@ namespace Content.Client.Lobby.UI
         }
 
         // Arcane-Start
-        private void SetCustomSpeciesName(string customSpeciesName)
-        {
-            Profile = Profile?.WithCustomSpeciesName(customSpeciesName);
-            UpdateFlavorPreview();
-            SetDirty();
-        }
-
         private void SetErpPreference(ErpPreference preference)
         {
             Profile = Profile?.WithErpPreference(preference);
@@ -1961,28 +1936,6 @@ namespace Content.Client.Lobby.UI
         {
             NameEdit.Text = Profile?.Name ?? "";
         }
-
-        // Arcane-Start
-        private void UpdateCustomSpeciesNameEdit()
-        {
-            if (Profile == null)
-            {
-                CustomSpeciesNameRow.Visible = false;
-                return;
-            }
-
-            var species = _prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesProto)
-                ? speciesProto
-                : null;
-
-            CustomSpeciesNameRow.Visible = species?.CustomName == true;
-
-            if (species != null)
-            {
-                CustomSpeciesNameEdit.Text = Profile.CustomSpeciesName;
-            }
-        }
-        // Arcane-End
 
         // Orion-Edit-Start
         private void UpdateFlavorTextEdit()

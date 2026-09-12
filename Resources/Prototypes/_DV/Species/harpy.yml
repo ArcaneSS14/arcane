@@ -8,7 +8,6 @@
   sprites: MobHarpySprites
   markingLimits: MobHarpyMarkingLimits
   dollPrototype: MobHarpyDummy
-  customName: true # Arcane
   skinColoration: HumanToned
   # Orion-Start
   category: Unusual
