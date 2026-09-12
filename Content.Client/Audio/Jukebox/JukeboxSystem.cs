@@ -123,9 +123,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxAfterState(Entity<JukeboxComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        // Arcane-Edit-Start
-        ApplyJukeboxState(ent);
-        // Arcane-Edit-End
+        ApplyJukeboxState(ent); // Arcane-Edit
 
         if (!_uiSystem.TryGetOpenUi<JukeboxBoundUserInterface>(ent.Owner, JukeboxUiKey.Key, out var bui))
             return;
@@ -178,7 +176,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         var audioResource = _resourceCache.GetResource<AudioResource>(songProto.Path.Path.ToString());
 
         var par = AudioParams.Default
-            .WithVolume(GetEffectiveVolume(comp))
+            .WithVolume(float.NegativeInfinity) // Arcane-Edit
             .WithMaxDistance(PlaybackRange)
             .WithLoop(comp.LoopEnabled);
 
@@ -190,18 +188,16 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
         _localStreams[uid] = stream.Value;
 
-        if (!comp.Playing)
         // Arcane-Edit-Start
-        {
-            Audio.SetVolume(stream.Value, float.NegativeInfinity);
-            Audio.SetState(stream.Value, AudioState.Paused);
-            Audio.SetVolume(stream.Value, GetEffectiveVolume(comp));
-        }
-        // Arcane-Edit-End
-
         var (_, target) = GetPlaybackPosition(comp);
         if (target > 0.1f)
             Audio.SetPlaybackPosition(stream.Value, target);
+
+        if (!comp.Playing)
+            Audio.SetState(stream.Value, AudioState.Paused);
+
+        Audio.SetVolume(stream.Value, GetEffectiveVolume(comp));
+        // Arcane-Edit-End
     }
 
     private void SyncPosition(EntityUid stream, AudioComponent audioComp, JukeboxComponent comp)
