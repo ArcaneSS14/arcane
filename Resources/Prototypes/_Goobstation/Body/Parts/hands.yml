@@ -1,18 +1,18 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
-  id: LeftHandDwarf
+  id: BaseLeftHandDwarf # Arcane
   name: "left dwarf hand"
-  parent: [PartHuman, BaseLeftHand]
+  parent: [BasePartHuman, BaseLeftHand] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: "l_hand"
 
 - type: entity
-  id: RightHandDwarf
+  id: BaseRightHandDwarf # Arcane
   name: "right dwarf hand"
-  parent: [PartHuman, BaseRightHand]
+  parent: [BasePartHuman, BaseRightHand] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -21,7 +21,7 @@
 - type: entity
   id: LeftHandBananamen
   name: "left bananamen hand"
-  parent: [PartHuman, BaseLeftHand]
+  parent: [BasePartHuman, BaseLeftHand] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -30,7 +30,7 @@
 - type: entity
   id: RightHandBananamen
   name: "right bananamen hand"
-  parent: [PartHuman, BaseRightHand]
+  parent: [BasePartHuman, BaseRightHand] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi

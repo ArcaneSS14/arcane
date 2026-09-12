@@ -12,6 +12,10 @@
     sprite: Mobs/Species/Vox/parts.rsi
   - type: BodyPart # Shitmed Change
     species: Vox
+  # Arcane-Start
+  - type: Damageable
+    damageModifierSet: Vox
+  # Arcane-End
   - type: WoundableVisuals
     damageOverlayGroups:
       Brute:
