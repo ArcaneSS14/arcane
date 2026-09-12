@@ -1290,3 +1290,10 @@ Entries:
   media:
     - >-
       https://discord.com/channels/1500050446444658711/1502261682397909112/1548307405652238376
+- author: Kinar_7
+  changes:
+    - type: Tweak
+      message: Гости теперь копируют внешность персонажа игрока, но не его имя
+  id: 109
+  time: '2026-09-12T16:28:06.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/338
