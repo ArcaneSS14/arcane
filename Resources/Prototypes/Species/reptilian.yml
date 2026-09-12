@@ -9,6 +9,7 @@
   defaultSkinTone: "#34a223"
   markingLimits: MobReptilianMarkingLimits
   dollPrototype: MobReptilianDummy
+  customName: true # Arcane
   skinColoration: Hues
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale

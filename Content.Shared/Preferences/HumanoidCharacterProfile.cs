@@ -93,6 +93,7 @@ namespace Content.Shared.Preferences
     {
         private static readonly Regex RestrictedNameRegex = new(@"[^А-Яа-яёЁA-Za-z0-9' -]", RegexOptions.Compiled); // Orion-Edit
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
+        private static readonly Regex RestrictedCustomSpeciesNameRegex = new(@"[^А-Яа-яёЁA-Za-z0-9' -]|\B\s+|\s+\B", RegexOptions.Compiled); // Arcane
 
         /// <summary>
         /// Job preferences for initial spawn.
@@ -191,6 +192,15 @@ namespace Content.Shared.Preferences
         [DataField]
         public ProtoId<SpeciesPrototype> Species { get; set; } = SharedHumanoidAppearanceSystem.DefaultSpecies;
 
+        // Arcane-Start
+        /// <summary>
+        /// Custom display name for this character's species, shown whenever the species is displayed.
+        /// Only applicable if the associated <see cref="SpeciesPrototype"/> has <see cref="SpeciesPrototype.CustomName"/>.
+        /// </summary>
+        [DataField]
+        public string CustomSpeciesName { get; set; } = "";
+        // Arcane-End
+
         [DataField] // Goob Station - Barks
         public ProtoId<BarkPrototype> BarkVoice { get; set; } = SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
 
@@ -271,6 +281,7 @@ namespace Content.Shared.Preferences
             string nsfwtagsflavortext,
             // Orion-End
             string species,
+            string customSpeciesName, // Arcane
             float height, // Goobstation: port EE height/width sliders
             float width, // Goobstation: port EE height/width sliders
             int age,
@@ -304,6 +315,7 @@ namespace Content.Shared.Preferences
             NsfwTagsFlavorText = nsfwtagsflavortext;
             // Orion-End
             Species = species;
+            CustomSpeciesName = customSpeciesName; // Arcane
             Height = height; // Goobstation: port EE height/width sliders
             Width = width; // Goobstation: port EE height/width sliders
             Age = age;
@@ -354,6 +366,7 @@ namespace Content.Shared.Preferences
                 other.NsfwTagsFlavorText,
                 // Orion-End
                 other.Species,
+                other.CustomSpeciesName, // Arcane
                 other.Height, // Goobstation: port EE height/width sliders
                 other.Width, // Goobstation: port EE height/width sliders
                 other.Age,
@@ -569,8 +582,15 @@ namespace Content.Shared.Preferences
 
         public HumanoidCharacterProfile WithSpecies(string species)
         {
-            return new(this) { Species = species };
+            return new(this) { Species = species, CustomSpeciesName = "" }; // Arcane
         }
+
+        // Arcane-Start
+        public HumanoidCharacterProfile WithCustomSpeciesName(string customSpeciesName)
+        {
+            return new(this) { CustomSpeciesName = customSpeciesName };
+        }
+        // Arcane-End
 
         // begin Goobstation: port EE height/width sliders
         public HumanoidCharacterProfile WithHeight(float height)
@@ -792,6 +812,7 @@ namespace Content.Shared.Preferences
             if (Voice != other.Voice) return false; // Arcane
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
+            if (CustomSpeciesName != other.CustomSpeciesName) return false; // Arcane
             if (Height != other.Height) return false; // Goobstation: port EE height/width sliders
             if (Width != other.Width) return false; // Goobstation: port EE height/width sliders
             if (BarkVoice != other.BarkVoice) return false; // Goob Station - Barks
@@ -826,6 +847,40 @@ namespace Content.Shared.Preferences
             if (ErpPreference != other.ErpPreference) return false; // Arcane-edit
             return Appearance.MemberwiseEquals(other.Appearance);
         }
+
+        // Arcane-Start
+        public static string SanitizeCustomSpeciesName(
+            ProtoId<SpeciesPrototype> speciesId,
+            string? customSpeciesName,
+            IPrototypeManager prototypeManager,
+            IConfigurationManager configManager,
+            int maxNameLength)
+        {
+            if (!prototypeManager.TryIndex(speciesId, out var speciesPrototype)
+                || !speciesPrototype.CustomName
+                || string.IsNullOrWhiteSpace(customSpeciesName))
+                return "";
+
+            var result = customSpeciesName.Length > maxNameLength
+                ? customSpeciesName[..maxNameLength]
+                : customSpeciesName;
+
+            result = RestrictedCustomSpeciesNameRegex.Replace(result, string.Empty);
+
+            if (configManager.GetCVar(ACCVars.RestrictedCustomSpeciesNames))
+            {
+                foreach (var speciesPrototypes in prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
+                {
+                    if (Loc.GetString(speciesPrototypes.Name).ToLower() == result.ToLower())
+                    {
+                        return "";
+                    }
+                }
+            }
+
+            return result;
+        }
+        // Arcane-End
 
         public void EnsureValid(ICommonSession session, IDependencyCollection collection)
         {
@@ -896,6 +951,7 @@ namespace Content.Shared.Preferences
                 name = GetName(Species, gender);
             }
 
+            var customSpeciesName = SanitizeCustomSpeciesName(Species, CustomSpeciesName, prototypeManager, configManager, maxNameLength); // Arcane
 
             string flavortext;
             var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength);
@@ -1127,6 +1183,7 @@ namespace Content.Shared.Preferences
 
             Name = name;
             FlavorText = flavortext;
+            CustomSpeciesName = customSpeciesName; // Arcane
             // Orion-Start
             OocFlavorText = oocflavortext;
             CharacterFlavorText = characterDescription;
@@ -1303,6 +1360,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(NsfwTagsFlavorText);
             // Orion-End
             hashCode.Add(Species);
+            hashCode.Add(CustomSpeciesName); // Arcane
             hashCode.Add(Height); // Goobstation: port EE height/width sliders
             hashCode.Add(Width); // Goobstation: port EE height/width sliders
             hashCode.Add(Age);

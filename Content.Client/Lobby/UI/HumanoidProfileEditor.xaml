@@ -67,6 +67,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                     <OptionButton Name="SpeciesButton" HorizontalAlignment="Right" Visible="False"/>    <!-- Orion | True > False -->
                                     <Button Name="NewSpeciesButton" HorizontalAlignment="Right" ToggleMode="True" />    <!-- Orion -->
                                 </BoxContainer>
+                                <!-- Arcane-Start -->
+                                <!-- Custom species name -->
+                                <BoxContainer Name="CustomSpeciesNameRow" HorizontalExpand="True" Visible="False"> <!-- Orion -->
+                                    <Label Text="{Loc 'humanoid-profile-editor-custom-species-name-label'}" />
+                                    <Control HorizontalExpand="True"/>
+                                    <LineEdit Name="CustomSpeciesNameEdit" MinSize="270 0" HorizontalAlignment="Right" />
+                                </BoxContainer>
+                                <!-- Arcane-End -->
                                 <!-- Age -->
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-age-label'}" />

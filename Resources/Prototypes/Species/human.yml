@@ -8,6 +8,7 @@
   sprites: MobHumanSprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobHumanDummy
+  customName: true # Arcane
   skinColoration: HumanToned
   # Orion-Start
   category: Classic

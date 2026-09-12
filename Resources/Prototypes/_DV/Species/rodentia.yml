@@ -9,6 +9,7 @@
   defaultSkinTone: "#747474"
   markingLimits: MobRodentiaMarkingLimits
   dollPrototype: MobRodentiaDummy
+  customName: true # Arcane
   skinColoration: Hues
   maleFirstNames: NamesRodentiaMale
   femaleFirstNames: NamesRodentiaFemale
