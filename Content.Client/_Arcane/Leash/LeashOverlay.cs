@@ -1,7 +1,7 @@
+using System.Numerics;
 using Content.Shared._Arcane.Leash;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
-using System.Numerics;
 
 namespace Content.Client._Arcane.Leash;
 
@@ -9,6 +9,9 @@ public sealed class LeashOverlay : Overlay
 {
     private readonly IEntityManager _entityManager;
     private readonly SharedTransformSystem _transformSystem;
+
+    private readonly Vector2[] _shadowVerts = new Vector2[4];
+    private readonly Vector2[] _leashVerts = new Vector2[4];
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowEntities;
 
@@ -56,22 +59,19 @@ public sealed class LeashOverlay : Overlay
 
             // Тень
             var shadowColor = Color.Black.WithAlpha(0.35f);
-            Span<Vector2> shadowVerts = stackalloc[]
-            {
-                p1 + shadowOffset,
-                p2 + shadowOffset,
-                p4 + shadowOffset,
-                p3 + shadowOffset
-            };
-            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleStrip, shadowVerts, shadowColor);
+            _shadowVerts[0] = p1 + shadowOffset;
+            _shadowVerts[1] = p2 + shadowOffset;
+            _shadowVerts[2] = p4 + shadowOffset;
+            _shadowVerts[3] = p3 + shadowOffset;
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleStrip, _shadowVerts, shadowColor);
 
             // Поводок
             var leashColor = Color.SaddleBrown;
-            Span<Vector2> leashVerts = stackalloc[]
-            {
-                p1, p2, p4, p3
-            };
-            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleStrip, leashVerts, leashColor);
+            _leashVerts[0] = p1;
+            _leashVerts[1] = p2;
+            _leashVerts[2] = p4;
+            _leashVerts[3] = p3;
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleStrip, _leashVerts, leashColor);
         }
     }
 }

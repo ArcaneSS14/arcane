@@ -84,12 +84,11 @@ public sealed class LeashSystem : SharedLeashSystem
         else
         {
             // Если поводок в контейнере
+            var attached = component.AttachedEntity;
             TryDetachLeash(uid, component);
 
-            if (args.Container.Owner != default)
-            {
-                _popupSystem.PopupEntity(Loc.GetString("leash-popup-detached-container"), args.Container.Owner, args.Container.Owner);
-            }
+            if (attached is { } leashed)
+                _popupSystem.PopupEntity(Loc.GetString("leash-popup-detached-container"), leashed, leashed);
         }
     }
 
@@ -154,7 +153,10 @@ public sealed class LeashSystem : SharedLeashSystem
         }
 
         if (!HasComp<PhysicsComponent>(newAnchor) || !HasComp<PhysicsComponent>(target))
+        {
+            TryDetachLeash(leashUid, leash);
             return;
+        }
 
         leash.JointId = $"leash_{leashUid}_{Guid.NewGuid()}";
 

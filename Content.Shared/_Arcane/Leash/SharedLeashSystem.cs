@@ -213,7 +213,7 @@ public abstract class SharedLeashSystem : EntitySystem
         }
 
         if (user != null)
-            _popupSystem.PopupClient(Loc.GetString("leash-popup-detached"), user.Value, user.Value);
+            _popupSystem.PopupPredicted(Loc.GetString("leash-popup-detached"), user.Value, user.Value);
 
         return true;
     }
