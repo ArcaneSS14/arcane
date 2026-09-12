@@ -22,9 +22,9 @@ public sealed class NatureSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, NatureComponent component, ComponentStartup args)
     {
-        if (component.EmoteTag != null)
+        if (component.emoteTag != null)
         {
-            component.AddedTag = _tagSystem.AddTag(uid, component.EmoteTag.Value);
+            component.AddedTag = _tagSystem.AddTag(uid, component.emoteTag.Value);
         }
 
         if (!TryComp<VocalComponent>(uid, out var vocal))
@@ -36,9 +36,9 @@ public sealed class NatureSystem : EntitySystem
         }
         component.OriginalEmoteSounds = vocal.EmoteSounds;
 
-        if (component.NewSounds != null)
+        if (component.newSounds != null)
         {
-            vocal.Sounds = new Dictionary<Sex, ProtoId<Content.Shared.Chat.Prototypes.EmoteSoundsPrototype>>(component.NewSounds);
+            vocal.Sounds = new Dictionary<Sex, ProtoId<Content.Shared.Chat.Prototypes.EmoteSoundsPrototype>>(component.newSounds);
 
             if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
             {
@@ -53,9 +53,9 @@ public sealed class NatureSystem : EntitySystem
     private void OnShutdown(EntityUid uid, NatureComponent component, ref ComponentShutdown args)
     {
         // При удалении компача
-        if (component.EmoteTag != null && component.AddedTag)
+        if (component.emoteTag != null && component.AddedTag)
         {
-            _tagSystem.RemoveTag(uid, component.EmoteTag.Value);
+            _tagSystem.RemoveTag(uid, component.emoteTag.Value);
         }
 
         if (TryComp<VocalComponent>(uid, out var vocal))
