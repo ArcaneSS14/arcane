@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared._Arcane.Invisibility;
 using Content.Shared._Orion.CorticalBorer.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
@@ -88,6 +89,11 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
 
         if (data.HideOnStealth && TryComp<StealthComponent>(ent, out var stealth) && stealth.Enabled)
             return false;
+
+        // Arcane-Start
+        if (HasComp<ArcaneInvisibilityComponent>(ent))
+            return false;
+        // Arcane-End
 
         if (TryComp<SpriteComponent>(ent, out var sprite) && !sprite.Visible)
             return false;

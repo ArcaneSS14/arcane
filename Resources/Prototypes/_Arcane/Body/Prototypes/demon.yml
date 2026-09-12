@@ -18,7 +18,7 @@
       - right arm
       - left arm
       organs:
-        heart: OrganAnimalHeart
+        heart: OrganHumanHeart
         lungs: OrganHumanLungs
     groin:
       part: GroinDemon
@@ -27,7 +27,7 @@
       - left leg
       organs:
         stomach: OrganHumanStomach
-        liver: OrganAnimalLiver
+        liver: OrganHumanLiver
         kidneys: OrganHumanKidneys
     right arm:
       part: RightArmDemon
