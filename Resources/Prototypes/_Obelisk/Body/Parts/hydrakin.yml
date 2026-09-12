@@ -8,6 +8,10 @@
   name: "hydrakin body part"
   abstract: true
   components:
+  # Arcane-Start
+  - type: Damageable
+    damageModifierSet: Hydrakin
+  # Arcane-End
   - type: Icon # Shitmed Change
     sprite: _Obelisk/Mobs/Species/Hydrakin/parts.rsi
   - type: Sprite

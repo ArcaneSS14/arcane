@@ -3,6 +3,7 @@
 - type: damageModifierSet
   id: Vulpkanin
   coefficients:
+    Slash: 0.8 # Arcane
     Heat: 1.3
     Cold: 0.8
   ignoreArmorPierceFlags: All # Goobstation
@@ -10,27 +11,39 @@
 - type: damageModifierSet
   id: Harpy
   coefficients:
-    Blunt: 1.15
-    Slash: 1.15
-    Piercing: 1.15
+    # Arcane-Edit-Start
+    Blunt: 1.25
+    Slash: 1.25
+    Piercing: 1.25
+    # Arcane-Edit-End
+    # Arcane-Start
+    Shock: 0.6
+    Heat: 0.75
+    # Arcane-End
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
   id: Rodentia
   coefficients:
-    Blunt: 1.15
-    Slash: 1.15
-    Piercing: 1.15
+    # Arcane-Edit-Start
+    Blunt: 1.25
+    Slash: 1.25
+    Piercing: 0.8
+    # Arcane-Edit-End
+    Poison: 0.6 # Arcane
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
   id: Chitinid
   coefficients:
-    Blunt: 0.9
-    Piercing: 0.9
-    Slash: 0.9
-    Cold: 1.1
-    Shock: 1.15
+    # Arcane-Edit-Start
+    Blunt: 0.8
+    Piercing: 0.8
+    Slash: 0.8
+    Cold: 1.2
+    Shock: 1.25
+    # Arcane-Edit-End
+    Heat: 1.25 # Arcane
     Radiation: 0.2
   ignoreArmorPierceFlags: All # Goobstation
 
@@ -38,16 +51,20 @@
   id: Feroxi
   coefficients:
     Cold: 0.75
-    Blunt: 0.9
-    Slash: 1.1
-    Heat: 0.95
+    # Arcane-Edit-Start
+    Blunt: 0.8
+    Slash: 1.2
+    Heat: 0.8
+    # Arcane-Edit-End
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
   id: Oni
   coefficients:
-    Blunt: 0.95
-    Slash: 0.95
-    Piercing: 0.95
+    # Arcane-Edit-Start
+    Blunt: 0.8
+    Slash: 0.8
+    Piercing: 1.2
+    # Arcane-Edit-End
     Holy: 1
   ignoreArmorPierceFlags: All # Goobstation

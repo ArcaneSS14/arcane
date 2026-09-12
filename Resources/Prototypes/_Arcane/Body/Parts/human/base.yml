@@ -1,0 +1,6 @@
+- type: entity
+  abstract: true
+  id: PartHuman
+  components:
+  - type: Damageable
+    damageModifierSet: Human

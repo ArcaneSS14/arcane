@@ -6,13 +6,13 @@
   root: chest
   slots:
     head:
-      part: HeadHuman
+      part: BaseHeadHuman # Arcane
       connections:
       - chest
       organs:
         brain: OrganHumanBrain
     chest:
-      part: ChestHuman
+      part: BaseChestHuman # Arcane
       connections:
       - groin
       - right arm
@@ -21,7 +21,7 @@
         heart: OrganBananaMenHeart
         lungs: OrganBananaMenLungs
     groin:
-      part: GroinHuman
+      part: BaseGroinHuman # Arcane
       connections:
       - right leg
       - left leg
@@ -30,11 +30,11 @@
         liver: OrganBananaMenLiver
         kidneys: OrganBananaMenKidneys
     right arm:
-      part: RightArmHuman
+      part: BaseRightArmHuman # Arcane
       connections:
       - right hand
     left arm:
-      part: LeftArmHuman
+      part: BaseLeftArmHuman # Arcane
       connections:
       - left hand
     right hand:
@@ -42,14 +42,14 @@
     left hand:
       part: LeftHandBananamen
     right leg:
-      part: RightLegHuman
+      part: BaseRightLegHuman # Arcane
       connections:
       - right foot
     left leg:
-      part: LeftLegHuman
+      part: BaseLeftLegHuman # Arcane
       connections:
       - left foot
     right foot:
-      part: RightFootHuman
+      part: BaseRightFootHuman # Arcane
     left foot:
-      part: LeftFootHuman
+      part: BaseLeftFootHuman # Arcane
