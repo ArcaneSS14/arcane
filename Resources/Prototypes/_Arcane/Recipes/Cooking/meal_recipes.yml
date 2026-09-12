@@ -4,5 +4,5 @@
   result: FoodBurgerKillerTomato
   time: 15
   solids:
-    FoodMeatTomatoKiller: 1
+    FoodMeatTomato: 1
     FoodBreadBun: 1
