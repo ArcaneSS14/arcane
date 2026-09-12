@@ -1278,19 +1278,3 @@ Entries:
   id: 107
   time: '2026-09-11T13:38:45.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/340
-- author: ReWAFFlution
-  changes:
-    - type: Add
-      message: Добавлена возможность ставить многим расам кастомные названия расы.
-  id: 108
-  time: '2026-09-12T15:39:45.0000000+00:00'
-  url: https://github.com/ArcaneSS14/arcane/pull/335
-  media:
-    - >-
-      https://github.com/user-attachments/assets/35a4c912-0411-4cba-a62f-ea1b1a7c2f1c
-    - >-
-      https://github.com/user-attachments/assets/03af34f3-e3d9-45b1-96a2-6a1db88bc91f
-    - >-
-      https://github.com/user-attachments/assets/9c7a7d69-5b10-4bb2-b9dd-685b498417a6
-    - >-
-      https://github.com/user-attachments/assets/64e824e7-70dd-430d-8c04-046b9c2f536e
