@@ -10,6 +10,7 @@
     sprite: _Arcane/Clothing/Neck/collar.rsi
     quickEquip: true
     equipDelay: 4
+    unequipDelay: 5
   - type: Collar
 
 - type: entity

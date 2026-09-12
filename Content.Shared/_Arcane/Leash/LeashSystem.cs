@@ -73,7 +73,7 @@ public sealed class SharedLeashSystem : EntitySystem
                 Vector2.Distance(_transform.GetWorldPosition(xform), _transform.GetWorldPosition(targetXform)) > 5.0f)
             {
                 TryDetachLeash(uid, leash);
-                _popupSystem.PopupEntity("Поводок натянулся и порвался!", target, target);
+                _popupSystem.PopupEntity(Loc.GetString("leash-popup-snap"), target, target);
             }
         }
     }
@@ -135,7 +135,7 @@ public sealed class SharedLeashSystem : EntitySystem
         {
             InteractionVerb verb = new()
             {
-                Text = "Отвязать поводок",
+                Text = Loc.GetString("leash-verb-detach"),
                 Act = () => TryDetachLeash(uid, component, user: args.User)
             };
             args.Verbs.Add(verb);
@@ -164,7 +164,7 @@ public sealed class SharedLeashSystem : EntitySystem
 
             if (args.Container.Owner != default)
             {
-                _popupSystem.PopupEntity("Поводок отвязался!", args.Container.Owner, args.Container.Owner);
+                _popupSystem.PopupEntity(Loc.GetString("leash-popup-detached-container"), args.Container.Owner, args.Container.Owner);
             }
         }
     }
@@ -240,7 +240,7 @@ public sealed class SharedLeashSystem : EntitySystem
             Vector2.Distance(_transform.GetWorldPosition(leashXform), _transform.GetWorldPosition(targetXform)) > 5.0f)
         {
             TryDetachLeash(leashUid, leash);
-            _popupSystem.PopupEntity("Поводок натянулся и порвался!", targetUid, targetUid);
+            _popupSystem.PopupEntity(Loc.GetString("leash-popup-snap"), targetUid, targetUid);
         }
     }
 
@@ -304,25 +304,27 @@ public sealed class SharedLeashSystem : EntitySystem
             targetEntity = container.Owner;
         }
 
-        // Попоут если пытаться привязать себя
+        // Не даём привязать себя
         if (userUid == targetEntity)
         {
-            _popupSystem.PopupEntity("Вы не можете привязать поводок к самому себе!", userUid, userUid);
+            _popupSystem.PopupEntity(Loc.GetString("leash-popup-self-attach"), userUid, userUid);
             return false;
         }
 
+        // Не даём привязать если нет ошейника
         if (!HasComp<PhysicsComponent>(userUid) || !HasComp<PhysicsComponent>(targetEntity))
             return false;
 
         if (!TryGetEquippedCollar(targetEntity, out _))
         {
-            _popupSystem.PopupEntity("Поводок не к чему привязать!", userUid, userUid);
+            _popupSystem.PopupEntity(Loc.GetString("leash-popup-no-collar"), userUid, userUid);
             return false;
         }
 
+        // Не даем привязать если уже есть связь
         if (HasComp<LeashedComponent>(targetEntity))
         {
-            _popupSystem.PopupEntity("Вы не можете привязать второй поводок!", userUid, userUid);
+            _popupSystem.PopupEntity(Loc.GetString("leash-popup-already-leashed"), userUid, userUid);
             return false;
         }
 
@@ -344,7 +346,8 @@ public sealed class SharedLeashSystem : EntitySystem
             Dirty(targetEntity, leashedComp);
         }
 
-        _popupSystem.PopupEntity("Вы привязали поводок", userUid, userUid);
+        // Попоут если привязали поводок
+        _popupSystem.PopupEntity(Loc.GetString("leash-popup-attached"), userUid, userUid);
 
         return true;
     }
@@ -384,7 +387,7 @@ public sealed class SharedLeashSystem : EntitySystem
         }
 
         if (user != null)
-            _popupSystem.PopupEntity("Поводок отвязан", user.Value, user.Value);
+            _popupSystem.PopupEntity(Loc.GetString("leash-popup-detached"), user.Value, user.Value);
 
         return true;
     }
