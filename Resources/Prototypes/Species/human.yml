@@ -12,10 +12,10 @@
   # Orion-Start
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Human.xml"
-  # Arcane-Start
+  # Arcane-start
   cons:
-  - Получают на 5% больше входящего урона всех типов. Лечение не ослабляется.
-  # Arcane-End
+  - Получают на 5% больше входящего урона, если источник учитывает сопротивления. Лечение не ослабляется.
+  # Arcane-end
   # Orion-End
   # begin Goobstation: port EE height/width sliders
   minHeight: 0.90
