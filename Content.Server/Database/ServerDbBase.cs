@@ -305,10 +305,7 @@ namespace Content.Server.Database
             }
 
             var barkVoice = profile.BarkVoice ?? SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
-            // Arcane-Start
-            var erpPreference = (ErpPreference) profile.ErpPreference;
-            var customSpeciesName = profile.CustomSpeciesName ?? "";
-            // Arcane-End
+            var erpPreference = (ErpPreference) profile.ErpPreference; // Arcane
 
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
@@ -327,7 +324,6 @@ namespace Content.Server.Database
                 profile.NSFWTagsFlavorText,
                 // Orion-End
                 profile.Species,
-                customSpeciesName, // Arcane
                 profile.Height, // Goobstation: port EE height/width sliders
                 profile.Width, // Goobstation: port EE height/width sliders
                 profile.Age,
@@ -383,7 +379,6 @@ namespace Content.Server.Database
             profile.NSFWTagsFlavorText = humanoid.NsfwTagsFlavorText;
             // Orion-End
             profile.Species = humanoid.Species;
-            profile.CustomSpeciesName = humanoid.CustomSpeciesName; // Orion
             profile.Height = humanoid.Height; // Goobstation: port EE height/width sliders
             profile.Width = humanoid.Width; // Goobstation: port EE height/width sliders
             profile.Age = humanoid.Age;

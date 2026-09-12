@@ -79,15 +79,6 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField(required: true)]
     public EntProtoId DollPrototype { get; private set; } = default!;
 
-    // Arcane-Start
-    /// <summary>
-    ///     Allows a custom species name to be set in the character editor,
-    ///     which is then shown wherever the species is displayed.
-    /// </summary>
-    [DataField]
-    public bool CustomName { get; private set; } = false;
-    // Arcane-End
-
     /// <summary>
     /// Method of skin coloration used by the species.
     /// </summary>

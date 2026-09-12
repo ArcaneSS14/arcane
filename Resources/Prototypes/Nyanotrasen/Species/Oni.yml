@@ -6,7 +6,6 @@
   roundStart: true
   prototype: MobOni
   dollPrototype: MobOniDummy
-  customName: true # Arcane
   markingLimits: MobOniMarkingLimits
   sprites: MobHumanSprites
   skinColoration: Hues
