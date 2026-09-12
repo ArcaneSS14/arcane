@@ -1,0 +1,17 @@
+<ui:RadialMenu xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls;assembly=Content.Client"
+               x:Class="Content.Client._Arcane.InclothingTools.InclothingToolsRadialMenu"
+               BackButtonStyleClass="RadialMenuBackButton"
+               CloseButtonStyleClass="RadialMenuCloseButton"
+               VerticalExpand="True"
+               HorizontalExpand="True"
+               MinSize="450 450">
+
+    <ui:RadialContainer Name="Main"
+                        VerticalExpand="True"
+                        HorizontalExpand="True"
+                        InitialRadius="100"
+                        ReserveSpaceForHiddenChildren="False">
+    </ui:RadialContainer>
+</ui:RadialMenu>

@@ -6,5 +6,11 @@
   components:
   - type: InclothingTools
     toolPrototypes:
-      ClothingEyesHudMedical
+    - ClothingEyesHudMedical
+    - ClothingEyesHudMedical
+    - ClothingEyesHudMedical
   - type: RandomInclothingTools
+  - type: UserInterface
+    interfaces:
+      enum.SelectInclothingToolUiKey.Key:
+        type: ToggleableClothingBoundUserInterface

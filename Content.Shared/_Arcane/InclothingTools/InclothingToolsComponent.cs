@@ -20,11 +20,14 @@ public sealed partial class InclothingToolsComponent : Component
     public string ContainerId = "inclothing-tools";
 
     [ViewVariables]
-    public Container Container;
+    public Container Container = default!;
 
     [DataField, AutoNetworkedField]
-    public List<EntProtoId> ToolPrototypes;
+    public List<EntProtoId>? ToolPrototypes;
 
     [DataField, AutoNetworkedField]
-    public List<EntityUid> ToolsUids;
+    public List<EntityUid> ToolsUids = new();
+
+    [DataField, AutoNetworkedField]
+    public bool ForseDropHeldItem = false;
 }
