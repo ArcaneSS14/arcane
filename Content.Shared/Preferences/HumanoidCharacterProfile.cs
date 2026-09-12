@@ -582,7 +582,7 @@ namespace Content.Shared.Preferences
 
         public HumanoidCharacterProfile WithSpecies(string species)
         {
-            return new(this) { Species = species };
+            return new(this) { Species = species, CustomSpeciesName = "" }; // Arcane
         }
 
         // Arcane-Start
@@ -865,10 +865,10 @@ namespace Content.Shared.Preferences
                 ? customSpeciesName[..maxNameLength]
                 : customSpeciesName;
 
+            result = RestrictedCustomSpeciesNameRegex.Replace(result, string.Empty);
+
             if (configManager.GetCVar(ACCVars.RestrictedCustomSpeciesNames))
             {
-                result = RestrictedCustomSpeciesNameRegex.Replace(result, string.Empty);
-
                 foreach (var speciesPrototypes in prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
                 {
                     if (Loc.GetString(speciesPrototypes.Name).ToLower() == result.ToLower())
