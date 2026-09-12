@@ -1310,3 +1310,35 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/390f91f3-7369-46c5-947c-987ad8539d1b
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: '"Без ЕРП" теперь не могут быть подвержены влиянию афродизиака'
+    - type: Add
+      message: При передаче предмета теперь есть попап у цели передачи.
+    - type: Add
+      message: В телепорте призрака теперь изображаются иконки должностей.
+    - type: Tweak
+      message: Стыковка шаттлов больше не гибает.
+    - type: Fix
+      message: Дым снова работает.
+    - type: Fix
+      message: Сон снова работает.
+    - type: Tweak
+      message: >-
+        Шкаф бригмедика доступен теперь только медицинскому и оружейному
+        доступу.
+    - type: Fix
+      message: Шлем скафандра HEV получил резисты.
+  id: 111
+  time: '2026-09-12T17:27:29.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/333
+  media:
+    - >-
+      https://github.com/user-attachments/assets/17a739b4-7178-49ee-ab13-8516b470c050
+    - >-
+      https://github.com/user-attachments/assets/38617737-9aed-4299-b30b-3ac217506c66
+    - >-
+      https://github.com/user-attachments/assets/ce272c5f-e659-4779-9c1f-a1de41f579f0
+    - >-
+      https://github.com/user-attachments/assets/3e48769b-e305-4ef0-94bb-1f0f0bc18deb
