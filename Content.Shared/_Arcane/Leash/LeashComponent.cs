@@ -23,7 +23,7 @@ public sealed partial class LeashComponent : Component
     /// <summary>
     /// Breakaway distance with a margin
     /// </summary>
-    public float SnapDistance => MaxDistance + 2.0f;
+    public float SnapDistance => MaxDistance + 1.5f;
     public float SnapDistanceSq => SnapDistance * SnapDistance;
 
     /// <summary>

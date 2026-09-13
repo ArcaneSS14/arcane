@@ -73,7 +73,7 @@ public sealed class LeashSystem : SharedLeashSystem
         if (component.AttachedEntity is not { } target)
             return;
 
-        CheckTeleportOrDistance(uid, component, target);
+        CheckTeleportOrDistance(uid, component, target, ref args);
     }
 
     /// <summary>
@@ -86,14 +86,14 @@ public sealed class LeashSystem : SharedLeashSystem
 
         if (TryComp<LeashComponent>(leashUid, out var leashComp))
         {
-            CheckTeleportOrDistance(leashUid, leashComp, uid);
+            CheckTeleportOrDistance(leashUid, leashComp, uid, ref args);
         }
     }
 
     /// <summary>
     /// Instant distance check between objects with any of their shifts
     /// </summary>
-    private void CheckTeleportOrDistance(EntityUid leashUid, LeashComponent leash, EntityUid targetUid)
+    private void CheckTeleportOrDistance(EntityUid leashUid, LeashComponent leash, EntityUid targetUid, ref MoveEvent args)
     {
         if (!TryComp<TransformComponent>(leashUid, out var leashXform) ||
             !TryComp<TransformComponent>(targetUid, out var targetXform))
@@ -101,13 +101,39 @@ public sealed class LeashSystem : SharedLeashSystem
             return;
         }
 
-        // If the map changes during teleportation or the distance exceeds the limit, we instantly break the leash
-        if (leashXform.MapID != targetXform.MapID ||
-            Vector2.DistanceSquared(_transform.GetWorldPosition(leashXform), _transform.GetWorldPosition(targetXform)) > leash.SnapDistanceSq)
+        // Check for map ID match
+        if (leashXform.MapID != targetXform.MapID)
         {
-            TryDetachLeash(leashUid, leash);
-            _popupSystem.PopupEntity(Loc.GetString("leash-popup-snap"), targetUid, targetUid);
+            SnapLeash(leashUid, leash, targetUid);
+            return;
         }
+
+        var oldWorldPos = _transform.ToMapCoordinates(args.OldPosition).Position;
+        var newWorldPos = _transform.ToMapCoordinates(args.NewPosition).Position;
+
+        // If the distance between the old and new position is greater than the break distance, we break the connection
+        if (Vector2.DistanceSquared(oldWorldPos, newWorldPos) > leash.SnapDistanceSq)
+        {
+            SnapLeash(leashUid, leash, targetUid);
+            return;
+        }
+
+        var leashPos = _transform.GetWorldPosition(leashXform);
+        var targetPos = _transform.GetWorldPosition(targetXform);
+
+        if (Vector2.DistanceSquared(leashPos, targetPos) > leash.SnapDistanceSq)
+        {
+            SnapLeash(leashUid, leash, targetUid);
+        }
+    }
+
+    /// <summary>
+    /// Loss of connection during a sudden movement
+    /// </summary>
+    private void SnapLeash(EntityUid leashUid, LeashComponent leash, EntityUid targetUid)
+    {
+        TryDetachLeash(leashUid, leash);
+        _popupSystem.PopupEntity(Loc.GetString("leash-popup-snap"), targetUid, targetUid);
     }
 
     /// <summary>
