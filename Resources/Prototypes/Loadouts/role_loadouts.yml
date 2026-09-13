@@ -189,18 +189,12 @@
 - type: roleLoadout
   id: JobLibrarian
   groups:
-  # Arcane - Start
-  - LibrarianGlasses
-  # Arcane - End
+  - LibrarianGlasses # Arcane
   - Glasses
   - ServiceCloak # Arcane
   - LibrarianJumpsuit
-  # Arcane - Start
-  - LibrarianShoes
-  # Arcane - End
+  - LibrarianShoes # Arcane
   - CommonBackpack
-  - Animals
-  - GroupSpeciesBreathTool
   - GroupGrimoire
   # Goobstation - EE Plasmeme Change.
   - LibrarianEnvirohelm
@@ -339,7 +333,6 @@
   canCustomizeName: true
   groups:
   - ClownHead
-  - Glasses
   - ClownOuterClothing
   - ServiceCloak # Arcane
   - ClownJumpsuit
@@ -350,20 +343,15 @@
   - Trinkets
   # Arcane-Start
   - ClownUnderwear
-  - Animals
   - GroupGrimoire
+  # Arcane-End
   # Goobstation - EE Plasmeme Change.
   - ClownEnvirohelm
   - ClownEnvirosuit
   - ClownEnvirogloves
   - GroupTankHarness
-  - SurvivalClown
   - ClownJobTrinkets
-  - Trinkets
   - Animals # Goobstation
-  # Arcane-Start
-  - ClownUnderwear
-  # Arcane - End
   # Orion-Start
   - Undershirt
   - Underwear

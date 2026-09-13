@@ -644,20 +644,15 @@ public sealed partial class PolymorphSystem : EntitySystem
         var sourceMap = new Dictionary<string, EntityUid>(sourceActionsComp.Actions.Count);
         foreach (var srcActionId in sourceActionsComp.Actions)
         {
-            if (TryComp<MetaDataComponent>(srcActionId, out var srcMeta) && srcMeta.EntityPrototype != null)
-                sourceMap[srcMeta.EntityPrototype.ID] = srcActionId;
+            sourceMap[GetActionKey(srcActionId)] = srcActionId;
         }
 
-        var seenPrototypes = new HashSet<string>(destActionsComp.Actions.Count);
+        var seenActions = new HashSet<string>(destActionsComp.Actions.Count);
         var actionsToRemove = new List<EntityUid>();
 
         foreach (var actionId in destActionsComp.Actions)
         {
-            if (!TryComp<MetaDataComponent>(actionId, out var actionMeta) || actionMeta.EntityPrototype == null)
-                continue;
-
-
-            if (!seenPrototypes.Add(actionMeta.EntityPrototype.ID))
+            if (!seenActions.Add(GetActionKey(actionId)))
                 actionsToRemove.Add(actionId);
         }
 
@@ -666,19 +661,18 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         foreach (var actionId in destActionsComp.Actions)
         {
-            if (!TryComp<MetaDataComponent>(actionId, out var actionMeta) || actionMeta.EntityPrototype == null)
+            if (!sourceMap.TryGetValue(GetActionKey(actionId), out var sourceActionId))
                 continue;
 
-            if (!sourceMap.TryGetValue(actionMeta.EntityPrototype.ID, out var sourceActionId))
-                continue;
-
-            if (TryComp<ActionComponent>(sourceActionId, out var sourceAction) && sourceAction.Cooldown != null)
+            if (TryComp<ActionComponent>(sourceActionId, out var sourceAction) &&
+                TryComp<ActionComponent>(actionId, out var destAction))
             {
-                if (TryComp<ActionComponent>(actionId, out var destAction))
-                {
-                    _actions.SetCooldown(actionId, sourceAction.Cooldown.Value.Start, sourceAction.Cooldown.Value.End);
-                    Dirty(actionId, destAction);
-                }
+                if (sourceAction.Cooldown is {} cooldown)
+                    _actions.SetCooldown(actionId, cooldown.Start, cooldown.End);
+                else
+                    _actions.RemoveCooldown(actionId);
+
+                Dirty(actionId, destAction);
             }
 
             var chargesReflCache = new Dictionary<Type, (System.Reflection.PropertyInfo? Prop, System.Reflection.FieldInfo? Field)>();
@@ -710,6 +704,19 @@ public sealed partial class PolymorphSystem : EntitySystem
                 Dirty(actionId, destActionComp);
             }
         }
+    }
+
+    private string GetActionKey(EntityUid actionId)
+    {
+        if (TryComp<InstantActionComponent>(actionId, out var instantAction) &&
+            instantAction.Event is PolymorphActionEvent polymorphEvent &&
+            polymorphEvent.ProtoId is {} protoId)
+            return $"polymorph:{protoId}";
+
+        if (TryComp<MetaDataComponent>(actionId, out var meta) && meta.EntityPrototype != null)
+            return $"proto:{meta.EntityPrototype.ID}";
+
+        return $"action:{actionId}";
     }
     // Arcane-End
 }

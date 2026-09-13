@@ -97,7 +97,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (!Exists(rule) || !TryComp<AntagSelectionComponent>(rule, out var select))
             return;
 
-        MakeAntag((rule, select), args.Player, def, ignoreSpawner: true);
+        // Arcane-Edit-Start
+        if (!MakeAntag((rule, select), args.Player, def, ignoreSpawner: true))
+            return;
+        // Arcane-Edit-End
+
         args.TookRole = true;
         _ghostRole.UnregisterGhostRole((ent, Comp<GhostRoleComponent>(ent)));
     }
@@ -413,13 +417,13 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             set.Add(session);
             Log.Debug($"Pre-selected {session!.Name} as antagonist: {ToPrettyString(ent)}");
             _adminLogger.Add(LogType.AntagSelection, $"Pre-selected {session.Name} as antagonist: {ToPrettyString(ent)}");
-        }
-        else
-        {
-            MakeAntag(ent, session, def, ignoreSpawner);
+
+            // Arcane-Edit-Start
+            return true;
         }
 
-        return true;
+        return MakeAntag(ent, session, def, ignoreSpawner);
+        // Arcane-Edit-End
     }
 
     /// <summary>
