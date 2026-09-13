@@ -92,12 +92,12 @@ public sealed class ArousalSystem : EntitySystem
         return !IsRefractory(comp);
     }
 
-    public void AddArousal(EntityUid uid, float amount, ArousalComponent? comp = null)
+    public void AddArousal(EntityUid uid, float amount, ArousalComponent? comp = null, bool ignoreErpPreference = false)
     {
         if (!Resolve(uid, ref comp))
             return;
 
-        if (IsErpDisabled(uid))
+        if (!ignoreErpPreference && IsErpDisabled(uid))
             return;
 
         if (IsRefractory(comp))

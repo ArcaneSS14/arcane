@@ -6,7 +6,9 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.InteractionVerbs.Events;
 using Content.Shared.Item;
 using Content.Shared.Popups;
+using Content.Shared.StatusIcon;
 using Content.Shared.UserInterface;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Ghost
@@ -122,109 +124,117 @@ namespace Content.Shared.Ghost
     {
     }
 
-     // Orion-Start
-     /// <summary>
-     /// An player body a ghost can warp to.
-     /// This is used as part of <see cref="GhostWarpsResponseEvent"/>
-     /// </summary>
-     [Serializable, NetSerializable]
-     public struct GhostWarpPlayer
-     {
-         public GhostWarpPlayer(NetEntity entity, string playerName, string playerJobName, string playerDepartmentID, bool isGhost, bool isLeft, bool isDead, bool isAlive)
-         {
-             Entity = entity;
-             Name = playerName;
-             JobName = playerJobName;
-             DepartmentID = playerDepartmentID;
+    // Orion-Start
+    /// <summary>
+    /// An player body a ghost can warp to.
+    /// This is used as part of <see cref="GhostWarpsResponseEvent"/>
+    /// </summary>
+    [Serializable, NetSerializable]
+    public struct GhostWarpPlayer
+    {
+        public GhostWarpPlayer(NetEntity entity, string playerName, string playerJobName, string playerDepartmentID, ProtoId<JobIconPrototype> playerJobIcon, bool isGhost, bool isLeft, bool isDead, bool isAlive) // Arcane-Edit
+        {
+            Entity = entity;
+            Name = playerName;
+            JobName = playerJobName;
+            DepartmentID = playerDepartmentID;
+            JobIcon = playerJobIcon; // Arcane
 
-             IsGhost = isGhost;
-             IsLeft = isLeft;
-             IsDead = isDead;
-             IsAlive = isAlive;
-         }
+            IsGhost = isGhost;
+            IsLeft = isLeft;
+            IsDead = isDead;
+            IsAlive = isAlive;
+        }
 
-         /// <summary>
-         /// The entity representing the warp point.
-         /// This is passed back to the server in <see cref="GhostWarpToTargetRequestEvent"/>
-         /// </summary>
-         public NetEntity Entity { get; }
+        /// <summary>
+        /// The entity representing the warp point.
+        /// This is passed back to the server in <see cref="GhostWarpToTargetRequestEvent"/>
+        /// </summary>
+        public NetEntity Entity { get; }
 
-         /// <summary>
-         /// The display player name to be surfaced in the ghost warps menu
-         /// </summary>
-         public string Name { get; }
+        /// <summary>
+        /// The display player name to be surfaced in the ghost warps menu
+        /// </summary>
+        public string Name { get; }
 
-         /// <summary>
-         /// The display player job to be surfaced in the ghost warps menu
-         /// </summary>
+        /// <summary>
+        /// The display player job to be surfaced in the ghost warps menu
+        /// </summary>
 
-         public string JobName { get; }
+        public string JobName { get; }
 
-         /// <summary>
-         /// The display player department to be surfaced in the ghost warps menu
-         /// </summary>
-         public string DepartmentID { get; set; }
+        /// <summary>
+        /// The display player department to be surfaced in the ghost warps menu
+        /// </summary>
+        public string DepartmentID { get; set; }
 
-         /// <summary>
-         /// Is player is ghost
-         /// </summary>
-         public bool IsGhost { get;  }
+        // Arcane-Start
+        /// <summary>
+        /// The job icon prototype id for the player.
+        /// </summary>
+        public ProtoId<JobIconPrototype> JobIcon { get; }
+        // Arcane-End
 
-         /// <summary>
-         /// Is player body alive
-         /// </summary>
-         public bool IsAlive { get;  }
+        /// <summary>
+        /// Is player is ghost
+        /// </summary>
+        public bool IsGhost { get; }
 
-         /// <summary>
-         /// Is player body dead
-         /// </summary>
-         public bool IsDead { get;  }
+        /// <summary>
+        /// Is player body alive
+        /// </summary>
+        public bool IsAlive { get; }
 
-         /// <summary>
-         /// Is player left from body
-         /// </summary>
-         public bool IsLeft { get;  }
-     }
+        /// <summary>
+        /// Is player body dead
+        /// </summary>
+        public bool IsDead { get; }
 
-     [Serializable, NetSerializable]
-     public struct GhostWarpGlobalAntagonist
-     {
-         public GhostWarpGlobalAntagonist(NetEntity entity, string playerName, string antagonistName, string antagonistDescription, string prototypeID)
-         {
-             Entity = entity;
-             Name = playerName;
-             AntagonistName = antagonistName;
-             AntagonistDescription = antagonistDescription;
-             PrototypeID = prototypeID;
-         }
+        /// <summary>
+        /// Is player left from body
+        /// </summary>
+        public bool IsLeft { get; }
+    }
 
-         /// <summary>
-         /// The entity representing the warp point.
-         /// This is passed back to the server in <see cref="GhostWarpToTargetRequestEvent"/>
-         /// </summary>
-         public NetEntity Entity { get; }
+    [Serializable, NetSerializable]
+    public struct GhostWarpGlobalAntagonist
+    {
+        public GhostWarpGlobalAntagonist(NetEntity entity, string playerName, string antagonistName, string antagonistDescription, string prototypeID)
+        {
+            Entity = entity;
+            Name = playerName;
+            AntagonistName = antagonistName;
+            AntagonistDescription = antagonistDescription;
+            PrototypeID = prototypeID;
+        }
 
-         /// <summary>
-         /// The display player name to be surfaced in the ghost warps menu
-         /// </summary>
-         public string Name { get; }
+        /// <summary>
+        /// The entity representing the warp point.
+        /// This is passed back to the server in <see cref="GhostWarpToTargetRequestEvent"/>
+        /// </summary>
+        public NetEntity Entity { get; }
 
-         /// <summary>
-         /// The display antagonist name to be surfaced in the ghost warps menu
-         /// </summary>
-         public string AntagonistName { get; }
+        /// <summary>
+        /// The display player name to be surfaced in the ghost warps menu
+        /// </summary>
+        public string Name { get; }
 
-         /// <summary>
-         /// The display antagonist description to be surfaced in the ghost warps menu
-         /// </summary>
-         public string AntagonistDescription { get; }
+        /// <summary>
+        /// The display antagonist name to be surfaced in the ghost warps menu
+        /// </summary>
+        public string AntagonistName { get; }
 
-         /// <summary>
-         /// A antagonist prototype id
-         /// </summary>
-         public string PrototypeID { get; }
+        /// <summary>
+        /// The display antagonist description to be surfaced in the ghost warps menu
+        /// </summary>
+        public string AntagonistDescription { get; }
 
-     }
+        /// <summary>
+        /// A antagonist prototype id
+        /// </summary>
+        public string PrototypeID { get; }
+
+    }
     // Orion-End
 
     /// <summary>
@@ -257,7 +267,7 @@ namespace Content.Shared.Ghost
         /// <summary>
         /// Display name to be surfaced in the ghost warps menu
         /// </summary>
-        public string Description { get;  } // Orion-Edit: IsWarpPoint > Description
+        public string Description { get; } // Orion-Edit: IsWarpPoint > Description
     }
 
     /// <summary>
@@ -267,7 +277,7 @@ namespace Content.Shared.Ghost
     [Serializable, NetSerializable]
     public sealed class GhostWarpsResponseEvent : EntityEventArgs
     {
-/* // Orion-Edit: Removed
+        /* // Orion-Edit: Removed
         public GhostWarpsResponseEvent(List<GhostWarp> warps)
         {
             Warps = warps;
@@ -277,7 +287,7 @@ namespace Content.Shared.Ghost
         /// A list of warp points.
         /// </summary>
         public List<GhostWarp> Warps { get; }
-*/
+        */
 
         // Orion-Start
         public GhostWarpsResponseEvent(List<GhostWarpPlayer> players, List<GhostWarpPlace> places, List<GhostWarpGlobalAntagonist> antagonists)

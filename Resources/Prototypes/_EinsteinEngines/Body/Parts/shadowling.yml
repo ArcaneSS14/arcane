@@ -1,6 +1,6 @@
 - type: entity
   id: PartShadowling
-  parent: PartHuman
+  parent: BasePartHuman # Arcane
   abstract: true
   components:
   - type: Sprite

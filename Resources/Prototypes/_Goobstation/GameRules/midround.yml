@@ -357,7 +357,7 @@
     prototype: MobVoxRaider
   - type: RuleGrids
   - type: LoadMapRule
-    gridPath: /Maps/_Goobstation/Shuttles/VoxRaiderShuttle.yml
+    gridPath: /Maps/_Arcane/Shuttles/VoxRaiderShuttle.yml # Arcane-Edit
   - type: AntagSelection
     agentName: ghost-role-information-vox-raider-name
     definitions:

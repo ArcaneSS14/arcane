@@ -17,7 +17,7 @@
   id: Shadowkin
   coefficients:
     Blunt: 1.25
-    Slash: 1.25
+    Slash: 0.75 # Arcane
     Piercing: 1.25
     Asphyxiation: 0.50
     Heat: 1.4
