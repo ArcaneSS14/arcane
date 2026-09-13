@@ -95,7 +95,7 @@ public sealed partial class EventHorizonComponent : Component
     /// </summary>
     [DataField("suppressFieldConsumptionUntil", customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
-    public TimeSpan SuppressFieldConsumptionUntil = = TimeSpan.Zero;
+    public TimeSpan SuppressFieldConsumptionUntil = TimeSpan.Zero;
     // Arcane-End
   
     #endregion Update Timing
