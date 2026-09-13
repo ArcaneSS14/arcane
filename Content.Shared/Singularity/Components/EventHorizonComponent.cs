@@ -88,7 +88,7 @@ public sealed partial class EventHorizonComponent : Component
     /// If true, the singularity cannot destroy containment fields (walls and generators) during the delay.
     /// </summary>
     [DataField("suppressFieldConsumption")]
-    public bool SuppressFieldConsumption = false;;
+    public bool SuppressFieldConsumption = false;
 
     /// <summary>
     /// The time when suppression will be lifted.
