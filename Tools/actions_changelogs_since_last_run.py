@@ -54,6 +54,8 @@ DISCORD_EMBED_TITLE_LIMIT = 256
 DISCORD_EMBED_DESCRIPTION_LIMIT = 4096
 DISCORD_EMBED_FOOTER_LIMIT = 2048
 DISCORD_EMBED_TOTAL_LIMIT = 6000
+DISCORD_CONTENT_LIMIT = 2000
+DISCORD_MEDIA_LINKS_PER_MESSAGE = 5
 
 HTTP_TIMEOUT_SECONDS = float(os.environ.get("CHANGELOG_HTTP_TIMEOUT", "30"))
 DISCORD_MAX_RETRIES = int(os.environ.get("CHANGELOG_DISCORD_RETRIES", "5"))
@@ -112,6 +114,8 @@ def main() -> None:
                 f"(id={entry.get('id', 'unknown')}, author={entry.get('author', 'unknown')})"
             )
             send_discord_payload(session, {"embeds": [embed]})
+            for content in build_media_messages(entry):
+                send_discord_payload(session, {"content": content})
 
 
 def load_changelog(stream: str, source: str) -> dict[str, Any]:
@@ -407,6 +411,46 @@ def changelog_entry_to_embed(entry: Mapping[str, Any]) -> dict[str, Any]:
         embed["description"] = truncate(description, target)
 
     return embed
+
+
+def build_media_messages(entry: Mapping[str, Any]) -> Iterable[str]:
+    """Send media as bare links so Discord can preview images and videos."""
+    media = entry.get("media", [])
+    if not isinstance(media, list):
+        return
+
+    seen: set[str] = set()
+    links: list[str] = []
+    for value in media:
+        try:
+            url = normalize_url(value)
+            if not url:
+                continue
+            parsed = urlparse(url)
+            if not parsed.hostname or parsed.username or parsed.password:
+                continue
+        except ValueError:
+            continue
+
+        if any(char.isspace() or ord(char) < 32 or char in '<>"`' for char in url):
+            continue
+        if len(url) > DISCORD_CONTENT_LIMIT:
+            print(f"Skipping media URL exceeding Discord's content limit (entry {entry.get('id')})")
+            continue
+        if url in seen:
+            continue
+        seen.add(url)
+
+        if links and (
+            len(links) >= DISCORD_MEDIA_LINKS_PER_MESSAGE
+            or len("\n".join([*links, url])) > DISCORD_CONTENT_LIMIT
+        ):
+            yield "\n".join(links)
+            links = []
+        links.append(url)
+
+    if links:
+        yield "\n".join(links)
 
 
 def make_webhook_payload(

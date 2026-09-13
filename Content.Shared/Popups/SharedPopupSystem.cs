@@ -230,6 +230,12 @@ namespace Content.Shared.Popups
         ///     but is not life-threatening.
         /// </summary>
         Large,
-        LargeCaution
+        LargeCaution,
+        // Arcane-Start
+        /// <summary>
+        ///     Green popups for good.
+        /// </summary>
+        /// Arcane-End
+        MediumGreen
     }
 }
