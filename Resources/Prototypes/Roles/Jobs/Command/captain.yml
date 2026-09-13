@@ -86,7 +86,7 @@
   job: Captain
   hasMindShield: true
   equipment:
-    head: ClothingHeadHatCapcap
+    head: ClothingHeadHatCapcap-beret
     eyes: ClothingEyesGlassesCommand
     mask: ClothingMaskGasCaptain
     neck: ClothingNeckCloakCap

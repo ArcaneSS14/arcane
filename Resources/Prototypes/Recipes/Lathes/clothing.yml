@@ -784,8 +784,8 @@
 
 - type: latheRecipe
   parent: BaseCommandHatRecipe
-  id: ClothingHeadHatCapcap
-  result: ClothingHeadHatCapcap
+  id: ClothingHeadHatCapcap-beret
+  result: ClothingHeadHatCapcap-beret
 
 - type: latheRecipe
   parent: BaseCommandHatRecipe

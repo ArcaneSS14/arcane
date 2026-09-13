@@ -135,8 +135,10 @@ ent-ClothingHeadHatHetmanHat = hetman hat
     .desc = From the Zaporozhian Sich with love.
 ent-ClothingHeadHatMagician = magician's tophat
     .desc = A magician's top hat.
-ent-ClothingHeadHatCapcap = cap cap
-    .desc = A grand, stylish cap worn by the Captain. Shows the station who's in charge.
+# Arcane-Edit-Start
+ent-ClothingHeadHatCapcap-beret = cap cap-beret
+    .desc = A grand, stylish cap-beret worn by the Captain. Shows the station who's in charge.
+# Arcane-Edit-End
 ent-ClothingHeadHatCentcomcap = CentComm cap
     .desc = An extravagant, stylish cap worn by CentComm officials. Shows the Captain who's in charge.
 ent-ClothingHeadHatGladiator = gladiator helmet

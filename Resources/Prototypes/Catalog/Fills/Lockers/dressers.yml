@@ -10,7 +10,7 @@
       storagebase: !type:AllSelector
         children:
         - id: ClothingHeadHatCaptain
-        - id: ClothingHeadHatCapcap
+        - id: ClothingHeadHatCapcap-beret
         - id: ClothingUniformJumpsuitCapFormal
         - id: ClothingUniformJumpskirtCapFormalDress
         - id: ClothingHandsGlovesCaptain

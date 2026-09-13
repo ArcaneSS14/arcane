@@ -1216,15 +1216,13 @@
 
 - type: entity
   parent: [ClothingHeadHatArmoredPlus, ClothingHeadBase, BaseCommandContraband] #goob # Orion-Edit: Add comm contra and armor
-  id: ClothingHeadHatCapcap
+  id: ClothingHeadHatCapcap-beret
   name: cap cap
   description: A grand, stylish cap worn by the Captain. Shows the station who's in charge.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/capcap.rsi
   - type: Clothing
-    sprite: Clothing/Head/Hats/capcap.rsi
-  - type: Item
     sprite: Clothing/Head/Hats/capcap.rsi
   - type: Tag
     tags:
@@ -1239,6 +1237,25 @@
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.0002 # 5,000 times less likely than 1 regular animal
   - type: BlockMovement
+    # Arcane-Start
+    equippedPrefix: cap
+  - type: Item
+    heldPrefix: beret
+  - type: ItemSwitch
+    state: cap
+    onUse: false
+    states:
+      beret: !type:ItemSwitchState
+        verb: beret
+        sprite:
+          sprite: Clothing/Head/Hats/capcap.rsi
+          state: beret-icon
+      cap: !type:ItemSwitchState
+        verb: cap
+        sprite:
+          sprite: _Clothing/Head/Hats/capcap.rsi
+          state: cap-icon
+    # Arcane-End
 
 - type: entity
   parent: [ ClothingHeadHatArmoredCC, ClothingHeadBase, BaseCentcommContraband ] #goob # Orion-Edit

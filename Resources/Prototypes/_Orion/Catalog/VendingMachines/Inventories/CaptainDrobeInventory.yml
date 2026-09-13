@@ -4,7 +4,7 @@
   # Default
     ClothingHeadsetAltCommand: 1
     ClothingHeadHatCaptain: 1
-    ClothingHeadHatCapcap: 1
+    ClothingHeadHatCapcap-beret: 1
 #    ClothingHeadCaptainHat: 1
     ClothingEyesGlassesSunglasses: 1
     ClothingEyesGlassesCommand: 1
@@ -22,8 +22,7 @@
     ClothingUniformJumpskirtCapFormalDress: 1
     ClothingHandsGlovesCaptain: 1
   # White
-    ClothingHeadHatBeretCaptainWhite: 1
-    ClothingHeadHatCapcapWhite: 1
+    ClothingHeadHatCapcap-beretWhite: 1
     ClothingNeckCloakRoyalCaptain: 1
     ClothingNeckWhiteMantleCaptain: 1
     ClothingNeckMantleCaptainWhiteShoulder: 1

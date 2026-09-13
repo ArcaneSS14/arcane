@@ -135,8 +135,10 @@ ent-ClothingHeadHatHetmanHat = гетманская шапка
     .desc = Из Запорожской Сечи с любовью.
 ent-ClothingHeadHatMagician = цилиндр фокусника
     .desc = Цилиндр фокусника.
-ent-ClothingHeadHatCapcap = фуражка капитана
-    .desc = Большая, стильная капитанская фуражка.
+# Arcane-Edit-Start
+ent-ClothingHeadHatCapcap-beret = фуражка-берет капитана
+    .desc = Большая, стильная капитанская фуражка-берет.
+# Arcane-Edit-End
 ent-ClothingHeadHatCentcomcap = фуражка ЦК
     .desc = Экстравагантная, причудливая фуражка офицера Центрального командования.
 ent-ClothingHeadHatGladiator = гладиаторский шлем

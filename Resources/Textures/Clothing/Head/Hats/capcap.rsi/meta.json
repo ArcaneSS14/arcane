@@ -1,29 +1,55 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from TG station at: https://github.com/tgstation/tgstation/commit/c7dde066687a52e2aad598d19ee01cc0fbaa7d43#diff-4bf8ea7edf380bc679abdb6816b5742859caa8e87532315850772b843c083a26, sprites inhand & hamster created by svarshiksatanist on discord",
+    "copyright": "Taken from TG station at: https://github.com/tgstation/tgstation/commit/c7dde066687a52e2aad598d19ee01cc0fbaa7d43#diff-4bf8ea7edf380bc679abdb6816b5742859caa8e87532315850772b843c083a26, sprites inhand & hamster created by svarshiksatanist on discord | berets created by sokol9bl (discord) | inhand created by raid_3390 (discord)",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "equipped-HELMET",
-            "directions": 4
-        },
-        {
             "name": "icon"
         },
         {
-            "name": "inhand-left",
+            "name": "beret-icon"
+        },
+        {
+            "name": "cap-icon"
+        },
+        {
+            "name": "beret-equipped-HELMET",
             "directions": 4
         },
         {
-            "name": "equipped-HELMET-hamster",
+            "name": "beret-equipped-HELMET-vox",
+            "directions": 4
+        },
+        {
+            "name": "beret-equipped-HELMET_hamster",
+            "directions": 4
+        },
+        {
+            "name": "cap-equipped-HELMET",
+            "directions": 4
+        },
+        {
+            "name": "cap-equipped-HELMET-hamster",
+            "directions": 4
+        },
+        {
+            "name": "beret-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "beret-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "cap-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "cap-inhand-right",
             "directions": 4
         }
     ]

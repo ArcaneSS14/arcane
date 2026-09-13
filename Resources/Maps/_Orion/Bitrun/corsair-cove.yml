@@ -2498,7 +2498,7 @@ entities:
     - type: Transform
       pos: 5.2042503,29.798697
       parent: 1
-- proto: ClothingHeadHatCapcap
+- proto: ClothingHeadHatCapcap-beret
   entities:
   - uid: 420
     components:

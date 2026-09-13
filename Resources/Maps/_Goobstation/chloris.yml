@@ -110387,7 +110387,7 @@ entities:
     - type: Transform
       pos: 115.53633,95.55696
       parent: 2
-- proto: ClothingHeadHatCapcap
+- proto: ClothingHeadHatCapcap-beret
   entities:
   - uid: 16636
     components:

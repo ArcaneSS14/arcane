@@ -98433,7 +98433,7 @@ entities:
     - type: Transform
       pos: 89.78626,25.57572
       parent: 2
-- proto: ClothingHeadHatCapcap
+- proto: ClothingHeadHatCapcap-beret
   entities:
   - uid: 15675
     components:

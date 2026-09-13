@@ -60,7 +60,7 @@
 - type: loadout
   id: CaptainCap
   equipment:
-    head: ClothingHeadHatCapcap
+    head: ClothingHeadHatCapcap-beret
 
 - type: loadout # Goobstation - Ensembles
   id: CaptainCapcapSenior

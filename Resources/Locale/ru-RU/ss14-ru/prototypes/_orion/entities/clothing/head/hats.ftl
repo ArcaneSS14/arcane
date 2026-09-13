@@ -10,8 +10,10 @@ ent-ClothingHeadHatBeretCaptainWhite = белый берет капитана
     .desc = Белый берет капитана, икона стиля.
 ent-ClothingHeadHatBeretSheriff = берет шерифа
     .desc = Берет - фаворит, местных шерифов.
-ent-ClothingHeadHatCapcapWhite = белая фуражка капитана
-    .desc = Стильная белая фуражка капитана.
+# Arcane-Edit-Start
+ent-ClothingHeadHatCapcap-beretWhite = белая фуражка-берет капитана
+    .desc = Стильная белая фуражка-берет капитана.
+# Arcane-Edit-End
 ent-ClothingHeadHatCapcapSheriff = фуражка шерифа
     .desc = Стильная фуражка шерифа.
 ent-ClothingHeadCapCentcomNaval = флотская фуражка

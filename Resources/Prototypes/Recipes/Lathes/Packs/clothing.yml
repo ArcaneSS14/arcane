@@ -28,7 +28,7 @@
   id: ClothingCommand
   recipes:
   # Captain
-  - ClothingHeadHatCapcap
+  - ClothingHeadHatCapcap-beret
   - ClothingHeadHatCaptain
   - ClothingUniformJumpsuitCaptain
   - ClothingUniformJumpskirtCaptain
