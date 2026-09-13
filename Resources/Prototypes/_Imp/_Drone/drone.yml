@@ -39,14 +39,14 @@
       connections:
       - left hand 2
     right hand:
-      part: RightHandHuman # shitmed moment
+      part: BaseRightHandHuman # shitmed moment # Arcane
     right hand 2:
-      part: RightHandHuman
+      part: BaseRightHandHuman # Arcane
     right hand 3: # Goobstation
-      part: RightHandHuman
+      part: BaseRightHandHuman # Arcane
     right hand 4: # Goobstation
-      part: RightHandHuman
+      part: BaseRightHandHuman # Arcane
     left hand:
-      part: LeftHandHuman
+      part: BaseLeftHandHuman # Arcane
     left hand 2:
-      part: LeftHandHuman
+      part: BaseLeftHandHuman # Arcane
