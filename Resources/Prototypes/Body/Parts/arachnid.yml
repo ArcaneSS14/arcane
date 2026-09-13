@@ -7,6 +7,10 @@
   name: "arachnid body part"
   abstract: true
   components:
+  # Arcane-Start
+  - type: Damageable
+    damageModifierSet: Arachnid
+  # Arcane-End
   - type: BodyPart # Shitmed Change
     species: Arachnid
   - type: Extractable
@@ -30,6 +34,10 @@
   name: "arachnid body part"
   abstract: true
   components:
+  # Arcane-Start
+  - type: Damageable
+    damageModifierSet: Arachnid
+  # Arcane-End
   - type: BodyPart # Shitmed Change
     species: Arachnid
   - type: Extractable

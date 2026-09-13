@@ -188,9 +188,9 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: VulpkaninScreams # EE
+      collection: FemaleVulpkaninScreams # Arcane-Edit
     Laugh:
-      collection: FemaleLaugh
+      collection: VulpkaninLaugh # Arcane-Edit
     Sneeze:
       collection: FemaleSneezes
     Cough:
@@ -204,13 +204,13 @@
     Sigh:
       collection: FemaleSigh
     Crying:
-      collection: FemaleCry
+      collection: VulpkaninCry # Arcane-Edit
     Whistle:
       collection: Whistles
     Weh:
       collection: Weh
     Growl:
-      collection: VulpkaninGrowls
+      collection: FemaleVulpkaninGrowls # Arcane-Edit
     Snarl:
       collection: VulpkaninSnarls
     Bark:
@@ -218,9 +218,9 @@
     Whine:
       collection: VulpkaninWhines
     Howl:
-      collection: VulpkaninHowls
+      collection: FemaleVulpkaninHowls # Arcane-Edit
     Awoo:
-      collection: VulpkaninHowls
+      collection: FemaleVulpkaninHowls # Arcane-Edit
     CatMeow:
       collection: CatMeows # Goobstation - effect standardization
     Gasp:
@@ -244,9 +244,9 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: VulpkaninScreams # EE
+      collection: MaleVulpkaninScreams # Arcane-Edit
     Laugh:
-      collection: MaleLaugh
+      collection: VulpkaninLaugh # Arcane-Edit
     Sneeze:
       collection: MaleSneezes
     Cough:
@@ -260,13 +260,13 @@
     Sigh:
       collection: MaleSigh
     Crying:
-      collection: MaleCry
+      collection: VulpkaninCry # Arcane-Edit
     Whistle:
       collection: Whistles
     Weh:
       collection: Weh
     Growl:
-      collection: VulpkaninGrowls
+      collection: MaleVulpkaninGrowls # Arcane-Edit
     Snarl:
       collection: VulpkaninSnarls
     Bark:
@@ -274,9 +274,9 @@
     Whine:
       collection: VulpkaninWhines
     Howl:
-      collection: VulpkaninHowls
+      collection: MaleVulpkaninHowls # Arcane-Edit
     Awoo:
-      collection: VulpkaninHowls
+      collection: MaleVulpkaninHowls # Arcane-Edit
     CatMeow:
       collection: CatMeows # Goobstation - effect standardization
     Gasp:

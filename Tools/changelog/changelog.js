@@ -9,6 +9,7 @@
 const fs = require("fs");
 const yaml = require("js-yaml");
 const axios = require("axios");
+const { getMedia } = require("./media");
 
 // Use GitHub token if available
 if (process.env.GITHUB_TOKEN) axios.defaults.headers.common["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
@@ -25,7 +26,7 @@ async function main() {
     const { merged_at, body, user, html_url } = pr.data;
 
     // Remove comments from the body
-    commentlessBody = body.replace(CommentRegex, '');
+    const commentlessBody = (body || "").replace(CommentRegex, '');
 
     // Get author
     const headerMatch = HeaderRegex.exec(commentlessBody);
@@ -66,6 +67,9 @@ async function main() {
         time: time,
         url: html_url,
     };
+
+    const media = getMedia(body);
+    if (media.length) entry.media = media;
 
     console.log('entry (line 63): ', entry);
 

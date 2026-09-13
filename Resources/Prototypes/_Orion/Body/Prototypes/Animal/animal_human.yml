@@ -4,7 +4,7 @@
   root: torso
   slots:
     torso:
-      part: ChestHuman
+      part: BaseChestHuman # Arcane
       connections:
       - right leg
       - left leg
@@ -15,16 +15,16 @@
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
     right leg:
-      part: RightLegHuman
+      part: BaseRightLegHuman # Arcane
       connections:
       - right foot
     left leg:
-      part: LeftLegHuman
+      part: BaseLeftLegHuman # Arcane
       connections:
       - left foot
     right foot:
-      part: RightFootHuman
+      part: BaseRightFootHuman # Arcane
     left foot:
-      part: LeftFootHuman
+      part: BaseLeftFootHuman # Arcane
     feet:
-      part: RightFootHuman
+      part: BaseRightFootHuman # Arcane

@@ -20,6 +20,7 @@
   - CaptainJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -48,6 +49,7 @@
   - HoPJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -89,6 +91,7 @@
   - PassengerJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -115,6 +118,7 @@
   - BartenderJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -132,6 +136,7 @@
   - ServiceWorkerJumpsuit
   - ServiceWorkerBelt
   - ServiceWorkerShoes
+  - GroupGrimoire
   # Arcane-End
   - CommonBackpack
   # Goobstation - EE Plasmeme Change.
@@ -161,6 +166,7 @@
   - ChefOuterClothing
   - ServiceCloak # Arcane
   - ChefJumpsuit
+  - GroupGrimoire # Arcane
   - CommonBackpack
   # Goobstation - EE Plasmeme Change.
   - ChefEnvirohelm
@@ -193,6 +199,9 @@
   - LibrarianShoes
   # Arcane - End
   - CommonBackpack
+  - Animals
+  - GroupSpeciesBreathTool
+  - GroupGrimoire
   # Goobstation - EE Plasmeme Change.
   - LibrarianEnvirohelm
   - LibrarianEnvirosuit
@@ -228,6 +237,7 @@
   - LawyerJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -258,6 +268,7 @@
   - ChaplainJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -286,6 +297,7 @@
   - JanitorJobTrinkets
   - Trinkets
   - Animals # Goobstation?
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -313,6 +325,7 @@
   - BotanistJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -332,6 +345,13 @@
   - ClownJumpsuit
   - ClownShoes
   - ClownBackpack
+  - Glasses
+  - SurvivalClown
+  - Trinkets
+  # Arcane-Start
+  - ClownUnderwear
+  - Animals
+  - GroupGrimoire
   # Goobstation - EE Plasmeme Change.
   - ClownEnvirohelm
   - ClownEnvirosuit
@@ -412,6 +432,7 @@
   - Instruments
   - Trinkets
   - Animals
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -442,6 +463,7 @@
   - QuartermasterJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -471,6 +493,7 @@
   - CargoTechnicianJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -498,6 +521,7 @@
   - SalvageSpecialistJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -526,6 +550,7 @@
   - ChiefEngineerJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -549,6 +574,7 @@
   - TechnicalAssistantJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -577,6 +603,7 @@
   - StationEngineerJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -604,6 +631,7 @@
   - AtmosphericTechnicianJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -634,6 +662,7 @@
   - ResearchDirectorJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -664,6 +693,7 @@
   - ScientistJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -688,6 +718,7 @@
   - ResearchAssistantJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -719,6 +750,7 @@
   - HeadofSecurityJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -749,6 +781,7 @@
   - WardenJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -780,6 +813,7 @@
   - SecurityJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -807,6 +841,7 @@
   - DetectiveJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -832,6 +867,7 @@
   - SecurityCadetJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -863,6 +899,7 @@
   - ChiefMedicalOfficerJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -879,6 +916,7 @@
   - MedicalEyewear
   - MedicalDoctorOuterClothing
   # Arcane-Start
+  - GroupGrimoire
   - MedicalCloak
   - DoctorBikini
   # Arcane-End
@@ -921,6 +959,7 @@
   - MedicalInternJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -936,6 +975,7 @@
   - MedicalMask
   - ChemistOuterClothing
   # Arcane-Start
+  - GroupGrimoire
   - MedicalCloak
   - ChemistBikini
   # Arcane-End
@@ -969,6 +1009,7 @@
   - MedicalEyewear
   - ParamedicOuterClothing
   # Arcane-Start
+  - GroupGrimoire
   - MedicalCloak
   - ParamedicBikini
   - ParamedicVisor
@@ -1002,6 +1043,7 @@
   - Glasses
   - ReporterOuterClothing # Goobstation - Bodycams
   # Arcane-Start
+  - GroupGrimoire
   - ServiceCloak
   # Arcane-End
   - ReporterJumpsuit
@@ -1030,6 +1072,7 @@
   - Glasses
   # Arcane-Start
   - MedicalCloak
+  - GroupGrimoire
   # Arcane-End
   - PsychologistJumpsuit
   - MedicalBackpack

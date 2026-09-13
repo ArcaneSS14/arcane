@@ -63,4 +63,10 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<bool> ICAlternateJobTitlesEnable =
         CVarDef.Create("ic.alternate_job_titles_enable", true, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    ///     Global volume multiplier for boombox/jukebox playback.
+    /// </summary>
+    public static readonly CVarDef<float> JukeboxVolume =
+        CVarDef.Create("jukebox.volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

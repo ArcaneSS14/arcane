@@ -14,4 +14,12 @@ public abstract class SharedJukeboxSystem : EntitySystem
         return rightMin + (value - leftMin) * (rightMax - rightMin) / (leftMax - leftMin);
     }
     // Orion-End
+
+    // Arcane-Start
+    public static float GetAudioVolume(JukeboxComponent component)
+    {
+        return MapToRange(component.Volume, component.MinSlider, component.MaxSlider,
+            component.MinVolume, component.MaxVolume);
+    }
+    // Arcane-End
 }

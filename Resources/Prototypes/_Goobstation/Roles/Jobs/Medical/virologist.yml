@@ -35,8 +35,11 @@
   contracts:
   - DocumentContractEmploymentMedical
   alternateTitles:
-  - VirologistDiseaseSpecialist
   - VirologistEpidemiologist
+  - VirologistDiseaseSpecialist
+  - VirologistVirusSpecialist
+  - VirologistInfectionSpecialist
+  - VirologistInfectiologist
   # Arcane-end
 
 
@@ -59,10 +62,22 @@
 
 # Arcane-Start
 - type: jobAlternateTitle
-  id: VirologistDiseaseSpecialist
+  id: VirologistEpidemiologist
   name: job-name-alt-virologist-1
 
 - type: jobAlternateTitle
-  id: VirologistEpidemiologist
+  id: VirologistDiseaseSpecialist
   name: job-name-alt-virologist-2
+
+- type: jobAlternateTitle
+  id: VirologistVirusSpecialist
+  name: job-name-alt-virologist-3
+
+- type: jobAlternateTitle
+  id: VirologistInfectionSpecialist
+  name: job-name-alt-virologist-4
+
+- type: jobAlternateTitle
+  id: VirologistInfectiologist
+  name: job-name-alt-virologist-5
 # Arcane-End

@@ -26,9 +26,11 @@
   - Command
   - Service
   - Maintenance
+  - Bar
   - Kitchen
   - Janitor
-  - Bar
+  - Theatre
+  - Hydroponics
   special:
   - !type:AddComponentSpecial
     components:
@@ -43,8 +45,9 @@
   contracts:
   - DocumentContractEmploymentService
   alternateTitles:
-  - CommandMaidHeadMaid
-  - CommandMaidMajordomo
+  - CommandMaidButler
+  - CommandMaidCommandJanitor
+  - CommandMaidCorporateMaid
 
 - type: startingGear
   id: CommandMaidGear
@@ -65,9 +68,13 @@
     gloves: ClothingHandsGlovesCommandMaid
 
 - type: jobAlternateTitle
-  id: CommandMaidHeadMaid
+  id: CommandMaidButler
   name: job-name-alt-commandmaid-1
 
 - type: jobAlternateTitle
-  id: CommandMaidMajordomo
+  id: CommandMaidCommandJanitor
   name: job-name-alt-commandmaid-2
+
+- type: jobAlternateTitle
+  id: CommandMaidCorporateMaid
+  name: job-name-alt-commandmaid-3

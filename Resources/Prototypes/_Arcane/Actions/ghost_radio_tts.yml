@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ActionToggleGhostRadioTTS
+  categories: [ HideSpawnMenu ]
+  name: Toggle radio voice output
+  description: Toggles the radio's voice output (TTS).
+  components:
+  - type: Action
+    clientExclusive: true
+    checkCanInteract: false
+    raiseOnUser: true
+    icon:
+      sprite: Clothing/Ears/Headsets/security.rsi
+      state: icon
+    iconOn:
+      sprite: Clothing/Ears/Headsets/security.rsi
+      state: icon_alt
+  - type: InstantAction
+    event: !type:ToggleGhostRadioTTSActionEvent

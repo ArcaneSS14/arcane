@@ -176,8 +176,10 @@
   id: Slime
   coefficients:
     Blunt: 0.6
-    Slash: 1.15 # Goob edit
-    Piercing: 1.15 # Goob edit
+    # Arcane-Edit-Start
+    Slash: 1.25
+    Piercing: 0.75
+    # Arcane-Edit-End
     Cold: 1.5
     Poison: 0.8
   ignoreArmorPierceFlags: All # Goobstation
@@ -198,6 +200,8 @@
 - type: damageModifierSet
   id: Scale # Skin tougher, bones weaker, strong stomachs, cold-blooded (kindof)
   coefficients:
+    Slash: 0.7 # Arcane
+    Piercing: 1.25 # Arcane
     Cold: 1.3
   ignoreArmorPierceFlags: All # Goobstation
 
@@ -213,20 +217,31 @@
 - type: damageModifierSet
   id: Arachnid
   coefficients:
+    # Arcane-Start
+    Slash: 0.8
+    Heat: 1.25
+    # Arcane-End
     Poison: 0
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
-  id: Moth # Slightly worse at everything but cold
+  id: Moth # Arcane: Cold resistant, vulnerable to heat and piercing.
   coefficients:
+    Slash: 0.8 # Arcane
     Cold: 0.7
     Heat: 1.2
-    Piercing: 1.1
+    Piercing: 1.2 # Arcane
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
   id: Vox
-  coefficients: # To be decided
+  coefficients: # Arcane: Resistant to chemical burns.
+    # Arcane-Start
+    Slash: 1.2
+    Piercing: 1.2
+    Heat: 0.75
+    # Arcane-End
+    Caustic: 0.6 # Arcane
     Poison: 1
   ignoreArmorPierceFlags: All # Goobstation
 

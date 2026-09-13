@@ -1,0 +1,116 @@
+﻿- type: listing
+  id: CantripCandlelight
+  name: cantrip-candlelight-name
+  description: cantrip-candlelight-description
+  productAction: ActionCantripCandlelight
+  cost:
+    WizCoin: 1
+  categories:
+  - DemonCantrips
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripMagicEmber
+  name: cantrip-ember-name
+  description: cantrip-ember-description
+  productAction: ActionMagicEmber
+  cost:
+    WizCoin: 1
+  categories:
+  - DemonCantrips
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripMagicMop
+  name: cantrip-mop-name
+  description: cantrip-mop-description
+  productAction: ActionMagicMop
+  cost:
+    WizCoin: 1
+  categories:
+  - DemonCantrips
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripDarkPergament
+  name: cantrip-paper-name
+  description: cantrip-paper-description
+  productAction: ActionDarkPergament
+  cost:
+    WizCoin: 1
+  categories:
+  - DemonCantrips
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripTouchOfLife
+  name: cantrip-regeneration-name
+  description: cantrip-regeneration-description
+  productAction: ActionTouchOfLife
+  cost:
+    WizCoin: 1
+  categories:
+  - DemonCantrips
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripMessage
+  name: cantrip-message-name
+  description: cantrip-message-description
+  productAction: ActionFaoliMessage
+  cost:
+    WizCoin: 1
+  categories:
+  - DemonCantrips
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripElectrification
+  name: cantrip-electrification-name
+  description: cantrip-electrification-description
+  productAction: ActionFaoliElectrification
+  cost:
+    WizCoin: 1
+  categories:
+  - DemonCantrips
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripTemperatureReset
+  name: cantrip-temperature-name
+  description: cantrip-temperature-description
+  productAction: ActionTemperatureReset
+  cost:
+    WizCoin: 1
+  categories:
+  - DemonCantrips
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripFaoliTranser
+  name: cantrip-transer-name
+  description: cantrip-transer-description
+  productAction: ActionFaoliTranser
+  cost:
+    WizCoin: 1
+  categories:
+  - DemonCantrips
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
