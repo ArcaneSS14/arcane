@@ -30,7 +30,7 @@ public sealed class HeadsetChannelMuteSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
 
-    private const string OpenRadioChannelsAction = "ActionOpenRadioChannels";
+    private static readonly EntProtoId OpenRadioChannelsAction = "ActionOpenRadioChannels";
 
     private readonly Dictionary<NetUserId, HashSet<int>> _mutedFrequencies = new();
 
