@@ -83,6 +83,23 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         }
     }
 
+    // Arcane-Start
+    private bool TryUpdateGeneralRecord(StationRecordKey key, string name, int age, string species, string customSpeciesName, Gender gender)
+    {
+        if (!TryGetRecord<GeneralStationRecord>(key, out var record))
+            return false;
+
+        record.Name = name;
+        record.Age = age;
+        record.Species = species;
+        record.CustomSpeciesName = customSpeciesName;
+        record.Gender = gender;
+
+        Synchronize(key);
+        return true;
+    }
+    // Arcane-End
+
     private void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
         string? jobId, StationRecordsComponent records)
     {
@@ -97,7 +114,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         TryComp<FingerprintComponent>(player, out var fingerprintComponent);
         TryComp<DnaComponent>(player, out var dnaComponent);
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
+        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.CustomSpeciesName, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Arcane-Edit: profile.CustomSpeciesName
     }
 
 
@@ -113,6 +130,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     /// <param name="idUid">The entity uid of an entity's ID card. Can be null.</param>
     /// <param name="name">Name of the character.</param>
     /// <param name="species">Species of the character.</param>
+    /// <param name="customSpeciesName">Custom display species name of the character, if any. // Arcane</param>
     /// <param name="gender">Gender of the character.</param>
     /// <param name="jobId">
     ///     The job to initially tie this record to. This must be a valid job loaded in, otherwise
@@ -134,6 +152,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         string name,
         int age,
         string species,
+        string customSpeciesName, // Arcane
         Gender gender,
         string jobId,
         string? mobFingerprint,
@@ -148,7 +167,11 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         // this happens when respawning as the same character
         if (GetRecordByName(station, name, records) is { } id)
         {
-            SetIdKey(idUid, new StationRecordKey(id, station));
+            // Arcane-Edit-Start
+            var recordKey = new StationRecordKey(id, station);
+            SetIdKey(idUid, recordKey);
+            TryUpdateGeneralRecord(recordKey, name, age, species, customSpeciesName, gender);
+            // Arcane-Edit-End
             return;
         }
 
@@ -194,6 +217,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             JobIcon = jobPrototype.Icon,
             JobPrototype = jobId,
             Species = species,
+            CustomSpeciesName = customSpeciesName, // Arcane
             Gender = gender,
             DisplayPriority = jobPrototype.RealDisplayWeight,
             Fingerprint = mobFingerprint,
