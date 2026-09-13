@@ -6,19 +6,19 @@
   root: chest
   slots:
     chest:
-      part: ChestHuman
+      part: BaseChestHuman # Arcane
       connections:
       - right arm
       - left arm
     right arm:
-      part: RightArmHuman
+      part: BaseRightArmHuman # Arcane
       connections:
       - right hand
     left arm:
-      part: LeftArmHuman
+      part: BaseLeftArmHuman # Arcane
       connections:
       - left hand
     right hand:
-      part: RightHandHuman
+      part: BaseRightHandHuman # Arcane
     left hand:
-      part: LeftHandHuman
+      part: BaseLeftHandHuman # Arcane

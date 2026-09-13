@@ -4,6 +4,8 @@
   name: "demon body part"
   abstract: true
   components:
+  - type: Damageable
+    damageModifierSet: DemonArcana
   - type: Icon
     sprite: _Arcane/Mobs/Species/Demon/parts.rsi
     state: torso_m

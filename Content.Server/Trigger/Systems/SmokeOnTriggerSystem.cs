@@ -40,8 +40,10 @@ public sealed class SmokeOnTriggerSystem : EntitySystem
             return;
 
         // TODO: move all of this into an API function in SmokeSystem
-
-        args.Handled = true;
+        // Arcane-Start
+        if (SpawnSmoke(target.Value, ent.Comp.SmokePrototype, ent.Comp.Solution, ent.Comp.Duration, ent.Comp.SpreadAmount))
+            args.Handled = true;
+        // Arcane-End
     }
 
     /// Trauma - Moved it to helper function
