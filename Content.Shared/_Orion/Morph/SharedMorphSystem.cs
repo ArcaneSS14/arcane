@@ -33,29 +33,14 @@ public abstract class SharedMorphSystem : EntitySystem
 
     private void TryMimicry(Entity<ChameleonProjectorComponent> ent, ref EventMimicryActivate arg)
     {
-        // Arcane-Edit-Start
-        var actor = ent.Owner;
-
-        if (!TryComp<MorphComponent>(actor, out var morph) || !morph.MemoryObjects.Contains(arg.PrototypeId))
-        {
-            Log.Warning($"Player {actor} He tried to use an unauthorized prototype of mimicry. {arg.PrototypeId}!");
-            return;
-        }
-
-        if (!TryComp<TransformComponent>(actor, out var transform))
+        var target = GetEntity(arg.Target);
+        if (target == null)
             return;
 
-        var targetUid = Spawn(arg.PrototypeId, transform.Coordinates);
-
-        if (!targetUid.IsValid())
+        if (!_chameleon.TryDisguise(ent, ent.Owner, target.Value))
             return;
 
-        if (_chameleon.TryDisguise(ent, actor, targetUid))
-            DisguiseInventory(ent, targetUid);
-
-        QueueDel(targetUid);
-        // Arcane-Edit-End
-
+        DisguiseInventory(ent, target.Value);
     }
 
     public void DisguiseInventory(Entity<ChameleonProjectorComponent> ent, EntityUid target)

@@ -39,12 +39,11 @@
   - /Audio/_Arcane/Interactions/pat1.ogg
   - /Audio/_Arcane/Interactions/pat2.ogg
   messages:
-  - ласково гладит $target по щеке.
-  - нежно проводит по щеке $target.
-  - мягко поглаживает $target по щеке.
-  - касается ладонью щеки $target.
-  - проводит кончиками пальцев по щеке $target.
-  - гладит $target по щеке.
+  - легонько хлопает $target по щекам.
+  - похлопывает $target по щекам.
+  - несильно шлёпает $target по щеке.
+  - слегка хлопает $target по щёчкам.
+  - игриво похлопывает $target по щеке.
   icon: _Arcane/Interface/ErpPanel/cheeks_pat.png
   tags:
   - RequiresERP
@@ -55,12 +54,11 @@
   sounds:
   - /Audio/_Arcane/Interactions/pat1.ogg
   messages:
-  - тепло прижимается своей щекой к щеке $target.
-  - нежно прижимается щекой к лицу $target.
-  - ласково трется своей щекой о щеку $target.
-  - прижимается щекой к щеке $target.
-  - утыкается щекой в щеку $target.
-  - прижимается своей щекой к щеке $target.
+  - сжимает щёки $target руками.
+  - прижимает щёки $target ладонями.
+  - сдавливает щёчки $target, заставляя $target сложить губы бантиком.
+  - мнёт щёки $target.
+  - игриво сжимает лицо $target ладонями.
   icon: _Arcane/Interface/ErpPanel/cheeks_press.png
   tags:
   - RequiresERP
@@ -232,27 +230,19 @@
   category: Face
   sounds:
   - /Audio/_Arcane/Interactions/friction1.ogg
-  selfMessages:
-  - демонстрирует свою линию челюсти, делая мьюинг.
-  - загадочно молчит и прижимает язык к нёбу.
-  - делает мьюинг, бросая уверенный и оценивающий взгляд.
-  - указывает пальцем на свою челюсть, показывая мьюинга.
-  - усердно делает мьюинг.
-  - выпячивает челюсть, сохраняя полное молчание.
+  messages:
+  - мяукает прямо в лицо $target.
+  - смотрит $target в глаза и мяукает.
+  - издаёт тихое «мяу» в сторону $target.
+  - игриво мяукает на $target.
+  - трётся о $target и мяукает.
   icon: _Arcane/Interface/ErpPanel/mewing.png
-
-- type: panelInteraction
-  id: SuspiciousLook
-  category: Face
-  sounds:
-  - /Audio/_Arcane/Interactions/vine-boom-meme.ogg
-  selfMessages:
-  - выразительно выгибает одну бровь, с подозрением уставившись.
-  - приподнимая бровь и прищуривая глаза.
-  - застывает со гримасой подозрения.
-  - вопросительно приподнимает бровь.
-  - бросает осуждающий взгляд.
-  icon: _Arcane/Interface/ErpPanel/heart_icon.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Felinid
+    - Tajaran
+    - HumanoidXeno
 
 - type: panelInteraction
   id: FriendlyNoseBoop

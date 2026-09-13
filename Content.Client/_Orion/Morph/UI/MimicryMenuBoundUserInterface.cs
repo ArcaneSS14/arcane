@@ -2,7 +2,6 @@ using Content.Shared._Orion.Morph;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.UserInterface;
-using Robust.Shared.Prototypes; // Arcane
 
 namespace Content.Client._Orion.Morph.UI;
 
@@ -44,12 +43,8 @@ public sealed partial class MimicryMenuBoundUserInterface : BoundUserInterface
         _menu.OpenCenteredAt(_inputManager.MouseScreenPosition.Position / _displayManager.ScreenSize);
     }
 
-    // Arcane-Edit-Start
-
-    private void SendMessage(EntProtoId prototypeId)
+    private void SendMessage(NetEntity netEntity)
     {
-        SendMessage(new EventMimicryActivate { PrototypeId = prototypeId });
+        base.SendMessage(new EventMimicryActivate { Target = netEntity });
     }
-
-    // Arcane-Edit-End
 }
