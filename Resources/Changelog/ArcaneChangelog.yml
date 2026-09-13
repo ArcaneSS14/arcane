@@ -1439,3 +1439,10 @@ Entries:
       https://github.com/user-attachments/assets/32178d5e-2534-49c7-92cd-698e25b94934
     - >-
       https://github.com/user-attachments/assets/942145bf-2104-404c-836c-884a63af0f41
+- author: Hero_010
+  changes:
+    - type: Add
+      message: Добавлено множество новой одежды для дрессмата.
+  id: 115
+  time: '2026-09-13T13:54:31.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/328
