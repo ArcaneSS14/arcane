@@ -77,8 +77,13 @@
         Slash: 0.85
         Piercing: 0.85
         Asphyxiation: 0.85
-  - type: Stamina
-    baseCritThreshold: 90
+  - type: RecoilAbsorber
+    modifier: 0.4
+  - type: WeakToHoly
+    alwaysTakeHoly: true
+  - type: Sprinter
+    staminaDrainRate: 13
+    sprintSpeedMultiplier: 1.65
 
 - type: entity
   parent: BaseMobDemon

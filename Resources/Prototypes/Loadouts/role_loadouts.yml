@@ -922,7 +922,6 @@
   - MedicalMask
   - MedicalDoctorJumpsuit
   # Arcane-Start
-  - GroupGrimoire
   - MedicalCloak
   - DoctorBikini
   # Arcane-End
@@ -944,6 +943,7 @@
   - MedicalDoctorJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
+  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - MedicalDoctorEnvirohelm
   - MedicalDoctorEnvirosuit
@@ -982,7 +982,6 @@
   - MedicalMask
   - ChemistJumpsuit
   # Arcane-Start
-  - GroupGrimoire
   - ChemistBikini
   - MedicalCloak
   # Arcane-End
@@ -1002,6 +1001,7 @@
   - ChemistJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
+  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - ChemistEnvirohelm
   - ChemistEnvirosuit
@@ -1015,7 +1015,6 @@
   - MedicalMask
   - ParamedicJumpsuit
   # Arcane-Start
-  - GroupGrimoire
   - MedicalCloak
   - ParamedicBikini
   - ParamedicVisor
@@ -1037,6 +1036,7 @@
   - ParamedicJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
+  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - ParamedicEnvirohelm
   - ParamedicEnvirosuit
