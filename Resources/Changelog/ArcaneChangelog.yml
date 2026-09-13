@@ -1462,3 +1462,13 @@ Entries:
       https://github.com/user-attachments/assets/8c7732ab-0f8b-4cb4-82b9-504af3b59537
     - >-
       https://github.com/user-attachments/assets/80342187-866e-458d-b9f8-9ebb137357fd
+- author: alfapr0
+  changes:
+    - type: Tweak
+      message: Шаттл воксов налётчиков перестроен.
+  id: 117
+  time: '2026-09-13T14:47:18.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/332
+  media:
+    - >-
+      https://github.com/user-attachments/assets/da2893fd-6315-43a0-9a85-e855a50d8726
