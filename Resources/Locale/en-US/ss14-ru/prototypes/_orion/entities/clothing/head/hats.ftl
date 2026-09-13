@@ -6,8 +6,10 @@ ent-ClothingHeadHatInteQMAA = InteQ master at arms hat
     .desc = Master at arms hat, looks intimidating, I doubt that you will like to communicate with its owner...
 ent-ClothingHeadHatInteQTacticalMaidHeadband = tactical maid headband
     .desc = White headband - dont imagine yourself a Buster.
+# Arcane-Edit-Start
 ent-ClothingHeadHatBeretCaptainWhiteBlue = captain metamorphic beret
     .desc = A high-tech beret capable of instantly changing its color, a true icon of style.
+# Arcane-Edit-End
 ent-ClothingHeadHatBeretSheriff = sheriff beret
     .desc = Beret, a favorite among local sheriffs.
 ent-ClothingHeadHatCapcapWhite = white cap cap

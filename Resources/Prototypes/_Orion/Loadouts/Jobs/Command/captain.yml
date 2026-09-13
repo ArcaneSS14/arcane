@@ -38,8 +38,7 @@
 - type: loadout
   id: CaptainWhiteBeret
   equipment:
-    head: ClothingHeadHatBeretCaptainWhiteBlue
-
+    head: ClothingHeadHatBeretCaptainWhiteBlue # Arcane-Edit
 - type: loadout
   id: SheriffBeret
   equipment:

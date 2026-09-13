@@ -67,14 +67,16 @@
 
 - type: entity
   parent: [ ClothingHeadHatArmoredPlus, BaseCommandContraband ]
+  # Arcane-Edit-Start
   id: ClothingHeadHatBeretCaptainWhiteBlue
-  name: white captain beret
-  description: White captain beret, an icon of style.
+  name: captain metamorphic beret 
+  description:  A high-tech beret capable of instantly changing its color, a true icon of style.
+# Arcane-Edit-End
   components:
   - type: Sprite
-    sprite: _Orion/Clothing/Head/Hats/white_blue_beret.rsi
+    sprite: _Orion/Clothing/Head/Hats/white_blue_beret.rsi # Arcane-Edit
   - type: Clothing
-    sprite: _Orion/Clothing/Head/Hats/white_blue_beret.rsi
+    sprite: _Orion/Clothing/Head/Hats/white_blue_beret.rsi # Arcane-Edit
     # Arcane-Start
     equippedPrefix: blue
   - type: Item
