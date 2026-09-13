@@ -1427,3 +1427,15 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/29ee4323-ba3c-4615-8299-dba6b2241e8f
+- author: 0RK
+  changes:
+    - type: Add
+      message: 'Добавлена новая черта: лисья натура'
+  id: 114
+  time: '2026-09-13T05:12:00.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/318
+  media:
+    - >-
+      https://github.com/user-attachments/assets/32178d5e-2534-49c7-92cd-698e25b94934
+    - >-
+      https://github.com/user-attachments/assets/942145bf-2104-404c-836c-884a63af0f41
