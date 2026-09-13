@@ -4,51 +4,44 @@
   id: JobCaptain
   groups:
   - CaptainHead
-  - CaptainMask # Goobstation - Lollypops!
   - CaptainNeck
-  - CaptainOuterClothing
   - CaptainJumpsuit
-  - CaptainGloves
-  - CaptainShoes # Goobstation
+  - CaptainMask # Goobstation - Lollypops!
   - CaptainBackpack
+  - CaptainOuterClothing
+  - CaptainShoes # Goobstation
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - CaptainJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - CaptainEnvirohelm
   - CaptainEnvirosuit
   - CaptainEnvirogloves
-  - GroupSpeciesBreathTool
-  - Survival
-  - CaptainJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
+  - CaptainGloves
 
 - type: roleLoadout
   id: JobHeadOfPersonnel
   groups:
-  - HoPHead
-  - Glasses
-  - HoPNeck
-  - HoPOuterClothing
-  - HoPJumpsuit
-  - HoPGloves
-  - HoPBackpack
-  # Goobstation - EE Plasmeme Change.
-  - HoPEnvirohelm
-  - HoPEnvirosuit
-  - HoPEnvirogloves
-  - GroupSpeciesBreathTool
   - GroupTankHarness
+  - HoPHead
+  - HoPNeck
+  - HoPJumpsuit
+  - HoPBackpack
+  - HoPOuterClothing
+  - Glasses
   - Survival
-  - HoPJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -56,8 +49,14 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
-
+  - HoPJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - HoPEnvirohelm
+  - HoPEnvirosuit
+  - HoPEnvirogloves
+  - HoPGloves
 # Silicons
 - type: roleLoadout
   id: JobBorg
@@ -73,132 +72,133 @@
 - type: roleLoadout
   id: JobPassenger
   groups:
-  - Glasses
-  - PassengerFace
-  - PassengerNeck
-  - PassengerOuterClothing
+  - GroupTankHarness
   - PassengerJumpsuit
-  - PassengerGloves
-  - PassengerShoes
   - CommonBackpack
+  - PassengerNeck
+  - PassengerFace
+  - PassengerGloves
+  - PassengerOuterClothing
+  - PassengerShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - PassengerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - AssistantEnvirohelm
   - AssistantEnvirosuit
   - AssistantEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - PassengerJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
 
 - type: roleLoadout
   id: JobBartender
   groups:
+  - GroupTankHarness
   - BartenderHead
-  - Glasses
-  - BartenderOuterClothing
   - BartenderJumpsuit
   - CommonBackpack
+  - BartenderOuterClothing
+  - Glasses
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - BartenderJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - BartenderEnvirohelm
   - BartenderEnvirosuit
   - BartenderEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - BartenderJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
 
 - type: roleLoadout
   id: JobServiceWorker
   groups:
-  - Glasses
+  - GroupTankHarness
   # Arcane-Start
-  - ServiceCloak
   - ServiceWorkerJumpsuit
-  - ServiceWorkerBelt
+  - ServiceCloak
   - ServiceWorkerShoes
+  - ServiceWorkerBelt
   - GroupGrimoire
   # Arcane-End
   - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - ServiceWorkerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ServiceWorkerEnvirohelm
   - ServiceWorkerEnvirosuit
   - ServiceWorkerEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - ServiceWorkerJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
 
 - type: roleLoadout
   id: JobChef
   groups:
+  - GroupTankHarness
   - ChefHead
   - ChefMask
-  - Glasses
-  - ChefOuterClothing
-  - ServiceCloak # Arcane
   - ChefJumpsuit
+  - ServiceCloak # Arcane
   - GroupGrimoire # Arcane
   - CommonBackpack
-  # Goobstation - EE Plasmeme Change.
-  - ChefEnvirohelm
-  - ChefEnvirosuit
-  - ChefEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
+  - ChefOuterClothing
+  - Glasses
   - Survival
-  - ChefJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - ChefJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ChefEnvirohelm
+  - ChefEnvirosuit
+  - ChefEnvirogloves
 
 - type: roleLoadout
   id: JobLibrarian
   groups:
+  - GroupTankHarness
+  - LibrarianJumpsuit
+  - ServiceCloak # Arcane
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
   # Arcane - Start
   - LibrarianGlasses
-  # Arcane - End
-  - Glasses
-  - ServiceCloak # Arcane
-  - LibrarianJumpsuit
-  # Arcane - Start
   - LibrarianShoes
-  # Arcane - End
-  - CommonBackpack
+  - Patron
   - Animals
   - GroupSpeciesBreathTool
   - GroupGrimoire
@@ -206,163 +206,6 @@
   - LibrarianEnvirohelm
   - LibrarianEnvirosuit
   - LibrarianEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - LibrarianJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron
-
-- type: roleLoadout
-  id: JobLawyer
-  groups:
-  - Glasses
-  - LawyerNeck
-  - LawyerJumpsuit
-  - CommonBackpack
-  # Goobstation - EE Plasmeme Change.
-  - LawyerEnvirohelm
-  - LawyerEnvirosuit
-  - LawyerEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - LawyerJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
-
-- type: roleLoadout
-  id: JobChaplain
-  groups:
-  - ChaplainHead
-  - ChaplainMask
-  - Glasses
-  - ChaplainNeck
-  - ChaplainOuterClothing
-  - ServiceCloak # Arcane
-  - ChaplainJumpsuit
-  - CommonBackpack
-  - ChaplainBible
-  # Goobstation - EE Plasmeme Change.
-  - ChaplainEnvirohelm
-  - ChaplainEnvirosuit
-  - ChaplainEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - ChaplainJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
-
-- type: roleLoadout
-  id: JobJanitor
-  groups:
-  - JanitorHead
-  - Glasses
-  - JanitorOuterClothing
-  - ServiceCloak # Arcane
-  - JanitorJumpsuit
-  - JanitorGloves
-  - CommonBackpack
-  # Goobstation - EE Plasmeme Change.
-  - JanitorEnvirohelm
-  - JanitorEnvirosuit
-  - JanitorEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - JanitorJobTrinkets
-  - Trinkets
-  - Animals # Goobstation?
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
-
-- type: roleLoadout
-  id: JobBotanist
-  groups:
-  - BotanistHead
-  - Glasses
-  - BotanistOuterClothing
-  - ServiceCloak # Arcane
-  - BotanistJumpsuit
-  - BotanistBackpack
-  # Goobstation - EE Plasmeme Change.
-  - BotanistEnvirohelm
-  - BotanistEnvirosuit
-  - BotanistEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - BotanistJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
-
-- type: roleLoadout
-  id: JobClown
-  canCustomizeName: true
-  groups:
-  - ClownHead
-  - Glasses
-  - ClownOuterClothing
-  - ServiceCloak # Arcane
-  - ClownJumpsuit
-  - ClownShoes
-  - ClownBackpack
-  - Glasses
-  - SurvivalClown
-  - Trinkets
-  # Arcane-Start
-  - ClownUnderwear
-  - Animals
-  - GroupGrimoire
-  # Goobstation - EE Plasmeme Change.
-  - ClownEnvirohelm
-  - ClownEnvirosuit
-  - ClownEnvirogloves
-  - GroupTankHarness
-  - SurvivalClown
-  - ClownJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  # Arcane-Start
-  - ClownUnderwear
   # Arcane - End
   # Orion-Start
   - Undershirt
@@ -370,68 +213,223 @@
   - Socks
   - Wrists
   # Orion-End
+  - LibrarianJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - LibrarianEnvirohelm
+  - LibrarianEnvirosuit
+  - LibrarianEnvirogloves
+
+- type: roleLoadout
+  id: JobLawyer
+  groups:
+  - GroupTankHarness
+  - LawyerNeck
+  - LawyerJumpsuit
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - LawyerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - LawyerEnvirohelm
+  - LawyerEnvirosuit
+  - LawyerEnvirogloves
+
+- type: roleLoadout
+  id: JobChaplain
+  groups:
+  - GroupTankHarness
+  - ChaplainHead
+  - ChaplainMask
+  - ChaplainNeck
+  - ChaplainJumpsuit
+  - ServiceCloak # Arcane
+  - CommonBackpack
+  - ChaplainOuterClothing
+  - ChaplainBible
+  - Glasses
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - ChaplainJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ChaplainEnvirohelm
+  - ChaplainEnvirosuit
+  - ChaplainEnvirogloves
+
+- type: roleLoadout
+  id: JobJanitor
+  groups:
+  - GroupTankHarness
+  - JanitorHead
+  - JanitorJumpsuit
+  - ServiceCloak # Arcane
+  - JanitorGloves
+  - CommonBackpack
+  - JanitorOuterClothing
+  - Glasses
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - JanitorJobTrinkets
+  - Animals # Goobstation?
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - JanitorEnvirohelm
+  - JanitorEnvirosuit
+  - JanitorEnvirogloves
+
+- type: roleLoadout
+  id: JobBotanist
+  groups:
+  - GroupTankHarness
+  - BotanistHead
+  - BotanistJumpsuit
+  - ServiceCloak # Arcane
+  - BotanistBackpack
+  - BotanistOuterClothing
+  - Glasses
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - BotanistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - BotanistEnvirohelm
+  - BotanistEnvirosuit
+  - BotanistEnvirogloves
+
+- type: roleLoadout
+  id: JobClown
+  canCustomizeName: true
+  groups:
+  - GroupTankHarness
+  - ClownHead
+  - ClownJumpsuit
+  - ServiceCloak # Arcane
+  - ClownBackpack
+  - ClownOuterClothing
+  - ClownShoes
+  - Glasses
+  - SurvivalClown
+  - Trinkets
+  # Arcane-Start
   - Patron
+  - ClownUnderwear
+  - Animals
+  - GroupGrimoire
+  # Goobstation - EE Plasmeme Change.
+  - ClownEnvirohelm
+  - ClownEnvirosuit
+  - ClownEnvirogloves
+  # Arcane - End
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - ClownJobTrinkets
+  - Animals # Goobstation
+  # Goobstation - EE Plasmeme Change.
+  - ClownEnvirohelm
+  - ClownEnvirosuit
+  - ClownEnvirogloves
 
 - type: roleLoadout
   id: JobMime
   canCustomizeName: true
   groups:
+  - GroupTankHarness
   - MimeHead
   - MimeMask
-  - Glasses
-  - MimeOuterClothing
-  # Arcane-Start
-  - ServiceCloak
-  # Arcane-End
   - MimeJumpsuit
   # Arcane-Start
+  - ServiceCloak
   - MimeHands
   # Arcane-End
+  - MimeBackpack
+  - MimeOuterClothing
   - MimeGloves # Goobstation
   - MimeShoes # Goobstation
-  - MimeBackpack
   - MimeBelt
+  - Glasses
+  - SurvivalMime
+  - Trinkets
+  # Arcane-Start
+  - Patron
+  - MimeSocks
+  # Arcane-End
+  - Animals
   # Goobstation - EE Plasmeme Change.
   - MimeEnvirohelm
   - MimeEnvirosuit
   - MimeEnvirogloves
-  - GroupTankHarness
-  - SurvivalMime
-  - MimeJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  # Arcane-Start
-  - MimeSocks
-  # Arcane-End
+  - MimeGloves
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron
+  - MimeJobTrinkets
+  - Animals # Goobstation
+  # Goobstation - EE Plasmeme Change.
+  - MimeEnvirohelm
+  - MimeEnvirosuit
+  - MimeEnvirogloves
+
 
 - type: roleLoadout
   id: JobMusician
   canCustomizeName: true
   groups:
-  - Glasses
-  - MusicianOuterClothing
-  - ServiceCloak # Arcane
-  - MusicianJumpsuit
-  - MusicianShoes # Arcane
-  - CommonBackpack
-  # Goobstation - EE Plasmeme Change.
-  - MusicianEnvirohelm
-  - MusicianEnvirosuit
-  - MusicianEnvirogloves
-  - GroupSpeciesBreathTool
   - GroupTankHarness
+  - MusicianJumpsuit
+  - ServiceCloak # Arcane
+  - CommonBackpack
+  - MusicianOuterClothing
+  - MusicianShoes # Arcane
+  - Glasses
   - Survival
-  - MusicianJobTrinkets
-  - Instruments
   - Trinkets
-  - Animals
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -439,88 +437,89 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - MusicianJobTrinkets
+  - Instruments
+  - Animals
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - MusicianEnvirohelm
+  - MusicianEnvirosuit
+  - MusicianEnvirogloves
 
 # Cargo
 - type: roleLoadout
   id: JobQuartermaster
   groups:
+  - GroupTankHarness
   - QuartermasterHead
-  - Glasses
   - QuartermasterNeck
-  - QuartermasterOuterClothing
   - QuartermasterJumpsuit
   - QuartermasterHands # Arcane
-  - QuartermasterShoes
   - QuartermasterBackpack # Arcane
+  - QuartermasterOuterClothing
+  - QuartermasterShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - QuartermasterJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - QuartermasterEnvirohelm
   - QuartermasterEnvirosuit
   - QuartermasterEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - QuartermasterJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
 
 - type: roleLoadout
   id: JobCargoTechnician
   groups:
+  - GroupTankHarness
   - CargoTechnicianHead
-  - Glasses
-  - CargoTechnicianOuterClothing
   - CargoCloak # Arcane
   - CargoTechnicianJumpsuit
-  - CargoTechnicianShoes
   - CargoTechnicianBackpack
+  - CargoTechnicianOuterClothing
+  - CargoTechnicianShoes
   - CargoTechnicianID
+  - Glasses
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - CargoTechnicianJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - CargoTechnicianEnvirohelm
   - CargoTechnicianEnvirosuit
   - CargoTechnicianEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - CargoTechnicianJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
 
 - type: roleLoadout
   id: JobSalvageSpecialist
   groups:
-  - Glasses
-  - SalvageSpecialistNeck # Goobstation
-  - SalvageSpecialistOuterClothing
-  - SalvageSpecialistJumpsuit # Goobstation
-  - SalvageSpecialistShoes
-  - SalvageSpecialistBackpack
-  # Goobstation - EE Plasmeme Change.
-  - SalvageEnvirohelm
-  - SalvageEnvirosuit
-  - SalvageEnvirogloves
-  - GroupSpeciesBreathTool
   - GroupTankHarness
+  - SalvageSpecialistNeck # Goobstation
+  - SalvageSpecialistBackpack
+  - SalvageSpecialistJumpsuit # Goobstation
+  - SalvageSpecialistOuterClothing
+  - SalvageSpecialistShoes
+  - Glasses
   - Survival
-  - SalvageSpecialistJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -528,109 +527,109 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - SalvageSpecialistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - SalvageEnvirohelm
+  - SalvageEnvirosuit
+  - SalvageEnvirogloves
 
 # Engineering
 - type: roleLoadout
   id: JobChiefEngineer
   groups:
+  - GroupTankHarness
   - ChiefEngineerHead
+  - ChiefEngineerJumpsuit
+  - ChiefEngineerBackpack # Arcane
   - ChiefEngineerNeck
   - ChiefEngineerOuterClothing
-  - ChiefEngineerJumpsuit
   - ChiefEngineerShoes
-  - ChiefEngineerBackpack # Arcane
+  - SurvivalExtended
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - ChiefEngineerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ChiefEngineerEnvirohelm
   - ChiefEngineerEnvirosuit
   - ChiefEngineerEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - SurvivalExtended
-  - ChiefEngineerJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
 
 - type: roleLoadout
   id: JobTechnicalAssistant
   groups:
+  - GroupTankHarness
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
+  - SurvivalExtended
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - TechnicalAssistantJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - TechnicalAssistantEnvirohelm
   - TechnicalAssistantEnvirosuit
   - TechnicalAssistantEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - SurvivalExtended
-  - TechnicalAssistantJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
 
 - type: roleLoadout
   id: JobStationEngineer
   groups:
+  - GroupTankHarness
   - StationEngineerHead
-  - StationEngineerOuterClothing
-  - EngineerCloak # Arcane
   - StationEngineerJumpsuit
-  - StationEngineerShoes
+  - EngineerCloak # Arcane
   - StationEngineerBackpack
+  - StationEngineerOuterClothing
+  - StationEngineerShoes
   - StationEngineerID
+  - SurvivalExtended
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - StationEngineerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - StationEngineerEnvirohelm
   - StationEngineerEnvirosuit
   - StationEngineerEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - SurvivalExtended
-  - StationEngineerJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
 
 - type: roleLoadout
   id: JobAtmosphericTechnician
   groups:
-  - AtmosphericTechnicianHead # Goobstation
-  - AtmosphericTechnicianOuterClothing
-  - EngineerCloak # Arcane
-  - AtmosphericTechnicianJumpsuit
-  - AtmosphericTechnicianShoes
-  - AtmosphericTechnicianBackpack
-  # Goobstation - EE Plasmeme Change.
-  - AtmosEnvirohelm
-  - AtmosEnvirosuit
-  - AtmosEnvirogloves
-  - GroupSpeciesBreathTool
   - GroupTankHarness
+  - AtmosphericTechnicianHead # Goobstation
+  - AtmosphericTechnicianJumpsuit
+  - EngineerCloak # Arcane
+  - AtmosphericTechnicianBackpack
+  - AtmosphericTechnicianOuterClothing
+  - AtmosphericTechnicianShoes
   - SurvivalExtended
-  - AtmosphericTechnicianJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -638,30 +637,30 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - AtmosphericTechnicianJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - AtmosEnvirohelm
+  - AtmosEnvirosuit
+  - AtmosEnvirogloves
 
 # Science
 - type: roleLoadout
   id: JobResearchDirector
   groups:
+  - GroupTankHarness
   - ResearchDirectorHead
-  - Glasses
   - ResearchDirectorNeck
-  - ResearchDirectorOuterClothing
   - ResearchDirectorJumpsuit
+  - ResearchDirectorBackpack # Arcane
+  - ResearchDirectorOuterClothing
   - ScientistGloves
   - ResearchDirectorShoes
-  - ResearchDirectorBackpack # Arcane
-  # Goobstation - EE Plasmeme Change.
-  - ResearchDirectorEnvirohelm
-  - ResearchDirectorEnvirosuit
-  - ResearchDirectorEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
+  - Glasses
   - Survival
-  - ResearchDirectorJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -669,55 +668,55 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - ResearchDirectorJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ResearchDirectorEnvirosuit
+  - ResearchDirectorEnvirohelm
+  - ResearchDirectorEnvirogloves
 
 - type: roleLoadout
   id: JobScientist
   groups:
+  - GroupTankHarness
   - ScientistHead
-  - Glasses
   - ScientistNeck
-  - ScientistOuterClothing
   - ScientistJumpsuit
+  - ScientistBackpack
+  - ScientistOuterClothing
   - ScientistGloves
   - ScientistShoes
-  - ScientistBackpack
   - ScientistPDA
+  - Glasses
+  - Survival
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - ScientistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ScientistEnvirohelm
   - ScientistEnvirosuit
   - ScientistEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - ScientistJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
 
 - type: roleLoadout
   id: JobResearchAssistant
   groups:
-  - Glasses
+  - GroupTankHarness
   - ResearchAssistantJumpsuit
   - ScientistBackpack
-  # Goobstation - EE Plasmeme Change.
-  - ResearchAssistantEnvirohelm
-  - ResearchAssistantEnvirosuit
-  - ResearchAssistantEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
+  - Glasses
   - Survival
-  - ResearchAssistantJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -725,7 +724,13 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - ResearchAssistantJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - ResearchAssistantEnvirohelm
+  - ResearchAssistantEnvirosuit
+  - ResearchAssistantEnvirogloves
 
 # Security
 - type: roleLoadout
@@ -733,23 +738,17 @@
   groups:
   - HeadofSecurityHead
   - HeadofSecurityNeck
-  - HeadofSecurityOuterClothing
   - HeadofSecurityJumpsuit
-  - HeadofSecurityGloves
-  - HeadofSecurityShoes # Goobstation edit
-  - SecurityBelt
   - SecurityBackpack
   - SecurityGunHos # Orion
   - SecurityMelee # Goobstation
-  # Goobstation - EE Plasmeme Change.
-  - HeadofSecurityEnvirohelm
-  - HeadofSecurityEnvirosuit
-  - HeadofSecurityEnvirogloves
-  - GroupSpeciesBreathToolSecurity
+  - SecurityBelt
+  - HeadofSecurityOuterClothing
+  - HeadofSecurityShoes # Goobstation edit
+#  - SecurityGloves #goob Arcane-Edit: The HoS has HeadofSecurityGloves
   - SurvivalSecurity
-  - HeadofSecurityJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -757,30 +756,31 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - HeadofSecurityJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolSecurity
+  # Goobstation - EE Plasmeme Change.
+  - HeadofSecurityEnvirohelm
+  - HeadofSecurityEnvirosuit
+  - HeadofSecurityEnvirogloves
+  - HeadofSecurityGloves
 
 - type: roleLoadout
   id: JobWarden
   groups:
   - WardenHead
-  - SecurityNeck
-  - WardenOuterClothing
   - WardenJumpsuit
-  - SecurityGloves #goob
-  - SecurityShoes
-  - SecurityBelt
   - SecurityBackpack
   - SecurityGun # Orion
   - SecurityMelee # Goobstation
-  # Goobstation - EE Plasmeme Change.
-  - WardenEnvirohelm
-  - WardenEnvirosuit
-  - WardenEnvirogloves
-  - GroupSpeciesBreathToolSecurity
+  - SecurityNeck
+  - SecurityBelt
+  - WardenOuterClothing
+  - SecurityShoes
+  - SecurityGloves #goob
   - SurvivalSecurity
-  - WardenJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -788,31 +788,31 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - WardenJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolSecurity
+  # Goobstation - EE Plasmeme Change.
+  - WardenEnvirohelm
+  - WardenEnvirosuit
+  - WardenEnvirogloves
 
 - type: roleLoadout
   id: JobSecurityOfficer
   groups:
   - SecurityHead
-  - SecurityNeck
-  - SecurityOuterClothing
   - SecurityJumpsuit
-  - SecurityGloves #goob
-  - SecurityShoes
-  - SecurityBelt
   - SecurityBackpack
-  - SecurityPDA
   - SecurityGun # Orion
   - SecurityMelee # Goobstation
-  # Goobstation - EE Plasmeme Change.
-  - SecurityOfficerEnvirohelm
-  - SecurityOfficerEnvirosuit
-  - SecurityOfficerEnvirogloves
-  - GroupSpeciesBreathToolSecurity
+  - SecurityOuterClothing
+  - SecurityShoes
+  - SecurityGloves #goob
+  - SecurityNeck
+  - SecurityPDA
+  - SecurityBelt
   - SurvivalSecurity
-  - SecurityJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -820,53 +820,53 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - SecurityJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolSecurity
+  # Goobstation - EE Plasmeme Change.
+  - SecurityOfficerEnvirohelm
+  - SecurityOfficerEnvirosuit
+  - SecurityOfficerEnvirogloves
 
 - type: roleLoadout
   id: JobDetective
   groups:
   - DetectiveHead
   - DetectiveNeck
-  - DetectiveOuterClothing
   - DetectiveJumpsuit
-  - DetectiveGloves
-  - SecurityShoes
   - SecurityBackpack
+  - DetectiveOuterClothing
+  - SecurityShoes
+  - SurvivalSecurity
+  - Trinkets
+  - Patron # Arcane
+  - GroupGrimoire # Arcane
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - DetectiveJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolSecurity
   # Goobstation - EE Plasmeme Change.
   - DetectiveEnvirohelm
   - DetectiveEnvirosuit
   - DetectiveEnvirogloves
-  - GroupSpeciesBreathToolSecurity
-  - SurvivalSecurity
-  - DetectiveJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  - GroupGrimoire # Arcane
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron # Arcane
+  - DetectiveGloves
 
 - type: roleLoadout
   id: JobSecurityCadet
   groups:
-  - SecurityNeck
-  - SecurityOuterClothing # Goobstation - Why not.
   - SecurityCadetJumpsuit
   - SecurityBackpack
   - SecurityMelee # Goobstation
-  # Goobstation - EE Plasmeme Change.
-  - SecurityCadetEnvirohelm
-  - SecurityCadetEnvirosuit
-  - SecurityCadetEnvirogloves
-  - GroupSpeciesBreathToolSecurity
   - SurvivalSecurity
-  - SecurityCadetJobTrinkets
+  - SecurityNeck
+  - SecurityOuterClothing # Goobstation - Why not.
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -874,31 +874,31 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - SecurityCadetJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolSecurity
+  # Goobstation - EE Plasmeme Change.
+  - SecurityCadetEnvirohelm
+  - SecurityCadetEnvirosuit
+  - SecurityCadetEnvirogloves
 
 # Medical
 - type: roleLoadout
   id: JobChiefMedicalOfficer
   groups:
+  - GroupTankHarness
   - ChiefMedicalOfficerHead
   - MedicalMask
-  - ChiefMedicalOfficerNeck
-  - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerJumpsuit
   - MedicalGloves
+  - ChiefMedicalOfficerBackpack # Arcane
+  - ChiefMedicalOfficerOuterClothing
+  - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes
  # - MedicalEyewear #Goobstation - Spawns with medichem hud
-  - ChiefMedicalOfficerBackpack # Arcane
-  # Goobstation - EE Plasmeme Change.
-  - ChiefMedicalOfficerEnvirohelm
-  - ChiefMedicalOfficerEnvirosuit
-  - ChiefMedicalOfficerEnvirogloves
-  - GroupSpeciesBreathToolMedical
-  - GroupTankHarness
   - SurvivalMedical
-  - ChiefMedicalOfficerJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -906,59 +906,59 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - ChiefMedicalOfficerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  # Goobstation - EE Plasmeme Change.
+  - ChiefMedicalOfficerEnvirohelm
+  - ChiefMedicalOfficerEnvirosuit
+  - ChiefMedicalOfficerEnvirogloves
 
 - type: roleLoadout
   id: JobMedicalDoctor
   groups:
+  - GroupTankHarness
   - MedicalDoctorHead
   - MedicalMask
-  - MedicalEyewear
-  - MedicalDoctorOuterClothing
+  - MedicalDoctorJumpsuit
   # Arcane-Start
   - GroupGrimoire
   - MedicalCloak
   - DoctorBikini
   # Arcane-End
-  - MedicalDoctorJumpsuit
   - MedicalGloves
-  - MedicalShoes
   - MedicalBackpack
+  - MedicalDoctorOuterClothing
+  - MedicalShoes
   - MedicalDoctorPDA
-  # Goobstation - EE Plasmeme Change.
-  - MedicalDoctorEnvirohelm
-  - MedicalDoctorEnvirosuit
-  - MedicalDoctorEnvirogloves
-  - GroupSpeciesBreathToolMedical
-  - GroupTankHarness
+  - MedicalEyewear
   - SurvivalMedical
-  - MedicalDoctorJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - MedicalDoctorJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  # Goobstation - EE Plasmeme Change.
+  - MedicalDoctorEnvirohelm
+  - MedicalDoctorEnvirosuit
+  - MedicalDoctorEnvirogloves
 
 - type: roleLoadout
   id: JobMedicalIntern
   groups:
-  - MedicalEyewear
+  - GroupTankHarness
   - MedicalInternJumpsuit
   - MedicalBackpack
-  # Goobstation - EE Plasmeme Change.
-  - MedicalInternEnvirohelm
-  - MedicalInternEnvirosuit
-  - MedicalInternEnvirogloves
-  - GroupSpeciesBreathToolMedical
-  - GroupTankHarness
+  - MedicalEyewear
   - SurvivalMedical
-  - MedicalInternJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
@@ -966,133 +966,139 @@
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - MedicalInternJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  # Goobstation - EE Plasmeme Change.
+  - MedicalInternEnvirohelm
+  - MedicalInternEnvirosuit
+  - MedicalInternEnvirogloves
 
 - type: roleLoadout
   id: JobChemist
   groups:
+  - GroupTankHarness
   - ChemistHead # Goobstation
   - MedicalMask
-  - ChemistOuterClothing
+  - ChemistJumpsuit
   # Arcane-Start
   - GroupGrimoire
-  - MedicalCloak
   - ChemistBikini
+  - MedicalCloak
   # Arcane-End
-  - ChemistJumpsuit
   - MedicalGloves
-  - MedicalShoes
   - ChemistBackpack
-  # Goobstation - EE Plasmeme Change.
-  - ChemistEnvirohelm
-  - ChemistEnvirosuit
-  - ChemistEnvirogloves
-  - GroupSpeciesBreathToolMedical
-  - GroupTankHarness
+  - ChemistOuterClothing
+  - MedicalShoes
   - SurvivalMedical
-  - ChemistJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - ChemistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  # Goobstation - EE Plasmeme Change.
+  - ChemistEnvirohelm
+  - ChemistEnvirosuit
+  - ChemistEnvirogloves
 
 - type: roleLoadout
   id: JobParamedic
   groups:
+  - GroupTankHarness
   - ParamedicHead
   - MedicalMask
-  - MedicalEyewear
-  - ParamedicOuterClothing
+  - ParamedicJumpsuit
   # Arcane-Start
   - GroupGrimoire
   - MedicalCloak
   - ParamedicBikini
   - ParamedicVisor
   # Arcane-End
-  - ParamedicJumpsuit
   - MedicalGloves
-  - ParamedicShoes
   - MedicalBackpack
-  # Goobstation - EE Plasmeme Change.
-  - ParamedicEnvirohelm
-  - ParamedicEnvirosuit
-  - ParamedicEnvirogloves
-  - GroupSpeciesBreathToolMedical
-  - GroupTankHarness
+  - ParamedicOuterClothing
+  - ParamedicShoes
+  - MedicalEyewear
   - SurvivalMedical
-  - ParamedicJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  - Patron # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  - ParamedicJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  # Goobstation - EE Plasmeme Change.
+  - ParamedicEnvirohelm
+  - ParamedicEnvirosuit
+  - ParamedicEnvirogloves
 
 # Wildcards
 - type: roleLoadout
   id: JobReporter
   groups:
-  - Glasses
+  - GroupTankHarness
+  - ReporterJumpsuit
   - ReporterOuterClothing # Goobstation - Bodycams
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
   # Arcane-Start
   - GroupGrimoire
   - ServiceCloak
+  - Patron
   # Arcane-End
-  - ReporterJumpsuit
-  - CommonBackpack
+  # Orion-Start
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists
+  # Orion-End
+  - ReporterJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
   # Goobstation - EE Plasmeme Change.
   - ReporterEnvirohelm
   - ReporterEnvirosuit
   - ReporterEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
-  - Survival
-  - ReporterJobTrinkets
-  - Trinkets
-  - Animals # Goobstation
-  # Orion-Start
-  - Undershirt
-  - Underwear
-  - Socks
-  - Wrists
-  # Orion-End
-  - Patron
 
 - type: roleLoadout
   id: JobPsychologist
   groups:
-  - Glasses
-  # Arcane-Start
-  - MedicalCloak
-  - GroupGrimoire
-  # Arcane-End
+  - GroupTankHarness
   - PsychologistJumpsuit
   - MedicalBackpack
-  # Goobstation - EE Plasmeme Change.
-  - PsychologistEnvirohelm
-  - PsychologistEnvirosuit
-  - PsychologistEnvirogloves
-  - GroupSpeciesBreathTool
-  - GroupTankHarness
+  - Glasses
   - Survival
-  - PsychologistJobTrinkets
   - Trinkets
-  - Animals # Goobstation
+  # Arcane-Start
+  - MedicalCloak
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron
+  - PsychologistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  # Goobstation - EE Plasmeme Change.
+  - PsychologistEnvirohelm
+  - PsychologistEnvirosuit
+  - PsychologistEnvirogloves
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit

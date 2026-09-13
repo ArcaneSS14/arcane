@@ -54,7 +54,6 @@
   equipment:
     id: CommandMaidPDA
     ears: ClothingHeadsetCommandMaid
-    belt: ClothingBeltJanitorFilled
   storage:
     back:
     - Flash
