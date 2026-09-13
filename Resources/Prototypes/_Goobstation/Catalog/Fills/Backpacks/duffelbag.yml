@@ -134,20 +134,22 @@
 
 
 - type: entity
-  parent: ClothingBackpackDuffel
-  id: ClothingBackpackDuffelTennisGame
+  parent: CratePlastic
+  id: CratePlasticTennisGame
   name: tennis game bundle
   description: "Contains all you need to start a tennis match!"
   components:
-  - type: StorageFill
-    contents:
-    - id: TennisBall
-      amount: 2
-    - id: BaseTennisRacket
-      amount: 2
-    - id: NTTennisRacket
-      amount: 2
-    - id: SyndicateTennisRacket
-      amount: 2
-    - id: CrayonRainbow
-      amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: TennisBall
+          amount: 2
+        - id: BaseTennisRacket
+          amount: 2
+        - id: NTTennisRacket
+          amount: 2
+        - id: SyndicateTennisRacket
+          amount: 2
+        - id: CrayonRainbow
+          amount: 1

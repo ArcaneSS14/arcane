@@ -2,6 +2,8 @@ using Content.Client.UserInterface.Controls;
 using Content.Shared._Orion.Morph;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Client.GameObjects;
+using Robust.Shared.Prototypes;
 using System.Numerics;
 
 namespace Content.Client._Orion.Morph.UI;
@@ -13,10 +15,10 @@ namespace Content.Client._Orion.Morph.UI;
 public sealed partial class MimicryMenu : RadialMenu
 {
     [Dependency] private readonly EntityManager _ent = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     public EntityUid Entity { get; private set; }
-
-    public event Action<NetEntity>? SendActivateMessageAction;
+    public event Action<EntProtoId>? SendActivateMessageAction; // Arcane-Edit NetEntity > EntProtoId
 
     public MimicryMenu()
     {
@@ -38,28 +40,27 @@ public sealed partial class MimicryMenu : RadialMenu
 
         if (!_ent.TryGetComponent<MorphComponent>(Entity, out var morph))
             return;
+        // Arcane-Edit-Start
+        var spriteSys = _ent.System<SpriteSystem>();
 
-        main.RemoveAllChildren();
-
-        foreach (var morphable in morph.MemoryObjects)
+        foreach (var protoId in morph.MemoryObjects)
         {
-            if (!_ent.TryGetComponent<MetaDataComponent>(morphable, out var md))
+            if (!_protoManager.TryIndex<EntityPrototype>(protoId, out var prototype))
                 continue;
 
             var button = new EmbeddedEntityMenuButton
             {
                 SetSize = new Vector2(64, 64),
-                ToolTip = md.EntityName,
-                NetEntity = md.NetEntity,
+                ToolTip = prototype.Name,
+                PrototypeId = protoId
             };
 
-            var texture = new SpriteView(morphable, _ent)
+            var texture = new TextureRect
             {
-                OverrideDirection = Direction.South,
-                VerticalAlignment = VAlignment.Center,
                 SetSize = new Vector2(64, 64),
-                VerticalExpand = true,
-                Stretch = SpriteView.StretchMode.Fill,
+                VerticalAlignment = VAlignment.Center,
+                Stretch = TextureRect.StretchMode.KeepAspectCentered,
+                Texture = spriteSys.Frame0(prototype)
             };
             button.AddChild(texture);
 
@@ -72,13 +73,12 @@ public sealed partial class MimicryMenu : RadialMenu
     {
         foreach (var child in main.Children)
         {
-            var castChild = child as EmbeddedEntityMenuButton;
-            if (castChild == null)
+            if (child is not EmbeddedEntityMenuButton castChild)
                 continue;
 
             castChild.OnButtonUp += _ =>
             {
-                SendActivateMessageAction?.Invoke(castChild.NetEntity);
+                SendActivateMessageAction?.Invoke(castChild.PrototypeId);
                 Close();
             };
         }
@@ -86,6 +86,7 @@ public sealed partial class MimicryMenu : RadialMenu
 
     public sealed class EmbeddedEntityMenuButton : RadialMenuButtonWithSector
     {
-        public NetEntity NetEntity;
+        public EntProtoId PrototypeId;
     }
+    // Arcane-Edit-End
 }
