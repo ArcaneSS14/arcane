@@ -38,7 +38,7 @@
 - type: loadout
   id: CaptainWhiteBeret
   equipment:
-    head: ClothingHeadHatBeretCaptainWhite
+    head: ClothingHeadHatBeretCaptainWhiteBlue
 
 - type: loadout
   id: SheriffBeret

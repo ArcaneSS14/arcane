@@ -1,7 +1,7 @@
 # standard for cap, hos and InteQ
 - type: entity
   abstract: true
-  parent: [ClothingHeadBase] 
+  parent: [ClothingHeadBase]
   id: ClothingHeadHatArmoredPlus
   components:
   - type: Armor
@@ -67,17 +67,36 @@
 
 - type: entity
   parent: [ ClothingHeadHatArmoredPlus, BaseCommandContraband ]
-  id: ClothingHeadHatBeretCaptainWhite
+  id: ClothingHeadHatBeretCaptainWhiteBlue
   name: white captain beret
   description: White captain beret, an icon of style.
   components:
   - type: Sprite
-    sprite: _Orion/Clothing/Head/Hats/white_beret.rsi
+    sprite: _Orion/Clothing/Head/Hats/white_blue_beret.rsi
   - type: Clothing
-    sprite: _Orion/Clothing/Head/Hats/white_beret.rsi
+    sprite: _Orion/Clothing/Head/Hats/white_blue_beret.rsi
+    # Arcane-Start
+    equippedPrefix: blue
+  - type: Item
+    heldPrefix: blue
+  - type: ItemSwitch
+    state: blue
+    onUse: false
+    states:
+      blue: !type:ItemSwitchState
+        verb: blue
+        sprite:
+          sprite: _Orion/Clothing/Head/Hats/whitee_blue_beret.rsi
+          state: blue-icon
+      white: !type:ItemSwitchState
+        verb: white
+        sprite:
+          sprite: _Orion/Clothing/Head/Hats/whitee_blue_beret.rsi
+          state: white-icon
+    # Arcane-End
 
 - type: entity
-  parent: ClothingHeadHatBeretCaptainWhite
+  parent: [ ClothingHeadHatArmoredPlus, BaseCommandContraband ] # Arcane-Edit
   id: ClothingHeadHatBeretSheriff
   name: sheriff beret
   description: Beret, a favorite among local sheriffs.
