@@ -1,0 +1,25 @@
+﻿- type: alert
+  id: Faoli
+  category: Battery
+  icons:
+  - sprite: /Textures/_Arcane/Interface/Alerts/Faoli.rsi
+    state: Faoli1
+  alertViewEntity: AlertFaoliView
+  name: alerts-faoli-name
+  description: alerts-faoli-desc
+
+- type: entity
+  id: AlertFaoliView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GenericCounterAlert
+  - type: Sprite
+    sprite: /Textures/_Arcane/Interface/Alerts/Faoli.rsi
+    layers:
+    - map: [ "enum.AlertVisualLayers.Base" ]
+    - map: [ "1" ]
+      offset: 0, -0.2
+    - map: [ "10" ]
+      offset: 0, -0.2
+    - map: [ "100" ]
+      offset: 0, -0.2

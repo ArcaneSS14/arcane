@@ -6,6 +6,7 @@
   keycode: ";"
   frequency: 1459
   color: "#2cdb2c"
+  icon: JobIconPassenger # Arcane
   # Orion-Start
   onSendSound:
     path: /Audio/_Orion/Radio/common.ogg
@@ -17,6 +18,7 @@
   keycode: 'ц' # Orion-Edit
   frequency: 1337
   color: "#2681a5"
+  icon: JobIconNanotrasen # Arcane
   longRange: true
   # Orion-Start
   onSendSound:
@@ -29,6 +31,7 @@
   keycode: 'к' # Orion-Edit
   frequency: 1353
   color: "#fcdf03"
+  icon: JobIconCaptain # Arcane
   # Orion-Start
   onSendSound:
     path: /Audio/_Orion/Radio/command.ogg
@@ -40,6 +43,7 @@
   keycode: 'и' # Orion-Edit
   frequency: 1357
   color: "#ff733c"
+  icon: JobIconStationEngineer # Arcane
   # Orion-Start
   onSendSound:
     path: /Audio/_Orion/Radio/eng.ogg
@@ -51,6 +55,7 @@
   keycode: 'м' # Orion-Edit
   frequency: 1355
   color: "#57b8f0"
+  icon: JobIconMedicalDoctor # Arcane
   # Orion-Start
   onSendSound:
     path: /Audio/_Orion/Radio/med.ogg
@@ -62,6 +67,7 @@
   keycode: 'н' # Orion-Edit
   frequency: 1351
   color: "#cd7ccd"
+  icon: JobIconScientist # Arcane
   # Orion-Start
   onSendSound:
     path: /Audio/_Orion/Radio/science.ogg
@@ -73,6 +79,7 @@
   keycode: 'о' # Orion-Edit
   frequency: 1359
   color: "#ff4242"
+  icon: JobIconSecurityOfficer # Arcane
   # Orion-Start
   onSendSound:
     path: /Audio/_Orion/Radio/security.ogg
@@ -84,6 +91,7 @@
   keycode: 'с' # Orion-Edit
   frequency: 1349
   color: "#539c00"
+  icon: JobIconServiceWorker # Arcane
   # Orion-Start
   onSendSound:
     path: /Audio/_Orion/Radio/service.ogg
@@ -95,6 +103,7 @@
   keycode: 'п' # Orion-Edit
   frequency: 1347
   color: "#b48b57"
+  icon: JobIconCargoTechnician # Arcane
   # Orion-Start
   onSendSound:
     path: /Audio/_Orion/Radio/cargo.ogg
@@ -106,6 +115,7 @@
   keycode: 'т' # Orion-Edit
   frequency: 1213
   color: "#8f4a4b"
+  icon: JobIconSyndicate # Arcane
   longRange: true
   # Orion-Start
   onSendSound:
@@ -151,6 +161,7 @@
   keycode: 'ъ' # Orion-Edit
   frequency: 2002
   color: "#2288ff"
+  icon: JobIconBorg # Arcane
   # long range since I don't wanna make a special xenoborg telecomm server
   longRange: true
 
@@ -161,4 +172,5 @@
   frequency: 2003
   color: "#ff2222"
   # long range since I don't wanna make a special xenoborg telecomm server
+  icon: JobIconBorg # Arcane
   longRange: true

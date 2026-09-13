@@ -28,6 +28,9 @@
   alternateTitles:
   - ResearchAssistantLabIntern
   - ResearchAssistantScienceTrainee
+  - ResearchAssistantLabInternAssistant
+  - ResearchAssistantJuniorLabAssistant
+  - ResearchAssistantScientistAssistant
   # Arcane-end
 
 - type: startingGear
@@ -60,4 +63,16 @@
 - type: jobAlternateTitle
   id: ResearchAssistantScienceTrainee
   name: job-name-alt-researchassistant-2
+
+- type: jobAlternateTitle
+  id: ResearchAssistantLabInternAssistant
+  name: job-name-alt-researchassistant-3
+
+- type: jobAlternateTitle
+  id: ResearchAssistantJuniorLabAssistant
+  name: job-name-alt-researchassistant-4
+
+- type: jobAlternateTitle
+  id: ResearchAssistantScientistAssistant
+  name: job-name-alt-researchassistant-5
 # Arcane-End

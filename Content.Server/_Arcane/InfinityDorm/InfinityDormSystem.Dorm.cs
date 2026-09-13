@@ -1,7 +1,30 @@
+// MIT License
+
+// Copyright (c) 2026 Vecortys (vecortys@gmail.com)
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Arcane.InfinityDorm;
+using Content.Shared._DV.Carrying;
 using Content.Shared.Chat;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
@@ -15,6 +38,7 @@ public sealed partial class InfinityDormSystem
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
+    [Dependency] private readonly CarryingSystem _carrying = default!;
 
     private bool TryCreateDorm(EntityUid teleporter, EntityUid creator, string room, int number)
     {
@@ -50,6 +74,9 @@ public sealed partial class InfinityDormSystem
 
     private void TeleportToDorm(EntityUid uid, int number)
     {
+        if (TryComp<CarryingComponent>(uid, out var carrying))
+            _carrying.DropCarried(uid, carrying.Carried);
+
         var query = EntityQueryEnumerator<InfinityDormSpawnMarkerComponent>();
 
         while (query.MoveNext(out var dormUid, out var _))

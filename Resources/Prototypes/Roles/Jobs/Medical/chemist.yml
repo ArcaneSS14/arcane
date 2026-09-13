@@ -36,6 +36,7 @@
   alternateTitles:
   - ChemistPharmacist
   - ChemistLabTechnician
+  - ChemistBiochemist
   # Arcane-end
 
 - type: startingGear
@@ -68,4 +69,8 @@
 - type: jobAlternateTitle
   id: ChemistLabTechnician
   name: job-name-alt-chemist-2
+
+- type: jobAlternateTitle
+  id: ChemistBiochemist
+  name: job-name-alt-chemist-3
 # Arcane-End

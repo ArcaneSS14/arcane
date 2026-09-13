@@ -8,4 +8,4 @@
   - type: InvisibilityHeart
   - type: Loadout
     prototypes:
-    - LimitedPassengerGear
+    - PassengerGear

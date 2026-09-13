@@ -4,7 +4,7 @@ using Robust.Shared.Player;
 namespace Content.Shared._Arcane.TTS;
 
 [ByRefEvent]
-public readonly record struct TTSRadioPlayEvent(string Message, LanguagePrototype Language, string Voice);
+public readonly record struct TTSRadioPlayEvent(string Message, LanguagePrototype Language, string Voice, int Frequency);
 
 [ByRefEvent]
 public readonly record struct TTSAnnouncePlayEvent(string Message, EntityUid? Sender, Filter Receievers);

@@ -63,6 +63,7 @@
   - HOSSecurityCommander
   - HOSChiefWarden
   - HOSSheriff
+  - HOSSecurityChief
   # Arcane-End
 
 - type: startingGear
@@ -98,4 +99,8 @@
 - type: jobAlternateTitle
   id: HOSSheriff
   name: job-name-alt-hos-3
+
+- type: jobAlternateTitle
+  id: HOSSecurityChief
+  name: job-name-alt-hos-4
 # Arcane-End

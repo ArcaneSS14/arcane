@@ -37,6 +37,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     // Arcane-Start
     public const float TTSMultiplier = 1f;
     public const float TTSRadioMultiplier = 1f;
+    public const float JukeboxMultiplier = 1f;
     // Arcane-End
 
     public override void Initialize()

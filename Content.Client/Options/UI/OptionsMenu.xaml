@@ -4,6 +4,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <DefaultWindow xmlns="https://spacestation14.io"
             xmlns:tabs="clr-namespace:Content.Client.Options.UI.Tabs"
+            xmlns:arcane="clr-namespace:Content.Client._Arcane.TTS"
             Title="{Loc 'ui-options-title'}"
             MinSize="800 450">
     <TabContainer Name="Tabs" Access="Public">
@@ -11,6 +12,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         <tabs:GraphicsTab Name="GraphicsTab" />
         <tabs:KeyRebindTab Name="KeyRebindTab" />
         <tabs:AudioTab Name="AudioTab" />
+        <arcane:TTSOptionsTab Name="TTSOptionsTab" />
         <tabs:AccessibilityTab Name="AccessibilityTab" />
         <tabs:AdminOptionsTab Name="AdminOptionsTab" />
         <tabs:NetworkTab Name="NetworkTab" />

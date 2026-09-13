@@ -24,6 +24,8 @@
   - ReporterInfluencer
   - ReporterDocumentarian
   - ReporterMediaCoordinator
+  - ReporterCorrespondent
+  - ReporterNewsAnchor
   # Arcane-end
 
 - type: startingGear
@@ -62,4 +64,12 @@
 - type: jobAlternateTitle
   id: ReporterMediaCoordinator
   name: job-name-alt-reporter-3
+
+- type: jobAlternateTitle
+  id: ReporterCorrespondent
+  name: job-name-alt-reporter-4
+
+- type: jobAlternateTitle
+  id: ReporterNewsAnchor
+  name: job-name-alt-reporter-5
 # Arcane-End

@@ -1,0 +1,21 @@
+﻿- type: entity
+  parent: [ BaseItem, StorePresetDemonCantrips ]
+  id: BookDemonGrimoire
+  name: worn grimoire
+  description: A large book containing part of the Arcana records of the magical world.
+  components:
+    - type: Sprite
+      sprite: _Arcane/Objects/Misc/books.rsi
+      layers:
+      - state: demon-grimoire
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+    - type: Store
+      refundAllowed: false
+      ownerOnly: true
+      balance:
+        WizCoin: 2

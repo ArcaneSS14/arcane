@@ -2,7 +2,6 @@
 
 using Content.Client.Administration.Managers;
 using Content.Client.Audio;
-using Content.Shared._Arcane.CVars;
 using Content.Shared.CCVar;
 using Content.Goobstation.Common.CCVar; // Goob Station - Barks
 using Robust.Client.Audio;
@@ -42,13 +41,9 @@ public sealed partial class AudioTab : Control
 
         // Arcane-Start
         Control.AddOptionPercentSlider(
-            ArtCVars.TTSVolume,
-            SliderVolumeTTS,
-            scale: ContentAudioSystem.TTSMultiplier);
-        Control.AddOptionPercentSlider(
-            ACCVars.TTSRadioVolume,
-            SliderVolumeRadioTTS,
-            scale: ContentAudioSystem.TTSRadioMultiplier);
+            ACCVars.JukeboxVolume,
+            SliderVolumeJukebox,
+            scale: ContentAudioSystem.JukeboxMultiplier);
         // Arcane-end
         // Orion-Start
         Control.AddOptionPercentSlider(
@@ -94,7 +89,6 @@ public sealed partial class AudioTab : Control
             _cfg.GetCVar(CCVars.MinMaxAmbientSourcesConfigured),
             _cfg.GetCVar(CCVars.MaxMaxAmbientSourcesConfigured));
 
-        Control.AddOptionCheckBox(ACCVars.UseTTS, UseTTSCheckBox); // Arcane
         Control.AddOptionCheckBox(CCVars.CombatModeSoundEnabled, CombatModeSoundCheckBox); // Orion
         Control.AddOptionCheckBox(CCVars.LobbyMusicEnabled, LobbyMusicCheckBox);
         Control.AddOptionCheckBox(CCVars.RestartSoundsEnabled, RestartSoundsCheckBox);

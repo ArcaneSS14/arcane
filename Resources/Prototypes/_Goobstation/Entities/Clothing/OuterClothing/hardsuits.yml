@@ -3,7 +3,7 @@
 # Chronolegioneer Hardsuit
 
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ClothingOuterHardsuitBase, BaseToggleClothing] # Arcane-Edit
   id: ClothingOuterHardsuitChronolegioneer
   name: futuristic hardsuit
   description: A hardsuit covered in an unknown material that protects against most material and temporal damage.
@@ -50,6 +50,17 @@
     cancel: true
   - type: StaminaResistance
     damageCoefficient: 0
+  # Arcane-Start
+  - type: ToggleClothing
+    action: ActionToggleChronoInvis
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: -1
+      lastVisibility: -1
+  # Arcane-End
 
 - type: entity
   parent: ClothingOuterHardsuitChronolegioneer

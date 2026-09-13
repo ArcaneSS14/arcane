@@ -121,6 +121,13 @@
   loadouts:
   - BoomboxPatron
 
+- type: loadoutGroup
+  id: GroupGrimoire
+  name: loadout-group-grimoire
+  hidden: true
+  loadouts:
+  - CantripGrimoire
+
 # Service
 
 - type: loadoutGroup

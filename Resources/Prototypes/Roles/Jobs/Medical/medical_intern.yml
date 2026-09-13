@@ -37,6 +37,9 @@
   alternateTitles:
   - MedicalInternJuniorDoctor
   - MedicalInternResident
+  - MedicalInternJuniorMedic
+  - MedicalInternJuniorPhysician
+  - MedicalInternDoctorsAssistant
   # Arcane-end
 
 - type: startingGear
@@ -70,4 +73,16 @@
 - type: jobAlternateTitle
   id: MedicalInternResident
   name: job-name-alt-medicalintern-2
+
+- type: jobAlternateTitle
+  id: MedicalInternJuniorMedic
+  name: job-name-alt-medicalintern-3
+
+- type: jobAlternateTitle
+  id: MedicalInternJuniorPhysician
+  name: job-name-alt-medicalintern-4
+
+- type: jobAlternateTitle
+  id: MedicalInternDoctorsAssistant
+  name: job-name-alt-medicalintern-5
 # Arcane-End

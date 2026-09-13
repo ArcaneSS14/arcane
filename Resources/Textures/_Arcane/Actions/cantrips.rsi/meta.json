@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by HappyRoach",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "ember"
+        },
+        {
+            "name": "light"
+        },
+        {
+            "name": "faoli"
+        },
+        {
+            "name": "life"
+        },
+        {
+            "name": "message"
+        },
+        {
+            "name": "mop"
+        },
+        {
+            "name": "paper"
+        },
+        {
+            "name": "recharge"
+        },
+        {
+            "name": "temperature"
+        },
+        {
+            "name": "base"
+        }
+    ]
+}

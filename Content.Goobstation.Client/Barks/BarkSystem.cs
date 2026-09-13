@@ -11,6 +11,7 @@ using Content.Shared._Arcane.CCVars;
 // Arcane-Start
 using Content.Shared.CCVar;
 using Content.Client.Audio;
+using Content.Client.Ghost;
 // Arcane-End
 
 namespace Content.Goobstation.Client.Barks;
@@ -22,6 +23,7 @@ public sealed class BarkSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedAudioSystem _sharedAudio = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!; // Arcane
 
     private readonly Dictionary<NetEntity, EntityUid> _playingSounds = new();
     private static readonly char[] Characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
@@ -76,6 +78,10 @@ public sealed class BarkSystem : EntitySystem
     {
         // Arcane-start
         if (_cfg.GetCVar(ACCVars.UseTTS))
+            return;
+        // Arcane-end
+        // Arcane-start
+        if (radio && _ghostSystem.IsGhost && !_cfg.GetCVar(ACCVars.TTSGhostRadioUseTTS))
             return;
         // Arcane-end
 

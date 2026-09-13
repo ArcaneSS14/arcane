@@ -95,7 +95,7 @@ public sealed partial class RadioSystem : EntitySystem
             // Arcane-Start
             if (canUnderstand && args.Voice is { } voice)
             {
-                var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice);
+                var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice, args.Channel.Frequency);
                 RaiseLocalEvent(uid, ref ev);
             }
             // Arcane-End

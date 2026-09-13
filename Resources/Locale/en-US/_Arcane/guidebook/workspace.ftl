@@ -1,0 +1,12 @@
+arcane-guidebook-sidebar = Contents
+arcane-guidebook-new-window = New window
+arcane-guidebook-new-window-hint = Open the current article in another guidebook window.
+arcane-guidebook-pop-out-hint = Pop-Out
+arcane-guidebook-favorite = Bookmark
+arcane-guidebook-favorite-hint = Add or remove the current article from favorites.
+arcane-guidebook-favorites = Favorites
+arcane-guidebook-search = Search all articles...
+arcane-guidebook-link-missing = This article or section could not be found.
+arcane-guidebook-title = Guidebook - { $article }
+arcane-guidebook-result = { $article } - { $category }
+arcane-guidebook-no-results = No articles found.
