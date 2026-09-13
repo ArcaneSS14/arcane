@@ -1488,3 +1488,10 @@ Entries:
       https://github.com/user-attachments/assets/9c7a7d69-5b10-4bb2-b9dd-685b498417a6
     - >-
       https://github.com/user-attachments/assets/64e824e7-70dd-430d-8c04-046b9c2f536e
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Апстрим 13/09/26
+  id: 119
+  time: '2026-09-13T17:26:49.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/356
