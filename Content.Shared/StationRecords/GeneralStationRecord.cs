@@ -44,6 +44,14 @@ public sealed record GeneralStationRecord
     [DataField]
     public string Species = string.Empty;
 
+    // Arcane-Start
+    /// <summary>
+    ///     Custom display species name of this character.
+    /// </summary>
+    [DataField]
+    public string CustomSpeciesName = string.Empty;
+    // Arcane-End
+
     /// <summary>
     ///     Gender identity tied to this station record.
     /// </summary>
@@ -71,3 +79,4 @@ public sealed record GeneralStationRecord
     [DataField]
     public string? DNA;
 }
+
