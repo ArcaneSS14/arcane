@@ -66,7 +66,7 @@
     sprite: _Orion/Clothing/Head/Hats/inteq_headband.rsi
 
 - type: entity
-  parent: [ ClothingHeadHatArmoredPlus, BaseCommandContraband ] # Arcane-Edit
+  parent: [ClothingHeadHatArmoredPlus, ClothingHeadBase, BaseCommandContraband] # Arcane-Edit
   id: ClothingHeadHatBeretSheriff
   name: sheriff beret
   description: Beret, a favorite among local sheriffs.
@@ -88,28 +88,9 @@
     sprite: _Orion/Clothing/Head/Hats/white_capcap.rsi
   - type: Clothing
     sprite: _Orion/Clothing/Head/Hats/white_capcap.rsi
-    # Arcane-Start
-    equippedPrefix: cap
-  - type: Item
-    heldPrefix: beret
-  - type: ItemSwitch
-    state: cap
-    onUse: false
-    states:
-      beret: !type:ItemSwitchState
-        verb: beret
-        sprite:
-          sprite: _Orion/Clothing/Head/Hats/white_beret.rsi
-          state: beret-icon
-      cap: !type:ItemSwitchState
-        verb: cap
-        sprite:
-          sprite: _Orion/Clothing/Head/Hats/white_beret.rsi
-          state: cap-icon
-    # Arcane-End
 
 - type: entity
-  parent: ClothingHeadHatCapcap-beret
+  parent: [ClothingHeadHatArmoredPlus, ClothingHeadBase, BaseCommandContraband] # Arcane-Edit
   id: ClothingHeadHatCapcapSheriff
   name: sheriff cap
   description: Stylish sheriff cap.

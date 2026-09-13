@@ -6,8 +6,6 @@ ent-ClothingHeadHatInteQMAA = фуражка мастера по оружию И
     .desc = { ent-ClothingHeadHatSyndieMAA.desc }
 ent-ClothingHeadHatInteQTacticalMaidHeadband = { ent-ClothingHeadHatTacticalMaidHeadband }
     .desc = { ent-ClothingHeadHatTacticalMaidHeadband.desc }
-ent-ClothingHeadHatBeretCaptainWhite = белый берет капитана
-    .desc = Белый берет капитана, икона стиля.
 ent-ClothingHeadHatBeretSheriff = берет шерифа
     .desc = Берет - фаворит, местных шерифов.
 # Arcane-Edit-Start

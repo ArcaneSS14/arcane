@@ -293,7 +293,7 @@
     - MouseWearable
 
 - type: entity
-  parent: ClothingHeadHatCapcap-beret
+  parent: [ClothingHeadHatArmoredPlus, ClothingHeadBase, BaseCommandContraband] # Arcane-Edit
   id: ClothingHeadHatCapcapSenior
   name: cap cap senior
   description: A grand, stylish cap worn by the Seniors Captains. Shows the station who's in charge.
