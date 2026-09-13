@@ -1417,3 +1417,13 @@ Entries:
   id: 112
   time: '2026-09-12T21:41:03.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/351
+- author: HappyRoach
+  changes:
+    - type: Tweak
+      message: Терминал прибытия был полностью перестроен
+  id: 113
+  time: '2026-09-13T05:08:51.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/350
+  media:
+    - >-
+      https://github.com/user-attachments/assets/29ee4323-ba3c-4615-8299-dba6b2241e8f
