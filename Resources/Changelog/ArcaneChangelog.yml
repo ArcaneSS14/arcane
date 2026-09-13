@@ -1249,3 +1249,193 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/d3de3e47-8925-413c-ad5f-c3b0a0e3af2d
+- author: HappyRoach
+  changes:
+    - type: Add
+      message: Арканы могут использовать большую часть кастомизации людей.
+    - type: Add
+      message: >-
+        Добавлена новая уникальная механика для аркан - Фаоль, за счёт которой
+        они могут творить простые заклинания.
+    - type: Tweak
+      message: Полностью изменены характеристики Аркан.
+  id: 106
+  time: '2026-09-11T13:37:07.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/331
+  media:
+    - >-
+      https://github.com/user-attachments/assets/a1c3293f-2d07-4748-a90b-817199571cca
+    - >-
+      https://github.com/user-attachments/assets/f5ebe9f4-e4ab-4451-b817-240149105dd6
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Сердце невидимки нельзя вырезать.
+    - type: Fix
+      message: Визоры СБ и Меда не показывают невидимку.
+    - type: Tweak
+      message: Невидимка теперь спавнится с пассажирским лодаутом.
+  id: 107
+  time: '2026-09-11T13:38:45.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/340
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Починены дикие пролаги связанные с бумбоксом.
+    - type: Fix
+      message: Нету микро-заломов звука при измененной громкости бумбокса на клиенте.
+  id: 108
+  time: '2026-09-12T16:26:49.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/345
+  media:
+    - >-
+      https://discord.com/channels/1500050446444658711/1502261682397909112/1548307405652238376
+- author: Kinar_7
+  changes:
+    - type: Tweak
+      message: Гости теперь копируют внешность персонажа игрока, но не его имя
+  id: 109
+  time: '2026-09-12T16:28:06.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/338
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: >-
+        "Правосудию" заменен режим уничтожения на режим заковывания. Был
+        увеличен урон в "без режима", "летальный", а также в оглущение(урон по
+        стамине).
+  id: 110
+  time: '2026-09-12T17:27:00.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/342
+  media:
+    - >-
+      https://github.com/user-attachments/assets/390f91f3-7369-46c5-947c-987ad8539d1b
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: '"Без ЕРП" теперь не могут быть подвержены влиянию афродизиака'
+    - type: Add
+      message: При передаче предмета теперь есть попап у цели передачи.
+    - type: Add
+      message: В телепорте призрака теперь изображаются иконки должностей.
+    - type: Tweak
+      message: Стыковка шаттлов больше не гибает.
+    - type: Fix
+      message: Дым снова работает.
+    - type: Fix
+      message: Сон снова работает.
+    - type: Tweak
+      message: >-
+        Шкаф бригмедика доступен теперь только медицинскому и оружейному
+        доступу.
+    - type: Fix
+      message: Шлем скафандра HEV получил резисты.
+  id: 111
+  time: '2026-09-12T17:27:29.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/333
+  media:
+    - >-
+      https://github.com/user-attachments/assets/17a739b4-7178-49ee-ab13-8516b470c050
+    - >-
+      https://github.com/user-attachments/assets/38617737-9aed-4299-b30b-3ac217506c66
+    - >-
+      https://github.com/user-attachments/assets/ce272c5f-e659-4779-9c1f-a1de41f579f0
+    - >-
+      https://github.com/user-attachments/assets/3e48769b-e305-4ef0-94bb-1f0f0bc18deb
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Арахниды - режущий -20%, тепловой +25%; иммунитет к яду.
+    - type: Tweak
+      message: Дионы - тупой -30%, режущий -20%; тепловой +50%, электрический +40%.
+    - type: Tweak
+      message: Дворфы - тупой и режущий -20%; тепловой +25%.
+    - type: Tweak
+      message: Люди - входящий урон +5%.
+    - type: Tweak
+      message: Моли - режущий -20%, холодовой -30%; колющий и тепловой +20%.
+    - type: Tweak
+      message: Рептилии - режущий -30%; колющий +25%, холодовой +30%.
+    - type: Tweak
+      message: >-
+        Слаймолюды - тупой -40%, колющий -25%, ядовитый -20%; режущий +25%,
+        холодовой +50%.
+    - type: Tweak
+      message: Воксы - тепловой -25%, едкий -40%; режущий и колющий +20%.
+    - type: Tweak
+      message: >-
+        Гидракины - тупой -20%, колющий -25%; режущий и тепловой +25%; холодовой
+        -100%, кроме переохлаждения.
+    - type: Tweak
+      message: Таяры - колющий -20%, холодовой -30%; тупой, режущий и тепловой +20%.
+    - type: Tweak
+      message: >-
+        Йови - тупой, режущий и колющий -25%; холодовой, радиационный и
+        кровопотеря -20%, ядовитый -90%; тепловой +30%.
+    - type: Tweak
+      message: >-
+        Резоми - колющий -25%; тупой и режущий +25%, тепловой +30%; иммунитет к
+        холоду.
+    - type: Tweak
+      message: >-
+        КПБ - тупой, режущий, колющий и ионный -20%, радиационный -60%; тепловой
+        +70%, электрический +100%.
+    - type: Tweak
+      message: >-
+        Плазмамены - режущий и ядовитый -20%, колющий -40%; тупой и тепловой
+        +50%; иммунитет к холоду, радиации и кровопотере.
+    - type: Tweak
+      message: >-
+        Тенелюды - режущий -25%, удушье -50%; тупой и колющий +25%, тепловой
+        +40%.
+    - type: Tweak
+      message: >-
+        Хитиниды - тупой, режущий и колющий -20%, радиационный -80%; холодовой
+        +20%, тепловой и электрический +25%.
+    - type: Tweak
+      message: Ферокси - тупой и тепловой -20%, холодовой -25%; режущий +20%.
+    - type: Tweak
+      message: >-
+        Гарпии - тепловой -25%, электрический -40%; тупой, режущий и колющий
+        +25%.
+    - type: Tweak
+      message: Грызуны - колющий -20%, ядовитый -40%; тупой и режущий +25%.
+    - type: Tweak
+      message: Вульпканины - режущий и холодовой -20%; тепловой +30%.
+    - type: Tweak
+      message: >-
+        Демоны - тепловой -20%, холодовой -15%; тупой и режущий +20%, святой
+        +50%.
+    - type: Tweak
+      message: >-
+        Гуманоидные ксеноморфы - колющий -15%; тупой, режущий и холодовой +20%,
+        тепловой +25%, электрический +30%.
+    - type: Tweak
+      message: Фелиниды - тупой -25%, режущий -20%; колющий +25%.
+    - type: Tweak
+      message: Они - тупой и режущий -20%; колющий +20%.
+  id: 112
+  time: '2026-09-12T21:41:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/351
+- author: HappyRoach
+  changes:
+    - type: Tweak
+      message: Терминал прибытия был полностью перестроен
+  id: 113
+  time: '2026-09-13T05:08:51.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/350
+  media:
+    - >-
+      https://github.com/user-attachments/assets/29ee4323-ba3c-4615-8299-dba6b2241e8f
+- author: 0RK
+  changes:
+    - type: Add
+      message: 'Добавлена новая черта: лисья натура'
+  id: 114
+  time: '2026-09-13T05:12:00.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/318
+  media:
+    - >-
+      https://github.com/user-attachments/assets/32178d5e-2534-49c7-92cd-698e25b94934
+    - >-
+      https://github.com/user-attachments/assets/942145bf-2104-404c-836c-884a63af0f41

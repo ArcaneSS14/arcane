@@ -6,13 +6,13 @@ offer-item-try-give = Вы предлагаете {$item} {$target}
 offer-item-try-give-target = {CAPITALIZE($user)} предлагает вам {$item}
 
 offer-item-give = Вы отдали {$item} {$target}
-offer-item-give-other = {CAPITALIZE($user)} {GENDER($user) -> 
+offer-item-give-other = {CAPITALIZE($user)} {GENDER($user) ->
                         [male] отдал
                         [female] отдала
                         [epicene] отдали
                         *[neuter] отдало
                         } {$item} {$target}
-offer-item-give-target = {CAPITALIZE($user)} {GENDER($user) -> 
+offer-item-give-target = {CAPITALIZE($user)} {GENDER($user) ->
                         [male] отдал
                         [female] отдала
                         [epicene] отдали
