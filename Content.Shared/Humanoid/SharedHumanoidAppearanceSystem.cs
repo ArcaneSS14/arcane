@@ -711,7 +711,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         {
             // Arcane-Start
             if (!string.IsNullOrWhiteSpace(customSpeciesName))
-                return FormattedMessage.EscapeText(customSpeciesName) + " (" + Loc.GetString(species.Name) + ")";
+                return FormattedMessage.EscapeText(HumanoidCharacterProfile.GetSpeciesLongName(Loc.GetString(species.Name), customSpeciesName));
             // Arcane-End
 
             return Loc.GetString(species.Name);

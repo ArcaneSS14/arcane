@@ -849,6 +849,15 @@ namespace Content.Shared.Preferences
         }
 
         // Arcane-Start
+        public static string GetSpeciesLongName(string species, string? customSpeciesName)
+        {
+            return string.IsNullOrWhiteSpace(customSpeciesName)
+                ? species
+                : $"{customSpeciesName} ({species})";
+        }
+        // Arcane-End
+
+        // Arcane-Start
         public static string SanitizeCustomSpeciesName(
             ProtoId<SpeciesPrototype> speciesId,
             string? customSpeciesName,
@@ -871,7 +880,7 @@ namespace Content.Shared.Preferences
             {
                 foreach (var speciesPrototypes in prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
                 {
-                    if (Loc.GetString(speciesPrototypes.Name).ToLower() == result.ToLower())
+                    if (string.Equals(Loc.GetString(speciesPrototypes.Name), result, StringComparison.OrdinalIgnoreCase))
                     {
                         return "";
                     }

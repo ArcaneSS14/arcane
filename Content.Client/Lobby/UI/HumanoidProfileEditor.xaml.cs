@@ -735,8 +735,7 @@ namespace Content.Client.Lobby.UI
                 ? Loc.GetString(speciesProto.Name)
                 : Profile.Species.ToString();
             // Arcane-Start
-            if (!string.IsNullOrWhiteSpace(Profile.CustomSpeciesName))
-                species = FormattedMessage.EscapeText(Profile.CustomSpeciesName) + " (" + species + ")";
+            species = HumanoidCharacterProfile.GetSpeciesLongName(species, Profile.CustomSpeciesName);
             // Arcane-End
             var sex = Loc.GetString($"humanoid-profile-editor-sex-{Profile.Sex.ToString().ToLower()}-text");
             var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{Profile.Gender.ToString().ToLower()}-text");
