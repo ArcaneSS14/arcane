@@ -1220,10 +1220,6 @@
   name: cap cap
   description: A grand, stylish cap worn by the Captain. Shows the station who's in charge.
   components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/capcap.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/capcap.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -1237,6 +1233,12 @@
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.0002 # 5,000 times less likely than 1 regular animal
   - type: BlockMovement
+    # Arcane-Edit-End
+  - type: Sprite
+    sprite: Clothing/Head/Hats/capcap.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/capcap.rsi
+    # Arcane-Edit-End
     # Arcane-Start
     equippedPrefix: cap
   - type: Item
@@ -1253,7 +1255,7 @@
       cap: !type:ItemSwitchState
         verb: cap
         sprite:
-          sprite: _Clothing/Head/Hats/capcap.rsi
+          sprite: Clothing/Head/Hats/capcap.rsi
           state: cap-icon
     # Arcane-End
 
