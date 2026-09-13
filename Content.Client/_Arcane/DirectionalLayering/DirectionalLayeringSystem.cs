@@ -13,14 +13,13 @@ namespace Content.Client._Arcane.DirectionalLayering;
 
 /// <summary>
 ///     Reorders a humanoid sprite's layers based on the direction the entity is facing.
-///     Viewed from the back (facing north) the hair renders above the ears (HeadTop slot) and tails/wings render
-///     above the cloak (neck slot); for any other facing the ears and the cloak render on top.
 /// </summary>
 public sealed class DirectionalLayeringSystem : EntitySystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly IEyeManager _eyeManager = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private Angle _lastEyeRotation = Angle.Zero;
 
@@ -62,7 +61,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
         // The renderer picks the RSI direction from `worldRotation + eyeRotation`, so the "back view" has to be
         // determined relative to the camera, not the absolute world rotation.
-        var backView = IsBackView(xform.WorldRotation + _eyeManager.CurrentEye.Rotation);
+        var backView = IsBackView(_transform.GetWorldRotation(ent.Owner) + _eyeManager.CurrentEye.Rotation);
         var candidateKeys = GetCandidateLayerKeys(ent);
 
         UpdateHairEars(ent, backView, candidateKeys);
@@ -202,19 +201,19 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
         if (TryGetLayerIndex(ent, HumanoidVisualLayers.Tail, out var tailIdx))
         {
-            index = System.Math.Min(index, tailIdx);
+            index = Math.Min(index, tailIdx);
             found = true;
         }
 
         if (TryGetLayerIndex(ent, HumanoidVisualLayers.Wings, out var wingsIdx))
         {
-            index = System.Math.Min(index, wingsIdx);
+            index = Math.Min(index, wingsIdx);
             found = true;
         }
 
         if (TryGetLayerIndex(ent, "head", out var headIdx))
         {
-            index = System.Math.Min(index, headIdx);
+            index = Math.Min(index, headIdx);
             found = true;
         }
 
@@ -228,9 +227,9 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     private static bool IsBackView(Angle angle)
     {
         var ang = angle.Reduced().FlipPositive().Theta;
-        var mod = (System.Math.Floor(ang / MathHelper.PiOver2) % 2) - 0.5;
+        var mod = (Math.Floor(ang / MathHelper.PiOver2) % 2) - 0.5;
         var modTheta = ang + mod * DirectionBias;
-        return ((int)System.Math.Round(modTheta / MathHelper.PiOver2) % 4) == 2;
+        return (int) Math.Round(modTheta / MathHelper.PiOver2) % 4 == 2;
     }
 
     /// <summary>
