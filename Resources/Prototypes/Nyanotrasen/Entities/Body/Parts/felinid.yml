@@ -2,7 +2,7 @@
 
 - type: entity
   id: PartFelinid
-  parent: PartHuman
+  parent: BasePartHuman # Arcane
   abstract: true
   components:
   - type: Damageable

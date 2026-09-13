@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server.Administration.Logs;
-using Content.Server.Body.Systems;
+// using Content.Server.Body.Systems; // Arcane-Edit
 using Content.Server.Buckle.Systems;
 using Content.Server.Parallax;
 using Content.Server.Procedural;
@@ -45,7 +45,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BiomeSystem _biomes = default!;
-    [Dependency] private readonly BodySystem _bobby = default!;
+    // [Dependency] private readonly BodySystem _bobby = default!; // Arcane-Edit
     [Dependency] private readonly BuckleSystem _buckle = default!;
     [Dependency] private readonly DamageableSystem _damageSys = default!;
     [Dependency] private readonly DockingSystem _dockSystem = default!;

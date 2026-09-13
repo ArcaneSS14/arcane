@@ -4,7 +4,7 @@
 
 - type: entity
   id: PartResomi
-  parent: PartHuman
+  parent: BasePartHuman # Arcane
   abstract: true
   components:
   - type: BodyPart
