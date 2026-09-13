@@ -14,7 +14,16 @@ public sealed partial class JukeboxComponent : Component
     public ProtoId<JukeboxPrototype>? SelectedSongId;
 
     [DataField, AutoNetworkedField]
-    public EntityUid? AudioStream;
+    // Arcane-Edit-Start
+    // public EntityUid? AudioStream;
+    public bool Active;
+
+    /// <summary>
+    /// Whether the active track is actually producing sound right now (false while paused).
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Playing;
+    // Arcane-Edit-End
 
     /// <summary>
     /// RSI state for the jukebox being on.
@@ -40,22 +49,34 @@ public sealed partial class JukeboxComponent : Component
     [ViewVariables]
     public float SelectAccumulator;
     // Orion-Start
-    [ViewVariables, AutoNetworkedField]
+    [DataField, AutoNetworkedField] // Arcane-Edit
     public float Volume = 50f;
 
+    [DataField] // Arcane
     public float MinVolume = -30f;
+
+    [DataField] // Arcane
     public float MaxVolume = 0f;
+
+    [DataField] // Arcane
     public float MinSlider = 0f;
+
+    [DataField] // Arcane
     public float MaxSlider = 100f;
 
     [DataField, AutoNetworkedField]
     public bool LoopEnabled;
 
-    [DataField]
+    [DataField, AutoNetworkedField] // Arcane-Edit
     public TimeSpan? PlaybackStartTime;
 
-    [DataField]
+    [DataField, AutoNetworkedField] // Arcane-Edit
     public float CurrentPlaybackOffset;
+
+    // Arcane-Start
+    [ViewVariables]
+    public float TrackLength;
+    // Arcane-End
     // Orion-End
 }
 

@@ -6,14 +6,14 @@
   root: chest
   slots:
     head:
-      part: HeadHuman
+      part: HeadDwarf # Arcane
       connections:
       - chest
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
     chest:
-      part: ChestHuman
+      part: ChestDwarf # Arcane
       connections:
       - right arm
       - left arm
@@ -23,7 +23,7 @@
         heart: OrganDwarfHeart
         lungs: OrganHumanLungs
     groin:
-      part: GroinHuman
+      part: GroinDwarf # Arcane
       connections:
       - right leg
       - left leg
@@ -32,26 +32,26 @@
         liver: OrganDwarfLiver
         kidneys: OrganHumanKidneys
     right arm:
-      part: RightArmHuman
+      part: RightArmDwarf # Arcane
       connections:
       - right hand
     left arm:
-      part: LeftArmHuman
+      part: LeftArmDwarf # Arcane
       connections:
       - left hand
     right hand:
-      part: RightHandDwarf # Goob edit
+      part: RightHandDwarf # Arcane
     left hand:
-      part: LeftHandDwarf # Goob edit
+      part: LeftHandDwarf # Arcane
     right leg:
-      part: RightLegHuman
+      part: RightLegDwarf # Arcane
       connections:
       - right foot
     left leg:
-      part: LeftLegHuman
+      part: LeftLegDwarf # Arcane
       connections:
       - left foot
     right foot:
-      part: RightFootHuman
+      part: RightFootDwarf # Arcane
     left foot:
-      part: LeftFootHuman
+      part: LeftFootDwarf # Arcane

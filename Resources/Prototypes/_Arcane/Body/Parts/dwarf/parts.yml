@@ -1,0 +1,43 @@
+- type: entity
+  parent: [PartDwarf, BaseHeadHuman]
+  id: HeadDwarf
+
+- type: entity
+  parent: [PartDwarf, BaseChestHuman]
+  id: ChestDwarf
+
+- type: entity
+  parent: [PartDwarf, BaseGroinHuman]
+  id: GroinDwarf
+
+- type: entity
+  parent: [PartDwarf, BaseRightArmHuman]
+  id: RightArmDwarf
+
+- type: entity
+  parent: [PartDwarf, BaseLeftArmHuman]
+  id: LeftArmDwarf
+
+- type: entity
+  parent: [PartDwarf, BaseRightHandDwarf]
+  id: RightHandDwarf
+
+- type: entity
+  parent: [PartDwarf, BaseLeftHandDwarf]
+  id: LeftHandDwarf
+
+- type: entity
+  parent: [PartDwarf, BaseRightLegHuman]
+  id: RightLegDwarf
+
+- type: entity
+  parent: [PartDwarf, BaseLeftLegHuman]
+  id: LeftLegDwarf
+
+- type: entity
+  parent: [PartDwarf, BaseRightFootHuman]
+  id: RightFootDwarf
+
+- type: entity
+  parent: [PartDwarf, BaseLeftFootHuman]
+  id: LeftFootDwarf

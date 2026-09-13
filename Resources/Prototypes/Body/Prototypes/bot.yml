@@ -29,6 +29,6 @@
       - left hand # Goobstation
     # Goobstation start
     right hand:
-      part: RightHandHuman
+      part: BaseRightHandHuman # Arcane
     left hand:
-      part: LeftHandHuman
+      part: BaseLeftHandHuman # Arcane

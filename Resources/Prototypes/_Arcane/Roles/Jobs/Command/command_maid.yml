@@ -26,6 +26,11 @@
   - Command
   - Service
   - Maintenance
+  - Bar
+  - Kitchen
+  - Janitor
+  - Theatre
+  - Hydroponics
   special:
   - !type:AddComponentSpecial
     components:

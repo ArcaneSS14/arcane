@@ -2,7 +2,7 @@
 # TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
-  id: PartHuman
+  id: BasePartHuman # Arcane
   parent: [BaseItem, BasePart]
   name: "human body part"
   abstract: true
@@ -20,9 +20,9 @@
         Quantity: 10
 
 - type: entity
-  id: ChestHuman
+  id: BaseChestHuman # Arcane
   name: "human chest"
-  parent: [PartHuman, BaseChest]
+  parent: [BasePartHuman, BaseChest] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -36,9 +36,9 @@
         Quantity: 20
 
 - type: entity
-  id: GroinHuman
+  id: BaseGroinHuman # Arcane
   name: "human groin"
-  parent: [PartHuman, BaseGroin]
+  parent: [BasePartHuman, BaseGroin] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -52,9 +52,9 @@
         Quantity: 20
 
 - type: entity
-  id: HeadHuman
+  id: BaseHeadHuman # Arcane
   name: "human head"
-  parent: [PartHuman, BaseHead]
+  parent: [BasePartHuman, BaseHead] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -68,27 +68,27 @@
         Quantity: 10
 
 - type: entity
-  id: LeftArmHuman
+  id: BaseLeftArmHuman # Arcane
   name: "left human arm"
-  parent: [PartHuman, BaseLeftArm]
+  parent: [BasePartHuman, BaseLeftArm] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: "l_arm"
 
 - type: entity
-  id: RightArmHuman
+  id: BaseRightArmHuman # Arcane
   name: "right human arm"
-  parent: [PartHuman, BaseRightArm]
+  parent: [BasePartHuman, BaseRightArm] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: "r_arm"
 
 - type: entity
-  id: LeftHandHuman
+  id: BaseLeftHandHuman # Arcane
   name: "left human hand"
-  parent: [PartHuman, BaseLeftHand]
+  parent: [BasePartHuman, BaseLeftHand] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -97,9 +97,9 @@
     multiplier: 0.9
 
 - type: entity
-  id: RightHandHuman
+  id: BaseRightHandHuman # Arcane
   name: "right human hand"
-  parent: [PartHuman, BaseRightHand]
+  parent: [BasePartHuman, BaseRightHand] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
@@ -108,36 +108,36 @@
     multiplier: 0.9
 
 - type: entity
-  id: LeftLegHuman
+  id: BaseLeftLegHuman # Arcane
   name: "left human leg"
-  parent: [PartHuman, BaseLeftLeg]
+  parent: [BasePartHuman, BaseLeftLeg] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: "l_leg"
 
 - type: entity
-  id: RightLegHuman
+  id: BaseRightLegHuman # Arcane
   name: "right human leg"
-  parent: [PartHuman, BaseRightLeg]
+  parent: [BasePartHuman, BaseRightLeg] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: "r_leg"
 
 - type: entity
-  id: LeftFootHuman
+  id: BaseLeftFootHuman # Arcane
   name: "left human foot"
-  parent: [PartHuman, BaseLeftFoot]
+  parent: [BasePartHuman, BaseLeftFoot] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: "l_foot"
 
 - type: entity
-  id: RightFootHuman
+  id: BaseRightFootHuman # Arcane
   name: "right human foot"
-  parent: [PartHuman, BaseRightFoot]
+  parent: [BasePartHuman, BaseRightFoot] # Arcane
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
