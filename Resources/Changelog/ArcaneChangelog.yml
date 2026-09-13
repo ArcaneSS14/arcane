@@ -1446,3 +1446,29 @@ Entries:
   id: 115
   time: '2026-09-13T13:54:31.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/328
+- author: 0RK
+  changes:
+    - type: Add
+      message: Добавлен поводок и ошейник в сборку и в лавмат
+    - type: Add
+      message: 'Добавлен система связывания поводка и ошейника '
+  id: 116
+  time: '2026-09-13T14:45:29.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/348
+  media:
+    - >-
+      https://github.com/user-attachments/assets/245fff12-43e2-46b8-a9ce-654ac6e31fe1
+    - >-
+      https://github.com/user-attachments/assets/8c7732ab-0f8b-4cb4-82b9-504af3b59537
+    - >-
+      https://github.com/user-attachments/assets/80342187-866e-458d-b9f8-9ebb137357fd
+- author: alfapr0
+  changes:
+    - type: Tweak
+      message: Шаттл воксов налётчиков перестроен.
+  id: 117
+  time: '2026-09-13T14:47:18.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/332
+  media:
+    - >-
+      https://github.com/user-attachments/assets/da2893fd-6315-43a0-9a85-e855a50d8726
