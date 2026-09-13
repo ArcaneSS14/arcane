@@ -1628,6 +1628,10 @@
         Blunt: 1
     clumsySound:
       path: /Audio/Animals/monkey_scream.ogg
+  # Arcane-Start
+  - type: TTS
+    voice: Meepo_dota_2
+  # Arcane-End
 
 - type: entity
   name: monkey
@@ -2854,6 +2858,10 @@
     color: "#808080"
     activateSound: null
     deactivateSound: null
+  # Arcane-Start
+  - type: TTS
+    voice: Broodmother_dota_2
+  # Arcane-End
 
 - type: entity
   parent: MobSpiderBase

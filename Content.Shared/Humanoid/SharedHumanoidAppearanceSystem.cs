@@ -52,14 +52,14 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     public static readonly ProtoId<BarkPrototype> DefaultBarkVoice = "Alto"; // Goob Station - Barks
 
     // Arcane-Start
-    public const string DefaultVoice = "Zeus_dota_2";
+    public const string DefaultVoice = "Jackie";
 
     public static readonly Dictionary<Sex, string> DefaultSexVoice = new()
     {
-        { Sex.Male, "Zeus_dota_2" },
+        { Sex.Male, "Jackie" },
         { Sex.Female, "Lina_dota_2" },
-        { Sex.Unsexed, "Gman" },
-        { Sex.Futanari, "Lina_dota_2" }
+        { Sex.Unsexed, "Lambert" },
+        { Sex.Futanari, "Drow_ranger_dota_2" }
     };
     // Arcane-End
 
