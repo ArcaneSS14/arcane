@@ -3,13 +3,13 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Arcane.Leash;
 
 /// <summary>
-/// Динамический компонент, который добавляется сущности (игроку/питомцу), когда к ней привязывают поводок.
+/// A dynamic component that gets added to an entity when a leash is attached to it
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class LeashedComponent : Component
 {
     /// <summary>
-    /// Ссылка на сам предмет-поводок. Позволяет привязанному человеку знать, кто или что его держит.
+    /// Link to the item – leash
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public EntityUid? Leash;

@@ -3,25 +3,31 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Arcane.Leash;
 
 /// <summary>
-/// Компонент поводка
+/// Leash component
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class LeashComponent : Component
 {
     /// <summary>
-    /// Сущность к которой сейчас привязан поводок
+    /// The entity that the leash is currently attached to
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? AttachedEntity;
 
     /// <summary>
-    /// Максимальная дистанция поводка
+    /// Maximum leash distance
     /// </summary>
     [DataField]
     public float MaxDistance = 3.0f;
 
     /// <summary>
-    /// ID соединения
+    /// Breakaway distance with a margin
+    /// </summary>
+    public float SnapDistance => MaxDistance + 2.0f;
+    public float SnapDistanceSq => SnapDistance * SnapDistance;
+
+    /// <summary>
+    /// Connection ID
     /// </summary>
     [DataField]
     public string? JointId;

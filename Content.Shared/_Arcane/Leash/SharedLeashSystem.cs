@@ -11,8 +11,8 @@ using Robust.Shared.Physics.Components;
 namespace Content.Shared._Arcane.Leash;
 
 /// <summary>
-/// Общая система управления логикой поводка и ошейника.
-/// Отвечает за физическое привязывание сущностей, обработку контекстных действий и синхронизацию.
+/// General system for managing leash and collar logic
+/// Responsible for physically tying entities, handling contextual actions, and syncing
 /// </summary>
 public abstract class SharedLeashSystem : EntitySystem
 {
@@ -28,36 +28,36 @@ public abstract class SharedLeashSystem : EntitySystem
         SubscribeLocalEvent<LeashComponent, UseInHandEvent>(OnLeashUseInHand);
         SubscribeLocalEvent<LeashComponent, GetVerbsEvent<InteractionVerb>>(AddLeashVerbs);
         SubscribeLocalEvent<CollarComponent, GotUnequippedEvent>(OnCollarUnequipped);
-        // Удаление
+        // Deletion
         SubscribeLocalEvent<LeashComponent, ComponentShutdown>(OnLeashShutdown);
         SubscribeLocalEvent<LeashedComponent, ComponentShutdown>(OnLeashedShutdown);
     }
 
     /// <summary>
-    /// Отсоеденяет поводок при активации в руке
+    /// Detaches the leash when activated in hand
     /// </summary>
     private void OnLeashUseInHand(EntityUid uid, LeashComponent component, ref UseInHandEvent args)
     {
-        // Прекращаем выполнение, если событие уже обработано или поводок ни к кому не привязан
+        // We stop execution if the event has already been handled or the leash isn’t attached to anyone
         if (args.Handled || component.AttachedEntity == null)
             return;
 
-        // Попытка отсоединения поводка с указанием инициатора (User)
+        // Attempt to detach the leash indicating the initiator 
         if (TryDetachLeash(uid, component, user: args.User))
         {
-            args.Handled = true; // Помечаем событие как успешно завершенное
+            args.Handled = true; // Marking the event as successfully completed
         }
     }
 
     /// <summary>
-    /// Образует связь между поводком и ошейником при нажатии ЛКМ на цель
+    /// Forms a connection between the leash and the collar when you left-click on the target
     /// </summary>
     private void OnLeashAfterInteract(EntityUid uid, LeashComponent component, ref AfterInteractEvent args)
     {
         if (args.Handled || !args.CanReach || args.Target is not { } target)
             return;
 
-        // Если поводок уже привязан к другой цели, ничего не делаем
+        // If the leash is already tied to something else, we don't do anything
         if (component.AttachedEntity != null)
             return;
 
@@ -68,7 +68,7 @@ public abstract class SharedLeashSystem : EntitySystem
     }
 
     /// <summary>
-    /// Добавляет возможность Отвязать поводок в контекстное меню ПКМ взаимодействия
+    /// Adds the option to Unleash the leash in the right-click interaction menu
     /// </summary>
     private void AddLeashVerbs(EntityUid uid, LeashComponent component, GetVerbsEvent<InteractionVerb> args)
     {
@@ -87,7 +87,7 @@ public abstract class SharedLeashSystem : EntitySystem
     }
 
     /// <summary>
-    /// Разрывает связь если снять ошейник
+    /// Breaks the connection if you take off the collar
     /// </summary>
     private void OnCollarUnequipped(EntityUid uid, CollarComponent component, GotUnequippedEvent args)
     {
@@ -98,7 +98,7 @@ public abstract class SharedLeashSystem : EntitySystem
     }
 
     /// <summary>
-    /// При удалении поводка разрывает связь
+    /// When you remove the leash, it breaks the connection
     /// </summary>
     private void OnLeashShutdown(EntityUid uid, LeashComponent component, ComponentShutdown args)
     {
@@ -106,7 +106,7 @@ public abstract class SharedLeashSystem : EntitySystem
     }
 
     /// <summary>
-    /// При удалении привязаной сущности разрывает связь
+    /// When deleting a linked entity, it breaks the connection
     /// </summary>
     private void OnLeashedShutdown(EntityUid uid, LeashedComponent component, ComponentShutdown args)
     {
@@ -117,20 +117,20 @@ public abstract class SharedLeashSystem : EntitySystem
     }
 
     /// <summary>
-    /// Проверяет надет ли ошейник
+    /// Checks if there is a collar
     /// </summary>
     public bool TryGetEquippedCollar(EntityUid target, out EntityUid collarUid)
     {
         collarUid = default;
 
-        // Если объект - ошейник
+        // If the object is a collar
         if (HasComp<CollarComponent>(target))
         {
             collarUid = target;
             return true;
         }
 
-        // Если объект в слоту NECK на сущности
+        // If the object is in the NECK slot on the entity
         if (_inventorySystem.TryGetSlotEntity(target, "neck", out var neckItem) && HasComp<CollarComponent>(neckItem))
         {
             collarUid = neckItem.Value;
@@ -141,28 +141,28 @@ public abstract class SharedLeashSystem : EntitySystem
     }
 
     /// <summary>
-    /// Система привязки поводка с ошейником. Проверяет соблюдение условий
+    /// Leash attachment system with collar. Checks compliance with conditions
     /// </summary>
     public virtual bool TryAttachLeash(EntityUid leashUid, EntityUid userUid, EntityUid targetUid, LeashComponent? leash = null)
     {
         if (!Resolve(leashUid, ref leash))
             return false;
 
-        // Запрящяет привязать самого себя
+        // Forbids you from tying yourself up
         var targetEntity = targetUid;
         if (HasComp<CollarComponent>(targetUid) && _containerSystem.TryGetContainingContainer(targetUid, out var container))
         {
             targetEntity = container.Owner;
         }
 
-        // Не даём привязать себя
+        // We don't let ourselves get tied down
         if (userUid == targetEntity)
         {
             _popupSystem.PopupClient(Loc.GetString("leash-popup-self-attach"), userUid, userUid);
             return false;
         }
 
-        // Не даём привязать если нет ошейника
+        // We don’t let it be tied up if it doesn’t have a collar
         if (!HasComp<PhysicsComponent>(userUid) || !HasComp<PhysicsComponent>(targetEntity))
             return false;
 
@@ -172,28 +172,28 @@ public abstract class SharedLeashSystem : EntitySystem
             return false;
         }
 
-        // Не даем привязать если уже есть связь
+        // We don’t allow linking if there’s already a connection
         if (HasComp<LeashedComponent>(targetEntity))
         {
             _popupSystem.PopupClient(Loc.GetString("leash-popup-already-leashed"), userUid, userUid);
             return false;
         }
 
-        // Сохраняем ссылки и формируем уникальный ID для физического соединения
+        // We save the links and create a unique ID for the connection
         leash.AttachedEntity = targetEntity;
         leash.JointId = $"leash_{leashUid}_{targetEntity}";
 
         var leashedComp = EnsureComp<LeashedComponent>(targetEntity);
         leashedComp.Leash = leashUid;
 
-        // Попоут если привязали поводок
+        // Will whine if the leash is attached
         _popupSystem.PopupClient(Loc.GetString("leash-popup-attached"), userUid, userUid);
 
         return true;
     }
 
     /// <summary>
-    /// Удаление поводка
+    /// Removing the leash
     /// </summary>
     public virtual bool TryDetachLeash(EntityUid leashUid, LeashComponent? leash = null, EntityUid? user = null)
     {
@@ -206,7 +206,7 @@ public abstract class SharedLeashSystem : EntitySystem
         leash.JointId = null;
         leash.AttachedEntity = null;
 
-        // Удаление компонента LeashedComponent с привязанной сущности при разрыве связи
+        // Removing the LeashedComponent from the attached entity when the connection is broken
         if (LifeStage(target) < EntityLifeStage.Terminating)
         {
             RemCompDeferred<LeashedComponent>(target);

@@ -23,40 +23,13 @@ public sealed class LeashSystem : SharedLeashSystem
 
         SubscribeLocalEvent<LeashComponent, DroppedEvent>(OnLeashDropped);
         SubscribeLocalEvent<LeashComponent, EntGotInsertedIntoContainerMessage>(OnLeashContainerInserted);
-        // Телепортация
+        // Teleportation
         SubscribeLocalEvent<LeashComponent, MoveEvent>(OnLeashMove);
         SubscribeLocalEvent<LeashedComponent, MoveEvent>(OnLeashedMove);
     }
 
     /// <summary>
-    /// </summary>
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<LeashComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var leash, out var xform))
-        {
-            if (leash.AttachedEntity is not { } target)
-                continue;
-
-            if (!TryComp<TransformComponent>(target, out var targetXform))
-            {
-                TryDetachLeash(uid, leash);
-                continue;
-            }
-
-            if (xform.MapID != targetXform.MapID ||
-                Vector2.Distance(_transform.GetWorldPosition(xform), _transform.GetWorldPosition(targetXform)) > 5.0f)
-            {
-                TryDetachLeash(uid, leash);
-                _popupSystem.PopupEntity(Loc.GetString("leash-popup-snap"), target, target);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Перепривязка связи к поводку если тот выброшен
+    /// Reattaching the connection to the leash if it's been thrown away
     /// </summary>
     private void OnLeashDropped(EntityUid uid, LeashComponent component, ref DroppedEvent args)
     {
@@ -67,7 +40,7 @@ public sealed class LeashSystem : SharedLeashSystem
     }
 
     /// <summary>
-    /// Перемещение поводка в контейнер или в руку другого существа
+    /// Moving the leash into another creature's container or hand
     /// </summary>
     private void OnLeashContainerInserted(EntityUid uid, LeashComponent component, ref EntGotInsertedIntoContainerMessage args)
     {
@@ -76,14 +49,14 @@ public sealed class LeashSystem : SharedLeashSystem
 
         var containerOwner = args.Container.Owner;
 
-        // Если поводок передали
+        // If the leash has been handed over
         if (_handsSystem.IsHolding(containerOwner, uid, out _))
         {
             ReanchorJoint(uid, component, newAnchor: containerOwner);
         }
         else
         {
-            // Если поводок в контейнере
+            // If the leash is in the container
             var attached = component.AttachedEntity;
             TryDetachLeash(uid, component);
 
@@ -93,7 +66,7 @@ public sealed class LeashSystem : SharedLeashSystem
     }
 
     /// <summary>
-    /// Проверяет разрыв связи при перемещении поводка
+    /// Checks for a connection break when moving the lead
     /// </summary>
     private void OnLeashMove(EntityUid uid, LeashComponent component, ref MoveEvent args)
     {
@@ -104,7 +77,7 @@ public sealed class LeashSystem : SharedLeashSystem
     }
 
     /// <summary>
-    /// Проверяет разрыв связи при перемещении ошейника
+    /// Checks for connection break when moving the collar
     /// </summary>
     private void OnLeashedMove(EntityUid uid, LeashedComponent component, ref MoveEvent args)
     {
@@ -118,7 +91,7 @@ public sealed class LeashSystem : SharedLeashSystem
     }
 
     /// <summary>
-    /// Мгновенная проверка расстояния между объектами при любом их сдвиге
+    /// Instant distance check between objects with any of their shifts
     /// </summary>
     private void CheckTeleportOrDistance(EntityUid leashUid, LeashComponent leash, EntityUid targetUid)
     {
@@ -128,9 +101,9 @@ public sealed class LeashSystem : SharedLeashSystem
             return;
         }
 
-        // Если при телепортации сменилась карта или расстояние превысило предел — мгновенно рвем поводок
+        // If the map changes during teleportation or the distance exceeds the limit, we instantly break the leash
         if (leashXform.MapID != targetXform.MapID ||
-            Vector2.Distance(_transform.GetWorldPosition(leashXform), _transform.GetWorldPosition(targetXform)) > 5.0f)
+            Vector2.DistanceSquared(_transform.GetWorldPosition(leashXform), _transform.GetWorldPosition(targetXform)) > leash.SnapDistanceSq)
         {
             TryDetachLeash(leashUid, leash);
             _popupSystem.PopupEntity(Loc.GetString("leash-popup-snap"), targetUid, targetUid);
@@ -138,7 +111,7 @@ public sealed class LeashSystem : SharedLeashSystem
     }
 
     /// <summary>
-    /// Создание ограничения привязаной сущности
+    /// Creating a bound entity constraint
     /// </summary>
     private void ReanchorJoint(EntityUid leashUid, LeashComponent leash, EntityUid newAnchor)
     {
@@ -166,7 +139,7 @@ public sealed class LeashSystem : SharedLeashSystem
     }
 
     /// <summary>
-    /// Система привязки поводка с ошейником. Проверяет соблюдение условий
+    /// Leash attachment system with collar. Checks compliance with conditions
     /// </summary>
     public override bool TryAttachLeash(EntityUid leashUid, EntityUid userUid, EntityUid targetUid, LeashComponent? leash = null)
     {
@@ -176,7 +149,7 @@ public sealed class LeashSystem : SharedLeashSystem
         if (!Resolve(leashUid, ref leash) || leash.AttachedEntity is not { } targetEntity)
             return false;
 
-        // Серверная физика и синхронизация состояния компонентов
+        // Server physics and component state synchronization
         var joint = _jointSystem.CreateDistanceJoint(userUid, targetEntity, id: leash.JointId!);
         joint.MaxLength = leash.MaxDistance;
         joint.MinLength = 0f;
@@ -191,7 +164,7 @@ public sealed class LeashSystem : SharedLeashSystem
     }
 
     /// <summary>
-    /// Удаление поводка
+    /// Removing the leash
     /// </summary>
     public override bool TryDetachLeash(EntityUid leashUid, LeashComponent? leash = null, EntityUid? user = null)
     {
@@ -200,7 +173,7 @@ public sealed class LeashSystem : SharedLeashSystem
 
         var target = leash.AttachedEntity;
 
-        // Удаление физического соединения 
+        // Removing the connection
         if (leash.JointId != null && target != null)
         {
             _jointSystem.RemoveJoint(target.Value, leash.JointId);

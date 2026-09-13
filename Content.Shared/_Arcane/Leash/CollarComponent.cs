@@ -3,11 +3,10 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Arcane.Leash;
 
 /// <summary>
-/// Компонент ошейника. Позволяет привязывать LeashComponent к сущности, которая носит этот предмет.
+/// A collar component. Allows you to attach a LeashComponent to an entity that is wearing this item.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class CollarComponent : Component
 {
-    // В будущем сюда можно добавить кастомные звуки (например, звон бубенчика при ходьбе) 
-    // или специфичные взаимодействия, но пока он может быть пустым маркером.
+    // A place to add sounds to the collars. Empty for now
 }
