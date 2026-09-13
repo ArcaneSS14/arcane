@@ -88,14 +88,14 @@ public sealed partial class EventHorizonComponent : Component
     /// If true, the singularity cannot destroy containment fields (walls and generators) during the delay.
     /// </summary>
     [DataField("suppressFieldConsumption")]
-    public bool SuppressFieldConsumption;
+    public bool SuppressFieldConsumption = false;;
 
     /// <summary>
     /// The time when suppression will be lifted.
     /// </summary>
     [DataField("suppressFieldConsumptionUntil", customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
-    public TimeSpan SuppressFieldConsumptionUntil;
+    public TimeSpan SuppressFieldConsumptionUntil = TimeSpan.MaxValue;
     // Arcane-End
   
     #endregion Update Timing

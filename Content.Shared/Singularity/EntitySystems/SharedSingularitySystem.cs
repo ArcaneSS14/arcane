@@ -146,8 +146,8 @@ public abstract class SharedSingularitySystem : EntitySystem
 
         if (TryComp<PhysicsComponent>(uid, out var body))
         {
-            if (singularity.Level <= 1 && oldValue > 1)
-                _physics.SetLinearVelocity(uid, Vector2.Zero, body: body);
+            if (singularity.Level <= 1 && oldValue > 1) // Apparently keeps singularities from getting stuck in the corners of containment fields.
+                _physics.SetLinearVelocity(uid, Vector2.Zero, body: body); // No idea how stopping the singularities movement keeps it from getting stuck though.
         }
 
         if (TryComp<AppearanceComponent>(uid, out var appearance))

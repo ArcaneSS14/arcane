@@ -76,9 +76,9 @@ public sealed class ContainmentFieldSystem : EntitySystem
 
         if (distance > horizonRadius)
             args.Cancelled = true;
-        // Arcane - Edit - Start: Removed
+        // Arcane-Edit-Start
         // if (!args.Cancelled && !args.EventHorizon.CanBreachContainment)
         // args.Cancelled = true;
-        // Arcane - Edit - End: Removed
+        // Arcane-Edit-End
     }
 }
