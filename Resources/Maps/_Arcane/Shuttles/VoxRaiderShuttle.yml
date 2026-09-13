@@ -3,9 +3,9 @@ meta:
   category: Grid
   engineVersion: 270.1.0
   forkId: arcane
-  forkVersion: ddb7a251a81c8d0473de32187910052112392aa6
-  time: 09/09/2026 09:37:48
-  entityCount: 529
+  forkVersion: 784ff827fb6cc5a2aba3b43af42916ba4233fbbc
+  time: 09/11/2026 09:43:14
+  entityCount: 532
 maps: []
 grids:
 - 1
@@ -1693,6 +1693,28 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
       storage: 229
+- proto: ClothingHeadHatSurgcapBlue
+  entities:
+  - uid: 294
+    components:
+    - type: Transform
+      parent: 292
+    - type: Clothing
+      inSlot: head
+      inSlotFlag: HEAD
+    - type: Physics
+      canCollide: False
+- proto: ClothingOuterCoatLabOpened
+  entities:
+  - uid: 530
+    components:
+    - type: Transform
+      parent: 292
+    - type: Clothing
+      inSlot: outerClothing
+      inSlotFlag: OUTERCLOTHING
+    - type: Physics
+      canCollide: False
 - proto: ClothingShoesFakeJordans
   entities:
   - uid: 124
@@ -1700,16 +1722,19 @@ entities:
     - type: Transform
       pos: -2.1092212,-7.459155
       parent: 1
-- proto: computerBodyScanner
+- proto: ClothingUniformJumpsuitMedicalDoctor
   entities:
-  - uid: 232
+  - uid: 531
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,-0.5
-      parent: 1
-    - type: BodyScanner
-      operatingTable: 294
+      parent: 292
+    - type: SuitSensor
+      user: 292
+    - type: Clothing
+      inSlot: jumpsuit
+      inSlotFlag: INNERCLOTHING
+    - type: Physics
+      canCollide: False
 - proto: ComputerIFFSyndicate
   entities:
   - uid: 234
@@ -1824,6 +1849,14 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: FakeMindShieldImplanter
+  entities:
+  - uid: 287
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.1633663,5.45643
+      parent: 1
 - proto: FaxMachineBase
   entities:
   - uid: 237
@@ -1849,7 +1882,7 @@ entities:
       pos: -4.5,-3.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -9780.596
+      secondsUntilStateChange: -10176.589
       state: Opening
 - proto: FenceMetalStraight
   entities:
@@ -2172,6 +2205,13 @@ entities:
     - type: Transform
       pos: -5.614908,2.687024
       parent: 1
+- proto: HiddenFakeSpaceCash50000
+  entities:
+  - uid: 232
+    components:
+    - type: Transform
+      pos: 1.4957652,3.3517628
+      parent: 1
 - proto: HonkCoFlippo
   entities:
   - uid: 523
@@ -2198,6 +2238,51 @@ entities:
     - type: Transform
       pos: -1.5617311,-0.46096683
       parent: 1
+- proto: Mannequin
+  entities:
+  - uid: 292
+    components:
+    - type: Transform
+      pos: -5.5,-0.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        jumpsuit: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 531
+        outerClothing: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 530
+        neck: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        mask: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        eyes: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        head: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: 294
+        suitstorage: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+        back: !type:ContainerSlot
+          showEnts: False
+          occludes: False
+          ent: null
+    - type: Inventory
+      blockedSlotsList:
+      - UNDERSHIRT
+      - UNDERWEAR
 - proto: Mattress
   entities:
   - uid: 474
@@ -2263,18 +2348,11 @@ entities:
       parent: 1
 - proto: OperatingTableFilled
   entities:
-  - uid: 294
+  - uid: 532
     components:
     - type: Transform
       pos: -5.5,-1.5
       parent: 1
-    - type: OperatingTable
-      linkedScanner: 232
-    - type: DeviceLinkSource
-      linkedPorts:
-        232:
-        - - OperatingTable
-          - OperatingTableReceiver
 - proto: Paper
   entities:
   - uid: 295
