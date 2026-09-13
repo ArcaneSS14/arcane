@@ -88,12 +88,12 @@
       blue: !type:ItemSwitchState
         verb: blue
         sprite:
-          sprite: _Orion/Clothing/Head/Hats/whitee_blue_beret.rsi
+          sprite: _Orion/Clothing/Head/Hats/white_blue_beret.rsi
           state: blue-icon
       white: !type:ItemSwitchState
         verb: white
         sprite:
-          sprite: _Orion/Clothing/Head/Hats/whitee_blue_beret.rsi
+          sprite: _Orion/Clothing/Head/Hats/white_blue_beret.rsi
           state: white-icon
     # Arcane-End
 
