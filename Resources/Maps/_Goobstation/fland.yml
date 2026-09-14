@@ -90283,7 +90283,7 @@ entities:
     - type: Transform
       pos: -36.57214,64.58148
       parent: 2
-- proto: ChemDispenser
+- proto: EnergyChemDispenser
   entities:
   - uid: 14210
     components:
