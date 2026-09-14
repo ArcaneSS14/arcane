@@ -1495,3 +1495,14 @@ Entries:
   id: 119
   time: '2026-09-13T17:26:49.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/356
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Иконка переключения ТТСа рации будучи призраком работает.
+    - type: Add
+      message: КПБ, ЦИИ и Борги могут переключить слышимость частоты через действие.
+    - type: Add
+      message: Многие существа получили ТТС. Дракон, боты, пауки и обезьяны.
+  id: 120
+  time: '2026-09-14T06:11:02.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/353
