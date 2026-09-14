@@ -207,7 +207,12 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
         {
             if (blackboard.TryGetValue<EntityCoordinates>(TargetKey, out var targetCoords, _entManager))
             {
-                return HTNOperatorStatus.Finished;
+                var range = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);
+
+                if (xform.Coordinates.TryDistance(_entManager, targetCoords, out var distance) && distance <= range)
+                    return HTNOperatorStatus.Finished;
+
+                return HTNOperatorStatus.Failed;
             }
         }
         // Arcane-End

@@ -45,7 +45,7 @@ public abstract class SharedMorphSystem : EntitySystem
         if (!TryComp<TransformComponent>(actor, out var transform))
             return;
 
-        var targetUid = Spawn(arg.PrototypeId, transform.Coordinates);
+        var targetUid = EntityManager.CreateEntityUninitialized(arg.PrototypeId, transform.Coordinates);
 
         if (!targetUid.IsValid())
             return;

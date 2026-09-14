@@ -16,6 +16,8 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Coordinates;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Hands.EntitySystems;
@@ -50,6 +52,7 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly SharedChargesSystem _charges = default!; // Arcane
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
@@ -675,27 +678,10 @@ public sealed partial class PolymorphSystem : EntitySystem
                 Dirty(actionId, destAction);
             }
 
-            var chargesReflCache = new Dictionary<Type, (System.Reflection.MemberInfo? Charges, System.Reflection.MemberInfo? Update)>();
-
-            foreach (var sourceComp in EntityManager.GetComponents(sourceActionId))
+            if (TryComp<LimitedChargesComponent>(sourceActionId, out var sourceCharges) &&
+                TryComp<LimitedChargesComponent>(actionId, out var destCharges))
             {
-                var compType = sourceComp.GetType();
-
-                if (!chargesReflCache.TryGetValue(compType, out var cachedRefl))
-                {
-                    cachedRefl = (FindMemberInfo(compType, "LastCharges"), FindMemberInfo(compType, "LastUpdate"));
-                    chargesReflCache[compType] = cachedRefl;
-                }
-
-                if (!EntityManager.TryGetComponent(actionId, compType, out var destActionComp))
-                    continue;
-
-                var copied = false;
-                copied |= CopyMember(cachedRefl.Charges, sourceComp, destActionComp);
-                copied |= CopyMember(cachedRefl.Update, sourceComp, destActionComp);
-
-                if (copied)
-                    Dirty(actionId, destActionComp);
+                _charges.CopyChargesState((sourceActionId, sourceCharges), (actionId, destCharges));
             }
         }
     }
@@ -711,26 +697,6 @@ public sealed partial class PolymorphSystem : EntitySystem
             return $"proto:{meta.EntityPrototype.ID}";
 
         return $"action:{actionId}";
-    }
-
-    private static System.Reflection.MemberInfo? FindMemberInfo(Type compType, string name)
-        => (System.Reflection.MemberInfo?) compType.GetProperty(name) ?? compType.GetField(name);
-
-    private static bool CopyMember(System.Reflection.MemberInfo? member, object source, object dest)
-    {
-        if (member is System.Reflection.PropertyInfo prop && prop.CanRead && prop.CanWrite)
-        {
-            prop.SetValue(dest, prop.GetValue(source));
-            return true;
-        }
-
-        if (member is System.Reflection.FieldInfo field)
-        {
-            field.SetValue(dest, field.GetValue(source));
-            return true;
-        }
-
-        return false;
     }
     // Arcane-End
 }
