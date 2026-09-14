@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Space Station 14" width="700" src="https://media.discordapp.net/attachments/1508949497563316436/1508950573179998389/argane_logo.png?ex=6a2fcafb&is=6a2e797b&hm=e38889db1882ed97f2abc670af9bb4c85035504b68ccf3d42ecc070e4ecc91fe&=&format=webp&quality=lossless&width=1768&height=511" />
+  <img alt="Space Station 14" width="500" height="145" src="https://github.com/user-attachments/assets/082b7cc8-5930-40ff-8bfa-9c2d36f6d1fb" />
 </p>
 
 <p align="center">

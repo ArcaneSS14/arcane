@@ -9,6 +9,7 @@
   defaultSkinTone: "#b8b8b8"
   markingLimits: MobSlimeMarkingLimits
   dollPrototype: MobSlimePersonDummy
+  customName: true # Arcane
   skinColoration: Hues
   # Orion-Start
   category: Classic

@@ -1342,3 +1342,167 @@ Entries:
       https://github.com/user-attachments/assets/ce272c5f-e659-4779-9c1f-a1de41f579f0
     - >-
       https://github.com/user-attachments/assets/3e48769b-e305-4ef0-94bb-1f0f0bc18deb
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Арахниды - режущий -20%, тепловой +25%; иммунитет к яду.
+    - type: Tweak
+      message: Дионы - тупой -30%, режущий -20%; тепловой +50%, электрический +40%.
+    - type: Tweak
+      message: Дворфы - тупой и режущий -20%; тепловой +25%.
+    - type: Tweak
+      message: Люди - входящий урон +5%.
+    - type: Tweak
+      message: Моли - режущий -20%, холодовой -30%; колющий и тепловой +20%.
+    - type: Tweak
+      message: Рептилии - режущий -30%; колющий +25%, холодовой +30%.
+    - type: Tweak
+      message: >-
+        Слаймолюды - тупой -40%, колющий -25%, ядовитый -20%; режущий +25%,
+        холодовой +50%.
+    - type: Tweak
+      message: Воксы - тепловой -25%, едкий -40%; режущий и колющий +20%.
+    - type: Tweak
+      message: >-
+        Гидракины - тупой -20%, колющий -25%; режущий и тепловой +25%; холодовой
+        -100%, кроме переохлаждения.
+    - type: Tweak
+      message: Таяры - колющий -20%, холодовой -30%; тупой, режущий и тепловой +20%.
+    - type: Tweak
+      message: >-
+        Йови - тупой, режущий и колющий -25%; холодовой, радиационный и
+        кровопотеря -20%, ядовитый -90%; тепловой +30%.
+    - type: Tweak
+      message: >-
+        Резоми - колющий -25%; тупой и режущий +25%, тепловой +30%; иммунитет к
+        холоду.
+    - type: Tweak
+      message: >-
+        КПБ - тупой, режущий, колющий и ионный -20%, радиационный -60%; тепловой
+        +70%, электрический +100%.
+    - type: Tweak
+      message: >-
+        Плазмамены - режущий и ядовитый -20%, колющий -40%; тупой и тепловой
+        +50%; иммунитет к холоду, радиации и кровопотере.
+    - type: Tweak
+      message: >-
+        Тенелюды - режущий -25%, удушье -50%; тупой и колющий +25%, тепловой
+        +40%.
+    - type: Tweak
+      message: >-
+        Хитиниды - тупой, режущий и колющий -20%, радиационный -80%; холодовой
+        +20%, тепловой и электрический +25%.
+    - type: Tweak
+      message: Ферокси - тупой и тепловой -20%, холодовой -25%; режущий +20%.
+    - type: Tweak
+      message: >-
+        Гарпии - тепловой -25%, электрический -40%; тупой, режущий и колющий
+        +25%.
+    - type: Tweak
+      message: Грызуны - колющий -20%, ядовитый -40%; тупой и режущий +25%.
+    - type: Tweak
+      message: Вульпканины - режущий и холодовой -20%; тепловой +30%.
+    - type: Tweak
+      message: >-
+        Демоны - тепловой -20%, холодовой -15%; тупой и режущий +20%, святой
+        +50%.
+    - type: Tweak
+      message: >-
+        Гуманоидные ксеноморфы - колющий -15%; тупой, режущий и холодовой +20%,
+        тепловой +25%, электрический +30%.
+    - type: Tweak
+      message: Фелиниды - тупой -25%, режущий -20%; колющий +25%.
+    - type: Tweak
+      message: Они - тупой и режущий -20%; колющий +20%.
+  id: 112
+  time: '2026-09-12T21:41:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/351
+- author: HappyRoach
+  changes:
+    - type: Tweak
+      message: Терминал прибытия был полностью перестроен
+  id: 113
+  time: '2026-09-13T05:08:51.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/350
+  media:
+    - >-
+      https://github.com/user-attachments/assets/29ee4323-ba3c-4615-8299-dba6b2241e8f
+- author: 0RK
+  changes:
+    - type: Add
+      message: 'Добавлена новая черта: лисья натура'
+  id: 114
+  time: '2026-09-13T05:12:00.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/318
+  media:
+    - >-
+      https://github.com/user-attachments/assets/32178d5e-2534-49c7-92cd-698e25b94934
+    - >-
+      https://github.com/user-attachments/assets/942145bf-2104-404c-836c-884a63af0f41
+- author: Hero_010
+  changes:
+    - type: Add
+      message: Добавлено множество новой одежды для дрессмата.
+  id: 115
+  time: '2026-09-13T13:54:31.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/328
+- author: 0RK
+  changes:
+    - type: Add
+      message: Добавлен поводок и ошейник в сборку и в лавмат
+    - type: Add
+      message: 'Добавлен система связывания поводка и ошейника '
+  id: 116
+  time: '2026-09-13T14:45:29.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/348
+  media:
+    - >-
+      https://github.com/user-attachments/assets/245fff12-43e2-46b8-a9ce-654ac6e31fe1
+    - >-
+      https://github.com/user-attachments/assets/8c7732ab-0f8b-4cb4-82b9-504af3b59537
+    - >-
+      https://github.com/user-attachments/assets/80342187-866e-458d-b9f8-9ebb137357fd
+- author: alfapr0
+  changes:
+    - type: Tweak
+      message: Шаттл воксов налётчиков перестроен.
+  id: 117
+  time: '2026-09-13T14:47:18.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/332
+  media:
+    - >-
+      https://github.com/user-attachments/assets/da2893fd-6315-43a0-9a85-e855a50d8726
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлена возможность ставить многим расам кастомные названия расы.
+  id: 118
+  time: '2026-09-13T16:56:16.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/347
+  media:
+    - >-
+      https://github.com/user-attachments/assets/35a4c912-0411-4cba-a62f-ea1b1a7c2f1c
+    - >-
+      https://github.com/user-attachments/assets/03af34f3-e3d9-45b1-96a2-6a1db88bc91f
+    - >-
+      https://github.com/user-attachments/assets/9c7a7d69-5b10-4bb2-b9dd-685b498417a6
+    - >-
+      https://github.com/user-attachments/assets/64e824e7-70dd-430d-8c04-046b9c2f536e
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Апстрим 13/09/26
+  id: 119
+  time: '2026-09-13T17:26:49.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/356
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Иконка переключения ТТСа рации будучи призраком работает.
+    - type: Add
+      message: КПБ, ЦИИ и Борги могут переключить слышимость частоты через действие.
+    - type: Add
+      message: Многие существа получили ТТС. Дракон, боты, пауки и обезьяны.
+  id: 120
+  time: '2026-09-14T06:11:02.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/353
