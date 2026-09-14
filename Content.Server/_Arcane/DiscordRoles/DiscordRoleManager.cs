@@ -30,6 +30,20 @@ public sealed class DiscordRoleManager : IPostInjectInit, ISharedDiscordRoleMana
                (_roleOverrides.TryGetValue(session.UserId, out var overrides) && overrides.Contains(role));
     }
 
+    public bool HasAnyRole(ICommonSession session, HashSet<DiscordRole> roles)
+    {
+        if (!_roles.TryGetValue(session.UserId, out var cached))
+            return false;
+
+        if (cached.Overlaps(roles))
+            return true;
+
+        if (_roleOverrides.TryGetValue(session.UserId, out var overrides) && overrides.Overlaps(roles))
+            return true;
+
+        return false;
+    }
+
     public async Task<bool> HasRole(NetUserId player, DiscordRole role, CancellationToken cancel)
     {
         return _roleIds.TryGetId(role, out var roleId) &&
