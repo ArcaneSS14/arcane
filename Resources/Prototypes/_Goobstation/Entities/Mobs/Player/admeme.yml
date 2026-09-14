@@ -54,7 +54,7 @@
   id: NavyOfficer
   parent: CentcommHumanoid
   randomizeName: false
-  speciesWhitelist: Human # Orion
+  speciesWhitelist: Human # Arcane
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, StypticStimulatorImplant]
@@ -95,7 +95,7 @@
   id: NavyCaptain
   parent: CentcommHumanoid
   randomizeName: false
-  speciesWhitelist: Human # Orion
+  speciesWhitelist: Human # Arcane
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant]
@@ -136,7 +136,7 @@
   id: NavyOfficerUndercover
   parent: CentcommHumanoid
   randomizeName: false
-  speciesWhitelist: Human # Orion
+  speciesWhitelist: Human # Arcane
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant]
@@ -177,7 +177,7 @@
   id: SpecialOperationsOfficer
   parent: CentcommHumanoid
   randomizeName: false
-  speciesWhitelist: Human # Orion
+  speciesWhitelist: Human # Arcane
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant]
@@ -218,7 +218,7 @@
   id: DiplomatGear
   parent: CentcommHumanoid
   randomizeName: false
-  speciesWhitelist: Human # Orion
+  speciesWhitelist: Human # Arcane
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant]
@@ -259,7 +259,7 @@
   id: InspectorGear
   parent: CentcommHumanoid
   randomizeName: false
-  speciesWhitelist: Human # Orion
+  speciesWhitelist: Human # Arcane
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant]
