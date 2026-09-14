@@ -1,0 +1,8 @@
+- type: entity
+  abstract: true
+  id: PartDwarf
+  components:
+  - type: BodyPart
+    species: Dwarf
+  - type: Damageable
+    damageModifierSet: Dwarf

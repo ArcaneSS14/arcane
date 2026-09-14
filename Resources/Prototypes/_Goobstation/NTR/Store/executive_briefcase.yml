@@ -19,6 +19,7 @@
     key: enum.StoreUiKey.Key
   - type: Store
     ownerOnly: false # me when NTR cryos and the next one cant do anything
+    blockMindShield: false
     balance:
       NTLoyaltyPoint: 0
   - type: Tag
@@ -100,7 +101,7 @@
 
 - type: storeCategory
   id: NTREvil
-  name: ntr-executive-tier-4-name # CorvaxGoob-changes: Evil > ntr-executive-tier-4-name 
+  name: ntr-executive-tier-4-name # CorvaxGoob-changes: Evil > ntr-executive-tier-4-name
   priority: 3
   evil: true # lol
 

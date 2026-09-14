@@ -33,6 +33,7 @@ using Content.Shared._Orion.CorticalBorer;
 using Content.Shared._Orion.CorticalBorer.Components;
 using Content.Shared._Shitmed.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
+using Content.Shared.Ghost;
 
 namespace Content.Shared._Shitmed.Medical.Surgery;
 
@@ -143,6 +144,7 @@ public abstract partial class SharedSurgerySystem
 
         if (!_ignoreQuery.HasComp(args.User)
             && !_ignoreQuery.HasComp(args.Tool)
+            && !(TryComp<GhostComponent>(args.User, out var ghost) && ghost.CanGhostInteract) // Arcane: aghosts bypass clothing
             && _inventory.TryGetContainerSlotEnumerator(args.Body, out var containerSlotEnumerator, args.TargetSlots))
         {
             while (containerSlotEnumerator.MoveNext(out var containerSlot))
@@ -909,7 +911,7 @@ public abstract partial class SharedSurgerySystem
         _rotateToFace.TryFaceCoordinates(user, _transform.GetMapCoordinates(body).Position);
 
         // We need to check for nullability because of surgeries that dont require a tool, like Cavity Implants
-        var speed = data?.Speed ?? 1f;
+        var speed = data?.Speed ?? 0.5f; // Arcane-Edit: 1 -> 0.5
         var toolUsed = data?.Used ?? false; // if no tool is being used you can't consume it
         var ev = new SurgeryDoAfterEvent(surgeryId, stepId, toolUsed);
         var duration = GetSurgeryDuration(step, user, body, speed);

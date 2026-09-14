@@ -1,6 +1,7 @@
 using Content.Shared.Alert;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
@@ -153,6 +154,11 @@ public abstract class SharedInternalsSystem : EntitySystem
     {
         if (args.Handled)
             return;
+
+        // Arcane-Start
+        if (HasComp<SleepingComponent>(ent))
+            return;
+        // Arcane-End
 
         args.Handled |= ToggleInternals(ent, ent, false, internals: ent.Comp);
     }

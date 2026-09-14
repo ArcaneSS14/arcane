@@ -66,6 +66,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
     private readonly JoinQueueState<ICommonSession> _queue = new();
     private readonly JoinQueueLimitBypassState<ICommonSession> _limitBypasses = new();
     // Arcane-edit-start
+    private readonly Dictionary<NetUserId, RejoinRecord> _rejoinTimes = new();
     private readonly Dictionary<NetUserId, ConnectedSessionRecord> _connectedSessions = new();
     private readonly Dictionary<NetUserId, ICommonSession> _pendingAdmissions = new();
     private readonly Dictionary<NetUserId, Dictionary<QueueMiniGameKind, MiniGameScoreState>> _miniGameScores = new();
@@ -124,6 +125,21 @@ public sealed class JoinQueueManager : IJoinQueueManager
     {
         if (!_isEnabled || PlayerInQueueCount == 0)
             return;
+
+        var expiredRejoin = false;
+        var now = _gameTiming.RealTime;
+        foreach (var (userId, rejoin) in _rejoinTimes)
+        {
+            if (rejoin.ExpiresAt >= now)
+                continue;
+
+            _rejoinTimes.Remove(userId);
+            expiredRejoin = true;
+        }
+
+        if (expiredRejoin)
+            ProcessQueue();
+
 
         _infoRefreshTimer += frameTime;
 
@@ -219,6 +235,13 @@ public sealed class JoinQueueManager : IJoinQueueManager
     {
         if (e.NewStatus == SessionStatus.Disconnected)
         {
+            if (e.OldStatus == SessionStatus.InGame)
+            {
+                _rejoinTimes[e.Session.UserId] = new RejoinRecord(
+                    _gameTiming.RealTime + TimeSpan.FromSeconds(30),
+                    CountsTowardsPlayerLimit(e.Session) && !_limitBypasses.Contains(e.Session.UserId, e.Session));
+            }
+
             var removedSessionState = false;
             if (_connectedSessions.TryGetValue(e.Session.UserId, out var connected) &&
                 ReferenceEquals(connected.Session, e.Session))
@@ -275,10 +298,13 @@ public sealed class JoinQueueManager : IJoinQueueManager
 
             _limitBypasses.Remove(e.Session.UserId);
 
+            var isRejoining = _rejoinTimes.Remove(e.Session.UserId, out var rejoin) && now <= rejoin.ExpiresAt;
             _connectedSessions[e.Session.UserId] = new ConnectedSessionRecord(
                 e.Session,
                 _nextQueueOrder++,
-                now);
+                now,
+                isRejoining,
+                isRejoining && rejoin.ReservesSlot);
 
             if (!_isEnabled)
                 TrySendToGame(e.Session);
@@ -395,6 +421,13 @@ public sealed class JoinQueueManager : IJoinQueueManager
             return;
         }
 
+        if (connected.IsRejoining)
+        {
+            TrySendToGame(session);
+            ProcessQueue();
+            return;
+        }
+
         var isPriority = _linkAccount.GetPatron(session)?.Tier != null;
 
         var entry = new JoinQueueState<ICommonSession>.Entry(
@@ -469,10 +502,16 @@ public sealed class JoinQueueManager : IJoinQueueManager
         var adminsCountTowardsLimit = _configuration.GetCVar(CCVars.AdminsCountForMaxPlayers);
         var players = 0;
 
+        foreach (var rejoin in _rejoinTimes.Values)
+        {
+            if (rejoin.ReservesSlot && rejoin.ExpiresAt >= _gameTiming.RealTime)
+                players++;
+        }
+
         foreach (var session in _player.Sessions)
         {
             if (ReferenceEquals(session, excludedSession) ||
-                !IsAdmittedSession(session) ||
+                !(IsAdmittedSession(session) || HasReservedSlot(session)) ||
                 _limitBypasses.Contains(session.UserId, session) ||
                 !adminsCountTowardsLimit && _adminManager.IsAdmin(session))
             {
@@ -483,6 +522,12 @@ public sealed class JoinQueueManager : IJoinQueueManager
         }
 
         return players;
+    }
+
+    private bool HasReservedSlot(ICommonSession session)
+    {
+        return _connectedSessions.TryGetValue(session.UserId, out var connected) &&
+               ReferenceEquals(connected.Session, session) && connected.ReservesSlot;
     }
 
     private bool IsAdmittedSession(ICommonSession session)
@@ -769,7 +814,9 @@ public sealed class JoinQueueManager : IJoinQueueManager
     }
 
     // Arcane-edit-start
-    private sealed record ConnectedSessionRecord(ICommonSession Session, long Order, TimeSpan ConnectedAt);
+    private sealed record ConnectedSessionRecord(ICommonSession Session, long Order, TimeSpan ConnectedAt, bool IsRejoining, bool ReservesSlot);
+
+    private readonly record struct RejoinRecord(TimeSpan ExpiresAt, bool ReservesSlot);
 
     private readonly record struct MiniGameScoreState(int Score, TimeSpan LastUpdateTime);
 

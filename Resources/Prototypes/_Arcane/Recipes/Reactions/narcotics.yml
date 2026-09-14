@@ -9,3 +9,39 @@
       amount: 1
   products:
     Dopamine: 3
+
+- type: reaction
+  id: Faoli
+  reactants:
+    Aluite:
+      amount: 1
+    Blood:
+      amount: 1
+    Phenol:
+      amount: 1
+  products:
+    Faoli: 3
+
+- type: reaction
+  id: UnstableFaoli
+  impact: Low
+  minTemp: 600
+  reactants:
+    Faoli:
+      amount: 1
+    Vestine:
+      amount: 1
+  products:
+    UnstableFaoli: 2
+
+- type: reaction
+  id: PhasedFaoli
+  impact: Low
+  maxTemp: 100
+  reactants:
+    Faoli:
+      amount: 1
+    Vestine:
+      amount: 1
+  products:
+    PhasedFaoli: 2

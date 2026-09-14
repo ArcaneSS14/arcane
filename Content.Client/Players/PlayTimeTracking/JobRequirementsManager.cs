@@ -202,7 +202,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             return false;
         }
 
-        if (_discordRoles.HasRole(session, DiscordRole.SponsorTier2))
+        if (_discordRoles.HasAnyRole(session, new HashSet<DiscordRole> { DiscordRole.SponsorTier2, DiscordRole.AdminBenefit }))
             return true;
         // Arcane-Edit-End
 

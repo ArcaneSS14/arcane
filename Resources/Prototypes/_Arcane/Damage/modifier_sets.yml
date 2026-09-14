@@ -5,16 +5,41 @@
     Cold: 1.2
     Heat: 1.25
     Shock: 1.3
-    Blunt: 1.1
-    Slash: 1.1
+    Blunt: 1.2
+    Slash: 1.2
 
 - type: damageModifierSet
   id: DemonArcana
   coefficients:
-    Piercing: 1.0
-    Cold: 1.2
-    Heat: 0.6
-    Shock: 1.0
-    Blunt: 1.0
-    Slash: 1.0
+    Cold: 0.85
+    Heat: 0.80
+    Slash: 1.2
+    Blunt: 1.2
     Holy: 1.5
+
+- type: damageModifierSet
+  id: Human
+  coefficients:
+    Asphyxiation: 1.05
+    Bloodloss: 1.05
+    Blunt: 1.05
+    Cellular: 1.05
+    Caustic: 1.05
+    Cold: 1.05
+    Heat: 1.05
+    Holy: 1.05
+    Ion: 1.05
+    Piercing: 1.05
+    Poison: 1.05
+    Radiation: 1.05
+    Shock: 1.05
+    Slash: 1.05
+  ignoreArmorPierceFlags: All
+
+- type: damageModifierSet
+  id: Dwarf
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.8
+    Heat: 1.25
+  ignoreArmorPierceFlags: All

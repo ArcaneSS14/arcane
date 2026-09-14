@@ -37,6 +37,10 @@ marking-VulpEarFennec = Vulpkanin Fennec
 
 marking-VulpEarFox-fox = Fox ears
 marking-VulpEarFox = Vulpkanin Fox
+# Arcane-Start
+marking-VulpEarFox-fox-inner = Fox ears (inner)
+marking-VulpEarFox-fox-tips =  Fox ears (tips)
+# Arcane-End
 
 marking-VulpEarOtie-otie = Otie ears (base)
 marking-VulpEarOtie-otie-inner = Otie ears (inner)

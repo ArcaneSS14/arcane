@@ -11,6 +11,7 @@
       components:
       - Zombie
       - ZombieBlob
+  - type: MechVoice # Arcane
   - type: MechAir
   - type: AirFilter
     # everything except oxygen and nitrogen

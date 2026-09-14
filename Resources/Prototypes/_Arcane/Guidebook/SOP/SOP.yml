@@ -1,4 +1,13 @@
 - type: guideEntry
+  id: Acts
+  name: guide-entry-acts
+  priority: 1
+  text: "/ServerInfo/_Arcane/Guidebook/SOP/Acts.xml"
+  children:
+    - SpaceLaw
+    - SOP
+
+- type: guideEntry
   id: SOP
   name: guide-entry-sop
   priority: 2

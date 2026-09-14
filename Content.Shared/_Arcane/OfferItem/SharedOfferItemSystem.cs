@@ -110,12 +110,9 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
         if (offerItem.Item == null)
             return;
 
-        _popup.PopupPredicted(Loc.GetString("offer-item-try-give",
-            ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
-            ("target", Identity.Entity(uid, EntityManager))), component.Target.Value, component.Target.Value);
-        _popup.PopupClient(Loc.GetString("offer-item-try-give-target",
-            ("user", Identity.Entity(component.Target.Value, EntityManager)),
-            ("item", Identity.Entity(offerItem.Item.Value, EntityManager))), component.Target.Value, uid);
+        _popup.PopupEntity(Loc.GetString("offer-item-try-give-target",
+            ("user", Identity.Entity(args.User, EntityManager)),
+            ("item", Identity.Entity(offerItem.Item.Value, EntityManager))), uid, uid, PopupType.MediumGreen);
 
         args.Handled = true;
     }

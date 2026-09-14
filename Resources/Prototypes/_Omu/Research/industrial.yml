@@ -1,0 +1,20 @@
+- type: technology
+  id: AdvancedEmitters
+  name: research-technology-advanced-emitters
+  description: research-technology-advanced-emitters-description # Arcane
+  icon:
+    sprite: _Omu/Objects/Tools/diodedisc.rsi
+    state: icon
+  discipline: Engineering # Arcane-Edit
+  tier: 1
+  # Arcane-Edit-Start
+  pointCosts:
+  - type: General
+    amount: 3000
+  # Arcane-Edit-End
+  recipeUnlocks:
+  - DiodeDiscElectroDisruptive
+  - DiodeDiscElectroBehavioural
+  position: -1,-2
+  technologyPrerequisites:
+  - PlasmaControl # Arcane-Edit

@@ -1,0 +1,207 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ActionCantripCandlelight
+  name: Candlelight
+  description: Summons a luminous orb. Cost 15.
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Arcane/Actions/cantrips.rsi
+      state: light
+  - type: InstantAction
+    event: !type:SpawnnItemInHandEvent
+      prototype: MagicLuminousOrb
+      cost: 15
+      timedDespawn: 120
+      sound:
+        collection: Snaps
+
+- type: entity
+  parent: BaseAction
+  id: ActionMagicMop
+  name: Mystic mop
+  description: Summons a mop. Cost 15.
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Arcane/Actions/cantrips.rsi
+      state: mop
+  - type: InstantAction
+    event: !type:SpawnnItemInHandEvent
+      prototype: MagicMop
+      cost: 15
+      timedDespawn: 45
+      sound:
+        collection: Snaps
+
+- type: entity
+  parent: BaseAction
+  id: ActionDarkPergament
+  name: dark pergament
+  description: Summons paper. Cost 10.
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Arcane/Actions/cantrips.rsi
+      state: paper
+  - type: InstantAction
+    event: !type:SpawnnItemInHandEvent
+      prototype: EtherealPaper
+      force: false
+      unremovable: false
+      deleteOnDrop: false
+      cost: 10
+      sound:
+        collection: Snaps
+
+- type: entity
+  parent: BaseAction
+  id: ActionMagicEmber
+  name: Ember
+  description: Summons a weak source of fire. Cost 15.
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Arcane/Actions/cantrips.rsi
+      state: ember
+  - type: InstantAction
+    event: !type:SpawnnItemInHandEvent
+      prototype: MagicEmber
+      cost: 15
+      timedDespawn: 30
+      sound:
+        collection: Snaps
+
+- type: entity
+  parent: BaseAction
+  id: ActionTouchOfLife
+  name: touch of life
+  description: Accelerate the natural regeneration of a living being. Cost 25.
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Arcane/Actions/cantrips.rsi
+      state: life
+  - type: TargetAction
+    range: 2
+    interactOnMiss: false
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - PassiveDamage
+    event: !type:BurstRegenerationEvent
+      cost: 25
+      multiply: 750
+      sound:
+        collection: ClapSingle
+
+- type: entity
+  parent: BaseAction
+  id: ActionFaoliMessage
+  name: message
+  description: Sends a silent whisper message directly into the target's mind. Cost 5.
+  components:
+  - type: Action
+    useDelay: 2
+    itemIconStyle: NoItem
+    checkCanInteract: false
+    icon:
+      sprite: _Arcane/Actions/cantrips.rsi
+      state: message
+  - type: TargetAction
+    range: 12
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+    event: !type:DemonicMessageEvent
+      cost: 5
+
+- type: entity
+  parent: BaseAction
+  id: ActionFaoliElectrification
+  name: faoli electrification
+  description: Converts faoli into electricity. Cost 35.
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Arcane/Actions/cantrips.rsi
+      state: recharge
+  - type: TargetAction
+    range: 3
+    interactOnMiss: false
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Battery
+    event: !type:TouchChangeEnergy
+      cost: 35
+      amount: 50
+      sound:
+        path: /Audio/Machines/airlock_electrify_on.ogg
+
+- type: entity
+  parent: BaseAction
+  id: ActionTemperatureReset
+  name: temperature reset
+  description: Rapidly reduces the target's temperature. Cost 25.
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Arcane/Actions/cantrips.rsi
+      state: temperature
+  - type: TargetAction
+    range: 3
+    interactOnMiss: false
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Temperature
+    event: !type:TouchChangeTemperatureEvent
+      cost: 25
+      ignoreResistance: true
+      heat: -100000
+      sound:
+        path: /Audio/_Goobstation/Heretic/voidblink.ogg
+
+- type: entity
+  parent: BaseAction
+  id: ActionFaoliTranser
+  name: Transfer Faoli
+  description: Transfers faoli energy to another being. Cost 25.
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Arcane/Actions/cantrips.rsi
+      state: faoli
+  - type: TargetAction
+    range: 1.5
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - Faoli
+    event: !type:TransfetFaoliEvent
+      cost: 5
+      amount: 20
+      sound:
+        path: /Audio/_Goobstation/Wizard/swap.ogg

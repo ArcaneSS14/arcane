@@ -1560,6 +1560,7 @@
     - VimPilot
     - DoorBumpOpener
     - AnomalyHost
+    - XenobioSlimeFavoriteFood # Goobstation
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -1582,6 +1583,7 @@
   - type: Crawler
   - type: StatusIcon
   - type: DiseaseCarrier # Goobstation
+  - type: XenovacTarget # Goobstation - Xenobio
 
 - type: entity
   name: monkey
@@ -2852,6 +2854,10 @@
     color: "#808080"
     activateSound: null
     deactivateSound: null
+  # Arcane-Start
+  - type: TTS
+    voice: Broodmother_dota_2
+  # Arcane-End
 
 - type: entity
   parent: MobSpiderBase

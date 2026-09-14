@@ -49,12 +49,10 @@
             ]
         },
         {
-            "name": "open",
-            "delays": [
-                [
-                    1
-                ]
-            ]
+            "name": "open"
+        },
+        {
+            "name": "open_unlit"
         },
         {
             "name": "opening",

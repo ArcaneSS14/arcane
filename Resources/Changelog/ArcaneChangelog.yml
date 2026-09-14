@@ -956,3 +956,553 @@ Entries:
   id: 79
   time: '2026-09-04T06:42:01.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/296
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Апстрим!!!
+    - type: Tweak
+      message: >-
+        Очищены губовские системы блокировки активации кода угрозы от щиткода.
+        Триггер заменён на "Красный код".
+    - type: Tweak
+      message: >-
+        В консоли связи "Красный код" может быть инициирован Капитаном, ГСБ или
+        ЦК через Alt-клик или ПКМ. Подтвердить активацию может любая личность в
+        течении 10 секунд с командным доступом через Alt-клик или ПКМ.
+    - type: Tweak
+      message: >-
+        Красный код автоматически разблокируется при объявлении ксеноморфов,
+        войны и вознесении еретика, тенеморфа, маньяка.
+    - type: Tweak
+      message: >-
+        Полная актуализация и переработка гайдбука с информацией об уровнях
+        угроз, кроме условий антагонистов.
+    - type: Tweak
+      message: >-
+        Полная переработка объявлений смены кода. Более без никакой воды и
+        лишней информации.
+    - type: Fix
+      message: Тестов
+  id: 80
+  time: '2026-09-06T14:19:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/304
+- author: badjuju
+  changes:
+    - type: Tweak
+      message: Абдукторы теперь не так часто будут прилетать на станцию
+  id: 81
+  time: '2026-09-06T14:21:27.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/301
+- author: 18egor05
+  changes:
+    - type: Tweak
+      message: Порезаны множители урона у зомби. Теперь они не состоят из ваты
+    - type: Tweak
+      message: Симплмобов (макаки, питомцы, прочее) снова можно заражать
+  id: 82
+  time: '2026-09-06T14:24:07.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/298
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: Для КПБ добавлены новые хвосты.
+  id: 83
+  time: '2026-09-06T15:30:35.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/303
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: >-
+        Операция теперь проводится в два раза медленее. Если цель прикреплена к
+        кровати, то значение в два раза выше.
+    - type: Tweak
+      message: >-
+        Самооперация стала медленее в 5 раз(было 3). Это не учитывая изменения
+        выше.
+    - type: Fix
+      message: Агосты могут проводить операции.
+    - type: Fix
+      message: Операция не залагивает.
+    - type: Fix
+      message: Кровь теперь восстанавливается корректно.
+    - type: Fix
+      message: КПБ починена скорость бега.
+  id: 84
+  time: '2026-09-06T15:37:59.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/293
+- author: Valklria
+  changes:
+    - type: Add
+      message: Добавлены новые вариации для призыва ниндзя.
+  id: 85
+  time: '2026-09-06T15:44:28.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/277
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Изменены названия множества альтернативных должностей.
+  id: 86
+  time: '2026-09-07T07:15:50.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/311
+- author: ChangelingRUES
+  changes:
+    - type: Add
+      message: >-
+        На всех картах пула были расставлены вендоматы нижнего белья и love-маты
+        (ищите фиолетовые шторки в дормах). Также добавлены и расставлены роли
+        робототехников. На карте Аврит добавлены роли шахтёров
+    - type: Tweak
+      message: >-
+        Шаттл-лавы на Аврите больше не в космосе и не требует скафа. Расположен
+        внутри утильской.
+  id: 87
+  time: '2026-09-07T07:17:56.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/312
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлена роль призрака "Невидимка"
+  id: 88
+  time: '2026-09-07T10:02:41.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/310
+- author: Kinar
+  changes:
+    - type: Add
+      message: 'Добавлено веселье. Психомаляр. Краскопульт с бесконечным зарядом '
+  id: 89
+  time: '2026-09-07T10:09:17.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/302
+- author: HappyRoach
+  changes:
+    - type: Tweak
+      message: Жуткая Эссенция из фляги Еретика лечит сильнее.
+  id: 90
+  time: '2026-09-07T14:07:53.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/308
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Голос пилота меха озвучивается со специальным эффектом
+    - type: Add
+      message: ИИ может менять себе голос
+  id: 91
+  time: '2026-09-08T04:43:50.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/317
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Апстрим.
+    - type: Tweak
+      message: >-
+        Небольшой бафф грабов. (Доработанная новинка: если в хардграбе ударить
+        иную личность - она улетит.)
+    - type: Tweak
+      message: Немного уменьшена эффективность голодания.
+    - type: Fix
+      message: Рассинхрон скорости после граба.
+    - type: Fix
+      message: Боевое искусство демона. Теперь работает и у мага.
+    - type: Fix
+      message: >-
+        Возможность использовать магазины неправильных калибров у различного
+        вооружения. (БАГУ 8 МЕСЯЦЕВ)
+    - type: Fix
+      message: Срач в АЧат от СМ.
+  id: 92
+  time: '2026-09-08T17:58:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/320
+- author: ChangelingRUES
+  changes:
+    - type: Add
+      message: >-
+        Добавлены две новые инфинити-дормы - Космическая
+        [квартира](https://i.postimg.cc/52GSBR89/Apartament-infi-dorm.png) и
+        [Пляж](https://i.postimg.cc/R0cr28Qv/Beach-infi-dorm.png).
+    - type: Tweak
+      message: >-
+        Доработаны все старые инфинити-дормы - теперь везде рабочий атмос и
+        дистра, с зарядками боргов и батареек для КПБ (ну и доступные ЛКП в
+        придачу). Плюс совсем мелкие
+        [изменения](https://github.com/ArcaneSS14/arcane/pull/319).
+  id: 93
+  time: '2026-09-08T18:02:12.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/319
+- author: Hero_010
+  changes:
+    - type: Add
+      message: Добавлена резонансная коса в театрошкаф.
+  id: 94
+  time: '2026-09-08T18:07:04.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/309
+- author: Vecortys
+  changes:
+    - type: Add
+      message: Окно гайдбука полностью переработано для удобства использования.
+  id: 95
+  time: '2026-09-08T21:51:30.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/324
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлен блюспейс-рюкзак.
+    - type: Fix
+      message: Сумки и рюкзаки глав имеют подходящий спрайт.
+  id: 96
+  time: '2026-09-09T03:17:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/323
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Изменены названия множества альтернативных должностей.
+    - type: Fix
+      message: >-
+        Парадоксальному клону и близнецу теперь выдается альтернативная
+        должность оригинала.
+  id: 97
+  time: '2026-09-09T07:23:51.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/315
+- author: ChangelingRUES
+  changes:
+    - type: Tweak
+      message: >-
+        Изменена оружейка Аврита и Сноуболла - теперь там рандомные пушки. Ещё
+        были добавлены раздатчики капсицина в СБ.
+    - type: Tweak
+      message: >-
+        Холодильник на кухне Марафона больше не требует мед. доступ. Добавлен
+        раздатчик капсицина в СБ.
+    - type: Tweak
+      message: >-
+        Дымка на инфи дормах Aurora, Beach и Hotel заменена на Mapping вариант,
+        больше не будет спавнить деревья и порталы и её нельзя развеять
+        вспышкой.
+  id: 98
+  time: '2026-09-09T09:16:57.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/327
+- author: Vecortys
+  changes:
+    - type: Fix
+      message: >-
+        В бс дормы теперь нельзя пронести игрока на руках - больше без
+        прикольного гиба.
+  id: 99
+  time: '2026-09-09T21:54:33.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/329
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: >-
+        Добавлена резервация слота после выхода из игры. При перезаходе в
+        течение 30-ти секунд вы не попадёте в очередь. 
+  id: 100
+  time: '2026-09-09T21:56:17.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/330
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: >-
+        Секрет+ Хаос был убран из пулла голосования. Секрет+ средний получил доп
+        слот в ротации. Два слота лайта смещены в спокойный.
+    - type: Fix
+      message: Фултоны больше нельзя использовать внутри бс дорм.
+  id: 101
+  time: '2026-09-10T21:22:08.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/334
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлен регулятор громкости бумбокса в настройки аудио.
+    - type: Add
+      message: Добавлена настройка громкости ТТСа на определенной частоте.
+    - type: Add
+      message: >-
+        В гарнитуре можно переключить каналы частоты которые хочет слышать
+        пользователь.
+    - type: Add
+      message: Призраки могут переключать ТТС рации способностью.
+  id: 102
+  time: '2026-09-11T06:44:34.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/322
+- author: ChangelingRUES
+  changes:
+    - type: Fix
+      message: >-
+        Инфи-дормы Квартира и Пляж были исправлены, Пробки света больше выбивать
+        не должно, вместо кубиков в холодильнике было положено мясо.
+  id: 103
+  time: '2026-09-11T07:00:20.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/336
+- author: Kinar_7
+  changes:
+    - type: Tweak
+      message: Респрайт всех альтернативных вариаций подкованных сапогов.
+  id: 104
+  time: '2026-09-11T07:20:06.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/337
+- author: Vecortys
+  changes:
+    - type: Add
+      message: Kartinka
+  id: 105
+  time: '2026-09-11T08:51:41.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/339
+  media:
+    - >-
+      https://github.com/user-attachments/assets/d3de3e47-8925-413c-ad5f-c3b0a0e3af2d
+- author: HappyRoach
+  changes:
+    - type: Add
+      message: Арканы могут использовать большую часть кастомизации людей.
+    - type: Add
+      message: >-
+        Добавлена новая уникальная механика для аркан - Фаоль, за счёт которой
+        они могут творить простые заклинания.
+    - type: Tweak
+      message: Полностью изменены характеристики Аркан.
+  id: 106
+  time: '2026-09-11T13:37:07.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/331
+  media:
+    - >-
+      https://github.com/user-attachments/assets/a1c3293f-2d07-4748-a90b-817199571cca
+    - >-
+      https://github.com/user-attachments/assets/f5ebe9f4-e4ab-4451-b817-240149105dd6
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Сердце невидимки нельзя вырезать.
+    - type: Fix
+      message: Визоры СБ и Меда не показывают невидимку.
+    - type: Tweak
+      message: Невидимка теперь спавнится с пассажирским лодаутом.
+  id: 107
+  time: '2026-09-11T13:38:45.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/340
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Починены дикие пролаги связанные с бумбоксом.
+    - type: Fix
+      message: Нету микро-заломов звука при измененной громкости бумбокса на клиенте.
+  id: 108
+  time: '2026-09-12T16:26:49.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/345
+  media:
+    - >-
+      https://discord.com/channels/1500050446444658711/1502261682397909112/1548307405652238376
+- author: Kinar_7
+  changes:
+    - type: Tweak
+      message: Гости теперь копируют внешность персонажа игрока, но не его имя
+  id: 109
+  time: '2026-09-12T16:28:06.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/338
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: >-
+        "Правосудию" заменен режим уничтожения на режим заковывания. Был
+        увеличен урон в "без режима", "летальный", а также в оглущение(урон по
+        стамине).
+  id: 110
+  time: '2026-09-12T17:27:00.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/342
+  media:
+    - >-
+      https://github.com/user-attachments/assets/390f91f3-7369-46c5-947c-987ad8539d1b
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: '"Без ЕРП" теперь не могут быть подвержены влиянию афродизиака'
+    - type: Add
+      message: При передаче предмета теперь есть попап у цели передачи.
+    - type: Add
+      message: В телепорте призрака теперь изображаются иконки должностей.
+    - type: Tweak
+      message: Стыковка шаттлов больше не гибает.
+    - type: Fix
+      message: Дым снова работает.
+    - type: Fix
+      message: Сон снова работает.
+    - type: Tweak
+      message: >-
+        Шкаф бригмедика доступен теперь только медицинскому и оружейному
+        доступу.
+    - type: Fix
+      message: Шлем скафандра HEV получил резисты.
+  id: 111
+  time: '2026-09-12T17:27:29.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/333
+  media:
+    - >-
+      https://github.com/user-attachments/assets/17a739b4-7178-49ee-ab13-8516b470c050
+    - >-
+      https://github.com/user-attachments/assets/38617737-9aed-4299-b30b-3ac217506c66
+    - >-
+      https://github.com/user-attachments/assets/ce272c5f-e659-4779-9c1f-a1de41f579f0
+    - >-
+      https://github.com/user-attachments/assets/3e48769b-e305-4ef0-94bb-1f0f0bc18deb
+- author: Vecortys
+  changes:
+    - type: Tweak
+      message: Арахниды - режущий -20%, тепловой +25%; иммунитет к яду.
+    - type: Tweak
+      message: Дионы - тупой -30%, режущий -20%; тепловой +50%, электрический +40%.
+    - type: Tweak
+      message: Дворфы - тупой и режущий -20%; тепловой +25%.
+    - type: Tweak
+      message: Люди - входящий урон +5%.
+    - type: Tweak
+      message: Моли - режущий -20%, холодовой -30%; колющий и тепловой +20%.
+    - type: Tweak
+      message: Рептилии - режущий -30%; колющий +25%, холодовой +30%.
+    - type: Tweak
+      message: >-
+        Слаймолюды - тупой -40%, колющий -25%, ядовитый -20%; режущий +25%,
+        холодовой +50%.
+    - type: Tweak
+      message: Воксы - тепловой -25%, едкий -40%; режущий и колющий +20%.
+    - type: Tweak
+      message: >-
+        Гидракины - тупой -20%, колющий -25%; режущий и тепловой +25%; холодовой
+        -100%, кроме переохлаждения.
+    - type: Tweak
+      message: Таяры - колющий -20%, холодовой -30%; тупой, режущий и тепловой +20%.
+    - type: Tweak
+      message: >-
+        Йови - тупой, режущий и колющий -25%; холодовой, радиационный и
+        кровопотеря -20%, ядовитый -90%; тепловой +30%.
+    - type: Tweak
+      message: >-
+        Резоми - колющий -25%; тупой и режущий +25%, тепловой +30%; иммунитет к
+        холоду.
+    - type: Tweak
+      message: >-
+        КПБ - тупой, режущий, колющий и ионный -20%, радиационный -60%; тепловой
+        +70%, электрический +100%.
+    - type: Tweak
+      message: >-
+        Плазмамены - режущий и ядовитый -20%, колющий -40%; тупой и тепловой
+        +50%; иммунитет к холоду, радиации и кровопотере.
+    - type: Tweak
+      message: >-
+        Тенелюды - режущий -25%, удушье -50%; тупой и колющий +25%, тепловой
+        +40%.
+    - type: Tweak
+      message: >-
+        Хитиниды - тупой, режущий и колющий -20%, радиационный -80%; холодовой
+        +20%, тепловой и электрический +25%.
+    - type: Tweak
+      message: Ферокси - тупой и тепловой -20%, холодовой -25%; режущий +20%.
+    - type: Tweak
+      message: >-
+        Гарпии - тепловой -25%, электрический -40%; тупой, режущий и колющий
+        +25%.
+    - type: Tweak
+      message: Грызуны - колющий -20%, ядовитый -40%; тупой и режущий +25%.
+    - type: Tweak
+      message: Вульпканины - режущий и холодовой -20%; тепловой +30%.
+    - type: Tweak
+      message: >-
+        Демоны - тепловой -20%, холодовой -15%; тупой и режущий +20%, святой
+        +50%.
+    - type: Tweak
+      message: >-
+        Гуманоидные ксеноморфы - колющий -15%; тупой, режущий и холодовой +20%,
+        тепловой +25%, электрический +30%.
+    - type: Tweak
+      message: Фелиниды - тупой -25%, режущий -20%; колющий +25%.
+    - type: Tweak
+      message: Они - тупой и режущий -20%; колющий +20%.
+  id: 112
+  time: '2026-09-12T21:41:03.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/351
+- author: HappyRoach
+  changes:
+    - type: Tweak
+      message: Терминал прибытия был полностью перестроен
+  id: 113
+  time: '2026-09-13T05:08:51.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/350
+  media:
+    - >-
+      https://github.com/user-attachments/assets/29ee4323-ba3c-4615-8299-dba6b2241e8f
+- author: 0RK
+  changes:
+    - type: Add
+      message: 'Добавлена новая черта: лисья натура'
+  id: 114
+  time: '2026-09-13T05:12:00.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/318
+  media:
+    - >-
+      https://github.com/user-attachments/assets/32178d5e-2534-49c7-92cd-698e25b94934
+    - >-
+      https://github.com/user-attachments/assets/942145bf-2104-404c-836c-884a63af0f41
+- author: Hero_010
+  changes:
+    - type: Add
+      message: Добавлено множество новой одежды для дрессмата.
+  id: 115
+  time: '2026-09-13T13:54:31.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/328
+- author: 0RK
+  changes:
+    - type: Add
+      message: Добавлен поводок и ошейник в сборку и в лавмат
+    - type: Add
+      message: 'Добавлен система связывания поводка и ошейника '
+  id: 116
+  time: '2026-09-13T14:45:29.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/348
+  media:
+    - >-
+      https://github.com/user-attachments/assets/245fff12-43e2-46b8-a9ce-654ac6e31fe1
+    - >-
+      https://github.com/user-attachments/assets/8c7732ab-0f8b-4cb4-82b9-504af3b59537
+    - >-
+      https://github.com/user-attachments/assets/80342187-866e-458d-b9f8-9ebb137357fd
+- author: alfapr0
+  changes:
+    - type: Tweak
+      message: Шаттл воксов налётчиков перестроен.
+  id: 117
+  time: '2026-09-13T14:47:18.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/332
+  media:
+    - >-
+      https://github.com/user-attachments/assets/da2893fd-6315-43a0-9a85-e855a50d8726
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлена возможность ставить многим расам кастомные названия расы.
+  id: 118
+  time: '2026-09-13T16:56:16.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/347
+  media:
+    - >-
+      https://github.com/user-attachments/assets/35a4c912-0411-4cba-a62f-ea1b1a7c2f1c
+    - >-
+      https://github.com/user-attachments/assets/03af34f3-e3d9-45b1-96a2-6a1db88bc91f
+    - >-
+      https://github.com/user-attachments/assets/9c7a7d69-5b10-4bb2-b9dd-685b498417a6
+    - >-
+      https://github.com/user-attachments/assets/64e824e7-70dd-430d-8c04-046b9c2f536e
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Апстрим 13/09/26
+  id: 119
+  time: '2026-09-13T17:26:49.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/356
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Иконка переключения ТТСа рации будучи призраком работает.
+    - type: Add
+      message: КПБ, ЦИИ и Борги могут переключить слышимость частоты через действие.
+    - type: Add
+      message: Многие существа получили ТТС. Дракон, боты, пауки и обезьяны.
+  id: 120
+  time: '2026-09-14T06:11:02.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/353

@@ -25,12 +25,11 @@ using Content.Shared.Chat.RadioIconsEvents; // Goobstation
 using Content.Shared.Whitelist; // Goobstation
 using Content.Shared.StatusIcon; // Goobstation
 using Content.Goobstation.Shared.Radio; // Goobstation
-// Arcane-Start
-using Content.Shared._Arcane.TTS; // Arcane
+using Content.Server._Arcane.Radio;
+using Content.Shared._Arcane.TTS;
 using Content.Goobstation.Common.Barks;
 using Content.Shared._Orion.Radio;
 using Robust.Shared.Audio;
-// Arcane-End
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -48,6 +47,7 @@ public sealed partial class RadioSystem : EntitySystem
     [Dependency] private readonly RadioJobIconSystem _radioIconSystem = default!; // Goobstation - radio icons
     [Dependency] private readonly LanguageSystem _language = default!; // Einstein Engines - Language
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Goobstation - Whitelisted radio channels
+    [Dependency] private readonly HeadsetChannelMuteSystem _channelMute = default!; // Arcane
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -84,6 +84,11 @@ public sealed partial class RadioSystem : EntitySystem
     {
         if (TryComp(uid, out ActorComponent? actor))
         {
+            // Arcane-Start
+            if (_channelMute.IsMuted(actor.PlayerSession.UserId, args.Channel.Frequency))
+                return;
+            // Arcane-End
+
             // Einstein Engines - Languages begin
             var listener = component.Owner;
             var msg = args.OriginalChatMsg;
@@ -95,7 +100,7 @@ public sealed partial class RadioSystem : EntitySystem
             // Arcane-Start
             if (canUnderstand && args.Voice is { } voice)
             {
-                var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice);
+                var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice, args.Channel.Frequency);
                 RaiseLocalEvent(uid, ref ev);
             }
             // Arcane-End

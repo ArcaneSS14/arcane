@@ -146,6 +146,7 @@
   components:
     - type: AlertLevel
       alertLevelPrototype: stationAlerts
+    - type: AlertLevelGate # Arcane-Edit: Gates red alert
 
 - type: entity
   id: BaseStationExpeditions

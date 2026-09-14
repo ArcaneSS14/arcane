@@ -92,6 +92,7 @@
   - Cybernetics
   recipeUnlocks:
   - BorgModuleAdvancedCleaning
+  - BorgModuleAdvancedClowning
   position: -5,2
 
 - type: technology

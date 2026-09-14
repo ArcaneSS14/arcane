@@ -80,7 +80,7 @@
   suffix: AI
   abstract: true
   components:
-  - type: ZombieImmune # Orion
+  #- type: ZombieImmune # Arcane-Edit
   - type: Hunger
     thresholds: # only animals and rats are derived from this prototype so let's override it here and in rats' proto
       Overfed: 100

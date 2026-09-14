@@ -1,0 +1,9 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                     Title="{Loc headset-channels-window-title}"
+                     MinSize="330 260"
+                     SetSize="330 400">
+    <ScrollContainer VerticalExpand="True" HorizontalExpand="True" Margin="10 6 10 10">
+        <BoxContainer Name="ChannelList" Orientation="Vertical" />
+    </ScrollContainer>
+</controls:FancyWindow>

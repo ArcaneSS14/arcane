@@ -13,6 +13,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -41,6 +42,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -82,6 +84,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -108,6 +111,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -131,6 +135,7 @@
   - ServiceCloak
   - ServiceWorkerShoes
   - ServiceWorkerBelt
+  - GroupGrimoire
   # Arcane-End
   - CommonBackpack
   - Glasses
@@ -159,6 +164,7 @@
   - ChefMask
   - ChefJumpsuit
   - ServiceCloak # Arcane
+  - GroupGrimoire # Arcane
   - CommonBackpack
   - ChefOuterClothing
   - Glasses
@@ -195,6 +201,7 @@
   - Patron
   - Animals
   - GroupSpeciesBreathTool
+  - GroupGrimoire
   # Goobstation - EE Plasmeme Change.
   - LibrarianEnvirohelm
   - LibrarianEnvirosuit
@@ -225,6 +232,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -255,6 +263,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -283,6 +292,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -310,6 +320,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -342,6 +353,7 @@
   - Patron
   - ClownUnderwear
   - Animals
+  - GroupGrimoire
   # Goobstation - EE Plasmeme Change.
   - ClownEnvirohelm
   - ClownEnvirosuit
@@ -418,6 +430,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -449,6 +462,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -478,6 +492,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -505,6 +520,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -533,6 +549,7 @@
   - SurvivalExtended
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -556,6 +573,7 @@
   - SurvivalExtended
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -584,6 +602,7 @@
   - SurvivalExtended
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -611,6 +630,7 @@
   - SurvivalExtended
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -641,6 +661,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -671,6 +692,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -695,6 +717,7 @@
   - Survival
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -726,6 +749,7 @@
   - SurvivalSecurity
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -757,6 +781,7 @@
   - SurvivalSecurity
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -788,6 +813,7 @@
   - SurvivalSecurity
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -814,6 +840,7 @@
   - SurvivalSecurity
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -840,6 +867,7 @@
   - SecurityOuterClothing # Goobstation - Why not.
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -871,6 +899,7 @@
   - SurvivalMedical
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -893,6 +922,7 @@
   - MedicalMask
   - MedicalDoctorJumpsuit
   # Arcane-Start
+  - GroupGrimoire
   - MedicalCloak
   - DoctorBikini
   # Arcane-End
@@ -929,6 +959,7 @@
   - SurvivalMedical
   - Trinkets
   - Patron # Arcane
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -951,6 +982,7 @@
   - MedicalMask
   - ChemistJumpsuit
   # Arcane-Start
+  - GroupGrimoire
   - ChemistBikini
   - MedicalCloak
   # Arcane-End
@@ -983,6 +1015,7 @@
   - MedicalMask
   - ParamedicJumpsuit
   # Arcane-Start
+  - GroupGrimoire
   - MedicalCloak
   - ParamedicBikini
   - ParamedicVisor
@@ -1021,6 +1054,7 @@
   - Survival
   - Trinkets
   # Arcane-Start
+  - GroupGrimoire
   - ServiceCloak
   - Patron
   # Arcane-End
@@ -1050,6 +1084,7 @@
   # Arcane-Start
   - MedicalCloak
   - Patron
+  - GroupGrimoire
   # Arcane-End
   # Orion-Start
   - Undershirt

@@ -19,6 +19,7 @@
   - SheetRGlass
   - OreProcessorMachineCircuitboard
   - SalvageMagnetMachineCircuitboard
+  - SalvageJobBoardComputerCircuitboard
   position: 5,6
 
 - type: technology
@@ -162,5 +163,6 @@
   recipeUnlocks:
   - AdvancedMineralScannerEmpty
   - MiningDrillDiamond
+  - PickaxeDiamond
   - MechEquipmentDrillDiamond
   position: 5,8

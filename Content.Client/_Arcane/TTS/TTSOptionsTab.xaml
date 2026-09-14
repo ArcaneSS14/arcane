@@ -1,0 +1,24 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:ui="clr-namespace:Content.Client.Options.UI">
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Vertical" Margin="8 8 8 8" VerticalExpand="True">
+            <Label Text="{Loc 'ui-options-volume-label'}"
+                   StyleClasses="LabelKeyText"/>
+            <BoxContainer Orientation="Vertical" Margin="0 3 0 0">
+                <ui:OptionSlider Name="SliderVolumeTTS"
+                                 Title="{Loc 'ui-options-tts-volume'}" />
+                <ui:OptionSlider Name="SliderVolumeRadioTTS"
+                                 Title="{Loc 'ui-options-radio-tts-volume'}" />
+                <CheckBox Name="UseTTSCheckBox"
+                          Text="{Loc 'ui-options-use-tts'}"/>
+            </BoxContainer>
+            <Label Text="{Loc 'ui-options-tts-radio-channels-header'}"
+                   StyleClasses="LabelKeyText"
+                   Margin="0 10 0 0"/>
+            <ScrollContainer Name="RadioChannelsScroll" VerticalExpand="True" HorizontalExpand="True" Margin="0 3 0 0">
+                <BoxContainer Name="ChannelList" Orientation="Vertical" />
+            </ScrollContainer>
+        </BoxContainer>
+        <ui:OptionsTabControlRow Name="Control" Access="Public" />
+    </BoxContainer>
+</Control>

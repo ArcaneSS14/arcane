@@ -1,0 +1,10 @@
+uniform highp float visibility;
+
+void fragment() {
+    highp vec4 base = zTexture(UV);
+    if (base.a == 0.0) {
+        discard;
+    }
+    base.a *= visibility;
+    COLOR = base;
+}

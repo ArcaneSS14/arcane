@@ -93,6 +93,8 @@
         reagents:
           - ReagentId: Formaldehyde
             Quantity: 30
+  - type: MedicalPatch
+    transferAmount: 0.1
 
 - type: entity
   parent: MedicalPatchPrefilledBase
@@ -109,3 +111,5 @@
         reagents:
           - ReagentId: Synthflesh
             Quantity: 40
+  - type: MedicalPatch
+    transferAmount: 1

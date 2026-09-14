@@ -4,4 +4,5 @@
   keycode: 'ю'
   frequency: 1346
   color: "#c22b51"
+  icon: JobIconLawyer
   longRange: false

@@ -650,3 +650,30 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/demonwings.rsi
     state: succubus_wings_lower2
+
+- type: marking
+  id: DrakeSpine
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/demondrake.rsi
+    state: drake_spine
+
+- type: marking
+  id: LeftDrakeArm
+  bodyPart: LArm
+  markingCategory: LeftArm
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/demondrake.rsi
+    state: l_drake_arm
+
+- type: marking
+  id: RightDrakeArm
+  bodyPart: RArm
+  markingCategory: RightArm
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/demondrake.rsi
+    state: r_drake_arm

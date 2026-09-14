@@ -1991,6 +1991,116 @@
   - sprite: _Arcane/Mobs/Customization/IPC/android.rsi
     state: cat_tail_led
 
+- type: marking
+  id: IPCTailClawTailAnim
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: claw_tail_anim
+
+- type: marking
+  id: IPCTailClawTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: claw_tail
+
+- type: marking
+  id: IPCTailCordOutlet
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: cord_outlet
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: cord_outlet_plug
+
+- type: marking
+  id: IPCTailCutWire
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: cut_wire
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: cut_wire_copper
+
+- type: marking
+  id: IPCTailHologram
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: hologram_base
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: hologram_sparkles
+
+- type: marking
+  id: IPCTailJST
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: jst_tail
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: jst_plug
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: jst_wire1
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: jst_wire2
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: jst_wire3
+
+- type: marking
+  id: IPCTailMiniJack
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: mini_jack_base
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: mini_jack_plug
+
+- type: marking
+  id: IPCTailRat
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: rat_tail
+
+- type: marking
+  id: IPCTailSegmented
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: segmented_base
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: segmented_cover
+
+- type: marking
+  id: IPCTailUSB
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: usb_tail
+  - sprite: _Arcane/Mobs/Customization/IPC/ipc_tails.rsi
+    state: usb_plug
+
 #endregion Misc
 
 - type: marking

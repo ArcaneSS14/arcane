@@ -387,11 +387,13 @@ public sealed class PullingSystem : EntitySystem
 
             // Messaging
             var message = new PullStoppedMessage(pullerUid, pullableUid);
-            _modifierSystem.RefreshMovementSpeedModifiers(pullerUid);
+//            _modifierSystem.RefreshMovementSpeedModifiers(pullerUid); // Arcane-Edit: Moved
             _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(pullerUid):user} stopped pulling {ToPrettyString(pullableUid):target}");
 
             RaiseLocalEvent(pullerUid, message);
             RaiseLocalEvent(pullableUid, message);
+
+            _modifierSystem.RefreshMovementSpeedModifiers(pullerUid); // Arcane
         }
     }
 

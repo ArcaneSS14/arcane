@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.StatusIcon;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -56,4 +57,12 @@ public sealed partial class RadioChannelPrototype : IPrototype
     [DataField]
     public SoundSpecifier? OnSendSound = null;
     // Orion-End
+
+    // Arcane-Start
+    /// <summary>
+    ///     Job icon used to identify the channel in UIs.
+    /// </summary>
+    [DataField]
+    public ProtoId<JobIconPrototype> Icon { get; private set; } = "JobIconUnknown";
+    // Arcane-End
 }

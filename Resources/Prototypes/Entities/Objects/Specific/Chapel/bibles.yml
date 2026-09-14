@@ -138,10 +138,8 @@
   #  - type: Tag
   #    tags:
   #    - Bible
-  # Arcane-Edit-Start
-  - type: StealTarget
+  - type: StealTarget # Goobstation - fix
     stealGroup: Bible
-  # Arcane-Edit-End
   - type: EnchantingTool # Goobstation
   - type: StatusEffectOnCollideGhost # Goobstation
     whitelist:

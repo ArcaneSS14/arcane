@@ -18,9 +18,9 @@ public sealed partial class SurgeryTargetComponent : Component
 
     // Orion-Start
     /// <summary>
-    /// Self-surgery speed modifier. 1f / 3f = three times slower.
+    /// Self-surgery speed modifier. 1f / 5f = five times slower.
     /// </summary>
     [DataField]
-    public float SelfSurgerySpeedModifier = 1f / 3f;
+    public float SelfSurgerySpeedModifier = 1f / 5f;
     // Orion-End
 }

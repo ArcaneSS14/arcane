@@ -67,3 +67,6 @@ marking-SuccubusWingsNotWithTail = Суккубус, без хвоста
 marking-DemonChestAratakiPainting = Аратаки
 marking-DemonChestGradientPainting = Градиент
 marking-DemonChestSkeleton = Скелет
+marking-DrakeSpine = Спина дрейка
+marking-LeftDrakeArm = Левая рука дрейка
+marking-RightDrakeArm = Правая рука дрейка

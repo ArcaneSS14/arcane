@@ -42,8 +42,6 @@ slasher-relentless-grab-activate = Вы готовитесь схватить с
 alerts-slasher-seen-name = Статус наблюдения
 alerts-slasher-seen-desc = Показывает, наблюдают ли за вами в данный момент. Вы не можете входить в бестелесную форму или выходить из неё, пока за вами наблюдают.
 
-slasher-round-end-agent-name = Мясник
-
 slasher-kit-select-title = Выбери свой набор!
 slasher-kit-select-header = Выберите набор. Каждый из них имеет уникальную композицию и неповторимый внешний вид.
 slasher-kit-select-button = Выбрать

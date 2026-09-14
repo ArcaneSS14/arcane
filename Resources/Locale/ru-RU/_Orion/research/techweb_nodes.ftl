@@ -232,3 +232,6 @@ research-technology-smart-weaponry-desc = Оружейные системы с �
 research-technology-heavy-weaponry = Тяжёлое вооружение
 research-technology-heavy-weaponry-desc = Системы вооружения тяжёлого класса и вспомогательное оснащение.
 research-technology-energy-barriers-desc = Переносные и стационарные системы проецируемых энергетических барьеров.
+research-technology-advanced-emitters = Продвинутые эмиттеры
+research-technology-advanced-emitters-description = Исследования передовых систем эмиттерного оборудования.
+research-technology-space-scanning-description = Исследования передового оборудования для добычи и утилизации космических ресурсов.

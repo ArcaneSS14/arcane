@@ -4,13 +4,30 @@ name: Publish With Changelog
 
 on:
   workflow_dispatch:
+    inputs:
+      engine_ref:
+        description: Private RobustToolbox commit, tag, or branch
+        required: true
+        type: string
+        default: master
+      anticheat_ref:
+        description: Arcane anticheat commit, tag, or branch
+        required: true
+        type: string
+        default: main
+      publish:
+        description: Publish the assembled build
+        required: true
+        type: boolean
+        default: false
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-private-publish
+  cancel-in-progress: false
 
 jobs:
   build:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: [self-hosted, linux, x64, arcane-publish]
     permissions:
       actions: read
@@ -25,34 +42,79 @@ jobs:
       if: ${{ github.ref_name == 'master' && github.repository == 'space-wizards/space-station-14' }}
       run: exit 1
 
-    - name: Check .NET Installation
-      id: check-dotnet
+    - name: Checkout public Arcane
+      uses: actions/checkout@v4.2.2
+      with:
+        fetch-depth: 0
+        submodules: 'false'
+        persist-credentials: false
+
+    - name: Read public engine revision
+      id: public-engine
+      shell: bash
       run: |
-        if dotnet --info > /dev/null 2>&1; then
-          echo "skip=true" >> $GITHUB_ENV
-        else
-          echo "skip=false" >> $GITHUB_ENV
+        echo "sha=$(git rev-parse HEAD:RobustToolbox)" >> "$GITHUB_OUTPUT"
+
+    - name: Checkout private RobustToolbox
+      uses: actions/checkout@v4.2.2
+      with:
+        repository: ArcaneSS14/RobustToolbox
+        ssh-key: ${{ secrets.ROBUST_TOOLBOX_SSH_KEY }}
+        ref: ${{ inputs.engine_ref }}
+        path: RobustToolbox
+        fetch-depth: 0
+        submodules: 'recursive'
+        persist-credentials: false
+
+    - name: Verify private engine compatibility
+      shell: bash
+      env:
+        PUBLIC_ENGINE_SHA: ${{ steps.public-engine.outputs.sha }}
+      run: |
+        if ! git -C RobustToolbox merge-base \
+          --is-ancestor "$PUBLIC_ENGINE_SHA" HEAD; then
+          echo "::error::Private RobustToolbox does not contain the engine revision required by public Arcane."
+          exit 1
         fi
 
-    - uses: actions/checkout@v3.6.0
+    - name: Checkout private anticheat
+      uses: actions/checkout@v4.2.2
       with:
-        submodules: 'recursive'
+        repository: ${{ secrets.ARCANE_PRIVATE_REPOSITORY }}
+        ssh-key: ${{ secrets.ARCANE_PRIVATE_REPOSITORY_SSH_KEY }}
+        ref: ${{ inputs.anticheat_ref }}
+        path: .private/arcane-anticheat
+        fetch-depth: 1
+        persist-credentials: false
 
-    - name: Setup .NET Core
-      if: env.skip == 'false'
-      uses: actions/setup-dotnet@v3.2.0
+    - name: Apply private release overlay
+      shell: bash
+      run: |
+        python3 Tools/_arcane/apply_private_overlay.py \
+          --source .private/arcane-anticheat
+
+    - name: Check .NET SDK
+      id: check-dotnet
+      shell: bash
+      run: |
+        if dotnet --list-sdks 2>/dev/null | grep -Eq '^10\.0\.'; then
+          echo "available=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "available=false" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Setup .NET
+      if: ${{ steps.check-dotnet.outputs.available != 'true' }}
+      uses: actions/setup-dotnet@v4
+      env:
+        DOTNET_INSTALL_DIR: ${{ runner.temp }}/dotnet
       with:
         dotnet-version: 10.0.x
 
-    - name: Get Engine Tag
-      run: |
-        cd RobustToolbox
-        git fetch --depth=1
-
-    - name: Install dependencies
+    - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build Packaging
+    - name: Build packaging
       run: dotnet build Content.Packaging --configuration Release --no-restore /m
 
     - name: Package server
@@ -62,12 +124,14 @@ jobs:
       run: dotnet run --project Content.Packaging client --no-wipe-release
 
     - name: Publish version
+      if: ${{ inputs.publish }}
       run: Tools/publish_multi_request.py
       env:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
 
     - name: Publish changelog (Discord)
+      if: ${{ inputs.publish }}
       id: publish-changelog
       continue-on-error: true
       run: Tools/actions_changelogs_since_last_run.py
@@ -80,10 +144,20 @@ jobs:
         CHANGELOG_IGNORED_RUNS: "31336400112"
 
     - name: Notify Discord about server update
+      if: ${{ inputs.publish }}
       run: Tools/actions_changelogs_since_last_run.py --publish-notification
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
 
     - name: Fail if changelog notification failed
-      if: ${{ steps.publish-changelog.outcome == 'failure' }}
+      if: ${{ inputs.publish && steps.publish-changelog.outcome == 'failure' }}
       run: exit 1
+
+    - name: Cleanup private sources
+      if: ${{ always() }}
+      shell: bash
+      run: |
+        if [[ -n "${GITHUB_WORKSPACE:-}" && "$GITHUB_WORKSPACE" != "/" ]]; then
+          rm -rf -- "$GITHUB_WORKSPACE/.private"
+          rm -rf -- "$GITHUB_WORKSPACE/RobustToolbox"
+        fi

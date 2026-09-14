@@ -70,3 +70,7 @@
   - JukeboxCircuitBoard
   - DawInstrumentMachineCircuitboard
   - SheetifierMachineCircuitboard # Goobstation - Moved from ScienceBoards
+  # Arcane-Start
+  - EnergyBoozeDispenserMachineCircuitboard
+  - EnergySodaDispenserMachineCircuitboard
+  # Arcane-End

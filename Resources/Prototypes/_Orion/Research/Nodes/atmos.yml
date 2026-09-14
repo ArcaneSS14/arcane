@@ -13,6 +13,8 @@
     amount: 500
   recipeUnlocks:
   - AlertsComputerCircuitboard
+  - AtmosMonitoringComputerCircuitboard
+  - SupermatterComputerCircuitboard
   - ThermomachineFreezerMachineCircuitBoard
   - SpaceHeaterMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard

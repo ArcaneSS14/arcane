@@ -107,6 +107,14 @@
   id: XenobiologyBountyComputerCircuitboard
   result: XenobiologyBountyComputerCircuitboard
 
+# Arcane-Edit-Start
+#- type: latheRecipe
+#  parent: BaseCircuitboardRecipe
+#  icon: _Goobstation/Structures/Machines/Icons/Computers/xenobiology.png
+#  id: ResearchComputerCircuitboard
+#  result: ResearchComputerCircuitboard
+# Arcane-Edit-End
+
 - type: latheRecipe
   parent: BaseGoldCircuitboardRecipe
   id: RadiationCollectorCircuitboard

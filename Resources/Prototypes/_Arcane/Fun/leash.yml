@@ -1,0 +1,26 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: Collar
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/collar.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Neck/collar.rsi
+    quickEquip: true
+    equipDelay: 4
+    unequipDelay: 5
+  - type: Collar
+
+- type: entity
+  parent: BaseItem
+  id: Leash
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Misc/leash.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Leash
+    maxDistance: 3.0

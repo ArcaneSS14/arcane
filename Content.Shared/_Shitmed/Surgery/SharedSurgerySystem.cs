@@ -449,7 +449,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         part = default;
         step = default;
 
-        if (!HasComp<SurgeryTargetComponent>(body) ||
+        // Arcane-Edit-Start
+        if (!TryComp<SurgeryTargetComponent>(body, out var surgeryTarget) ||
+            !surgeryTarget.CanOperate ||
+        // Arcane-Edit-End
             !IsLyingDown(body, user) ||
             GetSingleton(surgery) is not { } surgeryEntId ||
             !TryComp(surgeryEntId, out SurgeryComponent? surgeryComp) ||
