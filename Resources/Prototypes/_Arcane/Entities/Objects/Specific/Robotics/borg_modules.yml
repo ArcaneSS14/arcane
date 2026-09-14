@@ -63,7 +63,7 @@
           components:
           - FitsInDispenser
     - hand:
-        emptyLabel: borg-slot-cigarettes-empty-arcane # Кто-то меня спросит "Кинар, зачем боргу нужны сигареты?". А я вам отвечу. Борг что зажигает для вас сигарету и передает её вам, это пиздец как круто. 
+        emptyLabel: borg-slot-cigarettes-empty-arcane  
         emptyRepresentative: Cigarette
         whitelist:
           tags:
@@ -71,7 +71,7 @@
           - Cigarette
           - Cigar
           components:
-          - FitsInDispenser # С возможностью таскать стаканы, если ему понадобится это
+          - FitsInDispenser 
     - item: CigPackBlack
       hand:
         emptyLabel: borg-slot-cigarettes-empty-arcane

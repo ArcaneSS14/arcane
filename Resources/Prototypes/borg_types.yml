@@ -227,10 +227,12 @@
 
   defaultModules:
   - BorgModuleMusique
-  # - BorgModuleService # Arcane-Start
   - BorgModuleClowning
+  # Arcane-Start
+  # - BorgModuleService 
   # - BorgModuleGardening 
-  # - BorgModuleHarvesting # Arcane-End
+  # - BorgModuleHarvesting 
+  # Arcane-End
   - BorgModuleLollypop # Goobstation
 # Arcane-Start
   - BorgModuleBartending 
