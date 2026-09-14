@@ -47,6 +47,14 @@
         {
             "name": "blue-inhand-right",
             "directions": 4
+        },
+        {
+            "name": "white-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "white-inhand-right",
+            "directions": 4
         }
     ]
 }
