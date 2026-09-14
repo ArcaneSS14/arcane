@@ -47,7 +47,7 @@ public sealed partial class SandevistanUserComponent : Component
     };
 
     [DataField, AutoNetworkedField]
-    public float MovementSpeedModifier = 1.7f; // Arcane-Edit: 2 -> 1.5
+    public float MovementSpeedModifier = 1.7f; // Arcane-Edit: 2 -> 1.7
 
     [DataField, AutoNetworkedField]
     public float AttackSpeedModifier = 1.5f; // Arcane-Edit: 2 -> 1.5
