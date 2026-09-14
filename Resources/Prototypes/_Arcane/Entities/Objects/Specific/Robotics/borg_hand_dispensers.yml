@@ -1,8 +1,3 @@
-# Portable, battery-powered versions of the EnergyBoozeDispenser / EnergySodaDispenser / ServiceEnergyChemDispenser
-# machines (see Resources/Prototypes/_Goobstation/Entities/Structures/Machines/dispensers.yml), reworked as
-# cyborg hand items for the bartending and culinary borg modules. They use BatterySelfRecharger instead of
-# station power so they work while held.
-
 - type: entity
   id: BorgHandBoozeDispenser
   parent: BaseItem
