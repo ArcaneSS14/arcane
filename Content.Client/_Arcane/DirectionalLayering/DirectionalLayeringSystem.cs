@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Content.Client.Humanoid;
 using Content.Client.Inventory;
+using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -59,6 +61,9 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<HumanoidAppearanceComponent, MoveEvent>(OnMove);
+        SubscribeLocalEvent<HumanoidAppearanceComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<HumanoidAppearanceComponent, HumanoidAppearanceUpdatedEvent>(OnAppearanceUpdated);
+        SubscribeLocalEvent<EquipmentVisualsUpdatedEvent>(OnEquipmentVisualsUpdated);
         SubscribeLocalEvent<HumanoidAppearanceComponent, ComponentRemove>(OnRemove);
     }
 
@@ -90,6 +95,30 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
         if (TryComp(uid, out SpriteComponent? sprite))
             ApplyOrdering((uid, component, sprite));
+    }
+
+    private void OnStartup(EntityUid uid, HumanoidAppearanceComponent component, ComponentStartup args)
+    {
+        if (TryComp(uid, out SpriteComponent? sprite))
+            ApplyOrdering((uid, component, sprite));
+    }
+
+    private void OnAppearanceUpdated(EntityUid uid, HumanoidAppearanceComponent component, HumanoidAppearanceUpdatedEvent args)
+    {
+        if (TryComp(uid, out SpriteComponent? sprite))
+            ApplyOrdering((uid, component, sprite));
+    }
+
+    private void OnEquipmentVisualsUpdated(EquipmentVisualsUpdatedEvent args)
+    {
+        if (args.Slot != "neck" ||
+            !TryComp(args.Equipee, out HumanoidAppearanceComponent? humanoid) ||
+            !TryComp(args.Equipee, out SpriteComponent? sprite))
+        {
+            return;
+        }
+
+        ApplyOrdering((args.Equipee, humanoid, sprite));
     }
 
     private void OnRemove(EntityUid uid, HumanoidAppearanceComponent component, ComponentRemove args)
