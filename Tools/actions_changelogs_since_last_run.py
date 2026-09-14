@@ -164,27 +164,25 @@ def send_changelog_entry(session: requests.Session, entry: Mapping[str, Any]) ->
         print(f"Downloaded media ({len(data)} bytes): {url} -> {filename}")
 
     first_payload = True
-    for payload, chunk_urls in build_entry_cv2_payloads(
-        entry, description, media_files, link_urls
-    ):
+    payload_gen = build_entry_cv2_payloads(entry, description, media_files, link_urls)
+    for payload, chunk_urls in payload_gen:
         try:
             send_discord_payload(session, payload)
         except DiscordFileTooLarge as exc:
             print(f"Chunk rejected as too large ({exc}); posting its links instead")
-            send_discord_payload(
-                session,
-                build_link_fallback_payload(
-                    description if first_payload else "", chunk_urls
-                ),
-            )
+            all_urls = [*link_urls, *chunk_urls]
+            for fallback in build_link_fallback_payloads(
+                description if first_payload else "", all_urls
+            ):
+                send_discord_payload(session, fallback)
         except RuntimeError as exc:
             print(f"Media message rejected ({exc}); posting links instead")
-            send_discord_payload(
-                session,
-                build_link_fallback_payload(
-                    description, [*link_urls, *chunk_urls]
-                ),
-            )
+            remaining_urls = [
+                url for _, urls in payload_gen for url in urls
+            ]
+            all_urls = [*link_urls, *chunk_urls, *remaining_urls]
+            for fallback in build_link_fallback_payloads(description, all_urls):
+                send_discord_payload(session, fallback)
             return
         first_payload = False
 
@@ -300,16 +298,67 @@ def make_link_block(link_urls: Sequence[str]) -> str:
     return "\n".join(f"🔗 {url}" for url in link_urls)
 
 
-def build_link_fallback_payload(
+def truncate_lines(text: str, limit: int) -> str:
+    """Trim a text block whole lines, never splitting a line in the middle."""
+    if len(text) <= limit:
+        return text
+
+    kept: list[str] = []
+    used = 0
+    for line in text.splitlines():
+        line_len = len(line) + (1 if kept else 0)
+        if kept and used + line_len > limit:
+            break
+        kept.append(line)
+        used += line_len
+
+    if not kept:
+        return truncate(text.splitlines()[0], limit)
+    return "\n".join(kept)
+
+
+def build_link_fallback_payloads(
     description: str,
     link_urls: Sequence[str],
-) -> dict[str, Any]:
-    """Legacy plain-text message used when CV2 media posting fails."""
-    block = make_link_block(link_urls)
-    content = f"{description}\n\n{block}" if block else description
-    if len(content) > DISCORD_CONTENT_LIMIT:
-        content = truncate(content, DISCORD_CONTENT_LIMIT)
-    return {"content": content}
+) -> list[dict[str, Any]]:
+    """Plain-text fallback messages for media that could not be attached.
+
+    Same ``content`` channel as the legacy path: one message per
+    ``DISCORD_CONTENT_LIMIT``. URLs are never split; a link line is either
+    kept whole in one message or skipped if it alone would exceed the limit.
+    """
+    if not link_urls:
+        if description:
+            return [{"content": truncate(description, DISCORD_CONTENT_LIMIT)}]
+        return []
+
+    lines = [f"🔗 {url}" for url in link_urls]
+    if any(len(line) > DISCORD_CONTENT_LIMIT for line in lines):
+        print("Skipping media URL too long for a Discord link message")
+        lines = [line for line in lines if len(line) <= DISCORD_CONTENT_LIMIT]
+
+    full = f"{description}\n\n" + "\n".join(lines) if description else "\n".join(lines)
+    if len(full) <= DISCORD_CONTENT_LIMIT:
+        return [{"content": full}]
+
+    payloads: list[dict[str, Any]] = []
+    if description:
+        payloads.append({"content": truncate(description, DISCORD_CONTENT_LIMIT)})
+
+    current: list[str] = []
+    current_len = 0
+    for line in lines:
+        line_len = len(line) + (1 if current else 0)
+        if current and current_len + line_len > DISCORD_CONTENT_LIMIT:
+            payloads.append({"content": "\n".join(current)})
+            current = [line]
+            current_len = len(line)
+        else:
+            current.append(line)
+            current_len += line_len
+    if current:
+        payloads.append({"content": "\n".join(current)})
+    return payloads
 
 
 def load_changelog(stream: str, source: str) -> dict[str, Any]:
@@ -602,7 +651,7 @@ def build_entry_container(
     link_block = make_link_block(link_urls)
     if link_block:
         if len(link_block) >= budget:
-            link_block = truncate(link_block, max(budget // 2, 8))
+            link_block = truncate_lines(link_block, max(budget // 2, 8))
         description_limit = max(budget - len(link_block), 1)
     else:
         description_limit = budget
@@ -640,22 +689,6 @@ def build_entry_container(
     return {"type": 17, "accent_color": choose_embed_color(changes), "components": components}
 
 
-def is_embed_previewable(url: str) -> bool:
-    """Return whether Discord can generally render the URL inside an embed."""
-    parsed = urlparse(url)
-    path = parsed.path.lower()
-    if any(path.endswith(extension) for extension in MEDIA_FILE_EXTENSIONS):
-        return True
-
-    host = (parsed.hostname or "").lower()
-    if host == "github.com" and path.startswith("/user-attachments/"):
-        return True
-    if host.endswith(".githubusercontent.com"):
-        return True
-
-    return False
-
-
 def iter_media_urls(entry: Mapping[str, Any]) -> Iterable[str]:
     """Yield validated, deduplicated media URLs from a changelog entry."""
     media = entry.get("media", [])
@@ -678,12 +711,6 @@ def iter_media_urls(entry: Mapping[str, Any]) -> Iterable[str]:
             continue
         if len(url) > DISCORD_MEDIA_URL_LIMIT:
             print(f"Skipping media URL exceeding Discord's limit (entry {entry.get('id')})")
-            continue
-        if not is_embed_previewable(url):
-            print(
-                f"Skipping media URL Discord cannot include "
-                f"(entry {entry.get('id')}): {url}"
-            )
             continue
         if url in seen:
             continue
