@@ -378,7 +378,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!ent.Comp.PreSelectedSessions.TryGetValue(def, out var set))
                 continue;
 
-            foreach (var session in set)
+            foreach (var session in set.ToArray()) // Arcane-Edit
             {
                 TryMakeAntag(ent, session, def);
             }

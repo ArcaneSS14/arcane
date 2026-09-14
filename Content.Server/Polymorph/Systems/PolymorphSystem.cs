@@ -667,7 +667,7 @@ public sealed partial class PolymorphSystem : EntitySystem
             if (TryComp<ActionComponent>(sourceActionId, out var sourceAction) &&
                 TryComp<ActionComponent>(actionId, out var destAction))
             {
-                if (sourceAction.Cooldown is {} cooldown)
+                if (sourceAction.Cooldown is { } cooldown)
                     _actions.SetCooldown(actionId, cooldown.Start, cooldown.End);
                 else
                     _actions.RemoveCooldown(actionId);
@@ -675,7 +675,7 @@ public sealed partial class PolymorphSystem : EntitySystem
                 Dirty(actionId, destAction);
             }
 
-            var chargesReflCache = new Dictionary<Type, (System.Reflection.PropertyInfo? Prop, System.Reflection.FieldInfo? Field)>();
+            var chargesReflCache = new Dictionary<Type, (System.Reflection.MemberInfo? Charges, System.Reflection.MemberInfo? Update)>();
 
             foreach (var sourceComp in EntityManager.GetComponents(sourceActionId))
             {
@@ -683,25 +683,19 @@ public sealed partial class PolymorphSystem : EntitySystem
 
                 if (!chargesReflCache.TryGetValue(compType, out var cachedRefl))
                 {
-                    var prop = compType.GetProperty("LastCharges");
-                    var field = compType.GetField("LastCharges");
-                    cachedRefl = (prop, field);
+                    cachedRefl = (FindMemberInfo(compType, "LastCharges"), FindMemberInfo(compType, "LastUpdate"));
                     chargesReflCache[compType] = cachedRefl;
                 }
 
                 if (!EntityManager.TryGetComponent(actionId, compType, out var destActionComp))
                     continue;
 
-                if (cachedRefl.Prop != null && cachedRefl.Prop.CanRead && cachedRefl.Prop.CanWrite)
-                    cachedRefl.Prop!.SetValue(destActionComp, cachedRefl.Prop.GetValue(sourceComp));
+                var copied = false;
+                copied |= CopyMember(cachedRefl.Charges, sourceComp, destActionComp);
+                copied |= CopyMember(cachedRefl.Update, sourceComp, destActionComp);
 
-                else if (cachedRefl.Field != null)
-                    cachedRefl.Field.SetValue(destActionComp, cachedRefl.Field.GetValue(sourceComp));
-
-                else
-                    continue;
-
-                Dirty(actionId, destActionComp);
+                if (copied)
+                    Dirty(actionId, destActionComp);
             }
         }
     }
@@ -710,13 +704,33 @@ public sealed partial class PolymorphSystem : EntitySystem
     {
         if (TryComp<InstantActionComponent>(actionId, out var instantAction) &&
             instantAction.Event is PolymorphActionEvent polymorphEvent &&
-            polymorphEvent.ProtoId is {} protoId)
+            polymorphEvent.ProtoId is { } protoId)
             return $"polymorph:{protoId}";
 
         if (TryComp<MetaDataComponent>(actionId, out var meta) && meta.EntityPrototype != null)
             return $"proto:{meta.EntityPrototype.ID}";
 
         return $"action:{actionId}";
+    }
+
+    private static System.Reflection.MemberInfo? FindMemberInfo(Type compType, string name)
+        => (System.Reflection.MemberInfo?) compType.GetProperty(name) ?? compType.GetField(name);
+
+    private static bool CopyMember(System.Reflection.MemberInfo? member, object source, object dest)
+    {
+        if (member is System.Reflection.PropertyInfo prop && prop.CanRead && prop.CanWrite)
+        {
+            prop.SetValue(dest, prop.GetValue(source));
+            return true;
+        }
+
+        if (member is System.Reflection.FieldInfo field)
+        {
+            field.SetValue(dest, field.GetValue(source));
+            return true;
+        }
+
+        return false;
     }
     // Arcane-End
 }
