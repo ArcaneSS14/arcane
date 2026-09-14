@@ -79,7 +79,7 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
 
             if (TryComp<BatteryComponent>(reagentDispenser, out var battery))
             {
-                batteryCharge = battery.LastCharge;
+                batteryCharge = _battery.GetCharge((reagentDispenser.Owner, battery)); // Arcane
                 batteryMaxCharge = battery.MaxCharge;
             }
 
@@ -88,6 +88,13 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
                 currentReceivingEnergy = apcPower.BatteryRechargeRate;
                 usingBattery = apcPower.Enabled;
                 idleUse = apcPower.IdleLoad;
+            }
+            // Arcane: no APC on hand-held dispensers, so drive the client's live charge-bar animation
+            // (see EnergyReagentDispenserWindow.FrameUpdate) off the self-recharger's rate instead.
+            else if (TryComp<BatterySelfRechargerComponent>(reagentDispenser, out var selfRecharger))
+            {
+                currentReceivingEnergy = selfRecharger.AutoRechargeRate;
+                hasPower = true;
             }
 
             if (TryComp<ApcPowerReceiverComponent>(reagentDispenser, out var apc))
@@ -168,7 +175,10 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
             var amount = (int) reagentDispenser.Comp.DispenseAmount;
             var powerRequired = GetPowerCostForReagent(message.ReagentId, amount, reagentDispenser.Comp);
 
-            if (battery.LastCharge < powerRequired)
+            // Arcane: read/spend charge through the battery API (not the raw LastCharge field) so
+            // entities relying on BatterySelfRecharger (no ApcPowerReceiverBattery ticking every frame)
+            // see their accumulated charge instead of a value frozen at the last explicit write.
+            if (_battery.GetCharge((reagentDispenser.Owner, battery)) < powerRequired)
             {
                 _audioSystem.PlayPvs(reagentDispenser.Comp.PowerSound, reagentDispenser, AudioParams.Default.WithVolume(-2f));
                 return;
@@ -179,7 +189,7 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
             if (!_solutionContainerSystem.TryAddSolution(solution.Value, sol))
                 return;
 
-            _battery.SetCharge(reagentDispenser.Owner, battery.LastCharge - powerRequired);
+            _battery.UseCharge((reagentDispenser.Owner, battery), powerRequired); // Arcane
             ClickSound(reagentDispenser);
             UpdateUiState(reagentDispenser);
         }
@@ -195,9 +205,10 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
                                 * reagentDispenser.Comp.RefundEnergyEfficiency; // Orion
             if (refundedPower > 0)
             {
-                _battery.TryGetBatteryComponent(reagentDispenser, out var batteryComponent, out _);
-                if (batteryComponent != null)
-                    _battery.SetCharge(reagentDispenser.Owner,  batteryComponent.LastCharge + refundedPower);
+                // Arcane: ChangeCharge instead of SetCharge off the raw field, same reasoning as OnDispenseReagentMessage.
+                _battery.TryGetBatteryComponent(reagentDispenser, out var batteryComponent, out var batteryUid);
+                if (batteryComponent != null && batteryUid != null)
+                    _battery.ChangeCharge((batteryUid.Value, batteryComponent), refundedPower);
             }
 
 
