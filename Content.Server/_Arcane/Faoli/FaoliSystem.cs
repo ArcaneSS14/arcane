@@ -88,7 +88,7 @@ public sealed partial class FaoliSystem : EntitySystem
             return;
         }
 
-        if (args.DamageDelta.DamageDict.TryGetValue("Holy", out FixedPoint2 value))
+        if (args.DamageDelta.DamageDict.TryGetValue(ent.Comp.FaoliDamageType, out FixedPoint2 value))
         {
             _faoli.TryChangeFaoliAmount(ent.Owner, -value * ent.Comp.FaoliDamageMultiplier, ent.Comp);
         }
