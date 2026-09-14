@@ -30,6 +30,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Players;
 using Content.Shared.Roles;
 using Content.Shared.Whitelist;
@@ -476,7 +477,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         // Arcane-Start
-        var checkMind = session?.GetMind() ?? _mind.GetMind(player);
+        var checkMind = session?.GetMind();
+        if (checkMind == null && TryComp<MindContainerComponent>(player, out var mindContainer))
+            checkMind = _mind.GetMind(player, mindContainer);
+
         if (checkMind.HasValue && def.MindRoles != null)
         {
             if (TryComp<MindComponent>(checkMind.Value, out var mindComp))
