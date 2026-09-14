@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using Content.Client.Inventory;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.GameObjects.SpriteComponent;
 
@@ -28,6 +30,8 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     private readonly Dictionary<EntityUid, OrderingCache> _cache = new();
 
     private Angle _lastEyeRotation = Angle.Zero;
+
+    private static readonly ProtoId<SpeciesPrototype> HarpySpecies = "Harpy";
 
     /// <summary>
     ///     Per-entity snapshot of the layers that make up the hair, neck and tail blocks, plus the per-entity markers
@@ -383,7 +387,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
         var wantCloakBelowTail = view == DirectionalView.Back;
 
-        if (ent.Comp1.Species == "Harpy")
+        if (ent.Comp1.Species == HarpySpecies)
         {
             // Harpies draw big back wings on the Tail layer above the head in their base order, so the cloak (neck)
             // is already below them on every view; keep the native layout rather than burying the wings under it.
@@ -399,8 +403,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (!TryExtractBlock(ent, cache.TailKeys, out var tailBlock, out _))
             return;
 
-        if (!TryExtractBlock(ent, cache.CloakKeys, out var cloakBlock, out var cloakStart) &&
-            TryGetLayerIndex(ent, cache.TailKeys[0], out _))
+        if (!TryExtractBlock(ent, cache.CloakKeys, out var cloakBlock, out var cloakStart))
         {
             // The cloak failed to come out; put the tail back where it was rather than dropping it from the sprite.
             InsertBlock(ent, cache.TailKeys, tailBlock, tailStart);
