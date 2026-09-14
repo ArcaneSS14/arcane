@@ -5,10 +5,10 @@ using Content.Goobstation.Maths.FixedPoint;
 using Content.Goobstation.Shared.Xenobiology;
 using Content.Goobstation.Shared.Xenobiology.Components;
 using Content.Goobstation.Shared.Xenobiology.Components.Equipment;
-using Content.Shared._Goobstation.Sleep;
 using Content.Shared._EinsteinEngines.Silicon.Components;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
@@ -77,7 +77,7 @@ public sealed partial class SlimeLatchSystem : EntitySystem
         SubscribeLocalEvent<SlimeComponent, SelfBeforeClimbEvent>(OnSelfBeforeClimb);
         SubscribeLocalEvent<SlimeComponent, UpdateCanMoveEvent>(OnUpdateCanMove);
         SubscribeLocalEvent<SlimeDamageOvertimeComponent, WakeDamageOverrideEvent>(OnWakeOverride);
-        SubscribeLocalEvent<SlimeDamageOvertimeComponent, SleepOverrideEvent>(OnSleepOverride);
+        SubscribeLocalEvent<SlimeDamageOvertimeComponent, TryingToSleepEvent>(OnSleepOverride);
 
         _bloodstreamQuery = GetEntityQuery<BloodstreamComponent>();
         _hungerQuery = GetEntityQuery<HungerComponent>();
@@ -209,12 +209,12 @@ public sealed partial class SlimeLatchSystem : EntitySystem
         args.IgnoreDamage = true;
     }
 
-    private void OnSleepOverride(Entity<SlimeDamageOvertimeComponent> ent, ref SleepOverrideEvent args)
+    private void OnSleepOverride(Entity<SlimeDamageOvertimeComponent> ent, ref TryingToSleepEvent args)
     {
         if (!TryComp<MobStateComponent>(ent.Owner, out var mobState))
             return;
 
-        args.MobState = mobState.CurrentState;
+        args.Cancelled = mobState.CurrentState != MobState.Alive;
     }
 
     private void OnMobStateChangedSOD(Entity<SlimeDamageOvertimeComponent> ent, ref MobStateChangedEvent args)
