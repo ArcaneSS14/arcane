@@ -5,7 +5,22 @@
 
 - type: randomHumanoidSettings
   id: CentcommHumanoid
-  speciesWhitelist: Human
+  # Arcane-Edit-Start
+  speciesBlacklist:
+  - Chitinid
+  - Diona
+  - Felinid
+  - Harpy
+  - HumanoidXeno
+  - Hydrakin
+  - Oni
+  - Plasmaman
+  - Resomi
+  - Rodentia
+  - Shadowkin
+  - Vox
+  - Yowie
+  # Arcane-Edit-End
   components:
   - type: RandomHumanoidAppearance
     randomizeName: false
@@ -39,6 +54,7 @@
   id: NavyOfficer
   parent: CentcommHumanoid
   randomizeName: false
+  speciesWhitelist: Human # Orion
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, StypticStimulatorImplant]
@@ -79,6 +95,7 @@
   id: NavyCaptain
   parent: CentcommHumanoid
   randomizeName: false
+  speciesWhitelist: Human # Orion
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant]
@@ -119,6 +136,7 @@
   id: NavyOfficerUndercover
   parent: CentcommHumanoid
   randomizeName: false
+  speciesWhitelist: Human # Orion
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant]
@@ -159,6 +177,7 @@
   id: SpecialOperationsOfficer
   parent: CentcommHumanoid
   randomizeName: false
+  speciesWhitelist: Human # Orion
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant]
@@ -199,6 +218,7 @@
   id: DiplomatGear
   parent: CentcommHumanoid
   randomizeName: false
+  speciesWhitelist: Human # Orion
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant]
@@ -239,6 +259,7 @@
   id: InspectorGear
   parent: CentcommHumanoid
   randomizeName: false
+  speciesWhitelist: Human # Orion
   components:
   - type: AutoImplant
     implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant]
