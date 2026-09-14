@@ -26,7 +26,7 @@ public sealed partial class BerserkerImplantActiveComponent : Component
     public float StunModifier = 0.3f; // Arcane-Edit: 0.5 -> 0.3
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float SelfDamageModifier = 1.5f;
+    public float SelfDamageModifier = 1.7f; // Arcane-Edit: 1.5 -> 1.7
 
     [ViewVariables(VVAccess.ReadWrite)]
     public DamageSpecifier DelayedDamage = new();
