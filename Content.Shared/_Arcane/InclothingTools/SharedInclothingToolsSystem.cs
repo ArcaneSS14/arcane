@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Arcane.InclothingTools;
 
-public sealed class InclothingToolsSystem : EntitySystem
+public sealed class SharedInclothingToolsSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
@@ -30,12 +30,11 @@ public sealed class InclothingToolsSystem : EntitySystem
         SubscribeLocalEvent<InclothingToolsComponent, ComponentInit>(OnCompInit);
         SubscribeLocalEvent<InclothingToolsComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<InclothingToolsComponent, GetItemActionsEvent>(OnGetActions);
-        SubscribeLocalEvent<InclothingToolsComponent, SelectInclothingToolEvent>(OnSelectInclothingTool);
+        SubscribeLocalEvent<InclothingToolsComponent, ActionSelectInclothingToolEvent>(OnSelectInclothingTool);
         SubscribeLocalEvent<InclothingToolsComponent, InclothingToolsUiMessage>(OnUiMessage);
         SubscribeLocalEvent<InclothingToolsComponent, InclothingToolsUnequipAllMessage>(OnUnequipAll);
 
         SubscribeLocalEvent<RandomInclothingToolsComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<InclothingToolsComponent, RandomInclothingToolEvent>(OnRandomTool);
         SubscribeLocalEvent<RandomInclothingToolsComponent, GetItemActionsEvent>(OnGetActions);
     }
 
@@ -99,7 +98,7 @@ public sealed class InclothingToolsSystem : EntitySystem
         args.AddAction(entity.Comp.ActionUid);
     }
 
-    private void OnSelectInclothingTool(Entity<InclothingToolsComponent> entity, ref SelectInclothingToolEvent args)
+    private void OnSelectInclothingTool(Entity<InclothingToolsComponent> entity, ref ActionSelectInclothingToolEvent args)
     {
         if (entity.Comp.Container == null || entity.Comp.Container.Count <= 0)
             return;
@@ -132,20 +131,7 @@ public sealed class InclothingToolsSystem : EntitySystem
         }
     }
 
-    private void OnRandomTool(Entity<InclothingToolsComponent> entity, ref RandomInclothingToolEvent args)
-    {
-        EntityUid selectedTool;
-
-        if (!IsClientSide(entity))
-        {
-            selectedTool = _random.GetItems(entity.Comp.Container.ContainedEntities.ToList(), 1)[0];
-            TryEquipOrReplace(entity, selectedTool, args.Performer);
-        }
-
-        Dirty(entity);
-    }
-
-    private bool TryEquipOrReplace(Entity<InclothingToolsComponent> entity, EntityUid tool, EntityUid actor)
+    public bool TryEquipOrReplace(Entity<InclothingToolsComponent> entity, EntityUid tool, EntityUid actor)
     {
         var activeHand = _handsSystem.GetActiveHand(actor);
 

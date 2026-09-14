@@ -1,5 +1,6 @@
 - type: entity
   parent: [ ClothingHandsGlovesColorBlack, BaseSyndicateAnchoredContraband ]
+  categories: [ DoNotMap ]
   id: ClothingHandsGlovesBlackSilence
   name: sorrowful gloves
   description: I have nothing but my sorrow...

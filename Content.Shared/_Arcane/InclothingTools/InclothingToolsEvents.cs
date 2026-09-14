@@ -3,9 +3,15 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Arcane.InclothingTools;
 
-public sealed partial class SelectInclothingToolEvent : InstantActionEvent { }
+public sealed partial class ActionSelectInclothingToolEvent : InstantActionEvent { }
 
-public sealed partial class RandomInclothingToolEvent : InstantActionEvent { }
+public sealed partial class ActionRandomInclothingToolEvent : InstantActionEvent { }
+
+[Serializable, NetSerializable]
+public sealed partial class RandomInclothingToolEvent : EntityEventArgs
+{
+    public NetEntity Clothing;
+}
 
 [Serializable, NetSerializable]
 public enum SelectInclothingToolUiKey : byte

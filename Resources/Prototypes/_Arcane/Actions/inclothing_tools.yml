@@ -23,4 +23,4 @@
       sprite: Objects/Fun/dice.rsi
       state: d20_20
   - type: InstantAction
-    event: !type:RandomInclothingToolEvent
+    event: !type:ActionRandomInclothingToolEvent

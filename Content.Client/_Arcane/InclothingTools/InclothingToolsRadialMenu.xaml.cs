@@ -78,7 +78,7 @@ public sealed partial class InclothingToolsRadialMenu : RadialMenu
         var emptyButton = new RadialMenuButtonWithSector
         {
             SetSize = new Vector2(64, 64),
-            ToolTip = Loc.GetString("inclothing-tools-unequip-all")
+            ToolTip = Loc.GetString("inclothing-tools-tooltip-unequip-all")
         };
 
         var emptySpriteView = new SpriteView
