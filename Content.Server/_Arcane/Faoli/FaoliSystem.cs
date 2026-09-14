@@ -8,6 +8,7 @@ using Robust.Shared.Audio.Systems;
 using Content.Shared.Damage;
 using Content.Server.Administration;
 using Content.Shared._Arcane.Faoli;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Arcane.Faoli;
 
@@ -21,12 +22,14 @@ public sealed partial class FaoliSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<FaoliComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<FaoliComponent, DamageChangedEvent>(OnDamageChanged);
 
         SubscribeAbilities();
     }
@@ -46,9 +49,10 @@ public sealed partial class FaoliSystem : EntitySystem
             if (_gameTiming.CurTime < comp.NextTickTime)
                 continue;
 
-            if (comp.Faoli < comp.Low) // 20
+            if (comp.Faoli < comp.Low) // 15
             {
                 comp.NextTickTime = _gameTiming.CurTime + TimeSpan.FromSeconds(comp.LowInterval);
+                _stamina.TakeStaminaDamage(uid, comp.StaminaDamage, visual: false, immediate: true, ignoreResist: true);
                 _faoli.TryChangeFaoliAmount(uid, comp.Regeneartion, comp);
                 continue;
             }
@@ -75,6 +79,21 @@ public sealed partial class FaoliSystem : EntitySystem
 
             continue;
         }
+    }
+
+    private void OnDamageChanged(Entity<FaoliComponent> ent, ref DamageChangedEvent args)
+    {
+        if (args.DamageDelta is null || !args.DamageIncreased)
+        {
+            return;
+        }
+
+        if (args.DamageDelta.DamageDict.TryGetValue("Holy", out FixedPoint2 value))
+        {
+            _faoli.TryChangeFaoliAmount(ent.Owner, -value * ent.Comp.FaoliDamageMultiplier, ent.Comp);
+        }
+
+        return;
     }
 
     public bool OnUseAbility(EntityUid uid, FixedPoint2 cost)

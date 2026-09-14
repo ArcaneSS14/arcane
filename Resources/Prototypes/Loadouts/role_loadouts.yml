@@ -135,7 +135,6 @@
   - ServiceCloak
   - ServiceWorkerShoes
   - ServiceWorkerBelt
-  - GroupGrimoire
   # Arcane-End
   - CommonBackpack
   - Glasses
@@ -151,6 +150,7 @@
   - ServiceWorkerJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
+  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - ServiceWorkerEnvirohelm
   - ServiceWorkerEnvirosuit
@@ -164,7 +164,6 @@
   - ChefMask
   - ChefJumpsuit
   - ServiceCloak # Arcane
-  - GroupGrimoire # Arcane
   - CommonBackpack
   - ChefOuterClothing
   - Glasses
@@ -180,6 +179,7 @@
   - ChefJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
+  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - ChefEnvirohelm
   - ChefEnvirosuit
@@ -1054,7 +1054,6 @@
   - Survival
   - Trinkets
   # Arcane-Start
-  - GroupGrimoire
   - ServiceCloak
   - Patron
   # Arcane-End
@@ -1067,6 +1066,7 @@
   - ReporterJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
+  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - ReporterEnvirohelm
   - ReporterEnvirosuit

@@ -37,6 +37,12 @@ public sealed partial class FaoliComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public FixedPoint2 Regeneartion = 1;
 
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int StaminaDamage = 7;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public FixedPoint2 FaoliDamageMultiplier = 2;
+
     [DataField]
     public TimeSpan NextTickTime;
 
