@@ -58,8 +58,8 @@ DISCORD_MEDIA_URL_LIMIT = 2000
 DISCORD_COMPONENTS_V2_FLAG = 1 << 15
 DISCORD_CV2_TEXT_LIMIT = 3500
 DISCORD_MEDIA_GALLERY_MAX_ITEMS = 10
-DISCORD_ATTACHMENT_SIZE_LIMIT = 8 * 1024 * 1024
-MEDIA_MAX_DOWNLOAD_SIZE = 10 * 1024 * 1024
+DISCORD_ATTACHMENT_SIZE_LIMIT = 25 * 1024 * 1024
+MEDIA_MAX_DOWNLOAD_SIZE = 25 * 1024 * 1024
 MEDIA_READ_CHUNK_SIZE = 64 * 1024
 
 DESCRIPTION_TRUNCATION_SUFFIX = "\n\n*Описание сокращено из-за лимита Discord.*"
@@ -236,15 +236,39 @@ def build_media_overflow_container(
     gallery_items: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
     """CV2 card carrying media gallery items beyond the first message."""
-    pr_number = extract_pr_number(normalize_url(entry.get("url")))
-    title = f"**Медиа • PR #{pr_number}**" if pr_number else "**Дополнительные медиа**"
+    author = sanitize_text(entry.get("author"), "Неизвестный автор")
+    url = normalize_url(entry.get("url"))
+    pr_number = extract_pr_number(url)
+    entry_id = sanitize_text(entry.get("id"), "unknown")
+    raw_time = entry.get("time")
+
+    if pr_number and url:
+        title = f"**Медиа • [PR #{pr_number}]({url})**"
+    elif pr_number:
+        title = f"**Медиа • PR #{pr_number}**"
+    else:
+        title = "**Дополнительные медиа**"
+
+    footer_parts: list[str] = []
+    if raw_time:
+        try:
+            from datetime import datetime
+            dt = datetime.fromisoformat(str(raw_time))
+            footer_parts.append(dt.strftime("%d.%m.%Y %H:%M"))
+        except (ValueError, TypeError):
+            footer_parts.append(str(raw_time))
+    footer_parts.append(f"ID: {entry_id}")
+
     return {
         "type": 17,
         "accent_color": DEFAULT_EMBED_COLOR,
         "components": [
+            {"type": 10, "content": f"👤 **{author}**"},
             {"type": 10, "content": title},
             {"type": 14, "divider": True, "spacing": 1},
             {"type": 12, "items": list(gallery_items)},
+            {"type": 14, "divider": True, "spacing": 1},
+            {"type": 10, "content": f"-# 🕐 {' • '.join(footer_parts)}"},
         ],
     }
 
@@ -550,24 +574,25 @@ def build_entry_container(
     url = normalize_url(entry.get("url"))
     pr_number = extract_pr_number(url)
     entry_id = sanitize_text(entry.get("id"), "unknown")
+    raw_time = entry.get("time")
 
     raw_changes = entry.get("changes", [])
     changes: list[Mapping[str, Any]] = [
         change for change in raw_changes if isinstance(change, Mapping)
     ] if isinstance(raw_changes, list) else []
 
-    if pr_number:
+    if pr_number and url:
+        title = f"**Ченджлог • [PR #{pr_number}]({url})**"
+    elif pr_number:
         title = f"**Ченджлог • PR #{pr_number}**"
     else:
         title = "**Новый ченджлог**"
 
     components: list[dict[str, Any]] = [
+        {"type": 10, "content": f"👤 **{author}**"},
         {"type": 10, "content": title},
-        {"type": 10, "content": f"👤 {author} • ID: {entry_id}"},
+        {"type": 14, "divider": True, "spacing": 1},
     ]
-    if url:
-        components.append({"type": 10, "content": f"[GitHub Pull Request]({url})"})
-    components.append({"type": 14, "divider": True, "spacing": 1})
 
     budget = max(
         DISCORD_CV2_TEXT_LIMIT
@@ -598,6 +623,19 @@ def build_entry_container(
     if gallery_items:
         components.append({"type": 14, "divider": True, "spacing": 1})
         components.append({"type": 12, "items": list(gallery_items)})
+
+    footer_parts: list[str] = []
+    if raw_time:
+        try:
+            from datetime import datetime, timezone
+            dt = datetime.fromisoformat(str(raw_time))
+            footer_parts.append(dt.strftime("%d.%m.%Y %H:%M"))
+        except (ValueError, TypeError):
+            footer_parts.append(str(raw_time))
+    footer_parts.append(f"ID: {entry_id}")
+
+    components.append({"type": 14, "divider": True, "spacing": 1})
+    components.append({"type": 10, "content": f"-# 🕐 {' • '.join(footer_parts)}"})
 
     return {"type": 17, "accent_color": choose_embed_color(changes), "components": components}
 
