@@ -707,7 +707,7 @@
   - type: SinguloFood
     energy: -500
   - type: Explosive # Goob
-    explosionType: Electrical
+    # explosionType: Electrical # Arcane-Edit
     maxIntensity: 10
     intensitySlope: 3
     totalIntensity: 150
@@ -1035,9 +1035,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 50
+    totalIntensity: 25 # Arcane-Edit: 50 -> 25
     intensitySlope: 1
-    maxIntensity: 5
+    maxIntensity: 3 # Arcane-Edit: 5 -> 3
     canCreateVacuum: false
   - type: ContainerContainer
     containers:

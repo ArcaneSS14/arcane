@@ -81,6 +81,7 @@
     baseDecayRate: 0.08
   - type: Thirst
     baseDecayRate: 0.15
+  - type: FacehuggerImmune
   - type: Icon
     sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
     state: full
