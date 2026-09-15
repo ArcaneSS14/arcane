@@ -164,13 +164,15 @@ def send_changelog_entry(session: requests.Session, entry: Mapping[str, Any]) ->
         print(f"Downloaded media ({len(data)} bytes): {url} -> {filename}")
 
     first_payload = True
+    pending_link_urls = list(link_urls)
     payload_gen = build_entry_cv2_payloads(entry, description, media_files, link_urls)
     for payload, chunk_urls in payload_gen:
         try:
             send_discord_payload(session, payload)
         except DiscordFileTooLarge as exc:
             print(f"Chunk rejected as too large ({exc}); posting its links instead")
-            all_urls = [*link_urls, *chunk_urls]
+            all_urls = [*pending_link_urls, *chunk_urls]
+            pending_link_urls.clear()
             for fallback in build_link_fallback_payloads(
                 description if first_payload else "", all_urls
             ):
