@@ -4,6 +4,7 @@ marking-MelancholicWings = Меланхолик
 marking-MoonWings = Лунные крылья
 marking-PentadactylaWings = Пятипалая пальцекрылка
 marking-WhiteWings = Полупрозрачные
+marking-ChestBelly = Живот
 marking-AntennaDownFluff = Опущенные антенны
 marking-AntennaSadFluff = Грустные антенны
 marking-AntennaUp = Поднятые антенны
