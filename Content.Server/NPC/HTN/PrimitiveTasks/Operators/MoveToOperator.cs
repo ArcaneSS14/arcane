@@ -202,6 +202,21 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
+        // Arcane-Start
+        if (_entManager.TryGetComponent<TransformComponent>(owner, out var xform) && xform.Anchored)
+        {
+            if (blackboard.TryGetValue<EntityCoordinates>(TargetKey, out var targetCoords, _entManager))
+            {
+                var range = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);
+
+                if (xform.Coordinates.TryDistance(_entManager, targetCoords, out var distance) && distance <= range)
+                    return HTNOperatorStatus.Finished;
+
+                return HTNOperatorStatus.Failed;
+            }
+        }
+        // Arcane-End
+
         if (!_entManager.TryGetComponent<NPCSteeringComponent>(owner, out var steering))
             return HTNOperatorStatus.Failed;
 
