@@ -3,149 +3,173 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: man_long
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: man_long
 
 - type: marking
   id: HumanHairShortMullet
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: short_mullet
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: short_mullet
 
 - type: marking
   id: HumanHairBobStrand
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: bob_strand
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: bob_strand
 
 - type: marking
   id: HumanHairBraidCrookedBangs
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: braid_crooked_bangs
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: braid_crooked_bangs
 
 - type: marking
   id: HumanHairDreadlocksShortTale
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: dreadlocks_short_tale
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: dreadlocks_short_tale
 
 - type: marking
   id: HumanHairDreadlocksShort
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: dreadlocks_short
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: dreadlocks_short
 
 - type: marking
   id: HumanHairDreadlocksTale
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: dreadlocks_tale
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: dreadlocks_tale
 
 - type: marking
   id: HumanHairGakupo
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: gakupo
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: gakupo
 
 - type: marking
   id: HumanHairLongStraight
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: long_straight
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: long_straight
 
 - type: marking
   id: HumanHairManBunBob
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: man_bun_bob
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: man_bun_bob
 
 - type: marking
   id: HumanHairNeru
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: neru
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: neru
 
 - type: marking
   id: HumanHairPinkamina
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: pinkamina
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: pinkamina
 
 - type: marking
   id: HumanHairPrincess
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: princess
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: princess
 
 - type: marking
   id: HumanHairSpider
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: spider
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: spider
 
 - type: marking
   id: HumanHairTaleBang
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: tale_bang
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: tale_bang
 
 - type: marking
   id: HumanHairTale
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: tale
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: tale
 
 - type: marking
   id: HumanHairTwilight
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: twilight
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: twilight
 
 - type: marking
   id: HumanHairHardMorning
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: hardmorning
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: hardmorning
 
 - type: marking
   id: HumanHairHardMorningAlt
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: _Arcane/Mobs/Customization/hair.rsi
-      state: hardmorningalt
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: hardmorningalt
+
+- type: marking
+  id: HumanHairMullet
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: mullet
+
+- type: marking
+  id: HumanHairWolfcutM
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: wolfcut_m
+
+- type: marking
+  id: HumanHairWolfcutF
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: wolfcut_f
