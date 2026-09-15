@@ -50,7 +50,6 @@ public sealed class HairGradientTest
             Color.White,
             new List<Marking>(),
             true,
-            Color.Red,
             testColors,
             HairGradientStyle.Split,
             0.75f);
@@ -121,23 +120,23 @@ public sealed class HairGradientTest
 
         var app1 = new HumanoidCharacterAppearance(
             "HairBald", Color.Black, "FacialHairClean", Color.Black, Color.Brown, Color.White,
-            markings, true, Color.Red, colors1, HairGradientStyle.Split, 0.4f);
+            markings, true, colors1, HairGradientStyle.Split, 0.4f);
 
         var app2 = new HumanoidCharacterAppearance(
             "HairBald", Color.Black, "FacialHairClean", Color.Black, Color.Brown, Color.White,
-            markings, true, Color.Red, colors2, HairGradientStyle.Split, 0.4f);
+            markings, true, colors2, HairGradientStyle.Split, 0.4f);
 
         var app3 = new HumanoidCharacterAppearance(
             "HairBald", Color.Black, "FacialHairClean", Color.Black, Color.Brown, Color.White,
-            markings, true, Color.Red, colors3, HairGradientStyle.Split, 0.4f);
+            markings, true, colors3, HairGradientStyle.Split, 0.4f);
 
         var appDiffStyle = new HumanoidCharacterAppearance(
             "HairBald", Color.Black, "FacialHairClean", Color.Black, Color.Brown, Color.White,
-            markings, true, Color.Red, colors1, HairGradientStyle.Underdye, 0.4f);
+            markings, true, colors1, HairGradientStyle.Underdye, 0.4f);
 
         var appDiffOffset = new HumanoidCharacterAppearance(
             "HairBald", Color.Black, "FacialHairClean", Color.Black, Color.Brown, Color.White,
-            markings, true, Color.Red, colors1, HairGradientStyle.Split, 0.8f);
+            markings, true, colors1, HairGradientStyle.Split, 0.8f);
 
         Assert.That(app1.MemberwiseEquals(app2), Is.True);
         Assert.That(app1.MemberwiseEquals(app3), Is.False);
@@ -148,6 +147,11 @@ public sealed class HairGradientTest
         Assert.That(app1.Equals(app3), Is.False);
         Assert.That(app1.Equals(appDiffStyle), Is.False);
         Assert.That(app1.Equals(appDiffOffset), Is.False);
+
+        var appNearOffset = new HumanoidCharacterAppearance(
+            "HairBald", Color.Black, "FacialHairClean", Color.Black, Color.Brown, Color.White,
+            markings, true, colors1, HairGradientStyle.Split, 0.4005f);
+        Assert.That(app1.Equals(appNearOffset), Is.False);
 
         Assert.That(app1.GetHashCode(), Is.EqualTo(app2.GetHashCode()));
         Assert.That(app1.GetHashCode(), Is.Not.EqualTo(app3.GetHashCode()));
@@ -187,33 +191,48 @@ public sealed class HairGradientTest
         Assert.That(withLong.HairGradientColors[1], Is.EqualTo(Color.Green));
     }
 
-    private sealed class TestGradientSaveData
-    {
-        public List<string> Colors { get; set; } = new();
-        public HairGradientStyle Style { get; set; } = HairGradientStyle.Ombre;
-        public float Offset { get; set; } = 0.5f;
-
-        public TestGradientSaveData() { }
-
-        public TestGradientSaveData(List<string> colors, HairGradientStyle style, float offset)
-        {
-            Colors = colors;
-            Style = style;
-            Offset = offset;
-        }
-    }
-
     [Test]
     public void TestJsonSerializationRoundTrip()
     {
-        var original = new TestGradientSaveData(new List<string> { "#FF0000", "#0000FF" }, HairGradientStyle.Underdye, 0.7f);
-        var json = System.Text.Json.JsonSerializer.Serialize(original);
+        var original = new Content.Server.Database.ServerDbBase.HairGradientSaveData(new List<string> { "#FF0000", "#0000FF" }, HairGradientStyle.Underdye, 0.7f);
+        var json = System.Text.Json.JsonSerializer.Serialize(original, Content.Server.Database.ServerDbBase.HairGradientJsonOptions);
         TestContext.Out.WriteLine($"Serialized JSON: {json}");
-        var deserialized = System.Text.Json.JsonSerializer.Deserialize<TestGradientSaveData>(json);
+        Assert.That(json, Does.Contain("Underdye"));
+        var deserialized = System.Text.Json.JsonSerializer.Deserialize<Content.Server.Database.ServerDbBase.HairGradientSaveData>(json, Content.Server.Database.ServerDbBase.HairGradientJsonOptions);
         Assert.That(deserialized, Is.Not.Null);
         Assert.That(deserialized!.Style, Is.EqualTo(HairGradientStyle.Underdye));
         Assert.That(deserialized.Offset, Is.EqualTo(0.7f));
         Assert.That(deserialized.Colors, Is.EqualTo(original.Colors));
+    }
+
+    [Test]
+    public void TestPersistencePreservesPlainAndGradientHairStates()
+    {
+        var appearance = new HumanoidCharacterAppearance()
+            .WithHairGradient(true, new[] { Color.Red, Color.Blue }, HairGradientStyle.Underdye, 0.7f);
+        var humanoid = new HumanoidCharacterProfile
+        {
+            Species = "Human",
+            Appearance = appearance,
+        };
+
+        var savedGradient = Content.Server.Database.ServerDbBase.ConvertProfiles(humanoid, 0);
+        Assert.That(savedGradient.HairColor, Is.EqualTo(appearance.HairColor.ToHex()));
+        Assert.That(savedGradient.HairGradientEnabled, Is.True);
+        Assert.That(savedGradient.HairGradientData, Is.Not.Null);
+
+        var plain = humanoid.WithCharacterAppearance(appearance.WithHairGradient(false, new[] { Color.Red, Color.Blue }));
+        var savedPlain = Content.Server.Database.ServerDbBase.ConvertProfiles(plain, 0, savedGradient);
+        Assert.That(savedPlain.HairColor, Is.EqualTo(plain.Appearance.HairColor.ToHex()));
+        Assert.That(savedPlain.HairGradientEnabled, Is.False);
+        Assert.That(savedPlain.HairGradientData, Is.EqualTo(savedGradient.HairGradientData));
+
+        var loaded = Content.Server.Database.ServerDbBase.ConvertProfiles(savedPlain);
+        Assert.That(loaded.Appearance.HairColor, Is.EqualTo(plain.Appearance.HairColor));
+        Assert.That(loaded.Appearance.HairGradientEnabled, Is.False);
+        Assert.That(loaded.Appearance.HairGradientColors, Is.EqualTo(appearance.HairGradientColors));
+        Assert.That(loaded.Appearance.HairGradientStyle, Is.EqualTo(HairGradientStyle.Underdye));
+        Assert.That(loaded.Appearance.HairGradientOffset, Is.EqualTo(0.7f));
     }
 }
 

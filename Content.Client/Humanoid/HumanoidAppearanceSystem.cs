@@ -258,7 +258,6 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.EyeColor = profile.Appearance.EyeColor;
         // Arcane-Start
         humanoid.HairGradientEnabled = profile.Appearance.HairGradientEnabled;
-        humanoid.HairGradientColor = profile.Appearance.HairGradientColor;
         humanoid.HairGradientColors = new(profile.Appearance.HairGradientColors);
         humanoid.HairGradientStyle = profile.Appearance.HairGradientStyle;
         humanoid.HairGradientOffset = profile.Appearance.HairGradientOffset;
@@ -426,6 +425,24 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         // each sprite when we have one marking setting multiple layers,
         // lets just kinda sorta do that ourselves
         var layerDict = new Dictionary<string, int>();
+        // Arcane-Edit-Start: Hair gradient shader preparation
+        var markingShader = markingPrototype.Shader;
+        var isHairGradient = markingShader == null && markingPrototype.MarkingCategory == MarkingCategories.Hair && humanoid.HairGradientEnabled;
+        ShaderInstance? hairGradientShader = null;
+        if (isHairGradient)
+        {
+            hairGradientShader = _prototypeManager.Index(HairGradientShader).InstanceUnique();
+            var gradientColors = humanoid.HairGradientColors;
+            var roots = gradientColors.Count > 0 ? gradientColors[0] : (humanoid.CachedHairColor ?? Color.Black);
+            var tips = gradientColors.Count > 1 ? gradientColors[1] : roots;
+
+            hairGradientShader.SetParameter("gradientStart", new Vector3(roots.R, roots.G, roots.B));
+            hairGradientShader.SetParameter("gradientEnd", new Vector3(tips.R, tips.G, tips.B));
+            hairGradientShader.SetParameter("gradientStyle", (int) humanoid.HairGradientStyle);
+            hairGradientShader.SetParameter("gradientOffset", humanoid.HairGradientOffset);
+        }
+        // Arcane-Edit-End
+
         // FLOOF ADD END
         for (var j = 0; j < markingPrototype.Sprites.Count; j++)
         {
@@ -484,21 +501,9 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 sprite.LayerSetSprite(layerId, rsi);
             }
             // Arcane-Edit-Start: Hair gradient shader application
-            var markingShader = markingPrototype.Shader;
-            var isHairGradient = markingShader == null && markingPrototype.MarkingCategory == MarkingCategories.Hair && humanoid.HairGradientEnabled;
             if (isHairGradient)
             {
-                var shader = _prototypeManager.Index(HairGradientShader).InstanceUnique();
-                var gradientColors = humanoid.HairGradientColors;
-                var roots = gradientColors.Count > 0 ? gradientColors[0] : humanoid.HairGradientColor;
-                var tips = gradientColors.Count > 1 ? gradientColors[1] : roots;
-
-                shader.SetParameter("gradientStart", new Vector3(roots.R, roots.G, roots.B));
-                shader.SetParameter("gradientEnd", new Vector3(tips.R, tips.G, tips.B));
-                shader.SetParameter("gradientStyle", (int) humanoid.HairGradientStyle);
-                shader.SetParameter("gradientOffset", humanoid.HairGradientOffset);
-
-                sprite.LayerSetShader(layerId, shader, "ArcaneHairGradient");
+                sprite.LayerSetShader(layerId, hairGradientShader!, "ArcaneHairGradient");
             }
             else if (markingShader != null)
             {

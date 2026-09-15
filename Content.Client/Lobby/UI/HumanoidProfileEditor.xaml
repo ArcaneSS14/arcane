@@ -153,7 +153,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                             <!-- Arcane-Start -->
                             <BoxContainer Margin="10" Orientation="Vertical">
                                 <CheckBox Name="HairGradientEnabled" Text="{Loc 'humanoid-profile-editor-hair-gradient'}" />
-                                <BoxContainer Name="HairGradientColorContainer" Orientation="Vertical" HorizontalExpand="True" />
+                                <BoxContainer Name="HairGradientColorContainer" Visible="False" Orientation="Vertical" HorizontalExpand="True" />
                             </BoxContainer>
                             <!-- Arcane-End -->
                             <!-- Eyes -->

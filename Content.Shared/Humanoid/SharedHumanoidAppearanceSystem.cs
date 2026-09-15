@@ -194,7 +194,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.CustomSpeciesName = sourceHumanoid.CustomSpeciesName; // Arcane
         // Arcane-Start
         targetHumanoid.HairGradientEnabled = sourceHumanoid.HairGradientEnabled;
-        targetHumanoid.HairGradientColor = sourceHumanoid.HairGradientColor;
         targetHumanoid.HairGradientColors = new(sourceHumanoid.HairGradientColors);
         targetHumanoid.HairGradientStyle = sourceHumanoid.HairGradientStyle;
         targetHumanoid.HairGradientOffset = sourceHumanoid.HairGradientOffset;
@@ -525,7 +524,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.EyeColor = profile.Appearance.EyeColor;
         // Arcane-Start
         humanoid.HairGradientEnabled = profile.Appearance.HairGradientEnabled;
-        humanoid.HairGradientColor = profile.Appearance.HairGradientColor;
         humanoid.HairGradientColors = new(profile.Appearance.HairGradientColors);
         humanoid.HairGradientStyle = profile.Appearance.HairGradientStyle;
         humanoid.HairGradientOffset = profile.Appearance.HairGradientOffset;

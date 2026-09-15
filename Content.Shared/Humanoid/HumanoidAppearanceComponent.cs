@@ -97,9 +97,6 @@ public sealed partial class HumanoidAppearanceComponent : Component
     public bool HairGradientEnabled;
 
     [DataField, AutoNetworkedField]
-    public Color HairGradientColor = Color.Black;
-
-    [DataField, AutoNetworkedField]
     public List<Color> HairGradientColors = new() { Color.Black, Color.Black };
 
     [DataField, AutoNetworkedField]

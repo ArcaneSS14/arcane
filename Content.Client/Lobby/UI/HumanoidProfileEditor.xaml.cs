@@ -2498,7 +2498,7 @@ namespace Content.Client.Lobby.UI
 
             Profile = Profile.WithCharacterAppearance(
                 Profile.Appearance.WithHairGradient(HairGradientEnabled.Pressed, colors, style, offset));
-            ReloadPreview();
+            ReloadProfilePreview();
             IsDirty = true;
         }
 
@@ -2531,7 +2531,11 @@ namespace Content.Client.Lobby.UI
         private void UpdateHairGradientControls()
         {
             if (Profile == null)
+            {
+                HairGradientEnabled.Pressed = false;
+                HairGradientColorContainer.Visible = false;
                 return;
+            }
 
             _updatingHairGradientControls = true;
             try

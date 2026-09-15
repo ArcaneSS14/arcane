@@ -232,7 +232,7 @@ namespace Content.Server.Database
             prefs.SelectedCharacterSlot = newSlot;
         }
 
-        private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
+        internal static HumanoidCharacterProfile ConvertProfiles(Profile profile)
         {
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
@@ -310,28 +310,46 @@ namespace Content.Server.Database
             var erpPreference = (ErpPreference) profile.ErpPreference;
             var customSpeciesName = profile.CustomSpeciesName ?? "";
 
-            Color hairColor;
-            var hairGradientEnabled = false;
+            var hairColor = ParseHairColor(profile.HairColor);
+            var hairGradientEnabled = profile.HairGradientEnabled;
             List<Color>? hairGradientColors = null;
             var hairGradientStyle = HairGradientStyle.Ombre;
             var hairGradientOffset = 0.5f;
 
-            if (profile.HairColor.StartsWith('{'))
+            var gradientDataString = profile.HairGradientData;
+            var legacyGradientData = profile.HairColor.StartsWith('{')
+                ? profile.HairColor
+                : null;
+
+            if (!string.IsNullOrEmpty(gradientDataString))
             {
                 try
                 {
-                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(profile.HairColor, HairGradientJsonOptions);
+                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(gradientDataString, HairGradientJsonOptions);
                     if (data != null && data.Colors.Count > 0)
                     {
                         hairGradientColors = data.Colors.Select(c => Color.FromHex(c.Trim())).ToList();
-                        hairColor = hairGradientColors[0];
-                        hairGradientEnabled = true;
                         hairGradientStyle = data.Style;
                         hairGradientOffset = data.Offset;
                     }
-                    else
+                }
+                catch
+                {
+                    hairGradientEnabled = false;
+                }
+            }
+            else if (!string.IsNullOrEmpty(legacyGradientData))
+            {
+                try
+                {
+                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(legacyGradientData, HairGradientJsonOptions);
+                    if (data != null && data.Colors.Count > 0)
                     {
-                        hairColor = Color.White;
+                        hairGradientColors = data.Colors.Select(c => Color.FromHex(c.Trim())).ToList();
+                        hairGradientEnabled = true;
+                        hairGradientStyle = data.Style;
+                        hairGradientOffset = data.Offset;
+                        hairColor = hairGradientColors[0];
                     }
                 }
                 catch
@@ -343,15 +361,9 @@ namespace Content.Server.Database
             {
                 try
                 {
-                    List<string>? hexCodes;
-                    if (profile.HairColor.StartsWith('['))
-                    {
-                        hexCodes = JsonSerializer.Deserialize<List<string>>(profile.HairColor);
-                    }
-                    else
-                    {
-                        hexCodes = profile.HairColor.Split(';').ToList();
-                    }
+                    List<string>? hexCodes = profile.HairColor.StartsWith('[')
+                        ? JsonSerializer.Deserialize<List<string>>(profile.HairColor)
+                        : profile.HairColor.Split(';').ToList();
 
                     if (hexCodes != null && hexCodes.Count > 0)
                     {
@@ -359,19 +371,11 @@ namespace Content.Server.Database
                         hairColor = hairGradientColors[0];
                         hairGradientEnabled = true;
                     }
-                    else
-                    {
-                        hairColor = Color.White;
-                    }
                 }
                 catch
                 {
                     hairColor = Color.White;
                 }
-            }
-            else
-            {
-                hairColor = Color.FromHex(profile.HairColor);
             }
             // Arcane-End
 
@@ -410,7 +414,6 @@ namespace Content.Server.Database
                     markings,
                     // Arcane-Start
                     hairGradientEnabled,
-                    hairGradientColors != null && hairGradientColors.Count > 0 ? hairGradientColors[0] : hairColor,
                     hairGradientColors,
                     hairGradientStyle,
                     hairGradientOffset
@@ -429,13 +432,27 @@ namespace Content.Server.Database
         }
 
         // Arcane-Start
-        private static readonly JsonSerializerOptions HairGradientJsonOptions = new()
+        internal static readonly JsonSerializerOptions HairGradientJsonOptions = new()
         {
             PropertyNameCaseInsensitive = true,
             Converters = { new JsonStringEnumConverter() }
         };
 
-        private sealed class HairGradientSaveData
+        private static Color ParseHairColor(string value)
+        {
+            try
+            {
+                return value.StartsWith('{') || value.StartsWith('[') || value.Contains(';')
+                    ? Color.White
+                    : Color.FromHex(value);
+            }
+            catch
+            {
+                return Color.White;
+            }
+        }
+
+        internal sealed class HairGradientSaveData
         {
             public List<string> Colors { get; set; } = new();
             public HairGradientStyle Style { get; set; } = HairGradientStyle.Ombre;
@@ -452,7 +469,7 @@ namespace Content.Server.Database
         }
         // Arcane-End
 
-        private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
+        internal static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
         {
             profile ??= new Profile();
             var appearance = (HumanoidCharacterAppearance) humanoid.CharacterAppearance;
@@ -487,6 +504,7 @@ namespace Content.Server.Database
             profile.Voice = humanoid.Voice; // Arcane
             profile.Gender = humanoid.Gender.ToString();
             profile.HairName = appearance.HairStyleId;
+            profile.HairColor = appearance.HairColor.ToHex();
             // Arcane-Start: Hair gradient persistence
             if (appearance.HairGradientEnabled && appearance.HairGradientColors.Count > 0)
             {
@@ -494,11 +512,12 @@ namespace Content.Server.Database
                     appearance.HairGradientColors.Select(c => c.ToHex()).ToList(),
                     appearance.HairGradientStyle,
                     appearance.HairGradientOffset);
-                profile.HairColor = JsonSerializer.Serialize(data, HairGradientJsonOptions);
+                profile.HairGradientEnabled = true;
+                profile.HairGradientData = JsonSerializer.Serialize(data, HairGradientJsonOptions);
             }
             else
             {
-                profile.HairColor = appearance.HairColor.ToHex();
+                profile.HairGradientEnabled = false;
             }
             // Arcane-End
             profile.FacialHairName = appearance.FacialHairStyleId;
