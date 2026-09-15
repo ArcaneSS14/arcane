@@ -35,13 +35,23 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     [DataField]
     public List<Marking> Markings { get; set; } = new();
 
+    // Arcane-Start
+    /// <summary>
+    ///     Whether the ears (HeadTop/HeadSide markings) should render above the hair instead of being hidden by hair
+    ///     from behind.
+    /// </summary>
+    [DataField]
+    public bool EarsAboveHair;
+    // Arcane-End
+
     public HumanoidCharacterAppearance(string hairStyleId,
         Color hairColor,
         string facialHairStyleId,
         Color facialHairColor,
         Color eyeColor,
         Color skinColor,
-        List<Marking> markings)
+        List<Marking> markings,
+        bool earsAboveHair = false) // Arcane
     {
         HairStyleId = hairStyleId;
         HairColor = ClampColor(hairColor);
@@ -50,48 +60,56 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         EyeColor = ClampColor(eyeColor);
         SkinColor = ClampColor(skinColor);
         Markings = markings;
+        EarsAboveHair = earsAboveHair;
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings))
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.EarsAboveHair) // Arcane-Edit
     {
 
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
     {
-        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithHairColor(Color newColor)
     {
-        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithFacialHairStyleName(string newName)
     {
-        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithFacialHairColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithSkinColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithMarkings(List<Marking> newMarkings)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, EarsAboveHair); // Arcane-Edit
     }
+
+    // Arcane-Start
+    public HumanoidCharacterAppearance WithEarsAboveHair(bool newValue)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newValue);
+    }
+    // Arcane-End
 
     public static HumanoidCharacterAppearance DefaultWithSpecies(string species)
     {
@@ -217,7 +235,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             facialHairColor,
             eyeColor,
             skinColor,
-            markingSet.GetForwardEnumerator().ToList());
+            markingSet.GetForwardEnumerator().ToList(),
+            appearance.EarsAboveHair); // Arcane
     }
 
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
@@ -230,6 +249,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (!EyeColor.Equals(other.EyeColor)) return false;
         if (!SkinColor.Equals(other.SkinColor)) return false;
         if (!Markings.SequenceEqual(other.Markings)) return false;
+        if (EarsAboveHair != other.EarsAboveHair) return false; // Arcane
         return true;
     }
 
@@ -243,7 +263,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                FacialHairColor.Equals(other.FacialHairColor) &&
                EyeColor.Equals(other.EyeColor) &&
                SkinColor.Equals(other.SkinColor) &&
-               Markings.SequenceEqual(other.Markings);
+               Markings.SequenceEqual(other.Markings) &&
+               EarsAboveHair == other.EarsAboveHair; // Arcane
     }
 
     public override bool Equals(object? obj)
@@ -253,7 +274,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return HashCode.Combine(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance Clone()

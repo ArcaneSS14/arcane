@@ -192,6 +192,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         targetHumanoid.Gender = sourceHumanoid.Gender;
         targetHumanoid.CustomSpeciesName = sourceHumanoid.CustomSpeciesName; // Arcane
+        targetHumanoid.EarsAboveHair = sourceHumanoid.EarsAboveHair; // Arcane
 
         if (TryComp<GrammarComponent>(target, out var grammar))
             _grammarSystem.SetGender((target, grammar), sourceHumanoid.Gender);
@@ -590,6 +591,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             _cfgManager,
             _cfgManager.GetCVar(CCVars.MaxNameLength));
         // Arcane-End
+
+        humanoid.EarsAboveHair = profile.Appearance.EarsAboveHair; // Arcane
 
         // begin Goobstation: port EE height/width sliders
         var species = _proto.Index(humanoid.Species);
