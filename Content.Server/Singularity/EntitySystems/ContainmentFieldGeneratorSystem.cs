@@ -439,7 +439,7 @@ public sealed class ContainmentFieldGeneratorSystem : EntitySystem
         var distance = (generatorPos - singularityPos).Length();
 
         // Arcane-End
-        if (distance > effectiveRadius)
+        if (distance > effectiveRadius) // Arcane-Edit
             args.Cancelled = true;
     }
 }

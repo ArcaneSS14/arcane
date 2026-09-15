@@ -72,13 +72,10 @@ public sealed class ContainmentFieldSystem : EntitySystem
         var horizonRadius = args.EventHorizon.Radius;
 
         var distance = (fieldPos - singularityPos).Length();
-        // Arcane-End
 
         if (distance > horizonRadius)
+        // Arcane-End
             args.Cancelled = true;
-        // Arcane-Edit-Start
-        // if (!args.Cancelled && !args.EventHorizon.CanBreachContainment)
-        // args.Cancelled = true;
-        // Arcane-Edit-End
+        // Arcane-Edit: if (!args.Cancelled && !args.EventHorizon.CanBreachContainment)
     }
 }
