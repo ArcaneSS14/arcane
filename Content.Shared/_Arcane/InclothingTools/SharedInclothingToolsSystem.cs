@@ -1,15 +1,10 @@
-using System.Linq;
-using System.Reflection.Emit;
-using Content.Shared._Arcane.InclothingTools;
 using Content.Shared.Actions;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
-using Robust.Shared.Noise;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Arcane.InclothingTools;
 
@@ -21,7 +16,7 @@ public sealed class SharedInclothingToolsSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedPopupSystem _popups = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -34,8 +29,10 @@ public sealed class SharedInclothingToolsSystem : EntitySystem
         SubscribeLocalEvent<InclothingToolsComponent, InclothingToolsUiMessage>(OnUiMessage);
         SubscribeLocalEvent<InclothingToolsComponent, InclothingToolsUnequipAllMessage>(OnUnequipAll);
 
+        //SubscribeLocalEvent<RandomInclothingToolsComponent, ComponentInit>(OnCompInit);
         SubscribeLocalEvent<RandomInclothingToolsComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<RandomInclothingToolsComponent, GetItemActionsEvent>(OnGetActions);
+        SubscribeLocalEvent<RandomInclothingToolsComponent, ActionRandomInclothingToolEvent>(OnRandomTool);
     }
 
     private void OnCompInit(Entity<InclothingToolsComponent> entity, ref ComponentInit args)
@@ -45,6 +42,7 @@ public sealed class SharedInclothingToolsSystem : EntitySystem
 
     private void OnCompInit(Entity<RandomInclothingToolsComponent> entity, ref ComponentInit args)
     {
+
     }
 
     private void OnMapInit(Entity<InclothingToolsComponent> entity, ref MapInitEvent args)
@@ -129,6 +127,39 @@ public sealed class SharedInclothingToolsSystem : EntitySystem
             if (!entity.Comp.Container.Contains(tool))
                 Unequip(entity, tool);
         }
+    }
+
+    private void OnRandomTool(Entity<RandomInclothingToolsComponent> entity, ref ActionRandomInclothingToolEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
+
+        if (!TryComp<InclothingToolsComponent>(entity, out var clothing) || clothing == null)
+            return;
+
+        var uids = clothing.ToolsUids;
+
+        if (uids.Count == 0)
+            return;
+
+        var random = new System.Random((int) _timing.CurTick.Value);
+        int index;
+        EntityUid selectedTool;
+
+        do
+        {
+            index = random.Next(uids.Count);
+            selectedTool = uids[index];
+
+        } while (!clothing.Container.Contains(selectedTool));
+
+        TryEquipOrReplace((entity.Owner, clothing), selectedTool, args.Performer);
+
+        entity.Comp.NextRandomTool++;
+        Dirty(entity.Owner, clothing);
+        Dirty(entity);
     }
 
     public bool TryEquipOrReplace(Entity<InclothingToolsComponent> entity, EntityUid tool, EntityUid actor)

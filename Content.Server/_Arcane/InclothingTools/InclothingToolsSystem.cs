@@ -1,4 +1,4 @@
-using System.Linq;
+/*using System.Linq;
 using Content.Server.Popups;
 using Content.Shared._Arcane.InclothingTools;
 using Content.Shared.Actions;
@@ -15,46 +15,23 @@ public sealed class InclothingToolsSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedInclothingToolsSystem _inclothingTools = default!;
 
-    private const string ActionRandomToolId = "ActionRandomInclothingTool";
-
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<RandomInclothingToolEvent>(OnRandomTool);
+        // SubscribeLocalEvent<InclothingToolsComponent, ActionRandomInclothingToolEvent>(OnRandomTool);
     }
 
-    private void OnRandomTool(RandomInclothingToolEvent ev, EntitySessionEventArgs args)
+    private void OnRandomTool(Entity<InclothingToolsComponent> entity, ref ActionRandomInclothingToolEvent args)
     {
-        if (args.SenderSession.AttachedEntity is not { Valid: true } user)
+        if (args.Handled)
             return;
 
-        if (!_actions.TryGetActionById(user, ActionRandomToolId, out var action) || action == null)
-        {
-            Log.Warning($"Player {args.SenderSession.Name} tried to activate {ActionRandomToolId} without having it.");
-            return;
-        }
+        args.Handled = true;
 
-        if (_actions.IsCooldownActive(action.Value))
-        {
-            _popup.PopupEntity(Loc.GetString("inclothing-tools-cooldown"), user, user);
-            return;
-        }
+        var selectedTool = _random.GetItems(entity.Comp.Container.ContainedEntities.ToList(), 1)[0];
+        _inclothingTools.TryEquipOrReplace(entity, selectedTool, args.Performer);
 
-        if (!_mobState.IsAlive(user))
-            return;
-
-        if (!TryGetEntity(ev.Clothing, out var clothing) || clothing is not { Valid: true })
-            return;
-
-        if (!TryComp<InclothingToolsComponent>(clothing, out var inclothingTools) || inclothingTools == null)
-            return;
-
-        _actions.StartUseDelay(action.Value.Owner);
-
-        var selectedTool = _random.GetItems(inclothingTools.Container.ContainedEntities.ToList(), 1)[0];
-        _inclothingTools.TryEquipOrReplace((clothing.Value, inclothingTools), selectedTool, user);
-
-        Dirty(clothing.Value, inclothingTools);
+        Dirty(entity);
     }
-}
+}*/

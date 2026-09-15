@@ -8,12 +8,6 @@ public sealed partial class ActionSelectInclothingToolEvent : InstantActionEvent
 public sealed partial class ActionRandomInclothingToolEvent : InstantActionEvent { }
 
 [Serializable, NetSerializable]
-public sealed partial class RandomInclothingToolEvent : EntityEventArgs
-{
-    public NetEntity Clothing;
-}
-
-[Serializable, NetSerializable]
 public enum SelectInclothingToolUiKey : byte
 {
     Key

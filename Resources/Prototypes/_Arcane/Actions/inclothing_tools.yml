@@ -6,7 +6,7 @@
   components:
   - type: Action
     itemIconStyle: BigItem
-    useDelay: 1
+    useDelay: 0.5
   - type: InstantAction
     event: !type:SelectInclothingToolEvent
 
@@ -18,7 +18,7 @@
   components:
   - type: Action
     itemIconStyle: BigItem
-    useDelay: 1
+    useDelay: 0.5
     icon: 
       sprite: Objects/Fun/dice.rsi
       state: d20_20
