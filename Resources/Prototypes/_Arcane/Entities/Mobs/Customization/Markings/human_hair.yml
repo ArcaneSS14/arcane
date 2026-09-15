@@ -151,7 +151,7 @@
     state: hardmorningalt
 
 - type: marking
-  id: HumanHairMullet
+  id: HumanHairMulletArcane
   bodyPart: Hair
   markingCategory: Hair
   sprites:
