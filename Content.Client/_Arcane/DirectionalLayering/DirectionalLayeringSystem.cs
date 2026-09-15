@@ -522,7 +522,8 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     /// <summary>
     ///     The base and marking layers that form the head-trim cluster above the hair: "mask", "HeadSide", "HeadTop"
-    ///     and their marking layers.
+    ///     and their marking layers. When a character opts in to ears-above-hair, the ear marking layers are excluded
+    ///     from the cluster so the back-view hair placement lands below them instead of covering them.
     /// </summary>
     private List<object> GetHeadTrimClusterKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
     {
@@ -532,6 +533,9 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             HumanoidVisualLayers.HeadSide,
             HumanoidVisualLayers.HeadTop,
         };
+
+        if (ent.Comp1.EarsAboveHair)
+            return candidates;
 
         foreach (var (category, markings) in ent.Comp1.MarkingSet.Markings)
         {

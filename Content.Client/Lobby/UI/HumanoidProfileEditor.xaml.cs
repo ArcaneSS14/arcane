@@ -561,6 +561,10 @@ namespace Content.Client.Lobby.UI
             Markings.OnMarkingRemoved += OnMarkingChange;
             Markings.OnMarkingColorChange += OnMarkingChange;
             Markings.OnMarkingRankChange += OnMarkingChange;
+            // Arcane-Start
+            Markings.OnEarsAboveHairChange += OnEarsAboveHairChange;
+            Markings.ShowEarsAboveHairOption = true;
+            // Arcane-End
 
             #endregion Markings
 
@@ -1752,6 +1756,17 @@ namespace Content.Client.Lobby.UI
             ReloadProfilePreview();
         }
 
+        // Arcane-Start
+        private void OnEarsAboveHairChange(bool newValue)
+        {
+            if (Profile is null)
+                return;
+
+            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithEarsAboveHair(newValue));
+            ReloadProfilePreview();
+        }
+        // Arcane-End
+
         private void OnSkinColorOnValueChanged()
         {
             if (Profile is null) return;
@@ -2150,6 +2165,7 @@ namespace Content.Client.Lobby.UI
             Markings.SetData(Profile.Appearance.Markings, Profile.Species,
                 Profile.Sex, Profile.Appearance.SkinColor, Profile.Appearance.EyeColor
             );
+            Markings.EarsAboveHair = Profile.Appearance.EarsAboveHair; // Arcane
         }
 
         private void UpdateGenderControls()
