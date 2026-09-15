@@ -106217,7 +106217,7 @@ entities:
     - type: Transform
       pos: 31.492489,147.66888
       parent: 2
-- proto: ChemDispenser
+- proto: EnergyChemDispenser
   entities:
   - uid: 16151
     components:
