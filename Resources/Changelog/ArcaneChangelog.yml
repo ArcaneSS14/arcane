@@ -1599,3 +1599,22 @@ Entries:
       https://github.com/user-attachments/assets/d0902644-83a9-4baf-9b2c-2bbac99c5a0d
     - >-
       https://github.com/user-attachments/assets/8ae086eb-b09f-4117-93a1-a6f2261ddcc6
+- author: PuroSlavKing, ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлено отображение ссылок на PR в списке изменений.
+    - type: Tweak
+      message: Ченджлоги в дискорде отображаются теперь без ссылок и чуть красивее.
+  id: 124
+  time: '2026-09-15T11:50:31.0000000+00:00'
+  prNumber: 362
+  url: https://github.com/ArcaneSS14/arcane/pull/362
+  media:
+    - >-
+      https://github.com/user-attachments/assets/945f16ce-a476-42e4-8657-d109d6e55938
+    - >-
+      https://github.com/user-attachments/assets/ab6132c2-06fe-48a7-aaeb-ece3bb2b03b9
+    - >-
+      https://github.com/user-attachments/assets/40d30a41-c669-4640-93c4-81bf6de8564e
+    - >-
+      https://github.com/user-attachments/assets/8b57802e-37f7-42ea-ab51-9d6f0e7ab969
