@@ -28183,7 +28183,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -22.5,-29.5
       parent: 2
-- proto: ChemDispenser
+- proto: EnergyChemDispenser
   entities:
   - uid: 4284
     components:
