@@ -17,7 +17,7 @@ public sealed partial class VentClogRuleComponent : Component
     [DataField]
     public IReadOnlyList<ProtoId<ReagentPrototype>> SafeishVentChemicals = new ProtoId<ReagentPrototype>[]
     {
-        "Water", "Blood", "Slime", "SpaceDrugs", "SpaceCleaner", "Nutriment", "Sugar", "SpaceLube", "Ephedrine", "Ale", "Beer", "SpaceGlue"
+        "Water", "Blood", "Slime", "SpaceDrugs", "SpaceCleaner", "Nutriment", "Sugar", "SpaceLube", "Ephedrine", "Ale", "Beer", "SpaceGlue", "Aphrodisiac", /* Arcane */
     };
 
     /// <summary>
@@ -30,13 +30,13 @@ public sealed partial class VentClogRuleComponent : Component
     /// The standard reagent quantity to put in the foam, modified by event severity.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int ReagentQuantity = 100;
+    public int ReagentQuantity = 200;
 
     /// <summary>
     /// The standard spreading of the foam, not modified by event severity.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int Spread = 16;
+    public int Spread = 20;
 
     /// <summary>
     /// How long the foam lasts for
