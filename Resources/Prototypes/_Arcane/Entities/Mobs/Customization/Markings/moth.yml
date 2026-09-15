@@ -17,6 +17,8 @@
     state: deadhead-wings2
   - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
     state: deadhead-skull
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: deadhead-collar
 
 - type: marking
   id: LeopardWings
@@ -35,6 +37,8 @@
     state: leopard-spots
   - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
     state: leopard-ass
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: leopard-collar
 
 - type: marking
   id: MelancholicWings
@@ -51,6 +55,8 @@
     state: melancholic-wings
   - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
     state: melancholic-wings-spots
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: melancholic-collar
 
 - type: marking
   id: MoonWings
@@ -67,6 +73,8 @@
     state: moon_wings
   - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
     state: moon_spots
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: moon-collar
 
 - type: marking
   id: PentadactylaWings
@@ -83,6 +91,8 @@
     state: pentadactyla-wings
   - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
     state: pentadactyla-fluff
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: pentadactyla-collar
 
 - type: marking
   id: WhiteWings
@@ -97,22 +107,10 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
     state: white-moth-wings
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: white-moth-collar
 
 # Chest
-
-- type: marking
-  id: ChestDeadhead
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Moth ]
-  coloring:
-    default:
-      type:
-        !type:SkinColoring
-        negative: true
-  sprites:
-  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
-    state: deadhead-collar
 
 - type: marking
   id: ChestBelly
@@ -127,76 +125,6 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
     state: belly
-
-- type: marking
-  id: ChestLeopard
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Moth ]
-  coloring:
-    default:
-      type:
-        !type:SkinColoring
-        negative: true
-  sprites:
-  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
-    state: leopard-collar
-
-- type: marking
-  id: ChestMelancholic
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Moth ]
-  coloring:
-    default:
-      type:
-        !type:SkinColoring
-        negative: true
-  sprites:
-  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
-    state: melancholic-collar
-
-- type: marking
-  id: ChestMoon
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Moth ]
-  coloring:
-    default:
-      type:
-        !type:SkinColoring
-        negative: true
-  sprites:
-  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
-    state: moon-collar
-
-- type: marking
-  id: ChestPentadactyla
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Moth ]
-  coloring:
-    default:
-      type:
-        !type:SkinColoring
-        negative: true
-  sprites:
-  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
-    state: pentadactyla-collar
-
-- type: marking
-  id: ChestWhite
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Moth ]
-  coloring:
-    default:
-      type:
-        !type:SkinColoring
-        negative: true
-  sprites:
-  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
-    state: white-moth-collar
 
 # HeadTop
 
