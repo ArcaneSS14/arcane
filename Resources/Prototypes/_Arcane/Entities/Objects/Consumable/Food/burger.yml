@@ -1,0 +1,20 @@
+- type: entity
+  name: Веганский бургер
+  parent: FoodBurgerBase
+  id: FoodBurgerKillerTomato
+  description: Веганский бургер... хотя кажется там обрывки одежды ботаника..
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - people
+  - type: Sprite
+    sprite: _Arcane/Objects/Consumable/Food/burger.rsi
+    state: FoodKillerBurger
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
