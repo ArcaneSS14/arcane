@@ -30,7 +30,7 @@ public sealed partial class VentClogRuleComponent : Component
     /// The standard reagent quantity to put in the foam, modified by event severity.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int ReagentQuantity = 200;
+    public int ReagentQuantity = 100;
 
     /// <summary>
     /// The standard spreading of the foam, not modified by event severity.
