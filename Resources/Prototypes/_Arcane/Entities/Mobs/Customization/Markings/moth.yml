@@ -1,0 +1,325 @@
+# Wings
+
+- type: marking
+  id: DeadheadWings
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: deadhead-wings1
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: deadhead-wings2
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: deadhead-skull
+
+- type: marking
+  id: LeopardWings
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: leopard-wings
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: leopard-spots
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: leopard-ass
+
+- type: marking
+  id: MelancholicWings
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: melancholic-wings
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: melancholic-wings-spots
+
+- type: marking
+  id: MoonWings
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: moon_wings
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: moon_spots
+
+- type: marking
+  id: PentadactylaWings
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: pentadactyla-wings
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: pentadactyla-fluff
+
+- type: marking
+  id: WhiteWings
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/wings.rsi
+    state: white-moth-wings
+
+# Chest
+
+- type: marking
+  id: ChestDeadhead
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: deadhead-collar
+
+- type: marking
+  id: ChestBelly
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: belly
+
+- type: marking
+  id: ChestLeopard
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: leopard-collar
+
+- type: marking
+  id: ChestMelancholic
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: melancholic-collar
+
+- type: marking
+  id: ChestMoon
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: moon-collar
+
+- type: marking
+  id: ChestPentadactyla
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: pentadactyla-collar
+
+- type: marking
+  id: ChestWhite
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Moth ]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+        negative: true
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/body.rsi
+    state: white-moth-collar
+
+# HeadTop
+
+- type: marking
+  id: AntennaDownFluff
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Moth ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/antennas.rsi
+    state: down-fluff
+
+- type: marking
+  id: AntennaSadFluff
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Moth ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/antennas.rsi
+    state: sad-fluff
+
+- type: marking
+  id: AntennaUp
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Moth ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/antennas_long.rsi
+    state: up-antennas
+
+# HeadSide
+
+- type: marking
+  id: FluffyCheeks
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Moth ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Moth/face.rsi
+    state: fluffy-cheeks
+
+# Hair
+
+- type: marking
+  id: MothBraid
+  bodyPart: Hair
+  markingCategory: Hair
+  canBeDisplaced: false
+  speciesRestriction: [Moth]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/Moth/hairs.rsi
+      state: braid
+
+- type: marking
+  id: MothCurly
+  bodyPart: Hair
+  markingCategory: Hair
+  canBeDisplaced: false
+  speciesRestriction: [Moth]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/Moth/hairs.rsi
+      state: curly
+
+- type: marking
+  id: MothNeat
+  bodyPart: Hair
+  markingCategory: Hair
+  canBeDisplaced: false
+  speciesRestriction: [Moth]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/Moth/hairs.rsi
+      state: neat
+
+- type: marking
+  id: MothWildLong
+  bodyPart: Hair
+  markingCategory: Hair
+  canBeDisplaced: false
+  speciesRestriction: [Moth]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/Moth/hairs.rsi
+      state: wild_long
+
+- type: marking
+  id: MothWild
+  bodyPart: Hair
+  markingCategory: Hair
+  canBeDisplaced: false
+  speciesRestriction: [Moth]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/Moth/hairs.rsi
+      state: wild
+
+- type: marking
+  id: MothWings
+  bodyPart: Hair
+  markingCategory: Hair
+  canBeDisplaced: false
+  speciesRestriction: [Moth]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/Moth/hairs.rsi
+      state: wings
+
+# Legs
+
+- type: marking
+  id: MothStrippedLegs
+  bodyPart: Rleg
+  markingCategory: Legs
+  canBeDisplaced: false
+  speciesRestriction: [Moth]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/Moth/legs.rsi
+      state: stripped-leg-r
+
+# Arms
+
+- type: marking
+  id: MothStrippedArms
+  bodyPart: LArm
+  markingCategory: Arms
+  canBeDisplaced: false
+  speciesRestriction: [Moth]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/Moth/arms.rsi
+      state: stripped-arm-l
