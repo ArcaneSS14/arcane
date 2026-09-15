@@ -1618,3 +1618,16 @@ Entries:
       https://github.com/user-attachments/assets/40d30a41-c669-4640-93c4-81bf6de8564e
     - >-
       https://github.com/user-attachments/assets/8b57802e-37f7-42ea-ab51-9d6f0e7ab969
+- author: Kinar_7
+  changes:
+    - type: Add
+      message: Добавлен афродизиак в ивенты с выбросом газа и пены.
+  id: 125
+  time: '2026-09-15T13:57:42.0000000+00:00'
+  prNumber: 367
+  url: https://github.com/ArcaneSS14/arcane/pull/367
+  media:
+    - >-
+      https://github.com/user-attachments/assets/23504a9e-a391-4127-b8c2-e45576e76f8d
+    - >-
+      https://github.com/user-attachments/assets/d3d66215-73f2-4949-83c6-ce00cffe08b1
