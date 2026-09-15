@@ -1506,3 +1506,10 @@ Entries:
   id: 120
   time: '2026-09-14T06:11:02.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/353
+- author: seemah
+  changes:
+    - type: Tweak
+      message: Ксеноморфы получили иммунитет к лицехватам.
+  id: 121
+  time: '2026-09-15T09:39:18.0000000+00:00'
+  url: https://github.com/ArcaneSS14/arcane/pull/363
