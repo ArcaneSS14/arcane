@@ -2499,7 +2499,7 @@ namespace Content.Client.Lobby.UI
             Profile = Profile.WithCharacterAppearance(
                 Profile.Appearance.WithHairGradient(HairGradientEnabled.Pressed, colors, style, offset));
             ReloadProfilePreview();
-            IsDirty = true;
+            SetDirty();
         }
 
         private void UpdateHairGradientLabels()
