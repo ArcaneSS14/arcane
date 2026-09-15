@@ -16,4 +16,4 @@ marking-MothWildLong = Длинная небрежная
 marking-MothWild = Небрежная
 marking-MothWings = Крылья
 marking-MothStrippedLegs = Полосатые ноги
-marking-MothStrippedArms = Полосатые рукиы
+marking-MothStrippedArms = Полосатые руки

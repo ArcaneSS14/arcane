@@ -159,8 +159,8 @@
 
 - type: marking
   id: FluffyCheeks
-  bodyPart: HeadTop
-  markingCategory: HeadTop
+  bodyPart: HeadSide
+  markingCategory: HeadSide
   speciesRestriction: [ Moth ]
   sprites:
   - sprite: _Arcane/Mobs/Customization/Moth/face.rsi
