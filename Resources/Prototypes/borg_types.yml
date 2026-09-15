@@ -227,8 +227,8 @@
 
   defaultModules:
   - BorgModuleMusique
-  - BorgModuleClowning
   # Arcane-Start
+  - BorgModuleClowning
   # - BorgModuleService 
   # - BorgModuleGardening 
   # - BorgModuleHarvesting 
