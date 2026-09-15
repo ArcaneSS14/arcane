@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Text.Json.Serialization; // Arcane
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
@@ -308,6 +309,70 @@ namespace Content.Server.Database
             // Arcane-Start
             var erpPreference = (ErpPreference) profile.ErpPreference;
             var customSpeciesName = profile.CustomSpeciesName ?? "";
+
+            Color hairColor;
+            var hairGradientEnabled = false;
+            List<Color>? hairGradientColors = null;
+            var hairGradientStyle = HairGradientStyle.Ombre;
+            var hairGradientOffset = 0.5f;
+
+            if (profile.HairColor.StartsWith('{'))
+            {
+                try
+                {
+                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(profile.HairColor, HairGradientJsonOptions);
+                    if (data != null && data.Colors.Count > 0)
+                    {
+                        hairGradientColors = data.Colors.Select(c => Color.FromHex(c.Trim())).ToList();
+                        hairColor = hairGradientColors[0];
+                        hairGradientEnabled = true;
+                        hairGradientStyle = data.Style;
+                        hairGradientOffset = data.Offset;
+                    }
+                    else
+                    {
+                        hairColor = Color.White;
+                    }
+                }
+                catch
+                {
+                    hairColor = Color.White;
+                }
+            }
+            else if (profile.HairColor.StartsWith('[') || profile.HairColor.Contains(';'))
+            {
+                try
+                {
+                    List<string>? hexCodes;
+                    if (profile.HairColor.StartsWith('['))
+                    {
+                        hexCodes = JsonSerializer.Deserialize<List<string>>(profile.HairColor);
+                    }
+                    else
+                    {
+                        hexCodes = profile.HairColor.Split(';').ToList();
+                    }
+
+                    if (hexCodes != null && hexCodes.Count > 0)
+                    {
+                        hairGradientColors = hexCodes.Select(c => Color.FromHex(c.Trim())).ToList();
+                        hairColor = hairGradientColors[0];
+                        hairGradientEnabled = true;
+                    }
+                    else
+                    {
+                        hairColor = Color.White;
+                    }
+                }
+                catch
+                {
+                    hairColor = Color.White;
+                }
+            }
+            else
+            {
+                hairColor = Color.FromHex(profile.HairColor);
+            }
             // Arcane-End
 
             return new HumanoidCharacterProfile(
@@ -337,12 +402,19 @@ namespace Content.Server.Database
                 new HumanoidCharacterAppearance
                 (
                     profile.HairName,
-                    Color.FromHex(profile.HairColor),
+                    hairColor,
                     profile.FacialHairName,
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
-                    markings
+                    markings,
+                    // Arcane-Start
+                    hairGradientEnabled,
+                    hairGradientColors != null && hairGradientColors.Count > 0 ? hairGradientColors[0] : hairColor,
+                    hairGradientColors,
+                    hairGradientStyle,
+                    hairGradientOffset
+                    // Arcane-End
                 ),
                 spawnPriority,
                 jobs,
@@ -355,6 +427,30 @@ namespace Content.Server.Database
                 erpPreference // Arcane
             );
         }
+
+        // Arcane-Start
+        private static readonly JsonSerializerOptions HairGradientJsonOptions = new()
+        {
+            PropertyNameCaseInsensitive = true,
+            Converters = { new JsonStringEnumConverter() }
+        };
+
+        private sealed class HairGradientSaveData
+        {
+            public List<string> Colors { get; set; } = new();
+            public HairGradientStyle Style { get; set; } = HairGradientStyle.Ombre;
+            public float Offset { get; set; } = 0.5f;
+
+            public HairGradientSaveData() { }
+
+            public HairGradientSaveData(List<string> colors, HairGradientStyle style, float offset)
+            {
+                Colors = colors;
+                Style = style;
+                Offset = offset;
+            }
+        }
+        // Arcane-End
 
         private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
         {
@@ -391,7 +487,20 @@ namespace Content.Server.Database
             profile.Voice = humanoid.Voice; // Arcane
             profile.Gender = humanoid.Gender.ToString();
             profile.HairName = appearance.HairStyleId;
-            profile.HairColor = appearance.HairColor.ToHex();
+            // Arcane-Start: Hair gradient persistence
+            if (appearance.HairGradientEnabled && appearance.HairGradientColors.Count > 0)
+            {
+                var data = new HairGradientSaveData(
+                    appearance.HairGradientColors.Select(c => c.ToHex()).ToList(),
+                    appearance.HairGradientStyle,
+                    appearance.HairGradientOffset);
+                profile.HairColor = JsonSerializer.Serialize(data, HairGradientJsonOptions);
+            }
+            else
+            {
+                profile.HairColor = appearance.HairColor.ToHex();
+            }
+            // Arcane-End
             profile.FacialHairName = appearance.FacialHairStyleId;
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
             profile.EyeColor = appearance.EyeColor.ToHex();

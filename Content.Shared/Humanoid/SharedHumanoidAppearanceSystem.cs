@@ -192,6 +192,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         targetHumanoid.Gender = sourceHumanoid.Gender;
         targetHumanoid.CustomSpeciesName = sourceHumanoid.CustomSpeciesName; // Arcane
+        // Arcane-Start
+        targetHumanoid.HairGradientEnabled = sourceHumanoid.HairGradientEnabled;
+        targetHumanoid.HairGradientColor = sourceHumanoid.HairGradientColor;
+        targetHumanoid.HairGradientColors = new(sourceHumanoid.HairGradientColors);
+        targetHumanoid.HairGradientStyle = sourceHumanoid.HairGradientStyle;
+        targetHumanoid.HairGradientOffset = sourceHumanoid.HairGradientOffset;
+        // Arcane-End
 
         if (TryComp<GrammarComponent>(target, out var grammar))
             _grammarSystem.SetGender((target, grammar), sourceHumanoid.Gender);
@@ -516,6 +523,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         SetSex(uid, profile.Sex, false, humanoid);
         SetTTSVoice(uid, profile.Voice, false, humanoid); // Arcane
         humanoid.EyeColor = profile.Appearance.EyeColor;
+        // Arcane-Start
+        humanoid.HairGradientEnabled = profile.Appearance.HairGradientEnabled;
+        humanoid.HairGradientColor = profile.Appearance.HairGradientColor;
+        humanoid.HairGradientColors = new(profile.Appearance.HairGradientColors);
+        humanoid.HairGradientStyle = profile.Appearance.HairGradientStyle;
+        humanoid.HairGradientOffset = profile.Appearance.HairGradientOffset;
+        // Arcane-End
 
         SetSkinColor(uid, profile.Appearance.SkinColor, false);
 
