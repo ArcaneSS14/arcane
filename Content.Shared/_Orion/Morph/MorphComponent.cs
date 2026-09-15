@@ -85,7 +85,7 @@ public sealed partial class MorphComponent : Component
     };
 
     [AutoNetworkedField]
-    public List<EntityUid> MemoryObjects = [];
+    public List<EntProtoId> MemoryObjects = []; // Arcane-Edit EntityUid > EntProtoId
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string? MemoryAction = "ActionMorphRemember";
@@ -154,7 +154,11 @@ public sealed partial class MorphComponent : Component
 [Serializable, NetSerializable]
 public sealed class EventMimicryActivate : BoundUserInterfaceMessage
 {
-    public NetEntity? Target { get; set; }
+    // Arcane-Edit-Start
+    public EntProtoId PrototypeId { get; set; }
+
+    public new NetEntity Actor { get; set; }
+    // Arcane-Edit-End
 }
 
 [Serializable, NetSerializable]
