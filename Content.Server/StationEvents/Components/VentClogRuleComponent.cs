@@ -36,7 +36,7 @@ public sealed partial class VentClogRuleComponent : Component
     /// The standard spreading of the foam, not modified by event severity.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int Spread = 30; // Arcane-edit Fun to watch how SpaceDrug or Aphrodisiac covers the whole room
+    public int Spread = 20; // Arcane-edit Fun to watch how SpaceDrug or Aphrodisiac covers the whole room
 
     /// <summary>
     /// How long the foam lasts for
