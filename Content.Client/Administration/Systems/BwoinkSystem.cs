@@ -21,6 +21,13 @@ namespace Content.Client.Administration.Systems
             OnBwoinkTextMessageRecieved?.Invoke(this, message);
         }
 
+        // Arcane-start
+        public void RequestHistory(NetUserId channel, int? lastLogId = null)
+        {
+            RaiseNetworkEvent(new BwoinkHistoryRequest(channel, lastLogId));
+        }
+        // Arcane-end
+
         public void Send(NetUserId channelId, string text, bool playSound, bool adminOnly)
         {
             // Reuse the channel ID as the 'true sender'.
