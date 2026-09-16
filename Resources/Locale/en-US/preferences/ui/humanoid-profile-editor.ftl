@@ -26,6 +26,30 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 humanoid-profile-editor-randomize-everything-button = Randomize everything
+# Arcane-Start
+humanoid-profile-editor-hair-gradient = Hair Gradient
+humanoid-profile-editor-hair-gradient-style-label = Style:
+humanoid-profile-editor-hair-gradient-style-ombre = Ombre
+humanoid-profile-editor-hair-gradient-style-split = Split (Two Tails)
+humanoid-profile-editor-hair-gradient-style-underdye = Underdye
+humanoid-profile-editor-hair-gradient-roots-ombre = Roots Color (Top)
+humanoid-profile-editor-hair-gradient-tips-ombre = Tips Color (Bottom)
+humanoid-profile-editor-hair-gradient-offset-ombre = Transition Height: {$value}%
+humanoid-profile-editor-hair-gradient-roots-split = Left Side / Tail
+humanoid-profile-editor-hair-gradient-tips-split = Right Side / Tail
+humanoid-profile-editor-hair-gradient-offset-split = Parting Center: {$value}%
+humanoid-profile-editor-hair-gradient-roots-underdye = Outer Color (Top)
+humanoid-profile-editor-hair-gradient-tips-underdye = Inner Color (Hidden)
+humanoid-profile-editor-hair-gradient-offset-underdye = Streak Depth: {$value}%
+humanoid-profile-editor-hair-gradient-btn-natural = Lighten
+humanoid-profile-editor-hair-gradient-btn-natural-tooltip = Natural sun-bleached hair highlights
+humanoid-profile-editor-hair-gradient-btn-analogous = Harmony
+humanoid-profile-editor-hair-gradient-btn-analogous-tooltip = Pick a harmonious analogous shade
+humanoid-profile-editor-hair-gradient-btn-contrast = Contrast
+humanoid-profile-editor-hair-gradient-btn-contrast-tooltip = Pick a bold accent contrast color
+humanoid-profile-editor-hair-gradient-btn-swap = Swap
+humanoid-profile-editor-hair-gradient-btn-swap-tooltip = Swap colors
+# Arcane-End
 humanoid-profile-editor-name-label = Name:
 humanoid-profile-editor-name-random-button = Randomize
 humanoid-profile-editor-appearance-tab = Appearance

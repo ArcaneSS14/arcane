@@ -7,3 +7,8 @@
   id: ArcaneInvisibility
   kind: source
   path: "/Textures/_Arcane/Shaders/arcane_invisibility.swsl"
+
+- type: shader
+  id: ArcaneHairGradient
+  kind: source
+  path: "/Textures/_Arcane/Shaders/hair_gradient.swsl"
