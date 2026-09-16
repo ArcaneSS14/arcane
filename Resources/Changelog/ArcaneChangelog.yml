@@ -1631,3 +1631,114 @@ Entries:
       https://github.com/user-attachments/assets/23504a9e-a391-4127-b8c2-e45576e76f8d
     - >-
       https://github.com/user-attachments/assets/d3d66215-73f2-4949-83c6-ce00cffe08b1
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: >-
+        Добавил дьявола как допольнительный расчёт антагонистов раундстартом с
+        шансом в 30%.
+    - type: Tweak
+      message: В Секрет+Средний увеличено выпадение антагонистов.
+  id: 126
+  time: '2026-09-16T06:34:26.0000000+00:00'
+  prNumber: 365
+  url: https://github.com/ArcaneSS14/arcane/pull/365
+- author: ReWAFFlution, RedTerror
+  changes:
+    - type: Tweak
+      message: Респрайт слаймолюдов
+    - type: Fix
+      message: Теперь КПБ не становятся инвалидами если им заменить батарейку.
+    - type: Add
+      message: Добавлены причёски маллет, вульфкат (мужской/женский)
+    - type: Tweak
+      message: Ксеноморфы не могут надеть шлем и корпус модсьюта
+  id: 127
+  time: '2026-09-16T06:36:04.0000000+00:00'
+  prNumber: 369
+  url: https://github.com/ArcaneSS14/arcane/pull/369
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: Добавлена новая кастомизация нианам.
+    - type: Add
+      message: У нианов теперь есть свои причёски.
+  id: 128
+  time: '2026-09-16T06:47:07.0000000+00:00'
+  prNumber: 368
+  url: https://github.com/ArcaneSS14/arcane/pull/368
+  media:
+    - >-
+      https://github.com/user-attachments/assets/dde6e386-45d0-4846-9ac4-20731f9fcbd7
+- author: Kinar_7
+  changes:
+    - type: Add
+      message: >-
+        Барменский модуль с портативным энергораздатчиком алкоголя и безалкоголя
+        для сервисного борга.
+    - type: Add
+      message: 'поварской модуль с портативным сентизатором еды. '
+    - type: Tweak
+      message: 2 модуля для гидропоники были объединены в 1
+  id: 129
+  time: '2026-09-16T13:38:19.0000000+00:00'
+  prNumber: 361
+  url: https://github.com/ArcaneSS14/arcane/pull/361
+  media:
+    - >-
+      https://github.com/user-attachments/assets/c2f679f1-f079-4c11-a8db-9eb29a5af8b5
+    - >-
+      https://github.com/user-attachments/assets/36ddaf01-00df-465f-ac46-884edd0747de
+- author: HappyRoach
+  changes:
+    - type: Fix
+      message: Исправлено получение гримуара у некоторых должностей.
+    - type: Add
+      message: Разброс стрельбы у Аркан уменьшен на 50%.
+    - type: Add
+      message: Арканы теперь уязвимы к святому урону.
+    - type: Tweak
+      message: Ряд характеристик Аркан изменены.
+  id: 130
+  time: '2026-09-16T13:50:34.0000000+00:00'
+  prNumber: 357
+  url: https://github.com/ArcaneSS14/arcane/pull/357
+- author: mxgnvrx
+  changes:
+    - type: Add
+      message: >-
+        Добавлена расширенная система градиентного и двухцветного окрашивания
+        волос в редакторе персонажа (Омбре, Сплит / Два хвоста, Скрытые пряди).
+    - type: Add
+      message: >-
+        Добавлены интеллектуальные рекомендации цвета (Осветление, Гармония,
+        Контраст).
+  id: 131
+  time: '2026-09-16T16:13:00.0000000+00:00'
+  prNumber: 366
+  url: https://github.com/ArcaneSS14/arcane/pull/366
+  media:
+    - >-
+      https://github.com/user-attachments/assets/252f8b9a-bc47-4776-89b4-44f36e5ed589
+    - >-
+      https://github.com/user-attachments/assets/fa7f914a-ff8e-4433-a91d-fa36254a82f6
+    - >-
+      https://github.com/user-attachments/assets/5d3b372e-f569-4ff8-8d89-9ee447e2e0f6
+    - >-
+      https://github.com/user-attachments/assets/47ec2e39-2df4-4752-adba-b5fcc996cb46
+    - >-
+      https://github.com/user-attachments/assets/ccfa9dfd-488c-428e-a312-1b3b298f004b
+    - >-
+      https://github.com/user-attachments/assets/ac780085-4d77-47ed-acfa-a321861bb3cf
+    - >-
+      https://github.com/user-attachments/assets/719c9874-f0dd-4eab-adaf-b3bd23a08bd9
+- author: ChagelingRUES
+  changes:
+    - type: Tweak
+      message: На Аврите добавлены техфабы для отделов и упакованное сило в карго.
+    - type: Fix
+      message: Энергопитание алкомата в инфи-дорме Квартира восстановлено.
+  id: 132
+  time: '2026-09-16T16:14:39.0000000+00:00'
+  prNumber: 371
+  url: https://github.com/ArcaneSS14/arcane/pull/371

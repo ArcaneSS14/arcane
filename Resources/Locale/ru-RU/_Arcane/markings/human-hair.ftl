@@ -17,3 +17,6 @@ marking-HumanHairTale = Хвостик
 marking-HumanHairTwilight = Твайлайт
 marking-HumanHairHardMorning = Тяжелое утро
 marking-HumanHairHardMorningAlt = Тяжелое утро (Альт.)
+marking-HumanHairMulletArcane = Маллет
+marking-HumanHairWolfcutM = Вульфкат (мужской)
+marking-HumanHairWolfcutF = Вульфкат (женский)

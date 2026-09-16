@@ -1,4 +1,28 @@
 humanoid-profile-editor-randomize-everything-button = Случайный персонаж
+# Arcane-Start
+humanoid-profile-editor-hair-gradient = Градиент волос
+humanoid-profile-editor-hair-gradient-style-label = Стиль:
+humanoid-profile-editor-hair-gradient-style-ombre = Омбре
+humanoid-profile-editor-hair-gradient-style-split = Сплит (Два хвоста)
+humanoid-profile-editor-hair-gradient-style-underdye = Скрытые пряди
+humanoid-profile-editor-hair-gradient-roots-ombre = Цвет корней (Сверху)
+humanoid-profile-editor-hair-gradient-tips-ombre = Цвет кончиков (Снизу)
+humanoid-profile-editor-hair-gradient-offset-ombre = Высота перехода: {$value}%
+humanoid-profile-editor-hair-gradient-roots-split = Левая сторона / Хвост
+humanoid-profile-editor-hair-gradient-tips-split = Правая сторона / Хвост
+humanoid-profile-editor-hair-gradient-offset-split = Линия пробора: {$value}%
+humanoid-profile-editor-hair-gradient-roots-underdye = Основной цвет (Снаружи)
+humanoid-profile-editor-hair-gradient-tips-underdye = Скрытый цвет (Внутри)
+humanoid-profile-editor-hair-gradient-offset-underdye = Глубина прядей: {$value}%
+humanoid-profile-editor-hair-gradient-btn-natural = Осветление
+humanoid-profile-editor-hair-gradient-btn-natural-tooltip = Натуральное осветление прядей (эффект выгоревших на солнце волос)
+humanoid-profile-editor-hair-gradient-btn-analogous = Гармония
+humanoid-profile-editor-hair-gradient-btn-analogous-tooltip = Подобрать гармоничный родственный оттенок
+humanoid-profile-editor-hair-gradient-btn-contrast = Контраст
+humanoid-profile-editor-hair-gradient-btn-contrast-tooltip = Подобрать выразительный контрастный цвет для акцента
+humanoid-profile-editor-hair-gradient-btn-swap = Поменять
+humanoid-profile-editor-hair-gradient-btn-swap-tooltip = Поменять местами цвета
+# Arcane-End
 humanoid-profile-editor-name-label = Имя:
 humanoid-profile-editor-name-random-button = Сгенерировать
 humanoid-profile-editor-appearance-tab = Внешность

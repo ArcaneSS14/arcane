@@ -1328,6 +1328,14 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("hair_color");
 
+                    b.Property<bool>("HairGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("hair_gradient_enabled");
+
+                    b.Property<string>("HairGradientData")
+                        .HasColumnType("text")
+                        .HasColumnName("hair_gradient_data");
+
                     b.Property<string>("HairName")
                         .IsRequired()
                         .HasColumnType("text")
