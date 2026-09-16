@@ -239,11 +239,7 @@ public sealed partial class MarkingPicker : Control
             item.Metadata = marking;
 
             // Arcane-Start
-            if (!marking.CanUse(_discordRoles, _player.LocalSession, out var reason))
-            {
-                item.Disabled = true;
-                item.TooltipText = reason?.ToString();
-            }
+            SetMarkingUnavailableIfNeeded(item, marking);
             // Arcane-End
         }
 
@@ -513,6 +509,15 @@ public sealed partial class MarkingPicker : Control
         }
 
         var marking = (MarkingPrototype) _selectedUnusedMarking.Metadata!;
+
+        // Arcane-Start
+        if (!marking.CanUse(_discordRoles, _player.LocalSession, out _))
+        {
+            _selectedUnusedMarking = null;
+            return;
+        }
+        // Arcane-End
+
         var markingObject = marking.AsMarking();
 
         // We need add hair markings in cloned set manually because _currentMarkings doesn't have it
@@ -585,9 +590,24 @@ public sealed partial class MarkingPicker : Control
         {
             var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
             item.Metadata = marking;
+
+            // Arcane-Start
+            SetMarkingUnavailableIfNeeded(item, marking);
+            // Arcane-End
         }
         _selectedMarking = null;
         CMarkingColors.Visible = false;
         OnMarkingRemoved?.Invoke(_currentMarkings);
     }
+
+    // Arcane-Start
+    private void SetMarkingUnavailableIfNeeded(ItemList.Item item, MarkingPrototype marking)
+    {
+        if (!marking.CanUse(_discordRoles, _player.LocalSession, out var reason))
+        {
+            item.Disabled = true;
+            item.TooltipText = reason?.ToString();
+        }
+    }
+    // Arcane-End
 }
