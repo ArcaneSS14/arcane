@@ -126,15 +126,17 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
             return;
         }
 
-        int foundDirections = 0; // Arcane-Edit
+        // Arcane-Edit-Start
+        int foundDirections = 0;
         if (!generatorComp.FailsafeDisabled)
         {
             var transform = Transform(args.OtherEntity);
-            var directions = Enum.GetValues<Direction>().Length;
-        // Arcane-Edit-Start
-            for (var i = 0; i < directions - 1; i += 2)
+            var generator = new Entity<SingularityGeneratorComponent>(args.OtherEntity, generatorComp);
+            var cardinalDirections = new[] { Direction.North, Direction.East, Direction.South, Direction.West };
+
+            foreach (var dir in cardinalDirections)
             {
-                if (CheckContainmentField((Direction) i, new Entity<SingularityGeneratorComponent>(args.OtherEntity, generatorComp), transform))
+                if (CheckContainmentField(dir, generator, transform))
                     foundDirections++;
             }
         }
