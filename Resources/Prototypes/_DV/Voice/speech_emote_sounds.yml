@@ -439,6 +439,18 @@
       collection: MothDeathGasp
     Sigh:
       collection: MaleSigh
+    # Arcane-Start
+    Purr:
+      collection: HarpyPurrs
+    Growl:
+      path: /Audio/Nyanotrasen/Voice/Felinid/cat_growl1.ogg
+    CatMeow:
+      collection: CatMeows
+    Meow:
+      collection: HarpyMeows
+    Mew:
+      collection: HarpyMews
+    # Arcane-End
     Whistle:
       collection: Whistles
     Gulp: # Goob

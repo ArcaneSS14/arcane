@@ -9,6 +9,7 @@
   defaultSkinTone: "#b8b8b8"
   markingLimits: MobSlimeMarkingLimits
   dollPrototype: MobSlimePersonDummy
+  customName: true # Arcane
   skinColoration: Hues
   # Orion-Start
   category: Classic
@@ -18,6 +19,7 @@
   - Получают на 40% меньше тупого урона.
   - Получают на 25% меньше колющего урона.
   - Получают на 20% меньше ядовитого урона.
+  - Могут отрастить себе отсутствующую конечность.
   # Arcane-end
   - Способны прожить в условиях вакуума дольше чем человек.
   - Обладают встроенным хранилищем внутри себя.
