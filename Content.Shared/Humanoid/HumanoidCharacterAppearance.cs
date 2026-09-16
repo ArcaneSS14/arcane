@@ -75,7 +75,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         bool hairGradientEnabled = false,
         IReadOnlyList<Color>? hairGradientColors = null,
         HairGradientStyle hairGradientStyle = HairGradientStyle.Ombre,
-        float hairGradientOffset = 0.5f
+        float hairGradientOffset = 0.5f,
         bool earsAboveHair = false)
         // Arcane-End
     {
@@ -86,12 +86,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         EyeColor = ClampColor(eyeColor);
         SkinColor = ClampColor(skinColor);
         Markings = markings;
-        EarsAboveHair = earsAboveHair;
-    }
-
-    public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.EarsAboveHair) // Arcane-Edit
         // Arcane-Start
+        EarsAboveHair = earsAboveHair;
         HairGradientEnabled = hairGradientEnabled;
         HairGradientStyle = hairGradientStyle;
         HairGradientOffset = Math.Clamp(hairGradientOffset, 0f, 1f);
@@ -110,7 +106,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.HairGradientEnabled, other.HairGradientColors, other.HairGradientStyle, other.HairGradientOffset) // Arcane-Edit
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.HairGradientEnabled, other.HairGradientColors, other.HairGradientStyle, other.HairGradientOffset, other.EarsAboveHair) // Arcane-Edit
     {
     }
 
@@ -152,7 +148,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     // Arcane-Start
     public HumanoidCharacterAppearance WithEarsAboveHair(bool newValue)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, newValue, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset, EarsAboveHair); 
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset, newValue);
     }
 
     public HumanoidCharacterAppearance WithHairGradient(bool enabled, IReadOnlyList<Color> colors, HairGradientStyle? style = null, float? offset = null)
