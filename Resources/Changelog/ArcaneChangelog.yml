@@ -1742,3 +1742,11 @@ Entries:
   time: '2026-09-16T16:14:39.0000000+00:00'
   prNumber: 371
   url: https://github.com/ArcaneSS14/arcane/pull/371
+- author: Vecortys
+  changes:
+    - type: Add
+      message: История ахелпа теперь логируется и сохраняется между раундами.
+  id: 133
+  time: '2026-09-16T21:06:44.0000000+00:00'
+  prNumber: 373
+  url: https://github.com/ArcaneSS14/arcane/pull/373
