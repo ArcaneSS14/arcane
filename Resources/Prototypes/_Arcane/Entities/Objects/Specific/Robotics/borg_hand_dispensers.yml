@@ -1,6 +1,6 @@
 - type: entity
-  id: BorgHandBoozeDispenser
   parent: BaseItem
+  id: BorgHandBoozeDispenser
   name: handheld booze dispenser
   description: A bluespace booze dispenser shrunk down and battery-powered for cyborg use.
   components:
@@ -47,8 +47,8 @@
       Wine: 12
 
 - type: entity
-  id: BorgHandSodaDispenser
   parent: BaseItem
+  id: BorgHandSodaDispenser
   name: handheld soda dispenser
   description: A bluespace beverage dispenser shrunk down and battery-powered for cyborg use.
   components:
@@ -95,8 +95,8 @@
       JuiceWatermelon: 6
 
 - type: entity
-  id: BorgHandFoodDispenser
   parent: BaseItem
+  id: BorgHandFoodDispenser
   name: handheld food synthesizer
   description: A bluespace food synthesizer shrunk down and battery-powered for cyborg use.
   components:
@@ -156,8 +156,8 @@
       Cornoil: 4
 
 - type: entity
-  id: FlippoLighterRegenerating
   parent: FlippoLighter
+  id: FlippoLighterRegenerating
   name: self-refilling flippo lighter
   description: A rugged metal lighter that slowly refills its own fuel tank.
   components:

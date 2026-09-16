@@ -1,6 +1,6 @@
 - type: entity
-  id: BorgModuleHydroponics
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  id: BorgModuleHydroponics
   name: hydroponics cyborg module
   description: A service module combining gardening and harvesting tools for growing and reaping crops, with a slot for carrying seeds.
   components:
@@ -28,8 +28,8 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
 
 - type: entity
-  id: BorgModuleBartending
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  id: BorgModuleBartending
   name: bartending cyborg module
   description: A service module equipped with self-contained booze and soda dispensers, a shaker, two glasses, a self-refilling lighter, and two cigarette slots for on-the-go bartending.
   components:
@@ -88,8 +88,8 @@
     icon: { sprite: _Arcane/Interface/Actions/actions_borg.rsi, state: bartending-module }
 
 - type: entity
-  id: BorgModuleCooking
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  id: BorgModuleCooking
   name: culinary cyborg module
   description: A service module equipped with a self-contained food synthesizer, a knife, a rolling pin, flour, baking enzyme, and slots for carrying ingredients.
   components:
