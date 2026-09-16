@@ -227,11 +227,18 @@
 
   defaultModules:
   - BorgModuleMusique
-  - BorgModuleService
   - BorgModuleClowning
-  - BorgModuleGardening
-  - BorgModuleHarvesting
+  # Arcane-Start
+  # - BorgModuleService 
+  # - BorgModuleGardening 
+  # - BorgModuleHarvesting 
+  # Arcane-End
   - BorgModuleLollypop # Goobstation
+# Arcane-Start
+  - BorgModuleBartending 
+  - BorgModuleCooking 
+  - BorgModuleHydroponics # merges BorgModuleGardening + BorgModuleHarvesting
+# Arcane-End
 
   lawset: Clown # DeltaV: Custom lawset
 
