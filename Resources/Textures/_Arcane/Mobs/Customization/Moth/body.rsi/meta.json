@@ -1,0 +1,39 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by bulbo44kkey (Discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "belly",
+            "directions": 4
+        },
+        {
+            "name": "deadhead-collar",
+            "directions": 4
+        },
+        {
+            "name": "leopard-collar",
+            "directions": 4
+        },
+        {
+            "name": "melancholic-collar",
+            "directions": 4
+        },
+        {
+            "name": "moon-collar",
+            "directions": 4
+        },
+        {
+            "name": "pentadactyla-collar",
+            "directions": 4
+        },
+        {
+            "name": "white-moth-collar",
+            "directions": 4
+        }
+    ]
+}
