@@ -34,6 +34,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Arcane.CCVars;
 
 namespace Content.Server.Administration.Systems
 {
@@ -41,6 +42,7 @@ namespace Content.Server.Administration.Systems
     public sealed partial class BwoinkSystem : SharedBwoinkSystem
     {
         private const string RateLimitKey = "AdminHelp";
+        private const string HistoryRateLimitKey = "AdminHelpHistory"; // Arcane
 
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
@@ -132,12 +134,20 @@ namespace Content.Server.Administration.Systems
             SubscribeNetworkEvent<BwoinkHistoryRequest>(OnHistoryRequest); // Arcane
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => _activeConversations.Clear());
 
-        	_rateLimit.Register(
+            _rateLimit.Register(
                 RateLimitKey,
                 new RateLimitRegistration(CCVars.AhelpRateLimitPeriod,
                     CCVars.AhelpRateLimitCount,
                     PlayerRateLimitedAction)
                 );
+
+            // Arcane-start
+            _rateLimit.Register(
+                HistoryRateLimitKey,
+                new RateLimitRegistration(ACCVars.AhelpHistoryRateLimitPeriod,
+                    ACCVars.AhelpHistoryRateLimitCount,
+                    null));
+            // Arcane-end
         }
 
         // Arcane-start
@@ -145,6 +155,9 @@ namespace Content.Server.Administration.Systems
         {
             var isAdmin = _adminManager.GetAdminData(args.SenderSession)?.HasFlag(AdminFlags.Adminhelp) ?? false;
             if (!isAdmin && request.Channel != args.SenderSession.UserId)
+                return;
+
+            if (_rateLimit.CountAction(args.SenderSession, HistoryRateLimitKey) != RateLimitStatus.Allowed)
                 return;
 
             var filter = new LogFilter
@@ -156,16 +169,20 @@ namespace Content.Server.Administration.Systems
                 IncludePlayers = true,
                 After = DateTime.UtcNow.AddMonths(-2),
                 DateOrder = DateOrder.Ascending,
-                Limit = 10000,
+                LastLogId = request.LastLogId,
+                Limit = 1000,
             };
 
             var messages = new List<BwoinkHistoryMessage>();
+            var lastLogId = (int?) null;
             await foreach (var log in _dbManager.GetAdminLogs(filter))
             {
                 messages.Add(new BwoinkHistoryMessage(log.Date, log.Message, log.Type == LogType.AhelpAdminOnly));
+                lastLogId = log.Id;
             }
 
-            RaiseNetworkEvent(new BwoinkHistoryResponse(request.Channel, messages), args.SenderSession.Channel);
+            var hasMore = messages.Count == filter.Limit;
+            RaiseNetworkEvent(new BwoinkHistoryResponse(request.Channel, messages, lastLogId, hasMore, request.LastLogId != null), args.SenderSession.Channel);
         }
         // Arcane-end
 

@@ -110,10 +110,12 @@ namespace Content.Shared.Administration
     public sealed class BwoinkHistoryRequest : EntityEventArgs
     {
         public NetUserId Channel { get; }
+        public int? LastLogId { get; }
 
-        public BwoinkHistoryRequest(NetUserId channel)
+        public BwoinkHistoryRequest(NetUserId channel, int? lastLogId = null)
         {
             Channel = channel;
+            LastLogId = lastLogId;
         }
     }
 
@@ -122,11 +124,17 @@ namespace Content.Shared.Administration
     {
         public NetUserId Channel { get; }
         public List<BwoinkHistoryMessage> Messages { get; }
+        public int? NextLastLogId { get; }
+        public bool HasMore { get; }
+        public bool IsContinuation { get; }
 
-        public BwoinkHistoryResponse(NetUserId channel, List<BwoinkHistoryMessage> messages)
+        public BwoinkHistoryResponse(NetUserId channel, List<BwoinkHistoryMessage> messages, int? nextLastLogId, bool hasMore, bool isContinuation)
         {
             Channel = channel;
             Messages = messages;
+            NextLastLogId = nextLastLogId;
+            HasMore = hasMore;
+            IsContinuation = isContinuation;
         }
     }
 

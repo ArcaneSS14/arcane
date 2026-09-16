@@ -22,9 +22,9 @@ namespace Content.Client.Administration.Systems
         }
 
         // Arcane-start
-        public void RequestHistory(NetUserId channel)
+        public void RequestHistory(NetUserId channel, int? lastLogId = null)
         {
-            RaiseNetworkEvent(new BwoinkHistoryRequest(channel));
+            RaiseNetworkEvent(new BwoinkHistoryRequest(channel, lastLogId));
         }
         // Arcane-end
 
