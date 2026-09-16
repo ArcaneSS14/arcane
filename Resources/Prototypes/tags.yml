@@ -316,6 +316,11 @@
 - type: Tag # Goobstation?
   id: CigPack # Storage whitelist: BaseClothingBeltEngineering, ClothingBeltMilitaryWebbing, ClothingBeltAssault, ClothingBeltChef, ClothingBeltMedical, ClothingBeltJanitor
 
+# Arcane-Start
+- type: Tag 
+  id: CigStorage # Borg module hand whitelist: any cigarette/cigar pack, carton, or case
+  # Arcane-End
+
 - type: Tag
   id: Cleaver # Storage whitelist: ClothingBeltChef. ItemMapper: ClothingBeltChef
 
