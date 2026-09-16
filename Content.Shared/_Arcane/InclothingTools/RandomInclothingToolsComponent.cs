@@ -13,5 +13,5 @@ public sealed partial class RandomInclothingToolsComponent : Component
     public EntityUid? ActionUid;
 
     [DataField, AutoNetworkedField]
-    public int NextRandomTool = 0;
+    public List<EntityUid> RemainingTools = new();
 }

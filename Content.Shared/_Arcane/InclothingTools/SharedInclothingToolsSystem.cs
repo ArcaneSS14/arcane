@@ -1,6 +1,8 @@
 using Content.Shared.Actions;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Inventory.Events;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
@@ -17,6 +19,7 @@ public sealed class SharedInclothingToolsSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedPopupSystem _popups = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -25,6 +28,8 @@ public sealed class SharedInclothingToolsSystem : EntitySystem
         SubscribeLocalEvent<InclothingToolsComponent, ComponentInit>(OnCompInit);
         SubscribeLocalEvent<InclothingToolsComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<InclothingToolsComponent, GetItemActionsEvent>(OnGetActions);
+        SubscribeLocalEvent<InclothingToolsComponent, BeingUnequippedAttemptEvent>(OnUnequipAttempt);
+        SubscribeLocalEvent<InclothingToolsComponent, GotUnequippedEvent>(OnGotUnequipped);
         SubscribeLocalEvent<InclothingToolsComponent, ActionSelectInclothingToolEvent>(OnSelectInclothingTool);
         SubscribeLocalEvent<InclothingToolsComponent, InclothingToolsUiMessage>(OnUiMessage);
         SubscribeLocalEvent<InclothingToolsComponent, InclothingToolsUnequipAllMessage>(OnUnequipAll);
@@ -88,6 +93,32 @@ public sealed class SharedInclothingToolsSystem : EntitySystem
         args.AddAction(entity.Comp.ActionUid);
     }
 
+    private void OnUnequipAttempt(Entity<InclothingToolsComponent> entity, ref BeingUnequippedAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (entity.Comp.EquippedTools <= 0)
+            return;
+
+        if (_mobState.IsAlive(args.UnEquipTarget))
+            return;
+
+        _popups.PopupClient(Loc.GetString("inclothing-tools-unequip-tools-first"), args.Unequipee);
+    }
+
+    private void OnGotUnequipped(Entity<InclothingToolsComponent> entity, ref GotUnequippedEvent args)
+    {
+        if (entity.Comp.EquippedTools <= 0)
+            return;
+
+        foreach (var tool in entity.Comp.ToolsUids)
+        {
+            if (!entity.Comp.Container.Contains(tool))
+                Unequip(entity, tool);
+        }
+    }
+
     private void OnGetActions(Entity<RandomInclothingToolsComponent> entity, ref GetItemActionsEvent args)
     {
         if (entity.Comp.ActionUid == null)
@@ -144,22 +175,40 @@ public sealed class SharedInclothingToolsSystem : EntitySystem
         if (uids.Count == 0)
             return;
 
-        var random = new System.Random((int) _timing.CurTick.Value);
-        int index;
-        EntityUid selectedTool;
+        if (entity.Comp.RemainingTools.Count == 0)
+            RefillRandomQueue(entity, clothing);
 
-        do
-        {
-            index = random.Next(uids.Count);
-            selectedTool = uids[index];
+        if (entity.Comp.RemainingTools.Count == 0)
+            return;
 
-        } while (!clothing.Container.Contains(selectedTool));
+        var selectedTool = entity.Comp.RemainingTools[0];
 
         TryEquipOrReplace((entity.Owner, clothing), selectedTool, args.Performer);
 
-        entity.Comp.NextRandomTool++;
+        entity.Comp.RemainingTools.RemoveAt(0);
+
         Dirty(entity.Owner, clothing);
         Dirty(entity);
+    }
+
+    public void RefillRandomQueue(Entity<RandomInclothingToolsComponent> entity, InclothingToolsComponent? clothing = null)
+    {
+        entity.Comp.RemainingTools.Clear();
+
+        if (clothing == null)
+        {
+            if (!TryComp(entity, out clothing) || clothing == null)
+                return;
+        }
+
+        foreach (var tool in clothing.ToolsUids)
+        {
+            entity.Comp.RemainingTools.Add(tool);
+        }
+
+        var rand = new System.Random((int) _timing.CurTick.Value);
+
+        rand.Shuffle(entity.Comp.RemainingTools);
     }
 
     public bool TryEquipOrReplace(Entity<InclothingToolsComponent> entity, EntityUid tool, EntityUid actor)
