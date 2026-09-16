@@ -1657,3 +1657,16 @@ Entries:
   time: '2026-09-16T06:36:04.0000000+00:00'
   prNumber: 369
   url: https://github.com/ArcaneSS14/arcane/pull/369
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: Добавлена новая кастомизация нианам.
+    - type: Add
+      message: У нианов теперь есть свои причёски.
+  id: 128
+  time: '2026-09-16T06:47:07.0000000+00:00'
+  prNumber: 368
+  url: https://github.com/ArcaneSS14/arcane/pull/368
+  media:
+    - >-
+      https://github.com/user-attachments/assets/dde6e386-45d0-4846-9ac4-20731f9fcbd7

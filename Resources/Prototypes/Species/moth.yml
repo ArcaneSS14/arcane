@@ -81,7 +81,7 @@
     Hair:
       points: 1 # Arcane-Edit: 0 > 1
       required: false
-      onlyWhitelisted: false # Arcane
+      onlyWhitelisted: true # Arcane
     FacialHair:
       points: 0
       required: false
