@@ -17,3 +17,6 @@ marking-HumanHairTale = Tale
 marking-HumanHairTwilight = Twilight
 marking-HumanHairHardMorning = Hard morning
 marking-HumanHairHardMorningAlt = Hard morning (Alt.)
+marking-HumanHairMulletArcane = Mullet
+marking-HumanHairWolfcutM = Wolfcut (male)
+marking-HumanHairWolfcutF = Wolfcut (female)
