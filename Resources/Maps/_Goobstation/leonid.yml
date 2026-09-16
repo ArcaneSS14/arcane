@@ -99373,7 +99373,7 @@ entities:
     - type: Transform
       pos: -58.42076,-13.486981
       parent: 2
-- proto: ChemDispenser
+- proto: EnergyChemDispenser
   entities:
   - uid: 16095
     components:
