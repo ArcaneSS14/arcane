@@ -1631,3 +1631,15 @@ Entries:
       https://github.com/user-attachments/assets/23504a9e-a391-4127-b8c2-e45576e76f8d
     - >-
       https://github.com/user-attachments/assets/d3d66215-73f2-4949-83c6-ce00cffe08b1
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: >-
+        Добавил дьявола как допольнительный расчёт антагонистов раундстартом с
+        шансом в 30%.
+    - type: Tweak
+      message: В Секрет+Средний увеличено выпадение антагонистов.
+  id: 126
+  time: '2026-09-16T06:34:26.0000000+00:00'
+  prNumber: 365
+  url: https://github.com/ArcaneSS14/arcane/pull/365
