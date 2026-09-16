@@ -211,11 +211,9 @@ public sealed partial class MarkingPicker : Control
 
     private IReadOnlyDictionary<string, MarkingPrototype> GetMarkings(MarkingCategories category)
     {
-        var markings = IgnoreSpecies // Arcane-Edit
+        return IgnoreSpecies
             ? _markingManager.MarkingsByCategoryAndSex(category, _currentSex)
             : _markingManager.MarkingsByCategoryAndSpeciesAndSex(category, _currentSpecies, _currentSex);
-
-        return _markingManager.FilterSponsorMarkings(markings, _discordRoles, _player.LocalSession); // Arcane
     }
 
     public void Populate(string filter)
@@ -239,6 +237,14 @@ public sealed partial class MarkingPicker : Control
 
             var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
             item.Metadata = marking;
+
+            // Arcane-Start
+            if (!marking.CanUse(_discordRoles, _player.LocalSession, out var reason))
+            {
+                item.Disabled = true;
+                item.TooltipText = reason?.ToString();
+            }
+            // Arcane-End
         }
 
         CMarkingPoints.Visible = _currentMarkings.PointsLeft(_selectedMarkingCategory) != -1;

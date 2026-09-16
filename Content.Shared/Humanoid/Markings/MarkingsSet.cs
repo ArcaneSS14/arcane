@@ -238,19 +238,14 @@ public sealed partial class MarkingSet
 
     // Arcane-Start
     /// <summary>
-    ///     Removes markings that require a sponsor role the session does not have.
+    ///     Removes markings whose effects reject the session.
     /// </summary>
-    /// <param name="discordRoles">Discord role manager, or null to skip filtering.</param>
+    /// <param name="discordRoles">Discord role manager, used by sponsor effects.</param>
     /// <param name="session">The session to check, or null to skip filtering.</param>
     /// <param name="markingManager">Marking manager.</param>
-    public void EnsureSponsorRoles(ISharedDiscordRoleManager? discordRoles, ICommonSession? session,
+    public void EnsureEffects(ISharedDiscordRoleManager? discordRoles, ICommonSession? session,
         MarkingManager? markingManager = null)
     {
-        if (discordRoles == null || session == null)
-        {
-            return;
-        }
-
         IoCManager.Resolve(ref markingManager);
 
         var toRemove = new List<(MarkingCategories category, string id)>();

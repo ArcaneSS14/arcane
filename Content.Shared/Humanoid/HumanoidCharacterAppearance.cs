@@ -205,7 +205,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             markingSet = new MarkingSet(appearance.Markings, speciesProto.MarkingPoints, markingManager, proto);
             markingSet.EnsureValid(markingManager);
-            markingSet.EnsureSponsorRoles(discordRoles, session, markingManager); // Arcane
+            markingSet.EnsureEffects(discordRoles, session, markingManager); // Arcane
 
             var strategy = proto.Index(speciesProto.SkinColoration).Strategy;
             skinColor = strategy.EnsureVerified(skinColor);

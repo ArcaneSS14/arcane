@@ -163,13 +163,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         _species = species;
         _totalPoints = totalPoints;
 
-        // Arcane-Edit-Start
-        // _markingManager.MarkingsByCategoryAndSpecies(Category, _species)
-        _markingPrototypeCache = _markingManager.FilterSponsorMarkings(
-            _markingManager.MarkingsByCategoryAndSpecies(Category, _species),
-            _discordRoles,
-            _player.LocalSession);
-        // Arcane-Edit-End
+        _markingPrototypeCache = _markingManager.MarkingsByCategoryAndSpecies(Category, _species);
 
         Visible = _markingPrototypeCache.Count != 0;
         if (_markingPrototypeCache.Count == 0)
@@ -189,13 +183,9 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             throw new ArgumentException("Tried to populate marking list without a set species!");
         }
 
-        // Arcane-Edit-Start
-        // _markingManager.MarkingsByCategoryAndSpecies(Category, _species)
-        _markingPrototypeCache ??= _markingManager.FilterSponsorMarkings(
-            _markingManager.MarkingsByCategoryAndSpecies(Category, _species),
-            _discordRoles,
-            _player.LocalSession);
-        // Arcane-Edit-End
+        // Arcane-Start
+        _markingPrototypeCache ??= _markingManager.MarkingsByCategoryAndSpecies(Category, _species);
+        // Arcane-End
 
         MarkingSelectorContainer.Visible = _markings != null && _markings.Count != 0;
         if (_markings == null || _markings.Count == 0)
@@ -215,7 +205,16 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             var item = MarkingList.AddItem(Loc.GetString($"marking-{id}"), _sprite.Frame0(marking.Sprites[0]));
             item.Metadata = marking.ID;
 
-            if (_markings[Slot].MarkingId == id)
+            // Arcane-Start
+            var isCurrent = _markings![Slot].MarkingId == id;
+            if (!isCurrent && !marking.CanUse(_discordRoles, _player.LocalSession, out var reason))
+            {
+                item.Disabled = true;
+                item.TooltipText = reason?.ToString();
+            }
+            // Arcane-End
+
+            if (isCurrent)
             {
                 _ignoreItemSelected = true;
                 item.Selected = true;

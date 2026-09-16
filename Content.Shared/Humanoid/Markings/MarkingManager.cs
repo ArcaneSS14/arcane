@@ -2,9 +2,7 @@
 
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared.Humanoid.Prototypes;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Humanoid.Markings
@@ -51,35 +49,8 @@ namespace Content.Shared.Humanoid.Markings
             return CategorizedMarkings[category];
         }
 
-        // Arcane-Start
         /// <summary>
-        /// Filters out markings that require a sponsor role the session does not have.
-        /// </summary>
-        public IReadOnlyDictionary<string, MarkingPrototype> FilterSponsorMarkings(
-            IReadOnlyDictionary<string, MarkingPrototype> source,
-            ISharedDiscordRoleManager? discordRoles,
-            ICommonSession? session)
-        {
-            if (discordRoles == null || session == null)
-            {
-                return source;
-            }
-
-            var filtered = new Dictionary<string, MarkingPrototype>();
-            foreach (var (id, prototype) in source)
-            {
-                if (prototype.CanUse(discordRoles, session))
-                {
-                    filtered.Add(id, prototype);
-                }
-            }
-
-            return filtered;
-        }
-        // Arcane-End
-
-        /// <summary>
-        ///     Markings by category and species.
+        ///     Filters and colors markings based on species and it's restrictions in the marking's prototype from this marking set.
         /// </summary>
         /// <param name="category"></param>
         /// <param name="species"></param>

@@ -268,7 +268,9 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [HumanoidXeno]
-  sponsorRoles: [ArtLead]
+  effects:
+  - !type:SponsorRequirementMarkingEffect
+    roles: [ArtLead]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
     state: ren_tail
@@ -583,7 +585,9 @@
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [HumanoidXeno]
-  sponsorRoles: [ArtLead]
+  effects:
+  - !type:SponsorRequirementMarkingEffect
+    roles: [ArtLead]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: ren_head
@@ -770,7 +774,9 @@
   bodyPart: Chest
   markingCategory: Tracheas
   speciesRestriction: [HumanoidXeno]
-  sponsorRoles: [ArtLead]
+  effects:
+  - !type:SponsorRequirementMarkingEffect
+    roles: [ArtLead]
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
     state: ren_tubes

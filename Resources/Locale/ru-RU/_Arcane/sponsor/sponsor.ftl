@@ -8,4 +8,5 @@ AdminBenefit-patron-name = [color=#ecad00]Хорошая Вахта[/color]
 ArtLead-patron-name = [color=#ffdaf9]Арт-Лид[/color]
 
 loadout-sponsor-requirement = Этот предмет доступен только для спонсоров!
+marking-sponsor-requirement = Этот маркинг доступен только для спонсоров!
 loadout-group-patron = Спонсор
