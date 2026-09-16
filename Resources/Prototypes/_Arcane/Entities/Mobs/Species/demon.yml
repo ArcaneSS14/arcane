@@ -78,12 +78,12 @@
         Piercing: 0.85
         Asphyxiation: 0.85
   - type: RecoilAbsorber
-    modifier: 0.4
+    modifier: 0.5
   - type: WeakToHoly
     alwaysTakeHoly: true
   - type: Sprinter
     staminaDrainRate: 13
-    sprintSpeedMultiplier: 1.65
+    sprintSpeedMultiplier: 1.63
 
 - type: entity
   parent: BaseMobDemon
