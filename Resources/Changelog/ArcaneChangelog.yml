@@ -1670,3 +1670,36 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/dde6e386-45d0-4846-9ac4-20731f9fcbd7
+- author: Kinar_7
+  changes:
+    - type: Add
+      message: >-
+        Барменский модуль с портативным энергораздатчиком алкоголя и безалкоголя
+        для сервисного борга.
+    - type: Add
+      message: 'поварской модуль с портативным сентизатором еды. '
+    - type: Tweak
+      message: 2 модуля для гидропоники были объединены в 1
+  id: 129
+  time: '2026-09-16T13:38:19.0000000+00:00'
+  prNumber: 361
+  url: https://github.com/ArcaneSS14/arcane/pull/361
+  media:
+    - >-
+      https://github.com/user-attachments/assets/c2f679f1-f079-4c11-a8db-9eb29a5af8b5
+    - >-
+      https://github.com/user-attachments/assets/36ddaf01-00df-465f-ac46-884edd0747de
+- author: HappyRoach
+  changes:
+    - type: Fix
+      message: Исправлено получение гримуара у некоторых должностей.
+    - type: Add
+      message: Разброс стрельбы у Аркан уменьшен на 50%.
+    - type: Add
+      message: Арканы теперь уязвимы к святому урону.
+    - type: Tweak
+      message: Ряд характеристик Аркан изменены.
+  id: 130
+  time: '2026-09-16T13:50:34.0000000+00:00'
+  prNumber: 357
+  url: https://github.com/ArcaneSS14/arcane/pull/357
