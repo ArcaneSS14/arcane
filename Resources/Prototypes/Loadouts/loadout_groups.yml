@@ -202,6 +202,7 @@
   # Orion-End
   - VeteranCaptainCloak # goob
   - CaptainEnsemble # goob
+  - ClothingCloakSolemnCap # Arcane
 
 - type: loadoutGroup
   id: CaptainBackpack
@@ -974,6 +975,7 @@
   - QMBlackCloakPatron
   - QMWhiteCloakPatron
   - CargoCloakPatron
+  - ClothingCloakSolemnQM
   # Arcane-End
   - QuartermasterEnsemble # goob
 
