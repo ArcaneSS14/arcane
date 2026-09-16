@@ -104,4 +104,45 @@ namespace Content.Shared.Administration
             Typing = typing;
         }
     }
+
+    // Arcane-start
+    [Serializable, NetSerializable]
+    public sealed class BwoinkHistoryRequest : EntityEventArgs
+    {
+        public NetUserId Channel { get; }
+
+        public BwoinkHistoryRequest(NetUserId channel)
+        {
+            Channel = channel;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class BwoinkHistoryResponse : EntityEventArgs
+    {
+        public NetUserId Channel { get; }
+        public List<BwoinkHistoryMessage> Messages { get; }
+
+        public BwoinkHistoryResponse(NetUserId channel, List<BwoinkHistoryMessage> messages)
+        {
+            Channel = channel;
+            Messages = messages;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class BwoinkHistoryMessage
+    {
+        public DateTime SentAt { get; }
+        public string Text { get; }
+        public bool AdminOnly { get; }
+
+        public BwoinkHistoryMessage(DateTime sentAt, string text, bool adminOnly)
+        {
+            SentAt = sentAt;
+            Text = text;
+            AdminOnly = adminOnly;
+        }
+    }
+    // Arcane-end
 }
