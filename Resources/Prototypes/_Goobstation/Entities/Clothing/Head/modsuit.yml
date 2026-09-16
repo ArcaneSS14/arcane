@@ -32,6 +32,7 @@
     tags:
     - WhitelistChameleon
     - PlasmamanSafe
+    - NoXeno # Arcane
   - type: IgniteFromGasImmunity
     parts:
     - Head
@@ -168,6 +169,7 @@
     tags:
     - PlasmamanSafe
     - Envirohelm
+    - NoXeno # Arcane
   - type: IgniteFromGasImmunity
     parts:
     - Head
