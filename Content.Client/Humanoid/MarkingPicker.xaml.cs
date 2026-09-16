@@ -213,6 +213,7 @@ public sealed partial class MarkingPicker : Control
         {
             _selectedMarkingCategory = MarkingCategories.Chest;
         }
+        UpdateEarsAboveHairVisibility(); // Arcane
     }
 
     private string GetMarkingName(MarkingPrototype marking) => Loc.GetString($"marking-{marking.ID}");

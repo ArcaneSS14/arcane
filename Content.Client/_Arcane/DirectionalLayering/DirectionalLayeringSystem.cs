@@ -111,7 +111,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     private void OnEquipmentVisualsUpdated(EquipmentVisualsUpdatedEvent args)
     {
-        if (args.Slot != "neck" ||
+        if (args.Slot != "neck" && args.Slot != "back" ||
             !TryComp(args.Equipee, out HumanoidAppearanceComponent? humanoid) ||
             !TryComp(args.Equipee, out SpriteComponent? sprite))
         {
@@ -724,7 +724,16 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         for (var i = 0; i < indices.Count; i++)
         {
             if (!_sprite.RemoveLayer((ent.Owner, sprite), indices[i].Index, out var layer, false))
+            {
+                for (var j = block.Count - 1; j >= 0; j--)
+                {
+                    _sprite.AddLayer((ent.Owner, sprite), block[j].Layer, indices[j].Index);
+                    SetLayerIndex(ent, block[j].Key, indices[j].Index);
+                }
+
+                block.Clear();
                 return false;
+            }
 
             block.Add((indices[i].Key, layer!));
         }
