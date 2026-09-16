@@ -3,15 +3,21 @@
   id: InteQVanguard
   randomizeName: false
   speciesBlacklist:
-  - Monkey
-  - Kobold
-  - Abductor
-  - IPC
+  # Arcane-Edit-Start
+  - Chitinid
   - Diona
-  - Vox
-  - Gingerbread
+  - Felinid
+  - Harpy
+  - HumanoidXeno
+  - Hydrakin
+  - Oni
   - Plasmaman
+  - Resomi
+  - Rodentia
   - Shadowkin
+  - Vox
+  - Yowie
+  # Arcane-Edit-End
   components:
   - type: AntagImmune
   - type: GhostRole

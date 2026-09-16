@@ -80,6 +80,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
     ///     Rolling window of recent wait times in seconds for estimating queue wait.
     /// </summary>
     private readonly Queue<double> _recentWaitTimes = new();
+    private readonly TimeSpan _rejoinWaitTime = TimeSpan.FromMinutes(2);
     private const int MaxWaitTimeSamples = 20;
     private const int MaxQueueWaitLeaderboardEntries = 100;
     private const int QueueWaitHistoryPruneThreshold = 200;
@@ -238,7 +239,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
             if (e.OldStatus == SessionStatus.InGame)
             {
                 _rejoinTimes[e.Session.UserId] = new RejoinRecord(
-                    _gameTiming.RealTime + TimeSpan.FromSeconds(30),
+                    _gameTiming.RealTime + _rejoinWaitTime,
                     CountsTowardsPlayerLimit(e.Session) && !_limitBypasses.Contains(e.Session.UserId, e.Session));
             }
 
