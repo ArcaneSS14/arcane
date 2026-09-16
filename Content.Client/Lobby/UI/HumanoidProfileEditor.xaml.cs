@@ -2656,9 +2656,9 @@ namespace Content.Client.Lobby.UI
             {
                 if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, hairProto, _prototypeManager))
                 {
-                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
+                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var hairAlpha, _prototypeManager))
                     {
-                        hairColor = Profile.Appearance.SkinColor;
+                        hairColor = Profile.Appearance.SkinColor.WithAlpha(hairAlpha); // Arcane-Edit
                     }
                     else
                     {
@@ -2690,9 +2690,9 @@ namespace Content.Client.Lobby.UI
             {
                 if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, facialHairProto, _prototypeManager))
                 {
-                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
+                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.FacialHair, out var facialHairAlpha, _prototypeManager))
                     {
-                        facialHairColor = Profile.Appearance.SkinColor;
+                        facialHairColor = Profile.Appearance.SkinColor.WithAlpha(facialHairAlpha); // Arcane-Edit
                     }
                     else
                     {

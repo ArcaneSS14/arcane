@@ -425,7 +425,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         // each sprite when we have one marking setting multiple layers,
         // lets just kinda sorta do that ourselves
         var layerDict = new Dictionary<string, int>();
-        // Arcane-Edit-Start: Hair gradient shader preparation
+        // Arcane-Start: Hair gradient shader preparation
         var markingShader = markingPrototype.Shader;
         var isHairGradient = markingShader == null && markingPrototype.MarkingCategory == MarkingCategories.Hair && humanoid.HairGradientEnabled;
         ShaderInstance? hairGradientShader = null;
@@ -441,7 +441,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             hairGradientShader.SetParameter("gradientStyle", (int) humanoid.HairGradientStyle);
             hairGradientShader.SetParameter("gradientOffset", humanoid.HairGradientOffset);
         }
-        // Arcane-Edit-End
+        // Arcane-End
 
         // FLOOF ADD END
         for (var j = 0; j < markingPrototype.Sprites.Count; j++)
@@ -525,14 +525,23 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             // and we need to check the index is correct.
             // So if that happens just default to white?
             // FLOOF ADD =3
-            // Arcane-Edit-Start: White layer color for hair gradient so modulation does not tint shader
+            // Arcane-Edit-Start: White layer color with alpha for hair gradient so modulation does not tint shader
+            var layerColor = colorDict.TryGetValue(rsi.RsiState, out var color) ? color : Color.White;
             if (isHairGradient)
             {
-                sprite.LayerSetColor(layerId, Color.White);
+                var layerAlpha = layerColor.A;
+                if (MathF.Abs(layerAlpha - 1f) < 0.001f &&
+                    humanoid.BaseLayers.TryGetValue(HumanoidVisualLayers.Hair, out var hairBaseLayer) &&
+                    hairBaseLayer.MarkingsMatchSkin)
+                {
+                    layerAlpha = hairBaseLayer.LayerAlpha;
+                }
+
+                sprite.LayerSetColor(layerId, Color.White.WithAlpha(layerAlpha));
             }
             else
             {
-                sprite.LayerSetColor(layerId, colorDict.TryGetValue(rsi.RsiState, out var color) ? color : Color.White);
+                sprite.LayerSetColor(layerId, layerColor);
             }
             // Arcane-Edit-End
 

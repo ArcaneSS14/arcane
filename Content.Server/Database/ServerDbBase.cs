@@ -232,7 +232,7 @@ namespace Content.Server.Database
             prefs.SelectedCharacterSlot = newSlot;
         }
 
-        internal static HumanoidCharacterProfile ConvertProfiles(Profile profile)
+        internal static HumanoidCharacterProfile ConvertProfiles(Profile profile) // Arcane-Edit
         {
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
@@ -306,10 +306,10 @@ namespace Content.Server.Database
             }
 
             var barkVoice = profile.BarkVoice ?? SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
-            // Arcane-Start
             var erpPreference = (ErpPreference) profile.ErpPreference;
             var customSpeciesName = profile.CustomSpeciesName ?? "";
 
+            // Arcane-Start
             var hairColor = ParseHairColor(profile.HairColor);
             var hairGradientEnabled = profile.HairGradientEnabled;
             List<Color>? hairGradientColors = null;
@@ -406,7 +406,7 @@ namespace Content.Server.Database
                 new HumanoidCharacterAppearance
                 (
                     profile.HairName,
-                    hairColor,
+                    hairColor, // Arcane-Edit
                     profile.FacialHairName,
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
@@ -469,7 +469,7 @@ namespace Content.Server.Database
         }
         // Arcane-End
 
-        internal static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
+        internal static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null) // Arcane-Edit
         {
             profile ??= new Profile();
             var appearance = (HumanoidCharacterAppearance) humanoid.CharacterAppearance;
