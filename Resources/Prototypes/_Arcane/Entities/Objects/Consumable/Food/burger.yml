@@ -1,8 +1,8 @@
 - type: entity
-  name: Веганский бургер
+  name: Vegan Burger
   parent: FoodBurgerBase
   id: FoodBurgerKillerTomato
-  description: Веганский бургер... хотя кажется там обрывки одежды ботаника..
+  description: A vegan burger... though it looks like there are scraps of a nerd's clothes in there...
   components:
   - type: FlavorProfile
     flavors:
