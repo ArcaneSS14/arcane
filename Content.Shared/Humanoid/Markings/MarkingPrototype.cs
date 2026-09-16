@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 
+using Content.Shared._Arcane.DiscordRoles;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -43,6 +45,22 @@ namespace Content.Shared.Humanoid.Markings
 
         [DataField("sprites", required: true)]
         public List<SpriteSpecifier> Sprites { get; private set; } = default!;
+
+        // Arcane-Start
+        /// <summary>
+        /// Discord roles that unlock this marking. Empty means no restriction.
+        /// </summary>
+        [DataField("sponsorRoles")]
+        public HashSet<DiscordRole> SponsorRoles { get; private set; } = new();
+
+        public bool CanUse(ISharedDiscordRoleManager? discordRoles, ICommonSession? session)
+        {
+            return SponsorRoles.Count == 0
+                || discordRoles != null
+                && session != null
+                && discordRoles.HasAnyRole(session, SponsorRoles);
+        }
+        // Arcane-End
 
         /// Impstation start
         [DataField]

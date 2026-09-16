@@ -3,7 +3,9 @@
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared.Humanoid.Prototypes;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -222,6 +224,47 @@ public sealed partial class MarkingSet
                 }
 
                 if (prototype.SexRestriction != null && prototype.SexRestriction != sex)
+                {
+                    toRemove.Add((category, marking.MarkingId));
+                }
+            }
+        }
+
+        foreach (var remove in toRemove)
+        {
+            Remove(remove.category, remove.id);
+        }
+    }
+
+    // Arcane-Start
+    /// <summary>
+    ///     Removes markings that require a sponsor role the session does not have.
+    /// </summary>
+    /// <param name="discordRoles">Discord role manager, or null to skip filtering.</param>
+    /// <param name="session">The session to check, or null to skip filtering.</param>
+    /// <param name="markingManager">Marking manager.</param>
+    public void EnsureSponsorRoles(ISharedDiscordRoleManager? discordRoles, ICommonSession? session,
+        MarkingManager? markingManager = null)
+    {
+        if (discordRoles == null || session == null)
+        {
+            return;
+        }
+
+        IoCManager.Resolve(ref markingManager);
+
+        var toRemove = new List<(MarkingCategories category, string id)>();
+
+        foreach (var (category, list) in Markings)
+        {
+            foreach (var marking in list)
+            {
+                if (!markingManager.TryGetMarking(marking, out var prototype))
+                {
+                    continue;
+                }
+
+                if (!prototype.CanUse(discordRoles, session))
                 {
                     toRemove.Add((category, marking.MarkingId));
                 }

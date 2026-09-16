@@ -17,7 +17,7 @@ public static class SponsorRoleBenefits
             [DiscordRole.SponsorTier1] = new("Tier1", "#7d25a8", 2, -1),
             [DiscordRole.SponsorTier2] = new("Tier2", "#d8aa2d", 3, -2),
             [DiscordRole.AdminBenefit] = new("AdminBenefit", "#78ecf5", 5, -3),
-            [DiscordRole.ArtLead] = new("ArtRole", "#ffdaf9", 6, -4)
+            [DiscordRole.ArtLead] = new("ArtLead", "#ffdaf9", 6, -4)
         };
 
     private static readonly DiscordRole[] Priority =
