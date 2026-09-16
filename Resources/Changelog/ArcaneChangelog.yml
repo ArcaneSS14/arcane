@@ -1732,3 +1732,13 @@ Entries:
       https://github.com/user-attachments/assets/ac780085-4d77-47ed-acfa-a321861bb3cf
     - >-
       https://github.com/user-attachments/assets/719c9874-f0dd-4eab-adaf-b3bd23a08bd9
+- author: ChagelingRUES
+  changes:
+    - type: Tweak
+      message: На Аврите добавлены техфабы для отделов и упакованное сило в карго.
+    - type: Fix
+      message: Энергопитание алкомата в инфи-дорме Квартира восстановлено.
+  id: 132
+  time: '2026-09-16T16:14:39.0000000+00:00'
+  prNumber: 371
+  url: https://github.com/ArcaneSS14/arcane/pull/371
