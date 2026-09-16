@@ -1643,3 +1643,17 @@ Entries:
   time: '2026-09-16T06:34:26.0000000+00:00'
   prNumber: 365
   url: https://github.com/ArcaneSS14/arcane/pull/365
+- author: ReWAFFlution, RedTerror
+  changes:
+    - type: Tweak
+      message: Респрайт слаймолюдов
+    - type: Fix
+      message: Теперь КПБ не становятся инвалидами если им заменить батарейку.
+    - type: Add
+      message: Добавлены причёски маллет, вульфкат (мужской/женский)
+    - type: Tweak
+      message: Ксеноморфы не могут надеть шлем и корпус модсьюта
+  id: 127
+  time: '2026-09-16T06:36:04.0000000+00:00'
+  prNumber: 369
+  url: https://github.com/ArcaneSS14/arcane/pull/369
