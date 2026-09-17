@@ -164,7 +164,6 @@
   - Trinkets
   # Arcane-Start
   - ServiceCloak
-  - GroupGrimoire
   - RadioHostMicrophone
   - Patron
   # Arcane-End
@@ -175,6 +174,7 @@
   - ServiceWorkerEnvirohelm
   - ServiceWorkerEnvirosuit
   - ServiceWorkerEnvirogloves
+  - GroupGrimoire
   # Orion-Start
   - Undershirt
   - Underwear
@@ -245,7 +245,6 @@
    # Arcane-Start
    - MedicalCloak
    - VirologistBikini
-   - GroupGrimoire
    # Arcane-End
    - MedicalGloves
    - VirologistBackpack
@@ -260,6 +259,7 @@
    - VirologyEnvirohelm
    - VirologyEnvirosuit
    - VirologyEnvirogloves
+   - GroupGrimoire # Arcane
    # Orion-Start
    - Undershirt
    - Underwear

@@ -289,6 +289,10 @@ namespace Content.Client.Administration.UI.Bwoink
             {
                 var panel = AHelpHelper.EnsurePanel(ch.Value);
                 panel.Visible = true;
+                // Arcane-start
+                panel.ClearHistory();
+                AHelpHelper.RequestHistoryAction?.Invoke(ch.Value, null);
+                // Arcane-end
             }
         }
 
