@@ -1670,3 +1670,75 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/dde6e386-45d0-4846-9ac4-20731f9fcbd7
+- author: Kinar_7
+  changes:
+    - type: Add
+      message: >-
+        Барменский модуль с портативным энергораздатчиком алкоголя и безалкоголя
+        для сервисного борга.
+    - type: Add
+      message: 'поварской модуль с портативным сентизатором еды. '
+    - type: Tweak
+      message: 2 модуля для гидропоники были объединены в 1
+  id: 129
+  time: '2026-09-16T13:38:19.0000000+00:00'
+  prNumber: 361
+  url: https://github.com/ArcaneSS14/arcane/pull/361
+  media:
+    - >-
+      https://github.com/user-attachments/assets/c2f679f1-f079-4c11-a8db-9eb29a5af8b5
+    - >-
+      https://github.com/user-attachments/assets/36ddaf01-00df-465f-ac46-884edd0747de
+- author: HappyRoach
+  changes:
+    - type: Fix
+      message: Исправлено получение гримуара у некоторых должностей.
+    - type: Add
+      message: Разброс стрельбы у Аркан уменьшен на 50%.
+    - type: Add
+      message: Арканы теперь уязвимы к святому урону.
+    - type: Tweak
+      message: Ряд характеристик Аркан изменены.
+  id: 130
+  time: '2026-09-16T13:50:34.0000000+00:00'
+  prNumber: 357
+  url: https://github.com/ArcaneSS14/arcane/pull/357
+- author: mxgnvrx
+  changes:
+    - type: Add
+      message: >-
+        Добавлена расширенная система градиентного и двухцветного окрашивания
+        волос в редакторе персонажа (Омбре, Сплит / Два хвоста, Скрытые пряди).
+    - type: Add
+      message: >-
+        Добавлены интеллектуальные рекомендации цвета (Осветление, Гармония,
+        Контраст).
+  id: 131
+  time: '2026-09-16T16:13:00.0000000+00:00'
+  prNumber: 366
+  url: https://github.com/ArcaneSS14/arcane/pull/366
+  media:
+    - >-
+      https://github.com/user-attachments/assets/252f8b9a-bc47-4776-89b4-44f36e5ed589
+    - >-
+      https://github.com/user-attachments/assets/fa7f914a-ff8e-4433-a91d-fa36254a82f6
+    - >-
+      https://github.com/user-attachments/assets/5d3b372e-f569-4ff8-8d89-9ee447e2e0f6
+    - >-
+      https://github.com/user-attachments/assets/47ec2e39-2df4-4752-adba-b5fcc996cb46
+    - >-
+      https://github.com/user-attachments/assets/ccfa9dfd-488c-428e-a312-1b3b298f004b
+    - >-
+      https://github.com/user-attachments/assets/ac780085-4d77-47ed-acfa-a321861bb3cf
+    - >-
+      https://github.com/user-attachments/assets/719c9874-f0dd-4eab-adaf-b3bd23a08bd9
+- author: ChagelingRUES
+  changes:
+    - type: Tweak
+      message: На Аврите добавлены техфабы для отделов и упакованное сило в карго.
+    - type: Fix
+      message: Энергопитание алкомата в инфи-дорме Квартира восстановлено.
+  id: 132
+  time: '2026-09-16T16:14:39.0000000+00:00'
+  prNumber: 371
+  url: https://github.com/ArcaneSS14/arcane/pull/371
