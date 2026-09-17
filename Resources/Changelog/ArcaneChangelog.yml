@@ -1750,3 +1750,14 @@ Entries:
   time: '2026-09-16T21:06:44.0000000+00:00'
   prNumber: 373
   url: https://github.com/ArcaneSS14/arcane/pull/373
+- author: seemah, RedTerror
+  changes:
+    - type: Add
+      message: В лодауты квартирмейстера и капитана добавлены новые донатные плащи.
+  id: 134
+  time: '2026-09-17T04:34:28.0000000+00:00'
+  prNumber: 370
+  url: https://github.com/ArcaneSS14/arcane/pull/370
+  media:
+    - >-
+      https://github.com/user-attachments/assets/621f03e1-0bec-464a-aafd-efba4593bf5d
