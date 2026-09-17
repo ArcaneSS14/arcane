@@ -276,7 +276,7 @@ public sealed class SurgeryBui : BoundUserInterface
         View(ViewType.Surgeries);
     }
 
-    private void RefreshUI()
+    public void RefreshUI() // Arcane-Edit
     {
         if (_window == null
             || !_window.IsOpen
@@ -315,15 +315,22 @@ public sealed class SurgeryBui : BoundUserInterface
             var stepName = new FormattedMessage();
             stepName.AddText(_entities.GetComponent<MetaDataComponent>(stepButton.Step).EntityName);
 
+            // Arcane-Edit-Start
             if (status == StepStatus.Complete)
+            {
+                stepButton.ToolTip = null;
                 stepButton.Button.Modulate = Color.Green;
+            }
             else
             {
                 stepButton.Button.Modulate = Color.White;
                 if (status == StepStatus.Next
                     && !_system.CanPerformStepWithHeld(_player.LocalEntity.Value, Owner, _part.Value, stepButton.Step, false, out var popup))
                     stepButton.ToolTip = popup;
+                else
+                    stepButton.ToolTip = null;
             }
+            // Arcane-Edit-End
 
             var texture = _entities.GetComponentOrNull<SpriteComponent>(stepButton.Step)?.Icon?.Default;
             stepButton.Set(stepName, texture);

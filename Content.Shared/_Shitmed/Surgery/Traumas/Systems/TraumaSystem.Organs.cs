@@ -214,6 +214,11 @@ public partial class TraumaSystem
         if (!organ.IntegrityModifiers.TryGetValue((identifier, effectOwner), out var value))
             return false;
 
+        // Arcane-Start
+        if (value + change <= 0)
+            return TryRemoveOrganDamageModifier(uid, effectOwner, identifier, organ);
+        // Arcane-End
+
         organ.IntegrityModifiers[(identifier, effectOwner)] = value + change;
         UpdateOrganIntegrity(uid, organ);
 

@@ -10,6 +10,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Steps;
 using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
+using Content.Shared._Shitmed.Medical.Surgery.Traumas; // Arcane
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 using Content.Shared._Shitmed.Surgery;
@@ -37,6 +38,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility; // Arcane
 using Content.Shared.Body.Organ;
 
 namespace Content.Shared._Shitmed.Medical.Surgery;
@@ -167,6 +169,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         {
             var failEv = new SurgeryStepFailedEvent(args.User, ent, args.Surgery, args.Step);
             RaiseLocalEvent(args.User, ref failEv);
+            RefreshUI(ent); // Arcane
             return;
         }
 
@@ -219,9 +222,23 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             return;
         }
 
-        if (_wounds.GetWoundableSeverityPoint(args.Part, partWoundable, ent.Comp.DamageGroup, healable: true) <= 0
-            && !HasComp<IncisionOpenComponent>(args.Part))
+        // Arcane-Edit-Start
+        if (HasComp<SkinRetractedComponent>(args.Part))
+        {
             args.Cancelled = true;
+            return;
+        }
+
+        var severity = _wounds.GetWoundableSeverityPoint(
+            args.Part,
+            partWoundable,
+            ent.Comp.DamageGroup,
+            healable: true,
+            ignoreBlockers: true);
+
+        if (severity <= 0 && !HasComp<IncisionOpenComponent>(args.Part))
+            args.Cancelled = true;
+        // Arcane-Edit-End
     }
 
     // Orion-Start
@@ -249,15 +266,29 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
     private void OnPartComponentConditionValid(Entity<SurgeryPartComponentConditionComponent> ent, ref SurgeryValidEvent args)
     {
+        // Arcane-Edit-Start
+        var target = args.Part;
+        if ((args.Part == args.Body || _bodyQuery.HasComp(args.Part)) && TryComp<SurgeryPartConditionComponent>(ent.Owner, out var partCond))
+        {
+            var matchingParts = _body.GetBodyChildren(args.Body)
+                .Where(child => partCond.Parts.Contains(child.Component.PartType)
+                                && (partCond.Symmetry == null || child.Component.Symmetry == partCond.Symmetry))
+                .ToList();
+
+            if (matchingParts.Count > 0)
+                target = matchingParts[0].Id;
+        }
+
         var present = true;
         foreach (var reg in ent.Comp.Components.Values)
         {
             var compType = reg.Component.GetType();
-            if (!HasComp(args.Part, compType))
+            if (!HasComp(target, compType))
                 present = false;
         }
 
         args.Cancelled |= present == ent.Comp.Inverse;
+        // Arcane-Edit-End
     }
 
     // This is literally a duplicate of the checks in OnToolCheck for SurgeryStepComponent.AddOrganOnAdd
@@ -301,8 +332,22 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
     private void OnPartConditionValid(Entity<SurgeryPartConditionComponent> ent, ref SurgeryValidEvent args)
     {
+        // Arcane-Edit-Start
         if (!TryComp<BodyPartComponent>(args.Part, out var part))
         {
+            if (args.Part == args.Body || _bodyQuery.HasComp(args.Part))
+            {
+                var children = _body.GetBodyChildren(args.Body);
+                var validBodyPart = children.Any(child =>
+                    ent.Comp.Parts.Contains(child.Component.PartType)
+                    && (ent.Comp.Symmetry == null || child.Component.Symmetry == ent.Comp.Symmetry));
+
+                if (ent.Comp.Inverse ? validBodyPart : !validBodyPart)
+                    args.Cancelled = true;
+
+                return;
+            }
+
             args.Cancelled = true;
             return;
         }
@@ -313,21 +358,30 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         if (ent.Comp.Inverse ? valid : !valid)
             args.Cancelled = true;
+        // Arcane-Edit-End
     }
 
     private void OnOrganConditionValid(Entity<SurgeryOrganConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (!TryComp<BodyPartComponent>(args.Part, out var partComp)
-            || partComp.Body != args.Body
-            || ent.Comp.Organ == null)
+        // Arcane-Edit-Start
+        if (ent.Comp.Organ == null)
         {
             args.Cancelled = true;
             return;
         }
 
+        var isPart = _partQuery.TryComp(args.Part, out var partComp) && partComp.Body == args.Body;
+        var isBody = args.Part == args.Body || _bodyQuery.HasComp(args.Part);
+        if (!isPart && !isBody)
+        {
+            args.Cancelled = true;
+            return;
+        }
+        // Arcane-Edit-End
+
         foreach (var reg in ent.Comp.Organ.Values)
         {
-            if (_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs)
+            if (TryGetTargetOrgans(args.Part, args.Body, reg.Component.GetType(), out var organs) // Arcane-Edit
                 && organs.Count > 0)
             {
                 if (ent.Comp.Inverse
@@ -354,7 +408,15 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
     private void OnOrganSlotConditionValid(Entity<SurgeryOrganSlotConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        args.Cancelled |= _body.CanInsertOrgan(args.Part, ent.Comp.OrganSlot) ^ !ent.Comp.Inverse;
+        // Arcane-Edit-Start
+        var canInsert = _body.CanInsertOrgan(args.Part, ent.Comp.OrganSlot);
+        if (!canInsert && (args.Part == args.Body || _bodyQuery.HasComp(args.Part)))
+        {
+            canInsert = _body.GetBodyChildren(args.Body).Any(child => _body.CanInsertOrgan(child.Id, ent.Comp.OrganSlot, child.Component));
+        }
+
+        args.Cancelled |= canInsert ^ !ent.Comp.Inverse;
+        // Arcane-Edit-End
     }
 
     private void OnPartRemovedConditionValid(Entity<SurgeryPartRemovedConditionComponent> ent, ref SurgeryValidEvent args)
@@ -380,15 +442,48 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             args.Cancelled = true;
     }
 
+    // Arcane-Start
+    public bool HasTrauma(EntityUid body, EntityUid part, ProtoId<TraumaTypePrototype> traumaType)
+    {
+        if (traumaType == TraumaSystem.BoneDamage)
+        {
+            if (TryComp<WoundableComponent>(part, out var woundable)
+                && woundable.Bone.ContainedEntities.FirstOrNull() is { } bone
+                && TryComp<BoneComponent>(bone, out var boneComp))
+            {
+                return boneComp.BoneIntegrity < boneComp.IntegrityCap;
+            }
+
+            return _trauma.HasWoundableTrauma(part, traumaType);
+        }
+
+        if (traumaType == TraumaSystem.OrganDamage)
+        {
+            var organs = _partQuery.HasComp(part)
+                ? _body.GetPartOrgans(part)
+                : _body.GetBodyOrgans(body);
+
+            return organs.Any(o => o.Component.OrganIntegrity < o.Component.IntegrityCap
+                                   || o.Component.IntegrityModifiers.Values.Any(v => v > 0));
+        }
+
+        return _trauma.HasWoundableTrauma(part, traumaType);
+    }
+    // Arcane-End
+
     private void OnTraumaPresentConditionValid(Entity<SurgeryTraumaPresentConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (args.Cancelled)
             return;
 
+        // Arcane-Edit-Start
+        var hasTrauma = HasTrauma(args.Body, args.Part, ent.Comp.TraumaType);
+
         // not inverted = cancel if no trauma present
         // inverted = cancel if trauma present
-        if (_trauma.HasWoundableTrauma(args.Part, ent.Comp.TraumaType) == ent.Comp.Inverted)
+        if (hasTrauma == ent.Comp.Inverted)
             args.Cancelled = true;
+        // Arcane-Edit-End
     }
 
     private void OnTraumaTreatableConditionValid(Entity<SurgeryTraumaTreatableConditionComponent> ent, ref SurgeryValidEvent args)
