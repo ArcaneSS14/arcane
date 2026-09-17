@@ -157,7 +157,7 @@ namespace Content.Server.Administration.Systems
             if (!isAdmin && request.Channel != args.SenderSession.UserId)
                 return;
 
-            if (_rateLimit.CountAction(args.SenderSession, HistoryRateLimitKey) != RateLimitStatus.Allowed)
+            if (_rateLimit.CountAction(args.SenderSession, HistoryRateLimitKey) != RateLimitStatus.Allowed && !isAdmin)
                 return;
 
             var filter = new LogFilter
