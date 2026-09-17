@@ -10,3 +10,16 @@
     sprite: _Arcane/Clothing/Eyes/Sponsor/twilight_sparkle.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Eyes/Sponsor/twilight_sparkle.rsi
+
+# Not Sponsor
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesSalesman
+  name: dealmaker
+  description: A pair of glasses with uniquely colored lenses. The frame is inscribed with 'Best Salesman 1997'.
+  components:
+    - type: Sprite
+      sprite: _Arcane/Clothing/Eyes/Glasses/salesman.rsi
+    - type: Clothing
+      sprite: _Arcane/Clothing/Eyes/Glasses/salesman.rsi
