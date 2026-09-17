@@ -263,6 +263,20 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
     state: warrior_tail_thin_grad
 
+- type: marking
+  id: HumanoidXenoTailRen
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidXeno]
+  effects:
+  - !type:SponsorRequirementMarkingEffect
+    roles: [ArtLead]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: ren_tail
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tail.rsi
+    state: ren_tail_grad
+
 
 # Head
 
@@ -566,6 +580,18 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: warrior_head_shine
 
+- type: marking
+  id: HumanoidXenoHeadRen
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [HumanoidXeno]
+  effects:
+  - !type:SponsorRequirementMarkingEffect
+    roles: [ArtLead]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
+    state: ren_head
+
 # Chest
 
 - type: marking
@@ -742,6 +768,18 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
     state: warrior_tubes
+
+- type: marking
+  id: HumanoidXenoTracheasRen
+  bodyPart: Chest
+  markingCategory: Tracheas
+  speciesRestriction: [HumanoidXeno]
+  effects:
+  - !type:SponsorRequirementMarkingEffect
+    roles: [ArtLead]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
+    state: ren_tubes
 
 # Legs
 

@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
 
+using Content.Shared._Arcane.DiscordRoles;
+using Content.Shared.Humanoid.Markings.Effects;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -43,6 +46,33 @@ namespace Content.Shared.Humanoid.Markings
 
         [DataField("sprites", required: true)]
         public List<SpriteSpecifier> Sprites { get; private set; } = default!;
+
+        // Arcane-Start
+        /// <summary>
+        /// Effects that gate whether this marking may be used by a given session. Empty means no restriction.
+        /// </summary>
+        [DataField("effects")]
+        public List<MarkingEffect> Effects { get; private set; } = new();
+
+        public bool CanUse(ISharedDiscordRoleManager? discordRoles, ICommonSession? session)
+            => CanUse(discordRoles, session, out _);
+
+        public bool CanUse(ISharedDiscordRoleManager? discordRoles, ICommonSession? session, out FormattedMessage? reason)
+        {
+            reason = null;
+
+            if (discordRoles == null || session == null)
+                return true;
+
+            foreach (var effect in Effects)
+            {
+                if (!effect.Validate(this, session, discordRoles, out reason))
+                    return false;
+            }
+
+            return true;
+        }
+        // Arcane-End
 
         /// Impstation start
         [DataField]

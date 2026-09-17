@@ -58,6 +58,10 @@
         {
             "name": "warrior_tubes",
             "directions": 4
+        },
+        {
+            "name": "ren_tubes",
+            "directions": 4
         }
     ]
 }

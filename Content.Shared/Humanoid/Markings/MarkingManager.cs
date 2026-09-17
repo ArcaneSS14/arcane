@@ -50,7 +50,7 @@ namespace Content.Shared.Humanoid.Markings
         }
 
         /// <summary>
-        ///     Markings by category and species.
+        ///     Filters and colors markings based on species and it's restrictions in the marking's prototype from this marking set.
         /// </summary>
         /// <param name="category"></param>
         /// <param name="species"></param>
