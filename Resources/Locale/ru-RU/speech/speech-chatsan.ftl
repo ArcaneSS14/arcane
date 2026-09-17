@@ -342,4 +342,50 @@ chatsan-replacement-134 = усилят
 
 chatsan-word-135 = кринж
 chatsan-replacement-135 = позор
+
+# Маты
+
+chatsan-word-136 = пидор
+chatsan-word-136-2 = пидар
+chatsan-word-136-3 = пидорас
+chatsan-word-136-4 = пидарас
+chatsan-replacement-136 = педик
+
+chatsan-word-137 = пидоры
+chatsan-word-137-2 = пидары
+chatsan-word-137-3 = пидорасы
+chatsan-word-137-4 = пидарасы
+chatsan-word-137-5 = пидори
+chatsan-word-137-6 = пидораси
+chatsan-word-137-7 = пидари
+chatsan-word-137-8 = пидараси
+chatsan-word-137-9 = пидорки
+chatsan-word-137-10 = пидарки
+chatsan-replacement-137 = педики
+
+chatsan-word-138 = даун
+chatsan-word-138-2 = адун
+chatsan-word-138-3 = долбаеб
+chatsan-word-138-4 = далбаеб
+chatsan-word-138-5 = еблан
+chatsan-word-138-6 = выблядок
+chatsan-replacement-138 = идиот
+
+chatsan-word-139 = дауниха
+chatsan-word-139-2 = адуниха
+chatsan-word-139-3 = долбаебка
+chatsan-word-139-4 = ебланка
+chatsan-replacement-139 = идиотка
+
+chatsan-word-140 = дауны
+chatsan-word-140-2 = адуны
+chatsan-word-140-3 = долбаебы
+chatsan-word-140-4 = далбаебы
+chatsan-word-140-5 = ебланы
+chatsan-word-140-6 = выблядки
+chatsan-replacement-140 = идиоты
+
+chatsan-word-141 = нахуй
+chatsan-replacement-141 = нахер
+
 # Arcane-End
