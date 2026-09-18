@@ -82,7 +82,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
         EntityUid user,
         EntityUid part,
         bool affectAll = false,
-        bool ignoreBlockers = false) // Arcane-Edit
+        bool ignoreBlockers = false) // Arcane
     {
         if (!TryComp<BodyPartComponent>(part, out var partComp))
             return;
@@ -96,7 +96,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
             origin: user,
             partMultiplier: partMultiplier,
             targetPart: affectAll ? TargetBodyPart.All : _body.GetTargetBodyPart(partComp),
-            ignoreBlockers: ignoreBlockers); // Arcane-Edit
+            ignoreBlockers: ignoreBlockers); // Arcane
     }
 
     private void OnSurgeryStepDamage(Entity<SurgeryTargetComponent> ent, ref SurgeryStepDamageEvent args) =>

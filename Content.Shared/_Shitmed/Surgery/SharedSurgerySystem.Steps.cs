@@ -217,14 +217,12 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsStep(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        // Arcane-Edit-Start
         if (_wounds.GetWoundableSeverityPoint(
                 args.Part,
                 damageGroup: ent.Comp.MainGroup,
                 healable: true,
-                ignoreBlockers: true) <= 0)
+                ignoreBlockers: true) <= 0) // Arcane-Edit
             return;
-        // Arcane-Edit-End
 
         // Right now the bonus is based off the body's total damage, maybe we could make it based off each part in the future.
         var bonus = ent.Comp.HealMultiplier * _wounds.GetWoundableSeverityPoint(args.Part, damageGroup: ent.Comp.MainGroup);
@@ -247,10 +245,8 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        // Arcane-Edit-Start
-        if (_wounds.GetWoundableSeverityPoint(args.Part, damageGroup: ent.Comp.MainGroup, healable: true, ignoreBlockers: true) > 0)
+        if (_wounds.GetWoundableSeverityPoint(args.Part, damageGroup: ent.Comp.MainGroup, healable: true, ignoreBlockers: true) > 0) // Arcane-Edit
             args.Cancelled = true;
-        // Arcane-Edit-End
     }
 
     private void OnCavityStep(Entity<SurgeryStepCavityEffectComponent> ent, ref SurgeryStepEvent args)
@@ -390,10 +386,10 @@ public abstract partial class SharedSurgerySystem
 
     private void OnAddOrganStep(Entity<SurgeryAddOrganStepComponent> ent, ref SurgeryStepEvent args)
     {
-        if (!TryComp(args.Surgery, out SurgeryOrganConditionComponent? organComp)
-            || organComp.Organ == null
-            || !_partQuery.TryComp(args.Part, out var partComp)
-            || partComp.Body != args.Body)
+        if (!_partQuery.TryComp(args.Part, out var partComp)
+            || partComp.Body != args.Body
+            || !TryComp(args.Surgery, out SurgeryOrganConditionComponent? organComp)
+            || organComp.Organ == null)
             return;
 
         var firstOrgan = organComp.Organ.Values.FirstOrDefault();
