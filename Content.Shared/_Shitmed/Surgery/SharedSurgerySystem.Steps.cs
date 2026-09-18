@@ -211,6 +211,7 @@ public abstract partial class SharedSurgerySystem
             !HasComp<OperatingTableComponent>(buckle.BuckledTo))
         {
             args.Invalid = StepInvalidReason.NeedsOperatingTable;
+            args.Popup = Loc.GetString("surgery-ui-window-steps-error-table");
         }
     }
 
@@ -389,111 +390,44 @@ public abstract partial class SharedSurgerySystem
 
     private void OnAddOrganStep(Entity<SurgeryAddOrganStepComponent> ent, ref SurgeryStepEvent args)
     {
-        // Arcane-Edit-Start
         if (!TryComp(args.Surgery, out SurgeryOrganConditionComponent? organComp)
-            || organComp.Organ == null)
+            || organComp.Organ == null
+            || !_partQuery.TryComp(args.Part, out var partComp)
+            || partComp.Body != args.Body)
             return;
-        // Arcane-Edit-End
 
-        // Adding organs is generally done for a single one at a time, so we only need to check for the first.
         var firstOrgan = organComp.Organ.Values.FirstOrDefault();
         if (firstOrgan == default)
             return;
 
-        // Arcane-Edit-Start
         if (!HasComp(args.Tool, firstOrgan.Component.GetType())
             || !TryComp<OrganComponent>(args.Tool, out var insertedOrgan))
             return;
 
-        EntityUid targetPart = args.Part;
-        BodyPartComponent? targetPartComp = null;
-
-        if (_partQuery.TryComp(args.Part, out var partComp) && partComp.Body == args.Body)
-        {
-            targetPart = args.Part;
-            targetPartComp = partComp;
-        }
-        else if (args.Part == args.Body || _bodyQuery.HasComp(args.Part))
-        {
-            foreach (var child in _body.GetBodyChildren(args.Body))
-            {
-                if (child.Component.Organs.ContainsKey(insertedOrgan.SlotId))
-                {
-                    targetPart = child.Id;
-                    targetPartComp = child.Component;
-                    break;
-                }
-            }
-        }
-
-        if (targetPartComp == null)
+        if (!_body.InsertOrgan(args.Part, args.Tool, insertedOrgan.SlotId, partComp, insertedOrgan))
             return;
-
-        if (!_body.InsertOrgan(targetPart, args.Tool, insertedOrgan.SlotId, targetPartComp, insertedOrgan))
-            return;
-        // Arcane-Edit-End
 
         EnsureComp<OrganReattachedComponent>(args.Tool);
 
         if (insertedOrgan.OriginalBody == args.Body)
             return;
 
-        var ev = new SurgeryStepDamageChangeEvent(args.User, args.Body, targetPart, ent); // Arcane-Edit
+        var ev = new SurgeryStepDamageChangeEvent(args.User, args.Body, args.Part, ent);
         RaiseLocalEvent(ent, ref ev);
         args.Complete = true;
     }
 
-    // Arcane-Start
-    private bool TryGetTargetOrgans(EntityUid target, EntityUid body, Type organType, [NotNullWhen(true)] out List<(EntityUid Id, OrganComponent Organ)>? organs)
-    {
-        if (_partQuery.TryComp(target, out var partComp) && partComp.Body == body)
-        {
-            return _body.TryGetBodyPartOrgans(target, organType, out organs, partComp);
-        }
-
-        if (target == body || _bodyQuery.HasComp(target))
-        {
-            var list = new List<(EntityUid Id, OrganComponent Organ)>();
-            foreach (var organ in _body.GetBodyOrgans(body))
-            {
-                if (HasComp(organ.Id, organType))
-                    list.Add((organ.Id, organ.Component));
-            }
-
-            if (list.Count != 0)
-            {
-                organs = list;
-                return true;
-            }
-        }
-
-        organs = null;
-        return false;
-    }
-    // Arcane-End
-
     private void OnAddOrganCheck(Entity<SurgeryAddOrganStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        // Arcane-Edit-Start
         if (!TryComp<SurgeryOrganConditionComponent>(args.Surgery, out var organComp)
-            || organComp.Organ is null)
+            || organComp.Organ is null
+            || !_partQuery.TryComp(args.Part, out var partComp)
+            || partComp.Body != args.Body)
             return;
 
-        var isPart = _partQuery.TryComp(args.Part, out var partComp) && partComp.Body == args.Body;
-        var isBody = args.Part == args.Body || _bodyQuery.HasComp(args.Part);
-        if (!isPart && !isBody)
-        {
-            args.Cancelled = true;
-            return;
-        }
-        // Arcane-Edit-End
-
-        // For now we naively assume that every entity will only have one of each organ type.
-        // that we do surgery on, but in the future we'll need to reference their prototype somehow
-        // to know if they need 2 hearts, 2 lungs, etc.
         foreach (var reg in organComp.Organ.Values)
         {
-            if (!TryGetTargetOrgans(args.Part, args.Body, reg.Component.GetType(), out _)) // Arcane-Edit
+            if (!_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out _))
             {
                 args.Cancelled = true;
             }
@@ -504,20 +438,20 @@ public abstract partial class SharedSurgerySystem
     {
         if (!TryComp(args.Surgery, out SurgeryOrganConditionComponent? removedOrganComp)
             || removedOrganComp.Organ == null
-            || !removedOrganComp.Reattaching)
+            || !removedOrganComp.Reattaching
+            || !_partQuery.TryComp(args.Part, out var partComp)
+            || partComp.Body != args.Body)
             return;
 
         foreach (var reg in removedOrganComp.Organ.Values)
         {
-            // Arcane-Edit-Start
-            if (TryGetTargetOrgans(args.Part, args.Body, reg.Component.GetType(), out var organs))
+            if (_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs))
             {
                 foreach (var organ in organs)
                 {
                     RemComp<OrganReattachedComponent>(organ.Id);
                 }
             }
-            // Arcane-Edit-End
         }
     }
 
@@ -525,40 +459,31 @@ public abstract partial class SharedSurgerySystem
     {
         if (!TryComp(args.Surgery, out SurgeryOrganConditionComponent? removedOrganComp)
             || removedOrganComp.Organ == null
-            || !removedOrganComp.Reattaching)
+            || !removedOrganComp.Reattaching
+            || !_partQuery.TryComp(args.Part, out var partComp)
+            || partComp.Body != args.Body)
             return;
-
-        // Arcane-Start
-        var isPart = _partQuery.TryComp(args.Part, out var partComp) && partComp.Body == args.Body;
-        var isBody = args.Part == args.Body || _bodyQuery.HasComp(args.Part);
-        if (!isPart && !isBody)
-        {
-            args.Cancelled = true;
-            return;
-        }
-        // Arcane-End
 
         foreach (var reg in removedOrganComp.Organ.Values)
         {
-            // Arcane-Edit-Start
-            if (TryGetTargetOrgans(args.Part, args.Body, reg.Component.GetType(), out var organs)
+            if (_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs)
                 && organs.Count > 0
                 && organs.Any(organ => HasComp<OrganReattachedComponent>(organ.Id)))
                 args.Cancelled = true;
-            // Arcane-Edit-End
         }
     }
 
     private void OnRemoveOrganStep(Entity<SurgeryRemoveOrganStepComponent> ent, ref SurgeryStepEvent args)
     {
         if (!TryComp<SurgeryOrganConditionComponent>(args.Surgery, out var organComp)
-            || organComp.Organ == null)
+            || organComp.Organ == null
+            || !_partQuery.TryComp(args.Part, out var partComp)
+            || partComp.Body != args.Body)
             return;
 
         foreach (var reg in organComp.Organ.Values)
         {
-            // Arcane-Edit-Start
-            if (TryGetTargetOrgans(args.Part, args.Body, reg.Component.GetType(), out var organs)
+            if (_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs)
                 && organs.Count > 0)
             {
                 if (_body.TryRemoveOrgan(organs[0].Id, organs[0].Organ))
@@ -566,29 +491,20 @@ public abstract partial class SharedSurgerySystem
                 else
                     _popup.PopupClient(Loc.GetString("surgery-popup-step-SurgeryStepRemoveOrgan-failed"), args.User, args.User);
             }
-            // Arcane-Edit-End
         }
     }
 
     private void OnRemoveOrganCheck(Entity<SurgeryRemoveOrganStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        // Arcane-Edit-Start
         if (!TryComp<SurgeryOrganConditionComponent>(args.Surgery, out var organComp)
-            || organComp.Organ == null)
+            || organComp.Organ == null
+            || !_partQuery.TryComp(args.Part, out var partComp)
+            || partComp.Body != args.Body)
             return;
-
-        var isPart = _partQuery.TryComp(args.Part, out var partComp) && partComp.Body == args.Body;
-        var isBody = args.Part == args.Body || _bodyQuery.HasComp(args.Part);
-        if (!isPart && !isBody)
-        {
-            args.Cancelled = true;
-            return;
-        }
-        // Arcane-Edit-End
 
         foreach (var reg in organComp.Organ.Values)
         {
-            if (TryGetTargetOrgans(args.Part, args.Body, reg.Component.GetType(), out var organs) // Arcane-Edit
+            if (_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs)
                 && organs.Count > 0)
             {
                 args.Cancelled = true;
@@ -662,9 +578,7 @@ public abstract partial class SharedSurgerySystem
         if (traumaType == TraumaSystem.OrganDamage)
         {
             // Arcane-Edit-Start
-            var organs = _partQuery.HasComp(args.Part)
-                ? _body.GetPartOrgans(args.Part).ToList()
-                : _body.GetBodyOrgans(args.Body).ToList();
+            var organs = _body.GetPartOrgans(args.Part).ToList();
 
             foreach (var organ in organs)
             {
@@ -699,42 +613,15 @@ public abstract partial class SharedSurgerySystem
                     }
                 }
             }
-            // Arcane-Edit-End
         }
         else if (traumaType == TraumaSystem.BoneDamage)
         {
-            // Arcane-Start
-            EntityUid? bonePart = args.Part;
-            if (!TryComp(bonePart.Value, out WoundableComponent? woundable))
-            {
-                // self-surgery may pass the body instead of a part
-                bonePart = null;
-                foreach (var child in _body.GetBodyChildren(args.Body))
-                {
-                    if (!TryComp(child.Id, out WoundableComponent? childWoundable))
-                        continue;
-
-                    if (TryGetLowestIntegrityBone(childWoundable, out _, out _))
-                    {
-                        bonePart = child.Id;
-                        woundable = childWoundable;
-                        break;
-                    }
-
-                    if (bonePart == null && _trauma.HasWoundableTrauma(child.Id, TraumaSystem.BoneDamage))
-                    {
-                        bonePart = child.Id;
-                        woundable = childWoundable;
-                    }
-                }
-
-                if (bonePart == null || woundable == null)
-                    return;
-            }
+            if (!TryComp<WoundableComponent>(args.Part, out var woundable))
+                return;
 
             if (!TryGetLowestIntegrityBone(woundable, out var bone, out var boneComp))
             {
-                if (_trauma.TryGetWoundableTrauma(bonePart.Value, out var staleTraumas, TraumaSystem.BoneDamage))
+                if (_trauma.TryGetWoundableTrauma(args.Part, out var staleTraumas, TraumaSystem.BoneDamage))
                 {
                     foreach (var trauma in staleTraumas)
                         _trauma.RemoveTrauma(trauma);
@@ -745,12 +632,11 @@ public abstract partial class SharedSurgerySystem
             _trauma.ApplyDamageToBone(bone.Value, -healAmount, boneComp);
 
             if (!TryGetLowestIntegrityBone(woundable, out _, out _)
-                && _trauma.TryGetWoundableTrauma(bonePart.Value, out var traumas, TraumaSystem.BoneDamage))
+                && _trauma.TryGetWoundableTrauma(args.Part, out var traumas, TraumaSystem.BoneDamage))
             {
                 foreach (var trauma in traumas)
                     _trauma.RemoveTrauma(trauma);
             }
-            // Arcane-End
         }
         else if (traumaType == TraumaSystem.Dismemberment)
         {
@@ -912,11 +798,11 @@ public abstract partial class SharedSurgerySystem
             return;
 
         var user = args.Actor;
-        if (GetEntity(args.Entity) is {} body &&
-            GetEntity(args.Part) is {} targetPart)
-        {
-            TryDoSurgeryStep(body, targetPart, user, args.Surgery, args.Step);
-        }
+        var targetPart = GetEntity(args.Part);
+        if (!HasComp<BodyPartComponent>(targetPart))
+            return;
+
+        TryDoSurgeryStep(ent.Owner, targetPart, user, args.Surgery, args.Step);
     }
     #endregion
 
@@ -1075,24 +961,44 @@ public abstract partial class SharedSurgerySystem
         if (!IsSurgeryValid(body, targetPart, surgeryId, stepId, user, out var surgery, out var part, out var step))
         {
             error = StepInvalidReason.SurgeryInvalid;
+            // Arcane-Edit-Start
+            if (IsLyingDown(body, user))
+                _popup.PopupClient(Loc.GetString("surgery-error-cannot-operate"), user, user, PopupType.SmallCaution);
+            RefreshUI(body);
+            // Arcane-Edit-End
             return false;
         }
 
         if (!PreviousStepsComplete(body, part, surgery, stepId, user))
         {
             error = StepInvalidReason.MissingPreviousSteps;
+            // Arcane-Edit-Start
+            _popup.PopupClient(Loc.GetString("surgery-error-missing-previous-steps"), user, user, PopupType.SmallCaution);
+            RefreshUI(body);
+            // Arcane-Edit-End
             return false;
         }
 
         if (IsStepComplete(body, part, stepId, surgery))
         {
             error = StepInvalidReason.StepCompleted;
+            // Arcane-Edit-Start
+            _popup.PopupClient(Loc.GetString("surgery-error-step-complete"), user, user, PopupType.SmallCaution);
+            RefreshUI(body);
+            // Arcane-Edit-End
             return false;
         }
 
         var tool = _hands.GetActiveItemOrSelf(user);
-        if (!CanPerformStep(user, body, part, step, tool, true, out _, out error, out var data))
+        if (!CanPerformStep(user, body, part, step, tool, true, out var stepPopup, out error, out var data))
+        {
+            // Arcane-Edit-Start
+            if (string.IsNullOrEmpty(stepPopup))
+                _popup.PopupClient(Loc.GetString("surgery-error-failed"), user, user, PopupType.SmallCaution);
+            RefreshUI(body);
+            // Arcane-Edit-End
             return false;
+        }
 
         var toolComp = _toolQuery.CompOrNull(tool);
         var usedEv = new SurgeryToolUsedEvent(user, body);
@@ -1101,6 +1007,10 @@ public abstract partial class SharedSurgerySystem
         if (usedEv.Cancelled)
         {
             error = StepInvalidReason.ToolInvalid;
+            // Arcane-Edit-Start
+            _popup.PopupClient(Loc.GetString("surgery-error-cannot-operate"), user, user, PopupType.SmallCaution);
+            RefreshUI(body);
+            // Arcane-Edit-End
             return false;
         }
 
@@ -1123,15 +1033,30 @@ public abstract partial class SharedSurgerySystem
             DuplicateCondition = DuplicateConditions.SameEvent,
             NeedHand = true,
             BreakOnHandChange = true,
-            BreakOnDamage = true, // Arcane
             AttemptFrequency = AttemptFrequency.EveryTick,
             DistanceThreshold = null
         };
 
         if (!_doAfter.TryStartDoAfter(doAfter))
         {
-            error = StepInvalidReason.DoAfterFailed;
-            return false;
+            // Arcane-Edit-Start: Cancel lingering surgery DoAfter on user and retry once
+            if (TryComp<DoAfterComponent>(user, out var userDoAfterComp))
+            {
+                foreach (var lingering in userDoAfterComp.DoAfters.Values.ToList())
+                {
+                    if (lingering.Args.Event is SurgeryDoAfterEvent)
+                        _doAfter.Cancel(user, lingering.Index, userDoAfterComp);
+                }
+            }
+
+            if (!_doAfter.TryStartDoAfter(doAfter))
+            {
+                error = StepInvalidReason.DoAfterFailed;
+                _popup.PopupClient(Loc.GetString("surgery-error-action-busy"), user, user, PopupType.SmallCaution);
+                RefreshUI(body);
+                return false;
+            }
+            // Arcane-Edit-End
         }
 
         var userName = Identity.Entity(user, EntityManager);
@@ -1215,7 +1140,6 @@ public abstract partial class SharedSurgerySystem
     public (Entity<SurgeryComponent> Surgery, int Step)? GetNextStep(EntityUid body, EntityUid part, EntityUid surgery, EntityUid user)
     {
         _nextStepList.Clear();
-        part = ResolveSurgeryTargetPart(body, part, surgery); // Arcane
         return GetNextStep(body, part, surgery, _nextStepList, user);
     }
 

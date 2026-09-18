@@ -23,7 +23,6 @@ public sealed class SurgeryBui : BoundUserInterface
     [ViewVariables]
     private SurgeryWindow? _window;
     private EntityUid? _part;
-    private bool _isBody;
     private (EntityUid Ent, EntProtoId Proto)? _surgery;
     private readonly List<EntProtoId> _previousSurgeries = new();
     public SurgeryBui(EntityUid owner, Enum uiKey) : base(owner, uiKey) => _system = _entities.System<SurgerySystem>();
@@ -63,7 +62,6 @@ public sealed class SurgeryBui : BoundUserInterface
             _window.PartsButton.OnPressed += _ =>
             {
                 _part = null;
-                _isBody = false;
                 _surgery = null;
                 _previousSurgeries.Clear();
                 View(ViewType.Parts);
@@ -115,8 +113,6 @@ public sealed class SurgeryBui : BoundUserInterface
             {
                 if (_entities.TryGetComponent(ent, out BodyPartComponent? part))
                     options.Add((choice, ent.Value, _entities.GetComponent<MetaDataComponent>(ent.Value).EntityName, part.PartType));
-                else if (_entities.TryGetComponent(ent, out BodyComponent? body))
-                    options.Add((choice, ent.Value, _entities.GetComponent<MetaDataComponent>(ent.Value).EntityName, null));
             }
 
         options.Sort((a, b) =>
@@ -189,7 +185,7 @@ public sealed class SurgeryBui : BoundUserInterface
         var stepName = new FormattedMessage();
         stepName.AddText(_entities.GetComponent<MetaDataComponent>(step).EntityName);
         var stepButton = new SurgeryStepButton { Step = step };
-        stepButton.Button.OnPressed += _ => SendPredictedMessage(new SurgeryStepChosenBuiMsg(netPart, surgeryId, stepId, _isBody));
+        stepButton.Button.OnPressed += _ => SendPredictedMessage(new SurgeryStepChosenBuiMsg(netPart, surgeryId, stepId, false));
 
         _window.Steps.AddChild(stepButton);
     }
@@ -200,7 +196,6 @@ public sealed class SurgeryBui : BoundUserInterface
             return;
 
         _part = _entities.GetEntity(netPart);
-        _isBody = _entities.HasComponent<BodyComponent>(_part);
         _surgery = (surgery, surgeryId);
 
         _window.Steps.DisposeAllChildren();
@@ -238,7 +233,6 @@ public sealed class SurgeryBui : BoundUserInterface
             return;
 
         _part = _entities.GetEntity(netPart);
-        _isBody = _entities.HasComponent<BodyComponent>(_part);
         _window.Surgeries.DisposeAllChildren();
 
         var surgeries = new List<(Entity<SurgeryComponent> Ent, EntProtoId Id, string Name)>();
