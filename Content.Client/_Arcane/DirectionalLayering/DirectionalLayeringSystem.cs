@@ -174,9 +174,9 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     /// </summary>
     private OrderingCache GetCache(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
     {
-        var hairKeys = GetHairBlockKeys(ent);
-        var cloakKeys = GetCloakBlockKeys(ent);
-        var tailKeys = GetTailBlockKeys(ent);
+        var hairKeys = UniqueKeys(GetHairBlockKeys(ent));
+        var cloakKeys = UniqueKeys(GetCloakBlockKeys(ent));
+        var tailKeys = UniqueKeys(GetTailBlockKeys(ent));
 
         if (_cache.TryGetValue(ent.Owner, out var cache) &&
             SameKeys(cache.HairKeys, hairKeys) &&
@@ -223,6 +223,28 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         }
 
         return true;
+    }
+
+    private static List<object> UniqueKeys(List<object> keys)
+    {
+        var unique = new List<object>(keys.Count);
+        foreach (var key in keys)
+        {
+            var found = false;
+            foreach (var other in unique)
+            {
+                if (Equals(key, other))
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+                unique.Add(key);
+        }
+
+        return unique;
     }
 
     private List<object> GetHairBlockKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
@@ -710,10 +732,26 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         var indices = new List<(object Key, int Index)>(keys.Count);
         start = int.MaxValue;
 
+        // Duplicate keys (e.g. the same marking listed twice) resolve to the same layer index. Resolve each
+        // index once, otherwise the second removal would delete the layer directly above the block (a clothing
+        // layer, say) instead of a duplicate, and wipe its key from the layer map.
         foreach (var key in keys)
         {
             if (!TryGetLayerIndex(ent, key, out var index))
                 return false;
+
+            var duplicate = false;
+            foreach (var existing in indices)
+            {
+                if (existing.Index == index)
+                {
+                    duplicate = true;
+                    break;
+                }
+            }
+
+            if (duplicate)
+                continue;
 
             start = Math.Min(start, index);
             indices.Add((key, index));
