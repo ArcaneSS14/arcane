@@ -537,7 +537,8 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             !TryComp(surgeryEntId, out SurgeryComponent? surgeryComp) ||
             !surgeryComp.Steps.Contains(stepId) ||
             GetSingleton(stepId) is not { } stepEnt ||
-            !HasComp<BodyPartComponent>(targetPart))
+            !TryComp<BodyPartComponent>(targetPart, out var targetPartComp) ||
+            targetPartComp.Body != body)
             return false;
         // Arcane-Edit-End
 
