@@ -118,6 +118,42 @@
         {
             "name": "burrower_tail_spike",
             "directions": 4
+        },
+        {
+            "name": "alt_queen_tail",
+            "directions": 4
+        },
+        {
+            "name": "alt_queen_tail_grad",
+            "directions": 4
+        },
+        {
+            "name": "alt_queen_tail_hands",
+            "directions": 4
+        },
+        {
+            "name": "king-tail-l",
+            "directions": 4
+        },
+        {
+            "name": "king-tail-l-grad",
+            "directions": 4
+        },
+        {
+            "name": "king-tail-r",
+            "directions": 4
+        },
+        {
+            "name": "king-tail-r-grad",
+            "directions": 4
+        },
+        {
+            "name": "rogue-tail",
+            "directions": 4
+        },
+        {
+            "name": "rogue-tail-grad",
+            "directions": 4
         }
     ]
 }

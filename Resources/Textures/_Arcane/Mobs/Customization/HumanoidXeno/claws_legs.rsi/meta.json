@@ -30,6 +30,22 @@
         {
             "name": "burrower_claws_r_foot",
             "directions": 4
+        },
+        {
+            "name": "queen_heel_l",
+            "directions": 4
+        },
+        {
+            "name": "queen_heel_r",
+            "directions": 4
+        },
+        {
+            "name": "red-queen-leg-left",
+            "directions": 4
+        },
+        {
+            "name": "red-queen-leg-right",
+            "directions": 4
         }
     ]
 }
