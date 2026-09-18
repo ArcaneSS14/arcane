@@ -26,6 +26,14 @@
         {
             "name": "unnatural_muscles_body",
             "directions": 4
+        },
+        {
+            "name": "queen_body_tubed",
+            "directions": 4
+        },
+        {
+            "name": "queen_body",
+            "directions": 4
         }
     ]
 }
