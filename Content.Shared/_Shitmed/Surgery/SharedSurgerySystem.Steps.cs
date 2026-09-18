@@ -101,12 +101,13 @@ public abstract partial class SharedSurgerySystem
         if (args.HitEntities.Count == 0)
             return;
 
-        if (TryComp<DoAfterComponent>(args.User, out var doAfterComp))
+        if (!TryComp<DoAfterComponent>(args.User, out var doAfterComp))
+            return;
+
+        foreach (var doAfter in doAfterComp.DoAfters.Values.ToList())
         {
-            foreach (var id in doAfterComp.DoAfters.Keys.ToList())
-            {
-                _doAfter.Cancel(args.User, id, doAfterComp);
-            }
+            if (doAfter.Args.Event is SurgeryDoAfterEvent)
+                _doAfter.Cancel(args.User, doAfter.Index, doAfterComp);
         }
     }
     // Arcane-End
@@ -710,13 +711,21 @@ public abstract partial class SharedSurgerySystem
                 bonePart = null;
                 foreach (var child in _body.GetBodyChildren(args.Body))
                 {
-                    if (!TryComp(child.Id, out WoundableComponent? childWoundable)
-                        || !TryGetLowestIntegrityBone(childWoundable, out _, out _))
+                    if (!TryComp(child.Id, out WoundableComponent? childWoundable))
                         continue;
 
-                    bonePart = child.Id;
-                    woundable = childWoundable;
-                    break;
+                    if (TryGetLowestIntegrityBone(childWoundable, out _, out _))
+                    {
+                        bonePart = child.Id;
+                        woundable = childWoundable;
+                        break;
+                    }
+
+                    if (bonePart == null && _trauma.HasWoundableTrauma(child.Id, TraumaSystem.BoneDamage))
+                    {
+                        bonePart = child.Id;
+                        woundable = childWoundable;
+                    }
                 }
 
                 if (bonePart == null || woundable == null)
@@ -724,7 +733,14 @@ public abstract partial class SharedSurgerySystem
             }
 
             if (!TryGetLowestIntegrityBone(woundable, out var bone, out var boneComp))
+            {
+                if (_trauma.TryGetWoundableTrauma(bonePart.Value, out var staleTraumas, TraumaSystem.BoneDamage))
+                {
+                    foreach (var trauma in staleTraumas)
+                        _trauma.RemoveTrauma(trauma);
+                }
                 return;
+            }
 
             _trauma.ApplyDamageToBone(bone.Value, -healAmount, boneComp);
 

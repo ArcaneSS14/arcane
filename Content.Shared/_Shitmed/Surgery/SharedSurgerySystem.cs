@@ -667,14 +667,6 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         if (_standing.IsDown(entity))
             return true;
 
-        // Arcane-Start: mending a leg can stand the patient via ProcessLegsState.
-        foreach (var child in _body.GetBodyChildren(entity))
-        {
-            if (HasComp<IncisionOpenComponent>(child.Id))
-                return true;
-        }
-        // Arcane-End
-
         // you can't otherwise operate on something with no buckle
         // just let people do surgery on goliaths and shit
         if (!TryComp<BuckleComponent>(entity, out var buckle))
