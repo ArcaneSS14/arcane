@@ -442,7 +442,11 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     public void Open(NetUserId channelId, bool relayActive)
     {
         SelectChannel(channelId);
-        RequestHistoryAction?.Invoke(channelId, null); // Arcane
+        // Arcane-start
+        if (_activePanelMap.TryGetValue(channelId, out var panel))
+            panel.ClearHistory();
+        RequestHistoryAction?.Invoke(channelId, null);
+        // Arcane-end
         OpenWindow();
     }
 
@@ -584,7 +588,11 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
     public void Open(NetUserId channelId, bool relayActive)
     {
         EnsureInit(relayActive);
-        RequestHistoryAction?.Invoke(channelId, null); // Arcane
+        // Arcane-start
+        if (_chatPanel != null)
+            _chatPanel.ClearHistory();
+        RequestHistoryAction?.Invoke(channelId, null);
+        // Arcane-end
         _window!.OpenCentered();
     }
 

@@ -67,12 +67,17 @@ namespace Content.Client.Administration.UI.Bwoink
         }
 
         // Arcane-start
+        public void ClearHistory()
+        {
+            TextOutput.Clear();
+            LastMessage = DateTime.MinValue;
+        }
+
         public void ReceiveHistory(IEnumerable<BwoinkHistoryMessage> messages, bool append)
         {
             if (!append)
             {
-                TextOutput.RemoveAllChildren();
-                LastMessage = DateTime.MinValue;
+                ClearHistory();
             }
 
             foreach (var message in messages)
