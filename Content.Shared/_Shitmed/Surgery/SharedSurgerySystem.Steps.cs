@@ -34,7 +34,7 @@ using Content.Shared._Orion.CorticalBorer.Components;
 using Content.Shared._Shitmed.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 using Content.Shared.Ghost;
-using System.Diagnostics.CodeAnalysis; // Arcane
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Weapons.Melee.Events;
 
 namespace Content.Shared._Shitmed.Medical.Surgery;
@@ -782,14 +782,12 @@ public abstract partial class SharedSurgerySystem
         }
     }
 
+    // Arcane-Edit-Start: pain is an effect of the step, not a prerequisite for it remaining complete.
+    // Checking for temporary "SurgeryPain" caused steps (like incision or saw) to become "uncompleted" when pain expired.
     private void OnPainInflicterCheck(Entity<SurgeryStepPainInflicterComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        if (!_consciousness.TryGetNerveSystem(args.Body, out var nerveSys))
-            return;
-
-        if (!_pain.TryGetPainModifier(nerveSys.Value.Owner, args.Part, "SurgeryPain", out _, nerveSys))
-            args.Cancelled = true;
     }
+    // Arcane-Edit-End
 
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
