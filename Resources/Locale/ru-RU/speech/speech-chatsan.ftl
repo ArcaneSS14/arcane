@@ -151,7 +151,7 @@ chatsan-word-76-5 = ванвин
 chatsan-replacement-76 = казино
 
 chatsan-word-77 = рума
-chatsan-replacement-78 = комната
+chatsan-replacement-77 = комната
 
 chatsan-word-78 = найс
 chatsan-replacement-78 = найш
@@ -322,7 +322,7 @@ chatsan-word-130 = понерфили
 chatsan-word-130-2 = нерфанули
 chatsan-word-130-3 = задебаффали
 chatsan-word-130-4 = задебафали
-chatsan-replacement-129 = ослабили
+chatsan-replacement-130 = ослабили
 
 chatsan-word-131 = нерфят
 chatsan-word-131-2 = задебаффят
