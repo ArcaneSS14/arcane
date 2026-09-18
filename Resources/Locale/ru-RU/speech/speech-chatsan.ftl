@@ -388,4 +388,38 @@ chatsan-replacement-140 = идиоты
 chatsan-word-141 = нахуй
 chatsan-replacement-141 = нахер
 
+# Главы
+
+chatsan-word-200 = гв
+chatsan-replacement-200 = ГВ
+
+chatsan-word-201 = нр
+chatsan-replacement-201 = НР
+
+chatsan-word-202 = гсб
+chatsan-replacement-202 = ГСБ
+
+chatsan-word-203 = си
+chatsan-replacement-203 = СИ
+
+chatsan-word-204 = км
+chatsan-replacement-204 = КМ
+
+chatsan-word-205 = пнт
+chatsan-replacement-205 = ПНТ
+
+chatsan-word-206 = осщ
+chatsan-replacement-206 = ОСЩ
+
+chatsan-word-207 = авд
+chatsan-replacement-207 = АВД
+
+chatsan-word-208 = цк
+chatsan-replacement-208 = ЦК
+
+chatsan-word-209 = гк
+chatsan-replacement-209 = ГК
+
+chatsan-word-210 = дк
+chatsan-replacement-210 = ДК
 # Arcane-End
