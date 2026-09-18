@@ -124,7 +124,7 @@
 
 - type: uiTheme
   id: SS14NinjaTheme
-  path: _Arcane/Textures/Interface/Ninja/
+  path: /Textures/_Arcane/Interface/Ninja/
   colors:
     whiteText: "#FFF5EE"
     slotSelectedGold: "#FFF5EE"
