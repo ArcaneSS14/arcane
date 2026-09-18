@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Space Station 14" width="700" src="https://media.discordapp.net/attachments/1508949497563316436/1508950573179998389/argane_logo.png?ex=6a2fcafb&is=6a2e797b&hm=e38889db1882ed97f2abc670af9bb4c85035504b68ccf3d42ecc070e4ecc91fe&=&format=webp&quality=lossless&width=1768&height=511" />
+  <img alt="Space Station 14" width="500" height="145" src="https://github.com/user-attachments/assets/082b7cc8-5930-40ff-8bfa-9c2d36f6d1fb" />
 </p>
 
 <p align="center">
@@ -45,7 +45,7 @@ Exceptions to this are simple tools like Rider's single-line completion feature.
 
 ## Активность репозитория
 
-![Активность PR](https://repobeats.axiom.co/api/embed/27b2e1562b39ab9114e0dd3c1576b3078b1550c4.svg "Repobeats")
+![Активность PR](https://repobeats.axiom.co/api/embed/67d7b1126c434fb6ddd378c23117b8d85932fc62.svg "Repobeats")
 
 </div>
 

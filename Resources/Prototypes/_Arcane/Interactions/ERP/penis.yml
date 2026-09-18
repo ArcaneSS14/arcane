@@ -185,6 +185,7 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
 
 - type: panelInteraction
   id: CockFuckLegs
@@ -282,6 +283,7 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+    - Feroxi
 
 - type: panelInteraction
   id: ToyFap
@@ -385,7 +387,7 @@
   - нежно проводит языком по головке члена $target, слизывая выделение.
   - медленно и дразняще слизывает густое выделение с основания члена $target.
   - заботливо очищает член $target от липкой гущи своим языком.
-  icon: _Arcane/Interface/ErpPanel/heart_icon.png
+  icon: _Arcane/Interface/ErpPanel/lick-dick-liquid.png
   tags:
   - RequiresERP
   targetRequirements:

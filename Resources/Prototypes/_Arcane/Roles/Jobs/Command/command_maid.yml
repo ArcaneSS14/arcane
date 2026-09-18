@@ -26,6 +26,11 @@
   - Command
   - Service
   - Maintenance
+  - Bar
+  - Kitchen
+  - Janitor
+  - Theatre
+  - Hydroponics
   special:
   - !type:AddComponentSpecial
     components:
@@ -49,6 +54,7 @@
   equipment:
     id: CommandMaidPDA
     ears: ClothingHeadsetCommandMaid
+    belt: ClothingBeltJanitorFilled
   storage:
     back:
     - Flash

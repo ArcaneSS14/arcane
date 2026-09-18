@@ -47,6 +47,10 @@
   - type: Clothing
     sprite: _Goobstation/Clothing/Head/Helmets/hev.rsi
   - type: Armor
+  # Arcane-Start
+    coverage:
+    - Head
+  # Arcane-End
     traumaDeductions:
       Dismemberment: 0.2
       OrganDamage: 0.2
@@ -322,7 +326,7 @@
     - WhitelistChameleon
   - type: HideLayerClothing
     layers: {}
-    
+
 - type: entity
   parent: ClothingHeadHatHelmetTemplar
   id: ClothingHeadHatHoodSchemaMonk

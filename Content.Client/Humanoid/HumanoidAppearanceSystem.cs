@@ -9,6 +9,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Client.GameObjects;
+using Robust.Client.Graphics; // Arcane
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -22,6 +23,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+
+    private static readonly ProtoId<ShaderPrototype> HairGradientShader = "ArcaneHairGradient"; // Arcane
 
     public override void Initialize()
     {
@@ -253,8 +256,15 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.Species = profile.Species;
         humanoid.SkinColor = profile.Appearance.SkinColor;
         humanoid.EyeColor = profile.Appearance.EyeColor;
+        // Arcane-Start
+        humanoid.HairGradientEnabled = profile.Appearance.HairGradientEnabled;
+        humanoid.HairGradientColors = new(profile.Appearance.HairGradientColors);
+        humanoid.HairGradientStyle = profile.Appearance.HairGradientStyle;
+        humanoid.HairGradientOffset = profile.Appearance.HairGradientOffset;
+        // Arcane-End
         humanoid.Height = profile.Height; // Goobstation: port EE height/width sliders
         humanoid.Width = profile.Width; // Goobstation: port EE height/width sliders
+        humanoid.CustomSpeciesName = profile.CustomSpeciesName; // Arcane
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
@@ -415,6 +425,24 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         // each sprite when we have one marking setting multiple layers,
         // lets just kinda sorta do that ourselves
         var layerDict = new Dictionary<string, int>();
+        // Arcane-Start: Hair gradient shader preparation
+        var markingShader = markingPrototype.Shader;
+        var isHairGradient = markingShader == null && markingPrototype.MarkingCategory == MarkingCategories.Hair && humanoid.HairGradientEnabled;
+        ShaderInstance? hairGradientShader = null;
+        if (isHairGradient)
+        {
+            hairGradientShader = _prototypeManager.Index(HairGradientShader).InstanceUnique();
+            var gradientColors = humanoid.HairGradientColors;
+            var roots = gradientColors.Count > 0 ? gradientColors[0] : (humanoid.CachedHairColor ?? Color.Black);
+            var tips = gradientColors.Count > 1 ? gradientColors[1] : roots;
+
+            hairGradientShader.SetParameter("gradientStart", new Vector3(roots.R, roots.G, roots.B));
+            hairGradientShader.SetParameter("gradientEnd", new Vector3(tips.R, tips.G, tips.B));
+            hairGradientShader.SetParameter("gradientStyle", (int) humanoid.HairGradientStyle);
+            hairGradientShader.SetParameter("gradientOffset", humanoid.HairGradientOffset);
+        }
+        // Arcane-End
+
         // FLOOF ADD END
         for (var j = 0; j < markingPrototype.Sprites.Count; j++)
         {
@@ -472,13 +500,20 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 sprite.LayerMapSet(layerId, layer);
                 sprite.LayerSetSprite(layerId, rsi);
             }
-            // imp special via beck. check if there's a shader defined in the markingPrototype's shader datafield, and if there is...
-			if (markingPrototype.Shader != null)
-			{
-			// use spriteComponent's layersetshader function to set the layer's shader to that which is specified.
-				sprite.LayerSetShader(layerId, markingPrototype.Shader);
-			}
-            // end imp special
+            // Arcane-Edit-Start: Hair gradient shader application
+            if (isHairGradient)
+            {
+                sprite.LayerSetShader(layerId, hairGradientShader!, "ArcaneHairGradient");
+            }
+            else if (markingShader != null)
+            {
+                sprite.LayerSetShader(layerId, markingShader);
+            }
+            else if (sprite.LayerMapTryGet(layerId, out var spriteLayer))
+            {
+                sprite.LayerSetShader(spriteLayer, null, null);
+            }
+            // Arcane-Edit-End
             sprite.LayerSetVisible(layerId, visible);
 
             if (!visible || setting == null) // this is kinda implied
@@ -490,7 +525,25 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             // and we need to check the index is correct.
             // So if that happens just default to white?
             // FLOOF ADD =3
-            sprite.LayerSetColor(layerId, colorDict.TryGetValue(rsi.RsiState, out var color) ? color : Color.White);
+            // Arcane-Edit-Start: White layer color with alpha for hair gradient so modulation does not tint shader
+            var layerColor = colorDict.TryGetValue(rsi.RsiState, out var color) ? color : Color.White;
+            if (isHairGradient)
+            {
+                var layerAlpha = layerColor.A;
+                if (MathF.Abs(layerAlpha - 1f) < 0.001f &&
+                    humanoid.BaseLayers.TryGetValue(HumanoidVisualLayers.Hair, out var hairBaseLayer) &&
+                    hairBaseLayer.MarkingsMatchSkin)
+                {
+                    layerAlpha = hairBaseLayer.LayerAlpha;
+                }
+
+                sprite.LayerSetColor(layerId, Color.White.WithAlpha(layerAlpha));
+            }
+            else
+            {
+                sprite.LayerSetColor(layerId, layerColor);
+            }
+            // Arcane-Edit-End
 
             // FLOOF CHANGE
             // if (colors != null && j < colors.Count)

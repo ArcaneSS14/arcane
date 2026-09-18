@@ -8,10 +8,15 @@
   sprites: MobHumanSprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobHumanDummy
+  customName: true # Arcane
   skinColoration: HumanToned
   # Orion-Start
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Human.xml"
+  # Arcane-start
+  cons:
+  - Получают на 5% больше входящего урона, если источник учитывает сопротивления. Лечение не ослабляется.
+  # Arcane-end
   # Orion-End
   # begin Goobstation: port EE height/width sliders
   minHeight: 0.90
