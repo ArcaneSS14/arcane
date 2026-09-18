@@ -181,6 +181,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             || !CanPerformStep(args.User, ent, part, step, tool, false))
         {
             Log.Warning($"{ToPrettyString(args.User)} tried to start invalid surgery.");
+            RefreshUI(ent); // Arcane
             return;
         }
 
@@ -447,14 +448,23 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     {
         if (traumaType == TraumaSystem.BoneDamage)
         {
-            if (TryComp<WoundableComponent>(part, out var woundable)
-                && woundable.Bone.ContainedEntities.FirstOrNull() is { } bone
-                && TryComp<BoneComponent>(bone, out var boneComp))
+            foreach (var partUid in GetTraumaCheckParts(body, part))
             {
-                return boneComp.BoneIntegrity < boneComp.IntegrityCap;
+                if (TryComp<WoundableComponent>(partUid, out var woundable))
+                {
+                    foreach (var bone in woundable.Bone.ContainedEntities)
+                    {
+                        if (TryComp(bone, out BoneComponent? boneComp)
+                            && boneComp.BoneIntegrity < boneComp.IntegrityCap)
+                            return true;
+                    }
+                }
+
+                if (_trauma.HasWoundableTrauma(partUid, traumaType))
+                    return true;
             }
 
-            return _trauma.HasWoundableTrauma(part, traumaType);
+            return false;
         }
 
         if (traumaType == TraumaSystem.OrganDamage)
@@ -467,7 +477,25 @@ public abstract partial class SharedSurgerySystem : EntitySystem
                                    || o.Component.IntegrityModifiers.Values.Any(v => v > 0));
         }
 
-        return _trauma.HasWoundableTrauma(part, traumaType);
+        if (_partQuery.HasComp(part))
+            return _trauma.HasWoundableTrauma(part, traumaType);
+
+        return _trauma.HasBodyTrauma(body, traumaType);
+    }
+
+    private IEnumerable<EntityUid> GetTraumaCheckParts(EntityUid body, EntityUid part)
+    {
+        if (_partQuery.HasComp(part))
+        {
+            yield return part;
+            yield break;
+        }
+
+        if (!IsBodySurgeryTarget(body, part))
+            yield break;
+
+        foreach (var child in _body.GetBodyChildren(body))
+            yield return child.Id;
     }
     // Arcane-End
 
@@ -558,7 +586,13 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             return false;
 
 
-        var ev = new SurgeryValidEvent(body, targetPart);
+        // Arcane-Start
+        var resolvedPart = ResolveSurgeryTargetPart(body, targetPart, surgeryEntId, stepEnt);
+        if (!_partQuery.HasComp(resolvedPart))
+            return false;
+        // Arcane-End
+
+        var ev = new SurgeryValidEvent(body, resolvedPart); // Arcane-Edit
         if (_timing.IsFirstTimePredicted)
         {
             RaiseLocalEvent(stepEnt, ref ev);
@@ -570,10 +604,42 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             return false;
 
         surgeryEnt = (surgeryEntId, surgeryComp);
-        part = targetPart;
+        part = resolvedPart; // Arcane-Edit
         step = stepEnt;
         return true;
     }
+
+    // Arcane-Start
+    private bool IsBodySurgeryTarget(EntityUid body, EntityUid part)
+        => part == body || !_partQuery.HasComp(part) && _bodyQuery.HasComp(part);
+
+    /// <summary>
+    /// If the UI passed the body entity, pick a child part for which this surgery is valid.
+    /// Specific body parts are left unchanged.
+    /// </summary>
+    private EntityUid ResolveSurgeryTargetPart(EntityUid body, EntityUid targetPart, EntityUid surgery, EntityUid? step = null)
+    {
+        if (_partQuery.HasComp(targetPart) || !IsBodySurgeryTarget(body, targetPart))
+            return targetPart;
+
+        foreach (var child in _body.GetBodyChildren(body))
+        {
+            var ev = new SurgeryValidEvent(body, child.Id);
+            if (step != null)
+            {
+                RaiseLocalEvent(step.Value, ref ev);
+                if (ev.Cancelled)
+                    continue;
+            }
+
+            RaiseLocalEvent(surgery, ref ev);
+            if (!ev.Cancelled)
+                return child.Id;
+        }
+
+        return targetPart;
+    }
+    // Arcane-End
 
     public EntityUid? GetSingleton(EntProtoId surgeryOrStep)
     {
@@ -600,6 +666,14 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     {
         if (_standing.IsDown(entity))
             return true;
+
+        // Arcane-Start: mending a leg can stand the patient via ProcessLegsState.
+        foreach (var child in _body.GetBodyChildren(entity))
+        {
+            if (HasComp<IncisionOpenComponent>(child.Id))
+                return true;
+        }
+        // Arcane-End
 
         // you can't otherwise operate on something with no buckle
         // just let people do surgery on goliaths and shit

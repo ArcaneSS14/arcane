@@ -35,6 +35,7 @@ using Content.Shared._Shitmed.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 using Content.Shared.Ghost;
 using System.Diagnostics.CodeAnalysis; // Arcane
+using Content.Shared.Weapons.Melee.Events;
 
 namespace Content.Shared._Shitmed.Medical.Surgery;
 
@@ -83,6 +84,8 @@ public abstract partial class SharedSurgerySystem
         {
             subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
         });
+
+        SubscribeLocalEvent<MeleeHitEvent>(OnSurgeryMeleeHit); // Arcane
     }
 
     private void SubSurgery<TComp>(EntityEventRefHandler<TComp, SurgeryStepEvent> onStep,
@@ -91,6 +94,22 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent(onStep);
         SubscribeLocalEvent(onComplete);
     }
+
+    // Arcane-Start
+    private void OnSurgeryMeleeHit(MeleeHitEvent args)
+    {
+        if (args.HitEntities.Count == 0)
+            return;
+
+        if (TryComp<DoAfterComponent>(args.User, out var doAfterComp))
+        {
+            foreach (var id in doAfterComp.DoAfters.Keys.ToList())
+            {
+                _doAfter.Cancel(args.User, id, doAfterComp);
+            }
+        }
+    }
+    // Arcane-End
 
     #region Event Methods
     private void OnToolStep(Entity<SurgeryStepComponent> ent, ref SurgeryStepEvent args)
@@ -683,16 +702,34 @@ public abstract partial class SharedSurgerySystem
         }
         else if (traumaType == TraumaSystem.BoneDamage)
         {
-            if (!TryComp<WoundableComponent>(args.Part, out var woundable))
-                return;
+            // Arcane-Start
+            EntityUid? bonePart = args.Part;
+            if (!TryComp(bonePart.Value, out WoundableComponent? woundable))
+            {
+                // self-surgery may pass the body instead of a part
+                bonePart = null;
+                foreach (var child in _body.GetBodyChildren(args.Body))
+                {
+                    if (!TryComp(child.Id, out WoundableComponent? childWoundable)
+                        || !TryGetLowestIntegrityBone(childWoundable, out _, out _))
+                        continue;
 
-            var bone = woundable.Bone.ContainedEntities.FirstOrNull();
-            if (bone == null || !TryComp<BoneComponent>(bone, out var boneComp))
+                    bonePart = child.Id;
+                    woundable = childWoundable;
+                    break;
+                }
+
+                if (bonePart == null || woundable == null)
+                    return;
+            }
+
+            if (!TryGetLowestIntegrityBone(woundable, out var bone, out var boneComp))
                 return;
 
             _trauma.ApplyDamageToBone(bone.Value, -healAmount, boneComp);
-            // Arcane-Start
-            if (boneComp.BoneIntegrity >= boneComp.IntegrityCap && _trauma.TryGetWoundableTrauma(args.Part, out var traumas, TraumaSystem.BoneDamage))
+
+            if (!TryGetLowestIntegrityBone(woundable, out _, out _)
+                && _trauma.TryGetWoundableTrauma(bonePart.Value, out var traumas, TraumaSystem.BoneDamage))
             {
                 foreach (var trauma in traumas)
                     _trauma.RemoveTrauma(trauma);
@@ -719,6 +756,35 @@ public abstract partial class SharedSurgerySystem
             }
         }
     }
+
+    // Arcane-Start
+    /// <summary>
+    /// Picks the bone with the lowest integrity below its cap on a woundable, if any.
+    /// </summary>
+    private bool TryGetLowestIntegrityBone(
+        WoundableComponent woundable,
+        [NotNullWhen(true)] out EntityUid? bone,
+        [NotNullWhen(true)] out BoneComponent? boneComp)
+    {
+        bone = null;
+        boneComp = null;
+
+        foreach (var boneEnt in woundable.Bone.ContainedEntities)
+        {
+            if (!TryComp(boneEnt, out BoneComponent? comp)
+                || comp.BoneIntegrity >= comp.IntegrityCap)
+                continue;
+
+            if (boneComp == null || comp.BoneIntegrity < boneComp.BoneIntegrity)
+            {
+                bone = boneEnt;
+                boneComp = comp;
+            }
+        }
+
+        return bone != null && boneComp != null;
+    }
+    // Arcane-End
 
     private void OnTraumaTreatmentCheck(Entity<SurgeryTraumaTreatmentStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
@@ -1041,6 +1107,7 @@ public abstract partial class SharedSurgerySystem
             DuplicateCondition = DuplicateConditions.SameEvent,
             NeedHand = true,
             BreakOnHandChange = true,
+            BreakOnDamage = true, // Arcane
             AttemptFrequency = AttemptFrequency.EveryTick,
             DistanceThreshold = null
         };
@@ -1132,6 +1199,7 @@ public abstract partial class SharedSurgerySystem
     public (Entity<SurgeryComponent> Surgery, int Step)? GetNextStep(EntityUid body, EntityUid part, EntityUid surgery, EntityUid user)
     {
         _nextStepList.Clear();
+        part = ResolveSurgeryTargetPart(body, part, surgery); // Arcane
         return GetNextStep(body, part, surgery, _nextStepList, user);
     }
 

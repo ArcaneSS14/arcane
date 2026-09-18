@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared._Shitmed.DoAfter;
+using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Weapons.Melee.Events;
@@ -307,7 +308,7 @@ public partial class TraumaSystem
         // Arcane-Edit-Start
         {
             if (bodyPartComp.PartType is BodyPartType.Leg or BodyPartType.Foot)
-                ProcessLegsState(body);
+                ProcessLegsState(body, boneComp.BoneWoundable.Value); // Arcane
             UpdateBodyBoneAlert(body);
         }
         // Arcane-Edit-End
@@ -395,7 +396,7 @@ public partial class TraumaSystem
     private void OnBodyTopologyChanged(Entity<BodyComponent> body, ref BodyTopologyChangedEvent args) =>
         ProcessLegsState(body);
 
-    private void ProcessLegsState(EntityUid body, BodyComponent? bodyComp = null)
+    private void ProcessLegsState(EntityUid body, EntityUid? operatedPart = null, BodyComponent? bodyComp = null)
     {
         if (!Resolve(body, ref bodyComp) || bodyComp.RequiredLegs <= 0)
             return;
@@ -410,8 +411,32 @@ public partial class TraumaSystem
         else if (_standing.IsDown(body)
             && !HasComp<KnockedDownComponent>(body)
             && !HasComp<SleepingComponent>(body)
-            && !_mobState.IsIncapacitated(body))
+            && !_mobState.IsIncapacitated(body)
+            && !HasSurgicalField(operatedPart)
+            && !HasOpenSurgicalIncision(body)) // Arcane: never stand mid-surgery
             _standing.Stand(body);
+    }
+
+    // Arcane-Start
+    private bool HasSurgicalField(EntityUid? part)
+    {
+        if (part == null)
+            return false;
+
+        return HasComp<IncisionOpenComponent>(part.Value)
+            || HasComp<SkinRetractedComponent>(part.Value)
+            || HasComp<BonesSawedComponent>(part.Value);
+    }
+
+    private bool HasOpenSurgicalIncision(EntityUid body)
+    {
+        foreach (var child in _body.GetBodyChildren(body))
+        {
+            if (HasComp<IncisionOpenComponent>(child.Id) || HasComp<SkinRetractedComponent>(child.Id))
+                return true;
+        }
+
+        return false;
     }
     // Arcane-End
 
