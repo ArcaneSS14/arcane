@@ -100,7 +100,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
     }
 
     private void OnSurgeryStepDamage(Entity<SurgeryTargetComponent> ent, ref SurgeryStepDamageEvent args) =>
-        SetDamage(args.Body, args.Damage, args.PartMultiplier, args.User, args.Part, ignoreBlockers: true); // Arcane-Edit
+        SetDamage(args.Body, args.Damage, args.PartMultiplier, args.User, args.Part, ignoreBlockers: false); // Arcane-Edit
 
     private void OnSurgeryDamageChange(Entity<SurgeryDamageChangeEffectComponent> ent, ref SurgeryStepDamageChangeEvent args)
     {

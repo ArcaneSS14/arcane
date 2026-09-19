@@ -264,7 +264,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             partWoundable,
             ent.Comp.DamageGroup,
             healable: true,
-            ignoreBlockers: true);
+            ignoreBlockers: false);
 
         if (severity <= 0 && !HasComp<IncisionOpenComponent>(args.Part))
             args.Cancelled = true;

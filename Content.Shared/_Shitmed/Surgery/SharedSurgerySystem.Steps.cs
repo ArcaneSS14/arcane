@@ -221,7 +221,7 @@ public abstract partial class SharedSurgerySystem
                 args.Part,
                 damageGroup: ent.Comp.MainGroup,
                 healable: true,
-                ignoreBlockers: true) <= 0) // Arcane-Edit
+                ignoreBlockers: false) <= 0) // Arcane-Edit
             return;
 
         // Right now the bonus is based off the body's total damage, maybe we could make it based off each part in the future.
@@ -245,7 +245,7 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        if (_wounds.GetWoundableSeverityPoint(args.Part, damageGroup: ent.Comp.MainGroup, healable: true, ignoreBlockers: true) > 0) // Arcane-Edit
+        if (_wounds.GetWoundableSeverityPoint(args.Part, damageGroup: ent.Comp.MainGroup, healable: true, ignoreBlockers: false) > 0) // Arcane-Edit
             args.Cancelled = true;
     }
 
