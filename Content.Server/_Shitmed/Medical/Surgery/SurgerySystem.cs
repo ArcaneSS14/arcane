@@ -66,6 +66,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
             }
             surgeries[GetNetEntity(part.Id)] = valid;
         }
+
         _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries));
         /*
             Reason we do this is because when applying a BUI State, it rolls back the state on the entity temporarily,
@@ -80,7 +81,8 @@ public sealed class SurgerySystem : SharedSurgerySystem
         float partMultiplier,
         EntityUid user,
         EntityUid part,
-        bool affectAll = false)
+        bool affectAll = false,
+        bool ignoreBlockers = false) // Arcane
     {
         if (!TryComp<BodyPartComponent>(part, out var partComp))
             return;
@@ -93,11 +95,12 @@ public sealed class SurgerySystem : SharedSurgerySystem
             true,
             origin: user,
             partMultiplier: partMultiplier,
-            targetPart: affectAll ? TargetBodyPart.All : _body.GetTargetBodyPart(partComp));
+            targetPart: affectAll ? TargetBodyPart.All : _body.GetTargetBodyPart(partComp),
+            ignoreBlockers: ignoreBlockers); // Arcane
     }
 
     private void OnSurgeryStepDamage(Entity<SurgeryTargetComponent> ent, ref SurgeryStepDamageEvent args) =>
-        SetDamage(args.Body, args.Damage, args.PartMultiplier, args.User, args.Part);
+        SetDamage(args.Body, args.Damage, args.PartMultiplier, args.User, args.Part, ignoreBlockers: false); // Arcane-Edit
 
     private void OnSurgeryDamageChange(Entity<SurgeryDamageChangeEffectComponent> ent, ref SurgeryStepDamageChangeEvent args)
     {

@@ -19,3 +19,10 @@ surgery-ui-window-steps-error-missing-tool = You need {$tool} to perform this st
 surgery-error-laying = They need to be laying down!
 surgery-error-self-surgery = You can't perform surgery on yourself!
 surgery-part-damage-evaded = {$user} narrowly evaded!
+# Arcane-Start
+surgery-error-cannot-operate = You cannot operate on this part right now.
+surgery-error-missing-previous-steps = Previous surgical steps must be completed first.
+surgery-error-step-complete = This step has already been completed.
+surgery-error-action-busy = You are already busy with another action.
+surgery-error-failed = The surgical step could not be performed.
+# Arcane-End
