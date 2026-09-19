@@ -413,11 +413,10 @@ public partial class TraumaSystem
             && !HasComp<SleepingComponent>(body)
             && !_mobState.IsIncapacitated(body)
             && !HasSurgicalField(operatedPart)
-            && !HasOpenSurgicalIncision(body)) // Arcane: never stand mid-surgery
+            && !HasOpenSurgicalIncision(body))
             _standing.Stand(body);
     }
 
-    // Arcane-Start
     private bool HasSurgicalField(EntityUid? part)
     {
         if (part == null)
