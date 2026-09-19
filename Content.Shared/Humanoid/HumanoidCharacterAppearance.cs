@@ -34,7 +34,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     [DataField]
     public bool HairGradientEnabled { get; set; }
 
-
     [DataField]
     public List<Color> HairGradientColors { get; set; } = new() { Color.Black, Color.Black };
 
@@ -60,6 +59,11 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     [DataField]
     public List<Marking> Markings { get; set; } = new();
 
+    // Arcane-Start
+    [DataField]
+    public bool EarsAboveHair;
+    // Arcane-End
+
     public HumanoidCharacterAppearance(string hairStyleId,
         Color hairColor,
         string facialHairStyleId,
@@ -67,10 +71,13 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         Color eyeColor,
         Color skinColor,
         List<Marking> markings,
+        // Arcane-Start
         bool hairGradientEnabled = false,
         IReadOnlyList<Color>? hairGradientColors = null,
         HairGradientStyle hairGradientStyle = HairGradientStyle.Ombre,
-        float hairGradientOffset = 0.5f) // Arcane-Edit
+        float hairGradientOffset = 0.5f,
+        bool earsAboveHair = false)
+        // Arcane-End
     {
         HairStyleId = hairStyleId;
         HairColor = ClampColor(hairColor);
@@ -80,6 +87,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         SkinColor = ClampColor(skinColor);
         Markings = markings;
         // Arcane-Start
+        EarsAboveHair = earsAboveHair;
         HairGradientEnabled = hairGradientEnabled;
         HairGradientStyle = hairGradientStyle;
         HairGradientOffset = Math.Clamp(hairGradientOffset, 0f, 1f);
@@ -98,46 +106,50 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     }
 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
-        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.HairGradientEnabled, other.HairGradientColors, other.HairGradientStyle, other.HairGradientOffset) // Arcane-Edit
+        this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings), other.HairGradientEnabled, other.HairGradientColors, other.HairGradientStyle, other.HairGradientOffset, other.EarsAboveHair) // Arcane-Edit
     {
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
     {
-        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset); // Arcane-Edit
+        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithHairColor(Color newColor)
     {
-        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset); // Arcane-Edit
+        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithFacialHairStyleName(string newName)
     {
-        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset); // Arcane-Edit
+        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithFacialHairColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset); // Arcane-Edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset); // Arcane-Edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithSkinColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset); // Arcane-Edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset, EarsAboveHair); // Arcane-Edit
     }
 
     public HumanoidCharacterAppearance WithMarkings(List<Marking> newMarkings)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset); // Arcane-Edit
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset, EarsAboveHair); // Arcane-Edit
     }
 
     // Arcane-Start
+    public HumanoidCharacterAppearance WithEarsAboveHair(bool newValue)
+    {
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, HairGradientEnabled, HairGradientColors, HairGradientStyle, HairGradientOffset, newValue);
+    }
 
     public HumanoidCharacterAppearance WithHairGradient(bool enabled, IReadOnlyList<Color> colors, HairGradientStyle? style = null, float? offset = null)
     {
@@ -284,7 +296,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             appearance.HairGradientEnabled,
             appearance.HairGradientColors,
             appearance.HairGradientStyle,
-            appearance.HairGradientOffset);
+            appearance.HairGradientOffset,
+            appearance.EarsAboveHair);
             // Arcane-End
     }
 
@@ -304,6 +317,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (!EyeColor.Equals(other.EyeColor)) return false;
         if (!SkinColor.Equals(other.SkinColor)) return false;
         if (!Markings.SequenceEqual(other.Markings)) return false;
+        if (EarsAboveHair != other.EarsAboveHair) return false; // Arcane
         return true;
     }
 
@@ -323,7 +337,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                FacialHairColor.Equals(other.FacialHairColor) &&
                EyeColor.Equals(other.EyeColor) &&
                SkinColor.Equals(other.SkinColor) &&
-               Markings.SequenceEqual(other.Markings);
+               Markings.SequenceEqual(other.Markings) &&
+               EarsAboveHair == other.EarsAboveHair; // Arcane
     }
 
     public override bool Equals(object? obj)
@@ -336,7 +351,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     {
         var hash = HashCode.Combine(
             HashCode.Combine(HairStyleId, HairColor, HairGradientEnabled),
-            FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+            FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, EarsAboveHair);
         hash = HashCode.Combine(hash, HairGradientStyle, HairGradientOffset);
         foreach (var color in HairGradientColors)
         {

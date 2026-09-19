@@ -197,6 +197,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.HairGradientColors = new(sourceHumanoid.HairGradientColors);
         targetHumanoid.HairGradientStyle = sourceHumanoid.HairGradientStyle;
         targetHumanoid.HairGradientOffset = sourceHumanoid.HairGradientOffset;
+        targetHumanoid.EarsAboveHair = sourceHumanoid.EarsAboveHair; // Arcane
         // Arcane-End
 
         if (TryComp<GrammarComponent>(target, out var grammar))
@@ -602,6 +603,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             _cfgManager,
             _cfgManager.GetCVar(CCVars.MaxNameLength));
         // Arcane-End
+
+        humanoid.EarsAboveHair = profile.Appearance.EarsAboveHair; // Arcane
 
         // begin Goobstation: port EE height/width sliders
         var species = _proto.Index(humanoid.Species);

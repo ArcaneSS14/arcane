@@ -28,6 +28,7 @@ public sealed partial class MarkingPicker : Control
     public Action<MarkingSet>? OnMarkingRemoved;
     public Action<MarkingSet>? OnMarkingColorChange;
     public Action<MarkingSet>? OnMarkingRankChange;
+    public Action<bool>? OnEarsAboveHairChange; // Arcane
 
     private List<Color> _currentMarkingColors = new();
 
@@ -70,6 +71,26 @@ public sealed partial class MarkingPicker : Control
     }
 
     public bool Forced { get; set; }
+
+    // Arcane-Start
+    private bool _showEarsAboveHairOption;
+
+    public bool ShowEarsAboveHairOption
+    {
+        get => _showEarsAboveHairOption;
+        set
+        {
+            _showEarsAboveHairOption = value;
+            UpdateEarsAboveHairVisibility();
+        }
+    }
+
+    public bool EarsAboveHair
+    {
+        get => CEarsAboveHair.Pressed;
+        set => CEarsAboveHair.Pressed = value;
+    }
+    // Arcane-End
 
     private bool _ignoreSpecies;
 
@@ -147,6 +168,18 @@ public sealed partial class MarkingPicker : Control
         CMarkingRankDown.OnPressed += _ => SwapMarkingDown();
 
         CMarkingSearch.OnTextChanged += args => Populate(args.Text);
+
+        // Arcane-Start
+        CEarsAboveHair.OnToggled += args => OnEarsAboveHairChange?.Invoke(args.Pressed);
+        UpdateEarsAboveHairVisibility();
+    }
+
+    private void UpdateEarsAboveHairVisibility()
+    {
+        CEarsAboveHair.Visible = _showEarsAboveHairOption &&
+            (_selectedMarkingCategory == MarkingCategories.HeadTop ||
+             _selectedMarkingCategory == MarkingCategories.HeadSide);
+        // Arcane-End
     }
 
     private void SetupCategoryButtons()
@@ -180,6 +213,7 @@ public sealed partial class MarkingPicker : Control
         {
             _selectedMarkingCategory = MarkingCategories.Chest;
         }
+        UpdateEarsAboveHairVisibility(); // Arcane
     }
 
     private string GetMarkingName(MarkingPrototype marking) => Loc.GetString($"marking-{marking.ID}");
@@ -388,6 +422,7 @@ public sealed partial class MarkingPicker : Control
         Populate(CMarkingSearch.Text);
         PopulateUsed();
         UpdatePoints();
+        UpdateEarsAboveHairVisibility(); // Arcane
     }
 
     // TODO: This should be using ColorSelectorSliders once that's merged, so

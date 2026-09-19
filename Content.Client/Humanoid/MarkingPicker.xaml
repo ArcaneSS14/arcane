@@ -35,6 +35,9 @@ SPDX-License-Identifier: MIT
             </BoxContainer>
         </BoxContainer>
 
+        <!-- Ears above hair option -->
+        <CheckBox Name="CEarsAboveHair" Text="{Loc 'markings-ears-above-hair'}" Margin="0 5 0 0" />
+
         <!-- Colors -->
         <BoxContainer Name="CMarkingColors" Orientation="Vertical" Visible="False" />
     </BoxContainer>
