@@ -1,24 +1,39 @@
 - type: entity
-  parent: [ ClothingHandsGlovesColorBlack, BaseSyndicateAnchoredContraband ]
+  parent: [ Clothing, BaseSyndicateAnchoredContraband ]
   categories: [ DoNotMap ]
   id: ClothingHandsGlovesBlackSilence
   name: sorrowful gloves
   description: I have nothing but my sorrow...
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/combat.rsi
+    sprite: _Arcane/Clothing/Hands/Gloves/black_silence_gloves.rsi
+    state: icon
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/combat.rsi
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-silence
+    slots: [gloves]
+    sprite: _Arcane/Clothing/Hands/Gloves/black_silence_gloves.rsi
+    equipSound:
+      path: /Audio/_Goobstation/Items/handling/generic_equip2.ogg
+      params:
+        volume: -4
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 5
   - type: Armor
+    coverage:
+    - Hand
     modifiers:
       coefficients:
         Blunt: 0.85
         Slash: 0.85
         Piercing: 0.85
         Shock: 0.75
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-silence
   - type: InclothingTools
     maxEquippedTools: 1
     forseDropHeldItem: true
@@ -26,7 +41,7 @@
     - WeaponSniperMosin
     - BetrayalKnife
     - WeaponPistolAnaconda
-    - Wakizashi
+    - CrystalAtelierSword
     - Katana
     - FireAxeFlaming
     - Claymore
@@ -42,3 +57,6 @@
   - type: ContainerContainer
     containers:
       inclothing-tools: !type:Container {}
+  - type: Tag
+    tags:
+    - WhitelistChameleon
