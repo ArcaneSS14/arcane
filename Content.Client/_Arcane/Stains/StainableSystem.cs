@@ -14,6 +14,7 @@ using Content.Shared._Arcane.Stains;
 using Robust.Client.GameObjects;
 using Robust.Shared.Reflection;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Client._Arcane.Stains;
 
@@ -40,7 +41,7 @@ public sealed partial class StainableSystem : SharedStainableSystem
         if (args.Sprite is not {} sprite)
             return;
 
-        foreach (var layer in ent.Comp.RevealedIconVisuals)
+        foreach (var layer in ent.Comp.RevealedIconVisuals.OrderByDescending(index => index))
             sprite.RemoveLayer(layer);
 
         ent.Comp.RevealedIconVisuals.Clear();

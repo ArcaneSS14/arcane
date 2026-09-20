@@ -118,10 +118,10 @@ public sealed class SlipperySystem : EntitySystem
                 && _status.CanAddStatusEffect(toSlip, SharedStunSystem.StunId); //Should be KnockedDown instead?
     }
 
-    public void TrySlip(EntityUid uid, SlipperyComponent component, EntityUid other, bool requiresContact = true, bool force = true, bool predicted = true) // Arcane-Edit
+    public void TrySlip(EntityUid uid, SlipperyComponent component, EntityUid other, bool requiresContact = true, bool predicted = true) // Arcane-Edit
     {
         var knockedDown = _knockedDownQuery.HasComp(other);
-        if (knockedDown && !component.SlipData.SuperSlippery && !force) // Arcane-Edit
+        if (knockedDown && !component.SlipData.SuperSlippery)
             return;
         var attemptEv = new SlipAttemptEvent(uid);
         RaiseLocalEvent(other, attemptEv);

@@ -691,6 +691,15 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             var splitSol = _solutionContainerSystem.SplitSolution(puddleComp.Solution.Value, solution.Volume * 0.15f);
 
             _reactive.DoEntityReaction(ent.Owner, splitSol, ReactionMethod.Touch);
+
+            // after we've had the puddle interact with skin, add back reagents that aren't supposed to stick
+            var addBack = new List<ProtoId<ReagentPrototype>>();
+            foreach (var (proto, amt) in splitSol.GetReagentPrototypes(_prototypeManager))
+            {
+                if (!proto.SticksToSkin)
+                    addBack.Add(proto.ID);
+            }
+            solution.AddSolution(splitSol.SplitSolutionWithOnly(splitSol.Volume, addBack.ToArray()), _prototypeManager);
         }
     }
 
@@ -722,16 +731,15 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         if (solution.Volume <= FixedPoint2.Zero)
             return;
 
+        if (!_inventory.TryGetSlotEntity(ent.Owner, "shoes", out var shoes))
+            return;
+
         var transferAmount = FixedPoint2.Min(FixedPoint2.New(1), solution.Volume);
         var splitSol = _solutionContainerSystem.SplitSolution(puddleComp.Solution.Value, transferAmount);
 
-        // Target shoes using InventorySystem
-        if (_inventory.TryGetSlotEntity(ent.Owner, "shoes", out var shoes))
-        {
-            var spilledEvent = new SpilledOnEvent(puddleUid, splitSol);
-            var relayedEvent = new InventoryRelayedEvent<SpilledOnEvent>(spilledEvent, ent.Owner);
-            RaiseLocalEvent(shoes.Value, relayedEvent);
-        }
+        var spilledEvent = new SpilledOnEvent(puddleUid, splitSol);
+        var relayedEvent = new InventoryRelayedEvent<SpilledOnEvent>(spilledEvent, ent.Owner);
+        RaiseLocalEvent(shoes.Value, relayedEvent);
     }
 
     #endregion

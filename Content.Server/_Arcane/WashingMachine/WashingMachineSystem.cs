@@ -31,7 +31,8 @@ public sealed partial class WashingMachineSystem : SharedWashingMachineSystem
                 ? Loc.GetString("forensic-fibers", ("material", fiber.FiberMaterial))
                 : Loc.GetString("forensic-fibers-colored", ("color", fiber.FiberColor), ("material", fiber.FiberMaterial));
 
-            forensics.Fibers.Add(fiberText);
+            if (forensics.Fibers.Add(fiberText))
+                Dirty(ent.Owner, forensics);
         }
     }
 }

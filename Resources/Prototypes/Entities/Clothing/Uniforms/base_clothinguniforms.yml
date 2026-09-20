@@ -95,7 +95,7 @@
       - sprite: _Arcane/Effects/Stains/jumpskirt.rsi
         state: inhand-right
       right:
-      - sprite: _Arcane/Effects/Stains/jumppskirt.rsi
+      - sprite: _Arcane/Effects/Stains/jumpskirt.rsi
         state: inhand-left
     iconVisuals:
     - sprite: _Arcane/Effects/blood.rsi

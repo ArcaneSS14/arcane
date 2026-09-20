@@ -38,5 +38,6 @@ public sealed partial class StainableSystem : SharedStainableSystem
             return;
 
         forensics.DNAs.UnionWith(_forensics.GetSolutionsDNA(solution.Comp.Solution));
+        Dirty(washingMachine, forensics);
     }
 }

@@ -108,6 +108,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         DirtyField(ent.Owner, ent.Comp, nameof(WashingMachineComponent.WashingMachineState));
         _appearance.SetData(ent.Owner, WashingMachineVisuals.State, ent.Comp.WashingMachineState);
 
+        ent.Comp.WashingSoundStream = _audio.Stop(ent.Comp.WashingSoundStream);
         RemComp<WashingMachineActiveComponent>(ent.Owner);
     }
 
@@ -124,11 +125,10 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         if (args.Handled || !args.Complex)
             return;
 
-        if (!CanActivate(ent))
+        if (!TryActivate(ent))
             return;
 
         args.Handled = true;
-        Activate(ent);
     }
 
     private void OnGetVerbs(Entity<WashingMachineComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
@@ -143,10 +143,19 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         {
             Text = Loc.GetString("washing-machine-start"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
-            Act = () => Activate(ent)
+            Act = () => TryActivate(ent)
         };
 
         args.Verbs.Add(verb);
+    }
+
+    private bool TryActivate(Entity<WashingMachineComponent> ent)
+    {
+        if (!CanActivate(ent))
+            return false;
+
+        Activate(ent);
+        return true;
     }
 
     private bool CanActivate(Entity<WashingMachineComponent> ent)

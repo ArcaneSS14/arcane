@@ -589,11 +589,10 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
 
                 // only try staining things that have an inventory
                 // event is relayed by InventoryComponent
-                if (!HasComp<InventoryComponent>(ent))
+                if (!HasComp<InventoryComponent>(uid))
                     continue;
 
-                var neighborStainEv = new SpilledOnEvent(uid, tempSolution);
-                RaiseLocalEvent(ent, neighborStainEv);
+                var neighborStainEv = new SpilledOnEvent(ent.Owner, tempSolution);
 
                 if (tempSolution.Volume <= 0)
                     break;

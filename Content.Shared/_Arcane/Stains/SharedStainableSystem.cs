@@ -101,7 +101,8 @@ public abstract partial class SharedStainableSystem : EntitySystem
     private void TransferStain(Entity<SolutionComponent> target, Solution source, FixedPoint2 amount)
     {
         // Call SplitSolution on the solution object directly, not the system.
-        var taken = source.SplitSolution(amount);
+        var transferAmount = FixedPoint2.Min(amount, target.Comp.Solution.AvailableVolume);
+        var taken = source.SplitSolution(transferAmount);
 
         // Filter out water
         // Iterate backwards to remove items while iterating
