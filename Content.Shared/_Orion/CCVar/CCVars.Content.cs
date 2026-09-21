@@ -12,5 +12,5 @@ public sealed partial class CCVars
     ///     Enable or disable NSFW content, like NSFW flavor.
     /// </summary>
     public static readonly CVarDef<bool> NsfwContentEnabled =
-        CVarDef.Create("accessibility.nsfw_content_enabled", false, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("accessibility.nsfw_content_enabled", true, CVar.SERVER | CVar.REPLICATED);
 }
