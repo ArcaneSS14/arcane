@@ -422,4 +422,300 @@ chatsan-replacement-209 = ГК
 
 chatsan-word-210 = дк
 chatsan-replacement-210 = ДК
+
+chatsan-word-300 = пр[ие]+в+
+chatsan-word-300-2 = ghb+dt+n+
+chatsan-replacement-300 = привет
+
+chatsan-word-301 = пл[ие]*[зсc]+
+chatsan-word-301-2 = пж+л*с*т*
+chatsan-word-301-3 = п[аэе]+ж[аэе]+
+chatsan-replacement-301 = пожалуйста
+
+chatsan-word-302 = в+т+ф+
+chatsan-word-302-2 = в[аэе]+т[аэе]+ф[аэе]+к*
+chatsan-replacement-302 = жесть
+
+chatsan-word-303 = нзчт*
+chatsan-replacement-303 = не за что
+
+chatsan-word-304 = оке*
+chatsan-replacement-304 = хорошо
+
+chatsan-word-305 = ла*д*н
+chatsan-replacement-305 = ладно
+
+chatsan-word-306 = е+с+
+chatsan-word-306-2 = f+uf+
+chatsan-replacement-306 = ага
+
+chatsan-word-307 = го+
+chatsan-replacement-307 = давай
+
+chatsan-word-308 = збс[ыь]*
+chatsan-replacement-308 = заебись
+
+chatsan-word-309 = крче*
+chatsan-replacement-309 = короче
+
+chatsan-word-310 = кста*
+chatsan-replacement-310 = кстати
+
+chatsan-word-311 = о+ч+н*
+chatsan-replacement-311 = очень
+
+chatsan-word-312 = по+к
+chatsan-word-312-2 = бб
+chatsan-word-312-3 = g[jf]+rf+
+chatsan-replacement-312 = пока
+
+chatsan-word-313 = всм\?*
+chatsan-replacement-313 = в смысле?
+
+chatsan-word-314 = чзх+\?*
+chatsan-replacement-314 = что за херня?
+
+chatsan-word-315 = и+з+и+
+chatsan-replacement-315 = легко
+
+chatsan-word-316 = [гg][гg]+
+chatsan-replacement-316 = хорошо сработано
+
+chatsan-word-317 = хня+
+chatsan-replacement-317 = херня
+
+chatsan-word-318 = у+жо*с+
+chatsan-word-318-2 = ди[сз]балан[сз]
+chatsan-replacement-318 = ужасно
+
+chatsan-word-319 = по+н
+chatsan-replacement-319 = понятно
+
+chatsan-word-320 = бр+о+
+chatsan-replacement-320 = братан
+
+chatsan-word-321 = че+ли*к*с*
+chatsan-word-321-2 = скуф
+chatsan-replacement-321 = мужик
+
+chatsan-word-322 = бр[ау]+х+
+chatsan-replacement-322 = ну блин
+
+chatsan-word-323 = [лмх]*рп
+chatsan-replacement-323 = поведение
+
+chatsan-word-324 = аф[еэ]*ка*
+chatsan-replacement-324 = ссд
+
+chatsan-word-325 = адм[ие]+н
+chatsan-replacement-325 = бог
+
+chatsan-word-326 = адм[ие]+ны+
+chatsan-replacement-326 = боги
+
+chatsan-word-327 = адм[ие]+н[оа]в
+chatsan-replacement-327 = богов
+
+chatsan-word-328 = забанят
+chatsan-word-328-2 = запермят
+chatsan-replacement-328 = уволят
+
+chatsan-word-329 = ба+н
+chatsan-word-329-2 = перм[ауы]+ч*
+chatsan-word-329-3 = перм[ау]+
+chatsan-replacement-329 = увольнение
+
+chatsan-word-330 = запермили
+chatsan-replacement-330 = уволили
+
+chatsan-word-331 = нонрп
+chatsan-word-331-2 = нрп
+chatsan-replacement-331 = бред
+
+chatsan-word-332 = ерп
+chatsan-replacement-332 = эротика
+
+chatsan-word-333 = р?дм+
+chatsan-word-333-2 = фри+ки+л+
+chatsan-replacement-333 = нападение
+
+chatsan-word-334 = гри+ф+
+chatsan-word-334-2 = грифинг
+chatsan-replacement-334 = беспредел
+
+chatsan-word-335 = а+нта+[жш]+к[ау]*
+chatsan-replacement-335 = зло
+
+chatsan-word-336 = роба+ст
+chatsan-replacement-336 = силён
+
+chatsan-word-337 = анроба*с*т*
+chatsan-replacement-337 = неумеха
+
+chatsan-word-338 = метаинфа
+chatsan-replacement-338 = инсайдерская информация
+
+chatsan-word-339 = мета
+chatsan-replacement-339 = тема
+
+chatsan-word-340 = пг+
+chatsan-replacement-340 = издевательство
+
+chatsan-word-341 = сигма
+chatsan-replacement-341 = крут
+
+chatsan-word-342 = угар
+chatsan-word-342-2 = л[оае]+л+
+chatsan-replacement-342 = хохма
+
+chatsan-word-343 = [уа]+э+
+chatsan-replacement-343 = ну-у...
+
+chatsan-word-344 = кф[сц]
+chatsan-replacement-344 = Монкинс
+
+chatsan-word-345 = и+мба+
+chatsan-replacement-345 = отлично
+
+chatsan-word-346 = ке+к+
+chatsan-replacement-346 = смешно
+
+chatsan-word-347 = плаки
+chatsan-word-347-2 = плаки-плаки
+chatsan-replacement-347 = /
+
+chatsan-word-348 = найк про
+chatsan-replacement-348 = кроссовки
+
+chatsan-word-349 = пикми
+chatsan-replacement-349 = не очень
+
+chatsan-word-350 = с[уа]+с+
+chatsan-replacement-350 = подозрительно
+
+chatsan-word-351 = пов
+chatsan-replacement-351 = точка зрения
+
+chatsan-word-352 = [гх]итлер
+chatsan-word-352-2 = [сш]+к[еи]+б[еи]+д[еи]+
+chatsan-word-352-3 = доп доп ес ес
+chatsan-word-352-4 = сахур
+chatsan-word-352-5 = сикс с[еэ]в[еэ]н
+chatsan-word-352-6 = [cс][oо][cс][oо]
+chatsan-word-352-7 = zo+v
+chatsan-word-352-8 = [аa]+[зz][оo]+[вv]
+chatsan-word-352-9 = пу+т[иеэ]+н
+chatsan-word-352-10 = пу+тл[иеэ]+р
+chatsan-word-352-11 = з[иеэ]л[иеэ]нск[иеэ]й
+chatsan-word-352-12 = з[иеэ]л[иеэ]боба
+chatsan-word-352-13 = х[оа]+хо*л[аыу]*[вм]?
+chatsan-word-352-14 = м[оа]скал[ьяие]*[йм]?
+chatsan-word-352-15 = к[оа]ца+п
+chatsan-replacement-352 = я дурачок
+
+chatsan-word-353 = чиназ[еэ]с
+chatsan-replacement-353 = круто
+
+chatsan-word-354 = [сs][вv][оo]+
+chatsan-replacement-354 = свой
+
+chatsan-word-355 = z+
+chatsan-replacement-355 = я
+
+chatsan-word-356 = к[оа]+рв[ау]+[кх]+c*
+chatsan-word-356-2 = мк+
+chatsan-word-356-3 = в+д+п*
+chatsan-word-356-4 = вп+
+chatsan-word-356-5 = вайт\s*дри+м+.*
+chatsan-word-356-6 = вег[ауио]+й*
+chatsan-replacement-356 = другой сектор
+
+chatsan-word-357 = с*ща+с*
+chatsan-word-357-2 = сча+с*
+chatsan-replacement-357 = сейчас
+
+chatsan-word-358 = че+ка+й+
+chatsan-replacement-358 = смотри
+
+chatsan-word-359 = че+кни+
+chatsan-replacement-359 = проверь
+
+chatsan-word-360 = пу+к
+chatsan-word-360-2 = п[её]+рд
+chatsan-replacement-360 = хм
+
+chatsan-word-361 = пу+-?пу+-?пу+
+chatsan-replacement-361 = хм-м-м...
+
+chatsan-word-362 = пу+-?пу+
+chatsan-replacement-362 = хм-м...
+
+chatsan-word-363 = пу+
+chatsan-replacement-363 = хм...
+
+chatsan-word-364 = се+к+
+chatsan-replacement-364 = секунду
+
+chatsan-word-365 = [\/\\@]+
+chatsan-replacement-365 = !
+
+chatsan-word-366 = долларов
+chatsan-replacement-366 = кредитов
+
+chatsan-word-367 = _
+chatsan-replacement-367 = -
+
+chatsan-word-368 = =
+chatsan-replacement-368 = равно
+
+chatsan-word-369 = \s+
+chatsan-replacement-369 = { "" }
+
+chatsan-word-370 = \.\.+
+chatsan-replacement-370 = ..
+
+chatsan-word-371 = \?+
+chatsan-replacement-371 = ?!
+
+chatsan-word-372 = !!+
+chatsan-replacement-372 = !!
+
+chatsan-word-373 = ,+
+chatsan-replacement-373 = { "" }
+
+chatsan-word-374 = \:+
+chatsan-replacement-374 = :
+
+chatsan-word-375 = lf+
+chatsan-replacement-375 = да
+
+chatsan-word-376 = yt+n+
+chatsan-replacement-376 = нет
+
+chatsan-word-377 = rf+r
+chatsan-replacement-377 = как
+
+chatsan-word-378 = ult+
+chatsan-replacement-378 = где
+
+chatsan-word-379 = ns+
+chatsan-replacement-379 = ты
+
+chatsan-word-380 = xnj+
+chatsan-replacement-380 = что
+
+chatsan-word-381 = \[[jf]+h[jf]+ij+
+chatsan-replacement-381 = хорошо
+
+chatsan-word-382 = чи+л+
+chatsan-replacement-382 = успокойся
+
+chatsan-word-383 = о+кда+
+chatsan-replacement-383 = окей?
+
+chatsan-word-384 = ка+мб[еэ]+к
+chatsan-replacement-384 = возвращение
+
+chatsan-word-385 = кри+н[жг]е*
+chatsan-replacement-385 = неприятный момент
 # Arcane-End
