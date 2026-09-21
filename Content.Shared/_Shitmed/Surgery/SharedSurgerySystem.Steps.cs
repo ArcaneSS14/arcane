@@ -260,18 +260,15 @@ public abstract partial class SharedSurgerySystem
             damageGroup: ent.Comp.MainGroup,
             healable: true,
             ignoreBlockers: true);
-        var group = _prototypes.Index<DamageGroupPrototype>(ent.Comp.MainGroup);
-        var hasRawDamage = TryComp<DamageableComponent>(args.Part, out var damageable)
-            && damageable.Damage.TryGetDamageInGroup(group, out var rawDamage)
-            && rawDamage > 0;
 
-        if (healableSeverity <= 0 && !hasRawDamage)
+        if (healableSeverity <= 0)
         {
             // Do not keep a repeatable treatment step alive when no healable progress remains.
             args.Complete = true;
             return;
         }
 
+        var group = _prototypes.Index<DamageGroupPrototype>(ent.Comp.MainGroup);
         // Right now the bonus is based off the body's total damage, maybe we could make it based off each part in the future.
         var bonus = ent.Comp.HealMultiplier * healableSeverity;
         // Arcane-Edit-End
@@ -297,17 +294,11 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        var hasWoundDamage = _wounds.GetWoundableSeverityPoint(
-            args.Part,
-            damageGroup: ent.Comp.MainGroup,
-            healable: true,
-            ignoreBlockers: true) > 0;
-        var group = _prototypes.Index<DamageGroupPrototype>(ent.Comp.MainGroup);
-        var hasRawDamage = TryComp<DamageableComponent>(args.Part, out var damageable)
-            && damageable.Damage.TryGetDamageInGroup(group, out var rawDamage)
-            && rawDamage > 0;
-
-        if (hasWoundDamage || hasRawDamage) // # Arcane-Edit
+        if (_wounds.GetWoundableSeverityPoint(
+                args.Part,
+                damageGroup: ent.Comp.MainGroup,
+                healable: true,
+                ignoreBlockers: true) > 0) // Arcane-Edit
             args.Cancelled = true;
     }
 
