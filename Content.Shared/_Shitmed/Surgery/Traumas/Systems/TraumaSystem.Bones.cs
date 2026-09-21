@@ -308,7 +308,7 @@ public partial class TraumaSystem
         // Arcane-Edit-Start
         {
             if (bodyPartComp.PartType is BodyPartType.Leg or BodyPartType.Foot)
-                ProcessLegsState(body, boneComp.BoneWoundable.Value); // Arcane
+                ProcessLegsState(body, boneComp.BoneWoundable); // Arcane
             UpdateBodyBoneAlert(body);
         }
         // Arcane-Edit-End
@@ -424,14 +424,18 @@ public partial class TraumaSystem
 
         return HasComp<IncisionOpenComponent>(part.Value)
             || HasComp<SkinRetractedComponent>(part.Value)
-            || HasComp<BonesSawedComponent>(part.Value);
+            || HasComp<BonesSawedComponent>(part.Value)
+            || HasComp<BonesOpenComponent>(part.Value);
     }
 
     private bool HasOpenSurgicalIncision(EntityUid body)
     {
         foreach (var child in _body.GetBodyChildren(body))
         {
-            if (HasComp<IncisionOpenComponent>(child.Id) || HasComp<SkinRetractedComponent>(child.Id))
+            if (HasComp<IncisionOpenComponent>(child.Id)
+                || HasComp<SkinRetractedComponent>(child.Id)
+                || HasComp<BonesSawedComponent>(child.Id)
+                || HasComp<BonesOpenComponent>(child.Id))
                 return true;
         }
 

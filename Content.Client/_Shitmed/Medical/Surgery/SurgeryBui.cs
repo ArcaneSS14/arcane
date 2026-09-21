@@ -5,6 +5,7 @@ using Content.Client.Administration.UI.CustomControls;
 using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.DoAfter; // Arcane
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
@@ -291,6 +292,27 @@ public sealed class SurgeryBui : BoundUserInterface
             // Arcane-Edit-End
             return;
 
+        // Arcane-Edit-Start
+        EntProtoId? activeStepId = null;
+        if (_entities.TryGetComponent<ActiveDoAfterComponent>(_player.LocalEntity.Value, out _) &&
+            _entities.TryGetComponent<DoAfterComponent>(_player.LocalEntity.Value, out var userDoAfterComp))
+        {
+            foreach (var active in userDoAfterComp.DoAfters.Values)
+            {
+                if (active.Cancelled || active.Completed)
+                    continue;
+
+                if (active.Args.Event is SurgeryDoAfterEvent activeSurgery &&
+                    activeSurgery.Surgery == _surgery.Value.Proto &&
+                    active.Args.EventTarget == Owner &&
+                    active.Args.Target == _part.Value)
+                {
+                    activeStepId = activeSurgery.Step;
+                    break;
+                }
+            }
+        }
+
         var next = _system.GetNextStep(Owner, _part.Value, _surgery.Value.Ent, _player.LocalEntity.Value);
         var i = 0;
         foreach (var child in _window.Steps.Children)
@@ -298,8 +320,21 @@ public sealed class SurgeryBui : BoundUserInterface
             if (child is not SurgeryStepButton stepButton)
                 continue;
 
+            var isActive = activeStepId != null && _system.GetSingleton(activeStepId.Value) == stepButton.Step;
+
             var status = StepStatus.Incomplete;
-            if (next == null)
+            if (isActive)
+            {
+                status = StepStatus.Next;
+            }
+            else if (activeStepId != null)
+            {
+                if (next != null && i < next.Value.Step)
+                    status = StepStatus.Complete;
+                else
+                    status = StepStatus.Incomplete;
+            }
+            else if (next == null)
                 status = StepStatus.Complete;
             else if (next.Value.Step < 0 && i > -next.Value.Step - 1)
                 status = StepStatus.Complete;
@@ -312,13 +347,12 @@ public sealed class SurgeryBui : BoundUserInterface
             else if (i < next.Value.Step)
                 status = StepStatus.Complete;
 
-            stepButton.Button.Disabled = status != StepStatus.Next;
+            stepButton.Button.Disabled = status != StepStatus.Next || isActive;
 
             var stepName = new FormattedMessage();
             stepName.AddText(_entities.GetComponent<MetaDataComponent>(stepButton.Step).EntityName);
 
-            // Arcane-Edit-Start
-            if (status == StepStatus.Complete)
+            if (status == StepStatus.Complete && !isActive)
             {
                 stepButton.ToolTip = null;
                 stepButton.Button.Modulate = Color.Green;
@@ -326,11 +360,19 @@ public sealed class SurgeryBui : BoundUserInterface
             else
             {
                 stepButton.Button.Modulate = Color.White;
-                if (status == StepStatus.Next
+                if (isActive)
+                {
+                    stepButton.ToolTip = Loc.GetString("surgery-error-action-busy");
+                }
+                else if (status == StepStatus.Next
                     && !_system.CanPerformStepWithHeld(_player.LocalEntity.Value, Owner, _part.Value, stepButton.Step, false, out var popup))
+                {
                     stepButton.ToolTip = popup;
+                }
                 else
+                {
                     stepButton.ToolTip = null;
+                }
             }
             // Arcane-Edit-End
 

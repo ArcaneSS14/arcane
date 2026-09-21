@@ -461,7 +461,12 @@ public sealed partial class WoundSystem
         RaiseLocalEvent(wound, ref ev1);
 
         severityFloor = ev1.SeverityFloor;
-        return !ev1.Cancelled;
+        // Arcane-Edit-Start: A wound at its trauma floor has no healable progress.
+        if (ev1.Cancelled || !ignoreBlockers && comp.WoundSeverityPoint <= severityFloor)
+            return false;
+        // Arcane-Edit-End
+
+        return true;
     }
 
     private FixedPoint2 ClampHealToFloor(WoundComponent wound, FixedPoint2 heal, FixedPoint2 floor)

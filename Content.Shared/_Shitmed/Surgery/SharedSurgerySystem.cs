@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Goobstation.Maths.FixedPoint; // Arcane
 using Content.Shared._Orion.CorticalBorer;
 using Content.Shared._Orion.CorticalBorer.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
@@ -19,6 +20,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Damage.Prototypes; // Arcane
 using Content.Shared.DoAfter;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.GameTicking;
@@ -85,6 +87,9 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     /// Kept in sync with prototype reloads.
     /// </summary>
     public IReadOnlyList<EntProtoId> AllSurgeries => _allSurgeries;
+
+    private static readonly ProtoId<DamageGroupPrototype> BruteDamageGroup = "Brute"; // Arcane
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison"; // Arcane
 
     public override void Initialize()
     {
@@ -162,8 +167,13 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     {
         foreach (var child in _body.GetBodyChildren(body))
         {
-            if (HasComp<IncisionOpenComponent>(child.Id) || HasComp<SkinRetractedComponent>(child.Id))
+            // Arcane-Edit-Start
+            if (HasComp<IncisionOpenComponent>(child.Id)
+                || HasComp<SkinRetractedComponent>(child.Id)
+                || HasComp<BonesSawedComponent>(child.Id)
+                || HasComp<BonesOpenComponent>(child.Id))
                 return true;
+            // Arcane-Edit-End
         }
 
         return false;
@@ -171,11 +181,38 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
     private bool HasActiveSurgeryDoAfter(EntityUid body)
     {
-        var query = EntityQueryEnumerator<DoAfterComponent>();
-        while (query.MoveNext(out _, out var comp))
+        // Arcane-Edit-Start
+        // 1. Fast check for self-surgery
+        if (TryComp<ActiveDoAfterComponent>(body, out _) &&
+            TryComp<DoAfterComponent>(body, out var selfComp))
         {
-            if (comp.DoAfters.Values.Any(d => !d.Cancelled && d.Args.Event is SurgeryDoAfterEvent && d.Args.EventTarget == body))
-                return true;
+            foreach (var doAfter in selfComp.DoAfters.Values)
+            {
+                if (!doAfter.Cancelled && !doAfter.Completed &&
+                    doAfter.Args.Event is SurgeryDoAfterEvent &&
+                    (doAfter.Args.EventTarget == body || doAfter.Args.Target == body))
+                    return true;
+            }
+        }
+
+        // 2. Check for other surgeons in interaction range operating on this body
+        var bodyCoords = _transform.GetMapCoordinates(body);
+        var query = EntityQueryEnumerator<ActiveDoAfterComponent, DoAfterComponent, TransformComponent>();
+        while (query.MoveNext(out var user, out _, out var comp, out var xform))
+        {
+            if (user == body || xform.MapID != bodyCoords.MapId)
+                continue;
+
+            if ((xform.Coordinates.ToMapPos(EntityManager, _transform) - bodyCoords.Position).LengthSquared() > 9f)
+                continue;
+
+            foreach (var doAfter in comp.DoAfters.Values)
+            {
+                if (!doAfter.Cancelled && !doAfter.Completed &&
+                    doAfter.Args.Event is SurgeryDoAfterEvent &&
+                    (doAfter.Args.EventTarget == body || doAfter.Args.Target == body))
+                    return true;
+            }
         }
 
         return false;
@@ -220,11 +257,15 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             return;
         }
 
-        var complete = IsStepComplete(ent, part, args.Step, surgery);
-        args.Repeat = HasComp<SurgeryRepeatableStepComponent>(step) && !complete;
-        var ev = new SurgeryStepEvent(args.User, ent, part, tool, surgery, step, complete);
+        // Arcane-Edit-Start
+        var ev = new SurgeryStepEvent(args.User, ent, part, tool, surgery, step, false);
         RaiseLocalEvent(step, ref ev);
+
+        var complete = ev.Complete || IsStepComplete(ent, part, args.Step, surgery);
+        ev.Complete = complete;
+        args.Repeat = HasComp<SurgeryRepeatableStepComponent>(step) && !complete;
         RaiseLocalEvent(args.User, ref ev);
+        // Arcane-Edit-End
 
         // consume the tool if it's something like using LV cable as stitches
         if (args.ToolUsed)
@@ -235,7 +276,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
                 PredictedQueueDel(tool);
         }
 
-        RefreshUI(ent);
+        // Arcane-Edit-Start
+        if (!args.Repeat)
+            RefreshUI(ent);
+        // Arcane-Edit-End
     }
 
     private void OnCloseIncisionValid(Entity<SurgeryCloseIncisionConditionComponent> ent, ref SurgeryValidEvent args)
@@ -264,7 +308,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             partWoundable,
             ent.Comp.DamageGroup,
             healable: true,
-            ignoreBlockers: false);
+            ignoreBlockers: true); // Arcane-Edit
 
         if (severity <= 0 && !HasComp<IncisionOpenComponent>(args.Part))
             args.Cancelled = true;
@@ -432,17 +476,17 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     {
         if (traumaType == TraumaSystem.BoneDamage)
         {
-            if (TryComp<WoundableComponent>(part, out var woundable))
+            if (!TryComp<WoundableComponent>(part, out var woundable) || woundable.Bone == null)
+                return false;
+
+            foreach (var bone in woundable.Bone.ContainedEntities)
             {
-                foreach (var bone in woundable.Bone.ContainedEntities)
-                {
-                    if (TryComp(bone, out BoneComponent? boneComp)
-                        && boneComp.BoneIntegrity < boneComp.IntegrityCap)
-                        return true;
-                }
+                if (TryComp(bone, out BoneComponent? boneComp)
+                    && boneComp.BoneIntegrity < boneComp.IntegrityCap)
+                    return true;
             }
 
-            return _trauma.HasWoundableTrauma(part, traumaType);
+            return false;
         }
 
         if (traumaType == TraumaSystem.OrganDamage)
@@ -604,6 +648,16 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     protected virtual void RefreshUI(EntityUid body)
     {
     }
+
+    // Arcane-Start
+    protected virtual void LogOrganHealed(EntityUid user, EntityUid body, EntityUid part, EntityUid organ, FixedPoint2 healed)
+    {
+    }
+
+    protected virtual void LogBoneMended(EntityUid user, EntityUid body, EntityUid part, EntityUid bone, FixedPoint2 healed)
+    {
+    }
+    // Arcane-End
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {

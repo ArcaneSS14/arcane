@@ -46,7 +46,7 @@
   - type: Surgery
     requirement: SurgeryOpenIncision # change to ribcage for chest
     steps:
-    - SurgeryStepOpenIncisionScalpel
+#   - SurgeryStepOpenIncisionScalpel # Arcane-Edit
     - SurgeryStepClampBleeders
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
@@ -639,7 +639,7 @@
   - type: Surgery
     requirement: SurgeryOpenRibcage
     steps:
-    - SurgeryStepSawBones
+#   - SurgeryStepSawBones # Arcane-Edit
     - SurgeryStepInsertHeart
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
@@ -733,7 +733,7 @@
   - type: Surgery
     requirement: SurgeryOpenRibcage
     steps:
-    - SurgeryStepSawBones
+#   - SurgeryStepSawBones # Arcane-Edit
     - SurgeryStepInsertLungs
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
@@ -788,7 +788,7 @@
   components:
   - type: Surgery
     steps:
-    - SurgeryStepSawBones
+#   - SurgeryStepSawBones # Arcane-Edit
     - SurgeryStepInsertEyes
     - SurgeryStepSealOrganWound
   - type: SurgeryOrganSlotCondition

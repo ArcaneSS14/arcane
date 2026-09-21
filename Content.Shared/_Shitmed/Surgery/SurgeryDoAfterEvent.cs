@@ -19,4 +19,13 @@ public sealed partial class SurgeryDoAfterEvent : SimpleDoAfterEvent
         Step = step;
         ToolUsed = toolUsed;
     }
+
+    // Arcane-Start
+    public override bool IsDuplicate(DoAfterEvent other)
+    {
+        return other is SurgeryDoAfterEvent surgery
+            && Surgery == surgery.Surgery
+            && Step == surgery.Step;
+    }
+    // Arcane-End
 }
