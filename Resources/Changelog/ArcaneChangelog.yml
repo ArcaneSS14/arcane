@@ -1761,3 +1761,28 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/621f03e1-0bec-464a-aafd-efba4593bf5d
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: Добавлена кастомизация короля ксеноморфов.
+    - type: Tweak
+      message: Голова валькирии была изменена и заменена на угнетателя.
+  id: 135
+  time: '2026-09-18T13:47:23.0000000+00:00'
+  prNumber: 377
+  url: https://github.com/ArcaneSS14/arcane/pull/377
+  media:
+    - >-
+      https://github.com/user-attachments/assets/c3adbc18-5bf9-40c9-87a8-ab7d19acd2a4
+- author: HappyRoach
+  changes:
+    - type: Fix
+      message: Исправлено появления терминала прибытия.
+    - type: Fix
+      message: Исправлено появления шаттла шахтёров на аврите.
+    - type: Fix
+      message: Исправлена черта кошачий и лисий натуры.
+  id: 136
+  time: '2026-09-21T10:32:07.0000000+00:00'
+  prNumber: 383
+  url: https://github.com/ArcaneSS14/arcane/pull/383

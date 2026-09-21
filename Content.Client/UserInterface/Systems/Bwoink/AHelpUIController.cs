@@ -114,6 +114,9 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         DebugTools.Assert(_bwoinkSystem != null);
         _bwoinkSystem!.OnBwoinkTextMessageRecieved -= ReceivedBwoink;
         _bwoinkSystem = null;
+
+        UIHelper?.Dispose();
+        UIHelper = null;
     }
 
     private void SetAHelpPressed(bool pressed)
