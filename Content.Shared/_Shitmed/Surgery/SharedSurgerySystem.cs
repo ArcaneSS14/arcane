@@ -404,29 +404,17 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     }
 
     // Arcane-Start
-    public bool HasTrauma(EntityUid body, EntityUid part, ProtoId<TraumaTypePrototype> traumaType)
+    /// <summary>
+    ///     Whether the given part has trauma of the given type, including bone and organ damage that
+    ///     the trauma entities themselves no longer report once integrity recovered.
+    /// </summary>
+    public bool HasTrauma(EntityUid part, ProtoId<TraumaTypePrototype> traumaType)
     {
         if (traumaType == TraumaSystem.BoneDamage)
-        {
-            if (!TryComp<WoundableComponent>(part, out var woundable) || woundable.Bone == null)
-                return false;
-
-            foreach (var bone in woundable.Bone.ContainedEntities)
-            {
-                if (TryComp(bone, out BoneComponent? boneComp)
-                    && boneComp.BoneIntegrity < boneComp.IntegrityCap)
-                    return true;
-            }
-
-            return false;
-        }
+            return _trauma.HasBoneDamage(part);
 
         if (traumaType == TraumaSystem.OrganDamage)
-        {
-            return _body.GetPartOrgans(part).Any(o =>
-                o.Component.OrganIntegrity < o.Component.IntegrityCap
-                || o.Component.IntegrityModifiers.Values.Any(v => v > 0));
-        }
+            return _trauma.HasOrganDamage(part);
 
         return _trauma.HasWoundableTrauma(part, traumaType);
     }
@@ -438,7 +426,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             return;
 
         // Arcane-Edit-Start
-        var hasTrauma = HasTrauma(args.Body, args.Part, ent.Comp.TraumaType);
+        var hasTrauma = HasTrauma(args.Part, ent.Comp.TraumaType);
 
         // not inverted = cancel if no trauma present
         // inverted = cancel if trauma present

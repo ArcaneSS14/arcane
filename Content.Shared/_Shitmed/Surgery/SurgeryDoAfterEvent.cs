@@ -21,6 +21,10 @@ public sealed partial class SurgeryDoAfterEvent : SimpleDoAfterEvent
     }
 
     // Arcane-Start
+    /// <summary>
+    ///     Two surgery do-afters are duplicates when they run the same surgery step, even on different bodies,
+    ///     so callers can locate and cancel competing surgeries explicitly.
+    /// </summary>
     public override bool IsDuplicate(DoAfterEvent other)
     {
         return other is SurgeryDoAfterEvent surgery

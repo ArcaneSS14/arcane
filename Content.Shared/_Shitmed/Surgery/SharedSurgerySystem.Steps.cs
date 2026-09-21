@@ -79,7 +79,8 @@ public abstract partial class SharedSurgerySystem
         SubSurgery<SurgeryTraumaTreatmentStepComponent>(OnTraumaTreatmentStep, OnTraumaTreatmentCheck);
         SubSurgery<SurgeryTraumaExtractStepComponent>(OnExtractTraumaStep, OnExtractTraumaCheck);
         SubSurgery<SurgeryBleedsTreatmentStepComponent>(OnBleedsTreatmentStep, OnBleedsTreatmentCheck);
-        SubSurgery<SurgeryStepPainInflicterComponent>(OnPainInflicterStep, OnPainInflicterCheck);
+        // Arcane-Edit: pain is an effect of the step, not a condition for it staying complete.
+        SubscribeLocalEvent<SurgeryStepPainInflicterComponent, SurgeryStepEvent>(OnPainInflicterStep);
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs =>
         {
             subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
@@ -96,6 +97,11 @@ public abstract partial class SharedSurgerySystem
     }
 
     // Arcane-Start
+    /// <summary>
+    ///     Squared radius (3 m) around a melee hit target in which surgery do-afters on that target get cancelled.
+    /// </summary>
+    private const float MeleeSurgeryCancelRadiusSquared = 9f;
+
     private void OnSurgeryMeleeHit(MeleeHitEvent args)
     {
         if (args.HitEntities.Count == 0)
@@ -126,6 +132,10 @@ public abstract partial class SharedSurgerySystem
     {
         CancelSurgeryDoAfter(target);
 
+        // Nothing can be operating on a target that isn't set up as a surgery target in the first place.
+        if (!HasComp<SurgeryTargetComponent>(target))
+            return;
+
         var targetCoords = _transform.GetMapCoordinates(target);
         var query = EntityQueryEnumerator<ActiveDoAfterComponent, DoAfterComponent, TransformComponent>();
         while (query.MoveNext(out var user, out _, out var comp, out var xform))
@@ -133,7 +143,8 @@ public abstract partial class SharedSurgerySystem
             if (user == target || xform.MapID != targetCoords.MapId)
                 continue;
 
-            if ((xform.Coordinates.ToMapPos(EntityManager, _transform) - targetCoords.Position).LengthSquared() > 9f)
+            if ((xform.Coordinates.ToMapPos(EntityManager, _transform) - targetCoords.Position).LengthSquared()
+                > MeleeSurgeryCancelRadiusSquared)
                 continue;
 
             foreach (var doAfter in comp.DoAfters.Values.ToList())
@@ -766,7 +777,7 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTraumaTreatmentCheck(Entity<SurgeryTraumaTreatmentStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        if (HasTrauma(args.Body, args.Part, ent.Comp.TraumaType)) // Arcane-Edit
+        if (HasTrauma(args.Part, ent.Comp.TraumaType)) // Arcane-Edit
             args.Cancelled = true;
     }
 
@@ -857,14 +868,6 @@ public abstract partial class SharedSurgerySystem
                ent.Comp.PainDuration);
         }
     }
-
-    // Arcane-Edit-Start: pain is an effect of the step, not a prerequisite for it remaining complete.
-    // Checking for temporary "SurgeryPain" caused steps (like incision or saw) to become "uncompleted" when pain expired.
-    private void OnPainInflicterCheck(Entity<SurgeryStepPainInflicterComponent> ent, ref SurgeryStepCompleteCheckEvent args)
-    {
-    }
-    // Arcane-Edit-End
-
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
     {
@@ -1083,7 +1086,10 @@ public abstract partial class SharedSurgerySystem
         if (usedEv.Cancelled)
         {
             error = StepInvalidReason.ToolInvalid;
-            RefreshUI(body); // Arcane
+            // Arcane-Edit-Start
+            _popup.PopupClient(Loc.GetString("surgery-error-tool-invalid"), user, user, PopupType.SmallCaution);
+            RefreshUI(body);
+            // Arcane-Edit-End
             return false;
         }
 
@@ -1127,9 +1133,10 @@ public abstract partial class SharedSurgerySystem
         {
             BreakOnMove = true,
             //BreakOnTargetMove = true, I fucking hate wizden dude.
+            // Arcane-Edit: duplicate handling is done manually above, so don't let the engine cancel or block them.
             CancelDuplicate = false,
             BlockDuplicate = false,
-            DuplicateCondition = DuplicateConditions.None,
+            DuplicateCondition = DuplicateConditions.All,
             NeedHand = true,
             BreakOnHandChange = true,
             AttemptFrequency = AttemptFrequency.EveryTick,

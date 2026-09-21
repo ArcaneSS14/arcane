@@ -416,6 +416,25 @@ public partial class TraumaSystem
             _standing.Stand(body);
     }
 
+    // Arcane-Start
+    /// <summary>
+    ///     Whether any bone of the given part is below its integrity cap.
+    /// </summary>
+    public bool HasBoneDamage(EntityUid part, WoundableComponent? woundable = null)
+    {
+        if (!Resolve(part, ref woundable, false) || woundable.Bone == null)
+            return false;
+
+        foreach (var bone in woundable.Bone.ContainedEntities)
+        {
+            if (TryComp(bone, out BoneComponent? boneComp)
+                && boneComp.BoneIntegrity < boneComp.IntegrityCap)
+                return true;
+        }
+
+        return false;
+    }
+
     private bool HasSurgicalField(EntityUid? part)
     {
         if (part == null)
