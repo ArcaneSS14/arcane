@@ -47,16 +47,18 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly ReactiveSystem _reactive = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
+    // Arcane-Start
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly ReactiveSystem _reactive = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly StepTriggerSystem _stepTrigger = default!;
     [Dependency] private readonly SpeedModifierContactsSystem _speedModContacts = default!;
     [Dependency] private readonly TileFrictionController _tile = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    // Arcane-End
 
 
     [ValidatePrototypeId<ReagentPrototype>]
@@ -93,8 +95,10 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         SubscribeLocalEvent<PuddleComponent, SpreadNeighborsEvent>(OnPuddleSpread);
         SubscribeLocalEvent<PuddleComponent, SlipEvent>(OnPuddleSlip);
 
+        // Arcane-Start
         SubscribeLocalEvent<StandingStateComponent, MoveEvent>(OnCrawlInPuddle);
         SubscribeLocalEvent<InventoryComponent, MoveEvent>(OnStepInPuddle);
+        // Arcane-End
     }
 
     // TODO: This can be predicted once https://github.com/space-wizards/RobustToolbox/pull/5849 is merged

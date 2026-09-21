@@ -194,11 +194,9 @@ public sealed class SlipAttemptEvent : EntityEventArgs, IInventoryRelayEvent
 
     public EntityUid? SlipCausingEntity;
 
-    // Arcane-Start
     public SlotFlags TargetSlots { get; } = SlotFlags.FEET;
 
-    public bool SuperSlippery;
-    // Arcane-End
+    public bool SuperSlippery; // Arcane
 
     public SlipAttemptEvent(EntityUid? slipCausingEntity)
     {
