@@ -412,8 +412,7 @@ public partial class TraumaSystem
             && !HasComp<KnockedDownComponent>(body)
             && !HasComp<SleepingComponent>(body)
             && !_mobState.IsIncapacitated(body)
-            && !HasSurgicalField(operatedPart)
-            && !HasOpenSurgicalIncision(body))
+            && !HasSurgicalField(operatedPart)) // # Arcane-Edit
             _standing.Stand(body);
     }
 
@@ -428,19 +427,6 @@ public partial class TraumaSystem
             || HasComp<BonesOpenComponent>(part.Value);
     }
 
-    private bool HasOpenSurgicalIncision(EntityUid body)
-    {
-        foreach (var child in _body.GetBodyChildren(body))
-        {
-            if (HasComp<IncisionOpenComponent>(child.Id)
-                || HasComp<SkinRetractedComponent>(child.Id)
-                || HasComp<BonesSawedComponent>(child.Id)
-                || HasComp<BonesOpenComponent>(child.Id))
-                return true;
-        }
-
-        return false;
-    }
     // Arcane-End
 
     #endregion

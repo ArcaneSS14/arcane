@@ -260,7 +260,12 @@ public abstract partial class SharedSurgerySystem
             damageGroup: ent.Comp.MainGroup,
             healable: true,
             ignoreBlockers: true);
-        if (healableSeverity <= 0)
+        var group = _prototypes.Index<DamageGroupPrototype>(ent.Comp.MainGroup);
+        var hasRawDamage = TryComp<DamageableComponent>(args.Part, out var damageable)
+            && damageable.Damage.TryGetDamageInGroup(group, out var rawDamage)
+            && rawDamage > 0;
+
+        if (healableSeverity <= 0 && !hasRawDamage)
         {
             // Do not keep a repeatable treatment step alive when no healable progress remains.
             args.Complete = true;
@@ -276,7 +281,6 @@ public abstract partial class SharedSurgerySystem
 
         var adjustedDamage = new DamageSpecifier(ent.Comp.Damage);
 
-        var group = _prototypes.Index<DamageGroupPrototype>(ent.Comp.MainGroup);
         foreach (var type in group.DamageTypes)
         {
             if (adjustedDamage.DamageDict.TryGetValue(type, out var current))
@@ -293,7 +297,17 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        if (_wounds.GetWoundableSeverityPoint(args.Part, damageGroup: ent.Comp.MainGroup, healable: true, ignoreBlockers: true) > 0) // Arcane-Edit
+        var hasWoundDamage = _wounds.GetWoundableSeverityPoint(
+            args.Part,
+            damageGroup: ent.Comp.MainGroup,
+            healable: true,
+            ignoreBlockers: true) > 0;
+        var group = _prototypes.Index<DamageGroupPrototype>(ent.Comp.MainGroup);
+        var hasRawDamage = TryComp<DamageableComponent>(args.Part, out var damageable)
+            && damageable.Damage.TryGetDamageInGroup(group, out var rawDamage)
+            && rawDamage > 0;
+
+        if (hasWoundDamage || hasRawDamage) // # Arcane-Edit
             args.Cancelled = true;
     }
 
