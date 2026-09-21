@@ -101,7 +101,6 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         SubscribeLocalEvent<SurgeryTargetComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<SurgeryTargetComponent, StandAttemptEvent>(OnSurgeryStandAttempt); // Arcane
         SubscribeLocalEvent<SurgeryTargetComponent, DoAfterAttemptEvent<SurgeryDoAfterEvent>>(OnBeforeTargetDoAfter);
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
         SubscribeLocalEvent<SurgeryCloseIncisionConditionComponent, SurgeryValidEvent>(OnCloseIncisionValid);
@@ -152,72 +151,6 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         var data = new InterfaceData("SurgeryBui");
         _ui.SetUi(ent.Owner, SurgeryUIKey.Key, data);
     }
-
-    // Arcane-Start
-    private void OnSurgeryStandAttempt(Entity<SurgeryTargetComponent> ent, ref StandAttemptEvent args)
-    {
-        if (args.Cancelled)
-            return;
-
-        if (HasOpenSurgicalIncision(ent.Owner) || HasActiveSurgeryDoAfter(ent.Owner))
-            args.Cancel();
-    }
-
-    private bool HasOpenSurgicalIncision(EntityUid body)
-    {
-        foreach (var child in _body.GetBodyChildren(body))
-        {
-            // Arcane-Edit-Start
-            if (HasComp<IncisionOpenComponent>(child.Id)
-                || HasComp<SkinRetractedComponent>(child.Id)
-                || HasComp<BonesSawedComponent>(child.Id)
-                || HasComp<BonesOpenComponent>(child.Id))
-                return true;
-            // Arcane-Edit-End
-        }
-
-        return false;
-    }
-
-    private bool HasActiveSurgeryDoAfter(EntityUid body)
-    {
-        // Arcane-Edit-Start
-        // 1. Fast check for self-surgery
-        if (TryComp<ActiveDoAfterComponent>(body, out _) &&
-            TryComp<DoAfterComponent>(body, out var selfComp))
-        {
-            foreach (var doAfter in selfComp.DoAfters.Values)
-            {
-                if (!doAfter.Cancelled && !doAfter.Completed &&
-                    doAfter.Args.Event is SurgeryDoAfterEvent &&
-                    (doAfter.Args.EventTarget == body || doAfter.Args.Target == body))
-                    return true;
-            }
-        }
-
-        // 2. Check for other surgeons in interaction range operating on this body
-        var bodyCoords = _transform.GetMapCoordinates(body);
-        var query = EntityQueryEnumerator<ActiveDoAfterComponent, DoAfterComponent, TransformComponent>();
-        while (query.MoveNext(out var user, out _, out var comp, out var xform))
-        {
-            if (user == body || xform.MapID != bodyCoords.MapId)
-                continue;
-
-            if ((xform.Coordinates.ToMapPos(EntityManager, _transform) - bodyCoords.Position).LengthSquared() > 9f)
-                continue;
-
-            foreach (var doAfter in comp.DoAfters.Values)
-            {
-                if (!doAfter.Cancelled && !doAfter.Completed &&
-                    doAfter.Args.Event is SurgeryDoAfterEvent &&
-                    (doAfter.Args.EventTarget == body || doAfter.Args.Target == body))
-                    return true;
-            }
-        }
-
-        return false;
-    }
-    // Arcane-End
 
     private void OnBeforeTargetDoAfter(Entity<SurgeryTargetComponent> ent,
         ref DoAfterAttemptEvent<SurgeryDoAfterEvent> args)
@@ -287,8 +220,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         if (!HasComp<IncisionOpenComponent>(args.Part) ||
             !HasComp<BleedersClampedComponent>(args.Part) ||
             !HasComp<SkinRetractedComponent>(args.Part) ||
-            !HasComp<BodyPartReattachedComponent>(args.Part) ||
-            !HasComp<InternalBleedersClampedComponent>(args.Part))
+            !HasComp<InternalBleedersClampedComponent>(args.Part)) // # Arcane-Edit
         {
             args.Cancelled = true;
         }
@@ -648,16 +580,6 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     protected virtual void RefreshUI(EntityUid body)
     {
     }
-
-    // Arcane-Start
-    protected virtual void LogOrganHealed(EntityUid user, EntityUid body, EntityUid part, EntityUid organ, FixedPoint2 healed)
-    {
-    }
-
-    protected virtual void LogBoneMended(EntityUid user, EntityUid body, EntityUid part, EntityUid bone, FixedPoint2 healed)
-    {
-    }
-    // Arcane-End
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {

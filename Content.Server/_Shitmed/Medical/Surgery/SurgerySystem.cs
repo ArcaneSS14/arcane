@@ -1,27 +1,15 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
-using Content.Goobstation.Maths.FixedPoint; // Arcane
-using Content.Server.Administration.Logs; // Arcane
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Damage;
-using Content.Shared.Database; // Arcane
-using Content.Shared._Shitmed.Targeting;
-using Content.Shared._Shitmed.Medical.Surgery;
-using Content.Shared._Shitmed.Medical.Surgery.Conditions;
-using Content.Shared._Shitmed.Medical.Surgery.Effects.Complete; // Arcane
-using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
-using Content.Shared._Shitmed.Medical.Surgery.Steps; // Arcane
-using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components; // Arcane
-using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
-using Content.Shared._Shitmed.Targeting;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
+using Content.Shared._Shitmed.Medical.Surgery;
+using Content.Shared._Shitmed.Medical.Surgery.Conditions;
+using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
+using Content.Shared._Shitmed.Targeting;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -29,12 +17,10 @@ namespace Content.Server._Shitmed.Medical.Surgery;
 
 public sealed class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Arcane
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly WoundSystem _wounds = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
@@ -47,12 +33,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
         SubscribeLocalEvent<SurgeryDamageChangeEffectComponent, SurgeryStepDamageChangeEvent>(OnSurgeryDamageChange);
         SubscribeLocalEvent<SurgeryStepEmoteEffectComponent, SurgeryStepEvent>(OnStepScreamComplete);
         SubscribeLocalEvent<SurgeryStepSpawnEffectComponent, SurgeryStepEvent>(OnStepSpawnComplete);
-        // Arcane-Start
-        SubscribeLocalEvent<SurgeryStepEvent>(OnSurgeryStepTrace);
-        SubscribeLocalEvent<SurgeryStepFailedEvent>(OnSurgeryStepFailedTrace);
-        SubscribeLocalEvent<SurgeryStepCompleteCheckEvent>(OnSurgeryStepCheckTrace);
-        SubscribeLocalEvent<SurgeryCompletedEvent>(OnSurgeryCompletedTrace);
-        // Arcane-End
     }
 
     protected override void RefreshUI(EntityUid body)
@@ -112,23 +92,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
     // Arcane-Edit-Start
     private void OnSurgeryStepDamage(Entity<SurgeryTargetComponent> ent, ref SurgeryStepDamageEvent args)
     {
-        FixedPoint2? healable = TryComp<SurgeryWoundedConditionComponent>(args.Surgery, out var wounded)
-            ? _wounds.GetWoundableSeverityPoint(args.Part, damageGroup: wounded.DamageGroup, healable: true, ignoreBlockers: true) // Arcane-Edit
-            : null;
-        FixedPoint2? total = TryComp<SurgeryWoundedConditionComponent>(args.Surgery, out wounded)
-            ? _wounds.GetWoundableSeverityPoint(args.Part, damageGroup: wounded.DamageGroup, healable: false)
-            : null;
-        LogSurgeryTrace($"DAMAGE_REQUEST body={ToPrettyString(args.Body)} part={ToPrettyString(args.Part)} " +
-                        $"surgery={ToPrettyString(args.Surgery)} requested={FormatDamage(args.Damage)} " +
-                        $"ignoreBlockers={args.IgnoreBlockers} healable={healable?.ToString() ?? "n/a"} " +
-                        $"total={total?.ToString() ?? "n/a"} before={GetRemainingDamage(args.Part, args.Surgery)}");
-
-        var damageChanged = SetDamage(args.Body, args.Damage, args.PartMultiplier, args.User, args.Part, ignoreBlockers: args.IgnoreBlockers);
-        LogTendWounds(args.User, args.Body, args.Part, args.Surgery, damageChanged);
-
-        LogSurgeryTrace($"DAMAGE_RESULT body={ToPrettyString(args.Body)} part={ToPrettyString(args.Part)} " +
-                        $"applied={FormatDamage(damageChanged)} appliedNone={damageChanged == null || damageChanged.Empty} " +
-                        $"after={GetRemainingDamage(args.Part, args.Surgery)}");
+        SetDamage(args.Body, args.Damage, args.PartMultiplier, args.User, args.Part, ignoreBlockers: args.IgnoreBlockers);
     }
     // Arcane-Edit-End
 
@@ -140,6 +104,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
         SetDamage(args.Body, damageChange, 0.5f, args.User, args.Part, ent.Comp.AffectAll);
     }
+
     private void OnStepScreamComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
         if (Status.HasEffectComp<ForcedSleepingStatusEffectComponent>(args.Body))
@@ -147,122 +112,8 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
         _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
     }
+
     private void OnStepSpawnComplete(Entity<SurgeryStepSpawnEffectComponent> ent, ref SurgeryStepEvent args) =>
         SpawnAtPosition(ent.Comp.Entity, Transform(args.Body).Coordinates);
 
-    // Arcane-Start
-    private void OnSurgeryStepTrace(ref SurgeryStepEvent args)
-    {
-        LogSurgeryTrace($"STEP user={ToPrettyString(args.User)} body={ToPrettyString(args.Body)} " +
-                        $"part={ToPrettyString(args.Part)} surgery={ToPrettyString(args.Surgery)} " +
-                        $"step={ToPrettyString(args.Step)} complete={args.Complete} remaining={GetRemainingDamage(args.Part, args.Surgery)}");
-    }
-
-    private void OnSurgeryStepFailedTrace(ref SurgeryStepFailedEvent args)
-    {
-        LogSurgeryTrace($"STEP_FAILED user={ToPrettyString(args.User)} body={ToPrettyString(args.Body)} " +
-                        $"surgery={args.SurgeryId} step={args.StepId}");
-    }
-
-    private void OnSurgeryStepCheckTrace(ref SurgeryStepCompleteCheckEvent args)
-    {
-        LogSurgeryTrace($"STEP_CHECK body={ToPrettyString(args.Body)} part={ToPrettyString(args.Part)} " +
-                        $"surgery={ToPrettyString(args.Surgery)} cancelled={args.Cancelled} " +
-                        $"remaining={GetRemainingDamage(args.Part, args.Surgery)}");
-    }
-
-    private void OnSurgeryCompletedTrace(ref SurgeryCompletedEvent args)
-    {
-        LogSurgeryTrace("SURGERY_COMPLETED");
-    }
-
-    #region Logging
-    private const string SurgeryTraceMarker = "[SURGERY_TRACE]";
-
-    private void LogSurgeryTrace(string message)
-    {
-        _adminLogger.Add(LogType.Action, LogImpact.Low, $"{SurgeryTraceMarker} {message}");
-    }
-
-    private string GetRemainingDamage(EntityUid part, EntityUid surgery)
-    {
-        if (!TryComp<SurgeryWoundedConditionComponent>(surgery, out var wounded))
-            return "n/a";
-
-        return _wounds.GetWoundableIntegrityDamage(part, damageGroup: wounded.DamageGroup, healable: false).ToString();
-    }
-
-    private string GetBodyRemainingDamage(EntityUid body)
-    {
-        var remaining = new List<string>();
-        foreach (var child in _body.GetBodyChildren(body))
-        {
-            if (!TryComp<WoundableComponent>(child.Id, out _))
-                continue;
-
-            remaining.Add($"{ToPrettyString(child.Id)}:{_wounds.GetWoundableIntegrityDamage(child.Id, healable: false)}");
-        }
-
-        return remaining.Count == 0 ? "none" : string.Join(",", remaining);
-    }
-
-    private static string FormatDamage(DamageSpecifier? damage)
-    {
-        if (damage == null)
-            return "none";
-
-        return string.Join(",", damage.DamageDict.Select(x => $"{x.Key}:{x.Value}"));
-    }
-
-    private void LogTendWounds(EntityUid user, EntityUid body, EntityUid part, EntityUid surgery, DamageSpecifier? damageChanged)
-    {
-        if (damageChanged == null || damageChanged.GetTotal() >= 0)
-            return;
-
-        var healed = -damageChanged.GetTotal();
-        var damageGroup = TryComp<SurgeryWoundedConditionComponent>(surgery, out var woundedComp)
-            ? woundedComp.DamageGroup.Id
-            : "wound";
-
-        if (user != body)
-        {
-            _adminLogger.Add(LogType.Healed,
-                $"{ToPrettyString(user):user} surgically tended {damageGroup} wounds on {ToPrettyString(part):part} of {ToPrettyString(body):target} for {healed:damage} damage");
-        }
-        else
-        {
-            _adminLogger.Add(LogType.Healed,
-                $"{ToPrettyString(user):user} surgically tended {damageGroup} wounds on their own {ToPrettyString(part):part} for {healed:damage} damage");
-        }
-    }
-
-    protected override void LogOrganHealed(EntityUid user, EntityUid body, EntityUid part, EntityUid organ, FixedPoint2 healed)
-    {
-        if (user != body)
-        {
-            _adminLogger.Add(LogType.Healed,
-                $"{ToPrettyString(user):user} surgically healed organ {ToPrettyString(organ):organ} on {ToPrettyString(part):part} of {ToPrettyString(body):target} for {healed:damage} integrity");
-        }
-        else
-        {
-            _adminLogger.Add(LogType.Healed,
-                $"{ToPrettyString(user):user} surgically healed organ {ToPrettyString(organ):organ} on their own {ToPrettyString(part):part} for {healed:damage} integrity");
-        }
-    }
-
-    protected override void LogBoneMended(EntityUid user, EntityUid body, EntityUid part, EntityUid bone, FixedPoint2 healed)
-    {
-        if (user != body)
-        {
-            _adminLogger.Add(LogType.Healed,
-                $"{ToPrettyString(user):user} surgically mended bone {ToPrettyString(bone):bone} on {ToPrettyString(part):part} of {ToPrettyString(body):target} for {healed:damage} integrity");
-        }
-        else
-        {
-            _adminLogger.Add(LogType.Healed,
-                $"{ToPrettyString(user):user} surgically mended bone {ToPrettyString(bone):bone} on their own {ToPrettyString(part):part} for {healed:damage} integrity");
-        }
-    }
-    #endregion
-    // Arcane-End
 }

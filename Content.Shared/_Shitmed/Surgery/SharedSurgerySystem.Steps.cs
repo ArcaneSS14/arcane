@@ -677,8 +677,6 @@ public abstract partial class SharedSurgerySystem
                     }
                 }
 
-                if (organHealed > 0)
-                    LogOrganHealed(args.User, args.Body, args.Part, organ.Id, organHealed);
             }
             // Arcane-Edit-End
         }
@@ -698,12 +696,7 @@ public abstract partial class SharedSurgerySystem
                 return;
             }
 
-            var oldIntegrity = boneComp.BoneIntegrity;
             _trauma.ApplyDamageToBone(bone.Value, -healAmount, boneComp);
-
-            var healedBone = boneComp.BoneIntegrity - oldIntegrity;
-            if (healedBone > 0)
-                LogBoneMended(args.User, args.Body, args.Part, bone.Value, healedBone);
 
             if (!TryGetLowestIntegrityBone(woundable, out _, out _)
                 && _trauma.TryGetWoundableTrauma(args.Part, out var traumas, TraumaSystem.BoneDamage))
