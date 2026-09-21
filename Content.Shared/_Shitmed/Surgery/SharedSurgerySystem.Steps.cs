@@ -305,11 +305,13 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
+        // Arcane-Edit-Start
         if (_wounds.GetWoundableSeverityPoint(
                 args.Part,
                 damageGroup: ent.Comp.MainGroup,
                 healable: true,
-                ignoreBlockers: true) > 0) // Arcane-Edit
+                ignoreBlockers: true) > 0)
+        // Arcane-Edit-End
             args.Cancelled = true;
     }
 
@@ -406,7 +408,7 @@ public abstract partial class SharedSurgerySystem
         if (targetPart != default)
         {
             // We reward players for properly affixing the parts by healing a little bit of damage, and enabling the part temporarily.
-            _wounds.TryHealWoundsOnWoundable(targetPart.Id, 12f, out _, damageGroup: _prototypes.Index<DamageGroupPrototype>(BruteDamageGroup));
+            _wounds.TryHealWoundsOnWoundable(targetPart.Id, 12f, out _, damageGroup: _prototypes.Index<DamageGroupPrototype>(BruteDamageGroup)); // Arcane-Edit
             RemComp<BodyPartReattachedComponent>(targetPart.Id);
         }
     }
@@ -538,8 +540,10 @@ public abstract partial class SharedSurgerySystem
 
         foreach (var reg in removedOrganComp.Organ.Values)
         {
-//            if (organs != null // Arcane-Edit
-            if (_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs) // Arcane-Edit
+            // Arcane-Edit-Start
+            // if (organs != null
+            if (_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs)
+            // Arcane-Edit-End
                 && organs.Count > 0
                 && organs.Any(organ => HasComp<OrganReattachedComponent>(organ.Id)))
                 args.Cancelled = true;
@@ -868,6 +872,17 @@ public abstract partial class SharedSurgerySystem
                ent.Comp.PainDuration);
         }
     }
+
+    /* // Arcane-Edit-Start
+    private void OnPainInflicterCheck(Entity<SurgeryStepPainInflicterComponent> ent, ref SurgeryStepCompleteCheckEvent args)
+    {
+        if (!_consciousness.TryGetNerveSystem(args.Body, out var nerveSys))
+            return;
+
+        if (!_pain.TryGetPainModifier(nerveSys.Value.Owner, args.Part, "SurgeryPain", out _, nerveSys))
+            args.Cancelled = true;
+    }
+    */ // Arcane-Edit-End
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
     {

@@ -308,7 +308,7 @@ public partial class TraumaSystem
         // Arcane-Edit-Start
         {
             if (bodyPartComp.PartType is BodyPartType.Leg or BodyPartType.Foot)
-                ProcessLegsState(body, boneComp.BoneWoundable); // Arcane
+                ProcessLegsState(body, boneComp.BoneWoundable);
             UpdateBodyBoneAlert(body);
         }
         // Arcane-Edit-End
@@ -412,11 +412,10 @@ public partial class TraumaSystem
             && !HasComp<KnockedDownComponent>(body)
             && !HasComp<SleepingComponent>(body)
             && !_mobState.IsIncapacitated(body)
-            && !HasSurgicalField(operatedPart)) // # Arcane-Edit
+            && !HasSurgicalField(operatedPart))
             _standing.Stand(body);
     }
 
-    // Arcane-Start
     /// <summary>
     ///     Whether any bone of the given part is below its integrity cap.
     /// </summary>

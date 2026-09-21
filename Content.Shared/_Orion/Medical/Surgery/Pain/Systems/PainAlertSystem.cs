@@ -37,10 +37,10 @@ public sealed class PainAlertSystem : EntitySystem
 
         SubscribeLocalEvent<NerveComponent, ComponentInit>(OnNerveSystemMapInit);
         SubscribeLocalEvent<NerveComponent, DamageChangedEvent>(OnDamageChanged);
-        // # Arcane-Start
+        // Arcane-Start
         SubscribeLocalEvent<MobStateComponent, EntityTerminatingEvent>(OnMobTerminating);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
-        // # Arcane-End
+        // Arcane-End
     }
 
     private void OnNerveSystemMapInit(EntityUid uid, NerveComponent component, ComponentInit args)
@@ -67,7 +67,7 @@ public sealed class PainAlertSystem : EntitySystem
             UpdatePainAlert(uid, nerve);
     }
 
-    // # Arcane-Start
+    // Arcane-Start
     private void OnMobTerminating(Entity<MobStateComponent> ent, ref EntityTerminatingEvent args)
     {
         _lastUpdate.Remove(ent.Owner);
@@ -77,7 +77,7 @@ public sealed class PainAlertSystem : EntitySystem
     {
         _lastUpdate.Clear();
     }
-    // # Arcane-End
+    // Arcane-End
 
     private void UpdatePainAlert(EntityUid uid, NerveComponent? nerve = null)
     {

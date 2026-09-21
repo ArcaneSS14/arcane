@@ -80,13 +80,16 @@ public sealed class SurgerySystem : SharedSurgerySystem
         if (!TryComp<BodyPartComponent>(part, out var partComp))
             return null; // Arcane-Edit
 
+        // kinda funky but still works
+        // TODO: Also the scar treating surgery too, fuck. I hate this system and by every second I have to spend working with THIS I want to kill myself more and more
+        // _wounds.TryHaltAllBleeding(part, force: true); // Arcane-Edit
         return _damageable.TryChangeDamage(body, // Arcane-Edit
             damage,
             true,
             origin: user,
             partMultiplier: partMultiplier,
             targetPart: affectAll ? TargetBodyPart.All : _body.GetTargetBodyPart(partComp),
-            ignoreBlockers: ignoreBlockers); // Arcane
+            ignoreBlockers: ignoreBlockers); // Arcane-Edit
     }
 
     // Arcane-Edit-Start

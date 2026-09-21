@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
-using Content.Goobstation.Maths.FixedPoint; // Arcane
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared._Orion.CorticalBorer;
 using Content.Shared._Orion.CorticalBorer.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
@@ -20,7 +20,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Damage.Prototypes; // Arcane
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.GameTicking;
@@ -88,8 +88,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     /// </summary>
     public IReadOnlyList<EntProtoId> AllSurgeries => _allSurgeries;
 
-    private static readonly ProtoId<DamageGroupPrototype> BruteDamageGroup = "Brute"; // Arcane
-    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison"; // Arcane
+    // Arcane-Start
+    private static readonly ProtoId<DamageGroupPrototype> BruteDamageGroup = "Brute";
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
+    // Arcane-End
 
     public override void Initialize()
     {
@@ -220,7 +222,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         if (!HasComp<IncisionOpenComponent>(args.Part) ||
             !HasComp<BleedersClampedComponent>(args.Part) ||
             !HasComp<SkinRetractedComponent>(args.Part) ||
-            !HasComp<InternalBleedersClampedComponent>(args.Part)) // # Arcane-Edit
+            !HasComp<InternalBleedersClampedComponent>(args.Part)) // Arcane-Edit
         {
             args.Cancelled = true;
         }
@@ -240,7 +242,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             partWoundable,
             ent.Comp.DamageGroup,
             healable: true,
-            ignoreBlockers: true); // Arcane-Edit
+            ignoreBlockers: true);
 
         if (severity <= 0 && !HasComp<IncisionOpenComponent>(args.Part))
             args.Cancelled = true;

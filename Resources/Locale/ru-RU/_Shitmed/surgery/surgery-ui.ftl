@@ -15,7 +15,7 @@ surgery-ui-window-steps-error-skills = У вас нет хирургически
 surgery-ui-window-steps-error-table = Для этого нужен операционный стол.
 surgery-ui-window-steps-error-armor = Необходимо снять обмурдирование!
 surgery-ui-window-steps-error-tools = Отсутствуют инструменты.
-# Arcane-Edit
+# Arcane
 surgery-ui-window-steps-error-missing-tool = Для этого этапа требуется {$tool}!
 surgery-error-laying = Пациент должен лежать!
 surgery-error-self-surgery = Вы не можете оперировать себя!
