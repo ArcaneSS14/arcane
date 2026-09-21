@@ -329,8 +329,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         OrderingCache cache)
     {
         if (cache.HairKeys.Count == 0 ||
-            !TryGetClusterTop(ent, out var clusterTop, out var clusterTopIdx) ||
-            !TryGetBlockExtent(ent, cache.HairKeys, out var blockStart, out var blockEnd))
+            !TryGetClusterTop(ent, out var clusterTop, out var clusterTopIdx))
         {
             return;
         }
@@ -338,70 +337,45 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (backView)
         {
             // The back of the head goes over the ears/head-top cluster: hair lands directly above it.
-            if (blockStart == clusterTopIdx + 1)
-                return;
-
-            if (!TryExtractBlock(ent, cache.HairKeys, out var block, out _))
-                return;
-
-            if (!TryGetLayerIndex(ent, clusterTop, out var anchorIdx))
-                return;
-
-            InsertBlock(ent, cache.HairKeys, block, anchorIdx + 1);
+            TryMoveBlockRelative(ent, cache.HairKeys, clusterTop, true);
+            return;
         }
-        else
+
+        if (cache.HairFrontAnchor is not { } anchor)
         {
-            if (cache.HairFrontAnchor is not { } anchor)
+            // No anchor known and the hair is stuck above the whole cluster (e.g. markings changed during a
+            // back view). Reset it directly below the mask, or below the HeadTop base when no mask is worn, so
+            // the front anchor can be re-discovered on the next pass.
+            if (!TryGetBlockExtent(ent, cache.HairKeys, out _, out var blockEnd))
+                return;
+
+            if (blockEnd > clusterTopIdx)
             {
-                // No anchor known and the hair is stuck above the whole cluster (e.g. markings changed during a
-                // back view). Reset it directly below the mask, or below the HeadTop base when no mask is worn, so
-                // the front anchor can be re-discovered on the next pass.
-                if (blockEnd > clusterTopIdx)
+                object resetAnchorKey = "mask";
+                var hasResetAnchor = TryGetLayerIndex(ent, "mask", out _);
+                if (!hasResetAnchor)
                 {
-                    object resetAnchorKey = "mask";
-                    var hasResetAnchor = TryGetLayerIndex(ent, "mask", out var resetAnchorIdx);
-                    if (!hasResetAnchor)
-                    {
-                        resetAnchorKey = HumanoidVisualLayers.HeadTop;
-                        hasResetAnchor = TryGetLayerIndex(ent, HumanoidVisualLayers.HeadTop, out resetAnchorIdx);
-                    }
-
-                    if (hasResetAnchor &&
-                        TryExtractBlock(ent, cache.HairKeys, out var resetBlock, out _) &&
-                        TryGetLayerIndex(ent, resetAnchorKey, out resetAnchorIdx))
-                    {
-                        InsertBlock(ent, cache.HairKeys, resetBlock, resetAnchorIdx - resetBlock.Count);
-                    }
-
-                    return;
+                    resetAnchorKey = HumanoidVisualLayers.HeadTop;
+                    hasResetAnchor = TryGetLayerIndex(ent, HumanoidVisualLayers.HeadTop, out _);
                 }
 
-                // First contact with the default front layout: remember which head-trim base layer sits right above
-                // the hair. HeadTop/HeadSide marking layers are excluded so the anchor can never become an ear
-                // marking interleaved with the hair block.
-                if (TryGetFrontAnchor(ent, blockEnd, out var frontAnchor))
-                {
-                    cache.HairFrontAnchor = frontAnchor;
-                }
+                if (hasResetAnchor)
+                    TryMoveBlockRelative(ent, cache.HairKeys, resetAnchorKey, false);
 
                 return;
             }
 
-            // Front face visible: hair below the marker that the species puts above it.
-            if (!TryGetLayerIndex(ent, anchor, out var anchorIdx))
-                return;
+            // First contact with the default front layout: remember which head-trim base layer sits right above
+            // the hair. HeadTop/HeadSide marking layers are excluded so the anchor can never become an ear
+            // marking interleaved with the hair block.
+            if (TryGetFrontAnchor(ent, blockEnd, out var frontAnchor))
+                cache.HairFrontAnchor = frontAnchor;
 
-            if (blockEnd == anchorIdx - 1)
-                return;
-
-            if (!TryExtractBlock(ent, cache.HairKeys, out var block, out _))
-                return;
-
-            if (!TryGetLayerIndex(ent, anchor, out anchorIdx))
-                return;
-
-            InsertBlock(ent, cache.HairKeys, block, anchorIdx - block.Count);
+            return;
         }
+
+        // Front face visible: hair below the marker that the species puts above it.
+        TryMoveBlockRelative(ent, cache.HairKeys, anchor, false);
     }
 
     /// <summary>
@@ -419,8 +393,8 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (cache.CloakKeys.Count == 0 ||
             cache.TailKeys.Count == 0 ||
             !TryGetLayerIndex(ent, "head", out _) ||
-            !TryGetBlockExtent(ent, cache.TailKeys, out var tailStart, out _) ||
-            !TryGetBlockExtent(ent, cache.CloakKeys, out _, out var cloakTop))
+            !TryResolveBlock(ent, cache.TailKeys, out var tailIndices, out var tailStart, out _) ||
+            !TryResolveBlock(ent, cache.CloakKeys, out _, out _, out var cloakTop))
         {
             return;
         }
@@ -457,13 +431,16 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         var tailCount = cache.TailKeys.Count;
         var cloakCount = cache.CloakKeys.Count;
 
-        if (!TryExtractBlock(ent, cache.TailKeys, out var tailBlock, out _))
+        // The tail is extracted before anything else mutates the sprite, so its pre-resolved indices from above stay
+        // valid; the cloak is re-resolved by the extractor because removing the tail shifts every cloak layer above
+        // it down.
+        if (!TryExtractResolved(ent, tailIndices, out var tailBlock))
             return;
 
         if (!TryExtractBlock(ent, cache.CloakKeys, out var cloakBlock, out var cloakStart))
         {
             // The cloak failed to come out; put the tail back where it was rather than dropping it from the sprite.
-            InsertBlock(ent, cache.TailKeys, tailBlock, tailStart);
+            InsertBlock(ent, tailBlock, tailStart);
             return;
         }
 
@@ -474,9 +451,9 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             if (cache.TailAnchorCaptured && TryGetLayerIndex(ent, cache.TailAnchor!, out var anchorIdx))
             {
                 var backTailTarget = anchorIdx + 1;
-                InsertBlock(ent, cache.TailKeys, tailBlock, backTailTarget);
+                InsertBlock(ent, tailBlock, backTailTarget);
                 var backCloakTarget = Math.Min(backTailTarget - cloakCount, GetCloakCeiling(ent));
-                InsertBlock(ent, cache.CloakKeys, cloakBlock, backCloakTarget);
+                InsertBlock(ent, cloakBlock, backCloakTarget);
                 return;
             }
 
@@ -484,14 +461,14 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             if (TryGetClusterTop(ent, out _, out var clusterIdx))
             {
                 var backTailTarget = clusterIdx + 1;
-                InsertBlock(ent, cache.TailKeys, tailBlock, backTailTarget);
+                InsertBlock(ent, tailBlock, backTailTarget);
                 var backCloakTarget = Math.Min(backTailTarget - cloakCount, GetCloakCeiling(ent));
-                InsertBlock(ent, cache.CloakKeys, cloakBlock, backCloakTarget);
+                InsertBlock(ent, cloakBlock, backCloakTarget);
                 return;
             }
 
-            InsertBlock(ent, cache.TailKeys, tailBlock, tailStart);
-            InsertBlock(ent, cache.CloakKeys, cloakBlock, cloakStart);
+            InsertBlock(ent, tailBlock, tailStart);
+            InsertBlock(ent, cloakBlock, cloakStart);
             return;
         }
 
@@ -499,8 +476,8 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         // at or above the backpack ("back") layer.
         if (!TryGetLayerIndex(ent, "head", out var headIdx))
         {
-            InsertBlock(ent, cache.TailKeys, tailBlock, tailStart);
-            InsertBlock(ent, cache.CloakKeys, cloakBlock, cloakStart);
+            InsertBlock(ent, tailBlock, tailStart);
+            InsertBlock(ent, cloakBlock, cloakStart);
             return;
         }
 
@@ -508,8 +485,8 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         var tailTarget = Math.Max(0, cloakTarget - tailCount);
         // Cloak goes in first: it targets the "back" bookmark's slot, and the tail sits below it. Inserting the tail
         // first would shift the belt/outerClothing layers up onto the cloak's index, drawing them over it.
-        InsertBlock(ent, cache.CloakKeys, cloakBlock, cloakTarget);
-        InsertBlock(ent, cache.TailKeys, tailBlock, tailTarget);
+        InsertBlock(ent, cloakBlock, cloakTarget);
+        InsertBlock(ent, tailBlock, tailTarget);
     }
 
     /// <summary>
@@ -719,46 +696,62 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Captures the block's layers out of the sprite, keeping their relative order, and removes them.
+    ///     Resolves the block's keys to their current layer indices in a single pass. The indices go stale the moment
+    ///     the sprite changes (e.g. an insertion below the block), so callers must re-resolve after mutating it.
     /// </summary>
-    private bool TryExtractBlock(
+    private bool TryResolveBlock(
         Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
         List<object> keys,
-        out List<(object Key, Layer Layer)> block,
-        out int start)
+        out List<(object Key, int Index)> indices,
+        out int start,
+        out int end)
     {
-        var sprite = ent.Comp2;
-        block = new List<(object, Layer)>(keys.Count);
-        var indices = new List<(object Key, int Index)>(keys.Count);
+        indices = new List<(object Key, int Index)>(keys.Count);
         start = int.MaxValue;
+        end = int.MinValue;
 
-        // Duplicate keys (e.g. the same marking listed twice) resolve to the same layer index. Resolve each
-        // index once, otherwise the second removal would delete the layer directly above the block (a clothing
-        // layer, say) instead of a duplicate, and wipe its key from the layer map.
         foreach (var key in keys)
         {
             if (!TryGetLayerIndex(ent, key, out var index))
                 return false;
 
-            var duplicate = false;
-            foreach (var existing in indices)
-            {
-                if (existing.Index == index)
-                {
-                    duplicate = true;
-                    break;
-                }
-            }
-
-            if (duplicate)
-                continue;
-
             start = Math.Min(start, index);
+            end = Math.Max(end, index);
             indices.Add((key, index));
         }
 
-        // Remove from the top-most layer down so the captured indices stay valid while removing.
+        return true;
+    }
+
+    /// <summary>
+    ///     Captures the block's layers out of the sprite, keeping their relative order, and removes them. The indices
+    ///     must be resolved against the sprite's current state (see <see cref="TryResolveBlock"/>).
+    /// </summary>
+    private bool TryExtractResolved(
+        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
+        List<(object Key, int Index)> indices,
+        out List<(object Key, Layer Layer)> block)
+    {
+        var sprite = ent.Comp2;
+        block = new List<(object, Layer)>(indices.Count);
+
+        // Remove from the top-most layer down so the captured indices stay valid while removing. Duplicate keys
+        // (e.g. the same marking listed twice) resolve to the same layer index, so compact adjacent duplicates
+        // after sorting: removing the same index twice would delete the layer directly above the block (a clothing
+        // layer, say) and wipe its key from the layer map. `indices` and `block` stay aligned for the rollback.
         indices.Sort((a, b) => b.Index.CompareTo(a.Index));
+
+        var kept = new List<(object Key, int Index)>(indices.Count);
+        foreach (var entry in indices)
+        {
+            if (kept.Count != 0 && kept[^1].Index == entry.Index)
+                continue;
+
+            kept.Add(entry);
+        }
+
+        indices = kept;
+
         for (var i = 0; i < indices.Count; i++)
         {
             if (!_sprite.RemoveLayer((ent.Owner, sprite), indices[i].Index, out var layer, false))
@@ -782,12 +775,29 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     }
 
     /// <summary>
+    ///     Resolves the block's keys and removes its layers, keeping the on-screen draw order.
+    /// </summary>
+    private bool TryExtractBlock(
+        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
+        List<object> keys,
+        out List<(object Key, Layer Layer)> block,
+        out int start)
+    {
+        if (!TryResolveBlock(ent, keys, out var indices, out start, out _))
+        {
+            block = null!;
+            return false;
+        }
+
+        return TryExtractResolved(ent, indices, out block);
+    }
+
+    /// <summary>
     ///     Inserts the previously extracted block so it occupies <paramref name="targetStart"/> onward, and re-registers
     ///     every layer map key that belongs to it.
     /// </summary>
     private void InsertBlock(
         Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
-        List<object> keys,
         List<(object Key, Layer Layer)> block,
         int targetStart)
     {
@@ -798,6 +808,53 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             _sprite.AddLayer((ent.Owner, sprite), block[i].Layer, targetStart + i);
             SetLayerIndex(ent, block[i].Key, targetStart + i);
         }
+    }
+
+    /// <summary>
+    ///     Moves a contiguous block of layers so it rests directly across a single anchor layer in one view: its start
+    ///     landing on <c>anchorEnd + 1</c> (above the anchor, e.g. the tail over the legs from the back), or its end
+    ///     landing on <c>anchorStart - 1</c> (below the anchor, e.g. the tail under the feet from the front).
+    /// </summary>
+    /// <summary>
+    ///     Moves a contiguous block of layers so it rests directly across a single anchor layer in one view: its start
+    ///     landing on <c>anchorEnd + 1</c> (directly above the anchor, e.g. the hair over the head-trim cluster), or its
+    ///     end landing on <c>anchorStart - 1</c> (directly below the anchor, e.g. the hair under the front marker). The
+    ///     block's keys are resolved a single time and reused both for the already-correct check and for the removal
+    ///     pass; the anchor is re-resolved after the extraction because inserting the block back shifts the layers
+    ///     above it. Nothing is touched when the block already sits where this view wants it.
+    /// </summary>
+    private bool TryMoveBlockRelative(
+        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
+        List<object> blockKeys,
+        object anchorLayer,
+        bool placeAbove)
+    {
+        // Single resolution pass; the same indices drive the already-correct check and the removal below.
+        if (!TryResolveBlock(ent, blockKeys, out var indices, out var blockStart, out var blockEnd))
+            return false;
+
+        if (!TryGetLayerIndex(ent, anchorLayer, out var anchorStart))
+            return false;
+
+        // Already in the layout this view wants.
+        if (placeAbove ? blockStart == anchorStart + 1 : blockEnd == anchorStart - 1)
+            return true;
+
+        // Pull the block out (using the resolved indices), then drop it next to its anchor. Re-resolving the anchor
+        // after the removal is load-bearing: removing the block shifts every layer above it down by its count.
+        if (!TryExtractResolved(ent, indices, out var block))
+            return false;
+
+        if (!TryGetLayerIndex(ent, anchorLayer, out anchorStart))
+        {
+            // The anchor vanished mid-reorder (e.g. a foot lost while animating); put the block back rather than
+            // dropping it from the sprite.
+            InsertBlock(ent, block, blockStart);
+            return false;
+        }
+
+        InsertBlock(ent, block, placeAbove ? anchorStart + 1 : Math.Max(0, anchorStart - block.Count));
+        return true;
     }
 
     /// <summary>
