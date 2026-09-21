@@ -288,6 +288,54 @@
             "directions": 4
         },
         {
+            "name": "oppressor_head",
+            "directions": 4
+        },
+        {
+            "name": "oppressor_head_plates",
+            "directions": 4
+        },
+        {
+            "name": "oppressor_head_shine",
+            "directions": 4
+        },
+        {
+            "name": "oppressor_teeth",
+            "directions": 4
+        },
+        {
+            "name": "queen_alt_head",
+            "directions": 4
+        },
+        {
+            "name": "queen_alt_head_shine",
+            "directions": 4
+        },
+        {
+            "name": "queen_alt_head_skeleton",
+            "directions": 4
+        },
+        {
+            "name": "queen_alt_teeth",
+            "directions": 4
+        },
+        {
+            "name": "red-queen-head",
+            "directions": 4
+        },
+        {
+            "name": "red-queen-shine",
+            "directions": 4
+        },
+        {
+            "name": "red-queen-teeth",
+            "directions": 4
+        },
+        {
+            "name": "red-queen-veins",
+            "directions": 4
+        },
+        {
             "name": "ren_head",
             "directions": 4
         }

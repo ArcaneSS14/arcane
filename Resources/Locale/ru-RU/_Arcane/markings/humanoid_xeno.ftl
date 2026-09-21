@@ -1,3 +1,5 @@
+# Хвосты
+
 marking-HumanoidXenoTailDrone = Хвост дрона
 marking-HumanoidXenoTailPredalien = Хвост предалиена
 marking-HumanoidXenoTailPretor = Хвост преторианца
@@ -21,7 +23,14 @@ marking-HumanoidXenoTailOpress = Хвост угнетателя
 marking-HumanoidXenoTailValkyr = Хвост валькирии
 marking-HumanoidXenoTailDefender = Хвост защитника
 marking-HumanoidXenoTailWarrior = Хвост воина
+marking-HumanoidXenoTailQueenAlt = Хвост королевы (Альт)
+marking-HumanoidXenoTailKing = Хвост короля
+marking-HumanoidXenoTailRogueKing = Хвост короля-разбойника
 marking-HumanoidXenoTailRen = Хвост Рэн
+
+# Головы
+
+
 marking-HumanoidXenoHeadDrone = Голова дрона
 marking-HumanoidXenoHeadSpitter = Голова плевателя
 marking-HumanoidXenoHeadPretor = Голова претора
@@ -45,12 +54,24 @@ marking-HumanoidXenoHeadBurrower = Голова бурильщика
 marking-HumanoidXenoHeadDefender = Голова защитника
 marking-HumanoidXenoHeadValkyr = Голова валькирии
 marking-HumanoidXenoHeadWarrior = Голова воина
+marking-HumanoidXenoHeadOppressor = Голова угнетателя
+marking-HumanoidXenoHeadQueenAlt = Голова королевы (Альт)
+marking-HumanoidXenoHeadEmpress = Голова императрицы
+marking-HumanoidXenoHeadKing = Голова короля
+marking-HumanoidXenoHeadRogueKing = Голова короля-разбойника
 marking-HumanoidXenoHeadRen = Голова Рэн
+
+# Грудь
+
 marking-HumanoidXenoChestPredalien = Грудь предалиена
 marking-HumanoidXenoChestSpitter = Грудь плевателя
 marking-HumanoidXenoChestMuscles = "Мышцы"
 marking-HumanoidXenoChestNeomorph = Тело неоморфа
 marking-HumanoidXenoChestUnnaturalMuscles = Неестественные мышцы
+marking-HumanoidXenoChestQueen = Грудь королевы
+
+# Трахеи
+
 marking-HumanoidXenoTracheasDrone = Трахеи дрона
 marking-HumanoidXenoTracheasPredalien = Трахеи предалиена
 marking-HumanoidXenoTracheasPretor = Трахеи преторианца
@@ -65,24 +86,46 @@ marking-HumanoidXenoTracheasCougar = Трахеи пумы
 marking-HumanoidXenoTracheasCrocodile = Трахеи крокодила
 marking-HumanoidXenoTracheasBers = Трахеи берсерка
 marking-HumanoidXenoTracheasWarrior = Трахеи воина
+marking-HumanoidXenoTracheasQueenAlt = Трахеи королевы (Альт)
+marking-HumanoidXenoTracheasEmpress = Трахеи императрицы
+marking-HumanoidXenoTracheasKing = Трахеи короля
+marking-HumanoidXenoTracheasRogueKing = Трахеи короля-разбойника
 marking-HumanoidXenoTracheasRen = Трахеи Рэн
+
+# Ноги
+
 marking-HumanoidXenoLegsPredalien = Ноги предалиена
 marking-HumanoidXenoLegsMuscles = "Мышцы"
 marking-HumanoidXenoLegsCougar = Ноги пумы
+
+# Стопы
+
 marking-HumanoidXenoLegsRazorLeft = Когти бритвы
 marking-HumanoidXenoLegsRazorRight = Когти бритвы
 marking-HumanoidXenoLegsChrisLeft = Когти хризалиды
 marking-HumanoidXenoLegsChrisRight = Когти хризалиды
 marking-HumanoidXenoLegsBurrowerRight = Когти бурильщика
 marking-HumanoidXenoLegsBurrowerLeft = Когти бурильщика
+marking-HumanoidXenoFeetQueenLeft = Стопа королевы
+marking-HumanoidXenoFeetQueenRight = Стопа королевы
+marking-HumanoidXenoFeetEmpressLeft = Стопа императрицы
+marking-HumanoidXenoFeetEmpressRight = Стопа императрицы
+
+# Руки
+
 marking-HumanoidXenoArmsPredalien = Руки предалиена
 marking-HumanoidXenoArmsRavager = Руки разрушителя
 marking-HumanoidXenoArmsMuscles = "Мышцы"
 marking-HumanoidXenoArmsChris = Руки хризалиды
 marking-HumanoidXenoArmsCougar = Руки пумы
+
+# Кисти
+
 marking-HumanoidXenoHandRazorLeft = Когти бритвы
 marking-HumanoidXenoHandRazorRight = Когти бритвы
 marking-HumanoidXenoHandClawsLeft = Когти
 marking-HumanoidXenoHandClawsRight = Когти
 marking-HumanoidXenoHandBurrowerRight = Когти бурильщика
 marking-HumanoidXenoHandBurrowerLeft = Когти бурильщика
+marking-HumanoidXenoHandEmpressLeft = Кисть императрицы
+marking-HumanoidXenoHandEmpressRight = Кисть императрицы
