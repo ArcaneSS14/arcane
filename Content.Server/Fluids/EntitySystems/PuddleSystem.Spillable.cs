@@ -22,7 +22,6 @@ public sealed partial class PuddleSystem
 
         SubscribeLocalEvent<SpillableComponent, LandEvent>(SpillOnLand);
         // Openable handles the event if it's closed
-        SubscribeLocalEvent<SpillableComponent, MeleeHitEvent>(SplashOnMeleeHit, after: [typeof(OpenableSystem)]); // Arcane
         SubscribeLocalEvent<SpillableComponent, SolutionContainerOverflowEvent>(OnOverflow);
         SubscribeLocalEvent<SpillableComponent, SpillDoAfterEvent>(OnDoAfter);
     }

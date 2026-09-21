@@ -172,6 +172,11 @@ public abstract partial class SharedPuddleSystem
                 + $"splashed {SharedSolutionContainerSystem.ToPrettyString(splitSolution):solution} "
                 + $"from {ToPrettyString(entity.Owner):entity} onto {ToPrettyString(hit):target}");
 
+            // Arcane-Start
+            var stainEv = new SpilledOnEvent(entity.Owner, splitSolution.Clone());
+            RaiseLocalEvent(hit, stainEv);
+            // Arcane-End
+
             Reactive.DoEntityReaction(hit, splitSolution, ReactionMethod.Touch);
 
             Popups.PopupClient(Loc.GetString("spill-melee-hit-attacker",
