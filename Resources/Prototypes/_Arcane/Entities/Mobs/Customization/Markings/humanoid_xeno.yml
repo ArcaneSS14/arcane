@@ -618,6 +618,7 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/head.rsi
     state: warrior_head_shine
 
+- type: marking
   id: HumanoidXenoHeadOppressor
   bodyPart: Head
   markingCategory: Head
@@ -888,7 +889,8 @@
   - sprite: _Arcane/Mobs/Customization/HumanoidXeno/tracheas.rsi
     state: warrior_tubes
 
-id: HumanoidXenoTracheasQueenAlt
+- type: marking
+  id: HumanoidXenoTracheasQueenAlt
   bodyPart: Chest
   markingCategory: Tracheas
   speciesRestriction: [HumanoidXeno]
