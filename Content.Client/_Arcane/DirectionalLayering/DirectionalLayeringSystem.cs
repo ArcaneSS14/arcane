@@ -31,6 +31,12 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     private readonly Dictionary<EntityUid, OrderingCache> _cache = new();
 
+    /// <summary>
+    ///     Preview dummies are rotated through a SpriteView direction override instead of the entity transform, so
+    ///     their facing has to be tracked separately to survive reloads.
+    /// </summary>
+    private readonly Dictionary<EntityUid, DirectionalView> _dummyViews = new();
+
     private Angle _lastEyeRotation = Angle.Zero;
 
     private static readonly ProtoId<SpeciesPrototype> HarpySpecies = "Harpy";
@@ -70,6 +76,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     public override void Shutdown()
     {
         _cache.Clear();
+        _dummyViews.Clear();
         base.Shutdown();
     }
 
@@ -86,6 +93,23 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         {
             ApplyOrdering((uid, humanoid, sprite));
         }
+    }
+
+    /// <summary>
+    ///     Applies the layer ordering for a preview dummy whose facing is set through a SpriteView direction
+    ///     override instead of the entity transform. The view is recomputed against the given direction rather than
+    ///     the world/eye rotation, so rotating a dummy in the editor reorders its layers like in-game.
+    /// </summary>
+    public void ApplyDummyOrdering(EntityUid uid, Direction direction)
+    {
+        if (!TryComp(uid, out HumanoidAppearanceComponent? humanoid) ||
+            !TryComp(uid, out SpriteComponent? sprite))
+        {
+            return;
+        }
+
+        _dummyViews[uid] = GetView(direction);
+        ApplyOrdering((uid, humanoid, sprite));
     }
 
     private void OnMove(EntityUid uid, HumanoidAppearanceComponent component, ref MoveEvent args)
@@ -124,6 +148,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     private void OnRemove(EntityUid uid, HumanoidAppearanceComponent component, ComponentRemove args)
     {
         _cache.Remove(uid);
+        _dummyViews.Remove(uid);
     }
 
     private void ApplyOrdering(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
@@ -131,9 +156,13 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (!TryComp(ent.Owner, out TransformComponent? xform))
             return;
 
+        // Preview dummies are turned through a SpriteView direction override, so their facing is recovered from the
+        // tracked dummy view; in-game entities are faced relative to the camera instead of the absolute world.
         // The renderer picks the RSI direction from `worldRotation + eyeRotation`, so the facing has to be
         // determined relative to the camera, not the absolute world rotation.
-        var view = GetView(_transform.GetWorldRotation(ent.Owner) + _eyeManager.CurrentEye.Rotation);
+        var view = _dummyViews.TryGetValue(ent.Owner, out var dummyView)
+            ? dummyView
+            : GetView(_transform.GetWorldRotation(ent.Owner) + _eyeManager.CurrentEye.Rotation);
         var cache = GetCache(ent);
 
         // Tail and cloak first, so the back view's "hair between the head-trim cluster and the tail" layout gets
@@ -872,6 +901,20 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         {
             0 => DirectionalView.Front,
             2 => DirectionalView.Back,
+            _ => DirectionalView.Side,
+        };
+    }
+
+    /// <summary>
+    ///     Which view a humanoid sprite displays when rendered towards the given cardinal direction, matching how
+    ///     the renderer converts a direction override into an RSI direction.
+    /// </summary>
+    private static DirectionalView GetView(Direction direction)
+    {
+        return direction switch
+        {
+            Direction.South => DirectionalView.Front,
+            Direction.North => DirectionalView.Back,
             _ => DirectionalView.Side,
         };
     }

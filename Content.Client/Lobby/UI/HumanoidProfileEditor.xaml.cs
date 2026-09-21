@@ -44,6 +44,7 @@ using Direction = Robust.Shared.Maths.Direction;
 using Content.Goobstation.Common.CCVar; // Goob Station - Barks
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Orion.RichText;
+using Content.Client._Arcane.DirectionalLayering;
 using Content.Client._Arcane.TTS;
 using Content.Shared._Arcane.ERP;
 using Content.Shared._Arcane.TTS;
@@ -1427,6 +1428,7 @@ namespace Content.Client.Lobby.UI
             PreviewDummy = _controller.LoadProfileEntity(Profile, JobOverride, _clothingDisplayMode); // Orion-Edit: Clothing display mode
             SpriteView.SetEntity(PreviewDummy);
             _entManager.System<MetaDataSystem>().SetEntityName(PreviewDummy, Profile.Name);
+            SetPreviewRotation(_previewRotation); // Arcane
 
             // Orion-Start
             _flavorText?.TargetPreview.SetEntity(PreviewDummy);
@@ -2746,6 +2748,11 @@ namespace Content.Client.Lobby.UI
         private void SetPreviewRotation(Direction direction)
         {
             SpriteView.OverrideDirection = (Direction) ((int) direction % 4 * 2);
+
+            // Arcane-Start
+            if (SpriteView.OverrideDirection is { } overrideDirection && _entManager.EntityExists(PreviewDummy))
+                _entManager.System<DirectionalLayeringSystem>().ApplyDummyOrdering(PreviewDummy, overrideDirection);
+            // Arcane-End
         }
 
         private void RandomizeEverything()
