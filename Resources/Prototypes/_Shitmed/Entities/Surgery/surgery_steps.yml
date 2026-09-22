@@ -877,14 +877,14 @@
     addOrganOnAdd:
       brain:
       - type: Muted
-    duration: 4
+    duration: 25
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/stitches.rsi
     state: stitches
   - type: SurgeryStepPainInflicter
     painDuration: 60
     painType: TraumaticPain # БОЛЬНО.
-    amount: 50
+    amount: 75
 
 - type: entity  
   parent: SurgeryStepBase  
@@ -895,7 +895,7 @@
   - type: SurgeryStep  
     tool:  
     - type: Hemostat 
-    duration: 4  
+    duration: 25
     removeOrganOnAdd:  
       brain:  
       - type: Muted  
@@ -906,5 +906,5 @@
   - type: SurgeryStepPainInflicter
     painDuration: 60
     painType: TraumaticPain
-    amount: 50
+    amount: 75
 # Arcane-End

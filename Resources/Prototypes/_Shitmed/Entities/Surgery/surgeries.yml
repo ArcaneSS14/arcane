@@ -1085,11 +1085,9 @@
   name: Mute patient  
   categories: [ HideSpawnMenu ]  
   components:  
-  - type: Surgery  
-    requirement: SurgeryOpenIncision  
-    steps:  
-    - SurgeryStepMute  
-    - SurgeryStepCloseIncision  
+  - type: Surgery    
+    steps:
+    - SurgeryStepMute
   - type: SurgeryOrganCondition  
     organ:  
     - type: Brain  
@@ -1107,12 +1105,10 @@
   name: Remove mute 
   categories: [ HideSpawnMenu ]  
   components:  
-  - type: Surgery  
-    requirement: SurgeryOpenIncision  
-    steps:  
+  - type: Surgery   
+    steps:
     - SurgeryStepRemoveMute  
-    - SurgeryStepCloseIncision  
-  - type: SurgeryOrganCondition  
+  - type: SurgeryOrganCondition 
     organ:  
     - type: Brain  
   - type: SurgeryOrganOnAddCondition  
