@@ -1811,3 +1811,14 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/a47d0b64-3636-4043-af00-15211bace74e
+- author: GrinDers
+  changes:
+    - type: Tweak
+      message: Обновлены правила сервера до актуальной версии.
+  id: 139
+  time: '2026-09-22T15:18:00.0000000+00:00'
+  prNumber: 389
+  url: https://github.com/ArcaneSS14/arcane/pull/389
+  media:
+    - >-
+      https://github.com/user-attachments/assets/126ac97d-c391-480d-a53c-af277724e63f
