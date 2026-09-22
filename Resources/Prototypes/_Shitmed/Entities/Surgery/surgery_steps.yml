@@ -537,7 +537,7 @@
   components:
   - type: SurgeryStep
     tool:
-    - type: Stitches
+    - type: Stitches # интересный факт у этой нитки нету звука кастомного
     remove:
     - type: IncisionOpen
     duration: 8
@@ -863,3 +863,48 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryStepEmoteEffect
+
+# Arcane-Start
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepMute
+  name: Mute patient
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Stitches # Интересный факт: у этих швов звук дрели был, насток на них всем дела нету.
+    addOrganOnAdd:
+      brain:
+      - type: Muted
+    duration: 4
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/stitches.rsi
+    state: stitches
+  - type: SurgeryStepPainInflicter
+    painDuration: 60
+    painType: TraumaticPain # БОЛЬНО.
+    amount: 50
+
+- type: entity  
+  parent: SurgeryStepBase  
+  id: SurgeryStepRemoveMute  
+  name: Remove mute  
+  categories: [ HideSpawnMenu ]  
+  components:  
+  - type: SurgeryStep  
+    tool:  
+    - type: Hemostat 
+    duration: 4  
+    removeOrganOnAdd:  
+      brain:  
+      - type: Muted  
+  - type: Sprite  
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi  
+    state: hemostat  
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepPainInflicter
+    painDuration: 60
+    painType: TraumaticPain
+    amount: 50
+# Arcane-End

@@ -1077,3 +1077,48 @@
       - type: Clumsy
   - type: SurgeryPartCondition
     parts: [ Head ]
+
+# Arcane-Start
+- type: entity  
+  parent: SurgeryBase  
+  id: SurgeryMute  
+  name: Mute patient  
+  categories: [ HideSpawnMenu ]  
+  components:  
+  - type: Surgery  
+    requirement: SurgeryOpenIncision  
+    steps:  
+    - SurgeryStepMute  
+    - SurgeryStepCloseIncision  
+  - type: SurgeryOrganCondition  
+    organ:  
+    - type: Brain  
+  - type: SurgeryOrganOnAddCondition  
+    components:  
+      brain:  
+      - type: Muted  
+    inverse: true  
+  - type: SurgeryPartCondition  
+    parts: [ Head ]
+
+- type: entity  
+  parent: SurgeryBase  
+  id: SurgeryRemoveMute 
+  name: Remove mute 
+  categories: [ HideSpawnMenu ]  
+  components:  
+  - type: Surgery  
+    requirement: SurgeryOpenIncision  
+    steps:  
+    - SurgeryStepRemoveMute  
+    - SurgeryStepCloseIncision  
+  - type: SurgeryOrganCondition  
+    organ:  
+    - type: Brain  
+  - type: SurgeryOrganOnAddCondition  
+    components:  
+      brain:  
+      - type: Muted  
+  - type: SurgeryPartCondition  
+    parts: [ Head ]
+# Arcane-End
