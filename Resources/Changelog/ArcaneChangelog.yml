@@ -1774,3 +1774,27 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/c3adbc18-5bf9-40c9-87a8-ab7d19acd2a4
+- author: HappyRoach
+  changes:
+    - type: Fix
+      message: Исправлено появления терминала прибытия.
+    - type: Fix
+      message: Исправлено появления шаттла шахтёров на аврите.
+    - type: Fix
+      message: Исправлена черта кошачий и лисий натуры.
+  id: 136
+  time: '2026-09-21T10:32:07.0000000+00:00'
+  prNumber: 383
+  url: https://github.com/ArcaneSS14/arcane/pull/383
+- author: ChangelingRUES
+  changes:
+    - type: Tweak
+      message: >-
+        На мостике Atlas до топора теперь можно дотянутся. Появился вендомат
+        закусок и напитков.
+  id: 137
+  time: '2026-09-21T18:17:08.0000000+00:00'
+  prNumber: 384
+  url: https://github.com/ArcaneSS14/arcane/pull/384
+  media:
+    - https://i.postimg.cc/tgq7TP8M/Atlas-Most.png)](https://postimg.cc/G4fbgBLF
