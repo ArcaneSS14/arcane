@@ -1798,3 +1798,16 @@ Entries:
   url: https://github.com/ArcaneSS14/arcane/pull/384
   media:
     - https://i.postimg.cc/tgq7TP8M/Atlas-Most.png)](https://postimg.cc/G4fbgBLF
+- author: ReWAFFlution, Reserve Station
+  changes:
+    - type: Add
+      message: >-
+        Добавлена автозамена модному сленгу, парочке оскорблений а тажке прочей
+        гнили.
+  id: 138
+  time: '2026-09-22T08:10:08.0000000+00:00'
+  prNumber: 374
+  url: https://github.com/ArcaneSS14/arcane/pull/374
+  media:
+    - >-
+      https://github.com/user-attachments/assets/a47d0b64-3636-4043-af00-15211bace74e
