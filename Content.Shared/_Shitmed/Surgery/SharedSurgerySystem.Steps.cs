@@ -80,7 +80,7 @@ public abstract partial class SharedSurgerySystem
         SubSurgery<SurgeryTraumaExtractStepComponent>(OnExtractTraumaStep, OnExtractTraumaCheck);
         SubSurgery<SurgeryBleedsTreatmentStepComponent>(OnBleedsTreatmentStep, OnBleedsTreatmentCheck);
         // Arcane-Edit: pain is an effect of the step, not a condition for it staying complete.
-        SubscribeLocalEvent<SurgeryStepPainInflicterComponent, SurgeryStepEvent>(OnPainInflicterStep);
+        SubscribeLocalEvent<SurgeryStepPainInflicterComponent, SurgeryStepEvent>(OnPainInflicterStep); // Arcane-Edit
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs =>
         {
             subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
