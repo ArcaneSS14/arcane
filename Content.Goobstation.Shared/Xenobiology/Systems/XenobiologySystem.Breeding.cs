@@ -90,7 +90,11 @@ public partial class XenobiologySystem
             if (_hunger.GetHunger(ent) < ent.Comp1.MitosisHunger)
                 continue;
 
-            // Orion-Start
+            // Arcane-Start
+            if (IsMitosisDensityBlocked(ent.Owner))
+                continue;
+            // Arcane-End
+
             _slimesReadyForMitosis.Add(ent.Owner);
         }
 
@@ -98,12 +102,38 @@ public partial class XenobiologySystem
         {
             if (!TryComp<SlimeComponent>(uid, out var slime))
                 continue;
-            // Orion-End
 
             DoMitosis((uid, slime));
             slime.NextUpdateTime = _timing.CurTime + slime.UpdateInterval; // Arcane-Edit
         }
     }
+
+    // Arcane-Start
+    /// <summary>
+    ///     Blocks mitosis when too many other slimes are packed too close together.
+    /// </summary>
+    private bool IsMitosisDensityBlocked(EntityUid uid)
+    {
+        if (!TryComp<SlimeComponent>(uid, out var slime)
+            || slime.MitosisDensityLimit <= 0
+            || slime.MitosisDensityRange <= 0)
+            return false;
+
+        var count = 0;
+        foreach (var (other, _) in _lookup.GetEntitiesInRange<SlimeComponent>(
+                     Transform(uid).Coordinates,
+                     slime.MitosisDensityRange))
+        {
+            if (other == uid)
+                continue;
+
+            if (++count >= slime.MitosisDensityLimit)
+                return true;
+        }
+
+        return false;
+    }
+    // Arcane-End
 
     /// <summary>
     ///     Handles slime mitosis.
