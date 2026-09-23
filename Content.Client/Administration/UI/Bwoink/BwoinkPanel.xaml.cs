@@ -66,6 +66,30 @@ namespace Content.Client.Administration.UI.Bwoink
             LastMessage = message.SentAt;
         }
 
+        // Arcane-start
+        public void ClearHistory()
+        {
+            TextOutput.Clear();
+            LastMessage = DateTime.MinValue;
+        }
+
+        public void ReceiveHistory(IEnumerable<BwoinkHistoryMessage> messages, bool append)
+        {
+            if (!append)
+            {
+                ClearHistory();
+            }
+
+            foreach (var message in messages)
+            {
+                var formatted = new FormattedMessage(1);
+                formatted.AddMarkupOrThrow($"[color=gray]{message.SentAt.ToShortTimeString()}[/color] {message.Text}");
+                TextOutput.AddMessage(formatted);
+                LastMessage = message.SentAt;
+            }
+        }
+        // Arcane-end
+
         private void UpdateTypingIndicator()
         {
             TypingIndicator.Visible = PeopleTyping.Count > 0; // Arcane

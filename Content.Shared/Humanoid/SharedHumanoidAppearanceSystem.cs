@@ -3,6 +3,7 @@
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using Content.Shared.CCVar;
 using Content.Shared._Arcane.TTS;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid.Markings;
@@ -52,14 +53,14 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     public static readonly ProtoId<BarkPrototype> DefaultBarkVoice = "Alto"; // Goob Station - Barks
 
     // Arcane-Start
-    public const string DefaultVoice = "Zeus_dota_2";
+    public const string DefaultVoice = "Jackie";
 
     public static readonly Dictionary<Sex, string> DefaultSexVoice = new()
     {
-        { Sex.Male, "Zeus_dota_2" },
+        { Sex.Male, "Jackie" },
         { Sex.Female, "Lina_dota_2" },
-        { Sex.Unsexed, "Gman" },
-        { Sex.Futanari, "Lina_dota_2" }
+        { Sex.Unsexed, "Lambert" },
+        { Sex.Futanari, "Drow_ranger_dota_2" }
     };
     // Arcane-End
 
@@ -130,7 +131,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 		// Goob Station - Identity Fix
 		// Fix for incorrect pronouns PR #5999
         var identity = ("user", Identity.Entity(uid, EntityManager));
-        var species = ("species", GetSpeciesRepresentation(component.Species).ToLower());
+        var species = ("species", GetSpeciesRepresentation(component.Species, component.CustomSpeciesName).ToLower()); // Arcane-Edit
         var age = ("age", GetAgeRepresentation(component.Species, component.Age));
 
         // WWDP EDIT
@@ -190,6 +191,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
 
         targetHumanoid.Gender = sourceHumanoid.Gender;
+        targetHumanoid.CustomSpeciesName = sourceHumanoid.CustomSpeciesName; // Arcane
+        // Arcane-Start
+        targetHumanoid.HairGradientEnabled = sourceHumanoid.HairGradientEnabled;
+        targetHumanoid.HairGradientColors = new(sourceHumanoid.HairGradientColors);
+        targetHumanoid.HairGradientStyle = sourceHumanoid.HairGradientStyle;
+        targetHumanoid.HairGradientOffset = sourceHumanoid.HairGradientOffset;
+        // Arcane-End
 
         if (TryComp<GrammarComponent>(target, out var grammar))
             _grammarSystem.SetGender((target, grammar), sourceHumanoid.Gender);
@@ -514,6 +522,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         SetSex(uid, profile.Sex, false, humanoid);
         SetTTSVoice(uid, profile.Voice, false, humanoid); // Arcane
         humanoid.EyeColor = profile.Appearance.EyeColor;
+        // Arcane-Start
+        humanoid.HairGradientEnabled = profile.Appearance.HairGradientEnabled;
+        humanoid.HairGradientColors = new(profile.Appearance.HairGradientColors);
+        humanoid.HairGradientStyle = profile.Appearance.HairGradientStyle;
+        humanoid.HairGradientOffset = profile.Appearance.HairGradientOffset;
+        // Arcane-End
 
         SetSkinColor(uid, profile.Appearance.SkinColor, false);
 
@@ -579,6 +593,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         humanoid.Age = profile.Age;
+
+        // Arcane-Start
+        humanoid.CustomSpeciesName = HumanoidCharacterProfile.SanitizeCustomSpeciesName(
+            humanoid.Species,
+            profile.CustomSpeciesName,
+            _proto,
+            _cfgManager,
+            _cfgManager.GetCVar(CCVars.MaxNameLength));
+        // Arcane-End
 
         // begin Goobstation: port EE height/width sliders
         var species = _proto.Index(humanoid.Species);
@@ -694,10 +717,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <summary>
     /// Takes ID of the species prototype, returns UI-friendly name of the species.
     /// </summary>
-    public string GetSpeciesRepresentation(string speciesId)
+    public string GetSpeciesRepresentation(string speciesId, string? customSpeciesName = null) // Arcane-Edit
     {
         if (_proto.TryIndex<SpeciesPrototype>(speciesId, out var species))
         {
+            // Arcane-Start
+            if (!string.IsNullOrWhiteSpace(customSpeciesName))
+                return FormattedMessage.EscapeText(HumanoidCharacterProfile.GetSpeciesLongName(Loc.GetString(species.Name), customSpeciesName));
+            // Arcane-End
+
             return Loc.GetString(species.Name);
         }
 

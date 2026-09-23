@@ -103,6 +103,7 @@
       collection: PoliceSiren
       params:
         variation: 0.125
+        loop: true # Arcane
   - type: ItemSlots
     slots:
       key_slot:

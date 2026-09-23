@@ -14,12 +14,14 @@ public static class SponsorRoleBenefits
     public static readonly IReadOnlyDictionary<DiscordRole, SponsorRoleBenefit> All =
         new Dictionary<DiscordRole, SponsorRoleBenefit>
         {
-            [DiscordRole.SponsorTier1] = new("Tier1", "#8b00d1", 2, -1),
-            [DiscordRole.SponsorTier2] = new("Tier2", "#ecad00", 3, -2),
+            [DiscordRole.SponsorTier1] = new("Tier1", "#7d25a8", 2, -1),
+            [DiscordRole.SponsorTier2] = new("Tier2", "#d8aa2d", 3, -2),
+            [DiscordRole.AdminBenefit] = new("AdminBenefit", "#78ecf5", 5, -3),
         };
 
     private static readonly DiscordRole[] Priority =
     [
+        DiscordRole.AdminBenefit,
         DiscordRole.SponsorTier2,
         DiscordRole.SponsorTier1,
     ];

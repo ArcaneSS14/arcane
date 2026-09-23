@@ -60,6 +60,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
 
         SubscribeNetworkEvent<BwoinkDiscordRelayUpdated>(DiscordRelayUpdated);
         SubscribeNetworkEvent<BwoinkPlayerTypingUpdated>(PeopleTypingUpdated);
+        SubscribeNetworkEvent<BwoinkHistoryResponse>(HistoryReceived); // Arcane
 
         _adminManager.AdminStatusUpdated += OnAdminStatusUpdated;
         _config.OnValueChanged(CCVars.AHelpSound, v => _aHelpSound = v, true);
@@ -113,6 +114,9 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         DebugTools.Assert(_bwoinkSystem != null);
         _bwoinkSystem!.OnBwoinkTextMessageRecieved -= ReceivedBwoink;
         _bwoinkSystem = null;
+
+        UIHelper?.Dispose();
+        UIHelper = null;
     }
 
     private void SetAHelpPressed(bool pressed)
@@ -167,6 +171,13 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         UIHelper?.PeopleTypingUpdated(args);
     }
 
+    // Arcane-start
+    private void HistoryReceived(BwoinkHistoryResponse args, EntitySessionEventArgs session)
+    {
+        UIHelper?.ReceiveHistory(args.Channel, args.Messages, args.NextLastLogId, args.HasMore, args.IsContinuation);
+    }
+    // Arcane-end
+
     public void EnsureUIHelper()
     {
         var isAdmin = _adminManager.HasFlag(AdminFlags.Adminhelp);
@@ -180,6 +191,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         UIHelper.DiscordRelayChanged(_discordRelayActive);
 
         UIHelper.SendMessageAction = (userId, textMessage, playSound, adminOnly) => _bwoinkSystem?.Send(userId, textMessage, playSound, adminOnly);
+        UIHelper.RequestHistoryAction = (channel, lastLogId) => _bwoinkSystem?.RequestHistory(channel, lastLogId); // Arcane
         UIHelper.InputTextChanged += (channel, text) => _bwoinkSystem?.SendInputTextUpdated(channel, text.Length > 0);
         UIHelper.OnClose += () => { SetAHelpPressed(false); };
         UIHelper.OnOpen +=  () => { SetAHelpPressed(true); };
@@ -321,6 +333,7 @@ public interface IAHelpUIHandler : IDisposable
     public bool IsAdmin { get; }
     public bool IsOpen { get; }
     public void Receive(SharedBwoinkSystem.BwoinkTextMessage message);
+    public void ReceiveHistory(NetUserId channel, IEnumerable<BwoinkHistoryMessage> messages, int? nextLastLogId, bool hasMore, bool isContinuation); // Arcane
     public void Close();
     public void Open(NetUserId netUserId, bool relayActive);
     public void ToggleWindow();
@@ -329,6 +342,7 @@ public interface IAHelpUIHandler : IDisposable
     public event Action OnClose;
     public event Action OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
+    public Action<NetUserId, int?>? RequestHistoryAction { get; set; } // Arcane
     public event Action<NetUserId, string>? InputTextChanged;
 }
 public sealed class AdminAHelpUIHandler : IAHelpUIHandler
@@ -354,6 +368,18 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
         panel.ReceiveLine(message);
         Control?.OnBwoink(message.UserId);
     }
+
+    // Arcane-start
+    public void ReceiveHistory(NetUserId channel, IEnumerable<BwoinkHistoryMessage> messages, int? nextLastLogId, bool hasMore, bool isContinuation)
+    {
+        if (_activePanelMap.TryGetValue(channel, out var panel))
+        {
+            panel.ReceiveHistory(messages, isContinuation);
+            if (hasMore && nextLastLogId != null)
+                RequestHistoryAction?.Invoke(channel, nextLastLogId);
+        }
+    }
+    // Arcane-end
 
     private void OpenWindow()
     {
@@ -413,11 +439,17 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     public event Action? OnClose;
     public event Action? OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
+    public Action<NetUserId, int?>? RequestHistoryAction { get; set; } // Arcane
     public event Action<NetUserId, string>? InputTextChanged;
 
     public void Open(NetUserId channelId, bool relayActive)
     {
         SelectChannel(channelId);
+        // Arcane-start
+        if (_activePanelMap.TryGetValue(channelId, out var panel))
+            panel.ClearHistory();
+        RequestHistoryAction?.Invoke(channelId, null);
+        // Arcane-end
         OpenWindow();
     }
 
@@ -553,11 +585,17 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
     public event Action? OnClose;
     public event Action? OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
+    public Action<NetUserId, int?>? RequestHistoryAction { get; set; } // Arcane
     public event Action<NetUserId, string>? InputTextChanged;
 
     public void Open(NetUserId channelId, bool relayActive)
     {
         EnsureInit(relayActive);
+        // Arcane-start
+        if (_chatPanel != null)
+            _chatPanel.ClearHistory();
+        RequestHistoryAction?.Invoke(channelId, null);
+        // Arcane-end
         _window!.OpenCentered();
     }
 
@@ -583,6 +621,18 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
         var introMessage = new SharedBwoinkSystem.BwoinkTextMessage( _ownerId, SharedBwoinkSystem.SystemUserId, introText);
         Receive(introMessage);
     }
+
+    // Arcane-start
+    public void ReceiveHistory(NetUserId channel, IEnumerable<BwoinkHistoryMessage> messages, int? nextLastLogId, bool hasMore, bool isContinuation)
+    {
+        if (channel == _ownerId)
+        {
+            _chatPanel?.ReceiveHistory(messages, isContinuation);
+            if (hasMore && nextLastLogId != null)
+                RequestHistoryAction?.Invoke(channel, nextLastLogId);
+        }
+    }
+    // Arcane-end
 
     public void Dispose()
     {

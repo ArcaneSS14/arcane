@@ -36,6 +36,11 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField, AutoNetworkedField]
     public int Age = 18;
 
+    // Arcane-Start
+    [DataField, AutoNetworkedField]
+    public string CustomSpeciesName = "";
+    // Arcane-End
+
     [DataField] // Goob Station - Barks
     public ProtoId<BarkPrototype> BarkVoice { get; set; } = SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
 
@@ -86,6 +91,20 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public Color? CachedHairColor;
+
+    // Arcane-Start
+    [DataField, AutoNetworkedField]
+    public bool HairGradientEnabled;
+
+    [DataField, AutoNetworkedField]
+    public List<Color> HairGradientColors = new() { Color.Black, Color.Black };
+
+    [DataField, AutoNetworkedField]
+    public HairGradientStyle HairGradientStyle = HairGradientStyle.Ombre;
+
+    [DataField, AutoNetworkedField]
+    public float HairGradientOffset = 0.5f;
+    // Arcane-End
 
     /// <summary>
     ///     Facial Hair color of this humanoid. Used to avoid looping through all markings

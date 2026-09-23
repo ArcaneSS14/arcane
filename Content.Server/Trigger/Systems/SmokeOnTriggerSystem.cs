@@ -40,10 +40,10 @@ public sealed class SmokeOnTriggerSystem : EntitySystem
             return;
 
         // TODO: move all of this into an API function in SmokeSystem
-        // Arcane-Start
-        if (SpawnSmoke(target.Value, ent.Comp.SmokePrototype, ent.Comp.Solution, ent.Comp.Duration, ent.Comp.SpreadAmount))
-            args.Handled = true;
-        // Arcane-End
+
+        // Goobstation - call SpawnSmoke helper
+        // TODO: fuck YOU trauma. why the FUCK. TODO: make a wizden PR fixing this fucking nonsense
+        args.Handled = GoidaFuckingFixThisSpawnSmoke(target.Value, ent.Comp.SmokePrototype, ent.Comp.Solution, ent.Comp.Duration, ent.Comp.SpreadAmount);
     }
 
     /// Trauma - Moved it to helper function
@@ -52,7 +52,7 @@ public sealed class SmokeOnTriggerSystem : EntitySystem
     /// TODO This should have moved to <see cref="SmokeSystem"/>
     /// </summary>
     /// <returns></returns>
-    public bool SpawnSmoke(EntityUid target, string prototype, Solution solution, TimeSpan duration, int spreadAmount)
+    public bool GoidaFuckingFixThisSpawnSmoke(EntityUid target, string prototype, Solution solution, TimeSpan duration, int spreadAmount)
     {
         var xform = Transform(target);
         var mapCoords = _transform.GetMapCoordinates(target, xform);
