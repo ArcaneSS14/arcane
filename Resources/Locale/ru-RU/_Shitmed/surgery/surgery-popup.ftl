@@ -96,4 +96,3 @@ surgery-popup-step-SurgeryStepGraftXenoSample = { $user } прививает к�
 surgery-popup-step-SurgeryStepMute = {$user} зашивает рот {$target}!
 surgery-popup-step-SurgeryStepRemoveMute = {$user} убирает швы с рта у {$target}!
 # Arcane-End
- 
