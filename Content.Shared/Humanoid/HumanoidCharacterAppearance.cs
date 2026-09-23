@@ -284,12 +284,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             eyeColor,
             skinColor,
             markingSet.GetForwardEnumerator().ToList(),
-            // Arcane-Start
+        // Arcane-Start
             appearance.HairGradientEnabled,
             appearance.HairGradientColors,
             appearance.HairGradientStyle,
             appearance.HairGradientOffset);
-            // Arcane-End
+        // Arcane-End
     }
 
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)

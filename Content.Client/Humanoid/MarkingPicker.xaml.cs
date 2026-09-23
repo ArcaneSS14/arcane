@@ -238,9 +238,7 @@ public sealed partial class MarkingPicker : Control
             var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
             item.Metadata = marking;
 
-            // Arcane-Start
-            SetMarkingUnavailableIfNeeded(item, marking);
-            // Arcane-End
+            SetMarkingUnavailableIfNeeded(item, marking); // Arcane
         }
 
         CMarkingPoints.Visible = _currentMarkings.PointsLeft(_selectedMarkingCategory) != -1;
@@ -591,9 +589,7 @@ public sealed partial class MarkingPicker : Control
             var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
             item.Metadata = marking;
 
-            // Arcane-Start
-            SetMarkingUnavailableIfNeeded(item, marking);
-            // Arcane-End
+            SetMarkingUnavailableIfNeeded(item, marking); // Arcane
         }
         _selectedMarking = null;
         CMarkingColors.Visible = false;

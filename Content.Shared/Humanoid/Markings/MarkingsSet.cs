@@ -271,6 +271,7 @@ public sealed partial class MarkingSet
             Remove(remove.category, remove.id);
         }
     }
+    // Arcane-End
 
     /// <summary>
     ///     Ensures that all markings in this set are valid.

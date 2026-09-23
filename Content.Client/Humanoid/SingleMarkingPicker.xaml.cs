@@ -183,9 +183,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             throw new ArgumentException("Tried to populate marking list without a set species!");
         }
 
-        // Arcane-Start
         _markingPrototypeCache ??= _markingManager.MarkingsByCategoryAndSpecies(Category, _species);
-        // Arcane-End
 
         MarkingSelectorContainer.Visible = _markings != null && _markings.Count != 0;
         if (_markings == null || _markings.Count == 0)
@@ -212,9 +210,11 @@ public sealed partial class SingleMarkingPicker : BoxContainer
                 item.Disabled = true;
                 item.TooltipText = reason?.ToString();
             }
-            // Arcane-End
 
             if (isCurrent)
+            // Arcane-End
+
+            // if (_markings[Slot].MarkingId == id) // Arcane-Edit
             {
                 _ignoreItemSelected = true;
                 item.Selected = true;

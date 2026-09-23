@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Shared._Arcane.DiscordRoles;
-using Content.Shared.Humanoid.Markings.Effects;
+using Content.Shared._Arcane.Humanoid.Markings.Effects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;

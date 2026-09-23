@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared.Humanoid.Markings;
-using Content.Shared.Humanoid.Markings.Effects;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 

@@ -1,11 +1,10 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Arcane.DiscordRoles;
+using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Humanoid.Markings.Effects;
+namespace Content.Shared._Arcane.Humanoid.Markings.Effects;
 
 /// <summary>
 ///     Base class for effects that gate whether a marking may be used by a given session.
