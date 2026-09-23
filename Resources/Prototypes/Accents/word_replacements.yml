@@ -622,8 +622,6 @@
     chatsan-word-328: chatsan-replacement-328
     chatsan-word-328-2: chatsan-replacement-328
     chatsan-word-329: chatsan-replacement-329
-    chatsan-word-329-2: chatsan-replacement-329
-    chatsan-word-329-3: chatsan-replacement-329
     chatsan-word-330: chatsan-replacement-330
     chatsan-word-331: chatsan-replacement-331
     chatsan-word-331-2: chatsan-replacement-331
@@ -669,12 +667,12 @@
     chatsan-word-353: chatsan-replacement-353
     chatsan-word-354: chatsan-replacement-354
     chatsan-word-355: chatsan-replacement-355
-    chatsan-word-356: chatsan-replacement-356
-    chatsan-word-356-2: chatsan-replacement-356
-    chatsan-word-356-3: chatsan-replacement-356
-    chatsan-word-356-4: chatsan-replacement-356
-    chatsan-word-356-5: chatsan-replacement-356
-    chatsan-word-356-6: chatsan-replacement-356
+    # chatsan-word-356: chatsan-replacement-356
+    # chatsan-word-356-2: chatsan-replacement-356
+    # chatsan-word-356-3: chatsan-replacement-356
+    # chatsan-word-356-4: chatsan-replacement-356
+    # chatsan-word-356-5: chatsan-replacement-356
+    # chatsan-word-356-6: chatsan-replacement-356
     chatsan-word-357: chatsan-replacement-357
     chatsan-word-357-2: chatsan-replacement-357
     chatsan-word-358: chatsan-replacement-358
@@ -706,6 +704,37 @@
     chatsan-word-383: chatsan-replacement-383
     chatsan-word-384: chatsan-replacement-384
     chatsan-word-385: chatsan-replacement-385
+    chatsan-word-386: chatsan-replacement-386
+    chatsan-word-387: chatsan-replacement-387
+    chatsan-word-387-2: chatsan-replacement-387
+    chatsan-word-389: chatsan-replacement-389
+    chatsan-word-390: chatsan-replacement-390
+    chatsan-word-391: chatsan-replacement-391
+    chatsan-word-392: chatsan-replacement-392
+    chatsan-word-393: chatsan-replacement-393
+    chatsan-word-394: chatsan-replacement-394
+    chatsan-word-395: chatsan-replacement-395
+    chatsan-word-396: chatsan-replacement-396
+    chatsan-word-397: chatsan-replacement-397
+    chatsan-word-398: chatsan-replacement-398
+    chatsan-word-399: chatsan-replacement-399
+    chatsan-word-400: chatsan-replacement-400
+    chatsan-word-401: chatsan-replacement-401
+    chatsan-word-402: chatsan-replacement-402
+    chatsan-word-403: chatsan-replacement-403
+    chatsan-word-404: chatsan-replacement-404
+    chatsan-word-405: chatsan-replacement-405
+    chatsan-word-406: chatsan-replacement-406
+    chatsan-word-407: chatsan-replacement-407
+    chatsan-word-409: chatsan-replacement-409
+    chatsan-word-410: chatsan-replacement-410
+    chatsan-word-411: chatsan-replacement-411
+    chatsan-word-412: chatsan-replacement-412
+    chatsan-word-413: chatsan-replacement-413
+    chatsan-word-414: chatsan-replacement-414
+    chatsan-word-415: chatsan-replacement-415
+    chatsan-word-416: chatsan-replacement-416
+    chatsan-word-416-2: chatsan-replacement-416
     # Arcane-End
 
 - type: accent
