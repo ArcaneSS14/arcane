@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 #nullable enable
+using Content.Shared.Administration.Logs;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
@@ -112,12 +113,12 @@ namespace Content.Shared.Administration
     public sealed class BwoinkHistoryRequest : EntityEventArgs
     {
         public NetUserId Channel { get; }
-        public int? LastLogId { get; }
+        public AdminLogCursor? Cursor { get; }
 
-        public BwoinkHistoryRequest(NetUserId channel, int? lastLogId = null)
+        public BwoinkHistoryRequest(NetUserId channel, AdminLogCursor? cursor = null)
         {
             Channel = channel;
-            LastLogId = lastLogId;
+            Cursor = cursor;
         }
     }
 
@@ -126,15 +127,15 @@ namespace Content.Shared.Administration
     {
         public NetUserId Channel { get; }
         public List<BwoinkHistoryMessage> Messages { get; }
-        public int? NextLastLogId { get; }
+        public AdminLogCursor? NextCursor { get; }
         public bool HasMore { get; }
         public bool IsContinuation { get; }
 
-        public BwoinkHistoryResponse(NetUserId channel, List<BwoinkHistoryMessage> messages, int? nextLastLogId, bool hasMore, bool isContinuation)
+        public BwoinkHistoryResponse(NetUserId channel, List<BwoinkHistoryMessage> messages, AdminLogCursor? nextCursor, bool hasMore, bool isContinuation)
         {
             Channel = channel;
             Messages = messages;
-            NextLastLogId = nextLastLogId;
+            NextCursor = nextCursor;
             HasMore = hasMore;
             IsContinuation = isContinuation;
         }

@@ -170,8 +170,8 @@ namespace Content.Server.Administration.Systems
                 IncludePlayers = true,
                 After = DateTime.UtcNow.AddMonths(-2),
                 DateOrder = DateOrder.Ascending,
-                LastLogId = request.LastLogId,
-                Limit = pageSize,
+                Cursor = request.Cursor,
+                Limit = pageSize + 1,
             };
 
             var logs = new List<SharedAdminLog>();
@@ -195,7 +195,8 @@ namespace Content.Server.Administration.Systems
             var savedLogs = new HashSet<(int RoundId, int Id)>(logs.Select(log => (log.RoundId, log.Id)));
             foreach (var log in currentRoundLogs)
             {
-                if (request.LastLogId != null && log.Id <= request.LastLogId)
+                if (request.Cursor is { } cursor &&
+                    new AdminLogCursor(log.Date, log.RoundId, log.Id).CompareTo(cursor) <= 0)
                     continue;
 
                 if (!savedLogs.Add((log.RoundId, log.Id)))
@@ -204,11 +205,13 @@ namespace Content.Server.Administration.Systems
                 logs.Add(log);
             }
 
-            var hasMore = logs.Count >= pageSize;
-            var page = logs.OrderBy(log => log.Date).ThenBy(log => log.Id).Take(pageSize).ToList();
+            var hasMore = logs.Count > pageSize;
+            var page = logs.OrderBy(log => log.Date).ThenBy(log => log.RoundId).ThenBy(log => log.Id).Take(pageSize).ToList();
             var messages = page.Select(log => new BwoinkHistoryMessage(log.Date, log.Message, log.Type == LogType.AhelpAdminOnly, log.RoundId)).ToList();
-            var lastLogId = page.Count > 0 ? page[^1].Id : (int?) null;
-            RaiseNetworkEvent(new BwoinkHistoryResponse(request.Channel, messages, lastLogId, hasMore, request.LastLogId != null), args.SenderSession.Channel);
+            AdminLogCursor? nextCursor = page.Count > 0
+                ? new AdminLogCursor(page[^1].Date, page[^1].RoundId, page[^1].Id)
+                : null;
+            RaiseNetworkEvent(new BwoinkHistoryResponse(request.Channel, messages, nextCursor, hasMore, request.Cursor != null), args.SenderSession.Channel);
         }
         // Arcane-end
 

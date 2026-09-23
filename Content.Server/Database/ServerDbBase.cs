@@ -1299,10 +1299,32 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 };
             }
 
+            // Arcane-Edit-Start
+            if (filter.Cursor is { } cursor)
+            {
+                var cursorDate = cursor.Date;
+                var cursorRoundId = cursor.RoundId;
+                var cursorId = cursor.Id;
+                query = filter.DateOrder switch
+                {
+                    DateOrder.Ascending => query.Where(log =>
+                        log.Date > cursorDate ||
+                        log.Date == cursorDate && log.RoundId > cursorRoundId ||
+                        log.Date == cursorDate && log.RoundId == cursorRoundId && log.Id > cursorId),
+                    DateOrder.Descending => query.Where(log =>
+                        log.Date < cursorDate ||
+                        log.Date == cursorDate && log.RoundId < cursorRoundId ||
+                        log.Date == cursorDate && log.RoundId == cursorRoundId && log.Id < cursorId),
+                    _ => throw new ArgumentOutOfRangeException(nameof(filter),
+                        $"Unknown {nameof(DateOrder)} value {filter.DateOrder}")
+                };
+            }
+            // Arcane-Edit-End
+
             query = filter.DateOrder switch
             {
-                DateOrder.Ascending => query.OrderBy(log => log.Date),
-                DateOrder.Descending => query.OrderByDescending(log => log.Date),
+                DateOrder.Ascending => query.OrderBy(log => log.Date).ThenBy(log => log.RoundId).ThenBy(log => log.Id), // Arcane
+                DateOrder.Descending => query.OrderByDescending(log => log.Date).ThenByDescending(log => log.RoundId).ThenByDescending(log => log.Id), // Arcane
                 _ => throw new ArgumentOutOfRangeException(nameof(filter),
                     $"Unknown {nameof(DateOrder)} value {filter.DateOrder}")
             };
