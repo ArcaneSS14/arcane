@@ -153,6 +153,7 @@ namespace Content.Server.Administration.Systems
         // Arcane-start
         private async void OnHistoryRequest(BwoinkHistoryRequest request, EntitySessionEventArgs args)
         {
+            const int pageSize = 1000;
             var isAdmin = _adminManager.GetAdminData(args.SenderSession)?.HasFlag(AdminFlags.Adminhelp) ?? false;
             if (!isAdmin && request.Channel != args.SenderSession.UserId)
                 return;
@@ -170,18 +171,43 @@ namespace Content.Server.Administration.Systems
                 After = DateTime.UtcNow.AddMonths(-2),
                 DateOrder = DateOrder.Ascending,
                 LastLogId = request.LastLogId,
-                Limit = 1000,
+                Limit = pageSize,
             };
 
-            var messages = new List<BwoinkHistoryMessage>();
-            var lastLogId = (int?) null;
+            var logs = new List<SharedAdminLog>();
             await foreach (var log in _dbManager.GetAdminLogs(filter))
             {
-                messages.Add(new BwoinkHistoryMessage(log.Date, log.Message, log.Type == LogType.AhelpAdminOnly));
-                lastLogId = log.Id;
+                logs.Add(log);
             }
 
-            var hasMore = messages.Count == filter.Limit;
+            // The database can lag behind messages already delivered to clients. CurrentRoundLogs
+            // includes the in-memory admin log cache, so a newly opened conversation sees them.
+            var currentRoundFilter = new LogFilter
+            {
+                Types = filter.Types,
+                AnyPlayers = filter.AnyPlayers,
+                IncludePlayers = true,
+                After = filter.After,
+                DateOrder = DateOrder.Ascending,
+            };
+            var currentRoundLogs = await _adminLog.CurrentRoundLogs(currentRoundFilter);
+            // RoundId and Id identify the same log in the database and the in-memory cache.
+            var savedLogs = new HashSet<(int RoundId, int Id)>(logs.Select(log => (log.RoundId, log.Id)));
+            foreach (var log in currentRoundLogs)
+            {
+                if (request.LastLogId != null && log.Id <= request.LastLogId)
+                    continue;
+
+                if (!savedLogs.Add((log.RoundId, log.Id)))
+                    continue;
+
+                logs.Add(log);
+            }
+
+            var hasMore = logs.Count >= pageSize;
+            var page = logs.OrderBy(log => log.Date).ThenBy(log => log.Id).Take(pageSize).ToList();
+            var messages = page.Select(log => new BwoinkHistoryMessage(log.Date, log.Message, log.Type == LogType.AhelpAdminOnly, log.RoundId)).ToList();
+            var lastLogId = page.Count > 0 ? page[^1].Id : (int?) null;
             RaiseNetworkEvent(new BwoinkHistoryResponse(request.Channel, messages, lastLogId, hasMore, request.LastLogId != null), args.SenderSession.Channel);
         }
         // Arcane-end
@@ -216,7 +242,7 @@ namespace Content.Server.Administration.Systems
         private void PlayerRateLimitedAction(ICommonSession obj)
         {
             RaiseNetworkEvent(
-                new BwoinkTextMessage(obj.UserId, default, Loc.GetString("bwoink-system-rate-limited"), playSound: false),
+                new BwoinkTextMessage(obj.UserId, default, Loc.GetString("bwoink-system-rate-limited"), playSound: false, roundId: _gameTicker.RoundId), // Arcane
                 obj.Channel);
         }
 
@@ -319,7 +345,8 @@ namespace Content.Server.Administration.Systems
                 trueSender: SystemUserId,
                 text: inGameMessage,
                 sentAt: DateTime.Now,
-                playSound: false
+                playSound: false,
+                roundId: _gameTicker.RoundId // Arcane
             );
 
             var admins = GetTargetAdmins();
@@ -823,7 +850,7 @@ namespace Content.Server.Administration.Systems
 
             // If it's not an admin / admin chooses to keep the sound and message is not an admin only message, then play it.
             var playSound = (bwoinkParams.SenderAdmin == null || bwoinkParams.Message.PlaySound) && !bwoinkParams.Message.AdminOnly;
-            var msg = new BwoinkTextMessage(bwoinkParams.Message.UserId, bwoinkParams.SenderId, bwoinkText, playSound: playSound, adminOnly: bwoinkParams.Message.AdminOnly);
+            var msg = new BwoinkTextMessage(bwoinkParams.Message.UserId, bwoinkParams.SenderId, bwoinkText, playSound: playSound, adminOnly: bwoinkParams.Message.AdminOnly, roundId: _gameTicker.RoundId); // Arcane
 
             // Arcane-start
             _adminLog.Add(bwoinkParams.Message.AdminOnly ? LogType.AhelpAdminOnly : LogType.Ahelp,
@@ -877,7 +904,8 @@ namespace Content.Server.Administration.Systems
                         RaiseNetworkEvent(new BwoinkTextMessage(bwoinkParams.Message.UserId,
                                 bwoinkParams.SenderId,
                                 overrideMsgText,
-                                playSound: playSound),
+                                playSound: playSound,
+                                roundId: _gameTicker.RoundId), // Arcane
                             session.Channel);
                     }
                     else
@@ -921,7 +949,7 @@ namespace Content.Server.Administration.Systems
             if (bwoinkParams.SenderChannel != null)
             {
                 var systemText = Loc.GetString("bwoink-system-starmute-message-no-other-users");
-                var starMuteMsg = new BwoinkTextMessage(bwoinkParams.Message.UserId, SystemUserId, systemText);
+                var starMuteMsg = new BwoinkTextMessage(bwoinkParams.Message.UserId, SystemUserId, systemText, roundId: _gameTicker.RoundId); // Arcane
                 RaiseNetworkEvent(starMuteMsg, bwoinkParams.SenderChannel);
             }
         }

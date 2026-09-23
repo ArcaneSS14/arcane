@@ -374,10 +374,17 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     {
         if (_activePanelMap.TryGetValue(channel, out var panel))
         {
-            panel.ReceiveHistory(messages, isContinuation);
-            if (hasMore && nextLastLogId != null)
-                RequestHistoryAction?.Invoke(channel, nextLastLogId);
+            panel.ReceiveHistory(messages, isContinuation, nextLastLogId, hasMore);
+            if (hasMore)
+                TryRequestHistory(channel);
         }
+    }
+
+    public void TryRequestHistory(NetUserId channel)
+    {
+        var panel = EnsurePanel(channel);
+        if (panel.TryBeginHistoryRequest(out var lastLogId))
+            RequestHistoryAction?.Invoke(channel, lastLogId);
     }
     // Arcane-end
 
@@ -444,11 +451,10 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
 
     public void Open(NetUserId channelId, bool relayActive)
     {
-        SelectChannel(channelId);
         // Arcane-start
-        if (_activePanelMap.TryGetValue(channelId, out var panel))
-            panel.ClearHistory();
-        RequestHistoryAction?.Invoke(channelId, null);
+        var selected = SelectChannel(channelId);
+        if (!selected)
+            TryRequestHistory(channelId);
         // Arcane-end
         OpenWindow();
     }
@@ -508,10 +514,10 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     }
     public bool TryGetChannel(NetUserId ch, [NotNullWhen(true)] out BwoinkPanel? bp) => _activePanelMap.TryGetValue(ch, out bp);
 
-    private void SelectChannel(NetUserId uid)
+    private bool SelectChannel(NetUserId uid) // Arcane
     {
         EnsurePanel(uid);
-        Control!.SelectChannel(uid);
+        return Control!.SelectChannel(uid); // Arcane
     }
 
     public void Dispose()
@@ -542,6 +548,7 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
         DebugTools.Assert(message.UserId == _ownerId);
         EnsureInit(_discordRelayActive);
         _chatPanel!.ReceiveLine(message);
+        TryRequestHistory(); // Arcane
         _window!.OpenCentered();
     }
 
@@ -559,6 +566,7 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
         }
         else
         {
+            TryRequestHistory(); // Arcane
             _window.OpenCentered();
         }
     }
@@ -592,12 +600,18 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
     {
         EnsureInit(relayActive);
         // Arcane-start
-        if (_chatPanel != null)
-            _chatPanel.ClearHistory();
-        RequestHistoryAction?.Invoke(channelId, null);
+        TryRequestHistory();
         // Arcane-end
         _window!.OpenCentered();
     }
+
+    // Arcane-start
+    private void TryRequestHistory()
+    {
+        if (_chatPanel != null && _chatPanel.TryBeginHistoryRequest(out var lastLogId))
+            RequestHistoryAction?.Invoke(_ownerId, lastLogId);
+    }
+    // Arcane-end
 
     private void EnsureInit(bool relayActive)
     {
@@ -617,9 +631,11 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
         _window.OnOpen += () => { OnOpen?.Invoke(); };
         _window.Contents.AddChild(_chatPanel);
 
-        var introText = Loc.GetString("bwoink-system-introductory-message");
-        var introMessage = new SharedBwoinkSystem.BwoinkTextMessage( _ownerId, SharedBwoinkSystem.SystemUserId, introText);
-        Receive(introMessage);
+        // Arcane-edit-start
+        // var introText = Loc.GetString("bwoink-system-introductory-message");
+        // var introMessage = new SharedBwoinkSystem.BwoinkTextMessage( _ownerId, SharedBwoinkSystem.SystemUserId, introText);
+        // Receive(introMessage);
+        // Arcane-edit-end
     }
 
     // Arcane-start
@@ -627,9 +643,9 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
     {
         if (channel == _ownerId)
         {
-            _chatPanel?.ReceiveHistory(messages, isContinuation);
-            if (hasMore && nextLastLogId != null)
-                RequestHistoryAction?.Invoke(channel, nextLastLogId);
+            _chatPanel?.ReceiveHistory(messages, isContinuation, nextLastLogId, hasMore);
+            if (hasMore)
+                TryRequestHistory();
         }
     }
     // Arcane-end

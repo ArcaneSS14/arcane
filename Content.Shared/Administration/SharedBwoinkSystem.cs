@@ -43,8 +43,9 @@ namespace Content.Shared.Administration
             public bool PlaySound { get; }
 
             public readonly bool AdminOnly;
+            public int? RoundId { get; } // Arcane
 
-            public BwoinkTextMessage(NetUserId userId, NetUserId trueSender, string text, DateTime? sentAt = default, bool playSound = true, bool adminOnly = false)
+            public BwoinkTextMessage(NetUserId userId, NetUserId trueSender, string text, DateTime? sentAt = default, bool playSound = true, bool adminOnly = false, int? roundId = null) // Arcane
             {
                 SentAt = sentAt ?? DateTime.Now;
                 UserId = userId;
@@ -52,6 +53,7 @@ namespace Content.Shared.Administration
                 Text = text;
                 PlaySound = playSound;
                 AdminOnly = adminOnly;
+                RoundId = roundId; // Arcane
             }
         }
     }
@@ -144,12 +146,14 @@ namespace Content.Shared.Administration
         public DateTime SentAt { get; }
         public string Text { get; }
         public bool AdminOnly { get; }
+        public int RoundId { get; }
 
-        public BwoinkHistoryMessage(DateTime sentAt, string text, bool adminOnly)
+        public BwoinkHistoryMessage(DateTime sentAt, string text, bool adminOnly, int roundId)
         {
             SentAt = sentAt;
             Text = text;
             AdminOnly = adminOnly;
+            RoundId = roundId;
         }
     }
     // Arcane-end
