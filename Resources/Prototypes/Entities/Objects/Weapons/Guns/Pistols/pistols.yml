@@ -259,7 +259,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+#        name: Chamber # Arcane-Edit: Localization
         startingItem: MagazinePistol
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -269,7 +269,7 @@
             - MagazinePistol
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+#        name: Chamber # Arcane-Edit: Localization
         startingItem: CartridgePistol
         priority: 1
         whitelist:
