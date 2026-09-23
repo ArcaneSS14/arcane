@@ -5,6 +5,7 @@ using Content.Shared.Emoting;
 using Content.Shared.Humanoid;
 using Content.Shared.Speech.Components;
 using Content.Shared.Tag;
+using Content.Goobstation.Common.Speech;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Speech.EntitySystems;
@@ -46,6 +47,18 @@ public sealed class NatureSystem : EntitySystem
 
         if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
             return;
+
+        var getSoundEv = new GetEmoteSoundsEvent();
+        RaiseLocalEvent(uid, ref getSoundEv);
+        if (getSoundEv.Handled)
+        {
+            if (getSoundEv.EmoteSoundProtoId is not { } protoId)
+                return;
+
+            if (_proto.TryIndex(protoId, out EmoteSoundsPrototype? overrideSounds))
+                args.Handled = _chat.TryPlayEmoteSound(uid, overrideSounds, args.Emote);
+            return;
+        }
 
         // The species' own sounds always win; the trait only adds sounds for emotes the
         // race has none of (e.g. Meow for a human, while an IPC keeps its Beep/Boop).
