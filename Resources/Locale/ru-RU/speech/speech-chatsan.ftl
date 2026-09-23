@@ -724,7 +724,7 @@ chatsan-word-387 = каф+ай
 chatsan-word-387-2 = каф+ни
 chatsan-replacement-387 = закуй
 
-chatsan-word-389 = каф[ф]?
+chatsan-word-389 = каф+
 chatsan-replacement-389 = наручники
 
 chatsan-word-390 = каф+нули
