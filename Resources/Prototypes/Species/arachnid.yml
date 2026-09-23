@@ -16,6 +16,10 @@
   lastNames: NamesArachnidLast
   sexes:
   - Unsexed
+  # Arcane-Start
+  - Male
+  - Female
+  # Arcane-End
   # Orion-Start
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Arachnid.xml"

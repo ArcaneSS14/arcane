@@ -13,8 +13,8 @@
   coefficients:
     Cold: 0.85
     Heat: 0.80
-    Slash: 1.2
-    Blunt: 1.2
+    Slash: 1.1
+    Blunt: 1.1
 
 - type: damageModifierSet
   id: Human

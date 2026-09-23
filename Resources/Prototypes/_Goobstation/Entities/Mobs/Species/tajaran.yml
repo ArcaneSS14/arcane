@@ -97,7 +97,7 @@
       types:
         Blunt: 1
   - type: Stamina
-    baseCritThreshold: 130
+    baseCritThreshold: 85 # Arcane-Edit
     animationThreshold: 70 # Goob edit
   - type: TypingIndicator
     proto: felinid
