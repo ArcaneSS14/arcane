@@ -305,13 +305,11 @@ public partial class TraumaSystem
         if (boneComp.BoneWoundable != null
             && TryComp<BodyPartComponent>(boneComp.BoneWoundable.Value, out var bodyPartComp)
             && bodyPartComp.Body is { } body)
-        // Arcane-Edit-Start
         {
             if (bodyPartComp.PartType is BodyPartType.Leg or BodyPartType.Foot)
-                ProcessLegsState(body, boneComp.BoneWoundable);
+                ProcessLegsState(body, boneComp.BoneWoundable); // Arcane-Edit
             UpdateBodyBoneAlert(body);
         }
-        // Arcane-Edit-End
     }
 
     // Arcane-Edit-Start
@@ -396,7 +394,7 @@ public partial class TraumaSystem
     private void OnBodyTopologyChanged(Entity<BodyComponent> body, ref BodyTopologyChangedEvent args) =>
         ProcessLegsState(body);
 
-    private void ProcessLegsState(EntityUid body, EntityUid? operatedPart = null, BodyComponent? bodyComp = null)
+    private void ProcessLegsState(EntityUid body, EntityUid? operatedPart = null, BodyComponent? bodyComp = null) // Arcane-Edit
     {
         if (!Resolve(body, ref bodyComp) || bodyComp.RequiredLegs <= 0)
             return;
