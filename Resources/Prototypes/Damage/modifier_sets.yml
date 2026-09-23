@@ -201,8 +201,11 @@
 - type: damageModifierSet
   id: Scale # Skin tougher, bones weaker, strong stomachs, cold-blooded (kindof)
   coefficients:
-    Slash: 0.7 # Arcane
-    Piercing: 1.25 # Arcane
+  # Arcane-Start
+    Slash: 0.8
+    Piercing: 1.1
+    Heat: 0.7
+  # Arcane-End
     Cold: 1.3
   ignoreArmorPierceFlags: All # Goobstation
 
