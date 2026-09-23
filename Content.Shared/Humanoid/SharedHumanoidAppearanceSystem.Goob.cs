@@ -1,3 +1,4 @@
+using System.Numerics;
 using Robust.Shared.GameObjects.Components.Localization;
 
 namespace Content.Shared.Humanoid;
