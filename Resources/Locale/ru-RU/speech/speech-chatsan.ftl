@@ -720,26 +720,26 @@ chatsan-replacement-385 = неприятный момент
 chatsan-word-386 = вась
 chatsan-replacement-386 = Василий
 
-chatsan-word-387 = каф[ф]ай
-chatsan-word-387-2 = каф[ф]ни
+chatsan-word-387 = каф+ай
+chatsan-word-387-2 = каф+ни
 chatsan-replacement-387 = закуй
 
-chatsan-word-389 = каф[ф]
+chatsan-word-389 = каф[ф]?
 chatsan-replacement-389 = наручники
 
-chatsan-word-390 = каф[ф]нули
+chatsan-word-390 = каф+нули
 chatsan-replacement-390 = заковали
 
-chatsan-word-391 = каф[ф]нул
+chatsan-word-391 = каф+нул
 chatsan-replacement-391 = заковал
 
-chatsan-word-392 = каф[ф]нула
+chatsan-word-392 = каф+нула
 chatsan-replacement-392 = заковала
 
-chatsan-word-393 = каф[ф]нут
+chatsan-word-393 = каф+нут
 chatsan-replacement-393 = закован
 
-chatsan-word-394 = зач
+chatsan-word-394 = за+ч
 chatsan-replacement-394 = зачем
 
 chatsan-word-395 = епт
@@ -748,7 +748,7 @@ chatsan-replacement-395 = блин
 chatsan-word-396 = братан
 chatsan-replacement-396 = брат
 
-chatsan-word-397 = коч
+chatsan-word-397 = ко+ч
 chatsan-replacement-397 = стой
 
 chatsan-word-398 = г+о+й+д+а+
@@ -772,37 +772,44 @@ chatsan-replacement-403 = оружие
 chatsan-word-404 = поч
 chatsan-replacement-404 = почему
 
-chatsan-word-405 = мог[г]нул
+chatsan-word-405 = мог+нул
 chatsan-replacement-405 = превзошёл
 
-chatsan-word-406 = мог[г]ает
+chatsan-word-406 = мог+ает
 chatsan-replacement-406 = превосходит
 
-chatsan-word-407 = мог[г]нули
+chatsan-word-407 = мог+нули
 chatsan-replacement-407 = превзошли
 
-chatsan-word-409 = мог[г]нула
+chatsan-word-409 = мог+нула
 chatsan-replacement-409 = превзошла
 
-chatsan-word-410 = бон[с]мешинг
+chatsan-word-410 = бон[с]?мешинг
 chatsan-replacement-410 = набивание
 
 chatsan-word-411 = луксмаксер
 chatsan-replacement-411 = красавчик
 
-chatsan-word-412 = асце[н]д[н]улся
+chatsan-word-412 = асце[н]?д[н]?улся
 chatsan-replacement-412 = возвысился
 
-chatsan-word-413 = асце[н]д[н]улась
+chatsan-word-413 = асце[н]?д[н]?улась
 chatsan-replacement-413 = возвысилась
 
-chatsan-word-414 = асце[н]д[н]ул
+chatsan-word-414 = асце[н]?д[н]?ул
 chatsan-replacement-414 = возвысил
 
-chatsan-word-415 = асце[н]д[н]ули
+chatsan-word-415 = асце[н]?д[н]?ули
 chatsan-replacement-415 = возвысили
 
-chatsan-word-416 = асце[н]д[н]ет
-chatsan-word-416-2 = асце[н]д[н]утый
+chatsan-word-416 = асце[н]?д[н]?ет
+chatsan-word-416-2 = асце[н]?д[н]?утый
 chatsan-replacement-416 = возвышенный
+
+chatsan-word-417 = як
+chatsan-word-417-2 = янтарь
+chatsan-replacement-417 = янтарный код
+
+chatsan-word-418 = мог+аю
+chatsan-replacement-418 = превосхожу
 # Arcane-End
