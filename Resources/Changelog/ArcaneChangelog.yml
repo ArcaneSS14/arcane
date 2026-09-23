@@ -1798,3 +1798,95 @@ Entries:
   url: https://github.com/ArcaneSS14/arcane/pull/384
   media:
     - https://i.postimg.cc/tgq7TP8M/Atlas-Most.png)](https://postimg.cc/G4fbgBLF
+- author: ReWAFFlution, Reserve Station
+  changes:
+    - type: Add
+      message: >-
+        Добавлена автозамена модному сленгу, парочке оскорблений а тажке прочей
+        гнили.
+  id: 138
+  time: '2026-09-22T08:10:08.0000000+00:00'
+  prNumber: 374
+  url: https://github.com/ArcaneSS14/arcane/pull/374
+  media:
+    - >-
+      https://github.com/user-attachments/assets/a47d0b64-3636-4043-af00-15211bace74e
+- author: GrinDers
+  changes:
+    - type: Tweak
+      message: Обновлены правила сервера до актуальной версии.
+  id: 139
+  time: '2026-09-22T15:18:00.0000000+00:00'
+  prNumber: 389
+  url: https://github.com/ArcaneSS14/arcane/pull/389
+  media:
+    - >-
+      https://github.com/user-attachments/assets/126ac97d-c391-480d-a53c-af277724e63f
+- author: uty206
+  changes:
+    - type: Fix
+      message: Исправлена электропитания на терминале прибытия.
+  id: 140
+  time: '2026-09-23T03:58:37.0000000+00:00'
+  prNumber: 392
+  url: https://github.com/ArcaneSS14/arcane/pull/392
+- author: darneya
+  changes:
+    - type: Tweak
+      message: >-
+        Изменен кабинет Синего Щита и Представителя NT, теперь это два отдельных
+        кабинета.
+    - type: Tweak
+      message: >-
+        Второй кабинет Синего Щита заменён на заброшенную операционную
+        Бригмедика.
+    - type: Remove
+      message: Удалён шаттл ОБР по кнопке.
+    - type: Remove
+      message: Удалена кнопка вызова ОБР в каюте Капитана.
+  id: 141
+  time: '2026-09-23T15:04:16.0000000+00:00'
+  prNumber: 393
+  url: https://github.com/ArcaneSS14/arcane/pull/393
+  media:
+    - >-
+      https://github.com/user-attachments/assets/4cc0a87d-3969-4e07-9020-b3947b4e0412
+    - >-
+      https://github.com/user-attachments/assets/951cd27b-85ee-4863-b6ee-e0bf838d3ae0
+    - >-
+      https://github.com/user-attachments/assets/da3f29ce-7735-4194-b138-f7547621d014
+    - >-
+      https://github.com/user-attachments/assets/eb64a5c3-c161-4926-ba98-ae2afe178e58
+- author: Vecortys
+  changes:
+    - type: Add
+      message: >-
+        История ахелпа теперь отображает номер раунда, в котором было
+        обсуждение.
+    - type: Fix
+      message: История ахелпа должна более стабильно подгружаться.
+    - type: Tweak
+      message: >-
+        Время сообщения в ахелпе теперь учитывает локальные настройки компьютера
+        (ранее история использовала GMT, что на 3 часа меньше МСК).
+    - type: Tweak
+      message: >-
+        В случае проблем с историей ахелпа, текущие сообщения теперь будут
+        отображаться корректно.
+  id: 142
+  time: '2026-09-23T16:58:59.0000000+00:00'
+  prNumber: 395
+  url: https://github.com/ArcaneSS14/arcane/pull/395
+- author: darneya
+  changes:
+    - type: Tweak
+      message: Изменена оружейная Fland, добавлены сейфы с рандомным вооружением.
+  id: 143
+  time: '2026-09-23T17:20:28.0000000+00:00'
+  prNumber: 394
+  url: https://github.com/ArcaneSS14/arcane/pull/394
+  media:
+    - >-
+      https://github.com/user-attachments/assets/30939c19-84d2-4a71-ace0-970768864ae6
+    - >-
+      https://github.com/user-attachments/assets/a70f6858-e5d7-44b7-bfdb-988c072ad440
