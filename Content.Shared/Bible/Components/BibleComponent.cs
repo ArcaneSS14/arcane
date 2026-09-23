@@ -61,11 +61,12 @@ namespace Content.Goobstation.Shared.Bible // Death to serverside components. Gl
         [DataField]
         public DamageSpecifier SmiteDamage = new() {DamageDict = new Dictionary<string, FixedPoint2>() {{ "Holy", 25 }}}; // Ungodly
 
-        /// <summary>
-        /// How long to stun the entity being smitten - Goob
-        /// </summary>
-        [DataField]
-        public TimeSpan SmiteStunDuration = TimeSpan.FromSeconds(8);
-
+        // Arcane-Edit-Start
+        // /// <summary>
+        // /// How long to stun the entity being smitten - Goob
+        // /// </summary>
+        // [DataField]
+        // public TimeSpan SmiteStunDuration = TimeSpan.FromSeconds(8);
+        // Arcane-Edit-End
     }
 }
