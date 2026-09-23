@@ -660,8 +660,7 @@ entities:
       pos: 6.5,-4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -27.291725
-      state: Opening
+      state: Closed # Arcane-Edit: Fix
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True

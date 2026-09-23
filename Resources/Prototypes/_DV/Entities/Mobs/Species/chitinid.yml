@@ -33,7 +33,7 @@
     damageModifierSet: Chitinid
   - type: Speech
     speechVerb: Chitinid
-    allowedEmotes: ['Chitter', 'Click', 'Hiss']
+    allowedEmotes: ['Chitter', 'Click', 'Hiss', 'Scream'] # Arcane-Edit: Upstream fix: Added 'Scream'
   - type: MeleeWeapon
     animation: WeaponArcBite
     soundHit:

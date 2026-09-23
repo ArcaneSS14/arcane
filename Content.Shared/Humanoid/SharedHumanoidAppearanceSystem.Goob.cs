@@ -22,6 +22,7 @@ public abstract partial class SharedHumanoidAppearanceSystem
         targetHumanoid.Age = sourceHumanoid.Age;
         targetHumanoid.Height = sourceHumanoid.Height;
         targetHumanoid.Width = sourceHumanoid.Width;
+        _heightAdjust.SetScale(target, new Vector2(targetHumanoid.Width, targetHumanoid.Height)); // Arcane
         targetHumanoid.Gender = sourceHumanoid.Gender;
         SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
 
