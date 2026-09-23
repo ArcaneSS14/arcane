@@ -91,7 +91,7 @@ public partial class XenobiologySystem
                 continue;
 
             // Arcane-Start
-            if (IsMitosisDensityBlocked(ent.Owner))
+            if (GetMitosisCapacity(ent.Owner) <= 0)
                 continue;
             // Arcane-End
 
@@ -110,14 +110,15 @@ public partial class XenobiologySystem
 
     // Arcane-Start
     /// <summary>
-    ///     Blocks mitosis when too many other slimes are packed too close together.
+    ///     How many more slimes may appear within this slime's density radius before
+    ///     <see cref="SlimeComponent.MitosisDensityLimit"/> is hit. Returns int.MaxValue when the limit is disabled.
     /// </summary>
-    private bool IsMitosisDensityBlocked(EntityUid uid)
+    private int GetMitosisCapacity(EntityUid uid)
     {
         if (!TryComp<SlimeComponent>(uid, out var slime)
             || slime.MitosisDensityLimit <= 0
             || slime.MitosisDensityRange <= 0)
-            return false;
+            return int.MaxValue;
 
         var count = 0;
         foreach (var (other, _) in _lookup.GetEntitiesInRange<SlimeComponent>(
@@ -127,11 +128,10 @@ public partial class XenobiologySystem
             if (other == uid)
                 continue;
 
-            if (++count >= slime.MitosisDensityLimit)
-                return true;
+            count++;
         }
 
-        return false;
+        return Math.Max(0, slime.MitosisDensityLimit - count);
     }
     // Arcane-End
 
@@ -145,11 +145,26 @@ public partial class XenobiologySystem
         var rand = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(ent));
         var offspringCount = rand.Next(1, ent.Comp.MaxOffspring + 1);
 
+        // Arcane-Start
+        var capacity = GetMitosisCapacity(ent.Owner);
+        if (capacity <= 0)
+            return;
+
+        offspringCount = Math.Min(offspringCount, capacity);
+        // Arcane-End
+
         if (_net.IsServer) // no local entity for PlayPredicted and i dont trust this israelgpt slop anyway
             _audio.PlayPvs(ent.Comp.MitosisSound, ent);
 
+        var spawnedCount = 0; // Arcane
+
         for (var i = 0; i < offspringCount; i++)
         {
+            // Arcane-Start
+            if (GetMitosisCapacity(ent.Owner) <= 0)
+                break;
+            // Arcane-End
+
             var selectedBreed = ent.Comp.Breed;
 
             if (rand.Prob(ent.Comp.MutationChance) && ent.Comp.PotentialMutations.Count > 0)
@@ -164,8 +179,15 @@ public partial class XenobiologySystem
                 sl.Comp.ExtractsProduced = ent.Comp.ExtractsProduced;
                 sl.Comp.Whitelist = ent.Comp.Whitelist;
                 Dirty(sl);
+
+                spawnedCount++; // Arcane
             }
         }
+
+        // Arcane-Start
+        if (spawnedCount == 0)
+            return;
+        // Arcane-End
 
         // transfer chem bloodstream and stomach chemicals to children evenly
         var slimeScale = 1 / (float) _slimes.Count;
