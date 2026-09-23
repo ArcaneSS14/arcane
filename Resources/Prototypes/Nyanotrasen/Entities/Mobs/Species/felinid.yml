@@ -29,9 +29,11 @@
     prototype: Felinid
   - type: Damageable
     damageModifierSet: Felinid
+  # Arcane-Start
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.6
     baseSprintSpeed: 4.6
+  # Arcane-End
   # Goobstation - Siouxcide, felinids have standard slow on damage numbers
 # - type: SlowOnDamage
 #   speedModifierThresholds:
