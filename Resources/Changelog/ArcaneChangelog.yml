@@ -1857,3 +1857,36 @@ Entries:
       https://github.com/user-attachments/assets/da3f29ce-7735-4194-b138-f7547621d014
     - >-
       https://github.com/user-attachments/assets/eb64a5c3-c161-4926-ba98-ae2afe178e58
+- author: Vecortys
+  changes:
+    - type: Add
+      message: >-
+        История ахелпа теперь отображает номер раунда, в котором было
+        обсуждение.
+    - type: Fix
+      message: История ахелпа должна более стабильно подгружаться.
+    - type: Tweak
+      message: >-
+        Время сообщения в ахелпе теперь учитывает локальные настройки компьютера
+        (ранее история использовала GMT, что на 3 часа меньше МСК).
+    - type: Tweak
+      message: >-
+        В случае проблем с историей ахелпа, текущие сообщения теперь будут
+        отображаться корректно.
+  id: 142
+  time: '2026-09-23T16:58:59.0000000+00:00'
+  prNumber: 395
+  url: https://github.com/ArcaneSS14/arcane/pull/395
+- author: darneya
+  changes:
+    - type: Tweak
+      message: Изменена оружейная Fland, добавлены сейфы с рандомным вооружением.
+  id: 143
+  time: '2026-09-23T17:20:28.0000000+00:00'
+  prNumber: 394
+  url: https://github.com/ArcaneSS14/arcane/pull/394
+  media:
+    - >-
+      https://github.com/user-attachments/assets/30939c19-84d2-4a71-ace0-970768864ae6
+    - >-
+      https://github.com/user-attachments/assets/a70f6858-e5d7-44b7-bfdb-988c072ad440
