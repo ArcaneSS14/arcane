@@ -1,5 +1,4 @@
-ent-SurgeryMute = Зашить рот
-    .desc = I have no mouth and i must scream.
-ent-SurgeryRemoveMute = Снять швы с рта
-    .desc = I have mouth and i scream.
- 
+ent-SurgeryStepMute = Фиксация языка
+    .desc = Ограничить подвижность языка, лишив пациента возможности говорить.
+ent-SurgeryStepRemoveMute = Освобождение языка
+    .desc = Устранить ограничение подвижности языка, восстановив возможность говорить.

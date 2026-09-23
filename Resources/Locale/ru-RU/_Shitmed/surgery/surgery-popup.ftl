@@ -93,6 +93,6 @@ surgery-popup-step-SurgeryStepInsertEggSack = { $user } вставляет яй�
 surgery-popup-step-SurgeryStepXenoTakeSample = { $user } аккуратно удаляет кусочек { $part } { $target }.
 surgery-popup-step-SurgeryStepGraftXenoSample = { $user } прививает ксеноткань к { $part } { $target }!
 # Arcane-Start
-surgery-popup-step-SurgeryStepMute = {$user} зашивает рот {$target}!
-surgery-popup-step-SurgeryStepRemoveMute = {$user} убирает швы с рта у {$target}!
+surgery-popup-step-SurgeryStepMute = {$user} стягивает швами язык {$target}!
+surgery-popup-step-SurgeryStepRemoveMute = {$user} разрезает швы на языке {$target}!
 # Arcane-End
