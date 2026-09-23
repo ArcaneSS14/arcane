@@ -15,9 +15,5 @@ public sealed partial class NatureComponent : Component
     [DataField]
     public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? newSounds;
 
-    public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? OriginalSounds;
-
-    public ProtoId<EmoteSoundsPrototype>? OriginalEmoteSounds;
-
     public bool AddedTag;
 }
