@@ -18,7 +18,6 @@
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Tajaran.xml"
   pros:
   # Arcane-start
-  - Получают на 20% меньше колющего урона.
   - Получают на 30% меньше холодового урона.
   # Arcane-end
   - Обладают ночным зрением.
@@ -29,7 +28,10 @@
   - Не издают звуков ходьбы, если не носят обуви.
   - Могут поместится в вещмешок.
   cons:
-  - Получают на 20% больше тупого, режущего и теплового урона. # Arcane
+  # Arcane-Edit-Start
+  - Получают на 15% больше тупого и режущего.
+  - Получают на 20% больше теплового урона.
+  # Arcane-Edit-End
   # Orion-End
   # begin Goobstation: port EE height/width sliders
   minHeight: 0.85

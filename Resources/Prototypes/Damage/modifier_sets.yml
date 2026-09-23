@@ -178,8 +178,9 @@
     Blunt: 0.6
     # Arcane-Edit-Start
     Slash: 1.25
-    Piercing: 0.75
+    Piercing: 0.8
     # Arcane-Edit-End
+    Heat: 1.3 # Arcane
     Cold: 1.5
     Poison: 0.8
   ignoreArmorPierceFlags: All # Goobstation
@@ -218,6 +219,7 @@
   id: Arachnid
   coefficients:
     # Arcane-Start
+    Blunt: 0.9
     Slash: 0.8
     Heat: 1.25
     # Arcane-End
@@ -227,10 +229,13 @@
 - type: damageModifierSet
   id: Moth # Arcane: Cold resistant, vulnerable to heat and piercing.
   coefficients:
-    Slash: 0.8 # Arcane
+    # Arcane-Start
+    Blunt: 1.1
+    Slash: 0.8
+    # Arcane-End
     Cold: 0.7
     Heat: 1.2
-    Piercing: 1.2 # Arcane
+    Piercing: 1.1
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
@@ -249,7 +254,7 @@
   id: Zombie #Goob change, make zombies great again
   coefficients:
   # Arcane-Edit-Start: (2 -> 1.2)
-    Blunt: 1.2 
+    Blunt: 1.2
     Piercing: 1.2
     Slash: 1.2
   # Arcane-Edit-End

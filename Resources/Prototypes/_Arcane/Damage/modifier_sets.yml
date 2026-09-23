@@ -40,5 +40,5 @@
   coefficients:
     Blunt: 0.8
     Slash: 0.8
-    Heat: 1.25
+    Heat: 1.2
   ignoreArmorPierceFlags: All

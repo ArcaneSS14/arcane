@@ -3,22 +3,24 @@
 - type: damageModifierSet
   id: Vulpkanin
   coefficients:
-    Slash: 0.8 # Arcane
-    Heat: 1.3
+    # Arcane-Edit-Start
+    Slash: 0.8
+    Heat: 1.2
     Cold: 0.8
+    # Arcane-Edit-End
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
   id: Harpy
   coefficients:
     # Arcane-Edit-Start
-    Blunt: 1.25
-    Slash: 1.25
-    Piercing: 1.25
+    Blunt: 1.15
+    Slash: 1.15
+    Piercing: 1.15
     # Arcane-Edit-End
     # Arcane-Start
     Shock: 0.6
-    Heat: 0.75
+    Heat: 0.8
     # Arcane-End
   ignoreArmorPierceFlags: All # Goobstation
 
@@ -26,9 +28,9 @@
   id: Rodentia
   coefficients:
     # Arcane-Edit-Start
-    Blunt: 1.25
-    Slash: 1.25
-    Piercing: 0.8
+    Blunt: 1.15
+    Slash: 1.15
+    Piercing: 0.9
     # Arcane-Edit-End
     Poison: 0.6 # Arcane
   ignoreArmorPierceFlags: All # Goobstation
@@ -64,7 +66,7 @@
     # Arcane-Edit-Start
     Blunt: 0.8
     Slash: 0.8
-    Piercing: 1.2
+    Piercing: 1.1
     # Arcane-Edit-End
-    Holy: 1
+    Holy: 1 # Arcane
   ignoreArmorPierceFlags: All # Goobstation

@@ -16,9 +16,11 @@
 - type: damageModifierSet
   id: Shadowkin
   coefficients:
-    Blunt: 1.25
-    Slash: 0.75 # Arcane
-    Piercing: 1.25
+    # Arcane-Edit-Start
+    Blunt: 1.15
+    Slash: 0.85
+    Piercing: 1.15
+    # Arcane-Edit-End
     Asphyxiation: 0.50
     Heat: 1.4
   ignoreArmorPierceFlags: All # Goobstation
