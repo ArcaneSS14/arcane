@@ -138,13 +138,14 @@ public sealed class AutoSurgeonSystem : EntitySystem
                     .Id;
 
                 // Arcane-Edit-Start
-                if (oldOrgan.Valid)
-                    _body.RemoveOrgan(oldOrgan);
+                var removedOldOrgan = oldOrgan.Valid && _body.RemoveOrgan(oldOrgan);
 
                 if (!_body.InsertOrgan(parent, newPart, newOrganComp.SlotId))
                 {
                     Del(newPart);
                     _audio.Stop(ent.Comp.ActiveSound);
+                    if (removedOldOrgan)
+                        _body.InsertOrgan(parent, oldOrgan, newOrganComp.SlotId);
                     return;
                 }
                 // Arcane-Edit-End
@@ -355,12 +356,13 @@ public sealed class AutoSurgeonSystem : EntitySystem
                         .Id;
 
                     // Arcane-Edit-Start
-                    if (oldOrgan.Valid)
-                        _body.RemoveOrgan(oldOrgan);
+                    var removedOldOrgan = oldOrgan.Valid && _body.RemoveOrgan(oldOrgan);
 
                     if (!_body.InsertOrgan(parent, newPart, newOrganComp.SlotId))
                     {
                         Del(newPart);
+                        if (removedOldOrgan)
+                            _body.InsertOrgan(parent, oldOrgan, newOrganComp.SlotId);
                         continue;
                     }
                     // Arcane-Edit-End
