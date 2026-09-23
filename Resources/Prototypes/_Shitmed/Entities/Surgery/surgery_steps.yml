@@ -537,7 +537,7 @@
   components:
   - type: SurgeryStep
     tool:
-    - type: Stitches # интересный факт у этой нитки нету звука кастомного
+    - type: Stitches
     remove:
     - type: IncisionOpen
     duration: 8
