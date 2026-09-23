@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/8ac8fd086df2a487c1f3ae501a57ad4e221a0323/icons/obj/machines/washing_machine.dmi, and split into layers by Doctor-Cpu",
+    "copyright": "Taken from TauCeti at https://github.com/TauCetiStation/TauCetiClassic/commit/690cfb963b1ef13990b83f7e5a090924dd8afa0e and split into layers by ReWAFFlution",
     "size":
     {
         "x": 32,
@@ -36,8 +36,14 @@
                 0.1,
                 0.1,
                 0.1,
+                0.1,
+                0.1,
                 0.1
             ]
         ]
-    }]
+    },
+    {
+        "name": "open_top"
+    }
+]
     }
