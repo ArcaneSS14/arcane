@@ -1822,3 +1822,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/126ac97d-c391-480d-a53c-af277724e63f
+- author: uty206
+  changes:
+    - type: Fix
+      message: Исправлена электропитания на терминале прибытия.
+  id: 140
+  time: '2026-09-23T03:58:37.0000000+00:00'
+  prNumber: 392
+  url: https://github.com/ArcaneSS14/arcane/pull/392
