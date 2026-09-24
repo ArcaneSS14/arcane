@@ -121,7 +121,6 @@
     _itemstatus_patch_margin: "#07060505"
 
 # Arcane-Start
-
 - type: uiTheme
   id: SS14NinjaTheme
   path: /Textures/_Arcane/Interface/Ninja/
@@ -139,5 +138,4 @@
     _itemstatus_content_margin_right: "#06060604"
     _itemstatus_content_margin_left: "#06060604"
     _itemstatus_patch_margin: "#07060505"
-
   # Arcane-End
