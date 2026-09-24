@@ -244,7 +244,7 @@
   - type: Item
     storedOffset: 0,-2
   - type: Gun
-    fireRate: 5
+    fireRate: 4.5 # Arcane-Edit: 5 > 4.5
     availableModes:
     - SemiAuto
 #    soundGunshot: # Orion-Edit: Removed
