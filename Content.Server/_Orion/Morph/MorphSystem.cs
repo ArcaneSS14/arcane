@@ -22,6 +22,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
+using Content.Shared.Mech.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -217,6 +218,7 @@ public sealed class MorphSystem : SharedMorphSystem
             _damageable.TryChangeDamage(args.User, morph.Comp.DamageOnTouch);
             ChangeBiomassAmount(morph.Comp.DevourWeaponHungerCost, morph.Owner, morph.Comp);
         }
+        else if (TryComp<MechPilotComponent>(args.User, out var pilot) && pilot.Mech == args.Used) =>_damageable.TryChangeDamage(args.Used, morph.Comp.DamageOnTouch); // Arcane
         else if (_random.Prob(morph.Comp.DevourWeaponOnBeingHit) && morph.Comp.Biomass >= morph.Comp.DevourWeaponHungerCost)
         {
             if (!_container.Insert(args.Used, devourer.Stomach))
