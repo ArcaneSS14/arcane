@@ -71,3 +71,17 @@
     - machine_board
     - entity_storage
   - type: PlaceableSurface
+
+- type: entity
+  id: WashingMachineTopVisual
+  categories: [ HideSpawnMenu ]
+  name: washing machine lid
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/Furniture/washing_machine.rsi
+    noRot: true
+    state: open_top
+    drawdepth: OverMobs
+  - type: Tag
+    tags:
+    - HideContextMenu
