@@ -628,7 +628,7 @@ chatsan-word-356-5 = вайт\s*дри+м+.*
 chatsan-word-356-6 = вег[ауио]+й*
 chatsan-replacement-356 = другой сектор
 
-chatsan-word-357 = с*ща+с*
+chatsan-word-357 = с*щ[ая]+с*
 chatsan-word-357-2 = сча+с*
 chatsan-replacement-357 = сейчас
 
