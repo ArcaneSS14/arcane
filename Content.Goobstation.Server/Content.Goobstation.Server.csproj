@@ -13,6 +13,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <WarningsAsErrors>nullable</WarningsAsErrors>
     <ServerGarbageCollection>true</ServerGarbageCollection>
   </PropertyGroup>
+  <!-- Arcane-start -->
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="System.GC.ConserveMemory" Value="5" />
+  </ItemGroup>
+  <!-- Arcane-end -->
   <Import Project="../MSBuild/Content.props" />
   <ItemGroup>
     <PackageReference Include="Concentus" />
