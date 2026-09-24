@@ -3,16 +3,16 @@
   isVisibleLanguage: true
   speech:
     color: "#e255b3"
-    fontId: GreatVibes
-    boldFontId: GreatVibes
-    fontSize: 18
+    fontId: HachiMaruPop
+    boldFontId: HachiMaruPop
+    fontSize: 14
 #  icon:
 #    sprite: _Orion/Interface/Chat/language.rsi
 #    state:
   obfuscation:
     !type:SyllableObfuscation
-    minSyllables: 1
-    maxSyllables: 3
+    minSyllables: 2
+    maxSyllables: 5
     replacement:
     - аика
     - сейна
