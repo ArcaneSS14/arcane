@@ -589,8 +589,11 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             Del(visual);
         ent.Comp.TopVisual = null;
 
-        _physics.SetCanCollide(ent.Owner, true);
-        _actionBlocker.UpdateCanMove(ent.Owner);
+        if (CanDeleteEntity(ent.Owner))
+        {
+            _physics.SetCanCollide(ent.Owner, true);
+            _actionBlocker.UpdateCanMove(ent.Owner);
+        }
 
         RestoreStuckVisuals(ent);
     }
