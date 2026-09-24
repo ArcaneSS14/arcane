@@ -13,6 +13,7 @@ bwoink-system-typing-indicator =
         [one] печатает
        *[other] печатают
     }...
+bwoink-history-round-separator = Раунд №{ $round }
 admin-ahelp-admin-only = Только Админ
 admin-ahelp-admin-only-tooltip =
     Если отмечено, сообщение не будет видно игроку,

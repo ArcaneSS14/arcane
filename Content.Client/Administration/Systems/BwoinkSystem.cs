@@ -2,6 +2,7 @@
 
 #nullable enable
 using Content.Shared.Administration;
+using Content.Shared.Administration.Logs;
 using JetBrains.Annotations;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
@@ -22,9 +23,9 @@ namespace Content.Client.Administration.Systems
         }
 
         // Arcane-start
-        public void RequestHistory(NetUserId channel, int? lastLogId = null)
+        public void RequestHistory(NetUserId channel, AdminLogCursor? cursor = null)
         {
-            RaiseNetworkEvent(new BwoinkHistoryRequest(channel, lastLogId));
+            RaiseNetworkEvent(new BwoinkHistoryRequest(channel, cursor));
         }
         // Arcane-end
 
