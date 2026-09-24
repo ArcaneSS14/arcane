@@ -66,10 +66,10 @@
     state: eyes-medhud
   - type: Organ
     onAdd:
-  - type: ShowDiseaseIcons # Arcane
-    lowThreshold: 1
-    mediumThreshold: 20
-    highThreshold: 40
+    - type: ShowDiseaseIcons # Arcane
+      lowThreshold: 1
+      mediumThreshold: 20
+      highThreshold: 40
     - type: ShowHealthBars
       damageContainers:
       - Biological
