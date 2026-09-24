@@ -218,7 +218,12 @@ public sealed class MorphSystem : SharedMorphSystem
             _damageable.TryChangeDamage(args.User, morph.Comp.DamageOnTouch);
             ChangeBiomassAmount(morph.Comp.DevourWeaponHungerCost, morph.Owner, morph.Comp);
         }
-        else if (TryComp<MechPilotComponent>(args.User, out var pilot) && pilot.Mech == args.Used) =>_damageable.TryChangeDamage(args.Used, morph.Comp.DamageOnTouch); // Arcane
+        // Arcane-Start
+        else if (TryComp<MechPilotComponent>(args.User, out var pilot) && pilot.Mech == args.Used)
+        {
+            _damageable.TryChangeDamage(args.Used, morph.Comp.DamageOnTouch);
+        }
+        // Arcane-End
         else if (_random.Prob(morph.Comp.DevourWeaponOnBeingHit) && morph.Comp.Biomass >= morph.Comp.DevourWeaponHungerCost)
         {
             if (!_container.Insert(args.Used, devourer.Stomach))
