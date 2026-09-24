@@ -1890,3 +1890,20 @@ Entries:
       https://github.com/user-attachments/assets/30939c19-84d2-4a71-ace0-970768864ae6
     - >-
       https://github.com/user-attachments/assets/a70f6858-e5d7-44b7-bfdb-988c072ad440
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Розовый экстракт теперь действует в радиусе 3 тайлов
+    - type: Add
+      message: Реакция экстрактов происходит с задержкой 5 секунд
+    - type: Add
+      message: >-
+        Добавлен лимит в 20 слаймов на область 5 тайлов. Если лимит достигнут то
+        слаймы просто не будут размножаться.
+  id: 144
+  time: '2026-09-24T05:47:05.0000000+00:00'
+  prNumber: 386
+  url: https://github.com/ArcaneSS14/arcane/pull/386
+  media:
+    - >-
+      https://github.com/user-attachments/assets/f619e9d1-54fe-4157-bf63-03c4af5af37b
