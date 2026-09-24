@@ -10,6 +10,18 @@
         {
             "name": "carrier_tubes",
             "directions": 4
+        },
+        {
+            "name": "king-tubes",
+            "directions": 4
+        },
+        {
+            "name": "king-tubes-grad",
+            "directions": 4
+        },
+        {
+            "name": "rogue-tubes",
+            "directions": 4
         }
     ]
 }
