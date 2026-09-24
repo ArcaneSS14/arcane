@@ -48,6 +48,10 @@ public sealed class NatureSystem : EntitySystem
         if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
             return;
 
+        TryComp<VocalComponent>(uid, out var vocal);
+        if (vocal != null && args.Emote.ID == vocal.ScreamId)
+            return;
+
         var getSoundEv = new GetEmoteSoundsEvent();
         RaiseLocalEvent(uid, ref getSoundEv);
         if (getSoundEv.Handled)
@@ -62,7 +66,7 @@ public sealed class NatureSystem : EntitySystem
 
         // The species' own sounds always win; the trait only adds sounds for emotes the
         // race has none of (e.g. Meow for a human, while an IPC keeps its Beep/Boop).
-        if (TryComp<VocalComponent>(uid, out var vocal)
+        if (vocal != null
             && vocal.EmoteSounds is { } raceId
             && _proto.TryIndex(raceId, out var raceSounds)
             && _chat.TryPlayEmoteSound(uid, raceSounds, args.Emote))
