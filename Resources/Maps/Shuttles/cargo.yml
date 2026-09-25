@@ -4,7 +4,7 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 09/25/2026 03:49:09
+  time: 09/25/2026 04:01:01
   entityCount: 238
 maps: []
 grids:
@@ -440,6 +440,7 @@ entities:
       - 152
       - 149
       - 150
+      - 8
     - type: Fixtures
       fixtures: {}
 - proto: AirCanister
@@ -486,6 +487,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 2
 - proto: APCHyperCapacity
   entities:
   - uid: 9
@@ -1042,6 +1048,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
   - uid: 101
     components:
     - type: Transform
@@ -1941,6 +1950,9 @@ entities:
     - type: Transform
       pos: -1.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
     - type: DeviceLinkSource
       linkedPorts:
         100:
