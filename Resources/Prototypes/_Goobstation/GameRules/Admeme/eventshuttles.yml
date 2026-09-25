@@ -3,6 +3,19 @@
 # Orion-Edit: Removed ERT shuttle events
 # Use special command: callresponseforce
 
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: SpawnHECU
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-hecu-enroute
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    duration: 1
+    maxOccurrences: 1
+  - type: LoadMapRule
+    preloadedGrid: RetortShuttleHECU
+
 #Contractor
 - type: entity
   parent: BaseGameRule
