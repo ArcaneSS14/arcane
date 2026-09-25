@@ -6,17 +6,17 @@
 
 - type: moodEffect
   id: HungerOkay
-  moodChange: 5
+  moodChange: 6 # Arcane-Edit: 5 > 6
   category: "Hunger"
 
 - type: moodEffect
   id: HungerPeckish
-  moodChange: -3
+  moodChange: -5 # Arcane-Edit: -3 > -5
   category: "Hunger"
 
 - type: moodEffect
   id: HungerStarving
-  moodChange: -35 # Arcane-Edit: -10 > -35
+  moodChange: -25 # Arcane-Edit: -10 > -25
   category: "Hunger"
 
 # Thirst
