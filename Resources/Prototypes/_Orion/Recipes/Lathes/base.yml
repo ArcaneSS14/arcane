@@ -1,0 +1,77 @@
+- type: latheRecipe
+  abstract: true
+  id: BasePrintedDocumentRecipe
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPaper: 100
+
+- type: latheRecipe
+  abstract: true
+  parent: BasePrintedDocumentRecipe
+  id: BasePrintedDocumentReportRecipe
+  categories:
+    - Reports
+
+- type: latheRecipe
+  abstract: true
+  parent: BasePrintedDocumentRecipe
+  id: BasePrintedDocumentStatementRecipe
+  categories:
+    - Statements
+
+- type: latheRecipe
+  abstract: true
+  parent: BasePrintedDocumentRecipe
+  id: BasePrintedDocumentInquiryAndAppealRecipe
+  categories:
+    - InquiriesAndAppeals
+
+- type: latheRecipe
+  abstract: true
+  parent: BasePrintedDocumentRecipe
+  id: BasePrintedDocumentComplaintRecipe
+  categories:
+    - Complaints
+
+- type: latheRecipe
+  abstract: true
+  parent: BasePrintedDocumentRecipe
+  id: BasePrintedDocumentPermissionRecipe
+  categories:
+    - Permissions
+
+- type: latheRecipe
+  abstract: true
+  parent: BasePrintedDocumentRecipe
+  id: BasePrintedDocumentOrderAndInstructionRecipe
+  categories:
+    - OrdersAndInstructions
+
+- type: latheRecipe
+  abstract: true
+  parent: BasePrintedDocumentRecipe
+  id: BasePrintedDocumentOrderRecipe
+  categories:
+    - Orders
+
+- type: latheRecipe
+  abstract: true
+  parent: BasePrintedDocumentRecipe
+  id: BasePrintedDocumentEvidenceRecipe
+  categories:
+    - Evidence
+
+- type: latheRecipe
+  abstract: true
+  parent: BasePrintedDocumentRecipe
+  id: BasePrintedDocumentConclusionAndDecisionRecipe
+  categories:
+    - ConclusionsAndDecisions
+
+- type: latheRecipe
+  abstract: true
+  parent: BasePrintedDocumentRecipe
+  id: BasePrintedDocumentErrorRecipe
+  categories:
+    - ErrorDocument

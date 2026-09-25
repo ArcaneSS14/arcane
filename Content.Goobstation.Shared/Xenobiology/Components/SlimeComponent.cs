@@ -120,6 +120,20 @@ public sealed partial class SlimeComponent : Component
     [DataField, AutoNetworkedField]
     public float MitosisHunger = 125f;
 
+    // Arcane-Start
+    /// <summary>
+    /// How many other slimes within <see cref="MitosisDensityRange"/> tiles block this slime from dividing.
+    /// </summary>
+    [DataField]
+    public int MitosisDensityLimit = 20;
+
+    /// <summary>
+    /// Radius (in tiles) used to count nearby slimes for slime overpopulation checks.
+    /// </summary>
+    [DataField]
+    public float MitosisDensityRange = 5f;
+    // Arcane-End
+
     /// <summary>
     /// How long in between each mitosis/breeding check?
     /// </summary>

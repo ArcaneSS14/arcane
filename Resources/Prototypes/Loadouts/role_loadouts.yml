@@ -136,7 +136,6 @@
   - ServiceWorkerJumpsuit
   - ServiceWorkerBelt
   - ServiceWorkerShoes
-  - GroupGrimoire
   # Arcane-End
   - CommonBackpack
   # Goobstation - EE Plasmeme Change.
@@ -211,7 +210,6 @@
   - LibrarianJumpsuit
   - LibrarianShoes # Arcane
   - CommonBackpack
-  - GroupGrimoire
   # Goobstation - EE Plasmeme Change.
   - LibrarianEnvirohelm
   - LibrarianEnvirosuit
@@ -222,6 +220,7 @@
   - LibrarianJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -258,6 +257,7 @@
 
 - type: roleLoadout
   id: JobChaplain
+  canCustomizeName: true
   groups:
   - ChaplainHead
   - ChaplainMask
@@ -987,7 +987,6 @@
   - ChemistOuterClothing
   # Arcane-Start
   - ChemistBikini
-  - GroupGrimoire
   - MedicalCloak
   - ChemistBikini
   # Arcane-End
@@ -1106,7 +1105,6 @@
   - Glasses
   # Arcane-Start
   - MedicalCloak
-  - GroupGrimoire
   # Arcane-End
   - PsychologistJumpsuit
   - MedicalBackpack
@@ -1120,6 +1118,7 @@
   - PsychologistJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
