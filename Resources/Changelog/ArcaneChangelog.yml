@@ -2053,3 +2053,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/a3cb25a7-5620-4db6-a18b-5c4775982fd3
+- author: darneya
+  changes:
+    - type: Fix
+      message: Расе Фелинидов снова доступна профессия Смотрителя.
+  id: 153
+  time: '2026-09-25T09:21:12.0000000+00:00'
+  prNumber: 405
+  url: https://github.com/ArcaneSS14/arcane/pull/405
