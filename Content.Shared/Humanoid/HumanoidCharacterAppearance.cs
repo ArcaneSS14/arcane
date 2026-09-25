@@ -2,8 +2,10 @@
 
 using System.Linq;
 using System.Numerics;
+using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
@@ -236,7 +238,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         return new(color.RByte, color.GByte, color.BByte);
     }
 
-    public static HumanoidCharacterAppearance EnsureValid(HumanoidCharacterAppearance appearance, string species, Sex sex)
+    public static HumanoidCharacterAppearance EnsureValid(HumanoidCharacterAppearance appearance, string species, Sex sex,
+        ISharedDiscordRoleManager? discordRoles = null, ICommonSession? session = null) // Arcane
     {
         var hairStyleId = appearance.HairStyleId;
         var facialHairStyleId = appearance.FacialHairStyleId;
@@ -264,6 +267,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             markingSet = new MarkingSet(appearance.Markings, speciesProto.MarkingPoints, markingManager, proto);
             markingSet.EnsureValid(markingManager);
+            markingSet.EnsureEffects(discordRoles, session, markingManager); // Arcane
 
             var strategy = proto.Index(speciesProto.SkinColoration).Strategy;
             skinColor = strategy.EnsureVerified(skinColor);
@@ -280,12 +284,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             eyeColor,
             skinColor,
             markingSet.GetForwardEnumerator().ToList(),
-            // Arcane-Start
+        // Arcane-Start
             appearance.HairGradientEnabled,
             appearance.HairGradientColors,
             appearance.HairGradientStyle,
             appearance.HairGradientOffset);
-            // Arcane-End
+        // Arcane-End
     }
 
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
