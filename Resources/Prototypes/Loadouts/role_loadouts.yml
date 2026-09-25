@@ -257,6 +257,7 @@
 
 - type: roleLoadout
   id: JobChaplain
+  canCustomizeName: true
   groups:
   - ChaplainHead
   - ChaplainMask
