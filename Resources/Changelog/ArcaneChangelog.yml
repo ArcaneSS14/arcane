@@ -1952,3 +1952,16 @@ Entries:
   time: '2026-09-25T04:47:34.0000000+00:00'
   prNumber: 387
   url: https://github.com/ArcaneSS14/arcane/pull/387
+- author: darneya, qwertyuiopiot, IGRAMUR
+  changes:
+    - type: Tweak
+      message: Изменён шаттл отдела Снабжения
+  id: 147
+  time: '2026-09-25T05:11:58.0000000+00:00'
+  prNumber: 402
+  url: https://github.com/ArcaneSS14/arcane/pull/402
+  media:
+    - >-
+      https://github.com/user-attachments/assets/197a56a4-e0bb-4e86-9421-1371314ac3fb
+    - >-
+      https://github.com/user-attachments/assets/6f4b3718-c4a0-44bc-8177-5ce1fd19bca0
