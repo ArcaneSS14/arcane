@@ -12,8 +12,10 @@ uniform highp vec2[5] position;
 // If you want to change this, make sure to change all of them here, in the for loop, and, in whatever overlay assigns the uniforms
 // (apparently #define is an unknown preprocessor directive)
 
-const highp float MIN_DISTANCE = 1.0; // Corvaxgoob-fix
-const highp float MAX_DEFORMATION = 2048.0; // Corvaxgoob-fix
+// Arcane-Start
+const highp float MIN_DISTANCE = 1.0;
+const highp float MAX_DEFORMATION = 2048.0;
+// Arcane-End
 
 void fragment() {
 
@@ -25,7 +27,7 @@ void fragment() {
     for (int i = 0; i < 5 && i < count; i++) {
 
         delta = FRAGCOORD.xy - position[i];
-	    distance = max(length(delta / renderScale), MIN_DISTANCE); // Corvaxgoob-fix
+	    distance = max(length(delta / renderScale), MIN_DISTANCE); // Arcane-Edit
 
         deformation = intensity[i] / pow(distance, falloffPower[i]);
 
@@ -41,7 +43,7 @@ void fragment() {
         if(deformation > 0.8)
             deformation = pow(deformation, 0.3);
 
-        deformation = min(deformation, MAX_DEFORMATION); // Corvaxgoob-fix
+        deformation = min(deformation, MAX_DEFORMATION); // Arcane
 
         finalCoords -= deformation * delta;
     }

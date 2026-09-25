@@ -25,8 +25,10 @@ namespace Content.Client.Singularity
 
         private const float MaxDistance = 20f;
 
-        private const float MinDistance = 1f;// Corvaxgoob-fix
-        private const float MaxDeformation = 2048f; // Corvaxgoob-fix
+        // Arcane-Start
+        private const float MinDistance = 1f;
+        private const float MaxDeformation = 2048f;
+        // Arcane-End
 
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
         public override bool RequestScreenTexture => true;
@@ -125,9 +127,11 @@ namespace Content.Client.Singularity
                 var localPosition = _positions[i];
                 localPosition.Y = args.Viewport.Size.Y - localPosition.Y;
                 var delta = args.VisiblePosition - localPosition;
+                // Arcane-Edit-Start
                 var distance = MathF.Max(
                     (delta / (args.Viewport.RenderScale * args.Viewport.Eye.Scale)).Length(),
-                    MinDistance); // Corvaxgoob-fix
+                    MinDistance);
+                // Arcane-Edit-End
 
                 var deformation = _intensities[i] / MathF.Pow(distance, _falloffPowers[i]);
 
@@ -142,7 +146,7 @@ namespace Content.Client.Singularity
                 if (deformation > 0.8)
                     deformation = MathF.Pow(deformation, 0.3f);
 
-                deformation = MathF.Min(deformation, MaxDeformation); // Corvaxgoob-fix
+                deformation = MathF.Min(deformation, MaxDeformation); // Arcane
 
                 finalCoords -= delta * deformation;
             }
