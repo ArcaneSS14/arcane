@@ -383,7 +383,6 @@
   id: chatsanitize
   wordReplacements:
     # Arcane-Start
-    # Приветствие и прощание
     chatsan-word-1: chatsan-replacement-1
     chatsan-word-1-2: chatsan-replacement-1
     chatsan-word-1-3: chatsan-replacement-1
@@ -396,7 +395,6 @@
     chatsan-word-4-3: chatsan-replacement-4
     chatsan-word-5: chatsan-replacement-5
     chatsan-word-6: chatsan-replacement-6
-    # Вежливость
     chatsan-word-7: chatsan-replacement-7
     chatsan-word-8: chatsan-replacement-8
     chatsan-word-9: chatsan-replacement-9
@@ -412,7 +410,6 @@
     chatsan-word-15: chatsan-replacement-15
     chatsan-word-16: chatsan-replacement-16
     chatsan-word-17: chatsan-replacement-17
-    # Согласие и ответы
     chatsan-word-18: chatsan-replacement-18
     chatsan-word-18-2: chatsan-replacement-18
     chatsan-word-19: chatsan-replacement-19
