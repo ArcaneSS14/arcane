@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared._Shitmed.DoAfter;
+using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Weapons.Melee.Events;
@@ -304,13 +305,11 @@ public partial class TraumaSystem
         if (boneComp.BoneWoundable != null
             && TryComp<BodyPartComponent>(boneComp.BoneWoundable.Value, out var bodyPartComp)
             && bodyPartComp.Body is { } body)
-        // Arcane-Edit-Start
         {
             if (bodyPartComp.PartType is BodyPartType.Leg or BodyPartType.Foot)
-                ProcessLegsState(body);
+                ProcessLegsState(body, boneComp.BoneWoundable); // Arcane-Edit
             UpdateBodyBoneAlert(body);
         }
-        // Arcane-Edit-End
     }
 
     // Arcane-Edit-Start
@@ -395,7 +394,7 @@ public partial class TraumaSystem
     private void OnBodyTopologyChanged(Entity<BodyComponent> body, ref BodyTopologyChangedEvent args) =>
         ProcessLegsState(body);
 
-    private void ProcessLegsState(EntityUid body, BodyComponent? bodyComp = null)
+    private void ProcessLegsState(EntityUid body, EntityUid? operatedPart = null, BodyComponent? bodyComp = null) // Arcane-Edit
     {
         if (!Resolve(body, ref bodyComp) || bodyComp.RequiredLegs <= 0)
             return;
@@ -410,9 +409,40 @@ public partial class TraumaSystem
         else if (_standing.IsDown(body)
             && !HasComp<KnockedDownComponent>(body)
             && !HasComp<SleepingComponent>(body)
-            && !_mobState.IsIncapacitated(body))
+            && !_mobState.IsIncapacitated(body)
+            && !HasSurgicalField(operatedPart))
             _standing.Stand(body);
     }
+
+    /// <summary>
+    ///     Whether any bone of the given part is below its integrity cap.
+    /// </summary>
+    public bool HasBoneDamage(EntityUid part, WoundableComponent? woundable = null)
+    {
+        if (!Resolve(part, ref woundable, false) || woundable.Bone == null)
+            return false;
+
+        foreach (var bone in woundable.Bone.ContainedEntities)
+        {
+            if (TryComp(bone, out BoneComponent? boneComp)
+                && boneComp.BoneIntegrity < boneComp.IntegrityCap)
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool HasSurgicalField(EntityUid? part)
+    {
+        if (part == null)
+            return false;
+
+        return HasComp<IncisionOpenComponent>(part.Value)
+            || HasComp<SkinRetractedComponent>(part.Value)
+            || HasComp<BonesSawedComponent>(part.Value)
+            || HasComp<BonesOpenComponent>(part.Value);
+    }
+
     // Arcane-End
 
     #endregion

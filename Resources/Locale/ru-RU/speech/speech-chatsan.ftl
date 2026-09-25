@@ -521,8 +521,6 @@ chatsan-word-328-2 = запермят
 chatsan-replacement-328 = уволят
 
 chatsan-word-329 = ба+н
-chatsan-word-329-2 = перм[ауы]+ч*
-chatsan-word-329-3 = перм[ау]+
 chatsan-replacement-329 = увольнение
 
 chatsan-word-330 = запермили
@@ -543,7 +541,7 @@ chatsan-word-334 = гри+ф+
 chatsan-word-334-2 = грифинг
 chatsan-replacement-334 = беспредел
 
-chatsan-word-335 = а+нта+[жш]+к[ау]*
+chatsan-word-335 = а+нта+[жш]+к[аоу]*
 chatsan-replacement-335 = зло
 
 chatsan-word-336 = роба+ст
@@ -555,8 +553,8 @@ chatsan-replacement-337 = неумеха
 chatsan-word-338 = метаинфа
 chatsan-replacement-338 = инсайдерская информация
 
-chatsan-word-339 = мета
-chatsan-replacement-339 = тема
+chatsan-word-339 = рейт
+chatsan-replacement-339 = оценка
 
 chatsan-word-340 = пг+
 chatsan-replacement-340 = издевательство
@@ -630,7 +628,7 @@ chatsan-word-356-5 = вайт\s*дри+м+.*
 chatsan-word-356-6 = вег[ауио]+й*
 chatsan-replacement-356 = другой сектор
 
-chatsan-word-357 = с*ща+с*
+chatsan-word-357 = с*щ[ая]+с*
 chatsan-word-357-2 = сча+с*
 chatsan-replacement-357 = сейчас
 
@@ -718,4 +716,100 @@ chatsan-replacement-384 = возвращение
 
 chatsan-word-385 = кри+н[жг]е*
 chatsan-replacement-385 = неприятный момент
+
+chatsan-word-386 = вась
+chatsan-replacement-386 = Василий
+
+chatsan-word-387 = каф+ай
+chatsan-word-387-2 = каф+ни
+chatsan-replacement-387 = закуй
+
+chatsan-word-389 = каф+
+chatsan-replacement-389 = наручники
+
+chatsan-word-390 = каф+нули
+chatsan-replacement-390 = заковали
+
+chatsan-word-391 = каф+нул
+chatsan-replacement-391 = заковал
+
+chatsan-word-392 = каф+нула
+chatsan-replacement-392 = заковала
+
+chatsan-word-393 = каф+нут
+chatsan-replacement-393 = закован
+
+chatsan-word-394 = за+ч
+chatsan-replacement-394 = зачем
+
+chatsan-word-395 = епт
+chatsan-replacement-395 = блин
+
+chatsan-word-396 = братан
+chatsan-replacement-396 = брат
+
+chatsan-word-397 = ко+ч
+chatsan-replacement-397 = стой
+
+chatsan-word-398 = г+о+й+д+а+
+chatsan-replacement-398 = победа
+
+chatsan-word-399 = брутпалка
+chatsan-replacement-399 = дубинка
+
+chatsan-word-400 = брутпалку
+chatsan-replacement-400 = дубинку
+
+chatsan-word-401 = де нить
+chatsan-replacement-401 = где нибудь
+
+chatsan-word-402 = луткрейт
+chatsan-replacement-402 = ящик
+
+chatsan-word-403 = ган
+chatsan-replacement-403 = оружие
+
+chatsan-word-404 = поч
+chatsan-replacement-404 = почему
+
+chatsan-word-405 = мог+нул
+chatsan-replacement-405 = превзошёл
+
+chatsan-word-406 = мог+ает
+chatsan-replacement-406 = превосходит
+
+chatsan-word-407 = мог+нули
+chatsan-replacement-407 = превзошли
+
+chatsan-word-409 = мог+нула
+chatsan-replacement-409 = превзошла
+
+chatsan-word-410 = бон[с]?мешинг
+chatsan-replacement-410 = набивание
+
+chatsan-word-411 = луксмаксер
+chatsan-replacement-411 = красавчик
+
+chatsan-word-412 = асце[н]?д[н]?улся
+chatsan-replacement-412 = возвысился
+
+chatsan-word-413 = асце[н]?д[н]?улась
+chatsan-replacement-413 = возвысилась
+
+chatsan-word-414 = асце[н]?д[н]?ул
+chatsan-replacement-414 = возвысил
+
+chatsan-word-415 = асце[н]?д[н]?ули
+chatsan-replacement-415 = возвысили
+
+chatsan-word-416 = асце[н]?д[н]?ет
+chatsan-word-416-2 = асце[н]?д[н]?утый
+chatsan-replacement-416 = возвышенный
+
+chatsan-word-417 = як
+chatsan-word-417-2 = янтарь
+chatsan-replacement-417 = янтарный код
+
+chatsan-word-418 = мог+аю
+chatsan-replacement-418 = превосхожу
 # Arcane-End
