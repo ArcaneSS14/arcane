@@ -229,7 +229,6 @@
     Slash: 0.8
     Heat: 1.25
     # Arcane-End
-    Poison: 0
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
