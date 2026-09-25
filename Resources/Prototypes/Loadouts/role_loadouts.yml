@@ -136,7 +136,6 @@
   - ServiceWorkerJumpsuit
   - ServiceWorkerBelt
   - ServiceWorkerShoes
-  - GroupGrimoire
   # Arcane-End
   - CommonBackpack
   # Goobstation - EE Plasmeme Change.
@@ -155,6 +154,14 @@
   - Socks
   - Wrists
   # Orion-End
+  - ServiceWorkerJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  - GroupGrimoire # Arcane
+  # Goobstation - EE Plasmeme Change.
+  - ServiceWorkerEnvirohelm
+  - ServiceWorkerEnvirosuit
+  - ServiceWorkerEnvirogloves
   - Patron # Arcane
 
 - type: roleLoadout
@@ -184,6 +191,14 @@
   - Socks
   - Wrists
   # Orion-End
+  - ChefJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  - GroupGrimoire # Arcane
+  # Goobstation - EE Plasmeme Change.
+  - ChefEnvirohelm
+  - ChefEnvirosuit
+  - ChefEnvirogloves
   - Patron # Arcane
 
 - type: roleLoadout
@@ -195,7 +210,6 @@
   - LibrarianJumpsuit
   - LibrarianShoes # Arcane
   - CommonBackpack
-  - GroupGrimoire
   # Goobstation - EE Plasmeme Change.
   - LibrarianEnvirohelm
   - LibrarianEnvirosuit
@@ -206,6 +220,7 @@
   - LibrarianJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
@@ -242,6 +257,7 @@
 
 - type: roleLoadout
   id: JobChaplain
+  canCustomizeName: true
   groups:
   - ChaplainHead
   - ChaplainMask
@@ -904,7 +920,6 @@
   - MedicalEyewear
   - MedicalDoctorOuterClothing
   # Arcane-Start
-  - GroupGrimoire
   - MedicalCloak
   - DoctorBikini
   # Arcane-End
@@ -929,6 +944,14 @@
   - Socks
   - Wrists
   # Orion-End
+  - MedicalDoctorJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  - GroupGrimoire # Arcane
+  # Goobstation - EE Plasmeme Change.
+  - MedicalDoctorEnvirohelm
+  - MedicalDoctorEnvirosuit
+  - MedicalDoctorEnvirogloves
   - Patron # Arcane
 
 - type: roleLoadout
@@ -963,7 +986,7 @@
   - MedicalMask
   - ChemistOuterClothing
   # Arcane-Start
-  - GroupGrimoire
+  - ChemistBikini
   - MedicalCloak
   - ChemistBikini
   # Arcane-End
@@ -987,6 +1010,14 @@
   - Socks
   - Wrists
   # Orion-End
+  - ChemistJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  - GroupGrimoire # Arcane
+  # Goobstation - EE Plasmeme Change.
+  - ChemistEnvirohelm
+  - ChemistEnvirosuit
+  - ChemistEnvirogloves
   - Patron # Arcane
 
 - type: roleLoadout
@@ -997,7 +1028,6 @@
   - MedicalEyewear
   - ParamedicOuterClothing
   # Arcane-Start
-  - GroupGrimoire
   - MedicalCloak
   - ParamedicBikini
   - ParamedicVisor
@@ -1022,6 +1052,14 @@
   - Socks
   - Wrists
   # Orion-End
+  - ParamedicJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathToolMedical
+  - GroupGrimoire # Arcane
+  # Goobstation - EE Plasmeme Change.
+  - ParamedicEnvirohelm
+  - ParamedicEnvirosuit
+  - ParamedicEnvirogloves
   - Patron # Arcane
 
 # Wildcards
@@ -1031,7 +1069,6 @@
   - Glasses
   - ReporterOuterClothing # Goobstation - Bodycams
   # Arcane-Start
-  - GroupGrimoire
   - ServiceCloak
   # Arcane-End
   - ReporterJumpsuit
@@ -1052,6 +1089,14 @@
   - Socks
   - Wrists
   # Orion-End
+  - ReporterJobTrinkets
+  - Animals # Goobstation
+  - GroupSpeciesBreathTool
+  - GroupGrimoire # Arcane
+  # Goobstation - EE Plasmeme Change.
+  - ReporterEnvirohelm
+  - ReporterEnvirosuit
+  - ReporterEnvirogloves
   - Patron
 
 - type: roleLoadout
@@ -1060,7 +1105,6 @@
   - Glasses
   # Arcane-Start
   - MedicalCloak
-  - GroupGrimoire
   # Arcane-End
   - PsychologistJumpsuit
   - MedicalBackpack
@@ -1074,6 +1118,7 @@
   - PsychologistJobTrinkets
   - Trinkets
   - Animals # Goobstation
+  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear

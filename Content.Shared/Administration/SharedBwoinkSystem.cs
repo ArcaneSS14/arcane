@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 #nullable enable
+using Content.Shared.Administration.Logs;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
@@ -43,8 +44,9 @@ namespace Content.Shared.Administration
             public bool PlaySound { get; }
 
             public readonly bool AdminOnly;
+            public int? RoundId { get; } // Arcane
 
-            public BwoinkTextMessage(NetUserId userId, NetUserId trueSender, string text, DateTime? sentAt = default, bool playSound = true, bool adminOnly = false)
+            public BwoinkTextMessage(NetUserId userId, NetUserId trueSender, string text, DateTime? sentAt = default, bool playSound = true, bool adminOnly = false, int? roundId = null) // Arcane
             {
                 SentAt = sentAt ?? DateTime.Now;
                 UserId = userId;
@@ -52,6 +54,7 @@ namespace Content.Shared.Administration
                 Text = text;
                 PlaySound = playSound;
                 AdminOnly = adminOnly;
+                RoundId = roundId; // Arcane
             }
         }
     }
@@ -104,4 +107,55 @@ namespace Content.Shared.Administration
             Typing = typing;
         }
     }
+
+    // Arcane-start
+    [Serializable, NetSerializable]
+    public sealed class BwoinkHistoryRequest : EntityEventArgs
+    {
+        public NetUserId Channel { get; }
+        public AdminLogCursor? Cursor { get; }
+
+        public BwoinkHistoryRequest(NetUserId channel, AdminLogCursor? cursor = null)
+        {
+            Channel = channel;
+            Cursor = cursor;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class BwoinkHistoryResponse : EntityEventArgs
+    {
+        public NetUserId Channel { get; }
+        public List<BwoinkHistoryMessage> Messages { get; }
+        public AdminLogCursor? NextCursor { get; }
+        public bool HasMore { get; }
+        public bool IsContinuation { get; }
+
+        public BwoinkHistoryResponse(NetUserId channel, List<BwoinkHistoryMessage> messages, AdminLogCursor? nextCursor, bool hasMore, bool isContinuation)
+        {
+            Channel = channel;
+            Messages = messages;
+            NextCursor = nextCursor;
+            HasMore = hasMore;
+            IsContinuation = isContinuation;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class BwoinkHistoryMessage
+    {
+        public DateTime SentAt { get; }
+        public string Text { get; }
+        public bool AdminOnly { get; }
+        public int RoundId { get; }
+
+        public BwoinkHistoryMessage(DateTime sentAt, string text, bool adminOnly, int roundId)
+        {
+            SentAt = sentAt;
+            Text = text;
+            AdminOnly = adminOnly;
+            RoundId = roundId;
+        }
+    }
+    // Arcane-end
 }

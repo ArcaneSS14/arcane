@@ -54,7 +54,7 @@
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
     - type: FlashImmunity
-    - type: EyeProtection
+#    - type: EyeProtection # Arcane-Edit
 
 - type: entity
   parent: BasicCyberneticEyes
@@ -66,6 +66,10 @@
     state: eyes-medhud
   - type: Organ
     onAdd:
+    - type: ShowDiseaseIcons # Arcane
+      lowThreshold: 1
+      mediumThreshold: 20
+      highThreshold: 40
     - type: ShowHealthBars
       damageContainers:
       - Biological
@@ -83,6 +87,7 @@
     state: eyes-diagnostic
   - type: Organ
     onAdd:
+    - type: EyeProtection # Arcane
     - type: ShowHealthBars
       damageContainers:
       - Inorganic
