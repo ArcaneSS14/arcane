@@ -125,6 +125,10 @@
     - фи
     - е
     # Arcane-Edit-End
+  # Arcane-Start
+  speech:
+    color: "#F5C2C4"
+  # Arcane-End
 
 - type: language
   id: Chicken
