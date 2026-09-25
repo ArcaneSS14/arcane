@@ -1991,3 +1991,24 @@ Entries:
   media:
     - >-
       https://discord.com/channels/1500050446444658711/1502262002272174080/1549821861959962634
+- author: seemah, Slaybrine
+  changes:
+    - type: Add
+      message: Добавлена форма СССП.
+  id: 150
+  time: '2026-09-25T07:48:43.0000000+00:00'
+  prNumber: 400
+  url: https://github.com/ArcaneSS14/arcane/pull/400
+  media:
+    - >-
+      https://github.com/user-attachments/assets/2f666ca6-07b8-4274-b92d-7b60035e5cda
+    - >-
+      https://github.com/user-attachments/assets/d789e934-41c2-403f-bdc7-ce76404dc7ee
+    - >-
+      https://github.com/user-attachments/assets/9dc8c73d-cf33-4331-ad3b-26c01a35575c
+    - >-
+      https://github.com/user-attachments/assets/d9683c5b-cf70-4447-8274-38ac2d796741
+    - >-
+      https://github.com/user-attachments/assets/665c6f00-36fb-4087-b43d-6b15c3f28278
+    - >-
+      https://github.com/user-attachments/assets/2c0e8f72-fc56-4caa-9c2d-f7f1cda62c70
