@@ -6,7 +6,7 @@
   id: SprayBottleBase
   components:
   - type: Edible
-    edible: Drink
+#    edible: Drink # Arcane-Edit
     solution: drink
     transferAmount: 10
     useSound:

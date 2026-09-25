@@ -285,6 +285,9 @@ public sealed class ToggleableClothingSystem : EntitySystem
             return;
         // Orion-End
 
+        if (_transferringInventory.Contains(args.Equipee)) // Goobstation
+            return;
+
         _clothing.SetEquippedPrefix(toggleable, null);
 
         // Check if container exists and we have linked clothings
@@ -429,6 +432,9 @@ public sealed class ToggleableClothingSystem : EntitySystem
 
         // Let containers worry about it.
         if (_timing.ApplyingState)
+            return;
+
+        if (_transferringInventory.Contains(args.Equipee)) // Goobstation
             return;
 
         if (comp.LifeStage > ComponentLifeStage.Running)
@@ -582,6 +588,22 @@ public sealed class ToggleableClothingSystem : EntitySystem
             }
         }
     }
+
+    // <Goobstation>
+    private readonly HashSet<EntityUid> _transferringInventory = new();
+
+    /// <summary>
+    ///     While set, deployed pieces stay deployed when unequipped, so a whole-inventory
+    ///     transfer (e.g. polymorph) carries the worn state over to the new body as-is.
+    /// </summary>
+    public void SetInventoryTransferring(EntityUid wearer, bool transferring)
+    {
+        if (transferring)
+            _transferringInventory.Add(wearer);
+        else
+            _transferringInventory.Remove(wearer);
+    }
+    // </Goobstation>
 
     private bool CanToggleClothing(EntityUid user, Entity<ToggleableClothingComponent> toggleable, bool multiple)
     {
