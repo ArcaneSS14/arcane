@@ -21,7 +21,10 @@
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Resomi.xml"
   pros:
-  - Иммунитет к холодовому урону. # Arcane
+  # Arcane-Start
+  - Иммунитет к холодовому урону.
+  - Бегают быстрее человека.
+  # Arcane-End
   - Бегают немного быстрее человека.
   special:
   - Могут поместится в вещмешок.

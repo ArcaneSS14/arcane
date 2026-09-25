@@ -9,7 +9,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.6
-    baseSprintSpeed: 4.6
+    baseSprintSpeed: 4.7 # Arcane-Edit: 4.6 -> 4.7
   - type: LanguageKnowledge # Einstein Engines - Language
     speaks:
     - TauCetiBasic

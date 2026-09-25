@@ -13,32 +13,14 @@
   coefficients:
     Cold: 0.85
     Heat: 0.80
+    Piercing: 0.9
     Slash: 1.1
     Blunt: 1.1
 
 - type: damageModifierSet
-  id: Human
-  coefficients:
-    Asphyxiation: 1.05
-    Bloodloss: 1.05
-    Blunt: 1.05
-    Cellular: 1.05
-    Caustic: 1.05
-    Cold: 1.05
-    Heat: 1.05
-    Holy: 1.05
-    Ion: 1.05
-    Piercing: 1.05
-    Poison: 1.05
-    Radiation: 1.05
-    Shock: 1.05
-    Slash: 1.05
-  ignoreArmorPierceFlags: All
-
-- type: damageModifierSet
   id: Dwarf
   coefficients:
-    Blunt: 0.8
-    Slash: 0.8
+    Blunt: 0.9
+    Slash: 0.9
     Heat: 1.2
   ignoreArmorPierceFlags: All

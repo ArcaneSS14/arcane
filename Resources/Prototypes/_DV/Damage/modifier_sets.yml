@@ -16,7 +16,7 @@
     # Arcane-Edit-Start
     Blunt: 1.15
     Slash: 1.15
-    Piercing: 1.15
+    Piercing: 1.10
     # Arcane-Edit-End
     # Arcane-Start
     Shock: 0.6
@@ -30,7 +30,6 @@
     # Arcane-Edit-Start
     Blunt: 1.15
     Slash: 1.15
-    Piercing: 0.9
     # Arcane-Edit-End
     Poison: 0.6 # Arcane
   ignoreArmorPierceFlags: All # Goobstation

@@ -180,7 +180,10 @@
     Slash: 1.3
     Piercing: 0.9
     # Arcane-Edit-End
-    Heat: 1.3 # Arcane
+    # Arcane-Start
+    Bloodloss: 1.2
+    Heat: 1.3
+    # Arcane-End
     Cold: 1.5
     Poison: 0.8
   ignoreArmorPierceFlags: All # Goobstation
@@ -242,8 +245,8 @@
   id: Vox
   coefficients: # Arcane: Resistant to chemical burns.
     # Arcane-Start
-    Slash: 1.2
-    Piercing: 1.2
+    Slash: 1.1
+    Piercing: 1.1
     Heat: 0.75
     # Arcane-End
     Caustic: 0.6 # Arcane

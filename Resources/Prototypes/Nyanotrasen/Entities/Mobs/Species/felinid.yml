@@ -32,7 +32,7 @@
   # Arcane-Start
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.6
-    baseSprintSpeed: 4.6
+    baseSprintSpeed: 4.7
   # Arcane-End
   # Goobstation - Siouxcide, felinids have standard slow on damage numbers
 # - type: SlowOnDamage
@@ -64,7 +64,7 @@
       types:
         Blunt: 1
   - type: Stamina
-    baseCritThreshold: 75 # Goobstation - Siouxcide, felinids take 3 disabler shots to down
+    baseCritThreshold: 80 # Arcane-Edit
     animationThreshold: 40 # Goob edit
   - type: TypingIndicator
     proto: felinid
