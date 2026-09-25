@@ -334,6 +334,10 @@
         {
             "name": "red-queen-veins",
             "directions": 4
+        },
+        {
+            "name": "ren_head",
+            "directions": 4
         }
     ]
 }
