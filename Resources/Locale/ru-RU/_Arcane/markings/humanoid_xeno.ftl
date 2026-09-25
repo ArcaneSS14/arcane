@@ -26,8 +26,10 @@ marking-HumanoidXenoTailWarrior = Хвост воина
 marking-HumanoidXenoTailQueenAlt = Хвост королевы (Альт)
 marking-HumanoidXenoTailKing = Хвост короля
 marking-HumanoidXenoTailRogueKing = Хвост короля-разбойника
+marking-HumanoidXenoTailRen = Хвост Рэн
 
 # Головы
+
 
 marking-HumanoidXenoHeadDrone = Голова дрона
 marking-HumanoidXenoHeadSpitter = Голова плевателя
@@ -57,6 +59,7 @@ marking-HumanoidXenoHeadQueenAlt = Голова королевы (Альт)
 marking-HumanoidXenoHeadEmpress = Голова императрицы
 marking-HumanoidXenoHeadKing = Голова короля
 marking-HumanoidXenoHeadRogueKing = Голова короля-разбойника
+marking-HumanoidXenoHeadRen = Голова Рэн
 
 # Грудь
 
@@ -87,6 +90,7 @@ marking-HumanoidXenoTracheasQueenAlt = Трахеи королевы (Альт)
 marking-HumanoidXenoTracheasEmpress = Трахеи императрицы
 marking-HumanoidXenoTracheasKing = Трахеи короля
 marking-HumanoidXenoTracheasRogueKing = Трахеи короля-разбойника
+marking-HumanoidXenoTracheasRen = Трахеи Рэн
 
 # Ноги
 

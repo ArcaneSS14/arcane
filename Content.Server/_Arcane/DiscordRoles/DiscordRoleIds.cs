@@ -13,6 +13,7 @@ public static class DiscordRoleIds
             [DiscordRole.SponsorTier1] = 1510991486399942707,
             [DiscordRole.SponsorTier2] = 1510991694785675397,
             [DiscordRole.AdminBenefit] = 1545943229143195658,
+            [DiscordRole.ArtLead] = 1509175991241670696,
             [DiscordRole.UnlockRoles] = 1533054913318223872,
         };
 }

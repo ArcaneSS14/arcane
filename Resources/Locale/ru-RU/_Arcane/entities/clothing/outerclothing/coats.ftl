@@ -12,3 +12,12 @@ ent-ClothingOuterApostolCoat = плащ апостола
     .desc = Вонми гласу моления моего, внегда воззвати ми к Тебе.
 ent-ClothingOuterCoatAdjutant = зимняя куртка адъютанта
     .desc = Тяжёлая куртка из 'синтетического' меха животных.
+
+# USSP
+
+ent-ClothingOuterUSSPTrenchCoat = плащ-пальто
+    .desc = Тёплое пальто милиционера защитит от суровых холодов.
+ent-ClothingOuterUSSPGreatcoat = шинель полицейского
+    .desc = Тёплое пальто милиционера защитит от суровых холодов.
+ent-ClothingOuterUSSPInvestigator = пальто следователя
+    .desc = Чёрное мешковатое пальто. Хорошее пальто, чтобы прятать что-то.
