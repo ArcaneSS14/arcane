@@ -1922,3 +1922,33 @@ Entries:
       https://github.com/user-attachments/assets/78f26c65-f670-4bf3-8633-158835f8eb24
     - >-
       https://github.com/user-attachments/assets/fb06ffe9-4b34-40ea-b92f-6b7524aa1762
+- author: UmbiMax
+  changes:
+    - type: Add
+      message: Goob-Апстрим.
+    - type: Add
+      message: Диагностический HUD теперь отображает состояние мехов.
+    - type: Tweak
+      message: 'Ребланс кибернетических глаз:'
+    - type: Tweak
+      message: Диагностические дополнительно защищают от сварки.
+    - type: Tweak
+      message: Медицинские получили HUD вирусолога.
+    - type: Tweak
+      message: Обычные защищают как от сварки, так и от вспышек.
+    - type: Tweak
+      message: Спрей теперь распыляется на себя при клике, а не выпивается.
+    - type: Tweak
+      message: Обломки платные -> бесплатные.
+    - type: Fix
+      message: Исправлены формы документов.
+    - type: Fix
+      message: >-
+        Летящие трупы больше не принимают пули, если в них не целились
+        (серьёзный нёрф карпов дракона).
+    - type: Fix
+      message: Исправлено проглатывание морфами мехов способностью парирования.
+  id: 146
+  time: '2026-09-25T04:47:34.0000000+00:00'
+  prNumber: 387
+  url: https://github.com/ArcaneSS14/arcane/pull/387
