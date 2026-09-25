@@ -2042,3 +2042,30 @@ Entries:
   time: '2026-09-25T09:14:44.0000000+00:00'
   prNumber: 376
   url: https://github.com/ArcaneSS14/arcane/pull/376
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: В одеждомат добавлены новые туфли.
+  id: 152
+  time: '2026-09-25T09:18:54.0000000+00:00'
+  prNumber: 401
+  url: https://github.com/ArcaneSS14/arcane/pull/401
+  media:
+    - >-
+      https://github.com/user-attachments/assets/a3cb25a7-5620-4db6-a18b-5c4775982fd3
+- author: darneya
+  changes:
+    - type: Fix
+      message: Расе Фелинидов снова доступна профессия Смотрителя.
+  id: 153
+  time: '2026-09-25T09:21:12.0000000+00:00'
+  prNumber: 405
+  url: https://github.com/ArcaneSS14/arcane/pull/405
+- author: ReWAFFlution, DIMMoon1
+  changes:
+    - type: Fix
+      message: Исправлен баг с шейдером сингулярности.
+  id: 154
+  time: '2026-09-25T14:50:46.0000000+00:00'
+  prNumber: 407
+  url: https://github.com/ArcaneSS14/arcane/pull/407
