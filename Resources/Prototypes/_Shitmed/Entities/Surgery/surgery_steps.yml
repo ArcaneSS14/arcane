@@ -113,6 +113,10 @@
     - type: BoneSaw
     add:
     - type: BonesSawed
+    # Arcane-Start
+    remove:
+    - type: BonesSealed
+    # Arcane-End
     duration: 4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/circular-saw.rsi
@@ -291,6 +295,10 @@
   - type: SurgeryStep
     tool:
     - type: BoneGel
+    # Arcane-Start
+    add:
+    - type: BonesSealed
+    # Arcane-End
     remove:
     - type: BonesSawed
     duration: 2

@@ -201,6 +201,18 @@ public partial class TraumaSystem
         return true;
     }
 
+    // Arcane-Start
+    /// <summary>
+    ///     Whether any organ inside the given part is damaged or still carries integrity modifiers.
+    /// </summary>
+    public bool HasOrganDamage(EntityUid part)
+    {
+        return _body.GetPartOrgans(part).Any(o =>
+            o.Component.OrganIntegrity < o.Component.IntegrityCap
+            || o.Component.IntegrityModifiers.Values.Any(v => v > 0));
+    }
+    // Arcane-End
+
     public bool TryChangeOrganDamageModifier(EntityUid uid,
         FixedPoint2 change,
         EntityUid effectOwner,
@@ -213,6 +225,11 @@ public partial class TraumaSystem
 
         if (!organ.IntegrityModifiers.TryGetValue((identifier, effectOwner), out var value))
             return false;
+
+        // Arcane-Start
+        if (value + change <= 0)
+            return TryRemoveOrganDamageModifier(uid, effectOwner, identifier, organ);
+        // Arcane-End
 
         organ.IntegrityModifiers[(identifier, effectOwner)] = value + change;
         UpdateOrganIntegrity(uid, organ);

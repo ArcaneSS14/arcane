@@ -22,6 +22,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
+using Content.Shared.Mech.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -44,6 +45,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Tag;
 
 namespace Content.Server._Orion.Morph;
 
@@ -73,6 +75,7 @@ public sealed class MorphSystem : SharedMorphSystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly TagSystem _tag = default!; // Arcane
 
     public ProtoId<DamageGroupPrototype> BruteDamageGroup = "Brute";
     public ProtoId<DamageGroupPrototype> BurnDamageGroup = "Burn";
@@ -215,6 +218,12 @@ public sealed class MorphSystem : SharedMorphSystem
             _damageable.TryChangeDamage(args.User, morph.Comp.DamageOnTouch);
             ChangeBiomassAmount(morph.Comp.DevourWeaponHungerCost, morph.Owner, morph.Comp);
         }
+        // Arcane-Start
+        else if (TryComp<MechPilotComponent>(args.User, out var pilot) && pilot.Mech == args.Used)
+        {
+            _damageable.TryChangeDamage(args.Used, morph.Comp.DamageOnTouch);
+        }
+        // Arcane-End
         else if (_random.Prob(morph.Comp.DevourWeaponOnBeingHit) && morph.Comp.Biomass >= morph.Comp.DevourWeaponHungerCost)
         {
             if (!_container.Insert(args.Used, devourer.Stomach))
@@ -370,23 +379,48 @@ public sealed class MorphSystem : SharedMorphSystem
             return;
         }
 
+        // Arcane-Start
+        if (_tag.HasTag(args.Target, new ProtoId<TagPrototype>("Wall")) ||
+            _tag.HasTag(args.Target, new ProtoId<TagPrototype>("Window")))
+        {
+            _popup.PopupCursor(Loc.GetString("morph-unable-to-remember"), uid);
+            return;
+        }
+        // Arcane-End
+
         if (_chameleon.IsInvalid(chamel, args.Target))
         {
             _popup.PopupCursor(Loc.GetString("morph-unable-to-remember"), uid);
             return;
         }
 
+        // Arcane-Start
+        if (!TryComp<MetaDataComponent>(args.Target, out var meta) || meta.EntityPrototype == null)
+        {
+            _popup.PopupCursor(Loc.GetString("morph-unable-to-remember"), uid);
+            return;
+        }
+
+        var protoId = meta.EntityPrototype.ID;
+
+        if (morph.MemoryObjects.Contains(protoId))
+            return;
+        // Arcane-End
+
         if (morph.MemoryObjects.Count >= 5)
         {
             morph.MemoryObjects.RemoveAt(0);
         }
 
-        morph.MemoryObjects.Add(args.Target);
+        // Arcane-Edit-Start
+        morph.MemoryObjects.Add(protoId);
+
         _popup.PopupEntity(
-            Loc.GetString("morph-remember-action-success", ("target", ToPrettyString(args.Target))),
+            Loc.GetString("morph-remember-action-success", ("target", meta.EntityName)),
             uid,
             PopupType.Medium
         );
+        // Arcane-Edit-End
 
         Dirty(uid, morph);
     }
@@ -594,10 +628,26 @@ public sealed class MorphSystem : SharedMorphSystem
             if (HasComp<MorphComponent>(entUid) || HasComp<GhostComponent>(entUid))
                 return false;
 
-            if (TryComp<MobStateComponent>(entUid, out var mobState) &&
-                HasComp<GhostTakeoverAvailableComponent>(entUid) &&
-                _mobState.IsDead(entUid, mobState))
-                return false;
+            // Arcane-Edit-Start
+            // if (TryComp<MobStateComponent>(entUid, out var mobState) &&
+            //     HasComp<GhostTakeoverAvailableComponent>(entUid) &&
+            //     _mobState.IsDead(entUid, mobState))
+            //     return false;
+            // Arcane-Edit-End
+
+            // Arcane-Start
+            if (TryComp<MobStateComponent>(entUid, out var mobState))
+            {
+                if (_mobState.IsDead(entUid, mobState))
+                    return false;
+            }
+
+            if (TryComp<MindContainerComponent>(entUid, out var mindContainer))
+            {
+                if (!_mind.TryGetMind(entUid, out _, out var mind))
+                    return false;
+            }
+            // Arcane-End
 
             return true;
         });
