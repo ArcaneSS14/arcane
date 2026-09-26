@@ -860,7 +860,7 @@ Entries:
     - type: Fix
       message: >-
         Химикаты более не учитывают внутреннюю кровь как вещество - фикс
-        моновера, мультивера и многих других, взаимодействующих с кровью.
+        моновера, мультивера и многих других, взаимодействующих с кровью. 
   id: 71
   time: '2026-09-02T08:03:57.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/284
@@ -1193,7 +1193,7 @@ Entries:
     - type: Tweak
       message: >-
         Добавлена резервация слота после выхода из игры. При перезаходе в
-        течение 30-ти секунд вы не попадёте в очередь.
+        течение 30-ти секунд вы не попадёте в очередь. 
   id: 100
   time: '2026-09-09T21:56:17.0000000+00:00'
   url: https://github.com/ArcaneSS14/arcane/pull/330
@@ -1433,7 +1433,6 @@ Entries:
       message: 'Добавлена новая черта: лисья натура'
   id: 114
   time: '2026-09-13T05:12:00.0000000+00:00'
-  prNumber: 318
   url: https://github.com/ArcaneSS14/arcane/pull/318
   media:
     - >-
@@ -1455,7 +1454,6 @@ Entries:
       message: 'Добавлен система связывания поводка и ошейника '
   id: 116
   time: '2026-09-13T14:45:29.0000000+00:00'
-  prNumber: 348
   url: https://github.com/ArcaneSS14/arcane/pull/348
   media:
     - >-
@@ -1470,7 +1468,6 @@ Entries:
       message: Шаттл воксов налётчиков перестроен.
   id: 117
   time: '2026-09-13T14:47:18.0000000+00:00'
-  prNumber: 332
   url: https://github.com/ArcaneSS14/arcane/pull/332
   media:
     - >-
@@ -1481,7 +1478,6 @@ Entries:
       message: Добавлена возможность ставить многим расам кастомные названия расы.
   id: 118
   time: '2026-09-13T16:56:16.0000000+00:00'
-  prNumber: 347
   url: https://github.com/ArcaneSS14/arcane/pull/347
   media:
     - >-
@@ -1498,7 +1494,6 @@ Entries:
       message: Апстрим 13/09/26
   id: 119
   time: '2026-09-13T17:26:49.0000000+00:00'
-  prNumber: 356
   url: https://github.com/ArcaneSS14/arcane/pull/356
 - author: ReWAFFlution
   changes:
@@ -1510,7 +1505,6 @@ Entries:
       message: Многие существа получили ТТС. Дракон, боты, пауки и обезьяны.
   id: 120
   time: '2026-09-14T06:11:02.0000000+00:00'
-  prNumber: 353
   url: https://github.com/ArcaneSS14/arcane/pull/353
 - author: ReWAFFlution
   changes:

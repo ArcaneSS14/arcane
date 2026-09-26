@@ -54,25 +54,8 @@ DISCORD_EMBED_TITLE_LIMIT = 256
 DISCORD_EMBED_DESCRIPTION_LIMIT = 4096
 DISCORD_EMBED_FOOTER_LIMIT = 2048
 DISCORD_EMBED_TOTAL_LIMIT = 6000
-DISCORD_MAX_EMBEDS_PER_MESSAGE = 10
-DISCORD_MEDIA_URL_LIMIT = 2000
-
-MEDIA_FILE_EXTENSIONS = frozenset({
-    ".apng",
-    ".avif",
-    ".bmp",
-    ".gif",
-    ".gifv",
-    ".jpeg",
-    ".jpg",
-    ".m4v",
-    ".mkv",
-    ".mov",
-    ".mp4",
-    ".png",
-    ".webm",
-    ".webp",
-})
+DISCORD_CONTENT_LIMIT = 2000
+DISCORD_MEDIA_LINKS_PER_MESSAGE = 5
 
 HTTP_TIMEOUT_SECONDS = float(os.environ.get("CHANGELOG_HTTP_TIMEOUT", "30"))
 DISCORD_MAX_RETRIES = int(os.environ.get("CHANGELOG_DISCORD_RETRIES", "5"))
@@ -130,9 +113,9 @@ def main() -> None:
                 f"Sending changelog {index}/{len(entries)} "
                 f"(id={entry.get('id', 'unknown')}, author={entry.get('author', 'unknown')})"
             )
-            media_embeds = list(build_media_embeds(entry))
-            for payload in build_entry_payloads(embed, media_embeds):
-                send_discord_payload(session, payload)
+            send_discord_payload(session, {"embeds": [embed]})
+            for content in build_media_messages(entry):
+                send_discord_payload(session, {"content": content})
 
 
 def load_changelog(stream: str, source: str) -> dict[str, Any]:
@@ -430,29 +413,14 @@ def changelog_entry_to_embed(entry: Mapping[str, Any]) -> dict[str, Any]:
     return embed
 
 
-def is_embed_previewable(url: str) -> bool:
-    """Return whether Discord can generally render the URL inside an embed."""
-    parsed = urlparse(url)
-    path = parsed.path.lower()
-    if any(path.endswith(extension) for extension in MEDIA_FILE_EXTENSIONS):
-        return True
-
-    host = (parsed.hostname or "").lower()
-    if host == "github.com" and path.startswith("/user-attachments/"):
-        return True
-    if host.endswith(".githubusercontent.com"):
-        return True
-
-    return False
-
-
-def build_media_embeds(entry: Mapping[str, Any]) -> Iterable[dict[str, Any]]:
-    """Build one embed per media URL so previews render alongside the changelog."""
+def build_media_messages(entry: Mapping[str, Any]) -> Iterable[str]:
+    """Send media as bare links so Discord can preview images and videos."""
     media = entry.get("media", [])
     if not isinstance(media, list):
         return
 
     seen: set[str] = set()
+    links: list[str] = []
     for value in media:
         try:
             url = normalize_url(value)
@@ -466,68 +434,23 @@ def build_media_embeds(entry: Mapping[str, Any]) -> Iterable[dict[str, Any]]:
 
         if any(char.isspace() or ord(char) < 32 or char in '<>"`' for char in url):
             continue
-        if len(url) > DISCORD_MEDIA_URL_LIMIT:
-            print(f"Skipping media URL exceeding Discord's embed limit (entry {entry.get('id')})")
-            continue
-        if not is_embed_previewable(url):
-            print(
-                f"Skipping media URL Discord cannot preview in an embed "
-                f"(entry {entry.get('id')}): {url}"
-            )
+        if len(url) > DISCORD_CONTENT_LIMIT:
+            print(f"Skipping media URL exceeding Discord's content limit (entry {entry.get('id')})")
             continue
         if url in seen:
             continue
         seen.add(url)
 
-        yield {"image": {"url": url}}
-
-
-def embed_char_count(embed: Mapping[str, Any]) -> int:
-    """Total characters an embed contributes to the per-message embed budget."""
-    total = len(str(embed.get("title", "") or ""))
-    total += len(str(embed.get("description", "") or ""))
-
-    author = embed.get("author")
-    if isinstance(author, Mapping):
-        total += len(str(author.get("name", "") or ""))
-    footer = embed.get("footer")
-    if isinstance(footer, Mapping):
-        total += len(str(footer.get("text", "") or ""))
-    for field in ("image", "video"):
-        value = embed.get(field)
-        if isinstance(value, Mapping):
-            total += len(str(value.get("url", "") or ""))
-
-    return total
-
-
-def build_entry_payloads(
-    embed: Mapping[str, Any],
-    media_embeds: Sequence[Mapping[str, Any]],
-) -> Iterable[dict[str, Any]]:
-    """Pack the changelog embed and its media previews into shared messages."""
-    if not media_embeds:
-        yield {"embeds": [embed]}
-        return
-
-    batch: list[Mapping[str, Any]] = [embed]
-    batch_size = embed_char_count(embed)
-
-    for media_embed in media_embeds:
-        size = embed_char_count(media_embed)
-        if (
-            len(batch) >= DISCORD_MAX_EMBEDS_PER_MESSAGE
-            or batch_size + size > DISCORD_EMBED_TOTAL_LIMIT
+        if links and (
+            len(links) >= DISCORD_MEDIA_LINKS_PER_MESSAGE
+            or len("\n".join([*links, url])) > DISCORD_CONTENT_LIMIT
         ):
-            yield {"embeds": list(batch)}
-            batch = []
-            batch_size = 0
+            yield "\n".join(links)
+            links = []
+        links.append(url)
 
-        batch.append(media_embed)
-        batch_size += size
-
-    if batch:
-        yield {"embeds": list(batch)}
+    if links:
+        yield "\n".join(links)
 
 
 def make_webhook_payload(

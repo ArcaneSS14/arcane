@@ -203,14 +203,6 @@ namespace Content.Client.Changelog
             [DataField("author")]
             public string Author { get; private set; } = "";
 
-            // Arcane-Start
-            [DataField("prNumber")]
-            public int? PullRequestNumber { get; private set; }
-
-            [DataField("url")]
-            public string? PullRequestUrl { get; private set; }
-            // Arcane-End
-
             [DataField]
             public DateTime Time { get; private set; }
 

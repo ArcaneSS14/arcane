@@ -23,7 +23,7 @@ const CommentRegex = /<!--.*?-->/gs; // HTML comments
 async function main() {
     // Get PR details
     const pr = await axios.get(`https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/pulls/${process.env.PR_NUMBER}`);
-    const { merged_at, body, user, number, html_url } = pr.data; // Arcane-Edit
+    const { merged_at, body, user, html_url } = pr.data;
 
     // Remove comments from the body
     const commentlessBody = (body || "").replace(CommentRegex, '');
@@ -65,7 +65,6 @@ async function main() {
         changes: entries,
         id: getHighestCLNumber() + 1,
         time: time,
-        prNumber: number, // Arcane
         url: html_url,
     };
 
