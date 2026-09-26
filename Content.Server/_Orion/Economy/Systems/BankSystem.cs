@@ -184,17 +184,46 @@ public sealed class BankSystem : EntitySystem
     }
 
     // Arcane-Start
-    public bool TryGetJobDepartment(Entity<StationAccountComponent> account, out ProtoId<CargoAccountPrototype> department)
+    /// <summary>
+    /// Resolves the station account of the department the given job belongs to, using the job alone.
+    /// The primary department decides, and a department without a station account grants no perks at all.
+    /// </summary>
+    public bool TryGetJobDepartment(JobPrototype job, out ProtoId<CargoAccountPrototype> department)
     {
-        if (_jobs.MindTryGetJob(account.Owner, out var job)
-            && _jobs.TryGetPrimaryDepartment(job.ID, out var jobDepartment)
-            && jobDepartment.StationAccount is { } stationAccount)
+        department = default;
+
+        if (_jobs.TryGetPrimaryDepartment(job.ID, out var jobDepartment))
         {
+            if (jobDepartment.StationAccount is not { } stationAccount)
+                return false;
+
             department = stationAccount;
             return true;
         }
 
-        return TryGetDepartment(account, out department);
+        // Jobs without a primary department, captain for example, follow the account they are paid from.
+        if (job.PayrollDepartmentAccount is not { } payrollDepartment)
+            return false;
+
+        department = payrollDepartment;
+        return true;
+    }
+
+    /// <summary>
+    /// Resolves the station account of the department the player works in, based on the player's own job.
+    /// The presented ID card and the account the player pays from are deliberately not taken into account.
+    /// </summary>
+    public bool TryGetPlayerJobDepartment(EntityUid player, out ProtoId<CargoAccountPrototype> department)
+    {
+        department = default;
+
+        if (!_mind.TryGetMind(player, out var mindUid, out _))
+            return false;
+
+        if (!_jobs.MindTryGetJob(mindUid, out var job))
+            return false;
+
+        return TryGetJobDepartment(job, out department);
     }
     // Arcane-End
 
