@@ -6,6 +6,7 @@ using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
+using Content.Shared.Roles.Jobs;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
@@ -19,6 +20,7 @@ public sealed class BankSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedJobSystem _jobs = default!; // Arcane
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("economy-bank");
     private readonly Dictionary<string, EntityUid> _accountsById = new(StringComparer.OrdinalIgnoreCase); // Arcane
@@ -137,7 +139,7 @@ public sealed class BankSystem : EntitySystem
             return true;
         }
 
-        if (TryGetJobDepartment(account.Comp.JobId, out department))
+        if (TryGetPayrollDepartment(account.Comp.JobId, out department)) // Arcane-Edit
         {
             account.Comp.Department = department;
             Dirty(account);
@@ -171,7 +173,7 @@ public sealed class BankSystem : EntitySystem
         return false;
     }
 
-    private bool TryGetJobDepartment(string? jobId, out ProtoId<CargoAccountPrototype> department)
+    private bool TryGetPayrollDepartment(string? jobId, out ProtoId<CargoAccountPrototype> department) // Arcane-Edit
     {
         department = default;
         if (string.IsNullOrWhiteSpace(jobId) || !_proto.TryIndex<JobPrototype>(jobId, out var job) || job.PayrollDepartmentAccount is not { } payrollDepartment)
@@ -180,6 +182,50 @@ public sealed class BankSystem : EntitySystem
         department = payrollDepartment;
         return true;
     }
+
+    // Arcane-Start
+    /// <summary>
+    /// Resolves the station account of the department the given job belongs to, using the job alone.
+    /// The primary department decides, and a department without a station account grants no perks at all.
+    /// </summary>
+    public bool TryGetJobDepartment(JobPrototype job, out ProtoId<CargoAccountPrototype> department)
+    {
+        department = default;
+
+        if (_jobs.TryGetPrimaryDepartment(job.ID, out var jobDepartment))
+        {
+            if (jobDepartment.StationAccount is not { } stationAccount)
+                return false;
+
+            department = stationAccount;
+            return true;
+        }
+
+        // Jobs without a primary department, captain for example, follow the account they are paid from.
+        if (job.PayrollDepartmentAccount is not { } payrollDepartment)
+            return false;
+
+        department = payrollDepartment;
+        return true;
+    }
+
+    /// <summary>
+    /// Resolves the station account of the department the player works in, based on the player's own job.
+    /// The presented ID card and the account the player pays from are deliberately not taken into account.
+    /// </summary>
+    public bool TryGetPlayerJobDepartment(EntityUid player, out ProtoId<CargoAccountPrototype> department)
+    {
+        department = default;
+
+        if (!_mind.TryGetMind(player, out var mindUid, out _))
+            return false;
+
+        if (!_jobs.MindTryGetJob(mindUid, out var job))
+            return false;
+
+        return TryGetJobDepartment(job, out department);
+    }
+    // Arcane-End
 
     public static int GetBalance(Entity<StationAccountComponent> account)
     {
