@@ -18,6 +18,8 @@ using Content.Shared.Speech.Components;
 using Content.Shared.Chat;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Radio.Components;
+using Content.Shared._Arcane.TTS; // Arcane
+using Content.Shared._EinsteinEngines.Language; // Arcane
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Radio.EntitySystems;
@@ -191,13 +193,41 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
         var message = args.OriginalChatMsg.Message; // The chat system will handle the rest and re-obfuscate if needed.
 
+        var chatType = component.SpeakNormally ? InGameICChatType.Speak : InGameICChatType.Whisper; // Goobstation - radio host
+
+        // Arcane-Start: Preserve the original speaker's TTS voice through the relay, so e.g. the DJ is heard
+        // at the station radio with its own voice. The relay entity (a radio, a station radio) usually has no
+        // TTS component of its own. Same approach as the holopad relay in TelephoneSystem.
+        if (TryComp<TTSComponent>(args.MessageSource, out var sourceTts) && sourceTts.VoicePrototype is { } voiceId)
+        {
+            var speakerTts = TryComp<TTSComponent>(uid, out var existingTts) ? existingTts : AddComp<TTSComponent>(uid);
+
+            var oldVoice = speakerTts.VoicePrototype;
+            var oldEffect = speakerTts.Effect;
+            speakerTts.VoicePrototype = voiceId;
+            speakerTts.Effect = sourceTts.Effect;
+
+            SendRelayMessage(uid, message, chatType, name, component, args.Language);
+
+            speakerTts.VoicePrototype = oldVoice;
+            speakerTts.Effect = oldEffect;
+            if (existingTts == null)
+                RemComp<TTSComponent>(uid);
+        }
+        else
+            // Arcane-End
+            SendRelayMessage(uid, message, chatType, name, component, args.Language);
+    }
+
+    private void SendRelayMessage(EntityUid uid, string message, InGameICChatType chatType, string name, RadioSpeakerComponent component, LanguagePrototype language) // Arcane
+    {
         _chat.TrySendInGameICMessage(uid,
             message,
-            component.SpeakNormally ? InGameICChatType.Speak : InGameICChatType.Whisper, // Goobstation - radio host
+            chatType,
             ChatTransmitRange.GhostRangeLimit,
             nameOverride: name,
             checkRadioPrefix: component.SpeakNormally,
-            languageOverride: args.Language); // Einstein Engines - Languages
+            languageOverride: language); // Einstein Engines - Languages
     }
 
     private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)

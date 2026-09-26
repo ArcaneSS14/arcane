@@ -139,7 +139,7 @@ public sealed partial class TTSSystem : EntitySystem
             audioResource.Load(IoCManager.Instance!, _prefix / filePath);
 
             var audioParams = AudioParams.Default
-                .WithVolume(AdjustVolume(ev.IsWhisper, ev.SourceUid == null, ev.Frequency))
+                .WithVolume(AdjustVolume(ev.IsWhisper, isRadio, ev.Frequency, IsStationRadio(ev.SourceUid)))
                 .WithMaxDistance(AdjustDistance(ev.IsWhisper));
 
             if (ev.SourceUid != null)
@@ -161,7 +161,15 @@ public sealed partial class TTSSystem : EntitySystem
         }
     }
 
-    private float AdjustVolume(bool isWhisper, bool isRadio = false, int? frequency = null)
+    /// <summary>
+    ///     Whether the TTS is spoken by a station radio, so the listener's own station radio volume applies to it.
+    /// </summary>
+    private bool IsStationRadio(NetEntity? sourceUid)
+    {
+        return sourceUid is { } netUid && TryGetEntity(netUid, out Entity<StationRadioReceiverComponent> stationRadio);
+    }
+
+    private float AdjustVolume(bool isWhisper, bool isRadio = false, int? frequency = null, bool isStationRadio = false)
     {
         var volume = SharedAudioSystem.GainToVolume(_volume);
 
