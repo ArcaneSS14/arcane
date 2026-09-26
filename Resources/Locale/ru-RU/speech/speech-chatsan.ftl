@@ -508,6 +508,7 @@ chatsan-replacement-156 = нападение
 
 chatsan-word-157 = гри+ф+
 chatsan-word-157-2 = грифинг
+chatsan-word-157-3 = дви+жу+х[аи]+
 chatsan-replacement-157 = беспредел
 
 chatsan-word-158 = а+нта+[жш]+к[аоу]*
