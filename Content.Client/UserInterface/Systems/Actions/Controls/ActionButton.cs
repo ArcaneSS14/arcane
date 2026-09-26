@@ -8,6 +8,7 @@ using Content.Client.Stylesheets;
 using Content.Shared.Actions.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Examine;
+using Content.Shared.Input;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -16,6 +17,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Client._Arcane.UserInterface.Systems.Actions;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 using static Robust.Client.UserInterface.Controls.TextureRect;
 using Direction = Robust.Shared.Maths.Direction;
@@ -59,8 +61,20 @@ public sealed class ActionButton : Control, IEntityControl
 
     private Texture? _buttonBackgroundTexture;
 
+    // Arcane-Start
+    private readonly TextureRect _blockedRect;
+    private readonly PanelContainer _pinRect;
+    private Texture? _blockedTexture;
+    private FormattedMessage? _cachedName;
+    private FormattedMessage? _cachedDesc;
+    // Arcane-End
+
     public Entity<ActionComponent>? Action { get; private set; }
     public bool Locked { get; set; }
+    // Arcane-Start
+    public bool Pinned { get; private set; }
+    public bool Unavailable { get; private set; }
+    // Arcane-End
 
     public event Action<GUIBoundKeyEventArgs, ActionButton>? ActionPressed;
     public event Action<GUIBoundKeyEventArgs, ActionButton>? ActionUnpressed;
@@ -146,6 +160,28 @@ public sealed class ActionButton : Control, IEntityControl
                 _smallItemSpriteView
             }
         });
+        // Arcane-Start
+        _blockedRect = new TextureRect
+        {
+            Name = "Blocked",
+            TextureScale = new Vector2(2, 2),
+            MouseFilter = MouseFilterMode.Ignore,
+            Visible = false
+        };
+        _pinRect = new PanelContainer
+        {
+            Name = "Pinned",
+            MouseFilter = MouseFilterMode.Ignore,
+            MinSize = new Vector2(64, 64),
+            PanelOverride = new StyleBoxFlat
+            {
+                BackgroundColor = Color.Transparent,
+                BorderColor = Color.FromHex("#8fd3ff"),
+                BorderThickness = new Thickness(2)
+            },
+            Visible = false
+        };
+        // Arcane-End
         Cooldown = new CooldownGraphic {Visible = false};
 
         AddChild(Button);
@@ -155,6 +191,10 @@ public sealed class ActionButton : Control, IEntityControl
         AddChild(Label);
         AddChild(Cooldown);
         AddChild(paddingBoxItemIcon);
+        // Arcane-Start
+        AddChild(_blockedRect);
+        AddChild(_pinRect);
+        // Arcane-End
 
         Button.Modulate = new Color(255, 255, 255, 150);
 
@@ -170,15 +210,27 @@ public sealed class ActionButton : Control, IEntityControl
     {
         base.OnThemeUpdated();
         _buttonBackgroundTexture = Theme.ResolveTexture("SlotBackground");
+        // Arcane-Start
+        _blockedTexture = Theme.ResolveTextureOrNull("blocked")?.Texture;
+        _blockedRect.Texture = _blockedTexture;
+        // Arcane-End
         Label.FontColorOverride = Theme.ResolveColorOrSpecified("whiteText");
     }
 
     private void OnPressed(GUIBoundKeyEventArgs args)
     {
+        // Arcane-Start
+        if (args.Function == ContentKeyFunctions.MouseMiddle)
+        {
+            ActionPressed?.Invoke(args, this);
+            return;
+        }
+        // Arcane-End
+
         if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.UIRightClick)
             return;
 
-        if (args.Function == EngineKeyFunctions.UIRightClick)
+        if (args.Function == EngineKeyFunctions.UIRightClick && !Pinned) // Arcane-Edit
             Depress(args, true);
 
         ActionPressed?.Invoke(args, this);
@@ -189,15 +241,40 @@ public sealed class ActionButton : Control, IEntityControl
         if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.UIRightClick)
             return;
 
-        if (args.Function == EngineKeyFunctions.UIRightClick)
+        if (args.Function == EngineKeyFunctions.UIRightClick && !Pinned) // Arcane-Edit
             Depress(args, false);
 
         ActionUnpressed?.Invoke(args, this);
     }
 
+    // Arcane-Start
+    private Control? CreateTooltip(FormattedMessage name, FormattedMessage? desc)
+    {
+        var state = (string?) null;
+
+        if (Pinned)
+            state = Loc.GetString(Unavailable ? "ui-actionslot-pinned-unavailable" : "ui-actionslot-pinned");
+        else if (Unavailable)
+            state = Loc.GetString("ui-actionslot-unavailable");
+
+        return new ActionAlertTooltip(name, desc, state);
+    }
+    // Arcane-End
+
     private Control? SupplyTooltip(Control sender)
     {
-        if (!_entities.TryGetComponent(Action, out MetaDataComponent? metadata))
+        // Arcane-Start
+        // A pinned action keeps its last known tooltip while its entity is gone.
+        var action = Action;
+        if (action is null || _entities.Deleted(action.Value.Owner))
+        {
+            return _cachedName is { } cachedName && _cachedDesc is { } cachedDesc
+                ? CreateTooltip(cachedName, cachedDesc)
+                : null;
+        }
+        // Arcane-End
+
+        if (!_entities.TryGetComponent(action, out MetaDataComponent? metadata)) // Arcane-Edit
             return null;
 
         var name = FormattedMessage.FromMarkupPermissive(metadata.EntityName);
@@ -206,12 +283,19 @@ public sealed class ActionButton : Control, IEntityControl
         if (_player.LocalEntity is null)
             return null;
 
-        var ev = new ExaminedEvent(desc, Action.Value, _player.LocalEntity.Value, true, !desc.IsEmpty);
-        _entities.EventBus.RaiseLocalEvent(Action.Value.Owner, ev);
+        // Arcane-Edit-Start
+        var ev = new ExaminedEvent(desc, action.Value, _player.LocalEntity.Value, true, !desc.IsEmpty);
+        _entities.EventBus.RaiseLocalEvent(action.Value.Owner, ev);
+        // Arcane-Edit-End
 
         var newDesc = ev.GetTotalMessage();
 
-        return new ActionAlertTooltip(name, newDesc);
+        // Arcane-Start
+        _cachedName = name;
+        _cachedDesc = newDesc;
+        // Arcane-End
+
+        return CreateTooltip(name, newDesc); // Arcane-Edit
     }
 
     protected override void ControlFocusExited()
@@ -284,6 +368,15 @@ public sealed class ActionButton : Control, IEntityControl
 
     public void UpdateIcons()
     {
+        // Arcane-Start
+        // A pinned action keeps the icons it had while it was available, its entity may be gone by now.
+        if (Action is null && Unavailable)
+        {
+            UpdateBackground();
+            return;
+        }
+        // Arcane-End
+
         UpdateItemIcon();
         UpdateBackground();
 
@@ -316,6 +409,7 @@ public sealed class ActionButton : Control, IEntityControl
     {
         _controller ??= UserInterfaceManager.GetUIController<ActionUIController>();
         if (Action != null ||
+            Unavailable || // Arcane
             _controller.IsDragging && GetPositionInParent() == Parent?.ChildCount - 1)
         {
             Button.Texture = _buttonBackgroundTexture;
@@ -325,6 +419,18 @@ public sealed class ActionButton : Control, IEntityControl
             Button.Texture = null;
         }
     }
+
+    // Arcane-Start
+    private void UpdateBlocked()
+    {
+        _blockedRect.Visible = Unavailable;
+    }
+
+    private void UpdatePin()
+    {
+        _pinRect.Visible = Pinned;
+    }
+    // Arcane-End
 
     public bool TryReplaceWith(EntityUid actionId, ActionsSystem system)
     {
@@ -339,17 +445,37 @@ public sealed class ActionButton : Control, IEntityControl
     {
         Action = system.GetAction(actionId);
 
-        Label.Visible = Action != null;
+        // Arcane-Start
+        _controller ??= UserInterfaceManager.GetUIController<ActionUIController>();
+        Pinned = actionId != null && _controller.IsActionPinned(actionId.Value);
+        Unavailable = actionId != null && _controller.IsActionUnavailable(actionId.Value);
+        // Arcane-End
+
+        Label.Visible = Action != null || Unavailable; // Arcane-Edit
         UpdateIcons();
+        // Arcane-Start
+        UpdateBlocked();
+        UpdatePin();
+        // Arcane-End
     }
 
     public void ClearData()
     {
         Action = null;
+        // Arcane-Start
+        Pinned = false;
+        Unavailable = false;
+        _cachedName = null;
+        _cachedDesc = null;
+        // Arcane-End
         Cooldown.Visible = false;
         Cooldown.Progress = 1;
         Label.Visible = false;
         UpdateIcons();
+        // Arcane-Start
+        UpdateBlocked();
+        UpdatePin();
+        // Arcane-End
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -393,7 +519,7 @@ public sealed class ActionButton : Control, IEntityControl
     public void Depress(GUIBoundKeyEventArgs args, bool depress)
     {
         // action can still be toggled if it's allowed to stay selected
-        if (Action?.Comp is not {Enabled: true})
+        if (Unavailable || Action?.Comp is not {Enabled: true}) // Arcane-Edit
             return;
 
         _depressed = depress;
@@ -413,7 +539,7 @@ public sealed class ActionButton : Control, IEntityControl
         }
 
         // show a hover only if the action is usable or another action is being dragged on top of this
-        if (_beingHovered && (_controller.IsDragging || action.Enabled))
+        if (_beingHovered && (_controller.IsDragging || !Unavailable)) // Arcane-Edit
         {
             SetOnlyStylePseudoClass(ContainerButton.StylePseudoClassHover);
         }
@@ -437,7 +563,7 @@ public sealed class ActionButton : Control, IEntityControl
             return;
         }
 
-        if (!action.Enabled)
+        if (Unavailable) // Arcane-Edit
         {
             SetOnlyStylePseudoClass(ContainerButton.StylePseudoClassDisabled);
             return;
