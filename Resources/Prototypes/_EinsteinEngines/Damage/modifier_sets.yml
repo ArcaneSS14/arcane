@@ -9,7 +9,7 @@
     Heat: 1.4 # Arcane-Edit
     Shock: 2
   # Goobstation
-    Radiation: 0.4
+    Radiation: 0.2 # Arcane-Edit
     Ion: 0.8
   ignoreArmorPierceFlags: All
 
