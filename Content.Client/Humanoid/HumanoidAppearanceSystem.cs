@@ -78,6 +78,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         // end Goobstation: port EE height/width sliders
 
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
+
+        RaiseLocalEvent(entity.Owner, new HumanoidAppearanceUpdatedEvent()); // Arcane
     }
 
     private static bool IsHidden(HumanoidAppearanceComponent humanoid, HumanoidVisualLayers layer)
@@ -265,6 +267,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.Height = profile.Height; // Goobstation: port EE height/width sliders
         humanoid.Width = profile.Width; // Goobstation: port EE height/width sliders
         humanoid.CustomSpeciesName = profile.CustomSpeciesName; // Arcane
+        humanoid.EarsAboveHair = profile.Appearance.EarsAboveHair; // Arcane
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Client._Arcane.DirectionalLayering;
 using Content.Client._Orion.Lobby.UI;
 using Content.Client.Humanoid;
 using Content.Client.Lobby;
@@ -370,6 +371,7 @@ public sealed partial class WizardMirrorWindow : DefaultWindow
         PreviewDummy = _controller.LoadProfileEntity(Profile, null, ClothingDisplayMode.HideAll);
         SpriteView.SetEntity(PreviewDummy);
         _entManager.System<MetaDataSystem>().SetEntityName(PreviewDummy, Profile.Name);
+        SetPreviewRotation(_previewRotation); // Arcane
 
         // Check and set the dirty flag to enable the save/reset buttons as appropriate.
         SetDirty();
@@ -714,6 +716,11 @@ public sealed partial class WizardMirrorWindow : DefaultWindow
     private void SetPreviewRotation(Direction direction)
     {
         SpriteView.OverrideDirection = (Direction) ((int) direction % 4 * 2);
+
+        // Arcane-Start
+        if (SpriteView.OverrideDirection is { } overrideDirection && _entManager.EntityExists(PreviewDummy))
+            _entManager.System<DirectionalLayeringSystem>().ApplyDummyOrdering(PreviewDummy, overrideDirection);
+        // Arcane-End
     }
 
     private void RandomizeEverything()
