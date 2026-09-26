@@ -83,6 +83,7 @@ ui-options-hud-theme-minimalist = Минимализм
 ui-options-hud-theme-ashen = Пепел
 ui-options-hud-layout-default = Альтернативный
 ui-options-hud-layout-separated = Стандартный
+ui-options-hud-theme-ninja = Ниндзя
 ui-options-vp-stretch = Растянуть изображение для соответствия окну игры
 ui-options-vp-scale = Фиксированный масштаб окна игры:
 ui-options-vp-scale-value = x{ $scale }
