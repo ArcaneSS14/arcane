@@ -158,7 +158,7 @@ namespace Content.Server.VendingMachines
                 pricing.DiscountDepartment is not { } discountDepartment ||
                 user == null ||
                 !TryGetAccount(user.Value, out var account) ||
-                !_bank.TryGetDepartment(account, out var buyerDepartment) ||
+                !_bank.TryGetJobDepartment(account, out var buyerDepartment) || // Arcane-Edit
                 buyerDepartment != discountDepartment)
             {
                 return basePrice;

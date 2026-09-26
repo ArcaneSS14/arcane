@@ -6,6 +6,7 @@ using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
+using Content.Shared.Roles.Jobs;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
@@ -19,6 +20,7 @@ public sealed class BankSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedJobSystem _jobs = default!; // Arcane
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("economy-bank");
     private readonly Dictionary<string, EntityUid> _accountsById = new(StringComparer.OrdinalIgnoreCase); // Arcane
@@ -137,7 +139,7 @@ public sealed class BankSystem : EntitySystem
             return true;
         }
 
-        if (TryGetJobDepartment(account.Comp.JobId, out department))
+        if (TryGetPayrollDepartment(account.Comp.JobId, out department)) // Arcane-Edit
         {
             account.Comp.Department = department;
             Dirty(account);
@@ -171,7 +173,7 @@ public sealed class BankSystem : EntitySystem
         return false;
     }
 
-    private bool TryGetJobDepartment(string? jobId, out ProtoId<CargoAccountPrototype> department)
+    private bool TryGetPayrollDepartment(string? jobId, out ProtoId<CargoAccountPrototype> department) // Arcane-Edit
     {
         department = default;
         if (string.IsNullOrWhiteSpace(jobId) || !_proto.TryIndex<JobPrototype>(jobId, out var job) || job.PayrollDepartmentAccount is not { } payrollDepartment)
@@ -180,6 +182,21 @@ public sealed class BankSystem : EntitySystem
         department = payrollDepartment;
         return true;
     }
+
+    // Arcane-Start
+    public bool TryGetJobDepartment(Entity<StationAccountComponent> account, out ProtoId<CargoAccountPrototype> department)
+    {
+        if (_jobs.MindTryGetJob(account.Owner, out var job)
+            && _jobs.TryGetPrimaryDepartment(job.ID, out var jobDepartment)
+            && jobDepartment.StationAccount is { } stationAccount)
+        {
+            department = stationAccount;
+            return true;
+        }
+
+        return TryGetDepartment(account, out department);
+    }
+    // Arcane-End
 
     public static int GetBalance(Entity<StationAccountComponent> account)
     {

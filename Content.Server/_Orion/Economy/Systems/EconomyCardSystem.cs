@@ -36,6 +36,7 @@ public sealed class EconomyCardSystem : EntitySystem
     private static readonly ProtoId<StackPrototype> HolochipStackId = "CreditHolochip";
 
     // Arcane-start
+    public const int BaseStartingBalance = 50;
     private const float UiRefreshInterval = 1f;
     private const float StationSyncInterval = 10f;
 
@@ -138,6 +139,7 @@ public sealed class EconomyCardSystem : EntitySystem
         if (args.Mind.Comp.OwnedEntity is { } owned && _station.GetOwningStation(owned) is { } stationUid)
             account.OwningStation = stationUid;
 
+        EnsureBaseBalance(args.Mind.Owner, account); // Arcane
         EnsureStartingPayroll(args.Mind.Owner, args.Mind.Comp, account);
 
         if (!_idCard.TryFindIdCard(ent, out var idCard))
@@ -153,8 +155,25 @@ public sealed class EconomyCardSystem : EntitySystem
     private void OnRoleAdded(RoleAddedEvent args)
     {
         var account = _bank.EnsurePlayerAccount(args.MindId, args.Mind);
+        EnsureBaseBalance(args.MindId, account); // Arcane
         EnsureStartingPayroll(args.MindId, args.Mind, account);
     }
+
+    // Arcane-Start
+    private void EnsureBaseBalance(EntityUid mindUid, StationAccountComponent account)
+    {
+        if (account.BaseBalanceReceived || BaseStartingBalance <= 0)
+            return;
+
+        if (!_jobs.MindTryGetJob(mindUid, out var job))
+            return;
+
+        if (!_bank.Deposit((mindUid, account), BaseStartingBalance, "base-balance", reasonData: job.ID))
+            return;
+
+        account.BaseBalanceReceived = true;
+    }
+    // Arcane-End
 
     private void EnsureStartingPayroll(EntityUid mindUid, MindComponent mind, StationAccountComponent account)
     {
