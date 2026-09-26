@@ -2061,3 +2061,21 @@ Entries:
   time: '2026-09-25T09:21:12.0000000+00:00'
   prNumber: 405
   url: https://github.com/ArcaneSS14/arcane/pull/405
+- author: ReWAFFlution, DIMMoon1
+  changes:
+    - type: Fix
+      message: Исправлен баг с шейдером сингулярности.
+  id: 154
+  time: '2026-09-25T14:50:46.0000000+00:00'
+  prNumber: 407
+  url: https://github.com/ArcaneSS14/arcane/pull/407
+- author: qwertyuiopiot
+  changes:
+    - type: Tweak
+      message: 'Удалена устаревшая информация об "Ответном ударе" cqc из гайдбука. '
+    - type: Tweak
+      message: Переведен раздел "Перелом шеи" в гайдбуке cqc.
+  id: 155
+  time: '2026-09-26T02:03:13.0000000+00:00'
+  prNumber: 408
+  url: https://github.com/ArcaneSS14/arcane/pull/408
