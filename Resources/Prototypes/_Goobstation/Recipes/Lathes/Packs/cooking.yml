@@ -1,4 +1,4 @@
-# 
+#
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -11,3 +11,4 @@
     Plastic: 500
     Plasma: 150
     Silver: 50
+    BSCrystal: 10 # Arcane
