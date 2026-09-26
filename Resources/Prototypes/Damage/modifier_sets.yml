@@ -177,9 +177,13 @@
   coefficients:
     Blunt: 0.6
     # Arcane-Edit-Start
-    Slash: 1.25
-    Piercing: 0.75
+    Slash: 1.3
+    Piercing: 0.9
     # Arcane-Edit-End
+    # Arcane-Start
+    Bloodloss: 1.2
+    Heat: 1.3
+    # Arcane-End
     Cold: 1.5
     Poison: 0.8
   ignoreArmorPierceFlags: All # Goobstation
@@ -200,8 +204,11 @@
 - type: damageModifierSet
   id: Scale # Skin tougher, bones weaker, strong stomachs, cold-blooded (kindof)
   coefficients:
-    Slash: 0.7 # Arcane
-    Piercing: 1.25 # Arcane
+  # Arcane-Start
+    Slash: 0.8
+    Piercing: 1.1
+    Heat: 0.7
+  # Arcane-End
     Cold: 1.3
   ignoreArmorPierceFlags: All # Goobstation
 
@@ -218,27 +225,27 @@
   id: Arachnid
   coefficients:
     # Arcane-Start
+    Blunt: 0.9
     Slash: 0.8
     Heat: 1.25
     # Arcane-End
-    Poison: 0
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
   id: Moth # Arcane: Cold resistant, vulnerable to heat and piercing.
   coefficients:
-    Slash: 0.8 # Arcane
+    Blunt: 0.8 # Arcane
     Cold: 0.7
     Heat: 1.2
-    Piercing: 1.2 # Arcane
+    Piercing: 1.1
   ignoreArmorPierceFlags: All # Goobstation
 
 - type: damageModifierSet
   id: Vox
   coefficients: # Arcane: Resistant to chemical burns.
     # Arcane-Start
-    Slash: 1.2
-    Piercing: 1.2
+    Slash: 1.1
+    Piercing: 1.1
     Heat: 0.75
     # Arcane-End
     Caustic: 0.6 # Arcane
@@ -249,7 +256,7 @@
   id: Zombie #Goob change, make zombies great again
   coefficients:
   # Arcane-Edit-Start: (2 -> 1.2)
-    Blunt: 1.2 
+    Blunt: 1.2
     Piercing: 1.2
     Slash: 1.2
   # Arcane-Edit-End

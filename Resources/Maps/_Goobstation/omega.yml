@@ -31120,7 +31120,7 @@ entities:
     - type: Transform
       pos: -2.493187,-34.40246
       parent: 2
-- proto: ChestHuman
+- proto: BaseChestHuman
   entities:
   - uid: 4922
     components:
