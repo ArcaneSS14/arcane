@@ -18,6 +18,11 @@ namespace Content.Client.Actions.UI
         private readonly RichTextLabel _cooldownLabel;
         private readonly IGameTiming _gameTiming;
 
+        // Arcane-Start
+        private int _lastCooldownDuration = -1;
+        private int _lastCooldownTimeLeft = -1;
+        // Arcane-End
+
         /// <summary>
         /// Current cooldown displayed in this tooltip. Set to null to show no cooldown.
         /// </summary>
@@ -84,7 +89,7 @@ namespace Content.Client.Actions.UI
             base.FrameUpdate(args);
             if (!Cooldown.HasValue)
             {
-                _cooldownLabel.Visible = false;
+                HideCooldown(); // Arcane-Edit
                 return;
             }
 
@@ -92,8 +97,18 @@ namespace Content.Client.Actions.UI
             if (timeLeft > TimeSpan.Zero)
             {
                 var duration = Cooldown.Value.End - Cooldown.Value.Start;
+                // Arcane-Start
+                var durationSeconds = (int) duration.TotalSeconds;
+                var timeLeftSeconds = (int) timeLeft.TotalSeconds + 1;
 
-                if (!FormattedMessage.TryFromMarkup(Loc.GetString("ui-actionslot-duration", ("duration", (int)duration.TotalSeconds), ("timeLeft", (int)timeLeft.TotalSeconds + 1)), out var markup))
+                if (_lastCooldownDuration == durationSeconds && _lastCooldownTimeLeft == timeLeftSeconds)
+                    return;
+
+                _lastCooldownDuration = durationSeconds;
+                _lastCooldownTimeLeft = timeLeftSeconds;
+                // Arcane-End
+
+                if (!FormattedMessage.TryFromMarkup(Loc.GetString("ui-actionslot-duration", ("duration", durationSeconds), ("timeLeft", timeLeftSeconds)), out var markup)) // Arcane-End
                     return;
 
                 _cooldownLabel.SetMessage(markup);
@@ -101,8 +116,17 @@ namespace Content.Client.Actions.UI
             }
             else
             {
-                _cooldownLabel.Visible = false;
+            // Arcane-Start
+                HideCooldown();
             }
+        }
+
+        private void HideCooldown()
+        {
+            _lastCooldownDuration = -1;
+            _lastCooldownTimeLeft = -1;
+            // Arcane-End
+            _cooldownLabel.Visible = false;
         }
     }
 }

@@ -32,7 +32,7 @@ public class ActionButtonContainer : GridContainer
 
     public void SetActionData(ActionsSystem system, params EntityUid?[] actionTypes)
     {
-        var uniqueCount = Math.Min(system.GetClientActions().Count(), actionTypes.Length + 1);
+        var uniqueCount = Math.Max(Math.Min(system.GetClientActions().Count(), actionTypes.Length + 1), actionTypes.Length); // Arcane-Edit
         var keys = ContentKeyFunctions.GetHotbarBoundKeys();
 
         for (var i = 0; i < uniqueCount; i++)
