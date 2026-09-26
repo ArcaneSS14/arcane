@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by seraphimttt, theanemone, bulbo44kkey, tinry. (Discord)",
+    "copyright": "Made by seraphimttt, theanemone, bulbo44kkey, tinry. (Discord), r.t.r. , rewafflution",
     "size": {
         "x": 32,
         "y": 32
@@ -81,6 +81,18 @@
         },
         {
             "name": "hardmorningalt",
+            "directions": 4
+        },
+        {
+            "name": "mullet",
+            "directions": 4
+        },
+        {
+            "name": "wolfcut_m",
+            "directions": 4
+        },
+        {
+            "name": "wolfcut_f",
             "directions": 4
         }
     ]

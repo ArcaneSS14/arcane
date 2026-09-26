@@ -12,5 +12,5 @@ public sealed partial class AugmentStrengthComponent : Component
     /// What to multiply damage by when activated.
     /// </summary>
     [DataField]
-    public float Modifier = 1.25f;
+    public float Modifier = 1.15f; // Arcane-Edit: 1.25 -> 1.15
 }

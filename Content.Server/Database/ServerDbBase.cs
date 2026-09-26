@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Text.Json.Serialization; // Arcane
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
@@ -231,7 +232,7 @@ namespace Content.Server.Database
             prefs.SelectedCharacterSlot = newSlot;
         }
 
-        private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
+        internal static HumanoidCharacterProfile ConvertProfiles(Profile profile) // Arcane-Edit
         {
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
@@ -305,9 +306,77 @@ namespace Content.Server.Database
             }
 
             var barkVoice = profile.BarkVoice ?? SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
-            // Arcane-Start
             var erpPreference = (ErpPreference) profile.ErpPreference;
             var customSpeciesName = profile.CustomSpeciesName ?? "";
+
+            // Arcane-Start
+            var hairColor = ParseHairColor(profile.HairColor);
+            var hairGradientEnabled = profile.HairGradientEnabled;
+            List<Color>? hairGradientColors = null;
+            var hairGradientStyle = HairGradientStyle.Ombre;
+            var hairGradientOffset = 0.5f;
+
+            var gradientDataString = profile.HairGradientData;
+            var legacyGradientData = profile.HairColor.StartsWith('{')
+                ? profile.HairColor
+                : null;
+
+            if (!string.IsNullOrEmpty(gradientDataString))
+            {
+                try
+                {
+                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(gradientDataString, HairGradientJsonOptions);
+                    if (data != null && data.Colors.Count > 0)
+                    {
+                        hairGradientColors = data.Colors.Select(c => Color.FromHex(c.Trim())).ToList();
+                        hairGradientStyle = data.Style;
+                        hairGradientOffset = data.Offset;
+                    }
+                }
+                catch
+                {
+                    hairGradientEnabled = false;
+                }
+            }
+            else if (!string.IsNullOrEmpty(legacyGradientData))
+            {
+                try
+                {
+                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(legacyGradientData, HairGradientJsonOptions);
+                    if (data != null && data.Colors.Count > 0)
+                    {
+                        hairGradientColors = data.Colors.Select(c => Color.FromHex(c.Trim())).ToList();
+                        hairGradientEnabled = true;
+                        hairGradientStyle = data.Style;
+                        hairGradientOffset = data.Offset;
+                        hairColor = hairGradientColors[0];
+                    }
+                }
+                catch
+                {
+                    hairColor = Color.White;
+                }
+            }
+            else if (profile.HairColor.StartsWith('[') || profile.HairColor.Contains(';'))
+            {
+                try
+                {
+                    List<string>? hexCodes = profile.HairColor.StartsWith('[')
+                        ? JsonSerializer.Deserialize<List<string>>(profile.HairColor)
+                        : profile.HairColor.Split(';').ToList();
+
+                    if (hexCodes != null && hexCodes.Count > 0)
+                    {
+                        hairGradientColors = hexCodes.Select(c => Color.FromHex(c.Trim())).ToList();
+                        hairColor = hairGradientColors[0];
+                        hairGradientEnabled = true;
+                    }
+                }
+                catch
+                {
+                    hairColor = Color.White;
+                }
+            }
             // Arcane-End
 
             return new HumanoidCharacterProfile(
@@ -337,12 +406,18 @@ namespace Content.Server.Database
                 new HumanoidCharacterAppearance
                 (
                     profile.HairName,
-                    Color.FromHex(profile.HairColor),
+                    hairColor, // Arcane-Edit
                     profile.FacialHairName,
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
                     Color.FromHex(profile.SkinColor),
-                    markings
+                    markings,
+                    // Arcane-Start
+                    hairGradientEnabled,
+                    hairGradientColors,
+                    hairGradientStyle,
+                    hairGradientOffset
+                    // Arcane-End
                 ),
                 spawnPriority,
                 jobs,
@@ -356,7 +431,45 @@ namespace Content.Server.Database
             );
         }
 
-        private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
+        // Arcane-Start
+        internal static readonly JsonSerializerOptions HairGradientJsonOptions = new()
+        {
+            PropertyNameCaseInsensitive = true,
+            Converters = { new JsonStringEnumConverter() }
+        };
+
+        private static Color ParseHairColor(string value)
+        {
+            try
+            {
+                return value.StartsWith('{') || value.StartsWith('[') || value.Contains(';')
+                    ? Color.White
+                    : Color.FromHex(value);
+            }
+            catch
+            {
+                return Color.White;
+            }
+        }
+
+        internal sealed class HairGradientSaveData
+        {
+            public List<string> Colors { get; set; } = new();
+            public HairGradientStyle Style { get; set; } = HairGradientStyle.Ombre;
+            public float Offset { get; set; } = 0.5f;
+
+            public HairGradientSaveData() { }
+
+            public HairGradientSaveData(List<string> colors, HairGradientStyle style, float offset)
+            {
+                Colors = colors;
+                Style = style;
+                Offset = offset;
+            }
+        }
+        // Arcane-End
+
+        internal static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null) // Arcane-Edit
         {
             profile ??= new Profile();
             var appearance = (HumanoidCharacterAppearance) humanoid.CharacterAppearance;
@@ -392,6 +505,21 @@ namespace Content.Server.Database
             profile.Gender = humanoid.Gender.ToString();
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();
+            // Arcane-Start: Hair gradient persistence
+            if (appearance.HairGradientEnabled && appearance.HairGradientColors.Count > 0)
+            {
+                var data = new HairGradientSaveData(
+                    appearance.HairGradientColors.Select(c => c.ToHex()).ToList(),
+                    appearance.HairGradientStyle,
+                    appearance.HairGradientOffset);
+                profile.HairGradientEnabled = true;
+                profile.HairGradientData = JsonSerializer.Serialize(data, HairGradientJsonOptions);
+            }
+            else
+            {
+                profile.HairGradientEnabled = false;
+            }
+            // Arcane-End
             profile.FacialHairName = appearance.FacialHairStyleId;
             profile.FacialHairColor = appearance.FacialHairColor.ToHex();
             profile.EyeColor = appearance.EyeColor.ToHex();
@@ -1171,10 +1299,32 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 };
             }
 
+            // Arcane-Edit-Start
+            if (filter.Cursor is { } cursor)
+            {
+                var cursorDate = cursor.Date;
+                var cursorRoundId = cursor.RoundId;
+                var cursorId = cursor.Id;
+                query = filter.DateOrder switch
+                {
+                    DateOrder.Ascending => query.Where(log =>
+                        log.Date > cursorDate ||
+                        log.Date == cursorDate && log.RoundId > cursorRoundId ||
+                        log.Date == cursorDate && log.RoundId == cursorRoundId && log.Id > cursorId),
+                    DateOrder.Descending => query.Where(log =>
+                        log.Date < cursorDate ||
+                        log.Date == cursorDate && log.RoundId < cursorRoundId ||
+                        log.Date == cursorDate && log.RoundId == cursorRoundId && log.Id < cursorId),
+                    _ => throw new ArgumentOutOfRangeException(nameof(filter),
+                        $"Unknown {nameof(DateOrder)} value {filter.DateOrder}")
+                };
+            }
+            // Arcane-Edit-End
+
             query = filter.DateOrder switch
             {
-                DateOrder.Ascending => query.OrderBy(log => log.Date),
-                DateOrder.Descending => query.OrderByDescending(log => log.Date),
+                DateOrder.Ascending => query.OrderBy(log => log.Date).ThenBy(log => log.RoundId).ThenBy(log => log.Id), // Arcane
+                DateOrder.Descending => query.OrderByDescending(log => log.Date).ThenByDescending(log => log.RoundId).ThenByDescending(log => log.Id), // Arcane
                 _ => throw new ArgumentOutOfRangeException(nameof(filter),
                     $"Unknown {nameof(DateOrder)} value {filter.DateOrder}")
             };
@@ -1217,7 +1367,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     players[i] = log.Players[i].PlayerUserId;
                 }
 
-                yield return new SharedAdminLog(log.Id, log.Type, log.Impact, log.Date, log.Message, players);
+                yield return new SharedAdminLog(log.Id, log.Type, log.Impact, log.Date, log.Message, players, log.RoundId); // Arcane
             }
         }
 

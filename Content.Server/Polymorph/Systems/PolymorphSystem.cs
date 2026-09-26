@@ -16,6 +16,8 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Coordinates;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Hands.EntitySystems;
@@ -50,6 +52,7 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly SharedChargesSystem _charges = default!; // Arcane
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
@@ -308,7 +311,7 @@ public sealed partial class PolymorphSystem : EntitySystem
             {
                 if (TryComp(child, out InventoryComponent? inventory2))
                 {
-                    _inventory.TransferEntityInventories((uid, inventory1), (child, inventory2), false);
+                    _inventory.TransferEntityInventories((uid, inventory1), (child, inventory2), true); //Goob edit
                     foreach (var hand in _hands.EnumerateHeld(uid))
                     {
                         _hands.TryDrop(uid, hand, checkActionBlocker: false);
@@ -413,6 +416,8 @@ public sealed partial class PolymorphSystem : EntitySystem
         // visual effect spawn
         if (configuration.EffectProto != null)
             SpawnAttachedTo(configuration.EffectProto, child.ToCoordinates());
+
+        SyncPolymorphActions(uid, child); // Arcane
 
         return child;
     }
@@ -542,6 +547,8 @@ public sealed partial class PolymorphSystem : EntitySystem
             _popup.PopupEntity(popup, parent);
         QueueDel(uid);
 
+        SyncPolymorphActions(uid, parent); // Arcane
+
         return parent;
     }
 
@@ -630,4 +637,66 @@ public sealed partial class PolymorphSystem : EntitySystem
         return copy;
     }
     // goob edit end
+    // Arcane-Start
+    private void SyncPolymorphActions(EntityUid source, EntityUid destination)
+    {
+        if (!TryComp<ActionsComponent>(destination, out var destActionsComp) ||
+            !TryComp<ActionsComponent>(source, out var sourceActionsComp))
+            return;
+
+        var sourceMap = new Dictionary<string, EntityUid>(sourceActionsComp.Actions.Count);
+        foreach (var srcActionId in sourceActionsComp.Actions)
+        {
+            sourceMap[GetActionKey(srcActionId)] = srcActionId;
+        }
+
+        var seenActions = new HashSet<string>(destActionsComp.Actions.Count);
+        var actionsToRemove = new List<EntityUid>();
+
+        foreach (var actionId in destActionsComp.Actions)
+        {
+            if (!seenActions.Add(GetActionKey(actionId)))
+                actionsToRemove.Add(actionId);
+        }
+
+        foreach (var actionId in actionsToRemove)
+            _actions.RemoveAction(destination, actionId);
+
+        foreach (var actionId in destActionsComp.Actions)
+        {
+            if (!sourceMap.TryGetValue(GetActionKey(actionId), out var sourceActionId))
+                continue;
+
+            if (TryComp<ActionComponent>(sourceActionId, out var sourceAction) &&
+                TryComp<ActionComponent>(actionId, out var destAction))
+            {
+                if (sourceAction.Cooldown is { } cooldown)
+                    _actions.SetCooldown(actionId, cooldown.Start, cooldown.End);
+                else
+                    _actions.RemoveCooldown(actionId);
+
+                Dirty(actionId, destAction);
+            }
+
+            if (TryComp<LimitedChargesComponent>(sourceActionId, out var sourceCharges) &&
+                TryComp<LimitedChargesComponent>(actionId, out var destCharges))
+            {
+                _charges.CopyChargesState((sourceActionId, sourceCharges), (actionId, destCharges));
+            }
+        }
+    }
+
+    private string GetActionKey(EntityUid actionId)
+    {
+        if (TryComp<InstantActionComponent>(actionId, out var instantAction) &&
+            instantAction.Event is PolymorphActionEvent polymorphEvent &&
+            polymorphEvent.ProtoId is { } protoId)
+            return $"polymorph:{protoId}";
+
+        if (TryComp<MetaDataComponent>(actionId, out var meta) && meta.EntityPrototype != null)
+            return $"proto:{meta.EntityPrototype.ID}";
+
+        return $"action:{actionId}";
+    }
+    // Arcane-End
 }

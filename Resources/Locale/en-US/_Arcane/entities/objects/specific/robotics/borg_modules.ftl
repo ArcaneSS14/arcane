@@ -1,0 +1,14 @@
+ent-BorgHandBoozeDispenser = handheld booze dispenser
+    .desc = A bluespace booze dispenser shrunk down and battery-powered for cyborg use.
+ent-BorgHandSodaDispenser = handheld soda dispenser
+    .desc = A bluespace beverage dispenser shrunk down and battery-powered for cyborg use.
+ent-BorgHandFoodDispenser = handheld food synthesizer
+    .desc = A bluespace food synthesizer shrunk down and battery-powered for cyborg use.
+ent-BorgModuleHydroponics = hydroponics cyborg module
+    .desc = A service module combining gardening and harvesting tools for growing and reaping crops, with a slot for carrying seeds.
+ent-BorgModuleBartending = bartending cyborg module
+    .desc = A service module equipped with self-contained booze and soda dispensers, a shaker, two glasses, a self-refilling lighter, and two cigarette slots for on-the-go bartending.
+ent-FlippoLighterRegenerating = self-refilling flippo lighter
+    .desc = A rugged metal lighter that slowly refills its own fuel tank.
+ent-BorgModuleCooking = culinary cyborg module
+    .desc = A service module equipped with a self-contained food synthesizer, a knife, a rolling pin, flour, baking enzyme, and slots for carrying ingredients.
