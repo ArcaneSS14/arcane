@@ -53,6 +53,17 @@
   - type: Tag # goob edit
     tags:
     - Mask
+  # Arcane-Start
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      mask:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: maskblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: maskbloodicon
+  # Arcane-End
 
 - type: entity
   abstract: true
@@ -95,6 +106,10 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 10
+      # Arcane-Start
+      stain:
+        maxVol: 5
+      # Arcane-End
   - type: Tag
     tags:
     - ClothMade

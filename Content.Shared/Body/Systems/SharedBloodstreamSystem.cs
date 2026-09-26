@@ -17,6 +17,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.EntityEffects.Effects.Solution;
 using Content.Shared.Fluids;
+using Content.Shared.Inventory;
 using Content.Shared.Forensics.Components;
 using Content.Shared.HealthExaminable;
 using Content.Shared.Mobs.Systems;
@@ -47,6 +48,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!; // Arcane
 
     private float _bloodlossMultiplier = 4f; // Goobstation
 
@@ -572,6 +574,30 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
                 dna.Freshness = _timing.CurTime;
             }
             // Goobstation end
+
+            // Arcane-Start
+            var stainEv = new SpilledOnEvent(ent.Owner, tempSolution);
+            RaiseLocalEvent(ent.Owner, stainEv);
+
+            // stain neighbors
+            var xform = Transform(ent.Owner);
+            var lookup = _lookup.GetEntitiesInRange(xform.Coordinates, 1.5f);
+            foreach (var uid in lookup)
+            {
+                if (ent.Owner == uid)
+                    continue;
+
+                // only try staining things that have an inventory
+                // event is relayed by InventoryComponent
+                if (!HasComp<InventoryComponent>(uid))
+                    continue;
+
+                var neighborStainEv = new SpilledOnEvent(ent.Owner, tempSolution);
+
+                if (tempSolution.Volume <= 0)
+                    break;
+            }
+            // Arcane-End
 
             _puddle.TrySpillAt(ent.Owner, tempSolution, out _, sound: false);
 

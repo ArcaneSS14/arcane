@@ -547,3 +547,11 @@
   id: HolopadMachineCircuitboard
   icon: { sprite:  Structures/Machines/holopad.rsi, state: base } # Goobstation
   result: HolopadMachineCircuitboard
+
+# Arcane-Start
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: WashingMachineCircuitboard
+  icon: { sprite: _Arcane/Structures/Furniture/washing_machine.rsi, state: base }
+  result: WashingMachineCircuitboard
+# Arcane-End
