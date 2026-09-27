@@ -173,8 +173,12 @@ public sealed partial class TTSSystem : EntitySystem
 
         var gain = 1f;
 
-        if (HasComp<StationRadioReceiverComponent>(ent))
+        if (TryComp<StationRadioReceiverComponent>(ent, out var stationRadio))
+        {
+            if (!stationRadio.Active)
+                return float.NegativeInfinity;
             gain *= _cfg.GetCVar(ACCVars.StationRadioVolume);
+        }
 
         if (gain == 1f)
             return 0f;
