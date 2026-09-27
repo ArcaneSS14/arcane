@@ -1,11 +1,11 @@
 - type: guideEntry
   id: Devil
-  name: guide-entry-devils
+  name: guide-entry-devils # Arcane-Edit
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/Devil.xml"
   children:
   - DevilClauses
 
 - type: guideEntry
   id: DevilClauses
-  name: guide-entry-devil-clauses
+  name: guide-entry-devil-clauses # Arcane-Edit
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/DevilClauses.xml"

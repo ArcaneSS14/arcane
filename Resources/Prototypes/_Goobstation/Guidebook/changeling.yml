@@ -2,12 +2,12 @@
 
 - type: guideEntry
   id: Changelings
-  name: guide-entry-changelings
+  name: guide-entry-changelings # Arcane-Edit
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/Changelings.xml"
   children:
   - ChangelingsAbilities
 
 - type: guideEntry
   id: ChangelingsAbilities
-  name: guide-entry-changeling-abilities
+  name: guide-entry-changeling-abilities # Arcane-Edit
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/ChangelingsAbilities.xml"
