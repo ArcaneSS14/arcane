@@ -15,6 +15,9 @@ public sealed partial class WashingMachineComponent : Component
     [DataField, AutoNetworkedField]
     public TimeSpan WashingTime;
 
+    [DataField, AutoNetworkedField]
+    public float StuckChance = 0.05f;
+
     [ViewVariables, AutoNetworkedField, AutoPausedField, Access(typeof(SharedWashingMachineSystem))]
     public TimeSpan WashingFinished;
 

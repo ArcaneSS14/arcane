@@ -23,6 +23,7 @@
       visible: false
   - type: WashingMachine
     washingTime: 5
+    stuckChance: 0.05
     washingSound:
       path: /Audio/_Arcane/Machines/washing_loop.ogg
       params:
@@ -38,6 +39,8 @@
       - Clothing
       sizes:
       - Tiny
+      - Small
+      - Normal
   - type: Forensics
     canDnaBeCleaned: false
   - type: Appearance

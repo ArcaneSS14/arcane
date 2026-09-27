@@ -23,9 +23,11 @@ using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Standing;
+using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Verbs;
+using Content.Shared.Whitelist;
 using Content.Shared._Arcane.WashingMachine.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -35,6 +37,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
@@ -57,6 +60,8 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private static readonly TimeSpan EscapeTime = TimeSpan.FromSeconds(5);
     private static readonly TimeSpan EnterTime = TimeSpan.FromSeconds(2);
@@ -91,6 +96,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         SubscribeLocalEvent<WashingMachineComponent, GetVerbsEvent<ActivationVerb>>(OnGetVerbs);
         SubscribeLocalEvent<WashingMachineComponent, CanDropTargetEvent>(OnCanDropTarget);
         SubscribeLocalEvent<WashingMachineComponent, DragDropTargetEvent>(OnDragDropTarget);
+        SubscribeLocalEvent<WashingMachineComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<WashingMachineComponent, StuffInWashingMachineDoAfterEvent>(OnStuffInDoAfter);
         SubscribeLocalEvent<WashingMachineComponent, EnterWashingMachineDoAfterEvent>(OnEnterDoAfter);
         SubscribeLocalEvent<WashingMachineComponent, AnchorStateChangedEvent>(OnAnchorStateChanged);
@@ -261,6 +267,18 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
             args.Verbs.Add(verb);
         }
+
+        if (CanExtractContents(ent))
+        {
+            var extractVerb = new ActivationVerb()
+            {
+                Text = Loc.GetString("washing-machine-extract-verb"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/open.svg.192dpi.png")),
+                Act = () => TryExtractContents(ent)
+            };
+
+            args.Verbs.Add(extractVerb);
+        }
     }
 
     private bool TryActivate(Entity<WashingMachineComponent> ent)
@@ -408,6 +426,48 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             false);
     }
 
+    private void TryExtractContents(Entity<WashingMachineComponent> ent)
+    {
+        if (!CanExtractContents(ent))
+            return;
+
+        if (!_net.IsServer)
+            return;
+
+        if (!TryComp<EntityStorageComponent>(ent.Owner, out var storage))
+            return;
+
+        foreach (var item in storage.Contents.ContainedEntities.ToArray())
+        {
+            if (Deleted(item))
+                continue;
+
+            _storage.Remove(item, ent.Owner, storage);
+            _transform.DropNextTo(item, ent.Owner);
+        }
+
+        _appearance.SetData(ent.Owner, StorageVisuals.HasContents, false);
+
+        _popup.PopupEntity(Loc.GetString("washing-machine-extract-self", ("machine", ent.Owner)), ent.Owner);
+    }
+
+    private bool CanExtractContents(Entity<WashingMachineComponent> ent)
+    {
+        if (ent.Comp.WashingMachineState != WashingMachineState.Idle)
+            return false;
+
+        if (HasPersonInside(ent.Owner))
+            return false;
+
+        if (!_storage.IsOpen(ent.Owner))
+            return false;
+
+        if (!TryComp<EntityStorageComponent>(ent.Owner, out var storage))
+            return false;
+
+        return storage.Contents.ContainedEntities.Count > 0;
+    }
+
     private void InsertIntoMachine(Entity<WashingMachineComponent> ent, EntityUid target)
     {
         if (HasPersonInside(ent.Owner))
@@ -433,11 +493,11 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (CanStuffIn(ent, args.Dragged, requireOpen: false))
-        {
-            args.Handled = true;
-            args.CanDrop = true;
-        }
+        if (!CanStuffIn(ent, args.Dragged, requireOpen: false) && !CanStuffItemIn(ent, args.Dragged, requireOpen: false))
+            return;
+
+        args.Handled = true;
+        args.CanDrop = true;
     }
 
     private void OnDragDropTarget(Entity<WashingMachineComponent> ent, ref DragDropTargetEvent args)
@@ -448,8 +508,18 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         if (ent.Comp.WashingMachineState == WashingMachineState.Idle && !_storage.IsOpen(ent.Owner))
             _storage.OpenStorage(ent.Owner);
 
-        if (args.User == args.Dragged || !CanStuffIn(ent, args.Dragged))
+        if (args.User == args.Dragged)
             return;
+
+        if (HasComp<BodyComponent>(args.Dragged))
+        {
+            if (!CanStuffIn(ent, args.Dragged))
+                return;
+        }
+        else if (!CanStuffItemIn(ent, args.Dragged))
+        {
+            return;
+        }
 
         args.Handled = true;
 
@@ -478,20 +548,97 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         if (!_net.IsServer)
             return;
 
-        if (Deleted(target) || !CanStuffIn(ent, target))
+        if (Deleted(target))
             return;
 
-        InsertIntoMachine(ent, target);
+        args.Handled = true;
 
-        _popup.PopupEntity(Loc.GetString("washing-machine-stuff-self", ("machine", ent.Owner)), target, target);
+        if (HasComp<BodyComponent>(target))
+        {
+            if (!CanStuffIn(ent, target))
+                return;
+
+            InsertIntoMachine(ent, target);
+
+            _popup.PopupEntity(Loc.GetString("washing-machine-stuff-self", ("machine", ent.Owner)), target, target);
+            _popup.PopupEntity(
+                Loc.GetString("washing-machine-stuff-others",
+                    ("user", Identity.Entity(args.User, EntityManager)),
+                    ("target", Identity.Entity(target, EntityManager)),
+                    ("machine", ent.Owner)),
+                target,
+                Filter.PvsExcept(target, entityManager: EntityManager),
+                false);
+
+            return;
+        }
+
+        if (!CanStuffItemIn(ent, target))
+            return;
+
+        InsertItemIntoMachine(ent, args.User, target);
+    }
+
+    private void OnInteractUsing(Entity<WashingMachineComponent> ent, ref InteractUsingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (args.User == args.Used || HasComp<BodyComponent>(args.Used))
+            return;
+
+        if (ent.Comp.WashingMachineState == WashingMachineState.Idle && !_storage.IsOpen(ent.Owner))
+            _storage.OpenStorage(ent.Owner);
+
+        if (!CanStuffItemIn(ent, args.Used))
+            return;
+
+        args.Handled = true;
+
+        if (!_net.IsServer)
+            return;
+
+        InsertItemIntoMachine(ent, args.User, args.Used);
+    }
+
+    private void InsertItemIntoMachine(Entity<WashingMachineComponent> ent, EntityUid user, EntityUid target)
+    {
+        if (!_storage.IsOpen(ent.Owner) || !TryComp<EntityStorageComponent>(ent.Owner, out var storage))
+            return;
+
+        if (storage.Contents.ContainedEntities.Count >= storage.Capacity)
+            return;
+
+        if (storage.Contents.Contains(target))
+            return;
+
+        if (!_containers.Insert(target, storage.Contents))
+            return;
+
+        var inside = EnsureComp<InsideEntityStorageComponent>(target);
+        inside.Storage = ent.Owner;
+        Dirty(target, inside);
+
+        _appearance.SetData(ent.Owner, StorageVisuals.HasContents, true);
+
         _popup.PopupEntity(
-            Loc.GetString("washing-machine-stuff-others",
-                ("user", Identity.Entity(args.User, EntityManager)),
-                ("target", Identity.Entity(target, EntityManager)),
-                ("machine", ent.Owner)),
-            target,
-            Filter.PvsExcept(target, entityManager: EntityManager),
-            false);
+            Loc.GetString("washing-machine-insert-self", ("item", Identity.Entity(target, EntityManager)), ("machine", ent.Owner)),
+            user,
+            user);
+
+        if (CanStuffIn(ent, user, requireOpen: false) && _random.Prob(ent.Comp.StuckChance))
+        {
+            InsertIntoMachine(ent, user);
+
+            _popup.PopupEntity(Loc.GetString("washing-machine-fall-in-self", ("machine", ent.Owner)), user, user);
+            _popup.PopupEntity(
+                Loc.GetString("washing-machine-fall-in-others",
+                    ("user", Identity.Entity(user, EntityManager)),
+                    ("machine", ent.Owner)),
+                user,
+                Filter.PvsExcept(user, entityManager: EntityManager),
+                false);
+        }
     }
 
     private bool CanStuffIn(Entity<WashingMachineComponent> ent, EntityUid target, bool requireOpen = true)
@@ -518,6 +665,26 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             return false;
 
         return true;
+    }
+
+    private bool CanStuffItemIn(Entity<WashingMachineComponent> ent, EntityUid target, bool requireOpen = true)
+    {
+        if (HasComp<BodyComponent>(target))
+            return false;
+
+        if (ent.Comp.WashingMachineState != WashingMachineState.Idle)
+            return false;
+
+        if (requireOpen && !_storage.IsOpen(ent.Owner))
+            return false;
+
+        if (!TryComp<EntityStorageComponent>(ent.Owner, out var storage))
+            return false;
+
+        if (storage.Contents.ContainedEntities.Count >= storage.Capacity)
+            return false;
+
+        return storage.Whitelist == null || _whitelistSystem.IsValid(storage.Whitelist, target);
     }
 
     private bool IsBigRace(EntityUid uid)
