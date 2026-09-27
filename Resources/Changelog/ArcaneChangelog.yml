@@ -2099,3 +2099,17 @@ Entries:
   time: '2026-09-26T19:41:23.0000000+00:00'
   prNumber: 411
   url: https://github.com/ArcaneSS14/arcane/pull/411
+- author: qwertyuiopiot
+  changes:
+    - type: Tweak
+      message: >-
+        Переведена на русский язык страница гайдбука Адский разрыв, руководство
+        по генокраду и руководство по мяснику 
+    - type: Tweak
+      message: >-
+        Добавлена локализация в гайдбуке "Способности Генокрада" "Корпоративные
+        агенты" "Дьявол" "Бингл"
+  id: 158
+  time: '2026-09-27T06:24:08.0000000+00:00'
+  prNumber: 413
+  url: https://github.com/ArcaneSS14/arcane/pull/413
