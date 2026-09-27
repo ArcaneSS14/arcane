@@ -20,13 +20,17 @@
   naming: FirstDashLast
   sexes:
   - Unsexed
+  # Arcane-Start
+  - Male
+  - Female
+  # ARcane-End
   # Orion-Start
   category: Unusual
   description: "/ServerInfo/_Orion/SpeciesDescriptions/IPC.xml"
   pros:
   # Arcane-start
   - Получают на 20% меньше тупого, режущего, колющего и ионного урона.
-  - Получают на 60% меньше радиационного урона.
+  - Получают на 80% меньше радиационного урона.
   # Arcane-end
   - Имеют встроенный радио-модуль, позволяющий использовать ключи вне гарнитуры.
   - Могут воспроизводить MIDI музыку своими динамиками.
@@ -35,7 +39,7 @@
   - Могут быть отремонтированы только инженерными инструментами.
   cons:
   # Arcane-start
-  - Получают на 70% больше теплового урона.
+  - Получают на 40% больше теплового урона.
   - Получают на 100% больше электрического урона.
   # Arcane-end
   - Не может быть клонирован.
@@ -56,7 +60,7 @@
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
-    Hair: MobHumanoidMarkingMatchSkin
+    Hair: MobHumanoidAnyMarking # Arcane-Edit
     Chest: MobIPCChest
     Groin: MobIPCGroin
     LArm: MobIPCLArm

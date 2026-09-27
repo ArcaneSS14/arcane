@@ -9,7 +9,7 @@
     Piercing: 0.9
 
 - type: damageModifierSet
-  id: Xenoborg 
+  id: Xenoborg
   coefficients:
     Ion: 0.75
     Heat: 0.8
@@ -48,10 +48,11 @@
 - type: damageModifierSet
   id: Tajaran
   coefficients: # Literally the same as felinids, but heat and cold cuz fur
-    Blunt: 1.20
-    Slash: 1.20
-    Piercing: 0.8 # Arcane
-    Heat: 1.20
+    # Arcane-Edit-Start
+    Blunt: 1.15
+    Slash: 1.15
+    Heat: 1.2
+    # Arcane-Edit-End
     Cold: 0.70
   ignoreArmorPierceFlags: All
 
