@@ -293,6 +293,7 @@ chatsan-word-92 = луткрейт
 chatsan-replacement-92 = ящик
 
 chatsan-word-93 = ган
+chatsan-word-93-2 = шотган
 chatsan-replacement-93 = оружие
 
 chatsan-word-94 = найк про
@@ -621,105 +622,108 @@ chatsan-replacement-187 = заковала
 chatsan-word-188 = каф+нут
 chatsan-replacement-188 = закован
 
-chatsan-word-189 = гв
-chatsan-replacement-189 = ГВ
+chatsan-word-189 = каф+ает
+chatsan-replacement-189 = заковывает
 
-chatsan-word-190 = нр
-chatsan-replacement-190 = НР
+chatsan-word-190 = гв
+chatsan-replacement-190 = ГВ
 
-chatsan-word-191 = гсб
-chatsan-replacement-191 = ГСБ
+chatsan-word-191 = нр
+chatsan-replacement-191 = НР
 
-chatsan-word-192 = си
-chatsan-replacement-192 = СИ
+chatsan-word-192 = гсб
+chatsan-replacement-192 = ГСБ
 
-chatsan-word-193 = км
-chatsan-replacement-193 = КМ
+chatsan-word-193 = си
+chatsan-replacement-193 = СИ
 
-chatsan-word-194 = пнт
-chatsan-replacement-194 = ПНТ
+chatsan-word-194 = км
+chatsan-replacement-194 = КМ
 
-chatsan-word-195 = осщ
-chatsan-replacement-195 = ОСЩ
+chatsan-word-195 = пнт
+chatsan-replacement-195 = ПНТ
 
-chatsan-word-196 = авд
-chatsan-replacement-196 = АВД
+chatsan-word-196 = осщ
+chatsan-replacement-196 = ОСЩ
 
-chatsan-word-197 = цк
-chatsan-replacement-197 = ЦК
+chatsan-word-197 = авд
+chatsan-replacement-197 = АВД
 
-chatsan-word-198 = гк
-chatsan-replacement-198 = ГК
+chatsan-word-198 = цк
+chatsan-replacement-198 = ЦК
 
-chatsan-word-199 = дк
-chatsan-replacement-199 = ДК
+chatsan-word-199 = гк
+chatsan-replacement-199 = ГК
 
-chatsan-word-200 = пидор
-chatsan-word-200-2 = пидар
-chatsan-word-200-3 = пидорас
-chatsan-word-200-4 = пидарас
-chatsan-replacement-200 = педик
+chatsan-word-200 = дк
+chatsan-replacement-200 = ДК
 
-chatsan-word-201 = пидоры
-chatsan-word-201-2 = пидары
-chatsan-word-201-3 = пидорасы
-chatsan-word-201-4 = пидарасы
-chatsan-word-201-5 = пидори
-chatsan-word-201-6 = пидораси
-chatsan-word-201-7 = пидари
-chatsan-word-201-8 = пидараси
-chatsan-word-201-9 = пидорки
-chatsan-word-201-10 = пидарки
-chatsan-replacement-201 = педики
+chatsan-word-201 = пидор
+chatsan-word-201-2 = пидар
+chatsan-word-201-3 = пидорас
+chatsan-word-201-4 = пидарас
+chatsan-replacement-201 = педик
 
-chatsan-word-202 = даун
-chatsan-word-202-2 = адун
-chatsan-word-202-3 = долбаеб
-chatsan-word-202-4 = далбаеб
-chatsan-word-202-5 = еблан
-chatsan-word-202-6 = выблядок
-chatsan-replacement-202 = идиот
+chatsan-word-202 = пидоры
+chatsan-word-202-2 = пидары
+chatsan-word-202-3 = пидорасы
+chatsan-word-202-4 = пидарасы
+chatsan-word-202-5 = пидори
+chatsan-word-202-6 = пидораси
+chatsan-word-202-7 = пидари
+chatsan-word-202-8 = пидараси
+chatsan-word-202-9 = пидорки
+chatsan-word-202-10 = пидарки
+chatsan-replacement-202 = педики
 
-chatsan-word-203 = дауниха
-chatsan-word-203-2 = адуниха
-chatsan-word-203-3 = долбаебка
-chatsan-word-203-4 = ебланка
-chatsan-replacement-203 = идиотка
+chatsan-word-203 = даун
+chatsan-word-203-2 = адун
+chatsan-word-203-3 = долбаеб
+chatsan-word-203-4 = далбаеб
+chatsan-word-203-5 = еблан
+chatsan-word-203-6 = выблядок
+chatsan-replacement-203 = идиот
 
-chatsan-word-204 = дауны
-chatsan-word-204-2 = адуны
-chatsan-word-204-3 = долбаебы
-chatsan-word-204-4 = далбаебы
-chatsan-word-204-5 = ебланы
-chatsan-word-204-6 = выблядки
-chatsan-replacement-204 = идиоты
+chatsan-word-204 = дауниха
+chatsan-word-204-2 = адуниха
+chatsan-word-204-3 = долбаебка
+chatsan-word-204-4 = ебланка
+chatsan-replacement-204 = идиотка
 
-chatsan-word-205 = нахуй
-chatsan-replacement-205 = нахер
+chatsan-word-205 = дауны
+chatsan-word-205-2 = адуны
+chatsan-word-205-3 = долбаебы
+chatsan-word-205-4 = далбаебы
+chatsan-word-205-5 = ебланы
+chatsan-word-205-6 = выблядки
+chatsan-replacement-205 = идиоты
 
-chatsan-word-206 = [\/\\@]+
-chatsan-replacement-206 = !
+chatsan-word-206 = нахуй
+chatsan-replacement-206 = нахер
 
-chatsan-word-207 = _
-chatsan-replacement-207 = -
+chatsan-word-207 = [\/\\@]+
+chatsan-replacement-207 = !
 
-chatsan-word-208 = =
-chatsan-replacement-208 = равно
+chatsan-word-208 = _
+chatsan-replacement-208 = -
 
-chatsan-word-209 = \s+
-chatsan-replacement-209 = { "" }
+chatsan-word-209 = =
+chatsan-replacement-209 = равно
 
-chatsan-word-210 = \.\.+
-chatsan-replacement-210 = ..
+chatsan-word-210 = \s+
+chatsan-replacement-210 = { "" }
 
-chatsan-word-211 = \?+
-chatsan-replacement-211 = ?!
+chatsan-word-211 = \.\.+
+chatsan-replacement-211 = ..
 
-chatsan-word-212 = !!+
-chatsan-replacement-212 = !!
+chatsan-word-212 = \?+
+chatsan-replacement-212 = ?!
 
-chatsan-word-213 = ,+
-chatsan-replacement-213 = { "" }
+chatsan-word-213 = !!+
+chatsan-replacement-213 = !!
 
-chatsan-word-214 = \:+
-chatsan-replacement-214 = :
+chatsan-word-214 = ,+
+chatsan-replacement-214 = { "" }
+
+chatsan-word-215 = \:+
+chatsan-replacement-215 = :
