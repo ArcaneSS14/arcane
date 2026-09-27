@@ -40,6 +40,13 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     private Angle _lastEyeRotation = Angle.Zero;
 
     private static readonly ProtoId<SpeciesPrototype> HarpySpecies = "Harpy";
+    private static readonly object[] LegLayerCandidates =
+    {
+        HumanoidVisualLayers.RLeg,
+        HumanoidVisualLayers.LLeg,
+        HumanoidVisualLayers.RFoot,
+        HumanoidVisualLayers.LFoot,
+    };
 
     /// <summary>
     ///     Per-entity snapshot of the layers that make up the hair, neck and tail blocks, plus the per-entity markers
@@ -165,10 +172,57 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             : GetView(_transform.GetWorldRotation(ent.Owner) + _eyeManager.CurrentEye.Rotation);
         var cache = GetCache(ent);
 
+        if (view == DirectionalView.Back)
+            EnsureTailAtNativeAnchor(ent, cache);
+
         // Tail and cloak first, so the back view's "hair between the head-trim cluster and the tail" layout gets
         // the tail above the hair without the two blocks fighting over the same index.
         EnsureTailAndCloakLayout(ent, view, cache);
+        if (view != DirectionalView.Back)
+            EnsureTailBehindLegs(ent, cache);
         EnsureHairLayout(ent, view == DirectionalView.Back, cache);
+    }
+
+    /// <summary>
+    ///     Undo the front/side tail placement before applying the existing tail/cloak ordering for the back view.
+    /// </summary>
+    private void EnsureTailAtNativeAnchor(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, OrderingCache cache)
+    {
+        if (cache.TailKeys.Count == 0 || ent.Comp1.Species == HarpySpecies)
+            return;
+
+        if (cache.TailAnchorCaptured && TryGetLayerIndex(ent, cache.TailAnchor!, out _))
+        {
+            TryMoveBlockRelative(ent, cache.TailKeys, cache.TailAnchor!, true);
+            return;
+        }
+
+        if (TryGetClusterTop(ent, out var clusterTop, out _))
+            TryMoveBlockRelative(ent, cache.TailKeys, clusterTop, true);
+    }
+
+    /// <summary>
+    ///     In the front and side views, the tail should be behind the legs. The base species layout puts the Tail
+    ///     layer near the head, so anchor the complete tail/wings block before the first visible leg layer.
+    /// </summary>
+    private void EnsureTailBehindLegs(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, OrderingCache cache)
+    {
+        if (cache.TailKeys.Count == 0 || ent.Comp1.Species == HarpySpecies)
+            return;
+
+        object? firstLeg = null;
+        var firstLegIndex = int.MaxValue;
+        foreach (var leg in LegLayerCandidates)
+        {
+            if (TryGetLayerIndex(ent, leg, out var index) && index < firstLegIndex)
+            {
+                firstLeg = leg;
+                firstLegIndex = index;
+            }
+        }
+
+        if (firstLeg != null)
+            TryMoveBlockRelative(ent, cache.TailKeys, firstLeg, false);
     }
 
     private bool TryGetLayerIndex(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, object key, out int index)
@@ -226,6 +280,16 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             TailAnchor = previous?.TailAnchor,
             TailAnchorCaptured = previous?.TailAnchorCaptured ?? false,
         };
+
+        // Save the tail's native anchor before directional ordering changes its layer index.
+        if (!cache.TailAnchorCaptured &&
+            TryResolveBlock(ent, cache.TailKeys, out _, out var tailStart, out _) &&
+            TryGetTailAnchor(ent, tailStart, out var anchor, out _))
+        {
+            cache.TailAnchor = anchor;
+            cache.TailAnchorCaptured = true;
+        }
+
         _cache[ent.Owner] = cache;
         return cache;
     }
