@@ -698,12 +698,6 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (_actionsSystem == null)
             return;
 
-        // Arcane-Start
-        // Pinned slots keep their action until the pin is dropped with middle click.
-        if (button.Pinned)
-            return;
-        // Arcane-End
-
         int position;
 
         if (actionId == null)
@@ -837,11 +831,6 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     private void HandleActionPressed(GUIBoundKeyEventArgs args, ActionButton button)
     {
         args.Handle();
-
-        // Arcane-Start
-        if (button.Pinned)
-            return;
-        // Arcane-End
 
         if (button.Action != null)
         {
