@@ -716,7 +716,7 @@ chatsan-replacement-210 = { "" }
 chatsan-word-211 = \.\.+
 chatsan-replacement-211 = ..
 
-chatsan-word-212 = \?+
+chatsan-word-212 = \[??]+
 chatsan-replacement-212 = ?!
 
 chatsan-word-213 = !!+
