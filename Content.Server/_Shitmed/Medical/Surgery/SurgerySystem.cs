@@ -1,21 +1,15 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Body.Part;
 using Content.Shared.Damage;
-using Content.Shared._Shitmed.Targeting;
 using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
-using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Shared._Shitmed.Targeting;
-using Content.Shared.Bed.Sleep;
-using Content.Shared.Body.Part;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -27,7 +21,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly WoundSystem _wounds = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
@@ -66,6 +59,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
             }
             surgeries[GetNetEntity(part.Id)] = valid;
         }
+
         _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries));
         /*
             Reason we do this is because when applying a BUI State, it rolls back the state on the entity temporarily,
@@ -75,29 +69,35 @@ public sealed class SurgerySystem : SharedSurgerySystem
         _ui.ServerSendUiMessage(body, SurgeryUIKey.Key, new SurgeryBuiRefreshMessage());
     }
 
-    private void SetDamage(EntityUid body,
+    private DamageSpecifier? SetDamage(EntityUid body, // Arcane-Edit
         DamageSpecifier damage,
         float partMultiplier,
         EntityUid user,
         EntityUid part,
-        bool affectAll = false)
+        bool affectAll = false,
+        bool ignoreBlockers = false) // Arcane
     {
         if (!TryComp<BodyPartComponent>(part, out var partComp))
-            return;
+            return null; // Arcane-Edit
 
         // kinda funky but still works
         // TODO: Also the scar treating surgery too, fuck. I hate this system and by every second I have to spend working with THIS I want to kill myself more and more
-        _wounds.TryHaltAllBleeding(part, force: true);
-        _damageable.TryChangeDamage(body,
+        // _wounds.TryHaltAllBleeding(part, force: true); // Arcane-Edit
+        return _damageable.TryChangeDamage(body, // Arcane-Edit
             damage,
             true,
             origin: user,
             partMultiplier: partMultiplier,
-            targetPart: affectAll ? TargetBodyPart.All : _body.GetTargetBodyPart(partComp));
+            targetPart: affectAll ? TargetBodyPart.All : _body.GetTargetBodyPart(partComp),
+            ignoreBlockers: ignoreBlockers); // Arcane-Edit
     }
 
-    private void OnSurgeryStepDamage(Entity<SurgeryTargetComponent> ent, ref SurgeryStepDamageEvent args) =>
-        SetDamage(args.Body, args.Damage, args.PartMultiplier, args.User, args.Part);
+    // Arcane-Edit-Start
+    private void OnSurgeryStepDamage(Entity<SurgeryTargetComponent> ent, ref SurgeryStepDamageEvent args)
+    {
+        SetDamage(args.Body, args.Damage, args.PartMultiplier, args.User, args.Part, ignoreBlockers: args.IgnoreBlockers);
+    }
+    // Arcane-Edit-End
 
     private void OnSurgeryDamageChange(Entity<SurgeryDamageChangeEffectComponent> ent, ref SurgeryStepDamageChangeEvent args)
     {
@@ -107,6 +107,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
         SetDamage(args.Body, damageChange, 0.5f, args.User, args.Part, ent.Comp.AffectAll);
     }
+
     private void OnStepScreamComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
         if (Status.HasEffectComp<ForcedSleepingStatusEffectComponent>(args.Body))
@@ -114,6 +115,8 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
         _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
     }
+
     private void OnStepSpawnComplete(Entity<SurgeryStepSpawnEffectComponent> ent, ref SurgeryStepEvent args) =>
         SpawnAtPosition(ent.Comp.Entity, Transform(args.Body).Coordinates);
+
 }

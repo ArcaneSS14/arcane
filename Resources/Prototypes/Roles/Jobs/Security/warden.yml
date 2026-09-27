@@ -15,10 +15,12 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 10h
-    - !type:SpeciesRequirement # Goob - None Felinid
-      inverted: true
-      species:
-      - Felinid
+    # Arcane-Edit-Start
+    # - !type:SpeciesRequirement # Goob - None Felinid
+    #   inverted: true
+    #   species:
+    #   - Felinid
+    # Arcane-Edit-End
   weight: 5
   startingGear: WardenGear
   icon: "JobIconWarden"

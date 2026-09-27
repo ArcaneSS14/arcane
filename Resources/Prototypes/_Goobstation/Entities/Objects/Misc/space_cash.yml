@@ -37,6 +37,17 @@
     graph: SpesosCounterfeit
     node: spesos
 
+- type: entity
+  parent: SpaceCash
+  id: SpaceCash100000
+  suffix: 100000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_100000
+  - type: Stack
+    count: 100000
+
 # Arcane-Start
 - type: material
   id: FakeCredit

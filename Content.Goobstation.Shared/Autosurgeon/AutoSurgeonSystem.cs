@@ -123,23 +123,32 @@ public sealed class AutoSurgeonSystem : EntitySystem
             }
             else
             {
-                if (!TryComp<OrganComponent>(newPart, out var newOrganComp)
-                || !_body.CanInsertOrgan(parent, newOrganComp.SlotId))
+                if (!TryComp<OrganComponent>(newPart, out var newOrganComp))
+                // || !_body.CanInsertOrgan(parent, newOrganComp.SlotId)) // Arcane-Edit
                 {
                     Del(newPart);
                     _audio.Stop(ent.Comp.ActiveSound);
                     return;
                 }
 
+                _body.TryCreateOrganSlot(parent, newOrganComp.SlotId, out _); // Arcane
+
                 var oldOrgan = _body.GetPartOrgans(parent)
                     .FirstOrDefault(organ => organ.Component.SlotId == newOrganComp.SlotId)
                     .Id;
 
-                if (!_body.AddOrganToFirstValidSlot(parent, newPart) && oldOrgan.Valid)
+                // Arcane-Edit-Start
+                var removedOldOrgan = oldOrgan.Valid && _body.RemoveOrgan(oldOrgan);
+
+                if (!_body.InsertOrgan(parent, newPart, newOrganComp.SlotId))
                 {
-                    _body.RemoveOrgan(oldOrgan);
-                    _body.InsertOrgan(parent, newPart, newOrganComp.SlotId);
+                    Del(newPart);
+                    _audio.Stop(ent.Comp.ActiveSound);
+                    if (removedOldOrgan)
+                        _body.InsertOrgan(parent, oldOrgan, newOrganComp.SlotId);
+                    return;
                 }
+                // Arcane-Edit-End
             }
 
             _audio.Stop(ent.Comp.ActiveSound);
@@ -333,22 +342,30 @@ public sealed class AutoSurgeonSystem : EntitySystem
                 }
                 else
                 {
-                    if (!TryComp<OrganComponent>(newPart, out var newOrganComp)
-                    || !_body.CanInsertOrgan(parent, newOrganComp.SlotId))
+                    if (!TryComp<OrganComponent>(newPart, out var newOrganComp))
+                    // || !_body.CanInsertOrgan(parent, newOrganComp.SlotId)) // Arcane-Edit
                     {
                         Del(newPart);
                         continue;
                     }
 
+                    _body.TryCreateOrganSlot(parent, newOrganComp.SlotId, out _); // Arcane
+
                     var oldOrgan = _body.GetPartOrgans(parent)
                         .FirstOrDefault(organ => organ.Component.SlotId == newOrganComp.SlotId)
                         .Id;
 
-                    if (!_body.AddOrganToFirstValidSlot(parent, newPart) && oldOrgan.Valid)
+                    // Arcane-Edit-Start
+                    var removedOldOrgan = oldOrgan.Valid && _body.RemoveOrgan(oldOrgan);
+
+                    if (!_body.InsertOrgan(parent, newPart, newOrganComp.SlotId))
                     {
-                        _body.RemoveOrgan(oldOrgan);
-                        _body.InsertOrgan(parent, newPart, newOrganComp.SlotId);
+                        Del(newPart);
+                        if (removedOldOrgan)
+                            _body.InsertOrgan(parent, oldOrgan, newOrganComp.SlotId);
+                        continue;
                     }
+                    // Arcane-Edit-End
                 }
 
                 continue;

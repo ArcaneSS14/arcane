@@ -1,23 +1,27 @@
 using Content.Shared._Arcane.Speech;
+using Content.Shared.Chat;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Emoting;
 using Content.Shared.Humanoid;
 using Content.Shared.Speech.Components;
 using Content.Shared.Tag;
-using Robust.Shared.Audio;
+using Content.Goobstation.Common.Speech;
 using Robust.Shared.Prototypes;
-using Content.Shared.Chat.Prototypes;
 
 namespace Content.Shared.Speech.EntitySystems;
 
 public sealed class NatureSystem : EntitySystem
 {
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly SharedChatSystem _chat = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<NatureComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<NatureComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<NatureComponent, EmoteEvent>(OnNatureEmote);
     }
 
     private void OnStartup(EntityUid uid, NatureComponent component, ComponentStartup args)
@@ -26,47 +30,57 @@ public sealed class NatureSystem : EntitySystem
         {
             component.AddedTag = _tagSystem.AddTag(uid, component.emoteTag.Value);
         }
-
-        if (!TryComp<VocalComponent>(uid, out var vocal))
-            return;
-
-        if (vocal.Sounds != null)
-        {
-            component.OriginalSounds = new Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>(vocal.Sounds);
-        }
-        component.OriginalEmoteSounds = vocal.EmoteSounds;
-
-        if (component.newSounds != null)
-        {
-            vocal.Sounds = new Dictionary<Sex, ProtoId<Content.Shared.Chat.Prototypes.EmoteSoundsPrototype>>(component.newSounds);
-
-            if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
-            {
-                if (vocal.Sounds.TryGetValue(humanoid.Sex, out var protoId))
-                {
-                    vocal.EmoteSounds = protoId;
-                }
-            }
-            Dirty(uid, vocal);
-        }
     }
+
     private void OnShutdown(EntityUid uid, NatureComponent component, ref ComponentShutdown args)
     {
-        // При удалении компача
         if (component.emoteTag != null && component.AddedTag)
         {
             _tagSystem.RemoveTag(uid, component.emoteTag.Value);
         }
+    }
 
-        if (TryComp<VocalComponent>(uid, out var vocal))
+    private void OnNatureEmote(EntityUid uid, NatureComponent component, ref EmoteEvent args)
+    {
+        if (args.Handled || !args.Emote.Category.HasFlag(EmoteCategory.Vocal))
+            return;
+
+        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+            return;
+
+        TryComp<VocalComponent>(uid, out var vocal);
+        if (vocal != null && args.Emote.ID == vocal.ScreamId)
+            return;
+
+        var getSoundEv = new GetEmoteSoundsEvent();
+        RaiseLocalEvent(uid, ref getSoundEv);
+        if (getSoundEv.Handled)
         {
-            if (component.OriginalSounds != null)
-                vocal.Sounds = component.OriginalSounds;
+            if (getSoundEv.EmoteSoundProtoId is not { } protoId)
+                return;
 
-            if (component.OriginalEmoteSounds != null)
-                vocal.EmoteSounds = component.OriginalEmoteSounds;
+            if (_proto.TryIndex(protoId, out EmoteSoundsPrototype? overrideSounds))
+                args.Handled = _chat.TryPlayEmoteSound(uid, overrideSounds, args.Emote);
+            return;
+        }
 
-            Dirty(uid, vocal);
+        // The species' own sounds always win; the trait only adds sounds for emotes the
+        // race has none of (e.g. Meow for a human, while an IPC keeps its Beep/Boop).
+        if (vocal != null
+            && vocal.EmoteSounds is { } raceId
+            && _proto.TryIndex(raceId, out var raceSounds)
+            && _chat.TryPlayEmoteSound(uid, raceSounds, args.Emote))
+        {
+            args.Handled = true;
+            return;
+        }
+
+        if (component.newSounds != null
+            && component.newSounds.TryGetValue(humanoid.Sex, out var traitId)
+            && _proto.TryIndex(traitId, out var traitSounds)
+            && _chat.TryPlayEmoteSound(uid, traitSounds, args.Emote))
+        {
+            args.Handled = true;
         }
     }
 }
