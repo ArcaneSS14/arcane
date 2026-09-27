@@ -32,6 +32,13 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     private readonly Dictionary<EntityUid, OrderingCache> _cache = new();
 
     /// <summary>
+    ///     The view last applied to each entity. FrameUpdate skips entities whose view has not changed, so a steadily
+    ///     rotating camera does not re-run the block-key discovery (marking lookups, block extent checks) for faces
+    ///     that stay on the same side of the character. Appearance/equipment changes invalidate the stored view.
+    /// </summary>
+    private readonly Dictionary<EntityUid, DirectionalView> _lastViews = new();
+
+    /// <summary>
     ///     Preview dummies are rotated through a SpriteView direction override instead of the entity transform, so
     ///     their facing has to be tracked separately to survive reloads.
     /// </summary>
@@ -83,6 +90,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     public override void Shutdown()
     {
         _cache.Clear();
+        _lastViews.Clear();
         _dummyViews.Clear();
         base.Shutdown();
     }
@@ -98,7 +106,15 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         var query = EntityQueryEnumerator<HumanoidAppearanceComponent, SpriteComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var humanoid, out var sprite, out _))
         {
-            ApplyOrdering((uid, humanoid, sprite));
+            // The eye rotation moves smoothly while the RSI view only changes on cardinal steps, so most frames
+            // resolve to the same facing. Skip the (marking-lookup heavy) reordering until the facing actually
+            // changes; the data-change subscriptions invalidate the stored view explicitly.
+            var view = GetActiveView(uid);
+            if (_lastViews.TryGetValue(uid, out var last) && last == view)
+                continue;
+
+            _lastViews[uid] = view;
+            ApplyOrdering((uid, humanoid, sprite), view);
         }
     }
 
@@ -115,14 +131,20 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             return;
         }
 
-        _dummyViews[uid] = GetView(direction);
-        ApplyOrdering((uid, humanoid, sprite));
+        var view = GetView(direction);
+        _dummyViews[uid] = view;
+        _lastViews.Remove(uid);
+        ApplyOrdering((uid, humanoid, sprite), view);
     }
 
     private void OnMove(EntityUid uid, HumanoidAppearanceComponent component, ref MoveEvent args)
     {
         if (args.OldRotation.GetCardinalDir() == args.NewRotation.GetCardinalDir())
             return;
+
+        // Movement on its own does not change the block keys, but the facing is derived from world rotation, so
+        // drop the saved view and let the reorder re-resolve it rather than trusting a stale front/side/back.
+        _lastViews.Remove(uid);
 
         if (TryComp(uid, out SpriteComponent? sprite))
             ApplyOrdering((uid, component, sprite));
@@ -136,6 +158,10 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     private void OnAppearanceUpdated(EntityUid uid, HumanoidAppearanceComponent component, HumanoidAppearanceUpdatedEvent args)
     {
+        // New markings or hairstyles change the hair/tail block keys, so the cached layout no longer reflects the
+        // sprite: force a full reorder even if the facing looks unchanged.
+        _lastViews.Remove(uid);
+
         if (TryComp(uid, out SpriteComponent? sprite))
             ApplyOrdering((uid, component, sprite));
     }
@@ -149,27 +175,30 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             return;
         }
 
+        // Neck/back gear changes the cloak block keys, so the cached layout is stale: force a full reorder.
+        _lastViews.Remove(args.Equipee);
         ApplyOrdering((args.Equipee, humanoid, sprite));
     }
 
     private void OnRemove(EntityUid uid, HumanoidAppearanceComponent component, ComponentRemove args)
     {
         _cache.Remove(uid);
+        _lastViews.Remove(uid);
         _dummyViews.Remove(uid);
     }
 
     private void ApplyOrdering(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
     {
-        if (!TryComp(ent.Owner, out TransformComponent? xform))
+        if (!TryComp(ent.Owner, out TransformComponent? _))
             return;
 
-        // Preview dummies are turned through a SpriteView direction override, so their facing is recovered from the
-        // tracked dummy view; in-game entities are faced relative to the camera instead of the absolute world.
-        // The renderer picks the RSI direction from `worldRotation + eyeRotation`, so the facing has to be
-        // determined relative to the camera, not the absolute world rotation.
-        var view = _dummyViews.TryGetValue(ent.Owner, out var dummyView)
-            ? dummyView
-            : GetView(_transform.GetWorldRotation(ent.Owner) + _eyeManager.CurrentEye.Rotation);
+        var view = GetActiveView(ent.Owner);
+        _lastViews[ent.Owner] = view;
+        ApplyOrdering(ent, view);
+    }
+
+    private void ApplyOrdering(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, DirectionalView view)
+    {
         var cache = GetCache(ent);
 
         if (view == DirectionalView.Back)
@@ -181,6 +210,22 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (view != DirectionalView.Back)
             EnsureTailBehindLegs(ent, cache);
         EnsureHairLayout(ent, view == DirectionalView.Back, cache);
+    }
+
+    /// <summary>
+    ///     The camera-relative view for an entity: the tracked dummy override when this is a preview dummy, or the
+    ///     facing derived from its world rotation against the current eye otherwise. Preview dummies are turned
+    ///     through a SpriteView direction override, so their facing is recovered from the tracked dummy view;
+    ///     in-game entities are faced relative to the camera instead of the absolute world. The renderer picks the
+    ///     RSI direction from <c>worldRotation + eyeRotation</c>, so the facing has to be determined relative to the
+    ///     camera, not the absolute world rotation.
+    /// </summary>
+    private DirectionalView GetActiveView(EntityUid uid)
+    {
+        if (_dummyViews.TryGetValue(uid, out var dummyView))
+            return dummyView;
+
+        return GetView(_transform.GetWorldRotation(uid) + _eyeManager.CurrentEye.Rotation);
     }
 
     /// <summary>
