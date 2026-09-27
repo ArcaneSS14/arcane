@@ -73,7 +73,7 @@ public sealed class VinylPlayerSystem : EntitySystem
         var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
         while (query.MoveNext(out var receiver, out var receiverComponent))
         {
-            if (!receiverComponent.SoundEntity.HasValue)
+            if (receiverComponent.CurrentMedia == null) // Arcane-Edit
                 RaiseLocalEvent(receiver, new StationRadioMediaPlayedEvent(vinylcomp.Song));
         }
     }

@@ -1,4 +1,5 @@
 using Content.Client.Ghost;
+using Content.Goobstation.Shared.StationRadio.Components;
 using Content.Shared._Arcane.CCVars;
 using Content.Shared._Arcane.CVars;
 using Content.Shared._Arcane.TTS;
@@ -10,6 +11,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
+using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Arcane.TTS;
@@ -139,7 +141,7 @@ public sealed partial class TTSSystem : EntitySystem
             audioResource.Load(IoCManager.Instance!, _prefix / filePath);
 
             var audioParams = AudioParams.Default
-                .WithVolume(AdjustVolume(ev.IsWhisper, isRadio, ev.Frequency, IsStationRadio(ev.SourceUid)))
+                .WithVolume(AdjustVolume(ev.IsWhisper, isRadio, ev.Frequency, GetSourceVolumeOffset(ev.SourceUid)))
                 .WithMaxDistance(AdjustDistance(ev.IsWhisper));
 
             if (ev.SourceUid != null)
@@ -162,14 +164,25 @@ public sealed partial class TTSSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Whether the TTS is spoken by a station radio, so the listener's own station radio volume applies to it.
+    ///     Volume offset for speech relayed by a station radio. Zero when the speaker is not one.
     /// </summary>
-    private bool IsStationRadio(NetEntity? sourceUid)
+    private float GetSourceVolumeOffset(NetEntity? sourceUid)
     {
-        return sourceUid is { } netUid && TryGetEntity(netUid, out Entity<StationRadioReceiverComponent> stationRadio);
+        if (sourceUid is not { } netUid || !TryGetEntity(netUid, out var ent))
+            return 0f;
+
+        var gain = 1f;
+
+        if (HasComp<StationRadioReceiverComponent>(ent))
+            gain *= _cfg.GetCVar(ACCVars.StationRadioVolume);
+
+        if (gain == 1f)
+            return 0f;
+
+        return gain <= 0.01f ? float.NegativeInfinity : SharedAudioSystem.GainToVolume(gain);
     }
 
-    private float AdjustVolume(bool isWhisper, bool isRadio = false, int? frequency = null, bool isStationRadio = false)
+    private float AdjustVolume(bool isWhisper, bool isRadio = false, int? frequency = null, float sourceOffset = 0f)
     {
         var volume = SharedAudioSystem.GainToVolume(_volume);
 
@@ -185,7 +198,7 @@ public sealed partial class TTSSystem : EntitySystem
             volume = SharedAudioSystem.GainToVolume(_radioVolume * multiplier);
         }
 
-        return volume;
+        return volume + sourceOffset;
     }
 
     private float AdjustDistance(bool isWhisper)

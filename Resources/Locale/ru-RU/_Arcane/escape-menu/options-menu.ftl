@@ -3,3 +3,5 @@ ui-options-combat-mode-block-pickup = Отключить подбор предм
 ui-options-tg13-controls = Управление как в ТГ13
 
 ui-options-jukebox-volume = Громкость бумбокса:
+
+ui-options-station-radio-volume = Громкость станционного радио:
