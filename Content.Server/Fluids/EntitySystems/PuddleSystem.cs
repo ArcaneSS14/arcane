@@ -55,9 +55,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ReactiveSystem _reactive = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly StepTriggerSystem _stepTrigger = default!;
-    [Dependency] private readonly SpeedModifierContactsSystem _speedModContacts = default!;
-    [Dependency] private readonly TileFrictionController _tile = default!;
     // Arcane-End
 
 
@@ -744,6 +741,9 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         var spilledEvent = new SpilledOnEvent(puddleUid, splitSol);
         var relayedEvent = new InventoryRelayedEvent<SpilledOnEvent>(spilledEvent, ent.Owner);
         RaiseLocalEvent(shoes.Value, relayedEvent);
+
+        if (splitSol.Volume > 0)
+            _solutionContainerSystem.TryAddSolution(puddleComp.Solution.Value, splitSol);
     }
 
     #endregion

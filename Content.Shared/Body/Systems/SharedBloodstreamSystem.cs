@@ -593,6 +593,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
                     continue;
 
                 var neighborStainEv = new SpilledOnEvent(ent.Owner, tempSolution);
+                RaiseLocalEvent(uid, neighborStainEv);
 
                 if (tempSolution.Volume <= 0)
                     break;

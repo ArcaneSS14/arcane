@@ -14,6 +14,7 @@ using Content.Shared.Popups;
 using Content.Shared._Arcane.WashingMachine;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using System.Numerics;
 
 namespace Content.Server._Arcane.WashingMachine;
 
@@ -35,9 +36,32 @@ public sealed partial class WashingMachineSystem : SharedWashingMachineSystem
 
         if (ent.Comp.Machine is { } machine && Exists(machine))
         {
-            if (TryFindEjectTile(machine, out var coords))
-                _transform.SetCoordinates(uid, coords);
+            if (!TryFindEjectTile(machine, out var coords))
+                return;
+
+            _transform.SetCoordinates(uid, coords);
         }
+
+        FinishEject(ent);
+    }
+
+    protected override void ForceEjectPlayer(Entity<WashingMachineStuckComponent> ent)
+    {
+        var uid = ent.Owner;
+
+        if (ent.Comp.Machine is { } machine && Exists(machine))
+        {
+            var coords = Transform(machine).Coordinates;
+            TryFindEjectTile(machine, out coords, maxRadius: 2);
+            _transform.SetCoordinates(uid, coords);
+        }
+
+        FinishEject(ent);
+    }
+
+    private void FinishEject(Entity<WashingMachineStuckComponent> ent)
+    {
+        var uid = ent.Owner;
 
         if (ent.Comp.TopVisual is { } visual && CanDeleteEntity(visual))
             Del(visual);
@@ -52,7 +76,7 @@ public sealed partial class WashingMachineSystem : SharedWashingMachineSystem
         RemComp<WashingMachineStuckComponent>(uid);
     }
 
-    private bool TryFindEjectTile(EntityUid machine, out EntityCoordinates coords)
+    private bool TryFindEjectTile(EntityUid machine, out EntityCoordinates coords, int maxRadius = 1)
     {
         coords = default;
         var xform = Transform(machine);
@@ -62,21 +86,30 @@ public sealed partial class WashingMachineSystem : SharedWashingMachineSystem
 
         var gridPos = xform.Coordinates.Position;
 
-        foreach (var offset in CardinalOffsets)
+        for (var radius = 1; radius <= maxRadius; radius++)
         {
-            var candidate = new EntityCoordinates(gridUid, gridPos + offset).SnapToGrid();
+            for (var dx = -radius; dx <= radius; dx++)
+            {
+                for (var dy = -radius; dy <= radius; dy++)
+                {
+                    if (Math.Max(Math.Abs(dx), Math.Abs(dy)) != radius)
+                        continue;
 
-            if (!_maps.TryGetTileRef(gridUid, grid, candidate, out var tileRef))
-                continue;
+                    var candidate = new EntityCoordinates(gridUid, gridPos + new Vector2(dx, dy)).SnapToGrid();
 
-            if (tileRef.Tile.IsEmpty)
-                continue;
+                    if (!_maps.TryGetTileRef(gridUid, grid, candidate, out var tileRef))
+                        continue;
 
-            if (_turf.IsTileBlocked(tileRef, CollisionGroup.MobMask))
-                continue;
+                    if (tileRef.Tile.IsEmpty)
+                        continue;
 
-            coords = candidate;
-            return true;
+                    if (_turf.IsTileBlocked(tileRef, CollisionGroup.MobMask))
+                        continue;
+
+                    coords = candidate;
+                    return true;
+                }
+            }
         }
 
         return false;

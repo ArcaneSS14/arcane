@@ -32,6 +32,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -352,9 +353,6 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         if (!CanClimbIn(ent, user))
             return false;
 
-        if (!_net.IsServer)
-            return false;
-
         var doAfter = new DoAfterArgs(EntityManager, user, EnterTime,
             new EnterWashingMachineDoAfterEvent(), ent.Owner, target: user, used: ent.Owner)
         {
@@ -402,11 +400,12 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     {
         InsertIntoMachine(ent, user);
 
-        _popup.PopupPredicted(
-            Loc.GetString("washing-machine-climb-self", ("machine", ent.Owner)),
+        _popup.PopupEntity(Loc.GetString("washing-machine-climb-self", ("machine", ent.Owner)), user, user);
+        _popup.PopupEntity(
             Loc.GetString("washing-machine-climb-others", ("user", Identity.Entity(user, EntityManager)), ("machine", ent.Owner)),
             user,
-            user);
+            Filter.PvsExcept(user, entityManager: EntityManager),
+            false);
     }
 
     private void InsertIntoMachine(Entity<WashingMachineComponent> ent, EntityUid target)
@@ -454,9 +453,6 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!_net.IsServer)
-            return;
-
         var doAfter = new DoAfterArgs(EntityManager, args.User, StuffTime,
             new StuffInWashingMachineDoAfterEvent(), ent.Owner, target: args.Dragged, used: ent.Owner)
         {
@@ -487,14 +483,15 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
         InsertIntoMachine(ent, target);
 
-        _popup.PopupPredicted(
-            Loc.GetString("washing-machine-stuff-self", ("machine", ent.Owner)),
+        _popup.PopupEntity(Loc.GetString("washing-machine-stuff-self", ("machine", ent.Owner)), target, target);
+        _popup.PopupEntity(
             Loc.GetString("washing-machine-stuff-others",
                 ("user", Identity.Entity(args.User, EntityManager)),
                 ("target", Identity.Entity(target, EntityManager)),
                 ("machine", ent.Owner)),
             target,
-            args.User);
+            Filter.PvsExcept(target, entityManager: EntityManager),
+            false);
     }
 
     private bool CanStuffIn(Entity<WashingMachineComponent> ent, EntityUid target, bool requireOpen = true)
@@ -629,11 +626,15 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             if (!TryComp<WashingMachineStuckComponent>(uid, out var stuck))
                 continue;
 
-            EjectPlayer((uid, stuck));
+            ForceEjectPlayer((uid, stuck));
         }
     }
 
     protected virtual void EjectPlayer(Entity<WashingMachineStuckComponent> ent)
+    {
+    }
+
+    protected virtual void ForceEjectPlayer(Entity<WashingMachineStuckComponent> ent)
     {
     }
 

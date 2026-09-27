@@ -1,6 +1,6 @@
 - type: entity
-  id: WashingMachine
   parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: WashingMachine
   name: washing machine
   description: Remove the bloodstains from your grayshirt.
   placement:

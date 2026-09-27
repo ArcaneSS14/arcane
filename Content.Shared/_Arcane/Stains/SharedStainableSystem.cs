@@ -108,10 +108,13 @@ public abstract partial class SharedStainableSystem : EntitySystem
         // Iterate backwards to remove items while iterating
         for (var i = taken.Contents.Count - 1; i >= 0; i--)
         {
-            if (taken.Contents[i].Reagent.Prototype == "Water")
-            {
-                taken.RemoveReagent(taken.Contents[i].Reagent, taken.Contents[i].Quantity);
-            }
+            var entry = taken.Contents[i];
+
+            if (entry.Reagent.Prototype != "Water")
+                continue;
+
+            source.AddReagent(entry.Reagent, entry.Quantity);
+            taken.RemoveReagent(entry.Reagent, entry.Quantity);
         }
 
         // Transfer the remaining reagents to the target
