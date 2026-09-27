@@ -9,6 +9,7 @@ using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared._Arcane.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Content.Shared.Movement.Systems;
@@ -44,8 +45,29 @@ public abstract partial class InventorySystem
         //these events ensure that the client also gets its proper events raised when getting its containerstate updated
         SubscribeLocalEvent<InventoryComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
         SubscribeLocalEvent<InventoryComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
+        SubscribeLocalEvent<ItemComponent, InventoryDoAfterEvent>(OnInventoryDoAfter); // Arcane
         SubscribeAllEvent<UseSlotNetworkMessage>(OnUseSlot);
     }
+
+    // Arcane-Start
+    private void OnInventoryDoAfter(Entity<ItemComponent> ent, ref InventoryDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled || args.Target is not { } target)
+            return;
+
+        var actor = args.User;
+
+        if (args.Equip)
+        {
+            args.Handled = TryEquip(actor, target, ent.Owner, args.Slot, predicted: true, checkDoafter: false);
+            return;
+        }
+
+        args.Handled = TryUnequip(actor, target, args.Slot, predicted: true, checkDoafter: false);
+        if (args.Handled)
+            _handsSystem.PickupOrDrop(actor, ent.Owner);
+    }
+    // Arcane-End
 
     private void OnEntRemoved(EntityUid uid, InventoryComponent component, EntRemovedFromContainerMessage args)
     {
@@ -192,6 +214,19 @@ public abstract partial class InventorySystem
                 _popup.PopupCursor(Loc.GetString(reason));
             return false;
         }
+
+        // Arcane-Start
+        if (checkDoafter && actor == target && _containerSystem.CanInsert(itemUid, slotContainer))
+        {
+            var args = new DoAfterArgs(EntityManager, actor, TimeSpan.FromSeconds(0.7), new InventoryDoAfterEvent(true, slot), itemUid, target, itemUid)
+            {
+                BreakOnMove = false,
+                NeedHand = true,
+            };
+            _doAfter.TryStartDoAfter(args);
+            return false;
+        }
+        // Arcane-End
 
         if (checkDoafter &&
             clothing != null &&
@@ -476,6 +511,19 @@ public abstract partial class InventorySystem
         //we need to do this to make sure we are 100% removing this entity, since we are now dropping dependant slots
         if (!force && !_containerSystem.CanRemove(removedItem.Value, slotContainer))
             return false;
+
+        // Arcane-Start
+        if (checkDoafter && actor == target)
+        {
+            var args = new DoAfterArgs(EntityManager, actor, TimeSpan.FromSeconds(0.7), new InventoryDoAfterEvent(false, slot), removedItem.Value, target, removedItem.Value)
+            {
+                BreakOnMove = false,
+                NeedHand = true,
+            };
+            _doAfter.TryStartDoAfter(args);
+            return false;
+        }
+        // Arcane-End
 
         if (checkDoafter &&
             Resolve(removedItem.Value, ref clothing, false) &&

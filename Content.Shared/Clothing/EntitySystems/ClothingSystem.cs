@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -51,7 +52,7 @@ public abstract class ClothingSystem : EntitySystem
         Entity<ClothingComponent> toEquipEnt,
         Entity<InventoryComponent, HandsComponent> userEnt)
     {
-        foreach (var slotDef in userEnt.Comp1.Slots)
+        foreach (var slotDef in userEnt.Comp1.Slots.OrderBy(slot => slot.SlotFlags.HasFlag(SlotFlags.POCKET))) // Arcane-Edit
         {
             if (!_invSystem.CanEquip(userEnt, toEquipEnt, slotDef.Name, out _, slotDef, userEnt, toEquipEnt))
                 continue;
@@ -63,20 +64,20 @@ public abstract class ClothingSystem : EntitySystem
                     continue;
 
                 if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true))
-                    continue;
+                    return; // Arcane-Edit
 
                 if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
-                    continue;
+                    return; // Arcane-Edit
 
                 _handsSystem.PickupOrDrop(userEnt, slotEntity.Value, handsComp: userEnt);
             }
             else
             {
                 if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
-                    continue;
+                    return; // Arcane-Edit
             }
 
-            break;
+            return; // Arcane-Edit
         }
     }
 
