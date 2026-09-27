@@ -2099,3 +2099,32 @@ Entries:
   time: '2026-09-26T19:41:23.0000000+00:00'
   prNumber: 411
   url: https://github.com/ArcaneSS14/arcane/pull/411
+- author: qwertyuiopiot
+  changes:
+    - type: Tweak
+      message: >-
+        Переведена на русский язык страница гайдбука Адский разрыв, руководство
+        по генокраду и руководство по мяснику 
+    - type: Tweak
+      message: >-
+        Добавлена локализация в гайдбуке "Способности Генокрада" "Корпоративные
+        агенты" "Дьявол" "Бингл"
+  id: 158
+  time: '2026-09-27T06:24:08.0000000+00:00'
+  prNumber: 413
+  url: https://github.com/ArcaneSS14/arcane/pull/413
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: >-
+        Рабочим определенного отдела даётся скидка в 5 раз для автоматов их
+        отдела.
+    - type: Add
+      message: Теперь при появлении дается стартовая сумма в виде 50 голочипов.
+  id: 159
+  time: '2026-09-27T06:27:02.0000000+00:00'
+  prNumber: 409
+  url: https://github.com/ArcaneSS14/arcane/pull/409
+  media:
+    - >-
+      https://github.com/user-attachments/assets/78abc600-d937-4106-84dd-1827e5a7d55a
