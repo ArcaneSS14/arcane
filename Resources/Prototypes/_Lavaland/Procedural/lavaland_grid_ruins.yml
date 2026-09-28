@@ -18,6 +18,15 @@
   priority: -1 # highest priority
   minDistance: 180
   spawnAttempts: 20
+  patchToPlanet: false\
+
+- type: lavalandGridRuin
+  id: Goliaf
+  name: ruin_goliaf
+  path: /Maps/_Lavaland/Lavaland/ruin_goliaf.yml
+  priority: -1 # highest priority
+  minDistance: 180
+  spawnAttempts: 20
   patchToPlanet: false
 
 - type: lavalandGridRuin
