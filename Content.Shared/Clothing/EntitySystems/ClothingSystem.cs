@@ -67,8 +67,11 @@ public abstract class ClothingSystem : EntitySystem
                 if (!_invSystem.CanUnequip(userEnt, slotDef.Name, out _))
                     continue;
 
-                if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true, equipAfter: toEquipEnt))
-                    return;
+                if (_invSystem.TryUnequipSlot(userEnt, slotDef.Name, equipAfter: toEquipEnt, inventory: userEnt)
+                    == InventorySystem.UnequipResult.Failed)
+                    continue;
+
+                return;
                 // Arcane-Edit-End
 
                 if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))

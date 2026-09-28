@@ -3,7 +3,7 @@
 using Content.Shared.DoAfter;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Arcane.Inventory; // Arcane de facto
+namespace Content.Shared._Arcane.Inventory;
 
 [Serializable, NetSerializable]
 public sealed partial class InventoryDoAfterEvent : SimpleDoAfterEvent
