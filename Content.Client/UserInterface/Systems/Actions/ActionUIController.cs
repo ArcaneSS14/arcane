@@ -35,10 +35,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.Shared.Configuration; // Goobstation
 using Content.Goobstation.Common.CCVar; // Goobstation
-// Arcane-Start
 using Content.Client._Arcane.UserInterface.Systems.Actions.Controls;
 using Content.Shared._Arcane.CCVars;
-// Arcane-End
 using static Content.Client.Actions.ActionsSystem;
 using static Content.Client.UserInterface.Systems.Actions.Windows.ActionsWindow;
 using static Robust.Client.UserInterface.Control;
@@ -647,10 +645,12 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         EntityUid? swapAction = null;
         var currentlyHovered = UIManager.MouseGetControl(_input.MouseScreenPosition);
 
-        // Arcane-Start: free placement - move hotbar slots on the HUD, drop actions from the menu onto the bar's grip
+        // Arcane-Start: свободное размещение слотов и добавление действия из меню через ручку панели
         if (_container != null)
         {
-            if (_container.TryHandleSlotDrop(dragged, currentlyHovered, UIManager.MousePositionScaled.Position))
+            // С Shift слот не переносится, работает обычное поведение (очистка слота)
+            if (!_input.IsKeyDown(Keyboard.Key.Shift)
+                && _container.TryHandleSlotDrop(dragged, currentlyHovered, UIManager.MousePositionScaled.Position))
             {
                 _menuDragHelper.EndDrag();
                 return;
@@ -668,6 +668,13 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
                 _menuDragHelper.EndDrag();
                 return;
             }
+        }
+
+        // При блокировке панели допустим только перенос слотов
+        if (_cfg.GetCVar(GoobCVars.LockActionBarDrag) && _window is not { IsOpen: true })
+        {
+            _menuDragHelper.EndDrag();
+            return;
         }
         // Arcane-End
 

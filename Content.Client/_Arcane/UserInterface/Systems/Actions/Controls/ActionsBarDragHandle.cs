@@ -8,9 +8,8 @@ using Robust.Shared.Input;
 namespace Content.Client._Arcane.UserInterface.Systems.Actions.Controls;
 
 /// <summary>
-/// Grip strip above the actions bar. Dragging it moves the whole bar, dropping a hotbar button on it returns
-/// the button to the bar, right click resets the whole layout. Shown only while free placement is enabled.
-/// It is separate from the action buttons so it never interferes with their click or drag-reorder handling.
+/// Полоска над панелью действий: перетаскивание двигает панель, ПКМ сбрасывает раскладку.
+/// Видна только при включённом свободном размещении.
 /// </summary>
 public sealed class ActionsBarDragHandle : Control
 {
@@ -29,14 +28,8 @@ public sealed class ActionsBarDragHandle : Control
     private bool _dragging;
     private bool _highlighted;
 
-    /// <summary>
-    /// Raised with the global mouse position when a drag starts.
-    /// </summary>
     public event Action<Vector2>? DragStarted;
 
-    /// <summary>
-    /// Raised with the global mouse position while dragging.
-    /// </summary>
     public event Action<Vector2>? Dragged;
 
     public event Action? ResetRequested;
@@ -66,9 +59,6 @@ public sealed class ActionsBarDragHandle : Control
         _dragging = false;
     }
 
-    /// <summary>
-    /// Brightens the grip while a detached slot hovers the bar's return zone.
-    /// </summary>
     public void SetHighlighted(bool highlighted)
     {
         _highlighted = highlighted;

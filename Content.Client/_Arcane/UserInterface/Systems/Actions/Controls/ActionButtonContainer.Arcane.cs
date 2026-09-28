@@ -8,9 +8,8 @@ using Robust.Shared.Timing;
 namespace Content.Client.UserInterface.Systems.Actions.Controls;
 
 /// <summary>
-/// Arcane: lets individual hotbar slots be detached from the grid and placed anywhere inside <see cref="PositionSpace"/>.
-/// Detached buttons stay children of this container at the same index, so slot numbers, hotkeys and
-/// the action list are unaffected; only their layout changes.
+/// Позволяет вынести отдельные слоты хотбара из сетки. Кнопка остаётся дочерней с тем же индексом,
+/// поэтому хоткеи и порядок действий не меняются.
 /// </summary>
 public partial class ActionButtonContainer
 {
@@ -18,9 +17,6 @@ public partial class ActionButtonContainer
 
     private ActionsBarLayoutUIController? _layout;
 
-    /// <summary>
-    /// How far around the bar a dropped detached slot still snaps back into it.
-    /// </summary>
     private const float ReturnZonePadding = 32f;
 
     private const int MaxCorrections = 8;
@@ -36,19 +32,10 @@ public partial class ActionButtonContainer
     private ActionsBarLayoutUIController Layout =>
         _layout ??= UserInterfaceManager.GetUIController<ActionsBarLayoutUIController>();
 
-    /// <summary>
-    /// Control whose area detached slots are positioned and clamped in, usually the HUD layout the bar lives in.
-    /// </summary>
     public Control? PositionSpace { get; set; }
 
-    /// <summary>
-    /// Raised when the saved or edited actions bar layout changes.
-    /// </summary>
     public event Action? ArcaneLayoutChanged;
 
-    /// <summary>
-    /// Raised when a dragged detached slot enters or leaves the zone that returns it to the bar.
-    /// </summary>
     public event Action<bool>? ReturnHintChanged;
 
     protected override void EnteredTree()
@@ -65,22 +52,18 @@ public partial class ActionButtonContainer
 
     private void OnLayoutChanged()
     {
+        _correctionsInARow = 0;
         InvalidateMeasure();
         InvalidateArrange();
         ArcaneLayoutChanged?.Invoke();
     }
 
-    /// <summary>
-    /// Handles dropping a dragged hotbar button somewhere that is not another action button while free placement is on.
-    /// Dropping on the bar's grip returns the slot to the grid, dropping on free HUD space moves the slot there.
-    /// </summary>
-    /// <returns>False if the drop should fall back to the default hotbar behavior.</returns>
     public bool TryHandleSlotDrop(ActionButton button, Control? dropTarget, Vector2 mousePosition)
     {
         if (!Layout.FreePlacementEnabled || !TryGetButtonIndex(button, out var slot))
             return false;
 
-        // Dropping a detached slot near the bar (grip, gaps, grid-placed buttons or the margin around it) puts it back.
+        // Вынесенный слот, брошенный рядом с панелью, возвращается в неё
         if (Layout.SlotPositions.ContainsKey(slot))
         {
             if (IsDetachedButton(dropTarget) && dropTarget != button)
@@ -123,9 +106,6 @@ public partial class ActionButtonContainer
         return zone.Contains(mousePosition);
     }
 
-    /// <summary>
-    /// Lights up the bar while a detached slot is dragged over the area where dropping it returns it to the bar.
-    /// </summary>
     public void UpdateReturnHint(ActionButton? dragged, Vector2 mousePosition)
     {
         var show = Layout.FreePlacementEnabled
@@ -163,10 +143,7 @@ public partial class ActionButtonContainer
         return false;
     }
 
-    /// <summary>
-    /// Tells the container where the bar is going to be inside <see cref="PositionSpace"/>. Global positions are
-    /// only final after layout, so relying on them alone would leave detached slots one frame behind a moving bar.
-    /// </summary>
+    // Глобальные позиции финальны только после компоновки, поэтому без явной позиции слоты отставали бы на кадр
     public void SetBarPlacement(Control bar, Vector2 position)
     {
         if (_bar == bar && _barPosition == position)
@@ -179,7 +156,6 @@ public partial class ActionButtonContainer
 
     private Vector2 GetSpaceOffset(Control space)
     {
-        // Offset of the container inside the bar is stable, so both global positions are stale by the same amount.
         if (_bar != null && _barPosition is { } barPosition)
             return -(barPosition + (GlobalPosition - _bar.GlobalPosition)) + _offsetCorrection;
 
@@ -196,6 +172,7 @@ public partial class ActionButtonContainer
         var offset = GetSpaceOffset(space);
         if (offset != _spaceOffset || space.Size != _spaceSize)
         {
+            _correctionsInARow = 0;
             InvalidateArrange();
             return;
         }
@@ -203,11 +180,8 @@ public partial class ActionButtonContainer
         VerifyDetachedPlacement(space);
     }
 
-    /// <summary>
-    /// The offset above is a prediction made before layout is final, e.g. while the HUD is still being sized on
-    /// startup. Once layout has settled, compare where a detached slot really ended up with where it should be and
-    /// fold any difference into the offset, so the layout always converges instead of staying displaced.
-    /// </summary>
+    // Смещение считается до конца компоновки (например, при старте HUD) и может быть неточным,
+    // поэтому сверяем реальное положение слота с ожидаемым и подправляем смещение
     private void VerifyDetachedPlacement(Control space)
     {
         if (!IsArrangeValid)
@@ -233,7 +207,7 @@ public partial class ActionButtonContainer
                 return;
             }
 
-            // Guard against a layout that can never satisfy the expectation.
+            // Ограничение на случай, когда компоновка никогда не сойдётся
             if (_correctionsInARow++ >= MaxCorrections)
                 return;
 
@@ -291,7 +265,7 @@ public partial class ActionButtonContainer
             if (!child.Visible)
                 continue;
 
-            // Same fill order as GridContainer: along the limited dimension first.
+            // Порядок заполнения как в GridContainer
             var (column, row) = LimitedDimension == Dimension.Column
                 ? (flowIndex % columns, flowIndex / columns)
                 : (flowIndex / rows, flowIndex % rows);
@@ -331,7 +305,6 @@ public partial class ActionButtonContainer
         if (flowCount == 0)
             return (0, 0, cell, separation);
 
-        // How many cells fit along the limited dimension for the grid-placed slots only.
         var limit = LimitedDimension == Dimension.Column ? Columns : Rows;
         if (LimitType == LimitType.Size)
             limit = Math.Min(limit, flowCount);

@@ -28,7 +28,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <Control/>
         </BoxContainer>
         <BoxContainer Name="VoteMenu" Access="Public" Margin="0 10 0 10" Orientation="Vertical"/>
-        <!-- Arcane-Edit: Actions bar moved to the screen root so it can be freely positioned -->
+        <!-- Arcane-Edit: панель действий вынесена в корень экрана -->
         <!-- <actions:ActionsBar Name="Actions" Access="Protected" /> -->
     </BoxContainer>
     <widgets:GhostGui Name="Ghost" Access="Protected" />

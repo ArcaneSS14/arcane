@@ -2,12 +2,12 @@ using System.Numerics;
 using Content.Client.UserInterface.Systems.Actions.Widgets;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Arcane.UserInterface.Systems.Actions;
 
 /// <summary>
-/// Places the actions bar inside its parent <see cref="LayoutContainer"/>: either at the screen's default spot
-/// or at the player-chosen position from <see cref="ActionsBarLayoutUIController"/>, dragged with the bar's grip.
+/// Ставит панель действий на позицию по умолчанию или на выбранную игроком.
 /// </summary>
 public sealed class ActionsBarPlacement
 {
@@ -18,12 +18,10 @@ public sealed class ActionsBarPlacement
     private readonly ActionsBarLayoutUIController _layout;
 
     private Vector2 _grabOffset;
+    private bool _updateQueued;
 
     public bool IsCustom => _layout.BarPosition != null;
 
-    /// <summary>
-    /// Raised when the bar or slot layout changes.
-    /// </summary>
     public event Action? LayoutChanged;
 
     public ActionsBarPlacement(ActionsBar bar, Func<Vector2> defaultPosition)
@@ -42,17 +40,30 @@ public sealed class ActionsBarPlacement
         _bar.DragHandle.Dragged += OnDragged;
         _bar.DragHandle.ResetRequested += _layout.Reset;
 
-        _bar.OnResized += UpdateLayout;
+        _bar.OnResized += QueueUpdateLayout;
         if (_bar.Parent != null)
-            _bar.Parent.OnResized += UpdateLayout;
+            _bar.Parent.OnResized += QueueUpdateLayout;
     }
 
-    /// <summary>
-    /// Re-applies the current position. Call it when anything the default position depends on changes size.
-    /// </summary>
     public void UpdateLayout()
     {
         SetPosition(_layout.BarPosition is { } custom ? Clamp(custom) : _defaultPosition());
+    }
+
+    // OnResized вызывается прямо во время компоновки родителя, и смена margin в этот момент не вызывает
+    // повторную компоновку (InvalidateArrange игнорируется), поэтому панель оставалась бы на старой позиции
+    public void QueueUpdateLayout()
+    {
+        if (_updateQueued)
+            return;
+
+        _updateQueued = true;
+        Timer.Spawn(0, () =>
+        {
+            _updateQueued = false;
+            UpdateLayout();
+            LayoutChanged?.Invoke();
+        });
     }
 
     private void OnLayoutChanged()
@@ -95,7 +106,7 @@ public sealed class ActionsBarPlacement
             return;
         }
 
-        // Zero-size margin box, so the bar always takes exactly its desired size and grows right/down from the point.
+        // Нулевой margin-бокс: панель занимает свой desired size и растёт вправо и вниз от точки
         LayoutContainer.SetAnchorPreset(_bar, LayoutContainer.LayoutPreset.TopLeft);
         LayoutContainer.SetMarginLeft(_bar, position.X);
         LayoutContainer.SetMarginRight(_bar, position.X);

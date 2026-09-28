@@ -9,8 +9,7 @@ using Robust.Shared.Timing;
 namespace Content.Client._Arcane.UserInterface.Systems.Actions;
 
 /// <summary>
-/// Holds the player's custom actions bar layout: the bar position and positions of detached hotbar slots.
-/// Edits made on the HUD are written to the client config shortly after the last change.
+/// Хранит раскладку панели действий и вынесенных слотов, сохраняет её в конфиг с задержкой после последнего изменения.
 /// </summary>
 public sealed class ActionsBarLayoutUIController : UIController
 {
@@ -22,37 +21,20 @@ public sealed class ActionsBarLayoutUIController : UIController
     private readonly Dictionary<int, Vector2> _slotPositions = new();
     private TimeSpan? _saveAt;
 
-    /// <summary>
-    /// Custom top-left position of the bar inside its HUD layout, or null for the screen default.
-    /// </summary>
     public Vector2? BarPosition { get; private set; }
 
-    /// <summary>
-    /// Slot index to top-left position inside the HUD layout, in virtual pixels.
-    /// </summary>
     public IReadOnlyDictionary<int, Vector2> SlotPositions => _slotPositions;
 
     public bool FreePlacementEnabled { get; private set; }
 
-    /// <summary>
-    /// Raised whenever the bar or any slot position changes.
-    /// </summary>
     public event Action? LayoutChanged;
-
-    public event Action<bool>? FreePlacementChanged;
 
     public override void Initialize()
     {
         base.Initialize();
 
         LoadSaved();
-        _cfg.OnValueChanged(ACCVars.ActionsBarFreePlacement, OnFreePlacementChanged, true);
-    }
-
-    private void OnFreePlacementChanged(bool enabled)
-    {
-        FreePlacementEnabled = enabled;
-        FreePlacementChanged?.Invoke(enabled);
+        _cfg.OnValueChanged(ACCVars.ActionsBarFreePlacement, enabled => FreePlacementEnabled = enabled, true);
     }
 
     public override void FrameUpdate(FrameEventArgs args)
@@ -86,17 +68,11 @@ public sealed class ActionsBarLayoutUIController : UIController
         LayoutChanged?.Invoke();
     }
 
-    /// <summary>
-    /// Edits are saved shortly after the last change, so a drag does not write the config on every mouse move.
-    /// </summary>
     private void QueueSave()
     {
         _saveAt = _timing.RealTime + AutoSaveDelay;
     }
 
-    /// <summary>
-    /// Writes the current layout to the client config so it survives restarts.
-    /// </summary>
     private void Save()
     {
         _saveAt = null;
@@ -111,9 +87,6 @@ public sealed class ActionsBarLayoutUIController : UIController
         _cfg.SaveToFile();
     }
 
-    /// <summary>
-    /// Returns the bar and every slot to the default layout and saves that.
-    /// </summary>
     public void Reset()
     {
         BarPosition = null;

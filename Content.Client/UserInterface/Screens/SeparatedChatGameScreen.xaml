@@ -28,7 +28,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <hotbar:HotbarGui Name="Hotbar" Access="Protected"/>
             <targeting:TargetingControl Name="Targeting" Access="Protected"/> <!-- Shitmed Change -->
             <BoxContainer Name="TopLeftContainer" Orientation="Vertical">
-                <!-- Arcane-Edit: Actions bar moved out of the container so it can be freely positioned -->
+                <!-- Arcane-Edit: панель действий вынесена из контейнера -->
                 <!-- <actions:ActionsBar Name="Actions" Access="Protected" /> -->
                 <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical"/>
             </BoxContainer>
