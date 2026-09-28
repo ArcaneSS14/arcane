@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Client._Arcane.UserInterface.Systems.Actions;
-using Content.Client._Arcane.UserInterface.Systems.Actions.Controls;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
@@ -19,6 +18,14 @@ public partial class ActionButtonContainer
 
     private ActionsBarLayoutUIController? _layout;
 
+    /// <summary>
+    /// How far around the bar a dropped detached slot still snaps back into it.
+    /// </summary>
+    private const float ReturnZonePadding = 32f;
+
+    private bool _returnHint;
+    private Control? _bar;
+    private Vector2? _barPosition;
     private Vector2 _spaceOffset;
     private Vector2 _spaceSize;
 
@@ -34,6 +41,11 @@ public partial class ActionButtonContainer
     /// Raised when the saved or edited actions bar layout changes.
     /// </summary>
     public event Action? ArcaneLayoutChanged;
+
+    /// <summary>
+    /// Raised when a dragged detached slot enters or leaves the zone that returns it to the bar.
+    /// </summary>
+    public event Action<bool>? ReturnHintChanged;
 
     protected override void EnteredTree()
     {
@@ -64,11 +76,21 @@ public partial class ActionButtonContainer
         if (!Layout.FreePlacementEnabled || !TryGetButtonIndex(button, out var slot))
             return false;
 
-        if (dropTarget is ActionsBarDragHandle)
+        // Dropping a detached slot near the bar (grip, gaps, grid-placed buttons or the margin around it) puts it back.
+        if (Layout.SlotPositions.ContainsKey(slot))
         {
-            Layout.ClearSlotPosition(slot);
-            return true;
+            if (IsDetachedButton(dropTarget) && dropTarget != button)
+                return false;
+
+            if ((dropTarget == null || !IsInsideWindow(dropTarget)) && IsInReturnZone(mousePosition))
+            {
+                Layout.ClearSlotPosition(slot);
+                return true;
+            }
         }
+
+        if (dropTarget is ActionButton)
+            return false;
 
         if (PositionSpace is not { } space || dropTarget != null && IsInsideWindow(dropTarget))
             return false;
@@ -77,6 +99,42 @@ public partial class ActionButtonContainer
         Layout.SetSlotPosition(slot,
             Vector2.Clamp(position, Vector2.Zero, Vector2.Max(Vector2.Zero, space.Size - button.Size)));
         return true;
+    }
+
+    private bool IsDetachedButton(Control? target)
+    {
+        return target is ActionButton button
+            && button.Parent == this
+            && TryGetButtonIndex(button, out var index)
+            && Layout.SlotPositions.ContainsKey(index);
+    }
+
+    private bool IsInReturnZone(Vector2 mousePosition)
+    {
+        if (_bar == null)
+            return false;
+
+        var padding = new Vector2(ReturnZonePadding);
+        var zone = new UIBox2(_bar.GlobalPosition - padding, _bar.GlobalPosition + _bar.Size + padding);
+        return zone.Contains(mousePosition);
+    }
+
+    /// <summary>
+    /// Lights up the bar while a detached slot is dragged over the area where dropping it returns it to the bar.
+    /// </summary>
+    public void UpdateReturnHint(ActionButton? dragged, Vector2 mousePosition)
+    {
+        var show = Layout.FreePlacementEnabled
+            && dragged != null
+            && TryGetButtonIndex(dragged, out var slot)
+            && Layout.SlotPositions.ContainsKey(slot)
+            && IsInReturnZone(mousePosition);
+
+        if (show == _returnHint)
+            return;
+
+        _returnHint = show;
+        ReturnHintChanged?.Invoke(show);
     }
 
     private bool HasDetachedSlots()
@@ -101,6 +159,29 @@ public partial class ActionButtonContainer
         return false;
     }
 
+    /// <summary>
+    /// Tells the container where the bar is going to be inside <see cref="PositionSpace"/>. Global positions are
+    /// only final after layout, so relying on them alone would leave detached slots one frame behind a moving bar.
+    /// </summary>
+    public void SetBarPlacement(Control bar, Vector2 position)
+    {
+        if (_bar == bar && _barPosition == position)
+            return;
+
+        _bar = bar;
+        _barPosition = position;
+        InvalidateArrange();
+    }
+
+    private Vector2 GetSpaceOffset(Control space)
+    {
+        // Offset of the container inside the bar is stable, so both global positions are stale by the same amount.
+        if (_bar != null && _barPosition is { } barPosition)
+            return -(barPosition + (GlobalPosition - _bar.GlobalPosition));
+
+        return space.GlobalPosition - GlobalPosition;
+    }
+
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
@@ -108,13 +189,10 @@ public partial class ActionButtonContainer
         if (PositionSpace is not { } space || !HasDetachedSlots())
             return;
 
-        // Our own position is only final after ArrangeOverride, so track the offset here and re-arrange when it moves.
-        var offset = space.GlobalPosition - GlobalPosition;
+        var offset = GetSpaceOffset(space);
         if (offset == _spaceOffset && space.Size == _spaceSize)
             return;
 
-        _spaceOffset = offset;
-        _spaceSize = space.Size;
         InvalidateArrange();
     }
 
@@ -141,6 +219,12 @@ public partial class ActionButtonContainer
     {
         if (!HasDetachedSlots())
             return base.ArrangeOverride(finalSize);
+
+        if (PositionSpace is { } space)
+        {
+            _spaceOffset = GetSpaceOffset(space);
+            _spaceSize = space.Size;
+        }
 
         var (columns, rows, cell, separation) = GetFlowGrid();
         var flowIndex = 0;

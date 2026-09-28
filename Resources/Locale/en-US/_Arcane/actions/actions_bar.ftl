@@ -1,1 +1,1 @@
-arcane-actions-bar-drag-handle-tooltip = Drag to move the actions bar. Drop a button here to return it to the bar. Right click to reset the layout.
+arcane-actions-bar-drag-handle-tooltip = Drag to move the actions bar. Drop a loose button on or near the bar to return it. Right click to reset the layout.

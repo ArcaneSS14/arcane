@@ -37,6 +37,7 @@ public sealed class ActionsBarPlacement
         _bar.ActionsContainer.PositionSpace = _bar.Parent;
         _bar.ActionsContainer.ArcaneLayoutChanged += OnLayoutChanged;
 
+        _bar.ActionsContainer.ReturnHintChanged += _bar.DragHandle.SetHighlighted;
         _bar.DragHandle.DragStarted += OnDragStarted;
         _bar.DragHandle.Dragged += OnDragged;
         _bar.DragHandle.ResetRequested += _layout.Reset;
@@ -84,6 +85,8 @@ public sealed class ActionsBarPlacement
 
     private void SetPosition(Vector2 position)
     {
+        _bar.ActionsContainer.SetBarPlacement(_bar, position);
+
         if (_bar.GetValue<float>(LayoutContainer.MarginLeftProperty).Equals(position.X)
             && _bar.GetValue<float>(LayoutContainer.MarginTopProperty).Equals(position.Y)
             && _bar.GetValue<float>(LayoutContainer.MarginRightProperty).Equals(position.X)

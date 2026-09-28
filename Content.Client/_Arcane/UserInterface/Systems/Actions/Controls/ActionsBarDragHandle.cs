@@ -24,7 +24,10 @@ public sealed class ActionsBarDragHandle : Control
     private const int DotColumns = 6;
     private const int DotRows = 2;
 
+    private static readonly Color HighlightColor = Color.FromHex("#4a90d9").WithAlpha(0.85f);
+
     private bool _dragging;
+    private bool _highlighted;
 
     /// <summary>
     /// Raised with the global mouse position when a drag starts.
@@ -61,6 +64,14 @@ public sealed class ActionsBarDragHandle : Control
         base.ExitedTree();
         _cfg.UnsubValueChanged(ACCVars.ActionsBarFreePlacement, OnFreePlacementChanged);
         _dragging = false;
+    }
+
+    /// <summary>
+    /// Brightens the grip while a detached slot hovers the bar's return zone.
+    /// </summary>
+    public void SetHighlighted(bool highlighted)
+    {
+        _highlighted = highlighted;
     }
 
     private void OnFreePlacementChanged(bool enabled)
@@ -108,7 +119,7 @@ public sealed class ActionsBarDragHandle : Control
     {
         base.Draw(handle);
 
-        handle.DrawRect(PixelSizeBox, BackgroundColor);
+        handle.DrawRect(PixelSizeBox, _highlighted ? HighlightColor : BackgroundColor);
 
         var dot = DotSize * UIScale;
         var spacing = DotSpacing * UIScale;

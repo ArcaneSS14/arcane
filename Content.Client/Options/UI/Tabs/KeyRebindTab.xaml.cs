@@ -76,14 +76,6 @@ namespace Content.Client.Options.UI.Tabs
                 _cfg.SaveToFile();
             };
 
-            var saveButton = new Button
-            {
-                Text = Loc.GetString("ui-options-actions-bar-layout-save"),
-                ToolTip = Loc.GetString("ui-options-actions-bar-layout-save-tooltip"),
-                Margin = new Thickness(4, 0, 0, 0),
-            };
-            saveButton.OnPressed += _ => layout.Save();
-
             var resetButton = new Button
             {
                 Text = Loc.GetString("ui-options-actions-bar-layout-reset"),
@@ -95,7 +87,7 @@ namespace Content.Client.Options.UI.Tabs
             return new BoxContainer
             {
                 Orientation = LayoutOrientation.Horizontal,
-                Children = { checkBox, saveButton, resetButton },
+                Children = { checkBox, resetButton },
             };
         }
         // Arcane-End

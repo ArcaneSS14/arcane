@@ -648,7 +648,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         var currentlyHovered = UIManager.MouseGetControl(_input.MouseScreenPosition);
 
         // Arcane-Start: free placement - move hotbar slots on the HUD, drop actions from the menu onto the bar's grip
-        if (currentlyHovered is not Controls.ActionButton && _container != null)
+        if (_container != null)
         {
             if (_container.TryHandleSlotDrop(dragged, currentlyHovered, UIManager.MousePositionScaled.Position))
             {
@@ -829,11 +829,14 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     {
         LayoutContainer.SetPosition(_dragShadow, UIManager.MousePositionScaled.Position - new Vector2(32, 32));
         _dragShadow.Visible = true;
+        // Arcane
+        _container?.UpdateReturnHint(_menuDragHelper.Dragged, UIManager.MousePositionScaled.Position);
         return true;
     }
 
     private void OnMenuEndDrag()
     {
+        _container?.UpdateReturnHint(null, Vector2.Zero); // Arcane
         _dragShadow.Texture = null;
         _dragShadow.Visible = false;
     }
