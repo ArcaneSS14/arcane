@@ -307,6 +307,7 @@ chatsan-word-95-5 = ванвин
 chatsan-replacement-95 = казино
 
 chatsan-word-96 = лут
+chatsan-word-96-2 = снаряг[ау]
 chatsan-replacement-96 = снаряжение
 
 chatsan-word-97 = манч
@@ -716,7 +717,7 @@ chatsan-replacement-210 = { "" }
 chatsan-word-211 = \.\.+
 chatsan-replacement-211 = ..
 
-chatsan-word-212 = \?{2,}
+chatsan-word-212 = \?\?+
 chatsan-replacement-212 = ?!
 
 chatsan-word-213 = !!+
