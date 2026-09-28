@@ -267,8 +267,8 @@ namespace Content.Server.Lathe
                             printerComponent.Queue.Count > 0 &&
                             printerComponent.Queue[0].Item2.Result == resultProto)
                         {
-                            var tuple = printerComponent.Queue[0];
-                            RaiseLocalEvent(uid, new PrintingDocumentEvent(result, tuple.Item1));
+                            var ev = new PrintingDocumentEvent(result, printerComponent.Queue[0].Actor);
+                            RaiseLocalEvent(uid, ref ev);
                             printerComponent.Queue.RemoveAt(0);
                         }
                         // Orion-Edit-End

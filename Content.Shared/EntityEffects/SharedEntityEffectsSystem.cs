@@ -1,3 +1,4 @@
+using Content.Shared._Arcane.Chemistry.Components;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
@@ -44,7 +45,7 @@ public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEff
                 if (!group.Contains(args.Method))
                     continue;
 
-                ApplyEffects(entity, val.Effects, scale);
+                ApplyOrDelayReaction(entity, val.Effects, scale); // Arcane-Edit
             }
         }
 
@@ -56,10 +57,28 @@ public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEff
                     continue;
 
                 if (entry.Reagents == null || entry.Reagents.Contains(args.Reagent.ID))
-                    ApplyEffects(entity, entry.Effects, scale);
+                    ApplyOrDelayReaction(entity, entry.Effects, scale); // Arcane-Edit
             }
         }
     }
+
+    // Arcane-Start
+    private void ApplyOrDelayReaction(Entity<ReactiveComponent> target, EntityEffect[] effects, float scale)
+    {
+        if (TryComp<DelayedReactionComponent>(target.Owner, out var delayed) && delayed.Delay > TimeSpan.Zero)
+        {
+            var uid = target.Owner;
+            Timer.Spawn(delayed.Delay, () =>
+            {
+                if (Exists(uid))
+                    ApplyEffects(uid, effects, scale);
+            });
+            return;
+        }
+
+        ApplyEffects(target, effects, scale);
+    }
+    // Arcane-End
 
     /// <inheritdoc cref="ApplyEffects(EntityUid,EntityEffect[],float,EntityUid?)"/>
     public void ApplyEffects(EntityUid target, EntityEffect[] effects, FixedPoint2 scale, EntityUid? user = null)

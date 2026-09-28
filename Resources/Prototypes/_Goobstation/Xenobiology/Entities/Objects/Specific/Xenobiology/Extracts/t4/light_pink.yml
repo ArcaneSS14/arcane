@@ -41,7 +41,7 @@
         proto: XenobioExtractReaction
       - !type:RelayNearby
         compName: Dna
-        range: 30
+        range: 3 # Arcane-Edit: 30 > 3
         effect: !type:ScrambleDna
   - type: Tag
     tags:

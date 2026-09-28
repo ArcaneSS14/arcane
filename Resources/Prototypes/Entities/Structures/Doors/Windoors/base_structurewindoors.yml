@@ -141,7 +141,7 @@
     openUnlitVisible: true
     # needed so that windoors will close regardless of whether there are people in it; it doesn't crush after all
     # goob edit: no because vehicles
-    safety: true
+    safety: false # Arcane-Edit: true > false
   - type: NavMapDoor
   - type: DoorBolt
   - type: Electrified

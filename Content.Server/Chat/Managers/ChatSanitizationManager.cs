@@ -100,7 +100,24 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         Entry("(", "chatsan-frowns"),
         Entry("((", "chatsan-frowns-deeply"),
         Entry("лол", "chatsan-laughs"),
+        Entry("лмао", "chatsan-laughs"),
+        Entry("хд", "chatsan-laughs"),
         Entry("кек", "chatsan-laughs"),
+        Entry("кекв", "chatsan-laughs"),
+        Entry("рофл", "chatsan-laughs"),
+        Entry("о7", "chatsan-salutes"),
+        Entry("[l", "chatsan-laughs"),
+        Entry("kjk", "chatsan-laughs"),
+        Entry("rtr", "chatsan-laughs"),
+        Entry("f[f[", "chatsan-laughs"),
+        Entry("[f[f", "chatsan-laughs"),
+        Entry("[f[", "chatsan-laughs"),
+        Entry("g[g[", "chatsan-laughs"),
+        Entry("[p", "chatsan-shrugs"),
+        Entry("kvfj", "chatsan-laughs"),
+        Entry("hjak", "chatsan-laughs"),
+        Entry("z[p", "chatsan-shrugs"),
+        Entry("пхпх", "chatsan-laughs")
         // Arcane-end
     ];
 

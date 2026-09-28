@@ -1,17 +1,16 @@
 ﻿<Document>
-
   # Правила Сервера
 
   Здесь описаны все основные правила. Все дополнительные правила можно найти в Discord канале сервера.
 
-  - [textlink="0. Возрастное ограничение" link="ArcaneRule0"]
-  - [textlink="1. Мудачество" link="ArcaneRule1"]
-  - [textlink="2. Выход из роли" link="ArcaneRule2"]
-  - [textlink="3. Нарушение игровой атмосферы" link="ArcaneRule3"]
-  - [textlink="4. Память персонажа" link="ArcaneRule4"]
-  - [textlink="5. Нечестная игра" link="ArcaneRule5"]
-  - [textlink="6. Ответственная игра за антагониста" link="ArcaneRule6"]
+  - [textlink="0. Общие положения" link="ArcaneRule0"]
+  - [textlink="1. Возрастное ограничение" link="ArcaneRule1"]
+  - [textlink="2. NRP/LRP" link="ArcaneRule2"]
+  - [textlink="3. Метагейминг" link="ArcaneRule3"]
+  - [textlink="4. Нечестная игра" link="ArcaneRule4"]
+  - [textlink="5. Деструктивное поведение" link="ArcaneRule5"]
+  - [textlink="6. Ответственная игра антагониста" link="ArcaneRule6"]
   - [textlink="7. ERP" link="ArcaneRule7"]
-  - [textlink="X. Секретное правило" link="ArcaneRuleX"]
+  - [textlink="8. Взаимодействие с модерацией" link="ArcaneRuleX"]
 
 </Document>

@@ -58,3 +58,14 @@ ent-ClothingHatCookRed = красный поварской колпак
 
 ent-ClothingHatFlyAgaric = шляпа-мухомор
     .desc = Головной убор, напоминающий шляпку ядовитого гриба.
+
+# USSP
+
+ent-ClothingHeadHatUSSPBeretPolice = берет милиционера
+    .desc = Берет с эмблемой отдела милиции СССП.
+ent-ClothingHeadHatUSSPCapPolice = фуражка милиционера
+    .desc = Фуражка с эмблемой отдела милиции СССП.
+ent-ClothingHeadHatUSSPInvestigator = шляпа следователя
+    .desc = Черная шляпа следователя.
+ent-ClothingHeadHatUSSPBlueUshanka = синяя ушанка
+    .desc = Меховая тёплая синяя ушанка с эмблемой отдела милиции СССП.
