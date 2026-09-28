@@ -23,6 +23,10 @@ public partial class ActionButtonContainer
     /// </summary>
     private const float ReturnZonePadding = 32f;
 
+    private const int MaxCorrections = 8;
+
+    private Vector2 _offsetCorrection;
+    private int _correctionsInARow;
     private bool _returnHint;
     private Control? _bar;
     private Vector2? _barPosition;
@@ -177,9 +181,9 @@ public partial class ActionButtonContainer
     {
         // Offset of the container inside the bar is stable, so both global positions are stale by the same amount.
         if (_bar != null && _barPosition is { } barPosition)
-            return -(barPosition + (GlobalPosition - _bar.GlobalPosition));
+            return -(barPosition + (GlobalPosition - _bar.GlobalPosition)) + _offsetCorrection;
 
-        return space.GlobalPosition - GlobalPosition;
+        return space.GlobalPosition - GlobalPosition + _offsetCorrection;
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -190,10 +194,53 @@ public partial class ActionButtonContainer
             return;
 
         var offset = GetSpaceOffset(space);
-        if (offset == _spaceOffset && space.Size == _spaceSize)
+        if (offset != _spaceOffset || space.Size != _spaceSize)
+        {
+            InvalidateArrange();
+            return;
+        }
+
+        VerifyDetachedPlacement(space);
+    }
+
+    /// <summary>
+    /// The offset above is a prediction made before layout is final, e.g. while the HUD is still being sized on
+    /// startup. Once layout has settled, compare where a detached slot really ended up with where it should be and
+    /// fold any difference into the offset, so the layout always converges instead of staying displaced.
+    /// </summary>
+    private void VerifyDetachedPlacement(Control space)
+    {
+        if (!IsArrangeValid)
             return;
 
-        InvalidateArrange();
+        foreach (var (slot, position) in Layout.SlotPositions)
+        {
+            if (slot >= ChildCount)
+                continue;
+
+            var child = GetChild(slot);
+            if (!child.IsArrangeValid)
+                continue;
+
+            var size = child.DesiredSize;
+            var max = Vector2.Max(Vector2.Zero, space.Size - size);
+            var expected = space.GlobalPosition + Vector2.Clamp(position, Vector2.Zero, max);
+            var error = expected - child.GlobalPosition;
+
+            if (error.LengthSquared() < 0.25f)
+            {
+                _correctionsInARow = 0;
+                return;
+            }
+
+            // Guard against a layout that can never satisfy the expectation.
+            if (_correctionsInARow++ >= MaxCorrections)
+                return;
+
+            _offsetCorrection += error;
+            InvalidateArrange();
+            return;
+        }
     }
 
     protected override Vector2 MeasureOverride(Vector2 availableSize)
