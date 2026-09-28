@@ -203,7 +203,7 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
         // Arcane-Start
         // Middle click over the action bar pins actions, don't rotate storage at the same time.
         // The key event must not be handled here, that happens before the UI gets it and would stop pinning.
-        if (keyEvent.Key == Keyboard.Key.MouseMiddle && UIManager.CurrentlyHovered is ActionButton)
+        if (keyEvent.Key == Keyboard.Key.MouseMiddle && IsHoveringActionButton())
             return;
         // Arcane-End
 
@@ -246,6 +246,23 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
         if (IsDragging || UIManager.CurrentlyHovered is StorageWindow)
             keyEvent.Handle();
     }
+
+    // Arcane-Start
+    /// <summary>
+    ///     True while the mouse is over an action bar button. The hovered control can be any child of the
+    ///     button, e.g. its label or icon, so the whole parent chain has to be checked.
+    /// </summary>
+    private bool IsHoveringActionButton()
+    {
+        for (var control = UIManager.CurrentlyHovered; control != null; control = control.Parent)
+        {
+            if (control is ActionButton)
+                return true;
+        }
+
+        return false;
+    }
+    // Arcane-End
 
     private void OnPiecePressed(GUIBoundKeyEventArgs args, StorageWindow window, ItemGridPiece control)
     {

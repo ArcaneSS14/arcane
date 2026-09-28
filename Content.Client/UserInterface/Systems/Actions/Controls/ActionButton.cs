@@ -67,6 +67,8 @@ public sealed class ActionButton : Control, IEntityControl
     private Texture? _blockedTexture;
     private FormattedMessage? _cachedName;
     private FormattedMessage? _cachedDesc;
+    private EntityUid? _contentAction;
+    private bool _keepContent;
     // Arcane-End
 
     public Entity<ActionComponent>? Action { get; private set; }
@@ -268,7 +270,7 @@ public sealed class ActionButton : Control, IEntityControl
         var action = Action;
         if (action is null || _entities.Deleted(action.Value.Owner))
         {
-            return _cachedName is { } cachedName && _cachedDesc is { } cachedDesc
+            return _keepContent && _cachedName is { } cachedName && _cachedDesc is { } cachedDesc
                 ? CreateTooltip(cachedName, cachedDesc)
                 : null;
         }
@@ -370,7 +372,7 @@ public sealed class ActionButton : Control, IEntityControl
     {
         // Arcane-Start
         // A pinned action keeps the icons it had while it was available, its entity may be gone by now.
-        if (Action is null && Unavailable)
+        if (KeepsContent())
         {
             UpdateBackground();
             return;
@@ -449,6 +451,14 @@ public sealed class ActionButton : Control, IEntityControl
         _controller ??= UserInterfaceManager.GetUIController<ActionUIController>();
         Pinned = actionId != null && _controller.IsActionPinned(actionId.Value);
         Unavailable = actionId != null && _controller.IsActionUnavailable(actionId.Value);
+        _keepContent = Action is null && Unavailable && actionId != null && _contentAction == actionId;
+
+        if (!_keepContent)
+        {
+            _cachedName = null;
+            _cachedDesc = null;
+            _contentAction = actionId;
+        }
         // Arcane-End
 
         Label.Visible = Action != null || Unavailable; // Arcane-Edit
@@ -459,6 +469,13 @@ public sealed class ActionButton : Control, IEntityControl
         // Arcane-End
     }
 
+    // Arcane-Start
+    private bool KeepsContent()
+    {
+        return _keepContent && Action is null && Unavailable;
+    }
+    // Arcane-End
+
     public void ClearData()
     {
         Action = null;
@@ -467,6 +484,8 @@ public sealed class ActionButton : Control, IEntityControl
         Unavailable = false;
         _cachedName = null;
         _cachedDesc = null;
+        _contentAction = null;
+        _keepContent = false;
         // Arcane-End
         Cooldown.Visible = false;
         Cooldown.Progress = 1;

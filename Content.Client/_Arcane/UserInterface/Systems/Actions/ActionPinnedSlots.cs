@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Client.UserInterface.Systems.Actions;
@@ -25,6 +26,11 @@ internal sealed class ActionPinnedSlots
         return _unavailable.Contains(action);
     }
 
+    public IEnumerable<EntityUid> GetPinned()
+    {
+        return _pins.Keys;
+    }
+
     public void Pin(EntityUid action, EntProtoId? prototype, EntityUid? container)
     {
         _pins[action] = new PinData(prototype, container);
@@ -39,6 +45,36 @@ internal sealed class ActionPinnedSlots
     {
         _pins.Remove(action);
         return _unavailable.Remove(action);
+    }
+
+    /// <summary>
+    ///     The prototype a pin was created with. This is also known for placeholders, which have no action
+    ///     entity left, and it is what pins are stored by so that they survive body changes.
+    /// </summary>
+    public EntProtoId? GetPrototype(EntityUid action)
+    {
+        return _pins.TryGetValue(action, out var pin) ? pin.Prototype : null;
+    }
+
+    /// <summary>
+    ///     Drops every pin of an action prototype, e.g. when the player unpinned it.
+    /// </summary>
+    /// <returns>The actions that only had a slot because of their pin.</returns>
+    public List<EntityUid> UnpinPrototype(EntProtoId prototype)
+    {
+        var placeholders = new List<EntityUid>();
+
+        foreach (var action in _pins.Keys.ToArray())
+        {
+            if (_pins[action].Prototype != prototype)
+                continue;
+
+            _pins.Remove(action);
+            if (_unavailable.Remove(action))
+                placeholders.Add(action);
+        }
+
+        return placeholders;
     }
 
     /// <summary>
@@ -97,7 +133,16 @@ internal sealed class ActionPinnedSlots
             if (slots[i] is not { } slotId || !_unavailable.Contains(slotId) || !_pins.TryGetValue(slotId, out var pin))
                 continue;
 
-            if (pin.Prototype != prototype)
+            // The same entity that got granted again, e.g. an item that was dropped and picked back up.
+            if (slotId == action)
+            {
+                slots[i] = action;
+                _unavailable.Remove(slotId);
+                return true;
+            }
+
+            // Without a prototype two different actions can not be told apart, so the slot stays empty.
+            if (prototype is not { } proto || pin.Prototype != proto)
                 continue;
 
             if (requireContainer && pin.Container != null && pin.Container != container)
