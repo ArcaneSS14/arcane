@@ -352,8 +352,10 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (!CanStripRemoveInventory(user, target, item, slot))
             return;
 
-        if (!_inventorySystem.TryUnequip(user, target, slot, triggerHandContact: true))
+        // Arcane-Edit-Start
+        if (!_inventorySystem.TryUnequip(user, target, slot, triggerHandContact: true, checkDoafter: user == target))
             return;
+        // Arcane-Edit-End
 
         RaiseLocalEvent(item, new DroppedEvent(user), true); // Gas tank internals etc.
 

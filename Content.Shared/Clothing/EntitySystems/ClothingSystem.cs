@@ -63,8 +63,10 @@ public abstract class ClothingSystem : EntitySystem
                 if (TryComp(slotEntity, out ClothingComponent? item) && !item.QuickEquip)
                     continue;
 
-                if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true))
-                    return; // Arcane-Edit
+                // Arcane-Edit-Start
+                if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true, equipAfter: toEquipEnt))
+                    return;
+                // Arcane-Edit-End
 
                 if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
                     return; // Arcane-Edit
