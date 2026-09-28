@@ -64,6 +64,9 @@ public abstract class ClothingSystem : EntitySystem
                     continue;
 
                 // Arcane-Edit-Start
+                if (!_invSystem.CanUnequip(userEnt, slotDef.Name, out _))
+                    continue;
+
                 if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true, equipAfter: toEquipEnt))
                     return;
                 // Arcane-Edit-End

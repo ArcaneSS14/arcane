@@ -304,6 +304,11 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         var (time, stealth) = GetStripTimeModifiers(user, target, item, slotDef.StripTime);
 
+        // Arcane-Start
+        if (user == target)
+            time += _inventorySystem.GetUnequipDelay(item, slotDef);
+        // Arcane-End
+
         if (!stealth)
         {
             if (IsStripHidden(slotDef, user))
@@ -352,10 +357,8 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (!CanStripRemoveInventory(user, target, item, slot))
             return;
 
-        // Arcane-Edit-Start
-        if (!_inventorySystem.TryUnequip(user, target, slot, triggerHandContact: true, checkDoafter: user == target))
+        if (!_inventorySystem.TryUnequip(user, target, slot, triggerHandContact: true))
             return;
-        // Arcane-Edit-End
 
         RaiseLocalEvent(item, new DroppedEvent(user), true); // Gas tank internals etc.
 

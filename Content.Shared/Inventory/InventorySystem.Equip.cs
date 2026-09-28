@@ -63,7 +63,15 @@ public abstract partial class InventorySystem
             return;
         }
 
-        args.Handled = TryUnequip(actor, target, args.Slot, predicted: true, checkDoafter: false);
+        // Arcane-Start
+        if (!TryGetSlotEntity(target, args.Slot, out var slotEnt) || slotEnt != ent.Owner)
+        {
+            args.Handled = true;
+            return;
+        }
+        // Arcane-End
+
+        args.Handled = TryUnequip(actor, target, args.Slot, predicted: true, checkDoafter: false, triggerHandContact: true); // Arcane-Edit
         if (!args.Handled)
             return;
 
@@ -409,6 +417,18 @@ public abstract partial class InventorySystem
         return true;
     }
 
+    // Arcane-Start
+    public TimeSpan GetUnequipDelay(EntityUid item, SlotDefinition slotDefinition, ClothingComponent? clothing = null)
+    {
+        if (!Resolve(item, ref clothing, false) ||
+            clothing.UnequipDelay <= TimeSpan.Zero ||
+            (clothing.Slots & slotDefinition.SlotFlags) == 0)
+            return TimeSpan.FromSeconds(0.4);
+
+        return clothing.UnequipDelay;
+    }
+    // Arcane-End
+
     public bool TryUnequip(
         EntityUid uid,
         string slot,
@@ -536,11 +556,7 @@ public abstract partial class InventorySystem
             var equipAfterEvent = equipAfter == null ? (NetEntity?) null : GetNetEntity(equipAfter.Value);
             Resolve(removedItem.Value, ref clothing, false);
 
-            var delay = clothing != null
-                        && clothing.UnequipDelay > TimeSpan.Zero
-                        && (clothing.Slots & slotDefinition.SlotFlags) != 0
-                ? clothing.UnequipDelay
-                : TimeSpan.FromSeconds(0.4);
+            var delay = GetUnequipDelay(removedItem.Value, slotDefinition, clothing);
 
             var args = new DoAfterArgs(EntityManager, actor, delay, new InventoryDoAfterEvent(false, slot, equipAfterEvent), removedItem.Value, target, removedItem.Value)
             {
