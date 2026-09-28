@@ -642,6 +642,17 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
         EntityUid? swapAction = null;
         var currentlyHovered = UIManager.MouseGetControl(_input.MouseScreenPosition);
+
+        // Arcane-Start: dropping a hotbar button on free HUD space moves that slot instead of clearing it
+        if (currentlyHovered is not Controls.ActionButton
+            && _container != null
+            && _container.TryHandleSlotDrop(dragged, currentlyHovered, UIManager.MousePositionScaled.Position))
+        {
+            _menuDragHelper.EndDrag();
+            return;
+        }
+        // Arcane-End
+
         if (currentlyHovered is ActionButton button)
         {
             swapAction = button.Action;

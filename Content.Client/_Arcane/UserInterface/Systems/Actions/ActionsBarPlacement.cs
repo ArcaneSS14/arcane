@@ -44,6 +44,8 @@ public sealed class ActionsBarPlacement
         _bar.DragHandle.DragFinished += OnDragFinished;
         _bar.DragHandle.ResetRequested += OnResetRequested;
 
+        _bar.ActionsContainer.PositionSpace = _bar.Parent;
+
         _bar.OnResized += UpdateLayout;
         if (_bar.Parent != null)
             _bar.Parent.OnResized += UpdateLayout;
@@ -94,6 +96,7 @@ public sealed class ActionsBarPlacement
         _cfg.SetCVar(ACCVars.ActionsBarPositionY, -1f);
         _cfg.SaveToFile();
 
+        _bar.ActionsContainer.ResetSlotPositions();
         UpdateLayout();
 
         if (wasCustom)
