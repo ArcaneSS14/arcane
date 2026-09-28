@@ -21,6 +21,7 @@
     BoxAgrichem: 1
     MortarAndPestle: 1
     HandheldJuicer: 1
+    PlantAnalyzer: 4 #Arcane-Station
     #TO DO:
     #plant analyzer
   contrabandInventory:
@@ -33,3 +34,5 @@
     Dropper: 25
     Syringe: 25
   # Orion-End
+
+
