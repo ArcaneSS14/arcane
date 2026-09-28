@@ -5,7 +5,6 @@ using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
-using Content.Shared.Inventory;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.GameObjects;
@@ -139,7 +138,14 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     private void OnMove(EntityUid uid, HumanoidAppearanceComponent component, ref MoveEvent args)
     {
-        if (args.OldRotation.GetCardinalDir() == args.NewRotation.GetCardinalDir())
+        // The facing is camera-relative (world rotation + eye), so a turn that stays on one cardinal step can
+        // still cross a view boundary once the eye is turned: e.g. a 0° → 20° rotation under a 30° camera is
+        // Front → Side, even though both angles are cardinal-south. Compare the computed camera-relative views
+        // for the old and new world rotation instead of bailing on equal cardinal directions.
+        var worldRotation = _transform.GetWorldRotation(uid);
+        var oldWorldRotation = worldRotation - (args.NewRotation - args.OldRotation);
+        var eyeRotation = _eyeManager.CurrentEye.Rotation;
+        if (GetView(worldRotation + eyeRotation) == GetView(oldWorldRotation + eyeRotation))
             return;
 
         // Movement on its own does not change the block keys, but the facing is derived from world rotation, so
@@ -189,9 +195,6 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     private void ApplyOrdering(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
     {
-        if (!TryComp(ent.Owner, out TransformComponent? _))
-            return;
-
         var view = GetActiveView(ent.Owner);
         _lastViews[ent.Owner] = view;
         ApplyOrdering(ent, view);
@@ -208,7 +211,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         // the tail above the hair without the two blocks fighting over the same index.
         EnsureTailAndCloakLayout(ent, view, cache);
         if (view != DirectionalView.Back)
-            EnsureTailBehindLegs(ent, cache);
+            EnsureTailBehindLegs(ent, cache, view);
         EnsureHairLayout(ent, view == DirectionalView.Back, cache);
     }
 
@@ -247,13 +250,32 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     }
 
     /// <summary>
-    ///     In the front and side views, the tail should be behind the legs. The base species layout puts the Tail
-    ///     layer near the head, so anchor the complete tail/wings block before the first visible leg layer.
+    ///     Puts the tail out of sight based on the view. From the front (South) the tail points away from the camera,
+    ///     so it is sunk to the very bottom of the sprite (index 0), behind every layer. In the side views it still
+    ///     hangs behind the body, so the complete tail/wings block is anchored before the first visible leg layer.
     /// </summary>
-    private void EnsureTailBehindLegs(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, OrderingCache cache)
+    private void EnsureTailBehindLegs(
+        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
+        OrderingCache cache,
+        DirectionalView view)
     {
         if (cache.TailKeys.Count == 0 || ent.Comp1.Species == HarpySpecies)
             return;
+
+        if (view == DirectionalView.Front)
+        {
+            if (!TryResolveBlock(ent, cache.TailKeys, out var frontIndices, out var frontStart, out _))
+                return;
+
+            if (frontStart == 0)
+                return;
+
+            if (!TryExtractResolved(ent, frontIndices, out var frontBlock))
+                return;
+
+            InsertBlock(ent, frontBlock, 0);
+            return;
+        }
 
         object? firstLeg = null;
         var firstLegIndex = int.MaxValue;
@@ -474,6 +496,19 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
         if (backView)
         {
+            // Capture the front anchor while the block still rests in its native front-facing layout (below the
+            // cluster), i.e. before the move below hoists it: the anchor is only discoverable from that position.
+            // Without this a character whose first facing is Back would never record the anchor, and the next Front
+            // pass would fall back to resetting the hair below the mask, which lands above the species' head-trim
+            // base layer when that layer (e.g. arachnid HeadSide) sits below the mask.
+            if (cache.HairFrontAnchor is null &&
+                TryGetBlockExtent(ent, cache.HairKeys, out _, out var backBlockEnd) &&
+                backBlockEnd <= clusterTopIdx &&
+                TryGetFrontAnchor(ent, backBlockEnd, out var backAnchor))
+            {
+                cache.HairFrontAnchor = backAnchor;
+            }
+
             // The back of the head goes over the ears/head-top cluster: hair lands directly above it.
             TryMoveBlockRelative(ent, cache.HairKeys, clusterTop, true);
             return;
@@ -539,14 +574,6 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
         // The native base layout has the cloak below the tail, which is also the back view's layout.
         var cloakBelowTail = cloakTop < tailStart;
-        if (!cache.TailAnchorCaptured && cloakBelowTail)
-        {
-            if (TryGetTailAnchor(ent, tailStart, out var anchor, out _))
-            {
-                cache.TailAnchor = anchor;
-                cache.TailAnchorCaptured = true;
-            }
-        }
 
         var wantCloakBelowTail = view == DirectionalView.Back;
 
@@ -948,11 +975,6 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    ///     Moves a contiguous block of layers so it rests directly across a single anchor layer in one view: its start
-    ///     landing on <c>anchorEnd + 1</c> (above the anchor, e.g. the tail over the legs from the back), or its end
-    ///     landing on <c>anchorStart - 1</c> (below the anchor, e.g. the tail under the feet from the front).
-    /// </summary>
     /// <summary>
     ///     Moves a contiguous block of layers so it rests directly across a single anchor layer in one view: its start
     ///     landing on <c>anchorEnd + 1</c> (directly above the anchor, e.g. the hair over the head-trim cluster), or its
