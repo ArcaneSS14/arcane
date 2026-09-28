@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Goobstation.Common.CCVar;
+using Content.Shared._Arcane.CCVars;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
@@ -8,7 +8,8 @@ using Robust.Shared.Input;
 namespace Content.Client._Arcane.UserInterface.Systems.Actions.Controls;
 
 /// <summary>
-/// Grip strip above the actions bar. Dragging it moves the whole bar, right click resets the bar to its default spot.
+/// Grip strip above the actions bar. Dragging it moves the whole bar, dropping a hotbar button on it returns
+/// the button to the bar, right click resets the whole layout. Shown only while free placement is enabled.
 /// It is separate from the action buttons so it never interferes with their click or drag-reorder handling.
 /// </summary>
 public sealed class ActionsBarDragHandle : Control
@@ -35,8 +36,6 @@ public sealed class ActionsBarDragHandle : Control
     /// </summary>
     public event Action<Vector2>? Dragged;
 
-    public event Action? DragFinished;
-
     public event Action? ResetRequested;
 
     public ActionsBarDragHandle()
@@ -54,19 +53,19 @@ public sealed class ActionsBarDragHandle : Control
     protected override void EnteredTree()
     {
         base.EnteredTree();
-        _cfg.OnValueChanged(GoobCVars.LockActionBarDrag, OnLockChanged, true);
+        _cfg.OnValueChanged(ACCVars.ActionsBarFreePlacement, OnFreePlacementChanged, true);
     }
 
     protected override void ExitedTree()
     {
         base.ExitedTree();
-        _cfg.UnsubValueChanged(GoobCVars.LockActionBarDrag, OnLockChanged);
+        _cfg.UnsubValueChanged(ACCVars.ActionsBarFreePlacement, OnFreePlacementChanged);
         _dragging = false;
     }
 
-    private void OnLockChanged(bool locked)
+    private void OnFreePlacementChanged(bool enabled)
     {
-        Visible = !locked;
+        Visible = enabled;
     }
 
     protected override void KeyBindDown(GUIBoundKeyEventArgs args)
@@ -94,7 +93,6 @@ public sealed class ActionsBarDragHandle : Control
             return;
 
         _dragging = false;
-        DragFinished?.Invoke();
         args.Handle();
     }
 

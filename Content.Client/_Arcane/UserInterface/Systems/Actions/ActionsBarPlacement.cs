@@ -1,31 +1,30 @@
 using System.Numerics;
 using Content.Client.UserInterface.Systems.Actions.Widgets;
-using Content.Shared._Arcane.CCVars;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Configuration;
 
 namespace Content.Client._Arcane.UserInterface.Systems.Actions;
 
 /// <summary>
 /// Places the actions bar inside its parent <see cref="LayoutContainer"/>: either at the screen's default spot
-/// or at a player-chosen position that is dragged with the bar's grip and persisted in client CVars.
+/// or at the player-chosen position from <see cref="ActionsBarLayoutUIController"/>, dragged with the bar's grip.
 /// </summary>
 public sealed class ActionsBarPlacement
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IUserInterfaceManager _ui = default!;
 
     private readonly ActionsBar _bar;
     private readonly Func<Vector2> _defaultPosition;
+    private readonly ActionsBarLayoutUIController _layout;
 
-    private Vector2? _customPosition;
     private Vector2 _grabOffset;
 
-    public bool IsCustom => _customPosition != null;
+    public bool IsCustom => _layout.BarPosition != null;
 
     /// <summary>
-    /// Raised when the bar switches between the default and a custom position.
+    /// Raised when the bar or slot layout changes.
     /// </summary>
-    public event Action? CustomChanged;
+    public event Action? LayoutChanged;
 
     public ActionsBarPlacement(ActionsBar bar, Func<Vector2> defaultPosition)
     {
@@ -33,18 +32,14 @@ public sealed class ActionsBarPlacement
 
         _bar = bar;
         _defaultPosition = defaultPosition;
+        _layout = _ui.GetUIController<ActionsBarLayoutUIController>();
 
-        var x = _cfg.GetCVar(ACCVars.ActionsBarPositionX);
-        var y = _cfg.GetCVar(ACCVars.ActionsBarPositionY);
-        if (x >= 0 && y >= 0)
-            _customPosition = new Vector2(x, y);
+        _bar.ActionsContainer.PositionSpace = _bar.Parent;
+        _bar.ActionsContainer.ArcaneLayoutChanged += OnLayoutChanged;
 
         _bar.DragHandle.DragStarted += OnDragStarted;
         _bar.DragHandle.Dragged += OnDragged;
-        _bar.DragHandle.DragFinished += OnDragFinished;
-        _bar.DragHandle.ResetRequested += OnResetRequested;
-
-        _bar.ActionsContainer.PositionSpace = _bar.Parent;
+        _bar.DragHandle.ResetRequested += _layout.Reset;
 
         _bar.OnResized += UpdateLayout;
         if (_bar.Parent != null)
@@ -56,7 +51,13 @@ public sealed class ActionsBarPlacement
     /// </summary>
     public void UpdateLayout()
     {
-        SetPosition(_customPosition is { } custom ? Clamp(custom) : _defaultPosition());
+        SetPosition(_layout.BarPosition is { } custom ? Clamp(custom) : _defaultPosition());
+    }
+
+    private void OnLayoutChanged()
+    {
+        UpdateLayout();
+        LayoutChanged?.Invoke();
     }
 
     private void OnDragStarted(Vector2 mouse)
@@ -69,38 +70,7 @@ public sealed class ActionsBarPlacement
         if (_bar.Parent is not { } parent)
             return;
 
-        var wasCustom = IsCustom;
-        _customPosition = Clamp(mouse - _grabOffset - parent.GlobalPosition);
-        SetPosition(_customPosition.Value);
-
-        if (!wasCustom)
-            CustomChanged?.Invoke();
-    }
-
-    private void OnDragFinished()
-    {
-        if (_customPosition is not { } custom)
-            return;
-
-        _cfg.SetCVar(ACCVars.ActionsBarPositionX, custom.X);
-        _cfg.SetCVar(ACCVars.ActionsBarPositionY, custom.Y);
-        _cfg.SaveToFile();
-    }
-
-    private void OnResetRequested()
-    {
-        var wasCustom = IsCustom;
-        _customPosition = null;
-
-        _cfg.SetCVar(ACCVars.ActionsBarPositionX, -1f);
-        _cfg.SetCVar(ACCVars.ActionsBarPositionY, -1f);
-        _cfg.SaveToFile();
-
-        _bar.ActionsContainer.ResetSlotPositions();
-        UpdateLayout();
-
-        if (wasCustom)
-            CustomChanged?.Invoke();
+        _layout.SetBarPosition(Clamp(mouse - _grabOffset - parent.GlobalPosition));
     }
 
     private Vector2 Clamp(Vector2 position)

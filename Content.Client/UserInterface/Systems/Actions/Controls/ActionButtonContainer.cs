@@ -23,7 +23,6 @@ public partial class ActionButtonContainer : GridContainer // Arcane-Edit
     public ActionButtonContainer()
     {
         IoCManager.InjectDependencies(this);
-        LoadSlotPositions(); // Arcane
     }
 
     public ActionButton this[int index]

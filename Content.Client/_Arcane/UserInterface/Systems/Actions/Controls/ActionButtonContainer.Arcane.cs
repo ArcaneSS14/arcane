@@ -1,12 +1,9 @@
-using System.Globalization;
-using System.Linq;
 using System.Numerics;
+using Content.Client._Arcane.UserInterface.Systems.Actions;
 using Content.Client._Arcane.UserInterface.Systems.Actions.Controls;
-using Content.Shared._Arcane.CCVars;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
-using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
 namespace Content.Client.UserInterface.Systems.Actions.Controls;
@@ -18,43 +15,58 @@ namespace Content.Client.UserInterface.Systems.Actions.Controls;
 /// </summary>
 public partial class ActionButtonContainer
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-
     private const float DefaultSeparation = 4f;
 
-    /// <summary>
-    /// Slot index to top-left position inside <see cref="PositionSpace"/>, in virtual pixels.
-    /// </summary>
-    private readonly Dictionary<int, Vector2> _slotPositions = new();
+    private ActionsBarLayoutUIController? _layout;
 
     private Vector2 _spaceOffset;
     private Vector2 _spaceSize;
+
+    private ActionsBarLayoutUIController Layout =>
+        _layout ??= UserInterfaceManager.GetUIController<ActionsBarLayoutUIController>();
 
     /// <summary>
     /// Control whose area detached slots are positioned and clamped in, usually the HUD layout the bar lives in.
     /// </summary>
     public Control? PositionSpace { get; set; }
 
-    public bool IsSlotDetached(int slot)
+    /// <summary>
+    /// Raised when the saved or edited actions bar layout changes.
+    /// </summary>
+    public event Action? ArcaneLayoutChanged;
+
+    protected override void EnteredTree()
     {
-        return _slotPositions.ContainsKey(slot);
+        base.EnteredTree();
+        Layout.LayoutChanged += OnLayoutChanged;
+    }
+
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+        Layout.LayoutChanged -= OnLayoutChanged;
+    }
+
+    private void OnLayoutChanged()
+    {
+        InvalidateMeasure();
+        InvalidateArrange();
+        ArcaneLayoutChanged?.Invoke();
     }
 
     /// <summary>
-    /// Handles dropping a dragged hotbar button somewhere that is not another action button.
+    /// Handles dropping a dragged hotbar button somewhere that is not another action button while free placement is on.
     /// Dropping on the bar's grip returns the slot to the grid, dropping on free HUD space moves the slot there.
     /// </summary>
     /// <returns>False if the drop should fall back to the default hotbar behavior.</returns>
     public bool TryHandleSlotDrop(ActionButton button, Control? dropTarget, Vector2 mousePosition)
     {
-        if (!TryGetButtonIndex(button, out var slot))
+        if (!Layout.FreePlacementEnabled || !TryGetButtonIndex(button, out var slot))
             return false;
 
         if (dropTarget is ActionsBarDragHandle)
         {
-            if (_slotPositions.Remove(slot))
-                SaveSlotPositions();
-
+            Layout.ClearSlotPosition(slot);
             return true;
         }
 
@@ -62,55 +74,14 @@ public partial class ActionButtonContainer
             return false;
 
         var position = mousePosition - space.GlobalPosition - button.Size / 2;
-        _slotPositions[slot] = Vector2.Clamp(position, Vector2.Zero, Vector2.Max(Vector2.Zero, space.Size - button.Size));
-        SaveSlotPositions();
+        Layout.SetSlotPosition(slot,
+            Vector2.Clamp(position, Vector2.Zero, Vector2.Max(Vector2.Zero, space.Size - button.Size)));
         return true;
-    }
-
-    public void ResetSlotPositions()
-    {
-        if (_slotPositions.Count == 0)
-            return;
-
-        _slotPositions.Clear();
-        SaveSlotPositions();
-    }
-
-    private void LoadSlotPositions()
-    {
-        _slotPositions.Clear();
-
-        foreach (var entry in _cfg.GetCVar(ACCVars.ActionsBarSlotPositions).Split(';', StringSplitOptions.RemoveEmptyEntries))
-        {
-            var parts = entry.Split(':');
-            if (parts.Length != 3
-                || !int.TryParse(parts[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out var slot)
-                || !float.TryParse(parts[1], NumberStyles.Float, CultureInfo.InvariantCulture, out var x)
-                || !float.TryParse(parts[2], NumberStyles.Float, CultureInfo.InvariantCulture, out var y)
-                || slot < 0)
-            {
-                continue;
-            }
-
-            _slotPositions[slot] = new Vector2(x, y);
-        }
-    }
-
-    private void SaveSlotPositions()
-    {
-        var entries = _slotPositions.Select(pair => string.Create(CultureInfo.InvariantCulture,
-            $"{pair.Key}:{pair.Value.X:0.##}:{pair.Value.Y:0.##}"));
-
-        _cfg.SetCVar(ACCVars.ActionsBarSlotPositions, string.Join(';', entries));
-        _cfg.SaveToFile();
-
-        InvalidateMeasure();
-        InvalidateArrange();
     }
 
     private bool HasDetachedSlots()
     {
-        foreach (var slot in _slotPositions.Keys)
+        foreach (var slot in Layout.SlotPositions.Keys)
         {
             if (slot < ChildCount)
                 return true;
@@ -178,7 +149,7 @@ public partial class ActionButtonContainer
         {
             var child = GetChild(i);
 
-            if (_slotPositions.TryGetValue(i, out var position))
+            if (Layout.SlotPositions.TryGetValue(i, out var position))
             {
                 var size = child.DesiredSize;
                 var max = Vector2.Max(Vector2.Zero, _spaceSize - size);
@@ -206,23 +177,11 @@ public partial class ActionButtonContainer
         var count = 0;
         for (var i = 0; i < ChildCount; i++)
         {
-            if (GetChild(i).Visible && !_slotPositions.ContainsKey(i))
+            if (GetChild(i).Visible && !Layout.SlotPositions.ContainsKey(i))
                 count++;
         }
 
         return count;
-    }
-
-    /// <summary>
-    /// How many cells fit along the limited dimension for the given amount of grid-placed slots.
-    /// </summary>
-    private int GetFlowLimit(int flowCount)
-    {
-        var limit = LimitedDimension == Dimension.Column ? Columns : Rows;
-        if (LimitType == LimitType.Size)
-            limit = Math.Min(limit, flowCount);
-
-        return Math.Max(1, limit);
     }
 
     private (int Columns, int Rows, Vector2 Cell, Vector2 Separation) GetFlowGrid()
@@ -241,7 +200,12 @@ public partial class ActionButtonContainer
         if (flowCount == 0)
             return (0, 0, cell, separation);
 
-        var limit = GetFlowLimit(flowCount);
+        // How many cells fit along the limited dimension for the grid-placed slots only.
+        var limit = LimitedDimension == Dimension.Column ? Columns : Rows;
+        if (LimitType == LimitType.Size)
+            limit = Math.Min(limit, flowCount);
+        limit = Math.Max(1, limit);
+
         var other = (flowCount + limit - 1) / limit;
 
         return LimitedDimension == Dimension.Column
