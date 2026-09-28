@@ -218,7 +218,7 @@ public abstract partial class InventorySystem
         // Arcane-Start
         if (checkDoafter && actor == target && _containerSystem.CanInsert(itemUid, slotContainer))
         {
-            var args = new DoAfterArgs(EntityManager, actor, TimeSpan.FromSeconds(0.7), new InventoryDoAfterEvent(true, slot), itemUid, target, itemUid)
+            var args = new DoAfterArgs(EntityManager, actor, TimeSpan.FromSeconds(0.4), new InventoryDoAfterEvent(true, slot), itemUid, target, itemUid)
             {
                 BreakOnMove = false,
                 NeedHand = true,
@@ -515,7 +515,7 @@ public abstract partial class InventorySystem
         // Arcane-Start
         if (checkDoafter && actor == target)
         {
-            var args = new DoAfterArgs(EntityManager, actor, TimeSpan.FromSeconds(0.7), new InventoryDoAfterEvent(false, slot), removedItem.Value, target, removedItem.Value)
+            var args = new DoAfterArgs(EntityManager, actor, TimeSpan.FromSeconds(0.4), new InventoryDoAfterEvent(false, slot), removedItem.Value, target, removedItem.Value)
             {
                 BreakOnMove = false,
                 NeedHand = true,
