@@ -2219,3 +2219,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/52f3e111-fa28-4251-a030-abaa27af4509
+- author: kinar_7
+  changes:
+    - type: Add
+      message: 'Тела не гниют в драконе '
+  id: 162
+  time: '2026-09-28T07:40:31.0000000+00:00'
+  prNumber: 418
+  url: https://github.com/ArcaneSS14/arcane/pull/418
