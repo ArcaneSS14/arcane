@@ -53,9 +53,15 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         args.Handled = true;
         component.Target = target;
 
-        if (component.scanSound != null)
+        if (component.UiUser is not { } uiUser ||
+            !_uiSystem.IsUiOpen(uid, PlantAnalyzerUiKey.Key, uiUser))
         {
-            _audio.PlayPredicted(component.scanSound, uid, args.User);
+            component.UiUser = args.User;
+        }
+
+        if (component.ScanSound != null)
+        {
+            _audio.PlayPredicted(component.ScanSound, uid, args.User);
         }
 
         if (_uiSystem.TryOpenUi(uid, PlantAnalyzerUiKey.Key, args.User))
@@ -79,24 +85,46 @@ public sealed class PlantAnalyzerSystem : EntitySystem
                 continue;
 
             var parent = Transform(uid).ParentUid;
+
             if (!parent.IsValid() || !_hands.IsHolding(parent, uid, out _))
             {
                 _uiSystem.CloseUi(uid, PlantAnalyzerUiKey.Key);
+                analyzer.UiUser = null;
+                analyzer.Target = null;
+                continue;
+            }
+
+            if (analyzer.UiUser is { } uiUser && uiUser != parent)
+            {
+                _uiSystem.CloseUi(uid, PlantAnalyzerUiKey.Key);
+                analyzer.UiUser = null;
+                analyzer.Target = null;
                 continue;
             }
 
             if (analyzer.Target is not { } target || Deleted(target))
+            {
+                _uiSystem.CloseUi(uid, PlantAnalyzerUiKey.Key);
+                analyzer.UiUser = null;
+                analyzer.Target = null;
                 continue;
+            }
 
             if (!_transformSystem.InRange(parent, target, MaxScanDistance))
             {
                 _uiSystem.CloseUi(uid, PlantAnalyzerUiKey.Key);
+                analyzer.UiUser = null;
                 analyzer.Target = null;
                 continue;
             }
 
             if (!TryAnalyzeTarget(target, out var uiState))
+            {
+                _uiSystem.CloseUi(uid, PlantAnalyzerUiKey.Key);
+                analyzer.UiUser = null;
+                analyzer.Target = null;
                 continue;
+            }
 
             _uiSystem.SetUiState(uid, PlantAnalyzerUiKey.Key, uiState);
         }
@@ -135,7 +163,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             var harvestable = plantHolder.Harvest;
             var dead = plantHolder.Dead;
             var health = plantHolder.Health;
-            var maxHealth = 100f;
+            var maxHealth = hasPlant ? seed!.Endurance : 100f;
 
             var weedLevel = (int) plantHolder.WeedLevel;
             var pestLevel = (int) plantHolder.PestLevel;

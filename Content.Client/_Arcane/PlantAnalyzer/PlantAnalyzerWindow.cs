@@ -214,7 +214,18 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
 
         _potencyLabel.Text = Loc.GetString("plant-analyzer-potency", ("potency", state.Potency));
         _yieldLabel.Text = Loc.GetString("plant-analyzer-yield", ("yield", state.Yield));
-        _mutationLabel.Text = Loc.GetString("plant-analyzer-mutation", ("mutation", state.MutationLevel));
+
+        // Мутация
+        if (state.MutationLevel >= 1)
+        {
+            _mutationLabel.Text = Loc.GetString("plant-analyzer-mutation", ("level", state.MutationLevel));
+            _mutationLabel.FontColorOverride = Color.Green;
+        }
+        else
+        {
+            _mutationLabel.Text = Loc.GetString("plant-analyzer-mutation-non", ("level", state.MutationLevel));
+            _mutationLabel.FontColorOverride = Color.White;
+        }
 
         // Уровень сорняков
         if (state.WeedLevel >= 4)
@@ -272,7 +283,7 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
         {
             foreach (var reagent in reagents)
             {
-                var quantityFormatted = reagent.Quantity.ToString("0.#");
+                var quantityFormatted = reagent.Quantity.ToString("0.##");
 
                 var reagentLabel = new Label
                 {

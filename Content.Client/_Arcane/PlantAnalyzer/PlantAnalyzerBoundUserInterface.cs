@@ -1,5 +1,6 @@
 using Content.Shared._Arcane.PlantAnalyzer;
 using Robust.Client.GameObjects;
+using Robust.Client.UserInterface;
 using Robust.Shared.GameObjects;
 
 namespace Content.Client._Arcane.PlantAnalyzer;
@@ -16,9 +17,7 @@ public sealed class PlantAnalyzerBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _window = new PlantAnalyzerWindow();
-        _window.OnClose += Close;
-        _window.OpenCentered();
+        _window = this.CreateWindow<PlantAnalyzerWindow>();
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -29,19 +28,5 @@ public sealed class PlantAnalyzerBoundUserInterface : BoundUserInterface
             return;
 
         _window?.Populate(castState);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (!disposing)
-            return;
-
-        if (_window != null)
-        {
-            _window.OnClose -= Close;
-            _window.Dispose();
-        }
     }
 }

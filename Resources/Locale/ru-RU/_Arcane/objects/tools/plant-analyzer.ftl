@@ -1,6 +1,6 @@
 # Анализатор
 ent-PlantAnalyzer = Анализатор растений
-    .desc = Устройство разработаное группой Зелёных для анализа состояния растений и их химического состава. Да возрадуется Спорынью!
+    .desc = Устройство разработанное группой Зелёных для анализа состояния растений и их химического состава. Да возрадуется Спорынью!
 
 # Окно анализатора
 plant-analyzer-window-title = Анализатор растений
@@ -26,7 +26,8 @@ plant-analyzer-status-growing = Статус: Растет (Стадия { $age 
 plant-analyzer-health-value = Здоровье: { $health } / { $max }
 plant-analyzer-potency = Потенция: { $potency }
 plant-analyzer-yield = Урожайность: { $yield }
-plant-analyzer-mutation = Коэфицциент мутаций: { $mutation }
+plant-analyzer-mutation = Статус мутаций: МУТИРУЕТ!
+plant-analyzer-mutation-non = Статус мутаций: Стабильно
 
 # Угрозы
 plant-analyzer-weeds = Сорняки: { $level }
