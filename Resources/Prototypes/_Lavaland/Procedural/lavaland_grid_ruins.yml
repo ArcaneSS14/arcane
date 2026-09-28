@@ -21,6 +21,15 @@
   patchToPlanet: false
 
 - type: lavalandGridRuin
+  id: Goliaf
+  name: lavaland-ruin-Goliaf
+  path: /Maps/_Lavaland/Lavaland/ruin_goliaf.yml
+  priority: -1 # highest priority
+  minDistance: 180
+  spawnAttempts: 20
+  patchToPlanet: false
+
+- type: lavalandGridRuin
   id: BiodomeSnow
   name: lavaland-ruin-biodome
   path: /Maps/_Lavaland/Lavaland/ruin_snow_biodome.yml
