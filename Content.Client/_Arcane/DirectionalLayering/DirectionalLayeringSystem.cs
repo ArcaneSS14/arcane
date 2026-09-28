@@ -264,10 +264,10 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
         if (view == DirectionalView.Front)
         {
-            if (!TryResolveBlock(ent, cache.TailKeys, out var frontIndices, out var frontStart, out _))
+            if (!TryResolveBlock(ent, cache.TailKeys, out var frontIndices, out var frontStart, out var frontEnd))
                 return;
 
-            if (frontStart == 0)
+            if (frontStart == 0 && IsResolvedBlockContiguous(frontIndices, frontStart, frontEnd))
                 return;
 
             if (!TryExtractResolved(ent, frontIndices, out var frontBlock))
@@ -566,7 +566,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (cache.CloakKeys.Count == 0 ||
             cache.TailKeys.Count == 0 ||
             !TryGetLayerIndex(ent, "head", out _) ||
-            !TryResolveBlock(ent, cache.TailKeys, out var tailIndices, out var tailStart, out _) ||
+            !TryResolveBlock(ent, cache.TailKeys, out var tailIndices, out var tailStart, out var tailEnd) ||
             !TryResolveBlock(ent, cache.CloakKeys, out _, out _, out var cloakTop))
         {
             return;
@@ -590,7 +590,12 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             !TryGetLayerIndex(ent, "back", out var backIdx) ||
             cloakTop < backIdx;
 
-        if (cloakBelowTail == wantCloakBelowTail && (view != DirectionalView.Back || cloakBelowBack))
+        // Only the extremes of the blocks are compared here, so a tail block split by a marking-layer rebuild
+        // (base still sunk on an old index, marking recreated above the legs) must not be treated as already in
+        // place: fall through to the re-stitching path below.
+        if (IsResolvedBlockContiguous(tailIndices, tailStart, tailEnd) &&
+            cloakBelowTail == wantCloakBelowTail &&
+            (view != DirectionalView.Back || cloakBelowBack))
             return;
 
         var tailCount = cache.TailKeys.Count;
@@ -889,6 +894,41 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     }
 
     /// <summary>
+    ///     True when the resolved block occupies a contiguous run of indices: every index between <paramref name="start"/>
+    ///     and <paramref name="end"/> is present. Duplicate keys that resolve to the same layer (e.g. the same marking
+    ///     listed twice) are fine. A split block — a Tail base stuck on its old index while a tail marking was recreated
+    ///     above the legs by an appearance update — reads as contiguous extremes even though a stray layer floats above
+    ///     the legs, so the early exits that rely on block positions must not fire while the block is split.
+    /// </summary>
+    private static bool IsResolvedBlockContiguous(
+        List<(object Key, int Index)> indices,
+        int start,
+        int end)
+    {
+        if (indices.Count == 0 || end < start)
+            return false;
+
+        var length = end - start + 1;
+        var seen = new bool[length];
+        foreach (var (_, index) in indices)
+        {
+            var relative = index - start;
+            if (relative < 0 || relative >= length)
+                return false;
+
+            seen[relative] = true;
+        }
+
+        foreach (var present in seen)
+        {
+            if (!present)
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
     ///     Captures the block's layers out of the sprite, keeping their relative order, and removes them. The indices
     ///     must be resolved against the sprite's current state (see <see cref="TryResolveBlock"/>).
     /// </summary>
@@ -996,8 +1036,10 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (!TryGetLayerIndex(ent, anchorLayer, out var anchorStart))
             return false;
 
-        // Already in the layout this view wants.
-        if (placeAbove ? blockStart == anchorStart + 1 : blockEnd == anchorStart - 1)
+        // Already in the layout this view wants. Only trust the extremes when the block is also contiguous: a
+        // split block's extremes can line up with the anchor while a stray layer floats elsewhere in the sprite.
+        if (IsResolvedBlockContiguous(indices, blockStart, blockEnd) &&
+            (placeAbove ? blockStart == anchorStart + 1 : blockEnd == anchorStart - 1))
             return true;
 
         // Pull the block out (using the resolved indices), then drop it next to its anchor. Re-resolving the anchor
