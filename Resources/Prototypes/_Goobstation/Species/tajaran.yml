@@ -17,7 +17,7 @@
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Tajaran.xml"
   pros:
-  - Получают на 30% меньше холодового урона. # Arcane
+#  - Получают на 30% меньше холодового урона. # Arcane-Edit
   - Обладают ночным зрением.
   - Бегают немного быстрее человека.
   - Нейтрализуют 99% урона от падения, или удара об что-то.
@@ -27,8 +27,8 @@
   cons:
   # Arcane-Edit-Start
   - Стамина меньше на 15%, чем у человека.
-  - Получают на 15% больше тупого и режущего урона.
-  - Получают на 20% больше теплового урона.
+#  - Получают на 15% больше тупого и режущего урона. # Arcane-Edit
+#  - Получают на 20% больше теплового урона. # Arcane-Edit
   # Arcane-Edit-End
   # Orion-End
   # begin Goobstation: port EE height/width sliders
