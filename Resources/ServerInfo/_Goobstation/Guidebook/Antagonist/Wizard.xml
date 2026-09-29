@@ -9,26 +9,26 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <GuideEntityEmbed Entity="ClothingHeadHatWizardReal" Caption=""/>
   </Box>
 
-  [color=lightblue][bold]Маги[/bold][/color] — уникальные личности, обладающие силами, выходящими за рамки научных законов. Они состоят в Федерации Космических магов, у которой свои интересы. Их единственная цель — [color=red][bold]сеять хаос и разрушения на станции[/bold][/color]. В отличие от [textlink="The Syndicate" link="Traitors"], маги не получают никакой внешней поддержки от Федерации. За исключением своих заклинаний и/или ученика, маг полностью один.
+  [color=lightblue][bold]Маги[/bold][/color] — уникальные личности, обладающие силами, выходящими за рамки научных законов. Они состоят в Федерации Космических магов, у которой свои интересы. Их единственная цель — [color=red][bold]сеять хаос и разрушения на станции[/bold][/color]. В отличие от [textlink="Синдиката" link="Traitors"], маги не получают никакой внешней поддержки от Федерации. За исключением своих заклинаний и/или ученика, маг полностью один.
 
   ## Задачи
   Всё, что вам нужно как магу — это [color=green]выжить[/color]. Вам не нужно сбегать на шаттле. В остальном маги могут делать всё, что хотят. Помните, чем больше хаоса вы устроите — тем лучше. [color=red]Массовый саботаж[/color] разрешён, но Федерация не поощряет его.
 
-  ## Your Magical Equipment
-  After you spawn inside the Wizard's Den, you'll find several enchanted items either on your person or spread out around you:
-  - [bold]Wizard's Grimoire[/bold]: This is where you buy all your fancy spells and trinkets to unleash chaos on the crew. You’ll start with 10 WizCoins to spend as you wish, and can refund most spells (unless otherwise stated) while you are still inside the wizard’s den. The spellbook is also bound to only open to you, so your apprentice or random crew members cannot open it themselves to acquire magic of their own. It can be used to [textlink="enchant" link="Enchanting"] using your wizard altar.
-  - [bold]Wizard Garb[/bold]: Due south of your starting location will be a table filled with various outfits. The [color=lightblue]Wizard's Hat and Robes[/color] provide decent protection as well as allow you to cast most of the spells. If you lose these, it can make completing your objective a lot harder. If you want even more protection, you can go for [color=blue]Magus Armor[/color] (that does not allow you to cast robed spells) located in the middle room or for [color=purple]Wizard Hardsuit[/color] available in the grimoire. Keep in mind, that all of the wizard outerwear are fireproof and also partially protect from extreme temperatures (hardsuit has full temperature protection), so you can be on fire for quite a while before you die.
-  - [bold]Scroll of Teleportation[/bold]: A [color=yellow]4-use[/color] (1-use if you’re an apprentice) magical scroll that will let you teleport to most locations on the station. You’ll need this to actually board it in the first place (unless you have the teleport spell), but the remaining uses can come in handy if you’re in a bind and need to wait for your spells to cool down. Do note that you cannot teleport back to the wizard's den once you leave it.
-  - [bold]Magic Mirror[/bold]: If you wish to rename yourself or change what species you are, you may use the magic mirror in the main room. It'll let you customize nearly everything about your appearance.
-  - [bold]Mugwort Tea[/bold]: A cup of mugwort rests on your table in the library of the den. Mugwort will slowly heal wizards and apprentices of [color=lightgreen]all damage types[/color] over time, so be sure to grab it if you need to heal up later on.
-  - [bold]Pondering Orb[/bold]: A stationary [color=cyan]pondering orb[/color] that allows you to scout the station before your destructive arrival. While functionally similar to the [color=cyan]scrying orb[/color], you cannot bring it on station.
+  ## Ваше магическое снаряжение
+  После появления в Логове волшебника вы найдёте несколько зачарованных предметов: часть будет при вас, остальные лежат поблизости.
+  - [bold]Гримуар мага[/bold]: здесь покупают заклинания и безделушки, чтобы устроить хаос экипажу. В начале у вас есть 10 визкоинов. Пока вы находитесь в Логове мага, большинство заклинаний можно вернуть, если для них не указано иное. Гримуар привязан к вам: ученик и члены экипажа не смогут открыть его и получить собственную магию. С его помощью можно [textlink="зачаровывать предметы" link="Enchanting"] у алтаря мага.
+  - [bold]Роба мага[/bold]: к югу от места появления стоит стол с разными комплектами. [color=lightblue]Шляпа и мантия мага[/color] дают неплохую защиту и позволяют применять большинство заклинаний. Потеряв их, вы значительно усложните выполнение своей цели. Для дополнительной защиты возьмите [color=blue]броню мага[/color] в центральной комнате (она не позволяет применять заклинания, требующие мантию) или купите [color=purple]тяжёлый скафандр мага[/color] в гримуаре. Вся верхняя одежда мага защищает от огня и частично от экстремальных температур; скафандр обеспечивает полную защиту от температуры, поэтому вы сможете гореть довольно долго, прежде чем погибнете.
+  - [bold]Свиток телепортации[/bold]: магический свиток на [color=yellow]4 применения[/color] (1 применение у ученика), позволяющий перемещаться в большинство мест станции. Он пригодится, чтобы попасть на станцию (если у вас нет заклинания телепортации), а оставшиеся применения помогут выбраться из опасной ситуации или переждать перезарядку заклинаний. Учтите: вернуться в Логово мага после ухода нельзя.
+  - [bold]магическое зеркало[/bold]: если хотите сменить имя или расу, воспользуйтесь зеркалом в главной комнате. С его помощью можно настроить почти все детали внешности.
+  - [bold]Чай из полыни[/bold]: чашка полыни стоит на столе в библиотеке Логова. Со временем полынь лечит волшебников и учеников от [color=lightgreen]всех типов урона[/color], поэтому заберите её на случай, если понадобится восстановиться.
+  - [bold]Шар раздумий[/bold]: неподвижный [color=cyan]шар раздумий[/color], позволяющий осмотреть станцию перед разрушительным появлением. По действию он похож на [color=cyan]шар ясновидения[/color], но взять его с собой на станцию нельзя.
 
   <Box>
-    <GuideEntityEmbed Entity="WizardsGrimoire"/>
-    <GuideEntityEmbed Entity="ClothingOuterWizardReal"/>
-    <GuideEntityEmbed Entity="ScrollTeleport"/>
-    <GuideEntityEmbed Entity="WizardMirror"/>
-    <GuideEntityEmbed Entity="PonderingOrbWizard"/>
+    <GuideEntityEmbed Entity="WizardsGrimoire" Caption="Гримуар мага"/>
+    <GuideEntityEmbed Entity="ClothingOuterWizardReal" Caption="Роба мага"/>
+    <GuideEntityEmbed Entity="ScrollTeleport" Caption="Свиток телепортации"/>
+    <GuideEntityEmbed Entity="WizardMirror" Caption="Магическое зеркало"/>
+    <GuideEntityEmbed Entity="PonderingOrbWizard" Caption="Шар раздумий"/>
   </Box>
 
   ## Ты — Маг, Маг — это Ты

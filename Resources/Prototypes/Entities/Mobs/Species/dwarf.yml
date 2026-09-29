@@ -9,7 +9,7 @@
   components:
   # Arcane-Start
   - type: Damageable
-    damageModifierSet: Dwarf
+#    damageModifierSet: Dwarf # Arcane-Edit
   # Arcane-End
   - type: Hunger
   - type: Thirst

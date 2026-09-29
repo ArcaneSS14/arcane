@@ -2227,3 +2227,45 @@ Entries:
   time: '2026-09-28T07:40:31.0000000+00:00'
   prNumber: 418
   url: https://github.com/ArcaneSS14/arcane/pull/418
+- author: qwertyuiopiot
+  changes:
+    - type: Tweak
+      message: Переведено внутриигровое руководство на русский язык
+  id: 163
+  time: '2026-09-29T11:10:44.0000000+00:00'
+  prNumber: 426
+  url: https://github.com/ArcaneSS14/arcane/pull/426
+- author: darneya
+  changes:
+    - type: Fix
+      message: Большинство враждебных ИИ-ролей теперь выбирают целью атаки Генокрада.
+  id: 164
+  time: '2026-09-29T11:14:11.0000000+00:00'
+  prNumber: 422
+  url: https://github.com/ArcaneSS14/arcane/pull/422
+- author: ReWAFFlution
+  changes:
+    - type: Remove
+      message: Вырезаны резисты всем игровым расам.
+  id: 165
+  time: '2026-09-29T17:03:15.0000000+00:00'
+  prNumber: 427
+  url: https://github.com/ArcaneSS14/arcane/pull/427
+- author: 'Kinar_7 '
+  changes:
+    - type: Add
+      message: >-
+        Добавлено веселье. Будущему мне и нынешним педалям добавлена команда для
+        создания ролей на станции. Stationaddjob
+  id: 166
+  time: '2026-09-29T17:17:33.0000000+00:00'
+  prNumber: 425
+  url: https://github.com/ArcaneSS14/arcane/pull/425
+- author: seemah
+  changes:
+    - type: Fix
+      message: Исправлены зубы головы валькирии.
+  id: 167
+  time: '2026-09-29T17:21:41.0000000+00:00'
+  prNumber: 381
+  url: https://github.com/ArcaneSS14/arcane/pull/381

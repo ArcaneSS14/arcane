@@ -39,7 +39,7 @@
       Futanari: FemaleHuman
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: DemonArcana
+#    damageModifierSet: DemonArcana # Arcane-Edit
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/pierce.ogg
