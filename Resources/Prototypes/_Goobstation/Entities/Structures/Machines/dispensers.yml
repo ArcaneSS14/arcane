@@ -284,9 +284,10 @@
     sprite: Structures/smalldispensers.rsi
     drawdepth: SmallObjects
     state: booze
+  - type: Rotatable
   - type: Transform
     anchored: true
-    noRot: true
+    noRot: false
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -296,12 +297,12 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.25, -0.4, 0.25, 0.4"
+          bounds: "-0.4,-0.3,0.4,0.3"
         density: 190
         mask:
-        - MachineMask
+        - TabletopMachineMask
         layer:
-        - MachineLayer
+        - TabletopMachineLayer
   - type: Battery
     netsync: false
     maxCharge: 1500
@@ -396,9 +397,10 @@
     sprite: Structures/smalldispensers.rsi
     drawdepth: SmallObjects
     state: soda
+  - type: Rotatable
   - type: Transform
     anchored: true
-    noRot: true
+    noRot: false
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -408,12 +410,12 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.25, -0.4, 0.25, 0.4"
+          bounds: "-0.4,-0.3,0.4,0.3"
         density: 190
         mask:
-        - MachineMask
+        - TabletopMachineMask
         layer:
-        - MachineLayer
+        - TabletopMachineLayer
   - type: Battery
     netsync: false
     maxCharge: 1500
