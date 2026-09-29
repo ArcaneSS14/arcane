@@ -73,11 +73,6 @@ public abstract class ClothingSystem : EntitySystem
 
                 return;
                 // Arcane-Edit-End
-
-                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
-                    return; // Arcane-Edit
-
-                _handsSystem.PickupOrDrop(userEnt, slotEntity.Value, handsComp: userEnt);
             }
             else
             {
