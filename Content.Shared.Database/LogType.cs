@@ -512,4 +512,16 @@ public enum LogType
     /// Silicon law changes.
     /// </summary>
     SiliconLaws = 10005, // Goobstation
+
+    // Arcane-start
+    /// <summary>
+    /// AHelp conversation message.
+    /// </summary>
+    Ahelp = 5005,
+
+    /// <summary>
+    /// Admin-only AHelp conversation message.
+    /// </summary>
+    AhelpAdminOnly = 5006,
+    // Arcane-end
 }

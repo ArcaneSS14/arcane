@@ -213,6 +213,28 @@ public abstract class SharedChargesSystem : EntitySystem
     }
 
     /// <summary>
+    /// Copies the raw charges state from one action to another, preserving the exact
+    /// charge count and recharge accumulator instead of resetting the timer.
+    /// </summary>
+    /// <remarks>
+    /// Unlike <see cref="SetCharges"/> this does not clamp or reset <c>LastUpdate</c>,
+    /// which keeps auto-recharge timing coherent when transferring an action between entities
+    /// (e.g. polymorph reverts).
+    /// </remarks>
+    public void CopyChargesState(Entity<LimitedChargesComponent?> source, Entity<LimitedChargesComponent?> destination)
+    {
+        if (!Resolve(source.Owner, ref source.Comp, false))
+            return;
+
+        if (!Resolve(destination.Owner, ref destination.Comp, false))
+            return;
+
+        destination.Comp.LastCharges = source.Comp.LastCharges;
+        destination.Comp.LastUpdate = source.Comp.LastUpdate;
+        Dirty(destination);
+    }
+
+    /// <summary>
     /// Sets the maximum charges of a given action.
     /// </summary>
     /// <param name="action">The action being modified.</param>

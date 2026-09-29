@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Content.Goobstation.Common.CCVar;
 using Content.Server.Administration.Managers;
+using Content.Server.Administration.Logs;
 using Content.Server.Afk;
 using Content.Server.Database;
 using Content.Server.Discord;
@@ -18,6 +19,7 @@ using Content.Server.Preferences.Managers;
 using Content.Shared._Arcane.DiscordRoles;
 using Content.Shared._Arcane.Sponsor;
 using Content.Shared.Administration;
+using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -32,6 +34,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Arcane.CCVars;
 
 namespace Content.Server.Administration.Systems
 {
@@ -39,6 +42,7 @@ namespace Content.Server.Administration.Systems
     public sealed partial class BwoinkSystem : SharedBwoinkSystem
     {
         private const string RateLimitKey = "AdminHelp";
+        private const string HistoryRateLimitKey = "AdminHelpHistory"; // Arcane
 
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
@@ -49,6 +53,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly IAfkManager _afkManager = default!;
         [Dependency] private readonly IServerDbManager _dbManager = default!;
+        [Dependency] private readonly IAdminLogManager _adminLog = default!; // Arcane
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly IBanManager _banManager = default!; // Orion
@@ -126,15 +131,89 @@ namespace Content.Server.Administration.Systems
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameRunLevelChanged);
             SubscribeNetworkEvent<BwoinkClientTypingUpdated>(OnClientTypingUpdated);
+            SubscribeNetworkEvent<BwoinkHistoryRequest>(OnHistoryRequest); // Arcane
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => _activeConversations.Clear());
 
-        	_rateLimit.Register(
+            _rateLimit.Register(
                 RateLimitKey,
                 new RateLimitRegistration(CCVars.AhelpRateLimitPeriod,
                     CCVars.AhelpRateLimitCount,
                     PlayerRateLimitedAction)
                 );
+
+            // Arcane-start
+            _rateLimit.Register(
+                HistoryRateLimitKey,
+                new RateLimitRegistration(ACCVars.AhelpHistoryRateLimitPeriod,
+                    ACCVars.AhelpHistoryRateLimitCount,
+                    null));
+            // Arcane-end
         }
+
+        // Arcane-start
+        private async void OnHistoryRequest(BwoinkHistoryRequest request, EntitySessionEventArgs args)
+        {
+            const int pageSize = 1000;
+            var isAdmin = _adminManager.GetAdminData(args.SenderSession)?.HasFlag(AdminFlags.Adminhelp) ?? false;
+            if (!isAdmin && request.Channel != args.SenderSession.UserId)
+                return;
+
+            if (_rateLimit.CountAction(args.SenderSession, HistoryRateLimitKey) != RateLimitStatus.Allowed && !isAdmin)
+                return;
+
+            var filter = new LogFilter
+            {
+                Types = isAdmin
+                    ? new HashSet<LogType> { LogType.Ahelp, LogType.AhelpAdminOnly }
+                    : new HashSet<LogType> { LogType.Ahelp },
+                AnyPlayers = new[] { request.Channel.UserId },
+                IncludePlayers = true,
+                After = DateTime.UtcNow.AddMonths(-2),
+                DateOrder = DateOrder.Ascending,
+                Cursor = request.Cursor,
+                Limit = pageSize + 1,
+            };
+
+            var logs = new List<SharedAdminLog>();
+            await foreach (var log in _dbManager.GetAdminLogs(filter))
+            {
+                logs.Add(log);
+            }
+
+            // The database can lag behind messages already delivered to clients. CurrentRoundLogs
+            // includes the in-memory admin log cache, so a newly opened conversation sees them.
+            var currentRoundFilter = new LogFilter
+            {
+                Types = filter.Types,
+                AnyPlayers = filter.AnyPlayers,
+                IncludePlayers = true,
+                After = filter.After,
+                DateOrder = DateOrder.Ascending,
+            };
+            var currentRoundLogs = await _adminLog.CurrentRoundLogs(currentRoundFilter);
+            // RoundId and Id identify the same log in the database and the in-memory cache.
+            var savedLogs = new HashSet<(int RoundId, int Id)>(logs.Select(log => (log.RoundId, log.Id)));
+            foreach (var log in currentRoundLogs)
+            {
+                if (request.Cursor is { } cursor &&
+                    new AdminLogCursor(log.Date, log.RoundId, log.Id).CompareTo(cursor) <= 0)
+                    continue;
+
+                if (!savedLogs.Add((log.RoundId, log.Id)))
+                    continue;
+
+                logs.Add(log);
+            }
+
+            var hasMore = logs.Count > pageSize;
+            var page = logs.OrderBy(log => log.Date).ThenBy(log => log.RoundId).ThenBy(log => log.Id).Take(pageSize).ToList();
+            var messages = page.Select(log => new BwoinkHistoryMessage(log.Date, log.Message, log.Type == LogType.AhelpAdminOnly, log.RoundId)).ToList();
+            AdminLogCursor? nextCursor = page.Count > 0
+                ? new AdminLogCursor(page[^1].Date, page[^1].RoundId, page[^1].Id)
+                : null;
+            RaiseNetworkEvent(new BwoinkHistoryResponse(request.Channel, messages, nextCursor, hasMore, request.Cursor != null), args.SenderSession.Channel);
+        }
+        // Arcane-end
 
         private async void OnCallChanged(string url)
         {
@@ -166,7 +245,7 @@ namespace Content.Server.Administration.Systems
         private void PlayerRateLimitedAction(ICommonSession obj)
         {
             RaiseNetworkEvent(
-                new BwoinkTextMessage(obj.UserId, default, Loc.GetString("bwoink-system-rate-limited"), playSound: false),
+                new BwoinkTextMessage(obj.UserId, default, Loc.GetString("bwoink-system-rate-limited"), playSound: false, roundId: _gameTicker.RoundId), // Arcane
                 obj.Channel);
         }
 
@@ -269,7 +348,8 @@ namespace Content.Server.Administration.Systems
                 trueSender: SystemUserId,
                 text: inGameMessage,
                 sentAt: DateTime.Now,
-                playSound: false
+                playSound: false,
+                roundId: _gameTicker.RoundId // Arcane
             );
 
             var admins = GetTargetAdmins();
@@ -773,8 +853,13 @@ namespace Content.Server.Administration.Systems
 
             // If it's not an admin / admin chooses to keep the sound and message is not an admin only message, then play it.
             var playSound = (bwoinkParams.SenderAdmin == null || bwoinkParams.Message.PlaySound) && !bwoinkParams.Message.AdminOnly;
-            var msg = new BwoinkTextMessage(bwoinkParams.Message.UserId, bwoinkParams.SenderId, bwoinkText, playSound: playSound, adminOnly: bwoinkParams.Message.AdminOnly);
+            var msg = new BwoinkTextMessage(bwoinkParams.Message.UserId, bwoinkParams.SenderId, bwoinkText, playSound: playSound, adminOnly: bwoinkParams.Message.AdminOnly, roundId: _gameTicker.RoundId); // Arcane
 
+            // Arcane-start
+            _adminLog.Add(bwoinkParams.Message.AdminOnly ? LogType.AhelpAdminOnly : LogType.Ahelp,
+                LogImpact.Low,
+                $"{new AHelpLogPlayer(bwoinkParams.Message.UserId)}{msg.Text}");
+            // Arcane-end
             LogBwoink(msg);
 
             var admins = GetTargetAdmins();
@@ -822,7 +907,8 @@ namespace Content.Server.Administration.Systems
                         RaiseNetworkEvent(new BwoinkTextMessage(bwoinkParams.Message.UserId,
                                 bwoinkParams.SenderId,
                                 overrideMsgText,
-                                playSound: playSound),
+                                playSound: playSound,
+                                roundId: _gameTicker.RoundId), // Arcane
                             session.Channel);
                     }
                     else
@@ -866,7 +952,7 @@ namespace Content.Server.Administration.Systems
             if (bwoinkParams.SenderChannel != null)
             {
                 var systemText = Loc.GetString("bwoink-system-starmute-message-no-other-users");
-                var starMuteMsg = new BwoinkTextMessage(bwoinkParams.Message.UserId, SystemUserId, systemText);
+                var starMuteMsg = new BwoinkTextMessage(bwoinkParams.Message.UserId, SystemUserId, systemText, roundId: _gameTicker.RoundId); // Arcane
                 RaiseNetworkEvent(starMuteMsg, bwoinkParams.SenderChannel);
             }
         }
@@ -1018,6 +1104,15 @@ namespace Content.Server.Administration.Systems
             return result;
         }
         // Orion-End
+
+        // Arcane-start
+        private readonly struct AHelpLogPlayer(NetUserId userId) : IAdminLogsPlayerValue
+        {
+            public IEnumerable<NetUserId> Players => [userId];
+
+            public override string ToString() => string.Empty;
+        }
+        // Arcane-End
     }
 
     public sealed class AHelpMessageParams

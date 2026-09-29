@@ -141,7 +141,7 @@
   - type: SolutionContainerManager
     solutions:
       beaker:
-        maxVol: 300
+        maxVol: 150 # Arcane-Edit: 300 -> 150
   - type: PhysicalComposition
     materialComposition:
       Steel: 25

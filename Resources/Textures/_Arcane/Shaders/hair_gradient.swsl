@@ -1,0 +1,98 @@
+// Arcane - gradient.
+uniform highp vec3 gradientStart;
+uniform highp vec3 gradientEnd;
+uniform lowp int gradientStyle;
+uniform highp float gradientOffset;
+
+// Linear sRGB to Oklab color space
+highp vec3 linear_srgb_to_oklab(highp vec3 c) {
+    highp float l = 0.4122214708 * c.r + 0.5363325363 * c.g + 0.0514459929 * c.b;
+    highp float m = 0.2119034982 * c.r + 0.6806995451 * c.g + 0.1073969566 * c.b;
+    highp float s = 0.0883024619 * c.r + 0.2817188376 * c.g + 0.6299787005 * c.b;
+
+    highp float l_ = pow(max(l, 0.0), 1.0 / 3.0);
+    highp float m_ = pow(max(m, 0.0), 1.0 / 3.0);
+    highp float s_ = pow(max(s, 0.0), 1.0 / 3.0);
+
+    return vec3(
+        0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_,
+        1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_,
+        0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_
+    );
+}
+
+// Oklab to linear sRGB color space
+highp vec3 oklab_to_linear_srgb(highp vec3 c) {
+    highp float l_ = c.x + 0.3963377774 * c.y + 0.2158037573 * c.z;
+    highp float m_ = c.x - 0.1055613458 * c.y - 0.0638541728 * c.z;
+    highp float s_ = c.x - 0.0894841775 * c.y - 1.2914855480 * c.z;
+
+    highp float l = l_ * l_ * l_;
+    highp float m = m_ * m_ * m_;
+    highp float s = s_ * s_ * s_;
+
+    return vec3(
+        +4.0767434753 * l - 3.3077115913 * m + 0.2309699292 * s,
+        -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+        -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s
+    );
+}
+
+void fragment() {
+    highp vec4 texColor = zTexture(UV);
+    if (texColor.a == 0.0) {
+        discard;
+    }
+
+    highp float lum = zGrayscale(texColor.rgb);
+
+    // Convert input sRGB colors to linear RGB
+    highp vec3 colRoots = zFromSrgb(vec4(gradientStart, 1.0)).rgb;
+    highp vec3 colTips = zFromSrgb(vec4(gradientEnd, 1.0)).rgb;
+
+    highp float smoothT = 0.0;
+
+    if (gradientStyle == 1) {
+        // Mode 1: Split / Two tails (Horizontal)
+        // Left side (UV2.x < center) is colRoots, right side is colTips.
+        // Smooth feathered blend with strand-aware weave prevents a harsh straight vertical cut down the forehead.
+        highp float center = 0.5 + (gradientOffset - 0.5) * 0.25;
+        highp float strandWeave = (lum - 0.5) * 0.08;
+        smoothT = smoothstep(center - 0.08, center + 0.08, UV2.x + strandWeave);
+    } else if (gradientStyle == 2) {
+        // Mode 2: Underdye / Hidden streaks
+        // Outer surface highlights catch light (lum > threshold), inner strands get accent color.
+        highp float depth = 1.0 - lum;
+        highp float threshold = 0.35 + (gradientOffset - 0.5) * 0.4;
+        smoothT = smoothstep(threshold - 0.15, threshold + 0.15, depth);
+    } else {
+        // Mode 0: Ombre (Vertical with head curvature & strand-aware modulation)
+        highp float dx = (UV2.x - 0.5) * 2.0;
+        highp float curvature = dx * dx * 0.08;
+
+        // Vertical transition following head curvature and adjustable offset
+        highp float shift = (gradientOffset - 0.5) * 0.35;
+        highp float vPos = (0.93 - shift - (UV2.y + curvature)) / 0.43;
+        highp float t = clamp(vPos, 0.0, 1.0);
+
+        // Strand highlight modulation
+        highp float strandOffset = (lum - 0.5) * 0.12;
+        t = clamp(t + strandOffset, 0.0, 1.0);
+
+        smoothT = smoothstep(0.0, 1.0, t);
+    }
+
+    // Perceptually uniform Oklab blending (prevents muddy grayish mid-tones)
+    highp vec3 lab1 = linear_srgb_to_oklab(colRoots);
+    highp vec3 lab2 = linear_srgb_to_oklab(colTips);
+    highp vec3 mixedLab = mix(lab1, lab2, smoothT);
+    highp vec3 gradientColor = clamp(oklab_to_linear_srgb(mixedLab), 0.0, 1.0);
+
+    highp float shade = lum;
+    if (gradientStyle == 2) {
+        // Boost shadow luminance for dyed under-layer so accent color is vivid rather than crushed to black
+        shade = mix(lum, clamp(lum * 1.4 + 0.15, 0.25, 1.0), smoothT * 0.85);
+    }
+
+    COLOR = vec4(vec3(shade) * gradientColor, texColor.a);
+}

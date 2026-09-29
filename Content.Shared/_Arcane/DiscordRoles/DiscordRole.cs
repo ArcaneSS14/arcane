@@ -7,6 +7,8 @@ public enum DiscordRole : byte
 {
     SponsorTier1,
     SponsorTier2,
+    AdminBenefit,
+    ArtLead,
     UnlockRoles,
 }
 

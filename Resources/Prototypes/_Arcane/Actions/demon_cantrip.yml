@@ -150,7 +150,7 @@
       - Battery
     event: !type:TouchChangeEnergy
       cost: 35
-      amount: 50
+      amount: 100
       sound:
         path: /Audio/Machines/airlock_electrify_on.ogg
 
