@@ -23,6 +23,18 @@
 #    damageModifierSet: Slime # Arcane-Edit
   - type: Boneless # Goob Edit
     bonePenalty: 0.7
+  # Arcane-Start
+  - type: SurgerySkipSteps
+    steps:
+    - SurgeryStepSawBones
+    - SurgeryStepPriseOpenBones
+    - SurgeryStepCloseBones
+    - SurgeryStepSealBones
+    - SurgeryStepSealSkull
+    - SurgeryStepSealRibcage
+    - SurgeryStepRemoveLeftoverBones
+    - SurgeryStepSawFeature
+  # Arcane-End
 
 - type: entity
   id: ChestSlime

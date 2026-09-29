@@ -55,6 +55,9 @@ public sealed class SurgerySystem : SharedSurgerySystem
                 if (ev.Cancelled)
                     continue;
 
+                if (IsSurgerySkipped(part.Id, surgeryEnt)) // Arcane
+                    continue; // Arcane
+
                 valid.Add(surgery);
             }
             surgeries[GetNetEntity(part.Id)] = valid;

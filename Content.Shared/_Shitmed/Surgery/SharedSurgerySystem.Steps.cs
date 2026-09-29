@@ -36,6 +36,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 using Content.Shared.Ghost;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared._Arcane.Surgery;
 
 namespace Content.Shared._Shitmed.Medical.Surgery;
 
@@ -1333,6 +1334,9 @@ public abstract partial class SharedSurgerySystem
 
     private bool IsStepComplete(EntityUid body, EntityUid part, EntProtoId step, EntityUid surgery)
     {
+        if (IsStepSkipped(part, step)) // Arcane
+            return true; // Arcane
+
         if (GetSingleton(step) is not { } stepEnt)
             return false;
 
@@ -1340,6 +1344,28 @@ public abstract partial class SharedSurgerySystem
         RaiseLocalEvent(stepEnt, ref ev);
         return !ev.Cancelled;
     }
+
+    // Arcane-Start
+    public bool IsStepSkipped(EntityUid part, EntProtoId step)
+    {
+        return TryComp<SurgerySkipStepsComponent>(part, out var skip) && skip.Steps.Contains(step);
+    }
+
+    public bool IsSurgerySkipped(EntityUid part, Entity<SurgeryComponent?> surgery)
+    {
+        if (!Resolve(surgery, ref surgery.Comp, false)
+            || surgery.Comp.Steps.Count == 0)
+            return false;
+
+        foreach (var step in surgery.Comp.Steps)
+        {
+            if (!IsStepSkipped(part, step))
+                return false;
+        }
+
+        return true;
+    }
+    // Arcane-End
 
     private ISurgeryToolComponent? GetSurgeryComp(EntityUid tool, IComponent component)
     {
