@@ -114,8 +114,8 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
     }
 
     /// <summary>
-    /// Traverses the body prototype starting from the root, collecting every missing,
-    /// non-vital part slot that could be regrown.
+    /// Traverses the body prototype starting from the root, collecting every missing
+    /// part slot that could be regrown. The head counts; the chest and groin never do.
     /// </summary>
     private List<MissingLimb> FindMissingLimbs(EntityUid uid, BodyComponent body)
     {
@@ -160,7 +160,7 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
                 if (connectionSlot.Part is not { } partId
                     || !_proto.TryIndex<EntityPrototype>(partId, out var partProto)
                     || !partProto.TryGetComponent<BodyPartComponent>(out var partComp, _componentFactory)
-                    || (partComp.PartType & BodyPartType.Vital) != 0)
+                    || (partComp.PartType & (BodyPartType.Chest | BodyPartType.Groin)) != 0)
                     continue;
 
                 missing.Add(new MissingLimb(parentEntity, connection, connectionSlot));

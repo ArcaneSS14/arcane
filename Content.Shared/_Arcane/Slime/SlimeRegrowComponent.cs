@@ -45,7 +45,7 @@ public sealed partial class SlimeRegrowComponent : Component
     public LocId RegrowPopup = "slime-regrow-limb-success";
 
     /// <summary>
-    /// Popup shown when there is no missing non-vital limb to regrow.
+    /// Popup shown when there is no missing limb or head to regrow.
     /// </summary>
     [DataField, AutoNetworkedField]
     public LocId NoLimbPopup = "slime-regrow-limb-none";
