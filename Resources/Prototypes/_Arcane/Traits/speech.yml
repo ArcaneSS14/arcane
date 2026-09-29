@@ -1,0 +1,10 @@
+- type: trait
+  id: XenophobeAccent
+  name: trait-xenophobe-name
+  description: trait-xenophobe-desc
+  category: SpeechTraits
+  cost: 1
+  components:
+  - type: XenophobeAccent
+    accent: xenophobe
+    speciesAccents: {}
