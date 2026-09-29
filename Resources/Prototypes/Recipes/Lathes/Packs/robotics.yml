@@ -87,5 +87,10 @@
     # Orion-Start
     - MechEquipmentHonkerBananaMortar
     - MechEquipmentHonkerMousetrapMortar
+    # Arcane-Start
+#    - WeaponMechCombatMissileRack6
+#    - WeaponMechChainSword
+#    - WeaponMechCombatTeslaCannon
+    # Arcane-End
     - WeaponMechMeleeDrill
     # Orion-End

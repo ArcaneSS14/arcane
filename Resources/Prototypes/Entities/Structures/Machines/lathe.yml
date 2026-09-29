@@ -415,7 +415,7 @@
     - MechWeaponsSecurityLight
     # Orion-Start
     - MechWeaponsSecurityHeavy
-    - MechWeaponsOrion
+    - MechWeaponsArcane # Arcane-edit
     # Orion-End
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
@@ -522,7 +522,7 @@
     - MechBoardsSecurity
     - MechWeaponsSecurityLight
     - MechWeaponsSecurityHeavy
-    - MechWeaponsOrion # Orion
+    - MechWeaponsArcane # Arcane
     - SecurityAmmoGoob
     - SecurityCybernetics
     # - ServiceWeapons

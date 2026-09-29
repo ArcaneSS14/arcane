@@ -16,9 +16,11 @@
   - StationEfficiencyCircuitBoard
   - RobocopCircuitBoard
 
-- type: latheRecipePack
-  id: MechWeaponsOrion
-  recipes:
-  - WeaponMechCombatMissileRack6
-  - WeaponMechChainSword
-  - WeaponMechCombatTeslaCannon
+# Arcane-start
+# - type: latheRecipePack
+#   id: MechWeaponsOrion
+#   recipes:
+#   - WeaponMechCombatMissileRack6
+#   - WeaponMechChainSword
+#   - WeaponMechCombatTeslaCannon
+# Arcane-end
