@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Goobstation.Common.Effects;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Forensics;
@@ -35,6 +36,7 @@ public sealed class OrgasmSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SparksSystem _sparks = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
@@ -89,7 +91,12 @@ public sealed class OrgasmSystem : EntitySystem
         if (sex is Sex.Unsexed)
             return;
 
-        // The condom catches everything, so nothing ends up on the floor or on anyone nearby.
+        if (HasComp<SparkEjaculationComponent>(uid))
+        {
+            _sparks.DoSparks(Transform(uid).Coordinates, playSound: true);
+            return;
+        }
+
         if (_condom.TryFill(uid))
             return;
 
