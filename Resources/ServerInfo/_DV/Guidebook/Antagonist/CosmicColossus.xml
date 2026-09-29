@@ -1,49 +1,49 @@
 <Document>
-  # Entropic Colossus
+  # Энтропийный колосс
 
   <Box>
-    [color=#999999][italic]"Neither ill will, nor impassioned desire. Neither malice, nor cruelty. Nothing."[/italic][/color]
+    [color=#999999][italic]"Ни злой воли, ни страстного желания. Ни злобы, ни жестокости. Ничего".[/italic][/color]
   </Box>
   <Box>
-    [color=#999999][italic]"Just an end."[/italic][/color]
+    [color=#999999][italic]"Только конец".[/italic][/color]
   </Box>
   <Box>
     <GuideEntityEmbed Entity="MobCosmicColossus" Caption=""/>
   </Box>
 
-  You are an Entropic Colossus, a towering monstrosity of malign plating and dendritic infestation. Your purpose is the same as that of the [color=#4cabb3]Cosmic Cult[/color]: The end of all things.
+  Вы — Энтропийный колосс, возвышающееся чудовище, покрытое зловещей бронёй и дендритными наростами. Ваша цель та же, что и у [color=#4cabb3]Космического культа[/color]: положить конец всему сущему.
 
-  Some Colossi are remnants. Perhaps survivors of a conflict borne of The Unknown's influence, or the product of some strange Noospheric anomaly. These Colossi drift across the distal black of space until their energies deplete... Or until they impact civilization.
+  Некоторые колоссы — пережитки прошлого: возможно, уцелевшие после конфликта, порождённого влиянием Неизвестного, или результат странной ноосферной аномалии. Они блуждают в далёкой черноте космоса, пока их энергия не иссякнет… или пока они не столкнутся с цивилизацией.
 
-  [textlink="For information on cult-created colossi, click here." link="CosmicCult"]
+  [textlink="Подробнее о колоссах, созданных культом, — здесь." link="CosmicCult"]
 
-  ## Influences
+  ## Влияния
 
-  Entropic Colossi are posessed of powerful [color=#4cabb3]Malign Influences[/color], with which a capable colossus may lay waste to its enemies.
+  Энтропийные колоссы обладают мощными [color=#4cabb3]Зловещими влияниями[/color], с помощью которых могут сокрушать врагов.
 
-  - [color=#4cabb3][bold]Entropic Sunder:[/bold][/color] Warp to the target location and unleash a cascading detonation of malign energy. Careful - this will hurt allied cultists!
-  - [color=#4cabb3][bold]Colossal Ingress:[/bold][/color] Use your colossal strength to force open a doorway. Even securely bolted doorways will be torn open by your titanic power.
-  - [color=#4cabb3][bold]Slumber Shell:[/bold][/color] Slumber your body for a period of time to regenerate integrity. Must be done on stable ground. This will restore you for exactly half the damage you've taken.
+  - [color=#4cabb3][bold]Энтропийное рассечение:[/bold][/color] Переместитесь к цели и вызовите цепную детонацию зловещей энергии. Осторожно: она ранит союзных культистов!
+  - [color=#4cabb3][bold]Колоссальный прорыв:[/bold][/color] Используйте колоссальную силу, чтобы вырвать дверь. Даже надёжно заблокированный шлюз не устоит перед вашей мощью.
+  - [color=#4cabb3][bold]Спящая оболочка:[/bold][/color] Погрузитесь в сон на некоторое время, чтобы восстановить целостность. Способность можно применить только на устойчивой поверхности; она восстанавливает ровно половину полученного урона.
 
-  Colossi that have encountered the station by happenstance also have this influence:
-  - [color=#4cabb3][bold]Colossal Ingress:[/bold][/color] Use your colossal strength to force open a doorway. Even securely bolted doorways will be torn open by your titanic power.
+  Колоссы, случайно оказавшиеся у станции, также обладают следующим Влиянием:
+  - [color=#4cabb3][bold]Колоссальный прорыв:[/bold][/color] Используйте колоссальную силу, чтобы вырвать дверь. Даже надёжно заблокированный шлюз не устоит перед вашей мощью.
 
-  ## Objectives
+  ## Цели
   <Box>
     <GuideEntityEmbed Entity="MobTileDamageArea" Caption=""/>
   </Box>
 
-  Colossi that have encountered the station by happenstance:
-  - [color=#4cabb3][bold]Persist[/bold][/color]  - Collectively siphon a certain amount of Entropy from the crew. The more entropy you siphon, the more you can empower the Monument!
-  - [color=#4cabb3][bold]Beckon[/bold][/color] - Call forth an Effigy of Entropy at a designated location aboard the station.
+  Колоссы, случайно оказавшиеся у станции:
+  - [color=#4cabb3][bold]Сохранение[/bold][/color] — коллективно вытяните определённое количество энтропии из экипажа. Чем больше энтропии вы соберёте, тем сильнее сможете усилить Монумент!
+  - [color=#4cabb3][bold]Призыв[/bold][/color] — призовите Изваяние энтропии в указанное место на станции.
 
-  Colossi created from Cyborgs by the Cosmic Cult:
-  - [color=#4cabb3][bold]Usher In The End[/bold][/color] - Complete the final ritual to beckon the Unknown and destroy the station.
+  Колоссы, созданные Космическим культом из киборгов:
+  - [color=#4cabb3][bold]Приближение конца[/bold][/color] — завершите последний ритуал, призовите Неизвестное и уничтожьте станцию.
 
-  ## Effigy of Entropy
+  ## Изваяние энтропии
   <Box>
     <GuideEntityEmbed Entity="CosmicEffigy" Caption=""/>
   </Box>
-  Some Colossi may call forth an [color=#4cabb3]Effigy of Entropy[/color]. The effigy is a dangerously unstable malign anomaly, and should be dealt with by the Epistemics department immediately!
+  Некоторые колоссы могут призвать [color=#4cabb3]Изваяние энтропии[/color]. Это крайне нестабильная зловещая аномалия, и научный отдел должен немедленно заняться её устранением!
 
 </Document>
