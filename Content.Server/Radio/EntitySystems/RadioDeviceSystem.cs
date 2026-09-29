@@ -206,12 +206,17 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
                 ? TTSEffects.Intercom
                 : sourceTts.Effect;
 
-            SendRelayMessage(uid, message, chatType, name, component, args.Language);
-
-            speakerTts.VoicePrototype = oldVoice;
-            speakerTts.Effect = oldEffect;
-            if (existingTts == null)
-                RemComp<TTSComponent>(uid);
+            try
+            {
+                SendRelayMessage(uid, message, chatType, name, component, args.Language);
+            }
+            finally
+            {
+                speakerTts.VoicePrototype = oldVoice;
+                speakerTts.Effect = oldEffect;
+                if (existingTts == null)
+                    RemComp<TTSComponent>(uid);
+            }
         }
         else
             SendRelayMessage(uid, message, chatType, name, component, args.Language);
