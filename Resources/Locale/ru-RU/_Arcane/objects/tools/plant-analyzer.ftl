@@ -26,8 +26,8 @@ plant-analyzer-status-growing = Статус: Растет (Стадия { $age 
 plant-analyzer-health-value = Здоровье: { $health } / { $max }
 plant-analyzer-potency = Потенция: { $potency }
 plant-analyzer-yield = Урожайность: { $yield }
-plant-analyzer-mutation = Статус мутаций: МУТИРУЕТ!
-plant-analyzer-mutation-non = Статус мутаций: Стабильно
+plant-analyzer-mutation = Статус мутаций: МУТИРУЕТ! { $mutation }
+plant-analyzer-mutation-non = Статус мутаций: Стабильно { $mutation }
 
 # Угрозы
 plant-analyzer-weeds = Сорняки: { $level }

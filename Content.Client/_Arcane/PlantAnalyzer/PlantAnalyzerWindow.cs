@@ -202,29 +202,40 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
                 _statusLabel.Text = Loc.GetString("plant-analyzer-status-dead");
             else if (state.Harvestable)
                 _statusLabel.Text = Loc.GetString("plant-analyzer-status-harvestable");
-            else
+            else if (state.MaxAge > 0)
                 _statusLabel.Text = Loc.GetString("plant-analyzer-status-growing", ("age", state.Age), ("maxAge", state.MaxAge));
+            else
+                _statusLabel.Text = string.Empty;
 
             // Расчет здоровья
             var healthPercent = state.MaxHealth > 0 ? (state.Health / state.MaxHealth) * 100f : 0f;
             _healthDiagramBar.Value = healthPercent;
             _healthPercentLabel.Text = $"{healthPercent:F0}%";
             _healthLabel.Text = Loc.GetString("plant-analyzer-health-value", ("health", (int) state.Health), ("max", (int) state.MaxHealth));
-        }
 
-        _potencyLabel.Text = Loc.GetString("plant-analyzer-potency", ("potency", state.Potency));
-        _yieldLabel.Text = Loc.GetString("plant-analyzer-yield", ("yield", state.Yield));
+            if (state.MaxAge > 0)
+            {
+                _potencyLabel.Text = Loc.GetString("plant-analyzer-potency", ("potency", state.Potency));
+                _yieldLabel.Text = Loc.GetString("plant-analyzer-yield", ("yield", state.Yield));
 
-        // Мутация
-        if (state.MutationLevel >= 1)
-        {
-            _mutationLabel.Text = Loc.GetString("plant-analyzer-mutation", ("level", state.MutationLevel));
-            _mutationLabel.FontColorOverride = Color.Green;
-        }
-        else
-        {
-            _mutationLabel.Text = Loc.GetString("plant-analyzer-mutation-non", ("level", state.MutationLevel));
-            _mutationLabel.FontColorOverride = Color.White;
+                // Мутация
+                if (state.MutationLevel >= 1)
+                {
+                    _mutationLabel.Text = Loc.GetString("plant-analyzer-mutation", ("mutation", state.MutationLevel));
+                    _mutationLabel.FontColorOverride = Color.Green;
+                }
+                else
+                {
+                    _mutationLabel.Text = Loc.GetString("plant-analyzer-mutation-non", ("mutation", state.MutationLevel));
+                    _mutationLabel.FontColorOverride = Color.White;
+                }
+            }
+            else
+            {
+                _potencyLabel.Text = string.Empty;
+                _yieldLabel.Text = string.Empty;
+                _mutationLabel.Text = string.Empty;
+            }
         }
 
         // Уровень сорняков

@@ -174,8 +174,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
                 foreach (var reagent in soilSolution.Contents)
                 {
                     var name = GetReagentLocalizedName(reagent.Reagent.ToString());
-                    var quantity = MathF.Round((float) reagent.Quantity, 2);
-                    soilReagents.Add(new PlantAnalyzerReagentInfo(name, quantity));
+                    soilReagents.Add(new PlantAnalyzerReagentInfo(name, (float) reagent.Quantity));
                 }
             }
 
@@ -210,7 +209,6 @@ public sealed class PlantAnalyzerSystem : EntitySystem
                 foreach (var reagent in foodSolution.Contents)
                 {
                     var name = GetReagentLocalizedName(reagent.Reagent.ToString());
-                    var quantity = MathF.Round((float) reagent.Quantity, 2);
                     produceReagents.Add(new PlantAnalyzerReagentInfo(name, (float) reagent.Quantity));
                 }
             }

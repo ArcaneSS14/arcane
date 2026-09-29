@@ -26,7 +26,8 @@ plant-analyzer-status-growing = Status: Growing (Stage { $age } of { $maxAge })
 plant-analyzer-health-value = Health: { $health } / { $max }
 plant-analyzer-potency = Potency: { $potency }
 plant-analyzer-yield = Yield: { $yield }
-plant-analyzer-mutation = Mutation Level: { $mutation }
+plant-analyzer-mutation = Mutation status: MUTATING! { $mutation }
+plant-analyzer-mutation-non = Mutation status: Stable { $mutation }
 
 # Threats
 plant-analyzer-weeds = Weeds: { $level }
