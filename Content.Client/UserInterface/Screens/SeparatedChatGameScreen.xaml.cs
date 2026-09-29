@@ -49,7 +49,7 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
     }
 
     // Arcane-Start
-    // Пока панель на месте по умолчанию, голосование стоит под ней
+    // While the bar is at its default spot, the vote menu sits below it
     private void UpdateVoteMenuOffset()
     {
         var offset = _actionsPlacement.IsCustom || !Actions.Visible ? 0 : Actions.Size.Y;

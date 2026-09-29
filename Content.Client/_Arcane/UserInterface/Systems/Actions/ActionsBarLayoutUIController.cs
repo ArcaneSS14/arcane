@@ -9,7 +9,7 @@ using Robust.Shared.Timing;
 namespace Content.Client._Arcane.UserInterface.Systems.Actions;
 
 /// <summary>
-/// Хранит раскладку панели действий и вынесенных слотов, сохраняет её в конфиг с задержкой после последнего изменения.
+/// Stores the actions bar and detached slot layout and saves it to the config shortly after the last change.
 /// </summary>
 public sealed class ActionsBarLayoutUIController : UIController
 {

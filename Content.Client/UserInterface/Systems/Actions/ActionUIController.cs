@@ -644,10 +644,10 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         EntityUid? swapAction = null;
         var currentlyHovered = UIManager.MouseGetControl(_input.MouseScreenPosition);
 
-        // Arcane-Start: свободное размещение слотов и добавление действия из меню через ручку панели
+        // Arcane-Start: free slot placement and adding actions from the menu via the bar grip
         if (_container != null)
         {
-            // С Shift слот не переносится, работает обычное поведение (очистка слота)
+            // Shift skips slot moving and keeps the default behavior (clearing the slot)
             if (!_input.IsKeyDown(Keyboard.Key.Shift)
                 && _container.TryHandleSlotDrop(dragged, currentlyHovered, UIManager.MousePositionScaled.Position))
             {

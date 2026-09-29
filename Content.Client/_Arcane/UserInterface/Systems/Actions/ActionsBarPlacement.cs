@@ -7,7 +7,7 @@ using Robust.Shared.Timing;
 namespace Content.Client._Arcane.UserInterface.Systems.Actions;
 
 /// <summary>
-/// Ставит панель действий на позицию по умолчанию или на выбранную игроком.
+/// Places the actions bar at its default position or at the one chosen by the player.
 /// </summary>
 public sealed class ActionsBarPlacement
 {
@@ -50,8 +50,8 @@ public sealed class ActionsBarPlacement
         SetPosition(_layout.BarPosition is { } custom ? Clamp(custom) : _defaultPosition());
     }
 
-    // OnResized вызывается прямо во время компоновки родителя, и смена margin в этот момент не вызывает
-    // повторную компоновку (InvalidateArrange игнорируется), поэтому панель оставалась бы на старой позиции
+    // OnResized fires during the parent's arrange, and changing margins at that point does not trigger
+    // another arrange (InvalidateArrange is ignored), so the bar would stay at its old position
     public void QueueUpdateLayout()
     {
         if (_updateQueued)
@@ -106,7 +106,7 @@ public sealed class ActionsBarPlacement
             return;
         }
 
-        // Нулевой margin-бокс: панель занимает свой desired size и растёт вправо и вниз от точки
+        // Zero-size margin box: the bar takes its desired size and grows right and down from the point
         LayoutContainer.SetAnchorPreset(_bar, LayoutContainer.LayoutPreset.TopLeft);
         LayoutContainer.SetMarginLeft(_bar, position.X);
         LayoutContainer.SetMarginRight(_bar, position.X);

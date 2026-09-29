@@ -8,8 +8,8 @@ using Robust.Shared.Input;
 namespace Content.Client._Arcane.UserInterface.Systems.Actions.Controls;
 
 /// <summary>
-/// Полоска над панелью действий: перетаскивание двигает панель, ПКМ сбрасывает раскладку.
-/// Видна только при включённом свободном размещении.
+/// Grip above the actions bar: dragging moves the bar, right click resets the layout.
+/// Visible only when free placement is enabled.
 /// </summary>
 public sealed class ActionsBarDragHandle : Control
 {

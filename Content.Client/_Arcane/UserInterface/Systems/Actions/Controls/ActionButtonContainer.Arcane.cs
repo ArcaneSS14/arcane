@@ -8,8 +8,8 @@ using Robust.Shared.Timing;
 namespace Content.Client.UserInterface.Systems.Actions.Controls;
 
 /// <summary>
-/// Позволяет вынести отдельные слоты хотбара из сетки. Кнопка остаётся дочерней с тем же индексом,
-/// поэтому хоткеи и порядок действий не меняются.
+/// Lets individual hotbar slots be detached from the grid. The button stays a child at the same index,
+/// so hotkeys and action order do not change.
 /// </summary>
 public partial class ActionButtonContainer
 {
@@ -65,14 +65,14 @@ public partial class ActionButtonContainer
 
         var detached = Layout.SlotPositions.ContainsKey(slot);
 
-        // Бросок на другую кнопку меняет действия местами, кроме возврата вынесенного слота на панель
+        // Dropping on another button swaps actions, except when a detached slot is returned to the bar
         if (dropTarget is ActionButton && dropTarget != button && (!detached || IsDetachedButton(dropTarget)))
             return false;
 
         if (PositionSpace is not { } space || dropTarget != null && IsInsideWindow(dropTarget))
             return false;
 
-        // Вынесенный слот возвращается в панель, а слот из панели остаётся на месте
+        // A detached slot returns to the bar, while an in-bar slot stays in place
         if (IsInReturnZone(mousePosition))
         {
             if (detached)
@@ -142,7 +142,7 @@ public partial class ActionButtonContainer
         return false;
     }
 
-    // Глобальные позиции финальны только после компоновки, поэтому без явной позиции слоты отставали бы на кадр
+    // Global positions are final only after arrange, so without an explicit position slots would lag a frame behind
     public void SetBarPlacement(Control bar, Vector2 position)
     {
         if (_bar == bar && _barPosition == position)
@@ -179,8 +179,8 @@ public partial class ActionButtonContainer
         VerifyDetachedPlacement(space);
     }
 
-    // Смещение считается до конца компоновки (например, при старте HUD) и может быть неточным,
-    // поэтому сверяем реальное положение слота с ожидаемым и подправляем смещение
+    // The offset is computed before layout settles (e.g. on HUD startup) and may be off,
+    // so compare the actual slot position with the expected one and adjust the offset
     private void VerifyDetachedPlacement(Control space)
     {
         if (!IsArrangeValid)
@@ -206,7 +206,7 @@ public partial class ActionButtonContainer
                 return;
             }
 
-            // Ограничение на случай, когда компоновка никогда не сойдётся
+            // Limit in case the layout never converges
             if (_correctionsInARow++ >= MaxCorrections)
                 return;
 
@@ -264,7 +264,7 @@ public partial class ActionButtonContainer
             if (!child.Visible)
                 continue;
 
-            // Порядок заполнения как в GridContainer
+            // Same fill order as GridContainer
             var (column, row) = LimitedDimension == Dimension.Column
                 ? (flowIndex % columns, flowIndex / columns)
                 : (flowIndex / rows, flowIndex % rows);

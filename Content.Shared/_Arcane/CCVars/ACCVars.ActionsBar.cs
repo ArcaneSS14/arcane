@@ -13,7 +13,7 @@ public sealed partial class ACCVars
     public static readonly CVarDef<float> ActionsBarPositionY =
         CVarDef.Create("hud.actions_bar_position_y", -1f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    // Формат: slot:x:y через ';'
+    // Format: slot:x:y separated by ';'
     public static readonly CVarDef<string> ActionsBarSlotPositions =
         CVarDef.Create("hud.actions_bar_slot_positions", string.Empty, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

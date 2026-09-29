@@ -36,7 +36,7 @@ public sealed partial class DefaultGameScreen : InGameScreen
         Inventory.OnResized += ResizeActionContainer;
 
         // Arcane-Start
-        // По умолчанию панель стоит под верхним меню и голосованием, как раньше
+        // By default the bar sits below the top menu and vote menu, as before
         _actionsPlacement = new ActionsBarPlacement(Actions, () => new Vector2(10, 10 + TopLeft.Size.Y));
         TopLeft.OnResized += _actionsPlacement.QueueUpdateLayout;
         _actionsPlacement.UpdateLayout();
