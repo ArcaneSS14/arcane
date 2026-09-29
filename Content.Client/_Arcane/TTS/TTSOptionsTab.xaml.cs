@@ -57,6 +57,27 @@ public sealed partial class TTSOptionsTab : Control
         Control.Initialize();
     }
 
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+        _entitySystem.SystemLoaded += OnSystemLoaded;
+    }
+
+    protected override void ExitedTree()
+    {
+        _entitySystem.SystemLoaded -= OnSystemLoaded;
+        base.ExitedTree();
+    }
+
+    private void OnSystemLoaded(object? sender, SystemChangedArgs args)
+    {
+        if (args.System is not SpriteSystem)
+            return;
+
+        _sprites = null;
+        RefreshChannelIcons();
+    }
+
     public void RefreshChannelIcons()
     {
         if (_channelIcons.Count == 0)

@@ -120,7 +120,10 @@
   - type: ActionGrant
     actions:
     - ActionAIViewLaws
-    - ActionTTSVoiceChange # Arcane
+    # Arcane-Start
+    - ActionTTSVoiceChange
+    - ActionOpenRadioChannels
+    # Arcane-End
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:
