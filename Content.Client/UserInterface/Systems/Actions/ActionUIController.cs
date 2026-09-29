@@ -36,6 +36,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.Shared.Configuration; // Goobstation
 using Content.Goobstation.Common.CCVar; // Goobstation
+using Content.Client._Arcane.UserInterface.Systems.Actions.Controls;
 using static Content.Client.Actions.ActionsSystem;
 using Content.Client._Arcane.UserInterface.Systems.Actions;
 using static Content.Client.UserInterface.Systems.Actions.Windows.ActionsWindow;
@@ -832,6 +833,33 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
         EntityUid? swapAction = null;
         var currentlyHovered = UIManager.MouseGetControl(_input.MouseScreenPosition);
+
+        // Arcane-Start: free slot placement and adding actions from the menu via the bar grip
+        if (_container != null)
+        {
+            // Shift skips slot moving and keeps the default behavior (clearing the slot)
+            if (!_input.IsKeyDown(Keyboard.Key.Shift)
+                && _container.TryHandleSlotDrop(dragged, currentlyHovered, UIManager.MousePositionScaled.Position))
+            {
+                _menuDragHelper.EndDrag();
+                return;
+            }
+
+            if (currentlyHovered is ActionsBarDragHandle && !_container.TryGetButtonIndex(dragged, out _))
+            {
+                EntityUid actionId = action;
+                if (!_actions.Contains(actionId))
+                    _actions.Add(actionId);
+
+                if (_actionsSystem != null)
+                    _container.SetActionData(_actionsSystem, _actions.ToArray());
+
+                _menuDragHelper.EndDrag();
+                return;
+            }
+        }
+        // Arcane-End
+
         if (currentlyHovered is ActionButton button)
         {
             swapAction = button.Action;
@@ -1025,11 +1053,13 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     {
         LayoutContainer.SetPosition(_dragShadow, UIManager.MousePositionScaled.Position - new Vector2(32, 32));
         _dragShadow.Visible = true;
+        _container?.UpdateReturnHint(_menuDragHelper.Dragged, UIManager.MousePositionScaled.Position); // Arcane
         return true;
     }
 
     private void OnMenuEndDrag()
     {
+        _container?.UpdateReturnHint(null, Vector2.Zero); // Arcane
         _dragShadow.Texture = null;
         _dragShadow.Visible = false;
     }

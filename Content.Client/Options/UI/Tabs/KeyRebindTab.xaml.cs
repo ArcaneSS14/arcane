@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
+using Content.Client._Arcane.UserInterface.Systems.Actions;
 using Content.Client.Stylesheets;
 using Content.Goobstation.Common.CCVar;
 using Content.Shared._Arcane.CCVars;
@@ -57,6 +58,37 @@ namespace Content.Client.Options.UI.Tabs
         {
             _cfg.SetCVar(ACCVars.CombatModeBlockItemPickup, args.Pressed);
             _cfg.SaveToFile();
+        }
+
+        private Control CreateActionsBarLayoutRow()
+        {
+            var layout = UserInterfaceManager.GetUIController<ActionsBarLayoutUIController>();
+
+            var checkBox = new CheckBox
+            {
+                Text = Loc.GetString("ui-options-actions-bar-free-placement"),
+                Pressed = _cfg.GetCVar(ACCVars.ActionsBarFreePlacement),
+                HorizontalExpand = true,
+            };
+            checkBox.OnToggled += args =>
+            {
+                _cfg.SetCVar(ACCVars.ActionsBarFreePlacement, args.Pressed);
+                _cfg.SaveToFile();
+            };
+
+            var resetButton = new Button
+            {
+                Text = Loc.GetString("ui-options-actions-bar-layout-reset"),
+                ToolTip = Loc.GetString("ui-options-actions-bar-layout-reset-tooltip"),
+                Margin = new Thickness(4, 0, 0, 0),
+            };
+            resetButton.OnPressed += _ => layout.Reset();
+
+            return new BoxContainer
+            {
+                Orientation = LayoutOrientation.Horizontal,
+                Children = { checkBox, resetButton },
+            };
         }
         // Arcane-End
 
@@ -178,6 +210,7 @@ namespace Content.Client.Options.UI.Tabs
             // Arcane-Start
             AddCheckBox("ui-options-tg13-controls", _cfg.GetCVar(ACCVars.TG13Controls), HandleToggleTG13Controls);
             AddCheckBox("ui-options-combat-mode-block-pickup", _cfg.GetCVar(ACCVars.CombatModeBlockItemPickup), HandleToggleCombatModeBlockPickup);
+            KeybindsContainer.AddChild(CreateActionsBarLayoutRow());
             // Arcane-End
 
             AddHeader("ui-options-header-movement");

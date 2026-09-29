@@ -11,7 +11,7 @@ using Robust.Shared.Utility;
 namespace Content.Client.UserInterface.Systems.Actions.Controls;
 
 [Virtual]
-public class ActionButtonContainer : GridContainer
+public partial class ActionButtonContainer : GridContainer // Arcane-Edit
 {
     [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly IInputManager _input = default!;

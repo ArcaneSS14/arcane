@@ -23,26 +23,28 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
   - Задача зомби - заразить весь экипаж станции.
 
+
+  ## Передача инфекции
+  Зомби умеют только ковылять, кусаться и бросаться на баррикады. Их укус [bold]не всегда передаёт [color=#7e916e]Ромерол[/color][/bold] через плотную одежду, но боль причинит наверняка.
+
+  Нежить также может укусить находящееся в критическом состоянии или мёртвое тело, чтобы [bold]мгновенно превратить[/bold] его в зомби.
+
+  ## Особенности зомби
+  Зомби можно узнать по тёмно-зелёной коже, красным глазам, медленным движениям, запаху гнили и нарушенной моторике. При обращении они роняют гарнитуру и перчатки, а наручники не спасают от их свирепого укуса.
+
+  Зомби [bold]устойчивы к порезам, ушибам, ядам и холоду.[/bold] Они выживают в вакууме и не нуждаются в еде, воде, воздухе или сне. Однако нежить [italic]получает повышенный урон от ожогов и электричества.[/italic]
+
+  ## Выживание
+  Когда инфекция распространяется, а [color=#cb0000]служба безопасности[/color] падёт, [bold]выжившим[/bold] придётся добираться до Центрального командования.
+
+  [bold]Баррикады[/bold] вокруг отделов и [bold]блокировка дверей[/bold] помогут выиграть время, чтобы изготовить оружие, спасти людей или составить план.
+
+  Помните: когда всё совсем плохо, [italic]приходится делать то, что необходимо[/italic], если это не вредит другим выжившим. Забирайте нужные вещи у тех, кто не выжил.
+
   ## Лечение
+  [bold][color=red]Убитых[/color] зомби можно полностью вылечить с помощью [color=#86caf7]Амбузола[/color] или [color=#1274b5]Амбузола Плюс[/color].[/bold]
 
-  The undead can also chomp on a crit or dead body to [bold]instantly convert[/bold] it to a zombie.
-
-  ## Zombie Attributes
-  A zombie can be identified by dark green skin, red eyes, slow movement, rotting smell, and lack of motor functions. They'll drop their headset and gloves upon turning, and cuffs don't work against their vicious bite.
-
-  Zombies are known for their [bold]resilience to slashes, bruises, poison and cold.[/bold] They can survive in a vacuum and do not require food, water, air, or sleep. The undead do, however, [italic]take increased burn and shock damage.[/italic]
-
-  ## Survival
-  When the infection sweeps and [color=#cb0000]Security[/color] falls, it's up to the [bold]survivors[/bold] to try and make it to Central Command.
-
-  [bold]Constructing barricades[/bold] around departments or [bold]bolting doors[/bold] can buy enough time to make weapons, save lives or make a plan.
-
-  Remember that when it really hits the fan, [italic]you've gotta do what you gotta do[/italic], as long as it's not at the expense of fellow survivors. Scavenge what you need from those who haven't made it.
-
-  ## Cure
-  [bold][color=red]Slain[/color] zombies can be completely cured using [color=#86caf7]Ambuzol[/color] or [color=#1274b5]Ambuzol Plus[/color].[/bold]
-
-  If someone is infected but has not yet turned into a zombie, [color=#86caf7]Ambuzol[/color] can be used to cure the active infection. [color=#1274b5]Ambuzol Plus[/color] can be used to both cure and completely protect you from re-infection!
+  Если человек заражён, но ещё не стал зомби, [color=#86caf7]Амбузол[/color] вылечит активную инфекцию. [color=#1274b5]Амбузол Плюс[/color] не только вылечит, но и полностью защитит от повторного заражения!
 
   <Box>
     <GuideReagentEmbed Reagent="Ambuzol"></GuideReagentEmbed>
