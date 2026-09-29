@@ -22,6 +22,17 @@ public sealed class LogWindowTest : InteractionTest
         var log = Server.Resolve<IAdminLogManager>();
         var guid = Guid.NewGuid();
         await Server.WaitPost(() => log.Add(LogType.Unknown, $"{SPlayer} test log 1: {guid}"));
+        // Arcane-start
+        await PoolManager.WaitUntil(Server, async () =>
+        {
+            var logs = await log.CurrentRoundLogs(new LogFilter
+            {
+                Search = guid.ToString()
+            });
+
+            return logs.Count == 1;
+        });
+        // Arcane-end
 
         // Click the admin button in the menu bar
         await ClickWidgetControl<GameTopMenuBar, MenuButton>(nameof(GameTopMenuBar.AdminButton));

@@ -92,6 +92,20 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public Color? CachedHairColor;
 
+    // Arcane-Start
+    [DataField, AutoNetworkedField]
+    public bool HairGradientEnabled;
+
+    [DataField, AutoNetworkedField]
+    public List<Color> HairGradientColors = new() { Color.Black, Color.Black };
+
+    [DataField, AutoNetworkedField]
+    public HairGradientStyle HairGradientStyle = HairGradientStyle.Ombre;
+
+    [DataField, AutoNetworkedField]
+    public float HairGradientOffset = 0.5f;
+    // Arcane-End
+
     /// <summary>
     ///     Facial Hair color of this humanoid. Used to avoid looping through all markings
     /// </summary>

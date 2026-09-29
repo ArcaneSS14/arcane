@@ -119,22 +119,11 @@ public sealed partial class TTSSystem : EntitySystem
         var isRadio = ev.SourceUid == null && ev.Frequency is { };
         var isGhost = _ghostSystem.IsGhost;
 
-        if (isRadio)
-        {
-            if (isGhost)
-            {
-                if (!_ghostRadioUseTTS)
-                    return;
-            }
-            else if (!_useTTS)
-            {
-                return;
-            }
-        }
-        else if (!_useTTS)
-        {
+        if (!_useTTS)
             return;
-        }
+
+        if (isRadio && isGhost && !_ghostRadioUseTTS)
+            return;
 
         if (ev.SourceUid == null && ev.Frequency is { } frequency && _mutedRadioChannels.Contains(frequency))
             return;

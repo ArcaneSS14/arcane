@@ -34,6 +34,7 @@ bwoink-system-typing-indicator = {$players} {$count ->
 [one] is
 *[other] are
 } typing...
+bwoink-history-round-separator = Round #{$round}
 
 admin-ahelp-admin-only = Admin Only
 admin-ahelp-admin-only-tooltip = If checked, then the message won't be visible for the player,

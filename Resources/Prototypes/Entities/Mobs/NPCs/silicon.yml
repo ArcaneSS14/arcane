@@ -147,6 +147,10 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai #couldn't decide if this should be borg or pai sounds so I flipped a coin.
+  # Arcane-Start
+  - type: TTS
+    voice: Fact_core
+  # Arcane-End
 
 - type: entity
   parent: MobSiliconBase

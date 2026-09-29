@@ -4,24 +4,26 @@
   description: trait-catnature-desc
   category: Nature
   cost: 1
-  components:      
+  components:
   - type: Nature
     emoteTag: FelinidEmotes
     newSounds:
       Male: MaleFelinid
       Female: FemaleFelinid
       Unsexed: MaleFelinid
-  
+      Futanari: FemaleFelinid
+
 - type: trait
   id: FoxNature
   name: trait-foxnature-name
   description: trait-foxnature-desc
   category: Nature
   cost: 1
-  components:      
+  components:
   - type: Nature
     emoteTag: VulpEmotes
     newSounds:
       Male: MaleVulpkanin
       Female: FemaleVulpkanin
       Unsexed: MaleVulpkanin
+      Futanari: FemaleVulpkanin

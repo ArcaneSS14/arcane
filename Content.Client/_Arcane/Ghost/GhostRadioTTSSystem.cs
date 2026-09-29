@@ -37,6 +37,7 @@ public sealed class GhostRadioTTSSystem : EntitySystem
         _ghostSystem.PlayerDetached += OnPlayerDetached;
         _ghostSystem.PlayerRemoved += OnPlayerRemoved;
         _actionsSystem.OnActionAdded += OnActionAdded;
+        _actionsSystem.ActionsUpdated += OnActionsUpdated;
     }
 
     public override void Shutdown()
@@ -47,6 +48,7 @@ public sealed class GhostRadioTTSSystem : EntitySystem
         _ghostSystem.PlayerDetached -= OnPlayerDetached;
         _ghostSystem.PlayerRemoved -= OnPlayerRemoved;
         _actionsSystem.OnActionAdded -= OnActionAdded;
+        _actionsSystem.ActionsUpdated -= OnActionsUpdated;
     }
 
     private void OnToggleGhostRadioTTS(EntityUid uid, GhostComponent component, ToggleGhostRadioTTSActionEvent args)
@@ -83,6 +85,22 @@ public sealed class GhostRadioTTSSystem : EntitySystem
             return;
 
         _actions.SetToggled((actionId, null), _cfg.GetCVar(ACCVars.TTSGhostRadioUseTTS));
+    }
+
+    private void OnActionsUpdated()
+    {
+        if (!_ghostSystem.IsGhost || _player.LocalEntity is not { } user)
+            return;
+
+        if (CompOrNull<ActionsComponent>(user) is not { } actionsComp)
+            return;
+
+        var enabled = _cfg.GetCVar(ACCVars.TTSGhostRadioUseTTS);
+        foreach (var actionId in actionsComp.Actions)
+        {
+            if (IsGhostRadioTTSAction(actionId))
+                _actions.SetToggled((actionId, null), enabled);
+        }
     }
 
     private bool IsGhostRadioTTSAction(EntityUid actionId)

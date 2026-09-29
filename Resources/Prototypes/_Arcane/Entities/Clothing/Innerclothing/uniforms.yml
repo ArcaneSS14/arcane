@@ -505,3 +505,49 @@
     sprite: _Arcane/Clothing/Innerclothing/Sponsor/sterile.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/Sponsor/sterile.rsi
+
+# USSP
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformUSSPSolemn
+  name: solemn police uniform
+  description: Observe uniform regulations at the ceremony.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/USSP/solemn.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/USSP/solemn.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformUSSPBlue
+  name: blue police uniform
+  description: Observe uniform regulations while on duty.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/USSP/blue_police.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/USSP/blue_police.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformUSSPDarkBlue
+  name: dark blue police uniform
+  description: Observe uniform regulations while on duty.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/USSP/dark_blue.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/USSP/dark_blue.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformUSSPInvestigator
+  name: investigator uniform
+  description: Observe uniform regulations while on duty.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/USSP/investigator.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/USSP/investigator.rsi

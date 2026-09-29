@@ -10,10 +10,10 @@
     checkCanInteract: false
     raiseOnUser: true
     icon:
-      sprite: Clothing/Ears/Headsets/security.rsi
-      state: icon
+      sprite: _Arcane/Interface/Actions/ghost_radio_tts.rsi
+      state: icon_disabled
     iconOn:
       sprite: Clothing/Ears/Headsets/security.rsi
-      state: icon_alt
+      state: icon
   - type: InstantAction
     event: !type:ToggleGhostRadioTTSActionEvent

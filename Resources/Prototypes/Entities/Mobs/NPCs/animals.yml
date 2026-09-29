@@ -2854,6 +2854,10 @@
     color: "#808080"
     activateSound: null
     deactivateSound: null
+  # Arcane-Start
+  - type: TTS
+    voice: Broodmother_dota_2
+  # Arcane-End
 
 - type: entity
   parent: MobSpiderBase

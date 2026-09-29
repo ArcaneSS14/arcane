@@ -76,3 +76,148 @@
     sprite: _Arcane/Clothing/Shoes/Sponsor/worker_boots.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Shoes/Sponsor/worker_boots.rsi
+
+# Dressmate
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesWhite
+  name: white shoes
+  description: White dance shoes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/white_shoes.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/white_shoes.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesThighHighWithoutHeels
+  name: thigh-high boots without heels
+  description: It was originally created for walking through the mud. Now it's usually usually used to stomp on faces.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/thigh_high_without_heels.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/thigh_high_without_heels.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesThighHighBoots
+  name: thigh-high boots
+  description: It was originally created for walking through the mud. Now it's usually usually used to stomp on faces.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/thigh_high_boots.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/thigh_high_boots.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesStuddedLaceUpBoots
+  name: studded lace-up boots
+  description: Dense leather boots, comfortable for running around the station and kicking doors down.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/studded_lace_up_boots.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/studded_lace_up_boots.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesSolidGeta
+  name: solid geta
+  description: Japanese wooden shoes resembling a bench on legs.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/solid_geta.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/solid_geta.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesGeta
+  name: geta
+  description: Japanese wooden shoes resembling a bench on legs.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/geta.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/geta.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesGetaWithOneBoard
+  name: geta with one board
+  description: Japanese wooden shoes resembling a bench on legs.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/geta_one_board.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/geta_one_board.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesRed
+  name: red shoes
+  description: Red dance shoes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/red_shoes.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/red_shoes.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesClassicPumps
+  name: classic pumps
+  description: Old-fashioned classic shoes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/classic_pumps.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/classic_pumps.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesBlue
+  name: blue shoes
+  description: Blue dance shoes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/blue_shoes.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/blue_shoes.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesBlack
+  name: black shoes
+  description: Black dance shoes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/black_shoes.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/black_shoes.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesBlackWithDenseHeel
+  name: black shoes with dense heel
+  description: Black dance shoes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/black_shoes_with_dense_heel.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/black_shoes_with_dense_heel.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesBDSMBoots
+  name: BDSM boots
+  description: Someone will have fun tonight...
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/bdsm_boots.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/bdsm_boots.rsi

@@ -127,6 +127,10 @@
   - type: Item
     heldPrefix: borg-chest
   - type: BodyPart
+    # Arcane-start
+    itemInsertionSlot:
+      locked: true
+    # Arcane-end
     children:
       right arm:
         id: right arm
