@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Announcements;
 using Content.Server.Discord;
+using Content.Server._Arcane.Reputation;
 using Content.Server.GameTicking.Events;
 using Content.Server.Roles;
 using Content.Shared.CCVar;
@@ -42,6 +43,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly DiscordWebhook _discord = default!;
         [Dependency] private readonly RoleSystem _role = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
+        [Dependency] private readonly ReputationSystem _repSys = default!; // Arcane
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -601,6 +603,11 @@ namespace Content.Server.GameTicking
 
                 #endregion
                 // END
+
+                // Arcane-Start
+                if (userId != null)
+                    _repSys.TryModifyReputationOnRoundEnd(userId.Value, out _, out _);
+                // Arcane-End
 
                 var playerEndRoundInfo = new RoundEndMessageEvent.RoundEndPlayerInfo()
                 {

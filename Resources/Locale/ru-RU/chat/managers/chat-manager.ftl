@@ -25,9 +25,10 @@ chat-manager-entity-say-bold-wrap-message = [BubbleHeader][bold][Name]{ $entityN
 chat-manager-entity-whisper-wrap-message = [font size=11][italic][BubbleHeader][Name]{ $entityName }[/Name][/BubbleHeader] шепчет, "[BubbleContent][color={ $color }][font="{ $fontType }"]{ $message }[/font][/color][/BubbleContent][font size=11]"[/italic][/font]
 chat-manager-entity-whisper-unknown-wrap-message = [font size=11][italic][BubbleHeader]Кто-то[/BubbleHeader] шепчет, "[BubbleContent][color={ $color }][font="{ $fontType }"]{ $message }[/color][/font][/BubbleContent][font size=11]"[/italic][/font]
 chat-manager-entity-me-wrap-message = [italic]{ CAPITALIZE($entityName) } { $message }[/italic]
-chat-manager-entity-looc-wrap-message = [BubbleContent][bold][color=cyan]|LOOC|[/color][/bold] [color=lightblue]{ $entityName }: { $message }[/color][/BubbleContent]
-chat-manager-send-ooc-wrap-message = OOC: [bold]{ $playerName }:[/bold] { $message }
-chat-manager-send-ooc-patron-wrap-message = OOC: [icon src="{$tierIcon}"/] [bold][color={$patronColor}]{$playerName}[/color]:[/bold] {$message}
+chat-manager-entity-looc-wrap-message = [BubbleContent][bold][color=cyan]|LOOC|[/color][/bold] [color=lightblue]{ $entityName }{$rep}: { $message }[/color][/BubbleContent]
+chat-manager-send-ooc-wrap-message = OOC: [bold]{$playerName}{$rep}:[/bold] {$message}
+chat-manager-send-ooc-patron-wrap-message = OOC: [icon src="{$tierIcon}"/] [bold][color={$patronColor}]{$playerName}[/color]{$rep}:[/bold] {$message}
+chat-manager-send-ooc-patron-wrap-message-no-icon = OOC: [bold][color={$patronColor}]{$playerName}[/color]{$rep}:[/bold] {$message}
 chat-manager-send-dead-chat-wrap-message = { $deadChannelName }: [bold][BubbleHeader]{ $playerName }[/BubbleHeader]:[/bold] [BubbleContent]{ $message }[/BubbleContent]
 chat-manager-send-admin-dead-chat-wrap-message = { $adminChannelName }: [bold]([BubbleHeader]{ $userName }[/BubbleHeader]):[/bold] [BubbleContent]{ $message }[/BubbleContent]
 chat-manager-send-admin-chat-wrap-message = { $adminChannelName }: [bold]{ $playerName }:[/bold] { $message }

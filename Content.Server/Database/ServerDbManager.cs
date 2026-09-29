@@ -400,6 +400,29 @@ namespace Content.Server.Database
         Task SendNotification(DatabaseNotification notification);
 
         #endregion
+
+        // Arcane-Start
+        /// <summary>
+        /// Set player's reputation to a certain value.
+        /// </summary>
+        /// <param name="player">Guid of the player to set the value for.</param>
+        /// <param name="value">Value to set.</param>
+        Task SetPlayerReputation(Guid player, float value);
+
+        /// <summary>
+        /// Modify player's reputation by adding value (currentValue + value).
+        /// </summary>
+        /// <param name="player">Guid of the player to modify the value for.</param>
+        /// <param name="value">Value to add.</param>
+        Task ModifyPlayerReputation(Guid player, float value);
+
+        /// <summary>
+        /// Gets the value of a player's reputation. Defaults to 0 for unknown players.
+        /// </summary>
+        /// <param name="player">Guid of the player to get the value for.</param>
+        /// <returns>Value of player's reputation.</returns>
+        Task<float> GetPlayerReputation(Guid player);
+        // Arcane-End
     }
 
     /// <summary>
@@ -1309,6 +1332,24 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.SendNotification(notification));
+        }
+
+        public Task SetPlayerReputation(Guid player, float value)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SetPlayerReputation(player, value));
+        }
+
+        public Task ModifyPlayerReputation(Guid player, float value)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.ModifyPlayerReputation(player, value));
+        }
+
+        public Task<float> GetPlayerReputation(Guid player)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPlayerReputation(player));
         }
 
         private async void HandleDatabaseNotification(DatabaseNotification notification)

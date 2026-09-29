@@ -26,6 +26,8 @@ using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Shared.Damage;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Server._Arcane.Reputation;
+using Content.Shared._Arcane.CCVars;
 
 namespace Content.Server.Chat.Managers;
 
@@ -276,8 +278,21 @@ internal sealed partial class ChatManager : IChatManager
             return;
         }
 
+        // Arcane-Start
+        var reputation = "";
+        if (
+            // _configurationManager.GetCVar(WhiteCVars.ReputationShowInOoc)
+            _entityManager.TrySystem<ReputationManager>(out var repManager)
+            && repManager.GetCachedPlayerReputation(player.UserId, out var repValue)
+            && repValue != null)
+        {
+            var color = repValue >= 0 ? "green" : "red";
+            reputation = $"[color={color}]({repValue})[/color]";
+        }
+        // Arcane-End
+
         Color? colorOverride = null;
-        var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName",player.Name), ("message", FormattedMessage.EscapeText(message)));
+        var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName",player.Name), ("message", FormattedMessage.EscapeText(message)), ("rep", reputation)); // Arcane-Edit
         if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {
             var prefs = _preferencesManager.GetPreferences(player.UserId);
@@ -294,7 +309,8 @@ internal sealed partial class ChatManager : IChatManager
                     ("tierIcon", tier.Icon),
                     ("patronColor", patronColor),
                     ("playerName", player.Name),
-                    ("message", FormattedMessage.EscapeText(message)));
+                    ("message", FormattedMessage.EscapeText(message)),
+                    ("rep", reputation)); // Arcane
             }
             else
             {

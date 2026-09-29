@@ -52,6 +52,7 @@ namespace Content.Server.Database
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
         public DbSet<DBJobAlternateTitle> DBJobAlternateTitle { get; set; } = null!; // Arcane
+        public DbSet<PlayerReputation> PlayerReputations { get; set; } = default!; // Arcane
 
         // RMC14
         public DbSet<RMCDiscordAccount> RMCDiscordAccounts { get; set; } = default!;
@@ -450,6 +451,15 @@ namespace Content.Server.Database
 
         public abstract int CountAdminLogs();
     }
+
+    // Arcane-Start
+    public class PlayerReputation
+    {
+        public int Id { get; set; }
+        public Guid UserId { get; set; }
+        public float Reputation { get; set; }
+    }
+    // Arcane-End
 
     public class Preference
     {
