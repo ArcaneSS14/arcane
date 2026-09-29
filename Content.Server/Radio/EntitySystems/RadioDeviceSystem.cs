@@ -17,8 +17,8 @@ using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Power.EntitySystems;
-using Content.Shared._Arcane.TTS; // Arcane
-using Content.Shared._EinsteinEngines.Language; // Arcane
+using Content.Shared._Arcane.TTS;
+using Content.Shared._EinsteinEngines.Language;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Radio.EntitySystems;
@@ -192,9 +192,9 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
         var message = args.OriginalChatMsg.Message; // The chat system will handle the rest and re-obfuscate if needed.
 
-        var chatType = component.SpeakNormally ? InGameICChatType.Speak : InGameICChatType.Whisper; // Goobstation - radio host
-
         // Arcane-Start
+        var chatType = component.SpeakNormally ? InGameICChatType.Speak : InGameICChatType.Whisper;
+
         if (TryComp<TTSComponent>(args.MessageSource, out var sourceTts) && sourceTts.VoicePrototype is { } voiceId)
         {
             var speakerTts = TryComp<TTSComponent>(uid, out var existingTts) ? existingTts : AddComp<TTSComponent>(uid);
@@ -216,17 +216,17 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
         else
             SendRelayMessage(uid, message, chatType, name, component, args.Language);
     }
-    // Arcane-End
 
     private void SendRelayMessage(EntityUid uid, string message, InGameICChatType chatType, string name, RadioSpeakerComponent component, LanguagePrototype language) // Arcane-Edit
+    // Arcane-End
     {
         _chat.TrySendInGameICMessage(uid,
             message,
-            chatType,
+            chatType, // Arcane-Edit
             ChatTransmitRange.GhostRangeLimit,
             nameOverride: name,
             checkRadioPrefix: component.SpeakNormally,
-            languageOverride: language); // Einstein Engines - Languages
+            languageOverride: language); // Arcane-Edit
     }
 
     private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)

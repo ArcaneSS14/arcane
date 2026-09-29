@@ -1,5 +1,3 @@
-// Arcane-maded file. Client-side audio stream.
-
 using Content.Goobstation.Shared.StationRadio.Components;
 using Content.Goobstation.Shared.StationRadio.Systems;
 using Content.Shared._Arcane.CCVars;
@@ -14,7 +12,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
 using Robust.Shared.Timing;
 
-namespace Content.Goobstation.Client.StationRadio;
+namespace Content.Client._Arcane.StationRadio;
 
 public sealed class StationRadioReceiverAudioSystem : EntitySystem
 {

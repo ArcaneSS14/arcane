@@ -47,7 +47,7 @@ public sealed class StationRadioReceiverSystem : EntitySystem
         // Arcane-Edit-End
     }
 
-    // Arcane-Edit-Start
+    // Arcane-Start
     public static float ComputeVolumeForRadio(float defaultVolume, float personalMultiplier, bool powered, bool active)
     {
         if (!powered || !active)
@@ -58,6 +58,6 @@ public sealed class StationRadioReceiverSystem : EntitySystem
             : SharedAudioSystem.GainToVolume(personalMultiplier);
 
         return defaultVolume + gain;
+    // Arcane-End
     }
-    // Arcane-Edit-End
 }
