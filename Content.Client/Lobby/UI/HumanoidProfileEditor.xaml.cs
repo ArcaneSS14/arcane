@@ -45,6 +45,7 @@ using Content.Goobstation.Common.CCVar; // Goob Station - Barks
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Orion.RichText;
 using Content.Client._Arcane.TTS;
+using Content.Client._Arcane.StyleSheets; // Arcane
 using Content.Shared._Arcane.ERP;
 using Content.Shared._Arcane.TTS;
 using Content.Shared._Arcane.CCVars;
@@ -1582,7 +1583,7 @@ namespace Content.Client.Lobby.UI
 
                     category.AddChild(new PanelContainer
                     {
-                        PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#464966") },
+                        StyleClasses = { ArcaneStyleClass.DepartmentHeader }, // Arcane
                         Children =
                         {
                             new Label
