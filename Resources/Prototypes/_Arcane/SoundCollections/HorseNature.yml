@@ -27,7 +27,7 @@
 - type: soundCollection
   id: HorseSnorts
   files:
-    - /Audio/_Arcane/Voice/HorseNature/Horse_snorts.ogg
+    - /Audio/_Arcane/Voice/HorseNature/horse_snorts.ogg
 
 
 - type: soundCollection
