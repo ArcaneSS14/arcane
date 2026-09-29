@@ -36,7 +36,6 @@ using Robust.Shared.Utility;
 using Robust.Shared.Configuration; // Goobstation
 using Content.Goobstation.Common.CCVar; // Goobstation
 using Content.Client._Arcane.UserInterface.Systems.Actions.Controls;
-using Content.Shared._Arcane.CCVars;
 using static Content.Client.Actions.ActionsSystem;
 using static Content.Client.UserInterface.Systems.Actions.Windows.ActionsWindow;
 using static Robust.Client.UserInterface.Control;
@@ -669,13 +668,6 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
                 return;
             }
         }
-
-        // При блокировке панели допустим только перенос слотов
-        if (_cfg.GetCVar(GoobCVars.LockActionBarDrag) && _window is not { IsOpen: true })
-        {
-            _menuDragHelper.EndDrag();
-            return;
-        }
         // Arcane-End
 
         if (currentlyHovered is ActionButton button)
@@ -757,7 +749,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (button.Action != null)
         {
             // Goobstation - only allow drag if lock setting is off or actions menu is open
-            if (!_cfg.GetCVar(GoobCVars.LockActionBarDrag) || _window is { IsOpen: true } || _cfg.GetCVar(ACCVars.ActionsBarFreePlacement)) // Arcane-Edit
+            if (!_cfg.GetCVar(GoobCVars.LockActionBarDrag) || _window is { IsOpen: true })
                 _menuDragHelper.MouseDown(button);
             return;
         }
@@ -836,8 +828,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     {
         LayoutContainer.SetPosition(_dragShadow, UIManager.MousePositionScaled.Position - new Vector2(32, 32));
         _dragShadow.Visible = true;
-        // Arcane
-        _container?.UpdateReturnHint(_menuDragHelper.Dragged, UIManager.MousePositionScaled.Position);
+        _container?.UpdateReturnHint(_menuDragHelper.Dragged, UIManager.MousePositionScaled.Position); // Arcane
         return true;
     }
 

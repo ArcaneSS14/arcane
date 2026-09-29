@@ -63,24 +63,23 @@ public partial class ActionButtonContainer
         if (!Layout.FreePlacementEnabled || !TryGetButtonIndex(button, out var slot))
             return false;
 
-        // Вынесенный слот, брошенный рядом с панелью, возвращается в неё
-        if (Layout.SlotPositions.ContainsKey(slot))
-        {
-            if (IsDetachedButton(dropTarget) && dropTarget != button)
-                return false;
+        var detached = Layout.SlotPositions.ContainsKey(slot);
 
-            if ((dropTarget == null || !IsInsideWindow(dropTarget)) && IsInReturnZone(mousePosition))
-            {
-                Layout.ClearSlotPosition(slot);
-                return true;
-            }
-        }
-
-        if (dropTarget is ActionButton)
+        // Бросок на другую кнопку меняет действия местами, кроме возврата вынесенного слота на панель
+        if (dropTarget is ActionButton && dropTarget != button && (!detached || IsDetachedButton(dropTarget)))
             return false;
 
         if (PositionSpace is not { } space || dropTarget != null && IsInsideWindow(dropTarget))
             return false;
+
+        // Вынесенный слот возвращается в панель, а слот из панели остаётся на месте
+        if (IsInReturnZone(mousePosition))
+        {
+            if (detached)
+                Layout.ClearSlotPosition(slot);
+
+            return true;
+        }
 
         var position = mousePosition - space.GlobalPosition - button.Size / 2;
         Layout.SetSlotPosition(slot,

@@ -42,6 +42,7 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
         // Arcane-Start
         _actionsPlacement = new ActionsBarPlacement(Actions, () => new Vector2(10, 10));
         _actionsPlacement.LayoutChanged += UpdateVoteMenuOffset;
+        Actions.OnVisibilityChanged += _ => UpdateVoteMenuOffset();
         _actionsPlacement.UpdateLayout();
         UpdateVoteMenuOffset();
         // Arcane-End
