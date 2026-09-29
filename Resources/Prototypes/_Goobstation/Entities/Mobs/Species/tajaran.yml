@@ -33,7 +33,7 @@
     prototype: Tajaran
     requiredLegs: 2
   - type: Damageable
-    damageModifierSet: Tajaran
+#    damageModifierSet: Tajaran # Arcane-Edit
   - type: TemperatureProtection # fur is a good insulator, actually
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1

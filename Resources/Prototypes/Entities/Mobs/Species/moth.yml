@@ -21,7 +21,7 @@
     requiredLegs: 2
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Moth
+#    damageModifierSet: Moth # Arcane-Edit
   - type: NightVision
     color: Gray
     activateSound: null

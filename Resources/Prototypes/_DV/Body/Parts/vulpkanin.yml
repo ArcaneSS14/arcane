@@ -12,7 +12,7 @@
   - type: BodyPart
     species: Vulpkanin
   - type: Damageable # Shitmed
-    damageModifierSet: Vulpkanin
+#    damageModifierSet: Vulpkanin # Arcane-Edit
 
 - type: entity
   parent: [ PartVulpkaninBase, BaseChest ]

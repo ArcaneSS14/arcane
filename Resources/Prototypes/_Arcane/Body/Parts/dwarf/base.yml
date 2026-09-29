@@ -5,4 +5,4 @@
   - type: BodyPart
     species: Dwarf
   - type: Damageable
-    damageModifierSet: Dwarf
+#    damageModifierSet: Dwarf # Arcane-Edit
