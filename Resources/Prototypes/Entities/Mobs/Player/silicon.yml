@@ -44,7 +44,10 @@
     - ActionAIViewLaws
     - ActionOpenRemoteDevicesMenu # Corvax-Next-AiRemoteControl
     - ActionOpenCameraWarpMenu # Goobstation-Ai-Camera-Jumping
-    - ActionTTSVoiceChange # Arcane
+    # Arcane-Start
+    - ActionTTSVoiceChange
+    - ActionOpenRadioChannels
+    # Arcane-End
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
