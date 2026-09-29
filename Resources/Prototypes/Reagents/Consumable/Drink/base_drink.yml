@@ -32,6 +32,18 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+    # Arcane-Start
+    Poison:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type:
+            - HumanoidXeno # Arcane
+          damage:
+            types:
+              Poison: 2
+      # Arcane-End
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 0.1

@@ -508,6 +508,7 @@
             type:
             - Yowie # Goobstation - Yowie
             - Vox # Goob, Vox are stinky
+            - HumanoidXeno # Arcane
             inverted: true
           damage:
             types:
@@ -560,6 +561,7 @@
           - XenobioSlime # Goobstation - XenobioSlime
           - Hydrakin # Fuck you
           - Slime # Arcane
+          - HumanoidXeno # Arcane
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -577,6 +579,7 @@
           - XenobioSlime # Goobstation - XenobioSlime
           - Hydrakin # Fuck you
           - Slime # Arcane
+          - HumanoidXeno # Arcane
           inverted: true
       - !type:HealthChange
         conditions:
@@ -589,6 +592,7 @@
           - XenobioSlime # Goobstation - XenobioSlime
           - Hydrakin # Fuck you
           - Slime # Arcane
+          - HumanoidXeno # Acrane
           inverted: true
         damage:
           types:
