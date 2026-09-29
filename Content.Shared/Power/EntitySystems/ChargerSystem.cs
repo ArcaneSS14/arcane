@@ -26,7 +26,7 @@ public sealed class ChargerSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ChargerComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<ChargerComponent, ComponentInit>(OnStartup);
         SubscribeLocalEvent<ChargerComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<ChargerComponent, EntInsertedIntoContainerMessage>(OnInserted);
         SubscribeLocalEvent<ChargerComponent, EntRemovedFromContainerMessage>(OnRemoved);
@@ -41,7 +41,7 @@ public sealed class ChargerSystem : EntitySystem
         SubscribeLocalEvent<InsideChargerComponent, BatteryStateChangedEvent>(OnStatusChanged);
     }
 
-    private void OnStartup(Entity<ChargerComponent> ent, ref ComponentStartup args)
+    private void OnStartup(Entity<ChargerComponent> ent, ref ComponentInit args)
     {
         ent.Comp.BaseChargeRate = ent.Comp.ChargeRate; // Orion
         UpdateStatus(ent);

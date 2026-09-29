@@ -143,3 +143,21 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Neck/Sponsor/ian_cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakSolemnCap
+  name: solemn captain cloak
+  description: Luxurious fur-trimmed cloak for special occasions.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/cap.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakSolemnQM
+  name: solemn QM's cloak
+  description: Luxurious fur-trimmed cloak for special occasions.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Sponsor/QM.rsi

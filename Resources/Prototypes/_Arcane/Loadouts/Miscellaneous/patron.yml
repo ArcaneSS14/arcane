@@ -419,6 +419,26 @@
   equipment:
     outerClothing: ClothingOuterLightBronnik
 
+- type: loadout
+  id: CloakSolemnCapPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    neck: ClothingCloakSolemnCap
+
+- type: loadout
+  id: CloakSolemnQMPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    neck: ClothingCloakSolemnQM
+
 # Service
 
 - type: loadout

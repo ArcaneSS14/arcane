@@ -30,6 +30,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Players;
 using Content.Shared.Roles;
 using Content.Shared.Whitelist;
@@ -97,7 +98,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (!Exists(rule) || !TryComp<AntagSelectionComponent>(rule, out var select))
             return;
 
-        MakeAntag((rule, select), args.Player, def, ignoreSpawner: true);
+        // Arcane-Edit-Start
+        if (!MakeAntag((rule, select), args.Player, def, ignoreSpawner: true))
+            return;
+        // Arcane-Edit-End
+
         args.TookRole = true;
         _ghostRole.UnregisterGhostRole((ent, Comp<GhostRoleComponent>(ent)));
     }
@@ -374,7 +379,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!ent.Comp.PreSelectedSessions.TryGetValue(def, out var set))
                 continue;
 
-            foreach (var session in set)
+            foreach (var session in set.ToArray()) // Arcane-Edit
             {
                 TryMakeAntag(ent, session, def);
             }
@@ -413,19 +418,19 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             set.Add(session);
             Log.Debug($"Pre-selected {session!.Name} as antagonist: {ToPrettyString(ent)}");
             _adminLogger.Add(LogType.AntagSelection, $"Pre-selected {session.Name} as antagonist: {ToPrettyString(ent)}");
-        }
-        else
-        {
-            MakeAntag(ent, session, def, ignoreSpawner);
+
+            // Arcane-Edit-Start
+            return true;
         }
 
-        return true;
+        return MakeAntag(ent, session, def, ignoreSpawner);
+        // Arcane-Edit-End
     }
 
     /// <summary>
     /// Makes a given player into the specified antagonist.
     /// </summary>
-    public void MakeAntag(Entity<AntagSelectionComponent> ent, ICommonSession? session, AntagSelectionDefinition def, bool ignoreSpawner = false)
+    public bool MakeAntag(Entity<AntagSelectionComponent> ent, ICommonSession? session, AntagSelectionDefinition def, bool ignoreSpawner = false) // Arcane-Edit void > bool
     {
         EntityUid? antagEnt = null;
         var isSpawner = false;
@@ -468,8 +473,41 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             }
             // </Trauma>
 
-            return;
+            return false; // Arcane-Edit
         }
+
+        // Arcane-Start
+        var checkMind = session?.GetMind();
+        if (checkMind == null && TryComp<MindContainerComponent>(player, out var mindContainer))
+            checkMind = _mind.GetMind(player, mindContainer);
+
+        if (checkMind.HasValue && def.MindRoles != null)
+        {
+            if (TryComp<MindComponent>(checkMind.Value, out var mindComp))
+            {
+                foreach (var roleEntity in mindComp.MindRoleContainer.ContainedEntities)
+                {
+                    var roleProto = EntityManager.GetComponent<MetaDataComponent>(roleEntity).EntityPrototype?.ID;
+
+                    if (roleProto != null && def.MindRoles.Contains(roleProto))
+                    {
+                        Log.Debug($"Player {player} already has a role {roleProto} inside the MindRoleContainer. Canceling assignment.");
+
+                        if (session != null)
+                        {
+                            ent.Comp.AssignedSessions.Remove(session);
+                            if (ent.Comp.PreSelectedSessions.TryGetValue(def, out var assignedSet))
+                            {
+                                assignedSet.Remove(session);
+                            }
+                        }
+
+                        return false;
+                    }
+                }
+            }
+        }
+        // Arcane-End
 
         if (def.UnequipOldGear && TryComp(player, out InventoryComponent? inventory) &&
             _inventory.TryGetSlots(player, out var slots))
@@ -508,12 +546,12 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                     ent.Comp.PreSelectedSessions[def].Remove(session);
                 }
 
-                return;
+                return false; // Arcane-Edit
             }
 
             spawnerComp.Rule = ent;
             spawnerComp.Definition = def;
-            return;
+            return true; // Arcane-Edit
         }
 
         // The following is where we apply components, equipment, and other changes to our antagonist entity.
@@ -553,6 +591,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         var afterEv = new AfterAntagEntitySelectedEvent(session, player, ent, def);
         RaiseLocalEvent(ent, ref afterEv, true);
+
+        return true; // Arcane
     }
 
     /// <summary>

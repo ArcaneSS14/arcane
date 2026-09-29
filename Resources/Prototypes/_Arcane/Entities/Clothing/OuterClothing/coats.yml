@@ -103,7 +103,7 @@
     sprite: _Arcane/Clothing/OuterClothing/Sponsor/apostol.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/OuterClothing/Sponsor/apostol.rsi
-    
+
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatAdjutant
@@ -114,3 +114,38 @@
     sprite: _Arcane/Clothing/OuterClothing/Coats/adjutantcoat.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/OuterClothing/Coats/adjutantcoat.rsi
+
+# USSP
+
+- type: entity
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase]
+  id: ClothingOuterUSSPTrenchCoat
+  name: trench coat
+  description: A warm coat will protect against the harsh cold.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/USSP/trench_coat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/USSP/trench_coat.rsi
+
+- type: entity
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase]
+  id: ClothingOuterUSSPInvestigator
+  name: investigator coat
+  description: A black, baggy coat. A good coat for hiding something.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/USSP/investigator.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/USSP/investigator.rsi
+
+- type: entity
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase]
+  id: ClothingOuterUSSPGreatcoat
+  name: police greatcoat
+  description: A warm coat will protect against the harsh cold.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/USSP/greatcoat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/USSP/greatcoat.rsi

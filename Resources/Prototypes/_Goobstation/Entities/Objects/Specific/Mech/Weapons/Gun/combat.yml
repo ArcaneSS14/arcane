@@ -274,8 +274,8 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: BatteryAmmoProvider
-    proto: GrenadeBlast
-    fireCost: 100 # Orion-Edit: 300 > 100
+    proto: BulletGrenadeFrag # Arcane-Edit
+    fireCost: 150 # Arcane-Edit 300 -> 150
   - type: Battery
     maxCharge: 300 # Battery is charged by mech
     startingCharge: 300

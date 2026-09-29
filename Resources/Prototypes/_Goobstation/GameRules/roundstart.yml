@@ -425,8 +425,10 @@
     definitions:
     - prefRoles: [ Devil ]
       max: 1
-      playerRatio: 40 # from 20 --> 40 , makes it less likely to spawn (Fuck devils)
-      chaosScore: 150
+      # Arcane-Edit-Start
+      playerRatio: 20
+      chaosScore: 50 # 150 > 50
+      # Arcane-Edit-End
       jobBlacklist: [ Chaplain, Mime, ChiefEngineer, ResearchDirector, Quartermaster ] #chaplain is obvious, mime can't write.
       mindRoles:
       - DevilMindRole

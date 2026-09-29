@@ -61043,7 +61043,7 @@ entities:
     - type: Transform
       pos: 31.515789,-24.396605
       parent: 2
-- proto: ChemDispenser
+- proto: EnergyChemDispenser
   entities:
   - uid: 6021
     components:

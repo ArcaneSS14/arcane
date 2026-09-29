@@ -3,8 +3,8 @@
 using Content.Client._Shitmed.Choice.UI;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Shared._Shitmed.Medical.Surgery;
-using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.DoAfter;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
@@ -23,7 +23,7 @@ public sealed class SurgeryBui : BoundUserInterface
     [ViewVariables]
     private SurgeryWindow? _window;
     private EntityUid? _part;
-    private bool _isBody;
+//    private bool _isBody; // Arcane-Edit
     private (EntityUid Ent, EntProtoId Proto)? _surgery;
     private readonly List<EntProtoId> _previousSurgeries = new();
     public SurgeryBui(EntityUid owner, Enum uiKey) : base(owner, uiKey) => _system = _entities.System<SurgerySystem>();
@@ -63,7 +63,7 @@ public sealed class SurgeryBui : BoundUserInterface
             _window.PartsButton.OnPressed += _ =>
             {
                 _part = null;
-                _isBody = false;
+//                _isBody = false; // Arcane-Edit
                 _surgery = null;
                 _previousSurgeries.Clear();
                 View(ViewType.Parts);
@@ -113,10 +113,13 @@ public sealed class SurgeryBui : BoundUserInterface
         foreach (var choice in state.Choices.Keys)
             if (_entities.TryGetEntity(choice, out var ent))
             {
+                // Arcane-Edit: surgery always targets a body part, so whole-body entries are not offered.
                 if (_entities.TryGetComponent(ent, out BodyPartComponent? part))
                     options.Add((choice, ent.Value, _entities.GetComponent<MetaDataComponent>(ent.Value).EntityName, part.PartType));
+                /* // Arcane-Edit-Start
                 else if (_entities.TryGetComponent(ent, out BodyComponent? body))
                     options.Add((choice, ent.Value, _entities.GetComponent<MetaDataComponent>(ent.Value).EntityName, null));
+                */ // Arcane-Edit-End
             }
 
         options.Sort((a, b) =>
@@ -189,7 +192,7 @@ public sealed class SurgeryBui : BoundUserInterface
         var stepName = new FormattedMessage();
         stepName.AddText(_entities.GetComponent<MetaDataComponent>(step).EntityName);
         var stepButton = new SurgeryStepButton { Step = step };
-        stepButton.Button.OnPressed += _ => SendPredictedMessage(new SurgeryStepChosenBuiMsg(netPart, surgeryId, stepId, _isBody));
+        stepButton.Button.OnPressed += _ => SendPredictedMessage(new SurgeryStepChosenBuiMsg(netPart, surgeryId, stepId)); // Arcane-Edit
 
         _window.Steps.AddChild(stepButton);
     }
@@ -200,7 +203,7 @@ public sealed class SurgeryBui : BoundUserInterface
             return;
 
         _part = _entities.GetEntity(netPart);
-        _isBody = _entities.HasComponent<BodyComponent>(_part);
+//        _isBody = _entities.HasComponent<BodyComponent>(_part); // Arcane-Edit
         _surgery = (surgery, surgeryId);
 
         _window.Steps.DisposeAllChildren();
@@ -238,7 +241,7 @@ public sealed class SurgeryBui : BoundUserInterface
             return;
 
         _part = _entities.GetEntity(netPart);
-        _isBody = _entities.HasComponent<BodyComponent>(_part);
+//        _isBody = _entities.HasComponent<BodyComponent>(_part); // Arcane-Edit
         _window.Surgeries.DisposeAllChildren();
 
         var surgeries = new List<(Entity<SurgeryComponent> Ent, EntProtoId Id, string Name)>();
@@ -276,7 +279,7 @@ public sealed class SurgeryBui : BoundUserInterface
         View(ViewType.Surgeries);
     }
 
-    private void RefreshUI()
+    public void RefreshUI() // Arcane-Edit
     {
         if (_window == null
             || !_window.IsOpen
@@ -289,6 +292,28 @@ public sealed class SurgeryBui : BoundUserInterface
             // Arcane-Edit-End
             return;
 
+        // Arcane-Start
+        EntProtoId? activeStepId = null;
+        if (_entities.TryGetComponent<ActiveDoAfterComponent>(_player.LocalEntity.Value, out _) &&
+            _entities.TryGetComponent<DoAfterComponent>(_player.LocalEntity.Value, out var userDoAfterComp))
+        {
+            foreach (var active in userDoAfterComp.DoAfters.Values)
+            {
+                if (active.Cancelled || active.Completed)
+                    continue;
+
+                if (active.Args.Event is SurgeryDoAfterEvent activeSurgery &&
+                    activeSurgery.Surgery == _surgery.Value.Proto &&
+                    active.Args.EventTarget == Owner &&
+                    active.Args.Target == _part.Value)
+                {
+                    activeStepId = activeSurgery.Step;
+                    break;
+                }
+            }
+        }
+        // Arcane-End
+
         var next = _system.GetNextStep(Owner, _part.Value, _surgery.Value.Ent, _player.LocalEntity.Value);
         var i = 0;
         foreach (var child in _window.Steps.Children)
@@ -296,8 +321,22 @@ public sealed class SurgeryBui : BoundUserInterface
             if (child is not SurgeryStepButton stepButton)
                 continue;
 
+            // Arcane-Edit-Start
+            var isActive = activeStepId != null && _system.GetSingleton(activeStepId.Value) == stepButton.Step;
+
             var status = StepStatus.Incomplete;
-            if (next == null)
+            if (isActive)
+            {
+                status = StepStatus.Next;
+            }
+            else if (activeStepId != null)
+            {
+                if (next != null && i < next.Value.Step)
+                    status = StepStatus.Complete;
+                else
+                    status = StepStatus.Incomplete;
+            }
+            else if (next == null)
                 status = StepStatus.Complete;
             else if (next.Value.Step < 0 && i > -next.Value.Step - 1)
                 status = StepStatus.Complete;
@@ -310,20 +349,34 @@ public sealed class SurgeryBui : BoundUserInterface
             else if (i < next.Value.Step)
                 status = StepStatus.Complete;
 
-            stepButton.Button.Disabled = status != StepStatus.Next;
+            stepButton.Button.Disabled = status != StepStatus.Next || isActive;
 
             var stepName = new FormattedMessage();
             stepName.AddText(_entities.GetComponent<MetaDataComponent>(stepButton.Step).EntityName);
 
-            if (status == StepStatus.Complete)
+            if (status == StepStatus.Complete && !isActive)
+            {
+                stepButton.ToolTip = null;
                 stepButton.Button.Modulate = Color.Green;
+            }
             else
             {
                 stepButton.Button.Modulate = Color.White;
-                if (status == StepStatus.Next
+                if (isActive)
+                {
+                    stepButton.ToolTip = Loc.GetString("surgery-error-action-busy");
+                }
+                else if (status == StepStatus.Next
                     && !_system.CanPerformStepWithHeld(_player.LocalEntity.Value, Owner, _part.Value, stepButton.Step, false, out var popup))
+                {
                     stepButton.ToolTip = popup;
+                }
+                else
+                {
+                    stepButton.ToolTip = null;
+                }
             }
+            // Arcane-Edit-End
 
             var texture = _entities.GetComponentOrNull<SpriteComponent>(stepButton.Step)?.Icon?.Default;
             stepButton.Set(stepName, texture);
