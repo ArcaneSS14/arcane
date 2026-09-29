@@ -52,7 +52,7 @@ public sealed class StationAddJobCommand : LocalizedEntityCommands
             return;
         }
 
-        if (!int.TryParse(args[3], out var amount) || amount < -1 || amount == -1 && mode != "set")
+        if (!int.TryParse(args[3], out var amount) || amount < -1 || mode != "set" && amount <= 0)
         {
             shell.WriteError(Loc.GetString("cmd-stationaddjob-invalid-amount"));
             return;
@@ -88,7 +88,12 @@ public sealed class StationAddJobCommand : LocalizedEntityCommands
             _stationJobs.TryAdjustJobSlot(uid, job, delta, createSlot: true, clamp: true, stationJobs: jobs);
         }
 
-        _stationJobs.TryGetJobSlot(uid, job, out var slots, jobs);
+        if (!_stationJobs.TryGetJobSlot(uid, job, out var slots, jobs))
+        {
+            shell.WriteError(Loc.GetString("cmd-stationaddjob-no-slot",
+                ("job", job.LocalizedName), ("station", stationName)));
+            return;
+        }
 
         _adminLog.Add(LogType.AdminCommands, LogImpact.Medium,
             $"{shell.Player?.Name ?? "Server"} changed {job.ID} slots on {EntityManager.ToPrettyString(uid)} ({mode} {amount}), now {slots?.ToString() ?? "unlimited"}");
