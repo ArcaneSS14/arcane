@@ -8,6 +8,9 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
+using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
+using Content.Shared._Shitmed.Targeting;
+using Content.Shared._Shitmed.Targeting.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -37,6 +40,7 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ThirstSystem _thirst = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
+    [Dependency] private readonly WoundSystem _wound = default!;
 
     public override void Initialize()
     {
@@ -102,6 +106,8 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
             return;
         }
+
+        RefreshBodyStatus(user);
 
         // Resources are only spent once the limb actually regrew.
         _hunger.ModifyHunger(user, -ent.Comp.HungerCost, hunger);
@@ -207,6 +213,17 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
         }
 
         return true;
+    }
+
+    // A regrown part starts undamaged, so no wound severity change would update the body status doll.
+    private void RefreshBodyStatus(EntityUid body)
+    {
+        if (!TryComp<TargetingComponent>(body, out var targeting))
+            return;
+
+        targeting.BodyStatus = _wound.GetWoundableStatesOnBodyPainFeels(body);
+        Dirty(body, targeting);
+        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(body)), body);
     }
 
     private readonly record struct MissingLimb(EntityUid ParentId, string SlotId, BodyPrototypeSlot Slot);
