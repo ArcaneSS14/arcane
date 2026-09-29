@@ -2227,3 +2227,11 @@ Entries:
   time: '2026-09-28T07:40:31.0000000+00:00'
   prNumber: 418
   url: https://github.com/ArcaneSS14/arcane/pull/418
+- author: qwertyuiopiot
+  changes:
+    - type: Tweak
+      message: Переведено внутриигровое руководство на русский язык
+  id: 163
+  time: '2026-09-29T11:10:44.0000000+00:00'
+  prNumber: 426
+  url: https://github.com/ArcaneSS14/arcane/pull/426
