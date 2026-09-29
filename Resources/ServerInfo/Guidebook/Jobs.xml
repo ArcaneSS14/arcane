@@ -3,47 +3,47 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <Document>
-# Jobs
+# Профессии
 
-SS14 has a large number of jobs, divided into seven major departments:
+На Космической Станции 14 есть множество профессий, распределённых по семи основным отделам:
 
-## Service
-[color=#9fed58]Service[/color] is a diverse department that includes the head of personnel and other jobs who exist to serve the station.
+## Сервис
+[color=#9fed58]Сервисный отдел[/color] объединяет самые разные профессии, включая главу персонала и сотрудников, которые обслуживают станцию.
 
-It primarily functions as folks who entertain, clean, and serve the rest of the crew, with the exception of passengers who have no particular job beyond getting lost in maintenance.
+Его сотрудники развлекают экипаж, поддерживают чистоту и помогают остальным. Пассажиры тоже относятся к сервису, хотя их главная обязанность — теряться в техтоннелях.
 
-## Cargo
-[color=#b18644]Cargo[/color] consists of the cargo technicians, salvage specialists, and the quartermaster. As a department, it responsible resource distribution and trade, capable of buying and selling things on the galactic market.
+## Снабжение
+[color=#b18644]Отдел снабжения[/color] состоит из грузчиков, шахтёров, утилизаторов и квартирмейстера. Они отвечают за распределение ресурсов и торговлю, покупая и продавая товары на галактическом рынке.
 
-For the most part, this means they scrounge around the station and assorted wrecks to find materials to sell and redistribute, and purchase materials other departments request.
+Обычно сотрудники ищут материалы на станции и обломках а так-же на лаваленде, чтобы продать или распределить их, а также закупают то, что нужно другим отделам.
 
-## Security
-[color=#cb0000]Security[/color] consists of the security cadets, lawyers, detective, security officers, warden, and the head of security. As a department it is responsible for dealing with troublemakers and non-humanoid threats like giant rats and carp.
+## Безопасность
+[color=#cb0000]Служба безопасности[/color] состоит из кадетов, детектива, офицеров, бригмедика смотрителя и главы службы безопасности. Она следит за нарушителями порядка и негуманоидными угрозами, например крысиным королём и карпами.
 
-As a result of this, and the need to walk a fine line, security sometimes is overwhelmed by angry crew (don't kill the clown), and it is important for its members to try and stay on their best behavior.
+Из-за этой непростой работы сотрудники безопасности иногда сталкиваются с недовольством экипажа (не убивайте клоуна). Поэтому им особенно важно вести себя достойно.
 
-## Medical
-[color=#5b97bc]Medical[/color] consists of the medical interns, chemists, medical doctors, and the chief medical officer. As a department it is responsible for taking care of the crew, treat and/or clone the wounded and dead, treat disease, and prevent everyone from dying a horrible, bloody death in a closet somewhere.
+## Медицина
+[color=#5b97bc]Медицинский отдел[/color] состоит из интернов, химиков, парамедиков, психологов, вирусологов, врачей и главного врача. Они заботятся об экипаже: лечит и клонирует раненых и погибших, борется с болезнями и не даёт всем умереть ужасной кровавой смертью в каком-нибудь шкафу.
 
-Medical is one of the more well-equipped departments, with the ability to locate injured crew using the crew monitor, a nigh infinite supply of chems should chemistry be on-par, and the ability to rapidly diagnose and vaccinate contagious diseases.
+Медицинский отдел хорошо оснащён: монитор экипажа помогает находить пострадавших, химическая лаборатория обеспечивает запас препаратов, а врачи могут быстро диагностировать заразные болезни и проводить вакцинацию.
 
-## Science
-[color=#c96dbf]Science[/color] consists of research assistants, scientists, and the research director. As a department it is responsible for researching technologies and artifacts, upgrading machines, and printing new and useful devices.
+## Наука
+[color=#c96dbf]Научный отдел[/color] состоит из научных ассистентов, робототехников, учёных и научного руководителя. Они исследует технологии и артефакты, улучшает оборудование и печатает новые полезные устройства.
 
-Scientists should seek out new artifacts to study, as well as solicit departments to help upgrade their machines.
+Учёным следует искать новые артефакты для изучения и предлагать отделам помощь в улучшении их оборудования.
 
-## Engineering
-[color=#f39f27]Engineering[/color] consists of technical assistants, station engineers, atmospheric technicians, and the chief engineer. As a department it is responsible for keeping the station powered, its structure intact and its air supply working.
+## Инженерия
+[color=#f39f27]Инженерный отдел[/color] состоит из технических ассистентов, инженеров, атмосферных техников и старшего инженера. Они обеспечивают станцию электричеством, поддерживает целостность её конструкции и исправность системы подачи воздуха.
 
-Engineering is readily equipped to go safely into space, and as such they should always attempt to repair uninhabitable parts of the station.
+У инженеров есть всё необходимое для безопасной работы в открытом космосе, поэтому им следует по возможности восстанавливать непригодные для жизни участки станции.
 
-## Command
-[color=#1b67a5]Command[/color] consists of every department head. It is responsible for keeping the station and its departments running efficiently.
+## Командование
+[color=#1b67a5]Командование[/color] состоит из глав всех отделов и отвечает за эффективную работу станции и её подразделений.
 
-Command members should always be relatively competent in their respective departments and attempt to delegate responsibility and direct work.
+Командование должны хорошо разбираться в работе своих отделов, распределять обязанности и направлять работу подчинённых.
 
-# Getting Your Job Changed
-The [color=#9fed58]Head of Personnel[/color] is the person in charge of changing ID accesses and handing out encryption keys. Head over to their office and let them know what job you'd like to work instead.
+# Как сменить профессию
+[color=#9fed58]Глава персонала[/color] меняет доступы в ID-картах и выдаёт ключи шифрования. Зайдите к нему в офис и сообщите, на какую профессию хотите перейти.
 
-Often, they'll want you to go get a paper [color=#a4885c]stamped[/color] by a department head. Don't sweat it, just find them and hand them the paper.
+Вас могут попросить принести документ с [color=#a4885c]печатью[/color] главы соответствующего отдела. Не переживайте: найдите его и передайте документ.
 </Document>
