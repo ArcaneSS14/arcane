@@ -50,7 +50,7 @@
     HorseSnorts:
       collection: HorseSnorts
     HorseNeighs:
-      collection: HorseNighs
+      collection: HorseNeighs
     HorseWhinny:
       collection: HorseWhinny
 
