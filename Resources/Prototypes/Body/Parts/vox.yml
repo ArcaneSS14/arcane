@@ -14,7 +14,7 @@
     species: Vox
   # Arcane-Start
   - type: Damageable
-    damageModifierSet: Vox
+#    damageModifierSet: Vox # Arcane-Edit
   # Arcane-End
   - type: WoundableVisuals
     damageOverlayGroups:

@@ -64,7 +64,7 @@
     needsHands: false
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: HumanoidXenomorph
+#    damageModifierSet: HumanoidXenomorph # Arcane-Edit
   - type: BlockInjection
   - type: NightVision
     color: "#44944A"

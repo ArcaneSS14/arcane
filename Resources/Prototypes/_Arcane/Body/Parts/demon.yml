@@ -5,7 +5,7 @@
   abstract: true
   components:
   - type: Damageable
-    damageModifierSet: DemonArcana
+#    damageModifierSet: DemonArcana # Arcane-Edit
   - type: Icon
     sprite: _Arcane/Mobs/Species/Demon/parts.rsi
     state: torso_m
