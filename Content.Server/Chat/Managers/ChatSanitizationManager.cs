@@ -99,6 +99,7 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         Entry("))", "chatsan-smiles-widely"),
         Entry("(", "chatsan-frowns"),
         Entry("((", "chatsan-frowns-deeply"),
+        Entry("яхз", "chatsan-shrugs"),
         Entry("лол", "chatsan-laughs"),
         Entry("лмао", "chatsan-laughs"),
         Entry("хд", "chatsan-laughs"),
