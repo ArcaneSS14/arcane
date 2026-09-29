@@ -19,3 +19,5 @@ alerts-arousal-refractory-desc = Вы восстанавливаетесь по�
 
 erp-refractory-self = Вы всё ещё восстанавливаетесь — возбуждение пока не накапливается.
 erp-refractory-target = Партнёр ещё не готов...
+
+condom-wrong-sex = Презерватив им не подойдёт.

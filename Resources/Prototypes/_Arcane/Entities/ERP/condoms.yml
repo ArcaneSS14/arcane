@@ -23,6 +23,22 @@
     sprite: _Arcane/ERP/condoms.rsi
   - type: Clothing
     sprite: _Arcane/ERP/condoms.rsi
+  - type: Condom
+  - type: SolutionContainerManager
+    solutions:
+      condom:
+        maxVol: 10
+
+- type: entity
+  parent: ClothingUnderwearCondom
+  id: ClothingUnderwearCondomFilled
+  name: used condom
+  description: A rubber sheath full of dried up cum. Best not to put that back on.
+  components:
+  - type: Sprite
+    state: icon-used
+  - type: Condom
+    full: true
 
 - type: entity
   parent: [BaseItem]

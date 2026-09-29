@@ -27,6 +27,7 @@ public sealed class OrgasmSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly CondomSystem _condom = default!;
     [Dependency] private readonly ForensicsSystem _forensics = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -88,12 +89,37 @@ public sealed class OrgasmSystem : EntitySystem
         if (sex is Sex.Unsexed)
             return;
 
-        var puddleProto = sex is Sex.Female ? FemCumPuddleProto : SemenPuddleProto;
+        // The condom catches everything, so nothing ends up on the floor or on anyone nearby.
+        if (_condom.TryFill(uid))
+            return;
 
         var xform = Transform(uid);
         var (sourcePos, sourceRot) = _transform.GetWorldPositionRotation(xform);
         var sourceMap = _transform.ToMapCoordinates(xform.Coordinates);
         var forward = sourceRot.ToWorldVec();
+
+        SpawnPuddle(uid, sourcePos, sourceMap, forward, sex);
+
+        foreach (var target in _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(sourceMap, EjaculationTargetDistance))
+        {
+            if (target.Owner == uid)
+                continue;
+
+            var toTarget = _transform.GetWorldPosition(target.Owner) - sourcePos;
+            if (toTarget == Vector2.Zero || Vector2.Dot(toTarget.Normalized(), forward) < EjaculationForwardDot)
+                continue;
+
+            if (!_interaction.InRangeUnobstructed(uid, target.Owner, EjaculationTargetDistance))
+                continue;
+
+            AddCumOverlay(target.Owner);
+        }
+    }
+
+    private void SpawnPuddle(EntityUid uid, Vector2 sourcePos, MapCoordinates sourceMap, Vector2 forward, Sex sex)
+    {
+        var puddleProto = sex is Sex.Female ? FemCumPuddleProto : SemenPuddleProto;
+
         var forwardMap = new MapCoordinates(sourcePos + forward * EjaculationEffectDistance, sourceMap.MapId);
 
         var wallBlocked = !_interaction.InRangeUnobstructed(uid, forwardMap, EjaculationEffectDistance + EjaculationWallCheckExtraRange);
@@ -114,21 +140,6 @@ public sealed class OrgasmSystem : EntitySystem
             {
                 reagent.Reagent.EnsureReagentData().AddRange(dnaData);
             }
-        }
-
-        foreach (var target in _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(sourceMap, EjaculationTargetDistance))
-        {
-            if (target.Owner == uid)
-                continue;
-
-            var toTarget = _transform.GetWorldPosition(target.Owner) - sourcePos;
-            if (toTarget == Vector2.Zero || Vector2.Dot(toTarget.Normalized(), forward) < EjaculationForwardDot)
-                continue;
-
-            if (!_interaction.InRangeUnobstructed(uid, target.Owner, EjaculationTargetDistance))
-                continue;
-
-            AddCumOverlay(target.Owner);
         }
     }
 
