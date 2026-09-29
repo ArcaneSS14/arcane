@@ -25,7 +25,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   Если при активации у вас нет КПК, вам выдадут [color=cyan]имплант аплинка[/color]. Его полная стоимость будет [bold]вычтена из ваших [color=red]ТК[/color].[/bold]
   Доступ к нему можно получить через панель быстрого доступа.
   <Box>
-    <GuideEntityEmbed Entity="PassengerPDA" Caption="PDA"/>
+    <GuideEntityEmbed Entity="PassengerPDA" Caption="КПК"/>
     <GuideEntityEmbed Entity="Telecrystal" Caption="Телекристаллы"/>
     <GuideEntityEmbed Entity="BaseUplinkRadio" Caption="Имплант аплинка"/>
   </Box>
