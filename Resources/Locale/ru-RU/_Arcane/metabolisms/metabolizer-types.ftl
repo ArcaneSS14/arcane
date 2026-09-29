@@ -1,1 +1,1 @@
-metabolizer-metabolizer-type-humanoid-xeno = Ксеноморф
+metabolizer-type-type-humanoid-xeno = Ксеноморф

@@ -630,6 +630,12 @@
           type: [ Slime ]
         reagent: Protein
         amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ HumanoidXeno ]
+        reagent: Protein
+        amount: 0.5
       # Arcane-End
       - !type:AdjustReagent
         conditions:
