@@ -19,7 +19,7 @@ namespace Content.Server.Body.Commands
         [Dependency] private readonly IEntityManager _entManager = default!;
         [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
-        private static readonly EntProtoId DefaultHandPrototype = "LeftHandHuman";
+        private static readonly EntProtoId DefaultHandPrototype = "BaseLeftHandHuman";
         private static int _handIdAccumulator;
 
         public string Command => "addhand";
