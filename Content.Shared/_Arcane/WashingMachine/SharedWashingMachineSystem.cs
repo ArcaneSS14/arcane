@@ -55,6 +55,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -268,13 +269,13 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             args.Verbs.Add(verb);
         }
 
-        if (CanExtractContents(ent))
+if (CanExtractContents(ent))
         {
             var extractVerb = new ActivationVerb()
             {
                 Text = Loc.GetString("washing-machine-extract-verb"),
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/open.svg.192dpi.png")),
-                Act = () => TryExtractContents(ent)
+                Act = () => TryExtractContents(ent, user)
             };
 
             args.Verbs.Add(extractVerb);
@@ -426,7 +427,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             false);
     }
 
-    private void TryExtractContents(Entity<WashingMachineComponent> ent)
+    private void TryExtractContents(Entity<WashingMachineComponent> ent, EntityUid user)
     {
         if (!CanExtractContents(ent))
             return;
@@ -448,7 +449,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
         _appearance.SetData(ent.Owner, StorageVisuals.HasContents, false);
 
-        _popup.PopupEntity(Loc.GetString("washing-machine-extract-self", ("machine", ent.Owner)), ent.Owner);
+        _popup.PopupEntity(Loc.GetString("washing-machine-extract-self", ("machine", ent.Owner)), user, user);
     }
 
     private bool CanExtractContents(Entity<WashingMachineComponent> ent)
@@ -682,6 +683,10 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             return false;
 
         if (storage.Contents.ContainedEntities.Count >= storage.Capacity)
+            return false;
+
+        var aabb = _lookup.GetAABBNoContainer(target, Vector2.Zero, 0);
+        if (storage.MaxSize < aabb.Size.X || storage.MaxSize < aabb.Size.Y)
             return false;
 
         return storage.Whitelist == null || _whitelistSystem.IsValid(storage.Whitelist, target);
