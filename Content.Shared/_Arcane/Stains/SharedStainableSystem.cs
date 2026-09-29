@@ -184,7 +184,7 @@ public abstract partial class SharedStainableSystem : EntitySystem
         {
             _appearance.QueueUpdate(ent.Owner, appearance);
 
-            if (TryComp<MetaDataComponent>(ent.Owner, out var meta) && meta.EntityLifeStage < EntityLifeStage.Terminating)
+            if (TryComp(ent.Owner, out MetaDataComponent? meta) && meta.EntityLifeStage < EntityLifeStage.Terminating)
                 Dirty(ent.Owner, appearance);
         }
     }
@@ -239,7 +239,12 @@ public abstract partial class SharedStainableSystem : EntitySystem
 
         UpdateVisuals(ent);
 
-        if (_puddle.TrySpillAt(args.User, puddleSolution, out _))
-            _popup.PopupEntity(Loc.GetString("stain-verb-wring-success", ("item", ent.Owner)), args.User, args.User);
+        if (!_puddle.TrySpillAt(args.User, puddleSolution, out _))
+        {
+            Solution.AddSolution(stainSoln.Value, puddleSolution);
+            return;
+        }
+
+        _popup.PopupEntity(Loc.GetString("stain-verb-wring-success", ("item", ent.Owner)), args.User, args.User);
     }
 }

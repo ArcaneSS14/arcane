@@ -16,7 +16,6 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
-using Content.Shared.Mobs;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
@@ -106,7 +105,6 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         SubscribeLocalEvent<WashingMachineStuckComponent, MoveInputEvent>(OnStuckMoveInput);
         SubscribeLocalEvent<WashingMachineStuckComponent, ComponentRemove>(OnStuckRemoved);
         SubscribeLocalEvent<WashingMachineStuckComponent, EscapeWashingMachineDoAfterEvent>(OnEscapeDoAfter);
-        SubscribeLocalEvent<WashingMachineStuckComponent, MobStateChangedEvent>(OnStuckMobStateChanged);
         SubscribeLocalEvent<WashingMachineStuckComponent, DownAttemptEvent>(OnStuckDownAttempt);
         SubscribeLocalEvent<WashingMachineStuckComponent, BuckleAttemptEvent>(OnStuckBuckleAttempt);
     }
@@ -769,15 +767,6 @@ if (CanExtractContents(ent))
 
     protected virtual void RestoreStuckVisuals(Entity<WashingMachineStuckComponent> ent)
     {
-    }
-
-    private void OnStuckMobStateChanged(Entity<WashingMachineStuckComponent> ent, ref MobStateChangedEvent args)
-    {
-        if (args.NewMobState != MobState.Dead)
-            return;
-
-        if (_net.IsServer)
-            EjectPlayer(ent);
     }
 
     private void EjectAllStuck(EntityUid machine)
