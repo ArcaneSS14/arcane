@@ -1,8 +1,10 @@
 using System.Linq;
 using Content.Server.Administration;
+using Content.Server.Administration.Logs;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
+using Content.Shared.Database;
 using Content.Shared.Roles;
 using Content.Shared.Station.Components;
 using Robust.Shared.Console;
@@ -13,6 +15,7 @@ namespace Content.Server._Arcane.Administration.Commands;
 [AdminCommand(AdminFlags.Admin)]
 public sealed class StationAddJobCommand : LocalizedEntityCommands
 {
+    [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
 
@@ -85,16 +88,20 @@ public sealed class StationAddJobCommand : LocalizedEntityCommands
             _stationJobs.TryAdjustJobSlot(uid, job, delta, createSlot: true, clamp: true, stationJobs: jobs);
         }
 
-        if (_stationJobs.IsJobUnlimited(uid, job, jobs))
+        _stationJobs.TryGetJobSlot(uid, job, out var slots, jobs);
+
+        _adminLog.Add(LogType.AdminCommands, LogImpact.Medium,
+            $"{shell.Player?.Name ?? "Server"} changed {job.ID} slots on {EntityManager.ToPrettyString(uid)} ({mode} {amount}), now {slots?.ToString() ?? "unlimited"}");
+
+        if (slots == null)
         {
             shell.WriteLine(Loc.GetString("cmd-stationaddjob-result-unlimited",
                 ("job", job.LocalizedName), ("station", stationName)));
             return;
         }
 
-        _stationJobs.TryGetJobSlot(uid, job, out var slots, jobs);
         shell.WriteLine(Loc.GetString("cmd-stationaddjob-result",
-            ("job", job.LocalizedName), ("station", stationName), ("total", slots ?? 0)));
+            ("job", job.LocalizedName), ("station", stationName), ("total", slots.Value)));
     }
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
