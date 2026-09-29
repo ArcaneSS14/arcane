@@ -33,6 +33,10 @@ public sealed partial class CustomGhostPrototype : IPrototype, IInheritingProtot
     [DataField]
     public List<CustomGhostRestriction>? Restrictions { get; private set; }
 
+    // Arcane-start
+    [DataField]
+    public bool AlwaysVisible { get; private set; } = false;
+    // Arcane-end
 
     public bool CanUse(ICommonSession session) => CanUse(session, out _, out _);
     public bool CanUse(ICommonSession session, out string fullFailReason) => CanUse(session, out fullFailReason, out _);
