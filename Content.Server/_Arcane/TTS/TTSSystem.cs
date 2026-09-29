@@ -33,7 +33,7 @@ public sealed partial class TTSSystem : EntitySystem
 
     public override void Initialize()
     {
-        _cfg.OnValueChanged(ArtCVars.TTSEnabled, v => _isEnabled = v, true);
+        _cfg.OnValueChanged(ACVars.TTSEnabled, v => _isEnabled = v, true);
 
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke, after: [typeof(RadioSystem), typeof(HeadsetSystem)]);
 

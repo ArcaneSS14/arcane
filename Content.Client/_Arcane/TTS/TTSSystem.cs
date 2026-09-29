@@ -50,7 +50,7 @@ public sealed partial class TTSSystem : EntitySystem
         _prefix = ResPath.Root / $"TTS{_shareIdx++}";
         _sawmill = Logger.GetSawmill("tts");
         _res.AddRoot(_prefix, _contentRoot);
-        _cfg.OnValueChanged(ArtCVars.TTSVolume, OnTtsVolumeChanged, true);
+        _cfg.OnValueChanged(ACCVars.TTSVolume, OnTtsVolumeChanged, true);
         _cfg.OnValueChanged(ACCVars.TTSRadioVolume, OnTtsRadioVolumeChanged, true);
         _cfg.OnValueChanged(ACCVars.UseTTS, OnUseTTSChanged, true);
         _cfg.OnValueChanged(ACCVars.TTSRadioChannelMuted, OnTTSRadioChannelMutedChanged, true);
@@ -68,7 +68,7 @@ public sealed partial class TTSSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
-        _cfg.UnsubValueChanged(ArtCVars.TTSVolume, OnTtsVolumeChanged);
+        _cfg.UnsubValueChanged(ACCVars.TTSVolume, OnTtsVolumeChanged);
         _cfg.UnsubValueChanged(ACCVars.TTSRadioVolume, OnTtsRadioVolumeChanged);
         _cfg.UnsubValueChanged(ACCVars.UseTTS, OnUseTTSChanged);
         _cfg.UnsubValueChanged(ACCVars.TTSRadioChannelMuted, OnTTSRadioChannelMutedChanged);

@@ -75,7 +75,7 @@ public sealed partial class ACCVars
     ///     relayed speech it reads out loud.
     /// </summary>
     public static readonly CVarDef<float> StationRadioVolume =
-        CVarDef.Create("stationradio.volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("stationradio.volume", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     ///     Restricts custom species names so players cannot use the name of another species.
