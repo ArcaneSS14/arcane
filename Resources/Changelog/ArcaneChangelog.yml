@@ -2235,3 +2235,11 @@ Entries:
   time: '2026-09-29T11:10:44.0000000+00:00'
   prNumber: 426
   url: https://github.com/ArcaneSS14/arcane/pull/426
+- author: darneya
+  changes:
+    - type: Fix
+      message: Большинство враждебных ИИ-ролей теперь выбирают целью атаки Генокрада.
+  id: 164
+  time: '2026-09-29T11:14:11.0000000+00:00'
+  prNumber: 422
+  url: https://github.com/ArcaneSS14/arcane/pull/422
