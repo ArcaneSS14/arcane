@@ -5,3 +5,6 @@ trait-catnature-desc = Кажется в Вас пробудилось что-т
 
 trait-foxnature-name = Лисья натура
 trait-foxnature-desc = Кажется теперь вы немного вульпканин?
+
+trait-horsehature-name = Конская натура
+trait-horsehature-desc = Кажется в вас есть дух лошади!

@@ -1,0 +1,111 @@
+- type: emoteSounds
+  id: MaleHorse
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: HorseScream
+    Laugh:
+      collection: HorseLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    CatMeow:
+      collection: CatMeows
+    CatHisses:
+      collection: CatHisses
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    RobotBeep:
+      collection: RobotBeeps
+    Yawn:
+      collection: MaleYawn
+    Snore:
+      collection: Snores
+    Honk:
+      collection: BikeHorn
+    Sigh:
+      collection: MaleSigh
+    Crying:
+      collection: HorseCrying
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    Belch:
+      collection: Belch
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: HorseDeath
+    Gulp:
+      path: /Audio/_Goobstation/Voice/Human/gulp.ogg
+    Surprised:
+      path: /Audio/_Goobstation/Voice/surprised.ogg
+    Moan:
+      collection: MoansMale
+    HorseSnorts:
+      collection: HorseSnorts
+    HorseNeighs:
+      collection: HorseNighs
+    HorseWhinny:
+      collection: HorseWhinny
+
+- type: emoteSounds
+  id: FemaleHorse
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: HorseScream
+    Laugh:
+      collection: HorseLaugh
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    CatMeow:
+      collection: CatMeows
+    CatHisses:
+      collection: CatHisses
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    RobotBeep:
+      collection: RobotBeeps
+    Yawn:
+      collection: FemaleYawn
+    Snore:
+      collection: Snores
+    Honk:
+      collection: CluwneHorn
+    Sigh:
+      collection: FemaleSigh
+    Crying:
+      collection: HorseCrying
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Belch:
+      collection: Belch
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: HorseDeath
+    Gulp:
+      path: /Audio/_Goobstation/Voice/Human/gulp.ogg
+    Surprised:
+      path: /Audio/_Goobstation/Voice/surprised.ogg
+    Moan:
+      collection: MoansFemale
+    HorseSnorts:
+      collection: HorseSnorts
+    HorseNeighs:
+      collection: HorseNeighs
+    HorseWhinny:
+      collection: HorseWhinny
