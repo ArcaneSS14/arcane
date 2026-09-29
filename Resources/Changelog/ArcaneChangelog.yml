@@ -2243,3 +2243,11 @@ Entries:
   time: '2026-09-29T11:14:11.0000000+00:00'
   prNumber: 422
   url: https://github.com/ArcaneSS14/arcane/pull/422
+- author: ReWAFFlution
+  changes:
+    - type: Remove
+      message: Вырезаны резисты всем игровым расам.
+  id: 165
+  time: '2026-09-29T17:03:15.0000000+00:00'
+  prNumber: 427
+  url: https://github.com/ArcaneSS14/arcane/pull/427
