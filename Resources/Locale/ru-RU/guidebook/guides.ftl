@@ -133,6 +133,7 @@ guide-entry-changeling-abilities = Способности Генокрада
 guide-entry-corporate-agents = Корпоративные агенты
 guide-entry-devils = Дьявол
 guide-entry-devil-clauses = Дьявольские условия
+guide-entry-xenoborgs = Ксеноборги
 guide-entry-nuclear-operatives = Ядерные оперативники
 guide-entry-traitors = Предатели
 guide-entry-zombies = Зомби
