@@ -5,8 +5,6 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Inventory;
-using Content.Shared.Throwing;
-using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
@@ -15,18 +13,11 @@ namespace Content.Server._Arcane.ERP;
 
 public sealed class CondomSystem : EntitySystem
 {
-    [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedCondomSystem _shared = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<CondomComponent, ThrowDoHitEvent>(OnThrowHit);
-    }
 
     /// <summary>
     ///     Fills the condom worn by <paramref name="wearer"/>. Returns false when the wearer has none.
@@ -108,14 +99,5 @@ public sealed class CondomSystem : EntitySystem
         _solutionContainer.AddSolution(solution.Value, new Solution([new ReagentQuantity(toComp.CumReagent, from.Comp.Fill)], false));
         toComp.Fill = from.Comp.Fill;
         Dirty(to, toComp);
-    }
-
-    private void OnThrowHit(Entity<CondomComponent> ent, ref ThrowDoHitEvent args)
-    {
-        if (!ent.Comp.Full)
-            return;
-
-        _audio.PlayPvs(ent.Comp.PopSound, ent);
-        QueueDel(ent);
     }
 }

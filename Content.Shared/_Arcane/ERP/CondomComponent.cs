@@ -1,6 +1,5 @@
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Chemistry.Reagent;
-using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -53,7 +52,4 @@ public sealed partial class CondomComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Full;
-
-    [DataField]
-    public SoundSpecifier PopSound = new SoundPathSpecifier("/Audio/Effects/balloon-pop.ogg");
 }

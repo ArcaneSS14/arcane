@@ -39,6 +39,23 @@
     state: icon-used
   - type: Condom
     full: true
+  # Shatters like a drinking glass, just noisier and wetter.
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyGlass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/balloon-pop.ogg
+      - !type:SpillBehavior
+        solution: condom
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: [BaseItem]
