@@ -117,6 +117,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                         <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}" HorizontalExpand="True" />
                                         <!-- Arcane-Start -->
                                         <Button Name="ThemeButton" Access="Public" Text="{Loc 'ui-lobby-theme-default'}" Disabled="True" HorizontalExpand="True" />
+                                        <Button Name="SponsorInfoButton" Text="{Loc 'arcane-sponsor-lobby-button'}" HorizontalExpand="True" />
                                         <RichTextLabel Name="DiscordLinkStatus" Visible="False" Access="Public" HorizontalAlignment="Center" />
                                         <controls:ConfirmButton Name="DiscordLinkButton" Access="Public" Text="{Loc 'rmc-ui-link-discord-account'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" HorizontalExpand="True" />
                                         <!-- Arcane-End -->
