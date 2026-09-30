@@ -145,6 +145,7 @@ erp-panel-interaction-shift-weight-name = Put hand on thigh
 # Interaction hands
 erp-panel-interaction-handshake-name = Shake hands
 erp-panel-interaction-kiss-hand-name = Kiss hand
+erp-panel-interaction-target-hand-fap-name = Jerk off with their hand
 erp-panel-interaction-high-five-name = High five
 erp-panel-interaction-friendly-flying-kiss-name = Blow kiss
 erp-panel-interaction-friendly-nose-boop-name = Boop nose
@@ -201,6 +202,7 @@ erp-panel-interaction-pussy-scissors-name = Scissor with pussy
 erp-panel-interaction-pussy-touch-name = Touch pussy
 erp-panel-interaction-pussy-tail-fuck-name = Fuck pussy with tail
 erp-panel-interaction-cock-pussy-fuck-name = Fuck pussy
+erp-panel-interaction-cock-self-fuck-name = Fuck self with their cock
 erp-panel-interaction-toy-pussy-name = Use sex toy
 erp-panel-interaction-toy-butt-fuck-name = Fuck anus with sex toy
 erp-panel-interaction-toy-pussy-fuck-name = Fuck pussy with sex toy

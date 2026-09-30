@@ -145,6 +145,7 @@ erp-panel-interaction-shift-weight-name = Положить ладонь на б�
 # Interaction hands
 erp-panel-interaction-handshake-name = Жать руку
 erp-panel-interaction-kiss-hand-name = Целовать руку
+erp-panel-interaction-target-hand-fap-name = Дрочить себя рукой цели
 erp-panel-interaction-high-five-name = Дать пять
 erp-panel-interaction-friendly-flying-kiss-name = Слать поцелуй
 erp-panel-interaction-friendly-nose-boop-name = Ткнуть в нос
@@ -201,6 +202,7 @@ erp-panel-interaction-pussy-scissors-name = Тереться вагиной о �
 erp-panel-interaction-pussy-touch-name = Потрогать вагину
 erp-panel-interaction-pussy-tail-fuck-name = Трахать вагину хвостом
 erp-panel-interaction-cock-pussy-fuck-name = Трахнуть вагину
+erp-panel-interaction-cock-self-fuck-name = Трахать себя членом цели
 erp-panel-interaction-toy-pussy-name = Использовать секс-игрушку
 erp-panel-interaction-toy-butt-fuck-name = Трахать анус при помощи секс-игрушки
 erp-panel-interaction-toy-pussy-fuck-name = Трахать вагину при помощи секс-игрушки
