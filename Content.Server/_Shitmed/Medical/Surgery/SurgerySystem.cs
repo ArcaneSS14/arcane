@@ -55,8 +55,10 @@ public sealed class SurgerySystem : SharedSurgerySystem
                 if (ev.Cancelled)
                     continue;
 
-                if (IsSurgerySkipped(part.Id, surgeryEnt)) // Arcane
-                    continue; // Arcane
+                // Arcane-Start
+                if (IsSurgerySkipped(part.Id, surgeryEnt))
+                    continue;
+                // Arcane-End
 
                 valid.Add(surgery);
             }

@@ -70,9 +70,6 @@ public sealed partial class SlimeRegrowComponent : Component
     [DataField, AutoNetworkedField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Voice/Slime/slime_squish.ogg");
 
-    /// <summary>
-    /// Markings of lost parts by body slot, restored onto the part regrown into that slot.
-    /// </summary>
     [ViewVariables]
     public Dictionary<string, Dictionary<HumanoidVisualLayers, List<Marking>>> LostPartMarkings = new();
 }

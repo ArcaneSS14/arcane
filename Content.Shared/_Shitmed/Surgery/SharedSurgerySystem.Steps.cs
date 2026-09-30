@@ -1334,8 +1334,10 @@ public abstract partial class SharedSurgerySystem
 
     private bool IsStepComplete(EntityUid body, EntityUid part, EntProtoId step, EntityUid surgery)
     {
-        if (IsStepSkipped(part, step)) // Arcane
-            return true; // Arcane
+        // Arcane-Start
+        if (IsStepSkipped(part, step))
+            return true;
+        // Arcane-End
 
         if (GetSingleton(step) is not { } stepEnt)
             return false;
