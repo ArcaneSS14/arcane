@@ -265,7 +265,7 @@
       types:
         Slash: 5
   - type: Damageable # Goobstation - resomi damage modifiers
-    damageModifierSet: Resomi
+#    damageModifierSet: Resomi # Arcane-Edit
   - type: Temperature
     currentTemperature: 310.15 # todo goob redo this
     specificHeat: 50

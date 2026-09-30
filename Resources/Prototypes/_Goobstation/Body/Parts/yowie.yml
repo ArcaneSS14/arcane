@@ -8,7 +8,7 @@
   - type: BodyPart
     species: Yowie
   - type: Damageable
-    damageModifierSet: Yowie
+#    damageModifierSet: Yowie # Arcane-Edit
 
 - type: entity
   id: HeadYowie

@@ -3,22 +3,22 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <Document>
-  # Antagonists
-  Antagonists are the driving force of every shift.
-  They are the catalysts for chaos, conflict and mystery in Space Station 14 that also serve to provide a challenge to Nanotrasen and its [color=#cb0000]Security[/color] force.
-  You can expect them to act in violation of Space Law and they're often tasked with objectives that include theft, subterfuge and murder.
+  # Антагонисты
+  Антагонисты — движущая сила каждой смены.
+  Они становятся источником хаоса, конфликтов и загадок на Космической Станции 14, а также создают трудности для Нанотрейзен и её [color=#cb0000]Службы безопасности[/color].
+  Обычно они нарушают космический закон и получают задания, связанные с кражами и убийствами.
 
-  These bad actors are more often than not employed or backed by the [color=#ff0000]Syndicate[/color], a rival organization to Nanotrasen that wants nothing more than to see it burn.
+  Чаще всего за такими нарушителями стоит [color=#ff0000]Синдикат[/color] — организация, враждебная Нанотрейзен и желающая видеть её уничтоженной.
 
-  ## Various Antagonists
-  Antagonists can take many forms, like:
-  - [textlink="Nuclear operatives" link="Nuclear Operatives"], with the goal of infiltrating and destroying the station.
-  - [textlink="Traitors" link="Traitors"] amongst the crew who must assassinate, steal and decieve.
-  - [textlink="Revolutionaries" link="Revolutionaries"] who are intent on taking control of the station from the inside.
-  - [textlink="Zombies" link="Zombies"] that crave the flesh of every crew member and creature on board.
-  - [textlink="Space Ninjas" link="SpaceNinja"], masters of espionage and sabotage with special gear.
-  - [textlink="Thieves" link="Thieves"] driven by kleptomania, determined to get their fix using their special gloves.
-  - [textlink="The Cosmic Cult" link="CosmicCult"], who seek to usher in the end of all things. <!-- DeltaV -->
-  - [textlink="Entropic Colossi" link="CosmicColossus"], towering monstrosities of malign plating. <!-- DeltaV -->
-  - [textlink="Various non-humanoid creatures" link="MinorAntagonists"] that generally attack anything that moves.
+  ## Разновидности антагонистов
+  Антагонисты бывают разными, например:
+  - [textlink="Ядерные оперативники" link="Nuclear Operatives"], стремящиеся проникнуть на станцию и уничтожить её.
+  - [textlink="Предатели" link="Traitors"] среди экипажа, которым поручают убивать и воровать.
+  - [textlink="Революционеры" link="Revolutionaries"], намеренные захватить власть на станции изнутри.
+  - [textlink="Зомби" link="Zombies"], жаждущие плоти членов экипажа и всех остальных существ на борту.
+  - [textlink="Космические ниндзя" link="SpaceNinja"] — мастера шпионажа и саботажа, вооружённые специальным снаряжением.
+  - [textlink="Воры" link="Thieves"], одержимые клептоманией и готовые утолить свою страсть с помощью особых перчаток.
+  - [textlink="Космический культ" link="CosmicCult"], стремящийся положить конец всему сущему. <!-- DeltaV -->
+  - [textlink="Энтропийные колоссы" link="CosmicColossus"] — возвышающиеся чудовища, покрытые зловещей бронёй. <!-- DeltaV -->
+  - [textlink="Различные негуманоидные существа" link="MinorAntagonists"], обычно нападающие на всё, что движется.
 </Document>

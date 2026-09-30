@@ -160,7 +160,7 @@
         Slash: 3
   - type: Perishable
   - type: Damageable
-    damageModifierSet: Vulpkanin
+#    damageModifierSet: Vulpkanin # Arcane-Edit
   #- type: TemperatureProtection # Goobstation - fix vulps - start
   #  heatingCoefficient: 0.1
   #  coolingCoefficient: 0.1

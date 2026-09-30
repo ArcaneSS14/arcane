@@ -53,7 +53,7 @@
     soundsId: ReptilianBodyEmotes
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Scale
+#    damageModifierSet: Scale # Arcane-Edit
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
