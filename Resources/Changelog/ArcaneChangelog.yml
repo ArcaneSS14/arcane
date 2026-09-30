@@ -2301,3 +2301,28 @@ Entries:
       https://github.com/user-attachments/assets/334a1241-4028-46e7-bb4f-3def9bb0a68e
     - >-
       https://github.com/user-attachments/assets/dc6fd72b-073e-4c81-bc98-d1701dbe8398
+- author: Vecortys
+  changes:
+    - type: Add
+      message: >-
+        Добавлена возможность поменять оформление UI на две новые темы: Золотая
+        и Космическая. Доступно спонсорам второго тира.
+    - type: Add
+      message: >-
+        Добавлено несколько кастомных скинов призраков для спонсоров второго
+        тира.
+    - type: Add
+      message: Добавлено окно с информацией о текущих бонусах подписок в лобби.
+    - type: Tweak
+      message: >-
+        Цвет ника спонсоров заменён на полноценное изменение цвета сообщения в
+        чате.
+  id: 170
+  time: '2026-09-30T06:02:51.0000000+00:00'
+  prNumber: 434
+  url: https://github.com/ArcaneSS14/arcane/pull/434
+  media:
+    - >-
+      https://github.com/user-attachments/assets/6e603ef4-765a-497f-a815-3f301fd1dc07
+    - >-
+      https://github.com/user-attachments/assets/29a64e0c-a9c7-4301-b60f-cb3e791a966c
