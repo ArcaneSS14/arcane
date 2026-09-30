@@ -87,6 +87,9 @@ public sealed partial class ArousalComponent : Component
     [DataField]
     public TimeSpan RefractoryDuration = TimeSpan.FromSeconds(30);
 
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan LastMoanAt;
+
     public ArousalPhase ComputePhase(float arousal) => arousal switch
     {
         < 20f => ArousalPhase.Calm,

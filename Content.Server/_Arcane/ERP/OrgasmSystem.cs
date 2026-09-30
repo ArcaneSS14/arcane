@@ -26,6 +26,7 @@ namespace Content.Server._Arcane.ERP;
 public sealed class OrgasmSystem : EntitySystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly ArousalSystem _arousal = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly CondomSystem _condom = default!;
@@ -72,8 +73,10 @@ public sealed class OrgasmSystem : EntitySystem
         Spawn(HeartsProto, _transform.GetMapCoordinates(uid));
         PlayOrgasmSound(uid, humanoid?.Gender ?? Gender.Female);
 
+        _arousal.NotifyMoan(uid);
+
         if (_prototype.TryIndex(OrgasmMessagesDataset, out var dataset))
-            _chat.TrySendInGameICMessage(uid, Loc.GetString(_random.Pick(dataset.Values)), InGameICChatType.Emote, false);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString(_random.Pick(dataset.Values)), InGameICChatType.Emote, false, checkEmote: false);
 
         _popup.PopupEntity(Loc.GetString("orgasm-popup-self"), uid, uid, PopupType.MediumCaution);
 

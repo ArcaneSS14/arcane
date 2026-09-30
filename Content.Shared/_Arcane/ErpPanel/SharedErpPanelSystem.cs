@@ -195,7 +195,7 @@ public sealed class SharedErpPanelSystem : EntitySystem
         var userMoanChance = userArousal.LastValue / userArousal.MaxArousal * customMoaning / 100f;
         userMoanChance = Math.Clamp(userMoanChance, 0f, 1f);
 
-        if (_random.Prob(userMoanChance))
+        if (_random.Prob(userMoanChance) && _arousal.TryMoan(uid, userArousal))
             MoanWithGender(uid, userHumanoid.Gender, userArousal.LastValue / userArousal.MaxArousal);
     }
 
@@ -223,7 +223,7 @@ public sealed class SharedErpPanelSystem : EntitySystem
 
         _audio.PlayPvs(new ResolvedCollectionSpecifier(collection, index), uid, audioParams);
 
-        _chat.TrySendInGameICMessage(uid, Loc.GetString("moan-message"), InGameICChatType.Emote, true);
+        _chat.TrySendInGameICMessage(uid, Loc.GetString("moan-message"), InGameICChatType.Emote, true, checkEmote: false);
     }
 
     private void ProccessMessages(EntityUid user, EntityUid target, PanelInteractionPrototype interaction)
