@@ -12,7 +12,7 @@
   - type: BodyPart
     species: Rodentia
   - type: Damageable # Shitmed
-    damageModifierSet: Rodentia
+#    damageModifierSet: Rodentia # Arcane-Edit
 
 - type: entity
   parent: [ PartRodentiaBase, BaseChest ]

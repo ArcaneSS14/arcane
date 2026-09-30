@@ -167,6 +167,7 @@
       - Item
       tags:
       - Wall
+  - type: AntiRottingContainer # Arcane 
   - type: Tag
     tags:
     - CannotSuicide

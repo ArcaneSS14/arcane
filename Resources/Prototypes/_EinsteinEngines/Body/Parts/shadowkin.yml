@@ -21,7 +21,7 @@
         Quantity: 10
   - type: Damageable
     damageContainer: Biological # Shadowkin
-    damageModifierSet: Shadowkin
+#    damageModifierSet: Shadowkin # Arcane-Edit
 
 - type: entity
   id: ChestShadowkin
