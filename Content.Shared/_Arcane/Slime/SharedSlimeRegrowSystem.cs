@@ -5,6 +5,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.Body.Systems;
+using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared._Shitmed.Body.Part;
 using Content.Shared.Nutrition.Components;
@@ -40,6 +41,7 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ThirstSystem _thirst = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
@@ -53,19 +55,31 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
         SubscribeLocalEvent<SlimeRegrowComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SlimeRegrowComponent, SlimeRegrowLimbEvent>(OnSlimeRegrowLimb);
         SubscribeLocalEvent<SlimeRegrowComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
+        SubscribeLocalEvent<SlimeRegrowComponent, BodyPartAddedEvent>(OnBodyPartAdded);
     }
 
     // The body drops a lost part's markings, so keep them for the part regrown into that slot.
     private void OnBodyPartRemoved(Entity<SlimeRegrowComponent> ent, ref BodyPartRemovedEvent args)
     {
-        if (!_net.IsServer
-            || !TryComp<BodyPartAppearanceComponent>(args.Part, out var appearance)
+        if (!_net.IsServer)
+            return;
+
+        ent.Comp.LostPartMarkings.Remove(args.Slot);
+
+        if (!TryComp<BodyPartAppearanceComponent>(args.Part, out var appearance)
             || appearance.Markings.Count == 0)
             return;
 
         ent.Comp.LostPartMarkings[args.Slot] = appearance.Markings.ToDictionary(
             pair => pair.Key,
             pair => pair.Value.Select(m => new Marking(m.MarkingId, m.MarkingColors.ToList())).ToList());
+    }
+
+    // A part attached any other way (e.g. surgery) brings its own markings.
+    private void OnBodyPartAdded(Entity<SlimeRegrowComponent> ent, ref BodyPartAddedEvent args)
+    {
+        if (_net.IsServer)
+            ent.Comp.LostPartMarkings.Remove(args.Slot);
     }
 
     private void OnMapInit(Entity<SlimeRegrowComponent> ent, ref MapInitEvent args)
@@ -201,19 +215,30 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
         var childPart = Spawn(partId, new EntityCoordinates(parentId, Vector2.Zero));
         var childPartComp = Comp<BodyPartComponent>(childPart);
 
-        // Attaching applies the part's markings to the body.
-        if (ent.Comp.LostPartMarkings.Remove(slotId, out var markings))
-        {
-            var appearance = EnsureComp<BodyPartAppearanceComponent>(childPart);
-            appearance.Markings = markings;
-            Dirty(childPart, appearance);
-        }
+        // Taken before attaching, since attaching clears the slot's stored markings.
+        ent.Comp.LostPartMarkings.Remove(SharedBodySystem.GetPartSlotContainerId(slotId), out var markings);
 
         if (!_body.TryCreatePartSlotAndAttach(parentId, slotId, childPart, childPartComp.PartType, childPartComp.Symmetry))
         {
             Log.Error($"Failed to regrow part {partId} into slot {slotId} of {ToPrettyString(parentId)}");
             QueueDel(childPart);
             return false;
+        }
+
+        // Applied after attaching, so the part appearance first picks up its base layer from the body.
+        if (markings != null
+            && TryComp<BodyPartAppearanceComponent>(childPart, out var appearance)
+            && TryComp<HumanoidAppearanceComponent>(ent, out var humanoid))
+        {
+            appearance.Markings = markings;
+            Dirty(childPart, appearance);
+
+            foreach (var (layer, list) in markings)
+            {
+                _humanoid.SetLayerVisibility((ent, humanoid), layer, true);
+                foreach (var marking in list)
+                    _humanoid.AddMarking(ent, marking.MarkingId, marking.MarkingColors, true, true, humanoid);
+            }
         }
 
         // Regrowing a limb also heals the stump (Dismemberment trauma) its removal left behind,
