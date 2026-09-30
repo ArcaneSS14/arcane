@@ -225,19 +225,26 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
             return false;
         }
 
-        // Applied after attaching, so the part appearance first picks up its base layer from the body.
-        if (markings != null
-            && TryComp<BodyPartAppearanceComponent>(childPart, out var appearance)
-            && TryComp<HumanoidAppearanceComponent>(ent, out var humanoid))
+        if (TryComp<HumanoidAppearanceComponent>(ent, out var humanoid))
         {
-            appearance.Markings = markings;
-            Dirty(childPart, appearance);
+            // Losing a part hides all of its sublayers, but attaching one only shows its own layer,
+            // so markings the part never recorded (e.g. hair) would otherwise stay hidden.
+            if (childPartComp.ToHumanoidLayers() is { } partLayer)
+                _humanoid.SetLayersVisibility((ent, humanoid), HumanoidVisualLayersExtension.Sublayers(partLayer), true);
 
-            foreach (var (layer, list) in markings)
+            // Applied after attaching, so the part appearance first picks up its base layer from the body.
+            if (markings != null && TryComp<BodyPartAppearanceComponent>(childPart, out var appearance))
             {
-                _humanoid.SetLayerVisibility((ent, humanoid), layer, true);
-                foreach (var marking in list)
-                    _humanoid.AddMarking(ent, marking.MarkingId, marking.MarkingColors, true, true, humanoid);
+                appearance.Markings = markings;
+                Dirty(childPart, appearance);
+
+                foreach (var list in markings.Values)
+                {
+                    foreach (var marking in list)
+                        _humanoid.AddMarking(ent, marking.MarkingId, marking.MarkingColors, false, true, humanoid);
+                }
+
+                Dirty(ent, humanoid);
             }
         }
 
