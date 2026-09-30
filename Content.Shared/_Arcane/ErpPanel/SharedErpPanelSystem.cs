@@ -233,7 +233,7 @@ public sealed class SharedErpPanelSystem : EntitySystem
         var message = _random.Pick(messagesCollection)
             .Replace("$target", Identity.Name(target, EntityManager, user));
 
-        _chat.TrySendInGameICMessage(user, message, InGameICChatType.Emote, false);
+        _chat.TrySendInGameICMessage(user, message, InGameICChatType.Emote, false, checkEmote: false);
     }
 
     private void ProccessSounds(EntityUid user, PanelInteractionPrototype interaction)
