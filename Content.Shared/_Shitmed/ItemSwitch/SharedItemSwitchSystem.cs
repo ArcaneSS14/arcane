@@ -95,7 +95,12 @@ public abstract class SharedItemSwitchSystem : EntitySystem
                 continue;
             args.Verbs.Add(new ActivationVerb()
             {
-                Text = Loc.TryGetString($"itemswitch-component-state-{state.Value.Verb}", out var title) ? title : state.Value.Verb, // Orion-Edit: Localize
+                // Arcane-Edit-Start: verbs such as "cloak&mantle" cannot be FTL ids, so fall back to the state key
+                Text = Loc.TryGetString($"itemswitch-component-state-{state.Value.Verb}", out var title)
+                    || Loc.TryGetString($"itemswitch-component-state-{state.Key}", out title)
+                        ? title
+                        : state.Value.Verb, // Orion-Edit: Localize
+                // Arcane-Edit-End
                 Category = VerbCategory.Switch,
                 Act = () => Switch((ent.Owner, ent.Comp), state.Key, user, ent.Comp.Predictable)
             });

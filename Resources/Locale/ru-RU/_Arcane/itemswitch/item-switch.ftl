@@ -1,4 +1,20 @@
 # veteran ensembles
+itemswitch-component-state-all = всё
+itemswitch-component-state-altcloak = альтернативный плащ
+itemswitch-component-state-altcloakmantle = альтернативный плащ и мантия
+itemswitch-component-state-aura = аура
+itemswitch-component-state-auraless = без ауры
 itemswitch-component-state-both = плащ и мантия
 itemswitch-component-state-cloak = плащ
+itemswitch-component-state-cloakJewelry = плащ и украшения
+itemswitch-component-state-cloakSash = плащ и лента
+itemswitch-component-state-cloakSashL = плащ и длинная лента
+itemswitch-component-state-cloakblack = чёрный плащ
+itemswitch-component-state-cloakblackmantle = чёрный плащ и мантия
+itemswitch-component-state-cloakmantle = плащ и мантия
+itemswitch-component-state-cloakwhite = белый плащ
+itemswitch-component-state-cloakwhitemantle = белый плащ и мантия
+itemswitch-component-state-cloakwings = плащ и крылья
 itemswitch-component-state-mantle = мантия
+itemswitch-component-state-mantlewings = мантия и крылья
+itemswitch-component-state-wings = крылья

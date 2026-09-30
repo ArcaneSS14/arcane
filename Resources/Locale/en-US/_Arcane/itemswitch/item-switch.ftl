@@ -1,4 +1,20 @@
 # veteran ensembles
+itemswitch-component-state-all = all
+itemswitch-component-state-altcloak = alternate cloak
+itemswitch-component-state-altcloakmantle = alternate cloak and mantle
+itemswitch-component-state-aura = aura
+itemswitch-component-state-auraless = no aura
 itemswitch-component-state-both = cloak and mantle
 itemswitch-component-state-cloak = cloak
+itemswitch-component-state-cloakJewelry = cloak and jewelry
+itemswitch-component-state-cloakSash = cloak and sash
+itemswitch-component-state-cloakSashL = cloak and long sash
+itemswitch-component-state-cloakblack = black cloak
+itemswitch-component-state-cloakblackmantle = black cloak and mantle
+itemswitch-component-state-cloakmantle = cloak and mantle
+itemswitch-component-state-cloakwhite = white cloak
+itemswitch-component-state-cloakwhitemantle = white cloak and mantle
+itemswitch-component-state-cloakwings = cloak and wings
 itemswitch-component-state-mantle = mantle
+itemswitch-component-state-mantlewings = mantle and wings
+itemswitch-component-state-wings = wings
