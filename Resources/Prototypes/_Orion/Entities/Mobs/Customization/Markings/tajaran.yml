@@ -436,7 +436,7 @@
   bodyPart: Tail
   speciesRestriction: [ Tajaran ]
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi # Arcane-Edit
       state: tail_fluffy
 
 
@@ -476,13 +476,15 @@
     - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_chest.rsi
       state: belly3
 
+# Arcane-Edit-Start: Tail's sprites from _Arcane
+
 - type: marking
   id: TajaranTailM
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_m
 
 - type: marking
@@ -491,9 +493,9 @@
   markingCategory: Tail
   speciesRestriction: [ Tajaran ]
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_m
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_ring
 
 - type: marking
@@ -502,9 +504,9 @@
   bodyPart: Tail
   speciesRestriction: [ Tajaran ]
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_m
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_skeleton
 
 - type: marking
@@ -513,9 +515,9 @@
   bodyPart: Tail
   speciesRestriction: [ Tajaran ]
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_m
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_tip
 
 - type: marking
@@ -524,9 +526,9 @@
   bodyPart: Tail
   speciesRestriction: [ Tajaran ]
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_fluffy
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_skeleton
 
 
@@ -536,9 +538,9 @@
   bodyPart: Tail
   speciesRestriction: [ Tajaran ]
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_fluffy
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: wingler_1
 
 - type: marking
@@ -547,9 +549,9 @@
   bodyPart: Tail
   speciesRestriction: [ Tajaran ]
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_fluffy
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: wingler_2
 
 - type: marking
@@ -558,9 +560,9 @@
   bodyPart: Tail
   speciesRestriction: [ Tajaran ]
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_fluffy
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: wingler_3
 
 # Animated
@@ -570,7 +572,7 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_fluffy_wagging
 
 - type: marking
@@ -579,9 +581,9 @@
   bodyPart: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_fluffy_wagging
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: wingler_1_wagging
 
 - type: marking
@@ -590,9 +592,9 @@
   bodyPart: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_fluffy_wagging
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: wingler_2_wagging
 
 - type: marking
@@ -601,9 +603,9 @@
   bodyPart: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_fluffy_wagging
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: wingler_3_wagging
 
 - type: marking
@@ -612,9 +614,9 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_fluffy_wagging
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_skeleton_wagging
 
 - type: marking
@@ -623,9 +625,9 @@
   bodyPart: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_m_wagging
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_tip_wagging
 
 - type: marking
@@ -634,7 +636,7 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_m_wagging
 
 - type: marking
@@ -643,9 +645,9 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_m_wagging
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_ring_wagging
 
 - type: marking
@@ -654,7 +656,8 @@
   bodyPart: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_m_wagging
-    - sprite: _Orion/Mobs/Customization/Tajaran/tajaran_tail.rsi
+    - sprite: _Arcane/Mobs/Customization/Tajaran/tajaran_tail.rsi
       state: tail_skeleton_wagging
+# Arcane-Edit-End

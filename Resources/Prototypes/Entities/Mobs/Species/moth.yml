@@ -128,11 +128,12 @@
       - map: [ "id" ]
       - map: [ "outerClothing" ]
       - map: [ "belt" ] #Goobedit - Belts over outerwear
-      - map: [ "enum.HumanoidVisualLayers.Tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
+      # - map: [ "enum.HumanoidVisualLayers.Tail" ] # Arcane-Edit
       - map: [ "enum.HumanoidVisualLayers.TailBehindBackpack" ] # imp
       - map: [ "back" ]
       - map: [ "enum.HumanoidVisualLayers.TailOversuit" ] # Floof
       - map: [ "neck" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ] # Arcane
       - map: [ "enum.HumanoidVisualLayers.Face" ] # Goobstation?
       - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
