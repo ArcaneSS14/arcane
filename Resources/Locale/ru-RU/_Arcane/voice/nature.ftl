@@ -1,3 +1,4 @@
+
 trait-category-nature = Дополнительная натура
 
 trait-catnature-name = Кошачья натура
