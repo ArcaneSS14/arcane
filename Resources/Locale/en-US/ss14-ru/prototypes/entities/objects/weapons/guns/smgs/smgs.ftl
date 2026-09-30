@@ -8,3 +8,6 @@ ent-WeaponSubMachineGunDrozd = Drozd
     .desc = A bullpup SMG designed for the narrow and tight corridors common in station warfare. This law-enforcement model is select fire, but the Drozd's burst focused design throttles its full-auto performance massively. Feeds from .35 Auto SMG magazines.
 ent-WeaponSubMachineGunWt550 = WT550
     .desc = A truly unique firearm, the WT550 loads from a proprietary top-mounted magazine parallel to the barrel. While the RPM isn't great, the small package and steady recoil make it fully usable one-handed. Feeds from top-mounted .35 Auto SMG magazines.
+ent-WeaponSubMachineGunWt550 = brown briefcase
+    .desc = Useful for carrying items in your hands.
+    .suffix = Submachine gun
