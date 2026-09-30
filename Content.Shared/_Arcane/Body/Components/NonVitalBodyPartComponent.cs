@@ -6,4 +6,4 @@ namespace Content.Shared._Arcane.Body.Components;
 /// Excludes this head, chest, or groin from vital damage, so it affects health like a limb.
 /// </summary>
 [RegisterComponent]
-public sealed partial class NonVitalBodyPartComponent : Component;
+public sealed partial class NonVitalBodyPartComponent : Component { }
