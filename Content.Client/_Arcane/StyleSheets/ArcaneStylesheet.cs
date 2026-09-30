@@ -29,27 +29,22 @@ public sealed class ArcaneStylesheet : CommonStylesheet, IButtonConfig
 
     public override string StylesheetName { get; }
     public override NotoFontFamilyStack BaseFont { get; }
-    public ColorPalette ButtonPalette => _theme.Buttons;
-    public Color AccentColor => _theme.Accent;
-
-    private readonly ArcaneTheme _theme;
 
     public override Dictionary<Type, ResPath[]> Roots => new()
     {
         { typeof(TextureResource), [TextureRoot, NanotrasenStylesheet.TextureRoot] },
     };
 
-    public override ColorPalette PrimaryPalette => _theme.Primary;
-    public override ColorPalette SecondaryPalette => _theme.Secondary;
+    public override ColorPalette PrimaryPalette => ArcanePalette.Primary;
+    public override ColorPalette SecondaryPalette => ArcanePalette.Secondary;
     public override ColorPalette PositivePalette => ArcanePalette.Positive;
     public override ColorPalette NegativePalette => ArcanePalette.Negative;
-    public override ColorPalette HighlightPalette => _theme.Highlight;
+    public override ColorPalette HighlightPalette => ArcanePalette.Highlight;
 
-    ColorPalette IButtonConfig.ButtonPalette => ButtonPalette;
+    ColorPalette IButtonConfig.ButtonPalette => ArcanePalette.Buttons;
 
-    public ArcaneStylesheet(object config, StylesheetManager manager, string stylesheetName, ArcaneTheme theme) : base(config)
+    public ArcaneStylesheet(object config, StylesheetManager manager, string stylesheetName) : base(config)
     {
-        _theme = theme;
         StylesheetName = stylesheetName;
         BaseFont = new NotoFontFamilyStack(ResCache);
 

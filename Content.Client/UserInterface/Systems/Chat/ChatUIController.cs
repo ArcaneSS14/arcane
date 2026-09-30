@@ -12,8 +12,7 @@ using Content.Client.Examine;
 using Content.Client.Gameplay;
 using Content.Client.Ghost;
 using Content.Client.Mind;
-using Content.Client._Arcane.StyleSheets;
-using Content.Client.Lobby.UI;
+using Content.Client.Lobby.UI; // Arcane
 using Content.Client.Roles;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Screens;
@@ -63,7 +62,6 @@ public sealed partial class ChatUIController : UIController
     [Dependency] private readonly IStateManager _state = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IReplayRecordingManager _replayRecording = default!;
-    [Dependency] private readonly IStylesheetManager _stylesheets = default!; // Arcane
 
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
     [UISystemDependency] private readonly GhostSystem? _ghost = default;
@@ -263,7 +261,6 @@ public sealed partial class ChatUIController : UIController
         }
 
         _config.OnValueChanged(CCVars.ChatWindowOpacity, OnChatWindowOpacityChanged);
-        _stylesheets.ThemeChanged += OnThemeChanged; // Arcane
 
         InitializeHighlights();
     }
@@ -288,13 +285,6 @@ public sealed partial class ChatUIController : UIController
         SetChatWindowOpacity(opacity);
     }
 
-    // Arcane-Start
-    private void OnThemeChanged()
-    {
-        SetChatWindowOpacity(_config.GetCVar(CCVars.ChatWindowOpacity));
-    }
-    // Arcane-End
-
     private void SetChatWindowOpacity(float opacity)
     {
         var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
@@ -305,17 +295,19 @@ public sealed partial class ChatUIController : UIController
 
         // Arcane-Edit-Start
         if (UIManager.ActiveScreen is LobbyGui)
-        {
-            panel.PanelOverride = new StyleBoxFlat(Color.Transparent);
-            return;
-        }
+            opacity = Math.Min(opacity, 0.35f);
 
-        var theme = ArcanePalette.Themes.First(candidate => candidate.Id == _stylesheets.CurrentTheme);
-        panel.PanelOverride = new StyleBoxFlat(theme.Secondary.BackgroundLight.WithAlpha(opacity))
-        {
-            BorderColor = theme.Primary.Base.WithAlpha(0.62f),
-            BorderThickness = new Thickness(1),
-        };
+        StyleBoxFlat panelStyle;
+        if (panel.PanelOverride is StyleBoxFlat styleBoxFlat)
+            panelStyle = new StyleBoxFlat(styleBoxFlat);
+        else if (panel.TryGetStyleProperty<StyleBox>(PanelContainer.StylePropertyPanel, out var style)
+                 && style is StyleBoxFlat propStyleBoxFlat)
+            panelStyle = new StyleBoxFlat(propStyleBoxFlat);
+        else
+            panelStyle = new StyleBoxFlat(Color.FromHex("#252A2F"));
+
+        panelStyle.BackgroundColor = panelStyle.BackgroundColor.WithAlpha(opacity);
+        panel.PanelOverride = panelStyle;
         // Arcane-Edit-End
     }
 

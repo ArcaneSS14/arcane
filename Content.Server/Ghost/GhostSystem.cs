@@ -738,14 +738,9 @@ namespace Content.Server.Ghost
 //            var ghost = SpawnAtPosition(GameTicker.ObserverPrototypeName, spawnPosition.Value);
             // Orion-Start
             CustomGhostPrototype? customGhost = null;
-            // Arcane-Edit-Start
-            if (mind.Comp.UserId is NetUserId userId &&
-                _player.TryGetSessionById(userId, out var ghostSession) &&
-                _prefs.GetPreferencesOrNull(userId) is { } prefs &&
-                _prototypeManager.TryIndex(prefs.CustomGhost, out CustomGhostPrototype? selectedGhost) &&
-                selectedGhost.CanUse(ghostSession))
-                customGhost = selectedGhost;
-            // Arcane-Edit-End
+            if (mind.Comp.UserId is NetUserId userId && _prefs.GetPreferencesOrNull(userId) is {} prefs)
+                customGhost = _prototypeManager.Index(prefs.CustomGhost);
+
             var ghost = SpawnAtPosition(customGhost?.GhostEntityPrototype ?? GameTicker.ObserverPrototypeName, spawnPosition.Value);
             // Orion-End
             var ghostComponent = Comp<GhostComponent>(ghost);

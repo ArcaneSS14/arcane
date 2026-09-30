@@ -2,19 +2,11 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Robust.Client.UserInterface;
-using Content.Client._Arcane.StyleSheets;
 
 namespace Content.Client.Stylesheets;
 
 public interface IStylesheetManager
 {
-    // Arcane-Start
-    string CurrentTheme { get; }
-    event Action? ThemeChanged;
-    IReadOnlyList<ArcaneTheme> GetAvailableThemes();
-    bool TrySetTheme(string themeId);
-    void RefreshTheme();
-    // Arcane-End
     /// Nanotrasen styles: the default style! Use this for most UIs
     Stylesheet SheetNanotrasen { get; }
 

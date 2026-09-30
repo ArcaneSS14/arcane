@@ -7,10 +7,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls">
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:style="clr-namespace:Content.Client.Stylesheets">
     <BoxContainer Name="VBox" Orientation="Vertical">
         <RichTextLabel Name="Header" Text="{Loc 'lobby-character-preview-panel-header'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center" />
-        <controls:HLine StyleClasses="ArcaneLobbyDivider" Thickness="2" />
+        <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" />
         <BoxContainer Name="Loaded" Orientation="Vertical"
                       Visible="False">
             <Label Name="Summary" HorizontalAlignment="Center" Margin="3 3"/>

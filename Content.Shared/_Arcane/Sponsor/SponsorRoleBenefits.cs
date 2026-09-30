@@ -14,7 +14,7 @@ public static class SponsorRoleBenefits
     public static readonly IReadOnlyDictionary<DiscordRole, SponsorRoleBenefit> All =
         new Dictionary<DiscordRole, SponsorRoleBenefit>
         {
-            [DiscordRole.SponsorTier1] = new("Tier1", "#a624c7", 2, -1),
+            [DiscordRole.SponsorTier1] = new("Tier1", "#7d25a8", 2, -1),
             [DiscordRole.SponsorTier2] = new("Tier2", "#d8aa2d", 3, -2),
             [DiscordRole.AdminBenefit] = new("AdminBenefit", "#78ecf5", 5, -3),
             [DiscordRole.ArtLead] = new("ArtLead", "#ffdaf9", 6, -4)
