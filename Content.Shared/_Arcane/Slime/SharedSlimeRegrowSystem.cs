@@ -227,10 +227,14 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
 
         if (TryComp<HumanoidAppearanceComponent>(ent, out var humanoid))
         {
-            // Losing a part hides all of its sublayers, but attaching one only shows its own layer,
-            // so markings the part never recorded (e.g. hair) would otherwise stay hidden.
+            // Losing the head hides all of its sublayers, but attaching it only shows its own layer,
+            // so markings it never recorded (e.g. hair) would otherwise stay hidden.
+            // Limb sublayers are hands and feet: separate parts that have not regrown yet.
             if (childPartComp.ToHumanoidLayers() is { } partLayer)
-                _humanoid.SetLayersVisibility((ent, humanoid), HumanoidVisualLayersExtension.Sublayers(partLayer), true);
+            {
+                var sublayers = HumanoidVisualLayersExtension.Sublayers(partLayer).Where(layer => layer != partLayer);
+                _humanoid.SetLayersVisibility((ent, humanoid), sublayers, childPartComp.PartType == BodyPartType.Head);
+            }
 
             // Applied after attaching, so the part appearance first picks up its base layer from the body.
             if (markings != null && TryComp<BodyPartAppearanceComponent>(childPart, out var appearance))
