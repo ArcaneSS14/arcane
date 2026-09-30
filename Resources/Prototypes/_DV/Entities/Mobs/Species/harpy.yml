@@ -120,7 +120,7 @@
   - type: Body
     prototype: Harpy
   - type: Damageable
-    damageModifierSet: Harpy
+#    damageModifierSet: Harpy # Arcane-Edit
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
