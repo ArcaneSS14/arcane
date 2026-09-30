@@ -8,7 +8,7 @@
   - type: BodyPart
     species: Oni
   - type: Damageable # Goob-Fixes
-    damageModifierSet: Oni
+#    damageModifierSet: Oni # Arcane-Edit
 
 - type: entity
   id: HeadOni

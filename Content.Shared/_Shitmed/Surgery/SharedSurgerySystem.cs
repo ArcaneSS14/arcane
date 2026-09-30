@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared._Orion.CorticalBorer;
 using Content.Shared._Orion.CorticalBorer.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
@@ -10,6 +11,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Steps;
 using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
+using Content.Shared._Shitmed.Medical.Surgery.Traumas;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 using Content.Shared._Shitmed.Surgery;
@@ -18,6 +20,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.GameTicking;
@@ -37,6 +40,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 using Content.Shared.Body.Organ;
 
 namespace Content.Shared._Shitmed.Medical.Surgery;
@@ -83,6 +87,11 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     /// Kept in sync with prototype reloads.
     /// </summary>
     public IReadOnlyList<EntProtoId> AllSurgeries => _allSurgeries;
+
+    // Arcane-Start
+    private static readonly ProtoId<DamageGroupPrototype> BruteDamageGroup = "Brute";
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
+    // Arcane-End
 
     public override void Initialize()
     {
@@ -167,6 +176,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         {
             var failEv = new SurgeryStepFailedEvent(args.User, ent, args.Surgery, args.Step);
             RaiseLocalEvent(args.User, ref failEv);
+            RefreshUI(ent); // Arcane
             return;
         }
 
@@ -178,14 +188,19 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             || !CanPerformStep(args.User, ent, part, step, tool, false))
         {
             Log.Warning($"{ToPrettyString(args.User)} tried to start invalid surgery.");
+            RefreshUI(ent); // Arcane
             return;
         }
 
-        var complete = IsStepComplete(ent, part, args.Step, surgery);
-        args.Repeat = HasComp<SurgeryRepeatableStepComponent>(step) && !complete;
-        var ev = new SurgeryStepEvent(args.User, ent, part, tool, surgery, step, complete);
+        // Arcane-Edit-Start
+        var ev = new SurgeryStepEvent(args.User, ent, part, tool, surgery, step, false);
         RaiseLocalEvent(step, ref ev);
+
+        var complete = ev.Complete || IsStepComplete(ent, part, args.Step, surgery);
+        ev.Complete = complete;
+        args.Repeat = HasComp<SurgeryRepeatableStepComponent>(step) && !complete;
         RaiseLocalEvent(args.User, ref ev);
+        // Arcane-Edit-End
 
         // consume the tool if it's something like using LV cable as stitches
         if (args.ToolUsed)
@@ -196,7 +211,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
                 PredictedQueueDel(tool);
         }
 
-        RefreshUI(ent);
+        // Arcane-Edit-Start
+        if (!args.Repeat)
+            RefreshUI(ent);
+        // Arcane-Edit-End
     }
 
     private void OnCloseIncisionValid(Entity<SurgeryCloseIncisionConditionComponent> ent, ref SurgeryValidEvent args)
@@ -204,8 +222,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         if (!HasComp<IncisionOpenComponent>(args.Part) ||
             !HasComp<BleedersClampedComponent>(args.Part) ||
             !HasComp<SkinRetractedComponent>(args.Part) ||
-            !HasComp<BodyPartReattachedComponent>(args.Part) ||
-            !HasComp<InternalBleedersClampedComponent>(args.Part))
+            !HasComp<InternalBleedersClampedComponent>(args.Part)) // Arcane-Edit
         {
             args.Cancelled = true;
         }
@@ -219,9 +236,17 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             return;
         }
 
-        if (_wounds.GetWoundableSeverityPoint(args.Part, partWoundable, ent.Comp.DamageGroup, healable: true) <= 0
-            && !HasComp<IncisionOpenComponent>(args.Part))
+        // Arcane-Edit-Start
+        var severity = _wounds.GetWoundableSeverityPoint(
+            args.Part,
+            partWoundable,
+            ent.Comp.DamageGroup,
+            healable: true,
+            ignoreBlockers: true);
+
+        if (severity <= 0 && !HasComp<IncisionOpenComponent>(args.Part))
             args.Cancelled = true;
+        // Arcane-Edit-End
     }
 
     // Orion-Start
@@ -380,15 +405,36 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             args.Cancelled = true;
     }
 
+    // Arcane-Start
+    /// <summary>
+    ///     Whether the given part has trauma of the given type, including bone and organ damage that
+    ///     the trauma entities themselves no longer report once integrity recovered.
+    /// </summary>
+    public bool HasTrauma(EntityUid part, ProtoId<TraumaTypePrototype> traumaType)
+    {
+        if (traumaType == TraumaSystem.BoneDamage)
+            return _trauma.HasBoneDamage(part);
+
+        if (traumaType == TraumaSystem.OrganDamage)
+            return _trauma.HasOrganDamage(part);
+
+        return _trauma.HasWoundableTrauma(part, traumaType);
+    }
+    // Arcane-End
+
     private void OnTraumaPresentConditionValid(Entity<SurgeryTraumaPresentConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (args.Cancelled)
             return;
 
+        // Arcane-Edit-Start
+        var hasTrauma = HasTrauma(args.Part, ent.Comp.TraumaType);
+
         // not inverted = cancel if no trauma present
         // inverted = cancel if trauma present
-        if (_trauma.HasWoundableTrauma(args.Part, ent.Comp.TraumaType) == ent.Comp.Inverted)
+        if (hasTrauma == ent.Comp.Inverted)
             args.Cancelled = true;
+        // Arcane-Edit-End
     }
 
     private void OnTraumaTreatableConditionValid(Entity<SurgeryTraumaTreatableConditionComponent> ent, ref SurgeryValidEvent args)
@@ -452,16 +498,15 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         // Arcane-Edit-Start
         if (!TryComp<SurgeryTargetComponent>(body, out var surgeryTarget) ||
             !surgeryTarget.CanOperate ||
-        // Arcane-Edit-End
             !IsLyingDown(body, user) ||
             GetSingleton(surgery) is not { } surgeryEntId ||
             !TryComp(surgeryEntId, out SurgeryComponent? surgeryComp) ||
             !surgeryComp.Steps.Contains(stepId) ||
-            GetSingleton(stepId) is not { } stepEnt
-            || !HasComp<BodyPartComponent>(targetPart)
-            && !_bodyQuery.HasComp(targetPart))
+            GetSingleton(stepId) is not { } stepEnt ||
+            !TryComp<BodyPartComponent>(targetPart, out var targetPartComp) ||
+            targetPartComp.Body != body)
             return false;
-
+        // Arcane-Edit-End
 
         var ev = new SurgeryValidEvent(body, targetPart);
         if (_timing.IsFirstTimePredicted)

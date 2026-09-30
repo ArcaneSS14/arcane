@@ -41,6 +41,11 @@ public sealed partial class StationAccountComponent : Component
 
     [DataField]
     public EntityUid? CurrentCrab17Machine;
+
+    // Arcane-Start
+    [DataField]
+    public bool BaseBalanceReceived;
+    // Arcane-End
 }
 
 [Serializable]

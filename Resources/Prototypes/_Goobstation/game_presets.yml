@@ -168,6 +168,7 @@
   rules:
     - SecretPlusLow
     - BasicRoundstartVariation # Arcane
+    - MeteorSwarmMildScheduler
 
 - type: gamePreset
   id: SecretPlusMid
@@ -181,6 +182,7 @@
   rules:
     - SecretPlusMid
     - BasicRoundstartVariation # Arcane
+    - MeteorSwarmScheduler
 
 - type: gamePreset
   id: SecretPlusAdmeme
@@ -195,6 +197,7 @@
   rules:
     - SecretPlusAdmeme
     - BasicRoundstartVariation # Arcane
+    - MeteorSwarmScheduler
 
 - type: gamePreset
   id: SurvivalPlusMid
@@ -207,6 +210,7 @@
   showInVote: false # Arcane
   rules:
     - SecretPlusRampingMid
+    - MeteorSwarmScheduler
 
 - type: gamePreset
   id: Xenomorphs
@@ -250,3 +254,4 @@
   maxPlayers: 40
   rules:
     - SecretPlusLowpop
+    - MeteorSwarmMildScheduler

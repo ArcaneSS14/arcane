@@ -16,13 +16,17 @@
   lastNames: NamesArachnidLast
   sexes:
   - Unsexed
+  # Arcane-Start
+  - Male
+  - Female
+  # Arcane-End
   # Orion-Start
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Arachnid.xml"
   pros:
   # Arcane-start
-  - Получают на 20% меньше режущего урона.
-  - Иммунитет к ядовитому урону.
+#  - Получают на 20% меньше режущего урона. # Arcane-Edit
+#  - Получают на 10% меньше тупого урона. # Arcane-Edit
   # Arcane-end
   - Не получают дебаффов от передвижения по паутине.
   special:
@@ -31,7 +35,7 @@
   - Получают урон от голода кровотечением и холодом по 0.5 единице в секунду.
   cons:
   # Arcane-start
-  - Получают на 25% больше теплового урона.
+#  - Получают на 25% больше теплового урона. # Arcane-Edit
   - Базовый урон при нехватке воздуха - 1.5 за цикл, восстановление при нормальном дыхании - 0.5 за цикл.
   # Arcane-end
   # Orion-End

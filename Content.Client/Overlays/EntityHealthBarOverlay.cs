@@ -5,6 +5,7 @@ using Content.Client.StatusIcon;
 using Content.Client.UserInterface.Systems;
 using Content.Shared.Damage;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Mech.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -61,10 +62,12 @@ public sealed class EntityHealthBarOverlay : Overlay
         var rotationMatrix = Matrix3Helpers.CreateRotation(-rotation);
         _prototype.Resolve(StatusIcon, out var statusIcon);
 
-        var query = _entManager.AllEntityQueryEnumerator<MobThresholdsComponent, MobStateComponent, DamageableComponent, SpriteComponent>();
+        var query = _entManager.AllEntityQueryEnumerator<DamageableComponent, SpriteComponent>(); // Arcane-edit: Mech HealthBar
         while (query.MoveNext(out var uid,
+            /* // Arcane-Edit-Start
             out var mobThresholdsComponent,
             out var mobStateComponent,
+            */ // Arcane-Edit-End
             out var damageableComponent,
             out var spriteComponent))
         {
@@ -87,7 +90,24 @@ public sealed class EntityHealthBarOverlay : Overlay
                 continue;
 
             // we are all progressing towards death every day
-            if (CalcProgress(uid, mobStateComponent, damageableComponent, mobThresholdsComponent) is not { } deathProgress)
+            // Arcane-Edit-Start
+            (float ratio, bool inCrit)? progress;
+            if (_entManager.TryGetComponent<MobStateComponent>(uid, out var mobState) &&
+                _entManager.TryGetComponent<MobThresholdsComponent>(uid, out var mobThresholds))
+            {
+                progress = CalcProgress(uid, mobState, damageableComponent, mobThresholds);
+            }
+            else if (_entManager.TryGetComponent<MechComponent>(uid, out var mech) && mech.MaxIntegrity > 0)
+            {
+                progress = (System.Math.Clamp((mech.Integrity / mech.MaxIntegrity).Float(), 0f, 1f), mech.Broken);
+            }
+            else
+            {
+                continue;
+            }
+
+            if (progress is not { } healthProgress)
+            // Arcane-Edit-End
                 continue;
 
             var worldPosition = _transform.GetWorldPosition(xform);
@@ -102,13 +122,13 @@ public sealed class EntityHealthBarOverlay : Overlay
             var widthOfMob = bounds.Width * EyeManager.PixelsPerMeter;
 
             var position = new Vector2(-widthOfMob / EyeManager.PixelsPerMeter / 2, yOffset / EyeManager.PixelsPerMeter);
-            var color = GetProgressColor(deathProgress.ratio, deathProgress.inCrit);
+            var color = GetProgressColor(healthProgress.ratio, healthProgress.inCrit); // Arcane-Edit
 
             // Hardcoded width of the progress bar because it doesn't match the texture.
             const float startX = 8f;
             var endX = widthOfMob - 8f;
 
-            var xProgress = (endX - startX) * deathProgress.ratio + startX;
+            var xProgress = (endX - startX) * healthProgress.ratio + startX; // Arcane-Edit
 
             var boxBackground = new Box2(new Vector2(startX, 0f) / EyeManager.PixelsPerMeter, new Vector2(endX, 3f) / EyeManager.PixelsPerMeter);
             boxBackground = boxBackground.Translated(position);

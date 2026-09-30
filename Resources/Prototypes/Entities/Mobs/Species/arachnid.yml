@@ -13,7 +13,7 @@
   - type: HumanoidAppearance
     species: Arachnid
   - type: Damageable
-    damageModifierSet: Arachnid
+#    damageModifierSet: Arachnid # Arcane-Edit
   - type: Hunger
   - type: Thirst
   - type: Sericulture
