@@ -1212,6 +1212,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("custom_species_name");
 
+                    b.Property<bool>("EarsAboveHair")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("ears_above_hair");
+
                     b.Property<int>("ErpPreference")
                         .HasColumnType("INTEGER")
                         .HasColumnName("erp_preference");

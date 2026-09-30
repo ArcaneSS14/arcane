@@ -5,6 +5,9 @@ namespace Content.Shared._Arcane.CCVars;
 [CVarDefs]
 public sealed partial class ACCVars
 {
+    public static readonly CVarDef<string> UiTheme =
+        CVarDef.Create("ui.arcane_theme", "default", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
     ///     Are auto voting enabled at the end of a round?
     /// </summary>
