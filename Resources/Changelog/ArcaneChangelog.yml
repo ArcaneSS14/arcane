@@ -2269,3 +2269,18 @@ Entries:
   time: '2026-09-29T17:21:41.0000000+00:00'
   prNumber: 381
   url: https://github.com/ArcaneSS14/arcane/pull/381
+- author: ChangelingRUES
+  changes:
+    - type: Tweak
+      message: >-
+        На карте Барратри теперь нормальная комната НТР и Синего Щита внутри
+        станции.
+    - type: Tweak
+      message: На карте Аврит в каюте мима убран пожарный топор и катана в бане.
+  id: 168
+  time: '2026-09-30T03:20:24.0000000+00:00'
+  prNumber: 429
+  url: https://github.com/ArcaneSS14/arcane/pull/429
+  media:
+    - >-
+      https://i.postimg.cc/j5D2B2nP/Barratry-NTR-BS.jpg)](https://postimg.cc/VrczCYRk
