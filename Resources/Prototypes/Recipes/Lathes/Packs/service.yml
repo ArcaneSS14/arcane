@@ -29,6 +29,7 @@
   - Holoprojector
   - WetFloorSign
   - WireBrush
+  - PlantAnalyzer #Arcane-Station
 
 - type: latheRecipePack
   id: ServiceBoardsStatic
