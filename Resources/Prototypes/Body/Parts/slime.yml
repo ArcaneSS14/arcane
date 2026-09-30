@@ -58,6 +58,13 @@
   id: HeadSlime
   name: "slime head"
   parent: [PartSlime, BaseHead]
+  # Arcane-Start: slimes keep their brain in the groin core, so losing the head is survivable
+  components:
+  - type: TriggerOnSpawn
+  - type: RemoveComponentsOnTrigger
+    components:
+    - type: ConsciousnessRequired
+  # Arcane-End
 
 - type: entity
   id: LeftArmSlime
