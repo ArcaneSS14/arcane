@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -67,4 +69,10 @@ public sealed partial class SlimeRegrowComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Voice/Slime/slime_squish.ogg");
+
+    /// <summary>
+    /// Markings of lost parts by body slot, restored onto the part regrown into that slot.
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<string, Dictionary<HumanoidVisualLayers, List<Marking>>> LostPartMarkings = new();
 }

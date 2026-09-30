@@ -1,9 +1,12 @@
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Actions;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.Body.Systems;
+using Content.Shared.Humanoid.Markings;
+using Content.Shared._Shitmed.Body.Part;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
@@ -49,6 +52,20 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
         SubscribeLocalEvent<SlimeRegrowComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SlimeRegrowComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SlimeRegrowComponent, SlimeRegrowLimbEvent>(OnSlimeRegrowLimb);
+        SubscribeLocalEvent<SlimeRegrowComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
+    }
+
+    // The body drops a lost part's markings, so keep them for the part regrown into that slot.
+    private void OnBodyPartRemoved(Entity<SlimeRegrowComponent> ent, ref BodyPartRemovedEvent args)
+    {
+        if (!_net.IsServer
+            || !TryComp<BodyPartAppearanceComponent>(args.Part, out var appearance)
+            || appearance.Markings.Count == 0)
+            return;
+
+        ent.Comp.LostPartMarkings[args.Slot] = appearance.Markings.ToDictionary(
+            pair => pair.Key,
+            pair => pair.Value.Select(m => new Marking(m.MarkingId, m.MarkingColors.ToList())).ToList());
     }
 
     private void OnMapInit(Entity<SlimeRegrowComponent> ent, ref MapInitEvent args)
@@ -101,7 +118,7 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
 
         var candidate = _random.Pick(candidates);
 
-        if (!TryGrowLimb(candidate.ParentId, candidate.SlotId, candidate.Slot))
+        if (!TryGrowLimb(ent, candidate.ParentId, candidate.SlotId, candidate.Slot))
         {
             _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
             return;
@@ -176,13 +193,21 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
         return missing;
     }
 
-    private bool TryGrowLimb(EntityUid parentId, string slotId, BodyPrototypeSlot slot)
+    private bool TryGrowLimb(Entity<SlimeRegrowComponent> ent, EntityUid parentId, string slotId, BodyPrototypeSlot slot)
     {
         if (slot.Part is not { } partId)
             return false;
 
         var childPart = Spawn(partId, new EntityCoordinates(parentId, Vector2.Zero));
         var childPartComp = Comp<BodyPartComponent>(childPart);
+
+        // Attaching applies the part's markings to the body.
+        if (ent.Comp.LostPartMarkings.Remove(slotId, out var markings))
+        {
+            var appearance = EnsureComp<BodyPartAppearanceComponent>(childPart);
+            appearance.Markings = markings;
+            Dirty(childPart, appearance);
+        }
 
         if (!_body.TryCreatePartSlotAndAttach(parentId, slotId, childPart, childPartComp.PartType, childPartComp.Symmetry))
         {
