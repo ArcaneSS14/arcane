@@ -64,6 +64,8 @@
   - type: RemoveComponentsOnTrigger
     components:
     - type: ConsciousnessRequired
+  - type: Woundable
+    damageOnAmputate: null
   # Arcane-End
 
 - type: entity
