@@ -1,0 +1,14 @@
+ent-ClothingMaskGasCaptainPatreon = противогаз капитана
+    .desc = { ent-ClothingMaskGas.desc }
+ent-ClothingMaskGasCEPatreon = противогаз старшего инженера
+    .desc = { ent-ClothingMaskGas.desc }
+ent-ClothingMaskGasCMOPatreon = противогаз главного врача
+    .desc = { ent-ClothingMaskGas.desc }
+ent-ClothingMaskGasHoPPatreon = противогаз главы персонала
+    .desc = { ent-ClothingMaskGas.desc }
+ent-ClothingMaskGasHoSPatreon = противогаз главы службы безопасности
+    .desc = { ent-ClothingMaskGas.desc }
+ent-ClothingMaskGasQMPatreon = противогаз квартирмейстера
+    .desc = { ent-ClothingMaskGas.desc }
+ent-ClothingMaskGasRDPatreon = противогаз научного руководителя
+    .desc = { ent-ClothingMaskGas.desc }
