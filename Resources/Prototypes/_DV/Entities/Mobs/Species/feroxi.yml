@@ -102,7 +102,7 @@
         Piercing: 7 # oooh scary extra damage~
   - type: Perishable
   - type: Damageable
-    damageModifierSet: Feroxi
+#    damageModifierSet: Feroxi # Arcane-Edit
   - type: TypingIndicator
     proto: feroxi
   - type: FeroxiDehydrate

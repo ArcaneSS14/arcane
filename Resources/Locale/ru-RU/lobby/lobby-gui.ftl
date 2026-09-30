@@ -1,6 +1,11 @@
 ui-lobby-title = Лобби: { $serverName }
 ui-lobby-ahelp-button = АХелп
 ui-lobby-options-button = Настройки
+ui-lobby-theme-button = Оформление UI: { $theme }
+ui-lobby-theme-default = Обычное
+ui-lobby-theme-gold = Золотое
+ui-lobby-theme-cosmos = Космос
+ui-lobby-theme-locked = Доступно со вторым тиром поддержки
 ui-lobby-leave-button = Выйти
 ui-lobby-observe-button = Наблюдать
 ui-lobby-ready-up-button = Готовность

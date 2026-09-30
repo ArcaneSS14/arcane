@@ -1285,6 +1285,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("custom_species_name");
 
+                    b.Property<bool>("EarsAboveHair")
+                        .HasColumnType("boolean")
+                        .HasColumnName("ears_above_hair");
+
                     b.Property<int>("ErpPreference")
                         .HasColumnType("integer")
                         .HasColumnName("erp_preference");
