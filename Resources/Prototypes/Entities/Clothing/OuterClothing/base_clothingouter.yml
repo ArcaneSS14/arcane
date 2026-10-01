@@ -29,6 +29,28 @@
   # Goobstation edit end
   - type: Sprite
     state: icon
+  # Arcane-Start
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: outerclothing
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: outerclothing
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 30
+      stain:
+        maxVol: 5
+  - type: StainBlocker
+    slots: [INNERCLOTHING]
+  # Arcane-End
 
 - type: entity
   abstract: true
@@ -47,6 +69,18 @@
   - type: Tag
     tags:
       - WhitelistChameleon
+  # Arcane-Start
+  - type: Stainable
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: suitblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: suitbloodicon
+  - type: StainBlocker
+    slots: [INNERCLOTHING, FEET, GLOVES]
+  # Arcane-End
 
 - type: entity
   abstract: true
@@ -66,6 +100,16 @@
         type: StorageBoundUserInterface
   - type: StaticPrice
     price: 10 # Arcane-Edit: 70 > 10
+  # Arcane-Start
+  - type: Stainable
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: coatblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: coatbloodicon
+  # Arcane-End
 
 - type: entity
   abstract: true
@@ -87,6 +131,16 @@
     - state: icon-open
       map: ["foldedLayer"]
       visible: false
+  # Arcane-Start
+  - type: Stainable
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: outerclothing
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: outerclothing
+  # Arcane-End
 
 - type: entity
   abstract: true
@@ -229,6 +283,10 @@
   - type: CosmicTransmutable # DeltaV
     transmutesTo: ClothingOuterHardsuitCosmicCult
     requiredGlyphType: CosmicGlyphWarding
+  # Arcane-Start
+  - type: StainBlocker
+    slots: [INNERCLOTHING, FEET, GLOVES]
+  # Arcane-End
 
 - type: entity
   abstract: true
@@ -277,6 +335,10 @@
   - type: CosmicTransmutable # DeltaV
     transmutesTo: ClothingOuterHardsuitCosmicCult
     requiredGlyphType: CosmicGlyphWarding
+  # Arcane-Start
+  - type: StainBlocker
+    slots: [INNERCLOTHING, FEET, GLOVES]
+  # Arcane-End
 
 - type: entity
   parent: ClothingOuterBase

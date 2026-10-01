@@ -1,0 +1,49 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from TauCeti at https://github.com/TauCetiStation/TauCetiClassic/commit/690cfb963b1ef13990b83f7e5a090924dd8afa0e and split into layers by ReWAFFlution",
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "states":
+    [{
+        "name": "base"
+    },
+    {
+        "name": "door-open"
+    },
+    {
+        "name": "door-closed"
+    },
+    {
+        "name": "empty"
+    },
+    {
+        "name": "full"
+    },
+    {
+        "name": "panel"
+    },
+    {
+        "name": "running",
+        "delays":
+        [
+            [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1
+            ]
+        ]
+    },
+    {
+        "name": "open_top"
+    }
+]
+    }

@@ -187,9 +187,11 @@ WarpPointLibrary: null
 WarpPointMorgue: null
 WarpPointReporter: null
 WarpPointSingulo: null
-WashingMachine: null
-WashingMachineBroken: null
-WashingMachineFilledClothes: null
+# Arcane-Edit-Start
+# WashingMachine: null
+# WashingMachineBroken: null
+# WashingMachineFilledClothes: null
+# Arcane-Edit-End
 WeaponShotgunKammererNonLethal: null
 WindoorSecureMailLocked: null
 WindoorSecureParamedicLocked: null
