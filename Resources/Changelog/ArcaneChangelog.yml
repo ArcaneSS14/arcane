@@ -2349,3 +2349,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/9a3e14d0-b762-4a3a-8c44-6afbad7cc24b
+- author: seemah, I_Heat_I
+  changes:
+    - type: Add
+      message: Добавлен новый интерфейс - ниндзя.
+  id: 173
+  time: '2026-10-01T15:22:54.0000000+00:00'
+  prNumber: 380
+  url: https://github.com/ArcaneSS14/arcane/pull/380
