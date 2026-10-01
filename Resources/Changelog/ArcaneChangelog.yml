@@ -2365,3 +2365,14 @@ Entries:
   time: '2026-10-01T15:31:21.0000000+00:00'
   prNumber: 440
   url: https://github.com/ArcaneSS14/arcane/pull/440
+- author: Vecortys
+  changes:
+    - type: Add
+      message: >-
+        Ротация режимов переведена в выбор случайного пресета. Шансы
+        подстраиваются, чтобы режимы чаще менялись, но шанс на каждый режим есть
+        всегда.
+  id: 175
+  time: '2026-10-01T15:39:44.0000000+00:00'
+  prNumber: 448
+  url: https://github.com/ArcaneSS14/arcane/pull/448
