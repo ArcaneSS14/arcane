@@ -2376,3 +2376,44 @@ Entries:
   time: '2026-10-01T15:39:44.0000000+00:00'
   prNumber: 448
   url: https://github.com/ArcaneSS14/arcane/pull/448
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Слаймолюды больше не умирают при потере головы.
+    - type: Add
+      message: Слаймолюды могут отрастить потерянную голову способностью регенерации.
+    - type: Fix
+      message: Отращённые части тела слаймолюдов сохраняют свои маркировки и волосы.
+    - type: Fix
+      message: >-
+        Исправлена хирургия слаймолюдов: пропускаются шаги с костями, добавлены
+        операции извлечения и установки ядра.
+    - type: Fix
+      message: Хранилище слаймолюда открывается только через его верб.
+    - type: Fix
+      message: >-
+        Исправлено перемещение предметов при переключении режима у существ со
+        своим хранилищем.
+    - type: Fix
+      message: >-
+        Исправлено залипание оверлея урона после окончания действия эффектов
+        сознания.
+    - type: Fix
+      message: >-
+        Добавлена русская локализация частей тела человека и дворфа, режимов
+        ветеранских накидок и накидок старшего инженера.
+    - type: Tweak
+      message: Перезарядка регенерации слаймолюдов увеличена до 4 минут.
+  id: 176
+  time: '2026-10-01T16:08:48.0000000+00:00'
+  prNumber: 442
+  url: https://github.com/ArcaneSS14/arcane/pull/442
+  media:
+    - >-
+      https://github.com/user-attachments/assets/b070c9ee-3dea-49b8-9309-4a1d8e7a67f9
+    - >-
+      https://github.com/user-attachments/assets/1cdc3884-bc1c-416f-92b3-31d9f0500353
+    - >-
+      https://github.com/user-attachments/assets/8f9ac3e4-94a2-4d50-a534-9f3eee1b4247
+    - >-
+      https://github.com/user-attachments/assets/58fc31d7-2ac4-43f6-bcdb-9a82c31461d7
