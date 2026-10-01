@@ -49,7 +49,7 @@ public sealed class HereticSacrificeTeleportSystem : EntitySystem
 
     private static readonly DamageSpecifier Damage = new()
     {
-        DamageDict = { ["Heat"] = 50, ["Cellular"] = 70 },
+        DamageDict = { ["Heat"] = 200, ["Cellular"] = 70 },
     };
 
     private static readonly SoundSpecifier DepartureSound = new SoundPathSpecifier("/Audio/Effects/teleport_departure.ogg");
