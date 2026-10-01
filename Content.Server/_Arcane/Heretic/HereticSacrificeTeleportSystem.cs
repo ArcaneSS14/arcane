@@ -4,6 +4,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Damage;
 using Content.Shared.Drunk;
 using Content.Shared.Jittering;
 using Content.Shared.Mind;
@@ -13,6 +14,7 @@ using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Stunnable;
+using Content.Shared._Shitmed.Targeting;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -22,6 +24,7 @@ namespace Content.Server._Arcane.Heretic;
 
 public sealed class HereticSacrificeTeleportSystem : EntitySystem
 {
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -44,6 +47,11 @@ public sealed class HereticSacrificeTeleportSystem : EntitySystem
     private static readonly TimeSpan Stutter = TimeSpan.FromSeconds(120);
     private static readonly TimeSpan Drunk = TimeSpan.FromSeconds(60);
 
+    private static readonly DamageSpecifier Damage = new()
+    {
+        DamageDict = { ["Heat"] = 50, ["Cellular"] = 70 },
+    };
+
     private static readonly SoundSpecifier DepartureSound = new SoundPathSpecifier("/Audio/Effects/teleport_departure.ogg");
     private static readonly SoundSpecifier ArrivalSound = new SoundPathSpecifier("/Audio/Effects/teleport_arrival.ogg");
 
@@ -59,6 +67,7 @@ public sealed class HereticSacrificeTeleportSystem : EntitySystem
         _audio.PlayPvs(ArrivalSound, victim);
 
         _rejuvenate.PerformRejuvenate(victim);
+        _damageable.TryChangeDamage(victim, new DamageSpecifier(Damage), true, false, targetPart: TargetBodyPart.All, canMiss: false);
 
         if (_mind.TryGetMind(victim, out var mindId, out var mind) && mind.VisitingEntity != null)
             _mind.UnVisit(mindId, mind);
