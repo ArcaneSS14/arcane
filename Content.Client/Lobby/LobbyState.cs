@@ -8,6 +8,7 @@ using Content.Client.LateJoin;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Client.Playtime;
+using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Content.Goobstation.Common.CCVar;
@@ -38,6 +39,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IPrototypeManager _protoMan = default!; // Goobstation - credits
         [Dependency] private readonly LinkAccountManager _linkAccount = default!; // RMC - Patreon
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
+        [Dependency] private readonly IStylesheetManager _stylesheets = default!; // Arcane
 
         private ISawmill _sawmill = default!; // Goobstation
         private ClientGameTicker _gameTicker = default!;
@@ -86,6 +88,11 @@ namespace Content.Client.Lobby
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
             Lobby.CharacterPreview.PatronPerks.OnPressed += OnPatronPerksPressed;
             Lobby.DiscordLinkButton.OnPressed += OnDiscordLinkPressed; // Arcane
+            // Arcane-Start
+            Lobby.ThemeButton.OnPressed += OnThemePressed;
+            _stylesheets.ThemeChanged += UpdateThemeButton;
+            _stylesheets.RefreshTheme();
+            // Arcane-End
             Lobby.ManifestButton.OnPressed += OnManifestPressed; // Orion
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
             Lobby.ReadyButton.OnToggled += OnReadyToggled;
@@ -114,6 +121,10 @@ namespace Content.Client.Lobby
             Lobby!.CharacterPreview.CharacterSetupButton.OnPressed -= OnSetupPressed;
             Lobby.CharacterPreview.PatronPerks.OnPressed -= OnPatronPerksPressed;
             Lobby.DiscordLinkButton.OnPressed -= OnDiscordLinkPressed; // Arcane
+            // Arcane-Start
+            Lobby.ThemeButton.OnPressed -= OnThemePressed;
+            _stylesheets.ThemeChanged -= UpdateThemeButton;
+            // Arcane-End
             Lobby!.ManifestButton.OnPressed -= OnManifestPressed; // Orion
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
@@ -139,6 +150,41 @@ namespace Content.Client.Lobby
         }
 
         // Arcane-start
+        private void UpdateThemeButton()
+        {
+            if (Lobby == null)
+                return;
+
+            var themes = _stylesheets.GetAvailableThemes();
+            Lobby.ThemeButton.Disabled = themes.Count < 2;
+            Lobby.ThemeButton.ToolTip = Lobby.ThemeButton.Disabled
+                ? Loc.GetString("ui-lobby-theme-locked")
+                : null;
+
+            foreach (var theme in themes)
+            {
+                if (theme.Id != _stylesheets.CurrentTheme)
+                    continue;
+
+                Lobby.ThemeButton.Text = Loc.GetString("ui-lobby-theme-button",
+                    ("theme", Loc.GetString(theme.NameLocId)));
+                break;
+            }
+        }
+
+        private void OnThemePressed(BaseButton.ButtonEventArgs args)
+        {
+            var themes = _stylesheets.GetAvailableThemes();
+            for (var i = 0; i < themes.Count; i++)
+            {
+                if (themes[i].Id != _stylesheets.CurrentTheme)
+                    continue;
+
+                _stylesheets.TrySetTheme(themes[(i + 1) % themes.Count].Id);
+                break;
+            }
+        }
+
         private void OnDiscordLinkPressed(BaseButton.ButtonEventArgs args)
         {
             if (!_linkAccount.Linked)

@@ -83,7 +83,7 @@
       - map: [ "enum.HumanoidVisualLayers.Face" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      # - map: [ "enum.HumanoidVisualLayers.Tail" ] # Arcane-Edit
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
       - map: [ "clownedon" ] # Dynamically generated
@@ -97,6 +97,7 @@
       - map: [ "mask" ]
       - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
       - map: [ "head" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ] # Arcane
       - map: [ "singingLayer" ]
         sprite: _DV/Effects/harpysinger.rsi
         state: singing_music_notes
@@ -244,7 +245,7 @@
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
       - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      # - map: [ "enum.HumanoidVisualLayers.Tail" ] # Arcane-Edit
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
       - map: [ "clownedon" ] # Dynamically generated
@@ -257,3 +258,4 @@
       - map: [ "enum.HumanoidVisualLayers.Hair" ]
       - map: [ "mask" ]
       - map: [ "head" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ] # Arcane

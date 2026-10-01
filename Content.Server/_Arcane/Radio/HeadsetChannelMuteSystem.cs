@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared.Actions;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.Radio;
@@ -19,7 +18,7 @@ namespace Content.Server._Arcane.Radio;
 
 /// <summary>
 ///     Lets a player mute receiving radio messages per channel through a BUI on a headset
-///     or through an action on an intrinsic radio (IPC, silicons, borgs).
+///     or through an action on an intrinsic radio (IPC, borgs, station AI).
 ///     The muted set is per player session, so only delivery to that player is skipped;
 ///     the player can still broadcast on the same frequencies.
 /// </summary>
@@ -28,9 +27,6 @@ public sealed class HeadsetChannelMuteSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-
-    private static readonly EntProtoId OpenRadioChannelsAction = "ActionOpenRadioChannels";
 
     private readonly Dictionary<NetUserId, HashSet<int>> _mutedFrequencies = new();
 
@@ -39,7 +35,6 @@ public sealed class HeadsetChannelMuteSystem : EntitySystem
         SubscribeLocalEvent<HeadsetComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<HeadsetComponent, HeadsetChannelMuteMessage>(OnToggleMute);
         SubscribeLocalEvent<HeadsetComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
-        SubscribeLocalEvent<IntrinsicRadioReceiverComponent, MapInitEvent>(OnRadioReceiverMapInit);
         SubscribeLocalEvent<IntrinsicRadioReceiverComponent, OpenRadioChannelsActionEvent>(OnOpenRadioChannels);
         SubscribeLocalEvent<IntrinsicRadioReceiverComponent, BoundUIOpenedEvent>(OnIntrinsicUiOpened);
         SubscribeLocalEvent<IntrinsicRadioReceiverComponent, HeadsetChannelMuteMessage>(OnIntrinsicToggleMute);
@@ -86,20 +81,14 @@ public sealed class HeadsetChannelMuteSystem : EntitySystem
         UpdateUiState(ent.Owner, args.Actor);
     }
 
-    private void OnRadioReceiverMapInit(Entity<IntrinsicRadioReceiverComponent> ent, ref MapInitEvent args)
-    {
-        EntityUid? actionId = null;
-        _actions.AddAction(ent.Owner, ref actionId, OpenRadioChannelsAction);
-    }
-
     private void OnOpenRadioChannels(Entity<IntrinsicRadioReceiverComponent> ent, ref OpenRadioChannelsActionEvent args)
     {
-        if (!TryComp<ActorComponent>(args.Performer, out var actor))
+        if (!HasComp<ActorComponent>(args.Performer))
             return;
 
         _ui.SetUi(ent.Owner, HeadsetChannelUiKey.Key,
             new InterfaceData("HeadsetChannelBoundUserInterface", interactionRange: 0, requireInputValidation: false));
-        _ui.TryOpenUi(ent.Owner, HeadsetChannelUiKey.Key, actor.Owner);
+        _ui.TryOpenUi(ent.Owner, HeadsetChannelUiKey.Key, args.Performer);
     }
 
     private void OnIntrinsicUiOpened(Entity<IntrinsicRadioReceiverComponent> ent, ref BoundUIOpenedEvent args)
