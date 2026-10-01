@@ -2357,3 +2357,11 @@ Entries:
   time: '2026-10-01T15:22:54.0000000+00:00'
   prNumber: 380
   url: https://github.com/ArcaneSS14/arcane/pull/380
+- author: Kinar7
+  changes:
+    - type: Add
+      message: 'Дебаг рнд сервер со всеми технологиями '
+  id: 174
+  time: '2026-10-01T15:31:21.0000000+00:00'
+  prNumber: 440
+  url: https://github.com/ArcaneSS14/arcane/pull/440
