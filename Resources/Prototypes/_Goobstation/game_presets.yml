@@ -131,6 +131,7 @@
   description: sleeper-description
   showInVote: true
   # Arcane-start
+  repeatWeightMultiplier: 0.8
   # minPlayers: 5
   rules:
     # - CalmDynamic

@@ -13,6 +13,7 @@ using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 // Shitmed Change
 using Content.Shared._Shitmed.Medical.Surgery.Consciousness.Components;
@@ -31,6 +32,11 @@ public sealed class DamageOverlayUiController : UIController
     [UISystemDependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [UISystemDependency] private readonly StatusEffectsSystem _statusEffects = default!;
     private Overlays.DamageOverlay _overlay = default!;
+
+    // Arcane-Start
+    private const float RefreshInterval = 0.25f;
+    private float _refreshAccumulator;
+    // Arcane-End
 
     public override void Initialize()
     {
@@ -73,6 +79,20 @@ public sealed class DamageOverlayUiController : UIController
 
         UpdateOverlays(entity.Value);
     }
+
+    // Arcane-Start: consciousness modifiers can expire without the server sending MobThresholdChecked
+    public override void FrameUpdate(FrameEventArgs args)
+    {
+        _refreshAccumulator += args.DeltaSeconds;
+        if (_refreshAccumulator < RefreshInterval)
+            return;
+
+        _refreshAccumulator = 0f;
+
+        if (_playerManager.LocalEntity is { } entity)
+            UpdateOverlays(entity);
+    }
+    // Arcane-End
 
     private void ClearOverlay()
     {
@@ -167,6 +187,7 @@ public sealed class DamageOverlayUiController : UIController
                     {
                         _overlay.CritLevel = 0;
                         _overlay.DeadLevel = 0;
+                        _overlay.OxygenLevel = 0; // Arcane
 
                         if (consciousness.Consciousness <= 0 || consciousness.Consciousness >= consciousness.Cap)
                         {
