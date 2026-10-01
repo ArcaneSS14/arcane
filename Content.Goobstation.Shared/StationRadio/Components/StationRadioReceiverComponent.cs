@@ -3,14 +3,28 @@ using Robust.Shared.GameStates;
 
 namespace Content.Goobstation.Shared.StationRadio.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)] // Arcane-Edit
 public sealed partial class StationRadioReceiverComponent : Component
 {
+    // Arcane-Start
     /// <summary>
-    /// The sound entity being played
+    /// The resolved media currently being played through this receiver.
+    /// </summary>
+    [AutoNetworkedField]
+    public ResolvedSoundSpecifier? CurrentMedia;
+
+    /// <summary>
+    /// Server time when the current media started playing.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public EntityUid? SoundEntity;
+    public TimeSpan? MediaStartTime;
+    // Arcane-End
+
+    /// <summary>
+    /// Changes every time playback starts, including when the same media is replayed.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int PlaybackId; // Arcane-Edit
 
     /// <summary>
     /// Is the radio turned on

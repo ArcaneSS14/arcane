@@ -73,8 +73,7 @@ public sealed partial class RadioSystem : EntitySystem
             // Arcane-Edit-Start
             if (SendRadioMessage(uid, args.Message, args.Channel, uid, args.Language)) // Einstein Engines - Language
             {
-                args.RadioMessageSent = true;
-                args.Channel = null; // prevent duplicate messages from other listeners.
+                args.Channel = null;
             }
             // Arcane-Edit-End
         }
@@ -98,7 +97,9 @@ public sealed partial class RadioSystem : EntitySystem
                 msg = args.LanguageObfuscatedChatMsg;
 
             // Arcane-Start
-            if (canUnderstand && args.Voice is { } voice)
+            if (uid != args.MessageSource
+                && canUnderstand
+                && args.Voice is { } voice)
             {
                 var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice, args.Channel.Frequency);
                 RaiseLocalEvent(uid, ref ev);
