@@ -45,6 +45,17 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     private Angle _lastEyeRotation = Angle.Zero;
 
+    /// <summary>
+    ///     Scratch buffers the block-key discovery fills instead of allocating fresh lists. <see cref="GetCache"/>
+    ///     runs on every reorder, so new lists plus fresh key strings churned garbage for every humanoid on every
+    ///     facing change even when the keys turned out to be unchanged. The buffers are only ever read into a
+    ///     <see cref="OrderingCache"/> that has actually changed.
+    /// </summary>
+    private readonly List<object> _hairKeyScratch = new();
+    private readonly List<object> _cloakKeyScratch = new();
+    private readonly List<object> _tailKeyScratch = new();
+    private readonly Dictionary<(string MarkingId, string RsiState), string> _markingKeyCache = new();
+
     private static readonly ProtoId<SpeciesPrototype> HarpySpecies = "Harpy";
     private static readonly object[] LegLayerCandidates =
     {
@@ -91,6 +102,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         _cache.Clear();
         _lastViews.Clear();
         _dummyViews.Clear();
+        _markingKeyCache.Clear();
         base.Shutdown();
     }
 
@@ -324,9 +336,9 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     /// </summary>
     private OrderingCache GetCache(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
     {
-        var hairKeys = UniqueKeys(GetHairBlockKeys(ent));
-        var cloakKeys = UniqueKeys(GetCloakBlockKeys(ent));
-        var tailKeys = UniqueKeys(GetTailBlockKeys(ent));
+        var hairKeys = UniqueKeys(GetHairBlockKeys(ent, _hairKeyScratch));
+        var cloakKeys = UniqueKeys(GetCloakBlockKeys(ent, _cloakKeyScratch));
+        var tailKeys = UniqueKeys(GetTailBlockKeys(ent, _tailKeyScratch));
 
         if (_cache.TryGetValue(ent.Owner, out var cache) &&
             SameKeys(cache.HairKeys, hairKeys) &&
@@ -339,9 +351,9 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         _cache.TryGetValue(ent.Owner, out var previous);
         cache = new OrderingCache
         {
-            HairKeys = hairKeys,
-            CloakKeys = cloakKeys,
-            TailKeys = tailKeys,
+            HairKeys = new List<object>(hairKeys),
+            CloakKeys = new List<object>(cloakKeys),
+            TailKeys = new List<object>(tailKeys),
             // The species-level anchor the tail rests above never changes with the markings, so keep it across
             // membership rebuilds once it has been captured from a native (base) ordering.
             TailAnchor = previous?.TailAnchor,
@@ -385,31 +397,40 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    ///     Drops duplicate keys in place and returns the same buffer, so the caller can keep reusing it.
+    /// </summary>
     private static List<object> UniqueKeys(List<object> keys)
     {
-        var unique = new List<object>(keys.Count);
-        foreach (var key in keys)
+        var unique = 0;
+        for (var i = 0; i < keys.Count; i++)
         {
+            var key = keys[i];
             var found = false;
-            foreach (var other in unique)
+            for (var j = 0; j < unique; j++)
             {
-                if (Equals(key, other))
-                {
-                    found = true;
-                    break;
-                }
+                if (!Equals(keys[j], key))
+                    continue;
+
+                found = true;
+                break;
             }
 
-            if (!found)
-                unique.Add(key);
+            if (found)
+                continue;
+
+            keys[unique] = key;
+            unique++;
         }
 
-        return unique;
+        keys.RemoveRange(unique, keys.Count - unique);
+        return keys;
     }
 
-    private List<object> GetHairBlockKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
+    private List<object> GetHairBlockKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> buffer)
     {
-        var hairKeys = new List<object> { HumanoidVisualLayers.Hair };
+        buffer.Clear();
+        buffer.Add(HumanoidVisualLayers.Hair);
 
         foreach (var markingList in ent.Comp1.MarkingSet.Markings.Values)
         {
@@ -424,37 +445,35 @@ public sealed class DirectionalLayeringSystem : EntitySystem
                 foreach (var sprite in prototype.Sprites)
                 {
                     if (sprite is SpriteSpecifier.Rsi rsi)
-                        hairKeys.Add($"{marking.MarkingId}-{rsi.RsiState}");
+                        buffer.Add(GetMarkingKey(marking.MarkingId, rsi.RsiState));
                 }
             }
         }
 
-        return hairKeys;
+        return buffer;
     }
 
-    private List<object> GetCloakBlockKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
+    private List<object> GetCloakBlockKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> buffer)
     {
-        var cloakKeys = new List<object>();
+        buffer.Clear();
         if (TryComp(ent.Owner, out InventorySlotsComponent? slots) &&
             slots.VisualLayerKeys.TryGetValue("neck", out var neckKeys))
         {
-            cloakKeys.AddRange(neckKeys);
+            buffer.AddRange(neckKeys);
         }
 
-        return cloakKeys;
+        return buffer;
     }
 
     /// <summary>
     ///     The tail/wings visual layers and their marking layers, restricted to keys the sprite actually has (the
     ///     "Wings" visual layer only exists for species that define it).
     /// </summary>
-    private List<object> GetTailBlockKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
+    private List<object> GetTailBlockKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> buffer)
     {
-        var tailKeys = new List<object>
-        {
-            HumanoidVisualLayers.Tail,
-            HumanoidVisualLayers.Wings,
-        };
+        buffer.Clear();
+        buffer.Add(HumanoidVisualLayers.Tail);
+        buffer.Add(HumanoidVisualLayers.Wings);
 
         foreach (var (category, markings) in ent.Comp1.MarkingSet.Markings)
         {
@@ -469,18 +488,34 @@ public sealed class DirectionalLayeringSystem : EntitySystem
                 foreach (var sprite in prototype.Sprites)
                 {
                     if (sprite is SpriteSpecifier.Rsi rsi)
-                        tailKeys.Add($"{marking.MarkingId}-{rsi.RsiState}");
+                        buffer.Add(GetMarkingKey(marking.MarkingId, rsi.RsiState));
                 }
             }
         }
 
-        for (var i = tailKeys.Count - 1; i >= 0; i--)
+        for (var i = buffer.Count - 1; i >= 0; i--)
         {
-            if (!TryGetLayerIndex(ent, tailKeys[i], out _))
-                tailKeys.RemoveAt(i);
+            if (!TryGetLayerIndex(ent, buffer[i], out _))
+                buffer.RemoveAt(i);
         }
 
-        return tailKeys;
+        return buffer;
+    }
+
+    /// <summary>
+    ///     Interns the "markingId-rsiState" layer key. Every humanoid re-discovers its block keys on each reorder,
+    ///     and both halves of the key come from prototypes, so a shared cache keeps that discovery allocation-free
+    ///     after the first pass.
+    /// </summary>
+    private object GetMarkingKey(string markingId, string rsiState)
+    {
+        var key = (markingId, rsiState);
+        if (_markingKeyCache.TryGetValue(key, out var cached))
+            return cached;
+
+        var composed = $"{markingId}-{rsiState}";
+        _markingKeyCache[key] = composed;
+        return composed;
     }
 
     private void EnsureHairLayout(
@@ -908,20 +943,19 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (indices.Count == 0 || end < start)
             return false;
 
-        var length = end - start + 1;
-        var seen = new bool[length];
-        foreach (var (_, index) in indices)
+        for (var expected = start; expected <= end; expected++)
         {
-            var relative = index - start;
-            if (relative < 0 || relative >= length)
-                return false;
+            var found = false;
+            for (var i = 0; i < indices.Count; i++)
+            {
+                if (indices[i].Index != expected)
+                    continue;
 
-            seen[relative] = true;
-        }
+                found = true;
+                break;
+            }
 
-        foreach (var present in seen)
-        {
-            if (!present)
+            if (!found)
                 return false;
         }
 
