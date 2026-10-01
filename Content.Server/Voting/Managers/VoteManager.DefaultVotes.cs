@@ -36,17 +36,9 @@ namespace Content.Server.Voting.Managers
         private GameTicker? _gameTicker;
 
         // Arcane-start
-        const int PresetMemory = 5;
         const int MapMemory = 6;
         const int MapAvailableCount = 1; // Макс кол-во раундов на определённой карте в памяти
-        private Dictionary<string, int> _presetAvailableCount = new() // Макс кол-во раундов в памяти с режимом
-        {
-            { "TheGhost", 4 },
-            { "SecretPlusLow", 1 },
-            { "SecretPlusMid", 2 }
-        };
         private List<string> _mapStory = new();
-        private List<string> _gameruleStory = new();
         // Arcane-end
 
         private static readonly Dictionary<StandardVoteType, CVarDef<bool>> VoteTypesToEnableCVars = new()
@@ -275,12 +267,6 @@ namespace Content.Server.Voting.Managers
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset vote finished: {picked}");
                 var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
                 ticker.SetGamePreset(picked);
-
-                // Arcane-start
-                _gameruleStory.Add(picked);
-                while (_gameruleStory.Count > PresetMemory)
-                    _gameruleStory.RemoveAt(0);
-                // Arcane-end
             };
         }
 
@@ -630,11 +616,6 @@ namespace Content.Server.Voting.Managers
 
                 if(_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
                     continue;
-
-                // Arcane-start
-                if (_gameruleStory.Count(el => el == preset.ID) >= _presetAvailableCount.GetValueOrDefault(preset.ID, 1))
-                    continue;
-                // Arcane-end
 
                 presets[preset.ID] = preset.ModeTitle;
             }

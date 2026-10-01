@@ -33,7 +33,7 @@ public sealed partial class TTSSystem : EntitySystem
 
     public override void Initialize()
     {
-        _cfg.OnValueChanged(ArtCVars.TTSEnabled, v => _isEnabled = v, true);
+        _cfg.OnValueChanged(ACVars.TTSEnabled, v => _isEnabled = v, true);
 
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke, after: [typeof(RadioSystem), typeof(HeadsetSystem)]);
 
@@ -58,9 +58,6 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_isEnabled || args.Message.Length > MaxMessageChars)
             return;
 
-        if (args.RadioMessageSent)
-            return;
-
         if (!args.Language.SpeechOverride.RequireSpeech)
             return;
 
@@ -72,7 +69,7 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (args.IsWhisper)
         {
-            HandleWhisper(uid, args.Message, args.Language, protoVoice.Speaker);
+            HandleWhisper(uid, args.Message, args.Language, protoVoice.Speaker, effect);
             return;
         }
 
@@ -84,7 +81,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_isEnabled || args.Message.Length > MaxMessageChars)
             return;
 
-        HandleReceiveRadio(Filter.SinglePlayer(comp.PlayerSession), args.Message, args.Voice, "radio_headset", args.Language, args.Frequency);
+        HandleReceiveRadio(Filter.SinglePlayer(comp.PlayerSession), args.Message, args.Voice, TTSEffects.RadioHeadset, args.Language, args.Frequency);
     }
 
     private void OnTTSAnnouncePlayEvent(ref TTSAnnouncePlayEvent args)
@@ -101,7 +98,7 @@ public sealed partial class TTSSystem : EntitySystem
         {
             var receivers = args.Receievers;
             var message = args.Message;
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(6), () => HandleReceiveRadio(receivers, message, voice, "announce"));
+            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(6), () => HandleReceiveRadio(receivers, message, voice, TTSEffects.Announce));
         }
     }
 
@@ -155,13 +152,13 @@ public sealed partial class TTSSystem : EntitySystem
         // RaiseNetworkEvent(new PlayTTSEvent(obfuscated, GetNetEntity(uid)), lilter, false);
     }
 
-    private async void HandleWhisper(EntityUid uid, string message, LanguagePrototype language, string speaker)
+    private async void HandleWhisper(EntityUid uid, string message, LanguagePrototype language, string speaker, string? effect = null)
     {
-        var normal = await GenerateTTS(message, speaker);
+        var normal = await GenerateTTS(message, speaker, effect);
         if (normal is null)
             return;
 
-        // var obfuscated = await GenerateTTS(message, speaker);
+        // var obfuscated = await GenerateTTS(_language.ObfuscateSpeech(message, language), speaker);
         // if (obfuscated is null)
         //     return;
 
