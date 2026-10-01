@@ -35,6 +35,7 @@ public sealed partial class XenobiologySystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!; // Arcane
 
     private TimeSpan _updateInterval;
 

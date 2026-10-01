@@ -25,6 +25,14 @@
     color: "#00CCFF"
   - type: Appearance
   - type: Unremoveable
+  - type: MeleeWeapon
+    canWideSwing: false
+    attackRate: 0.7
+    damage:
+      types:
+        Heat: 4
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
 
 - type: entity
   name: Ember
@@ -62,6 +70,14 @@
   - type: IgnitionSource
     ignited: true
   - type: AlwaysHot
+  - type: MeleeWeapon
+    canWideSwing: false
+    attackRate: 0.7
+    damage:
+      types:
+        Heat: 7
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
 
 - type: entity
   name: mystic mop

@@ -454,6 +454,7 @@
       - MilitaryPowerCellSniper
       - MilitaryPowerCellRevolver
       - EnergyMagAmmo # Goob edit end
+      - BolaEnergy # Arcane
       components:
       - Stunbaton
       - FlashOnTrigger

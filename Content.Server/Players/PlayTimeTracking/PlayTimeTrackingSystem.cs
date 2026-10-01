@@ -279,7 +279,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         if (player == null)
             return false;
 
-        return _discordRoles.HasRole(player, DiscordRole.SponsorTier2);
+        return _discordRoles.HasAnyRole(player, new HashSet<DiscordRole> { DiscordRole.SponsorTier2, DiscordRole.AdminBenefit });
     }
 
     private bool HasPlaytimeUnlock(ICommonSession player)

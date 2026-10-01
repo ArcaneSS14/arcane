@@ -4,6 +4,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   storage:
     back:
     - HandledBoomBox
@@ -14,6 +15,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformBartender
 
@@ -23,6 +25,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformBartenderSkirt
 
@@ -32,6 +35,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformNTRBlack
 
@@ -41,6 +45,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformNTRBlackSkirt
 
@@ -50,6 +55,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformNTRWhiteSkirt
 
@@ -59,6 +65,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformNTRWhite
 
@@ -68,6 +75,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformPinkClown
 
@@ -77,6 +85,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformCMOSweaterSkirt
 
@@ -86,6 +95,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformCMOSweater
 
@@ -95,6 +105,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformHOSShortDress
 
@@ -104,6 +115,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformNun
 
@@ -113,6 +125,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformQMBlackSkirtSleeveles
 
@@ -122,6 +135,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformQMBlackSleeveles
 
@@ -131,6 +145,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformQMSkirtSleeveles
 
@@ -140,6 +155,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformQMSleeveles
 
@@ -149,6 +165,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     gloves: ClothingHandsQMLongGloves
 
@@ -158,6 +175,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     shoes: ClothingShoesQMBoots
 
@@ -167,6 +185,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     shoes: ClothingShoesOldFashionedMedical
 
@@ -176,6 +195,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatNTRBlackBeret
 
@@ -185,6 +205,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatClownPink
 
@@ -194,6 +215,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatCMO
 
@@ -203,6 +225,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatHOSCap
 
@@ -212,6 +235,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatQMBlackBeret
 
@@ -221,6 +245,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatSanitar
 
@@ -230,6 +255,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterArmorHoSLeather
 
@@ -239,6 +265,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterHOSLongVest
 
@@ -248,6 +275,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterCoatLabEasy
 
@@ -257,6 +285,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterCoatLabBelts
 
@@ -266,6 +295,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterCoatLabBlack
 
@@ -275,6 +305,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterCoatLabEnlightenment
 
@@ -284,6 +315,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterApostolCoat
 
@@ -293,6 +325,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakNTRBlack
 
@@ -302,6 +335,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakNTRTricolor
 
@@ -311,6 +345,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakCMOHonorable
 
@@ -320,6 +355,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakHOSBlack
 
@@ -329,6 +365,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakHOSRed
 
@@ -338,6 +375,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakQMBlack
 
@@ -347,6 +385,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakQMWhite
 
@@ -356,6 +395,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformWellMaintainedDetective
 
@@ -365,6 +405,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingJumpskirtWellMaintainedDetective
 
@@ -374,8 +415,29 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterLightBronnik
+
+- type: loadout
+  id: CloakSolemnCapPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    neck: ClothingCloakSolemnCap
+
+- type: loadout
+  id: CloakSolemnQMPatron
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    neck: ClothingCloakSolemnQM
 
 # Service
 
@@ -385,6 +447,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformTwilightSparkle
 
@@ -394,6 +457,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformBotanist
 
@@ -403,6 +467,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformBotanistWhithStraps
 
@@ -412,6 +477,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformCamouflage
 
@@ -421,6 +487,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformChiefCook
 
@@ -430,6 +497,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformFreeClothes
 
@@ -439,6 +507,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformCook
 
@@ -448,6 +517,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformDancer
 
@@ -457,6 +527,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformFeminine
 
@@ -466,6 +537,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformFeminineEmpty
 
@@ -475,6 +547,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformJesterCostume
 
@@ -484,6 +557,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformPerfomanceDress
 
@@ -493,6 +567,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformComfortableUniform
 
@@ -502,6 +577,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformServiceShirt
 
@@ -511,6 +587,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformServiceShirtSkirt
 
@@ -520,6 +597,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformSterileUniform
 
@@ -529,6 +607,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     belt: ClothingBeltServiceApron
 
@@ -538,6 +617,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     gloves: ClothingHandsMimeMittens
 
@@ -547,6 +627,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatBotanist
 
@@ -556,6 +637,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatCamouflage
 
@@ -565,6 +647,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatClownCilinder
 
@@ -574,6 +657,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatFishCookBandana
 
@@ -583,6 +667,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatCookHigh
 
@@ -592,6 +677,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatCookInclined
 
@@ -601,6 +687,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatCookRed
 
@@ -610,6 +697,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     head: ClothingHatJester
 
@@ -619,6 +707,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakIan
 
@@ -628,6 +717,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterCleanerJumpsuit
 
@@ -637,6 +727,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterCookApron
 
@@ -646,6 +737,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterMusicianJacket
 
@@ -655,6 +747,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterRadioHostJacket
 
@@ -664,6 +757,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterCow
 
@@ -673,6 +767,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     outerClothing: ClothingOuterServiceJacket
 
@@ -682,6 +777,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     shoes: ClothingShoesMusicianBoots
 
@@ -691,6 +787,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     shoes: ClothingShoesJesters
 
@@ -700,6 +797,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     shoes: ClothingShoesTwilightSparkle
 
@@ -709,6 +807,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     shoes: ClothingShoesWorkerBoots
 
@@ -718,6 +817,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     socks: ClothingMimeStockings
 
@@ -727,6 +827,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     underwear: ClothingUnderwearJesterPants
 
@@ -736,6 +837,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     eyes: ClothingEyesBookWorm
 
@@ -745,6 +847,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   storage:
     back:
     - RadioHostMicrophone
@@ -755,6 +858,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakServicePatron
 
@@ -766,6 +870,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     underwear: ClothingUnderwearBikiniDoctor
 
@@ -775,6 +880,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     underwear: ClothingUnderwearBikiniChemist
 
@@ -784,6 +890,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     underwear: ClothingUnderwearBikiniParamedic
 
@@ -793,6 +900,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     underwear: ClothingUnderwearBikiniVirologist
 
@@ -802,6 +910,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     eyes: ClothingEyesParamedicGlasses
 
@@ -811,6 +920,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformVirologistPatron
 
@@ -820,6 +930,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformVirologistSkirtPatron
 
@@ -829,6 +940,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformVirologistTurtleneckPatron
 
@@ -838,6 +950,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformVirologistTurtleneckSkirtPatron
 
@@ -847,6 +960,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformParamedicPatron
 
@@ -856,6 +970,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformParamedicSkirtPatron
 
@@ -865,6 +980,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformParamedicTurtleneckPatron
 
@@ -874,6 +990,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformParamedicTurtleneckSkirtPatron
 
@@ -883,6 +1000,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformDoctorTurtleneckPatron
 
@@ -892,6 +1010,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformDoctorTurtleneckSkirtPatron
 
@@ -901,6 +1020,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformChemistPatron
 
@@ -910,6 +1030,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformChemistSkirtPatron
 
@@ -919,6 +1040,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformChemistTurtleneckPatron
 
@@ -928,6 +1050,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     jumpsuit: ClothingUniformChemistTurtleneckSkirtPatron
 
@@ -937,6 +1060,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakMedicalPatron
 
@@ -948,6 +1072,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakCargoPatron
 
@@ -959,6 +1084,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakRNDPatron
 
@@ -970,6 +1096,7 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakEngineerPatron
 
@@ -981,5 +1108,6 @@
   - !type:SponsorRequirementLoadoutEffect
     roles:
     - SponsorTier2
+    - AdminBenefit
   equipment:
     neck: ClothingCloakSecurityPatron

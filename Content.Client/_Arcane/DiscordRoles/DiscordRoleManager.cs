@@ -19,6 +19,20 @@ public sealed class DiscordRoleManager : IPostInjectInit, ISharedDiscordRoleMana
         return _player.LocalSession?.UserId == session.UserId && _roles.Contains(role);
     }
 
+    public bool HasAnyRole(ICommonSession session, HashSet<DiscordRole> roles)
+    {
+        if (_player.LocalSession?.UserId != session.UserId)
+            return false;
+
+        foreach (var role in roles)
+        {
+            if (_roles.Contains(role))
+                return true;
+        }
+
+        return false;
+    }
+
     private void OnStatus(DiscordRolesStatusMsg message)
     {
         _roles.Clear();
@@ -26,8 +40,15 @@ public sealed class DiscordRoleManager : IPostInjectInit, ISharedDiscordRoleMana
         RolesUpdated?.Invoke();
     }
 
+    private void OnDisconnected(object? sender, NetDisconnectedArgs args)
+    {
+        _roles.Clear();
+        RolesUpdated?.Invoke();
+    }
+
     void IPostInjectInit.PostInject()
     {
         _net.RegisterNetMessage<DiscordRolesStatusMsg>(OnStatus);
+        _net.Disconnect += OnDisconnected;
     }
 }

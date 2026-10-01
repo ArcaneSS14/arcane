@@ -382,16 +382,27 @@
 - type: accent
   id: chatsanitize
   wordReplacements:
+    # Arcane-Start
     chatsan-word-1: chatsan-replacement-1
+    chatsan-word-1-2: chatsan-replacement-1
+    chatsan-word-1-3: chatsan-replacement-1
     chatsan-word-2: chatsan-replacement-2
+    chatsan-word-2-2: chatsan-replacement-2
     chatsan-word-3: chatsan-replacement-3
+    chatsan-word-3-2: chatsan-replacement-3
     chatsan-word-4: chatsan-replacement-4
+    chatsan-word-4-2: chatsan-replacement-4
+    chatsan-word-4-3: chatsan-replacement-4
     chatsan-word-5: chatsan-replacement-5
     chatsan-word-6: chatsan-replacement-6
     chatsan-word-7: chatsan-replacement-7
     chatsan-word-8: chatsan-replacement-8
     chatsan-word-9: chatsan-replacement-9
+    chatsan-word-9-2: chatsan-replacement-9
+    chatsan-word-9-3: chatsan-replacement-9
     chatsan-word-10: chatsan-replacement-10
+    chatsan-word-10-2: chatsan-replacement-10
+    chatsan-word-10-3: chatsan-replacement-10
     chatsan-word-11: chatsan-replacement-11
     chatsan-word-12: chatsan-replacement-12
     chatsan-word-13: chatsan-replacement-13
@@ -400,19 +411,20 @@
     chatsan-word-16: chatsan-replacement-16
     chatsan-word-17: chatsan-replacement-17
     chatsan-word-18: chatsan-replacement-18
+    chatsan-word-18-2: chatsan-replacement-18
     chatsan-word-19: chatsan-replacement-19
     chatsan-word-20: chatsan-replacement-20
-    chatsan-word-21: chatsan-replacement-please
-    chatsan-word-22: chatsan-replacement-please
-    chatsan-word-23: chatsan-replacement-please
+    chatsan-word-21: chatsan-replacement-21
+    chatsan-word-22: chatsan-replacement-22
+    chatsan-word-23: chatsan-replacement-23
     chatsan-word-24: chatsan-replacement-24
     chatsan-word-25: chatsan-replacement-25
     chatsan-word-26: chatsan-replacement-26
     chatsan-word-27: chatsan-replacement-27
+    chatsan-word-27-2: chatsan-replacement-27
     chatsan-word-28: chatsan-replacement-28
     chatsan-word-29: chatsan-replacement-29
     chatsan-word-30: chatsan-replacement-30
-    chatsan-word-31: chatsan-replacement-31
     chatsan-word-32: chatsan-replacement-32
     chatsan-word-33: chatsan-replacement-33
     chatsan-word-34: chatsan-replacement-34
@@ -420,8 +432,11 @@
     chatsan-word-36: chatsan-replacement-36
     chatsan-word-37: chatsan-replacement-37
     chatsan-word-38: chatsan-replacement-38
-    chatsan-word-39: chatsan-replacement-etcetera
-    chatsan-word-40: chatsan-replacement-etcetera
+    chatsan-word-38-2: chatsan-replacement-38
+    chatsan-word-39: chatsan-replacement-39
+    chatsan-word-39-2: chatsan-replacement-39
+    chatsan-word-40: chatsan-replacement-40
+    chatsan-word-40-2: chatsan-replacement-40
     chatsan-word-41: chatsan-replacement-41
     chatsan-word-42: chatsan-replacement-42
     chatsan-word-43: chatsan-replacement-43
@@ -430,10 +445,13 @@
     chatsan-word-46: chatsan-replacement-46
     chatsan-word-47: chatsan-replacement-47
     chatsan-word-48: chatsan-replacement-48
+    chatsan-word-48-2: chatsan-replacement-48
     chatsan-word-49: chatsan-replacement-49
+    chatsan-word-49-2: chatsan-replacement-49
     chatsan-word-50: chatsan-replacement-50
     chatsan-word-51: chatsan-replacement-51
     chatsan-word-52: chatsan-replacement-52
+    chatsan-word-52-2: chatsan-replacement-52
     chatsan-word-53: chatsan-replacement-53
     chatsan-word-54: chatsan-replacement-54
     chatsan-word-55: chatsan-replacement-55
@@ -445,18 +463,229 @@
     chatsan-word-61: chatsan-replacement-61
     chatsan-word-62: chatsan-replacement-62
     chatsan-word-63: chatsan-replacement-63
+    chatsan-word-63-2: chatsan-replacement-63
     chatsan-word-64: chatsan-replacement-64
     chatsan-word-65: chatsan-replacement-65
     chatsan-word-66: chatsan-replacement-66
     chatsan-word-67: chatsan-replacement-67
     chatsan-word-68: chatsan-replacement-68
-    chatsan-word-69: chatsan-replacement-69 # :godo:
-    # goob start
+    chatsan-word-69: chatsan-replacement-69
     chatsan-word-70: chatsan-replacement-70
     chatsan-word-71: chatsan-replacement-71
     chatsan-word-72: chatsan-replacement-72
     chatsan-word-73: chatsan-replacement-73
-    # goob end
+    chatsan-word-74: chatsan-replacement-74
+    chatsan-word-74-2: chatsan-replacement-74
+    chatsan-word-75: chatsan-replacement-75
+    chatsan-word-76: chatsan-replacement-76
+    chatsan-word-77: chatsan-replacement-77
+    chatsan-word-78: chatsan-replacement-78
+    chatsan-word-79: chatsan-replacement-79
+    chatsan-word-80: chatsan-replacement-80
+    chatsan-word-81: chatsan-replacement-81
+    chatsan-word-82: chatsan-replacement-82
+    chatsan-word-83: chatsan-replacement-83
+    chatsan-word-84: chatsan-replacement-84
+    chatsan-word-85: chatsan-replacement-85
+    chatsan-word-85-2: chatsan-replacement-85
+    chatsan-word-86: chatsan-replacement-86
+    chatsan-word-87: chatsan-replacement-87
+    chatsan-word-88: chatsan-replacement-88
+    chatsan-word-89: chatsan-replacement-89
+    chatsan-word-90: chatsan-replacement-90
+    chatsan-word-91: chatsan-replacement-91
+    chatsan-word-92: chatsan-replacement-92
+    chatsan-word-93: chatsan-replacement-93
+    chatsan-word-94: chatsan-replacement-94
+    chatsan-word-95: chatsan-replacement-95
+    chatsan-word-95-2: chatsan-replacement-95
+    chatsan-word-95-3: chatsan-replacement-95
+    chatsan-word-95-4: chatsan-replacement-95
+    chatsan-word-95-5: chatsan-replacement-95
+    chatsan-word-96: chatsan-replacement-96
+    chatsan-word-96-2: chatsan-replacement-96
+    chatsan-word-97: chatsan-replacement-97
+    chatsan-word-98: chatsan-replacement-98
+    chatsan-word-99: chatsan-replacement-99
+    chatsan-word-100: chatsan-replacement-100
+    chatsan-word-101: chatsan-replacement-101
+    chatsan-word-101-2: chatsan-replacement-101
+    chatsan-word-102: chatsan-replacement-102
+    chatsan-word-102-2: chatsan-replacement-102
+    chatsan-word-103: chatsan-replacement-103
+    chatsan-word-103-2: chatsan-replacement-103
+    chatsan-word-104: chatsan-replacement-104
+    chatsan-word-104-2: chatsan-replacement-104
+    chatsan-word-105: chatsan-replacement-105
+    chatsan-word-105-2: chatsan-replacement-105
+    chatsan-word-106: chatsan-replacement-106
+    chatsan-word-107: chatsan-replacement-107
+    chatsan-word-108: chatsan-replacement-108
+    chatsan-word-109: chatsan-replacement-109
+    chatsan-word-110: chatsan-replacement-110
+    chatsan-word-111: chatsan-replacement-111
+    chatsan-word-112: chatsan-replacement-112
+    chatsan-word-113: chatsan-replacement-113
+    chatsan-word-113-2: chatsan-replacement-113
+    chatsan-word-114: chatsan-replacement-114
+    chatsan-word-115: chatsan-replacement-115
+    chatsan-word-116: chatsan-replacement-116
+    chatsan-word-117: chatsan-replacement-117
+    chatsan-word-118: chatsan-replacement-118
+    chatsan-word-119: chatsan-replacement-119
+    chatsan-word-120: chatsan-replacement-120
+    chatsan-word-121: chatsan-replacement-121
+    chatsan-word-122: chatsan-replacement-122
+    chatsan-word-123: chatsan-replacement-123
+    chatsan-word-124: chatsan-replacement-124
+    chatsan-word-125: chatsan-replacement-125
+    chatsan-word-126: chatsan-replacement-126
+    chatsan-word-127: chatsan-replacement-127
+    chatsan-word-127-2: chatsan-replacement-127
+    chatsan-word-128: chatsan-replacement-128
+    chatsan-word-129: chatsan-replacement-129
+    chatsan-word-130: chatsan-replacement-130
+    chatsan-word-131: chatsan-replacement-131
+    chatsan-word-131-2: chatsan-replacement-131
+    chatsan-word-132: chatsan-replacement-132
+    chatsan-word-133: chatsan-replacement-133
+    chatsan-word-134: chatsan-replacement-134
+    chatsan-word-134-2: chatsan-replacement-134
+    chatsan-word-134-3: chatsan-replacement-134
+    chatsan-word-134-4: chatsan-replacement-134
+    chatsan-word-135: chatsan-replacement-135
+    chatsan-word-135-2: chatsan-replacement-135
+    chatsan-word-135-3: chatsan-replacement-135
+    chatsan-word-136: chatsan-replacement-136
+    chatsan-word-137: chatsan-replacement-137
+    chatsan-word-137-2: chatsan-replacement-137
+    chatsan-word-138: chatsan-replacement-138
+    chatsan-word-138-2: chatsan-replacement-138
+    chatsan-word-139: chatsan-replacement-139
+    chatsan-word-140: chatsan-replacement-140
+    chatsan-word-141: chatsan-replacement-141
+    chatsan-word-142: chatsan-replacement-142
+    chatsan-word-143: chatsan-replacement-143
+    chatsan-word-144: chatsan-replacement-144
+    chatsan-word-145: chatsan-replacement-145
+    chatsan-word-146: chatsan-replacement-146
+    chatsan-word-147: chatsan-replacement-147
+    chatsan-word-148: chatsan-replacement-148
+    chatsan-word-149: chatsan-replacement-149
+    chatsan-word-150: chatsan-replacement-150
+    chatsan-word-151: chatsan-replacement-151
+    chatsan-word-151-2: chatsan-replacement-151
+    chatsan-word-152: chatsan-replacement-152
+    chatsan-word-153: chatsan-replacement-153
+    chatsan-word-154: chatsan-replacement-154
+    chatsan-word-154-2: chatsan-replacement-154
+    chatsan-word-155: chatsan-replacement-155
+    chatsan-word-156: chatsan-replacement-156
+    chatsan-word-156-2: chatsan-replacement-156
+    chatsan-word-157: chatsan-replacement-157
+    chatsan-word-157-2: chatsan-replacement-157
+    chatsan-word-157-3: chatsan-replacement-157
+    chatsan-word-158: chatsan-replacement-158
+    chatsan-word-159: chatsan-replacement-159
+    chatsan-word-160: chatsan-replacement-160
+    chatsan-word-161: chatsan-replacement-161
+    chatsan-word-162: chatsan-replacement-162
+    chatsan-word-163: chatsan-replacement-163
+    chatsan-word-164: chatsan-replacement-164
+    chatsan-word-165: chatsan-replacement-165
+    chatsan-word-166: chatsan-replacement-166
+    chatsan-word-167: chatsan-replacement-167
+    chatsan-word-167-2: chatsan-replacement-167
+    chatsan-word-168: chatsan-replacement-168
+    chatsan-word-168-2: chatsan-replacement-168
+    chatsan-word-168-3: chatsan-replacement-168
+    chatsan-word-168-4: chatsan-replacement-168
+    chatsan-word-168-5: chatsan-replacement-168
+    chatsan-word-168-6: chatsan-replacement-168
+    chatsan-word-168-7: chatsan-replacement-168
+    chatsan-word-168-8: chatsan-replacement-168
+    chatsan-word-168-9: chatsan-replacement-168
+    chatsan-word-168-10: chatsan-replacement-168
+    chatsan-word-168-11: chatsan-replacement-168
+    chatsan-word-168-12: chatsan-replacement-168
+    chatsan-word-168-13: chatsan-replacement-168
+    chatsan-word-168-14: chatsan-replacement-168
+    chatsan-word-168-15: chatsan-replacement-168
+    chatsan-word-169: chatsan-replacement-169
+    chatsan-word-170: chatsan-replacement-170
+    chatsan-word-171: chatsan-replacement-171
+    chatsan-word-172: chatsan-replacement-172
+    chatsan-word-173: chatsan-replacement-173
+    chatsan-word-174: chatsan-replacement-174
+    chatsan-word-175: chatsan-replacement-175
+    chatsan-word-176: chatsan-replacement-176
+    chatsan-word-177: chatsan-replacement-177
+    chatsan-word-178: chatsan-replacement-178
+    chatsan-word-179: chatsan-replacement-179
+    chatsan-word-180: chatsan-replacement-180
+    chatsan-word-181: chatsan-replacement-181
+    chatsan-word-182: chatsan-replacement-182
+    chatsan-word-182-2: chatsan-replacement-182
+    chatsan-word-183: chatsan-replacement-183
+    chatsan-word-183-2: chatsan-replacement-183
+    chatsan-word-184: chatsan-replacement-184
+    chatsan-word-185: chatsan-replacement-185
+    chatsan-word-186: chatsan-replacement-186
+    chatsan-word-187: chatsan-replacement-187
+    chatsan-word-188: chatsan-replacement-188
+    chatsan-word-189: chatsan-replacement-189
+    chatsan-word-190: chatsan-replacement-190
+    chatsan-word-191: chatsan-replacement-191
+    chatsan-word-192: chatsan-replacement-192
+    chatsan-word-193: chatsan-replacement-193
+    chatsan-word-194: chatsan-replacement-194
+    chatsan-word-195: chatsan-replacement-195
+    chatsan-word-196: chatsan-replacement-196
+    chatsan-word-197: chatsan-replacement-197
+    chatsan-word-198: chatsan-replacement-198
+    chatsan-word-199: chatsan-replacement-199
+    chatsan-word-200: chatsan-replacement-200
+    # chatsan-word-201: chatsan-replacement-201
+    # chatsan-word-201-2: chatsan-replacement-201
+    # chatsan-word-201-3: chatsan-replacement-201
+    # chatsan-word-201-4: chatsan-replacement-201
+    # chatsan-word-202: chatsan-replacement-202
+    # chatsan-word-202-2: chatsan-replacement-202
+    # chatsan-word-202-3: chatsan-replacement-202
+    # chatsan-word-202-4: chatsan-replacement-202
+    # chatsan-word-202-5: chatsan-replacement-202
+    # chatsan-word-202-6: chatsan-replacement-202
+    # chatsan-word-202-7: chatsan-replacement-202
+    # chatsan-word-202-8: chatsan-replacement-202
+    # chatsan-word-202-9: chatsan-replacement-202
+    # chatsan-word-202-10: chatsan-replacement-202
+    # chatsan-word-203: chatsan-replacement-203
+    # chatsan-word-203-2: chatsan-replacement-203
+    # chatsan-word-203-3: chatsan-replacement-203
+    # chatsan-word-203-4: chatsan-replacement-203
+    # chatsan-word-203-5: chatsan-replacement-203
+    # chatsan-word-203-6: chatsan-replacement-203
+    # chatsan-word-204: chatsan-replacement-204
+    # chatsan-word-204-2: chatsan-replacement-204
+    # chatsan-word-204-3: chatsan-replacement-204
+    # chatsan-word-204-4: chatsan-replacement-204
+    # chatsan-word-205: chatsan-replacement-205
+    # chatsan-word-205-2: chatsan-replacement-205
+    # chatsan-word-205-3: chatsan-replacement-205
+    # chatsan-word-205-4: chatsan-replacement-205
+    # chatsan-word-205-5: chatsan-replacement-205
+    # chatsan-word-205-6: chatsan-replacement-205
+    # chatsan-word-206: chatsan-replacement-206
+    chatsan-word-207: chatsan-replacement-207
+    chatsan-word-208: chatsan-replacement-208
+    chatsan-word-209: chatsan-replacement-209
+    chatsan-word-210: chatsan-replacement-210
+    chatsan-word-211: chatsan-replacement-211
+    chatsan-word-212: chatsan-replacement-212
+    chatsan-word-213: chatsan-replacement-213
+    chatsan-word-214: chatsan-replacement-214
+    chatsan-word-215: chatsan-replacement-215
+    # Arcane-End
 
 - type: accent
   id: liar

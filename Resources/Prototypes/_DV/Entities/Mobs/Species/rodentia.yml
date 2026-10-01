@@ -123,7 +123,7 @@
         Blunt: 2
         Slash: 3
   - type: Damageable
-    damageModifierSet: Rodentia
+#    damageModifierSet: Rodentia # Arcane-Edit
   - type: Butcherable
     spawned:
     - id: FoodMeatRat

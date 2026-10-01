@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ActionOpenRadioChannels
+  categories: [ HideSpawnMenu ]
+  name: Radio channels
+  description: Opens the list of radio frequencies on your radio so you can mute selected ones.
+  components:
+  - type: Action
+    checkCanInteract: false
+    raiseOnUser: true
+    icon:
+      sprite: Clothing/Ears/Headsets/security.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:OpenRadioChannelsActionEvent

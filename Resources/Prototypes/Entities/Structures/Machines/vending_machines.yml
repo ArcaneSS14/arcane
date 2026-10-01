@@ -279,6 +279,10 @@
     normalState: normal-unshaded
     denyState: deny-unshaded
     loopDeny: false
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: BoozeOMatAds
   - type: SpeakOnUIClosed
@@ -384,6 +388,10 @@
     brokenState: broken
     normalState: normal-unshaded
     ejectState: eject-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: ChefvendAds
   - type: SpeakOnUIClosed
@@ -1021,6 +1029,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
   - type: Sprite
     noRot: true
     sprite: Structures/Machines/VendingMachines/engivend.rsi
@@ -1102,6 +1114,10 @@
   - type: VendingMachine
     pack: NanoMedPlusInventory
     offState: off
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/medical.rsi
     layers:
@@ -1128,6 +1144,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: NutriMaxAds
   - type: SpeakOnUIClosed
@@ -1164,6 +1184,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Security
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: SecTechAds
   - type: SpeakOnUIClosed
@@ -1549,6 +1573,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Science
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: VendomatAds
   - type: SpeakOnUIClosed
@@ -1594,6 +1622,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
   - type: Sprite
     noRot: true
     sprite: Structures/Machines/VendingMachines/youtool.rsi
@@ -1840,6 +1872,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: LawDrobeAds
   - type: SpeakOnUIClosed
@@ -1868,6 +1904,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Security
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: SecDrobeAds
   - type: SpeakOnUIClosed
@@ -1928,6 +1968,10 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/chapdrobe.rsi
     layers:
@@ -1958,6 +2002,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Cargo
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: CargoDrobeAds
   - type: SpeakOnUIClosed
@@ -1990,6 +2038,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: MediDrobeAds
   - type: SpeakOnUIClosed
@@ -2018,6 +2070,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: ChemDrobeAds
   - type: SpeakOnUIClosed
@@ -2046,6 +2102,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: CuraDrobeAds
   - type: SpeakOnUIClosed
@@ -2074,6 +2134,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: AtmosDrobeAds
   - type: SpeakOnUIClosed
@@ -2106,6 +2170,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: EngiDrobeAds
   - type: SpeakOnUIClosed
@@ -2166,6 +2234,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Security
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: DetDrobeAds
   - type: SpeakOnUIClosed
@@ -2194,6 +2266,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: JaniDrobeAds
   - type: SpeakOnUIClosed
@@ -2228,6 +2304,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Science
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: SciDrobeAds
   - type: SpeakOnUIClosed
@@ -2316,6 +2396,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: GeneDrobeAds
   - type: SpeakOnUIClosed
@@ -2344,6 +2428,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: ViroDrobeAds
   - type: SpeakOnUIClosed
@@ -2506,6 +2594,10 @@
     brokenState: broken
     normalState: normal
     denyState: deny
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   # ejectDelay: 2 Goobstation - No reason for the eject delay to be 2 seconds
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/chemvend.rsi
@@ -2579,6 +2671,10 @@
   - type: VendingMachine
     pack: NanoMedInventory
     offState: off
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/wallmed.rsi
     layers:

@@ -72,7 +72,7 @@
     - Bubblish
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Slime
+#    damageModifierSet: Slime # Arcane-Edit
   - type: PassiveDamage # Around 8 damage a minute healed
     allowedStates:
     - Alive

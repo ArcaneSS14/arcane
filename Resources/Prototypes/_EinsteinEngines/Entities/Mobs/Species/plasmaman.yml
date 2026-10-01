@@ -75,7 +75,7 @@
       - ReagentId: Plasma
         Quantity: 300
   - type: Damageable
-    damageModifierSet: Plasmaman
+#    damageModifierSet: Plasmaman # Arcane-Edit
   - type: MeleeWeapon
     soundHit:
       collection: FirePunch

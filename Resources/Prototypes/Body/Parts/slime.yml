@@ -20,7 +20,7 @@
       Burn:
         sprite: _Shitmed/Mobs/Effects/burn_damage.rsi
   - type: Damageable # Shitmed
-    damageModifierSet: Slime
+#    damageModifierSet: Slime # Arcane-Edit
   - type: Boneless # Goob Edit
     bonePenalty: 0.7
 

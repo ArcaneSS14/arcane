@@ -1285,6 +1285,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("custom_species_name");
 
+                    b.Property<bool>("EarsAboveHair")
+                        .HasColumnType("boolean")
+                        .HasColumnName("ears_above_hair");
+
                     b.Property<int>("ErpPreference")
                         .HasColumnType("integer")
                         .HasColumnName("erp_preference");
@@ -1323,6 +1327,14 @@ namespace Content.Server.Database.Migrations.Postgres
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("hair_color");
+
+                    b.Property<bool>("HairGradientEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("hair_gradient_enabled");
+
+                    b.Property<string>("HairGradientData")
+                        .HasColumnType("text")
+                        .HasColumnName("hair_gradient_data");
 
                     b.Property<string>("HairName")
                         .IsRequired()

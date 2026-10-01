@@ -3,6 +3,8 @@
 using Content.Goobstation.Common.CCVar; //Goobstation - Crawling
 using Content.Goobstation.Common.Projectiles;
 using Content.Shared._DV.Abilities;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Standing;
@@ -65,7 +67,8 @@ public sealed class RequireProjectileTargetSystem : EntitySystem
             if (TryComp<CrawlUnderObjectsComponent>(shooter, out var crawl) && crawl.Enabled)
                 return;
 
-            if (TryComp(ent, out PhysicsComponent? physics) && physics.LinearVelocity.Length() > 2.5f) // Goobstation
+            if (TryComp(ent, out PhysicsComponent? physics) && physics.LinearVelocity.Length() > 2.5f && // Goobstation // Arcane-Edit
+            (!TryComp<MobStateComponent>(ent, out var mobState) || mobState.CurrentState != MobState.Dead)) // Arcane
                 return;
 
             // ProjectileGrenades delete the entity that's shooting the projectile,

@@ -157,8 +157,18 @@ public sealed partial class WoundSystem
             if (damageGroup != null && (string?) wound.Comp.DamageGroup != damageGroup)
                 continue;
 
-            if (healable && !CanHealWound(wound, wound.Comp, ignoreBlockers))
+            // Arcane-Edit-Start
+            if (healable)
+            {
+                if (!CanHealWound(wound, out var floor, wound.Comp, ignoreBlockers))
+                    continue;
+
+                total += ignoreBlockers
+                    ? wound.Comp.WoundSeverityPoint
+                    : FixedPoint2.Max(FixedPoint2.Zero, wound.Comp.WoundSeverityPoint - floor);
                 continue;
+            }
+            // Arcane-Edit-End
 
             total += wound.Comp.WoundSeverityPoint;
         }
@@ -192,8 +202,18 @@ public sealed partial class WoundSystem
             if (damageGroup != null && (string?) wound.Comp.DamageGroup != damageGroup)
                 continue;
 
-            if (healable && !CanHealWound(wound, wound.Comp, ignoreBlockers))
+            // Arcane-Edit-Start
+            if (healable)
+            {
+                if (!CanHealWound(wound, out var floor, wound.Comp, ignoreBlockers))
+                    continue;
+
+                total += ignoreBlockers
+                    ? wound.Comp.WoundIntegrityDamage
+                    : FixedPoint2.Max(FixedPoint2.Zero, wound.Comp.WoundIntegrityDamage - floor);
                 continue;
+            }
+            // Arcane-Edit-End
 
             total += wound.Comp.WoundIntegrityDamage;
         }

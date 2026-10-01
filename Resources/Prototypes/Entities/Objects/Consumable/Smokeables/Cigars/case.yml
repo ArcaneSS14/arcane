@@ -65,6 +65,11 @@
     - cigar7
     - cigar8
   - type: Appearance
+  # Arcane-Start
+  - type: Tag 
+    tags:
+    - CigStorage 
+  # Arcane-End
 
 - type: entity
   id: CigarGoldCase

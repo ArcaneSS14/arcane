@@ -32,6 +32,8 @@ public sealed class LogFilter
 
     public int? LastLogId { get; set; }
 
+    public AdminLogCursor? Cursor { get; set; } // Arcane
+
     public int LogsSent { get; set; }
 
     public int? Limit { get; set; }

@@ -92,3 +92,13 @@ ent-ClothingUniformServiceShirtSkirt = рубашка с юбкой
 ent-ClothingUniformSterileUniform = стерильная форма
     .desc = Стерильная одежда.
 
+# USSP
+
+ent-ClothingUniformUSSPSolemn = торжественная форма милиционера
+    .desc = На торжестве соблюдайте правила ношения формы.
+ent-ClothingUniformUSSPBlue = светлая форма милиционера
+    .desc =  На службе соблюдайте правила ношения формы.
+ent-ClothingUniformUSSPDarkBlue = тёмная форма милиционера
+    .desc =  На службе соблюдайте правила ношения формы.
+ent-ClothingUniformUSSPInvestigator = форма следователя
+    .desc =  На службе соблюдайте правила ношения формы.
