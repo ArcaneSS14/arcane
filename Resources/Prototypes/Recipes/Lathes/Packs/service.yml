@@ -29,7 +29,6 @@
   - Holoprojector
   - WetFloorSign
   - WireBrush
-  - PlantAnalyzer #Arcane
 
 - type: latheRecipePack
   id: ServiceBoardsStatic
@@ -58,6 +57,7 @@
   recipes:
   - SynthesizerInstrument
   - PushHorn
+  - PlantAnalyzer #Arcane
 
 - type: latheRecipePack
   id: ServiceBoards
