@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
-using Content.Server._Arcane.Heretic; // Arcane-Edit
-using Content.Server._Arcane.Heretic.Components; // Arcane-Edit
+using Content.Server._Arcane.Heretic; 
+using Content.Server._Arcane.Heretic.Components; 
 using Content.Server._Goobstation.Objectives.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Heretic.Components;
@@ -88,7 +88,7 @@ namespace Content.Server.Heretic.Ritual;
             if (!args.EntityManager.TryGetComponent<MobStateComponent>(look, out var mobstate) // only mobs
             || OnlyHumanoid && !args.EntityManager.HasComponent<HumanoidAppearanceComponent>(look) // only humans
             || args.EntityManager.HasComponent<BorgChassisComponent>(look) // no borgs
-            || args.EntityManager.HasComponent<HereticSacrificedComponent>(look) // Arcane-Edit
+            || args.EntityManager.HasComponent<HereticSacrificedComponent>(look) // Arcane
             || OnlyTargets
                 && hereticComp.SacrificeTargets.All(x => x.Entity != args.EntityManager.GetNetEntity(look)) // only targets
                 && !_heretic.TryGetHereticComponent(look, out _, out _)) // or other heretics

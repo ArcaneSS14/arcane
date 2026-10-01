@@ -405,9 +405,10 @@ public sealed partial class HereticSystem : SharedHereticSystem
 
             if (HasComp<GhoulComponent>(session.AttachedEntity.Value))
                 return false;
-
-            if (HasComp<HereticSacrificedComponent>(session.AttachedEntity.Value)) // Arcane-Edit
+            // Arcane-Start
+            if (HasComp<HereticSacrificedComponent>(session.AttachedEntity.Value)) 
                 return false;
+            // Arcane-End
 
             if (!_mind.TryGetMind(session.AttachedEntity.Value, out var mind, out _) ||
                 mind == ent.Owner || !_job.MindTryGetJobId(mind, out _))
