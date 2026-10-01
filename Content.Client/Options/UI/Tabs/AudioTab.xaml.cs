@@ -44,7 +44,8 @@ public sealed partial class AudioTab : Control
             ACCVars.JukeboxVolume,
             SliderVolumeJukebox,
             scale: ContentAudioSystem.JukeboxMultiplier);
-        // Arcane-end
+        Control.AddOptionPercentSlider(ACCVars.StationRadioVolume, SliderVolumeStationRadio);
+        // Arcane-End
         // Orion-Start
         Control.AddOptionPercentSlider(
             CCVars.RadioVolume,

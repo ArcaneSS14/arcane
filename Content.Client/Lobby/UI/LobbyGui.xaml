@@ -32,16 +32,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <lobbyUi:LobbyGui
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:maths="clr-namespace:Robust.Shared.Maths;assembly=Robust.Shared.Maths"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:vote="clr-namespace:Content.Client.Voting.UI"
-    xmlns:style="clr-namespace:Content.Client.Stylesheets"
     xmlns:lobbyUi="clr-namespace:Content.Client.Lobby.UI"
     xmlns:info="clr-namespace:Content.Client.Info"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
-    xmlns:buttons="clr-namespace:Content.Client._Orion.UserInterface.Buttons"
-    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
+    xmlns:buttons="clr-namespace:Content.Client._Orion.UserInterface.Buttons">
     <TextureRect Access="Public" VerticalExpand="True" HorizontalExpand="True" Name="Background" Stretch="KeepAspectCovered" />
 
     <BoxContainer Name="MainContainer" VerticalExpand="True" HorizontalExpand="True" Orientation="Horizontal" Margin="10 10 10 10" SeparationOverride="4">
@@ -55,11 +52,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                     <Label Name="ServerName" Access="Public" StyleClasses="LabelHeadingBigger" VAlign="Center" HorizontalAlignment="Left" />
                                     <Control HorizontalExpand="True" />
                                     <PanelContainer Name="StartTimeContainer" Access="Public" StyleClasses="ArcaneLobbyInset" Margin="6 0" HorizontalAlignment="Center">
-                                        <Label Name="StartTime" Access="Public" Align="Center" FontColorOverride="{x:Static maths:Color.Gold}" StyleClasses="LabelBig" HorizontalAlignment="Center" HorizontalExpand="False" Margin="3 3" />
+                                        <Label Name="StartTime" Access="Public" Align="Center" StyleClasses="LabelBig LabelKeyText" HorizontalAlignment="Center" HorizontalExpand="False" Margin="3 3" />
                                     </PanelContainer>
                                     <Control HorizontalExpand="True" />
                                 </BoxContainer>
-                                <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" />
+                                <controls:HLine StyleClasses="ArcaneLobbyDivider" Thickness="2" />
                                 <BoxContainer Orientation="Horizontal" HorizontalExpand="False" MinSize="0 40" SeparationOverride="6">
                                     <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" SeparationOverride="6">
                                         <info:LinkBanner Name="LinkBanner" VerticalExpand="False" HorizontalAlignment="Left" Margin="0 0 8 0" />
@@ -93,13 +90,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                             <PanelContainer Name="LeftInfoPanel" StyleClasses="ArcaneLobbySurface" MinWidth="180" HorizontalExpand="False" VerticalExpand="True">
                                 <BoxContainer Orientation="Vertical" HorizontalExpand="False" VerticalExpand="True">
                                     <RichTextLabel Text="{Loc 'ui-lobby-server-info-block'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center" />
-                                    <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" />
+                                    <controls:HLine StyleClasses="ArcaneLobbyDivider" Thickness="2" />
                                     <info:ServerInfo Name="ServerInfo" Access="Public" MinSize="0 30" MaxWidth="420" VerticalExpand="False" Margin="3 3 3 3" HorizontalAlignment="Left" />
-                                    <Label Name="StationTime" Access="Public" FontColorOverride="{x:Static maths:Color.LightGray}" Margin="3 3 3 3" HorizontalAlignment="Left" />
-                                    <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" />
+                                    <Label Name="StationTime" Access="Public" StyleClasses="LabelWeak" Margin="3 3 3 3" HorizontalAlignment="Left" />
+                                    <controls:HLine StyleClasses="ArcaneLobbyDivider" Thickness="2" />
                                     <BoxContainer Orientation="Vertical" HorizontalAlignment="Center" SeparationOverride="6" MinWidth="280">
                                         <lobbyUi:LobbyCharacterPreviewPanel Name="CharacterPreview" Access="Public" HorizontalAlignment="Center" />
-                                        <controls:HLine Color="{x:Static style:StyleNano.DisabledFore}" Thickness="1" />
+                                        <controls:HLine StyleClasses="ArcaneLobbyDividerMuted" Thickness="1" />
 
                                         <!-- Arcane-start -->
                                         <PanelContainer HorizontalExpand="True" VerticalExpand="True" MinHeight="60">
@@ -113,15 +110,17 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                         <controls:StripeBack>
                                             <Label Name="Balance" Access="Public" StyleClasses="LabelHeadingBigger" VAlign="Center" HorizontalExpand="True" HorizontalAlignment="Center" />
                                         </controls:StripeBack>
-                                        <controls:HLine Color="{x:Static style:StyleNano.DisabledFore}" Thickness="1" />
+                                        <controls:HLine StyleClasses="ArcaneLobbyDividerMuted" Thickness="1" />
                                         <Button Name="ReadyButton" Access="Public" ToggleMode="True" Text="{Loc 'ui-lobby-ready-up-button'}" StyleClasses="ButtonBig" HorizontalExpand="True" />
                                         <cc:UICommandButton Command="observe" Name="ObserveButton" Access="Public" Text="{Loc 'ui-lobby-observe-button'}" WindowType="{x:Type lobbyUi:ObserveWarningWindow}" HorizontalExpand="True" />
                                         <Button Name="ManifestButton" Access="Public" Text="{Loc 'ui-lobby-manifest-button'}" HorizontalExpand="True" />
                                         <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}" HorizontalExpand="True" />
-                                        <!-- // arcane discord link start -->
+                                        <!-- Arcane-Start -->
+                                        <Button Name="ThemeButton" Access="Public" Text="{Loc 'ui-lobby-theme-default'}" Disabled="True" HorizontalExpand="True" />
+                                        <Button Name="SponsorInfoButton" Text="{Loc 'arcane-sponsor-lobby-button'}" HorizontalExpand="True" />
                                         <RichTextLabel Name="DiscordLinkStatus" Visible="False" Access="Public" HorizontalAlignment="Center" />
                                         <controls:ConfirmButton Name="DiscordLinkButton" Access="Public" Text="{Loc 'rmc-ui-link-discord-account'}" ConfirmationText="{Loc 'admin-player-actions-confirm'}" HorizontalExpand="True" />
-                                        <!-- // arcane discord link end -->
+                                        <!-- Arcane-End -->
                                         <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}" HorizontalExpand="True" />
                                     </BoxContainer>
                                     <Control VerticalExpand="True" />
