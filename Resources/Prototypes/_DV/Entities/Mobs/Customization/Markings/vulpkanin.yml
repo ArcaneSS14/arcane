@@ -275,15 +275,16 @@
       state: slash
 
 # Tail Markings
+# Arcane-Edit-Start: Tail's sprites from _Arcane
 - type: marking
   id: VulpTail
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin, Human]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp-fade
 
 - type: marking
@@ -292,9 +293,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp-tip
 
 - type: marking
@@ -303,9 +304,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp_wag
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp_wag-tip #fade
 
 - type: marking
@@ -314,9 +315,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp_wag
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp_wag-tip
 
 - type: marking
@@ -325,9 +326,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp_alt
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp_alt-fade
 
 - type: marking
@@ -336,9 +337,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp_alt
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp_alt-tip
 
 - type: marking
@@ -347,9 +348,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: long
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: long-tip
 
 - type: marking
@@ -358,9 +359,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox-fade
 
 - type: marking
@@ -369,9 +370,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox-tip
 
 - type: marking
@@ -380,9 +381,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox_wag
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox_wag-fade
 
 - type: marking
@@ -391,9 +392,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox_wag
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox_wag-tip
 
 - type: marking
@@ -402,7 +403,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: bushfluff
 
 - type: marking
@@ -411,7 +412,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: bushfluff_wag
 
 - type: marking
@@ -420,7 +421,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: coyote
 
 - type: marking
@@ -429,7 +430,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: coyote_wag
 
 - type: marking
@@ -438,7 +439,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: corgi_wag
 
 - type: marking
@@ -447,9 +448,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: husky-inner
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: husky-outer
 
 - type: marking
@@ -458,7 +459,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: husky
 
 - type: marking
@@ -467,7 +468,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox2
 
 - type: marking
@@ -476,9 +477,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox3
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fox3-tip
 
 - type: marking
@@ -487,7 +488,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fennec
 
 - type: marking
@@ -496,7 +497,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: otie
 
 - type: marking
@@ -505,7 +506,7 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: fluffy
 
 - type: marking
@@ -514,8 +515,9 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   sprites:
-    - sprite: _DV/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: dalmatian_wag
+# Arcane-Edit-End
 
 # Body Markings (Chest)
 - type: marking

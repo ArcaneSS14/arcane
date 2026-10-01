@@ -1,4 +1,5 @@
 using Content.Client.Stylesheets;
+using Content.Client.UserInterface.Controls;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -20,6 +21,12 @@ public sealed class ArcaneLobbySheetlet : Sheetlet<ArcaneStylesheet>
         return
         [
             E<PanelContainer>().Class(ArcaneStyleClass.CharacterSetupBackground).Panel(canvas),
+            E<PanelContainer>().Class(ArcaneStyleClass.DepartmentHeader)
+                .Panel(Panel(sheet.PrimaryPalette.Element)),
+            E<HLine>().Class(ArcaneStyleClass.LobbyDivider)
+                .Panel(Panel(sheet.PrimaryPalette.Base.WithAlpha(0.75f))),
+            E<HLine>().Class(ArcaneStyleClass.LobbyDividerMuted)
+                .Panel(Panel(sheet.SecondaryPalette.Base.WithAlpha(0.45f))),
             E<PanelContainer>().Class(ArcaneStyleClass.LobbySurface).Panel(lobbySurface).Modulate(Color.White),
             E<PanelContainer>().Class(ArcaneStyleClass.LobbyInset).Panel(lobbyInset).Modulate(Color.White),
             E<PanelContainer>().Class(ArcaneStyleClass.ElevatedPanel).Panel(elevated),

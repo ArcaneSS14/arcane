@@ -37,6 +37,7 @@ namespace Content.Client.Options.UI
             GraphicsTab.Control.ReloadValues();
             MiscTab.Control.ReloadValues();
             TTSOptionsTab.Control.ReloadValues();
+            TTSOptionsTab.RefreshChannelIcons();
             AccessibilityTab.Control.ReloadValues();
             AudioTab.Control.ReloadValues();
             AdminOptionsTab.Control.ReloadValues();
