@@ -2326,3 +2326,13 @@ Entries:
       https://github.com/user-attachments/assets/6e603ef4-765a-497f-a815-3f301fd1dc07
     - >-
       https://github.com/user-attachments/assets/29a64e0c-a9c7-4301-b60f-cb3e791a966c
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: >-
+        Исправлена ошибка, при которой, когда bugborg ходил, он становился
+        ероркой.
+  id: 171
+  time: '2026-10-01T11:32:15.0000000+00:00'
+  prNumber: 438
+  url: https://github.com/ArcaneSS14/arcane/pull/438
