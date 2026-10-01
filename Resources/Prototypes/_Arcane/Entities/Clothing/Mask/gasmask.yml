@@ -10,7 +10,7 @@
     sprite: _Arcane/Clothing/Mask/gascaptain.rsi
 
 - type: entity
-  parent: ClothingMaskGasCaptainPatreon
+  parent: ClothingMaskGas
   id: ClothingMaskGasCEPatreon
   name: gas mask ce
   components:
@@ -20,7 +20,7 @@
     sprite: _Arcane/Clothing/Mask/gasce.rsi
 
 - type: entity
-  parent: ClothingMaskGasCaptainPatreon
+  parent: ClothingMaskGas
   id: ClothingMaskGasCMOPatreon
   name: gas mask cmo
   components:
@@ -30,7 +30,7 @@
     sprite: _Arcane/Clothing/Mask/gascmo.rsi
 
 - type: entity
-  parent: ClothingMaskGasCaptainPatreon
+  parent: ClothingMaskGas
   id: ClothingMaskGasHoPPatreon
   name: gas mask hop
   components:
@@ -50,7 +50,7 @@
     sprite: _Arcane/Clothing/Mask/gashos.rsi
 
 - type: entity
-  parent: ClothingMaskGasCaptainPatreon
+  parent: ClothingMaskGas
   id: ClothingMaskGasQMPatreon
   name: gas mask qm
   components:
@@ -60,7 +60,7 @@
     sprite: _Arcane/Clothing/Mask/gasqm.rsi
 
 - type: entity
-  parent: ClothingMaskGasCaptainPatreon
+  parent: ClothingMaskGas
   id: ClothingMaskGasRDPatreon
   name: gas mask rd
   components:
