@@ -762,7 +762,7 @@ MagazineBoxCaselessRifleBig: null
 MagazinePistolHighCapacityRubber: null
 
 # 2025-03-09 - Shitmed Woundmed, separating torsos into chest and groin
-TorsoHuman: ChestHuman
+TorsoHuman: BaseChestHuman
 TorsoSkeleton: ChestSkeleton
 # 2025-03-18
 EpinephrineChemistryBottle: ChemistryBottleEpinephrine

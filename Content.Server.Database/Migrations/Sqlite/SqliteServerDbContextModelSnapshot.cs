@@ -1212,6 +1212,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("custom_species_name");
 
+                    b.Property<bool>("EarsAboveHair")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("ears_above_hair");
+
                     b.Property<int>("ErpPreference")
                         .HasColumnType("INTEGER")
                         .HasColumnName("erp_preference");
@@ -1250,6 +1254,14 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("hair_color");
+
+                    b.Property<bool>("HairGradientEnabled")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("hair_gradient_enabled");
+
+                    b.Property<string>("HairGradientData")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("hair_gradient_data");
 
                     b.Property<string>("HairName")
                         .IsRequired()

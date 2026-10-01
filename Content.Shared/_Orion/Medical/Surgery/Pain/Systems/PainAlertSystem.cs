@@ -4,6 +4,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared.Alert;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
+using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Prototypes;
@@ -36,6 +37,10 @@ public sealed class PainAlertSystem : EntitySystem
 
         SubscribeLocalEvent<NerveComponent, ComponentInit>(OnNerveSystemMapInit);
         SubscribeLocalEvent<NerveComponent, DamageChangedEvent>(OnDamageChanged);
+        // Arcane-Start
+        SubscribeLocalEvent<MobStateComponent, EntityTerminatingEvent>(OnMobTerminating);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        // Arcane-End
     }
 
     private void OnNerveSystemMapInit(EntityUid uid, NerveComponent component, ComponentInit args)
@@ -61,6 +66,18 @@ public sealed class PainAlertSystem : EntitySystem
         if (args.DamageDelta != null) // This will be non-null for both damage and healing
             UpdatePainAlert(uid, nerve);
     }
+
+    // Arcane-Start
+    private void OnMobTerminating(Entity<MobStateComponent> ent, ref EntityTerminatingEvent args)
+    {
+        _lastUpdate.Remove(ent.Owner);
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent args)
+    {
+        _lastUpdate.Clear();
+    }
+    // Arcane-End
 
     private void UpdatePainAlert(EntityUid uid, NerveComponent? nerve = null)
     {

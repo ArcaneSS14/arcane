@@ -18,6 +18,7 @@
   - type: Tag
     tags:
     - PlasmamanSafe
+    - NoXeno # Arcane
   - type: IgniteFromGasImmunity
     parts:
     - BodyMiddle
@@ -25,7 +26,7 @@
 
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterModsuitBase # Arcane-Edit
   id: ClothingModsuitChestplateStandard
   name: standard modsuit chestplate
   description: A special modular suit spaceproof cover designed for compact folding inside modular suit control.
@@ -94,7 +95,7 @@
     reduction: 0.5
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterModsuitBase # Arcane-Edit
   id: ClothingModsuitChestplateSecurity
   name: soldat modsuit chestplate
   description: A robust modular suit cover with ceramic inserts for extra protection.
@@ -173,7 +174,7 @@
 
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterModsuitBase # Arcane-Edit
   id: ClothingModsuitChestplateHeadOfSecurity
   name: bulwark modsuit chestplate
   description: A robust modular suit cover with EXTRA ceramic inserts for slightly more protection.
@@ -258,7 +259,7 @@
       Tramadol: 5
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterModsuitBase # Arcane-Edit
   id: ClothingModsuitChestplateParamedic
   name: sanitater modsuit chestplate
   description: A white and blue-ish-grey steel plate for keeping out the harsh void of space and the occasional bullet.
@@ -337,7 +338,7 @@
     reduction: 0.5
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterModsuitBase # Arcane-Edit
   id: ClothingModsuitChestplateEngineer
   name: sapper modsuit chestplate
   description: A tough armor plate to defend against harsh atmospheric conditions and shockwaves.
@@ -417,7 +418,7 @@
     reduction: 0.7
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterModsuitBase # Arcane-Edit
   id: ClothingModsuitChestplateAtmostech
   name: aeolus modsuit chestplate
   description: A fire-proof armor plate to defend against harsh atmospheric conditions.
@@ -495,7 +496,7 @@
     reduction: 0.75
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterModsuitBase # Arcane-Edit
   id: ClothingModsuitChestplateResearchDirector
   name: minerva modsuit chestplate
   description: A bulky bomb and bat proof chunk of steel.
@@ -576,7 +577,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterModsuitBase # Arcane-Edit
   id: ClothingModsuitChestplateCaptain
   name: magnate modsuit chestplate
   description: This shit is made out of DIAMONDS, man, this armor was forged with GEMS.

@@ -83,7 +83,7 @@
   - type: StandingState
   - type: Damageable
     damageContainer: SiliconRadiation
-    damageModifierSet: IPC
+#    damageModifierSet: IPC # Arcane-Edit
   - type: MobState
     allowedStates:
     - Alive

@@ -6,7 +6,7 @@
   abstract: true
   components:
   - type: Damageable
-    damageModifierSet: Felinid
+#    damageModifierSet: Felinid # Arcane-Edit
   - type: BodyPart
     species: Felinid
 

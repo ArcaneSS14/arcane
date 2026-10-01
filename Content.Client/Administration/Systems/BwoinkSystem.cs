@@ -2,6 +2,7 @@
 
 #nullable enable
 using Content.Shared.Administration;
+using Content.Shared.Administration.Logs;
 using JetBrains.Annotations;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
@@ -20,6 +21,13 @@ namespace Content.Client.Administration.Systems
         {
             OnBwoinkTextMessageRecieved?.Invoke(this, message);
         }
+
+        // Arcane-start
+        public void RequestHistory(NetUserId channel, AdminLogCursor? cursor = null)
+        {
+            RaiseNetworkEvent(new BwoinkHistoryRequest(channel, cursor));
+        }
+        // Arcane-end
 
         public void Send(NetUserId channelId, string text, bool playSound, bool adminOnly)
         {

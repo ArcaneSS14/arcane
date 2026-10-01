@@ -1179,7 +1179,7 @@
   icon: { sprite: _Goobstation/Objects/Misc/berserker_heart.rsi, state: icon }
   productEntity: AutosurgeonBerserker
   cost:
-    Telecrystal: 40 # Orion-Edit: 66 > 40
+    Telecrystal: 35 # Arcane-Edit: 66 > 35
   categories:
   - UplinkImplants
   conditions:

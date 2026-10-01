@@ -9,7 +9,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.6
-    baseSprintSpeed: 4.6
+    baseSprintSpeed: 4.7 # Arcane-Edit: 4.6 -> 4.7
   - type: LanguageKnowledge # Einstein Engines - Language
     speaks:
     - TauCetiBasic
@@ -265,7 +265,7 @@
       types:
         Slash: 5
   - type: Damageable # Goobstation - resomi damage modifiers
-    damageModifierSet: Resomi
+#    damageModifierSet: Resomi # Arcane-Edit
   - type: Temperature
     currentTemperature: 310.15 # todo goob redo this
     specificHeat: 50

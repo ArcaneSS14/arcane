@@ -58,6 +58,18 @@
         {
             "name": "warrior_tubes",
             "directions": 4
+        },
+        {
+            "name": "alt_queen_tubes",
+            "directions": 4
+        },
+        {
+            "name": "red-queen-tubes",
+            "directions": 4
+        },
+        {
+            "name": "ren_tubes",
+            "directions": 4
         }
     ]
 }

@@ -281,3 +281,49 @@
     sprite: _Arcane/Clothing/Head/Hats/fly_agaric_hat.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Hats/fly_agaric_hat.rsi
+
+# USSP
+
+- type: entity
+  parent: ClothingHeadHatArmored
+  id: ClothingHeadHatUSSPBeretPolice
+  name: policer beret
+  description: A beret with the emblem of USSP police department.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/USSP/police_beret.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/USSP/police_beret.rsi
+
+- type: entity
+  parent: ClothingHeadHatArmored
+  id: ClothingHeadHatUSSPCapPolice
+  name: policer cap
+  description: A beret with the emblem of USSP police department.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/USSP/police_cap.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/USSP/police_cap.rsi
+
+- type: entity
+  parent: ClothingHeadHatArmored
+  id: ClothingHeadHatUSSPInvestigator
+  name: investigator hat
+  description: The investigator's black hat.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/USSP/investigator_hat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/USSP/investigator_hat.rsi
+
+- type: entity
+  parent: ClothingHeadHatArmored
+  id: ClothingHeadHatUSSPBlueUshanka
+  name: blue ushanka
+  description: Warm fur winter ushanka hat with a USSP police department emblem.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/USSP/blue_ushanka.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/USSP/blue_ushanka.rsi

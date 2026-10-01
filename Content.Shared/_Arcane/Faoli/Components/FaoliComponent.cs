@@ -2,6 +2,7 @@ using Robust.Shared.GameStates;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Alert;
 using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Shared._Arcane.Faoli.Components;
 
@@ -36,6 +37,15 @@ public sealed partial class FaoliComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public FixedPoint2 Regeneartion = 1;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int StaminaDamage = 7;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public FixedPoint2 FaoliDamageMultiplier = 2;
+
+    [DataField]
+    public ProtoId<DamageTypePrototype> FaoliDamageType = "Holy";
 
     [DataField]
     public TimeSpan NextTickTime;

@@ -7,4 +7,6 @@ public interface ISharedDiscordRoleManager
     event Action? RolesUpdated;
 
     bool HasRole(ICommonSession session, DiscordRole role);
+
+    bool HasAnyRole(ICommonSession session, HashSet<DiscordRole> roles);
 }

@@ -27,6 +27,7 @@ public sealed partial class FaoliSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<FaoliComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<FaoliComponent, DamageChangedEvent>(OnDamageChanged);
 
         SubscribeAbilities();
     }
@@ -46,7 +47,7 @@ public sealed partial class FaoliSystem : EntitySystem
             if (_gameTiming.CurTime < comp.NextTickTime)
                 continue;
 
-            if (comp.Faoli < comp.Low) // 20
+            if (comp.Faoli < comp.Low) // 15
             {
                 comp.NextTickTime = _gameTiming.CurTime + TimeSpan.FromSeconds(comp.LowInterval);
                 _faoli.TryChangeFaoliAmount(uid, comp.Regeneartion, comp);
@@ -75,6 +76,21 @@ public sealed partial class FaoliSystem : EntitySystem
 
             continue;
         }
+    }
+
+    private void OnDamageChanged(Entity<FaoliComponent> ent, ref DamageChangedEvent args)
+    {
+        if (args.DamageDelta is null || !args.DamageIncreased)
+        {
+            return;
+        }
+
+        if (args.DamageDelta.DamageDict.TryGetValue(ent.Comp.FaoliDamageType, out FixedPoint2 value))
+        {
+            _faoli.TryChangeFaoliAmount(ent.Owner, -value * ent.Comp.FaoliDamageMultiplier, ent.Comp);
+        }
+
+        return;
     }
 
     public bool OnUseAbility(EntityUid uid, FixedPoint2 cost)

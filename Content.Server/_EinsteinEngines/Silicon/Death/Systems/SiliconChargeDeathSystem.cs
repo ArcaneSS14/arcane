@@ -141,8 +141,12 @@ public sealed class SiliconDeathSystem : SharedSiliconDeathSystem
         }
 
         // SiliconDownOnDeadComponent moved to shared
+        // Arcane-Start
+        if (!siliconDeadComp.Dead)
+            siliconDeadComp.CanUseComplexInteractions = HasComp<ComplexInteractionComponent>(uid);
+        // Arcane-End
         siliconDeadComp.Dead = true;
-        siliconDeadComp.CanUseComplexInteractions = HasComp<ComplexInteractionComponent>(uid);
+        // siliconDeadComp.CanUseComplexInteractions = HasComp<ComplexInteractionComponent>(uid); // Arcane-Edit
         Dirty(uid, siliconDeadComp);
 
         // Remove ComplexInteractionComponent
@@ -174,6 +178,7 @@ public sealed class SiliconDeathSystem : SharedSiliconDeathSystem
             _actions.SetEnabled(combatMode.CombatToggleActionEntity, true);
 
         // Let you stand again
+        RemComp<KnockedDownComponent>(uid); // Arcane
         _standing.Stand(uid, force: true);
 
         // Update component
