@@ -5,6 +5,9 @@ namespace Content.Shared._Arcane.CCVars;
 [CVarDefs]
 public sealed partial class ACCVars
 {
+    public static readonly CVarDef<string> UiTheme =
+        CVarDef.Create("ui.arcane_theme", "default", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
     ///     Are auto voting enabled at the end of a round?
     /// </summary>
@@ -69,6 +72,13 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<float> JukeboxVolume =
         CVarDef.Create("jukebox.volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Volume multiplier for everything the station radio plays: the music it relays and the
+    ///     relayed speech it reads out loud.
+    /// </summary>
+    public static readonly CVarDef<float> StationRadioVolume =
+        CVarDef.Create("stationradio.volume", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     ///     Restricts custom species names so players cannot use the name of another species.

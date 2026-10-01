@@ -40,8 +40,15 @@ public sealed class DiscordRoleManager : IPostInjectInit, ISharedDiscordRoleMana
         RolesUpdated?.Invoke();
     }
 
+    private void OnDisconnected(object? sender, NetDisconnectedArgs args)
+    {
+        _roles.Clear();
+        RolesUpdated?.Invoke();
+    }
+
     void IPostInjectInit.PostInject()
     {
         _net.RegisterNetMessage<DiscordRolesStatusMsg>(OnStatus);
+        _net.Disconnect += OnDisconnected;
     }
 }
