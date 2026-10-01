@@ -159,7 +159,7 @@
   recipeUnlocks:
   - BiogeneratorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
-  - PlantAnalyzer #Arcane
+  - PlantAnalyzer # Arcane
   position: 6,-5
 
 - type: technology
