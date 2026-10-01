@@ -43,6 +43,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Server.Hands.Systems;
+using Content.Server._Arcane.Heretic.Components; // Arcane-Edit
 
 namespace Content.Server.Heretic.EntitySystems;
 
@@ -342,7 +343,8 @@ public sealed partial class HereticSystem : SharedHereticSystem
     {
         ent.Comp.SacrificeTargets = ent.Comp.SacrificeTargets
             .Where(target => TryGetEntity(target.Entity, out var tent) && Exists(tent) &&
-                             !EntityManager.IsQueuedForDeletion(tent.Value))
+                             !EntityManager.IsQueuedForDeletion(tent.Value) &&
+                             !HasComp<HereticSacrificedComponent>(tent.Value)) // Arcane-Edit
             .ToList();
         Dirty(ent); // update client
     }
@@ -402,6 +404,9 @@ public sealed partial class HereticSystem : SharedHereticSystem
                 return false;
 
             if (HasComp<GhoulComponent>(session.AttachedEntity.Value))
+                return false;
+
+            if (HasComp<HereticSacrificedComponent>(session.AttachedEntity.Value)) // Arcane-Edit
                 return false;
 
             if (!_mind.TryGetMind(session.AttachedEntity.Value, out var mind, out _) ||
