@@ -34,7 +34,7 @@ public sealed partial class CCVars
     ///     See vote.enabled, but specific to preset votes
     /// </summary>
     public static readonly CVarDef<bool> VotePresetEnabled =
-        CVarDef.Create("vote.preset_enabled", false, CVar.SERVERONLY); // Arcane - starting by AutoVotingSystem
+        CVarDef.Create("vote.preset_enabled", false, CVar.SERVERONLY); // Orion - presets are selected automatically
 
     /// <summary>
     ///     See vote.enabled, but specific to map votes

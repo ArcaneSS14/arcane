@@ -9,10 +9,17 @@ public sealed partial class ACCVars
         CVarDef.Create("ui.arcane_theme", "default", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    ///     Are auto voting enabled at the end of a round?
+    ///     Enable automatic random preset selection and map voting when returning to the lobby.
     /// </summary>
     public static readonly CVarDef<bool> AutoVotingEnabled =
         CVarDef.Create("vote.auto_voting_enabled", false, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Number of successfully started rounds remembered for random preset selection.
+    ///     Zero disables history-based penalties;
+    /// </summary>
+    public static readonly CVarDef<int> GamePresetHistorySize =
+        CVarDef.Create("game.preset_history_size", 8, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
     ///     At what distance from the player the NPC will sleep.
