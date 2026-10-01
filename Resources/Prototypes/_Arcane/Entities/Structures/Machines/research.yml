@@ -1,0 +1,11 @@
+- type: entity
+  parent: ResearchAndDevelopmentServer
+  id: ResearchAndDevelopmentServerDebug
+  suffix: DEBUG, DO NOT MAP
+  description: Contains all the knowledge in the universe. Every technology is researched from the start.
+  components:
+  - type: ResearchServerUnlockAll
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: PeriodicAnomalySpawner
+    chance: 0
