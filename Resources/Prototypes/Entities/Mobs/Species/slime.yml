@@ -22,6 +22,7 @@
   # they like eat it idk lol
   - type: Storage
     clickInsert: false
+    openOnActivate: false # Arcane
     grid:
     - 0,0,2,2
     maxItemSize: Large
