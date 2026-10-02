@@ -2459,3 +2459,17 @@ Entries:
   time: '2026-10-02T06:43:59.0000000+00:00'
   prNumber: 432
   url: https://github.com/ArcaneSS14/arcane/pull/432
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: >-
+        Генокрад теперь не выводит игроков на совсем. Вместо этого после
+        поглощение ОБЫЧНОГО человека, тот запечатывается в Кокон, где перестает
+        гнить. 
+  id: 181
+  time: '2026-10-02T07:45:55.0000000+00:00'
+  prNumber: 453
+  url: https://github.com/ArcaneSS14/arcane/pull/453
+  media:
+    - >-
+      https://github.com/user-attachments/assets/9af90d5c-9ce2-4021-9678-b99981a25cd9
