@@ -1,0 +1,46 @@
+- type: entity
+  id: ChangelingCocoon
+  name: flesh cocoon
+  description: A pulsing lump of flesh. Something is sealed inside.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: _Arcane/Structures/Specific/Changeling/cocoon.rsi
+    state: cocoon
+    noRot: true
+    drawdepth: Mobs
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        hard: false
+        layer:
+        - MobLayer
+  - type: RequireProjectileTarget
+  - type: ContainerContainer
+    containers:
+      cocoon: !type:ContainerSlot
+  - type: AntiRottingContainer
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
