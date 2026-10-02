@@ -2481,3 +2481,13 @@ Entries:
   time: '2026-10-02T07:49:34.0000000+00:00'
   prNumber: 446
   url: https://github.com/ArcaneSS14/arcane/pull/446
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: >-
+        Энергораздатчики алкоголя и безалкоголя теперь могут крутится и
+        закрепляться на столы
+  id: 183
+  time: '2026-10-02T07:53:16.0000000+00:00'
+  prNumber: 430
+  url: https://github.com/ArcaneSS14/arcane/pull/430
