@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
-  id: EnergyBoozeDispenser
   parent: SmallConstructibleMachine
+  id: EnergyBoozeDispenser
   name: energy booze dispenser
   suffix: energy
   description: A bluespace booze dispenser that uses station energy to synthesize alcoholic beverages. The future for bartenders is here and now.
@@ -114,8 +114,8 @@
       Wine: 12
 
 - type: entity
-  id: EnergySodaDispenser
   parent: SmallConstructibleMachine
+  id: EnergySodaDispenser
   name: energy soda dispenser
   suffix: energy
   description: A bluespace beverage dispenser that uses station energy to synthesize soda and other non-alcoholic drinks. The future for bartenders is here and now.
