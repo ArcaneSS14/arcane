@@ -413,6 +413,10 @@
     emagDynamicPacks:
     - MechWeaponsSalvage
     - MechWeaponsSecurityLight
+    # Orion-Start
+    - MechWeaponsSecurityHeavy
+    - MechWeaponsArcane # Arcane-edit
+    # Orion-End
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -518,6 +522,7 @@
     - MechBoardsSecurity
     - MechWeaponsSecurityLight
     - MechWeaponsSecurityHeavy
+    - MechWeaponsArcane # Arcane
     - SecurityAmmoGoob
     - SecurityCybernetics
     # - ServiceWeapons
