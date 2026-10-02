@@ -11,8 +11,10 @@
       collection: Pops
     CatMeow:
       collection: CatMeows
-    CatHisses:
-      collection: CatHisses
+    # Arcane-Start
+    Hiss:
+      path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-End
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
