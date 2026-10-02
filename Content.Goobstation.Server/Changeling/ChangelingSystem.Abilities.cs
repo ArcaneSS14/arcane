@@ -55,7 +55,7 @@ public sealed partial class ChangelingSystem
     #region Dependencies
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly WeldableSystem _weldable = default!; //for biodegrade unweld
-    [Dependency] private readonly ChangelingCocoonSystem _cocoon = default!; // Arcane-Edit
+    [Dependency] private readonly ChangelingCocoonSystem _cocoon = default!; // Arcane
     #endregion
 
     public void SubscribeAbilities()
@@ -162,7 +162,7 @@ public sealed partial class ChangelingSystem
 
         if (args.Cancelled
             || HasComp<AbsorbedComponent>(target)
-            || HasComp<ChangelingDrainedComponent>(target) // Arcane-Edit
+            || HasComp<ChangelingDrainedComponent>(target) // Arcane
             || !IsIncapacitated(target) && !IsHardGrabbed(target))
             return;
 
@@ -269,9 +269,10 @@ public sealed partial class ChangelingSystem
             _resources.TryUpdateResourcesCapacity(uid, bioComp.ResourceData, biomassMaxIncrease);
             UpdateBiomass((uid, comp), bioComp.ResourceData.MaxAmount, bioComp);
         }
-
-        if (!isLing) // Arcane-Edit
+        // Arcane-Start
+        if (!isLing) 
             _cocoon.Drain(target);
+        // Arcane-End
     }
 
     public List<ProtoId<ReagentPrototype>> BiomassAbsorbedChemicals = new() { "Nutriment", "Protein", "UncookedAnimalProteins", "Fat" }; // fat so absorbing raw meat good
