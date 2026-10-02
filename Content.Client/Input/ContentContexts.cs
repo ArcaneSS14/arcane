@@ -115,6 +115,7 @@ namespace Content.Client.Input
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);
+            common.AddFunction(ContentKeyFunctions.MouseMiddle); // Arcane
 
             foreach (var boundKey in ContentKeyFunctions.GetHotbarBoundKeys())
             {

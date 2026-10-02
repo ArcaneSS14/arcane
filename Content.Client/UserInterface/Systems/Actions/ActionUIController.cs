@@ -31,12 +31,14 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.Shared.Configuration; // Goobstation
 using Content.Goobstation.Common.CCVar; // Goobstation
 using Content.Client._Arcane.UserInterface.Systems.Actions.Controls;
 using static Content.Client.Actions.ActionsSystem;
+using Content.Client._Arcane.UserInterface.Systems.Actions;
 using static Content.Client.UserInterface.Systems.Actions.Windows.ActionsWindow;
 using static Robust.Client.UserInterface.Control;
 using static Robust.Client.UserInterface.Controls.BaseButton;
@@ -65,6 +67,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     [UISystemDependency] private readonly SpellsSystem? _spells = default!; // Goobstation
     [UISystemDependency] private readonly ActionTargetMarkSystem? _mark = default!; // Goobstation
     [UISystemDependency] private readonly EntityLookupSystem _lookup = default!; // Goobstation
+    [UISystemDependency] private readonly PinnedActionsSystem? _pinnedActions = default; // Arcane
 
     private ActionButtonContainer? _container;
     private List<EntityUid?> _actions = new(); // Goob edit
@@ -74,6 +77,8 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
     private readonly Dictionary<EntityUid, List<EntityUid?>> _savedActions = new(); // Goobstation
     private ISawmill _sawmill = default!; // Goobstation
+
+    private readonly ActionPinnedSlots _pinnedSlots = new(); // Arcane
 
     private ActionsBar? ActionsBar => UIManager.GetActiveUIWidgetOrNull<ActionsBar>();
     private MenuButton? ActionButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.ActionButton;
@@ -134,6 +139,11 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
         if (_spells != null) // Goobstation
             _spells.StopTargeting += StopTargeting;
+
+        // Arcane-Start
+        if (_pinnedActions != null)
+            _pinnedActions.PinsChanged += OnPinsChanged;
+        // Arcane-End
 
         UpdateFilterLabel();
         QueueWindowUpdate();
@@ -263,13 +273,22 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (_spells != null) // Goobstation
             _spells.StopTargeting -= StopTargeting;
 
+        // Arcane-Start
+        if (_pinnedActions != null)
+            _pinnedActions.PinsChanged -= OnPinsChanged;
+        // Arcane-End
+
         CommandBinds.Unregister<ActionUIController>();
     }
 
     private void TriggerAction(int index)
     {
+        // Arcane-Edit-Start
         if (!_actions.TryGetValue(index, out var actionId) ||
-            _actionsSystem?.GetAction(actionId) is not {} action)
+            actionId is not { } id ||
+            _actionsSystem?.GetAction(id) is not {} action ||
+            IsActionUnavailable(id))
+        // Arcane-Edit-End
         {
             return;
         }
@@ -280,6 +299,140 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         else
             _actionsSystem?.TriggerAction(action);
     }
+
+    // Arcane-Start
+    /// <summary>
+    ///     Pinned actions keep their slot when removed, so that they can be restored in place. Pins are stored
+    ///     by action prototype, which means they also apply to the same action in another body.
+    /// </summary>
+    public bool IsActionPinned(EntityUid actionId)
+    {
+        if (_pinnedSlots.IsPinned(actionId))
+            return true;
+
+        return GetSlotPrototype(actionId) is { } prototype && _pinnedActions?.IsPinned(prototype) == true;
+    }
+
+    /// <summary>
+    ///     An action is unavailable while it is no longer granted to the local player or while it is disabled.
+    /// </summary>
+    public bool IsActionUnavailable(EntityUid actionId)
+    {
+        if (_pinnedSlots.IsUnavailable(actionId))
+            return true;
+
+        if (_actionsSystem?.GetAction(actionId) is not { } action)
+            return false;
+
+        return !action.Comp.Enabled || action.Comp.AttachedEntity != _playerManager.LocalEntity;
+    }
+
+    private EntProtoId? GetActionPrototype(Entity<ActionComponent> action)
+    {
+        return EntityManager.GetComponent<MetaDataComponent>(action).EntityPrototype?.ID;
+    }
+
+    /// <summary>
+    ///     The prototype that identifies a slot across body changes. Placeholders have no action entity left,
+    ///     so their pin is the only thing that still knows the prototype.
+    /// </summary>
+    private EntProtoId? GetSlotPrototype(EntityUid actionId)
+    {
+        if (_actionsSystem?.GetAction(actionId) is { } action)
+            return GetActionPrototype(action);
+
+        return _pinnedSlots.GetPrototype(actionId);
+    }
+
+    /// <summary>
+    ///     Pins the actions of the current body that the player pinned before, e.g. after entering a new body
+    ///     or after the server sent the pins again.
+    /// </summary>
+    private void ReconcilePinnedActions()
+    {
+        if (_pinnedActions == null || _actionsSystem == null)
+            return;
+
+        foreach (var slot in _actions.ToArray())
+        {
+            if (slot is not { } actionId || _pinnedSlots.IsPinned(actionId))
+                continue;
+
+            if (_actionsSystem.GetAction(actionId) is not { } action)
+                continue;
+
+            var prototype = GetActionPrototype(action);
+            if (prototype is not { } proto || !_pinnedActions.IsPinned(proto))
+                continue;
+
+            _pinnedSlots.Pin(actionId, proto, action.Comp.Container);
+        }
+    }
+
+    private void OnPinsChanged()
+    {
+        // Pins that are no longer wanted do not have to keep a slot around.
+        DropOrphanedPins();
+        OnActionsUpdated();
+    }
+
+    /// <summary>
+    ///     Middle click pins an action so that it keeps its slot while it is unavailable,
+    ///     middle clicking it again unpins it.
+    /// </summary>
+    private void TogglePin(ActionButton button)
+    {
+        var position = -1;
+        if (_container?.TryGetButtonIndex(button, out position) == true &&
+            (position < 0 || position >= _actions.Count))
+        {
+            position = -1;
+        }
+
+        // A placeholder slot has no action entity left, so the action to toggle is taken from the slot itself.
+        var slot = position >= 0 ? _actions[position] : null;
+
+        if ((slot ?? button.Action?.Owner) is not { } actionId)
+            return;
+
+        if (!IsActionPinned(actionId))
+        {
+            if (button.Action is not { } action)
+                return;
+
+            var prototype = GetActionPrototype(action);
+
+            // Without a prototype the pin can not be stored, it only lasts until the action is removed.
+            if (prototype is { } proto)
+                _pinnedActions?.SetPinned(proto, true);
+
+            _pinnedSlots.Pin(actionId, prototype, action.Comp.Container);
+            OnActionsUpdated();
+            return;
+        }
+
+        var placeholders = new List<EntityUid>();
+        if (GetSlotPrototype(actionId) is { } pinnedPrototype)
+        {
+            _pinnedActions?.SetPinned(pinnedPrototype, false);
+            placeholders.AddRange(_pinnedSlots.UnpinPrototype(pinnedPrototype));
+        }
+        else if (_pinnedSlots.Unpin(actionId))
+        {
+            placeholders.Add(actionId);
+        }
+
+        foreach (var placeholder in placeholders)
+        {
+            // An unavailable action only had a slot because of its pin.
+            var index = _actions.IndexOf(placeholder);
+            if (index >= 0)
+                _actions.RemoveAt(index);
+        }
+
+        OnActionsUpdated();
+    }
+    // Arcane-End
 
     // Goobstation start
     private bool AltTargeting(in PointerInputCmdArgs args)
@@ -408,6 +561,11 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         {
             if (_actions.FirstOrDefault(x => IdsEqual(x, savedAction)) is { } action)
             {
+                // Arcane-Start
+                if (savedAction is { } savedId)
+                    _pinnedSlots.Remap(savedId, action);
+                // Arcane-End
+
                 newActions.Add(action);
             }
         }
@@ -429,6 +587,11 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (action.Comp.Toggled && EntityManager.TryGetComponent<TargetActionComponent>(actionId, out var target))
             StartTargeting((action, action, target));
 
+        // Arcane-Start
+        if (_pinnedSlots.TryRestore(actionId, GetActionPrototype(action), action.Comp.Container, _actions))
+            return;
+        // Arcane-End
+
         if (_actions.Contains(action))
             return;
 
@@ -437,17 +600,37 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
     private void OnActionRemoved(EntityUid actionId)
     {
-        if (_container == null)
-            return;
+        // Arcane-Edit-Start
+        // if (_container == null)
+        //     return;
+        // Arcane-Edit-End
 
         if (actionId == SelectingTargetFor)
             StopTargeting();
 
+        // Arcane-Start
+        if (_pinnedSlots.IsPinned(actionId))
+        {
+            // Keep the slot around, the action bar shows it as unavailable until it returns or gets unpinned.
+            _pinnedSlots.SetUnavailable(actionId);
+            return;
+        }
+
+        _pinnedSlots.Unpin(actionId);
+        // Arcane-End
         _actions.RemoveAll(x => x == actionId);
     }
 
     private void OnActionsUpdated()
     {
+        // Arcane-Edit-Start
+        // Pins of the player apply to any body they take, so they have to be applied to the current actions.
+        ReconcilePinnedActions();
+
+        if (SelectingTargetFor is { } targeting && IsActionUnavailable(targeting))
+            StopTargeting();
+        // Arcane-Edit-End
+
         QueueWindowUpdate();
 
         if (_actionsSystem != null)
@@ -608,12 +791,19 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
         if (actionId == null)
         {
+            var removed = button.Action?.Owner; // Arcane
+
             button.ClearData();
             if (_container?.TryGetButtonIndex(button, out position) ?? false)
             {
                 if (_actions.Count > position && position >= 0)
                     _actions.RemoveAt(position);
             }
+
+            // Arcane-Start
+            if (removed is { } removedId)
+                _pinnedSlots.Unpin(removedId);
+            // Arcane-End
         }
         else if (button.TryReplaceWith(actionId.Value, _actionsSystem) &&
             _container != null &&
@@ -679,11 +869,27 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (dragged.Parent is ActionButtonContainer)
             SetAction(dragged, swapAction, false);
 
+        DropOrphanedPins(); // Arcane
+
         if (_actionsSystem != null)
             _container?.SetActionData(_actionsSystem, _actions.ToArray());
 
         _menuDragHelper.EndDrag();
     }
+
+    // Arcane-Start
+    /// <summary>
+    ///     Drops the pin state of actions that have no slot, e.g. after another action was dragged onto a pinned slot.
+    /// </summary>
+    private void DropOrphanedPins()
+    {
+        foreach (var pinned in _pinnedSlots.GetPinned().ToArray())
+        {
+            if (!_actions.Contains(pinned))
+                _pinnedSlots.Unpin(pinned);
+        }
+    }
+    // Arcane-End
 
     private void OnClearPressed(ButtonEventArgs args)
     {
@@ -730,8 +936,26 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
     private void OnActionPressed(GUIBoundKeyEventArgs args, ActionButton button)
     {
+        // Arcane-Start
+        if (args.Function == ContentKeyFunctions.MouseMiddle)
+        {
+            TogglePin(button);
+            args.Handle();
+            return;
+        }
+        // Arcane-End
+
         if (args.Function == EngineKeyFunctions.UIRightClick)
         {
+            // Arcane-Start
+            if (button.Pinned)
+            {
+                // Pinned actions are only removed from the bar by dropping their pin.
+                args.Handle();
+                return;
+            }
+            // Arcane-End
+
             SetAction(button, null);
             args.Handle();
             return;
@@ -746,6 +970,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     private void HandleActionPressed(GUIBoundKeyEventArgs args, ActionButton button)
     {
         args.Handle();
+
         if (button.Action != null)
         {
             // Goobstation - only allow drag if lock setting is off or actions menu is open
@@ -780,7 +1005,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
         _menuDragHelper.EndDrag();
 
-        if (button.Action is not {} action)
+        if (button.Action is not {} action || button.Unavailable) // Arcane-Edit
             return;
 
         // TODO: make this an event
@@ -906,11 +1131,15 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (_actionsSystem == null)
             return;
 
+        _pinnedSlots.Clear(); // Arcane
+
         _actions.Clear();
         foreach (var assign in assignments)
         {
             _actions.Add(assign.ActionId);
         }
+
+        ReconcilePinnedActions(); // Arcane
 
         _container?.SetActionData(_actionsSystem, _actions.ToArray());
     }
