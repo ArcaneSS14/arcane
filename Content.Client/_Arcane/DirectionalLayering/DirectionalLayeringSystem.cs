@@ -219,12 +219,13 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (view == DirectionalView.Back)
             EnsureTailAtNativeAnchor(ent, cache);
 
-        // Tail and cloak first, so the back view's "hair between the head-trim cluster and the tail" layout gets
-        // the tail above the hair without the two blocks fighting over the same index.
         EnsureTailAndCloakLayout(ent, view, cache);
         if (view != DirectionalView.Back)
             EnsureTailBehindLegs(ent, cache, view);
         EnsureHairLayout(ent, view == DirectionalView.Back, cache);
+
+        if (view == DirectionalView.Back)
+            EnsureTailAboveHair(ent, cache);
     }
 
     /// <summary>
@@ -302,6 +303,43 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
         if (firstLeg != null)
             TryMoveBlockRelative(ent, cache.TailKeys, firstLeg, false);
+    }
+
+    /// <summary>
+    ///     In the back view the tail block must sit above the hair block. The hair is hoisted above the head-trim
+    ///     cluster, and for species whose native tail anchor sits below that cluster the tail would otherwise be
+    ///     left underneath the hair. Re-anchors the tail directly above the hair block when needed.
+    /// </summary>
+    private void EnsureTailAboveHair(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, OrderingCache cache)
+    {
+        if (cache.TailKeys.Count == 0 ||
+            cache.HairKeys.Count == 0 ||
+            ent.Comp1.Species == HarpySpecies)
+        {
+            return;
+        }
+
+        if (!TryResolveBlock(ent, cache.TailKeys, out var tailIndices, out var tailStart, out var tailEnd) ||
+            !TryGetBlockExtent(ent, cache.HairKeys, out _, out var hairEnd))
+        {
+            return;
+        }
+
+        // Already above the whole hair block.
+        if (IsResolvedBlockContiguous(tailIndices, tailStart, tailEnd) && tailStart > hairEnd)
+            return;
+
+        if (!TryExtractResolved(ent, tailIndices, out var tailBlock))
+            return;
+
+        // Re-resolve the hair extent: pulling the tail out may have shifted the hair block down.
+        if (!TryGetBlockExtent(ent, cache.HairKeys, out _, out var refreshedHairEnd))
+        {
+            InsertBlock(ent, tailBlock, tailStart);
+            return;
+        }
+
+        InsertBlock(ent, tailBlock, refreshedHairEnd + 1);
     }
 
     private bool TryGetLayerIndex(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, object key, out int index)
@@ -619,18 +657,11 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             return;
         }
 
-        // A backpack (or any other back-slot item) renders above the cloak on every view, so even when the back view
-        // already has the cloak below the tail, fall through to lower the cloak below the "back" layer if it is up.
-        var cloakBelowBack =
-            !TryGetLayerIndex(ent, "back", out var backIdx) ||
-            cloakTop < backIdx;
-
         // Only the extremes of the blocks are compared here, so a tail block split by a marking-layer rebuild
         // (base still sunk on an old index, marking recreated above the legs) must not be treated as already in
         // place: fall through to the re-stitching path below.
         if (IsResolvedBlockContiguous(tailIndices, tailStart, tailEnd) &&
-            cloakBelowTail == wantCloakBelowTail &&
-            (view != DirectionalView.Back || cloakBelowBack))
+            cloakBelowTail == wantCloakBelowTail)
             return;
 
         var tailCount = cache.TailKeys.Count;
@@ -651,14 +682,12 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
         if (wantCloakBelowTail)
         {
-            // Back view: tail back on its native spot, directly above its anchor; cloak right below the tail, but
-            // never at or above the backpack ("back") layer.
+            // Back view: tail back on its native spot, directly above its anchor; cloak right below the tail.
             if (cache.TailAnchorCaptured && TryGetLayerIndex(ent, cache.TailAnchor!, out var anchorIdx))
             {
                 var backTailTarget = anchorIdx + 1;
                 InsertBlock(ent, tailBlock, backTailTarget);
-                var backCloakTarget = Math.Min(backTailTarget - cloakCount, GetCloakCeiling(ent));
-                InsertBlock(ent, cloakBlock, backCloakTarget);
+                InsertBlock(ent, cloakBlock, backTailTarget - cloakCount);
                 return;
             }
 
@@ -667,8 +696,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             {
                 var backTailTarget = clusterIdx + 1;
                 InsertBlock(ent, tailBlock, backTailTarget);
-                var backCloakTarget = Math.Min(backTailTarget - cloakCount, GetCloakCeiling(ent));
-                InsertBlock(ent, cloakBlock, backCloakTarget);
+                InsertBlock(ent, cloakBlock, backTailTarget - cloakCount);
                 return;
             }
 
@@ -677,8 +705,8 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             return;
         }
 
-        // Front/side view: cloak spread below the head, tail tucked directly under the cloak; the cloak never goes
-        // at or above the backpack ("back") layer.
+        // Front/side view: cloak spread below the head, tail tucked directly under the cloak. The cloak is left
+        // above any back-slot bag, so bags no longer render over it.
         if (!TryGetLayerIndex(ent, "head", out var headIdx))
         {
             InsertBlock(ent, tailBlock, tailStart);
@@ -686,10 +714,10 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             return;
         }
 
-        var cloakTarget = Math.Min(headIdx - cloakCount, GetCloakCeiling(ent));
+        var cloakTarget = headIdx - cloakCount;
         var tailTarget = Math.Max(0, cloakTarget - tailCount);
-        // Cloak goes in first: it targets the "back" bookmark's slot, and the tail sits below it. Inserting the tail
-        // first would shift the belt/outerClothing layers up onto the cloak's index, drawing them over it.
+        // Cloak goes in first, directly below the head; the tail follows below it. Inserting the tail first would
+        // shift the belt/outerClothing layers up onto the cloak's index, drawing them over it.
         InsertBlock(ent, cloakBlock, cloakTarget);
         InsertBlock(ent, tailBlock, tailTarget);
     }
@@ -855,28 +883,6 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         }
 
         return found;
-    }
-
-    /// <summary>
-    ///     The index at which the cloak block may start so it lands directly below the backpack ("back") layer:
-    ///     inserting there pushes the backpack (and everything above it) up, keeping it above the cloak while the
-    ///     cloak stays above whatever sits below the backpack (belt, outer clothing). Only applied while a backpack
-    ///     is actually worn; the static "back" bookmark exists on every humanoid even when empty. Returns the current
-    ///     layer count otherwise.
-    /// </summary>
-    private int GetCloakCeiling(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
-    {
-        // The backpack always renders above the cloak: the cloak block is inserted at the "back" layer's index.
-        // A backIdx - cloakCount target would land on the belt's slot, shifting the belt above the cloak.
-        if (TryComp(ent.Owner, out InventorySlotsComponent? slots) &&
-            slots.VisualLayerKeys.TryGetValue("back", out var backKeys) &&
-            backKeys.Count > 0 &&
-            TryGetLayerIndex(ent, "back", out var backIdx))
-        {
-            return Math.Max(0, backIdx);
-        }
-
-        return int.MaxValue;
     }
 
     private bool TryGetBlockExtent(
