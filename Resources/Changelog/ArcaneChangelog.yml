@@ -2284,3 +2284,168 @@ Entries:
   media:
     - >-
       https://i.postimg.cc/j5D2B2nP/Barratry-NTR-BS.jpg)](https://postimg.cc/VrczCYRk
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: >-
+        Если персонаж повернут спиной, то волосы перекрывают его ушки, а хвост
+        наоборот, отображается поверх плаща.
+    - type: Fix
+      message: Хвосты таяр и вульп больше не задевают спрайт ног.
+  id: 169
+  time: '2026-09-30T05:33:53.0000000+00:00'
+  prNumber: 360
+  url: https://github.com/ArcaneSS14/arcane/pull/360
+  media:
+    - >-
+      https://github.com/user-attachments/assets/334a1241-4028-46e7-bb4f-3def9bb0a68e
+    - >-
+      https://github.com/user-attachments/assets/dc6fd72b-073e-4c81-bc98-d1701dbe8398
+- author: Vecortys
+  changes:
+    - type: Add
+      message: >-
+        Добавлена возможность поменять оформление UI на две новые темы: Золотая
+        и Космическая. Доступно спонсорам второго тира.
+    - type: Add
+      message: >-
+        Добавлено несколько кастомных скинов призраков для спонсоров второго
+        тира.
+    - type: Add
+      message: Добавлено окно с информацией о текущих бонусах подписок в лобби.
+    - type: Tweak
+      message: >-
+        Цвет ника спонсоров заменён на полноценное изменение цвета сообщения в
+        чате.
+  id: 170
+  time: '2026-09-30T06:02:51.0000000+00:00'
+  prNumber: 434
+  url: https://github.com/ArcaneSS14/arcane/pull/434
+  media:
+    - >-
+      https://github.com/user-attachments/assets/6e603ef4-765a-497f-a815-3f301fd1dc07
+    - >-
+      https://github.com/user-attachments/assets/29a64e0c-a9c7-4301-b60f-cb3e791a966c
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: >-
+        Исправлена ошибка, при которой, когда bugborg ходил, он становился
+        ероркой.
+  id: 171
+  time: '2026-10-01T11:32:15.0000000+00:00'
+  prNumber: 438
+  url: https://github.com/ArcaneSS14/arcane/pull/438
+- author: RabbitBat, Gustov
+  changes:
+    - type: Add
+      message: >-
+        Добавлены противогазы для спонсоров 2-ого тира для Капитана, ГСБ, ГВ,
+        ГП, НРа, КМа, СИ  во вкладку снаряжение для командования
+  id: 172
+  time: '2026-10-01T14:23:04.0000000+00:00'
+  prNumber: 447
+  url: https://github.com/ArcaneSS14/arcane/pull/447
+  media:
+    - >-
+      https://github.com/user-attachments/assets/9a3e14d0-b762-4a3a-8c44-6afbad7cc24b
+- author: seemah, I_Heat_I
+  changes:
+    - type: Add
+      message: Добавлен новый интерфейс - ниндзя.
+  id: 173
+  time: '2026-10-01T15:22:54.0000000+00:00'
+  prNumber: 380
+  url: https://github.com/ArcaneSS14/arcane/pull/380
+- author: Kinar7
+  changes:
+    - type: Add
+      message: 'Дебаг рнд сервер со всеми технологиями '
+  id: 174
+  time: '2026-10-01T15:31:21.0000000+00:00'
+  prNumber: 440
+  url: https://github.com/ArcaneSS14/arcane/pull/440
+- author: Vecortys
+  changes:
+    - type: Add
+      message: >-
+        Ротация режимов переведена в выбор случайного пресета. Шансы
+        подстраиваются, чтобы режимы чаще менялись, но шанс на каждый режим есть
+        всегда.
+  id: 175
+  time: '2026-10-01T15:39:44.0000000+00:00'
+  prNumber: 448
+  url: https://github.com/ArcaneSS14/arcane/pull/448
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Слаймолюды больше не умирают при потере головы.
+    - type: Add
+      message: Слаймолюды могут отрастить потерянную голову способностью регенерации.
+    - type: Fix
+      message: Отращённые части тела слаймолюдов сохраняют свои маркировки и волосы.
+    - type: Fix
+      message: >-
+        Исправлена хирургия слаймолюдов: пропускаются шаги с костями, добавлены
+        операции извлечения и установки ядра.
+    - type: Fix
+      message: Хранилище слаймолюда открывается только через его верб.
+    - type: Fix
+      message: >-
+        Исправлено перемещение предметов при переключении режима у существ со
+        своим хранилищем.
+    - type: Fix
+      message: >-
+        Исправлено залипание оверлея урона после окончания действия эффектов
+        сознания.
+    - type: Fix
+      message: >-
+        Добавлена русская локализация частей тела человека и дворфа, режимов
+        ветеранских накидок и накидок старшего инженера.
+    - type: Tweak
+      message: Перезарядка регенерации слаймолюдов увеличена до 4 минут.
+  id: 176
+  time: '2026-10-01T16:08:48.0000000+00:00'
+  prNumber: 442
+  url: https://github.com/ArcaneSS14/arcane/pull/442
+  media:
+    - >-
+      https://github.com/user-attachments/assets/b070c9ee-3dea-49b8-9309-4a1d8e7a67f9
+    - >-
+      https://github.com/user-attachments/assets/1cdc3884-bc1c-416f-92b3-31d9f0500353
+    - >-
+      https://github.com/user-attachments/assets/8f9ac3e4-94a2-4d50-a534-9f3eee1b4247
+    - >-
+      https://github.com/user-attachments/assets/58fc31d7-2ac4-43f6-bcdb-9a82c31461d7
+- author: Gustov
+  changes:
+    - type: Tweak
+      message: Изменён спрайт униформы ОСО Центком
+  id: 177
+  time: '2026-10-02T05:23:49.0000000+00:00'
+  prNumber: 443
+  url: https://github.com/ArcaneSS14/arcane/pull/443
+  media:
+    - >-
+      https://github.com/user-attachments/assets/507fa05e-9d0e-452b-ae22-2d3bde7dfe54
+- author: 0RK
+  changes:
+    - type: Add
+      message: Добавлен анализатор растений.
+  id: 178
+  time: '2026-10-02T05:26:09.0000000+00:00'
+  prNumber: 423
+  url: https://github.com/ArcaneSS14/arcane/pull/423
+  media:
+    - >-
+      https://github.com/user-attachments/assets/46b09ec1-3dd1-494b-b86a-0933e1a96620
+    - >-
+      https://github.com/user-attachments/assets/0b657542-6fcf-44f5-9146-9106b187c73d
+- author: Kinar7
+  changes:
+    - type: Add
+      message: машинная плата портативной вспышки
+  id: 179
+  time: '2026-10-02T05:30:11.0000000+00:00'
+  prNumber: 439
+  url: https://github.com/ArcaneSS14/arcane/pull/439

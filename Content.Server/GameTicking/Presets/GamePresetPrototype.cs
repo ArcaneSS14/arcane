@@ -27,6 +27,14 @@ namespace Content.Server.GameTicking.Presets
         [DataField("showInVote")]
         public bool ShowInVote;
 
+        // Arcane-Edit-Start
+        [DataField]
+        public float RepeatWeightMultiplier = 0.5f;
+
+        [DataField]
+        public float PreviousRoundWeightMultiplier = 0.5f;
+        // Arcane-Edit-End
+
         [DataField("minPlayers")]
         public int? MinPlayers;
 

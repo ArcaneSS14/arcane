@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -45,7 +47,7 @@ public sealed partial class SlimeRegrowComponent : Component
     public LocId RegrowPopup = "slime-regrow-limb-success";
 
     /// <summary>
-    /// Popup shown when there is no missing non-vital limb to regrow.
+    /// Popup shown when there is no missing limb or head to regrow.
     /// </summary>
     [DataField, AutoNetworkedField]
     public LocId NoLimbPopup = "slime-regrow-limb-none";
@@ -67,4 +69,7 @@ public sealed partial class SlimeRegrowComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Voice/Slime/slime_squish.ogg");
+
+    [ViewVariables]
+    public Dictionary<string, Dictionary<HumanoidVisualLayers, List<Marking>>> LostPartMarkings = new();
 }

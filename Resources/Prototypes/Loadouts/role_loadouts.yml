@@ -33,6 +33,7 @@
   id: JobHeadOfPersonnel
   groups:
   - HoPHead
+  - HoPMask # Arcane
   - Glasses
   - HoPNeck
   - HoPOuterClothing
@@ -450,6 +451,7 @@
   id: JobQuartermaster
   groups:
   - QuartermasterHead
+  - QuartermasterMask # Arcane
   - Glasses
   - QuartermasterNeck
   - QuartermasterOuterClothing
@@ -539,6 +541,7 @@
   id: JobChiefEngineer
   groups:
   - ChiefEngineerHead
+  - ChiefEngineerMask # Arcane
   - ChiefEngineerNeck
   - ChiefEngineerOuterClothing
   - ChiefEngineerJumpsuit
@@ -649,6 +652,7 @@
   id: JobResearchDirector
   groups:
   - ResearchDirectorHead
+  - ResearchDirectorMask # Arcane
   - Glasses
   - ResearchDirectorNeck
   - ResearchDirectorOuterClothing
@@ -736,6 +740,7 @@
   id: JobHeadOfSecurity
   groups:
   - HeadofSecurityHead
+  - HeadofSecurityMask # Arcane
   - HeadofSecurityNeck
   - HeadofSecurityOuterClothing
   - HeadofSecurityJumpsuit
@@ -885,6 +890,7 @@
   id: JobChiefMedicalOfficer
   groups:
   - ChiefMedicalOfficerHead
+  - ChiefMedicalOfficerMask # Arcane
   - MedicalMask
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerOuterClothing

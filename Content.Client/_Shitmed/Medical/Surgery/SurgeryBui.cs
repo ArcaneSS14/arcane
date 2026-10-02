@@ -192,6 +192,7 @@ public sealed class SurgeryBui : BoundUserInterface
         var stepName = new FormattedMessage();
         stepName.AddText(_entities.GetComponent<MetaDataComponent>(step).EntityName);
         var stepButton = new SurgeryStepButton { Step = step };
+        stepButton.Visible = !_system.IsStepSkipped(_entities.GetEntity(netPart), stepId); // Arcane
         stepButton.Button.OnPressed += _ => SendPredictedMessage(new SurgeryStepChosenBuiMsg(netPart, surgeryId, stepId)); // Arcane-Edit
 
         _window.Steps.AddChild(stepButton);
@@ -208,8 +209,17 @@ public sealed class SurgeryBui : BoundUserInterface
 
         _window.Steps.DisposeAllChildren();
 
+        // Arcane-Start: a requirement the part skips entirely is replaced by its own requirement
+        var shownRequirement = surgery.Comp.Requirement;
+        while (shownRequirement is { } skippedId
+            && _system.GetSingleton(skippedId) is { } skipped
+            && _entities.TryGetComponent(skipped, out SurgeryComponent? skippedComp)
+            && _system.IsSurgerySkipped(_part.Value, (skipped, skippedComp)))
+            shownRequirement = skippedComp.Requirement;
+        // Arcane-End
+
         // This apparently does not consider if theres multiple surgery requirements in one surgery. Maybe thats fine.
-        if (surgery.Comp.Requirement is { } requirementId && _system.GetSingleton(requirementId) is { } requirement)
+        if (shownRequirement is { } requirementId && _system.GetSingleton(requirementId) is { } requirement) // Arcane-Edit
         {
             var label = new ChoiceControl();
             label.Button.OnPressed += _ =>
