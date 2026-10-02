@@ -140,6 +140,11 @@
   - type: ActiveRadio
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
+  # Arcane-Start
+  - type: ActionGrant
+    actions:
+    - ActionOpenRadioChannels
+  # Arcane-End
   - type: DeadStartupButton
     sound:
       path: /Audio/_EinsteinEngines/Effects/Silicon/startup.ogg

@@ -91,7 +91,10 @@
   - type: ActionGrant
     actions:
     - ActionViewLaws
-    - ActionTTSVoiceChange # Arcane
+    # Arcane-Start
+    - ActionTTSVoiceChange
+    - ActionOpenRadioChannels
+    # Arcane-End
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider

@@ -66,8 +66,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             // Arcane-Edit-Start
             if (_radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset))
             {
-                args.RadioMessageSent = true;
-                args.Channel = null; // prevent duplicate messages from other listeners.
+                args.Channel = null;
             }
             // Arcane-Edit-End
         }
