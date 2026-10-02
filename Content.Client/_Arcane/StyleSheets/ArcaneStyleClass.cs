@@ -3,6 +3,9 @@ namespace Content.Client._Arcane.StyleSheets;
 public static class ArcaneStyleClass
 {
     public const string CharacterSetupBackground = "ArcaneCharacterSetupBackground";
+    public const string DepartmentHeader = "ArcaneDepartmentHeader";
+    public const string LobbyDivider = "ArcaneLobbyDivider";
+    public const string LobbyDividerMuted = "ArcaneLobbyDividerMuted";
     public const string ElevatedPanel = "ArcaneElevatedPanel";
     public const string LobbySurface = "ArcaneLobbySurface";
     public const string LobbyInset = "ArcaneLobbyInset";
