@@ -168,7 +168,7 @@ public sealed partial class ChangelingSystem
 
         PlayMeatySound(args.User, comp);
 
-        // Arcane-Start
+        // Arcane-Edit-Start
         var isLing = HasComp<ChangelingIdentityComponent>(target);
         if (isLing)
         {
@@ -180,7 +180,7 @@ public sealed partial class ChangelingSystem
             EnsureComp<AbsorbedComponent>(target);
             EnsureComp<UnrevivableComponent>(target);
         }
-        // Arcane-End
+        // Arcane-Edit-End
 
         TryComp<ChangelingChemicalComponent>(uid, out var chemComp); // user's chemical component
         var popup = string.Empty;
