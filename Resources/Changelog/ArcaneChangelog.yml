@@ -2473,3 +2473,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/9af90d5c-9ce2-4021-9678-b99981a25cd9
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: 'Еретик выполняя свои целии, более не гибает игроков. '
+  id: 182
+  time: '2026-10-02T07:49:34.0000000+00:00'
+  prNumber: 446
+  url: https://github.com/ArcaneSS14/arcane/pull/446
