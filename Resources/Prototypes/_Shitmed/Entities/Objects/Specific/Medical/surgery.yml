@@ -35,7 +35,9 @@
     state: stitches
   - type: SurgeryTool
     startSound:
-      path: /Audio/_Shitmed/Medical/Surgery/saw.ogg # TODO: SOUND
+# Arcane-Start
+      path: /Audio/_Shitmed/Medical/Surgery/retractor1.ogg
+# Arcane-End
   - type: Stitches
 
 - type: entity
