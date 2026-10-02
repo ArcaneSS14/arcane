@@ -287,19 +287,18 @@ internal sealed partial class ChatManager : IChatManager
         if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) &&
             SponsorRoleBenefits.TryGetOocColor(_discordRoles, player, out var patronColor))
         {
+            colorOverride = Color.FromHex(patronColor); // Arcane
             var tier = _linkAccount.GetPatron(player)?.Tier;
             if (tier?.Icon != null)
             {
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message",
-                    ("tierIcon", tier.Icon),
-                    ("patronColor", patronColor),
+                    // ("tierIcon", tier.Icon), // Arcane-removed
                     ("playerName", player.Name),
                     ("message", FormattedMessage.EscapeText(message)));
             }
             else
             {
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message-no-icon",
-                    ("patronColor", patronColor),
                     ("playerName", player.Name),
                     ("message", FormattedMessage.EscapeText(message)));
             }
