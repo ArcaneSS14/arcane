@@ -2449,3 +2449,13 @@ Entries:
   time: '2026-10-02T05:30:11.0000000+00:00'
   prNumber: 439
   url: https://github.com/ArcaneSS14/arcane/pull/439
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: >-
+        Оружие мехов больше нельзя создать в фабрикаторе мехов без емага
+        фабрикатора
+  id: 180
+  time: '2026-10-02T06:43:59.0000000+00:00'
+  prNumber: 432
+  url: https://github.com/ArcaneSS14/arcane/pull/432
