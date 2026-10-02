@@ -218,7 +218,7 @@
 
 - type: entity
   name: portable flasher
-  parent: [BaseMachine, BaseSecurityContraband]
+  parent: [BaseMachine, ConstructibleMachine, BaseSecurityContraband] # Arcane-edit
   id: PortableFlasher
   description: An ultrabright flashbulb with a proximity trigger, useful for making an area security-only.
   components:
@@ -262,3 +262,8 @@
       guides:
       - Security
       - Antagonists
+    # Arcane-Start
+    - type: Machine
+      board: PortableFlasherMachineCircuitboard
+    - type: WiresPanel
+    # Arcane-End

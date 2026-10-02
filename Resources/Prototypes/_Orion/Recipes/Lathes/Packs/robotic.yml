@@ -15,3 +15,12 @@
   - PaladinCircuitBoard
   - StationEfficiencyCircuitBoard
   - RobocopCircuitBoard
+
+# Arcane-start
+# - type: latheRecipePack
+#   id: MechWeaponsOrion
+#   recipes:
+#   - WeaponMechCombatMissileRack6
+#   - WeaponMechChainSword
+#   - WeaponMechCombatTeslaCannon
+# Arcane-end
