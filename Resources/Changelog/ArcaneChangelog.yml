@@ -2417,3 +2417,35 @@ Entries:
       https://github.com/user-attachments/assets/8f9ac3e4-94a2-4d50-a534-9f3eee1b4247
     - >-
       https://github.com/user-attachments/assets/58fc31d7-2ac4-43f6-bcdb-9a82c31461d7
+- author: Gustov
+  changes:
+    - type: Tweak
+      message: Изменён спрайт униформы ОСО Центком
+  id: 177
+  time: '2026-10-02T05:23:49.0000000+00:00'
+  prNumber: 443
+  url: https://github.com/ArcaneSS14/arcane/pull/443
+  media:
+    - >-
+      https://github.com/user-attachments/assets/507fa05e-9d0e-452b-ae22-2d3bde7dfe54
+- author: 0RK
+  changes:
+    - type: Add
+      message: Добавлен анализатор растений.
+  id: 178
+  time: '2026-10-02T05:26:09.0000000+00:00'
+  prNumber: 423
+  url: https://github.com/ArcaneSS14/arcane/pull/423
+  media:
+    - >-
+      https://github.com/user-attachments/assets/46b09ec1-3dd1-494b-b86a-0933e1a96620
+    - >-
+      https://github.com/user-attachments/assets/0b657542-6fcf-44f5-9146-9106b187c73d
+- author: Kinar7
+  changes:
+    - type: Add
+      message: машинная плата портативной вспышки
+  id: 179
+  time: '2026-10-02T05:30:11.0000000+00:00'
+  prNumber: 439
+  url: https://github.com/ArcaneSS14/arcane/pull/439
