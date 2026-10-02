@@ -2428,3 +2428,16 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/507fa05e-9d0e-452b-ae22-2d3bde7dfe54
+- author: 0RK
+  changes:
+    - type: Add
+      message: Добавлен анализатор растений.
+  id: 178
+  time: '2026-10-02T05:26:09.0000000+00:00'
+  prNumber: 423
+  url: https://github.com/ArcaneSS14/arcane/pull/423
+  media:
+    - >-
+      https://github.com/user-attachments/assets/46b09ec1-3dd1-494b-b86a-0933e1a96620
+    - >-
+      https://github.com/user-attachments/assets/0b657542-6fcf-44f5-9146-9106b187c73d
