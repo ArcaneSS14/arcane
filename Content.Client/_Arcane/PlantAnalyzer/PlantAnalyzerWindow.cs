@@ -239,10 +239,10 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
             // Кудзу и ген смерти
             switch (state.SpecialGene)
             {
-                case PlantSpecialGene.Lethal:
-                    _specialGeneLabel.Text = Loc.GetString("plant-analyzer-gene-lethal");
-                    _specialGeneLabel.Visible = true;
-                    break;
+                //case PlantSpecialGene.Lethal:
+                //    _specialGeneLabel.Text = Loc.GetString("plant-analyzer-gene-lethal");
+                //    _specialGeneLabel.Visible = true;
+                //    break;
                 case PlantSpecialGene.Kudzu:
                     _specialGeneLabel.Text = Loc.GetString("plant-analyzer-gene-kudzu");
                     _specialGeneLabel.Visible = true;
