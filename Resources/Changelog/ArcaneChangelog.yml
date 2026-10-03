@@ -2530,3 +2530,11 @@ Entries:
       https://github.com/user-attachments/assets/d0130361-d1f6-4b96-9322-4aa9a795f5a5
     - >-
       https://github.com/user-attachments/assets/ecacc16d-e1e7-449a-89e2-71f6f3e75453
+- author: UmbiMax
+  changes:
+    - type: Tweak
+      message: Заполнены пробелы некоторых спрайтов хвостов.
+  id: 187
+  time: '2026-10-03T14:30:58.0000000+00:00'
+  prNumber: 461
+  url: https://github.com/ArcaneSS14/arcane/pull/461
