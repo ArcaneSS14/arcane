@@ -2513,3 +2513,20 @@ Entries:
   time: '2026-10-03T10:16:48.0000000+00:00'
   prNumber: 456
   url: https://github.com/ArcaneSS14/arcane/pull/456
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: >-
+        Черты настроения с положительной стоимостью (например, «Мёртвые эмоции»)
+        снова сохраняются у персонажа вместе с отрицательными.
+  id: 186
+  time: '2026-10-03T14:31:38.0000000+00:00'
+  prNumber: 454
+  url: https://github.com/ArcaneSS14/arcane/pull/454
+  media:
+    - >-
+      https://github.com/user-attachments/assets/94a9c0c3-bd2b-4b1b-8411-359e0cdc705b
+    - >-
+      https://github.com/user-attachments/assets/d0130361-d1f6-4b96-9322-4aa9a795f5a5
+    - >-
+      https://github.com/user-attachments/assets/ecacc16d-e1e7-449a-89e2-71f6f3e75453
