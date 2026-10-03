@@ -340,6 +340,9 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
             else
             {
                 _potencyLabel.Text = string.Empty;
+                _weedLabel.Text = string.Empty;
+                _pestLabel.Text = string.Empty;
+                _toxinLabel.Text = string.Empty;
                 _yieldLabel.Text = string.Empty;
                 _mutationLabel.Text = string.Empty;
                 _growthRateLabel.Text = string.Empty;

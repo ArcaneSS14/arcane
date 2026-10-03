@@ -22,7 +22,7 @@ public enum PlantSpecialGene : byte
 {
     None,
     Kudzu,
-    Lethal
+    //Lethal
 }
 
 
@@ -45,7 +45,6 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
     public readonly int PestLevel;
     public readonly int Toxins;
     public readonly int MutationLevel;
-    public readonly bool IsScanFinished;
     public int GrowthRate { get; }
     public float MinTemp { get; }
     public float MaxTemp { get; }
@@ -75,7 +74,6 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
         int pestLevel,
         int toxins,
         int mutationLevel,
-        bool isScanFinished,
         int growthRate,
         float minTemp,
         float maxTemp,
@@ -103,7 +101,6 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
         PestLevel = pestLevel;
         Toxins = toxins;
         MutationLevel = mutationLevel;
-        IsScanFinished = isScanFinished;
         GrowthRate = growthRate;
         MinTemp = minTemp;
         MaxTemp = maxTemp;

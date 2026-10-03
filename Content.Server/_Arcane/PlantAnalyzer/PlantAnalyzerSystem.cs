@@ -7,7 +7,6 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
-using NetCord;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -179,13 +178,19 @@ public sealed class PlantAnalyzerSystem : EntitySystem
 
             if (hasPlant && seed != null)
             {
-                minTemp = seed.IdealHeat - seed.HeatTolerance - 273.15f;
-                maxTemp = seed.IdealHeat + seed.HeatTolerance - 273.15f;
+                minTemp = seed.IdealHeat - seed.HeatTolerance;
+                maxTemp = seed.IdealHeat + seed.HeatTolerance;
                 minPressure = seed.LowPressureTolerance;
                 maxPressure = seed.HighPressureTolerance;
 
                 if (seed.TurnIntoKudzu)
+                {
                     specialGene = PlantSpecialGene.Kudzu;
+                }
+                //else if (seed.Carnivorous)
+                //{
+                //    specialGene = PlantSpecialGene.Lethal;
+                //}
 
                 foreach (var (gas, _) in seed.ExudeGasses)
                 {
@@ -230,7 +235,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             state = new PlantAnalyzerUserInterfaceState(
                 netTarget, targetName, hasPlant, plantName, potency, yield, age, maxAge,
                 harvestable, dead, health, maxHealth, weedLevel, pestLevel,
-                toxins, mutationLevel, false, growthRate, minTemp, maxTemp, minPressure, maxPressure, exudeGases, soilReagents, produceReagents, specialGene
+                toxins, mutationLevel, growthRate, minTemp, maxTemp, minPressure, maxPressure, exudeGases, soilReagents, produceReagents, specialGene
             );
 
             return true;
@@ -251,7 +256,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
 
             state = new PlantAnalyzerUserInterfaceState(
                 netTarget, targetName, true, targetName, 0, 0, 0, 0,
-                false, false, 100f, 100f, 0, 0, 0, 0, false, 0, 0f, 0f, 0f, 0f,
+                false, false, 100f, 100f, 0, 0, 0, 0, 0, 0f, 0f, 0f, 0f,
                 new List<string>(), soilReagents, produceReagents, PlantSpecialGene.None
             );
 
