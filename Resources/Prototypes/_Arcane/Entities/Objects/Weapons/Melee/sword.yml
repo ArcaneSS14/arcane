@@ -42,7 +42,7 @@
 
 - type: entity
   id: JadeKatana
-  parent: [ EnergyKatana, ShadowKatana ]
+  parent: [ EnergyKatana,  ]
   name: jade katana
   description: An expensive, handcrafted ceremonial weapon featuring jade ornamentation on the blade.
   components:
