@@ -5,6 +5,7 @@
   description: department-GhostRoles-description
   color: "#8C8C8C"
   weight: 100
+  buttonStyle: ButtonColorSpecificDepartment
   editorHidden: true
   primary: false
   roles:
