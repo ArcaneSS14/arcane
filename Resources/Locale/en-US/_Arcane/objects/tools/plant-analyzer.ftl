@@ -1,5 +1,5 @@
 # Analyzer
-ent-PlantAnalyzer = Plant Analyzer
+ent-PlantAnalyzer = plant analyzer
     .desc = Device developed by the Green Group for analyzing the state of plants and their chemical composition. May Sporwyn be glad!
 
 # Analyzer Window
@@ -20,7 +20,7 @@ plant-analyzer-plant-name = Plant: { $name }
 # Statuses
 plant-analyzer-status-dead = Status: Dead
 plant-analyzer-status-harvestable = Status: Ready for harvest
-plant-analyzer-status-growing = Status: Growing (Stage { $age } of { $maxAge })
+plant-analyzer-status-growing = Plant age { $age }
 
 # Metrics
 plant-analyzer-health-value = Health: { $health } / { $max }
@@ -28,6 +28,9 @@ plant-analyzer-potency = Potency: { $potency }
 plant-analyzer-yield = Yield: { $yield }
 plant-analyzer-mutation = Mutation status: MUTATING! { $mutation }
 plant-analyzer-mutation-non = Mutation status: Stable { $mutation }
+plant-analyzer-growth-rate = Rapid fruiting time: { $growthRate }
+plant-analyzer-exude-gases = Exuded gases: { $gases }
+plant-analyzer-exude-gases-none = Gas exudation: None
 
 # Threats
 plant-analyzer-weeds = Weeds: { $level }

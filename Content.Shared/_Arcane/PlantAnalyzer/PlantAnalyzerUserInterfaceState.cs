@@ -18,10 +18,18 @@ public readonly struct PlantAnalyzerReagentInfo
     }
 }
 
+public enum PlantSpecialGene : byte
+{
+    None,
+    Kudzu,
+    Lethal
+}
+
+
 [NetSerializable, Serializable]
 public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
 {
-    public readonly NetEntity? Target; 
+    public readonly NetEntity? Target;
     public readonly string TargetName;
     public readonly bool HasPlant;
     public readonly string PlantName;
@@ -37,10 +45,14 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
     public readonly int PestLevel;
     public readonly int Toxins;
     public readonly int MutationLevel;
-    public readonly bool IsKudzu;
+    public readonly bool IsScanFinished;
+    public int GrowthRate { get; }
+    public Dictionary<string, float> ExudeGases { get; }
 
     public readonly List<PlantAnalyzerReagentInfo> SoilReagents;
     public readonly List<PlantAnalyzerReagentInfo> ProduceReagents;
+    public PlantSpecialGene SpecialGene { get; }
+
 
     public PlantAnalyzerUserInterfaceState(
         NetEntity? target,
@@ -59,9 +71,13 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
         int pestLevel,
         int toxins,
         int mutationLevel,
-        bool isKudzu,
+        bool isScanFinished,
+        int growthRate,
+        Dictionary<string, float> exudeGases,
         List<PlantAnalyzerReagentInfo> soilReagents,
-        List<PlantAnalyzerReagentInfo> produceReagents)
+        List<PlantAnalyzerReagentInfo> produceReagents,
+        PlantSpecialGene specialGene)
+
     {
         Target = target;
         TargetName = targetName;
@@ -79,8 +95,11 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
         PestLevel = pestLevel;
         Toxins = toxins;
         MutationLevel = mutationLevel;
-        IsKudzu = isKudzu;
+        IsScanFinished = isScanFinished;
+        GrowthRate = growthRate;
+        ExudeGases = exudeGases;
         SoilReagents = soilReagents;
         ProduceReagents = produceReagents;
+        SpecialGene = specialGene;
     }
 }

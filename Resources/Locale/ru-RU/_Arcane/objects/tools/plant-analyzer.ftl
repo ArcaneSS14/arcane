@@ -1,5 +1,5 @@
 # Анализатор
-ent-PlantAnalyzer = Анализатор растений
+ent-PlantAnalyzer = анализатор растений
     .desc = Устройство разработанное группой Зелёных для анализа состояния растений и их химического состава. Да возрадуется Спорынью!
 
 # Окно анализатора
@@ -20,7 +20,7 @@ plant-analyzer-plant-name = Растение: { $name }
 # Статусы состояния
 plant-analyzer-status-dead = Статус: Мертво
 plant-analyzer-status-harvestable = Статус: Готово к сбору 
-plant-analyzer-status-growing = Статус: Растет (Стадия { $age } из { $maxAge })
+plant-analyzer-status-growing = Возраст растения { $age }
 
 # Статистика
 plant-analyzer-health-value = Здоровье: { $health } / { $max }
@@ -28,6 +28,9 @@ plant-analyzer-potency = Потенция: { $potency }
 plant-analyzer-yield = Урожайность: { $yield }
 plant-analyzer-mutation = Статус мутаций: МУТИРУЕТ! { $mutation }
 plant-analyzer-mutation-non = Статус мутаций: Стабильно { $mutation }
+plant-analyzer-growth-rate = Коэффициент временисозревания плода: { $growthRate }
+plant-analyzer-exude-gases = Выделяемые газы: { $gases }
+plant-analyzer-exude-gases-none = Выделение газов: Отсутствует
 
 # Угрозы
 plant-analyzer-weeds = Сорняки: { $level }
@@ -36,6 +39,8 @@ plant-analyzer-pests = Вредители: { $level }
 plant-analyzer-pests-danger = Вредители: { $level } (ОПАСНО)
 plant-analyzer-toxins = Токсины: { $level }
 plant-analyzer-toxins-danger = Токсины: { $level } (ОПАСНО)
+plant-analyzer-gene-lethal = ⚠ ГЕН СМЕРТИ ⚠
+plant-analyzer-gene-kudzu = ⚠ КУДЗУ ⚠
 
 # Реагенты
 plant-analyzer-no-soil-reagents = Почва не содержит веществ.

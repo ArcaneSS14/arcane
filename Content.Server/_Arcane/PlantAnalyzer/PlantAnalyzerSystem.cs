@@ -1,5 +1,7 @@
 using Content.Server.Botany.Components;
 using Content.Shared._Arcane.PlantAnalyzer;
+using Content.Shared.Atmos;
+using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Hands.EntitySystems;
@@ -21,6 +23,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly SharedAtmosphereSystem _atmosSystem = default!;
 
     private const float MaxScanDistance = 3.0f;
 
@@ -139,6 +142,12 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         return reagentId;
     }
 
+    private string GetGasLocalizedName(Gas gas)
+    {
+        var gasProto = _atmosSystem.GetGas(gas);
+        return Loc.GetString(gasProto.Name);
+    }
+
     private bool TryAnalyzeTarget(EntityUid target, out PlantAnalyzerUserInterfaceState state)
     {
         state = default!;
@@ -158,6 +167,20 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             var yield = hasPlant ? seed!.Yield : 0;
             var maxAge = hasPlant ? seed!.GrowthStages : 0;
             var mutationLevel = hasPlant ? (int) plantHolder.MutationLevel : 0;
+            var growthRate = hasPlant ? (int) seed!.Production : 0;
+            var exudeGases = new Dictionary<string, float>();
+            var specialGene = PlantSpecialGene.None;
+
+            if (hasPlant && seed != null)
+            {
+                if (seed.TurnIntoKudzu)
+                    specialGene = PlantSpecialGene.Kudzu;
+
+                foreach (var (gas, _) in seed.ExudeGasses)
+                {
+                    var localizedGasName = GetGasLocalizedName(gas);
+                }
+            }
 
             var age = plantHolder.Age;
             var harvestable = plantHolder.Harvest;
@@ -194,7 +217,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             state = new PlantAnalyzerUserInterfaceState(
                 netTarget, targetName, hasPlant, plantName, potency, yield, age, maxAge,
                 harvestable, dead, health, maxHealth, weedLevel, pestLevel,
-                toxins, mutationLevel, false, soilReagents, produceReagents
+                toxins, mutationLevel, false, growthRate, exudeGases, soilReagents, produceReagents, specialGene
             );
 
             return true;
@@ -215,7 +238,8 @@ public sealed class PlantAnalyzerSystem : EntitySystem
 
             state = new PlantAnalyzerUserInterfaceState(
                 netTarget, targetName, true, targetName, 0, 0, 0, 0,
-                false, false, 100f, 100f, 0, 0, 0, 0, false, soilReagents, produceReagents
+                false, false, 100f, 100f, 0, 0, 0, 0, false, 0,
+                new Dictionary<string, float>(), soilReagents, produceReagents, PlantSpecialGene.None
             );
 
             return true;
