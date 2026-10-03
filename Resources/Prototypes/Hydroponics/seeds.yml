@@ -386,6 +386,8 @@
   packetPrototype: PotatoSeeds
   productPrototypes:
     - FoodPotato
+  mutationPrototypes:
+    - pomato
   lifespan: 30
   maturation: 10
   production: 3
