@@ -2571,3 +2571,25 @@ Entries:
   time: '2026-10-03T19:13:45.0000000+00:00'
   prNumber: 459
   url: https://github.com/ArcaneSS14/arcane/pull/459
+- author: bulbo44kkey, NeGhostea, RabbitBat
+  changes:
+    - type: Add
+      message: Добавлена борода "Полная растрёпанная" для расы человек
+    - type: Add
+      message: >-
+        Добавлены причёски "Ангельская", "Аратаки", "Гача", "Касанэ Тэто",
+        "Мужская растрёпанная", "Растрёпанная с чёлкой на глаза", "Торд",
+        "Хацунэ Мику", "Три пучка" и "Три пучка (Альт.)" для расы человек
+    - type: Add
+      message: Добавлена причёска "Пенка" для расы человек и Слаймолюдов
+  id: 191
+  time: '2026-10-03T19:23:31.0000000+00:00'
+  prNumber: 457
+  url: https://github.com/ArcaneSS14/arcane/pull/457
+  media:
+    - >-
+      https://github.com/user-attachments/assets/e4b5394d-ba20-4ea5-9b94-25ef7c2199ed
+    - >-
+      https://github.com/user-attachments/assets/db13ee8f-9f97-4c39-b58d-7861d3fb0ad4
+    - >-
+      https://github.com/user-attachments/assets/371b6749-2f95-4d09-bbd5-4674140c1298
