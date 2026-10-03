@@ -304,6 +304,11 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         var (time, stealth) = GetStripTimeModifiers(user, target, item, slotDef.StripTime);
 
+        // Arcane-Start
+        if (user == target)
+            time += _inventorySystem.GetUnequipDelay(item, slotDef);
+        // Arcane-End
+
         if (!stealth)
         {
             if (IsStripHidden(slotDef, user))
