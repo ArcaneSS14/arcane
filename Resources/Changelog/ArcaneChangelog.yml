@@ -2548,3 +2548,18 @@ Entries:
   time: '2026-10-03T19:07:32.0000000+00:00'
   prNumber: 428
   url: https://github.com/ArcaneSS14/arcane/pull/428
+- author: RabbitBat, NeGhostea
+  changes:
+    - type: Add
+      message: >-
+        Добавлена сексуальная юбка-комбинезон мима в театрошкаф, принтер
+        униформы и в лодаут миму
+  id: 189
+  time: '2026-10-03T19:10:17.0000000+00:00'
+  prNumber: 449
+  url: https://github.com/ArcaneSS14/arcane/pull/449
+  media:
+    - >-
+      https://github.com/user-attachments/assets/c6d89c07-c741-4dd6-8271-8693e4356c7f
+    - >-
+      https://github.com/user-attachments/assets/30b02c6d-8934-4701-a73c-83bee0a53dc2
