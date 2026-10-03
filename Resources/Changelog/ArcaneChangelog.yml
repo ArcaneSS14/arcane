@@ -2563,3 +2563,11 @@ Entries:
       https://github.com/user-attachments/assets/c6d89c07-c741-4dd6-8271-8693e4356c7f
     - >-
       https://github.com/user-attachments/assets/30b02c6d-8934-4701-a73c-83bee0a53dc2
+- author: 0RK
+  changes:
+    - type: Fix
+      message: Исправлены некоторые недоработки анализатора растений
+  id: 190
+  time: '2026-10-03T19:13:45.0000000+00:00'
+  prNumber: 459
+  url: https://github.com/ArcaneSS14/arcane/pull/459
