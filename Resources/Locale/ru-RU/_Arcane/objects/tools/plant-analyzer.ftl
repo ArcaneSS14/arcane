@@ -26,11 +26,13 @@ plant-analyzer-status-growing = Возраст растения { $age }
 plant-analyzer-health-value = Здоровье: { $health } / { $max }
 plant-analyzer-potency = Потенция: { $potency }
 plant-analyzer-yield = Урожайность: { $yield }
-plant-analyzer-mutation = Статус мутаций: МУТИРУЕТ! { $mutation }
+plant-analyzer-mutation = Статус мутаций: МУТИРУЕТ! 
 plant-analyzer-mutation-non = Статус мутаций: Стабильно { $mutation }
-plant-analyzer-growth-rate = Коэффициент временисозревания плода: { $growthRate }
+plant-analyzer-growth-rate = Коэффициент времени созревания плода: { $growthRate }
 plant-analyzer-exude-gases = Выделяемые газы: { $gases }
 plant-analyzer-exude-gases-none = Выделение газов: Отсутствует
+plant-analyzer-temp-range = Комфортная температура: { $min }°F — { $max }°F
+plant-analyzer-pressure-range = Комфортное давление: { $min } кПа — { $max } кПа
 
 # Угрозы
 plant-analyzer-weeds = Сорняки: { $level }

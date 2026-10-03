@@ -47,7 +47,11 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
     public readonly int MutationLevel;
     public readonly bool IsScanFinished;
     public int GrowthRate { get; }
-    public Dictionary<string, float> ExudeGases { get; }
+    public float MinTemp { get; }
+    public float MaxTemp { get; }
+    public float MinPressure { get; }
+    public float MaxPressure { get; }
+    public List<string> ExudeGases { get; }
 
     public readonly List<PlantAnalyzerReagentInfo> SoilReagents;
     public readonly List<PlantAnalyzerReagentInfo> ProduceReagents;
@@ -73,7 +77,11 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
         int mutationLevel,
         bool isScanFinished,
         int growthRate,
-        Dictionary<string, float> exudeGases,
+        float minTemp,
+        float maxTemp,
+        float minPressure,
+        float maxPressure,
+        List<string> exudeGases,
         List<PlantAnalyzerReagentInfo> soilReagents,
         List<PlantAnalyzerReagentInfo> produceReagents,
         PlantSpecialGene specialGene)
@@ -97,6 +105,10 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
         MutationLevel = mutationLevel;
         IsScanFinished = isScanFinished;
         GrowthRate = growthRate;
+        MinTemp = minTemp;
+        MaxTemp = maxTemp;
+        MinPressure = minPressure;
+        MaxPressure = maxPressure;
         ExudeGases = exudeGases;
         SoilReagents = soilReagents;
         ProduceReagents = produceReagents;

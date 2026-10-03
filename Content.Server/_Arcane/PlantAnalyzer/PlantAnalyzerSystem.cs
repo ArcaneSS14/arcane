@@ -7,6 +7,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using NetCord;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -168,17 +169,29 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             var maxAge = hasPlant ? seed!.GrowthStages : 0;
             var mutationLevel = hasPlant ? (int) plantHolder.MutationLevel : 0;
             var growthRate = hasPlant ? (int) seed!.Production : 0;
-            var exudeGases = new Dictionary<string, float>();
+            var exudeGases = new List<string>();
             var specialGene = PlantSpecialGene.None;
+
+            var minTemp = 0f;
+            var maxTemp = 0f;
+            var minPressure = 0f;
+            var maxPressure = 0f;
 
             if (hasPlant && seed != null)
             {
+                minTemp = seed.IdealHeat - seed.HeatTolerance - 273.15f;
+                maxTemp = seed.IdealHeat + seed.HeatTolerance - 273.15f;
+                minPressure = seed.LowPressureTolerance;
+                maxPressure = seed.HighPressureTolerance;
+
                 if (seed.TurnIntoKudzu)
                     specialGene = PlantSpecialGene.Kudzu;
 
                 foreach (var (gas, _) in seed.ExudeGasses)
                 {
                     var localizedGasName = GetGasLocalizedName(gas);
+                    if (!exudeGases.Contains(localizedGasName))
+                        exudeGases.Add(localizedGasName);
                 }
             }
 
@@ -217,7 +230,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             state = new PlantAnalyzerUserInterfaceState(
                 netTarget, targetName, hasPlant, plantName, potency, yield, age, maxAge,
                 harvestable, dead, health, maxHealth, weedLevel, pestLevel,
-                toxins, mutationLevel, false, growthRate, exudeGases, soilReagents, produceReagents, specialGene
+                toxins, mutationLevel, false, growthRate, minTemp, maxTemp, minPressure, maxPressure, exudeGases, soilReagents, produceReagents, specialGene
             );
 
             return true;
@@ -238,8 +251,8 @@ public sealed class PlantAnalyzerSystem : EntitySystem
 
             state = new PlantAnalyzerUserInterfaceState(
                 netTarget, targetName, true, targetName, 0, 0, 0, 0,
-                false, false, 100f, 100f, 0, 0, 0, 0, false, 0,
-                new Dictionary<string, float>(), soilReagents, produceReagents, PlantSpecialGene.None
+                false, false, 100f, 100f, 0, 0, 0, 0, false, 0, 0f, 0f, 0f, 0f,
+                new List<string>(), soilReagents, produceReagents, PlantSpecialGene.None
             );
 
             return true;

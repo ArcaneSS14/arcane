@@ -37,6 +37,8 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
     private readonly Label _healthPercentLabel;
     private readonly Label _healthLabel;
     private readonly Label _specialGeneLabel;
+    private readonly Label _tempRangeLabel;
+    private readonly Label _pressureRangeLabel;
 
 
 
@@ -45,7 +47,7 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
         IoCManager.InjectDependencies(this);
 
         Title = Loc.GetString("plant-analyzer-window-title");
-        SetSize = new Vector2(560, 720);
+        SetSize = new Vector2(690, 720);
 
         // Разделение контейнера на пополам
         var mainContainer = new BoxContainer
@@ -78,6 +80,8 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
         _mutationLabel = new Label();
         _growthRateLabel = new Label();
         _exudeGasesLabel = new Label();
+        _tempRangeLabel = new Label();
+        _pressureRangeLabel = new Label();
 
 
         leftColumn.AddChild(_potencyLabel);
@@ -85,6 +89,8 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
         leftColumn.AddChild(_mutationLabel);
         leftColumn.AddChild(_growthRateLabel);
         leftColumn.AddChild(_exudeGasesLabel);
+        leftColumn.AddChild(_tempRangeLabel);
+        leftColumn.AddChild(_pressureRangeLabel);
 
         // Угрозы
         leftColumn.AddChild(new Label { Text = Loc.GetString("plant-analyzer-section-threats"), FontColorOverride = Color.OrangeRed });
@@ -103,7 +109,7 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
 
         // Вещества
         leftColumn.AddChild(new Label { Text = Loc.GetString("plant-analyzer-section-soil-reagents"), FontColorOverride = Color.LightSkyBlue });
-        var soilScroll = new ScrollContainer { MinHeight = 45, VerticalExpand = true };
+        var soilScroll = new ScrollContainer { MinHeight = 30, VerticalExpand = true };
         _soilReagentsContainer = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 2 };
         soilScroll.AddChild(_soilReagentsContainer);
         leftColumn.AddChild(soilScroll);
@@ -214,6 +220,8 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
             _growthRateLabel.Text = string.Empty;
             _exudeGasesLabel.Text = string.Empty;
             _specialGeneLabel.Visible = false;
+            _tempRangeLabel.Text = string.Empty;
+            _pressureRangeLabel.Text = string.Empty;
         }
         else
         {
@@ -256,6 +264,17 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
                 _yieldLabel.Text = Loc.GetString("plant-analyzer-yield", ("yield", state.Yield));
                 _growthRateLabel.Text = Loc.GetString("plant-analyzer-growth-rate", ("growthRate", state.GrowthRate));
 
+                // Давление и темпа
+                _tempRangeLabel.Text = Loc.GetString("plant-analyzer-temp-range",
+                    ("min", state.MinTemp.ToString("F1")),
+                    ("max", state.MaxTemp.ToString("F1")));
+                _tempRangeLabel.FontColorOverride = Color.LightSkyBlue;
+
+                _pressureRangeLabel.Text = Loc.GetString("plant-analyzer-pressure-range",
+                    ("min", state.MinPressure.ToString("F1")),
+                    ("max", state.MaxPressure.ToString("F1")));
+                _pressureRangeLabel.FontColorOverride = Color.LightSkyBlue;
+
                 // Мутация
                 if (state.MutationLevel >= 1)
                 {
@@ -271,12 +290,8 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
                 // Выделяемые газы
                 if (state.ExudeGases.Count > 0)
                 {
-                    var gasList = new List<string>();
-                    foreach (var (gas, amount) in state.ExudeGases)
-                    {
-                        gasList.Add($"{gas}: {amount}");
-                    }
-                    _exudeGasesLabel.Text = Loc.GetString("plant-analyzer-exude-gases", ("gases", string.Join(", ", gasList)));
+                    var gasesText = string.Join(", ", state.ExudeGases);
+                    _exudeGasesLabel.Text = Loc.GetString("plant-analyzer-exude-gases", ("gases", gasesText));
                     _exudeGasesLabel.FontColorOverride = Color.MediumPurple;
                 }
                 else
@@ -329,6 +344,8 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
                 _mutationLabel.Text = string.Empty;
                 _growthRateLabel.Text = string.Empty;
                 _exudeGasesLabel.Text = string.Empty;
+                _tempRangeLabel.Text = string.Empty;
+                _pressureRangeLabel.Text = string.Empty;
             }
         }
 
