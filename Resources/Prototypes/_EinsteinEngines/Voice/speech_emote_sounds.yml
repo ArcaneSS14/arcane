@@ -21,8 +21,10 @@
       collection: CatMeows
       params:
         variation: 0.125
-    CatHisses:
-      collection: CatHisses
+    # Arcane-Start
+    Hiss:
+      path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-End
       params:
         variation: 0.125
     MonkeyScreeches:

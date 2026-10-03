@@ -15,8 +15,10 @@
       collection: MaleCoughs
     CatMeow:
       collection: CatMeows
-    CatHisses:
-      collection: CatHisses
+    # Arcane-Start
+    Hiss:
+      path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-End
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -67,8 +69,10 @@
       collection: FemaleCoughs
     CatMeow:
       collection: CatMeows
-    CatHisses:
-      collection: CatHisses
+    # Arcane-Start
+    Hiss:
+      path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-End
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -119,8 +123,10 @@
       collection: MaleCoughs
     CatMeow:
       collection: CatMeows
-    CatHisses:
-      collection: CatHisses
+    # Arcane-Start
+    Hiss:
+      path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-End
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -277,8 +283,10 @@
       collection: MaleCoughs
     CatMeow:
       collection: CatMeows
-    CatHisses:
-      collection: CatHisses
+    # Arcane-Start
+    Hiss:
+      path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-End
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -335,8 +343,10 @@
       collection: FemaleCoughs
     CatMeow:
       collection: CatMeows
-    CatHisses:
-      collection: CatHisses
+    # Arcane-Start
+    Hiss:
+      path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-End
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -404,8 +414,6 @@
       path: /Audio/_Goobstation/Voice/Vox/vox_sneeze.ogg
     Cough:
       collection: VoxCough #goob
-    CatHisses:
-      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -540,8 +548,10 @@
       collection: MaleCoughs
     CatMeow:
       collection: CatMeows
-    CatHisses:
-      collection: CatHisses
+    # Arcane-Start
+    Hiss:
+      path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-End
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -593,8 +603,10 @@
       collection: FemaleCoughs
     CatMeow:
       collection: CatMeows
-    CatHisses:
-      collection: CatHisses
+    # Arcane-Start
+    Hiss:
+      path: /Audio/Animals/snake_hiss.ogg
+    # Arcane-End
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
