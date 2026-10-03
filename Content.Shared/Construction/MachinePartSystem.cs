@@ -2,6 +2,8 @@
 
 using System.Linq;
 using Content.Shared.Construction.Components;
+using Content.Shared.Construction.Prototypes;
+using Content.Shared.Construction.Steps;
 using Content.Shared.Examine;
 using Content.Shared.Lathe;
 using Content.Shared.Materials;
@@ -22,7 +24,45 @@ namespace Content.Shared.Construction
         {
             base.Initialize();
             SubscribeLocalEvent<MachineBoardComponent, ExaminedEvent>(OnMachineBoardExamined);
+            SubscribeLocalEvent<ComputerBoardComponent, ExaminedEvent>(OnComputerBoardExamined); // Arcane
         }
+
+        // Arcane-Start
+        private static readonly ProtoId<ConstructionPrototype> ComputerConstruction = "Computer";
+
+        private void OnComputerBoardExamined(Entity<ComputerBoardComponent> ent, ref ExaminedEvent args)
+        {
+            if (!args.IsInDetailsRange)
+                return;
+
+            var construction = _prototype.Index(ComputerConstruction);
+            var graph = _prototype.Index(construction.Graph);
+            if (graph.Path(construction.StartNode, construction.TargetNode) is not { } path)
+                return;
+
+            using (args.PushGroup(nameof(ComputerBoardComponent)))
+            {
+                args.PushMarkup(Loc.GetString("machine-board-component-on-examine-label"));
+
+                var node = graph.Nodes[construction.StartNode];
+                foreach (var next in path)
+                {
+                    foreach (var step in node.GetEdge(next.Name)!.Steps)
+                    {
+                        if (step is not MaterialConstructionGraphStep material)
+                            continue;
+
+                        var stack = _prototype.Index(material.MaterialPrototypeId);
+                        args.PushMarkup(Loc.GetString("machine-board-component-required-element-entry-text",
+                            ("amount", material.Amount),
+                            ("requiredElement", _prototype.Index(stack.Spawn).Name)));
+                    }
+
+                    node = next;
+                }
+            }
+        }
+        // Arcane-End
 
         private void OnMachineBoardExamined(EntityUid uid, MachineBoardComponent component, ExaminedEvent args)
         {
@@ -41,6 +81,16 @@ namespace Content.Shared.Construction
                         ("amount", amount),
                         ("requiredElement", Loc.GetString(name))));
                 }
+
+                // Arcane-Start
+                foreach (var (part, amount) in component.PartRequirements)
+                {
+                    var partProto = _prototype.Index(part);
+                    args.PushMarkup(Loc.GetString("machine-board-component-required-element-entry-text",
+                        ("amount", amount),
+                        ("requiredElement", _prototype.Index(partProto.StockPartPrototype).Name)));
+                }
+                // Arcane-End
 
                 foreach (var (_, info) in component.ComponentRequirements)
                 {

@@ -3505,6 +3505,7 @@
       Dead:
         Base: syndicat_dead
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     prob: 1
     name: ghost-role-information-SyndiCat-name
     allowMovement: true

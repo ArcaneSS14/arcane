@@ -96,6 +96,7 @@
     - id: FoodMeatXeno
       amount: 5
   - type: GhostRole
+    banJob: GhostRoleXenomorph # Arcane
     allowMovement: true
     allowSpeech: true
     makeSentient: true
