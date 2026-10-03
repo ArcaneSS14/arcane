@@ -3,7 +3,7 @@ using Robust.Shared.Configuration;
 namespace Content.Shared._Arcane.CVars;
 
 [CVarDefs]
-public sealed class ArtCVars
+public sealed class ACVars
 {
     # region TTS
 
@@ -31,12 +31,6 @@ public sealed class ArtCVars
     /// </summary>
     public static readonly CVarDef<int> TTSApiTimeout =
         CVarDef.Create("tts.api_timeout", 5, CVar.SERVERONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Default volume setting of TTS sound
-    /// </summary>
-    public static readonly CVarDef<float> TTSVolume =
-        CVarDef.Create("tts.volume", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE); // Arcane
 
     /// <summary>
     /// Count of in-memory cached tts voice lines.

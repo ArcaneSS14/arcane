@@ -1,0 +1,5 @@
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  icon: { sprite: Objects/Weapons/pflash.rsi, state: "on" }
+  id: PortableFlasherMachineCircuitboard
+  result: PortableFlasherMachineCircuitboard
