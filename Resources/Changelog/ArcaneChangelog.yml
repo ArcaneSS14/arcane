@@ -2538,3 +2538,13 @@ Entries:
   time: '2026-10-03T14:30:58.0000000+00:00'
   prNumber: 461
   url: https://github.com/ArcaneSS14/arcane/pull/461
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: Исправлен  внешний вид ID-карты горничной командования
+    - type: Fix
+      message: Исправлен  внешний вид ID-карты горничной командования
+  id: 188
+  time: '2026-10-03T19:07:32.0000000+00:00'
+  prNumber: 428
+  url: https://github.com/ArcaneSS14/arcane/pull/428
