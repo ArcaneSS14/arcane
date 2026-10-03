@@ -2503,3 +2503,13 @@ Entries:
   time: '2026-10-03T02:09:18.0000000+00:00'
   prNumber: 433
   url: https://github.com/ArcaneSS14/arcane/pull/433
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: >-
+        Панель управления туреллей на всех картах стал доступная для командного
+        доступа.
+  id: 185
+  time: '2026-10-03T10:16:48.0000000+00:00'
+  prNumber: 456
+  url: https://github.com/ArcaneSS14/arcane/pull/456
