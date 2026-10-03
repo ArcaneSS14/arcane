@@ -34,6 +34,7 @@
         - machine_parts
       graph: Machine
       node: missingWires
+      defaultTarget: machine # Arcane
     - type: ContainerContainer
       containers:
         machine_board: !type:Container
