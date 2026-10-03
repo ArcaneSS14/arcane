@@ -17,3 +17,14 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Socks/Sponsor/mime_stockings.rsi
+
+# Lovemate
+
+- type: entity
+  parent: ClothingSocksBase
+  id: ClothingLatexStockings
+  name: latex stockings
+  description: A black stockings made of very lightweight latex.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Socks/latex_stockings.rsi
