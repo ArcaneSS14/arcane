@@ -329,7 +329,7 @@
 
 - type: entity
   name: brown briefcase
-  parent: [BaseWeaponSubMachineGun]
+  parent: [ BaseWeaponSubMachineGun, BaseSyndicateAnchoredContraband ] # Arcane Edit
   id: WeaponSubMachineGunBriefcase
   description: Useful for carrying items in your hands.
   suffix: Gun
