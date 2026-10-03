@@ -46,12 +46,12 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtMime
 
-    # Arcane Start
+# Arcane Start
 - type: loadout
   id: MimeJumpskirtSexy
   equipment:
     jumpsuit: ClothingUniformJumpskirtMimeSexy
-    # Arcane End
+# Arcane End
 
 # Back
 - type: loadout

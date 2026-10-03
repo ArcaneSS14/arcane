@@ -1,7 +1,6 @@
 # Service
 ent-ClothingUniformJumpskirtMimeSexy = сексуальная юбка-комбинезон мима
-    .desc = Соблазнительный наряд для мима, который предпочитает выражать эмоции без слов.
-# idk
+    .desc = ...
 ent-ClothingUniformPivozavr = футболка пивозавра
     .desc = Древняя рептилия, которая любит пиво.
 # Sponsor
