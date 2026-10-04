@@ -22,6 +22,8 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
     private readonly Label _potencyLabel;
     private readonly Label _yieldLabel;
     private readonly Label _mutationLabel;
+    private readonly Label _growthRateLabel;
+    private readonly Label _exudeGasesLabel;
 
     private readonly Label _weedLabel;
     private readonly Label _pestLabel;
@@ -34,13 +36,18 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
     private readonly ProgressBar _healthDiagramBar;
     private readonly Label _healthPercentLabel;
     private readonly Label _healthLabel;
+    private readonly Label _specialGeneLabel;
+    private readonly Label _tempRangeLabel;
+    private readonly Label _pressureRangeLabel;
+
+
 
     public PlantAnalyzerWindow()
     {
         IoCManager.InjectDependencies(this);
 
         Title = Loc.GetString("plant-analyzer-window-title");
-        SetSize = new Vector2(560, 720);
+        SetSize = new Vector2(690, 720);
 
         // Разделение контейнера на пополам
         var mainContainer = new BoxContainer
@@ -71,22 +78,38 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
         _potencyLabel = new Label();
         _yieldLabel = new Label();
         _mutationLabel = new Label();
+        _growthRateLabel = new Label();
+        _exudeGasesLabel = new Label();
+        _tempRangeLabel = new Label();
+        _pressureRangeLabel = new Label();
+
+
         leftColumn.AddChild(_potencyLabel);
         leftColumn.AddChild(_yieldLabel);
         leftColumn.AddChild(_mutationLabel);
+        leftColumn.AddChild(_growthRateLabel);
+        leftColumn.AddChild(_exudeGasesLabel);
+        leftColumn.AddChild(_tempRangeLabel);
+        leftColumn.AddChild(_pressureRangeLabel);
 
         // Угрозы
         leftColumn.AddChild(new Label { Text = Loc.GetString("plant-analyzer-section-threats"), FontColorOverride = Color.OrangeRed });
         _weedLabel = new Label();
         _pestLabel = new Label();
         _toxinLabel = new Label();
+        _specialGeneLabel = new Label
+        {
+            FontColorOverride = Color.Red,
+            Visible = false
+        };
+
         leftColumn.AddChild(_weedLabel);
         leftColumn.AddChild(_pestLabel);
         leftColumn.AddChild(_toxinLabel);
 
         // Вещества
         leftColumn.AddChild(new Label { Text = Loc.GetString("plant-analyzer-section-soil-reagents"), FontColorOverride = Color.LightSkyBlue });
-        var soilScroll = new ScrollContainer { MinHeight = 45, VerticalExpand = true };
+        var soilScroll = new ScrollContainer { MinHeight = 30, VerticalExpand = true };
         _soilReagentsContainer = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 2 };
         soilScroll.AddChild(_soilReagentsContainer);
         leftColumn.AddChild(soilScroll);
@@ -132,6 +155,7 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
             VerticalExpand = true,
             VerticalAlignment = Control.VAlignment.Bottom
         };
+        rightColumn.AddChild(_specialGeneLabel);
 
         healthPanel.AddChild(new Label
         {
@@ -193,6 +217,11 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
             _potencyLabel.Text = string.Empty;
             _yieldLabel.Text = string.Empty;
             _mutationLabel.Text = string.Empty;
+            _growthRateLabel.Text = string.Empty;
+            _exudeGasesLabel.Text = string.Empty;
+            _specialGeneLabel.Visible = false;
+            _tempRangeLabel.Text = string.Empty;
+            _pressureRangeLabel.Text = string.Empty;
         }
         else
         {
@@ -207,6 +236,22 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
             else
                 _statusLabel.Text = string.Empty;
 
+            // Кудзу и ген смерти
+            switch (state.SpecialGene)
+            {
+                //case PlantSpecialGene.Lethal:
+                //    _specialGeneLabel.Text = Loc.GetString("plant-analyzer-gene-lethal");
+                //    _specialGeneLabel.Visible = true;
+                //    break;
+                case PlantSpecialGene.Kudzu:
+                    _specialGeneLabel.Text = Loc.GetString("plant-analyzer-gene-kudzu");
+                    _specialGeneLabel.Visible = true;
+                    break;
+                default:
+                    _specialGeneLabel.Visible = false;
+                    break;
+            }
+
             // Расчет здоровья
             var healthPercent = state.MaxHealth > 0 ? (state.Health / state.MaxHealth) * 100f : 0f;
             _healthDiagramBar.Value = healthPercent;
@@ -217,6 +262,18 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
             {
                 _potencyLabel.Text = Loc.GetString("plant-analyzer-potency", ("potency", state.Potency));
                 _yieldLabel.Text = Loc.GetString("plant-analyzer-yield", ("yield", state.Yield));
+                _growthRateLabel.Text = Loc.GetString("plant-analyzer-growth-rate", ("growthRate", state.GrowthRate));
+
+                // Давление и темпа
+                _tempRangeLabel.Text = Loc.GetString("plant-analyzer-temp-range",
+                    ("min", state.MinTemp.ToString("F1")),
+                    ("max", state.MaxTemp.ToString("F1")));
+                _tempRangeLabel.FontColorOverride = Color.LightSkyBlue;
+
+                _pressureRangeLabel.Text = Loc.GetString("plant-analyzer-pressure-range",
+                    ("min", state.MinPressure.ToString("F1")),
+                    ("max", state.MaxPressure.ToString("F1")));
+                _pressureRangeLabel.FontColorOverride = Color.LightSkyBlue;
 
                 // Мутация
                 if (state.MutationLevel >= 1)
@@ -229,49 +286,70 @@ public sealed class PlantAnalyzerWindow : DefaultWindow
                     _mutationLabel.Text = Loc.GetString("plant-analyzer-mutation-non", ("mutation", state.MutationLevel));
                     _mutationLabel.FontColorOverride = Color.White;
                 }
+
+                // Выделяемые газы
+                if (state.ExudeGases.Count > 0)
+                {
+                    var gasesText = string.Join(", ", state.ExudeGases);
+                    _exudeGasesLabel.Text = Loc.GetString("plant-analyzer-exude-gases", ("gases", gasesText));
+                    _exudeGasesLabel.FontColorOverride = Color.MediumPurple;
+                }
+                else
+                {
+                    _exudeGasesLabel.Text = Loc.GetString("plant-analyzer-exude-gases-none");
+                    _exudeGasesLabel.FontColorOverride = Color.Gray;
+                }
+
+                // Уровень сорняков
+                if (state.WeedLevel >= 8)
+                {
+                    _weedLabel.Text = Loc.GetString("plant-analyzer-weeds-danger", ("level", state.WeedLevel));
+                    _weedLabel.FontColorOverride = Color.Red;
+                }
+                else
+                {
+                    _weedLabel.Text = Loc.GetString("plant-analyzer-weeds", ("level", state.WeedLevel));
+                    _weedLabel.FontColorOverride = Color.White;
+                }
+
+                // Уровень пестицидов
+                if (state.PestLevel >= 3)
+                {
+                    _pestLabel.Text = Loc.GetString("plant-analyzer-pests-danger", ("level", state.PestLevel));
+                    _pestLabel.FontColorOverride = Color.Red;
+                }
+                else
+                {
+                    _pestLabel.Text = Loc.GetString("plant-analyzer-pests", ("level", state.PestLevel));
+                    _pestLabel.FontColorOverride = Color.White;
+                }
+
+                // Уровень токсинов
+                if (state.Toxins >= 3)
+                {
+                    _toxinLabel.Text = Loc.GetString("plant-analyzer-toxins-danger", ("level", state.Toxins));
+                    _toxinLabel.FontColorOverride = Color.Red;
+                }
+                else
+                {
+                    _toxinLabel.Text = Loc.GetString("plant-analyzer-toxins", ("level", state.Toxins));
+                    _toxinLabel.FontColorOverride = Color.White;
+                }
             }
+
             else
             {
                 _potencyLabel.Text = string.Empty;
+                _weedLabel.Text = string.Empty;
+                _pestLabel.Text = string.Empty;
+                _toxinLabel.Text = string.Empty;
                 _yieldLabel.Text = string.Empty;
                 _mutationLabel.Text = string.Empty;
+                _growthRateLabel.Text = string.Empty;
+                _exudeGasesLabel.Text = string.Empty;
+                _tempRangeLabel.Text = string.Empty;
+                _pressureRangeLabel.Text = string.Empty;
             }
-        }
-
-        // Уровень сорняков
-        if (state.WeedLevel >= 4)
-        {
-            _weedLabel.Text = Loc.GetString("plant-analyzer-weeds-danger", ("level", state.WeedLevel));
-            _weedLabel.FontColorOverride = Color.Red;
-        }
-        else
-        {
-            _weedLabel.Text = Loc.GetString("plant-analyzer-weeds", ("level", state.WeedLevel));
-            _weedLabel.FontColorOverride = Color.White;
-        }
-
-        // Уровень пестицидов
-        if (state.PestLevel >= 2)
-        {
-            _pestLabel.Text = Loc.GetString("plant-analyzer-pests-danger", ("level", state.PestLevel));
-            _pestLabel.FontColorOverride = Color.Red;
-        }
-        else
-        {
-            _pestLabel.Text = Loc.GetString("plant-analyzer-pests", ("level", state.PestLevel));
-            _pestLabel.FontColorOverride = Color.White;
-        }
-
-        // Уровень токсинов
-        if (state.Toxins >= 1)
-        {
-            _toxinLabel.Text = Loc.GetString("plant-analyzer-toxins-danger", ("level", state.Toxins));
-            _toxinLabel.FontColorOverride = Color.Red;
-        }
-        else
-        {
-            _toxinLabel.Text = Loc.GetString("plant-analyzer-toxins", ("level", state.Toxins));
-            _toxinLabel.FontColorOverride = Color.White;
         }
 
         PopulateReagentsList(_soilReagentsContainer, state.SoilReagents, "plant-analyzer-no-soil-reagents");

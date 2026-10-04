@@ -1,0 +1,8 @@
+- type: marking
+  id: SlimeHairFoam
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [SlimePerson]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: hairfoam
