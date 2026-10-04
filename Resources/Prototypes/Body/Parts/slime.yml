@@ -23,6 +23,18 @@
 #    damageModifierSet: Slime # Arcane-Edit
   - type: Boneless # Goob Edit
     bonePenalty: 0.7
+  # Arcane-Start
+  - type: SurgerySkipSteps
+    steps:
+    - SurgeryStepSawBones
+    - SurgeryStepPriseOpenBones
+    - SurgeryStepCloseBones
+    - SurgeryStepSealBones
+    - SurgeryStepSealSkull
+    - SurgeryStepSealRibcage
+    - SurgeryStepRemoveLeftoverBones
+    - SurgeryStepSawFeature
+  # Arcane-End
 
 - type: entity
   id: ChestSlime
@@ -46,6 +58,16 @@
   id: HeadSlime
   name: "slime head"
   parent: [PartSlime, BaseHead]
+  # Arcane-Start: slimes keep their brain in the groin core, so losing the head is survivable
+  components:
+  - type: TriggerOnSpawn
+  - type: RemoveComponentsOnTrigger
+    components:
+    - type: ConsciousnessRequired
+  - type: NonVitalBodyPart
+  - type: Woundable
+    damageOnAmputate: null
+  # Arcane-End
 
 - type: entity
   id: LeftArmSlime

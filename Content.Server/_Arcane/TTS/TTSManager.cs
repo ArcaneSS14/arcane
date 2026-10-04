@@ -65,13 +65,13 @@ public sealed partial class TTSManager
     {
         _sawmill = Logger.GetSawmill("tts");
 
-        _cfg.OnValueChanged(ArtCVars.TTSMaxCache, val =>
+        _cfg.OnValueChanged(ACVars.TTSMaxCache, val =>
         {
             _maxCachedCount = val;
             ResetCache();
         }, true);
-        _cfg.OnValueChanged(ArtCVars.TTSApiUrl, v => _apiUrl = v, true);
-        _cfg.OnValueChanged(ArtCVars.TTSApiToken, v =>
+        _cfg.OnValueChanged(ACVars.TTSApiUrl, v => _apiUrl = v, true);
+        _cfg.OnValueChanged(ACVars.TTSApiToken, v =>
         {
             _apiToken = v;
             // Update Authorization header when token changes
@@ -118,7 +118,7 @@ public sealed partial class TTSManager
             // Build request URL with query parameters
             var requestUrl = BuildRequestUrl(speaker, text, effect);
 
-            var timeout = _cfg.GetCVar(ArtCVars.TTSApiTimeout);
+            var timeout = _cfg.GetCVar(ACVars.TTSApiTimeout);
             var cts = new CancellationTokenSource(TimeSpan.FromSeconds(timeout));
 
             // GET request to ntts.fdev.team API

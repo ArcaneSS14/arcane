@@ -39,6 +39,13 @@ public sealed partial class HumanoidAppearanceComponent : Component
     // Arcane-Start
     [DataField, AutoNetworkedField]
     public string CustomSpeciesName = "";
+
+    /// <summary>
+    ///     Whether the ears (HeadTop/HeadSide markings) render above the hair instead of being hidden by hair
+    ///     from behind.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool EarsAboveHair;
     // Arcane-End
 
     [DataField] // Goob Station - Barks

@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRemoveSlimeCore
+  name: Remove Slime Core
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepClampInternalBleeders
+    - SurgeryStepRemoveOrgan
+  - type: SurgeryPartCondition
+    parts: [ Groin ]
+  - type: SurgeryOrganSlotCondition
+    organSlot: core
+  - type: SurgeryOrganCondition
+    organ:
+    - type: Brain
+
+- type: entity
+  parent: BaseSurgeryInsertOrgan
+  id: SurgeryInsertSlimeCore
+  name: Insert Slime Core
+  components:
+  - type: SurgeryPartCondition
+    parts: [ Groin ]
+  - type: SurgeryOrganSlotCondition
+    organSlot: core
+  - type: SurgeryOrganCondition
+    organ:
+    - type: Brain
