@@ -1,0 +1,24 @@
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: PortableFlasherMachineCircuitboard
+  name: portable flasher machine board
+  description: A machine printed circuit board for a portable flasher.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: security
+  - type: MachineBoard
+    prototype: PortableFlasher
+    stackRequirements:
+      Steel: 5
+      Glass: 5
+    tagRequirements:
+      Flash:
+        amount: 1
+        defaultPrototype: Flash
+        examineName: construction-insert-info-examine-name-flash
+    componentRequirements:
+      PowerCell:
+        amount: 1
+        defaultPrototype: PowerCellSmall
+        examineName: construction-insert-info-examine-name-power-cell
