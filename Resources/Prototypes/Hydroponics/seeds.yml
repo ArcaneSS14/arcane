@@ -387,7 +387,7 @@
   productPrototypes:
     - FoodPotato
   mutationPrototypes:
-    - pomato
+    - pomato # Arcane
   lifespan: 30
   maturation: 10
   production: 3
