@@ -937,7 +937,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     private void OnActionPressed(GUIBoundKeyEventArgs args, ActionButton button)
     {
         // Arcane-Start
-        if (args.Function == ContentKeyFunctions.MouseMiddle)
+        if (args.Function == ContentKeyFunctions.ToggleActionPin)
         {
             TogglePin(button);
             args.Handle();

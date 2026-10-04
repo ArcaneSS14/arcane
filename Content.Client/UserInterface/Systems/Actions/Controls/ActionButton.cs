@@ -222,7 +222,7 @@ public sealed class ActionButton : Control, IEntityControl
     private void OnPressed(GUIBoundKeyEventArgs args)
     {
         // Arcane-Start
-        if (args.Function == ContentKeyFunctions.MouseMiddle)
+        if (args.Function == ContentKeyFunctions.ToggleActionPin)
         {
             ActionPressed?.Invoke(args, this);
             return;
