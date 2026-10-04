@@ -34,11 +34,6 @@ public sealed class PinnedActionsSystem : EntitySystem
             return;
 
         if (!_prototypeManager.HasIndex(msg.Prototype))
-        {
-            // For special situations
-            Log.Error($"Client {session.UserId} tried to pin unknown prototype {msg.Prototype}");
-            return;
-        }
 
         if (msg.Pinned)
         {
