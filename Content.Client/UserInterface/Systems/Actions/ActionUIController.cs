@@ -78,7 +78,10 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     private readonly Dictionary<EntityUid, List<EntityUid?>> _savedActions = new(); // Goobstation
     private ISawmill _sawmill = default!; // Goobstation
 
-    private readonly ActionPinnedSlots _pinnedSlots = new(); // Arcane
+    // Arcane-Start
+    private readonly ActionPinnedSlots _pinnedSlots = new();
+    private readonly Dictionary<EntProtoId, EntityUid> _pinPlaceholders = new();
+    // Arcane-End
 
     private ActionsBar? ActionsBar => UIManager.GetActiveUIWidgetOrNull<ActionsBar>();
     private MenuButton? ActionButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.ActionButton;
@@ -276,6 +279,8 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         // Arcane-Start
         if (_pinnedActions != null)
             _pinnedActions.PinsChanged -= OnPinsChanged;
+
+        ClearPinPlaceholders();
         // Arcane-End
 
         CommandBinds.Unregister<ActionUIController>();
@@ -286,7 +291,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         // Arcane-Edit-Start
         if (!_actions.TryGetValue(index, out var actionId) ||
             actionId is not { } id ||
-            _actionsSystem?.GetAction(id) is not {} action ||
+            GetSlotAction(id) is not { } action ||
             IsActionUnavailable(id))
         // Arcane-Edit-End
         {
@@ -321,7 +326,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (_pinnedSlots.IsUnavailable(actionId))
             return true;
 
-        if (_actionsSystem?.GetAction(actionId) is not { } action)
+        if (GetSlotAction(actionId) is not { } action)
             return false;
 
         return !action.Comp.Enabled || action.Comp.AttachedEntity != _playerManager.LocalEntity;
@@ -336,13 +341,20 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     ///     The prototype that identifies a slot across body changes. Placeholders have no action entity left,
     ///     so their pin is the only thing that still knows the prototype.
     /// </summary>
-    private EntProtoId? GetSlotPrototype(EntityUid actionId)
+    public EntProtoId? GetSlotPrototype(EntityUid actionId)
     {
-        if (_actionsSystem?.GetAction(actionId) is { } action)
+        if (GetSlotAction(actionId) is { } action)
             return GetActionPrototype(action);
 
         return _pinnedSlots.GetPrototype(actionId);
     }
+
+    // Arcane-Start
+    private Entity<ActionComponent>? GetSlotAction(EntityUid actionId)
+    {
+        return _actionsSystem?.GetAction(actionId, logError: false);
+    }
+    // Arcane-End
 
     /// <summary>
     ///     Pins the actions of the current body that the player pinned before, e.g. after entering a new body
@@ -367,7 +379,107 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
             _pinnedSlots.Pin(actionId, proto, action.Comp.Container);
         }
+
+        // Arcane-Start
+        // A pinned prototype the body has no action for still needs a slot, otherwise the pin is only remembered
+        // and stays invisible until the action comes back.
+        SyncPinPlaceholders();
+        // Arcane-End
     }
+
+    // Arcane-Start
+    private void SyncPinPlaceholders()
+    {
+        if (_pinnedActions == null)
+            return;
+
+        DeleteOrphanedPinPlaceholders();
+
+        // Only real actions can take over a placeholder, a placeholder is no replacement for its own prototype.
+        var available = new HashSet<EntProtoId>();
+
+        foreach (var slot in _actions)
+        {
+            if (slot is not { } actionId || _pinPlaceholders.ContainsValue(actionId))
+                continue;
+
+            if (GetSlotPrototype(actionId) is { } prototype)
+                available.Add(prototype);
+        }
+
+        foreach (var (prototype, placeholder) in _pinPlaceholders.ToArray())
+        {
+            if (_pinnedActions.IsPinned(prototype) && !available.Contains(prototype))
+                continue;
+
+            RemovePinSlot(placeholder);
+        }
+
+        foreach (var prototype in _pinnedActions.GetPinned())
+        {
+            if (available.Contains(prototype) || _pinPlaceholders.ContainsKey(prototype))
+                continue;
+
+            // The placeholder needs a slot entity of its own, the pin is stored by prototype and the action
+            // entity it was made from is gone after a body change or a reconnect.
+            var placeholder = EntityManager.Spawn();
+            _pinnedSlots.Pin(placeholder, prototype, null);
+            _pinnedSlots.SetUnavailable(placeholder);
+            _pinPlaceholders[prototype] = placeholder;
+            _actions.Add(placeholder);
+        }
+    }
+
+    private void RemovePinSlot(EntityUid slot)
+    {
+        var index = _actions.IndexOf(slot);
+        if (index >= 0)
+            _actions.RemoveAt(index);
+
+        // Only a placeholder entity exists purely to hold a slot, real actions belong to the server.
+        if (DeletePinPlaceholder(slot))
+            _pinnedSlots.Unpin(slot);
+    }
+
+    private void DeleteOrphanedPinPlaceholders()
+    {
+        foreach (var (prototype, placeholder) in _pinPlaceholders.ToArray())
+        {
+            if (_actions.Contains(placeholder))
+                continue;
+
+            DeletePinPlaceholder(placeholder);
+            _pinnedSlots.Unpin(placeholder);
+        }
+    }
+
+    private bool DeletePinPlaceholder(EntityUid slot)
+    {
+        foreach (var (prototype, placeholder) in _pinPlaceholders.ToArray())
+        {
+            if (placeholder != slot)
+                continue;
+
+            _pinPlaceholders.Remove(prototype);
+            if (!EntityManager.Deleted(slot))
+                EntityManager.DeleteEntity(slot);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void ClearPinPlaceholders()
+    {
+        foreach (var placeholder in _pinPlaceholders.Values.ToArray())
+        {
+            if (!EntityManager.Deleted(placeholder))
+                EntityManager.DeleteEntity(placeholder);
+        }
+
+        _pinPlaceholders.Clear();
+    }
+    // Arcane-End
 
     private void OnPinsChanged()
     {
@@ -425,9 +537,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         foreach (var placeholder in placeholders)
         {
             // An unavailable action only had a slot because of its pin.
-            var index = _actions.IndexOf(placeholder);
-            if (index >= 0)
-                _actions.RemoveAt(index);
+            RemovePinSlot(placeholder);
         }
 
         OnActionsUpdated();
@@ -589,7 +699,10 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
         // Arcane-Start
         if (_pinnedSlots.TryRestore(actionId, GetActionPrototype(action), action.Comp.Container, _actions))
+        {
+            DeleteOrphanedPinPlaceholders();
             return;
+        }
         // Arcane-End
 
         if (_actions.Contains(action))
@@ -1123,6 +1236,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
     private void ClearActions()
     {
+        ClearPinPlaceholders(); // Arcane
         _container?.ClearActionData();
     }
 
@@ -1131,7 +1245,10 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (_actionsSystem == null)
             return;
 
-        _pinnedSlots.Clear(); // Arcane
+        // Arcane-Start
+        _pinnedSlots.Clear();
+        ClearPinPlaceholders();
+        // Arcane-End
 
         _actions.Clear();
         foreach (var assign in assignments)

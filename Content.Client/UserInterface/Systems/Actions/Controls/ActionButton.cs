@@ -15,6 +15,7 @@ using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Client._Arcane.UserInterface.Systems.Actions;
@@ -30,6 +31,7 @@ public sealed class ActionButton : Control, IEntityControl
 
     private IEntityManager _entities;
     private IPlayerManager _player;
+    private readonly IPrototypeManager _prototypeManager; // Arcane
     private SpriteSystem? _spriteSys;
     private ActionUIController? _controller;
     private bool _beingHovered;
@@ -69,6 +71,7 @@ public sealed class ActionButton : Control, IEntityControl
     private FormattedMessage? _cachedDesc;
     private EntityUid? _contentAction;
     private bool _keepContent;
+    private EntProtoId? _placeholderPrototype;
     // Arcane-End
 
     public Entity<ActionComponent>? Action { get; private set; }
@@ -88,6 +91,7 @@ public sealed class ActionButton : Control, IEntityControl
 
         _entities = entities;
         _player = IoCManager.Resolve<IPlayerManager>();
+        _prototypeManager = IoCManager.Resolve<IPrototypeManager>(); // Arcane
         _spriteSys = spriteSys;
         _controller = controller;
 
@@ -266,11 +270,10 @@ public sealed class ActionButton : Control, IEntityControl
     private Control? SupplyTooltip(Control sender)
     {
         // Arcane-Start
-        // A pinned action keeps its last known tooltip while its entity is gone.
         var action = Action;
         if (action is null || _entities.Deleted(action.Value.Owner))
         {
-            return _keepContent && _cachedName is { } cachedName && _cachedDesc is { } cachedDesc
+            return _cachedName is { } cachedName && _cachedDesc is { } cachedDesc
                 ? CreateTooltip(cachedName, cachedDesc)
                 : null;
         }
@@ -384,7 +387,7 @@ public sealed class ActionButton : Control, IEntityControl
 
         if (Action is not {} action)
         {
-            SetActionIcon(null);
+            SetPlaceholderIcon();
             return;
         }
 
@@ -445,9 +448,8 @@ public sealed class ActionButton : Control, IEntityControl
 
     public void UpdateData(EntityUid? actionId, ActionsSystem system)
     {
-        Action = system.GetAction(actionId);
-
         // Arcane-Start
+        Action = system.GetAction(actionId, logError: false);
         _controller ??= UserInterfaceManager.GetUIController<ActionUIController>();
         Pinned = actionId != null && _controller.IsActionPinned(actionId.Value);
         Unavailable = actionId != null && _controller.IsActionUnavailable(actionId.Value);
@@ -459,6 +461,15 @@ public sealed class ActionButton : Control, IEntityControl
             _cachedDesc = null;
             _contentAction = actionId;
         }
+
+        // A placeholder of a pinned action has no action entity of its own, so it shows what its prototype
+        // describes. A pin outlives the action entity it was made from, e.g. after a body change or reconnect.
+        _placeholderPrototype = null;
+        if (Action is null && Pinned && actionId is { } placeholder)
+            _placeholderPrototype = _controller.GetSlotPrototype(placeholder);
+
+        if (_placeholderPrototype is { } pinned)
+            LoadPlaceholderContent(pinned);
         // Arcane-End
 
         Label.Visible = Action != null || Unavailable; // Arcane-Edit
@@ -474,6 +485,43 @@ public sealed class ActionButton : Control, IEntityControl
     {
         return _keepContent && Action is null && Unavailable;
     }
+
+    /// <summary>
+    ///     Fills the tooltip of a placeholder from the action prototype, as there is no entity to examine.
+    /// </summary>
+    private void LoadPlaceholderContent(EntProtoId prototype)
+    {
+        if (!_prototypeManager.TryIndex(prototype, out var entityPrototype) ||
+            !entityPrototype.TryGetComponent<MetaDataComponent>(out var metadata, _entities.ComponentFactory))
+        {
+            return;
+        }
+
+        _cachedName = FormattedMessage.FromMarkupPermissive(metadata.EntityName);
+        _cachedDesc = FormattedMessage.FromMarkupPermissive(metadata.EntityDescription);
+    }
+
+    /// <summary>
+    ///     Shows the icon of a placeholder from the action prototype, the entity it was made from is gone.
+    /// </summary>
+    private void SetPlaceholderIcon()
+    {
+        if (_placeholderPrototype is not { } prototype ||
+            !_prototypeManager.TryIndex(prototype, out var entityPrototype) ||
+            !entityPrototype.TryGetComponent<ActionComponent>(out var actionComp, _entities.ComponentFactory) ||
+            actionComp.Icon is not { } icon)
+        {
+            SetActionIcon(null);
+            return;
+        }
+
+        _spriteSys ??= _entities.System<SpriteSystem>();
+        _smallActionIcon.Texture = null;
+        _smallActionIcon.Visible = false;
+        _bigActionIcon.Texture = _spriteSys.Frame0(icon);
+        _bigActionIcon.Modulate = actionComp.IconColor;
+        _bigActionIcon.Visible = true;
+    }
     // Arcane-End
 
     public void ClearData()
@@ -486,6 +534,7 @@ public sealed class ActionButton : Control, IEntityControl
         _cachedDesc = null;
         _contentAction = null;
         _keepContent = false;
+        _placeholderPrototype = null;
         // Arcane-End
         Cooldown.Visible = false;
         Cooldown.Progress = 1;

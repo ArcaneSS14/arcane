@@ -22,6 +22,11 @@ public sealed class PinnedActionsSystem : EntitySystem
         return _pinned.Contains(prototype);
     }
 
+    public IEnumerable<EntProtoId> GetPinned()
+    {
+        return _pinned;
+    }
+
     public override void Initialize()
     {
         base.Initialize();

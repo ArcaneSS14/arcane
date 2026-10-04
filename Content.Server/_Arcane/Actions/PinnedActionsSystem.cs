@@ -34,6 +34,7 @@ public sealed class PinnedActionsSystem : EntitySystem
             return;
 
         if (!_prototypeManager.HasIndex(msg.Prototype))
+            return;
 
         if (msg.Pinned)
         {
