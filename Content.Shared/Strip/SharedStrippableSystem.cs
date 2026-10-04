@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Shared._Arcane.Inventory;
 using Content.Shared._Goobstation.Heretic.Components;
 using Content.Shared._Orion.Ghost;
 using Content.Shared.Administration.Logs;
@@ -32,6 +33,7 @@ public abstract class SharedStrippableSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly SharedArcaneInventorySystem _arcaneInventory = default!; // Arcane
 
     [Dependency] private readonly SharedCuffableSystem _cuffableSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
@@ -306,7 +308,7 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         // Arcane-Start
         if (user == target)
-            time += _inventorySystem.GetUnequipDelay(item, slotDef);
+            time += _arcaneInventory.GetUnequipDelay(item, slotDef);
         // Arcane-End
 
         if (!stealth)
