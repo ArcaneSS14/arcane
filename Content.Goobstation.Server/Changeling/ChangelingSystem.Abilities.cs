@@ -45,6 +45,8 @@ using Content.Goobstation.Shared.Devour.Events;
 using Content.Shared.Nutrition.Components;
 using Content.Goobstation.Shared.InternalResources.Components;
 using Content.Shared.Light.Components;
+using Content.Server._Arcane.Changeling; 
+using Content.Server._Arcane.Changeling.Components; 
 
 namespace Content.Goobstation.Server.Changeling;
 
@@ -53,6 +55,7 @@ public sealed partial class ChangelingSystem
     #region Dependencies
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly WeldableSystem _weldable = default!; //for biodegrade unweld
+    [Dependency] private readonly ChangelingCocoonSystem _cocoon = default!; // Arcane
     #endregion
 
     public void SubscribeAbilities()
@@ -111,7 +114,7 @@ public sealed partial class ChangelingSystem
 
         var target = args.Target;
 
-        if (HasComp<AbsorbedComponent>(target))
+        if (HasComp<AbsorbedComponent>(target) || HasComp<ChangelingDrainedComponent>(target)) // Arcane-Edit
         {
             _popup.PopupEntity(Loc.GetString("changeling-absorb-fail-absorbed"), uid, uid);
             return;
@@ -159,18 +162,25 @@ public sealed partial class ChangelingSystem
 
         if (args.Cancelled
             || HasComp<AbsorbedComponent>(target)
+            || HasComp<ChangelingDrainedComponent>(target) // Arcane
             || !IsIncapacitated(target) && !IsHardGrabbed(target))
             return;
 
         PlayMeatySound(args.User, comp);
 
-        var dmg = new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 200);
-        _damage.TryChangeDamage(target, dmg, true, false, targetPart: TargetBodyPart.All); // Shitmed Change
-        _blood.ChangeBloodReagent(target, "FerrochromicAcid");
-        _blood.SpillAllSolutions(target);
+        // Arcane-Edit-Start
+        var isLing = HasComp<ChangelingIdentityComponent>(target);
+        if (isLing)
+        {
+            var dmg = new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 200);
+            _damage.TryChangeDamage(target, dmg, true, false, targetPart: TargetBodyPart.All); // Shitmed Change
+            _blood.ChangeBloodReagent(target, "FerrochromicAcid");
+            _blood.SpillAllSolutions(target);
 
-        EnsureComp<AbsorbedComponent>(target);
-        EnsureComp<UnrevivableComponent>(target);
+            EnsureComp<AbsorbedComponent>(target);
+            EnsureComp<UnrevivableComponent>(target);
+        }
+        // Arcane-Edit-End
 
         TryComp<ChangelingChemicalComponent>(uid, out var chemComp); // user's chemical component
         var popup = string.Empty;
@@ -259,7 +269,10 @@ public sealed partial class ChangelingSystem
             _resources.TryUpdateResourcesCapacity(uid, bioComp.ResourceData, biomassMaxIncrease);
             UpdateBiomass((uid, comp), bioComp.ResourceData.MaxAmount, bioComp);
         }
-
+        // Arcane-Start
+        if (!isLing) 
+            _cocoon.Drain(target);
+        // Arcane-End
     }
 
     public List<ProtoId<ReagentPrototype>> BiomassAbsorbedChemicals = new() { "Nutriment", "Protein", "UncookedAnimalProteins", "Fat" }; // fat so absorbing raw meat good

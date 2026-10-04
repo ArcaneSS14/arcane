@@ -1,3 +1,6 @@
+# Service
+ent-ClothingUniformJumpskirtMimeSexy = сексуальная юбка-комбинезон мима
+    .desc = ...
 ent-ClothingUniformPivozavr = футболка пивозавра
     .desc = Древняя рептилия, которая любит пиво.
 # Sponsor
