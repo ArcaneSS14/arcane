@@ -237,14 +237,14 @@ public abstract partial class SharedStainableSystem : EntitySystem
 
         var puddleSolution = Solution.SplitSolution(stainSoln.Value, stainSolution.Volume);
 
-        UpdateVisuals(ent);
-
         if (!_puddle.TrySpillAt(args.User, puddleSolution, out _))
         {
             Solution.AddSolution(stainSoln.Value, puddleSolution);
+            UpdateVisuals(ent);
             return;
         }
 
+        UpdateVisuals(ent);
         _popup.PopupEntity(Loc.GetString("stain-verb-wring-success", ("item", ent.Owner)), args.User, args.User);
     }
 }

@@ -10,4 +10,4 @@ washing-machine-insert-self = Вы кладёте {THE($item)} в стираль
 washing-machine-fall-in-self = Вы падаете в стиральную машину!
 washing-machine-fall-in-others = { CAPITALIZE($user) } падает в стиральную машину!
 washing-machine-extract-verb = Извлечь содержимое
-washing-machine-extract-self = Вы вынимаете содержимое из стиральную машину.
+washing-machine-extract-self = Вы вынимаете содержимое из стиральной машины.
