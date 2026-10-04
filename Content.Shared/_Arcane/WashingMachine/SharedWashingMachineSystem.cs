@@ -16,6 +16,8 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Throwing;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
@@ -107,6 +109,11 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         SubscribeLocalEvent<WashingMachineStuckComponent, EscapeWashingMachineDoAfterEvent>(OnEscapeDoAfter);
         SubscribeLocalEvent<WashingMachineStuckComponent, DownAttemptEvent>(OnStuckDownAttempt);
         SubscribeLocalEvent<WashingMachineStuckComponent, BuckleAttemptEvent>(OnStuckBuckleAttempt);
+        SubscribeLocalEvent<WashingMachineStuckComponent, InteractionAttemptEvent>(OnStuckInteractAttempt);
+        SubscribeLocalEvent<WashingMachineStuckComponent, UseAttemptEvent>(OnStuckUseAttempt);
+        SubscribeLocalEvent<WashingMachineStuckComponent, ChangeDirectionAttemptEvent>(OnStuckChangeDirection);
+        SubscribeLocalEvent<WashingMachineStuckComponent, AttackAttemptEvent>(OnStuckAttackAttempt);
+        SubscribeLocalEvent<WashingMachineStuckComponent, ThrowAttemptEvent>(OnStuckThrowAttempt);
     }
 
     public override void Update(float frameTime)
@@ -433,6 +440,31 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     private void OnStuckBuckleAttempt(Entity<WashingMachineStuckComponent> ent, ref BuckleAttemptEvent args)
     {
         args.Cancelled = true;
+    }
+
+    private void OnStuckInteractAttempt(Entity<WashingMachineStuckComponent> ent, ref InteractionAttemptEvent args)
+    {
+        args.Cancelled = true;
+    }
+
+    private void OnStuckUseAttempt(Entity<WashingMachineStuckComponent> ent, ref UseAttemptEvent args)
+    {
+        args.Cancel();
+    }
+
+    private void OnStuckChangeDirection(Entity<WashingMachineStuckComponent> ent, ref ChangeDirectionAttemptEvent args)
+    {
+        args.Cancel();
+    }
+
+    private void OnStuckAttackAttempt(Entity<WashingMachineStuckComponent> ent, ref AttackAttemptEvent args)
+    {
+        args.Cancel();
+    }
+
+    private void OnStuckThrowAttempt(Entity<WashingMachineStuckComponent> ent, ref ThrowAttemptEvent args)
+    {
+        args.Cancel();
     }
 
     private void ClimbIn(Entity<WashingMachineComponent> ent, EntityUid user)
