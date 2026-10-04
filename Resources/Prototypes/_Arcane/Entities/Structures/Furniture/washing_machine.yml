@@ -22,8 +22,8 @@
       map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       visible: false
   - type: WashingMachine
-    washingTime: 5
-    stuckChance: 0.05
+    washingTime: 10
+    stuckChance: 0.01
     washingSound:
       path: /Audio/_Arcane/Machines/washing_loop.ogg
       params:

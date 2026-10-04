@@ -92,7 +92,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         SubscribeLocalEvent<WashingMachineComponent, StorageOpenAttemptEvent>(OnStorageOpenAttempt);
         SubscribeLocalEvent<WashingMachineComponent, StorageCloseAttemptEvent>(OnStorageCloseAttempt);
 
-        SubscribeLocalEvent<WashingMachineComponent, ActivateInWorldEvent>(OnActivateInWorld, before: [typeof(SharedEntityStorageSystem)]);
+        SubscribeLocalEvent<WashingMachineComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs);
         SubscribeLocalEvent<WashingMachineComponent, GetVerbsEvent<ActivationVerb>>(OnGetVerbs);
         SubscribeLocalEvent<WashingMachineComponent, CanDropTargetEvent>(OnCanDropTarget);
         SubscribeLocalEvent<WashingMachineComponent, DragDropTargetEvent>(OnDragDropTarget);
@@ -225,15 +225,37 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         args.Cancelled = ent.Comp.WashingMachineState != WashingMachineState.Idle;
     }
 
-    private void OnActivateInWorld(Entity<WashingMachineComponent> ent, ref ActivateInWorldEvent args)
+    private void OnGetAlternativeVerbs(Entity<WashingMachineComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (args.Handled || !args.Complex)
+        if (!args.CanInteract || !args.CanComplexInteract)
             return;
 
-        if (!TryActivate(ent))
-            return;
+        var user = args.User;
 
-        args.Handled = true;
+        if (CanExtractContents(ent))
+        {
+            var verb = new AlternativeVerb()
+            {
+                Text = Loc.GetString("washing-machine-extract-verb"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/open.svg.192dpi.png")),
+                Act = () => TryExtractContents(ent, user)
+            };
+
+            args.Verbs.Add(verb);
+            return;
+        }
+
+        if (CanActivate(ent))
+        {
+            var verb = new AlternativeVerb()
+            {
+                Text = Loc.GetString("washing-machine-start"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
+                Act = () => TryActivate(ent)
+            };
+
+            args.Verbs.Add(verb);
+        }
     }
 
     private void OnGetVerbs(Entity<WashingMachineComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
@@ -267,7 +289,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             args.Verbs.Add(verb);
         }
 
-if (CanExtractContents(ent))
+        if (CanExtractContents(ent))
         {
             var extractVerb = new ActivationVerb()
             {
