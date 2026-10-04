@@ -87,6 +87,7 @@
     Glass: 250
     Plasma: 100
     Silver: 50
+    BSCrystal: 10 # Arcane
 
 - type: latheRecipe
   id: XenoCompatibilityImplanter

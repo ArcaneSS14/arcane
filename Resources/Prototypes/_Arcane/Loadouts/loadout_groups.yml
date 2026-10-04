@@ -1,3 +1,47 @@
+# Command
+
+- type: loadoutGroup
+  id: HoPMask
+  name: loadout-group-hop-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasHoPPatreon
+
+- type: loadoutGroup
+  id: ChiefEngineerMask
+  name: loadout-group-chief-engineer-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasCEPatreon
+
+- type: loadoutGroup
+  id: ChiefMedicalOfficerMask
+  name: loadout-group-chief-medical-officer-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasCMOPatreon
+
+- type: loadoutGroup
+  id: QuartermasterMask
+  name: loadout-group-quartermaster-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasQMPatreon
+
+- type: loadoutGroup
+  id: ResearchDirectorMask
+  name: loadout-group-research-director-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasRDPatreon
+
+- type: loadoutGroup
+  id: HeadofSecurityMask
+  name: loadout-group-head-of-security-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasHoSPatreon
+
 - type: loadoutGroup
   id: AdjutantJumpsuit
   name: loadout-group-adj-jumpsuit

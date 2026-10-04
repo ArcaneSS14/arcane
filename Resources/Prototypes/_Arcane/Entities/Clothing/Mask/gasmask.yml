@@ -1,0 +1,70 @@
+- type: entity
+  parent: ClothingMaskGasCaptain
+  id: ClothingMaskGasCaptainPatreon
+  name: gas mask captain
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/gascaptain.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/gascaptain.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasCEPatreon
+  name: gas mask ce
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/gasce.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/gasce.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasCMOPatreon
+  name: gas mask cmo
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/gascmo.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/gascmo.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasHoPPatreon
+  name: gas mask hop
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/gashop.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/gashop.rsi
+
+- type: entity
+  parent: ClothingMaskGasCaptainPatreon
+  id: ClothingMaskGasHoSPatreon
+  name: gas mask hos
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/gashos.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/gashos.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasQMPatreon
+  name: gas mask qm
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/gasqm.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/gasqm.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasRDPatreon
+  name: gas mask rd
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/gasrd.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/gasrd.rsi

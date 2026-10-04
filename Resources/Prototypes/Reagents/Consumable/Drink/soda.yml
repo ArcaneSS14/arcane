@@ -24,6 +24,18 @@
         effectProto: StatusEffectDrowsiness
         time: 1
         type: Remove
+    # Arcane-Start
+    Poison:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type:
+            - HumanoidXeno # Arcane
+          damage:
+            types:
+              Poison: 2
+      # Arcane-End
   tileReactions: # Goobstation
   - !type:ChangeTileReaction # Unrusts tile
     newTileId: Plating
@@ -49,6 +61,18 @@
       effects:
       - !type:SatiateThirst
         factor: 4
+    # Arcane-Start
+    Poison:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type:
+            - HumanoidXeno # Arcane
+          damage:
+            types:
+              Poison: 2
+      # Arcane-End
 
 - type: reagent
   id: ChangelingSting
@@ -97,6 +121,18 @@
       - !type:AdjustReagent # Goobstation: Caffeine
         reagent: Caffeine
         amount: 1.0
+    # Arcane-Start
+    Poison:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type:
+            - HumanoidXeno # Arcane
+          damage:
+            types:
+              Poison: 2
+      # Arcane-End
   fizziness: 0.4
 
 - type: reagent
@@ -218,6 +254,18 @@
       effects:
       - !type:SatiateThirst
         factor: 4
+    # Arcane-Start
+    Poison:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type:
+            - HumanoidXeno # Arcane
+          damage:
+            types:
+              Poison: 2
+      # Arcane-End
 
 - type: reagent
   id: SpaceMountainWind

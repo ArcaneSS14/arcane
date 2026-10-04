@@ -47,7 +47,7 @@
       amount: 5
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Vox
+#    damageModifierSet: Vox # Arcane-Edit
   - type: Destructible
     thresholds:
     - trigger:

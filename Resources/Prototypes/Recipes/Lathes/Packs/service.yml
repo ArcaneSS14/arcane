@@ -57,6 +57,7 @@
   recipes:
   - SynthesizerInstrument
   - PushHorn
+  - PlantAnalyzer # Arcane
 
 - type: latheRecipePack
   id: ServiceBoards
