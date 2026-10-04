@@ -1,4 +1,5 @@
 using Content.Client.Ghost;
+using Content.Goobstation.Shared.StationRadio.Components;
 using Content.Shared._Arcane.CCVars;
 using Content.Shared._Arcane.CVars;
 using Content.Shared._Arcane.TTS;
@@ -10,6 +11,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
+using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Arcane.TTS;
@@ -48,7 +50,7 @@ public sealed partial class TTSSystem : EntitySystem
         _prefix = ResPath.Root / $"TTS{_shareIdx++}";
         _sawmill = Logger.GetSawmill("tts");
         _res.AddRoot(_prefix, _contentRoot);
-        _cfg.OnValueChanged(ArtCVars.TTSVolume, OnTtsVolumeChanged, true);
+        _cfg.OnValueChanged(ACCVars.TTSVolume, OnTtsVolumeChanged, true);
         _cfg.OnValueChanged(ACCVars.TTSRadioVolume, OnTtsRadioVolumeChanged, true);
         _cfg.OnValueChanged(ACCVars.UseTTS, OnUseTTSChanged, true);
         _cfg.OnValueChanged(ACCVars.TTSRadioChannelMuted, OnTTSRadioChannelMutedChanged, true);
@@ -66,7 +68,7 @@ public sealed partial class TTSSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
-        _cfg.UnsubValueChanged(ArtCVars.TTSVolume, OnTtsVolumeChanged);
+        _cfg.UnsubValueChanged(ACCVars.TTSVolume, OnTtsVolumeChanged);
         _cfg.UnsubValueChanged(ACCVars.TTSRadioVolume, OnTtsRadioVolumeChanged);
         _cfg.UnsubValueChanged(ACCVars.UseTTS, OnUseTTSChanged);
         _cfg.UnsubValueChanged(ACCVars.TTSRadioChannelMuted, OnTTSRadioChannelMutedChanged);
@@ -139,7 +141,7 @@ public sealed partial class TTSSystem : EntitySystem
             audioResource.Load(IoCManager.Instance!, _prefix / filePath);
 
             var audioParams = AudioParams.Default
-                .WithVolume(AdjustVolume(ev.IsWhisper, ev.SourceUid == null, ev.Frequency))
+                .WithVolume(AdjustVolume(ev.IsWhisper, isRadio, ev.Frequency, GetSourceVolumeOffset(ev.SourceUid)))
                 .WithMaxDistance(AdjustDistance(ev.IsWhisper));
 
             if (ev.SourceUid != null)
@@ -161,7 +163,30 @@ public sealed partial class TTSSystem : EntitySystem
         }
     }
 
-    private float AdjustVolume(bool isWhisper, bool isRadio = false, int? frequency = null)
+    /// <summary>
+    ///     Volume offset for speech relayed by a station radio. Zero when the speaker is not one.
+    /// </summary>
+    private float GetSourceVolumeOffset(NetEntity? sourceUid)
+    {
+        if (sourceUid is not { } netUid || !TryGetEntity(netUid, out var ent))
+            return 0f;
+
+        var gain = 1f;
+
+        if (TryComp<StationRadioReceiverComponent>(ent, out var stationRadio))
+        {
+            if (!stationRadio.Active)
+                return float.NegativeInfinity;
+            gain *= _cfg.GetCVar(ACCVars.StationRadioVolume);
+        }
+
+        if (gain == 1f)
+            return 0f;
+
+        return gain <= 0.01f ? float.NegativeInfinity : SharedAudioSystem.GainToVolume(gain);
+    }
+
+    private float AdjustVolume(bool isWhisper, bool isRadio = false, int? frequency = null, float sourceOffset = 0f)
     {
         var volume = SharedAudioSystem.GainToVolume(_volume);
 
@@ -177,7 +202,7 @@ public sealed partial class TTSSystem : EntitySystem
             volume = SharedAudioSystem.GainToVolume(_radioVolume * multiplier);
         }
 
-        return volume;
+        return volume + sourceOffset;
     }
 
     private float AdjustDistance(bool isWhisper)

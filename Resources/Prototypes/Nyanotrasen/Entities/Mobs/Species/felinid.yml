@@ -28,7 +28,7 @@
   - type: Body
     prototype: Felinid
   - type: Damageable
-    damageModifierSet: Felinid
+#    damageModifierSet: Felinid # Arcane-Edit
   # Arcane-Start
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.6

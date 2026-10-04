@@ -11,6 +11,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   </Box>
 
   - Позволяет медленно и шумно поглощать мёртвого, оглушённого или связаного члена экипажа. Это добавляет их ДНК в ваш пул, даёт 2 очка эволюции и восстанавливает биомассу.
+  <!-- Arcane-Start -->
+  - Поглощённый человек остаётся в мясном коконе. В нём тело не гниёт, и его можно спасти, если разбить кокон. Повторно поглотить его нельзя.
+  <!-- Arcane-End -->
   - Если поглощён другой генокрад, вы получаете дополнительно 10 очков эволюции, +60 к максимальному количеству химикатов и +15 к максимальной биомассе.
   - Цель должна быть в жёстком захвате (сильный захват), чтобы использовать эту способность.
   - Может использоваться в форме обезьяны.
@@ -194,15 +197,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
   # Полезные способности
 
-  ## Awakened Instinct
+  ## Пробуждённый инстинкт
   <Box>
-    [color=#999999][italic] Free [italic][/color]
+    [color=#999999][italic]Бесплатно[italic][/color]
   </Box>
-  - Gain a flat 25% boost to chemical regeneration.
-  - The user will require biomass to sustain themselves.
-  - Biomass is replenished by absorbing compatible humanoids.
-  - Maximum biomass capacity can be increased by absorbing other changelings.
-  - Running out of biomass will cause the user to be absorbed, and permanently killed.
+  - Скорость восстановления химикатов увеличивается на 25%.
+  - Для поддержания жизнедеятельности вам нужна биомасса.
+  - Биомасса пополняется при поглощении подходящих гуманоидов.
+  - Максимальный запас биомассы можно увеличить, поглощая других генокрадов.
+  - Если биомасса закончится, вас поглотит улей, и вы погибнете навсегда.
 
   ## Анатомическая панацея
   <Box>
@@ -266,25 +269,25 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   - Невидимость мгновенно спадает при любом движении.
   - Можно использовать в наручниках.
 
-  ## Darkness Adaption
+  ## Приспособление к темноте
   <Box>
-    [color=#999999][italic] 4 Evolution Points / 10 Chems [italic][/color]
+    [color=#999999][italic]4 очка эволюции / 10 химикатов[italic][/color]
   </Box>
-  - While in the dark, you become very translucent and gain night vision.
-  - The translucency cannot be reduced even while moving, attacking or interacting.
-  - Both the translucency and night vision is lost when not shrouded in darkness, or while on fire.
-  - While active and adjusting to the dark, chem regen rate is decreased by 15%.
-  - Can be used while cuffed.
+  - В темноте вы становитесь почти прозрачным и получаете ночное зрение.
+  - Прозрачность не уменьшается во время движения, атаки или взаимодействия.
+  - Прозрачность и ночное зрение пропадают, если вы выходите из темноты или горите.
+  - Пока способность активна и вы приспосабливаетесь к темноте, скорость восстановления химикатов снижена на 15%.
+  - Можно использовать в наручниках.
 
-  ## Adrenaline Reserves
+  ## Адреналин
   <Box>
     [color=#999999][italic] 4 очка эволюции / 25 химикатов[italic][/color]
   </Box>
-  - User is given the "Adrenaline reserves" status effect, lasting for 10 seconds.
-  - Renders the user completely immune to stuns, stamina damage, damage slowdown and most incapacitation methods.
-  - Regenerates 10 stamina per tick (100 in total).
-  - Deals 1.5 poison damage to the user per tick (15 in total).
-  - Can be used while on fire.
+  - Даёт эффект Адреналин на 10 секунд.
+  - Полностью защищает от оглушения, урона выносливости, замедления от урона и большинства способов вывести вас из строя.
+  - Восстанавливает 10 единиц выносливости за тик (всего 100).
+  - Наносит вам 1,5 единицы урона ядом за тик (всего 15).
+  - Можно использовать в огне.
 
   ## Доступ к коллективному разуму
   <Box>
@@ -296,12 +299,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
   ## Приспособление к вакууму
   <Box>
-    [color=#999999][italic] 4 Evolution Points / Automatic  [italic][/color]
+    [color=#999999][italic]4 очка эволюции / Адаптация к вакууму[italic][/color]
   </Box>
-  - Will automatically protect you from low pressure or temperature.
-  - Removes the need for the presence of air to breathe. Can still be affected by breathing in dangerous gases.
-  - Will not protect from cold damage from other sources.
-  - While active against low pressure or temperature, chem regen rate is decreased by 25%
+  - Автоматически защищает от низкого давления и температуры.
+  - Позволяет дышать без воздуха, но опасные газы всё ещё могут на вас воздействовать.
+  - Не защищает от урона холодом из других источников.
+  - При срабатывании защиты от низкого давления или температуры скорость восстановления химикатов снижается на 25%.
 
   ## Восстанавление плоти
   <Box>

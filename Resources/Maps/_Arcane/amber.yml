@@ -153655,7 +153655,7 @@ entities:
     - type: Transform
       pos: -24.54724,13.558739
       parent: 2
-- proto: WeaponEnergyTurretAI
+- proto: WeaponEnergyTurretCommand
   entities:
   - uid: 23432
     components:
@@ -153796,7 +153796,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 23450
-- proto: WeaponEnergyTurretAIControlPanel
+- proto: WeaponEnergyTurretCommandControlPanel
   entities:
   - uid: 23449
     components:

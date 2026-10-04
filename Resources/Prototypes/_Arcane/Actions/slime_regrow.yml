@@ -12,6 +12,6 @@
     icon:
       sprite: _Arcane/Interface/Actions/slime_regrow.rsi
       state: regrow
-    useDelay: 120
+    useDelay: 240
   - type: InstantAction
     event: !type:SlimeRegrowLimbEvent
