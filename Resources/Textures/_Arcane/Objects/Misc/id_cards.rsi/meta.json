@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "ert_commaid, idcommaid, pink-inhand-left, pink-inhand-right Made by Bulbo44kkey for Arcane Station SS14",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "ert_commaid"
+        },
+        {
+            "name": "idcommaid"
+        },
+        {
+            "name": "pink-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "pink-inhand-left",
+            "directions": 4
+        }
+    ]
+}

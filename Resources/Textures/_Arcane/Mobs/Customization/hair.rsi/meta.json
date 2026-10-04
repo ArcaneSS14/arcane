@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by seraphimttt, theanemone, bulbo44kkey, tinry. (Discord), r.t.r. , rewafflution",
+    "copyright": "Made by seraphimttt, theanemone, bulbo44kkey, tinry. (Discord), r.t.r. , rewafflution, NeGhostea",
     "size": {
         "x": 32,
         "y": 32
@@ -37,6 +37,50 @@
         },
         {
             "name": "gakupo",
+            "directions": 4
+        },
+        {
+            "name": "angel",
+            "directions": 4
+        },
+        {
+            "name": "arataki",
+            "directions": 4
+        },
+        {
+            "name": "gacha",
+            "directions": 4
+        },
+        {
+            "name": "kasaneteto",
+            "directions": 4
+        },
+        {
+            "name": "manmessy",
+            "directions": 4
+        },
+        {
+            "name": "messybangseyes",
+            "directions": 4
+        },
+        {
+            "name": "tord",
+            "directions": 4
+        },
+        {
+            "name": "hatsunemiku",
+            "directions": 4
+        },
+        {
+            "name": "hairfoam",
+            "directions": 4
+        },
+        {
+            "name": "hairthreebun",
+            "directions": 4
+        },
+        {
+            "name": "hairthreebunalt",
             "directions": 4
         },
         {
