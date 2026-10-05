@@ -196,11 +196,11 @@
             "directions": 4
         },
         {
-            "name": "triceraptops-horns",
+            "name": "triceratops-head-horns",
             "directions": 4
         },
         {
-            "name": "triceratops-spikes",
+            "name": "triceratops-head-spikes",
             "directions": 4
         }
     ]

@@ -59,7 +59,7 @@
   - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
     state: ankylosaurus-tail-spikes
   - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
-    state: ankylosaurus-tail-mance
+    state: ankylosaurus-tail-mace
 
 - type: marking
   id: AxolotlTail
@@ -304,9 +304,9 @@
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
     state: triceratops-head-horn
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
-    state: triceratops-horns
+    state: triceratops-head-horns
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
-    state: triceratops-spikes
+    state: triceratops-head-spikes
 
 - type: marking
   id: TRexHead
