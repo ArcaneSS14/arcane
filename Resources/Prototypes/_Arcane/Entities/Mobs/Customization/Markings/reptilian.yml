@@ -162,10 +162,6 @@
     state: axolotl-antennas-himera-l
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
     state: axolotl-antennas-himera-r
-  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
-    state: axolotl-head-antennas-himera-r
-  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
-    state: axolotl-head-antennas-himera-l
 
 - type: marking
   id: BigCollarlHead
