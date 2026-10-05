@@ -15,10 +15,8 @@
       collection: MaleCoughs
     CatMeow:
       collection: CatMeows
-    # Arcane-Start
-    Hiss:
-      path: /Audio/Animals/snake_hiss.ogg
-    # Arcane-End
+    Hiss: # Arcane-Edit
+      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -69,10 +67,8 @@
       collection: FemaleCoughs
     CatMeow:
       collection: CatMeows
-    # Arcane-Start
-    Hiss:
-      path: /Audio/Animals/snake_hiss.ogg
-    # Arcane-End
+    Hiss: # Arcane-Edit
+      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -123,10 +119,8 @@
       collection: MaleCoughs
     CatMeow:
       collection: CatMeows
-    # Arcane-Start
-    Hiss:
-      path: /Audio/Animals/snake_hiss.ogg
-    # Arcane-End
+    Hiss: # Arcane-Edit
+      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -283,10 +277,8 @@
       collection: MaleCoughs
     CatMeow:
       collection: CatMeows
-    # Arcane-Start
-    Hiss:
-      path: /Audio/Animals/snake_hiss.ogg
-    # Arcane-End
+    Hiss: # Arcane-Edit
+      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -343,10 +335,8 @@
       collection: FemaleCoughs
     CatMeow:
       collection: CatMeows
-    # Arcane-Start
-    Hiss:
-      path: /Audio/Animals/snake_hiss.ogg
-    # Arcane-End
+    Hiss: # Arcane-Edit
+      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -548,10 +538,8 @@
       collection: MaleCoughs
     CatMeow:
       collection: CatMeows
-    # Arcane-Start
-    Hiss:
-      path: /Audio/Animals/snake_hiss.ogg
-    # Arcane-End
+    Hiss: # Arcane-Edit
+      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -603,10 +591,8 @@
       collection: FemaleCoughs
     CatMeow:
       collection: CatMeows
-    # Arcane-Start
-    Hiss:
-      path: /Audio/Animals/snake_hiss.ogg
-    # Arcane-End
+    Hiss: # Arcane-Edit
+      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
