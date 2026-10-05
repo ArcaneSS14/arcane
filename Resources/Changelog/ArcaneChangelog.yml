@@ -2614,3 +2614,14 @@ Entries:
       https://github.com/user-attachments/assets/b433aa7a-ddb7-4f27-bbce-540df68a9112
     - >-
       https://github.com/user-attachments/assets/8cf10eb8-cbea-4d98-81aa-8327a6c80fdc
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: Добавлена новая одежда в лавмат.
+  id: 194
+  time: '2026-10-05T17:56:22.0000000+00:00'
+  prNumber: 437
+  url: https://github.com/ArcaneSS14/arcane/pull/437
+  media:
+    - >-
+      https://github.com/user-attachments/assets/94398b6a-f07d-4e15-a3b2-07f8ff7d7c47
