@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Map
   engineVersion: 270.1.0
-  forkId: ""
-  forkVersion: ""
-  time: 09/23/2026 13:12:07
-  entityCount: 36257
+  forkId: arcane
+  forkVersion: b05f451676cecd5964d0e40af9b12f1284f7ed7f
+  time: 10/05/2026 15:24:52
+  entityCount: 36261
 maps:
 - 1
 grids:
@@ -21392,7 +21392,7 @@ entities:
       pos: 72.5,-11.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -81862.07
+      secondsUntilStateChange: -82122.07
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -30000,6 +30000,24 @@ entities:
     - type: Transform
       pos: -12.619463,10.37907
       parent: 2
+- proto: Biogenerator
+  entities:
+  - uid: 28215
+    components:
+    - type: Transform
+      pos: -6.5,38.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Engineering
+      - Security
+      - Cargo
+      - Shaft
+      - Scientific
+      - Robotics
+      - Medical
+      - Service
+      - Syndicate
 - proto: BlastDoor
   entities:
   - uid: 2264
@@ -90259,23 +90277,6 @@ entities:
     - type: Transform
       pos: -36.57214,64.58148
       parent: 2
-- proto: EnergyChemDispenser
-  entities:
-  - uid: 14205
-    components:
-    - type: Transform
-      pos: 18.5,36.5
-      parent: 2
-  - uid: 14206
-    components:
-    - type: Transform
-      pos: 20.5,40.5
-      parent: 2
-  - uid: 14207
-    components:
-    - type: Transform
-      pos: 28.5,36.5
-      parent: 2
 - proto: ChemistryHotplate
   entities:
   - uid: 14208
@@ -109133,6 +109134,23 @@ entities:
       parent: 17179
     - type: Physics
       canCollide: False
+- proto: EnergyChemDispenser
+  entities:
+  - uid: 14205
+    components:
+    - type: Transform
+      pos: 18.5,36.5
+      parent: 2
+  - uid: 14206
+    components:
+    - type: Transform
+      pos: 20.5,40.5
+      parent: 2
+  - uid: 14207
+    components:
+    - type: Transform
+      pos: 28.5,36.5
+      parent: 2
 - proto: EngineeringTechFab
   entities:
   - uid: 17189
@@ -184051,11 +184069,6 @@ entities:
     - type: Transform
       pos: 50.5,25.5
       parent: 2
-  - uid: 28215
-    components:
-    - type: Transform
-      pos: -6.5,38.5
-      parent: 2
   - uid: 28216
     components:
     - type: Transform
@@ -187881,6 +187894,16 @@ entities:
     components:
     - type: Transform
       pos: 37.5,-49.5
+      parent: 2
+  - uid: 36258
+    components:
+    - type: Transform
+      pos: -10.5,27.5
+      parent: 2
+  - uid: 36259
+    components:
+    - type: Transform
+      pos: -8.5,33.5
       parent: 2
 - proto: SmartFridgeMedical
   entities:
@@ -226292,7 +226315,7 @@ entities:
     - type: Transform
       pos: 31.355667,28.660189
       parent: 2
-- proto: WeaponEnergyTurretCommand
+- proto: WeaponEnergyTurretAI
   entities:
   - uid: 35710
     components:
@@ -226818,6 +226841,17 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -9.5,33.5
+      parent: 2
+  - uid: 36260
+    components:
+    - type: Transform
+      pos: -10.5,27.5
+      parent: 2
+  - uid: 36261
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -8.5,33.5
       parent: 2
 - proto: WindoorSecure
   entities:

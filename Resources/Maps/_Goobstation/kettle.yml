@@ -2,9 +2,9 @@ meta:
   format: 7
   category: Map
   engineVersion: 270.1.0
-  forkId: ""
-  forkVersion: ""
-  time: 09/06/2026 22:15:40
+  forkId: arcane
+  forkVersion: b05f451676cecd5964d0e40af9b12f1284f7ed7f
+  time: 10/05/2026 15:11:40
   entityCount: 27309
 maps:
 - 1
@@ -62934,23 +62934,6 @@ entities:
     - type: Transform
       pos: -31.54896,-29.507278
       parent: 2
-- proto: EnergyChemDispenser
-  entities:
-  - uid: 9971
-    components:
-    - type: Transform
-      pos: -33.5,-27.5
-      parent: 2
-  - uid: 9972
-    components:
-    - type: Transform
-      pos: -30.5,-24.5
-      parent: 2
-  - uid: 9973
-    components:
-    - type: Transform
-      pos: -29.5,-27.5
-      parent: 2
 - proto: ChemDispenserMachineCircuitboard
   entities:
   - uid: 9974
@@ -78994,6 +78977,23 @@ entities:
       parent: 12170
     - type: Physics
       canCollide: False
+- proto: EnergyChemDispenser
+  entities:
+  - uid: 9971
+    components:
+    - type: Transform
+      pos: -33.5,-27.5
+      parent: 2
+  - uid: 9972
+    components:
+    - type: Transform
+      pos: -30.5,-24.5
+      parent: 2
+  - uid: 9973
+    components:
+    - type: Transform
+      pos: -29.5,-27.5
+      parent: 2
 - proto: EngineeringTechFab
   entities:
   - uid: 12172
@@ -81871,7 +81871,7 @@ entities:
       pos: -4.5,37.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -9282.462
+      secondsUntilStateChange: -9561.105
       state: Closing
   - uid: 12546
     components:
@@ -144340,7 +144340,7 @@ entities:
     - type: Transform
       pos: 20.5,91.5
       parent: 2
-- proto: SmartFridgeMedical
+- proto: SmartFridge
   entities:
   - uid: 21901
     components:
@@ -171926,7 +171926,7 @@ entities:
     - type: Transform
       pos: 60.444374,-21.413544
       parent: 2
-- proto: WeaponEnergyTurretCommand
+- proto: WeaponEnergyTurretAI
   entities:
   - uid: 26857
     components:
