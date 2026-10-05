@@ -1,0 +1,84 @@
+- type: entity
+  id: Torsher
+  name: torsher
+  description: A touch of coziness even far from home.
+  parent: BaseLamp
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/Furniture/torsher.rsi
+    noRot: true
+    layers:
+    - state: lampgreen
+      map: ["enum.PoweredLightLayers.Base"]
+    - state: lampgreen
+      map: ["enum.PoweredLightLayers.Glow"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: _Arcane/Structures/Furniture/torsher.rsi
+    state: lampgreen
+  - type: Item
+    size: Normal
+    sprite: _Arcane/Structures/Furniture/torsher.rsi
+    heldPrefix: lampgreen
+  - type: Physics
+    bodyType: Dynamic
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - TableMask
+  - type: Anchorable
+  - type: Rotatable
+  - type: Pullable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 3
+            max: 3
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+  - type: PointLight
+    enabled: false
+    radius: 6
+    energy: 1.5
+    softness: 1
+    color: "#FFE4B5"
+  - type: ToggleableVisuals
+    spriteLayer: enum.PoweredLightLayers.Glow
+  - type: StaticPrice
+    price: 75
+  - type: Construction
+    graph: TorsherGraph
+    node: torsher

@@ -1043,3 +1043,17 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Lighting Furniture
+
+- type: construction
+  id: Torsher
+  graph: TorsherGraph
+  startNode: start
+  targetNode: torsher
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
