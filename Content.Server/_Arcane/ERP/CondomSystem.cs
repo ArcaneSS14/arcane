@@ -5,6 +5,7 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Inventory;
+using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
@@ -14,6 +15,7 @@ namespace Content.Server._Arcane.ERP;
 public sealed class CondomSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedCondomSystem _shared = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
@@ -35,6 +37,9 @@ public sealed class CondomSystem : EntitySystem
     /// </summary>
     public bool TryFill(Entity<CondomComponent> ent)
     {
+        if (ent.Comp.Full)
+            return false;
+
         if (!TryComp<SolutionContainerManagerComponent>(ent, out var manager))
             return false;
 
@@ -79,10 +84,17 @@ public sealed class CondomSystem : EntitySystem
         var filled = Spawn(ent.Comp.FilledPrototype, xform.Coordinates);
         _transform.SetLocalRotation(filled, xform.LocalRotation);
 
-        if (wearer != null && slotId != null)
-            _inventory.TryEquip(wearer.Value, filled, slotId, silent: true, force: true);
-
+        // Move the cum over first so the worn item already carries the correct fill.
         TransferCum(ent, filled);
+
+        // The wearer's underwear slot may still refuse the swap, leaving the used condom on the floor.
+        if (wearer != null
+            && slotId != null
+            && !_inventory.TryEquip(wearer.Value, filled, slotId, silent: true, force: true))
+        {
+            _popup.PopupPredicted(Loc.GetString("condom-filled-dropped"), wearer.Value, wearer.Value, PopupType.MediumCaution);
+        }
+
         QueueDel(ent);
     }
 

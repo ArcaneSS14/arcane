@@ -100,7 +100,7 @@ public sealed class OrgasmSystem : EntitySystem
             return;
         }
 
-        if (_condom.TryFill(uid))
+        if (sex is Sex.Male or Sex.Futanari && _condom.TryFill(uid))
             return;
 
         var xform = Transform(uid);
