@@ -6,6 +6,7 @@
   group: Savory
   solids:
     FoodKebabSkewer: 1
+  reagents:
     Milk: 10
     Sugar: 10
     Rice: 10
@@ -19,6 +20,7 @@
   solids:
     FoodSnackChocolateBar: 1
     FoodDoughSlice: 1
+  reagents:
     Sugar: 5
 
 - type: microwaveMealRecipe
