@@ -1,0 +1,315 @@
+# Chest
+
+- type: marking
+  id: AnkylosaurusChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/chest.rsi
+    state: ankylosaurus-back-spikes
+
+- type: marking
+  id: StegosaurusChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/chest.rsi
+    state: stegasaurus-spikes
+  - sprite: _Arcane/Mobs/Customization/Reptilian/chest.rsi
+    state: stegasaurus-spikes-stripes
+
+# Arms
+
+- type: marking
+  id: FeathersArms
+  bodyPart: LArms
+  markingCategory: Arms
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/arms.rsi
+    state: feathers-arms
+  - sprite: _Arcane/Mobs/Customization/Reptilian/arms.rsi
+    state: feathers-arms-fassels
+
+# Tail
+
+- type: marking
+  id: StegosaurusTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/tail.rsi
+    state: stegasaurus-tail
+  - sprite: _Arcane/Mobs/Customization/Reptilian/tail.rsi
+    state: stegasaurus-tail-spikes
+  - sprite: _Arcane/Mobs/Customization/Reptilian/tail.rsi
+    state: stegasaurus-tail-back-spikes
+
+- type: marking
+  id: AnkylosaurusTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: ankylosaurus-tail
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: ankylosaurus-tail-spikes
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: ankylosaurus-tail-mance
+
+- type: marking
+  id: AxolotlTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: axolotl-tail
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: axolotl-tail-fin
+
+- type: marking
+  id: CrocodileTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: crocodile-tail
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: crocodile-tail-belly
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: crocodile-tail-spikes
+
+- type: marking
+  id: DragonTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: dragon-tail
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: dragon-tail-inside
+
+- type: marking
+  id: LizardTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: lizard-tail
+
+- type: marking
+  id: RaptorTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: raptor-tail
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: raptor-tail-fluff
+
+- type: marking
+  id: TRexTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: t-rex-tail
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: t-rex-tail-feathers
+  - sprite: _Arcane/Mobs/Customization/Reptilian/long_tails.rsi
+    state: t-rex-tail-feath
+
+# Head
+
+- type: marking
+  id: AnkylosaurusHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: ankylosaurus-head
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: ankylosaurus-head-eyes
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: ankylosaurus-head-spikes
+
+- type: marking
+  id: AxolotlHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: axolotl-head-himera
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: axolotl-head-himera-r
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: axolotl-antennas-himera-ins-l
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: axolotl-antennas-himera-ins-r
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: axolotl-antennas-himera-l
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: axolotl-antennas-himera-r
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: axolotl-head-antennas-himera-r
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: axolotl-head-antennas-himera-l
+
+- type: marking
+  id: BigCollarlHead
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: big-collar
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: big-collar-inside1
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: big-collar-inside2
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: big-collar-inside3
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: big-collar-inside4
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: big-collar-inside5
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: big-collar-inside6
+
+- type: marking
+  id: CheekSpikesHead
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: cheek-spikes
+
+- type: marking
+  id: CrocodileSnout
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: crocodile-snout
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: crocodile-snout-chin
+
+- type: marking
+  id: DragonHorns
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: dragon-horns
+
+- type: marking
+  id: FeathersHeadTop
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: feathers-up
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: feathers-up-tassels
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: feathers-back-head
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: feathers-back-head-tassels
+
+- type: marking
+  id: PachycephalosaurusHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: pachycephalosaurus-head
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: pachycephalosaurus-head-spikes
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: pachycephalosaurus-head-snout
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: pachycephalosaurus-head-spikes-snout
+
+- type: marking
+  id: RamHorns
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: ram-horns
+
+- type: marking
+  id: RaptorHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: raptor-head
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: raptor-feathers
+
+- type: marking
+  id: SnakeHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: snake-hood
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: snake-hood-inside
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: snake-snout
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: snake-snout-belly
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: snake-snout-teeth
+
+- type: marking
+  id: TriceraptopsHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: triceraptops-head
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: triceraptops-head-beak
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: triceraptops-head-horn
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: triceraptops-horns
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: triceraptops-spikes
+
+- type: marking
+  id: TRexHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Reptilian ]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: t-rex-head
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: t-rex-head-eyes
+  - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
+    state: t-rex-head-teeth

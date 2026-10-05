@@ -1,0 +1,207 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by bulbo44kkey (Discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "ankylosaurus-head-eyes",
+            "directions": 4
+        },
+        {
+            "name": "ankylosaurus-head-spikes",
+            "directions": 4
+        },
+        {
+            "name": "ankylosaurus-head",
+            "directions": 4
+        },
+        {
+            "name": "axolotl-antennas-himera-ins-l",
+            "directions": 4
+        },
+        {
+            "name": "axolotl-antennas-himera-ins-r",
+            "directions": 4
+        },
+        {
+            "name": "axolotl-antennas-himera-l",
+            "directions": 4
+        },
+        {
+            "name": "axolotl-antennas-himera-r",
+            "directions": 4
+        },
+        {
+            "name": "axolotl-head-himera",
+            "directions": 4
+        },
+        {
+            "name": "axolotl-head-himera-r",
+            "directions": 4
+        },
+        {
+            "name": "axolotl-head-antennas-himera-r",
+            "directions": 4
+        },
+        {
+            "name": "axolotl-head-antennas-himera-l",
+            "directions": 4
+        },
+        {
+            "name": "big-collar-inside1",
+            "directions": 4
+        },
+        {
+            "name": "big-collar-inside2",
+            "directions": 4
+        },
+        {
+            "name": "big-collar-inside3",
+            "directions": 4
+        },
+        {
+            "name": "big-collar-inside4",
+            "directions": 4
+        },
+        {
+            "name": "big-collar-inside5",
+            "directions": 4
+        },
+        {
+            "name": "big-collar-inside6",
+            "directions": 4
+        },
+        {
+            "name": "big-collar",
+            "directions": 4
+        },
+        {
+            "name": "cheek-spikes",
+            "directions": 4
+        },
+        {
+            "name": "crocodile-snout-chin",
+            "directions": 4
+        },
+        {
+            "name": "crocodile-snout",
+            "directions": 4
+        },
+        {
+            "name": "dragon-horns",
+            "directions": 4
+        },
+        {
+            "name": "feathers-back-head-tassels",
+            "directions": 4
+        },
+        {
+            "name": "feathers-back-head",
+            "directions": 4
+        },
+        {
+            "name": "feathers-up",
+            "directions": 4
+        },
+        {
+            "name": "feathers-up-tassels",
+            "directions": 4
+        },
+        {
+            "name": "pachycephalosaurus-head-snout",
+            "directions": 4
+        },
+        {
+            "name": "pachycephalosaurus-head-spikes-snout",
+            "directions": 4
+        },
+        {
+            "name": "pachycephalosaurus-head-spikes",
+            "directions": 4
+        },
+        {
+            "name": "pachycephalosaurus-head",
+            "directions": 4
+        },
+        {
+            "name": "parasaurus-head-eyes",
+            "directions": 4
+        },
+        {
+            "name": "parasaurus-head-spots",
+            "directions": 4
+        },
+        {
+            "name": "parasaurus-head",
+            "directions": 4
+        },
+        {
+            "name": "ram-horns",
+            "directions": 4
+        },
+        {
+            "name": "raptor-feathers",
+            "directions": 4
+        },
+        {
+            "name": "raptor-head",
+            "directions": 4
+        },
+        {
+            "name": "snake-hood",
+            "directions": 4
+        },
+        {
+            "name": "snake-hood-inside",
+            "directions": 4
+        },
+        {
+            "name": "snake-snout-belly",
+            "directions": 4
+        },
+        {
+            "name": "snake-snout-teeth",
+            "directions": 4
+        },
+        {
+            "name": "snake-snout",
+            "directions": 4
+        },
+        {
+            "name": "t-rex-head",
+            "directions": 4
+        },
+        {
+            "name": "t-rex-head-eyes",
+            "directions": 4
+        },
+        {
+            "name": "t-rex-head-teeth",
+            "directions": 4
+        },
+        {
+            "name": "triceraptops-head",
+            "directions": 4
+        },
+        {
+            "name": "triceraptops-head-beak",
+            "directions": 4
+        },
+        {
+            "name": "triceraptops-head-horn",
+            "directions": 4
+        },
+        {
+            "name": "triceraptops-horns",
+            "directions": 4
+        },
+        {
+            "name": "triceraptops-spikes",
+            "directions": 4
+        }
+    ]
+}
