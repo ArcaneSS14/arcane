@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Arcane.ERP;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Chemistry.Components;
@@ -5,7 +6,9 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Inventory;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
@@ -15,11 +18,29 @@ namespace Content.Server._Arcane.ERP;
 public sealed class CondomSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly OrgasmSystem _orgasm = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedCondomSystem _shared = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<CondomComponent, ThrowDoHitEvent>(OnThrowDoHit);
+    }
+
+    /// <summary>
+    ///     Throwing a used condom at someone leaves the mess on them instead of on the floor.
+    /// </summary>
+    private void OnThrowDoHit(Entity<CondomComponent> ent, ref ThrowDoHitEvent args)
+    {
+        if (ent.Comp.Fill <= FixedPoint2.Zero || !HasComp<MobStateComponent>(args.Target))
+            return;
+
+        _orgasm.AddCumOverlay(args.Target);
+    }
 
     /// <summary>
     ///     Fills the condom worn by <paramref name="wearer"/>. Returns false when the wearer has none.
@@ -40,10 +61,7 @@ public sealed class CondomSystem : EntitySystem
         if (ent.Comp.Full)
             return false;
 
-        if (!TryComp<SolutionContainerManagerComponent>(ent, out var manager))
-            return false;
-
-        if (!_solutionContainer.TryGetSolution((ent.Owner, (SolutionContainerManagerComponent?) manager), ent.Comp.SolutionId, out var container, out _))
+        if (!TryEnsureSolution(ent.Owner, ent.Comp, out var container))
             return false;
 
         var toAdd = new Solution([new ReagentQuantity(ent.Comp.CumReagent, ent.Comp.FillPerEjaculation)], false);
@@ -102,8 +120,7 @@ public sealed class CondomSystem : EntitySystem
     {
         if (from.Comp.Fill <= FixedPoint2.Zero
             || !TryComp<CondomComponent>(to, out var toComp)
-            || !TryComp<SolutionContainerManagerComponent>(to, out var manager)
-            || !_solutionContainer.TryGetSolution((to, (SolutionContainerManagerComponent?) manager), toComp.SolutionId, out var solution, out _))
+            || !TryEnsureSolution(to, toComp, out var solution))
         {
             return;
         }
@@ -111,5 +128,15 @@ public sealed class CondomSystem : EntitySystem
         _solutionContainer.AddSolution(solution.Value, new Solution([new ReagentQuantity(toComp.CumReagent, from.Comp.Fill)], false));
         toComp.Fill = from.Comp.Fill;
         Dirty(to, toComp);
+    }
+
+    private bool TryEnsureSolution(EntityUid uid, CondomComponent comp, [NotNullWhen(true)] out Entity<SolutionComponent>? solution)
+    {
+        return _solutionContainer.EnsureSolutionEntity(
+            (uid, (SolutionContainerManagerComponent?) null),
+            comp.SolutionId,
+            out _,
+            out solution,
+            comp.Capacity);
     }
 }

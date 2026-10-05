@@ -53,8 +53,8 @@ public sealed class OrgasmSystem : EntitySystem
     private const float EjaculationWallCheckExtraRange = 0.1f;
     private const float EjaculationForwardDot = 0.6f;
     private static readonly TimeSpan TrembleDuration = TimeSpan.FromSeconds(1f);
-    private const float TrembleAmplitude = 80f;
-    private const float TrembleFrequency = 10f;
+    private const float TrembleAmplitude = 20f;
+    private const float TrembleFrequency = 5f;
     private static readonly ProtoId<LocalizedDatasetPrototype> OrgasmMessagesDataset = "OrgasmMessages";
 
     public override void Initialize()

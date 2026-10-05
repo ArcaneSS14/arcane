@@ -186,6 +186,7 @@ erp-panel-interaction-sniff-neck-name = Sniff neck
 erp-panel-interaction-suck-cock-name = Suck cock
 erp-panel-interaction-slime-fuck-cock-name = Fuck cock with slime
 erp-panel-interaction-cock-fap-name = Jerk off
+erp-panel-interaction-target-cock-fap-name = Jerk off their cock
 erp-panel-interaction-cock-footjob-name = Footjob
 erp-panel-interaction-cock-swordmanship-name = Swordfight with cocks
 erp-panel-interaction-cock-fap-tail-name = Jerk off with tail
@@ -199,6 +200,7 @@ erp-panel-interaction-lick-penis-condensed-cum-name = Lick secretions from cock
 
 # Interaction pussy
 erp-panel-interaction-pussy-fingering-name = Finger pussy
+erp-panel-interaction-target-pussy-fap-name = Jerk off their pussy
 erp-panel-interaction-pussy-licking-name = Lick pussy
 erp-panel-interaction-pussy-scissors-name = Scissor with pussy
 erp-panel-interaction-pussy-touch-name = Touch pussy

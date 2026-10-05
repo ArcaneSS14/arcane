@@ -93,6 +93,32 @@
     part: Groin
 
 - type: panelInteraction
+  id: TargetCockFap
+  category: Penis
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  messages:
+  - обхватывает член $target рукой и быстро водит ею вверх-вниз.
+  - дрочит член $target ладонью, сжимая его чуть крепче.
+  - ритмично двигает рукой по всему члену $target.
+  - быстро надрачивает член $target, не сдерживаясь.
+  - оборачивает ладонь вокруг члена $target и поглаживает его.
+  - нежно массирует член $target, водя рукой от основания к головке.
+  icon: _Arcane/Interface/ErpPanel/cock_fap.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
   id: CockFootjob
   category: Penis
   targetArouse: 10
