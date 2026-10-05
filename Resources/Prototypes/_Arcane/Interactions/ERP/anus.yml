@@ -99,6 +99,42 @@
   - !type:TailRequirement
 
 - type: panelInteraction
+  id: CockSelfAssFuck
+  category: Anus
+  userArouse: 15
+  targetArouse: 10
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/asscrap1.ogg
+  - /Audio/_Arcane/Interactions/asscrap2.ogg
+  - /Audio/_Arcane/Interactions/asscrap3.ogg
+  messages:
+  - вставляет член $target себе в анус и трахает себя им.
+  - садится на член $target верхом, принимая его в анус.
+  - направляет член $target в свою задницу и ритмично двигает бёдрами.
+  - насаживается на член $target, вытаскивая из себя удовольствие.
+  - вжимает член $target в свой анус, устраиваясь верхом.
+  - впихивает член $target в себя и трахая свою задницу.
+  icon: _Arcane/Interface/ErpPanel/fuck_ass.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:ArousalRequirement
+
+- type: panelInteraction
   id: AnalLick2
   category: Anus
   userArouse: 5

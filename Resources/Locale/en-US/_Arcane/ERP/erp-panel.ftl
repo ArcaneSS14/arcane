@@ -71,6 +71,7 @@ erp-panel-interaction-anus-lick-name = Lick anus
 erp-panel-interaction-anal-lick2-name = Deeply lick anus
 erp-panel-interaction-anus-fingering-name = Finger anus
 erp-panel-interaction-anus-tail-fuck-name = Fuck anus with tail
+erp-panel-interaction-cock-self-ass-fuck-name = Fuck self in anus with cock
 erp-panel-interaction-anal-fingering2-name = Two fingers in anus
 erp-panel-interaction-anus-toy-sitting-name = Sit on sex toy with butt
 erp-panel-interaction-insert-fingers-anus-name = Fuck ass with your fingers
