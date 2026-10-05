@@ -10,6 +10,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid;
+using Content.Shared.Jittering;
 using Content.Shared.Popups;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -31,6 +32,7 @@ public sealed class OrgasmSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly CondomSystem _condom = default!;
     [Dependency] private readonly ForensicsSystem _forensics = default!;
+    [Dependency] private readonly SharedJitteringSystem _jitter = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -50,6 +52,9 @@ public sealed class OrgasmSystem : EntitySystem
     private const float EjaculationBlockedDistance = 0.1f;
     private const float EjaculationWallCheckExtraRange = 0.1f;
     private const float EjaculationForwardDot = 0.6f;
+    private static readonly TimeSpan TrembleDuration = TimeSpan.FromSeconds(1f);
+    private const float TrembleAmplitude = 80f;
+    private const float TrembleFrequency = 10f;
     private static readonly ProtoId<LocalizedDatasetPrototype> OrgasmMessagesDataset = "OrgasmMessages";
 
     public override void Initialize()
@@ -86,6 +91,9 @@ public sealed class OrgasmSystem : EntitySystem
         var weakness = EnsureComp<OrgasmWeaknessComponent>(uid);
         weakness.ExpiresAt = _timing.CurTime + weakness.WeaknessDuration;
         Dirty(uid, weakness);
+
+        if (humanoid is { Sex: Sex.Female or Sex.Futanari })
+            _jitter.DoJitter(uid, TrembleDuration, refresh: true, amplitude: TrembleAmplitude, frequency: TrembleFrequency);
     }
 
     // TODO: move overlay logic to Content.Shared for prediction
