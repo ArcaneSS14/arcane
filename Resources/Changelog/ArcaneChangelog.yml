@@ -2593,3 +2593,11 @@ Entries:
       https://github.com/user-attachments/assets/db13ee8f-9f97-4c39-b58d-7861d3fb0ad4
     - >-
       https://github.com/user-attachments/assets/371b6749-2f95-4d09-bbd5-4674140c1298
+- author: seemah
+  changes:
+    - type: Tweak
+      message: Вкус пива изменён на жидкое золото.
+  id: 192
+  time: '2026-10-05T09:48:27.0000000+00:00'
+  prNumber: 468
+  url: https://github.com/ArcaneSS14/arcane/pull/468
