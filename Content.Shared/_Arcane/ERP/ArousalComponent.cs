@@ -32,7 +32,7 @@ public sealed partial class ArousalComponent : Component
     /// Passive decay per second.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DecayRate = 0.3f;
+    public float DecayRate = 0.1f;
 
     [DataField]
     public float MaxArousal = 100f;
