@@ -27,6 +27,7 @@ marking-CheekSpikesHead = Иглы на щеках
 marking-CrocodileSnout = Морда крокодила
 marking-DragonHorns = Рога дракона
 marking-FeathersHeadTop = Перья
+marking-FeathersHeadSide = Перья
 marking-PachycephalosaurusHead = Голова пахицефалозавра
 marking-RamHorns = Бараньи рога
 marking-RaptorHead = Голова раптора

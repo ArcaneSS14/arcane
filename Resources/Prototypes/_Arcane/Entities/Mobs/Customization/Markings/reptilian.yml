@@ -227,6 +227,13 @@
     state: feathers-up
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
     state: feathers-up-tassels
+
+- type: marking
+  id: FeathersHeadSide
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [ Reptilian ]
+  sprites:
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
     state: feathers-back-head
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
