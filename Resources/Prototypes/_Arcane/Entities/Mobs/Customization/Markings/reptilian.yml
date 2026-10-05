@@ -285,21 +285,21 @@
     state: snake-snout-teeth
 
 - type: marking
-  id: TriceraptopsHead
+  id: TriceratopsHead
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ Reptilian ]
   sprites:
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
-    state: triceraptops-head
+    state: triceratops-head
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
-    state: triceraptops-head-beak
+    state: triceratops-head-beak
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
-    state: triceraptops-head-horn
+    state: triceratops-head-horn
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
-    state: triceraptops-horns
+    state: triceratops-horns
   - sprite: _Arcane/Mobs/Customization/Reptilian/head.rsi
-    state: triceraptops-spikes
+    state: triceratops-spikes
 
 - type: marking
   id: TRexHead

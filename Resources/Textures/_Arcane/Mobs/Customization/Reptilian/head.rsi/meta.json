@@ -184,15 +184,15 @@
             "directions": 4
         },
         {
-            "name": "triceraptops-head",
+            "name": "triceratops-head",
             "directions": 4
         },
         {
-            "name": "triceraptops-head-beak",
+            "name": "triceratops-head-beak",
             "directions": 4
         },
         {
-            "name": "triceraptops-head-horn",
+            "name": "triceratops-head-horn",
             "directions": 4
         },
         {
@@ -200,7 +200,7 @@
             "directions": 4
         },
         {
-            "name": "triceraptops-spikes",
+            "name": "triceratops-spikes",
             "directions": 4
         }
     ]

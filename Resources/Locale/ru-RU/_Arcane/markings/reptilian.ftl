@@ -31,5 +31,5 @@ marking-PachycephalosaurusHead = Голова пахицефалозавра
 marking-RamHorns = Бараньи рога
 marking-RaptorHead = Голова раптора
 marking-SnakeHead = Голова кобры
-marking-TriceraptopsHead = Голова трицератопса
+marking-TriceratopsHead = Голова трицератопса
 marking-TRexHead = Голова тиранозавра
