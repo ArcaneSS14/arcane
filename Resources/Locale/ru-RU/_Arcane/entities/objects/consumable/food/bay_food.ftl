@@ -1,5 +1,3 @@
-ent-FoodSnackDango = данго
-    .desc = Японские клёцки из риса.
 ent-FoodSnackCookie = печенье
     .desc = Плоская сладкая выпечка.
 ent-FoodSnackFishCracker = тайяки
