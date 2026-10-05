@@ -146,8 +146,8 @@ erp-panel-interaction-shift-weight-name = Положить ладонь на б�
 # Interaction hands
 erp-panel-interaction-handshake-name = Жать руку
 erp-panel-interaction-kiss-hand-name = Целовать руку
-erp-panel-interaction-target-hand-fap-name = Дрочить себя рукой цели
-erp-panel-interaction-target-hand-fingering-name = Ласкать себя пальцами цели
+erp-panel-interaction-target-hand-fap-name = Заставить себе дрочить
+erp-panel-interaction-target-hand-fingering-name = Заставить ласкать себя пальцами
 erp-panel-interaction-high-five-name = Дать пять
 erp-panel-interaction-friendly-flying-kiss-name = Слать поцелуй
 erp-panel-interaction-friendly-nose-boop-name = Ткнуть в нос
