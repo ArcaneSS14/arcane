@@ -24,7 +24,7 @@
 
 - type: marking
   id: FeathersArms
-  bodyPart: LArms
+  bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [ Reptilian ]
   sprites:
