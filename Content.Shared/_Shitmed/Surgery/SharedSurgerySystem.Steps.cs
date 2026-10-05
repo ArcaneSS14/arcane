@@ -1332,7 +1332,7 @@ public abstract partial class SharedSurgerySystem
         return CanPerformStep(user, body, part, step, tool, doPopup, out popup, out _, out _);
     }
 
-    private bool IsStepComplete(EntityUid body, EntityUid part, EntProtoId step, EntityUid surgery)
+    public bool IsStepComplete(EntityUid body, EntityUid part, EntProtoId step, EntityUid surgery) // Arcane-Edit
     {
         // Arcane-Start
         if (IsStepSkipped(part, step))
