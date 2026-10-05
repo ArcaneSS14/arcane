@@ -1,0 +1,46 @@
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackCookie
+  name: cookie
+  description: Flat sweet bakery.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    sprite: _Arcane/Objects/Consumable/Food/bay_food.rsi
+    state: cookie
+  - type: Item
+
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackFishCracker
+  name: fish cracker
+  description: Fish-shapped salty crackers.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - salty
+      - fishy
+  - type: Sprite
+    sprite: _Arcane/Objects/Consumable/Food/bay_food.rsi
+    state: fish
+  - type: Item
+
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackTakoyaki
+  name: takoyaki
+  description: A Japanese dish made of batter and squid, served with a sweet and salty sause.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - salty
+      - sweet
+      - spicy
+      - creamy
+      - dough
+  - type: Sprite
+    sprite: _Arcane/Objects/Consumable/Food/bay_food.rsi
+    state: takoyaki
+  - type: Item
