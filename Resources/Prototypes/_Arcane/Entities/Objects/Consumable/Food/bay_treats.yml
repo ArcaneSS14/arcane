@@ -8,7 +8,7 @@
     flavors:
       - sweet
   - type: Sprite
-    sprite: _Arcane/Objects/Consumable/Food/bay_food.rsi
+    sprite: _Arcane/Objects/Consumable/Food/bay_treats.rsi
     state: cookie
   - type: Item
 
@@ -23,7 +23,7 @@
       - sweet
       - chocolate
   - type: Sprite
-    sprite: _Arcane/Objects/Consumable/Food/bay_food.rsi
+    sprite: _Arcane/Objects/Consumable/Food/bay_treats.rsi
     state: fish
   - type: Item
 
@@ -41,6 +41,6 @@
       - creamy
       - dough
   - type: Sprite
-    sprite: _Arcane/Objects/Consumable/Food/bay_food.rsi
+    sprite: _Arcane/Objects/Consumable/Food/bay_treats.rsi
     state: takoyaki
   - type: Item
