@@ -10,6 +10,13 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared._Arcane.Inventory;
 
+public enum InventoryDelayResult
+{
+    Immediate,
+    Queued,
+    Failed,
+}
+
 /// <summary>
 ///     Owns the Arcane equip/unequip delay and the doafter that resolves it, so that
 ///     <see cref="InventorySystem"/> stays free of hardcoded delays.
@@ -29,16 +36,14 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
     }
 
     /// <summary>
-    ///     <see cref="InventoryEquipDelayComponent"/> wins over clothing, clothing wins over
-    ///     <see cref="InventoryEquipDelayComponent.DefaultDelay"/>.
+    ///     <see cref="InventoryEquipDelayComponent"/> on the item owns the delay outright, including
+    ///     <see cref="TimeSpan.Zero"/> for an instant equip. Without the component the clothing delay wins,
+    ///     then <see cref="InventoryEquipDelayComponent.DefaultDelay"/>.
     /// </summary>
     public TimeSpan GetEquipDelay(EntityUid item, SlotDefinition slotDefinition, ClothingComponent? clothing = null)
     {
-        if (TryComp<InventoryEquipDelayComponent>(item, out var equipDelay)
-            && equipDelay.EquipDelay > TimeSpan.Zero)
-        {
+        if (CompOrNull<InventoryEquipDelayComponent>(item) is { } equipDelay)
             return equipDelay.EquipDelay;
-        }
 
         if (Resolve(item, ref clothing, false)
             && clothing.EquipDelay > TimeSpan.Zero
@@ -53,11 +58,8 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
     /// <inheritdoc cref="GetEquipDelay"/>
     public TimeSpan GetUnequipDelay(EntityUid item, SlotDefinition slotDefinition, ClothingComponent? clothing = null)
     {
-        if (TryComp<InventoryEquipDelayComponent>(item, out var equipDelay)
-            && equipDelay.UnequipDelay > TimeSpan.Zero)
-        {
+        if (CompOrNull<InventoryEquipDelayComponent>(item) is { } equipDelay)
             return equipDelay.UnequipDelay;
-        }
 
         if (Resolve(item, ref clothing, false)
             && clothing.UnequipDelay > TimeSpan.Zero
@@ -70,9 +72,9 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
     }
 
     /// <summary>
-    ///     Starts the equip doafter for <paramref name="item"/>. Returns whether it started.
+    ///     Applies the self-equip delay to <paramref name="item"/>. See <see cref="InventoryDelayResult"/>.
     /// </summary>
-    public bool TryStartEquipDoAfter(
+    public InventoryDelayResult TryStartEquipDoAfter(
         EntityUid actor,
         EntityUid target,
         EntityUid item,
@@ -82,12 +84,16 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
         ClothingComponent? clothing = null)
     {
         if (!_container.CanInsert(item, slotContainer))
-            return false;
+            return InventoryDelayResult.Immediate;
+
+        var delay = GetEquipDelay(item, slotDefinition, clothing);
+        if (delay <= TimeSpan.Zero)
+            return InventoryDelayResult.Immediate;
 
         var args = new DoAfterArgs(
             EntityManager,
             actor,
-            GetEquipDelay(item, slotDefinition, clothing),
+            delay,
             new InventoryDoAfterEvent(true, slot),
             item,
             target,
@@ -97,15 +103,17 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
             NeedHand = true,
         };
 
-        return _doAfter.TryStartDoAfter(args);
+        return _doAfter.TryStartDoAfter(args)
+            ? InventoryDelayResult.Queued
+            : InventoryDelayResult.Failed;
     }
 
     /// <summary>
-    ///     Starts the unequip doafter for <paramref name="item"/>, optionally equipping
-    ///     <paramref name="equipAfter"/> into the freed slot once it finishes.
-    ///     Returns whether it started.
+    ///     Applies the self-unequip delay to <paramref name="item"/>, queueing
+    ///     <paramref name="equipAfter"/> into the freed slot when the wait is over.
+    ///     See <see cref="InventoryDelayResult"/>.
     /// </summary>
-    public bool TryStartUnequipDoAfter(
+    public InventoryDelayResult TryStartUnequipDoAfter(
         EntityUid actor,
         EntityUid target,
         EntityUid item,
@@ -114,12 +122,16 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
         ClothingComponent? clothing = null,
         EntityUid? equipAfter = null)
     {
+        var delay = GetUnequipDelay(item, slotDefinition, clothing);
+        if (delay <= TimeSpan.Zero)
+            return InventoryDelayResult.Immediate;
+
         var equipAfterNet = equipAfter == null ? (NetEntity?) null : GetNetEntity(equipAfter.Value);
 
         var args = new DoAfterArgs(
             EntityManager,
             actor,
-            GetUnequipDelay(item, slotDefinition, clothing),
+            delay,
             new InventoryDoAfterEvent(false, slot, equipAfterNet),
             item,
             target,
@@ -129,7 +141,9 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
             NeedHand = true,
         };
 
-        return _doAfter.TryStartDoAfter(args);
+        return _doAfter.TryStartDoAfter(args)
+            ? InventoryDelayResult.Queued
+            : InventoryDelayResult.Failed;
     }
 
     private void OnInventoryDoAfter(Entity<ItemComponent> ent, ref InventoryDoAfterEvent args)

@@ -7,8 +7,9 @@ namespace Content.Shared._Arcane.Inventory;
 /// <summary>
 ///     How long the wearer spends putting this item on and taking it off.
 ///     Read by <see cref="SharedArcaneInventorySystem"/> when an item is equipped to or unequipped from
-///     the entity itself. Takes precedence over <see cref="Content.Shared.Clothing.Components.ClothingComponent"/>
-///     equip/unequip delays and over <see cref="DefaultDelay"/>.
+///     the entity itself. While this component exists it decides the delay on its own, overriding
+///     <see cref="Content.Shared.Clothing.Components.ClothingComponent"/> equip/unequip delays; without it the
+///     clothing delay applies, then <see cref="DefaultDelay"/>.
 /// </summary>
 [RegisterComponent]
 public sealed partial class InventoryEquipDelayComponent : Component

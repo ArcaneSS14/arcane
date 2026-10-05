@@ -52,7 +52,8 @@ public abstract class ClothingSystem : EntitySystem
         Entity<ClothingComponent> toEquipEnt,
         Entity<InventoryComponent, HandsComponent> userEnt)
     {
-        foreach (var slotDef in userEnt.Comp1.Slots.OrderBy(slot => slot.SlotFlags.HasFlag(SlotFlags.POCKET))) // Arcane-Edit
+        // Arcane-Edit-Start
+        foreach (var slotDef in userEnt.Comp1.Slots.OrderBy(slot => slot.SlotFlags.HasFlag(SlotFlags.POCKET)))
         {
             if (!_invSystem.CanEquip(userEnt, toEquipEnt, slotDef.Name, out _, slotDef, userEnt, toEquipEnt))
                 continue;
@@ -63,25 +64,22 @@ public abstract class ClothingSystem : EntitySystem
                 if (TryComp(slotEntity, out ClothingComponent? item) && !item.QuickEquip)
                     continue;
 
-                // Arcane-Edit-Start
                 if (!_invSystem.CanUnequip(userEnt, slotDef.Name, out _))
                     continue;
 
+                // Delayed counts as taken: the replacement is queued behind the unequip.
                 if (_invSystem.TryUnequipSlot(userEnt, slotDef.Name, equipAfter: toEquipEnt, inventory: userEnt)
-                    == InventorySystem.UnequipResult.Failed)
-                    continue;
+                    != InventorySystem.UnequipResult.Failed)
+                    return;
 
+                continue;
+            }
+
+            if (_invSystem.TryEquipSlot(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, triggerHandContact: true)
+                != InventorySystem.EquipResult.Failed)
                 return;
-                // Arcane-Edit-End
-            }
-            else
-            {
-                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
-                    return; // Arcane-Edit
-            }
-
-            return; // Arcane-Edit
         }
+        // Arcane-Edit-End
     }
 
     protected virtual void OnGotEquipped(EntityUid uid, ClothingComponent component, GotEquippedEvent args)
