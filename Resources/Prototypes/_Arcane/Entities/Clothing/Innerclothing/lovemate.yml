@@ -30,3 +30,47 @@
     sprite: _Arcane/Clothing/Innerclothing/white_shirt.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/white_shirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingJumpsuitWebDress
+  name: web dress
+  description: A semi-sheer mesh dress that reveals your beautiful figure and new underwears.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/web_dress.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/web_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingJumpsuitSexyBloodBody
+  name: sexy blood body
+  description: A red sexy jumpsuit without sleeves and trouser-legs.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/sexy_blood.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/sexy_blood.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingJumpsuitOfficerDress
+  name: officer dress
+  description: Some bad boy will be punished right now!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/officer_dress.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/officer_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingJumpsuitGentlePinkDress
+  name: gentle pink dress
+  description: A cute short pink dress made of lightweight fabric.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/gentle_pink_dress.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/gentle_pink_dress.rsi
