@@ -7,7 +7,7 @@
   id: RodentiaHeadTopEarDefault
   markingCategory: HeadTop
   bodyPart: HeadTop
-  speciesRestriction: [Rodentia, Human]
+  speciesRestriction: [Rodentia, Human, Felinid] # Arcane-Edit
   coloring:
     default:
       type: !type:TattooColoring
@@ -21,7 +21,7 @@
   id: RodentiaTailDefault
   markingCategory: Tail
   bodyPart: Tail
-  speciesRestriction: [Rodentia, Human]
+  speciesRestriction: [Rodentia, Human, Felinid] # Arcane-Edit
   coloring:
     default:
       type: !type:TattooColoring

@@ -112,6 +112,7 @@
     sound:
       path: /Audio/Items/snap.ogg
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true

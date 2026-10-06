@@ -6,7 +6,7 @@
   id: VulpEar
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Vulpkanin, Human]
+  speciesRestriction: [Vulpkanin, Human, Felinid] # Arcane-Edit
   sprites:
     - sprite: _DV/Mobs/Customization/Vulpkanin/ear_markings.rsi
       state: vulp
@@ -280,7 +280,7 @@
   id: VulpTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Vulpkanin, Human]
+  speciesRestriction: [Vulpkanin, Human, Felinid] # Arcane-Edit
   sprites:
     - sprite: _Arcane/Mobs/Customization/Vulpkanin/tail_markings.rsi
       state: vulp
