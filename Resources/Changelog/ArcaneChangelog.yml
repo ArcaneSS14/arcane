@@ -2700,3 +2700,26 @@ Entries:
   time: '2026-10-06T13:12:22.0000000+00:00'
   prNumber: 474
   url: https://github.com/ArcaneSS14/arcane/pull/474
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: >-
+        Охранные турели ИИ и им подобные более не стреляют в выключенном и
+        сломанном состояниях 
+  id: 198
+  time: '2026-10-06T13:21:51.0000000+00:00'
+  prNumber: 466
+  url: https://github.com/ArcaneSS14/arcane/pull/466
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: >-
+        Добавлена новая мутация картофеля - помидофель. Случайным образом с него
+        могут собираться 2 помидора, 2 картофеля или помидор и картофель.
+  id: 199
+  time: '2026-10-06T14:10:03.0000000+00:00'
+  prNumber: 451
+  url: https://github.com/ArcaneSS14/arcane/pull/451
+  media:
+    - >-
+      https://github.com/user-attachments/assets/e4d76445-8770-48f7-a51a-39e99e30d83f
