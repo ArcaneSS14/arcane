@@ -87,23 +87,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
     {
         var surgeries = new Dictionary<NetEntity, List<EntProtoId>>();
         foreach (var part in _body.GetBodyChildren(body))
-        {
-            var valid = new List<EntProtoId>();
-            foreach (var surgery in AllSurgeries)
-            {
-                if (GetSingleton(surgery) is not { } surgeryEnt)
-                    continue;
-
-                var ev = new SurgeryValidEvent(body, part.Id);
-                RaiseLocalEvent(surgeryEnt, ref ev);
-
-                if (ev.Cancelled || IsSurgerySkipped(part.Id, surgeryEnt))
-                    continue;
-
-                valid.Add(surgery);
-            }
-            surgeries[GetNetEntity(part.Id)] = valid;
-        }
+            surgeries[GetNetEntity(part.Id)] = GetValidSurgeries(body, part.Id);
 
         return surgeries;
     }

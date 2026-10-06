@@ -546,7 +546,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     /// Checks if someone is lying down (and is able to)
     /// Shows a popup if this is run on the user's client.
     /// </summary>
-    public bool IsLyingDown(EntityUid entity, EntityUid user)
+    public bool IsLyingDown(EntityUid entity, EntityUid user, bool popup = true) // Arcane-Edit
     {
         if (_standing.IsDown(entity))
             return true;
@@ -563,13 +563,39 @@ public abstract partial class SharedSurgerySystem : EntitySystem
                 return true;
         }
 
-        _popup.PopupClient(Loc.GetString("surgery-error-laying"), user, user);
+        if (popup) // Arcane
+            _popup.PopupClient(Loc.GetString("surgery-error-laying"), user, user);
         return false;
     }
 
     protected virtual void RefreshUI(EntityUid body)
     {
     }
+
+    // Arcane-Start
+    /// <summary>
+    /// Surgeries that can currently be performed on the part, in prototype order.
+    /// </summary>
+    public List<EntProtoId> GetValidSurgeries(EntityUid body, EntityUid part)
+    {
+        var valid = new List<EntProtoId>();
+        foreach (var surgery in AllSurgeries)
+        {
+            if (GetSingleton(surgery) is not { } surgeryEnt)
+                continue;
+
+            var ev = new SurgeryValidEvent(body, part);
+            RaiseLocalEvent(surgeryEnt, ref ev);
+
+            if (ev.Cancelled || IsSurgerySkipped(part, surgeryEnt))
+                continue;
+
+            valid.Add(surgery);
+        }
+
+        return valid;
+    }
+    // Arcane-End
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {
