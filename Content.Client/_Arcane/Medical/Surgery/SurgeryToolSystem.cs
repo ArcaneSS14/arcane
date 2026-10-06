@@ -1,18 +1,22 @@
 using System.Linq;
 using Content.Shared._Arcane.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery;
-using Robust.Client.Player;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._Arcane.Medical.Surgery;
 
 public sealed class SurgeryToolSystem : SharedSurgeryToolSystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
     [Dependency] private readonly SharedSurgerySystem _surgery = default!;
 
     private SurgeryToolOptionsPopup? _popup;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeNetworkEvent<SurgeryToolOptionsEvent>(OnOptions);
+    }
 
     public override void Shutdown()
     {
@@ -20,21 +24,22 @@ public sealed class SurgeryToolSystem : SharedSurgeryToolSystem
         ClosePopup();
     }
 
-    protected override void OpenOptions(EntityUid user, EntityUid body, EntityUid part, List<SurgeryToolOption> options)
+    private void OnOptions(SurgeryToolOptionsEvent msg)
     {
-        if (user != _player.LocalEntity)
+        if (!TryGetEntity(msg.Part, out var part))
             return;
 
+        var options = msg.Options;
         ClosePopup();
 
         var entries = options.Select(GetEntry).OrderBy(e => e.Name, StringComparer.CurrentCulture).ToList();
         var title = options.Count == 1
             ? Loc.GetString("surgery-tool-options-confirm")
-            : Loc.GetString("surgery-tool-options-title", ("part", part));
+            : Loc.GetString("surgery-tool-options-title", ("part", part.Value));
 
         var popup = new SurgeryToolOptionsPopup();
         popup.Populate(title, entries);
-        popup.OnPicked += option => RaisePredictiveEvent(new SurgeryToolOptionPickedEvent(GetNetEntity(part), option));
+        popup.OnPicked += option => RaisePredictiveEvent(new SurgeryToolOptionPickedEvent(msg.Part, option));
         popup.OnPopupHide += () =>
         {
             popup.Orphan();

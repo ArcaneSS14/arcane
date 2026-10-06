@@ -321,7 +321,7 @@ public abstract partial class SharedSurgerySystem
         if (!_partQuery.TryComp(args.Part, out var partComp) || partComp.PartType != BodyPartType.Chest)
             return;
 
-        var activeHandEntity = _hands.EnumerateHeld(args.User).FirstOrDefault();
+        var activeHandEntity = _hands.GetActiveItem(args.User) ?? default; // Arcane-Edit
         if (activeHandEntity != default
             && !HasComp<BodyPartComponent>(activeHandEntity) // Omu
             && !HasComp<OrganComponent>(activeHandEntity) // Omu

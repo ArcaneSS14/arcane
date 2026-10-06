@@ -13,6 +13,16 @@ namespace Content.Shared._Arcane.Surgery;
 public readonly record struct SurgeryToolOption(EntProtoId Surgery, EntProtoId Step, EntProtoId? Target);
 
 /// <summary>
+/// Sent by the server when a tool click could perform several steps, or one that needs confirming.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class SurgeryToolOptionsEvent(NetEntity part, List<SurgeryToolOption> options) : EntityEventArgs
+{
+    public readonly NetEntity Part = part;
+    public readonly List<SurgeryToolOption> Options = options;
+}
+
+/// <summary>
 /// Sent by the client after picking one of several steps its tool click could perform.
 /// </summary>
 [Serializable, NetSerializable]
