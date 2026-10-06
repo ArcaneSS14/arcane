@@ -1,21 +1,14 @@
 surgery-ui-window-no-part = Часть не выбрана
-surgery-ui-window-empty = Выберите операцию
+surgery-ui-window-empty = Выберите часть тела
 surgery-ui-window-empty-hint = Нажмите на часть тела, чтобы увидеть операции.
-surgery-ui-window-progress = Этапы: {$done}/{$total}
-surgery-ui-window-complete = Операция завершена
-surgery-ui-popup-empty = Нет доступных операций
-surgery-ui-step-active = Выполняется...
-
-surgery-ui-back-to-part = ← Вернуться к операциям: {$part}
+surgery-ui-operations-empty = Нет доступных операций
+surgery-ui-step-satisfied-tooltip = Пока не требуется: сначала идут предыдущие шаги, после них этот шаг может понадобиться.
 
 surgery-ui-group-started = Начатые
 surgery-ui-group-available = Доступные
 surgery-ui-group-needs-preparation = Нужна подготовка
 surgery-ui-group-closing = Закрытие
 surgery-ui-group-completed = Выполненные
-surgery-ui-hint-next = Далее: {$step}
-surgery-ui-hint-start = Начать: {$step}
-surgery-ui-hint-after = После: {$surgery}
 
 surgery-ui-part-missing = {$part} (отсутствует)
 surgery-ui-part-started = Начато: {$surgery} ({$done}/{$total})
@@ -25,6 +18,13 @@ surgery-ui-part-surgeries = {$count ->
    *[other] Доступно {$count} операций
 }
 
+surgery-ui-part-severity = Тяжесть:
+surgery-ui-part-bleeding = Кровотечение:
+surgery-ui-part-bleeding-yes = Есть
+surgery-ui-part-bleeding-no = Нет
+surgery-ui-part-states = Хирургическое состояние
+surgery-ui-part-states-none = Нет
+surgery-ui-part-state-entry = • {$state}
 surgery-ui-part-state-bleeding = Кровотечение
 surgery-ui-part-state-incision = Разрез открыт
 surgery-ui-part-state-skin-retracted = Кожа отведена

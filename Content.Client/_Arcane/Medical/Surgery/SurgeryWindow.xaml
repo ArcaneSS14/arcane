@@ -4,41 +4,40 @@
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:surgery="clr-namespace:Content.Client._Arcane.Medical.Surgery"
     Title="{Loc 'surgery-ui-window-title'}"
-    MinSize="640 440"
-    SetSize="700 480">
+    MinSize="720 460"
+    SetSize="780 520">
     <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
-        <PanelContainer StyleClasses="ArcaneDetailSidebar" MinWidth="230" VerticalExpand="True">
-            <BoxContainer Orientation="Vertical" Margin="10 8" SeparationOverride="6">
+        <ScrollContainer HScrollEnabled="False" MinWidth="280" VerticalExpand="True" Margin="5">
+            <BoxContainer Orientation="Vertical" Margin="5 0" SeparationOverride="4">
                 <surgery:SurgeryDollControl Name="Doll" Access="Public" HorizontalAlignment="Center" />
                 <BoxContainer Name="OtherParts" Access="Public" Orientation="Vertical" SeparationOverride="2" Visible="False" />
-                <cc:HSeparator StyleClasses="LowDivider" />
-                <Label Name="PartNameLabel" Access="Public" StyleClasses="LabelHeading" HorizontalAlignment="Center" ClipText="True" />
-                <Label Name="PartSeverityLabel" Access="Public" HorizontalAlignment="Center" />
-                <BoxContainer Name="PartStates" Access="Public" Orientation="Vertical" />
-            </BoxContainer>
-        </PanelContainer>
-        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="12 8">
-            <Button Name="BackButton" Access="Public" StyleClasses="OpenBoth" HorizontalAlignment="Left"
-                    Margin="0 0 0 6" Visible="False" />
-            <BoxContainer Name="SurgeryView" Access="Public" Orientation="Vertical" VerticalExpand="True" Visible="False">
-                <Label Name="SurgeryNameLabel" Access="Public" StyleClasses="LabelHeadingBigger" ClipText="True" />
-                <WrapContainer Name="Chain" Access="Public" SeparationOverride="6" Margin="0 4 0 0" />
-                <Label Name="WarningLabel" Access="Public" Text="{Loc 'surgery-error-cannot-operate'}"
-                       StyleClasses="status-bad" Margin="0 4 0 0" Visible="False" />
-                <cc:HSeparator StyleClasses="LowDivider" Margin="0 6" />
-                <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
-                    <BoxContainer Name="Steps" Access="Public" Orientation="Vertical" SeparationOverride="2" />
-                </ScrollContainer>
-                <BoxContainer Orientation="Horizontal" SeparationOverride="10" Margin="0 6 0 0">
-                    <ProgressBar Name="Progress" Access="Public" HorizontalExpand="True" MinHeight="8"
-                                 VerticalAlignment="Center" MinValue="0" MaxValue="1" />
-                    <Label Name="ProgressLabel" Access="Public" StyleClasses="LabelSubText" />
+                <PanelContainer StyleClasses="LowDivider" />
+                <Label Name="PartNameLabel" Access="Public" StyleClasses="LabelKeyText" ClipText="True" />
+                <GridContainer Name="PartInfo" Access="Public" Columns="2">
+                    <Label Text="{Loc 'surgery-ui-part-severity'}" />
+                    <Label Name="PartSeverityLabel" Access="Public" />
+                    <Label Text="{Loc 'surgery-ui-part-bleeding'}" />
+                    <Label Name="PartBleedingLabel" Access="Public" />
+                </GridContainer>
+                <PanelContainer Name="PartStatesDivider" Access="Public" StyleClasses="LowDivider" />
+                <BoxContainer Name="PartStatesView" Access="Public" Orientation="Vertical">
+                    <Label Text="{Loc 'surgery-ui-part-states'}" />
+                    <BoxContainer Name="PartStates" Access="Public" Orientation="Vertical" />
                 </BoxContainer>
             </BoxContainer>
+        </ScrollContainer>
+        <cc:VSeparator VerticalExpand="True" StyleClasses="LowDivider" />
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="12 8">
+            <Label Name="WarningLabel" Access="Public" Text="{Loc 'surgery-error-cannot-operate'}"
+                   StyleClasses="status-bad" Margin="0 0 0 6" Visible="False" />
+            <ScrollContainer Name="OperationsView" Access="Public" HScrollEnabled="False" VerticalExpand="True" Visible="False">
+                <BoxContainer Name="Operations" Access="Public" Orientation="Vertical" SeparationOverride="2" />
+            </ScrollContainer>
             <BoxContainer Name="EmptyView" Access="Public" Orientation="Vertical" VerticalExpand="True"
                           VerticalAlignment="Center">
-                <Label Text="{Loc 'surgery-ui-window-empty'}" StyleClasses="LabelKeyText" HorizontalAlignment="Center" />
-                <Label Text="{Loc 'surgery-ui-window-empty-hint'}" StyleClasses="LabelSubText" HorizontalAlignment="Center" />
+                <Label Name="EmptyLabel" Access="Public" StyleClasses="LabelKeyText" HorizontalAlignment="Center" />
+                <Label Name="EmptyHintLabel" Access="Public" Text="{Loc 'surgery-ui-window-empty-hint'}"
+                       StyleClasses="LabelSubText" HorizontalAlignment="Center" />
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

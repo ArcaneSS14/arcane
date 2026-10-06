@@ -1,9 +1,13 @@
+using System.Linq;
 using System.Numerics;
+using Content.Client._Arcane.StyleSheets;
+using Content.Client.Stylesheets;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Body.Part;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._Arcane.Medical.Surgery;
 
@@ -14,10 +18,15 @@ public readonly record struct SurgeryDollPart(Texture Texture, Texture? Bleeding
 /// </summary>
 public sealed class SurgeryDollControl : Control
 {
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IStylesheetManager _stylesheets = default!;
+
     private const int SpriteSize = 32;
     private const float Scale = 6f;
+    // In sprite pixels; half a pixel keeps the outline thin at the doll scale.
+    private const float OutlineWidth = 0.5f;
+    private static readonly ProtoId<ShaderPrototype> OutlineShader = "SelectionOutline";
 
-    private static readonly Color DimmedColor = new(0.55f, 0.55f, 0.6f);
     private static readonly Color MissingColor = Color.White.WithAlpha(0.3f);
     private static readonly Color OpenedColor = Color.FromHex("#E0A93F");
     private static readonly Color OpenedBorderColor = Color.FromHex("#1B1B1E");
@@ -41,14 +50,20 @@ public sealed class SurgeryDollControl : Control
     private readonly Dictionary<TargetBodyPart, SurgeryDollPart> _parts = new();
     private readonly Dictionary<TargetBodyPart, Control> _hitAreas = new();
     private TargetBodyPart? _hovered;
+    private readonly ShaderInstance _selectedOutline;
+    private readonly ShaderInstance _hoveredOutline;
 
     public TargetBodyPart? Selected { get; set; }
 
-    public event Action<TargetBodyPart, UIBox2>? OnPartPressed;
+    public event Action<TargetBodyPart>? OnPartPressed;
 
     public SurgeryDollControl()
     {
+        IoCManager.InjectDependencies(this);
         SetSize = new Vector2(SpriteSize * Scale);
+
+        _selectedOutline = CreateOutline();
+        _hoveredOutline = CreateOutline();
 
         foreach (var (part, box) in Bounds)
         {
@@ -74,7 +89,7 @@ public sealed class SurgeryDollControl : Control
                 if (args.Function != EngineKeyFunctions.UIClick)
                     return;
 
-                OnPartPressed?.Invoke(part, UIBox2.FromDimensions(area.GlobalPosition, area.Size));
+                OnPartPressed?.Invoke(part);
                 args.Handle();
             };
 
@@ -130,15 +145,20 @@ public sealed class SurgeryDollControl : Control
             if (!_parts.TryGetValue(part, out var data))
                 continue;
 
-            var color = data.Missing
-                ? MissingColor
-                : Selected != null && Selected != part && _hovered != part
-                    ? DimmedColor
-                    : Color.White;
-
+            var color = data.Missing ? MissingColor : Color.White;
             handle.DrawTextureRect(data.Texture, rect, color);
             if (data.Bleeding is { } bleeding)
                 handle.DrawTextureRect(bleeding, rect, color);
+        }
+
+        // Outlined parts are drawn again on top, so their outline is not hidden under neighbouring parts.
+        if (Selected != null || _hovered != null)
+        {
+            var accent = ArcanePalette.Themes.First(theme => theme.Id == _stylesheets.CurrentTheme).Highlight.Text;
+            if (_hovered is { } hovered && hovered != Selected)
+                DrawOutlined(handle, hovered, rect, _hoveredOutline, accent.WithAlpha(0.5f));
+            if (Selected is { } selected)
+                DrawOutlined(handle, selected, rect, _selectedOutline, accent);
         }
 
         foreach (var (part, box) in Bounds)
@@ -151,5 +171,28 @@ public sealed class SurgeryDollControl : Control
             handle.DrawRect(UIBox2.FromDimensions(origin, new Vector2(2f * scale)), OpenedBorderColor);
             handle.DrawRect(UIBox2.FromDimensions(origin + new Vector2(border), new Vector2(2f * scale - border * 2)), OpenedColor);
         }
+    }
+
+    private void DrawOutlined(DrawingHandleScreen handle, TargetBodyPart part, UIBox2 rect, ShaderInstance shader, Color color)
+    {
+        if (!_parts.TryGetValue(part, out var data))
+            return;
+
+        // The modulate also tints the outline, so an outlined missing part is drawn opaque.
+        shader.SetParameter("outline_color", color);
+        handle.UseShader(shader);
+        handle.DrawTextureRect(data.Texture, rect);
+        handle.UseShader(null);
+
+        if (data.Bleeding is { } bleeding)
+            handle.DrawTextureRect(bleeding, rect);
+    }
+
+    private ShaderInstance CreateOutline()
+    {
+        var shader = _proto.Index(OutlineShader).InstanceUnique();
+        shader.SetParameter("outline_width", OutlineWidth);
+        shader.SetParameter("outline_fullbright", true);
+        return shader;
     }
 }

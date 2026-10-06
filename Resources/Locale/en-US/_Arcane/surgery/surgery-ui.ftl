@@ -1,23 +1,16 @@
 surgery-ui-window-title-part = { surgery-ui-window-title } - { $part }
 surgery-ui-window-title-part-surgery = { surgery-ui-window-title } - { $part }, { $surgery }
 surgery-ui-window-no-part = No part selected
-surgery-ui-window-empty = Choose a surgery
+surgery-ui-window-empty = Choose a body part
 surgery-ui-window-empty-hint = Click a body part to see its surgeries.
-surgery-ui-window-progress = Steps: {$done}/{$total}
-surgery-ui-window-complete = Surgery complete
-surgery-ui-popup-empty = No surgeries available
-surgery-ui-step-active = In progress...
-
-surgery-ui-back-to-part = ← Back to surgeries: {$part}
+surgery-ui-operations-empty = No surgeries available
+surgery-ui-step-satisfied-tooltip = Not needed yet: earlier steps come first, and this one may be required after them.
 
 surgery-ui-group-started = In progress
 surgery-ui-group-available = Available
 surgery-ui-group-needs-preparation = Needs preparation
 surgery-ui-group-closing = Closing
 surgery-ui-group-completed = Completed
-surgery-ui-hint-next = Next: {$step}
-surgery-ui-hint-start = Start: {$step}
-surgery-ui-hint-after = After: {$surgery}
 
 surgery-ui-part-missing = {$part} (missing)
 surgery-ui-part-started = Started: {$surgery} ({$done}/{$total})
@@ -26,6 +19,13 @@ surgery-ui-part-surgeries = {$count ->
    *[other] {$count} surgeries available
 }
 
+surgery-ui-part-severity = Severity:
+surgery-ui-part-bleeding = Bleeding:
+surgery-ui-part-bleeding-yes = Yes
+surgery-ui-part-bleeding-no = No
+surgery-ui-part-states = Surgical state
+surgery-ui-part-states-none = None
+surgery-ui-part-state-entry = • {$state}
 surgery-ui-part-state-bleeding = Bleeding
 surgery-ui-part-state-incision = Incision open
 surgery-ui-part-state-skin-retracted = Skin retracted

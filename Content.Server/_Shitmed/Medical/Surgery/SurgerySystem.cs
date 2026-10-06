@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
+using Content.Shared._Arcane.Surgery;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
@@ -76,7 +76,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
 
             var choices = GetSurgeryChoices(uid);
             if (_ui.TryGetUiState<SurgeryBuiState>((uid, ui), SurgeryUIKey.Key, out var state)
-                && ChoicesEqual(state.Choices, choices))
+                && SurgeryChoices.Equal(state.Choices, choices))
                 continue;
 
             _ui.SetUiState((uid, ui), SurgeryUIKey.Key, new SurgeryBuiState(choices));
@@ -106,20 +106,6 @@ public sealed class SurgerySystem : SharedSurgerySystem
         }
 
         return surgeries;
-    }
-
-    private static bool ChoicesEqual(Dictionary<NetEntity, List<EntProtoId>> a, Dictionary<NetEntity, List<EntProtoId>> b)
-    {
-        if (a.Count != b.Count)
-            return false;
-
-        foreach (var (part, surgeries) in a)
-        {
-            if (!b.TryGetValue(part, out var other) || !surgeries.SequenceEqual(other))
-                return false;
-        }
-
-        return true;
     }
     // Arcane-End
 
