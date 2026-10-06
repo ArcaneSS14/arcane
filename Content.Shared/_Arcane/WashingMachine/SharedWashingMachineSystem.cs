@@ -96,6 +96,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
         SubscribeLocalEvent<WashingMachineComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs);
         SubscribeLocalEvent<WashingMachineComponent, GetVerbsEvent<ActivationVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<WashingMachineComponent, StorageBeforeOpenEvent>(OnStorageBeforeOpen);
         SubscribeLocalEvent<WashingMachineComponent, CanDropTargetEvent>(OnCanDropTarget);
         SubscribeLocalEvent<WashingMachineComponent, DragDropTargetEvent>(OnDragDropTarget);
         SubscribeLocalEvent<WashingMachineComponent, InteractUsingEvent>(OnInteractUsing);
@@ -182,8 +183,6 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         // update again incase forensics changed
         // such as dyeing
         UpdateForensics((uid, component), items);
-
-        _storage.OpenStorage(uid);
     }
 
     private void OnInit(Entity<WashingMachineComponent> ent, ref ComponentInit args)
@@ -230,6 +229,14 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             return;
 
         args.Cancelled = ent.Comp.WashingMachineState != WashingMachineState.Idle;
+    }
+
+    private void OnStorageBeforeOpen(Entity<WashingMachineComponent> ent, ref StorageBeforeOpenEvent args)
+    {
+        if (TryComp<EntityStorageComponent>(ent.Owner, out var storage) && storage.Contents.ContainedEntities.Count > 0)
+        {
+            args.SkipEmptyContents = true;
+        }
     }
 
     private void OnGetAlternativeVerbs(Entity<WashingMachineComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
