@@ -81,7 +81,8 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
         string slot,
         BaseContainer slotContainer,
         SlotDefinition slotDefinition,
-        ClothingComponent? clothing = null)
+        ClothingComponent? clothing = null,
+        EntityUid? handBack = null)
     {
         if (!_container.CanInsert(item, slotContainer))
             return InventoryDelayResult.Immediate;
@@ -90,11 +91,13 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
         if (delay <= TimeSpan.Zero)
             return InventoryDelayResult.Immediate;
 
+        var handBackNet = handBack == null ? (NetEntity?) null : GetNetEntity(handBack.Value);
+
         var args = new DoAfterArgs(
             EntityManager,
             actor,
             delay,
-            new InventoryDoAfterEvent(true, slot),
+            new InventoryDoAfterEvent(true, slot, handBack: handBackNet),
             item,
             target,
             item)
@@ -148,14 +151,30 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
 
     private void OnInventoryDoAfter(Entity<ItemComponent> ent, ref InventoryDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || args.Target is not { } target)
+        if (args.Handled || args.Target is not { } target)
             return;
 
         var actor = args.User;
 
+        if (args.Cancelled)
+        {
+            if (args.HandBack is { } handBack && TryGetEntity(handBack, out var handBackEnt) && !TerminatingOrDeleted(handBackEnt.Value))
+            {
+                _hands.PickupOrDrop(actor, handBackEnt.Value);
+            }
+
+            return;
+        }
+
         if (args.Equip)
         {
             args.Handled = _inventory.TryEquip(actor, target, ent.Owner, args.Slot, predicted: true, checkDoafter: false, triggerHandContact: true);
+
+            if (args.Handled && args.HandBack is { } handBack && TryGetEntity(handBack, out var handBackEnt) && !TerminatingOrDeleted(handBackEnt.Value))
+            {
+                _hands.PickupOrDrop(actor, handBackEnt.Value);
+            }
+
             return;
         }
 
@@ -173,7 +192,9 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
             && TryGetEntity(equipAfter, out var equipAfterEnt)
             && !TerminatingOrDeleted(equipAfterEnt.Value))
         {
-            _inventory.TryEquip(actor, target, equipAfterEnt.Value, args.Slot, predicted: true, checkDoafter: true, triggerHandContact: true);
+            _inventory.TryEquipWithHandBack(actor, target, equipAfterEnt.Value, args.Slot, ent.Owner, out var doAfterStarted);
+            if (doAfterStarted)
+                return;
         }
 
         _hands.PickupOrDrop(actor, ent.Owner);
