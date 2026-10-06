@@ -327,3 +327,16 @@
     sprite: _Arcane/Clothing/Head/USSP/blue_ushanka.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Head/USSP/blue_ushanka.rsi
+
+# Lovemate
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHatOficerCapLovemate
+  name: officer cap
+  description: Stop, you scum! You're arrested!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/officer_cap.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/officer_cap.rsi
