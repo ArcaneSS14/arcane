@@ -2733,3 +2733,28 @@ Entries:
   time: '2026-10-06T14:29:03.0000000+00:00'
   prNumber: 460
   url: https://github.com/ArcaneSS14/arcane/pull/460
+- author: RabbitBat, Gustov
+  changes:
+    - type: Tweak
+      message: Изменены спрайты скафандра HTX5-Mirrorduss
+    - type: Tweak
+      message: Изменён перевод скафандра "HTX5-Mirrorduss"->"скафандр HTХ5-Миррордусс"
+    - type: Tweak
+      message: Изменён спрайт ошейника на другой
+  id: 201
+  time: '2026-10-06T15:00:13.0000000+00:00'
+  prNumber: 471
+  url: https://github.com/ArcaneSS14/arcane/pull/471
+  media:
+    - >-
+      https://github.com/user-attachments/assets/e3d9311a-f063-49b8-bd2b-10851b9c6446
+    - >-
+      https://github.com/user-attachments/assets/2f80ca8d-a8a8-45b3-acf4-9caad1ca8353
+    - >-
+      https://github.com/user-attachments/assets/5eee2a0d-5097-489e-a3c8-c0d2a8d9058e
+    - >-
+      https://github.com/user-attachments/assets/94f85c14-e228-4402-9451-f93fa8f645b4
+    - >-
+      https://github.com/user-attachments/assets/82c1c62f-29ca-4140-b26e-3c64dd84871c
+    - >-
+      https://github.com/user-attachments/assets/52844600-3d5f-4bc0-800d-9afd4bb3c2dd

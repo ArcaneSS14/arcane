@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Slungomia https://github.com/, Androidonator https://github.com/Androidonator",
+    "copyright": "By Gustov (discord 1293912493512458253)",
     "size": {
         "x": 32,
         "y": 32
@@ -18,15 +18,7 @@
             "directions": 4
         },
         {
-            "name": "equipped-head-light",
-            "directions": 4
-        },
-        {
-            "name": "equipped-head-resomi",
-            "directions": 4
-        },
-        {
-            "name": "equipped-head-reptilian",
+            "name": "equipped-head-vox",
             "directions": 4
         }
     ]
