@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Goobstation.Common.Effects;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Forensics;
@@ -9,6 +10,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid;
+using Content.Shared.Jittering;
 using Content.Shared.Popups;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -25,15 +27,19 @@ namespace Content.Server._Arcane.ERP;
 public sealed class OrgasmSystem : EntitySystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly ArousalSystem _arousal = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly CondomSystem _condom = default!;
     [Dependency] private readonly ForensicsSystem _forensics = default!;
+    [Dependency] private readonly SharedJitteringSystem _jitter = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SparksSystem _sparks = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
@@ -46,6 +52,9 @@ public sealed class OrgasmSystem : EntitySystem
     private const float EjaculationBlockedDistance = 0.1f;
     private const float EjaculationWallCheckExtraRange = 0.1f;
     private const float EjaculationForwardDot = 0.6f;
+    private static readonly TimeSpan TrembleDuration = TimeSpan.FromSeconds(1f);
+    private const float TrembleAmplitude = 20f;
+    private const float TrembleFrequency = 5f;
     private static readonly ProtoId<LocalizedDatasetPrototype> OrgasmMessagesDataset = "OrgasmMessages";
 
     public override void Initialize()
@@ -69,8 +78,10 @@ public sealed class OrgasmSystem : EntitySystem
         Spawn(HeartsProto, _transform.GetMapCoordinates(uid));
         PlayOrgasmSound(uid, humanoid?.Gender ?? Gender.Female);
 
+        _arousal.NotifyMoan(uid);
+
         if (_prototype.TryIndex(OrgasmMessagesDataset, out var dataset))
-            _chat.TrySendInGameICMessage(uid, Loc.GetString(_random.Pick(dataset.Values)), InGameICChatType.Emote, false);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString(_random.Pick(dataset.Values)), InGameICChatType.Emote, false, checkEmote: false);
 
         _popup.PopupEntity(Loc.GetString("orgasm-popup-self"), uid, uid, PopupType.MediumCaution);
 
@@ -80,6 +91,9 @@ public sealed class OrgasmSystem : EntitySystem
         var weakness = EnsureComp<OrgasmWeaknessComponent>(uid);
         weakness.ExpiresAt = _timing.CurTime + weakness.WeaknessDuration;
         Dirty(uid, weakness);
+
+        if (humanoid is { Sex: Sex.Female or Sex.Futanari })
+            _jitter.DoJitter(uid, TrembleDuration, refresh: true, amplitude: TrembleAmplitude, frequency: TrembleFrequency);
     }
 
     // TODO: move overlay logic to Content.Shared for prediction
@@ -88,12 +102,42 @@ public sealed class OrgasmSystem : EntitySystem
         if (sex is Sex.Unsexed)
             return;
 
-        var puddleProto = sex is Sex.Female ? FemCumPuddleProto : SemenPuddleProto;
+        if (HasComp<SparkEjaculationComponent>(uid))
+        {
+            _sparks.DoSparks(Transform(uid).Coordinates, playSound: true);
+            return;
+        }
+
+        if (sex is Sex.Male or Sex.Futanari && _condom.TryFill(uid))
+            return;
 
         var xform = Transform(uid);
         var (sourcePos, sourceRot) = _transform.GetWorldPositionRotation(xform);
         var sourceMap = _transform.ToMapCoordinates(xform.Coordinates);
         var forward = sourceRot.ToWorldVec();
+
+        SpawnPuddle(uid, sourcePos, sourceMap, forward, sex);
+
+        foreach (var target in _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(sourceMap, EjaculationTargetDistance))
+        {
+            if (target.Owner == uid)
+                continue;
+
+            var toTarget = _transform.GetWorldPosition(target.Owner) - sourcePos;
+            if (toTarget == Vector2.Zero || Vector2.Dot(toTarget.Normalized(), forward) < EjaculationForwardDot)
+                continue;
+
+            if (!_interaction.InRangeUnobstructed(uid, target.Owner, EjaculationTargetDistance))
+                continue;
+
+            AddCumOverlay(target.Owner);
+        }
+    }
+
+    private void SpawnPuddle(EntityUid uid, Vector2 sourcePos, MapCoordinates sourceMap, Vector2 forward, Sex sex)
+    {
+        var puddleProto = sex is Sex.Female ? FemCumPuddleProto : SemenPuddleProto;
+
         var forwardMap = new MapCoordinates(sourcePos + forward * EjaculationEffectDistance, sourceMap.MapId);
 
         var wallBlocked = !_interaction.InRangeUnobstructed(uid, forwardMap, EjaculationEffectDistance + EjaculationWallCheckExtraRange);
@@ -114,21 +158,6 @@ public sealed class OrgasmSystem : EntitySystem
             {
                 reagent.Reagent.EnsureReagentData().AddRange(dnaData);
             }
-        }
-
-        foreach (var target in _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(sourceMap, EjaculationTargetDistance))
-        {
-            if (target.Owner == uid)
-                continue;
-
-            var toTarget = _transform.GetWorldPosition(target.Owner) - sourcePos;
-            if (toTarget == Vector2.Zero || Vector2.Dot(toTarget.Normalized(), forward) < EjaculationForwardDot)
-                continue;
-
-            if (!_interaction.InRangeUnobstructed(uid, target.Owner, EjaculationTargetDistance))
-                continue;
-
-            AddCumOverlay(target.Owner);
         }
     }
 
