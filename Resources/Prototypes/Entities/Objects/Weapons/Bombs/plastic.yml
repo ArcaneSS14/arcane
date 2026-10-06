@@ -93,6 +93,7 @@
     speechVerb: Robotic
     speechSounds: Pai
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     prob: 0.05
     name: ghost-role-information-c4-name
     description: ghost-role-information-c4-description
