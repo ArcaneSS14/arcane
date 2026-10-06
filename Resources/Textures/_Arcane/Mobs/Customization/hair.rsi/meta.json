@@ -138,6 +138,10 @@
         {
             "name": "wolfcut_f",
             "directions": 4
+        },
+        {
+            "name": "bob_with_tail",
+            "directions": 4
         }
     ]
 }

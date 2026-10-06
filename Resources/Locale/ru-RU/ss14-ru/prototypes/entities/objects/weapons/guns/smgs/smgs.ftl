@@ -11,3 +11,6 @@ ent-WeaponSubMachineGunDrozd = Дрозд
 ent-WeaponSubMachineGunWt550 = WT550
     .desc = Отличный пистолет-пулемёт, производства НаноТрейзен's Small Arms Division. Использует патроны калибра 9мм авто.
     .suffix = Пистолет-пулемёт
+ent-WeaponSubMachineGunBriefcase = коричневый чемодан
+    .desc = Пригодится для переноски предметов в руках.
+    .suffix = Пистолет-пулемёт

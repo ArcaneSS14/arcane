@@ -142,6 +142,7 @@
     slots:
     - HEAD
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     prob: 1
     name: ghost-role-information-SyndiRoach-name
     allowMovement: true

@@ -21,9 +21,9 @@
     methodPointRewards:
       Deconstruct:
       - type: General
-        amount: 250
+        amount: 67 # Arcane-Edit
       - type: Experimental
-        amount: 30
+        amount: 5 # Arcane-Edit
     discoveryTrigger: machine:ore-sample
   # Orion-End
   - type: Fixtures

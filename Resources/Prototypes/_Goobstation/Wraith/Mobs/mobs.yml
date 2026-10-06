@@ -687,6 +687,7 @@
   categories: [ Spawner ]
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -707,6 +708,7 @@
   parent: MobSkeletonGoon
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -725,6 +727,7 @@
   parent: MobCrunched
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -746,6 +749,7 @@
   parent: MobShade
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -764,6 +768,7 @@
   parent: MobMonstrosityHead
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -782,6 +787,7 @@
   parent: MobMonstrosityBody
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -800,6 +806,7 @@
   parent: MobLion
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -818,6 +825,7 @@
   parent: MobAncientRepairBot
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -836,6 +844,7 @@
   parent: MobAncientGuardBot
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -854,6 +863,7 @@
   parent: MobAncientRobot1
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -872,6 +882,7 @@
   parent: MobAncientRobot2
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -890,6 +901,7 @@
   parent: MobAncientRobot3
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -908,6 +920,7 @@
   parent: MobAncientLegs
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -926,6 +939,7 @@
   parent: MobBearGoon
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -947,6 +961,7 @@
   parent: MobBrullbar
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -968,6 +983,7 @@
   parent: GunBot
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -1005,6 +1021,7 @@
   parent: NukeBot
   components:
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
