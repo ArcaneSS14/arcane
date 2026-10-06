@@ -8,6 +8,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
+using Content.Shared._Shitmed.Surgery;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
@@ -16,6 +17,7 @@ using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Containers;
@@ -31,6 +33,7 @@ public sealed class SurgeryBui : BoundUserInterface
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
 
     private const float ChangeCheckInterval = 0.25f;
     private static readonly TimeSpan TargetChangeTimeout = TimeSpan.FromSeconds(1);
@@ -39,7 +42,6 @@ public sealed class SurgeryBui : BoundUserInterface
     private readonly SurgerySystem _surgery;
     private readonly SurgeryToolSystem _tools;
     private readonly SharedContainerSystem _container;
-    private readonly SpriteSystem _sprite;
     private readonly TargetingUIController _targeting;
 
     [ViewVariables]
@@ -48,13 +50,15 @@ public sealed class SurgeryBui : BoundUserInterface
     private Dictionary<EntityUid, List<EntProtoId>> _choices = new();
     private readonly Dictionary<EntityUid, List<SurgeryOperationEntry>> _entries = new();
     private readonly Dictionary<(EntityUid Part, EntityUid Surgery), SurgeryProgress> _progress = new();
-    private readonly List<SurgeryStepSection> _sections = new();
+    private readonly List<SurgeryStepData> _steps = new();
     private readonly Dictionary<TargetBodyPart, (EntityUid Part, string? MissingSlot)> _dollSlots = new();
     private EntityUid? _part;
     // An empty child slot of the selected part, which lists only the surgeries that attach a part there.
     private (string Slot, TargetBodyPart DollPart)? _missing;
     private EntProtoId? _surgeryId;
     private bool _canOperate;
+    // With previous steps ignored, a step counts as done even when earlier ones are not.
+    private bool _anyOrder;
     // The doll follows the surgeon's targeting and plan, so they are applied only when they change.
     private TargetBodyPart? _lastTarget;
     // A doll click retargets through the server, so the old target is ignored until the new one arrives.
@@ -71,7 +75,6 @@ public sealed class SurgeryBui : BoundUserInterface
         _tools = EntMan.System<SurgeryToolSystem>();
         _targeting = _uiManager.GetUIController<TargetingUIController>();
         _container = EntMan.System<SharedContainerSystem>();
-        _sprite = EntMan.System<SpriteSystem>();
     }
 
     protected override void Open()
@@ -157,6 +160,11 @@ public sealed class SurgeryBui : BoundUserInterface
         _progress.Clear();
         _entries.Clear();
 
+        var ignore = new SurgeryIgnorePreviousStepsEvent();
+        if (_player.LocalEntity is { } user)
+            EntMan.EventBus.RaiseLocalEvent(user, ignore);
+        _anyOrder = ignore.Handled;
+
         // Choices only change with a server state, which lags behind a part being severed or deleted.
         foreach (var part in _choices.Keys)
         {
@@ -183,13 +191,7 @@ public sealed class SurgeryBui : BoundUserInterface
                 hash.Add(text);
 
             foreach (var entry in entries)
-            {
-                hash.Add(entry.Id);
-                hash.Add(entry.Group);
-                hash.Add(entry.Done);
-                foreach (var step in entry.Steps)
-                    hash.Add(step);
-            }
+                hash.Add(entry);
         }
 
         CollectSteps();
@@ -197,13 +199,8 @@ public sealed class SurgeryBui : BoundUserInterface
         steps.Add(_surgeryId);
         steps.Add(_lastPlan);
         steps.Add(_canOperate);
-        foreach (var section in _sections)
-        {
-            steps.Add(section.Id);
-            steps.Add(section.Complete);
-            foreach (var step in section.Steps)
-                steps.Add(step);
-        }
+        foreach (var step in _steps)
+            steps.Add(step);
 
         return (hash.ToHashCode(), steps.ToHashCode());
     }
@@ -367,7 +364,7 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private static EntProtoId? GetStarted(IEnumerable<SurgeryOperationEntry> entries)
     {
-        return entries.FirstOrDefault(e => e.Group == SurgeryOperationGroup.Started)?.Id;
+        return entries.FirstOrDefault(e => e.Status == SurgeryOperationStatus.Started)?.Id;
     }
 
     #region Body parts
@@ -547,7 +544,7 @@ public sealed class SurgeryBui : BoundUserInterface
             lines.Add(text);
 
         var entries = _entries[part];
-        foreach (var entry in entries.Where(e => e.Group == SurgeryOperationGroup.Started))
+        foreach (var entry in entries.Where(e => e.Status == SurgeryOperationStatus.Started))
         {
             lines.Add(Loc.GetString("surgery-ui-part-started",
                 ("surgery", entry.Name),
@@ -555,7 +552,7 @@ public sealed class SurgeryBui : BoundUserInterface
                 ("total", entry.Total)));
         }
 
-        var count = entries.Count(e => e.Group != SurgeryOperationGroup.Completed);
+        var count = entries.Count(e => e.Status != SurgeryOperationStatus.Completed);
         lines.Add(Loc.GetString("surgery-ui-part-surgeries", ("count", count)));
         return string.Join('\n', lines);
     }
@@ -578,7 +575,8 @@ public sealed class SurgeryBui : BoundUserInterface
     private Texture GetStatusTexture(TargetBodyPart slot, string state)
     {
         var name = slot.ToString().ToLowerInvariant();
-        return _sprite.Frame0(new SpriteSpecifier.Rsi(StatusRsiPath / $"{name}.rsi", $"{name}_{state}"));
+        // Loaded outside the RSI atlas, since the doll outline shader samples past the frame edge into neighbouring sprites.
+        return _resourceCache.GetResource<TextureResource>(StatusRsiPath / $"{name}.rsi" / $"{name}_{state}.png").Texture;
     }
 
     private static string GetMissingPartTitle(TargetBodyPart slot)
@@ -635,13 +633,10 @@ public sealed class SurgeryBui : BoundUserInterface
         window.EmptyHintLabel.Visible = _part == null;
         window.EmptyLabel.Text = Loc.GetString(_part == null ? "surgery-ui-window-empty" : "surgery-ui-operations-empty");
 
-        // Rows are reused while the list stays the same, so a refresh does not reset hover or scroll.
+        // Rows keep their order as the operation progresses and are reused, so a refresh does not reset hover or scroll.
         var layout = new HashCode();
         foreach (var entry in entries)
-        {
             layout.Add(entry.Id);
-            layout.Add(entry.Group);
-        }
 
         if (_operationsLayout != layout.ToHashCode())
         {
@@ -652,12 +647,8 @@ public sealed class SurgeryBui : BoundUserInterface
         for (var i = 0; i < entries.Count; i++)
         {
             var entry = entries[i];
-            var expanded = entry.Id == _surgeryId && _sections.Count > 0;
-            IReadOnlyList<SurgeryStepSection> sections = expanded
-                ? _sections
-                : new List<SurgeryStepSection> { new(entry.Id, entry.Name, entry.Done >= entry.Total, entry.Steps) };
-
-            _operationRows[i].Set(entry, sections, expanded, _lastPlan == (_part, entry.Id), GetIcon);
+            var steps = entry.Id == _surgeryId ? _steps : [];
+            _operationRows[i].Set(entry, steps, _lastPlan == (_part, entry.Id), GetIcon);
         }
     }
 
@@ -666,20 +657,8 @@ public sealed class SurgeryBui : BoundUserInterface
         window.Operations.DisposeAllChildren();
         _operationRows.Clear();
 
-        SurgeryOperationGroup? group = null;
         foreach (var entry in entries)
         {
-            if (entry.Group != group)
-            {
-                group = entry.Group;
-                window.Operations.AddChild(new Label
-                {
-                    Text = Loc.GetString($"surgery-ui-group-{GetGroupId(entry.Group)}"),
-                    StyleClasses = { StyleClass.LabelSubText },
-                    Margin = new Thickness(4, 6, 0, 0),
-                });
-            }
-
             var id = entry.Id;
             var row = new SurgeryOperationRow();
             row.OnHeaderPressed += () => ToggleSurgery(id);
@@ -703,10 +682,20 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private List<SurgeryOperationEntry> BuildEntries(EntityUid part)
     {
+        // Surgeries that only prepare for others, like opening an incision, are shown as steps of those others.
+        var required = new HashSet<EntProtoId>();
+        foreach (var surgeryId in _choices[part])
+        {
+            var requirementId = GetSurgery(surgeryId)?.Comp.Requirement;
+            while (requirementId is { } id && required.Add(id))
+                requirementId = GetSurgery(id)?.Comp.Requirement;
+        }
+
         var entries = new List<(int Priority, SurgeryOperationEntry Entry)>();
         foreach (var surgeryId in _choices[part])
         {
-            if (GetSurgery(surgeryId) is not { } surgery
+            if (required.Contains(surgeryId)
+                || GetSurgery(surgeryId) is not { } surgery
                 || GetEntry(part, surgery, surgeryId) is not { } entry)
                 continue;
 
@@ -715,10 +704,6 @@ public sealed class SurgeryBui : BoundUserInterface
 
         entries.Sort((a, b) =>
         {
-            var group = a.Entry.Group.CompareTo(b.Entry.Group);
-            if (group != 0)
-                return group;
-
             var priority = a.Priority.CompareTo(b.Priority);
             return priority != 0 ? priority : string.Compare(a.Entry.Name, b.Entry.Name, StringComparison.CurrentCulture);
         });
@@ -728,53 +713,39 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private SurgeryOperationEntry? GetEntry(EntityUid part, Entity<SurgeryComponent> surgery, EntProtoId surgeryId)
     {
-        var progress = GetProgress(part, surgery, surgeryId);
-        var (done, total) = (progress.Done, progress.Total);
+        var own = GetProgress(part, surgery);
+        var (done, total) = (0, 0);
+        var inOrder = true;
+        foreach (var (_, chainSurgery) in BuildChain(part, surgery, surgeryId))
+        {
+            var progress = GetProgress(part, chainSurgery);
+            total += progress.Total;
+            if (inOrder || _anyOrder)
+                done += progress.Done;
 
-        SurgeryOperationGroup group;
+            inOrder &= progress.Done >= progress.Total;
+        }
+
+        // The surgery's own steps come last in its chain, so it is started once one of them counts.
+        var started = _anyOrder ? own.Done > 0 : done > total - own.Total;
+
+        SurgeryOperationStatus status;
         // Closing surgeries are valid on every part, so a complete one only means there is nothing to close.
         if (surgery.Comp.Priority > 0)
         {
-            if (done >= total)
+            if (own.Done >= own.Total)
                 return null;
 
-            group = SurgeryOperationGroup.Closing;
+            status = SurgeryOperationStatus.Closing;
         }
-        else if (NeedsPreparation(part, surgery, surgeryId))
-            group = SurgeryOperationGroup.NeedsPreparation;
         else if (done >= total)
-            group = SurgeryOperationGroup.Completed;
-        else if (progress.Started)
-            group = SurgeryOperationGroup.Started;
+            status = SurgeryOperationStatus.Completed;
+        else if (started)
+            status = SurgeryOperationStatus.Started;
         else
-            group = SurgeryOperationGroup.Available;
+            status = SurgeryOperationStatus.Available;
 
-        return new SurgeryOperationEntry(surgeryId, Name(surgery), group, done, total, progress.Steps);
-    }
-
-    private bool NeedsPreparation(EntityUid part, Entity<SurgeryComponent> surgery, EntProtoId surgeryId)
-    {
-        var chain = BuildChain(part, surgery, surgeryId);
-        for (var i = chain.Count - 2; i >= 0; i--)
-        {
-            var progress = GetProgress(part, chain[i].Surgery, chain[i].Id);
-            if (progress.Done < progress.Total)
-                return true;
-        }
-
-        return false;
-    }
-
-    private static string GetGroupId(SurgeryOperationGroup group)
-    {
-        return group switch
-        {
-            SurgeryOperationGroup.Started => "started",
-            SurgeryOperationGroup.Available => "available",
-            SurgeryOperationGroup.NeedsPreparation => "needs-preparation",
-            SurgeryOperationGroup.Closing => "closing",
-            _ => "completed",
-        };
+        return new SurgeryOperationEntry(surgeryId, Name(surgery), status, done, total);
     }
 
     #endregion
@@ -783,7 +754,7 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private void CollectSteps()
     {
-        _sections.Clear();
+        _steps.Clear();
         _canOperate = EntMan.TryGetComponent(Owner, out SurgeryTargetComponent? target) && target.CanOperate;
 
         if (_part is not { } part
@@ -801,14 +772,7 @@ public sealed class SurgeryBui : BoundUserInterface
 
         foreach (var (id, chainSurgery) in BuildChain(part, surgery, surgeryId))
         {
-            var progress = GetProgress(part, chainSurgery, id);
-            if (progress.Done >= progress.Total)
-            {
-                _sections.Add(new SurgeryStepSection(id, Name(chainSurgery), true, []));
-                continue;
-            }
-
-            var steps = new List<SurgeryStepData>();
+            var stage = id == surgeryId ? null : Name(chainSurgery);
             foreach (var stepId in chainSurgery.Comp.Steps)
             {
                 if (_surgery.IsStepSkipped(part, stepId) || _surgery.GetSingleton(stepId) is not { } step)
@@ -837,18 +801,15 @@ public sealed class SurgeryBui : BoundUserInterface
                     && !_surgery.CanPerformStepWithHeld(user, Owner, part, step, false, out var popup))
                     warning = popup;
 
-                steps.Add(new SurgeryStepData(id,
-                    stepId,
-                    step,
+                _steps.Add(new SurgeryStepData(step,
                     Name(step),
+                    stage,
                     status,
                     _tools.GetToolName(step),
                     warning,
                     activeStart,
                     activeDuration));
             }
-
-            _sections.Add(new SurgeryStepSection(id, Name(chainSurgery), false, steps));
         }
     }
 
@@ -870,36 +831,26 @@ public sealed class SurgeryBui : BoundUserInterface
         return chain;
     }
 
-    private SurgeryProgress GetProgress(EntityUid part, Entity<SurgeryComponent> surgery, EntProtoId surgeryId)
+    private SurgeryProgress GetProgress(EntityUid part, Entity<SurgeryComponent> surgery)
     {
         if (_progress.TryGetValue((part, surgery.Owner), out var cached))
             return cached;
 
-        var progress = new SurgeryProgress(0, 0, false, []);
+        var progress = new SurgeryProgress(0, 0);
+        var inOrder = true;
         foreach (var stepId in surgery.Comp.Steps)
         {
             if (_surgery.IsStepSkipped(part, stepId))
                 continue;
 
             var complete = _surgery.IsStepComplete(Owner, part, stepId, surgery);
-            if (progress.Total++ == 0)
-                progress.Started = complete;
+            progress.Total++;
 
-            if (complete)
+            // A later step may already pass its check, like taking an item out of an empty cavity, but is not done yet.
+            if (complete && (inOrder || _anyOrder))
                 progress.Done++;
 
-            if (_surgery.GetSingleton(stepId) is { } step)
-            {
-                progress.Steps.Add(new SurgeryStepData(surgeryId,
-                    stepId,
-                    step,
-                    Name(step),
-                    complete ? SurgeryStepStatus.Complete : SurgeryStepStatus.Locked,
-                    _tools.GetToolName(step),
-                    null,
-                    TimeSpan.Zero,
-                    TimeSpan.Zero));
-            }
+            inOrder &= complete;
         }
 
         return _progress[(part, surgery.Owner)] = progress;
@@ -979,5 +930,5 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private string Name(EntityUid uid) => EntMan.GetComponent<MetaDataComponent>(uid).EntityName;
 
-    private record struct SurgeryProgress(int Done, int Total, bool Started, List<SurgeryStepData> Steps);
+    private record struct SurgeryProgress(int Done, int Total);
 }

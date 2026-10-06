@@ -82,10 +82,12 @@ public abstract partial class SharedSurgerySystem
         SubSurgery<SurgeryBleedsTreatmentStepComponent>(OnBleedsTreatmentStep, OnBleedsTreatmentCheck);
         // Arcane-Edit: pain is an effect of the step, not a condition for it staying complete.
         SubscribeLocalEvent<SurgeryStepPainInflicterComponent, SurgeryStepEvent>(OnPainInflicterStep); // Arcane-Edit
-        Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs =>
-        {
-            subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
-        });
+        // Arcane-Edit-Start: Removed, steps are done by clicking the patient with a tool
+//        Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs =>
+//        {
+//            subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
+//        });
+        // Arcane-Edit-End
 
         SubscribeLocalEvent<MeleeHitEvent>(OnSurgeryMeleeHit); // Arcane
     }
@@ -885,20 +887,20 @@ public abstract partial class SharedSurgerySystem
     }
     */ // Arcane-Edit-End
 
-    private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
-    {
-        if (!_timing.IsFirstTimePredicted)
-            return;
+    // Arcane-Edit-Start: Removed, steps are done by clicking the patient with a tool
+//    private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
+//    {
+//        if (!_timing.IsFirstTimePredicted)
+//            return;
 
-        var user = args.Actor;
-        // Arcane-Edit-Start
-        var targetPart = GetEntity(args.Part);
-        if (!HasComp<BodyPartComponent>(targetPart))
-            return;
+//        var user = args.Actor;
+//        var targetPart = GetEntity(args.Part);
+//        if (!HasComp<BodyPartComponent>(targetPart))
+//            return;
 
-        TryDoSurgeryStep(ent.Owner, targetPart, user, args.Surgery, args.Step);
-        // Arcane-Edit-End
-    }
+//        TryDoSurgeryStep(ent.Owner, targetPart, user, args.Surgery, args.Step);
+//    }
+    // Arcane-Edit-End
     #endregion
 
     #region Helper Methods

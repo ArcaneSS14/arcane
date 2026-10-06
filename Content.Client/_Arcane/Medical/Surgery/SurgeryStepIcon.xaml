@@ -2,5 +2,5 @@
     xmlns="https://spacestation14.io"
     xmlns:surgery="clr-namespace:Content.Client._Arcane.Medical.Surgery">
     <TextureRect Name="Icon" Stretch="KeepAspectCentered" />
-    <Label Name="CheckLabel" Text="✓" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visible="False" />
+    <Label Name="CheckLabel" Text="✓" StyleClasses="status-good" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visible="False" />
 </surgery:SurgeryStepIcon>

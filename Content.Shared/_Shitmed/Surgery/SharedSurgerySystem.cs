@@ -471,7 +471,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         }
         else
         {
-            if (!bleeding)
+            if (!bleeding && !HasComp<BleedersClampedComponent>(args.Part)) // Arcane-Edit: clamped bleeders still need stitching
                 args.Cancelled = true;
         }
     }

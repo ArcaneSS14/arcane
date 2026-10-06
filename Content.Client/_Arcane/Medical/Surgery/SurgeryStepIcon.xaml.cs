@@ -9,7 +9,6 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Arcane.Medical.Surgery;
@@ -25,17 +24,15 @@ public enum SurgeryStepStatus : byte
 }
 
 public readonly record struct SurgeryStepData(
-    EntProtoId Surgery,
-    EntProtoId Step,
     EntityUid StepEnt,
     string Name,
+    // The required surgery the step belongs to, when it is not the operation itself.
+    string? Stage,
     SurgeryStepStatus Status,
     string? Tool,
     string? Warning,
     TimeSpan ActiveStart,
     TimeSpan ActiveDuration);
-
-public sealed record SurgeryStepSection(EntProtoId Id, string Name, bool Complete, List<SurgeryStepData> Steps);
 
 /// <summary>
 /// Step tool icon drawn with the stylesheet button textures, tinted by the step status.
@@ -54,7 +51,7 @@ public sealed partial class SurgeryStepIcon : ContainerButton
     private readonly Texture _borderedTexture;
     private readonly StyleBoxTexture _box = new();
 
-    public SurgeryStepData Data { get; private set; }
+    private SurgeryStepData _data;
 
     public SurgeryStepIcon()
     {
@@ -67,28 +64,23 @@ public sealed partial class SurgeryStepIcon : ContainerButton
 
         Icon.SetSize = new Vector2(IconSize);
         Icon.Margin = new Thickness(Padding);
+        // Steps are done with tools on the patient, so the icon only shows the step.
+        Disabled = true;
     }
 
-    /// <summary>
-    /// Steps are done with tools on the patient, so an icon is only pressable to open its operation.
-    /// </summary>
-    public void Set(SurgeryStepData data, Texture? icon, bool selectable)
+    public void Set(SurgeryStepData data, Texture? icon)
     {
-        Data = data;
+        _data = data;
         var status = data.Status;
 
-        Disabled = !selectable;
-        DefaultCursorShape = selectable ? CursorShape.Hand : CursorShape.Arrow;
-
         Icon.Texture = icon;
-        Icon.Modulate = status is SurgeryStepStatus.Complete or SurgeryStepStatus.Satisfied
-            ? Color.White.WithAlpha(0.5f)
-            : Color.White;
-
-        CheckLabel.Visible = status is SurgeryStepStatus.Complete or SurgeryStepStatus.Satisfied;
-        CheckLabel.SetOnlyStyleClass(status == SurgeryStepStatus.Satisfied ? StyleClass.StatusWarning : StyleClass.StatusGood);
+        Icon.Modulate = status == SurgeryStepStatus.Complete ? Color.White.WithAlpha(0.5f) : Color.White;
+        CheckLabel.Visible = status == SurgeryStepStatus.Complete;
 
         var tooltip = data.Name;
+        if (data.Stage != null)
+            tooltip += "\n" + Loc.GetString("surgery-ui-step-stage", ("stage", data.Stage));
+
         if (data.Tool != null)
             tooltip += "\n" + Loc.GetString("surgery-ui-step-tool", ("tool", data.Tool));
 
@@ -105,31 +97,27 @@ public sealed partial class SurgeryStepIcon : ContainerButton
         base.Draw(handle);
 
         var theme = ArcanePalette.Themes.First(t => t.Id == _stylesheets.CurrentTheme);
-        var status = Data.Status;
-        var hovered = DrawMode == DrawModeEnum.Hover;
-        var pressed = DrawMode == DrawModeEnum.Pressed;
+        var status = _data.Status;
 
         // Mirrors the stylesheet buttons: a plain fill when idle, the bordered texture tinted by the state color otherwise.
         Color? outline = status switch
         {
             SurgeryStepStatus.Active => theme.Highlight.Base,
-            SurgeryStepStatus.Next when !string.IsNullOrEmpty(Data.Warning) => Palettes.Status.Warning,
-            SurgeryStepStatus.Next => hovered ? theme.Highlight.Text : theme.Highlight.Base,
+            SurgeryStepStatus.Next when !string.IsNullOrEmpty(_data.Warning) => Palettes.Status.Warning,
+            SurgeryStepStatus.Next => theme.Highlight.Base,
             SurgeryStepStatus.Complete => Palettes.Status.Good.WithAlpha(0.7f),
-            SurgeryStepStatus.Satisfied => Palettes.Status.Warning.WithAlpha(0.7f),
-            _ when hovered || pressed => theme.Highlight.Base,
             _ => null,
         };
 
         if (outline is { } color)
         {
             _box.Texture = _borderedTexture;
-            _box.Modulate = pressed ? color.WithAlpha(color.A * 0.82f) : color;
+            _box.Modulate = color;
         }
         else
         {
             _box.Texture = _texture;
-            _box.Modulate = Disabled ? theme.Buttons.DisabledElement : theme.Buttons.Element;
+            _box.Modulate = theme.Buttons.DisabledElement;
         }
 
         _box.Draw(handle, PixelSizeBox, UIScale);
@@ -137,8 +125,8 @@ public sealed partial class SurgeryStepIcon : ContainerButton
         if (status != SurgeryStepStatus.Active)
             return;
 
-        var fraction = Data.ActiveDuration > TimeSpan.Zero
-            ? Math.Clamp((float) ((_timing.CurTime - Data.ActiveStart) / Data.ActiveDuration), 0f, 1f)
+        var fraction = _data.ActiveDuration > TimeSpan.Zero
+            ? Math.Clamp((float) ((_timing.CurTime - _data.ActiveStart) / _data.ActiveDuration), 0f, 1f)
             : 1f;
 
         // A bar in the bottom padding, clear of the cut corner and the icon.

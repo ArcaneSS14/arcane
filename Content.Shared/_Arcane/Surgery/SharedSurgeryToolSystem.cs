@@ -61,12 +61,12 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         var tool = args.Used;
         if (args.Handled
             || IsOffering(user)
-            || !CanOperate(ent, user, false)
+            || !CanOperate(ent, user, IsSurgicalTool(tool))
             || !TryGetTargetPart(ent, user, out var part, out var missing))
             return;
 
         var options = GetPlannedOption(ent, part, missing, user, tool) is { } planned
-            ? [planned]
+            ? new List<SurgeryToolOption> { planned }
             : GetToolOptions(ent, part, user, tool, missing);
 
         // Surgery tools may have their own use on a patient, so a click with nothing to do is left to them.
@@ -93,7 +93,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
 
         args.Handled = true;
         if (_timing.IsFirstTimePredicted)
-            Perform(ent, part, args.User, [planned]);
+            Perform(ent, part, args.User, new List<SurgeryToolOption> { planned });
     }
 
     private void OnOptionPicked(SurgeryToolOptionPickedEvent msg, EntitySessionEventArgs args)
@@ -114,7 +114,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             return;
 
         // The patient may have changed since the options were shown, so the pick has to still be one of them.
-        TryGetTargetPart(body, user, out _, out var missing);
+        var missing = TryGetTargetPart(body, user, out var targeted, out var slot) && targeted == part ? slot : null;
         var option = msg.Option;
         if (GetPlannedOption(body, part.Value, missing, user, tool) != option
             && !IsToolOption(body, part.Value, user, tool, option))
@@ -145,9 +145,8 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     }
 
     /// <summary>
-    /// Steps the tool can perform next on the part. Surgeries sharing a step whose effect does not depend on the
-    /// surgery are merged into one option. With <paramref name="missing"/> set, only surgeries attaching that kind of
-    /// part to the empty slot of <paramref name="part"/> are considered.
+    /// Steps the tool can perform next on the part, merged when several surgeries share a step that does not depend on them.
+    /// With <paramref name="missing"/> set, only surgeries attaching that part to the empty slot are considered.
     /// </summary>
     public List<SurgeryToolOption> GetToolOptions(EntityUid body,
         EntityUid part,
@@ -187,16 +186,6 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     {
         missing = null;
 
-        // Parts like tails cannot be targeted, so planning a surgery on one in the chart points the tools at it.
-        if (CompOrNull<SurgeryPlanComponent>(user)?.Part is { } planned
-            && TryComp(planned, out BodyPartComponent? plannedComp)
-            && plannedComp.Body == body
-            && !IsTargetable(plannedComp.PartType))
-        {
-            part = planned;
-            return true;
-        }
-
         var (type, symmetry) = _body.ConvertTargetBodyPart(CompOrNull<TargetingComponent>(user)?.Target ?? TargetBodyPart.Chest);
         foreach (var (id, _) in _body.GetBodyChildrenOfType(body, type, symmetry: symmetry))
         {
@@ -234,6 +223,9 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
 
     public void SetPlan(EntityUid user, EntityUid? part, EntProtoId? surgery)
     {
+        if (part == null && surgery == null && !HasComp<SurgeryPlanComponent>(user))
+            return;
+
         var plan = EnsureComp<SurgeryPlanComponent>(user);
         if (plan.Part == part && plan.Surgery == surgery)
             return;
@@ -439,17 +431,6 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     private bool CanUseWithoutTool(EntityUid held)
     {
         return !IsSurgicalTool(held) && !HasComp<OrganComponent>(held) && !HasComp<BodyPartComponent>(held);
-    }
-
-    private static bool IsTargetable(BodyPartType type)
-    {
-        return type is BodyPartType.Head
-            or BodyPartType.Chest
-            or BodyPartType.Groin
-            or BodyPartType.Arm
-            or BodyPartType.Hand
-            or BodyPartType.Leg
-            or BodyPartType.Foot;
     }
 
     private bool IsOffering(EntityUid user)

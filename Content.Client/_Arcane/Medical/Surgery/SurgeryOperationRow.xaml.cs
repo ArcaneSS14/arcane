@@ -8,29 +8,28 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Arcane.Medical.Surgery;
 
-public enum SurgeryOperationGroup : byte
+public enum SurgeryOperationStatus : byte
 {
-    Started,
     Available,
-    NeedsPreparation,
+    Started,
     Closing,
     Completed,
 }
 
+/// <summary>
+/// An operation in the chart; its progress counts the steps of the surgeries it requires as well.
+/// </summary>
 public sealed record SurgeryOperationEntry(
     EntProtoId Id,
     string Name,
-    SurgeryOperationGroup Group,
+    SurgeryOperationStatus Status,
     int Done,
-    int Total,
-    List<SurgeryStepData> Steps);
+    int Total);
 
 [GenerateTypedNameReferences]
 public sealed partial class SurgeryOperationRow : BoxContainer
 {
     private readonly List<SurgeryStepIcon> _icons = new();
-    private readonly List<Label> _sectionLabels = new();
-    private int? _layout;
 
     public event Action? OnHeaderPressed;
 
@@ -41,30 +40,29 @@ public sealed partial class SurgeryOperationRow : BoxContainer
     }
 
     /// <summary>
-    /// Shows the operation header and its step icons; an expanded row lists every section of its requirement chain.
+    /// Shows the operation header, and for the open operation the steps of its whole requirement chain.
     /// The header stays pressed while the operation is the surgeon's plan.
     /// </summary>
     public void Set(SurgeryOperationEntry entry,
-        IReadOnlyList<SurgeryStepSection> sections,
-        bool expanded,
+        IReadOnlyList<SurgeryStepData> steps,
         bool planned,
         Func<EntityUid, Texture?> getIcon)
     {
         Header.Pressed = planned;
-        Stripe.PanelOverride = new StyleBoxFlat(GetGroupColor(entry.Group));
-        ArrowLabel.Text = expanded ? "▼" : "▶";
+        Stripe.PanelOverride = new StyleBoxFlat(GetStatusColor(entry.Status));
+        ArrowLabel.Text = steps.Count > 0 ? "▼" : "▶";
 
         NameLabel.Text = entry.Name;
-        NameLabel.SetOnlyStyleClass(entry.Group is SurgeryOperationGroup.NeedsPreparation or SurgeryOperationGroup.Completed
+        NameLabel.SetOnlyStyleClass(entry.Status == SurgeryOperationStatus.Completed
             ? StyleClass.LabelWeak
             : StyleClass.LabelKeyText);
 
-        if (entry.Group == SurgeryOperationGroup.Completed)
+        if (entry.Status == SurgeryOperationStatus.Completed)
         {
             StatusLabel.Text = "✓";
             StatusLabel.SetOnlyStyleClass(StyleClass.StatusGood);
         }
-        else if (entry.Done > 0 && entry.Group != SurgeryOperationGroup.NeedsPreparation)
+        else if (entry.Done > 0)
         {
             StatusLabel.Text = $"{entry.Done}/{entry.Total}";
             StatusLabel.SetOnlyStyleClass(StyleClass.StatusWarning);
@@ -74,90 +72,53 @@ public sealed partial class SurgeryOperationRow : BoxContainer
             StatusLabel.Text = string.Empty;
         }
 
-        // Controls are reused while the layout stays the same, so a refresh does not reset hover or tooltips.
-        var layout = new HashCode();
-        layout.Add(expanded);
-        foreach (var section in sections)
-        {
-            layout.Add(section.Id);
-            layout.Add(section.Steps.Count);
-        }
+        // Icons are reused while the chain keeps its length, so progress does not reset hover or tooltips.
+        if (_icons.Count != steps.Count)
+            BuildSteps(steps.Count);
 
-        if (_layout != layout.ToHashCode())
+        for (var i = 0; i < steps.Count; i++)
         {
-            _layout = layout.ToHashCode();
-            BuildSteps(sections);
-        }
-
-        var icon = 0;
-        for (var i = 0; i < sections.Count; i++)
-        {
-            var section = sections[i];
-            if (sections.Count > 1)
-            {
-                _sectionLabels[i].Text = section.Complete ? $"✓ {section.Name}" : section.Name;
-                _sectionLabels[i].SetOnlyStyleClass(section.Complete ? StyleClass.StatusGood : StyleClass.LabelSubText);
-            }
-
-            foreach (var step in section.Steps)
-            {
-                _icons[icon++].Set(step, getIcon(step.StepEnt), !expanded);
-            }
+            _icons[i].Set(steps[i], getIcon(steps[i].StepEnt));
         }
     }
 
-    private void BuildSteps(IReadOnlyList<SurgeryStepSection> sections)
+    private void BuildSteps(int count)
     {
         Steps.DisposeAllChildren();
         _icons.Clear();
-        _sectionLabels.Clear();
+        Steps.Visible = count > 0;
+        if (count == 0)
+            return;
 
-        foreach (var section in sections)
+        var chain = new WrapContainer { SeparationOverride = 4, CrossSeparationOverride = 4 };
+        for (var i = 0; i < count; i++)
         {
-            if (sections.Count > 1)
+            if (i > 0)
             {
-                var label = new Label();
-                _sectionLabels.Add(label);
-                Steps.AddChild(label);
-            }
-
-            if (section.Steps.Count == 0)
-                continue;
-
-            var chain = new WrapContainer { SeparationOverride = 4, CrossSeparationOverride = 4 };
-            for (var i = 0; i < section.Steps.Count; i++)
-            {
-                if (i > 0)
+                chain.AddChild(new Label
                 {
-                    chain.AddChild(new Label
-                    {
-                        Text = "→",
-                        VerticalAlignment = VAlignment.Center,
-                        StyleClasses = { StyleClass.LabelWeak },
-                    });
-                }
-
-                var icon = new SurgeryStepIcon();
-                icon.OnPressed += _ => OnHeaderPressed?.Invoke();
-                _icons.Add(icon);
-                chain.AddChild(icon);
+                    Text = "→",
+                    VerticalAlignment = VAlignment.Center,
+                    StyleClasses = { StyleClass.LabelWeak },
+                });
             }
 
-            Steps.AddChild(chain);
+            var icon = new SurgeryStepIcon();
+            _icons.Add(icon);
+            chain.AddChild(icon);
         }
 
-        Steps.Visible = Steps.ChildCount > 0;
+        Steps.AddChild(chain);
     }
 
-    private static Color GetGroupColor(SurgeryOperationGroup group)
+    private static Color GetStatusColor(SurgeryOperationStatus status)
     {
-        return group switch
+        return status switch
         {
-            SurgeryOperationGroup.Started => Color.FromHex("#E0A93F"),
-            SurgeryOperationGroup.Available => Color.FromHex("#5FBF6A"),
-            SurgeryOperationGroup.Closing => Color.FromHex("#4FA3E0"),
-            SurgeryOperationGroup.Completed => Color.FromHex("#3E6B47"),
-            _ => Color.FromHex("#55555F"),
+            SurgeryOperationStatus.Started => Color.FromHex("#E0A93F"),
+            SurgeryOperationStatus.Available => Color.FromHex("#5FBF6A"),
+            SurgeryOperationStatus.Closing => Color.FromHex("#4FA3E0"),
+            _ => Color.FromHex("#3E6B47"),
         };
     }
 }

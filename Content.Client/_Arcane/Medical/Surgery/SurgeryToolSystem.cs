@@ -32,7 +32,7 @@ public sealed class SurgeryToolSystem : SharedSurgeryToolSystem
         var options = msg.Options;
         ClosePopup();
 
-        var entries = options.Select(GetEntry).OrderBy(e => e.Name, StringComparer.CurrentCulture).ToList();
+        var entries = options.Select(GetEntry).OrderBy(e => e.Name).ToList();
         var title = options.Count == 1
             ? Loc.GetString("surgery-tool-options-confirm")
             : Loc.GetString("surgery-tool-options-title", ("part", part.Value));

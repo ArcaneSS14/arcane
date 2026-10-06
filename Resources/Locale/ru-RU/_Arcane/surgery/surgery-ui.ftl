@@ -4,13 +4,8 @@ surgery-ui-window-empty-hint = Нажмите на часть тела, чтоб
 surgery-ui-operations-empty = Нет доступных операций
 surgery-ui-window-tools-hint = Выберите операцию и работайте инструментами по пациенту.
 surgery-ui-step-tool = Инструмент: {$tool}
+surgery-ui-step-stage = Этап: {$stage}
 surgery-ui-step-satisfied-tooltip = Пока не требуется: сначала идут предыдущие шаги, после них этот шаг может понадобиться.
-
-surgery-ui-group-started = Начатые
-surgery-ui-group-available = Доступные
-surgery-ui-group-needs-preparation = Нужна подготовка
-surgery-ui-group-closing = Закрытие
-surgery-ui-group-completed = Выполненные
 
 surgery-ui-part-missing = {$part} (отсутствует)
 surgery-ui-part-started = Начато: {$surgery} ({$done}/{$total})

@@ -11,5 +11,5 @@
             <Label Name="StatusLabel" Margin="0 0 4 0" />
         </BoxContainer>
     </Button>
-    <BoxContainer Name="Steps" Orientation="Vertical" Margin="14 2 0 4" />
+    <BoxContainer Name="Steps" Orientation="Vertical" Margin="14 2 0 4" Visible="False" />
 </surgery:SurgeryOperationRow>

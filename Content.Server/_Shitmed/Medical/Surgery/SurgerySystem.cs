@@ -48,7 +48,30 @@ public sealed class SurgerySystem : SharedSurgerySystem
         if (!_ui.IsUiOpen(body, SurgeryUIKey.Key))
             return;
 
-        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(GetSurgeryChoices(body))); // Arcane-Edit
+        // Arcane-Edit-Start: Moved to GetSurgeryChoices
+//        var surgeries = new Dictionary<NetEntity, List<EntProtoId>>();
+//        foreach (var part in _body.GetBodyChildren(body))
+//        {
+//            var valid = new List<EntProtoId>();
+//            foreach (var surgery in AllSurgeries)
+//            {
+//                if (GetSingleton(surgery) is not { } surgeryEnt)
+//                    continue;
+//
+//                var ev = new SurgeryValidEvent(body, part.Id);
+//                RaiseLocalEvent(surgeryEnt, ref ev);
+//
+//                if (ev.Cancelled)
+//                    continue;
+//
+//                valid.Add(surgery);
+//            }
+//            surgeries[GetNetEntity(part.Id)] = valid;
+//        }
+//
+//        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries));
+        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(GetSurgeryChoices(body)));
+        // Arcane-Edit-End
         /*
             Reason we do this is because when applying a BUI State, it rolls back the state on the entity temporarily,
             which just so happens to occur right as we're checking for step completion, so we end up with the UI
