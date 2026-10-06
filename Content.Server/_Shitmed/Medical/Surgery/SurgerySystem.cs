@@ -91,8 +91,8 @@ public sealed class SurgerySystem : SharedSurgerySystem
         _nextChoicesCheck = _timing.CurTime + ChoicesCheckInterval;
 
         // Damage and bleeding from outside surgery change which surgeries are valid, so open UIs are re-checked here.
-        var query = EntityQueryEnumerator<SurgeryTargetComponent, UserInterfaceComponent>();
-        while (query.MoveNext(out var uid, out _, out var ui))
+        var query = EntityQueryEnumerator<ActiveUserInterfaceComponent, SurgeryTargetComponent, UserInterfaceComponent>();
+        while (query.MoveNext(out var uid, out _, out _, out var ui))
         {
             if (!_ui.IsUiOpen((uid, ui), SurgeryUIKey.Key))
                 continue;

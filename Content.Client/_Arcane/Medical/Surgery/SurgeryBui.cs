@@ -41,25 +41,28 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private readonly SurgerySystem _surgery;
     private readonly SurgeryToolSystem _tools;
+    private readonly SharedBodySystem _body;
     private readonly SharedContainerSystem _container;
     private readonly TargetingUIController _targeting;
 
     [ViewVariables]
     private SurgeryWindow? _window;
 
-    private Dictionary<EntityUid, List<EntProtoId>> _choices = new();
+    private Dictionary<NetEntity, List<EntProtoId>> _serverChoices = new();
+    private readonly Dictionary<EntityUid, List<EntProtoId>> _choices = new();
     private readonly Dictionary<EntityUid, List<SurgeryOperationEntry>> _entries = new();
     private readonly Dictionary<(EntityUid Part, EntityUid Surgery), SurgeryProgress> _progress = new();
     private readonly List<SurgeryStepData> _steps = new();
     private readonly Dictionary<TargetBodyPart, (EntityUid Part, string? MissingSlot)> _dollSlots = new();
     private EntityUid? _part;
-    // An empty child slot of the selected part, which lists only the surgeries that attach a part there.
+    // A child slot of the selected part, empty or holding a part still being reattached;
+    // it lists only the surgeries that attach a part there.
     private (string Slot, TargetBodyPart DollPart)? _missing;
     private EntProtoId? _surgeryId;
     private bool _canOperate;
     // With previous steps ignored, a step counts as done even when earlier ones are not.
     private bool _anyOrder;
-    // The doll follows the surgeon's targeting and plan, so they are applied only when they change.
+    // The chart follows the surgeon's targeting and plan, so they are applied only when they change.
     private TargetBodyPart? _lastTarget;
     // A doll click retargets through the server, so the old target is ignored until the new one arrives.
     private (TargetBodyPart Target, TimeSpan Until)? _pendingTarget;
@@ -74,6 +77,7 @@ public sealed class SurgeryBui : BoundUserInterface
         _surgery = EntMan.System<SurgerySystem>();
         _tools = EntMan.System<SurgeryToolSystem>();
         _targeting = _uiManager.GetUIController<TargetingUIController>();
+        _body = EntMan.System<SharedBodySystem>();
         _container = EntMan.System<SharedContainerSystem>();
     }
 
@@ -91,18 +95,11 @@ public sealed class SurgeryBui : BoundUserInterface
         if (state is not SurgeryBuiState surgeryState)
             return;
 
-        var choices = new Dictionary<EntityUid, List<EntProtoId>>();
-        foreach (var (netPart, surgeries) in surgeryState.Choices)
-        {
-            if (EntMan.TryGetEntity(netPart, out var part) && IsAttachedPart(part.Value))
-                choices[part.Value] = surgeries;
-        }
-
         // The engine re-applies every BUI state that is not reference-equal, so identical choices must not rebuild the window.
-        if (SurgeryChoices.Equal(choices, _choices))
+        if (SurgeryChoices.Equal(surgeryState.Choices, _serverChoices))
             return;
 
-        _choices = choices;
+        _serverChoices = surgeryState.Choices;
         RefreshUI();
     }
 
@@ -165,11 +162,13 @@ public sealed class SurgeryBui : BoundUserInterface
             EntMan.EventBus.RaiseLocalEvent(user, ignore);
         _anyOrder = ignore.Handled;
 
-        // Choices only change with a server state, which lags behind a part being severed or deleted.
-        foreach (var part in _choices.Keys)
+        // Parts are filtered on every check: the BUI state lags behind a predicted severing, and it arrives
+        // before the state of a newly attached part, since the engine applies parents before children.
+        _choices.Clear();
+        foreach (var (netPart, surgeries) in _serverChoices)
         {
-            if (!IsAttachedPart(part))
-                _choices.Remove(part);
+            if (EntMan.TryGetEntity(netPart, out var part) && IsAttachedPart(part.Value))
+                _choices[part.Value] = surgeries;
         }
 
         foreach (var part in _choices.Keys)
@@ -237,7 +236,7 @@ public sealed class SurgeryBui : BoundUserInterface
             var comp = EntMan.GetComponent<BodyPartComponent>(part);
             if (SurgeryDollControl.GetDollPart(comp.PartType, comp.Symmetry) == target)
             {
-                found = (part, null);
+                found = GetSelection(part, target);
                 break;
             }
         }
@@ -289,11 +288,10 @@ public sealed class SurgeryBui : BoundUserInterface
             // An attached part keeps its attach surgery on the parent until the wounds are sealed, then the part itself is selected.
             else if (_missing is { } missing
                      && GetPartEntries(selected, missing).Count == 0
-                     && _container.TryGetContainer(selected, SharedBodySystem.GetPartSlotContainerId(missing.Slot), out var container)
-                     && container.ContainedEntities.Count > 0
-                     && _choices.ContainsKey(container.ContainedEntities[0]))
+                     && GetSlotPart(selected, missing.Slot) is { } attached
+                     && _choices.ContainsKey(attached))
             {
-                _part = container.ContainedEntities[0];
+                _part = attached;
                 _missing = null;
             }
         }
@@ -322,6 +320,17 @@ public sealed class SurgeryBui : BoundUserInterface
             _missing = (slot, slotDollPart);
             return;
         }
+    }
+
+    // A part still being reattached is finished by the attach surgery on its parent, like a tool click on it.
+    private (EntityUid Part, (string Slot, TargetBodyPart DollPart)? Missing) GetSelection(EntityUid part, TargetBodyPart dollPart)
+    {
+        if (EntMan.HasComponent<BodyPartReattachedComponent>(part)
+            && _body.GetParentPartAndSlotOrNull(part) is { } parent
+            && _choices.ContainsKey(parent.Parent))
+            return (parent.Parent, (parent.Slot, dollPart));
+
+        return (part, null);
     }
 
     private void SelectPart(EntityUid part, (string Slot, TargetBodyPart DollPart)? missing)
@@ -398,7 +407,8 @@ public sealed class SurgeryBui : BoundUserInterface
                 continue;
             }
 
-            _dollSlots[slot] = (part, null);
+            var selection = GetSelection(part, slot);
+            _dollSlots[slot] = (selection.Part, selection.Missing?.Slot);
             dollParts[slot] = new SurgeryDollPart(
                 GetStatusTexture(slot, ((int) GetSeverity(part)).ToString()),
                 IsBleeding(part) ? GetStatusTexture(slot, "bleed") : null,
@@ -456,13 +466,29 @@ public sealed class SurgeryBui : BoundUserInterface
             foreach (var (slotId, slot) in EntMan.GetComponent<BodyPartComponent>(part).Children)
             {
                 if (SurgeryDollControl.GetDollPart(slot.Type, slot.Symmetry) is not { } dollPart
-                    || _container.TryGetContainer(part, SharedBodySystem.GetPartSlotContainerId(slotId), out var container)
-                    && container.ContainedEntities.Count > 0)
+                    || GetSlotPart(part, slotId) != null)
                     continue;
 
                 yield return (part, slotId, dollPart);
             }
         }
+    }
+
+    private EntityUid? GetSlotPart(EntityUid parent, string slot)
+    {
+        return _container.TryGetContainer(parent, SharedBodySystem.GetPartSlotContainerId(slot), out var container)
+            && container.ContainedEntities.Count > 0
+                ? container.ContainedEntities[0]
+                : null;
+    }
+
+    // The selected part, or the one being reattached into the selected slot.
+    private EntityUid? GetShownPart()
+    {
+        if (_part is not { } part)
+            return null;
+
+        return _missing is { } missing ? GetSlotPart(part, missing.Slot) : part;
     }
 
     private bool IsAttachedPart(EntityUid part)
@@ -475,13 +501,13 @@ public sealed class SurgeryBui : BoundUserInterface
         var window = _window!;
         window.PartStates.DisposeAllChildren();
 
-        var showInfo = _part != null && _missing == null;
-        window.PartInfo.Visible = showInfo;
-        window.PartStatesDivider.Visible = showInfo;
-        window.PartStatesView.Visible = showInfo;
+        var shown = GetShownPart();
+        window.PartInfo.Visible = shown != null;
+        window.PartStatesDivider.Visible = shown != null;
+        window.PartStatesView.Visible = shown != null;
         window.PartNameLabel.Text = GetPartTitle() ?? Loc.GetString("surgery-ui-window-no-part");
 
-        if (!showInfo || _part is not { } part)
+        if (shown is not { } part)
             return;
 
         var severity = GetSeverity(part);
@@ -559,10 +585,10 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private string? GetPartTitle()
     {
-        if (_missing is { } missing)
-            return GetMissingPartTitle(missing.DollPart);
+        if (GetShownPart() is { } part)
+            return Name(part);
 
-        return _part is { } part ? Name(part) : null;
+        return _missing is { } missing ? GetMissingPartTitle(missing.DollPart) : null;
     }
 
     private WoundableSeverity GetSeverity(EntityUid part)

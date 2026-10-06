@@ -135,15 +135,19 @@
       right arm:
         id: right arm
         type: Arm
+        symmetry: Right # Arcane
       left arm:
         id: left arm
         type: Arm
+        symmetry: Left # Arcane
       head:
         id: head
         type: Head
       right leg:
         id: right leg
         type: Leg
+        symmetry: Right # Arcane
       left leg:
         id: left leg
         type: Leg
+        symmetry: Left # Arcane

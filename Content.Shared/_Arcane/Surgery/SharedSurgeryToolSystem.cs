@@ -3,6 +3,7 @@
 using Content.Shared._Shitmed.CCVar;
 using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
+using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
 using Content.Shared._Arcane.OfferItem;
 using Content.Shared._Shitmed.Medical.Surgery.Steps;
 using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
@@ -92,7 +93,8 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             return;
 
         args.Handled = true;
-        if (_timing.IsFirstTimePredicted)
+        // Putting an item into a cavity needs one in hand, so an empty hand does nothing and keeps the plan.
+        if (_timing.IsFirstTimePredicted && !IsCavityInsert(planned.Step))
             Perform(ent, part, args.User, new List<SurgeryToolOption> { planned });
     }
 
@@ -145,7 +147,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     }
 
     /// <summary>
-    /// Steps the tool can perform next on the part, merged when several surgeries share a step that does not depend on them.
+    /// Steps the tool can perform next on the part, merged when several surgeries share a step, or steps with the same effect, that does not depend on them.
     /// With <paramref name="missing"/> set, only surgeries attaching that part to the empty slot are considered.
     /// </summary>
     public List<SurgeryToolOption> GetToolOptions(EntityUid body,
@@ -159,17 +161,31 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         {
             if (_surgery.GetSingleton(surgeryId) is not { } surgery
                 || missing is { } slot && !AttachesPart(surgery, slot.Type, slot.Symmetry)
-                || GetNextStep(body, part, surgery, user) is not { } next
-                || !AcceptsTool(next.StepEnt, tool)
-                || !FitsHeldItem(next.Owner, next.StepEnt, tool))
+                || GetNextStep(body, part, surgery, user, tool) is not { } next)
                 continue;
 
             EntityUid? owner = DependsOnSurgery(next.StepEnt) ? next.Owner : null;
-            var index = options.FindIndex(o => o.Owner == owner && o.Option.Step == next.Step);
+            var index = options.FindIndex(o => o.Owner == owner
+                && (o.Option.Step == next.Step
+                    || owner == null
+                    && _surgery.GetSingleton(o.Option.Step) is { } shown
+                    && (Covers(body, part, shown, next.StepEnt) || Covers(body, part, next.StepEnt, shown))));
             if (index < 0)
+            {
                 options.Add((owner, new SurgeryToolOption(next.OwnerId, next.Step, surgeryId)));
-            else if (options[index].Option.Target != surgeryId)
-                options[index] = (owner, options[index].Option with { Target = null });
+                continue;
+            }
+
+            var option = options[index].Option;
+            if (option.Step != next.Step
+                && _surgery.GetSingleton(option.Step) is { } kept
+                && !Covers(body, part, kept, next.StepEnt))
+                option = option with { Surgery = next.OwnerId, Step = next.Step };
+
+            if (option.Target != surgeryId)
+                option = option with { Target = null };
+
+            options[index] = (owner, option);
         }
 
         return options.ConvertAll(o => o.Option);
@@ -267,9 +283,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             || !_surgery.GetValidSurgeries(body, part).Contains(planned)
             || _surgery.GetSingleton(planned) is not { } surgery
             || missing is { } slot && !AttachesPart(surgery, slot.Type, slot.Symmetry)
-            || GetNextStep(body, part, surgery, user) is not { } next
-            || !(AcceptsTool(next.StepEnt, tool) || !HasToolRequirement(next.StepEnt) && CanUseWithoutTool(tool))
-            || !FitsHeldItem(next.Owner, next.StepEnt, tool))
+            || GetNextStep(body, part, surgery, user, tool, fromPlan: true) is not { } next)
             return null;
 
         return new SurgeryToolOption(next.OwnerId, next.Step, planned);
@@ -280,11 +294,9 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     {
         return _surgery.GetValidSurgeries(body, part).Contains(option.Surgery)
             && _surgery.GetSingleton(option.Surgery) is { } surgery
-            && GetNextStep(body, part, surgery, user) is { } next
+            && GetNextStep(body, part, surgery, user, tool) is { } next
             && next.OwnerId == option.Surgery
-            && next.Step == option.Step
-            && AcceptsTool(next.StepEnt, tool)
-            && FitsHeldItem(next.Owner, next.StepEnt, tool);
+            && next.Step == option.Step;
     }
 
     private string GetHint(EntityUid body, EntityUid part, EntityUid user)
@@ -295,10 +307,17 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             && _surgery.GetSingleton(planned) is { } surgery
             && GetNextStep(body, part, surgery, user) is { } next)
         {
+            if (GetToolName(next.StepEnt) is not { } tool)
+            {
+                return Loc.GetString("surgery-tool-next-step-no-tool",
+                    ("surgery", Name(surgery)),
+                    ("step", Name(next.StepEnt)));
+            }
+
             return Loc.GetString("surgery-tool-next-step",
                 ("surgery", Name(surgery)),
                 ("step", Name(next.StepEnt)),
-                ("tool", GetToolName(next.StepEnt) ?? string.Empty));
+                ("tool", tool));
         }
 
         return Loc.GetString("surgery-tool-nothing-to-do", ("part", part));
@@ -319,21 +338,39 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         return _surgery.IsLyingDown(body, user, popup);
     }
 
+    // With a tool given, only a step it can perform counts as next.
     private (EntityUid Owner, EntProtoId OwnerId, EntProtoId Step, EntityUid StepEnt)? GetNextStep(EntityUid body,
         EntityUid part,
         EntityUid surgery,
-        EntityUid user)
+        EntityUid user,
+        EntityUid? tool = null,
+        bool fromPlan = false)
     {
-        if (_surgery.GetNextStep(body, part, surgery, user) is not { } next)
+        if (_surgery.GetNextStep(body, part, surgery, user) is not { } next
+            || Prototype(next.Surgery)?.ID is not { } ownerId)
             return null;
 
-        // A negative index means steps may be done in any order, and this one is still incomplete.
-        var index = next.Step < 0 ? -next.Step - 1 : next.Step;
-        var stepId = next.Surgery.Comp.Steps[index];
-        if (Prototype(next.Surgery)?.ID is not { } ownerId || _surgery.GetSingleton(stepId) is not { } stepEnt)
-            return null;
+        // In any order a negative index marks the last incomplete step, and earlier ones may be open too.
+        var steps = next.Surgery.Comp.Steps;
+        var anyOrder = next.Step < 0;
+        var (first, last) = anyOrder ? (0, -next.Step - 1) : (next.Step, next.Step);
+        for (var i = first; i <= last; i++)
+        {
+            if (anyOrder && _surgery.IsStepComplete(body, part, steps[i], next.Surgery)
+                || _surgery.GetSingleton(steps[i]) is not { } stepEnt
+                || tool is { } held && !CanPerformWith(next.Surgery, stepEnt, held, fromPlan))
+                continue;
 
-        return (next.Surgery.Owner, ownerId, stepId, stepEnt);
+            return (next.Surgery.Owner, ownerId, steps[i], stepEnt);
+        }
+
+        return null;
+    }
+
+    private bool CanPerformWith(EntityUid surgery, EntityUid step, EntityUid tool, bool fromPlan)
+    {
+        return (AcceptsTool(step, tool) || fromPlan && !HasToolRequirement(step) && CanUseWithoutTool(tool))
+            && FitsHeldItem(surgery, step, tool);
     }
 
     // Steps without a tool only run from the plan, otherwise any held item would start them.
@@ -393,6 +430,63 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             || HasComp<SurgeryAffixOrganStepComponent>(step)
             || HasComp<SurgeryRemoveOrganStepComponent>(step)
             || HasComp<SurgeryAddOrganSlotStepComponent>(step);
+    }
+
+    // Steps of different surgeries, like an incision and a careful incision, are one choice when doing one also completes
+    // the other and they differ only in how much they hurt.
+    private bool Covers(EntityUid body, EntityUid part, EntityUid step, EntityUid other)
+    {
+        if (!TryComp(step, out SurgeryStepComponent? stepComp)
+            || !TryComp(other, out SurgeryStepComponent? otherComp)
+            || stepComp.AddOrganOnAdd != null || stepComp.RemoveOrganOnAdd != null
+            || otherComp.AddOrganOnAdd != null || otherComp.RemoveOrganOnAdd != null
+            || !GetEffectTypes(step).SetEquals(GetEffectTypes(other)))
+            return false;
+
+        var covered = GetChanges(body, part, otherComp);
+        return covered.Count > 0 && covered.IsSubsetOf(GetChanges(body, part, stepComp));
+    }
+
+    private HashSet<Type> GetEffectTypes(EntityUid step)
+    {
+        var types = new HashSet<Type>();
+        foreach (var comp in EntityManager.GetComponents(step))
+        {
+            if (comp is not (SurgeryStepComponent or SurgeryDamageChangeEffectComponent or SurgeryStepPainInflicterComponent))
+                types.Add(comp.GetType());
+        }
+
+        return types;
+    }
+
+    private HashSet<(EntityUid Target, Type Type, bool Add)> GetChanges(EntityUid body, EntityUid part, SurgeryStepComponent step)
+    {
+        var changes = new HashSet<(EntityUid, Type, bool)>();
+        AddChanges(changes, part, step.Add, true);
+        AddChanges(changes, part, step.Remove, false);
+        AddChanges(changes, body, step.BodyAdd, true);
+        AddChanges(changes, body, step.BodyRemove, false);
+        return changes;
+    }
+
+    private void AddChanges(HashSet<(EntityUid, Type, bool)> changes, EntityUid target, ComponentRegistry? registry, bool add)
+    {
+        if (registry == null)
+            return;
+
+        foreach (var entry in registry.Values)
+        {
+            var type = entry.Component.GetType();
+            if (EntityManager.HasComponent(target, type) != add)
+                changes.Add((target, type, add));
+        }
+    }
+
+    private bool IsCavityInsert(EntProtoId step)
+    {
+        return _surgery.GetSingleton(step) is { } stepEnt
+            && TryComp(stepEnt, out SurgeryStepCavityEffectComponent? cavity)
+            && cavity.Action == "Insert";
     }
 
     private bool NeedsConfirmation(EntProtoId step)

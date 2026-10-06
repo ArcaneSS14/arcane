@@ -17,6 +17,7 @@
       left hand:
         id: "left hand"
         type: Hand
+        symmetry: Left # Arcane
 
 - type: entity
   parent: BaseRightArmHuman # Arcane
@@ -29,6 +30,7 @@
       right hand:
         id: "right hand"
         type: Hand
+        symmetry: Right # Arcane
 
 - type: entity
   parent: [BasePartHuman, BaseLeftHand] # Arcane
@@ -61,6 +63,7 @@
       left foot:
         id: "left foot"
         type: Foot
+        symmetry: Left # Arcane
 
 - type: entity
   parent: BaseRightLegHuman # Arcane
@@ -73,6 +76,7 @@
       right foot:
         id: "right foot"
         type: Foot
+        symmetry: Right # Arcane
 
 - type: entity
   parent: BaseLeftFootHuman # Arcane
