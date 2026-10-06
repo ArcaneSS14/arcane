@@ -146,8 +146,8 @@ erp-panel-interaction-shift-weight-name = Put hand on thigh
 # Interaction hands
 erp-panel-interaction-handshake-name = Shake hands
 erp-panel-interaction-kiss-hand-name = Kiss hand
-erp-panel-interaction-target-hand-fap-name = To force jerk off with hand
-erp-panel-interaction-target-hand-fingering-name = To fore finger self with hand
+erp-panel-interaction-target-hand-fap-name = Make someone jerk off by hand
+erp-panel-interaction-target-hand-fingering-name = To force someone to finger
 erp-panel-interaction-high-five-name = High five
 erp-panel-interaction-friendly-flying-kiss-name = Blow kiss
 erp-panel-interaction-friendly-nose-boop-name = Boop nose
