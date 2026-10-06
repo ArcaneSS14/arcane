@@ -23,6 +23,7 @@
               icon:
                 sprite: Objects/Power/power_cells.rsi
                 state: small
+              container: cell_slot
               doAfter: 1
     - node: torsher
       entity: Torsher

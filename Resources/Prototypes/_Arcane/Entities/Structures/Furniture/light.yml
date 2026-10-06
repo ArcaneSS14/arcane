@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseLamp
+  parent: BaseStructureDynamic
   id: Torsher
   components:
   - type: Sprite
@@ -15,9 +15,6 @@
   - type: Icon
     sprite: _Arcane/Structures/Furniture/torsher.rsi
     state: lampgreen
-  - type: Item
-    size: Normal
-    sprite: _Arcane/Structures/Furniture/torsher.rsi
   - type: Physics
     bodyType: Dynamic
     canCollide: true
@@ -61,19 +58,55 @@
             max: 3
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
   - type: PointLight
     enabled: false
+    netsync: false
     radius: 6
     energy: 1.5
     softness: 1
     color: "#FFE4B5"
+  - type: ItemTogglePointLight
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+    wattage: 0.5
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
   - type: ToggleableVisuals
     spriteLayer: enum.PoweredLightLayers.Glow
+  - type: Appearance
+  - type: PoweredLightVisuals
+    spriteStateMap:
+      empty: lampgreen-off
+      off: lampgreen-off
+      on: lampgreen
+      broken: lampgreen-off
+      burned: lampgreen-off
   - type: StaticPrice
     price: 75
   - type: Construction
