@@ -5,3 +5,5 @@
   components:
   - type: Sprite
     sprite: _RMC14/Structures/Furniture/shower.rsi
+  - type: Icon
+    sprite: _RMC14/Structures/Furniture/shower.rsi
