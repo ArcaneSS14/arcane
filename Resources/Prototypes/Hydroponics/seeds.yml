@@ -386,8 +386,8 @@
   packetPrototype: PotatoSeeds
   productPrototypes:
     - FoodPotato
-  mutationPrototypes:
-    - pomato # Arcane
+  mutationPrototypes: # Arcane
+    - pomato
   lifespan: 30
   maturation: 10
   production: 3

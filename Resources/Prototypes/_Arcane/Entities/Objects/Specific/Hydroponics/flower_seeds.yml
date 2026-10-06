@@ -131,8 +131,8 @@
     state: seed
 
 - type: entity
-  id: PomatoSeeds
   parent: SeedBase
+  id: PomatoSeeds
   name: packet of pomato seeds
   components:
   - type: Seed
