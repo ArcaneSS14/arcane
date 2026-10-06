@@ -4,6 +4,8 @@ surgery-ui-window-no-part = No part selected
 surgery-ui-window-empty = Choose a body part
 surgery-ui-window-empty-hint = Click a body part to see its surgeries.
 surgery-ui-operations-empty = No surgeries available
+surgery-ui-window-tools-hint = Pick a surgery, then use tools on the patient.
+surgery-ui-step-tool = Tool: {$tool}
 surgery-ui-step-satisfied-tooltip = Not needed yet: earlier steps come first, and this one may be required after them.
 
 surgery-ui-group-started = In progress

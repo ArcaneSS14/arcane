@@ -2,6 +2,8 @@ surgery-ui-window-no-part = Часть не выбрана
 surgery-ui-window-empty = Выберите часть тела
 surgery-ui-window-empty-hint = Нажмите на часть тела, чтобы увидеть операции.
 surgery-ui-operations-empty = Нет доступных операций
+surgery-ui-window-tools-hint = Выберите операцию и работайте инструментами по пациенту.
+surgery-ui-step-tool = Инструмент: {$tool}
 surgery-ui-step-satisfied-tooltip = Пока не требуется: сначала идут предыдущие шаги, после них этот шаг может понадобиться.
 
 surgery-ui-group-started = Начатые

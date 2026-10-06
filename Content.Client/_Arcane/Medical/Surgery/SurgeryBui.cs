@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client._Shitmed.Medical.Surgery;
+using Content.Client._Shitmed.UserInterface.Systems.Targeting;
 using Content.Client.Stylesheets;
 using Content.Shared._Arcane.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery;
@@ -28,13 +29,16 @@ namespace Content.Client._Arcane.Medical.Surgery;
 public sealed class SurgeryBui : BoundUserInterface
 {
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
 
     private const float ChangeCheckInterval = 0.25f;
     private static readonly ResPath StatusRsiPath = new("/Textures/_Shitmed/Interface/Targeting/Status");
 
     private readonly SurgerySystem _surgery;
+    private readonly SurgeryToolSystem _tools;
     private readonly SharedContainerSystem _container;
     private readonly SpriteSystem _sprite;
+    private readonly TargetingUIController _targeting;
 
     [ViewVariables]
     private SurgeryWindow? _window;
@@ -49,7 +53,9 @@ public sealed class SurgeryBui : BoundUserInterface
     private (string Slot, TargetBodyPart DollPart)? _missing;
     private EntProtoId? _surgeryId;
     private bool _canOperate;
-    private bool _autoSelected;
+    // The doll follows the surgeon's targeting and plan, so they are applied only when they change.
+    private TargetBodyPart? _lastTarget;
+    private (EntityUid? Part, EntProtoId? Surgery) _lastPlan;
     private float _changeCheckTimer;
     private (int Parts, int Steps)? _snapshot;
     private int? _operationsLayout;
@@ -58,6 +64,8 @@ public sealed class SurgeryBui : BoundUserInterface
     public SurgeryBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         _surgery = EntMan.System<SurgerySystem>();
+        _tools = EntMan.System<SurgeryToolSystem>();
+        _targeting = _uiManager.GetUIController<TargetingUIController>();
         _container = EntMan.System<SharedContainerSystem>();
         _sprite = EntMan.System<SpriteSystem>();
     }
@@ -155,13 +163,9 @@ public sealed class SurgeryBui : BoundUserInterface
         foreach (var part in _choices.Keys)
             _entries[part] = BuildEntries(part);
 
-        if (!_autoSelected && _choices.Count > 0)
-        {
-            _autoSelected = true;
-            AutoSelectPart();
-        }
-
+        FollowTargeting();
         ValidateSelection();
+        FollowPlan();
 
         var hash = new HashCode();
         hash.Add(_part);
@@ -199,34 +203,67 @@ public sealed class SurgeryBui : BoundUserInterface
         return (hash.ToHashCode(), steps.ToHashCode());
     }
 
-    private void AutoSelectPart()
+    private void FollowTargeting()
     {
-        if (_part != null
+        if (_choices.Count == 0
             || _player.LocalEntity is not { } user
-            || !EntMan.TryGetComponent(user, out TargetingComponent? targeting))
+            || !EntMan.TryGetComponent(user, out TargetingComponent? targeting)
+            || targeting.Target == _lastTarget)
             return;
 
+        _lastTarget = targeting.Target;
+        SelectTarget(targeting.Target);
+    }
+
+    private void SelectTarget(TargetBodyPart target)
+    {
+        (EntityUid Part, (string Slot, TargetBodyPart DollPart)? Missing)? found = null;
         foreach (var part in _choices.Keys)
         {
             var comp = EntMan.GetComponent<BodyPartComponent>(part);
-            if (SurgeryDollControl.GetDollPart(comp.PartType, comp.Symmetry) != targeting.Target)
-                continue;
-
-            _part = part;
-            _surgeryId = GetStarted(_entries[part]);
-            return;
+            if (SurgeryDollControl.GetDollPart(comp.PartType, comp.Symmetry) == target)
+            {
+                found = (part, null);
+                break;
+            }
         }
 
-        foreach (var (parent, slot, dollPart) in GetMissingSlots())
+        if (found == null)
         {
-            if (dollPart != targeting.Target)
-                continue;
+            foreach (var (parent, slot, dollPart) in GetMissingSlots())
+            {
+                if (dollPart != target)
+                    continue;
 
-            _part = parent;
-            _missing = (slot, dollPart);
-            _surgeryId = GetStarted(GetPartEntries(parent, _missing));
-            return;
+                found = (parent, (slot, dollPart));
+                break;
+            }
         }
+
+        if (found is not { } selection || selection.Part == _part && selection.Missing == _missing)
+            return;
+
+        _part = selection.Part;
+        _missing = selection.Missing;
+        _surgeryId = GetOpenSurgery(selection.Part, selection.Missing);
+    }
+
+    // A surgery picked with a tool click becomes the open one, like picking it here.
+    private void FollowPlan()
+    {
+        if (_player.LocalEntity is not { } user)
+            return;
+
+        var plan = EntMan.TryGetComponent(user, out SurgeryPlanComponent? comp) ? (comp.Part, comp.Surgery) : (null, null);
+        if (plan == _lastPlan)
+            return;
+
+        _lastPlan = plan;
+        if (plan.Part == _part
+            && plan.Surgery is { } surgery
+            && _part is { } part
+            && GetPartEntries(part, _missing).Exists(e => e.Id == surgery))
+            _surgeryId = surgery;
     }
 
     private void ValidateSelection()
@@ -247,9 +284,9 @@ public sealed class SurgeryBui : BoundUserInterface
             }
         }
 
-        var entries = _part is { } part ? GetPartEntries(part, _missing) : [];
-        if (_surgeryId is { } id && !entries.Exists(e => e.Id == id))
-            _surgeryId = GetStarted(entries);
+        if (_surgeryId is { } id
+            && (_part is not { } part || !GetPartEntries(part, _missing).Exists(e => e.Id == id)))
+            _surgeryId = _part is { } current ? GetOpenSurgery(current, _missing) : null;
     }
 
     // A severed part leaves an empty slot on its parent, which is where its attach surgeries live.
@@ -280,14 +317,33 @@ public sealed class SurgeryBui : BoundUserInterface
 
         _part = part;
         _missing = missing;
-        _surgeryId = GetStarted(GetPartEntries(part, missing));
+        _surgeryId = GetOpenSurgery(part, missing);
         RefreshUI();
     }
 
+    // The open surgery is the plan, which decides what an ambiguous tool click does.
     private void ToggleSurgery(EntProtoId surgeryId)
     {
+        if (_part is not { } part)
+            return;
+
         _surgeryId = _surgeryId == surgeryId ? null : (EntProtoId?) surgeryId;
+        _lastPlan = (_surgeryId == null ? null : part, _surgeryId);
+        SendPredictedMessage(new SurgeryPlanBuiMsg(EntMan.GetNetEntity(part), _surgeryId));
         RefreshUI();
+    }
+
+    private EntProtoId? GetOpenSurgery(EntityUid part, (string Slot, TargetBodyPart DollPart)? missing)
+    {
+        var entries = GetPartEntries(part, missing);
+        if (_player.LocalEntity is { } user
+            && EntMan.TryGetComponent(user, out SurgeryPlanComponent? plan)
+            && plan.Part == part
+            && plan.Surgery is { } planned
+            && entries.Exists(e => e.Id == planned))
+            return planned;
+
+        return GetStarted(entries);
     }
 
     private static EntProtoId? GetStarted(IEnumerable<SurgeryOperationEntry> entries)
@@ -303,6 +359,8 @@ public sealed class SurgeryBui : BoundUserInterface
             return;
 
         SelectPart(dollSlot.Part, dollSlot.MissingSlot is { } missingSlot ? (missingSlot, slot) : null);
+        _lastTarget = slot;
+        _targeting.CycleTarget(slot);
     }
 
     private void UpdateDoll()
@@ -603,16 +661,9 @@ public sealed class SurgeryBui : BoundUserInterface
             var id = entry.Id;
             var row = new SurgeryOperationRow();
             row.OnHeaderPressed += () => ToggleSurgery(id);
-            row.OnStepPressed += OnStepPressed;
             _operationRows.Add(row);
             window.Operations.AddChild(row);
         }
-    }
-
-    private void OnStepPressed(SurgeryStepData step)
-    {
-        if (_part is { } part)
-            SendPredictedMessage(new SurgeryStepChosenBuiMsg(EntMan.GetNetEntity(part), step.Surgery, step.Step));
     }
 
     private List<SurgeryOperationEntry> GetPartEntries(EntityUid part, (string Slot, TargetBodyPart DollPart)? missing)
@@ -769,8 +820,8 @@ public sealed class SurgeryBui : BoundUserInterface
                     step,
                     Name(step),
                     status,
+                    _tools.GetToolName(step),
                     warning,
-                    _canOperate && _choices[part].Contains(id),
                     activeStart,
                     activeDuration));
             }
@@ -822,8 +873,8 @@ public sealed class SurgeryBui : BoundUserInterface
                     step,
                     Name(step),
                     complete ? SurgeryStepStatus.Complete : SurgeryStepStatus.Locked,
+                    _tools.GetToolName(step),
                     null,
-                    false,
                     TimeSpan.Zero,
                     TimeSpan.Zero));
             }

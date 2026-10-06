@@ -30,8 +30,8 @@ public readonly record struct SurgeryStepData(
     EntityUid StepEnt,
     string Name,
     SurgeryStepStatus Status,
+    string? Tool,
     string? Warning,
-    bool CanPerform,
     TimeSpan ActiveStart,
     TimeSpan ActiveDuration);
 
@@ -70,16 +70,15 @@ public sealed partial class SurgeryStepIcon : ContainerButton
     }
 
     /// <summary>
-    /// A selectable icon stays pressable even when its step cannot be performed, so it can open its operation.
+    /// Steps are done with tools on the patient, so an icon is only pressable to open its operation.
     /// </summary>
     public void Set(SurgeryStepData data, Texture? icon, bool selectable)
     {
         Data = data;
         var status = data.Status;
-        var clickable = selectable || status == SurgeryStepStatus.Next && data.CanPerform;
 
-        Disabled = !clickable;
-        DefaultCursorShape = clickable ? CursorShape.Hand : CursorShape.Arrow;
+        Disabled = !selectable;
+        DefaultCursorShape = selectable ? CursorShape.Hand : CursorShape.Arrow;
 
         Icon.Texture = icon;
         Icon.Modulate = status is SurgeryStepStatus.Complete or SurgeryStepStatus.Satisfied
@@ -90,6 +89,9 @@ public sealed partial class SurgeryStepIcon : ContainerButton
         CheckLabel.SetOnlyStyleClass(status == SurgeryStepStatus.Satisfied ? StyleClass.StatusWarning : StyleClass.StatusGood);
 
         var tooltip = data.Name;
+        if (data.Tool != null)
+            tooltip += "\n" + Loc.GetString("surgery-ui-step-tool", ("tool", data.Tool));
+
         if (status == SurgeryStepStatus.Next && !string.IsNullOrEmpty(data.Warning))
             tooltip += "\n" + data.Warning;
         else if (status == SurgeryStepStatus.Satisfied)

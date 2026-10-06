@@ -31,10 +31,8 @@ public sealed partial class SurgeryOperationRow : BoxContainer
     private readonly List<SurgeryStepIcon> _icons = new();
     private readonly List<Label> _sectionLabels = new();
     private int? _layout;
-    private bool _expanded;
 
     public event Action? OnHeaderPressed;
-    public event Action<SurgeryStepData>? OnStepPressed;
 
     public SurgeryOperationRow()
     {
@@ -47,7 +45,6 @@ public sealed partial class SurgeryOperationRow : BoxContainer
     /// </summary>
     public void Set(SurgeryOperationEntry entry, IReadOnlyList<SurgeryStepSection> sections, bool expanded, Func<EntityUid, Texture?> getIcon)
     {
-        _expanded = expanded;
         Header.Pressed = expanded;
         Stripe.PanelOverride = new StyleBoxFlat(GetGroupColor(entry.Group));
         ArrowLabel.Text = expanded ? "▼" : "▶";
@@ -136,13 +133,7 @@ public sealed partial class SurgeryOperationRow : BoxContainer
                 }
 
                 var icon = new SurgeryStepIcon();
-                icon.OnPressed += _ =>
-                {
-                    if (_expanded)
-                        OnStepPressed?.Invoke(icon.Data);
-                    else
-                        OnHeaderPressed?.Invoke();
-                };
+                icon.OnPressed += _ => OnHeaderPressed?.Invoke();
                 _icons.Add(icon);
                 chain.AddChild(icon);
             }

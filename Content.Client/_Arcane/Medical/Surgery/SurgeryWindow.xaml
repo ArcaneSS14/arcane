@@ -28,6 +28,7 @@
         </ScrollContainer>
         <cc:VSeparator VerticalExpand="True" StyleClasses="LowDivider" />
         <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="12 8">
+            <Label Text="{Loc 'surgery-ui-window-tools-hint'}" StyleClasses="LabelSubText" Margin="0 0 0 6" />
             <Label Name="WarningLabel" Access="Public" Text="{Loc 'surgery-error-cannot-operate'}"
                    StyleClasses="status-bad" Margin="0 0 0 6" Visible="False" />
             <ScrollContainer Name="OperationsView" Access="Public" HScrollEnabled="False" VerticalExpand="True" Visible="False">

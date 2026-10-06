@@ -381,7 +381,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         return _surgery.GetSingleton(step) is { } stepEnt && HasComp<SurgeryRemovePartStepComponent>(stepEnt);
     }
 
-    protected string? GetToolName(EntityUid step)
+    public string? GetToolName(EntityUid step)
     {
         if (!TryComp(step, out SurgeryStepComponent? comp) || comp.Tool is not { } tools)
             return null;
