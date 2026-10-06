@@ -1,0 +1,32 @@
+- files:
+    - Horse_snorts.ogg
+    - Horse_whinny.ogg
+  license: "custom"
+  copyright: "Original sounds Horse_snorts.ogg and Horse_whinny.ogg taken from zvukipro.com. By posting Content legally owned by them on the Website, the User grants other Users a non-exclusive right to use it through viewing, reproduction (including copying), modification (including printing copies), and other rights solely for the purpose of personal non-commercial use, except in cases where such use causes or may cause harm to the legally protected interests of the copyright holder."
+  source: "https://zvukipro.com/jivotnie/18-zvuki-loshadi-ili-konya.html"
+
+- files:
+    - Horse_scream.ogg
+  license: "CCO"
+  copyright: "Original sound Horse_scream.ogg taken from bigsoundbank.com."
+  source: "https://bigsoundbank.com/neighing-of-a-horse-s0460.html"
+
+- files:
+    - Horse_crying.ogg
+  license: "custom"
+  copyright: "Original sound Horse_crying.ogg taken from pixabay.com and modified."
+  source: "https://pixabay.com/de/sound-effects/search/horse%20scream"
+
+- files:
+    - Horse_laugh.ogg
+    - Horse_neighs.ogg
+  license: "Custom"
+  copyright: "Original sound Horse_laugh.ogg and Horse_neighs.ogg taken from elevenlabs.io."
+  source: "https://elevenlabs.io"
+
+- files:
+    - Horse_death.ogg
+    - Horse_whinny2.ogg
+  license: "ССO 1.0"
+  copyright: "Original sounds Horse_death.ogg and Horse_whinny2.ogg taken from Minecraft assets. All rights belong to Mojang Studios (minecraft.net)"
+  source: "https://mcasset.cloud"

@@ -109,3 +109,5 @@
 - type: Tag
   id: Bed
 
+- type: Tag
+  id: HorseEmotes
