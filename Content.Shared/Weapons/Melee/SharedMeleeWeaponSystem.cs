@@ -1047,9 +1047,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     {
         var baseStaminaDamage = TryComp<ShovingComponent>(disarmer, out var shoving) ? shoving.StaminaDamage : ShovingComponent.DefaultStaminaDamage;
 
-        return baseStaminaDamage * DampenedMassContest(disarmer, disarmed); // ← только это изменено
+        // Arcane edit
+        return baseStaminaDamage * DampenedMassContest(disarmer, disarmed);
     }
 
+    // Arcane edit start
     /// <summary>
     /// Smoothened variant of MassContest
     /// Uses constant (penaltyreduction) for lowering penalty of less weightened disarmers
@@ -1066,6 +1068,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         return contest;
     }
+    // Arcane edit end
 
     protected virtual bool DoDisarm(EntityUid user,
         DisarmAttackEvent ev,
