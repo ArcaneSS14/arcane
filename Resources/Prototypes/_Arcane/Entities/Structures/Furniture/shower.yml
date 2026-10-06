@@ -4,4 +4,4 @@
   name: shower
   components:
   - type: Sprite
-    sprite: _RMC14/Structures/Furniture/shower.rsis
+    sprite: _RMC14/Structures/Furniture/shower.rsi
