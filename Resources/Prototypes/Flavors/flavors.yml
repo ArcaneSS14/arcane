@@ -1499,3 +1499,10 @@
   id: motivating
   flavorType: Base
   description: flavor-base-motivating
+
+# Arcane-Start
+- type: flavor
+  id: bobda
+  flavorType: Complex
+  description: flavor-complex-bobda
+# Arcane-End
