@@ -146,8 +146,8 @@ erp-panel-interaction-shift-weight-name = Put hand on thigh
 # Interaction hands
 erp-panel-interaction-handshake-name = Shake hands
 erp-panel-interaction-kiss-hand-name = Kiss hand
-erp-panel-interaction-target-hand-fap-name = Jerk off with hand
-erp-panel-interaction-target-hand-fingering-name = Finger self with hand
+erp-panel-interaction-target-hand-fap-name = To force jerk off with hand
+erp-panel-interaction-target-hand-fingering-name = To fore finger self with hand
 erp-panel-interaction-high-five-name = High five
 erp-panel-interaction-friendly-flying-kiss-name = Blow kiss
 erp-panel-interaction-friendly-nose-boop-name = Boop nose
@@ -186,7 +186,7 @@ erp-panel-interaction-sniff-neck-name = Sniff neck
 erp-panel-interaction-suck-cock-name = Suck cock
 erp-panel-interaction-slime-fuck-cock-name = Fuck cock with slime
 erp-panel-interaction-cock-fap-name = Jerk off
-erp-panel-interaction-target-cock-fap-name = Jerk off their cock
+erp-panel-interaction-target-cock-fap-name = Jerk off dick
 erp-panel-interaction-cock-footjob-name = Footjob
 erp-panel-interaction-cock-swordmanship-name = Swordfight with cocks
 erp-panel-interaction-cock-fap-tail-name = Jerk off with tail
@@ -200,13 +200,12 @@ erp-panel-interaction-lick-penis-condensed-cum-name = Lick secretions from cock
 
 # Interaction pussy
 erp-panel-interaction-pussy-fingering-name = Finger pussy
-erp-panel-interaction-target-pussy-fap-name = Jerk off their pussy
 erp-panel-interaction-pussy-licking-name = Lick pussy
 erp-panel-interaction-pussy-scissors-name = Scissor with pussy
 erp-panel-interaction-pussy-touch-name = Touch pussy
 erp-panel-interaction-pussy-tail-fuck-name = Fuck pussy with tail
 erp-panel-interaction-cock-pussy-fuck-name = Fuck pussy
-erp-panel-interaction-cock-self-fuck-name = Fuck self with their cock
+erp-panel-interaction-cock-self-fuck-name = Fuck self with cock
 erp-panel-interaction-toy-pussy-name = Use sex toy
 erp-panel-interaction-toy-butt-fuck-name = Fuck anus with sex toy
 erp-panel-interaction-toy-pussy-fuck-name = Fuck pussy with sex toy
