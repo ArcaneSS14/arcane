@@ -30,3 +30,4 @@ marking-HumanHairHardMorningAlt = Тяжелое утро (Альт.)
 marking-HumanHairMulletArcane = Маллет
 marking-HumanHairWolfcutM = Вульфкат (мужской)
 marking-HumanHairWolfcutF = Вульфкат (женский)
+marking-HumanHairBobWithTail = Каре с хвостиком
