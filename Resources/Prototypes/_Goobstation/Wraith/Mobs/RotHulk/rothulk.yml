@@ -85,6 +85,7 @@
     damageContainer: Biological
     damageModifierSet: Diona # Weak to heat
   - type: GhostRole
+    banJob: GhostRoleWraith # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
