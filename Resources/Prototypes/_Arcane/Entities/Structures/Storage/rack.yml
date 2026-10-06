@@ -1,0 +1,7 @@
+- type: entity
+  parent: CounterBase
+  id: RMCCounter
+  components:
+  - type: Sprite
+    sprite: _RMC/Structures/Storage/rack.rsi
+    state: rack

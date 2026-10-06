@@ -1,0 +1,8 @@
+- type: entity
+  parent: SinkStemlessWater
+  id: Shower
+  name: shower
+  components:
+  - type: Sprite
+    sprite: _RMC/Structures/Furniture/shower.rsi
+    state: shower

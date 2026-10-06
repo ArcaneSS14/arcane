@@ -354,3 +354,5 @@ flavor-complex-punishment = как наказание
 flavor-complex-artifact-glue = like crushed artifacts
 flavor-weh = как вех
 flavor-hew = как хев
+
+flavor-complex-bobda = как порох и старая газировка

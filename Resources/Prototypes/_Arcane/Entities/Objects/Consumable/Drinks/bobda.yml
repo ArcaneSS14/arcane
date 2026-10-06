@@ -1,0 +1,194 @@
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkBobdaCan
+  name: bobda
+  description: The very one.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Bobda
+          Quantity: 30
+      grindable: *grindable
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/classic.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/classic.rsi
+  - type: Tag
+    tags:
+    - Beer
+    - DrinkCan
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkBlueraspberryBobdaCan
+  name: blueraspberry bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/blueraspberry.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/blueraspberry.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkCherryBobdaCan
+  name: cherry bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/cherry.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/cherry.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkCranberryBobdaCan
+  name: cranberry bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/cranberry.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/cranberry.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkGrapeBobdaCan
+  name: grape bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/grape.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/grape.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkLimeBobdaCan
+  name: lime bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/lime.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/lime.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkPeachBobdaCan
+  name: peach bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/peach.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/peach.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkPineappleBobdaCan
+  name: pineapple bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/pineapple.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/pineapple.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkVanillaBobdaCan
+  name: vanilla bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/vanilla.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/vanilla.rsi
+
+# Diet
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkDietBobdaCan
+  name: diet bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/classic.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/classic.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkDietBlueraspberryBobdaCan
+  name: diet blueraspberry bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/blueraspberry.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/blueraspberry.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkDietCherryBobdaCan
+  name: diet cherry bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/cherry.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/cherry.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkDietCranberryBobdaCan
+  name: diet cranberry bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/cranberry.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/cranberry.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkDietGrapeBobdaCan
+  name: diet grape bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/grape.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/grape.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkDietLimeBobdaCan
+  name: diet lime bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/lime.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/lime.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkDietPeachBobdaCan
+  name: diet peach bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/peach.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/peach.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkDietPineappleBobdaCan
+  name: diet pineapple bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/pineapple.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/pineapple.rsi
+
+- type: entity
+  parent: DrinkBobdaCan
+  id: DrinkDietVanillaBobdaCan
+  name: diet vanilla bobda
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/vanilla.rsi
+  - type: Item
+    sprite: _RMC/Objects/Consumable/Drinks/Bobda/Diet/vanilla.rsi
