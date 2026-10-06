@@ -127,6 +127,10 @@
         - map: ["socks"]
         - map: ["underpants"]
         - map: ["undershirt"]
+        # Arcane-Start
+        - map: ["underwear"]
+        - map: ["outerClothingalt"]
+        # Arcane-End
         - map: ["jumpsuit"]
         - map: ["enum.HumanoidVisualLayers.LHand"]
         - map: ["enum.HumanoidVisualLayers.RHand"]

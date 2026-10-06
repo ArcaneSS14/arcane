@@ -137,6 +137,10 @@
     # Arcane-Edit-Start
     - map: [ "enum.HumanoidVisualLayers.LFoot" ]
     - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: ["socks"]
+    - map: ["underwear"]
+    - map: ["undershirt"]
+    - map: ["outerClothingalt"]
     - map: [ "jumpsuit" ]
     # Arcane-Edit-End
     - map: [ "enum.HumanoidVisualLayers.LHand" ]

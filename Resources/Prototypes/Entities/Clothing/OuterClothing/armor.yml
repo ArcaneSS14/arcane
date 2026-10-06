@@ -54,6 +54,13 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  # Arcane-Start
+  - type: AltClothingLayer
+    defaultLayer: outerClothing
+    altLayer: outerClothingalt
+    changeToAltMessage: alt-clothing-component-vest-alt
+    changeToDefaultMessage: alt-clothing-component-vest-default
+  # Arcane-End
 
 #Alternate / slim basic armor vest
 - type: entity

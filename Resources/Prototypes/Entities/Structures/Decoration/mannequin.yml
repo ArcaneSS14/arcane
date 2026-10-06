@@ -15,6 +15,12 @@
     - map: [ "mannequin" ]
       sprite: Structures/Decoration/mannequin.rsi
       state: mannequin
+    # Arcane-Start
+    - map: ["socks"]
+    - map: ["underwear"]
+    - map: ["undershirt"]
+    - map: ["outerClothingalt"]
+    # Arcane-End
     - map: [ "jumpsuit" ]
     - map: [ "outerClothing" ]
     - map: [ "eyes" ]

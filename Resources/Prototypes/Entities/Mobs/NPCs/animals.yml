@@ -1467,6 +1467,12 @@
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     # Arcane-Edit-End
+    # Arcane-Start
+    - map: ["socks"]
+    - map: ["underwear"]
+    - map: ["undershirt"]
+    - map: ["outerClothingalt"]
+    # Arcane-End
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]

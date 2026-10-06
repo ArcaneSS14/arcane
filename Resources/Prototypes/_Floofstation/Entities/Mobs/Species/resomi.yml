@@ -313,6 +313,7 @@
     - map: [ "enum.HumanoidVisualLayers.LHand" ]  # Hands below jumpsuit since its bigger-than-usual sprite and this allows jumpsuits to have better-looking sleeves
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
     - map: [ "enum.HumanoidVisualLayers.Tail" ]   # Tail changed to be below outerclothing and above limbs
+    - map: ["outerClothingalt"] # Arcane
     - map: ["jumpsuit"]                         # Jumpsuit above tail & limbs
     - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
       color: "#ffffff"
@@ -473,6 +474,7 @@
     - map: [ "enum.HumanoidVisualLayers.LHand" ]  # Hands below jumpsuit since its bigger-than-usual sprite and this allows jumpsuits to have better-looking sleeves
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
     - map: [ "enum.HumanoidVisualLayers.Tail" ]   # Tail changed to be below outerclothing and above limbs
+    - map: ["outerClothingalt"] # Arcane
     - map: ["jumpsuit"]                         # Jumpsuit above tail & limbs
     - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
       color: "#ffffff"

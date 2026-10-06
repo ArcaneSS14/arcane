@@ -70,6 +70,7 @@
       - map: ["enum.HumanoidVisualLayers.RFoot"]
       # Orion-Edit-End
       - map: [ "socks" ] # Orion
+      - map: ["outerClothingalt"] # Arcane
       - map: ["jumpsuit"]
       - map: [ "enum.HumanoidVisualLayers.LHand" ]
       - map: [ "enum.HumanoidVisualLayers.RHand" ]
