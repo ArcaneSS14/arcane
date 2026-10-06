@@ -4,6 +4,7 @@
   id: SpawnPointCosmicColossus
   components:
   - type: GhostRole
+    banJob: GhostRoleCosmicCult # Arcane
     name: ghost-role-information-colossus-name
     description: ghost-role-information-colossus-description
     rules: ghost-role-information-colossus-rules
