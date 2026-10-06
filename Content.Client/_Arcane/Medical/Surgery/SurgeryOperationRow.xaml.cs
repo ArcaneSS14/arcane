@@ -42,10 +42,15 @@ public sealed partial class SurgeryOperationRow : BoxContainer
 
     /// <summary>
     /// Shows the operation header and its step icons; an expanded row lists every section of its requirement chain.
+    /// The header stays pressed while the operation is the surgeon's plan.
     /// </summary>
-    public void Set(SurgeryOperationEntry entry, IReadOnlyList<SurgeryStepSection> sections, bool expanded, Func<EntityUid, Texture?> getIcon)
+    public void Set(SurgeryOperationEntry entry,
+        IReadOnlyList<SurgeryStepSection> sections,
+        bool expanded,
+        bool planned,
+        Func<EntityUid, Texture?> getIcon)
     {
-        Header.Pressed = expanded;
+        Header.Pressed = planned;
         Stripe.PanelOverride = new StyleBoxFlat(GetGroupColor(entry.Group));
         ArrowLabel.Text = expanded ? "▼" : "▶";
 

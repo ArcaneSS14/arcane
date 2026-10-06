@@ -30,8 +30,10 @@ public sealed class SurgeryBui : BoundUserInterface
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private const float ChangeCheckInterval = 0.25f;
+    private static readonly TimeSpan TargetChangeTimeout = TimeSpan.FromSeconds(1);
     private static readonly ResPath StatusRsiPath = new("/Textures/_Shitmed/Interface/Targeting/Status");
 
     private readonly SurgerySystem _surgery;
@@ -55,6 +57,8 @@ public sealed class SurgeryBui : BoundUserInterface
     private bool _canOperate;
     // The doll follows the surgeon's targeting and plan, so they are applied only when they change.
     private TargetBodyPart? _lastTarget;
+    // A doll click retargets through the server, so the old target is ignored until the new one arrives.
+    private (TargetBodyPart Target, TimeSpan Until)? _pendingTarget;
     private (EntityUid? Part, EntProtoId? Surgery) _lastPlan;
     private float _changeCheckTimer;
     private (int Parts, int Steps)? _snapshot;
@@ -191,6 +195,7 @@ public sealed class SurgeryBui : BoundUserInterface
         CollectSteps();
         var steps = new HashCode();
         steps.Add(_surgeryId);
+        steps.Add(_lastPlan);
         steps.Add(_canOperate);
         foreach (var section in _sections)
         {
@@ -207,8 +212,20 @@ public sealed class SurgeryBui : BoundUserInterface
     {
         if (_choices.Count == 0
             || _player.LocalEntity is not { } user
-            || !EntMan.TryGetComponent(user, out TargetingComponent? targeting)
-            || targeting.Target == _lastTarget)
+            || !EntMan.TryGetComponent(user, out TargetingComponent? targeting))
+            return;
+
+        if (_pendingTarget is { } pending)
+        {
+            if (targeting.Target != pending.Target && _timing.CurTime < pending.Until)
+                return;
+
+            _pendingTarget = null;
+            _lastTarget = targeting.Target;
+            return;
+        }
+
+        if (targeting.Target == _lastTarget)
             return;
 
         _lastTarget = targeting.Target;
@@ -327,8 +344,10 @@ public sealed class SurgeryBui : BoundUserInterface
         if (_part is not { } part)
             return;
 
-        _surgeryId = _surgeryId == surgeryId ? null : (EntProtoId?) surgeryId;
-        _lastPlan = (_surgeryId == null ? null : part, _surgeryId);
+        // Picking the planned surgery again drops the plan; any other surgery, even one already open, becomes it.
+        var planned = _lastPlan == (part, surgeryId);
+        _surgeryId = planned ? null : (EntProtoId?) surgeryId;
+        _lastPlan = planned ? (null, null) : (part, surgeryId);
         SendPredictedMessage(new SurgeryPlanBuiMsg(EntMan.GetNetEntity(part), _surgeryId));
         RefreshUI();
     }
@@ -359,8 +378,11 @@ public sealed class SurgeryBui : BoundUserInterface
             return;
 
         SelectPart(dollSlot.Part, dollSlot.MissingSlot is { } missingSlot ? (missingSlot, slot) : null);
-        _lastTarget = slot;
-        _targeting.CycleTarget(slot);
+        if (_player.LocalEntity is { } user && EntMan.HasComponent<TargetingComponent>(user))
+        {
+            _pendingTarget = (slot, _timing.CurTime + TargetChangeTimeout);
+            _targeting.CycleTarget(slot);
+        }
     }
 
     private void UpdateDoll()
@@ -635,7 +657,7 @@ public sealed class SurgeryBui : BoundUserInterface
                 ? _sections
                 : new List<SurgeryStepSection> { new(entry.Id, entry.Name, entry.Done >= entry.Total, entry.Steps) };
 
-            _operationRows[i].Set(entry, sections, expanded, GetIcon);
+            _operationRows[i].Set(entry, sections, expanded, _lastPlan == (_part, entry.Id), GetIcon);
         }
     }
 
