@@ -2686,3 +2686,17 @@ Entries:
       https://github.com/user-attachments/assets/12cc6153-14e4-434a-84f4-da616619e083
     - >-
       https://github.com/user-attachments/assets/79ca6bc2-f5db-4146-862a-cc947fc6ae6b
+- author: Fish
+  changes:
+    - type: Tweak
+      message: >-
+        На станции Fland появился биогенератор у ботаника и устранены дыры в
+        сервисе.
+    - type: Tweak
+      message: Умный холодильник повара на Kettle теперь без доступа меда.
+    - type: Tweak
+      message: В ксенобиологии карты Silly появились серые слаймы.
+  id: 197
+  time: '2026-10-06T13:12:22.0000000+00:00'
+  prNumber: 474
+  url: https://github.com/ArcaneSS14/arcane/pull/474
