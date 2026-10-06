@@ -1,6 +1,8 @@
 - type: entity
   parent: BaseStructureDynamic
   id: Torsher
+  name: Torsher
+  description: A touch of coziness even far from home.
   components:
   - type: Sprite
     sprite: _Arcane/Structures/Furniture/torsher.rsi
