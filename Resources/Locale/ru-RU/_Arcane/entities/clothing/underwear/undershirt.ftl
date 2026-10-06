@@ -12,3 +12,8 @@ ent-ClothingBraPinkFancy = модный розовый бюстгальтер
     .desc = Розовый, как Барби.
 ent-ClothingBraRed = красный бюстгальтер
     .desc = Красный бюстгальтер.
+
+# Lovemate
+
+ent-ClothingBraBelts = портупеи
+    .desc = Тонкие чёрные ремни.
