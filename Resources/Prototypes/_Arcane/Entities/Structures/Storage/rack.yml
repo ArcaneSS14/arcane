@@ -6,3 +6,4 @@
     sprite: _RMC14/Structures/Storage/rack.rsi
   - type: Icon
     sprite: _RMC14/Structures/Storage/rack.rsi
+    state: icon
