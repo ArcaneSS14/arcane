@@ -30,8 +30,8 @@
 
 - type: trait
   id: HorseNature
-  name: trait-horsehature-name
-  description: trait-horsehature-desc
+  name: trait-horsenature-name
+  description: trait-horsenature-desc
   category: Nature
   cost: 1
   components:
