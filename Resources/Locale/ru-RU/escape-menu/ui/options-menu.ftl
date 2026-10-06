@@ -163,6 +163,7 @@ ui-options-function-swap-hands-reverse = Поменять руки (другое
 ui-options-function-move-stored-item = Переместить хранящийся объект
 ui-options-function-rotate-stored-item = Повернуть хранящийся объект
 ui-options-function-save-item-location = Сохранить расположение объекта
+ui-options-function-toggle-action-pin = Закрепить действие
 ui-options-static-storage-ui = Закрепить интерфейс хранилища на хотбаре
 ui-options-function-smart-equip-backpack = Умная экипировка в рюкзак
 ui-options-function-smart-equip-belt = Умная экипировка на пояс
