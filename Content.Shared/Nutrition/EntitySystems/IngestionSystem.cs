@@ -3,6 +3,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -99,6 +100,11 @@ public sealed partial class IngestionSystem : EntitySystem
     /// </summary>
     private void OnUseEdibleInHand(Entity<EdibleComponent> entity, ref UseInHandEvent ev)
     {
+        // Arcane-Start
+        if (HasComp<ClothingComponent>(entity))
+            return;
+        // Arcane-End
+
         if (ev.Handled)
             return;
 
