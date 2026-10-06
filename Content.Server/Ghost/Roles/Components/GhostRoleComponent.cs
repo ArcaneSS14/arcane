@@ -113,5 +113,11 @@ public sealed partial class GhostRoleComponent : Component
     [DataField("job")]
     [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // also FIXME Friends
     public ProtoId<JobPrototype>? JobProto;
+
+    // Arcane-Start
+    // Checked for role bans only, never given to the player.
+    [DataField]
+    public ProtoId<JobPrototype>? BanJob;
+    // Arcane-End
 }
 

@@ -2642,3 +2642,119 @@ Entries:
       https://github.com/user-attachments/assets/70d31744-c928-454c-9ab1-f47549a56ac5
     - >-
       https://github.com/user-attachments/assets/28e0233f-dbee-4911-bf84-7db2db59cf40
+- author: mxgnvrx
+  changes:
+    - type: Add
+      message: >-
+        Администраторы могут отдельно запрещать гост-роли InteQ, отшельников,
+        ксеноморфов, подкреплений Синдиката, магов, призывов Фантома,
+        космического культа и бинглов.
+    - type: Fix
+      message: Домен битраннинга «Арена фанатиков» снова загружается.
+    - type: Fix
+      message: >-
+        Рамки консолей и машин и заготовки имплантов при осмотре всегда
+        показывают следующий шаг сборки.
+    - type: Tweak
+      message: >-
+        Если заготовку импланта можно доделать разными платами, при осмотре
+        видны все варианты.
+    - type: Tweak
+      message: >-
+        При осмотре платы консоли видно, какие материалы нужны для сборки, а у
+        плат машин — ещё и какие детали нужны.
+    - type: Fix
+      message: >-
+        Цена рецепта в подсказке лейта учитывает установленные улучшенные
+        детали.
+    - type: Tweak
+      message: Разбор образцов руды даёт меньше очков исследований.
+    - type: Fix
+      message: Инструмент для забивания называется «Молоток», а не «Кувалда».
+  id: 196
+  time: '2026-10-06T13:03:38.0000000+00:00'
+  prNumber: 463
+  url: https://github.com/ArcaneSS14/arcane/pull/463
+  media:
+    - >-
+      https://github.com/user-attachments/assets/cbdae3a1-1567-46c7-b6c9-d32f3f0d6cb6
+    - >-
+      https://github.com/user-attachments/assets/b559bd92-ba13-417a-8966-25f1f952c1d0
+    - >-
+      https://github.com/user-attachments/assets/8f84a571-ee7d-4a23-a247-f108d5352fda
+    - >-
+      https://github.com/user-attachments/assets/12cc6153-14e4-434a-84f4-da616619e083
+    - >-
+      https://github.com/user-attachments/assets/79ca6bc2-f5db-4146-862a-cc947fc6ae6b
+- author: Fish
+  changes:
+    - type: Tweak
+      message: >-
+        На станции Fland появился биогенератор у ботаника и устранены дыры в
+        сервисе.
+    - type: Tweak
+      message: Умный холодильник повара на Kettle теперь без доступа меда.
+    - type: Tweak
+      message: В ксенобиологии карты Silly появились серые слаймы.
+  id: 197
+  time: '2026-10-06T13:12:22.0000000+00:00'
+  prNumber: 474
+  url: https://github.com/ArcaneSS14/arcane/pull/474
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: >-
+        Охранные турели ИИ и им подобные более не стреляют в выключенном и
+        сломанном состояниях 
+  id: 198
+  time: '2026-10-06T13:21:51.0000000+00:00'
+  prNumber: 466
+  url: https://github.com/ArcaneSS14/arcane/pull/466
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: >-
+        Добавлена новая мутация картофеля - помидофель. Случайным образом с него
+        могут собираться 2 помидора, 2 картофеля или помидор и картофель.
+  id: 199
+  time: '2026-10-06T14:10:03.0000000+00:00'
+  prNumber: 451
+  url: https://github.com/ArcaneSS14/arcane/pull/451
+  media:
+    - >-
+      https://github.com/user-attachments/assets/e4d76445-8770-48f7-a51a-39e99e30d83f
+- author: RabbitBat
+  changes:
+    - type: Tweak
+      message: >-
+        Изменение, теперь у расы фелинидов есть те же черты внешности, что и у
+        расы людей.
+  id: 200
+  time: '2026-10-06T14:29:03.0000000+00:00'
+  prNumber: 460
+  url: https://github.com/ArcaneSS14/arcane/pull/460
+- author: RabbitBat, Gustov
+  changes:
+    - type: Tweak
+      message: Изменены спрайты скафандра HTX5-Mirrorduss
+    - type: Tweak
+      message: Изменён перевод скафандра "HTX5-Mirrorduss"->"скафандр HTХ5-Миррордусс"
+    - type: Tweak
+      message: Изменён спрайт ошейника на другой
+  id: 201
+  time: '2026-10-06T15:00:13.0000000+00:00'
+  prNumber: 471
+  url: https://github.com/ArcaneSS14/arcane/pull/471
+  media:
+    - >-
+      https://github.com/user-attachments/assets/e3d9311a-f063-49b8-bd2b-10851b9c6446
+    - >-
+      https://github.com/user-attachments/assets/2f80ca8d-a8a8-45b3-acf4-9caad1ca8353
+    - >-
+      https://github.com/user-attachments/assets/5eee2a0d-5097-489e-a3c8-c0d2a8d9058e
+    - >-
+      https://github.com/user-attachments/assets/94f85c14-e228-4402-9451-f93fa8f645b4
+    - >-
+      https://github.com/user-attachments/assets/82c1c62f-29ca-4140-b26e-3c64dd84871c
+    - >-
+      https://github.com/user-attachments/assets/52844600-3d5f-4bc0-800d-9afd4bb3c2dd
