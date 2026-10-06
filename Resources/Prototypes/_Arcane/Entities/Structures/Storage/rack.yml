@@ -3,5 +3,5 @@
   id: RMCCounter
   components:
   - type: Sprite
-    sprite: _RMC/Structures/Storage/rack.rsi
+    sprite: _RMC14/Structures/Storage/rack.rsi
     state: rack
