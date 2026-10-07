@@ -18,11 +18,5 @@
                 sprite: Objects/Power/light_bulb.rsi
                 state: normal
               doAfter: 1
-            - tag: PowerCellSmall
-              name: construction-graph-tag-power-cell-small
-              icon:
-                sprite: Objects/Power/power_cells.rsi
-                state: small
-              doAfter: 1
     - node: torsher
       entity: Torsher
