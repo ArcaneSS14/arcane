@@ -32,7 +32,7 @@ public sealed partial class ArousalComponent : Component
     /// Passive decay per second.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DecayRate = 0.3f;
+    public float DecayRate = 0.1f;
 
     [DataField]
     public float MaxArousal = 100f;
@@ -86,6 +86,9 @@ public sealed partial class ArousalComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan RefractoryDuration = TimeSpan.FromSeconds(30);
+
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan LastMoanAt;
 
     public ArousalPhase ComputePhase(float arousal) => arousal switch
     {

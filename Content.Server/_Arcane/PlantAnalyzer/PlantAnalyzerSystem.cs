@@ -1,5 +1,7 @@
 using Content.Server.Botany.Components;
 using Content.Shared._Arcane.PlantAnalyzer;
+using Content.Shared.Atmos;
+using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Hands.EntitySystems;
@@ -21,6 +23,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly SharedAtmosphereSystem _atmosSystem = default!;
 
     private const float MaxScanDistance = 3.0f;
 
@@ -139,6 +142,12 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         return reagentId;
     }
 
+    private string GetGasLocalizedName(Gas gas)
+    {
+        var gasProto = _atmosSystem.GetGas(gas);
+        return Loc.GetString(gasProto.Name);
+    }
+
     private bool TryAnalyzeTarget(EntityUid target, out PlantAnalyzerUserInterfaceState state)
     {
         state = default!;
@@ -158,6 +167,38 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             var yield = hasPlant ? seed!.Yield : 0;
             var maxAge = hasPlant ? seed!.GrowthStages : 0;
             var mutationLevel = hasPlant ? (int) plantHolder.MutationLevel : 0;
+            var growthRate = hasPlant ? (int) seed!.Production : 0;
+            var exudeGases = new List<string>();
+            var specialGene = PlantSpecialGene.None;
+
+            var minTemp = 0f;
+            var maxTemp = 0f;
+            var minPressure = 0f;
+            var maxPressure = 0f;
+
+            if (hasPlant && seed != null)
+            {
+                minTemp = seed.IdealHeat - seed.HeatTolerance;
+                maxTemp = seed.IdealHeat + seed.HeatTolerance;
+                minPressure = seed.LowPressureTolerance;
+                maxPressure = seed.HighPressureTolerance;
+
+                if (seed.TurnIntoKudzu)
+                {
+                    specialGene = PlantSpecialGene.Kudzu;
+                }
+                //else if (seed.Carnivorous)
+                //{
+                //    specialGene = PlantSpecialGene.Lethal;
+                //}
+
+                foreach (var (gas, _) in seed.ExudeGasses)
+                {
+                    var localizedGasName = GetGasLocalizedName(gas);
+                    if (!exudeGases.Contains(localizedGasName))
+                        exudeGases.Add(localizedGasName);
+                }
+            }
 
             var age = plantHolder.Age;
             var harvestable = plantHolder.Harvest;
@@ -194,7 +235,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             state = new PlantAnalyzerUserInterfaceState(
                 netTarget, targetName, hasPlant, plantName, potency, yield, age, maxAge,
                 harvestable, dead, health, maxHealth, weedLevel, pestLevel,
-                toxins, mutationLevel, false, soilReagents, produceReagents
+                toxins, mutationLevel, growthRate, minTemp, maxTemp, minPressure, maxPressure, exudeGases, soilReagents, produceReagents, specialGene
             );
 
             return true;
@@ -215,7 +256,8 @@ public sealed class PlantAnalyzerSystem : EntitySystem
 
             state = new PlantAnalyzerUserInterfaceState(
                 netTarget, targetName, true, targetName, 0, 0, 0, 0,
-                false, false, 100f, 100f, 0, 0, 0, 0, false, soilReagents, produceReagents
+                false, false, 100f, 100f, 0, 0, 0, 0, 0, 0f, 0f, 0f, 0f,
+                new List<string>(), soilReagents, produceReagents, PlantSpecialGene.None
             );
 
             return true;

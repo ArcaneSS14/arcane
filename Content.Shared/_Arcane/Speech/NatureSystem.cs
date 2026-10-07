@@ -49,8 +49,6 @@ public sealed class NatureSystem : EntitySystem
             return;
 
         TryComp<VocalComponent>(uid, out var vocal);
-        if (vocal != null && args.Emote.ID == vocal.ScreamId)
-            return;
 
         var getSoundEv = new GetEmoteSoundsEvent();
         RaiseLocalEvent(uid, ref getSoundEv);
@@ -64,21 +62,21 @@ public sealed class NatureSystem : EntitySystem
             return;
         }
 
-        // The species' own sounds always win; the trait only adds sounds for emotes the
-        // race has none of (e.g. Meow for a human, while an IPC keeps its Beep/Boop).
-        if (vocal != null
-            && vocal.EmoteSounds is { } raceId
-            && _proto.TryIndex(raceId, out var raceSounds)
-            && _chat.TryPlayEmoteSound(uid, raceSounds, args.Emote))
+        // Traits always take priority; species' own sounds are only used if the character
+        // has no trait-specific emote sound
+        if (component.newSounds != null
+            && component.newSounds.TryGetValue(humanoid.Sex, out var traitId)
+            && _proto.TryIndex(traitId, out var traitSounds)
+            && _chat.TryPlayEmoteSound(uid, traitSounds, args.Emote))
         {
             args.Handled = true;
             return;
         }
 
-        if (component.newSounds != null
-            && component.newSounds.TryGetValue(humanoid.Sex, out var traitId)
-            && _proto.TryIndex(traitId, out var traitSounds)
-            && _chat.TryPlayEmoteSound(uid, traitSounds, args.Emote))
+        if (vocal != null
+            && vocal.EmoteSounds is { } raceId
+            && _proto.TryIndex(raceId, out var raceSounds)
+            && _chat.TryPlayEmoteSound(uid, raceSounds, args.Emote))
         {
             args.Handled = true;
         }

@@ -18,10 +18,18 @@ public readonly struct PlantAnalyzerReagentInfo
     }
 }
 
+public enum PlantSpecialGene : byte
+{
+    None,
+    Kudzu,
+    //Lethal
+}
+
+
 [NetSerializable, Serializable]
 public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
 {
-    public readonly NetEntity? Target; 
+    public readonly NetEntity? Target;
     public readonly string TargetName;
     public readonly bool HasPlant;
     public readonly string PlantName;
@@ -37,10 +45,17 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
     public readonly int PestLevel;
     public readonly int Toxins;
     public readonly int MutationLevel;
-    public readonly bool IsKudzu;
+    public int GrowthRate { get; }
+    public float MinTemp { get; }
+    public float MaxTemp { get; }
+    public float MinPressure { get; }
+    public float MaxPressure { get; }
+    public List<string> ExudeGases { get; }
 
     public readonly List<PlantAnalyzerReagentInfo> SoilReagents;
     public readonly List<PlantAnalyzerReagentInfo> ProduceReagents;
+    public PlantSpecialGene SpecialGene { get; }
+
 
     public PlantAnalyzerUserInterfaceState(
         NetEntity? target,
@@ -59,9 +74,16 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
         int pestLevel,
         int toxins,
         int mutationLevel,
-        bool isKudzu,
+        int growthRate,
+        float minTemp,
+        float maxTemp,
+        float minPressure,
+        float maxPressure,
+        List<string> exudeGases,
         List<PlantAnalyzerReagentInfo> soilReagents,
-        List<PlantAnalyzerReagentInfo> produceReagents)
+        List<PlantAnalyzerReagentInfo> produceReagents,
+        PlantSpecialGene specialGene)
+
     {
         Target = target;
         TargetName = targetName;
@@ -79,8 +101,14 @@ public sealed class PlantAnalyzerUserInterfaceState : BoundUserInterfaceState
         PestLevel = pestLevel;
         Toxins = toxins;
         MutationLevel = mutationLevel;
-        IsKudzu = isKudzu;
+        GrowthRate = growthRate;
+        MinTemp = minTemp;
+        MaxTemp = maxTemp;
+        MinPressure = minPressure;
+        MaxPressure = maxPressure;
+        ExudeGases = exudeGases;
         SoilReagents = soilReagents;
         ProduceReagents = produceReagents;
+        SpecialGene = specialGene;
     }
 }

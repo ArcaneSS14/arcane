@@ -1,5 +1,5 @@
 # Analyzer
-ent-PlantAnalyzer = Plant Analyzer
+ent-PlantAnalyzer = plant analyzer
     .desc = Device developed by the Green Group for analyzing the state of plants and their chemical composition. May Sporwyn be glad!
 
 # Analyzer Window
@@ -20,14 +20,19 @@ plant-analyzer-plant-name = Plant: { $name }
 # Statuses
 plant-analyzer-status-dead = Status: Dead
 plant-analyzer-status-harvestable = Status: Ready for harvest
-plant-analyzer-status-growing = Status: Growing (Stage { $age } of { $maxAge })
+plant-analyzer-status-growing = Plant age { $age }
 
 # Metrics
 plant-analyzer-health-value = Health: { $health } / { $max }
 plant-analyzer-potency = Potency: { $potency }
 plant-analyzer-yield = Yield: { $yield }
-plant-analyzer-mutation = Mutation status: MUTATING! { $mutation }
-plant-analyzer-mutation-non = Mutation status: Stable { $mutation }
+plant-analyzer-mutation = Mutation status: MUTATING! 
+plant-analyzer-mutation-non = Mutation status: Stable 
+plant-analyzer-growth-rate = Rapid fruiting time: { $growthRate }
+plant-analyzer-exude-gases = Exuded gases: { $gases }
+plant-analyzer-exude-gases-none = Gas exudation: None
+plant-analyzer-temp-range = Comfortable temperature: { $min }°F – { $max }°F
+plant-analyzer-pressure-range = Comfortable pressure: { $min } kPa – { $max } kPa
 
 # Threats
 plant-analyzer-weeds = Weeds: { $level }
@@ -36,6 +41,8 @@ plant-analyzer-pests = Pests: { $level }
 plant-analyzer-pests-danger = Pests: { $level } (DANGER)
 plant-analyzer-toxins = Toxins: { $level }
 plant-analyzer-toxins-danger = Toxins: { $level } (DANGER)
+plant-analyzer-gene-lethal = ⚠ DEATH GENE ⚠
+plant-analyzer-gene-kudzu = ⚠ KUDZU ⚠
 
 # Reagents
 plant-analyzer-no-soil-reagents = Soil is pure or solution is absent.

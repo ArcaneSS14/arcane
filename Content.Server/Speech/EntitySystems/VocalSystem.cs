@@ -11,6 +11,7 @@ using Content.Shared.Speech.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Speech.EntitySystems;
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -29,7 +30,7 @@ public sealed class VocalSystem : EntitySystem
         SubscribeLocalEvent<VocalComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VocalComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<VocalComponent, SexChangedEvent>(OnSexChanged);
-        SubscribeLocalEvent<VocalComponent, EmoteEvent>(OnEmote);
+        SubscribeLocalEvent<VocalComponent, EmoteEvent>(OnEmote, after: [typeof(NatureSystem)]); // Arcane-Edit
         SubscribeLocalEvent<VocalComponent, ScreamActionEvent>(OnScreamAction);
         SubscribeLocalEvent<VocalComponent, SoundsChangedEvent>(OnSoundsChanged); // DeltaV - support for changing vocal sounds on the go. Why it wasn't there in the first place is beyond me.
     }
