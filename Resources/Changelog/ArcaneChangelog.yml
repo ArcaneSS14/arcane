@@ -2834,3 +2834,14 @@ Entries:
   time: '2026-10-07T04:06:39.0000000+00:00'
   prNumber: 435
   url: https://github.com/ArcaneSS14/arcane/pull/435
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Задержка на перекладывание в карман и предметов на спине вырезана.
+  id: 207
+  time: '2026-10-07T23:35:14.0000000+00:00'
+  prNumber: 484
+  url: https://github.com/ArcaneSS14/arcane/pull/484
+  media:
+    - >-
+      https://github.com/user-attachments/assets/d63bad28-54d7-41d3-8170-eae5fc428b68
