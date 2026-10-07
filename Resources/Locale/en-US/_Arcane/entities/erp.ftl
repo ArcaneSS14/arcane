@@ -42,3 +42,5 @@ ent-CondomTrash = trash
     .desc = It's a trash.
 ent-ClothingUnderwearCondom = condom
     .desc = One of the most common contraceptives. Don't forget to wear it!
+ent-ClothingUnderwearCondomFilled = used condom
+    .desc = A rubber sheath full of dried up cum. Best not to put that back on.

@@ -83,6 +83,7 @@
     - id: DarkPriestMidround # Goobstation - New Midrounds
     - id: VoxRaidersMidround # Goobstation - New Midrounds
     - id: TunnelClownMidround # Goobstation
+    - id: KidnapperMidround # Arcane
     #- id: WraithMidround # Goobstation - Wraith
     #TODO when midrounds are "reviewed" by the chudmins add them back
     #TODO When Slasher is Ready - id: SlasherSpawn # Goobstation - The Slasher

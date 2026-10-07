@@ -1,0 +1,45 @@
+- type: entity
+  parent: BaseGameRule
+  id: KidnapperMidround
+  components:
+  - type: StationEvent
+    weight: 1.5
+    duration: null
+    earliestStart: 5
+    minimumPlayers: 20
+    chaos:
+      Hostile: 5
+    eventType: HostilesSpawn
+  - type: GameRule
+    chaosScore: 50
+  - type: AntagLoadProfileRule
+    speciesOverride: Human
+    speciesOverrideBlacklist:
+    - Yowie
+    - IPC
+    - Diona
+    - Harpy
+    - Plasmaman
+  - type: AntagSelection
+    agentName: ghost-role-information-kidnapper-name
+    definitions:
+    - spawnerPrototype: SpawnPointGhostKidnapper
+      min: 1
+      max: 1
+      pickPlayer: false
+      startingGear: KidnapperAntagGear
+      mindRoles:
+      - MindRoleGhostRoleSoloAntagonist
+      briefing:
+        text: kidnapper-role-greeting
+        color: Red
+      components:
+      - type: RandomMetadata
+        nameSegments:
+        - NamesFirst
+        - NamesLast
+        nameFormat: name-format-standard
+  - type: AntagRandomSpawn
+  - type: AntagObjectives
+    objectives:
+    - KidnapperKidnapObjective
