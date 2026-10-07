@@ -2,8 +2,7 @@
   parent: BaseSoda
   id: Bobda
   name: reagent-name-bobda
-  physicalDesc: reagent-physical-desc-bubbly
+  desc: reagent-desc-bobda
+  physicalDesc: reagent-physical-desc-fizzy
   flavor: bobda
   color: "#7d5739"
-  recognizable: true
-  fizziness: 0.6
