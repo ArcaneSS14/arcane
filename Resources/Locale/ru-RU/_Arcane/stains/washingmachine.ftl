@@ -11,3 +11,4 @@ washing-machine-fall-in-self = Вы падаете в стиральную ма�
 washing-machine-fall-in-others = { CAPITALIZE($user) } падает в стиральную машину!
 washing-machine-extract-verb = Извлечь содержимое
 washing-machine-extract-self = Вы вынимаете содержимое из стиральной машины.
+washing-machine-escape-verb = Вылезти

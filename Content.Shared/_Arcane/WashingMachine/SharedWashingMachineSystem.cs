@@ -65,7 +65,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    private static readonly TimeSpan EscapeTime = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan EscapeTime = TimeSpan.FromSeconds(10);
     private static readonly TimeSpan EnterTime = TimeSpan.FromSeconds(2);
     private static readonly TimeSpan StuffTime = TimeSpan.FromSeconds(3);
 
@@ -241,10 +241,9 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
     private void OnGetAlternativeVerbs(Entity<WashingMachineComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
+        var user = args.User;
         if (!args.CanInteract || !args.CanComplexInteract)
             return;
-
-        var user = args.User;
 
         if (CanExtractContents(ent))
         {
@@ -270,27 +269,12 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
             args.Verbs.Add(verb);
         }
+
     }
 
     private void OnGetVerbs(Entity<WashingMachineComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
     {
-        if (!args.CanInteract || !args.CanComplexInteract)
-            return;
-
         var user = args.User;
-
-        if (CanActivate(ent))
-        {
-            var verb = new ActivationVerb()
-            {
-                Text = Loc.GetString("washing-machine-start"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
-                Act = () => TryActivate(ent)
-            };
-
-            args.Verbs.Add(verb);
-        }
-
         if (CanClimbIn(ent, user))
         {
             var verb = new ActivationVerb()
@@ -314,6 +298,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
             args.Verbs.Add(extractVerb);
         }
+
     }
 
     private bool TryActivate(Entity<WashingMachineComponent> ent)
@@ -410,7 +395,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             new EnterWashingMachineDoAfterEvent(), ent.Owner, target: user, used: ent.Owner)
         {
             BreakOnDamage = true,
-            BreakOnMove = true,
+            BreakOnMove = false,
             NeedHand = false,
             DuplicateCondition = DuplicateConditions.SameTool | DuplicateConditions.SameTarget
         };
@@ -451,6 +436,9 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
     private void OnStuckInteractAttempt(Entity<WashingMachineStuckComponent> ent, ref InteractionAttemptEvent args)
     {
+        if (args.Target == ent.Comp.Machine || args.Target == null)
+            return;
+
         args.Cancelled = true;
     }
 
@@ -587,7 +575,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             new StuffInWashingMachineDoAfterEvent(), ent.Owner, target: args.Dragged, used: ent.Owner)
         {
             BreakOnDamage = true,
-            BreakOnMove = true,
+            BreakOnMove = false,
             NeedHand = false,
             DuplicateCondition = DuplicateConditions.SameTool | DuplicateConditions.SameTarget
         };

@@ -11,3 +11,4 @@ washing-machine-fall-in-self = You fall into {THE($machine)}!
 washing-machine-fall-in-others = {CAPITALIZE($user)} falls into {THE($machine)}!
 washing-machine-extract-verb = Take contents out
 washing-machine-extract-self = You take the contents out of {THE($machine)}.
+washing-machine-escape-verb = Climb out
