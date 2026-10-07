@@ -32,7 +32,7 @@
   id: TattooNanotrasenChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, SlimePerson, Demon] # Arcane - Demon
+  speciesRestriction: [Human, Dwarf, SlimePerson, Demon, Felinid] # Arcane-Edit
   coloring:
     default:
       type:
@@ -186,7 +186,7 @@
   id: BuffChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Oni, Demon] # ; EE- Oni; Arcane - Demon
+  speciesRestriction: [ Human, Dwarf, Oni, Demon, Felinid] # Arcane-Edit
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi

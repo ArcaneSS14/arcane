@@ -49,6 +49,10 @@
   name: computer frame
   description: A computer under construction.
   components:
+  # Arcane-Start
+  - type: Construction
+    defaultTarget: computer
+  # Arcane-End
   - type: Sprite
     sprite: Structures/Machines/parts.rsi
     layers:

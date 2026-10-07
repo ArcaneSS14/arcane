@@ -302,10 +302,6 @@ binds:
   type: State
   key: c
   mod1: Alt
-- function: MouseMiddle
-  type: State
-  key: MouseMiddle
-  canFocus: true
 - function: RotateObjectClockwise
   type: State
   key: R
@@ -692,4 +688,8 @@ binds:
 - function: OfferItem
   type: State
   key: H
+- function: ToggleActionPin
+  type: State
+  key: MouseMiddle
+  canFocus: true
 # Arcane-End

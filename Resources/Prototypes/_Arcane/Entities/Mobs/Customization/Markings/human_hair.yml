@@ -253,3 +253,11 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/hair.rsi
     state: wolfcut_f
+
+- type: marking
+  id: HumanHairBobWithTail
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: bob_with_tail

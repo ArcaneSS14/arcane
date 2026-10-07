@@ -9,6 +9,7 @@
     layers:
     - state: cheese-radio
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     name: ghost-role-information-nukie-mouse-name
     description: ghost-role-information-nukie-mouse-description
     rules: ghost-role-information-rules-team-antagonist
@@ -26,6 +27,7 @@
   description: Calls in a syndicate carp ready to assist you.
   components:
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     name: ghost-role-information-nukie-carp-name
     description: ghost-role-information-nukie-carp-description
     rules: ghost-role-information-rules-team-antagonist
@@ -45,6 +47,7 @@
     layers:
     - state: syndicate-spider-egg
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     name: ghost-role-information-nukie-spider-name
     description: ghost-role-information-nukie-spider-description
     rules: ghost-role-information-rules-team-antagonist
@@ -64,6 +67,7 @@
   suffix: NukeOps
   components:
     - type: GhostRole
+      banJob: GhostRoleSyndicate # Arcane
       name: ghost-role-information-syndicate-cyborg-saboteur-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
@@ -85,6 +89,7 @@
   description: Calls in a medical borg with good support capabilities and disruptive gear.
   components:
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     name: ghost-role-information-syndicate-cyborg-medical-name
     description: ghost-role-information-syndicate-cyborg-description
     rules: ghost-role-information-silicon-rules
@@ -102,6 +107,7 @@
   description: Calls in a behonker to assist you in your tomfoolery.
   components:
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     name: ghost-role-information-syndicate-behonker-name
     description: ghost-role-information-syndicate-behonker-desc
     rules: ghost-role-information-rules-team-antagonist

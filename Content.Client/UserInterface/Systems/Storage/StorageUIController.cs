@@ -6,6 +6,7 @@ using Content.Client.Hands.Systems;
 using Content.Client.Interaction;
 using Content.Client.Storage;
 using Content.Client.Storage.Systems;
+using Content.Client.UserInterface.Systems.Actions.Controls;
 using Content.Client.UserInterface.Systems.Hotbar.Widgets;
 using Content.Client.UserInterface.Systems.Info;
 using Content.Client.UserInterface.Systems.Storage.Controls;
@@ -199,6 +200,13 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
         if (type != KeyEventType.Down)
             return;
 
+        // Arcane-Start
+        // Middle click over the action bar pins actions, don't rotate storage at the same time.
+        // The key event must not be handled here, that happens before the UI gets it and would stop pinning.
+        if (keyEvent.Key == Keyboard.Key.MouseMiddle && IsHoveringActionButton())
+            return;
+        // Arcane-End
+
         //todo there's gotta be a method for this in InputManager just expose it to content I BEG.
         if (!_input.TryGetKeyBinding(ContentKeyFunctions.RotateStoredItem, out var binding))
             return;
@@ -238,6 +246,23 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
         if (IsDragging || UIManager.CurrentlyHovered is StorageWindow)
             keyEvent.Handle();
     }
+
+    // Arcane-Start
+    /// <summary>
+    ///     True while the mouse is over an action bar button. The hovered control can be any child of the
+    ///     button, e.g. its label or icon, so the whole parent chain has to be checked.
+    /// </summary>
+    private bool IsHoveringActionButton()
+    {
+        for (var control = UIManager.CurrentlyHovered; control != null; control = control.Parent)
+        {
+            if (control is ActionButton)
+                return true;
+        }
+
+        return false;
+    }
+    // Arcane-End
 
     private void OnPiecePressed(GUIBoundKeyEventArgs args, StorageWindow window, ItemGridPiece control)
     {
