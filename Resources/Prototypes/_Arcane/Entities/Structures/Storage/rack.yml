@@ -4,6 +4,7 @@
   components:
   - type: Sprite
     sprite: _RMC14/Structures/Storage/rack.rsi
+    state: icon
   - type: Icon
     sprite: _RMC14/Structures/Storage/rack.rsi
     state: icon
