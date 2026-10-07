@@ -514,7 +514,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         // Arcane-Edit-Start
         if (!TryComp<SurgeryTargetComponent>(body, out var surgeryTarget) ||
             !surgeryTarget.CanOperate ||
-            !IsLyingDown(body, user, false) ||
+            !IsLyingDown(body, user, false) || // Arcane-Edit
             GetSingleton(surgery) is not { } surgeryEntId ||
             !TryComp(surgeryEntId, out SurgeryComponent? surgeryComp) ||
             !surgeryComp.Steps.Contains(stepId) ||

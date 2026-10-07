@@ -890,7 +890,7 @@ public abstract partial class SharedSurgerySystem
 //        var targetPart = GetEntity(args.Part);
 //        if (!HasComp<BodyPartComponent>(targetPart))
 //            return;
-
+//
 //        TryDoSurgeryStep(ent.Owner, targetPart, user, args.Surgery, args.Step);
 //    }
     // Arcane-Edit-End
