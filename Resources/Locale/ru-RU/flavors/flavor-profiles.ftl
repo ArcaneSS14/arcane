@@ -355,4 +355,4 @@ flavor-complex-artifact-glue = like crushed artifacts
 flavor-weh = как вех
 flavor-hew = как хев
 
-flavor-bobda = как порох и старая газировка
+flavor-bobda = как старая газировка с порохом
