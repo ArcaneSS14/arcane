@@ -1047,11 +1047,13 @@
 # Lighting Furniture
 
 - type: construction
-  id: Torsher
+  name: construction-name-torsher
+  id: TorsherRecipe
   graph: TorsherGraph
   startNode: start
   targetNode: torsher
   category: construction-category-furniture
+  description: construction-desc-torsher
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

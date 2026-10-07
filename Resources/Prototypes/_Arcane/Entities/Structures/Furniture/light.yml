@@ -30,7 +30,6 @@
         mask:
         - TableMask
   - type: Anchorable
-  - type: Rotatable
   - type: Pullable
   - type: Damageable
     damageContainer: Inorganic
@@ -39,7 +38,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 25
       behaviors:
       - !type:PlaySoundBehavior
         sound:
