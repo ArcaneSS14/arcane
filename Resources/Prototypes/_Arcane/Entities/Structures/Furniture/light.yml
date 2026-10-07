@@ -112,3 +112,14 @@
   - type: Construction
     graph: TorsherGraph
     node: torsher
+
+- type: entity
+  parent: Torsher
+  id: TorsherFilled
+  suffix: Filled
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
