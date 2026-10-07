@@ -1,11 +1,12 @@
 - type: entity
-  parent: BaseStructure
+  parent: SinkStemlessWater
   id: Shower
   name: shower
   components:
   - type: Sprite
     sprite: _RMC14/Structures/Furniture/shower.rsi
-    state: icon
+    layers:
+      - state: icon
   - type: Icon
     sprite: _RMC14/Structures/Furniture/shower.rsi
     state: icon

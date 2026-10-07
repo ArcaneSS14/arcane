@@ -1503,6 +1503,6 @@
 # Arcane-Start
 - type: flavor
   id: bobda
-  flavorType: Complex
-  description: flavor-complex-bobda
+  flavorType: Base
+  description: flavor-bobda
 # Arcane-End
