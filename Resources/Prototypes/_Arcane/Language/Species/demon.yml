@@ -3,9 +3,9 @@
   isVisibleLanguage: true
   speech:
     color: "#e255b3"
-    fontId: TsapTsarap
-    boldFontId: TsapTsarap
-    fontSize: 18
+    fontId: Waoki
+    boldFontId: Waoki
+    fontSize: 14
 #  icon:
 #    sprite: _Orion/Interface/Chat/language.rsi
 #    state:
