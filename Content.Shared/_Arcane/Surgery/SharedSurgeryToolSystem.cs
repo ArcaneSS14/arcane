@@ -73,6 +73,20 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         // Surgery tools may have their own use on a patient, so a click with nothing to do is left to them.
         if (options.Count == 0)
         {
+            // A held part would otherwise be fed to the patient, so a part meant for attaching never falls through.
+            if (TryComp(tool, out BodyPartComponent? held) && AcceptsHeldPart(ent, part, missing, held) is { } fits)
+            {
+                args.Handled = true;
+                if (_timing.IsFirstTimePredicted)
+                {
+                    _popup.PopupClient(fits ? GetHint(ent, part, user) : Loc.GetString("surgery-tool-wrong-part", ("part", tool)),
+                        ent,
+                        user);
+                }
+
+                return;
+            }
+
             if (IsSurgicalTool(tool) && _timing.IsFirstTimePredicted)
                 _popup.PopupClient(GetHint(ent, part, user), ent, user);
             return;
@@ -200,9 +214,18 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         out EntityUid part,
         out (BodyPartType Type, BodyPartSymmetry Symmetry)? missing)
     {
+        var (type, symmetry) = _body.ConvertTargetBodyPart(CompOrNull<TargetingComponent>(user)?.Target ?? TargetBodyPart.Chest);
+        return TryGetPart(body, type, symmetry, out part, out missing);
+    }
+
+    private bool TryGetPart(EntityUid body,
+        BodyPartType type,
+        BodyPartSymmetry symmetry,
+        out EntityUid part,
+        out (BodyPartType Type, BodyPartSymmetry Symmetry)? missing)
+    {
         missing = null;
 
-        var (type, symmetry) = _body.ConvertTargetBodyPart(CompOrNull<TargetingComponent>(user)?.Target ?? TargetBodyPart.Chest);
         foreach (var (id, _) in _body.GetBodyChildrenOfType(body, type, symmetry: symmetry))
         {
             // A reattached part is finished by its attach surgery, which lives on the parent.
@@ -232,6 +255,10 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
                 return true;
             }
         }
+
+        // A hand or foot lost with its limb has no slot left on the body, so the limb's slot is used.
+        if (type is BodyPartType.Hand or BodyPartType.Foot)
+            return TryGetPart(body, type == BodyPartType.Hand ? BodyPartType.Arm : BodyPartType.Leg, symmetry, out part, out missing);
 
         part = default;
         return false;
@@ -506,6 +533,29 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         }
 
         return null;
+    }
+
+    // Null when no attach surgery on the part could take a part, otherwise whether one takes the held one.
+    private bool? AcceptsHeldPart(EntityUid body,
+        EntityUid part,
+        (BodyPartType Type, BodyPartSymmetry Symmetry)? missing,
+        BodyPartComponent held)
+    {
+        bool? accepts = null;
+        foreach (var surgeryId in _surgery.GetValidSurgeries(body, part))
+        {
+            if (_surgery.GetSingleton(surgeryId) is not { } surgery
+                || !TryComp(surgery, out SurgeryPartRemovedConditionComponent? removed)
+                || missing is { } slot && !AttachesPart(surgery, slot.Type, slot.Symmetry))
+                continue;
+
+            if (removed.Part == held.PartType && (removed.Symmetry == null || removed.Symmetry == held.Symmetry))
+                return true;
+
+            accepts = false;
+        }
+
+        return accepts;
     }
 
     private bool AttachesPart(EntityUid surgery, BodyPartType type, BodyPartSymmetry symmetry)

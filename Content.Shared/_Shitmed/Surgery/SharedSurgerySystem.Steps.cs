@@ -885,7 +885,7 @@ public abstract partial class SharedSurgerySystem
 //    {
 //        if (!_timing.IsFirstTimePredicted)
 //            return;
-
+//
 //        var user = args.Actor;
 //        var targetPart = GetEntity(args.Part);
 //        if (!HasComp<BodyPartComponent>(targetPart))
@@ -1136,8 +1136,23 @@ public abstract partial class SharedSurgerySystem
                 if (active.Cancelled || active.Completed)
                     continue;
 
+                // Arcane-Edit-Start: The busy check moved to IsStepInProgress, before the tool is used
                 if (active.Args.Event is SurgeryDoAfterEvent)
                     _doAfter.Cancel(user, active.Index, userDoAfterComp);
+//                if (active.Args.Event is SurgeryDoAfterEvent activeSurgery)
+//                {
+//                    if (activeSurgery.Surgery == surgeryId &&
+//                        activeSurgery.Step == stepId &&
+//                        active.Args.EventTarget == body &&
+//                        active.Args.Target == part)
+//                    {
+//                        _popup.PopupClient(Loc.GetString("surgery-error-action-busy"), user, user, PopupType.SmallCaution);
+//                        return false;
+//                    }
+//
+//                    _doAfter.Cancel(user, active.Index, userDoAfterComp);
+//                }
+                // Arcane-Edit-End
             }
         }
 

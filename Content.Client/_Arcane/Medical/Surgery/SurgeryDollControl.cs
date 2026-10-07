@@ -117,6 +117,20 @@ public sealed class SurgeryDollControl : Control
         };
     }
 
+    // Doll parts that hang from this one and leave the body with it.
+    public static TargetBodyPart[] GetChildDollParts(TargetBodyPart part)
+    {
+        return part switch
+        {
+            TargetBodyPart.Groin => [TargetBodyPart.LeftLeg, TargetBodyPart.RightLeg],
+            TargetBodyPart.LeftArm => [TargetBodyPart.LeftHand],
+            TargetBodyPart.RightArm => [TargetBodyPart.RightHand],
+            TargetBodyPart.LeftLeg => [TargetBodyPart.LeftFoot],
+            TargetBodyPart.RightLeg => [TargetBodyPart.RightFoot],
+            _ => [],
+        };
+    }
+
     public void SetParts(IReadOnlyDictionary<TargetBodyPart, SurgeryDollPart> parts)
     {
         _parts.Clear();

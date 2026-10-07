@@ -54,6 +54,8 @@ public sealed class SurgeryBui : BoundUserInterface
     private readonly Dictionary<(EntityUid Part, EntityUid Surgery), SurgeryProgress> _progress = new();
     private readonly List<SurgeryStepData> _steps = new();
     private readonly Dictionary<TargetBodyPart, (EntityUid Part, string? MissingSlot)> _dollSlots = new();
+    // Parts lost with a missing limb, like its hand or foot, stand for that limb's slot.
+    private readonly Dictionary<TargetBodyPart, TargetBodyPart> _lostSlots = new();
     private EntityUid? _part;
     // A child slot of the selected part, empty or holding a part still being reattached;
     // it lists only the surgeries that attach a part there.
@@ -245,7 +247,7 @@ public sealed class SurgeryBui : BoundUserInterface
         {
             foreach (var (parent, slot, dollPart) in GetMissingSlots())
             {
-                if (dollPart != target)
+                if (dollPart != target && !IsLostWith(dollPart, target))
                     continue;
 
                 found = (parent, (slot, dollPart));
@@ -380,6 +382,9 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private void OnDollPartPressed(TargetBodyPart slot)
     {
+        if (_lostSlots.TryGetValue(slot, out var limb))
+            slot = limb;
+
         if (!_dollSlots.TryGetValue(slot, out var dollSlot))
             return;
 
@@ -394,6 +399,7 @@ public sealed class SurgeryBui : BoundUserInterface
     private void UpdateDoll()
     {
         _dollSlots.Clear();
+        _lostSlots.Clear();
         var dollParts = new Dictionary<TargetBodyPart, SurgeryDollPart>();
         var otherParts = new List<EntityUid>();
 
@@ -430,6 +436,7 @@ public sealed class SurgeryBui : BoundUserInterface
                 false,
                 true,
                 GetMissingPartTitle(dollSlot));
+            AddLostParts(dollSlot, dollSlot, dollParts);
         }
 
         _window!.Doll.SetParts(dollParts);
@@ -456,6 +463,35 @@ public sealed class SurgeryBui : BoundUserInterface
             };
             button.OnPressed += _ => SelectPart(part, null);
             _window.OtherParts.AddChild(button);
+        }
+    }
+
+    private static bool IsLostWith(TargetBodyPart limb, TargetBodyPart part)
+    {
+        foreach (var child in SurgeryDollControl.GetChildDollParts(limb))
+        {
+            if (child == part || IsLostWith(child, part))
+                return true;
+        }
+
+        return false;
+    }
+
+    private void AddLostParts(TargetBodyPart limb, TargetBodyPart parent, Dictionary<TargetBodyPart, SurgeryDollPart> dollParts)
+    {
+        foreach (var child in SurgeryDollControl.GetChildDollParts(parent))
+        {
+            if (dollParts.ContainsKey(child))
+                continue;
+
+            _lostSlots[child] = limb;
+            dollParts[child] = new SurgeryDollPart(
+                GetStatusTexture(child, ((int) WoundableSeverity.Severed).ToString()),
+                null,
+                false,
+                true,
+                GetMissingPartTitle(child));
+            AddLostParts(limb, child, dollParts);
         }
     }
 

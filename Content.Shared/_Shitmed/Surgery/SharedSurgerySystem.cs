@@ -579,8 +579,11 @@ public abstract partial class SharedSurgerySystem : EntitySystem
                 return true;
         }
 
-        if (popup) // Arcane
+        // Arcane-Edit-Start
+        if (popup)
             _popup.PopupClient(Loc.GetString("surgery-error-laying"), user, user);
+//        _popup.PopupClient(Loc.GetString("surgery-error-laying"), user, user);
+        // Arcane-Edit-End
         return false;
     }
 
