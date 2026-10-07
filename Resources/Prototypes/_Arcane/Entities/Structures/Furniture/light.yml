@@ -8,7 +8,7 @@
     sprite: _Arcane/Structures/Furniture/torsher.rsi
     noRot: true
     layers:
-    - state: lampgreen
+    - state: lampgreen-off
       map: ["enum.PoweredLightLayers.Base"]
     - state: lampgreen
       map: ["enum.PoweredLightLayers.Glow"]
@@ -100,13 +100,6 @@
   - type: ToggleableVisuals
     spriteLayer: enum.PoweredLightLayers.Glow
   - type: Appearance
-  - type: PoweredLightVisuals
-    spriteStateMap:
-      empty: lampgreen-off
-      off: lampgreen-off
-      on: lampgreen
-      broken: lampgreen-off
-      burned: lampgreen-off
   - type: StaticPrice
     price: 75
   - type: Construction
