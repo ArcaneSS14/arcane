@@ -2758,3 +2758,79 @@ Entries:
       https://github.com/user-attachments/assets/82c1c62f-29ca-4140-b26e-3c64dd84871c
     - >-
       https://github.com/user-attachments/assets/52844600-3d5f-4bc0-800d-9afd4bb3c2dd
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлено закрепление действий в панеле действий на СКМ.
+  id: 202
+  time: '2026-10-06T18:17:06.0000000+00:00'
+  prNumber: 410
+  url: https://github.com/ArcaneSS14/arcane/pull/410
+  media:
+    - >-
+      https://github.com/user-attachments/assets/2dc02820-2c45-40be-ac6c-0e0818ab7403
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлена задержка на снятие/одевание одежды в 0.4 секунды.
+    - type: Tweak
+      message: Моли при быстром надевании одежды не едят её, а одевают.
+    - type: Fix
+      message: >-
+        Мелкие элементы одежды(гарнитура, очки, перчатки и тд) надеваются в
+        первую очередь на приоритетный для них слот одежды а не карман.
+  id: 203
+  time: '2026-10-06T19:08:32.0000000+00:00'
+  prNumber: 416
+  url: https://github.com/ArcaneSS14/arcane/pull/416
+  media:
+    - >-
+      https://github.com/user-attachments/assets/1b014554-eecd-46a7-bf00-6ac825027dc4
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Презервативы теперь могу наполняться
+    - type: Add
+      message: >-
+        Добавились интеракции мастурбации себе чужой рукой и траханием
+        себя(ТРАХНИ СЕБЯ В ЗАД)
+    - type: Fix
+      message: Починен баг с дублированием стона
+    - type: Tweak
+      message: КПБ вместо окончания теперь испускают искры
+    - type: Tweak
+      message: Наличие хвоста даёт возможность интеракции с ним
+    - type: Tweak
+      message: Для интеракции с членом нужно теперь 20% возбуждения
+    - type: Tweak
+      message: Единца возбуждения убывает каждую десятую секунду
+  id: 204
+  time: '2026-10-06T21:34:31.0000000+00:00'
+  prNumber: 476
+  url: https://github.com/ArcaneSS14/arcane/pull/476
+  media:
+    - >-
+      https://github.com/user-attachments/assets/5e65cf52-757f-4fbb-87e7-8ecf72a8c094
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: >-
+        Добавлен парк юрского периода (новая динозавровая (и не только) кастомка
+        унатхов).
+  id: 205
+  time: '2026-10-07T02:42:08.0000000+00:00'
+  prNumber: 470
+  url: https://github.com/ArcaneSS14/arcane/pull/470
+  media:
+    - >-
+      https://github.com/user-attachments/assets/61a5e4eb-9050-4ca7-82c1-851827195fdc
+- author: Kinar7
+  changes:
+    - type: Add
+      message: >-
+        ЕРП антаг насильник. По механу не отличается от Тех-Клоуна, но вместо
+        защиты тех, утаскивание людей в дормы. 
+  id: 206
+  time: '2026-10-07T04:06:39.0000000+00:00'
+  prNumber: 435
+  url: https://github.com/ArcaneSS14/arcane/pull/435

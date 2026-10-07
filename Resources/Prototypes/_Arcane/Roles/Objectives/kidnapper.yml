@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseObjective
+  id: KidnapperKidnapObjective
+  name: Kidnap people.
+  description: Pick out crew members, put them to sleep and take them away somewhere quiet.
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Storage/penbox.rsi
+      state: hypopen
+    difficulty: 1
+    issuer: objective-issuer-unknown
+  - type: RoleplayObjective

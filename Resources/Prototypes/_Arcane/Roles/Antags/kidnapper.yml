@@ -1,0 +1,20 @@
+- type: startingGear
+  id: KidnapperAntagGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    id: PassengerPDA
+    ears: ClothingHeadsetGrey
+    back: ClothingBackpack
+    pocket1: Hypopen
+  inhand:
+  - SyringePistol
+  storage:
+    back:
+    - ChemistryBottleNocturine
+    - ChemistryBottleNocturine
+    - Syringe
+    - RadioJammer
+    - Cablecuffs
+    - Cablecuffs
+    - Handcuffs
