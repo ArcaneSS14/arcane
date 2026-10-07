@@ -2824,3 +2824,13 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/61a5e4eb-9050-4ca7-82c1-851827195fdc
+- author: Kinar7
+  changes:
+    - type: Add
+      message: >-
+        ЕРП антаг насильник. По механу не отличается от Тех-Клоуна, но вместо
+        защиты тех, утаскивание людей в дормы. 
+  id: 206
+  time: '2026-10-07T04:06:39.0000000+00:00'
+  prNumber: 435
+  url: https://github.com/ArcaneSS14/arcane/pull/435
