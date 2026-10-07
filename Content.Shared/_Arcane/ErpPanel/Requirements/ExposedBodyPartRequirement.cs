@@ -1,3 +1,4 @@
+using Content.Shared._Arcane.ERP;
 using Content.Shared.Body.Part;
 using Content.Shared.Inventory;
 using Robust.Shared.Serialization;
@@ -26,7 +27,19 @@ public sealed partial class ExposedBodyPartRequirement : InvertableErpRequiremen
         if (!inventory.TryGetContainerSlotEnumerator(uid, out var slots, coveringSlots))
             return false;
 
-        var isExposed = !slots.NextItem(out _);
+        var isExposed = true;
+
+        while (slots.MoveNext(out var containerSlot))
+        {
+            if (containerSlot?.ContainedEntity is not { } item)
+                continue;
+
+            if (entityManager.TryGetComponent<CondomComponent>(item, out var condom) && !condom.Full)
+                continue;
+
+            isExposed = false;
+            break;
+        }
 
         return Inverted ? !isExposed : isExposed;
     }
