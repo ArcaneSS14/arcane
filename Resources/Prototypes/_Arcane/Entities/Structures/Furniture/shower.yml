@@ -1,5 +1,5 @@
 - type: entity
-  parent: Sink
+  parent: BaseStructure
   id: Shower
   name: shower
   components:

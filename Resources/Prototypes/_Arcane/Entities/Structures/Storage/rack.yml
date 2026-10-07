@@ -1,5 +1,5 @@
 - type: entity
-  parent: CounterBase
+  parent: BaseStructure
   id: RMCCounter
   components:
   - type: Sprite
