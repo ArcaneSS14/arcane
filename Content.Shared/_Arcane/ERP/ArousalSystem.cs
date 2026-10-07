@@ -10,6 +10,7 @@ public sealed class ArousalSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
 
     private static readonly TimeSpan PhaseCheckRate = TimeSpan.FromSeconds(5);
+    public static readonly TimeSpan MoanCooldown = TimeSpan.FromSeconds(1);
 
     private static readonly ProtoId<AlertCategoryPrototype> AlertCategory = "Arousal";
     private static readonly ProtoId<AlertPrototype> AlertAroused = "ArousalAroused";
@@ -54,6 +55,26 @@ public sealed class ArousalSystem : EntitySystem
     public bool IsRefractory(ArousalComponent comp)
     {
         return _timing.CurTime < comp.RefractoryUntil;
+    }
+
+    public void NotifyMoan(EntityUid uid, ArousalComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp))
+            return;
+
+        comp.LastMoanAt = _timing.CurTime;
+    }
+
+    public bool TryMoan(EntityUid uid, ArousalComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp))
+            return false;
+
+        if (comp.LastMoanAt > TimeSpan.Zero && _timing.CurTime < comp.LastMoanAt + MoanCooldown)
+            return false;
+
+        NotifyMoan(uid, comp);
+        return true;
     }
 
     public void SetPassiveSource(EntityUid uid, string sourceId, float rate, ArousalComponent? comp = null)

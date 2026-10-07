@@ -2700,3 +2700,137 @@ Entries:
   time: '2026-10-06T13:12:22.0000000+00:00'
   prNumber: 474
   url: https://github.com/ArcaneSS14/arcane/pull/474
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: >-
+        Охранные турели ИИ и им подобные более не стреляют в выключенном и
+        сломанном состояниях 
+  id: 198
+  time: '2026-10-06T13:21:51.0000000+00:00'
+  prNumber: 466
+  url: https://github.com/ArcaneSS14/arcane/pull/466
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: >-
+        Добавлена новая мутация картофеля - помидофель. Случайным образом с него
+        могут собираться 2 помидора, 2 картофеля или помидор и картофель.
+  id: 199
+  time: '2026-10-06T14:10:03.0000000+00:00'
+  prNumber: 451
+  url: https://github.com/ArcaneSS14/arcane/pull/451
+  media:
+    - >-
+      https://github.com/user-attachments/assets/e4d76445-8770-48f7-a51a-39e99e30d83f
+- author: RabbitBat
+  changes:
+    - type: Tweak
+      message: >-
+        Изменение, теперь у расы фелинидов есть те же черты внешности, что и у
+        расы людей.
+  id: 200
+  time: '2026-10-06T14:29:03.0000000+00:00'
+  prNumber: 460
+  url: https://github.com/ArcaneSS14/arcane/pull/460
+- author: RabbitBat, Gustov
+  changes:
+    - type: Tweak
+      message: Изменены спрайты скафандра HTX5-Mirrorduss
+    - type: Tweak
+      message: Изменён перевод скафандра "HTX5-Mirrorduss"->"скафандр HTХ5-Миррордусс"
+    - type: Tweak
+      message: Изменён спрайт ошейника на другой
+  id: 201
+  time: '2026-10-06T15:00:13.0000000+00:00'
+  prNumber: 471
+  url: https://github.com/ArcaneSS14/arcane/pull/471
+  media:
+    - >-
+      https://github.com/user-attachments/assets/e3d9311a-f063-49b8-bd2b-10851b9c6446
+    - >-
+      https://github.com/user-attachments/assets/2f80ca8d-a8a8-45b3-acf4-9caad1ca8353
+    - >-
+      https://github.com/user-attachments/assets/5eee2a0d-5097-489e-a3c8-c0d2a8d9058e
+    - >-
+      https://github.com/user-attachments/assets/94f85c14-e228-4402-9451-f93fa8f645b4
+    - >-
+      https://github.com/user-attachments/assets/82c1c62f-29ca-4140-b26e-3c64dd84871c
+    - >-
+      https://github.com/user-attachments/assets/52844600-3d5f-4bc0-800d-9afd4bb3c2dd
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлено закрепление действий в панеле действий на СКМ.
+  id: 202
+  time: '2026-10-06T18:17:06.0000000+00:00'
+  prNumber: 410
+  url: https://github.com/ArcaneSS14/arcane/pull/410
+  media:
+    - >-
+      https://github.com/user-attachments/assets/2dc02820-2c45-40be-ac6c-0e0818ab7403
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлена задержка на снятие/одевание одежды в 0.4 секунды.
+    - type: Tweak
+      message: Моли при быстром надевании одежды не едят её, а одевают.
+    - type: Fix
+      message: >-
+        Мелкие элементы одежды(гарнитура, очки, перчатки и тд) надеваются в
+        первую очередь на приоритетный для них слот одежды а не карман.
+  id: 203
+  time: '2026-10-06T19:08:32.0000000+00:00'
+  prNumber: 416
+  url: https://github.com/ArcaneSS14/arcane/pull/416
+  media:
+    - >-
+      https://github.com/user-attachments/assets/1b014554-eecd-46a7-bf00-6ac825027dc4
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Презервативы теперь могу наполняться
+    - type: Add
+      message: >-
+        Добавились интеракции мастурбации себе чужой рукой и траханием
+        себя(ТРАХНИ СЕБЯ В ЗАД)
+    - type: Fix
+      message: Починен баг с дублированием стона
+    - type: Tweak
+      message: КПБ вместо окончания теперь испускают искры
+    - type: Tweak
+      message: Наличие хвоста даёт возможность интеракции с ним
+    - type: Tweak
+      message: Для интеракции с членом нужно теперь 20% возбуждения
+    - type: Tweak
+      message: Единца возбуждения убывает каждую десятую секунду
+  id: 204
+  time: '2026-10-06T21:34:31.0000000+00:00'
+  prNumber: 476
+  url: https://github.com/ArcaneSS14/arcane/pull/476
+  media:
+    - >-
+      https://github.com/user-attachments/assets/5e65cf52-757f-4fbb-87e7-8ecf72a8c094
+- author: seemah, Bulbo44key
+  changes:
+    - type: Add
+      message: >-
+        Добавлен парк юрского периода (новая динозавровая (и не только) кастомка
+        унатхов).
+  id: 205
+  time: '2026-10-07T02:42:08.0000000+00:00'
+  prNumber: 470
+  url: https://github.com/ArcaneSS14/arcane/pull/470
+  media:
+    - >-
+      https://github.com/user-attachments/assets/61a5e4eb-9050-4ca7-82c1-851827195fdc
+- author: Kinar7
+  changes:
+    - type: Add
+      message: >-
+        ЕРП антаг насильник. По механу не отличается от Тех-Клоуна, но вместо
+        защиты тех, утаскивание людей в дормы. 
+  id: 206
+  time: '2026-10-07T04:06:39.0000000+00:00'
+  prNumber: 435
+  url: https://github.com/ArcaneSS14/arcane/pull/435

@@ -123,8 +123,28 @@ public abstract class SharedItemSystem : EntitySystem
         if (args.Hands == null ||
             args.Using != null ||
             !args.CanAccess ||
-            !args.CanInteract ||
-            !_handsSystem.CanPickupAnyHand(args.User, args.Target, handsComp: args.Hands, item: component))
+        // Arcane-Edit-Start
+            !args.CanInteract)
+            return;
+
+        if (OwnEquippedSlot(args.User, args.Target) is { } wornSlot)
+        {
+            if (!_inventory.CanUnequip(args.User, wornSlot, out _))
+                return;
+
+            if (!_handsSystem.TryGetEmptyHand((args.User, args.Hands), out _))
+                return;
+
+            InteractionVerb wornVerb = new();
+            wornVerb.Act = () => _inventory.TryUnequip(args.User, wornSlot, predicted: true, checkDoafter: true);
+            wornVerb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/pickup.svg.192dpi.png"));
+            wornVerb.Text = Loc.GetString("pick-up-verb-get-data-text-inventory");
+            args.Verbs.Add(wornVerb);
+            return;
+        }
+        // Arcane--Edit-End
+
+        if (!_handsSystem.CanPickupAnyHand(args.User, args.Target, handsComp: args.Hands, item: component))
             return;
 
         InteractionVerb verb = new();
@@ -142,6 +162,22 @@ public abstract class SharedItemSystem : EntitySystem
 
         args.Verbs.Add(verb);
     }
+
+    // Arcane-Start
+    /// <summary>
+    ///     Returns the name of the slot this entity has the target equipped in, if the target is worn by the user.
+    /// </summary>
+    private string? OwnEquippedSlot(EntityUid user, EntityUid target)
+    {
+        if (!Container.TryGetContainingContainer((target, null, null), out var container))
+            return null;
+
+        if (!_inventory.TryGetSlotEntity(user, container.ID, out var slotEnt) || slotEnt != target)
+            return null;
+
+        return container.ID;
+    }
+    // Arcane-End
 
     private void OnExamine(EntityUid uid, ItemComponent component, ExaminedEvent args)
     {
