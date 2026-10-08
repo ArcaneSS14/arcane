@@ -27,6 +27,8 @@ using Content.Shared.Standing;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Tools;
+using Content.Shared.Tools.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Content.Shared._Arcane.WashingMachine.Events;
@@ -633,6 +635,9 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             return;
 
         if (args.User == args.Used || HasComp<BodyComponent>(args.Used))
+            return;
+
+        if (HasComp<ToolComponent>(args.Used))
             return;
 
         if (ent.Comp.WashingMachineState == WashingMachineState.Idle && !_storage.IsOpen(ent.Owner))
