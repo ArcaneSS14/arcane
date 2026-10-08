@@ -2923,3 +2923,11 @@ Entries:
     - https://github.com/user-attachments/files/33139042/Horse_laugh.mp3
     - >-
       https://github.com/user-attachments/assets/ac1e784b-8a14-48da-a943-1684decb4e13
+- author: Gebura1984
+  changes:
+    - type: Fix
+      message: Исправлено ослабление дизарма мелких кукл в сторону больших.
+  id: 214
+  time: '2026-10-08T09:12:31.0000000+00:00'
+  prNumber: 480
+  url: https://github.com/ArcaneSS14/arcane/pull/480
