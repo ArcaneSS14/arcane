@@ -2879,3 +2879,18 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/1aa2af6f-7578-43d1-988b-093a10509469
+- author: darneya, IGRAMUR, qwertyuiopiot, changelingrueser
+  changes:
+    - type: Tweak
+      message: Изменён торговый аванпост Снабжения
+  id: 211
+  time: '2026-10-08T09:01:07.0000000+00:00'
+  prNumber: 465
+  url: https://github.com/ArcaneSS14/arcane/pull/465
+  media:
+    - >-
+      https://github.com/user-attachments/assets/8cc6c611-352c-439d-9464-2736f98fe4b2
+    - >-
+      https://github.com/user-attachments/assets/3c0ade84-0979-4ea4-829c-1fa8ffa751d0
+    - >-
+      https://github.com/user-attachments/assets/ccd00cfe-7d88-4a9f-923e-c7d0c3501adf
