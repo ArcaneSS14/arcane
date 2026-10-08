@@ -4,18 +4,15 @@
   description: job-description-command-maid
   playTimeTracker: JobCommandMaid
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Civilian
-    time: 36000 # 10 Hours
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 18000 # 5 Hours
   - !type:RoleTimeRequirement
     role: JobJanitor
     time: 18000 # 5 Hours
   - !type:RoleTimeRequirement
     role: JobChef
-    time: 3600 # 1 Hours
+    time: 7200 # 2 Hours
+  - !type:RoleTimeRequirement
+    role: JobBartender
+    time: 7200 # 2 Hours
   - !type:OverallPlaytimeRequirement
     time: 108000 # 30 Hours
   startingGear: CommandMaidGear
