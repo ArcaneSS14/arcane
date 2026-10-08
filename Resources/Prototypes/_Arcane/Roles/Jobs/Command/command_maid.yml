@@ -8,11 +8,16 @@
     department: Civilian
     time: 36000 # 10 Hours
   - !type:DepartmentTimeRequirement
-    department: Command
-    time: 12000 # 3 hours and 20 minutes
+    department: Medical
+    time: 18000 # 5 Hours
   - !type:RoleTimeRequirement
     role: JobJanitor
     time: 18000 # 5 Hours
+  - !type:RoleTimeRequirement
+    role: JobChef
+    time: 3600 # 1 Hours
+  - !type:OverallPlaytimeRequirement
+    time: 108000 # 30 Hours
   startingGear: CommandMaidGear
   icon: "JobIconCommandMaid"
   supervisors: job-supervisors-command
