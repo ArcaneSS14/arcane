@@ -3,6 +3,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Arcane.Inventory;
 using Content.Shared._Orion.Ghost;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Armor;
 using Content.Shared.Clothing.Components;
 using Content.Shared.DoAfter;
@@ -37,7 +38,10 @@ public abstract partial class InventorySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedStrippableSystem _strippable = default!;
-    [Dependency] private readonly SharedArcaneInventorySystem _arcaneInventory = default!; // Arcane
+    // Arcane-Start
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private readonly SharedArcaneInventorySystem _arcaneInventory = default!;
+    // Arcane-End
 
     public static readonly ProtoId<ItemSizePrototype> PocketableItemSize = "Small"; // Goobstation - make it public
 
@@ -135,6 +139,11 @@ public abstract partial class InventorySystem
     {
         if (eventArgs.SenderSession.AttachedEntity is not { Valid: true } actor)
             return;
+
+        // Arcane-Start
+        if (!_actionBlocker.CanInteract(actor, actor))
+            return;
+        // Arcane-End
 
         if (!TryComp(actor, out InventoryComponent? inventory) || !TryComp<HandsComponent>(actor, out var hands))
             return;

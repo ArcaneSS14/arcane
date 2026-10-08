@@ -2834,3 +2834,100 @@ Entries:
   time: '2026-10-07T04:06:39.0000000+00:00'
   prNumber: 435
   url: https://github.com/ArcaneSS14/arcane/pull/435
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Задержка на перекладывание в карман и предметов на спине вырезана.
+  id: 207
+  time: '2026-10-07T23:35:14.0000000+00:00'
+  prNumber: 484
+  url: https://github.com/ArcaneSS14/arcane/pull/484
+  media:
+    - >-
+      https://github.com/user-attachments/assets/d63bad28-54d7-41d3-8170-eae5fc428b68
+- author: ReWAFFlution
+  changes:
+    - type: Remove
+      message: Гостроль насильника вырезана.
+  id: 208
+  time: '2026-10-08T01:43:16.0000000+00:00'
+  prNumber: 485
+  url: https://github.com/ArcaneSS14/arcane/pull/485
+- author: Huwaiear
+  changes:
+    - type: Add
+      message: >-
+        Добавлен торшер для спавна мапперам и для крафта в разделе Мебель
+        обычным смертным
+  id: 209
+  time: '2026-10-08T02:48:04.0000000+00:00'
+  prNumber: 475
+  url: https://github.com/ArcaneSS14/arcane/pull/475
+  media:
+    - >-
+      https://github.com/user-attachments/assets/fe7d716b-2f6e-4432-a9b7-0b49e9340c18
+- author: ReWAFFlution, ThxMqninq, FunkyStation
+  changes:
+    - type: Add
+      message: Добавлено загрязнение одежды
+    - type: Add
+      message: Добавлена стиралка и возможность застрять в ней
+  id: 210
+  time: '2026-10-08T05:34:50.0000000+00:00'
+  prNumber: 382
+  url: https://github.com/ArcaneSS14/arcane/pull/382
+  media:
+    - >-
+      https://github.com/user-attachments/assets/1aa2af6f-7578-43d1-988b-093a10509469
+- author: darneya, IGRAMUR, qwertyuiopiot, changelingrueser
+  changes:
+    - type: Tweak
+      message: Изменён торговый аванпост Снабжения
+  id: 211
+  time: '2026-10-08T09:01:07.0000000+00:00'
+  prNumber: 465
+  url: https://github.com/ArcaneSS14/arcane/pull/465
+  media:
+    - >-
+      https://github.com/user-attachments/assets/8cc6c611-352c-439d-9464-2736f98fe4b2
+    - >-
+      https://github.com/user-attachments/assets/3c0ade84-0979-4ea4-829c-1fa8ffa751d0
+    - >-
+      https://github.com/user-attachments/assets/ccd00cfe-7d88-4a9f-923e-c7d0c3501adf
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: >-
+        шлема боевых скафандров теперь имеют нормальные резисты и защищают
+        Голову, а не Тело
+  id: 212
+  time: '2026-10-08T09:04:30.0000000+00:00'
+  prNumber: 469
+  url: https://github.com/ArcaneSS14/arcane/pull/469
+- author: clopiks
+  changes:
+    - type: Add
+      message: Добавлена новая черта - конская натура.
+  id: 213
+  time: '2026-10-08T09:10:24.0000000+00:00'
+  prNumber: 431
+  url: https://github.com/ArcaneSS14/arcane/pull/431
+  media:
+    - https://github.com/user-attachments/files/33139033/Horse_scream.mp3
+    - https://github.com/user-attachments/files/33139034/Horse_death.mp3
+    - https://github.com/user-attachments/files/33139035/Horse_neighs.mp3
+    - https://github.com/user-attachments/files/33139036/Horse_snorts.mp3
+    - https://github.com/user-attachments/files/33139038/Horse_whinny.mp3
+    - https://github.com/user-attachments/files/33139039/Horse_whinny2.mp3
+    - https://github.com/user-attachments/files/33139040/Horse_crying.mp3
+    - https://github.com/user-attachments/files/33139042/Horse_laugh.mp3
+    - >-
+      https://github.com/user-attachments/assets/ac1e784b-8a14-48da-a943-1684decb4e13
+- author: Gebura1984
+  changes:
+    - type: Fix
+      message: Исправлено ослабление дизарма мелких кукл в сторону больших.
+  id: 214
+  time: '2026-10-08T09:12:31.0000000+00:00'
+  prNumber: 480
+  url: https://github.com/ArcaneSS14/arcane/pull/480

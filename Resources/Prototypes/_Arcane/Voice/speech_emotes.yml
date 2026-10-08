@@ -23,3 +23,81 @@
     - простонала
     - простонала.
     - простонала!
+
+- type: emote
+  id: HorseSnorts
+  name: chat-emote-name-horse-snorts
+  category: Vocal
+  icon: _Arcane/Interface/Emotes/horse_snort.png
+  whitelist:
+    components:
+    - Vocal
+    tags:
+    - HorseEmotes
+  chatMessages: ["chat-emote-msg-horse-snorts"]
+  chatTriggers:
+    - фырчит
+    - фырчит.
+    - фырчит!
+    - фыр
+    - фыр.
+    - фыр!
+    - фырк
+    - фырк.
+    - фырк!
+    - фыркнул
+    - фыркнул.
+    - фыркнул!
+    - фыркнула
+    - фыркнула.
+    - фыркнула!
+
+- type: emote
+  id: HorseNeighs
+  name: chat-emote-name-horse-neighs
+  category: Vocal
+  icon: _Arcane/Interface/Emotes/horse_whinny.png
+  whitelist:
+    components:
+    - Vocal
+    tags:
+    - HorseEmotes
+  chatMessages: ["chat-emote-msg-horse-neighs"]
+  chatTriggers:
+    - гогочит
+    - гогочит.
+    - гогочит!
+    - гогот
+    - гогот.
+    - гогот!
+    - гоготнул
+    - гоготнул.
+    - гоготнул!
+    - гоготнула
+    - гоготнула.
+    - гоготнула!
+    - игого
+    - игого.
+    - игого!
+
+- type: emote
+  id: HorseWhinny
+  name: chat-emote-name-horse-whinny
+  category: Vocal
+  icon: _Arcane/Interface/Emotes/horse_whinny.png
+  whitelist:
+    components:
+    - Vocal
+    tags:
+    - HorseEmotes
+  chatMessages: ["chat-emote-msg-horse-whinny"]
+  chatTriggers:
+    - ржёт
+    - ржёт.
+    - ржёт!
+    - заржал
+    - заржал.
+    - заржал!
+    - заржала
+    - заржала.
+    - заржала!
