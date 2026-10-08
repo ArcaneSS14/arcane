@@ -1,9 +1,6 @@
 # Used internally by the THE() function.
 zzzz-the =
-    { PROPER($ent) ->
-       *[false] the { $ent }
-        [true] { $ent }
-    }
+    { $ent }
 # Used internally by the SUBJECT() function.
 zzzz-subject-pronoun =
     { GENDER($ent) ->

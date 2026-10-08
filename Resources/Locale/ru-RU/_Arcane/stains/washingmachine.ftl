@@ -1,0 +1,14 @@
+washing-machine-start = Включить стиральную машину
+washing-machine-climb-verb = Залезть внутрь
+washing-machine-climb-self = Вы забираетесь в стиральную машину!
+washing-machine-climb-others = { CAPITALIZE($user) } забирается в стиральную машину!
+washing-machine-stuff-self = Вас вталкивают в стиральную машину!
+washing-machine-stuff-others = { CAPITALIZE($user) } вталкивает { CAPITALIZE($target) } в стиральную машину!
+washing-machine-escape-self = Вы вылезаете из стиральной машины.
+washing-machine-escape-others = { CAPITALIZE($user) } вылезает из стиральной машины.
+washing-machine-insert-self = Вы кладёте {THE($item)} в стиральную машину.
+washing-machine-fall-in-self = Вы падаете в стиральную машину!
+washing-machine-fall-in-others = { CAPITALIZE($user) } падает в стиральную машину!
+washing-machine-extract-verb = Извлечь содержимое
+washing-machine-extract-self = Вы вынимаете содержимое из стиральной машины.
+washing-machine-escape-verb = Вылезти
