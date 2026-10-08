@@ -2894,3 +2894,13 @@ Entries:
       https://github.com/user-attachments/assets/3c0ade84-0979-4ea4-829c-1fa8ffa751d0
     - >-
       https://github.com/user-attachments/assets/ccd00cfe-7d88-4a9f-923e-c7d0c3501adf
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: >-
+        шлема боевых скафандров теперь имеют нормальные резисты и защищают
+        Голову, а не Тело
+  id: 212
+  time: '2026-10-08T09:04:30.0000000+00:00'
+  prNumber: 469
+  url: https://github.com/ArcaneSS14/arcane/pull/469
