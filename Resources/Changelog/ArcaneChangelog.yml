@@ -2845,3 +2845,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/d63bad28-54d7-41d3-8170-eae5fc428b68
+- author: ReWAFFlution
+  changes:
+    - type: Remove
+      message: Гостроль насильника вырезана.
+  id: 208
+  time: '2026-10-08T01:43:16.0000000+00:00'
+  prNumber: 485
+  url: https://github.com/ArcaneSS14/arcane/pull/485
