@@ -2931,3 +2931,16 @@ Entries:
   time: '2026-10-08T09:12:31.0000000+00:00'
   prNumber: 480
   url: https://github.com/ArcaneSS14/arcane/pull/480
+- author: Axilmon
+  changes:
+    - type: Tweak
+      message: Измененн шрифт языка аркан на более читабельный
+    - type: Fix
+      message: Библиотекарскому переводчику добавлены языки аркан и ксеноморфов
+  id: 215
+  time: '2026-10-08T13:22:40.0000000+00:00'
+  prNumber: 398
+  url: https://github.com/ArcaneSS14/arcane/pull/398
+  media:
+    - >-
+      https://github.com/user-attachments/assets/1936750a-3407-4355-b549-457956331d18
