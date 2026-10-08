@@ -2866,3 +2866,16 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/fe7d716b-2f6e-4432-a9b7-0b49e9340c18
+- author: ReWAFFlution, ThxMqninq, FunkyStation
+  changes:
+    - type: Add
+      message: Добавлено загрязнение одежды
+    - type: Add
+      message: Добавлена стиралка и возможность застрять в ней
+  id: 210
+  time: '2026-10-08T05:34:50.0000000+00:00'
+  prNumber: 382
+  url: https://github.com/ArcaneSS14/arcane/pull/382
+  media:
+    - >-
+      https://github.com/user-attachments/assets/1aa2af6f-7578-43d1-988b-093a10509469
