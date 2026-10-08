@@ -2904,3 +2904,22 @@ Entries:
   time: '2026-10-08T09:04:30.0000000+00:00'
   prNumber: 469
   url: https://github.com/ArcaneSS14/arcane/pull/469
+- author: clopiks
+  changes:
+    - type: Add
+      message: Добавлена новая черта - конская натура.
+  id: 213
+  time: '2026-10-08T09:10:24.0000000+00:00'
+  prNumber: 431
+  url: https://github.com/ArcaneSS14/arcane/pull/431
+  media:
+    - https://github.com/user-attachments/files/33139033/Horse_scream.mp3
+    - https://github.com/user-attachments/files/33139034/Horse_death.mp3
+    - https://github.com/user-attachments/files/33139035/Horse_neighs.mp3
+    - https://github.com/user-attachments/files/33139036/Horse_snorts.mp3
+    - https://github.com/user-attachments/files/33139038/Horse_whinny.mp3
+    - https://github.com/user-attachments/files/33139039/Horse_whinny2.mp3
+    - https://github.com/user-attachments/files/33139040/Horse_crying.mp3
+    - https://github.com/user-attachments/files/33139042/Horse_laugh.mp3
+    - >-
+      https://github.com/user-attachments/assets/ac1e784b-8a14-48da-a943-1684decb4e13
