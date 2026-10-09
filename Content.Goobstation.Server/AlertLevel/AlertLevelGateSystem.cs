@@ -4,12 +4,13 @@ using Content.Goobstation.Shared.Shadowling;
 using Content.Goobstation.Shared.Slasher;
 using Content.Server.Access.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Communications;
 using Content.Server.GameTicking.Rules;
 using Content.Server.NukeOps;
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Shuttles.Components;
 using Content.Server.Station.Systems;
+using Content.Server._Arcane.AlertLevel;
 using Content.Shared.Access.Systems;
 using Content.Shared._White.Xenomorphs;
 using Content.Server.AlertLevel;
@@ -48,7 +49,7 @@ public sealed class AlertLevelGateSystem : EntitySystem
         SubscribeLocalEvent<XenomorphsAnnouncedEvent>(OnXenomorphsAnnounced);
         SubscribeLocalEvent<AlertLevelSelectAttemptEvent>(OnAlertSelectAttempt);
         SubscribeLocalEvent<AlertLevelGateUnlockRequestEvent>(OnUnlockRequest);
-        SubscribeLocalEvent<CommunicationsConsoleComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<AlertLevelGateConsoleComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs); // Arcane-Edit
     }
 
     private void OnWarDeclared(ref WarDeclaredEvent ev)
@@ -138,12 +139,12 @@ public sealed class AlertLevelGateSystem : EntitySystem
         }
     }
 
-    private void OnGetVerbs(Entity<CommunicationsConsoleComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetVerbs(Entity<AlertLevelGateConsoleComponent> ent, ref GetVerbsEvent<AlternativeVerb> args) // Arcane-Edit
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
 
-        var station = _station.GetOwningStation(ent.Owner);
+        var station = GetGateStation(ent); // Arcane-Edit
         if (station == null
             || !TryComp<AlertLevelGateComponent>(station, out var gate)
             || gate.Unlocked)
@@ -156,13 +157,13 @@ public sealed class AlertLevelGateSystem : EntitySystem
         args.Verbs.Add(new AlternativeVerb
         {
             Text = Loc.GetString("alert-level-gate-verb-text"),
-            Message = Loc.GetString("alert-level-gate-verb-message"),
+            Message = Loc.GetString(ent.Comp.CentComm ? "alert-level-gate-centcomm-verb-message" : "alert-level-gate-verb-message"), // Arcane-Edit
             Priority = -1,
             Act = () =>
             {
                 if (!TryComp<AlertLevelGateComponent>(stationUid, out var currentGate)
                     || currentGate.Unlocked
-                    || !TryAuthorizeAlertLevel(stationUid, currentGate, user, console))
+                    || !TryAuthorizeUnlock(ent, stationUid, currentGate, user)) // Arcane-Edit
                     return;
 
                 if (UnlockAlertLevelGate(stationUid, true))
@@ -176,6 +177,54 @@ public sealed class AlertLevelGateSystem : EntitySystem
             },
         });
     }
+
+    // Arcane-Start
+    private EntityUid? GetGateStation(Entity<AlertLevelGateConsoleComponent> console)
+    {
+        if (!console.Comp.Enabled)
+            return null;
+
+        if (_station.GetOwningStation(console) is { } station)
+            return station;
+
+        if (!console.Comp.CentComm)
+            return null;
+
+        // CentComm is not a station, so its consoles act on the stations it serves.
+        var mapUid = Transform(console).MapUid;
+        if (mapUid == null)
+            return null;
+
+        var query = EntityQueryEnumerator<StationCentcommComponent, AlertLevelGateComponent>();
+        while (query.MoveNext(out var uid, out var centcomm, out var gate))
+        {
+            if (centcomm.MapEntity == mapUid && !gate.Unlocked)
+                return uid;
+        }
+
+        return null;
+    }
+
+    private bool TryAuthorizeUnlock(
+        Entity<AlertLevelGateConsoleComponent> console,
+        EntityUid station,
+        AlertLevelGateComponent gate,
+        EntityUid user)
+    {
+        if (!console.Comp.CentComm)
+            return TryAuthorizeAlertLevel(station, gate, user, console);
+
+        if (_accessReader.IsAllowed(user, console))
+            return true;
+
+        _popup.PopupEntity(
+            Loc.GetString("comms-console-permission-denied"),
+            console,
+            user,
+            PopupType.MediumCaution);
+        return false;
+    }
+    // Arcane-End
 
     /// <summary>
     /// Runs the two-card command authorization.
