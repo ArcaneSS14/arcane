@@ -10,3 +10,5 @@
   - type: Icon
     sprite: _RMC14/Structures/Furniture/shower.rsi
     state: icon
+  - type: SolutionContainerVisuals
+    removed: true
