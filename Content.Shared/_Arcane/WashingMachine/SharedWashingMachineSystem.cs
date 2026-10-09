@@ -65,17 +65,14 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private static readonly TimeSpan EscapeTime = TimeSpan.FromSeconds(10);
     private static readonly TimeSpan EnterTime = TimeSpan.FromSeconds(2);
     private static readonly TimeSpan StuffTime = TimeSpan.FromSeconds(3);
-
-    private static readonly ProtoId<SpeciesPrototype>[] BigRaceSpecies =
-    {
-        "Oni",
-        "Yowie",
-    };
+    private const float MaxFittingHeight = 212f;
+    private const float MaxFittingWidth = 43f;
 
     protected static readonly Vector2[] CardinalOffsets =
     {
@@ -368,7 +365,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         if (!HasComp<StandingStateComponent>(user))
             return false;
 
-        if (IsBigRace(user))
+        if (!CanFitInMachine(user))
             return false;
 
         if (HasComp<WashingMachineStuckComponent>(user))
@@ -597,7 +594,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         if (args.Event.TargetCoordinates is not { } startCoordinates)
             return;
 
-        if (args.DoAfter.Args.Target is not { } target || !TryComp<TransformComponent>(target, out var xform))
+        if (args.DoAfter.Args.Target is not { } target || !TryComp(target, out TransformComponent? xform))
         {
             args.Cancel();
             return;
@@ -721,7 +718,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         if (!HasComp<BodyComponent>(target))
             return false;
 
-        if (IsBigRace(target))
+        if (!CanFitInMachine(target))
             return false;
 
         if (HasComp<WashingMachineStuckComponent>(target))
@@ -766,9 +763,16 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         return storage.Whitelist == null || _whitelistSystem.IsValid(storage.Whitelist, target);
     }
 
-    private bool IsBigRace(EntityUid uid)
+    private bool CanFitInMachine(EntityUid uid)
     {
-        return TryComp<HumanoidAppearanceComponent>(uid, out var humanoid) && BigRaceSpecies.Contains(humanoid.Species);
+        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+            return true;
+
+        var species = _prototypeManager.Index(humanoid.Species);
+        var height = species.AverageHeight * humanoid.Height;
+        var width = species.AverageWidth * humanoid.Width;
+
+        return height < MaxFittingHeight && width < MaxFittingWidth;
     }
 
     private bool HasPersonInside(EntityUid machine)
