@@ -650,8 +650,10 @@
     - type: Scalpel
     duration: 6
   - type: Sprite
-    sprite: _Shitmed/Objects/Specific/Medical/Surgery/manipulation.rsi
-    state: insertion
+    # Arcane-Edit-Start: The step is done with a scalpel, the insertion icon read as a missing step
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+    # Arcane-Edit-End
   - type: SurgeryAddOrganSlotStep
   - type: SurgeryStepPainInflicter
     amount: 21
