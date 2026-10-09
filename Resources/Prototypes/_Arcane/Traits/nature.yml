@@ -8,10 +8,10 @@
   - type: Nature
     emoteTag: FelinidEmotes
     newSounds:
-      Male: MaleFelinid
-      Female: FemaleFelinid
-      Unsexed: MaleFelinid
-      Futanari: FemaleFelinid
+      Male: MaleCatNature
+      Female: FemaleCatNature
+      Unsexed: MaleCatNature
+      Futanari: FemaleCatNature
 
 - type: trait
   id: FoxNature
@@ -23,10 +23,10 @@
   - type: Nature
     emoteTag: VulpEmotes
     newSounds:
-      Male: MaleVulpkanin
-      Female: FemaleVulpkanin
-      Unsexed: MaleVulpkanin
-      Futanari: FemaleVulpkanin
+      Male: MaleFoxNature
+      Female: FemaleFoxNature
+      Unsexed: MaleFoxNature
+      Futanari: FemaleFoxNature
 
 - type: trait
   id: HorseNature
