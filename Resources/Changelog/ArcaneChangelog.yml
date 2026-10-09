@@ -2960,3 +2960,13 @@ Entries:
   time: '2026-10-09T06:59:00.0000000+00:00'
   prNumber: 491
   url: https://github.com/ArcaneSS14/arcane/pull/491
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: >-
+        Повышен шанс на выпадение еретиков и генокрадов засчёт понижения шанса
+        на предателей. Также увеличена выдача очков хаоса на игрока.
+  id: 217
+  time: '2026-10-09T13:13:23.0000000+00:00'
+  prNumber: 490
+  url: https://github.com/ArcaneSS14/arcane/pull/490
