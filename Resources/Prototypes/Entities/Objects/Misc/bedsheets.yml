@@ -31,7 +31,7 @@
     materialComposition:
       Cloth: 150 #Goob end
   - type: StaticPrice
-    price: 7 # Arcane-Edit
+    price: 7.5 # Arcane-Edit
   - type: Tag
     tags:
     - Recyclable #Goobstation
