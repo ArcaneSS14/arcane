@@ -19,7 +19,7 @@
       # Arcane-Start-Edit
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.7
+        Piercing: 0.6
         Heat: 0.7
       # Arcane-Edit-End
   - type: ExplosionResistance
@@ -50,7 +50,7 @@
       # Arcane-Start-Edit
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.7
+        Piercing: 0.6
         Heat: 0.7
       # Arcane-Edit-End
   - type: ExplosionResistance
