@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseKnife
+  id: CrystalAtelierSword
+  name: crystal atelier sword
+  description: Twin blades from an elite atelier. Thanks to their triggers, the power of these two weapons can launch the user straight at an enemy to slice through their flesh.
+  components:
+  - type: Sprite
+    sprite: _Orion/Objects/Weapons/Melee/wakizashi.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: _Orion/Objects/Weapons/Melee/wakizashi.rsi
+  - type: Execution
+    doAfterDuration: 14.0
+  - type: DisarmMalus
+  - type: MeleeDash
+  - type: UseDelay
+    delay: 1
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Slash: 10
+  - type: Tag
+    tags:
+    - CrystalAtelierSword
