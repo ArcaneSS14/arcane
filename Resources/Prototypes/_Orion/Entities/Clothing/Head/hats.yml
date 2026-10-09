@@ -69,7 +69,7 @@
   parent: [ ClothingHeadHatArmoredPlus, BaseCommandContraband ]
   # Arcane-Edit-Start
   id: ClothingHeadHatBeretCaptainWhiteBlue
-  name: captain metamorphic beret 
+  name: captain metamorphic beret
   description:  A high-tech beret capable of instantly changing its color, a true icon of style.
 # Arcane-Edit-End
   components:
@@ -199,10 +199,18 @@
   name: security medic beret
   description: A robust beret with the medical insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection.
   components:
+  # Arcane-Start
+  - type: Armor
+    priceMultiplier: 0
+  # Arcane-End
   - type: Sprite
     sprite: _Orion/Clothing/Head/Hats/beret_security_medic.rsi
   - type: Clothing
     sprite: _Orion/Clothing/Head/Hats/beret_security_medic.rsi
+  # Arcane-Start
+  - type: StaticPrice
+    price: 5
+  # Arcane-End
   - type: Tag
     tags:
       - HamsterWearable
@@ -214,6 +222,10 @@
   name: atmospheric technician's beret
   description: A blue beret with sewn emblem of engineering department. Smells like frezon.
   components:
+  # Arcane-Start
+  - type: StaticPrice
+    price: 5
+  # Arcane-End
   - type: Sprite
     sprite: _Orion/Clothing/Head/Hats/beret_atmospheric_technician.rsi
   - type: Clothing
@@ -229,6 +241,10 @@
   name: paramedic's beret
   description: A blue beret of a constantly busy job.
   components:
+  # Arcane-Start
+  - type: StaticPrice
+    price: 5
+  # Arcane-End
   - type: Sprite
     sprite: _Orion/Clothing/Head/Hats/beret_paramedic.rsi
   - type: Clothing
