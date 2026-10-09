@@ -102,6 +102,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         SubscribeLocalEvent<WashingMachineComponent, CanDropTargetEvent>(OnCanDropTarget);
         SubscribeLocalEvent<WashingMachineComponent, DragDropTargetEvent>(OnDragDropTarget);
         SubscribeLocalEvent<WashingMachineComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<WashingMachineComponent, DoAfterAttemptEvent<StuffInWashingMachineDoAfterEvent>>(OnStuffInAttempt);
         SubscribeLocalEvent<WashingMachineComponent, StuffInWashingMachineDoAfterEvent>(OnStuffInDoAfter);
         SubscribeLocalEvent<WashingMachineComponent, EnterWashingMachineDoAfterEvent>(OnEnterDoAfter);
         SubscribeLocalEvent<WashingMachineComponent, AnchorStateChangedEvent>(OnAnchorStateChanged);
@@ -573,16 +574,37 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
         args.Handled = true;
 
+        var @event = new StuffInWashingMachineDoAfterEvent
+        {
+            TargetCoordinates = Transform(args.Dragged).Coordinates,
+        };
+
         var doAfter = new DoAfterArgs(EntityManager, args.User, StuffTime,
-            new StuffInWashingMachineDoAfterEvent(), ent.Owner, target: args.Dragged, used: ent.Owner)
+            @event, ent.Owner, target: args.Dragged, used: ent.Owner)
         {
             BreakOnDamage = true,
             BreakOnMove = true,
             NeedHand = false,
+            AttemptFrequency = AttemptFrequency.EveryTick,
             DuplicateCondition = DuplicateConditions.SameTool | DuplicateConditions.SameTarget
         };
 
         _doAfter.TryStartDoAfter(doAfter, out _);
+    }
+
+    private void OnStuffInAttempt(Entity<WashingMachineComponent> ent, ref DoAfterAttemptEvent<StuffInWashingMachineDoAfterEvent> args)
+    {
+        if (args.Event.TargetCoordinates is not { } startCoordinates)
+            return;
+
+        if (args.DoAfter.Args.Target is not { } target || !TryComp<TransformComponent>(target, out var xform))
+        {
+            args.Cancel();
+            return;
+        }
+
+        if (!_transform.InRange(xform.Coordinates, startCoordinates, args.DoAfter.Args.MovementThreshold))
+            args.Cancel();
     }
 
     private void OnStuffInDoAfter(Entity<WashingMachineComponent> ent, ref StuffInWashingMachineDoAfterEvent args)

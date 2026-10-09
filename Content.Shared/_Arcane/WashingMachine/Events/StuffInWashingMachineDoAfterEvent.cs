@@ -1,4 +1,5 @@
 using Content.Shared.DoAfter;
+using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Arcane.WashingMachine.Events;
@@ -6,5 +7,7 @@ namespace Content.Shared._Arcane.WashingMachine.Events;
 [Serializable, NetSerializable]
 public sealed partial class StuffInWashingMachineDoAfterEvent : SimpleDoAfterEvent
 {
+    [NonSerialized]
+    public EntityCoordinates? TargetCoordinates;
 }
 
