@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitStrangeBunny
+  name: strange bunny suit
+  description: A strange bunny suit that leaves most of the body exposed.
+  components:
+    - type: Sprite
+      sprite: _StarHorizon/Clothing/Innerclothing/strangebunnysuit.rsi
+    - type: Clothing
+      sprite: _StarHorizon/Clothing/Innerclothing/strangebunnysuit.rsi
