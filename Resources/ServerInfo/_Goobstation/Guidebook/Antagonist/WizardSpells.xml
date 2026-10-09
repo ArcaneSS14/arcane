@@ -752,7 +752,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-        [italic]NOT THE BEES[/italic]
+        [italic]ТОЛЬКО НЕ ПЧЁЛЫ[/italic]
       </Box>
     </ColorBox>
     <ColorBox>
@@ -902,7 +902,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-        [italic]AT ANY COST![/italic]
+        [italic]ЛЮБОЙ ЦЕНОЙ![/italic]
       </Box>
     </ColorBox>
     <ColorBox>
@@ -1207,7 +1207,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-        Tile Movement
+        Передвижение по тайлам
       </Box>
     </ColorBox>
     <ColorBox>
@@ -1217,7 +1217,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     </ColorBox>
     <ColorBox Color="#2e422e">
       <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-        No
+        Нет
       </Box>
     </ColorBox>
     <ColorBox>
@@ -1227,7 +1227,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Toggles tile movement for the target.
+        Переключает передвижение цели по тайлам.
       </Box>
     </ColorBox>
     <ColorBox>

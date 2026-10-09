@@ -11,6 +11,12 @@
     species: Vulpkanin
   - type: Stamina
     baseCritThreshold: 110
+  # Arcane-Start
+  - type: NightVision
+    color: Gray
+    activateSound: null
+    deactivateSound: null
+  # Arcane-End
   - type: Hunger
   - type: Inventory # Allows vulps to wear properly shaped helmets
     speciesId: vulpkanin
@@ -154,7 +160,7 @@
         Slash: 3
   - type: Perishable
   - type: Damageable
-    damageModifierSet: Vulpkanin
+#    damageModifierSet: Vulpkanin # Arcane-Edit
   #- type: TemperatureProtection # Goobstation - fix vulps - start
   #  heatingCoefficient: 0.1
   #  coolingCoefficient: 0.1

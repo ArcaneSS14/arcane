@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -51,7 +52,8 @@ public abstract class ClothingSystem : EntitySystem
         Entity<ClothingComponent> toEquipEnt,
         Entity<InventoryComponent, HandsComponent> userEnt)
     {
-        foreach (var slotDef in userEnt.Comp1.Slots)
+        // Arcane-Edit-Start
+        foreach (var slotDef in userEnt.Comp1.Slots.OrderBy(slot => slot.SlotFlags.HasFlag(SlotFlags.POCKET)))
         {
             if (!_invSystem.CanEquip(userEnt, toEquipEnt, slotDef.Name, out _, slotDef, userEnt, toEquipEnt))
                 continue;
@@ -62,22 +64,22 @@ public abstract class ClothingSystem : EntitySystem
                 if (TryComp(slotEntity, out ClothingComponent? item) && !item.QuickEquip)
                     continue;
 
-                if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true))
+                if (!_invSystem.CanUnequip(userEnt, slotDef.Name, out _))
                     continue;
 
-                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
-                    continue;
+                // Delayed counts as taken: the replacement is queued behind the unequip.
+                if (_invSystem.TryUnequipSlot(userEnt, slotDef.Name, equipAfter: toEquipEnt, inventory: userEnt)
+                    != InventorySystem.UnequipResult.Failed)
+                    return;
 
-                _handsSystem.PickupOrDrop(userEnt, slotEntity.Value, handsComp: userEnt);
-            }
-            else
-            {
-                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true, triggerHandContact: true))
-                    continue;
+                continue;
             }
 
-            break;
+            if (_invSystem.TryEquipSlot(userEnt, toEquipEnt, slotDef.Name, inventory: userEnt, clothing: toEquipEnt, triggerHandContact: true)
+                != InventorySystem.EquipResult.Failed)
+                return;
         }
+        // Arcane-Edit-End
     }
 
     protected virtual void OnGotEquipped(EntityUid uid, ClothingComponent component, GotEquippedEvent args)

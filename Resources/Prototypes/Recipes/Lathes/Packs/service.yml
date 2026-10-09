@@ -57,6 +57,7 @@
   recipes:
   - SynthesizerInstrument
   - PushHorn
+  - PlantAnalyzer # Arcane
 
 - type: latheRecipePack
   id: ServiceBoards
@@ -73,4 +74,5 @@
   # Arcane-Start
   - EnergyBoozeDispenserMachineCircuitboard
   - EnergySodaDispenserMachineCircuitboard
+  - WashingMachineCircuitboard
   # Arcane-End

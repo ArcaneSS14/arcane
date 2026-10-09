@@ -131,6 +131,7 @@
   description: sleeper-description
   showInVote: true
   # Arcane-start
+  repeatWeightMultiplier: 0.8
   # minPlayers: 5
   rules:
     # - CalmDynamic
@@ -179,6 +180,7 @@
   name: secretplus-mid-title
   description: secretplus-mid-description
   showInVote: true
+  repeatWeightMultiplier: 0.35 # Arcane
   rules:
     - SecretPlusMid
     - BasicRoundstartVariation # Arcane

@@ -19,7 +19,7 @@
       - ReagentId: Blood
         Quantity: 10
   - type: Damageable # Shitmed
-    damageModifierSet: Scale
+#    damageModifierSet: Scale # Arcane-Edit
 
 - type: entity
   id: ChestReptilian

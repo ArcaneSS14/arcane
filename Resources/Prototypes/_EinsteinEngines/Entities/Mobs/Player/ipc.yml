@@ -83,7 +83,7 @@
   - type: StandingState
   - type: Damageable
     damageContainer: SiliconRadiation
-    damageModifierSet: IPC
+#    damageModifierSet: IPC # Arcane-Edit
   - type: MobState
     allowedStates:
     - Alive
@@ -140,6 +140,11 @@
   - type: ActiveRadio
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
+  # Arcane-Start
+  - type: ActionGrant
+    actions:
+    - ActionOpenRadioChannels
+  # Arcane-End
   - type: DeadStartupButton
     sound:
       path: /Audio/_EinsteinEngines/Effects/Silicon/startup.ogg
@@ -161,6 +166,7 @@
   - type: Uncloneable
   - type: OwnInteractionVerbs
     allowedVerbs: []
+  - type: SparkEjaculation # Arcane
   - type: Sprinter # Goob Change: slight nerf to speed because heavy robot, mass contest when
     sprintSpeedMultiplier: 1.3 # Arcane-Edit: 1.2 > 1.3
   - type: Tag
