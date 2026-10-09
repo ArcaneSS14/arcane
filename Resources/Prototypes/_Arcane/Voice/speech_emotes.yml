@@ -30,6 +30,7 @@
   category: Vocal
   icon: _Arcane/Interface/Emotes/horse_snort.png
   whitelist:
+    requireAll: true
     components:
     - Vocal
     tags:
@@ -58,15 +59,16 @@
   category: Vocal
   icon: _Arcane/Interface/Emotes/horse_whinny.png
   whitelist:
+    requireAll: true
     components:
     - Vocal
     tags:
     - HorseEmotes
   chatMessages: ["chat-emote-msg-horse-neighs"]
   chatTriggers:
-    - гогочит
-    - гогочит.
-    - гогочит!
+    - гогочет
+    - гогочет.
+    - гогочет!
     - гогот
     - гогот.
     - гогот!
@@ -86,6 +88,7 @@
   category: Vocal
   icon: _Arcane/Interface/Emotes/horse_whinny.png
   whitelist:
+    requireAll: true
     components:
     - Vocal
     tags:

@@ -45,7 +45,11 @@
       - Monkey
       - Kobold
       - CorporateCodespeak # Orion
-      - Hydraspeak # Arcane
+      # Arcane-Start
+      - Hydraspeak
+      - Xeno
+      - Karshan
+      # Arcane-End
     understood:
       - TauCetiBasic # Common Languages -
       - SolCommon
@@ -83,7 +87,11 @@
       - Monkey
       - Kobold
       - CorporateCodespeak # Orion
-      - Hydraspeak # Arcane
+      # Arcane-Start
+      - Hydraspeak
+      - Xeno
+      - Karshan
+      # Arcane-End
 
 - type: entity
   parent: BaseSubdermalImplant
