@@ -571,9 +571,11 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
         args.Handled = true;
 
+        var coordinates = Transform(args.Dragged).Coordinates;
         var @event = new StuffInWashingMachineDoAfterEvent
         {
-            TargetCoordinates = Transform(args.Dragged).Coordinates,
+            Coordinates = GetNetCoordinates(coordinates),
+            TargetCoordinates = coordinates,
         };
 
         var doAfter = new DoAfterArgs(EntityManager, args.User, StuffTime,
@@ -591,6 +593,9 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
     private void OnStuffInAttempt(Entity<WashingMachineComponent> ent, ref DoAfterAttemptEvent<StuffInWashingMachineDoAfterEvent> args)
     {
+        if (args.Event.TargetCoordinates is null && args.Event.Coordinates is { } netCoordinates)
+            args.Event.TargetCoordinates = GetCoordinates(netCoordinates);
+
         if (args.Event.TargetCoordinates is not { } startCoordinates)
             return;
 

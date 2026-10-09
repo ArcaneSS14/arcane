@@ -142,8 +142,8 @@ public abstract partial class SharedStainableSystem : EntitySystem
         if (dirtRemoved <= 0)
             return;
 
+        source.RemoveReagent(new ReagentId(reagent.Id, null), dirtRemoved * costPerUnit, ignoreReagentData: true);
         Solution.SplitSolution(target, dirtRemoved);
-        source.RemoveReagent(new ReagentId(reagent.Id, null), dirtRemoved * costPerUnit);
     }
 
     private bool IsStainBlocked(Entity<StainableComponent> item)
