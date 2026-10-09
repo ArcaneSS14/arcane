@@ -61,7 +61,6 @@
       collection: FelinidPurrs
     CatMeow:
       collection: CatMeows
-    Gasp:
 
 
 - type: emoteSounds
@@ -83,7 +82,6 @@
       collection: FelinidPurrs
     CatMeow:
       collection: CatMeows
-    Gasp:
 
 - type: emoteSounds
   id: FemaleFoxNature
@@ -91,7 +89,7 @@
     variation: 0.125
   sounds:
     Scream:
-      collection: FemaaleVulpkaninScreams
+      collection: FemaleVulpkaninScreams
     Laugh:
       collection: VulpkaninLaugh
     Crying:
@@ -99,7 +97,7 @@
     Whistle:
       collection: Whistles
     Growl:
-      collection: FemaaleVulpkaninGrowls
+      collection: FemaleVulpkaninGrowls
     Snarl:
       collection: VulpkaninSnarls
     Bark:
@@ -107,9 +105,9 @@
     Whine:
       collection: VulpkaninWhines
     Howl:
-      collection: FemaaleVulpkaninHowls
+      collection: FemaleVulpkaninHowls
     Awoo:
-      collection: FemaaleVulpkaninHowls
+      collection: FemaleVulpkaninHowls
 
 - type: emoteSounds
   id: MaleFoxNature
