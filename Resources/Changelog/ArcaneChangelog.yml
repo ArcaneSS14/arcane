@@ -2970,3 +2970,18 @@ Entries:
   time: '2026-10-09T13:13:23.0000000+00:00'
   prNumber: 490
   url: https://github.com/ArcaneSS14/arcane/pull/490
+- author: ChangelingRUES
+  changes:
+    - type: Tweak
+      message: Авриту были возвращены техфабы отделов. Второй раз.
+  id: 218
+  time: '2026-10-09T13:22:02.0000000+00:00'
+  prNumber: 486
+  url: https://github.com/ArcaneSS14/arcane/pull/486
+  media:
+    - >-
+      https://i.postimg.cc/Kvxs3Qt5/avrite-kargo.jpg)](https://postimg.cc/LhQVrtCq
+    - https://i.postimg.cc/sX5wvZXX/avrite-RND.jpg)](https://postimg.cc/gXkv7j3F
+    - https://i.postimg.cc/jjw8Y1YX/avrite-IO.jpg)](https://postimg.cc/rdTGSQm0
+    - >-
+      https://i.postimg.cc/tJ5kzQFT/avrite-service.jpg)](https://postimg.cc/YLvQpPnK
