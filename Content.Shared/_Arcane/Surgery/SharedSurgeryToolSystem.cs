@@ -52,6 +52,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         // An empty-hand click would otherwise unbuckle the patient from the operating table.
         SubscribeLocalEvent<SurgeryTargetComponent, InteractHandEvent>(OnInteractHand, before: [typeof(SharedBuckleSystem)]);
         SubscribeAllEvent<SurgeryToolOptionPickedEvent>(OnOptionPicked);
+        SubscribeLocalEvent<SurgeryPlanComponent, SurgeryStepEvent>(OnPlanStep);
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs => subs.Event<SurgeryPlanBuiMsg>(OnPlanMessage));
         Subs.CVar(_config, SurgeryCVars.CanOperateOnSelf, value => _canOperateOnSelf = value, true);
     }
@@ -289,13 +290,18 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
 
     private void DoOption(EntityUid body, EntityUid part, EntityUid user, SurgeryToolOption option)
     {
-        // Tool-less steps take whatever is in hand, so their plan must not outlive the step.
-        if (_surgery.GetSingleton(option.Step) is { } step && !HasToolRequirement(step))
-            SetPlan(user, null, null);
-        else if (option.Target is { } target)
+        if (option.Target is { } target)
             SetPlan(user, part, target);
 
         _surgery.TryDoSurgeryStep(body, part, user, option.Surgery, option.Step, out _);
+    }
+
+    // Tool-less steps take whatever is in hand, so their plan must not outlive the step.
+    // Dropped only once it is done, as a refused or interrupted step is reached again only through the plan.
+    private void OnPlanStep(Entity<SurgeryPlanComponent> ent, ref SurgeryStepEvent args)
+    {
+        if (ent.Comp.Part == args.Part && !HasToolRequirement(args.Step))
+            SetPlan(ent, null, null);
     }
 
     private SurgeryToolOption? GetPlannedOption(EntityUid body,
