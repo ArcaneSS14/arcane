@@ -296,11 +296,16 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         _surgery.TryDoSurgeryStep(body, part, user, option.Surgery, option.Step, out _);
     }
 
-    // Tool-less steps take whatever is in hand, so their plan must not outlive the step.
-    // Dropped only once it is done, as a refused or interrupted step is reached again only through the plan.
+    // Tool-less steps take whatever is in hand and may start over once undone, so their plan ends with the surgery's
+    // last step. Kept until it is done, as a refused, interrupted or ineffective step is reached again only through it.
     private void OnPlanStep(Entity<SurgeryPlanComponent> ent, ref SurgeryStepEvent args)
     {
-        if (ent.Comp.Part == args.Part && !HasToolRequirement(args.Step))
+        if (args.Complete
+            && ent.Comp.Part == args.Part
+            && !HasToolRequirement(args.Step)
+            && TryComp(args.Surgery, out SurgeryComponent? surgery)
+            && surgery.Steps.Count > 0
+            && surgery.Steps[^1].Id == Prototype(args.Step)?.ID)
             SetPlan(ent, null, null);
     }
 
