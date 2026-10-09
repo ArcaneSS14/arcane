@@ -1,19 +1,14 @@
-// SPDX-FileCopyrightText: 2025 Doctor-Cpu <77215380+Doctor-Cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GabyChangelog <agentepanela2@gmail.com>
-// SPDX-FileCopyrightText: 2025 Will-Oliver-Br <164823659+Will-Oliver-Br@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2026 YaraaraY <158123176+YaraaraY@users.noreply.github.com>
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
-using Content.Goobstation.Maths.FixedPoint; // Reserve - for FixedPoint2
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Fluids;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Slippery;
 using Content.Shared._Arcane.WashingMachine.Events;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Content.Shared._Arcane.Stains.Components;
 using Content.Shared.Verbs;
 using Content.Shared.DoAfter;
@@ -32,6 +27,10 @@ public abstract partial class SharedStainableSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPuddleSystem _puddle = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+    private static readonly FixedPoint2 BleachCleanCost = FixedPoint2.New(5f);
+    private static readonly FixedPoint2 WaterCleanCost = FixedPoint2.New(15f);
+    private static readonly FixedPoint2 DirtApplicationEfficiency = FixedPoint2.New(0.5f);
 
     public override void Initialize()
     {
@@ -74,6 +73,7 @@ public abstract partial class SharedStainableSystem : EntitySystem
         if (!ev.Handled || ev.Solution == null)
             return;
 
+        CleanStains(target.Value, ev.Solution);
         TransferStain(target.Value, ev.Solution, ent.Comp.StainVolume);
 
         UpdateVisuals(ent);
@@ -90,6 +90,7 @@ public abstract partial class SharedStainableSystem : EntitySystem
         if (!Solution.TryGetSolution(ent.Owner, ent.Comp.SolutionId, out var target))
             return;
 
+        CleanStains(target.Value, args.Args.Solution);
         TransferStain(target.Value, args.Args.Solution, ent.Comp.StainVolume);
 
         UpdateVisuals(ent);
@@ -100,17 +101,14 @@ public abstract partial class SharedStainableSystem : EntitySystem
 
     private void TransferStain(Entity<SolutionComponent> target, Solution source, FixedPoint2 amount)
     {
-        // Call SplitSolution on the solution object directly, not the system.
-        var transferAmount = FixedPoint2.Min(amount, target.Comp.Solution.AvailableVolume);
+        var transferAmount = FixedPoint2.Min(amount * DirtApplicationEfficiency, target.Comp.Solution.AvailableVolume);
         var taken = source.SplitSolution(transferAmount);
 
-        // Filter out water
-        // Iterate backwards to remove items while iterating
         for (var i = taken.Contents.Count - 1; i >= 0; i--)
         {
             var entry = taken.Contents[i];
 
-            if (entry.Reagent.Prototype != "Water")
+            if (entry.Reagent.Prototype != "Water" && entry.Reagent.Prototype != "Bleach")
                 continue;
 
             source.AddReagent(entry.Reagent, entry.Quantity);
@@ -122,6 +120,30 @@ public abstract partial class SharedStainableSystem : EntitySystem
         {
             Solution.TryAddSolution(target, taken);
         }
+    }
+
+    private void CleanStains(Entity<SolutionComponent> target, Solution source)
+    {
+        CleanStainWith(target, source, "Bleach", BleachCleanCost);
+        CleanStainWith(target, source, "Water", WaterCleanCost);
+    }
+
+    private void CleanStainWith(Entity<SolutionComponent> target, Solution source, ProtoId<ReagentPrototype> reagent, FixedPoint2 costPerUnit)
+    {
+        var stainVolume = target.Comp.Solution.Volume;
+        if (stainVolume <= 0)
+            return;
+
+        var available = source.GetTotalPrototypeQuantity(reagent);
+        if (available <= 0)
+            return;
+
+        var dirtRemoved = FixedPoint2.Min(stainVolume, available / costPerUnit);
+        if (dirtRemoved <= 0)
+            return;
+
+        Solution.SplitSolution(target, dirtRemoved);
+        source.RemoveReagent(new ReagentId(reagent.Id, null), dirtRemoved * costPerUnit);
     }
 
     private bool IsStainBlocked(Entity<StainableComponent> item)
