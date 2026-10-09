@@ -227,7 +227,6 @@
       Male: MaleHuman
       Female: FemaleHuman
       Unsexed: MaleHuman
-      Futanari: FemaleHuman # Arcane
   - type: LanguageKnowledge # Einstein Engines - Languages (all mobs should speak TauCeti unless otherwise specified, to prevent universal.)
     speaks:
     - TauCetiBasic

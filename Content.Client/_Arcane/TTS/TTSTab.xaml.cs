@@ -156,7 +156,6 @@ public sealed partial class TTSTab : Control
         {
             Sex.Male => Sex.Male,
             Sex.Female => Sex.Female,
-            Sex.Futanari => Sex.Female,
             _ => Sex.Male,
         };
     }

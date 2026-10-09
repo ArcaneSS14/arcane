@@ -80,7 +80,6 @@
       Male: MaleFelinid
       Female: FemaleFelinid
       Unsexed: MaleFelinid
-      Futanari: FemaleFelinid # Arcane-edit
   - type: OwOAccent # Arcane-Edit
   - type: Felinid
   - type: Tag

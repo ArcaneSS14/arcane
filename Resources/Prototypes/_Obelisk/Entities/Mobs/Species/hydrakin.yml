@@ -119,7 +119,6 @@
       Male: UnisexHydrakin
       Female: UnisexHydrakin
       Unsexed: UnisexHydrakin
-      Futanari: UnisexHydrakin # Arcane
   - type: TypingIndicator
     proto: robot
   - type: Hydrakin

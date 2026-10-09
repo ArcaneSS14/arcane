@@ -100,14 +100,6 @@ public sealed partial class NerveSystemComponent : Component
                 Params = AudioParams.Default.WithVariation(0.2f),
             }
         },
-        // Arcane-start
-        {
-            Sex.Futanari, new SoundCollectionSpecifier("PainScreamsShortFemale")
-            {
-                Params = AudioParams.Default.WithVariation(0.04f),
-            }
-        },
-        // Arcane-end
     };
 
     [DataField]
@@ -131,14 +123,6 @@ public sealed partial class NerveSystemComponent : Component
                 Params = AudioParams.Default.WithVariation(0.2f),
             }
         },
-        // Arcane-start
-        {
-            Sex.Futanari, new SoundCollectionSpecifier("AgonyScreamsFemale")
-            {
-                Params = AudioParams.Default.WithVariation(0.04f),
-            }
-        },
-        // Arcane-end
     };
 
     [DataField]
@@ -162,14 +146,6 @@ public sealed partial class NerveSystemComponent : Component
                 Params = AudioParams.Default.WithVariation(0.2f),
             }
         },
-        // Arcane-start
-        {
-            Sex.Futanari, new SoundCollectionSpecifier("PainShockScreamsFemale")
-            {
-                Params = AudioParams.Default.WithVariation(0.05f),
-            }
-        },
-        // Arcane-end
     };
 
     [DataField]
@@ -193,14 +169,6 @@ public sealed partial class NerveSystemComponent : Component
                 Params = AudioParams.Default,
             }
         },
-        // Arcane-start
-        {
-            Sex.Futanari, new SoundCollectionSpecifier("CritWhimpersFemale")
-            {
-                Params = AudioParams.Default,
-            }
-        },
-        // Arcane-end
     };
 
     [DataField]
@@ -224,14 +192,6 @@ public sealed partial class NerveSystemComponent : Component
                 Params = AudioParams.Default,
             }
         },
-        // Arcane-start
-        {
-            Sex.Futanari, new SoundCollectionSpecifier("PainShockWhimpersFemale")
-            {
-                Params = AudioParams.Default,
-            }
-        },
-        // Arcane-end
     };
 
     [DataField]
@@ -255,14 +215,6 @@ public sealed partial class NerveSystemComponent : Component
                 Params = AudioParams.Default,
             }
         },
-        // Arcane-start
-        {
-            Sex.Futanari, new SoundCollectionSpecifier("OrganDamagePainedFemale")
-            {
-                Params = AudioParams.Default,
-            }
-        },
-        // Arcane-end
     };
 
     [DataField]
@@ -286,14 +238,6 @@ public sealed partial class NerveSystemComponent : Component
                 Params = AudioParams.Default,
             }
         },
-        // Arcane-start
-        {
-            Sex.Futanari, new SoundCollectionSpecifier("OrganDamageWhimpersFemale")
-            {
-                Params = AudioParams.Default,
-            }
-        },
-        // Arcane-end
     };
 
     [DataField("reflexThresholds"), ViewVariables(VVAccess.ReadOnly)]

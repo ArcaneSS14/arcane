@@ -92,7 +92,7 @@ public sealed class OrgasmSystem : EntitySystem
         weakness.ExpiresAt = _timing.CurTime + weakness.WeaknessDuration;
         Dirty(uid, weakness);
 
-        if (humanoid is { Sex: Sex.Female or Sex.Futanari })
+        if (humanoid is { Sex: Sex.Female })
             _jitter.DoJitter(uid, TrembleDuration, refresh: true, amplitude: TrembleAmplitude, frequency: TrembleFrequency);
     }
 
@@ -108,7 +108,7 @@ public sealed class OrgasmSystem : EntitySystem
             return;
         }
 
-        if (sex is Sex.Male or Sex.Futanari && _condom.TryFill(uid))
+        if (sex is Sex.Male && _condom.TryFill(uid))
             return;
 
         var xform = Transform(uid);

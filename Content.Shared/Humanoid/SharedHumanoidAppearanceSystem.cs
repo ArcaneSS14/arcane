@@ -59,8 +59,7 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem //go
     {
         { Sex.Male, "Jackie" },
         { Sex.Female, "Lina_dota_2" },
-        { Sex.Unsexed, "Lambert" },
-        { Sex.Futanari, "Drow_ranger_dota_2" }
+        { Sex.Unsexed, "Lambert" }
     };
     // Arcane-End
 

@@ -25,7 +25,6 @@
   - !type:SexRequirement
     sexes:
     - Male
-    - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
   - !type:ArousalRequirement
@@ -122,14 +121,12 @@
   - !type:SexRequirement
     sexes:
     - Male
-    - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
   userRequirements:
   - !type:SexRequirement
     sexes:
     - Male
-    - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
   - !type:ArousalRequirement
@@ -330,7 +327,6 @@
   - !type:SexRequirement
     sexes:
     - Male
-    - Futanari
 
 - type: panelInteraction
   id: LickAnusCondensedCum
@@ -358,4 +354,3 @@
   - !type:SexRequirement
     sexes:
     - Male
-    - Futanari

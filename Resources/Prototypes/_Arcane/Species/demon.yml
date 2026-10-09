@@ -10,7 +10,7 @@
   customName: true
   skinColoration: Hues
   naming: firstlast
-  sexes: [Male, Female, Futanari]
+  sexes: [Male, Female]
   category: Unusual
   description: "/ServerInfo/_Arcane/SpeciesDescriptions/Demon.xml"
   minAge: 18

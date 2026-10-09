@@ -908,7 +908,6 @@ namespace Content.Shared.Preferences
                 Sex.Male => Sex.Male,
                 Sex.Female => Sex.Female,
                 Sex.Unsexed => Sex.Unsexed,
-                Sex.Futanari => Sex.Futanari, // Arcane-edit
                 _ => Sex.Male // Invalid enum values.
             };
 
@@ -1276,7 +1275,6 @@ namespace Content.Shared.Preferences
             return voice.RoundStart
             && (sex == Sex.Unsexed
             || voice.Sex == sex
-            || voice.Sex == Sex.Female && sex == Sex.Futanari // Arcane
             || voice.Sex == Sex.Unsexed);
         }
         // Arcane-End

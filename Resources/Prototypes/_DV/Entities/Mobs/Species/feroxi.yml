@@ -31,7 +31,6 @@
       Male: MaleFeroxi
       Female: FemaleFeroxi
       Unsexed: MaleFeroxi
-      Futanari: FemaleFeroxi # Arcane
   - type: BodyEmotes #goob edit
     soundsId: FeroxiBodyEmotes
   - type: Sprite

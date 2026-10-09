@@ -11,7 +11,6 @@
       Male: MaleFelinid
       Female: FemaleFelinid
       Unsexed: MaleFelinid
-      Futanari: FemaleFelinid
 
 - type: trait
   id: FoxNature
@@ -26,7 +25,6 @@
       Male: MaleVulpkanin
       Female: FemaleVulpkanin
       Unsexed: MaleVulpkanin
-      Futanari: FemaleVulpkanin
 
 - type: trait
   id: HorseNature
@@ -41,4 +39,3 @@
       Male: MaleHorse
       Female: FemaleHorse
       Unsexed: MaleHorse
-      Futanari: FemaleHorse

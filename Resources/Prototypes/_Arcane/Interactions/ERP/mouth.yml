@@ -29,7 +29,6 @@
   - !type:SexRequirement
     sexes:
     - Male
-    - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
 

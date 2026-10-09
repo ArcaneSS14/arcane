@@ -13,7 +13,7 @@ public sealed class SharedCondomSystem : EntitySystem
     /// <summary>
     ///     Sexes that can make a condom worth wearing.
     /// </summary>
-    private static readonly HashSet<Sex> AllowedSexes = [Sex.Male, Sex.Futanari];
+    private static readonly HashSet<Sex> AllowedSexes = [Sex.Male];
 
     public override void Initialize()
     {

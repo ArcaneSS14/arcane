@@ -63,7 +63,6 @@
       Male: MaleSlime
       Female: FemaleSlime
       Unsexed: MaleSlime
-      Futanari: FemaleSlime # Arcane
   - type: LanguageKnowledge # Einstein Engines - Languages
     speaks:
     - TauCetiBasic

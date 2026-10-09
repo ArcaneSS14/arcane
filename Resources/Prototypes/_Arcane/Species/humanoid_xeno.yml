@@ -10,7 +10,7 @@
   maleFirstNames: names_xeno_first
   femaleFirstNames: names_xeno_first
   lastNames: names_xeno_last
-  sexes: [Unsexed, Male, Female, Futanari]
+  sexes: [Unsexed, Male, Female]
   category: Unusual
   description: "/ServerInfo/_Arcane/SpeciesDescriptions/HumanoidXeno.xml"
   minAge: 18

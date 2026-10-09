@@ -99,7 +99,6 @@
       Male: UnisexDiona
       Female: UnisexDiona
       Unsexed: UnisexDiona
-      Futanari: UnisexDiona # Arcane
   - type: TypingIndicator
     proto: diona
   - type: LanguageKnowledge # Einstein Engines - Languages

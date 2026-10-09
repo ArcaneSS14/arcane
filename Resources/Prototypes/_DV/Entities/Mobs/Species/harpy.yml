@@ -138,7 +138,6 @@
       Male: SoundsHarpyMale
       Female: SoundsHarpyFemale
       Unsexed: SoundsHarpyFemale
-      Futanari: SoundsHarpyFemale # Arcane
   - type: LanguageKnowledge # Einstein Engines - Language
     speaks:
     - TauCetiBasic

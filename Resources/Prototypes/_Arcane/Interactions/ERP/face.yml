@@ -154,7 +154,6 @@
   - !type:SexRequirement
     sexes:
     - Female
-    - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
 
@@ -202,7 +201,6 @@
   - !type:SexRequirement
     sexes:
     - Male
-    - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
   - !type:ArousalRequirement
