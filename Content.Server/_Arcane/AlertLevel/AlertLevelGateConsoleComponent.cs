@@ -4,5 +4,8 @@ namespace Content.Server._Arcane.AlertLevel;
 public sealed partial class AlertLevelGateConsoleComponent : Component
 {
     [DataField]
+    public bool Enabled = true;
+
+    [DataField]
     public bool CentComm;
 }

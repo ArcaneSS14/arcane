@@ -157,13 +157,13 @@ public sealed class AlertLevelGateSystem : EntitySystem
         args.Verbs.Add(new AlternativeVerb
         {
             Text = Loc.GetString("alert-level-gate-verb-text"),
-            Message = Loc.GetString("alert-level-gate-verb-message"),
+            Message = Loc.GetString(ent.Comp.CentComm ? "alert-level-gate-centcomm-verb-message" : "alert-level-gate-verb-message"), // Arcane-Edit
             Priority = -1,
             Act = () =>
             {
                 if (!TryComp<AlertLevelGateComponent>(stationUid, out var currentGate)
                     || currentGate.Unlocked
-                    || !TryAuthorizeAlertLevel(stationUid, currentGate, user, console))
+                    || !TryAuthorizeUnlock(ent, stationUid, currentGate, user)) // Arcane-Edit
                     return;
 
                 if (UnlockAlertLevelGate(stationUid, true))
@@ -181,6 +181,9 @@ public sealed class AlertLevelGateSystem : EntitySystem
     // Arcane-Start
     private EntityUid? GetGateStation(Entity<AlertLevelGateConsoleComponent> console)
     {
+        if (!console.Comp.Enabled)
+            return null;
+
         if (_station.GetOwningStation(console) is { } station)
             return station;
 
@@ -200,6 +203,26 @@ public sealed class AlertLevelGateSystem : EntitySystem
         }
 
         return null;
+    }
+
+    private bool TryAuthorizeUnlock(
+        Entity<AlertLevelGateConsoleComponent> console,
+        EntityUid station,
+        AlertLevelGateComponent gate,
+        EntityUid user)
+    {
+        if (!console.Comp.CentComm)
+            return TryAuthorizeAlertLevel(station, gate, user, console);
+
+        if (_accessReader.IsAllowed(user, console))
+            return true;
+
+        _popup.PopupEntity(
+            Loc.GetString("comms-console-permission-denied"),
+            console,
+            user,
+            PopupType.MediumCaution);
+        return false;
     }
     // Arcane-End
 
@@ -250,7 +273,6 @@ public sealed class AlertLevelGateSystem : EntitySystem
                 PopupType.Medium);
 
             AnnounceAuthorization(
-                station, // Arcane
                 gate,
                 console,
                 idCard.Comp.FullName,
@@ -283,7 +305,6 @@ public sealed class AlertLevelGateSystem : EntitySystem
         gate.PendingExpiry = null;
 
         AnnounceAuthorization(
-            station, // Arcane
             gate,
             console,
             idCard.Comp.FullName,
@@ -293,7 +314,6 @@ public sealed class AlertLevelGateSystem : EntitySystem
     }
 
     private void AnnounceAuthorization(
-        EntityUid station, // Arcane
         AlertLevelGateComponent gate,
         EntityUid console,
         string? name,
@@ -303,19 +323,11 @@ public sealed class AlertLevelGateSystem : EntitySystem
             locId,
             ("name", name ?? Loc.GetString("alert-level-gate-unknown-name")));
 
-        // Arcane-Start
-        // Command radio does not cross maps, so a CentComm console speaks from the station grid.
-        var radioSource = console;
-        if (_station.GetLargestGrid(station) is { } grid
-            && Transform(grid).MapUid != Transform(console).MapUid)
-            radioSource = grid;
-        // Arcane-End
-
         _radio.SendRadioMessage(
             console,
             announcement,
             gate.CommandChannel,
-            radioSource); // Arcane-Edit
+            console);
     }
 
     private void ExpirePending(AlertLevelGateComponent gate)
