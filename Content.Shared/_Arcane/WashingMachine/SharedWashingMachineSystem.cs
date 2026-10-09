@@ -577,7 +577,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             new StuffInWashingMachineDoAfterEvent(), ent.Owner, target: args.Dragged, used: ent.Owner)
         {
             BreakOnDamage = true,
-            BreakOnMove = false,
+            BreakOnMove = true,
             NeedHand = false,
             DuplicateCondition = DuplicateConditions.SameTool | DuplicateConditions.SameTarget
         };
