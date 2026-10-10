@@ -3027,3 +3027,32 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/95fea5e9-06eb-4edf-b17f-7a59fcb634a1
+- author: mxgnvrx
+  changes:
+    - type: Add
+      message: >-
+        Этапы операций выполняются кликом хирургическим инструментом по лежащему
+        пациенту; при нескольких вариантах открывается меню у курсора.
+    - type: Tweak
+      message: >-
+        Окно хирургии стало картой операции: кукла тела следует таргетингу, у
+        каждой операции видна вся цепочка этапов и нужные инструменты.
+    - type: Fix
+      message: >-
+        Отрезанные конечности, кисти и стопы находятся таргетингом и пришиваются
+        обратно в правильный слот.
+    - type: Fix
+      message: >-
+        Пришитая часть тела снова лечится, а неподходящая часть в руке больше не
+        скармливается пациенту.
+  id: 222
+  time: '2026-10-10T12:10:31.0000000+00:00'
+  prNumber: 483
+  url: https://github.com/ArcaneSS14/arcane/pull/483
+  media:
+    - >-
+      https://github.com/user-attachments/assets/4340f3a3-c4c3-401e-bd63-e2c8c5796d01
+    - >-
+      https://github.com/user-attachments/assets/1826911d-32e0-48ce-a9a3-23915e76fc5e
+    - >-
+      https://github.com/user-attachments/assets/2e2479ae-a986-4435-8947-23e2c72d868d
