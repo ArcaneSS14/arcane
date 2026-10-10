@@ -3016,3 +3016,14 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/3a2cd83d-f47a-4fb0-8601-586d1f6739d3
+- author: RabbitBat, bulbo44kkey
+  changes:
+    - type: Add
+      message: Добавлена.... Черемша.
+  id: 221
+  time: '2026-10-10T11:07:00.0000000+00:00'
+  prNumber: 494
+  url: https://github.com/ArcaneSS14/arcane/pull/494
+  media:
+    - >-
+      https://github.com/user-attachments/assets/95fea5e9-06eb-4edf-b17f-7a59fcb634a1
