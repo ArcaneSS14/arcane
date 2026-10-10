@@ -637,8 +637,8 @@ public sealed class SurgeryBui : BoundUserInterface
     private Texture GetStatusTexture(TargetBodyPart slot, string state)
     {
         var name = slot.ToString().ToLowerInvariant();
-        // Loaded outside the RSI atlas, since the doll outline shader samples past the frame edge into neighbouring sprites.
-        return _resourceCache.GetResource<TextureResource>(StatusRsiPath / $"{name}.rsi" / $"{name}_{state}.png").Texture;
+        // These RSIs opt out of the meta atlas, since the doll outline shader samples past the frame edge into neighbouring sprites.
+        return _resourceCache.GetResource<RSIResource>(StatusRsiPath / $"{name}.rsi").RSI[$"{name}_{state}"].Frame0;
     }
 
     private static string GetMissingPartTitle(TargetBodyPart slot)
