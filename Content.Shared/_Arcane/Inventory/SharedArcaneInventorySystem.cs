@@ -39,9 +39,13 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
     ///     <see cref="InventoryEquipDelayComponent"/> on the item owns the delay outright, including
     ///     <see cref="TimeSpan.Zero"/> for an instant equip. Without the component the clothing delay wins,
     ///     then <see cref="InventoryEquipDelayComponent.DefaultDelay"/>.
+    ///     Pocket and suit storage slots are exempt and always equip instantly.
     /// </summary>
     public TimeSpan GetEquipDelay(EntityUid item, SlotDefinition slotDefinition, ClothingComponent? clothing = null)
     {
+        if ((slotDefinition.SlotFlags & (SlotFlags.POCKET | SlotFlags.SUITSTORAGE)) != 0)
+            return TimeSpan.Zero;
+
         if (CompOrNull<InventoryEquipDelayComponent>(item) is { } equipDelay)
             return equipDelay.EquipDelay;
 
@@ -58,6 +62,9 @@ public sealed class SharedArcaneInventorySystem : EntitySystem
     /// <inheritdoc cref="GetEquipDelay"/>
     public TimeSpan GetUnequipDelay(EntityUid item, SlotDefinition slotDefinition, ClothingComponent? clothing = null)
     {
+        if ((slotDefinition.SlotFlags & (SlotFlags.POCKET | SlotFlags.SUITSTORAGE)) != 0)
+            return TimeSpan.Zero;
+
         if (CompOrNull<InventoryEquipDelayComponent>(item) is { } equipDelay)
             return equipDelay.UnequipDelay;
 

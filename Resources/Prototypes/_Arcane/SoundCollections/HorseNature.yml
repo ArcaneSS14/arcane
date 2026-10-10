@@ -1,0 +1,37 @@
+- type: soundCollection
+  id: HorseCrying
+  files:
+    - /Audio/_Arcane/Voice/HorseNature/Horse_crying.ogg
+
+- type: soundCollection
+  id: HorseDeath
+  files:
+    - /Audio/_Arcane/Voice/HorseNature/Horse_death.ogg
+
+- type: soundCollection
+  id: HorseLaugh
+  files:
+    - /Audio/_Arcane/Voice/HorseNature/Horse_laugh.ogg
+
+
+- type: soundCollection
+  id: HorseNeighs
+  files:
+    - /Audio/_Arcane/Voice/HorseNature/Horse_neighs.ogg
+
+- type: soundCollection
+  id: HorseScream
+  files:
+    - /Audio/_Arcane/Voice/HorseNature/Horse_scream.ogg
+
+- type: soundCollection
+  id: HorseSnorts
+  files:
+    - /Audio/_Arcane/Voice/HorseNature/Horse_snorts.ogg
+
+
+- type: soundCollection
+  id: HorseWhinny
+  files:
+    - /Audio/_Arcane/Voice/HorseNature/Horse_whinny.ogg
+    - /Audio/_Arcane/Voice/HorseNature/Horse_whinny2.ogg
