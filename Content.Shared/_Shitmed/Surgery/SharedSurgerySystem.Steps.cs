@@ -82,10 +82,12 @@ public abstract partial class SharedSurgerySystem
         SubSurgery<SurgeryBleedsTreatmentStepComponent>(OnBleedsTreatmentStep, OnBleedsTreatmentCheck);
         // Arcane-Edit: pain is an effect of the step, not a condition for it staying complete.
         SubscribeLocalEvent<SurgeryStepPainInflicterComponent, SurgeryStepEvent>(OnPainInflicterStep); // Arcane-Edit
-        Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs =>
-        {
-            subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
-        });
+        // Arcane-Edit-Start: Removed, steps are done by clicking the patient with a tool
+//        Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs =>
+//        {
+//            subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen);
+//        });
+        // Arcane-Edit-End
 
         SubscribeLocalEvent<MeleeHitEvent>(OnSurgeryMeleeHit); // Arcane
     }
@@ -267,11 +269,7 @@ public abstract partial class SharedSurgerySystem
     private void OnTendWoundsStep(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepEvent args)
     {
         // Arcane-Edit-Start
-        var healableSeverity = _wounds.GetWoundableSeverityPoint(
-            args.Part,
-            damageGroup: ent.Comp.MainGroup,
-            healable: true,
-            ignoreBlockers: true);
+        var healableSeverity = GetTendableDamage(args.Part, ent.Comp.MainGroup);
 
         if (healableSeverity <= 0)
         {
@@ -306,13 +304,7 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        // Arcane-Edit-Start
-        if (_wounds.GetWoundableSeverityPoint(
-                args.Part,
-                damageGroup: ent.Comp.MainGroup,
-                healable: true,
-                ignoreBlockers: true) > 0)
-        // Arcane-Edit-End
+        if (GetTendableDamage(args.Part, ent.Comp.MainGroup) > 0) // Arcane-Edit
             args.Cancelled = true;
     }
 
@@ -321,7 +313,7 @@ public abstract partial class SharedSurgerySystem
         if (!_partQuery.TryComp(args.Part, out var partComp) || partComp.PartType != BodyPartType.Chest)
             return;
 
-        var activeHandEntity = _hands.EnumerateHeld(args.User).FirstOrDefault();
+        var activeHandEntity = _hands.GetActiveItem(args.User) ?? default; // Arcane-Edit
         if (activeHandEntity != default
             && !HasComp<BodyPartComponent>(activeHandEntity) // Omu
             && !HasComp<OrganComponent>(activeHandEntity) // Omu
@@ -375,9 +367,12 @@ public abstract partial class SharedSurgerySystem
             || removedComp.Symmetry != null && partComp.Symmetry != removedComp.Symmetry)
             return;
 
-        var slotName = removedComp.Symmetry != null
-                ? $"{removedComp.Symmetry?.ToString().ToLower()} {removedComp.Part.ToString().ToLower()}"
-                : removedComp.Part.ToString().ToLower();
+        // Arcane-Edit-Start: Built from the symmetry, the name missed slots like "tail" or "hands" and made a new one
+        var slotName = removedComp.Connection;
+//        var slotName = removedComp.Symmetry != null
+//                ? $"{removedComp.Symmetry?.ToString().ToLower()} {removedComp.Part.ToString().ToLower()}"
+//                : removedComp.Part.ToString().ToLower();
+        // Arcane-Edit-End
             _body.TryCreatePartSlot(args.Part, slotName, partComp.PartType, partComp.Symmetry, out var _);
             _body.AttachPart(args.Part, slotName, args.Tool);
             EnsureComp<BodyPartReattachedComponent>(args.Tool);
@@ -885,20 +880,20 @@ public abstract partial class SharedSurgerySystem
     }
     */ // Arcane-Edit-End
 
-    private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
-    {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        var user = args.Actor;
-        // Arcane-Edit-Start
-        var targetPart = GetEntity(args.Part);
-        if (!HasComp<BodyPartComponent>(targetPart))
-            return;
-
-        TryDoSurgeryStep(ent.Owner, targetPart, user, args.Surgery, args.Step);
-        // Arcane-Edit-End
-    }
+    // Arcane-Edit-Start: Removed, steps are done by clicking the patient with a tool
+//    private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
+//    {
+//        if (!_timing.IsFirstTimePredicted)
+//            return;
+//
+//        var user = args.Actor;
+//        var targetPart = GetEntity(args.Part);
+//        if (!HasComp<BodyPartComponent>(targetPart))
+//            return;
+//
+//        TryDoSurgeryStep(ent.Owner, targetPart, user, args.Surgery, args.Step);
+//    }
+    // Arcane-Edit-End
     #endregion
 
     #region Helper Methods
@@ -1043,8 +1038,10 @@ public abstract partial class SharedSurgerySystem
         return false;
     }
 
-    private bool TryDoSurgeryStep(EntityUid body, EntityUid targetPart, EntityUid user, EntProtoId surgeryId, EntProtoId stepId)
-=> TryDoSurgeryStep(body, targetPart, user, surgeryId, stepId, out _);
+    // Arcane-Edit-Start: Removed, its only caller was the step chosen message
+//    private bool TryDoSurgeryStep(EntityUid body, EntityUid targetPart, EntityUid user, EntProtoId surgeryId, EntProtoId stepId)
+//=> TryDoSurgeryStep(body, targetPart, user, surgeryId, stepId, out _);
+    // Arcane-Edit-End
 
     /// <summary>
     /// Do a surgery step on a part, if it can be done.
@@ -1083,6 +1080,16 @@ public abstract partial class SharedSurgerySystem
             // Arcane-Edit-End
             return false;
         }
+
+        // Arcane-Start
+        // Checked before the tool is used, or every repeated click would replay its sound and side effects.
+        if (IsStepInProgress(user, body, part, surgeryId, stepId))
+        {
+            error = StepInvalidReason.DoAfterFailed;
+            _popup.PopupClient(Loc.GetString("surgery-error-action-busy"), user, user, PopupType.SmallCaution);
+            return false;
+        }
+        // Arcane-End
 
         var tool = _hands.GetActiveItemOrSelf(user);
         if (!CanPerformStep(user, body, part, step, tool, true, out var stepPopup, out error, out var data))
@@ -1129,19 +1136,23 @@ public abstract partial class SharedSurgerySystem
                 if (active.Cancelled || active.Completed)
                     continue;
 
-                if (active.Args.Event is SurgeryDoAfterEvent activeSurgery)
-                {
-                    if (activeSurgery.Surgery == surgeryId &&
-                        activeSurgery.Step == stepId &&
-                        active.Args.EventTarget == body &&
-                        active.Args.Target == part)
-                    {
-                        _popup.PopupClient(Loc.GetString("surgery-error-action-busy"), user, user, PopupType.SmallCaution);
-                        return false;
-                    }
-
+                // Arcane-Edit-Start: The busy check moved to IsStepInProgress, before the tool is used
+                if (active.Args.Event is SurgeryDoAfterEvent)
                     _doAfter.Cancel(user, active.Index, userDoAfterComp);
-                }
+//                if (active.Args.Event is SurgeryDoAfterEvent activeSurgery)
+//                {
+//                    if (activeSurgery.Surgery == surgeryId &&
+//                        activeSurgery.Step == stepId &&
+//                        active.Args.EventTarget == body &&
+//                        active.Args.Target == part)
+//                    {
+//                        _popup.PopupClient(Loc.GetString("surgery-error-action-busy"), user, user, PopupType.SmallCaution);
+//                        return false;
+//                    }
+//
+//                    _doAfter.Cancel(user, active.Index, userDoAfterComp);
+//                }
+                // Arcane-Edit-End
             }
         }
 
@@ -1186,6 +1197,29 @@ public abstract partial class SharedSurgerySystem
         _popup.PopupPredicted(locResult, user, user);
         return true;
     }
+
+    // Arcane-Start
+    private bool IsStepInProgress(EntityUid user, EntityUid body, EntityUid part, EntProtoId surgeryId, EntProtoId stepId)
+    {
+        if (!TryComp<ActiveDoAfterComponent>(user, out _)
+            || !TryComp<DoAfterComponent>(user, out var doAfters))
+            return false;
+
+        foreach (var active in doAfters.DoAfters.Values)
+        {
+            if (!active.Cancelled
+                && !active.Completed
+                && active.Args.Event is SurgeryDoAfterEvent activeSurgery
+                && activeSurgery.Surgery == surgeryId
+                && activeSurgery.Step == stepId
+                && active.Args.EventTarget == body
+                && active.Args.Target == part)
+                return true;
+        }
+
+        return false;
+    }
+    // Arcane-End
 
     private float GetSurgeryDuration(EntityUid surgeryStep, EntityUid user, EntityUid target, float toolSpeed)
     {
@@ -1332,7 +1366,7 @@ public abstract partial class SharedSurgerySystem
         return CanPerformStep(user, body, part, step, tool, doPopup, out popup, out _, out _);
     }
 
-    private bool IsStepComplete(EntityUid body, EntityUid part, EntProtoId step, EntityUid surgery)
+    public bool IsStepComplete(EntityUid body, EntityUid part, EntProtoId step, EntityUid surgery) // Arcane-Edit
     {
         // Arcane-Start
         if (IsStepSkipped(part, step))

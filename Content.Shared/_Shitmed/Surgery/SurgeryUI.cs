@@ -22,17 +22,17 @@ public sealed class SurgeryBuiRefreshMessage : BoundUserInterfaceMessage
 {
 }
 
-// Arcane-Edit-Start: surgery always targets a body part, so the "operate on the body itself" marker is gone.
-[Serializable, NetSerializable]
-public sealed class SurgeryStepChosenBuiMsg(NetEntity part, EntProtoId surgery, EntProtoId step) : BoundUserInterfaceMessage
-{
-    public readonly NetEntity Part = part;
-    public readonly EntProtoId Surgery = surgery;
-    public readonly EntProtoId Step = step;
-
-    /*
-    // Used as a marker for whether or not we're hijacking surgery by applying it on the body itself.
-    public readonly bool IsBody = isBody;
-    */
-}
+// Arcane-Edit-Start: Removed, steps are done by clicking the patient with a tool
+//[Serializable, NetSerializable]
+//public sealed class SurgeryStepChosenBuiMsg(NetEntity part, EntProtoId surgery, EntProtoId step) : BoundUserInterfaceMessage
+//{
+//    public readonly NetEntity Part = part;
+//    public readonly EntProtoId Surgery = surgery;
+//    public readonly EntProtoId Step = step;
+//
+//    /*
+//    // Used as a marker for whether or not we're hijacking surgery by applying it on the body itself.
+//    public readonly bool IsBody = isBody;
+//    */
+//}
 // Arcane-Edit-End

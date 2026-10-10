@@ -61,9 +61,11 @@
       right arm:
         id: right arm
         type: Arm
+        symmetry: Right # Arcane
       left arm:
         id: left arm
         type: Arm
+        symmetry: Left # Arcane
       head:
         id: head
         type: Head
@@ -121,9 +123,11 @@
       right leg:
         id: right leg
         type: Leg
+        symmetry: Right # Arcane
       left leg:
         id: left leg
         type: Leg
+        symmetry: Left # Arcane
     organs:
       stomach:
         id: stomach
@@ -242,6 +246,7 @@
       left hand:
         id: left hand
         type: Hand
+        symmetry: Left # Arcane
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: LArm
@@ -279,6 +284,7 @@
       right hand:
         id: right hand
         type: Hand
+        symmetry: Right # Arcane
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: RArm
@@ -382,6 +388,7 @@
       left foot:
         id: left foot
         type: Foot
+        symmetry: Left # Arcane
   - type: MovementBodyPart
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
@@ -420,6 +427,7 @@
       right foot:
         id: right foot
         type: Foot
+        symmetry: Right # Arcane
   - type: MovementBodyPart
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
