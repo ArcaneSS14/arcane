@@ -3,6 +3,7 @@
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
+using Content.Shared._Arcane.Surgery;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
@@ -12,6 +13,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
 using Content.Shared._Shitmed.Targeting;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Shitmed.Medical.Surgery;
 
@@ -22,6 +24,12 @@ public sealed class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // Arcane
+
+    // Arcane-Start
+    private static readonly TimeSpan ChoicesCheckInterval = TimeSpan.FromSeconds(1);
+    private TimeSpan _nextChoicesCheck;
+    // Arcane-End
 
     public override void Initialize()
     {
@@ -40,32 +48,30 @@ public sealed class SurgerySystem : SharedSurgerySystem
         if (!_ui.IsUiOpen(body, SurgeryUIKey.Key))
             return;
 
-        var surgeries = new Dictionary<NetEntity, List<EntProtoId>>();
-        foreach (var part in _body.GetBodyChildren(body))
-        {
-            var valid = new List<EntProtoId>();
-            foreach (var surgery in AllSurgeries)
-            {
-                if (GetSingleton(surgery) is not { } surgeryEnt)
-                    continue;
-
-                var ev = new SurgeryValidEvent(body, part.Id);
-                RaiseLocalEvent(surgeryEnt, ref ev);
-
-                if (ev.Cancelled)
-                    continue;
-
-                // Arcane-Start
-                if (IsSurgerySkipped(part.Id, surgeryEnt))
-                    continue;
-                // Arcane-End
-
-                valid.Add(surgery);
-            }
-            surgeries[GetNetEntity(part.Id)] = valid;
-        }
-
-        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries));
+        // Arcane-Edit-Start: Moved to GetSurgeryChoices
+//        var surgeries = new Dictionary<NetEntity, List<EntProtoId>>();
+//        foreach (var part in _body.GetBodyChildren(body))
+//        {
+//            var valid = new List<EntProtoId>();
+//            foreach (var surgery in AllSurgeries)
+//            {
+//                if (GetSingleton(surgery) is not { } surgeryEnt)
+//                    continue;
+//
+//                var ev = new SurgeryValidEvent(body, part.Id);
+//                RaiseLocalEvent(surgeryEnt, ref ev);
+//
+//                if (ev.Cancelled)
+//                    continue;
+//
+//                valid.Add(surgery);
+//            }
+//            surgeries[GetNetEntity(part.Id)] = valid;
+//        }
+//
+//        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries));
+        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(GetSurgeryChoices(body)));
+        // Arcane-Edit-End
         /*
             Reason we do this is because when applying a BUI State, it rolls back the state on the entity temporarily,
             which just so happens to occur right as we're checking for step completion, so we end up with the UI
@@ -73,6 +79,42 @@ public sealed class SurgerySystem : SharedSurgerySystem
         */
         _ui.ServerSendUiMessage(body, SurgeryUIKey.Key, new SurgeryBuiRefreshMessage());
     }
+
+    // Arcane-Start
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_timing.CurTime < _nextChoicesCheck)
+            return;
+
+        _nextChoicesCheck = _timing.CurTime + ChoicesCheckInterval;
+
+        // Damage and bleeding from outside surgery change which surgeries are valid, so open UIs are re-checked here.
+        var query = EntityQueryEnumerator<ActiveUserInterfaceComponent, SurgeryTargetComponent, UserInterfaceComponent>();
+        while (query.MoveNext(out var uid, out _, out _, out var ui))
+        {
+            if (!_ui.IsUiOpen((uid, ui), SurgeryUIKey.Key))
+                continue;
+
+            var choices = GetSurgeryChoices(uid);
+            if (_ui.TryGetUiState<SurgeryBuiState>((uid, ui), SurgeryUIKey.Key, out var state)
+                && SurgeryChoices.Equal(state.Choices, choices))
+                continue;
+
+            _ui.SetUiState((uid, ui), SurgeryUIKey.Key, new SurgeryBuiState(choices));
+        }
+    }
+
+    private Dictionary<NetEntity, List<EntProtoId>> GetSurgeryChoices(EntityUid body)
+    {
+        var surgeries = new Dictionary<NetEntity, List<EntProtoId>>();
+        foreach (var part in _body.GetBodyChildren(body))
+            surgeries[GetNetEntity(part.Id)] = GetValidSurgeries(body, part.Id);
+
+        return surgeries;
+    }
+    // Arcane-End
 
     private DamageSpecifier? SetDamage(EntityUid body, // Arcane-Edit
         DamageSpecifier damage,

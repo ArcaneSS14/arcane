@@ -1,0 +1,15 @@
+<surgery:SurgeryOperationRow
+    xmlns="https://spacestation14.io"
+    xmlns:surgery="clr-namespace:Content.Client._Arcane.Medical.Surgery"
+    Orientation="Vertical"
+    HorizontalExpand="True">
+    <Button Name="Header" StyleClasses="OpenBoth" ToggleMode="True" HorizontalExpand="True">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <PanelContainer Name="Stripe" MinWidth="3" VerticalExpand="True" />
+            <Label Name="ArrowLabel" />
+            <Label Name="NameLabel" HorizontalExpand="True" ClipText="True" />
+            <Label Name="StatusLabel" Margin="0 0 4 0" />
+        </BoxContainer>
+    </Button>
+    <BoxContainer Name="Steps" Orientation="Vertical" Margin="14 2 0 4" Visible="False" />
+</surgery:SurgeryOperationRow>

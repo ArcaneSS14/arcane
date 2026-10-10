@@ -1,0 +1,13 @@
+<surgery:SurgeryToolOptionsPopup
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:surgery="clr-namespace:Content.Client._Arcane.Medical.Surgery">
+    <PanelContainer StyleClasses="ArcaneDetailSurface" MinWidth="260">
+        <BoxContainer Orientation="Vertical">
+            <controls:StripeBack StyleClasses="ArcaneDetailStripe">
+                <Label Name="TitleLabel" StyleClasses="LabelKeyText" HorizontalAlignment="Center" Margin="8 2" />
+            </controls:StripeBack>
+            <BoxContainer Name="Options" Orientation="Vertical" SeparationOverride="2" Margin="4 0 4 4" />
+        </BoxContainer>
+    </PanelContainer>
+</surgery:SurgeryToolOptionsPopup>

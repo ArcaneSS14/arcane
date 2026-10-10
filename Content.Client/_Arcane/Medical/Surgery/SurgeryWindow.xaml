@@ -1,0 +1,45 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:surgery="clr-namespace:Content.Client._Arcane.Medical.Surgery"
+    Title="{Loc 'surgery-ui-window-title'}"
+    MinSize="720 460"
+    SetSize="780 520">
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
+        <ScrollContainer HScrollEnabled="False" MinWidth="280" VerticalExpand="True" Margin="5">
+            <BoxContainer Orientation="Vertical" Margin="5 0" SeparationOverride="4">
+                <surgery:SurgeryDollControl Name="Doll" Access="Public" HorizontalAlignment="Center" />
+                <BoxContainer Name="OtherParts" Access="Public" Orientation="Vertical" SeparationOverride="2" Visible="False" />
+                <PanelContainer StyleClasses="LowDivider" />
+                <Label Name="PartNameLabel" Access="Public" StyleClasses="LabelKeyText" ClipText="True" />
+                <GridContainer Name="PartInfo" Access="Public" Columns="2">
+                    <Label Text="{Loc 'surgery-ui-part-severity'}" />
+                    <Label Name="PartSeverityLabel" Access="Public" />
+                    <Label Text="{Loc 'surgery-ui-part-bleeding'}" />
+                    <Label Name="PartBleedingLabel" Access="Public" />
+                </GridContainer>
+                <PanelContainer Name="PartStatesDivider" Access="Public" StyleClasses="LowDivider" />
+                <BoxContainer Name="PartStatesView" Access="Public" Orientation="Vertical">
+                    <Label Text="{Loc 'surgery-ui-part-states'}" />
+                    <BoxContainer Name="PartStates" Access="Public" Orientation="Vertical" />
+                </BoxContainer>
+            </BoxContainer>
+        </ScrollContainer>
+        <cc:VSeparator VerticalExpand="True" StyleClasses="LowDivider" />
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="12 8">
+            <Label Text="{Loc 'surgery-ui-window-tools-hint'}" StyleClasses="LabelSubText" Margin="0 0 0 6" />
+            <Label Name="WarningLabel" Access="Public" Text="{Loc 'surgery-error-cannot-operate'}"
+                   StyleClasses="status-bad" Margin="0 0 0 6" Visible="False" />
+            <ScrollContainer Name="OperationsView" Access="Public" HScrollEnabled="False" VerticalExpand="True" Visible="False">
+                <BoxContainer Name="Operations" Access="Public" Orientation="Vertical" SeparationOverride="2" />
+            </ScrollContainer>
+            <BoxContainer Name="EmptyView" Access="Public" Orientation="Vertical" VerticalExpand="True"
+                          VerticalAlignment="Center">
+                <Label Name="EmptyLabel" Access="Public" StyleClasses="LabelKeyText" HorizontalAlignment="Center" />
+                <Label Name="EmptyHintLabel" Access="Public" Text="{Loc 'surgery-ui-window-empty-hint'}"
+                       StyleClasses="LabelSubText" HorizontalAlignment="Center" />
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
