@@ -1,0 +1,14 @@
+- type: entity
+  parent: SinkStemlessWater
+  id: Shower
+  name: shower
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Furniture/shower.rsi
+    layers:
+      - state: icon
+  - type: Icon
+    sprite: _RMC14/Structures/Furniture/shower.rsi
+    state: icon
+  - type: SolutionContainerVisuals
+    maxFillLevels: 0
