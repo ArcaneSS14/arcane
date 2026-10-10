@@ -3067,3 +3067,14 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/54bb7da7-978d-40c6-9d67-1c52cfb6bda7
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: В окне операции должна отображается кукла тела вместо текстуры ошибки.
+  id: 224
+  time: '2026-10-10T18:33:30.0000000+00:00'
+  prNumber: 499
+  url: https://github.com/ArcaneSS14/arcane/pull/499
+  media:
+    - >-
+      https://github.com/user-attachments/assets/058e9128-c6c5-4882-a603-0836696222f1
