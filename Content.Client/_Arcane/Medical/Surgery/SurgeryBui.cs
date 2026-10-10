@@ -17,7 +17,6 @@ using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Containers;
@@ -33,7 +32,6 @@ public sealed class SurgeryBui : BoundUserInterface
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
 
     private const float ChangeCheckInterval = 0.25f;
     private static readonly TimeSpan TargetChangeTimeout = TimeSpan.FromSeconds(1);
@@ -43,6 +41,7 @@ public sealed class SurgeryBui : BoundUserInterface
     private readonly SurgeryToolSystem _tools;
     private readonly SharedBodySystem _body;
     private readonly SharedContainerSystem _container;
+    private readonly SpriteSystem _sprite;
     private readonly TargetingUIController _targeting;
 
     [ViewVariables]
@@ -81,6 +80,7 @@ public sealed class SurgeryBui : BoundUserInterface
         _targeting = _uiManager.GetUIController<TargetingUIController>();
         _body = EntMan.System<SharedBodySystem>();
         _container = EntMan.System<SharedContainerSystem>();
+        _sprite = EntMan.System<SpriteSystem>();
     }
 
     protected override void Open()
@@ -637,8 +637,9 @@ public sealed class SurgeryBui : BoundUserInterface
     private Texture GetStatusTexture(TargetBodyPart slot, string state)
     {
         var name = slot.ToString().ToLowerInvariant();
-        // Loaded outside the RSI atlas, since the doll outline shader samples past the frame edge into neighbouring sprites.
-        return _resourceCache.GetResource<TextureResource>(StatusRsiPath / $"{name}.rsi" / $"{name}_{state}.png").Texture;
+        // The doll outline shader samples past the frame edge, so these RSIs opt out of the meta atlas
+        // and their states keep transparent margins against the neighbouring frames.
+        return _sprite.Frame0(new SpriteSpecifier.Rsi(StatusRsiPath / $"{name}.rsi", $"{name}_{state}"));
     }
 
     private static string GetMissingPartTitle(TargetBodyPart slot)
