@@ -113,10 +113,10 @@
     - type: BoneSaw
     add:
     - type: BonesSawed
-    # Arcane-Start
-    remove:
-    - type: BonesSealed
-    # Arcane-End
+    # Arcane-Edit-Start: Removed, BonesSealed is unused
+#    remove:
+#    - type: BonesSealed
+    # Arcane-Edit-End
     duration: 4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/circular-saw.rsi
@@ -295,10 +295,10 @@
   - type: SurgeryStep
     tool:
     - type: BoneGel
-    # Arcane-Start
-    add:
-    - type: BonesSealed
-    # Arcane-End
+    # Arcane-Edit-Start: Removed, BonesSealed is unused
+#    add:
+#    - type: BonesSealed
+    # Arcane-Edit-End
     remove:
     - type: BonesSawed
     duration: 2
@@ -445,6 +445,7 @@
     - type: BleedersClamped
     - type: InternalBleedersClamped
     - type: IncisionOpen
+    - type: BodyPartSawed # Arcane
     duration: 8
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/circular-saw.rsi
@@ -548,6 +549,7 @@
     - type: Stitches
     remove:
     - type: IncisionOpen
+    - type: BodyPartSawed # Arcane
     duration: 8
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/stitches.rsi
@@ -648,8 +650,10 @@
     - type: Scalpel
     duration: 6
   - type: Sprite
-    sprite: _Shitmed/Objects/Specific/Medical/Surgery/manipulation.rsi
-    state: insertion
+    # Arcane-Edit-Start: The step is done with a scalpel, the insertion icon read as a missing step
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+    # Arcane-Edit-End
   - type: SurgeryAddOrganSlotStep
   - type: SurgeryStepPainInflicter
     amount: 21

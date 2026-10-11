@@ -27,3 +27,18 @@
       Female: FemaleVulpkanin
       Unsexed: MaleVulpkanin
       Futanari: FemaleVulpkanin
+
+- type: trait
+  id: HorseNature
+  name: trait-horsenature-name
+  description: trait-horsenature-desc
+  category: Nature
+  cost: 1
+  components:
+  - type: Nature
+    emoteTag: HorseEmotes
+    newSounds:
+      Male: MaleHorse
+      Female: FemaleHorse
+      Unsexed: MaleHorse
+      Futanari: FemaleHorse

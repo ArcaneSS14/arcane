@@ -36,7 +36,17 @@ public sealed partial class WoundSystem
         SubscribeLocalEvent<WoundableComponent, AttemptHandsMeleeEvent>(OnAttemptHandsMelee);
         SubscribeLocalEvent<WoundableComponent, AttemptHandsShootEvent>(OnAttemptHandsShoot);
         SubscribeLocalEvent<TraumaInflicterComponent, TraumaBeingRemovedEvent>(OnTraumaBeingRemoved);
+        SubscribeLocalEvent<WoundableComponent, BodyPartAddedEvent>(OnWoundableAttached); // Arcane
     }
+
+    // Arcane-Start
+    // A severed part keeps the Severed severity when reattached, which blocks its healing until it is recomputed.
+    private void OnWoundableAttached(Entity<WoundableComponent> ent, ref BodyPartAddedEvent args)
+    {
+        if (ent.Comp.WoundableSeverity == WoundableSeverity.Severed)
+            CheckWoundableSeverityThresholds(ent, ent.Comp);
+    }
+    // Arcane-End
 
     #region Event Handling
 

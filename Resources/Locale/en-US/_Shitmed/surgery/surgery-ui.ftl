@@ -4,8 +4,10 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-surgery-verb-text = Start surgery
-surgery-verb-message = Begin surgery on this entity.
+# Arcane-Edit-Start
+surgery-verb-text = Surgery chart
+surgery-verb-message = Open the surgery chart of this patient.
+# Arcane-Edit-End
 surgery-ui-window-title = Surgery
 surgery-ui-window-require = Requires
 surgery-ui-window-parts = < Parts

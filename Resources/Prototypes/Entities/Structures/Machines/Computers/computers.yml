@@ -732,6 +732,7 @@
     access: [[ "Command" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-station
+  - type: AlertLevelGateConsole # Arcane
   - type: DeviceNetwork
     deviceNetId: Wireless
     transmitFrequencyId: ShuttleTimer
@@ -846,6 +847,10 @@
     color: "#1d8bad"
     canShuttle: false
     global: true
+  # Arcane-Start
+  - type: AlertLevelGateConsole
+    centComm: true
+  # Arcane-End
   - type: Computer
     board: CentcommCommsComputerCircuitboard
   - type: PointLight

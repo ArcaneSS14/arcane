@@ -6,13 +6,16 @@
   requirements:
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 18000 # 5 hrs
+    time: 10800 # 3 hrs
   - !type:DepartmentTimeRequirement
     department: Engineering
-    time: 18000 # 5 hrs
+    time: 10800 # 3 hrs
   - !type:DepartmentTimeRequirement
     department: Medical
-    time: 18000 # 5 hrs
+    time: 10800 # 3 hrs
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 10800 # 3 hrs
   startingGear: AdjutantGear
   icon: JobIconAdjutant
   supervisors: job-supervisors-command
