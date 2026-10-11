@@ -131,9 +131,9 @@
       ammo:
         reagents:
         - ReagentId: ChloralHydrate
-          Quantity: 7
+          Quantity: 15 # Arcane-Edit: 7 > 15
   - type: SolutionTransfer
-    maxTransferAmount: 7
+    maxTransferAmount: 15 # Arcane-Edit: 7 > 15
   - type: SpentAmmoVisuals
     state: "tranquilizer"
 

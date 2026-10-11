@@ -114,7 +114,7 @@
   - Security
   pointCosts:
   - type: General
-    amount: 12500 # Arcane-Edit: 17500 > 12500
+    amount: 17500
   technologyPrerequisites:
   - BeamWeapons
   - AnomalyShells
