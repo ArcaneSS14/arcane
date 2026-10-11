@@ -3089,3 +3089,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/91e95023-307e-430e-8bd7-cc2e44bcc027
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: РУ переводы предметов из всех фабов и автолата
+  id: 226
+  time: '2026-10-11T16:16:10.0000000+00:00'
+  prNumber: 503
+  url: https://github.com/ArcaneSS14/arcane/pull/503
