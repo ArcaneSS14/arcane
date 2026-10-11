@@ -875,7 +875,7 @@
   - type: Clothing
     sprite: _Goobstation/Clothing/Uniforms/Jumpsuit/Syndicate/operative.rsi # Goob
   - type: StaticPrice
-    price: 500
+    price: 15 # Arcane-Edit
 
 - type: entity
   parent: ClothingUniformBase
