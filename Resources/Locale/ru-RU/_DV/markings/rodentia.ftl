@@ -139,4 +139,5 @@ marking-RodentiaFootRightBasic-r_foot = Основной
 # Arcane - Start
 marking-RodentiaHeadTopMouseEars2 = Мышь (альт)
 marking-RodentiaTailMouse2 = Мышь (альт)
+marking-RodentiaTailJerboa = Хвост тушканчика
 # Arcane - End
