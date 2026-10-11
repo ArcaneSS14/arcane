@@ -409,6 +409,15 @@
   sprites:
     - sprite: _Arcane/Mobs/Customization/Rodentia/tail.rsi
       state: mouse_tail
+
+- type: marking
+  id: RodentiaTailJerboa
+  markingCategory: Tail
+  bodyPart: Tail
+  speciesRestriction: [Rodentia]
+  sprites:
+    - sprite: _Arcane/Mobs/Customization/Rodentia/long_tails.rsi
+      state: tail_jerboa
 # Arcane - End
 
 ## PATTERNS
