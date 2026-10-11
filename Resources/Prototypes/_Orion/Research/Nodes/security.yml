@@ -76,28 +76,30 @@
   - SurveillanceWirelessCameraBodySecurity
   - ContrabandDetectorCircuitboard
   - CriminalRecordsComputerCircuitboard
-  - WeaponEnergyTurretSecurityMachineCircuitboard
+#  - WeaponEnergyTurretSecurityMachineCircuitboard # Arcane-Edit: Removed
   - PepperSpray
   - Zipties
   - FlashlightSeclite
   - ClothingBackpackElectropack
   - ClothingAggressionInhibitor # Arcane
-  - PortableFlasherMachineCircuitboard # Arcane
+#  - PortableFlasherMachineCircuitboard # Arcane-Edit: Removed
   - ForensicPad
   - TargetClown
   - TargetHuman
   - TargetSyndicate
   - WeaponFlareGunSecurity
   - Flash
-  - Stunbaton
-  - CombatKnife
-  - RiotShield
-  - GrenadeFlashBang
-  - SecHypo
-  - PolymerBaton
-  - SpearTelescopic
+  # Arcane-Edit-Start: Removed
+#  - Stunbaton
+#  - CombatKnife
+#  - RiotShield
+#  - GrenadeFlashBang
+#  - SecHypo
+#  - PolymerBaton
+#  - SpearTelescopic
+  # Arcane-Edit-End
   - PinpointerSecSquad # Arcane-Edit
-  position: -1,1
+  position: 0,-1 # Arcane-Edit
 
 - type: technology
   id: CombatHUD
@@ -112,14 +114,14 @@
   - Security
   pointCosts:
   - type: General
-    amount: 17500
+    amount: 12500 # Arcane-Edit: 17500 > 12500
   technologyPrerequisites:
   - BeamWeapons
   - AnomalyShells
   - NightVision
   recipeUnlocks:
   - ClothingEyesThermalVisionGoggles
-  position: -2,1
+  position: 3,-4 # Arcane-Edit
 
 - type: technology
   id: RiotSuppression
@@ -146,8 +148,18 @@
   - ClothingMaskMuzzleSecure
   - ClothingMaskMuzzleShock
   - WeaponDisabler
-  - WeaponDisablerSMG
-  position: 1,1
+  # Arcane-Edit-Start
+  - Stunbaton
+  - PolymerBaton
+  - RiotShield
+  - GrenadeFlashBang
+  - PortableFlasherMachineCircuitboard
+  - SecHypo
+  - CombatKnife
+  - SpearTelescopic
+  # Arcane-Edit-End
+#  - WeaponDisablerSMG # Arcane-Edit: Removed
+  position: 0,-2 # Arcane-Edit
 
 - type: technology
   id: Explosives
@@ -174,7 +186,13 @@
   - FlashPayload
   - ChemicalPayload
   - ShrapnelPayload
-  position: 1,0
+  # Arcane-Start
+  - GrenadeBlast
+  - GrenadeEMP
+  - GrenadeFlash
+  - MagazineGrenadeEmpty
+  # Arcane-End
+  position: -1,-3 # Arcane-Edit
 
 - type: technology
   id: ExoticAmmo
@@ -190,7 +208,7 @@
   pointCosts:
   # Arcane-start
   - type: General
-    amount: 15000
+    amount: 17500 # Arcane-Edit: 15000 > 17500
   - type: Experimental
     amount: 50
   # Arcane-end
@@ -214,7 +232,67 @@
   - MagazineBoxRifle762Incendiary
   - MagazineRifle762Incendiary
   - MagazineBoxRifleIncendiary
-  # Uranium
+  # Arcane-Edit-Start: Removed
+#  # Uranium
+#  - MagazineRifleUranium
+#  - MagazinePistolUranium
+#  - MagazinePistolSubMachineGunUranium
+#  - SpeedLoaderMagnumUranium
+#  - MagazineBoxPistolUranium
+#  - MagazineBoxMagnumUranium
+#  - MagazineBoxRifle762Uranium
+#  - MagazineRifle762Uranium
+#  - MagazineBoxRifleUranium
+#  - BoxShotgunUranium
+#  - MagazineBoxShotgunUraniumHighCaliber
+  # Arcane-Edit-End
+  # Tranquilizer
+  - BoxShellTranquilizer
+  # Shuttle
+  # Arcane-Edit-Start: Removed
+#  - GrenadeBlast
+#  - GrenadeEMP
+#  - GrenadeFlash
+#  - MagazineGrenadeEmpty
+  # Arcane-Edit-End
+  - PowerCageMedium
+  - PowerCageSmall
+  - PowerCageHigh
+  # Arcane-Edit-Start: Removed
+#  # Other
+#  - EnergyMagRifleDisabler
+#  - EnergyMagRifleLethal
+#  - MagazineSmart
+#  - PowerCellIRRevolver
+#  - PowerCellIRSMG
+#  - PowerCellIonSMG
+#  - PowerCellIRSniper
+#  - MilitaryPowerCellLMG
+#  - PowerCellBluespaceRevolver
+#  - PowerCellBluespaceSMG
+#  - PowerCellBluespaceSniper
+#  - MilitaryPowerCellBluespaceLMG
+  # Arcane-Edit-End
+  position: -2,-4 # Arcane-Edit
+
+# Arcane-Start
+- type: technology
+  id: UraniumAmmo
+  name: research-technology-uranium-ammo-name
+  description: research-technology-uranium-ammo-desc
+  icon:
+    sprite: Objects/Materials/ore.rsi
+    state: uranium
+  discipline: Security
+  tier: 5
+  announceChannels:
+  - Security
+  pointCosts:
+  - type: General
+    amount: 15000
+  technologyPrerequisites:
+  - ExoticAmmo
+  recipeUnlocks:
   - MagazineRifleUranium
   - MagazinePistolUranium
   - MagazinePistolSubMachineGunUranium
@@ -226,30 +304,8 @@
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
   - MagazineBoxShotgunUraniumHighCaliber
-  # Tranquilizer
-  - BoxShellTranquilizer
-  # Shuttle
-  - GrenadeBlast
-  - GrenadeEMP
-  - GrenadeFlash
-  - MagazineGrenadeEmpty
-  - PowerCageMedium
-  - PowerCageSmall
-  - PowerCageHigh
-  # Other
-  - EnergyMagRifleDisabler
-  - EnergyMagRifleLethal
-  - MagazineSmart
-  - PowerCellIRRevolver
-  - PowerCellIRSMG
-  - PowerCellIonSMG
-  - PowerCellIRSniper
-  - MilitaryPowerCellLMG
-  - PowerCellBluespaceRevolver
-  - PowerCellBluespaceSMG
-  - PowerCellBluespaceSniper
-  - MilitaryPowerCellBluespaceLMG
-  position: 2,-1
+  position: -3,-5
+# Arcane-End
 
 - type: technology
   id: ElectricWeapons
@@ -264,7 +320,7 @@
   - Security
   pointCosts:
   - type: General
-    amount: 15000 # Arcane
+    amount: 10000 # Arcane-Edit: 15000 > 10000
   technologyPrerequisites:
   - RiotSuppression
   recipeUnlocks:
@@ -273,7 +329,12 @@
   - EnergyMagRifleIon
   - PowerCellIonSniper
   - WeaponTemperatureGun
-  position: 3,1
+  # Arcane-Start
+  - PowerCellIonSMG
+  - WeaponDisablerSMG
+  - WeaponEnergyTurretSecurityMachineCircuitboard
+  # Arcane-End
+  position: 2,-3 # Arcane-Edit
 
 - type: technology
   id: BeamWeapons
@@ -298,7 +359,7 @@
   - PowerCellXraySMG
   - PowerCellXraySniper
   - AntiMindControlDevice
-  position: 4,1
+  position: 2,-4 # Arcane-Edit
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -308,18 +369,25 @@
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
     state: base
   discipline: Security
-  tier: 1
+  tier: 3 # Arcane-Edit
   announceChannels:
   - Security
   pointCosts:
   - type: General
-    amount: 15000 # Arcane
+    amount: 10000 # Arcane-Edit: 15000 > 10000
   technologyPrerequisites:
-  - ExoticAmmo
+  - RiotSuppression # Arcane-Edit
   recipeUnlocks:
   - WeaponLaserCarbine
   - WeaponLaserCannon
-  position: 4,-2
+  # Arcane-Start
+  - WeaponLaserCellRevolver
+  - WeaponLaserCellSMG
+  - PowerCellIRRevolver
+  - PowerCellIRSMG
+  - PortableRecharger
+  # Arcane-End
+  position: 1,-3 # Arcane-Edit
 
 - type: technology
   id: PortableMicrofusionWeaponry
@@ -329,13 +397,13 @@
     sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
     state: base
   discipline: Security
-  tier: 3
+  tier: 5 # Arcane-Edit
   announceChannels:
   - Security
   pointCosts:
   # Arcane-start
   - type: General
-    amount: 40000
+    amount: 30000 # Arcane-Edit: 40000 > 30000
   - type: Experimental
     amount: 50
   # Arcane-end
@@ -346,16 +414,26 @@
   recipeUnlocks:
   - WeaponAdvancedLaser
   - WeaponEnergyRifle
-  - WeaponLaserCellRevolver
-  - WeaponLaserCellSMG
+  # Arcane-Edit-Start: Removed
+#  - WeaponLaserCellRevolver
+#  - WeaponLaserCellSMG
+  # Arcane-Edit-End
   - WeaponLaserCellSniper
   - Terminus
-  - PortableRecharger
+#  - PortableRecharger # Arcane-Edit: Removed
   - EnergyMagRifleOverchargeLethal
   - PowerCellOverchargedRevolver
   - PowerCellOverchargedSMG
   - PowerCellOverchargedSniper
-  position: 4,-3
+  # Arcane-Start
+  - EnergyMagRifleDisabler
+  - EnergyMagRifleLethal
+  - PowerCellIRSniper
+  - PowerCellBluespaceRevolver
+  - PowerCellBluespaceSMG
+  - PowerCellBluespaceSniper
+  # Arcane-End
+  position: 1,-5 # Arcane-Edit
 
 - type: technology
   id: SmartWeaponry
@@ -365,19 +443,21 @@
     sprite: _Goobstation/Objects/Weapons/Guns/SMGs/smartgun.rsi
     state: base
   discipline: Security
-  tier: 3
+  tier: 5 # Arcane-Edit
   announceChannels:
   - Security
   pointCosts:
   - type: General
     amount: 20000
   technologyPrerequisites:
-  - BeamWeapons
-  - WeaponizedLaserManipulation
+  # Arcane-Edit-Start
+  - ExoticAmmo
   - PartsBluespace
+  # Arcane-Edit-End
   recipeUnlocks:
   - WeaponSubMachineSmart
-  position: 4,-4
+  - MagazineSmart # Arcane
+  position: -2,-5 # Arcane-Edit
 
 - type: technology
   id: HeavyWeaponry
@@ -387,19 +467,21 @@
     sprite: _Goobstation/Clothing/Back/Backpacks/lmg_backpack.rsi
     state: icon
   discipline: Security
-  tier: 3
+  tier: 5 # Arcane-Edit
   announceChannels:
   - Security
   pointCosts:
   - type: General
-    amount: 20000
+    amount: 17000 # Arcane-Edit: 20000 > 17000
   technologyPrerequisites:
-  - BeamWeapons
-  - WeaponizedLaserManipulation
-  - PartsBluespace
+  - PortableMicrofusionWeaponry # Arcane-Edit
   recipeUnlocks:
   - ClothingBackpackLMGBattery
-  position: 5,0
+  # Arcane-Start
+  - MilitaryPowerCellLMG
+  - MilitaryPowerCellBluespaceLMG
+  # Arcane-End
+  position: 1,-6 # Arcane-Edit
 
 - type: technology
   id: EnergyBarriers
@@ -409,14 +491,17 @@
     sprite: _Orion/Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Security
-  tier: 2
+  tier: 4 # Arcane-Edit
   announceChannels:
   - Security
   pointCosts:
   - type: General
-    amount: 12000
+    amount: 10000 # Arcane-Edit: 12000 > 10000
   technologyPrerequisites:
-  - PortableMicrofusionWeaponry
+  # Arcane-Edit-Start
+  - RiotSuppression
+  - ElectricWeapons
+  # Arcane-Edit-End
   recipeUnlocks:
   - EnergyDomeTurtle
-  position: 3,0
+  position: 0,-4 # Arcane-Edit
