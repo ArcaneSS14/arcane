@@ -3078,3 +3078,14 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/058e9128-c6c5-4882-a603-0836696222f1
+- author: seemah, NeGhostea
+  changes:
+    - type: Add
+      message: В кастомизацию родентий добавлен хвост тушканчика.
+  id: 225
+  time: '2026-10-11T09:32:10.0000000+00:00'
+  prNumber: 452
+  url: https://github.com/ArcaneSS14/arcane/pull/452
+  media:
+    - >-
+      https://github.com/user-attachments/assets/91e95023-307e-430e-8bd7-cc2e44bcc027
