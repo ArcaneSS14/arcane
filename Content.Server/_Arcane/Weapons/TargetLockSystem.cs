@@ -1,7 +1,6 @@
 using Content.Shared._Arcane.Weapons.TargetLock;
 using Content.Shared.Actions;
 using Content.Shared.Hands;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
@@ -21,7 +20,6 @@ public sealed class TargetLockSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
 
     public override void Initialize()
     {
@@ -53,28 +51,16 @@ public sealed class TargetLockSystem : EntitySystem
         Vector2 targetPos = _xform.GetMapCoordinates(target).Position;
 
         if ((userPos - targetPos).Length() > ent.Comp.Range)
-        {
             return;
-        }
 
         ent.Comp.LockedTarget = target;
         Dirty(ent);
-
-        _popup.PopupEntity(
-            Loc.GetString("arcane-target-lock-enabled", ("target", Identity.Entity(target, _entMan))),
-            ent.Owner,
-            user
-        );
     }
 
     private void OnAmmoShot(Entity<TargetLockComponent> ent, ref AmmoShotEvent args)
     {
         if (ent.Comp.LockedTarget is not { } target || TerminatingOrDeleted(target))
             return;
-
-        var shooter = ent.Comp.User
-                      ?? (TryComp<GunComponent>(ent.Owner, out var gun) ? gun.Holder : null)
-                      ?? ent.Owner;
 
         if (!_mobState.IsAlive(target))
         {
@@ -126,7 +112,5 @@ public sealed class TargetLockSystem : EntitySystem
             return;
 
         ent.Comp.LockedTarget = null;
-
-        if (ent.Comp.User is { } user && !TerminatingOrDeleted(user))
     }
 }

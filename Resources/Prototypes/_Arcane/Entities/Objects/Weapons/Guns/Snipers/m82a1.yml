@@ -70,7 +70,6 @@
     actions:
     - ActionArcaneGoreExecution
     - ActionArcaneTargetLock
-    - ActionArcaneAim
   - type: GoreExecution
   - type: TargetLock
     range: 25
