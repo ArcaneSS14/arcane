@@ -117,7 +117,7 @@
     amount: 12500 # Arcane-Edit: 17500 > 12500
   technologyPrerequisites:
   - BeamWeapons
-#  - AnomalyShells # Arcane-Edit: Removed
+  - AnomalyShells
   - NightVision
   recipeUnlocks:
   - ClothingEyesThermalVisionGoggles
@@ -289,9 +289,7 @@
   - Security
   pointCosts:
   - type: General
-    amount: 22500
-  - type: Experimental
-    amount: 50
+    amount: 15000
   technologyPrerequisites:
   - ExoticAmmo
   recipeUnlocks:
