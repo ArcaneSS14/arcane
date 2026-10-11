@@ -94,8 +94,6 @@
       collection: VulpkaninLaugh
     Crying:
       collection: VulpkaninCry
-    Whistle:
-      collection: Whistles
     Growl:
       collection: FemaleVulpkaninGrowls
     Snarl:
@@ -120,8 +118,6 @@
       collection: VulpkaninLaugh
     Crying:
       collection: VulpkaninCry
-    Whistle:
-      collection: Whistles
     Growl:
       collection: MaleVulpkaninGrowls
     Snarl:
