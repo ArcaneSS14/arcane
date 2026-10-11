@@ -1,25 +1,24 @@
+using Robust.Shared.GameObjects;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Arcane.Weapons.TargetLock;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class TargetLockComponent : Component
 {
     [DataField]
     public EntProtoId Action = "ActionArcaneTargetLock";
 
     [DataField]
-    public float Range = 20f;
+    public EntityUid? ActionEntity;
 
-    [DataField]
-    public float PickRadius = 3f;
-
-    [DataField]
+    [DataField, AutoNetworkedField]
     public EntityUid? LockedTarget;
 
-    [DataField]
-    public EntityUid? LockedBy;
+    [DataField, AutoNetworkedField]
+    public EntityUid? User;
 
     [DataField]
-    public EntityUid? PreviousEyeTarget;
+    public float Range = 25f;
 }

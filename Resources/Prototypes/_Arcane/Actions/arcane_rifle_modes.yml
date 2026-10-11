@@ -2,7 +2,7 @@
   parent: BaseAction
   id: ActionArcaneGoreExecution
   name: gore execution
-  description: Arms the rifle. The next shot rips the head off a living target, leaving its brain and eyes behind.
+  description: Arms the rifle. The next shot rips the head off a living target.
   components:
   - type: Action
     itemIconStyle: BigItem
@@ -17,17 +17,36 @@
   parent: BaseAction
   id: ActionArcaneTargetLock
   name: target lock
-  description: Pick a living creature to lock the camera onto. The next shot flies straight at it.
+  description: Select a living creature. The next shot will be aimed at it.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    useDelay: 0.5
+    icon:
+      sprite: _Arcane/Interface/Actions/action_sniper.rsi
+      state: eyeclose
+    iconOn:
+      sprite: _Arcane/Interface/Actions/action_sniper.rsi
+      state: eyeopen
+  - type: TargetAction
+    range: 25
+    checkCanAccess: false
+    interactOnMiss: false
+    repeat: false
+  - type: EntityTargetAction
+    event: !type:ArcaneTargetLockSelectEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionArcaneAim
+  name: aim down sights
+  description: Zoom and shift the camera. Moving or pressing again cancels.
   components:
   - type: Action
     itemIconStyle: BigItem
-    useDelay: 1
+    useDelay: 0.2
     icon:
       sprite: _Goobstation/Wizard/Effects/effects.rsi
       state: marker
-  - type: TargetAction
-    range: 20
-    checkCanAccess: false
-    interactOnMiss: false
-  - type: WorldTargetAction
-    event: !type:ArcaneTargetLockActionEvent
+  - type: InstantAction
+    event: !type:ArcaneAimActionEvent

@@ -5,7 +5,7 @@
   description: A semi-automatic .50 BMG anti-materiel rifle. Feeds exclusively from M82A1 .50 BMG magazines.
   components:
   - type: Sprite
-    sprite: _Orion/Objects/Weapons/Guns/Snipers/snl177/big.rsi
+    sprite: _Arcane/Objects/Weapons/Guns/Snipers/riflespecter.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -58,10 +58,6 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.7
     sprintModifier: 0.5
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 5
-    pvsIncrease: 0.5
   - type: UseDelay
     delay: 0.8
   - type: UseDelayBlockShoot
@@ -69,11 +65,17 @@
     actions:
     - ActionArcaneGoreExecution
     - ActionArcaneTargetLock
+    - ActionArcaneAim
   - type: ItemActionGrant
     actions:
     - ActionArcaneGoreExecution
     - ActionArcaneTargetLock
+    - ActionArcaneAim
   - type: GoreExecution
   - type: TargetLock
-    range: 20
+    range: 25
     pickRadius: 3
+  - type: ArcaneAim
+    offset: 8
+    pvsIncrease: 0.8
+    offsetSpeed: 0.5

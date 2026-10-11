@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by n_145 for Arcane Event",
+    "size": {
+        "x": 64,
+        "y": 32
+    },
+    "states": [
+	{
+		"name": "icon"
+	},
+	{
+		"name": "bolt-open"
+	},
+	{
+		"name": "base"
+	},
+	{
+		"name": "mag-0"
+    }
+    ]
+}
