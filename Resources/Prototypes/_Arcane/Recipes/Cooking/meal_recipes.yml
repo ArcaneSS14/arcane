@@ -1,0 +1,45 @@
+- type: microwaveMealRecipe
+  id: RecipeDango
+  name: dango recipe
+  result: FoodSnackDango
+  time: 15
+  group: Savory
+  solids:
+    FoodKebabSkewer: 1
+  reagents:
+    Milk: 10
+    Sugar: 10
+    Rice: 10
+
+- type: microwaveMealRecipe
+  id: RecipeSnackCookie
+  name: cookie recipe
+  result: FoodSnackCookie
+  time: 5
+  group: Savory
+  solids:
+    FoodSnackChocolateBar: 1
+    FoodDoughSlice: 1
+  reagents:
+    Sugar: 5
+
+- type: microwaveMealRecipe
+  id: RecipeTayaki
+  name: tayaki recipe
+  result: FoodSnackFishCracker
+  time: 10
+  group: Savory
+  solids:
+    FoodSnackChocolateBar: 1
+    FoodDoughSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeTakoyaki
+  name: takoyaki recipe
+  result: FoodSnackTakoyaki
+  time: 15
+  group: Savory
+  solids:
+    FoodKebabSkewer: 1
+    FoodMeatCrab: 1
+    FoodDoughSlice: 1
