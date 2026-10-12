@@ -42,7 +42,7 @@ namespace Content.Server.Forensics
         {
             SubscribeLocalEvent<HandsComponent, ContactInteractionEvent>(OnInteract);
             SubscribeLocalEvent<FingerprintComponent, MapInitEvent>(OnFingerprintInit, after: new[] { typeof(BloodstreamSystem) });
-            SubscribeLocalEvent<ScentComponent, DidEquipEvent>(OnEquip); // Einstein Engines
+//            SubscribeLocalEvent<ScentComponent, DidEquipEvent>(OnEquip); // Einstein Engines // Arcane-Edit: Removed
             // The solution entities are spawned on MapInit as well, so we have to wait for that to be able to set the DNA in the bloodstream correctly without ResolveSolution failing
             SubscribeLocalEvent<DnaComponent, MapInitEvent>(OnDNAInit, after: new[] { typeof(BloodstreamSystem) });
             SubscribeLocalEvent<ScentComponent, MapInitEvent>(OnScentInit, after: new[] { typeof(BloodstreamSystem) }); // Einstein Engines
@@ -75,10 +75,12 @@ namespace Content.Server.Forensics
             ApplyEvidence(uid, args.Other);
         }
 
-        private void OnEquip(EntityUid uid, ScentComponent component, DidEquipEvent args) // Einstein Engines
-        {
-            ApplyScent(uid, args.Equipment);
-        }
+        // Arcane-Edit-Start: Removed
+//        private void OnEquip(EntityUid uid, ScentComponent component, DidEquipEvent args) // Einstein Engines
+//        {
+//            ApplyScent(uid, args.Equipment);
+//        }
+        // Arcane-Edit-End
 
         private void OnFingerprintInit(Entity<FingerprintComponent> ent, ref MapInitEvent args)
         {
@@ -294,6 +296,7 @@ namespace Content.Server.Forensics
             targetComp.Fibers = new();
             targetComp.Fingerprints = new();
             targetComp.Scent = string.Empty;
+            targetComp.Scents.Clear(); // Arcane
 
             if (targetComp.CanDnaBeCleaned)
                 targetComp.DNAs = new();
@@ -311,18 +314,20 @@ namespace Content.Server.Forensics
                 scentComp.Scent = generatedscent;
                 targetComp.Scent = generatedscent;
 
-                if (args.Target is { Valid: true } target
-                    && _inventory.TryGetSlots(target, out var slotDefinitions))
-                    foreach (var slot in slotDefinitions)
-                    {
-                        if (!_inventory.TryGetSlotEntity(target, slot.Name, out var slotEnt))
-                            continue;
-
-                        EnsureComp<ForensicsComponent>(slotEnt.Value, out var recipientComp);
-                        recipientComp.Scent = generatedscent;
-
-                        Dirty(slotEnt.Value, recipientComp);
-                    }
+                // Arcane-Edit-Start: Removed
+//                if (args.Target is { Valid: true } target
+//                    && _inventory.TryGetSlots(target, out var slotDefinitions))
+//                    foreach (var slot in slotDefinitions)
+//                    {
+//                        if (!_inventory.TryGetSlotEntity(target, slot.Name, out var slotEnt))
+//                            continue;
+//
+//                        EnsureComp<ForensicsComponent>(slotEnt.Value, out var recipientComp);
+//                        recipientComp.Scent = generatedscent;
+//
+//                        Dirty(slotEnt.Value, recipientComp);
+//                    }
+                // Arcane-Edit-End
             }
 
             if (args.Target is { Valid: true } targetuid)
@@ -366,17 +371,19 @@ namespace Content.Server.Forensics
                 component.Fingerprints.Add(fingerprint.Fingerprint ?? "");
         }
 
-        private void ApplyScent(EntityUid user, EntityUid target) // Einstein Engines
-        {
-            if (HasComp<ScentComponent>(target))
-                return;
-
-            var component = EnsureComp<ForensicsComponent>(target);
-            if (TryComp<ScentComponent>(user, out var scent))
-                component.Scent = scent.Scent;
-
-            Dirty(target, component);
-        }
+        // Arcane-Edit-Start: Removed
+//        private void ApplyScent(EntityUid user, EntityUid target) // Einstein Engines
+//        {
+//            if (HasComp<ScentComponent>(target))
+//                return;
+//
+//            var component = EnsureComp<ForensicsComponent>(target);
+//            if (TryComp<ScentComponent>(user, out var scent))
+//                component.Scent = scent.Scent;
+//
+//            Dirty(target, component);
+//        }
+        // Arcane-Edit-End
 
         // TODO: Delete this. A lot of systems are manually raising this method event instead of calling the identical <see cref="TransferDna"/> method.
         // According to our code conventions we should not use method events.
