@@ -8,6 +8,7 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Shitmed.Body.Systems
 {
@@ -16,6 +17,8 @@ namespace Content.Server._Shitmed.Body.Systems
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly BlindableSystem _blindableSystem = default!;
         [Dependency] private readonly BodySystem _bodySystem = default!;
+        [Dependency] private readonly IComponentFactory _componentFactory = default!; // Arcane
+        [Dependency] private readonly IPrototypeManager _proto = default!; // Arcane
 
         public override void Initialize()
         {
@@ -42,8 +45,28 @@ namespace Content.Server._Shitmed.Body.Systems
             if (!hasOtherEyes
                 && HasComp<EyesComponent>(eye)
                 && TryComp(body, out BlindableComponent? blindable))
-                _blindableSystem.SetEyeDamage((body, blindable), blindable.MaxDamage);
+                _blindableSystem.SetEyeDamage((body, blindable), HasInnateEyes(bodyComp) ? blindable.MaxDamage : blindable.MinDamage); // Arcane-Edit
         }
+
+        // Arcane-Start
+        // Species without eyes (e.g. slime people) see without them, so losing implanted eyes must not blind them.
+        private bool HasInnateEyes(BodyComponent? body)
+        {
+            if (body?.Prototype is not { } bodyProto)
+                return true;
+
+            foreach (var slot in _proto.Index(bodyProto).Slots.Values)
+            {
+                foreach (var organ in slot.Organs.Values)
+                {
+                    if (_proto.Index<EntityPrototype>(organ).TryGetComponent<EyesComponent>(out _, _componentFactory))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+        // Arcane-End
 
         // Too much shit would break if I were to nuke blindablecomponent rn. Guess we shitcoding this one.
         private void OnOrganIntegrityChanged(EntityUid uid, EyesComponent component, OrganIntegrityChangedEvent args)

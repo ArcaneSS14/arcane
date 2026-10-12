@@ -1,13 +1,10 @@
-using System.Linq;
 using System.Numerics;
+using Content.Shared._Arcane.Body.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.Body.Systems;
-using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Markings;
-using Content.Shared._Shitmed.Body.Part;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
@@ -38,10 +35,10 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly LostPartMarkingsSystem _lostPartMarkings = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ThirstSystem _thirst = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
@@ -54,32 +51,6 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
         SubscribeLocalEvent<SlimeRegrowComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SlimeRegrowComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SlimeRegrowComponent, SlimeRegrowLimbEvent>(OnSlimeRegrowLimb);
-        SubscribeLocalEvent<SlimeRegrowComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
-        SubscribeLocalEvent<SlimeRegrowComponent, BodyPartAddedEvent>(OnBodyPartAdded);
-    }
-
-    // The body drops a lost part's markings, so keep them for the part regrown into that slot.
-    private void OnBodyPartRemoved(Entity<SlimeRegrowComponent> ent, ref BodyPartRemovedEvent args)
-    {
-        if (!_net.IsServer)
-            return;
-
-        ent.Comp.LostPartMarkings.Remove(args.Slot);
-
-        if (!TryComp<BodyPartAppearanceComponent>(args.Part, out var appearance)
-            || appearance.Markings.Count == 0)
-            return;
-
-        ent.Comp.LostPartMarkings[args.Slot] = appearance.Markings.ToDictionary(
-            pair => pair.Key,
-            pair => pair.Value.Select(m => new Marking(m.MarkingId, m.MarkingColors.ToList())).ToList());
-    }
-
-    // A part attached any other way (e.g. surgery) brings its own markings.
-    private void OnBodyPartAdded(Entity<SlimeRegrowComponent> ent, ref BodyPartAddedEvent args)
-    {
-        if (_net.IsServer)
-            ent.Comp.LostPartMarkings.Remove(args.Slot);
     }
 
     private void OnMapInit(Entity<SlimeRegrowComponent> ent, ref MapInitEvent args)
@@ -215,9 +186,6 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
         var childPart = Spawn(partId, new EntityCoordinates(parentId, Vector2.Zero));
         var childPartComp = Comp<BodyPartComponent>(childPart);
 
-        // Taken before attaching, since attaching clears the slot's stored markings.
-        ent.Comp.LostPartMarkings.Remove(SharedBodySystem.GetPartSlotContainerId(slotId), out var markings);
-
         if (!_body.TryCreatePartSlotAndAttach(parentId, slotId, childPart, childPartComp.PartType, childPartComp.Symmetry))
         {
             Log.Error($"Failed to regrow part {partId} into slot {slotId} of {ToPrettyString(parentId)}");
@@ -225,32 +193,7 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
             return false;
         }
 
-        if (TryComp<HumanoidAppearanceComponent>(ent, out var humanoid))
-        {
-            // Losing the head hides all of its sublayers, but attaching it only shows its own layer,
-            // so markings it never recorded (e.g. hair) would otherwise stay hidden.
-            // Limb sublayers are hands and feet: separate parts that have not regrown yet.
-            if (childPartComp.ToHumanoidLayers() is { } partLayer)
-            {
-                var sublayers = HumanoidVisualLayersExtension.Sublayers(partLayer).Where(layer => layer != partLayer);
-                _humanoid.SetLayersVisibility((ent, humanoid), sublayers, childPartComp.PartType == BodyPartType.Head);
-            }
-
-            // Applied after attaching, so the part appearance first picks up its base layer from the body.
-            if (markings != null && TryComp<BodyPartAppearanceComponent>(childPart, out var appearance))
-            {
-                appearance.Markings = markings;
-                Dirty(childPart, appearance);
-
-                foreach (var list in markings.Values)
-                {
-                    foreach (var marking in list)
-                        _humanoid.AddMarking(ent, marking.MarkingId, marking.MarkingColors, false, true, humanoid);
-                }
-
-                Dirty(ent, humanoid);
-            }
-        }
+        _lostPartMarkings.RestoreMarkings(ent.Owner, (childPart, childPartComp));
 
         // Regrowing a limb also heals the stump (Dismemberment trauma) its removal left behind,
         // otherwise it would still need surgery to clean up before the socket is usable again.

@@ -3,6 +3,7 @@ using Content.Goobstation.Shared.Changeling.Components;
 using Content.Goobstation.Shared.LightDetection.Components;
 using Content.Goobstation.Shared.LightDetection.Systems;
 using Content.Goobstation.Shared.Mindcontrol;
+using Content.Goobstation.Shared.Overlays;
 using Content.Goobstation.Shared.Shadowling.Components;
 using Content.Shared._Starlight.CollectiveMind;
 using Content.Shared.Actions;
@@ -223,6 +224,19 @@ public abstract class SharedShadowlingSystem : EntitySystem
                && !HasComp<ThrallComponent>(target);
     }
 
+    // Arcane-Start
+    // Never overwrite existing components: that would replace the ThrallComponent set up by the caller
+    // and a species' innate night vision, which must survive the thrall status being removed.
+    public void AddThrallComponents(EntityUid target, EntProtoId components)
+    {
+        var innateNightVision = HasComp<NightVisionComponent>(target);
+        EntityManager.AddComponents(target, _protoMan.Index(components), removeExisting: false);
+
+        if (TryComp<ThrallComponent>(target, out var thrall))
+            thrall.InnateNightVision = innateNightVision;
+    }
+    // Arcane-End
+
     public void DoEnthrall(EntityUid uid, EntProtoId components, SimpleDoAfterEvent args)
     {
         if (args.Cancelled
@@ -234,11 +248,16 @@ public abstract class SharedShadowlingSystem : EntitySystem
 
         var thrall = EnsureComp<ThrallComponent>(target);
         thrall.Converter = uid;
-        var comps = _protoMan.Index(components);
-        EntityManager.AddComponents(target, comps);
+        AddThrallComponents(target, components); // Arcane-Edit
 
         if (TryComp<ShadowlingComponent>(uid, out var sling))
             sling.Thralls.Add(target);
+
+        // Arcane-Start
+        // Upstream applied this as a side effect of replacing the ThrallComponent, which AddThrallComponents no longer does.
+        if (sling != null && TryComp<LightDetectionDamageComponent>(uid, out var lightDet))
+            _lightDamage.AddResistance((uid, lightDet), -sling.LightResistanceModifier);
+        // Arcane-End
 
         _audio.PlayPredicted(
             new SoundPathSpecifier("/Audio/Items/Defib/defib_zap.ogg"),

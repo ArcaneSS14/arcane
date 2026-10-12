@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Goobstation.Common.Body;
 using Content.Goobstation.Common.DelayedDeath;
 using Content.Goobstation.Shared.CheatDeath;
 using Content.Goobstation.Shared.Devour.Events;
@@ -36,6 +37,7 @@ public sealed partial class CheatDeathSystem : EntitySystem
         SubscribeLocalEvent<CheatDeathComponent, ExaminedEvent>(OnExamined);
 
         SubscribeLocalEvent<CheatDeathComponent, DelayedDeathEvent>(OnDelayedDeath);
+        SubscribeLocalEvent<CheatDeathComponent, BeforeBrainRemovedEvent>(OnBrainRemoveAttempt); // Arcane
     }
 
     private void OnInit(Entity<CheatDeathComponent> ent, ref MapInitEvent args) =>
@@ -67,6 +69,12 @@ public sealed partial class CheatDeathSystem : EntitySystem
         if (args.PreventRevive)
             RemCompDeferred(ent.Owner, ent.Comp);
     }
+
+    // Arcane-Start
+    // Losing the head would move the mind into it, leaving the revive action on a body nobody controls.
+    private void OnBrainRemoveAttempt(Entity<CheatDeathComponent> ent, ref BeforeBrainRemovedEvent args) =>
+        args.Blocked = true;
+    // Arcane-End
 
 
     private void OnDeathCheatAttempt(Entity<CheatDeathComponent> ent, ref CheatDeathEvent args)

@@ -21,7 +21,7 @@ public sealed class ShadowlingThrallSystem : EntitySystem
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
-    [Dependency] private readonly ShadowlingSystem _shadowling = default!;
+//    [Dependency] private readonly ShadowlingSystem _shadowling = default!; // Arcane-Edit
     public override void Initialize()
     {
         base.Initialize();
@@ -51,20 +51,23 @@ public sealed class ShadowlingThrallSystem : EntitySystem
         if (_mind.TryGetMind(uid, out var mindId, out _))
             _roles.MindRemoveRole<ShadowlingRoleComponent>(mindId);
 
-        RemComp<NightVisionComponent>(uid);
+        if (!component.InnateNightVision) // Arcane
+            RemComp<NightVisionComponent>(uid); // Arcane-Edit
         RemComp<ThrallGuiseComponent>(uid);
         RemComp<LesserShadowlingComponent>(uid);
 
         if (TryComp<CollectiveMindComponent>(uid, out var collective))
             collective.Channels.Remove(ShadowMind);
 
-        if (component.Converter == null)
-            return;
-
-        // Adjust lightning resistance for shadowling
-        var shadowling = component.Converter.Value;
-        if (TryComp<ShadowlingComponent>(shadowling, out var shadowlingComp))
-            _shadowling.OnThrallRemoved((shadowling, shadowlingComp));
+        // Arcane-Edit-Start: Thralls grant light resistance on enthrall, losing one does not change it
+//        if (component.Converter == null)
+//            return;
+//
+//        // Adjust lightning resistance for shadowling
+//        var shadowling = component.Converter.Value;
+//        if (TryComp<ShadowlingComponent>(shadowling, out var shadowlingComp))
+//            _shadowling.OnThrallRemoved((shadowling, shadowlingComp));
+        // Arcane-Edit-End
     }
 
     private void OnExamined(EntityUid uid, ThrallComponent component, ExaminedEvent args)

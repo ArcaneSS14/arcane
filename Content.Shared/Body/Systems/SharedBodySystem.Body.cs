@@ -2,6 +2,7 @@
 
 using System.Linq;
 using System.Numerics;
+using Content.Shared._Arcane.Body.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
@@ -60,6 +61,7 @@ public partial class SharedBodySystem
     [Dependency] private readonly TraumaSystem _trauma = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     // Shitmed Change End
+    [Dependency] private readonly LostPartMarkingsSystem _lostPartMarkings = default!; // Arcane
 
     private const float GibletLaunchImpulse = 8;
     private const float GibletLaunchImpulseVariance = 3;
@@ -643,6 +645,7 @@ public partial class SharedBodySystem
                         Dirty(childPart, childPartComponent);
 
                         Containers.Insert(childPart, container);
+                        _lostPartMarkings.RestoreMarkings(ent, (childPart, childPartComponent)); // Arcane
 
                         SetupOrgans((childPart, childPartComponent), connectionSlot.Organs);
                     }

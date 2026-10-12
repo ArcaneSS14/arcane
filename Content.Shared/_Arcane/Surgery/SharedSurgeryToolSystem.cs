@@ -16,7 +16,10 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Kitchen.Components;
 using Content.Shared.Medical.Healing;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
@@ -39,6 +42,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSurgerySystem _surgery = default!;
 
@@ -63,6 +67,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         var tool = args.Used;
         if (args.Handled
             || IsOffering(user)
+            || IsButchering(ent, tool)
             || !CanOperate(ent, user, IsSurgicalTool(tool))
             || !TryGetTargetPart(ent, user, out var part, out var missing))
             return;
@@ -591,5 +596,14 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     private bool IsOffering(EntityUid user)
     {
         return TryComp(user, out OfferItemComponent? offer) && offer.IsInOfferMode;
+    }
+
+    // A knife on a corpse that is butchered with one is left to SharpSystem.
+    private bool IsButchering(EntityUid body, EntityUid tool)
+    {
+        return HasComp<SharpComponent>(tool)
+            && TryComp(body, out ButcherableComponent? butcherable)
+            && butcherable.Type == ButcheringType.Knife
+            && _mobState.IsDead(body);
     }
 }
