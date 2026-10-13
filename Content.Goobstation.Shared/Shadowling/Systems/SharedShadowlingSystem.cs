@@ -252,7 +252,11 @@ public abstract class SharedShadowlingSystem : EntitySystem
 
         var thrall = EnsureComp<ThrallComponent>(target);
         thrall.Converter = uid;
-        AddThrallComponents(target, components); // Arcane-Edit
+        // Arcane-Edit-Start
+        // var comps = _protoMan.Index(components);
+        // EntityManager.AddComponents(target, comps);
+        // Arcane-Edit-End
+        AddThrallComponents(target, components); // Arcane
 
         if (TryComp<ShadowlingComponent>(uid, out var sling))
             sling.Thralls.Add(target);

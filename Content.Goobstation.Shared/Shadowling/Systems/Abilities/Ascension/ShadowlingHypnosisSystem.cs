@@ -4,6 +4,7 @@ using Content.Goobstation.Shared.Shadowling.Components;
 using Content.Goobstation.Shared.Shadowling.Components.Abilities.Ascension;
 using Content.Shared.Actions;
 using Content.Shared.Humanoid;
+using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Shared.Shadowling.Systems.Abilities.Ascension;
 
@@ -14,7 +15,8 @@ namespace Content.Goobstation.Shared.Shadowling.Systems.Abilities.Ascension;
 public sealed class ShadowlingHypnosisSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedShadowlingSystem _shadowling = default!; // Arcane-Edit
+    // [Dependency] private readonly IPrototypeManager _proto = default!; // Arcane-Edit
+    [Dependency] private readonly SharedShadowlingSystem _shadowling = default!; // Arcane
 
     public override void Initialize()
     {
@@ -40,7 +42,11 @@ public sealed class ShadowlingHypnosisSystem : EntitySystem
             || HasComp<ShadowlingComponent>(target))
             return;
 
-        _shadowling.AddThrallComponents(target, component.HypnosisComponents); // Arcane-Edit
+        // Arcane-Edit-Start
+        // var comps = _proto.Index(component.HypnosisComponents);
+        // EntityManager.AddComponents(target, comps);
+        // Arcane-Edit-End
+        _shadowling.AddThrallComponents(target, component.HypnosisComponents); // Arcane
         args.Handled = true;
     }
 }
