@@ -11,7 +11,6 @@
   - type: HandheldLight
     addPrefix: false
   - type: ToggleableVisuals
-    remove: true
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Hardsuits/hardsuithelmetspecter.rsi
     clothingVisuals:

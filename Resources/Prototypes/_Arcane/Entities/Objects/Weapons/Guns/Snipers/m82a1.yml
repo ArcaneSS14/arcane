@@ -73,7 +73,6 @@
   - type: GoreExecution
   - type: TargetLock
     range: 25
-    pickRadius: 3
   - type: ArcaneAim
     offset: 8
     pvsIncrease: 0.8
