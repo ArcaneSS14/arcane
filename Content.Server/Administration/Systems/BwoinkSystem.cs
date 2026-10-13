@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Goobstation.Common.CCVar;
 using Content.Server.Administration.Managers;
@@ -43,6 +44,7 @@ namespace Content.Server.Administration.Systems
     {
         private const string RateLimitKey = "AdminHelp";
         private const string HistoryRateLimitKey = "AdminHelpHistory"; // Arcane
+        private const int HistoryPageSize = 200; // Arcane
 
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
@@ -70,6 +72,7 @@ namespace Content.Server.Administration.Systems
 
         private ISawmill _sawmill = default!;
         private readonly HttpClient _httpClient = new();
+        private readonly SemaphoreSlim _historyRequests = new(2); // Arcane
 
         private string _footerIconUrl = string.Empty;
         private string _avatarUrl = string.Empty;
@@ -153,65 +156,74 @@ namespace Content.Server.Administration.Systems
         // Arcane-start
         private async void OnHistoryRequest(BwoinkHistoryRequest request, EntitySessionEventArgs args)
         {
-            const int pageSize = 1000;
             var isAdmin = _adminManager.GetAdminData(args.SenderSession)?.HasFlag(AdminFlags.Adminhelp) ?? false;
             if (!isAdmin && request.Channel != args.SenderSession.UserId)
                 return;
 
-            if (_rateLimit.CountAction(args.SenderSession, HistoryRateLimitKey) != RateLimitStatus.Allowed && !isAdmin)
+            if (_rateLimit.CountAction(args.SenderSession, HistoryRateLimitKey) != RateLimitStatus.Allowed)
                 return;
 
-            var filter = new LogFilter
-            {
-                Types = isAdmin
-                    ? new HashSet<LogType> { LogType.Ahelp, LogType.AhelpAdminOnly }
-                    : new HashSet<LogType> { LogType.Ahelp },
-                AnyPlayers = new[] { request.Channel.UserId },
-                IncludePlayers = true,
-                After = DateTime.UtcNow.AddMonths(-2),
-                DateOrder = DateOrder.Ascending,
-                Cursor = request.Cursor,
-                Limit = pageSize + 1,
-            };
+            if (!_historyRequests.Wait(0))
+                return;
 
-            var logs = new List<SharedAdminLog>();
-            await foreach (var log in _dbManager.GetAdminLogs(filter))
+            try
             {
-                logs.Add(log);
+                var filter = new LogFilter
+                {
+                    Types = isAdmin
+                        ? new HashSet<LogType> { LogType.Ahelp, LogType.AhelpAdminOnly }
+                        : new HashSet<LogType> { LogType.Ahelp },
+                    AnyPlayers = new[] { request.Channel.UserId },
+                    IncludePlayers = true,
+                    After = DateTime.UtcNow.AddMonths(-2),
+                    DateOrder = DateOrder.Ascending,
+                    Cursor = request.Cursor,
+                    Limit = HistoryPageSize + 1,
+                };
+
+                var logs = new List<SharedAdminLog>();
+                await foreach (var log in _dbManager.GetAdminLogs(filter))
+                    logs.Add(log);
+
+                var currentRoundFilter = new LogFilter
+                {
+                    Types = filter.Types,
+                    AnyPlayers = filter.AnyPlayers,
+                    IncludePlayers = true,
+                    After = filter.After,
+                    DateOrder = DateOrder.Ascending,
+                };
+                var currentRoundLogs = await _adminLog.CurrentRoundLogs(currentRoundFilter);
+
+                var savedLogs = new HashSet<(int RoundId, int Id)>(logs.Select(log => (log.RoundId, log.Id)));
+                foreach (var log in currentRoundLogs)
+                {
+                    if (request.Cursor is { } cursor &&
+                        new AdminLogCursor(log.Date, log.RoundId, log.Id).CompareTo(cursor) <= 0)
+                        continue;
+
+                    if (!savedLogs.Add((log.RoundId, log.Id)))
+                        continue;
+
+                    logs.Add(log);
+                }
+
+                var hasMore = logs.Count > HistoryPageSize;
+                var page = logs.OrderBy(log => log.Date).ThenBy(log => log.RoundId).ThenBy(log => log.Id).Take(HistoryPageSize).ToList();
+                var messages = page.Select(log => new BwoinkHistoryMessage(log.Date, log.Message, log.Type == LogType.AhelpAdminOnly, log.RoundId)).ToList();
+                AdminLogCursor? nextCursor = page.Count > 0
+                    ? new AdminLogCursor(page[^1].Date, page[^1].RoundId, page[^1].Id)
+                    : null;
+                RaiseNetworkEvent(new BwoinkHistoryResponse(request.Channel, messages, nextCursor, hasMore, request.Cursor != null), args.SenderSession.Channel);
             }
-
-            // The database can lag behind messages already delivered to clients. CurrentRoundLogs
-            // includes the in-memory admin log cache, so a newly opened conversation sees them.
-            var currentRoundFilter = new LogFilter
+            catch (Exception e)
             {
-                Types = filter.Types,
-                AnyPlayers = filter.AnyPlayers,
-                IncludePlayers = true,
-                After = filter.After,
-                DateOrder = DateOrder.Ascending,
-            };
-            var currentRoundLogs = await _adminLog.CurrentRoundLogs(currentRoundFilter);
-            // RoundId and Id identify the same log in the database and the in-memory cache.
-            var savedLogs = new HashSet<(int RoundId, int Id)>(logs.Select(log => (log.RoundId, log.Id)));
-            foreach (var log in currentRoundLogs)
-            {
-                if (request.Cursor is { } cursor &&
-                    new AdminLogCursor(log.Date, log.RoundId, log.Id).CompareTo(cursor) <= 0)
-                    continue;
-
-                if (!savedLogs.Add((log.RoundId, log.Id)))
-                    continue;
-
-                logs.Add(log);
+                _sawmill.Warning($"Could not load AHelp history for {request.Channel}: {e}");
             }
-
-            var hasMore = logs.Count > pageSize;
-            var page = logs.OrderBy(log => log.Date).ThenBy(log => log.RoundId).ThenBy(log => log.Id).Take(pageSize).ToList();
-            var messages = page.Select(log => new BwoinkHistoryMessage(log.Date, log.Message, log.Type == LogType.AhelpAdminOnly, log.RoundId)).ToList();
-            AdminLogCursor? nextCursor = page.Count > 0
-                ? new AdminLogCursor(page[^1].Date, page[^1].RoundId, page[^1].Id)
-                : null;
-            RaiseNetworkEvent(new BwoinkHistoryResponse(request.Channel, messages, nextCursor, hasMore, request.Cursor != null), args.SenderSession.Channel);
+            finally
+            {
+                _historyRequests.Release();
+            }
         }
         // Arcane-end
 
