@@ -21,7 +21,7 @@ public sealed class ShadowlingThrallSystem : EntitySystem
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
-//    [Dependency] private readonly ShadowlingSystem _shadowling = default!; // Arcane-Edit
+    [Dependency] private readonly ShadowlingSystem _shadowling = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -59,15 +59,13 @@ public sealed class ShadowlingThrallSystem : EntitySystem
         if (TryComp<CollectiveMindComponent>(uid, out var collective))
             collective.Channels.Remove(ShadowMind);
 
-        // Arcane-Edit-Start
-//        if (component.Converter == null)
-//            return;
-//
-//        // Adjust lightning resistance for shadowling
-//        var shadowling = component.Converter.Value;
-//        if (TryComp<ShadowlingComponent>(shadowling, out var shadowlingComp))
-//            _shadowling.OnThrallRemoved((shadowling, shadowlingComp));
-        // Arcane-Edit-End
+        if (component.Converter == null)
+            return;
+
+        // Adjust lightning resistance for shadowling
+        var shadowling = component.Converter.Value;
+        if (TryComp<ShadowlingComponent>(shadowling, out var shadowlingComp))
+            _shadowling.OnThrallRemoved((shadowling, shadowlingComp));
     }
 
     private void OnExamined(EntityUid uid, ThrallComponent component, ExaminedEvent args)
