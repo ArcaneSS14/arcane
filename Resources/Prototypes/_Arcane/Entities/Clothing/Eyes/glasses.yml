@@ -1,3 +1,14 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingMaskCat
+  name: cat mask
+  description: A decorative mask shaped like a cute cat face.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/cat_mask.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/cat_mask.rsi
+
 # Sponsor
 
 - type: entity

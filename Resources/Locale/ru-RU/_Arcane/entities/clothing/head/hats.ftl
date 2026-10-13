@@ -22,6 +22,17 @@ ent-ClothingHatBeretBlueShield = берет офицера "Синий Щит"
 ent-ClothingHatCapBlueShield = фуражка офицера "Синий Щит"
     .desc = Деловая фуражка, созданная специально для сотрудников «Синий Щит».
 
+ent-ClothingHeadbandCat = кошачьи ушки
+    .desc = Ободок с кошачьими ушками.
+ent-ClothingHeadbandCow = коровьи ушки
+    .desc = Декоративный ободок с коровьими ушками и рожками.
+ent-ClothingHeadbandDog = собачьи ушки
+    .desc = Мягкий ободок, имитирующий собачьи ушки.
+ent-ClothingHeadbandFox = лисьи ушки
+    .desc = Рыжий ободок с пушистыми лисьими ушками.
+ent-ClothingHeadbandKitsune = ушки кицунэ
+    .desc = Традиционный элемент костюма в стиле мифической лисы.
+
 # Sponsor
 
 ent-ClothingHatNTRBlackBeret = чёрный берет представителя NanoTrasen
