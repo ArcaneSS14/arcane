@@ -35,13 +35,16 @@ public sealed class TargetLockSystem : EntitySystem
     {
         if (args.Handled)
             return;
+
         args.Handled = true;
 
         EntityUid user = args.Performer;
         EntityUid target = args.Target;
         ent.Comp.User = user;
+        ent.Comp.LockedTarget = null;
+        Dirty(ent);
 
-        if (!_mobState.IsAlive(target))
+        if (TerminatingOrDeleted(target) || !_mobState.IsAlive(target))
         {
             _popup.PopupEntity(Loc.GetString("arcane-target-lock-none"), ent.Owner, user);
             return;
@@ -59,10 +62,10 @@ public sealed class TargetLockSystem : EntitySystem
 
     private void OnAmmoShot(Entity<TargetLockComponent> ent, ref AmmoShotEvent args)
     {
-        if (ent.Comp.LockedTarget is not { } target || TerminatingOrDeleted(target))
+        if (ent.Comp.LockedTarget is not { } target)
             return;
 
-        if (!_mobState.IsAlive(target))
+        if (TerminatingOrDeleted(target) || !_mobState.IsAlive(target))
         {
             ent.Comp.LockedTarget = null;
             Dirty(ent);

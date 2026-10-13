@@ -7,17 +7,20 @@
         "y": 32
     },
     "states": [
-	{
-		"name": "icon"
-	},
-	{
-		"name": "bolt-open"
-	},
-	{
-		"name": "base"
-	},
-	{
-		"name": "mag-0"
-    }
+        {
+            "name": "icon"
+        },
+        {
+            "name": "bolt-open"
+        },
+        {
+            "name": "base"
+        },
+        {
+            "name": "mag-0"
+        },
+        {
+            "name": "mag-1"
+        }
     ]
 }

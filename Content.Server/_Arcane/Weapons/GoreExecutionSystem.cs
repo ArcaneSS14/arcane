@@ -14,6 +14,7 @@ using Content.Shared.Projectiles;
 using Content.Shared.Toggleable;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Administration.Managers;
 
 namespace Content.Server._Arcane.Weapons;
 
@@ -24,6 +25,7 @@ public sealed class GoreExecutionSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly WoundSystem _wounds = default!;
+    [Dependency] private readonly ISharedAdminManager _admin = default!;
 
     public override void Initialize()
     {
@@ -41,6 +43,16 @@ public sealed class GoreExecutionSystem : EntitySystem
             return;
 
         args.Handled = true;
+
+        if (!_admin.IsAdmin(args.Performer))
+        {
+            _popup.PopupEntity(
+                Loc.GetString("arcane-gore-execution-no-access"),
+                ent.Owner,
+                args.Performer);
+            return;
+        }
+
         args.Toggle = true;
         ent.Comp.ActionEntity = args.Action.Owner;
 

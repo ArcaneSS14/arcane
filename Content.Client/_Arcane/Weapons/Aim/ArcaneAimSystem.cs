@@ -8,6 +8,7 @@ namespace Content.Client._Arcane.Weapons.Aim;
 public sealed class ArcaneAimSystem : SharedArcaneAimSystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
+    private readonly Dictionary<EntityUid, EntityUid> _offsetUsers = new();
 
     public override void Initialize()
     {
@@ -18,10 +19,22 @@ public sealed class ArcaneAimSystem : SharedArcaneAimSystem
 
     private void OnAfterState(Entity<ArcaneAimComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (ent.Comp.Active && ent.Comp.User is { } user)
-            ApplyOffset(user, ent.Comp);
-        else if (ent.Comp.User is { } u)
-            RemoveOffset(u);
+        if (!ent.Comp.Active || ent.Comp.User is not { } user)
+        {
+            ClearAppliedOffset(ent.Owner);
+            return;
+        }
+
+        if (_offsetUsers.TryGetValue(ent.Owner, out var previousUser)
+            && previousUser != user)
+        {
+            ClearAppliedOffset(ent.Owner);
+        }
+
+        ApplyOffset(user, ent.Comp);
+
+        if (_player.LocalEntity == user)
+            _offsetUsers[ent.Owner] = user;
     }
 
     private void OnShutdown(Entity<ArcaneAimComponent> ent, ref ComponentShutdown args)
@@ -60,5 +73,11 @@ public sealed class ArcaneAimSystem : SharedArcaneAimSystem
             return;
 
         RemCompDeferred<Content.Client.Movement.Components.EyeCursorOffsetComponent>(user);
+    }
+
+    private void ClearAppliedOffset(EntityUid weapon)
+    {
+        if (_offsetUsers.Remove(weapon, out var user))
+            RemoveOffset(user);
     }
 }

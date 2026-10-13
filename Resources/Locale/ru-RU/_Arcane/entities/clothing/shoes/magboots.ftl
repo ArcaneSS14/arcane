@@ -1,2 +1,2 @@
 ent-ClothingShoesBootsMagSpecter = магнитные ботинки "Спектр"
-    .desc = { ent-ClothingShoesBootsMagBase.desc }
+    .desc = Новейшие магнитные сапоги, которые не замедляют движения своего владельца.

@@ -10,7 +10,6 @@
     sprite: _Goobstation/Clothing/Shoes/Boots/deathsquad.rsi
   - type: Magboots
     enabledPrefix: null
-  - type: NoSlip
   - type: ClothingSpeedModifier
     walkModifier: 1.1
     sprintModifier: 1.1
