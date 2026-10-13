@@ -313,6 +313,10 @@
   name: paramedic cap
   description: A blue baseball cap with a cross on the front.
   components:
+  # Arcane-Start
+  - type: StaticPrice
+    price: 5
+  # Arcane-End
   - type: Sprite
     sprite: Clothing/Head/Soft/paramedicsoft.rsi
   - type: Clothing

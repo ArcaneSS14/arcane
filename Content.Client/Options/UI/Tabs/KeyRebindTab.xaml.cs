@@ -257,7 +257,10 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.PosingRotateNegative);
             AddButton(ContentKeyFunctions.PosingRotatePositive);
             // Orion-End
-            AddButton(ContentKeyFunctions.OfferItem); // Arcane
+            // Arcane-Start
+            AddButton(ContentKeyFunctions.OfferItem);
+            AddButton(ContentKeyFunctions.ToggleActionPin);
+            // Arcane-End
 
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);

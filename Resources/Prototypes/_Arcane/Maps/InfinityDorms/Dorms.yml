@@ -31,7 +31,15 @@
   description: Просторная квартира на космической станции.
   category: General
   gridPath: /Maps/_Arcane/InfinityDorms/apartment.yml
-  
+
+- type: infinityDorm
+  id: Bath
+  title: Сауна
+  author: HappyRoach
+  description: Большая сауна с баней и всем иным необходимым для хорошего отдыха.
+  category: General
+  gridPath: /Maps/_Arcane/InfinityDorms/bath.yml
+
 # endregion КЛАССИКА
 
 # region НЕОБЫЧНЫЕ

@@ -16,7 +16,7 @@ public sealed partial class AdminLogManager
 
     private readonly int _logTypes = Enum.GetValues<LogType>().Length;
 
-    // TODO ADMIN LOGS make this thread safe or remove thread safety from the main partial class
+    private readonly object _roundsLogCacheLock = new(); // Arcane
     private readonly Dictionary<int, List<SharedAdminLog>> _roundsLogCache = new(MaxRoundsCached);
     private readonly Queue<int> _roundsLogCacheQueue = new();
 
@@ -28,27 +28,33 @@ public sealed partial class AdminLogManager
         "admin_logs_cache_log_count",
         "How many logs are in cache.");
 
+    // Arcane-Start
     // TODO ADMIN LOGS cache previous {MaxRoundsCached} rounds on startup
-    public void CacheNewRound()
+    public void CacheNewRound(int roundId)
     {
-        List<SharedAdminLog>? list = null;
-
-        _roundsLogCacheQueue.Enqueue(_currentRoundId);
-        if (_roundsLogCacheQueue.Count > MaxRoundsCached)
+        lock (_roundsLogCacheLock)
         {
-            var oldestRound = _roundsLogCacheQueue.Dequeue();
-            if (_roundsLogCache.Remove(oldestRound, out var oldestList))
+            _currentRoundId = roundId;
+            List<SharedAdminLog>? list = null;
+
+            _roundsLogCacheQueue.Enqueue(roundId);
+            if (_roundsLogCacheQueue.Count > MaxRoundsCached)
             {
-                list = oldestList;
-                list.Clear();
+                var oldestRound = _roundsLogCacheQueue.Dequeue();
+                if (_roundsLogCache.Remove(oldestRound, out var oldestList))
+                {
+                    list = oldestList;
+                    list.Clear();
+                }
             }
+
+            list ??= new List<SharedAdminLog>(LogListInitialSize);
+
+            _roundsLogCache.Add(roundId, list);
+            CacheRoundCount.Set(_roundsLogCache.Count);
         }
-
-        list ??= new List<SharedAdminLog>(LogListInitialSize);
-
-        _roundsLogCache.Add(_currentRoundId, list);
-        CacheRoundCount.Set(_roundsLogCache.Count);
     }
+    // Arcane-End
 
     private void CacheLog(AdminLog log)
     {
@@ -58,29 +64,51 @@ public sealed partial class AdminLogManager
         CacheLog(record);
     }
 
+    // Arcane-Start
     private void CacheLog(SharedAdminLog log)
     {
-        // TODO ADMIN LOGS remove redundant data and don't do a dictionary lookup per log
-        var cache = _roundsLogCache[_currentRoundId];
-        cache.Add(log);
-        CacheLogCount.Set(cache.Count);
+        lock (_roundsLogCacheLock)
+        {
+            // TODO ADMIN LOGS remove redundant data and don't do a dictionary lookup per log
+            // A log from an evicted round is still saved to the database.
+            if (!_roundsLogCache.TryGetValue(log.RoundId, out var cache))
+                return;
+
+            cache.Add(log);
+            CacheLogCount.Set(cache.Count);
+        }
     }
 
     private void CacheLogs(IEnumerable<SharedAdminLog> logs)
     {
-        var cache = _roundsLogCache[_currentRoundId];
-        cache.AddRange(logs);
-        CacheLogCount.Set(cache.Count);
+        lock (_roundsLogCacheLock)
+        {
+            var cache = _roundsLogCache[_currentRoundId];
+            cache.AddRange(logs);
+            CacheLogCount.Set(cache.Count);
+        }
     }
 
-    private bool TryGetCache(int roundId, [NotNullWhen(true)] out List<SharedAdminLog>? cache)
+    private bool TryGetCacheSnapshot(int roundId, [NotNullWhen(true)] out SharedAdminLog[]? cache)
     {
-        return _roundsLogCache.TryGetValue(roundId, out cache);
+        lock (_roundsLogCacheLock)
+        {
+            if (_roundsLogCache.TryGetValue(roundId, out var logs))
+            {
+                // Search outside the lock so filtering does not delay new logs.
+                cache = logs.ToArray();
+                return true;
+            }
+        }
+
+        cache = null;
+        return false;
     }
+    // Arcane-End
 
     private bool TrySearchCache(LogFilter? filter, [NotNullWhen(true)] out List<SharedAdminLog>? results)
     {
-        if (filter?.Round == null || !TryGetCache(filter.Round.Value, out var cache))
+        if (filter?.Round == null || !TryGetCacheSnapshot(filter.Round.Value, out var cache)) // Arcane-Edit
         {
             results = null;
             return false;

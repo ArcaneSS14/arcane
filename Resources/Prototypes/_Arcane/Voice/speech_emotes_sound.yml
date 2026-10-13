@@ -1,0 +1,132 @@
+- type: emoteSounds
+  id: MaleHorse
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: HorseScream
+    Laugh:
+      collection: HorseLaugh
+    Hiss:
+      collection: CatHisses
+    Crying:
+      collection: HorseCrying
+    DefaultDeathgasp:
+      collection: HorseDeath
+    HorseSnorts:
+      collection: HorseSnorts
+    HorseNeighs:
+      collection: HorseNeighs
+    HorseWhinny:
+      collection: HorseWhinny
+
+- type: emoteSounds
+  id: FemaleHorse
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: HorseScream
+    Laugh:
+      collection: HorseLaugh
+    Hiss:
+      collection: CatHisses
+    Crying:
+      collection: HorseCrying
+    DefaultDeathgasp:
+      collection: HorseDeath
+    HorseSnorts:
+      collection: HorseSnorts
+    HorseNeighs:
+      collection: HorseNeighs
+    HorseWhinny:
+      collection: HorseWhinny
+
+- type: emoteSounds
+  id: MaleCatNature
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      collection: FelinidMeows
+    Mew:
+      collection: FelinidMews
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
+    CatMeow:
+      collection: CatMeows
+
+
+- type: emoteSounds
+  id: FemaleCatNature
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      collection: FelinidMeows
+    Mew:
+      collection: FelinidMews
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
+    CatMeow:
+      collection: CatMeows
+
+- type: emoteSounds
+  id: FemaleFoxNature
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FemaleVulpkaninScreams
+    Laugh:
+      collection: VulpkaninLaugh
+    Crying:
+      collection: VulpkaninCry
+    Growl:
+      collection: FemaleVulpkaninGrowls
+    Snarl:
+      collection: VulpkaninSnarls
+    Bark:
+      collection: VulpkaninBarks
+    Whine:
+      collection: VulpkaninWhines
+    Howl:
+      collection: FemaleVulpkaninHowls
+    Awoo:
+      collection: FemaleVulpkaninHowls
+
+- type: emoteSounds
+  id: MaleFoxNature
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: MaleVulpkaninScreams
+    Laugh:
+      collection: VulpkaninLaugh
+    Crying:
+      collection: VulpkaninCry
+    Growl:
+      collection: MaleVulpkaninGrowls
+    Snarl:
+      collection: VulpkaninSnarls
+    Bark:
+      collection: VulpkaninBarks
+    Whine:
+      collection: VulpkaninWhines
+    Howl:
+      collection: MaleVulpkaninHowls
+    Awoo:
+      collection: MaleVulpkaninHowls

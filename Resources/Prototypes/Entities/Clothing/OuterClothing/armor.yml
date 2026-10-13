@@ -44,6 +44,16 @@
     knockdownTimeDelta: -2
   - type: StaminaResistance # Goobstation
     damageCoefficient: 0.7
+  # Arcane-Start
+  - type: Stainable
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: armorblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: armorbloodicon
+  # Arcane-End
 
 #Standard armor vest, allowed for security and bartenders
 - type: entity
@@ -163,6 +173,18 @@
     sprintModifier: 1.0
   - type: HeldSpeedModifier
   - type: GroupExamine
+  # Arcane-Start
+  - type: Stainable
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: armorblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: armorbloodicon
+  - type: StainBlocker
+    slots: NONE
+  # Arcane-End
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseCommandContraband] # Goobstation?
@@ -211,6 +233,18 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  # Arcane-Start
+  - type: Stainable
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: armorblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: armorbloodicon
+  - type: StainBlocker
+    slots: NONE
+  # Arcane-End
 
 - type: entity
   parent: [ClothingOuterArmorBaseCarapace, BaseCentcommContraband]

@@ -206,10 +206,10 @@ public abstract partial class SharedHandsSystem
             if (!ContainerSystem.CanRemove(entity, container))
                 return false;
 
-            if (_inventory.TryGetSlotEntity(uid, container.ID, out var slotEnt) &&
-                slotEnt == entity &&
-                !_inventory.CanUnequip(uid, container.ID, out _))
+            // Arcane-Edit-Start
+            if (_inventory.TryGetSlotEntity(uid, container.ID, out var slotEnt) && slotEnt == entity)
                 return false;
+            // Arcane-Edit-End
         }
 
         // check can insert (including raising attempt events).

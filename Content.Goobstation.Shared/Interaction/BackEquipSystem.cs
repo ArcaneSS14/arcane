@@ -48,28 +48,35 @@ public sealed class BackEquipSystem : EntitySystem
         if (playerSession.AttachedEntity is not { Valid: true } uid || !Exists(uid))
             return;
 
+    // Arcane-Start
+        TryEquipToSlot(uid, equipmentSlot);
+    }
+
+    public bool TryEquipToSlot(EntityUid uid, string equipmentSlot)
+    {
+    // Arcane-End
         var activeHand = _hands.GetActiveHand(uid);
         if (!TryComp<HandsComponent>(uid, out var hands)
             || activeHand == null)
-            return;
+            return false; // Arcane-Edit
 
         var handItem = _hands.GetHeldItem((uid, hands), activeHand);
 
         if (!_actionBlocker.CanInteract(uid, handItem))
-            return;
+            return false; // Arcane-Edit
 
         if (!TryComp<InventoryComponent>(uid, out var inventory) || !_inventory.HasSlot(uid, equipmentSlot, inventory))
         {
             _popup.PopupClient(Loc.GetString("smart-equip-missing-equipment-slot", ("slotName", equipmentSlot)),
                 uid,
                 uid);
-            return;
+            return false; // Arcane-Edit
         }
 
         if (handItem != null && !_hands.CanDropHeld(uid, activeHand))
         {
             _popup.PopupClient(Loc.GetString("smart-equip-cant-drop"), uid, uid);
-            return;
+            return false; // Arcane-Edit
         }
 
         _inventory.TryGetSlotEntity(uid, equipmentSlot, out var slotEntity);
@@ -79,28 +86,29 @@ public sealed class BackEquipSystem : EntitySystem
             if (handItem == null)
             {
                 _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
-                return;
+                return false; // Arcane-Edit
             }
 
             if (!_inventory.CanEquip(uid, handItem.Value, equipmentSlot, out var reason))
             {
                 _popup.PopupClient(Loc.GetString(reason), uid, uid);
-                return;
+                return false; // Arcane-Edit
             }
 
-            _hands.TryDrop((uid, hands), activeHand);
+            // _hands.TryDrop((uid, hands), activeHand); // Arcane-Edit
             _inventory.TryEquip(uid, handItem.Value, equipmentSlot, predicted: true, checkDoafter: true);
-            return;
+            return true; // Arcane-Edit
         }
         if (handItem != null)
-            return;
+            return false; // Arcane-Edit
 
         if (!_inventory.CanUnequip(uid, equipmentSlot, out var inventoryReason))
         {
             _popup.PopupClient(Loc.GetString(inventoryReason), uid, uid);
-            return;
+            return false; // Arcane-Edit
         }
         _inventory.TryUnequip(uid, equipmentSlot, inventory: inventory, predicted: true, checkDoafter: true);
         _hands.TryPickup(uid, slotItem, handsComp: hands);
+        return true; // Arcane
     }
 }

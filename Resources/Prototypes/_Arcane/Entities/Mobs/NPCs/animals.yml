@@ -1,0 +1,42 @@
+- type: entity
+  parent: [ SimpleMobBase ]
+  id: MobCheremsha
+  name: cheremsha
+  description: Quietly, unhurried, not breathing, not shushing. Four pencils, not squishing, not buzzing, not a penny, cheremsha, not grieving, lying down, trembling, cheremsha. Stirring without a ladle, from the second floor, without a garage, without a crew, without extra luggage, without a massage, without installation, without camouflage, cheremsha. For the ambiance. Without knowing the case, without a mutiny. With three knives, two flatbreads, cheremsha. Without a report, without tenure. With the face of a leader, with the soul of a walrus. With the habits of a hedgehog, with the smell of rust. Cheremsha.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cheremsha
+      sprite: _Arcane/Mobs/Animals/cheremsha.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 10
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cheremsha
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+  - type: Tag
+    tags:
+    - VimPilot

@@ -406,6 +406,7 @@
   components:
   - type: Spillable
     solution: beaker
+    spillWhenThrown: false # Arcane
   - type: Sprite
     sprite: Objects/Specific/Chemistry/beaker_cryostasis.rsi
     layers:

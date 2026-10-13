@@ -41,6 +41,7 @@ namespace Content.Shared.Humanoid
             {
                 case HumanoidVisualLayers.Head:
                     yield return HumanoidVisualLayers.Head;
+                    yield return HumanoidVisualLayers.Face; // Arcane
                     yield return HumanoidVisualLayers.Eyes;
                     yield return HumanoidVisualLayers.HeadSide;
                     yield return HumanoidVisualLayers.HeadTop;

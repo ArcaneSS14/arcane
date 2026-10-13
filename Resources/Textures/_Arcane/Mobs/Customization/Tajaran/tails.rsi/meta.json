@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "copyright": "Creator was not supplied, oldest reference tracked to Cael Aislinn in commit https://github.com/ParadiseSS13/Paradise/commit/9e4539fdce01f00ed7e47ca1174a1470ac5fe77c. Sprite reorganization by SX-7, but no changes to sprites themselves",
+    "copyright": "Creator was not supplied, oldest reference tracked to Cael Aislinn in commit https://github.com/ParadiseSS13/Paradise/commit/9e4539fdce01f00ed7e47ca1174a1470ac5fe77c. Sprite reorganization by SX-7, but no changes to sprites themselves | tail_fluffy_anim by Bulbo44kkey",
     "license": "CC-BY-SA-3.0",
     "size": {
         "x": 32,
@@ -19,6 +19,16 @@
                 [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ],
                 [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ],
                 [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ]
+            ]
+        },
+        {
+            "name": "tail_fluffy_anim",
+            "directions": 4,
+            "delays": [
+                [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ],
+                [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ],
+                [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ],
+                [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ]
             ]
         }
     ]

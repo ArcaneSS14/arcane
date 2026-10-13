@@ -7,7 +7,7 @@ namespace Content.Shared._Arcane.ErpPanel.Requirements;
 public sealed partial class ArousalRequirement : InvertableErpRequirement
 {
     [DataField]
-    public ArousalPhase Minimum = ArousalPhase.Aroused;
+    public ArousalPhase Minimum = ArousalPhase.Interested;
 
     public override bool IsAvailable(EntityUid uid, IEntityManager entityManager)
     {

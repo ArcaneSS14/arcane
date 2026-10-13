@@ -240,7 +240,8 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         RaiseLocalEvent(uid, ref beforeev);
         component.Open = true;
         Dirty(uid, component);
-        EmptyContents(uid, component);
+        if (!beforeev.SkipEmptyContents)
+            EmptyContents(uid, component);
         ModifyComponents(uid, component);
         if (_net.IsClient && _timing.IsFirstTimePredicted)
             _audio.PlayPvs(component.OpenSound, uid);

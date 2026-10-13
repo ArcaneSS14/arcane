@@ -228,7 +228,7 @@
   id: GauzeHead
   bodyPart: Head
   markingCategory: Overlay
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Moth, Chitinid, Feroxi, Yowie, Demon] # Delta V - Chitinid + Feroxi; Goob - Yowies; Arcane - Demon
+  speciesRestriction: [Dwarf, Human, Reptilian, Felinid, Arachnid, Moth, Chitinid, Feroxi, Yowie, Demon] # Delta V - Chitinid + Feroxi; Goob - Yowies; Arcane - Demon, Felinid
   coloring:
     default:
       type:

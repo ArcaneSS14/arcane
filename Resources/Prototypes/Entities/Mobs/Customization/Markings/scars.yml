@@ -24,7 +24,7 @@
   id: ScarTopSurgeryShort
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Oni, Feroxi, Yowie, Demon] # DeltaV - Feroxi; Goob - Yowies; Arcane - Demon
+  speciesRestriction: [ Human, Dwarf, Oni, Feroxi, Yowie, Demon, Felinid] # Arcane-Edit
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -34,7 +34,7 @@
   id: ScarTopSurgeryLong
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Oni, Feroxi, Yowie, Demon] # DeltaV - Feroxi; Goob - Yowies; Arcane - Demon
+  speciesRestriction: [Human, Dwarf, Oni, Feroxi, Yowie, Demon, Felinid] # Arcane-Edit
   sexRestriction: [Male]
   followSkinColor: true
   sprites:
@@ -45,7 +45,7 @@
   id: ScarChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Oni, Feroxi, Yowie, Demon] # DeltaV - Feroxi; Goob - Yowies; Arcane - Demon
+  speciesRestriction: [Human, Dwarf, Oni, Feroxi, Yowie, Demon, Felinid] # Arcane-Edit
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -55,7 +55,7 @@
   id: ScarNeck
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Human, Dwarf, Demon] # Arcane - Demon
+  speciesRestriction: [Human, Dwarf, Demon, Felinid] # Arcane-Edit
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -65,7 +65,7 @@
   id: ScarChestBullets
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Demon] # Arcane - Demon
+  speciesRestriction: [Human, Dwarf, Demon, Felinid] # Arcane-Edit
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -75,7 +75,7 @@
   id: ScarStomachBullets
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Demon] # Arcane - Demon
+  speciesRestriction: [Human, Dwarf, Demon, Felinid] # Arcane-Edit
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -85,7 +85,7 @@
   id: ScarFace1
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Human, Dwarf, Demon] # Arcane - Demon
+  speciesRestriction: [Human, Dwarf, Demon, Felinid] # Arcane-Edit
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -95,7 +95,7 @@
   id: ScarFace2
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Human, Dwarf, Demon] # Arcane - Demon
+  speciesRestriction: [Human, Dwarf, Demon, Felinid] # Arcane-Edit
   followSkinColor: true
   sprites:
   - sprite: Mobs/Customization/scars.rsi
@@ -105,7 +105,7 @@
   id: BodyScarr
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Oni, Yowie, Demon] # goob edit - yowies; Arcane - Demon
+  speciesRestriction: [Human, Dwarf, Oni, Yowie, Demon, Felinid] # Arcane-Edit
   followSkinColor: true
   sprites:
   - sprite: _Goobstation/Mobs/Customization/scars.rsi

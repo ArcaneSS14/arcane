@@ -241,23 +241,18 @@
   description: A dark green helmet with glowing cyan nodes, a mirrored visor, and a mounted side light.
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/Head/Helmets/ntr_experimental_helmet.rsi
+    sprite: _Arcane/Clothing/Head/Helmets/ntr_experimental_helmet.rsi # Arcane-Edit
   - type: Clothing
-    sprite: _Goobstation/Clothing/Head/Helmets/ntr_experimental_helmet.rsi
+    sprite: _Arcane/Clothing/Head/Helmets/ntr_experimental_helmet.rsi # Arcane-Edit
     clothingVisuals:
       head:
       - state: equipped-head
-      head-resomi:
-      - state: equipped-head-resomi
+      head-vox:
+      - state: equipped-head-vox
   - type: PointLight
     color: white
     radius: 7
     energy: 5
-  - type: ToggleableVisuals
-    clothingVisuals:
-      head:
-      - state: equipped-head-light
-        shader: unshaded
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -339,7 +334,7 @@
     - HeadTop
     - HeadSide
     - FacialHair
-  
+
 # Detective's Hardsuit
 
 - type: entity
