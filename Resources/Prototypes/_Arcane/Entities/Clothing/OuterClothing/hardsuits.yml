@@ -5,9 +5,9 @@
   description: A specialized hardsuit engineered for long-range overwatch and patient ambush.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
+    sprite: _Arcane/Clothing/OuterClothing/Hardsuits/hardsuitspecter.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
+    sprite: _Arcane/Clothing/OuterClothing/Hardsuits/hardsuitspecter.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000

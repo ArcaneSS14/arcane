@@ -5,9 +5,9 @@
   description: Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
   components:
   - type: Sprite
-    sprite: Clothing/Shoes/Boots/magboots.rsi
+    sprite: _Goobstation/Clothing/Shoes/Boots/deathsquad.rsi
   - type: Clothing
-    sprite: Clothing/Shoes/Boots/magboots.rsi
+    sprite: _Goobstation/Clothing/Shoes/Boots/deathsquad.rsi
   - type: Magboots
     enabledPrefix: null
   - type: NoSlip
