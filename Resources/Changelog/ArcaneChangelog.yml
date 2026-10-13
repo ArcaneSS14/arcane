@@ -3155,3 +3155,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/bf2dc546-8871-4752-8035-d2ab25f10ea0
+- author: Kinar7
+  changes:
+    - type: Add
+      message: Мехи могут октрывать шлюзы будто с помощью челюстей жизин
+  id: 230
+  time: '2026-10-13T18:10:39.0000000+00:00'
+  prNumber: 505
+  url: https://github.com/ArcaneSS14/arcane/pull/505
