@@ -310,9 +310,9 @@
   description: A crude dark exosuit of reinforced plating, etched with faintly glowing Bluespace circuits. You can tell someone attempted to scratch out part of the text — Prototype No. 2
   components:
   - type: Sprite
-    sprite: _Goobstation/Clothing/OuterClothing/Hardsuits/ntr_experimental.rsi
+    sprite: _Arcane/Clothing/OuterClothing/Hardsuits/ntr_experimental.rsi # Arcane-Edit
   - type: Clothing
-    sprite: _Goobstation/Clothing/OuterClothing/Hardsuits/ntr_experimental.rsi
+    sprite: _Arcane/Clothing/OuterClothing/Hardsuits/ntr_experimental.rsi # Arcane-Edit
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000

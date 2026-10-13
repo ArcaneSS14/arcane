@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Arcane.Inventory;
 using Content.Shared._Orion.Ghost;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Armor;
 using Content.Shared.Clothing.Components;
 using Content.Shared.DoAfter;
@@ -36,8 +38,28 @@ public abstract partial class InventorySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedStrippableSystem _strippable = default!;
+    // Arcane-Start
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private readonly SharedArcaneInventorySystem _arcaneInventory = default!;
+    // Arcane-End
 
     public static readonly ProtoId<ItemSizePrototype> PocketableItemSize = "Small"; // Goobstation - make it public
+
+    // Arcane-Start
+    public enum UnequipResult
+    {
+        Failed,
+        Delayed,
+        Removed,
+    }
+
+    public enum EquipResult
+    {
+        Failed,
+        Delayed,
+        Equipped,
+    }
+    // Arcane-End
 
     private void InitializeEquip()
     {
@@ -118,6 +140,11 @@ public abstract partial class InventorySystem
         if (eventArgs.SenderSession.AttachedEntity is not { Valid: true } actor)
             return;
 
+        // Arcane-Start
+        if (!_actionBlocker.CanInteract(actor, actor))
+            return;
+        // Arcane-End
+
         if (!TryComp(actor, out InventoryComponent? inventory) || !TryComp<HandsComponent>(actor, out var hands))
             return;
 
@@ -163,11 +190,23 @@ public abstract partial class InventorySystem
 
     public bool TryEquip(EntityUid uid, EntityUid itemUid, string slot, bool silent = false, bool force = false, bool predicted = false,
         InventoryComponent? inventory = null, ClothingComponent? clothing = null, bool checkDoafter = false, bool triggerHandContact = false) =>
-        TryEquip(uid, uid, itemUid, slot, silent, force, predicted, inventory, clothing, checkDoafter, triggerHandContact);
+        TryEquip(uid, uid, itemUid, slot, silent, force, predicted, inventory, clothing, checkDoafter, triggerHandContact, null, out _); // Arcane-Edit
 
     public bool TryEquip(EntityUid actor, EntityUid target, EntityUid itemUid, string slot, bool silent = false, bool force = false, bool predicted = false,
-        InventoryComponent? inventory = null, ClothingComponent? clothing = null, bool checkDoafter = false, bool triggerHandContact = false)
+        InventoryComponent? inventory = null, ClothingComponent? clothing = null, bool checkDoafter = false, bool triggerHandContact = false) =>
+        TryEquip(actor, target, itemUid, slot, silent, force, predicted, inventory, clothing, checkDoafter, triggerHandContact, null, out _); // Arcane
+
+    // Arcane-Start
+    public bool TryEquipWithHandBack(EntityUid actor, EntityUid target, EntityUid itemUid, string slot, EntityUid handBack, out bool doAfterStarted) =>
+        TryEquip(actor, target, itemUid, slot, silent: false, force: false, predicted: true, inventory: null, clothing: null,
+            checkDoafter: true, triggerHandContact: true, handBack: handBack, out doAfterStarted);
+
+    private bool TryEquip(EntityUid actor, EntityUid target, EntityUid itemUid, string slot, bool silent, bool force, bool predicted,
+        InventoryComponent? inventory, ClothingComponent? clothing, bool checkDoafter, bool triggerHandContact, EntityUid? handBack, out bool doAfterStarted)
     {
+        doAfterStarted = false;
+    // Arcane-End
+
         if (!Resolve(target, ref inventory, false))
         {
             if(!silent)
@@ -193,7 +232,20 @@ public abstract partial class InventorySystem
             return false;
         }
 
+        // Arcane-Start
+        if (checkDoafter && actor == target)
+        {
+            var delayResult = _arcaneInventory.TryStartEquipDoAfter(actor, target, itemUid, slot, slotContainer, slotDefinition, clothing, handBack);
+            if (delayResult != InventoryDelayResult.Immediate)
+            {
+                doAfterStarted = delayResult == InventoryDelayResult.Queued;
+                return false;
+            }
+        }
+        // Arcane-End
+
         if (checkDoafter &&
+            actor != target && // Arcane: self-equip is handled by the Arcane block above, delay and all
             clothing != null &&
             clothing.EquipDelay > TimeSpan.Zero &&
             (clothing.Slots & slotDefinition.SlotFlags) != 0 &&
@@ -212,7 +264,7 @@ public abstract partial class InventorySystem
                 NeedHand = true,
             };
 
-            _doAfter.TryStartDoAfter(args);
+            doAfterStarted = _doAfter.TryStartDoAfter(args); // Arcane-Edit
             return false;
         }
 
@@ -371,9 +423,10 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        EntityUid? equipAfter = null) // Arcane
     {
-        return TryUnequip(uid, uid, slot, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact);
+        return TryUnequip(uid, uid, slot, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, equipAfter); // Arcane-Edit
     }
 
     public bool TryUnequip(
@@ -387,9 +440,10 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        EntityUid? equipAfter = null) // Arcane
     {
-        return TryUnequip(actor, target, slot, out _, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact);
+        return TryUnequip(actor, target, slot, out _, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, equipAfter); // Arcane-Edit
     }
 
     public bool TryUnequip(
@@ -403,9 +457,10 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        EntityUid? equipAfter = null) // Arcane
     {
-        return TryUnequip(uid, uid, slot, out removedItem, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact);
+        return TryUnequip(uid, uid, slot, out removedItem, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, equipAfter); // Arcane-Edit
     }
 
     public bool TryUnequip(
@@ -420,11 +475,14 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        EntityUid? equipAfter = null) // Arcane
     {
         var itemsDropped = 0;
-        return TryUnequip(actor, target, slot, out removedItem, ref itemsDropped,
-            silent, force, predicted, inventory, clothing, reparent, checkDoafter);
+        // Arcane-Edit-Start
+        return TryUnequip(actor, target, slot, out removedItem, ref itemsDropped, out _,
+            silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, equipAfter);
+        // Arcane-Edit-End
     }
 
     private bool TryUnequip(
@@ -433,6 +491,7 @@ public abstract partial class InventorySystem
         string slot,
         [NotNullWhen(true)] out EntityUid? removedItem,
         ref int itemsDropped,
+        out bool doAfterStarted, // Arcane
         bool silent = false,
         bool force = false,
         bool predicted = false,
@@ -440,9 +499,11 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        EntityUid? equipAfter = null) // Arcane
     {
         removedItem = null;
+        doAfterStarted = false; // Arcane
 
         if (TerminatingOrDeleted(target))
             return false;
@@ -477,7 +538,20 @@ public abstract partial class InventorySystem
         if (!force && !_containerSystem.CanRemove(removedItem.Value, slotContainer))
             return false;
 
+        // Arcane-Start
+        if (checkDoafter && actor == target)
+        {
+            var delayResult = _arcaneInventory.TryStartUnequipDoAfter(actor, target, removedItem.Value, slot, slotDefinition, clothing, equipAfter);
+            if (delayResult != InventoryDelayResult.Immediate)
+            {
+                doAfterStarted = delayResult == InventoryDelayResult.Queued;
+                return false;
+            }
+        }
+        // Arcane-End
+
         if (checkDoafter &&
+            actor != target && // Arcane
             Resolve(removedItem.Value, ref clothing, false) &&
             (clothing.Slots & slotDefinition.SlotFlags) != 0 &&
             clothing.UnequipDelay > TimeSpan.Zero)
@@ -495,7 +569,7 @@ public abstract partial class InventorySystem
                 NeedHand = true,
             };
 
-            _doAfter.TryStartDoAfter(args);
+            doAfterStarted = _doAfter.TryStartDoAfter(args); // Arcane-Edit
             return false;
         }
 
@@ -511,7 +585,7 @@ public abstract partial class InventorySystem
             if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
             {
                 //this recursive call might be risky
-                TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent);
+                TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, out _, true, true, predicted, inventory, reparent: reparent); // Arcane-Edit
             }
         }
 
@@ -539,6 +613,34 @@ public abstract partial class InventorySystem
 
         return true;
     }
+
+    // Arcane-Start
+    public UnequipResult TryUnequipSlot(EntityUid uid, string slot, EntityUid? equipAfter = null, InventoryComponent? inventory = null)
+    {
+        var itemsDropped = 0;
+        if (TryUnequip(uid, uid, slot, out _, ref itemsDropped, out var delayed, silent: true, inventory: inventory, checkDoafter: true, equipAfter: equipAfter))
+        {
+            // No doafter ran, so nothing queued the replacement: fit it into the slot we just freed.
+            if (equipAfter is { } replacement && !TerminatingOrDeleted(replacement))
+                TryEquip(uid, uid, replacement, slot, silent: true, inventory: inventory, checkDoafter: true, triggerHandContact: true);
+
+            return UnequipResult.Removed;
+        }
+
+        return delayed ? UnequipResult.Delayed : UnequipResult.Failed;
+    }
+
+    public EquipResult TryEquipSlot(EntityUid uid, EntityUid itemUid, string slot, bool silent = false, bool force = false,
+        bool predicted = false, InventoryComponent? inventory = null, ClothingComponent? clothing = null, bool triggerHandContact = false)
+    {
+        if (TryEquip(uid, uid, itemUid, slot, silent, force, predicted, inventory, clothing, checkDoafter: true, triggerHandContact, null, out var delayed))
+        {
+            return EquipResult.Equipped;
+        }
+
+        return delayed ? EquipResult.Delayed : EquipResult.Failed;
+    }
+    // Arcane-End
 
     public bool CanUnequip(EntityUid uid, string slot, [NotNullWhen(false)] out string? reason,
         ContainerSlot? containerSlot = null, SlotDefinition? slotDefinition = null,

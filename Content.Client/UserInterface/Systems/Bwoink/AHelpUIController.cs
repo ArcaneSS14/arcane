@@ -29,6 +29,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.Systems.Bwoink;
@@ -377,7 +378,11 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
         {
             panel.ReceiveHistory(messages, isContinuation, nextCursor, hasMore);
             if (hasMore)
-                TryRequestHistory(channel);
+                Timer.Spawn(TimeSpan.FromSeconds(3), () =>
+                {
+                    if (IsOpen && _activePanelMap.TryGetValue(channel, out var current) && current == panel && !panel.Disposed)
+                        TryRequestHistory(channel);
+                });
         }
     }
 
@@ -385,7 +390,14 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     {
         var panel = EnsurePanel(channel);
         if (panel.TryBeginHistoryRequest(out var cursor))
+        {
             RequestHistoryAction?.Invoke(channel, cursor);
+            Timer.Spawn(TimeSpan.FromSeconds(35), () =>
+            {
+                if (IsOpen && _activePanelMap.TryGetValue(channel, out var current) && current == panel && !panel.Disposed)
+                    TryRequestHistory(channel);
+            });
+        }
     }
     // Arcane-end
 
@@ -610,7 +622,15 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
     private void TryRequestHistory()
     {
         if (_chatPanel != null && _chatPanel.TryBeginHistoryRequest(out var cursor))
+        {
             RequestHistoryAction?.Invoke(_ownerId, cursor);
+            var panel = _chatPanel;
+            Timer.Spawn(TimeSpan.FromSeconds(35), () =>
+            {
+                if (IsOpen && _chatPanel == panel && !panel.Disposed)
+                    TryRequestHistory();
+            });
+        }
     }
     // Arcane-end
 
@@ -646,7 +666,11 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
         {
             _chatPanel?.ReceiveHistory(messages, isContinuation, nextCursor, hasMore);
             if (hasMore)
-                TryRequestHistory();
+                Timer.Spawn(TimeSpan.FromSeconds(3), () =>
+                {
+                    if (IsOpen && _chatPanel is { Disposed: false })
+                        TryRequestHistory();
+                });
         }
     }
     // Arcane-end

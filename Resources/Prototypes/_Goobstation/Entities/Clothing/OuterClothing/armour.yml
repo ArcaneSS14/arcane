@@ -16,10 +16,12 @@
     - Groin
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.3
-        Heat: 0.3
+      # Arcane-Start-Edit
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.7
+      # Arcane-Edit-End
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: ModifyDelayedKnockdown # Goobstation
@@ -45,10 +47,12 @@
     - Groin
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.3
-        Heat: 0.3
+      # Arcane-Start-Edit
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.7
+      # Arcane-Edit-End
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: ModifyDelayedKnockdown # Goobstation
@@ -142,6 +146,16 @@
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHeadHatHoodWinterCapFancy
+  # Arcane-Start
+  - type: Stainable
+    clothingVisuals:
+      outerClothing:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: coatblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: coatbloodicon
+  # Arcane-End
 
 # Blueshield Armour Vest
 - type: entity
@@ -226,6 +240,17 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.8 # Blame it on bluespace.
     coolingCoefficient: 0.1
+  # Arcane-Start
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 30
+      stain:
+        maxVol: 0
+  # Arcane-End
 
 - type: entity
   parent: ClothingOuterArmourInvisible
@@ -528,7 +553,7 @@
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHeadHatHoodSchemaMonk
-      
+
 #senior security
 - type: entity
   parent: ClothingOuterArmorBase

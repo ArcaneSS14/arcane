@@ -167,15 +167,7 @@
   - !type:ExposedBodyPartRequirement
     part: Chest
   userRequirements:
-  - !type:SpeciesRequirement
-    species:
-    - Demon
-    - Felinid
-    - Vulpkanin
-    - Tajaran
-    - HumanoidXeno
-    - Rodentia
-    - Feroxi
+  - !type:TailRequirement
 
 - type: panelInteraction
   id: BoobsMassage

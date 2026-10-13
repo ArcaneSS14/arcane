@@ -186,10 +186,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool ignoreActionBlocker = false,
         Color? colorOverride = null, // Goobstation
         LanguagePrototype? languageOverride = null, // Einstein Engines - Language
-        bool forced = false // goobstation
+        bool forced = false, // goobstation
+        bool checkEmote = true // Arcane
         )
     {
-        TrySendInGameICMessage(source, message, desiredType, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, hideLog, shell, player, nameOverride, checkRadioPrefix, ignoreActionBlocker, colorOverride, forced: forced); // Goob edit
+        TrySendInGameICMessage(source, message, desiredType, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, hideLog, shell, player, nameOverride, checkRadioPrefix, ignoreActionBlocker, colorOverride, forced: forced, checkEmote: checkEmote); // Arcane-Edit
     }
 
     /// <inheritdoc />
@@ -206,7 +207,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool ignoreActionBlocker = false,
         Color? colorOverride = null, // Goobstation
         LanguagePrototype? languageOverride = null, // Einstein Engines - Language
-        bool forced = false // goobstation
+        bool forced = false, // goobstation
+        bool checkEmote = true
         )
     {
         if (HasComp<GhostComponent>(source))
@@ -332,7 +334,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 SendEntityWhisper(source, message, range, null, nameOverride, language, hideLog, ignoreActionBlocker, colorOverride); // Goob edit & Einstein Engines - Language
                 break;
             case InGameICChatType.Emote:
-                SendEntityEmote(source, message, range, nameOverride, language, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker, forced: forced); // Einstein Engines - Language
+                SendEntityEmote(source, message, range, nameOverride, language, hideLog: hideLog, checkEmote: checkEmote, ignoreActionBlocker: ignoreActionBlocker, forced: forced); // Arcane-Edit
                 break;
             case InGameICChatType.Telepathic:
                 _telepath.SendTelepathicChat(source, message, range == ChatTransmitRange.HideChat);

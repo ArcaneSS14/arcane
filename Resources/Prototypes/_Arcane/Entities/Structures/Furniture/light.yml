@@ -1,0 +1,118 @@
+- type: entity
+  parent: BaseStructureDynamic
+  id: Torsher
+  name: Torsher
+  description: A touch of coziness even far from home.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/Furniture/torsher.rsi
+    noRot: true
+    layers:
+    - state: lampgreen-off
+      map: ["enum.PoweredLightLayers.Base"]
+    - state: lampgreen
+      map: ["enum.PoweredLightLayers.Glow"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: _Arcane/Structures/Furniture/torsher.rsi
+    state: lampgreen
+  - type: Physics
+    bodyType: Dynamic
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - TableMask
+  - type: Anchorable
+  - type: Pullable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PointLight
+    enabled: false
+    netsync: false
+    radius: 6
+    energy: 1.5
+    softness: 1
+    color: "#FFE4B5"
+  - type: ItemTogglePointLight
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+    wattage: 0.5
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
+  - type: ToggleableVisuals
+    spriteLayer: enum.PoweredLightLayers.Glow
+  - type: Appearance
+  - type: StaticPrice
+    price: 75
+  - type: Construction
+    graph: TorsherGraph
+    node: torsher
+
+- type: entity
+  parent: Torsher
+  id: TorsherFilled
+  suffix: Filled
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall

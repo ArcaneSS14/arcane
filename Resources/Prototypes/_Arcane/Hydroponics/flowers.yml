@@ -274,3 +274,27 @@
       Min: 1
       Max: 5
       PotencyDivisor: 20
+
+- type: seed
+  id: pomato
+  name: seeds-pomato-name
+  noun: seeds-noun-seeds
+  displayName: seeds-pomato-display-name
+  plantRsi: _Arcane/Objects/Specific/Hydroponics/pomato.rsi
+  packetPrototype: PomatoSeeds
+  productPrototypes:
+    - FoodPotato
+    - FoodTomato
+  harvestRepeat: Repeat
+  lifespan: 40
+  maturation: 8
+  production: 5
+  yield: 2
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.50
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20

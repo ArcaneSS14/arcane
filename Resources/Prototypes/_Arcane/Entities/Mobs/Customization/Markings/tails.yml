@@ -1,0 +1,8 @@
+- type: marking
+  id: TajaranFluffyTailAnim
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human, Felinid, Tajaran]
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/Tajaran/tails.rsi
+    state: tail_fluffy_anim

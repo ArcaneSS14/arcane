@@ -83,27 +83,34 @@ public sealed class SmartEquipSystem : EntitySystem
         if (playerSession.AttachedEntity is not { Valid: true } uid || !Exists(uid))
             return;
 
+    // Arcane-Start
+        TrySmartEquip(uid, equipmentSlot);
+    }
+
+    public bool TrySmartEquip(EntityUid uid, string equipmentSlot)
+    {
+    // Arcane-End
         // early out if we don't have any hands or a valid inventory slot
         if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHandId == null)
-            return;
+            return false; // Arcane-Edit
 
         var handItem = _hands.GetActiveItem((uid, hands));
 
         // can the user interact, and is the item interactable? e.g. virtual items
         if (!_actionBlocker.CanInteract(uid, handItem))
-            return;
+            return false; // Arcane-Edit
 
         if (!TryComp<InventoryComponent>(uid, out var inventory) || !_inventory.HasSlot(uid, equipmentSlot, inventory))
         {
             _popup.PopupClient(Loc.GetString("smart-equip-missing-equipment-slot", ("slotName", equipmentSlot)), uid, uid);
-            return;
+            return false; // Arcane-Edit
         }
 
         // early out if we have an item and cant drop it at all
         if (handItem != null && !_hands.CanDropHeld(uid, hands.ActiveHandId))
         {
             _popup.PopupClient(Loc.GetString("smart-equip-cant-drop"), uid, uid);
-            return;
+            return false; // Arcane-Edit
         }
 
         // There are eight main cases we want to handle here,
@@ -132,18 +139,18 @@ public sealed class SmartEquipSystem : EntitySystem
             if (handItem == null)
             {
                 _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
-                return;
+                return false; // Arcane-Edit
             }
 
             if (!_inventory.CanEquip(uid, handItem.Value, equipmentSlot, out var reason))
             {
                 _popup.PopupClient(Loc.GetString(reason), uid, uid);
-                return;
+                return false;
             }
 
-            _hands.TryDrop((uid, hands), hands.ActiveHandId!);
+            // _hands.TryDrop((uid, hands), hands.ActiveHandId!); // Arcane-Edit
             _inventory.TryEquip(uid, handItem.Value, equipmentSlot, predicted: true, checkDoafter:true);
-            return;
+            return true; // Arcane-Edit
         }
 
         // case 2 (storage item):
@@ -153,12 +160,12 @@ public sealed class SmartEquipSystem : EntitySystem
             {
                 case null when storage.Container.ContainedEntities.Count == 0:
                     _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
-                    return;
+                    return false; // Arcane-Edit
                 case null:
                     var removing = storage.Container.ContainedEntities[^1];
                     _container.RemoveEntity(slotItem, removing);
                     _hands.TryPickup(uid, removing, handsComp: hands);
-                    return;
+                    return true; // Arcane-Edit
             }
 
             if (!_storage.CanInsert(slotItem, handItem.Value, out var reason))
@@ -166,7 +173,7 @@ public sealed class SmartEquipSystem : EntitySystem
                 if (reason != null)
                     _popup.PopupClient(Loc.GetString(reason), uid, uid);
 
-                return;
+                return false; // Arcane-Edit
             }
 
             _hands.TryDrop((uid, hands), hands.ActiveHandId!);
@@ -180,7 +187,7 @@ public sealed class SmartEquipSystem : EntitySystem
                     _hands.TryPickup(uid, handItem.Value, handsComp: hands);
             }
 
-            return;
+            return true; // Arcane-Edit
         }
 
         // case 3 (itemslot item):
@@ -199,11 +206,11 @@ public sealed class SmartEquipSystem : EntitySystem
                 if (toEjectFrom == null)
                 {
                     _popup.PopupClient(emptyEquipmentSlotString, uid, uid);
-                    return;
+                    return false; // Arcane-Edit
                 }
 
                 _slots.TryEjectToHands(slotItem, toEjectFrom, uid, excludeUserAudio: true);
-                return;
+                return true; // Arcane-Edit
             }
 
             ItemSlot? toInsertTo = null;
@@ -221,24 +228,25 @@ public sealed class SmartEquipSystem : EntitySystem
             if (toInsertTo == null)
             {
                 _popup.PopupClient(Loc.GetString("smart-equip-no-valid-item-slot-insert", ("item", handItem.Value)), uid, uid);
-                return;
+                return false; // Arcane-Edit
             }
 
             _slots.TryInsertFromHand(slotItem, toInsertTo, uid, hands, excludeUserAudio: true);
-            return;
+            return true; // Arcane-Edit
         }
 
         // case 4 (just an item):
         if (handItem != null)
-            return;
+            return false; // Arcane-Edit
 
         if (!_inventory.CanUnequip(uid, equipmentSlot, out var inventoryReason))
         {
             _popup.PopupClient(Loc.GetString(inventoryReason), uid, uid);
-            return;
+            return false; // Arcane-Edit
         }
 
         _inventory.TryUnequip(uid, equipmentSlot, inventory: inventory, predicted: true, checkDoafter: true);
         _hands.TryPickup(uid, slotItem, handsComp: hands);
+        return true; // Arcane
     }
 }

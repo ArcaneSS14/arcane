@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client._Arcane.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared.UserInterface;
 

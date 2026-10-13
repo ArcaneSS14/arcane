@@ -26,11 +26,29 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 10
+  # Arcane-Start
+      stain:
+        maxVol: 5
+  - type: ContainerContainer
+    containers:
+      hidden_slot: !type:ContainerSlot
+  # Arcane-End
   - type: Tag
     tags:
     - ClothMade
     - WhitelistChameleon
     - DroneUsable # Goobstation
+  # Arcane-Start
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      head:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: helmetblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: helmetbloodicon
+  # Arcane-End
 
 - type: entity
   abstract: true
@@ -152,6 +170,10 @@
     - Snout
     - HeadTop
     - HeadSide
+  # Arcane-Start
+  - type: StainBlocker
+    slots: [MASK]
+  # Arcane-End
 
 - type: entity
   abstract: true
@@ -215,6 +237,19 @@
     - HeadTop
     - HeadSide
   - type: FaceHuggerBlocker # Goobstation
+  # Arcane-Start
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      head:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: helmetblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: helmetbloodicon
+  - type: StainBlocker
+    slots: [MASK]
+  # Arcane-End
 
 - type: entity
   abstract: true
@@ -301,3 +336,14 @@
     - Hair
     - HeadTop
     - HeadSide
+  # Arcane-Start
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      head:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: helmetblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: helmetbloodicon
+  # Arcane-End

@@ -21,7 +21,7 @@
         volume: -12
     CatMeow:
       collection: CatMeows
-    CatHisses:
+    Hiss: # Arcane-Edit
       collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches

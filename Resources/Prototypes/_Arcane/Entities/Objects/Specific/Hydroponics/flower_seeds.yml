@@ -129,3 +129,14 @@
   - type: Sprite
     sprite: _Arcane/Objects/Specific/Hydroponics/pink_tulip.rsi
     state: seed
+
+- type: entity
+  parent: SeedBase
+  id: PomatoSeeds
+  name: packet of pomato seeds
+  components:
+  - type: Seed
+    seedId: pomato
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Hydroponics/pomato.rsi
+    state: seed

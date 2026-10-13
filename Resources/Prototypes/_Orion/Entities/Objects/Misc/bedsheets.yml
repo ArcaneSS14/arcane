@@ -27,7 +27,7 @@
   - type: Item
     size: Small
   - type: StaticPrice
-    price: 24
+    price: 7 # Arcane-Edit
   - type: Tag
     tags:
     - Bedsheet

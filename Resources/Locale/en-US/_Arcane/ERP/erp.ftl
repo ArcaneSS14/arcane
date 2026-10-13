@@ -19,3 +19,6 @@ alerts-arousal-refractory-desc = You are recovering after orgasm. Arousal won't 
 
 erp-refractory-self = You're still recovering — arousal isn't building up yet.
 erp-refractory-target = They're not ready yet...
+
+condom-wrong-sex = A condom won't fit on them.
+condom-filled-dropped = Your used condom ends up on the floor.
