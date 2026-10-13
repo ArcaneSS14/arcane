@@ -1,10 +1,11 @@
-using System.Collections.Generic;
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
+using Content.Goobstation.Shared.Clothing.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Inventory;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.GameObjects;
@@ -27,6 +28,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly IEyeManager _eyeManager = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
     private readonly Dictionary<EntityUid, OrderingCache> _cache = new();
 
@@ -186,14 +188,12 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     private void OnEquipmentVisualsUpdated(EquipmentVisualsUpdatedEvent args)
     {
-        if (args.Slot != "neck" && args.Slot != "back" ||
+        if (args.Slot != "neck" && args.Slot != "back" && args.Slot != "mask" ||
             !TryComp(args.Equipee, out HumanoidAppearanceComponent? humanoid) ||
             !TryComp(args.Equipee, out SpriteComponent? sprite))
         {
             return;
         }
-
-        // Neck/back gear changes the cloak block keys, so the cached layout is stale: force a full reorder.
         _lastViews.Remove(args.Equipee);
         ApplyOrdering((args.Equipee, humanoid, sprite));
     }
@@ -556,72 +556,180 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         return composed;
     }
 
-    private void EnsureHairLayout(
-        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
-        bool backView,
-        OrderingCache cache)
+    private void EnsureHairLayout(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, bool backView, OrderingCache cache)
     {
-        if (cache.HairKeys.Count == 0 ||
-            !TryGetClusterTop(ent, out var clusterTop, out var clusterTopIdx))
-        {
+        if (cache.HairKeys.Count == 0)
             return;
-        }
+
+        var headTrimKeys = GetHeadTrimKeys(ent);
 
         if (backView)
         {
-            // Capture the front anchor while the block still rests in its native front-facing layout (below the
-            // cluster), i.e. before the move below hoists it: the anchor is only discoverable from that position.
-            // Without this a character whose first facing is Back would never record the anchor, and the next Front
-            // pass would fall back to resetting the hair below the mask, which lands above the species' head-trim
-            // base layer when that layer (e.g. arachnid HeadSide) sits below the mask.
-            if (cache.HairFrontAnchor is null &&
-                TryGetBlockExtent(ent, cache.HairKeys, out _, out var backBlockEnd) &&
-                backBlockEnd <= clusterTopIdx &&
-                TryGetFrontAnchor(ent, backBlockEnd, out var backAnchor))
+            if (TryGetClusterTopFromKeys(ent, headTrimKeys, out var clusterTop, out _))
             {
-                cache.HairFrontAnchor = backAnchor;
+                TryMoveBlockRelative(ent, cache.HairKeys, clusterTop, true);
             }
-
-            // The back of the head goes over the ears/head-top cluster: hair lands directly above it.
-            TryMoveBlockRelative(ent, cache.HairKeys, clusterTop, true);
-            return;
+            else if (TryGetLayerIndex(ent, HumanoidVisualLayers.HeadTop, out _))
+            {
+                TryMoveBlockRelative(ent, cache.HairKeys, HumanoidVisualLayers.HeadTop, true);
+            }
         }
-
-        if (cache.HairFrontAnchor is not { } anchor)
+        else
         {
-            // No anchor known and the hair is stuck above the whole cluster (e.g. markings changed during a
-            // back view). Reset it directly below the mask, or below the HeadTop base when no mask is worn, so
-            // the front anchor can be re-discovered on the next pass.
-            if (!TryGetBlockExtent(ent, cache.HairKeys, out _, out var blockEnd))
-                return;
-
-            if (blockEnd > clusterTopIdx)
+            if (TryGetHeadTrimBottom(ent, headTrimKeys, out var trimBottomKey, out _))
             {
-                object resetAnchorKey = "mask";
-                var hasResetAnchor = TryGetLayerIndex(ent, "mask", out _);
-                if (!hasResetAnchor)
-                {
-                    resetAnchorKey = HumanoidVisualLayers.HeadTop;
-                    hasResetAnchor = TryGetLayerIndex(ent, HumanoidVisualLayers.HeadTop, out _);
-                }
-
-                if (hasResetAnchor)
-                    TryMoveBlockRelative(ent, cache.HairKeys, resetAnchorKey, false);
-
-                return;
+                TryMoveBlockRelative(ent, cache.HairKeys, trimBottomKey, false);
             }
+            else
+            {
+                if (!TryGetBlockExtent(ent, cache.HairKeys, out _, out var blockEnd))
+                    return;
 
-            // First contact with the default front layout: remember which head-trim base layer sits right above
-            // the hair. HeadTop/HeadSide marking layers are excluded so the anchor can never become an ear
-            // marking interleaved with the hair block.
-            if (TryGetFrontAnchor(ent, blockEnd, out var frontAnchor))
-                cache.HairFrontAnchor = frontAnchor;
+                if (TryGetFrontAnchor(ent, blockEnd, out var frontAnchor))
+                    TryMoveBlockRelative(ent, cache.HairKeys, frontAnchor, false);
+            }
+        }
+        bool isMaskToggledDown = false;
+        if (_inventory.TryGetSlotEntity(ent.Owner, "mask", out var maskUid))
+        {
+            if (TryComp<AltClothingLayerComponent>(maskUid, out var altLayerComp))
+            {
+                if (TryGetLayerIndex(ent, "maskalt", out _))
+                {
+                    isMaskToggledDown = true;
+                }
+            }
+        }
+        object? activeMaskKey = null;
+        if (TryGetLayerIndex(ent, "mask", out _))
+            activeMaskKey = "mask";
+        else if (TryGetLayerIndex(ent, "maskalt", out _))
+            activeMaskKey = "maskalt";
 
-            return;
+        if (activeMaskKey != null)
+        {
+            var maskKeys = new List<object> { activeMaskKey };
+
+            if (isMaskToggledDown)
+            {
+                if (TryGetBlockExtent(ent, cache.HairKeys, out var hairBottomIdx, out _))
+                {
+                    if (TryGetLayerIndex(ent, activeMaskKey, out var maskIdx) && maskIdx > hairBottomIdx)
+                    {
+                        object? bottomHairKey = null;
+                        foreach (var hKey in cache.HairKeys)
+                        {
+                            if (TryGetLayerIndex(ent, hKey, out var hIdx) && hIdx == hairBottomIdx)
+                            {
+                                bottomHairKey = hKey;
+                                break;
+                            }
+                        }
+                        if (bottomHairKey != null)
+                            TryMoveBlockRelative(ent, maskKeys, bottomHairKey, false);
+                    }
+                }
+            }
+            else
+            {
+                if (TryGetBlockExtent(ent, cache.HairKeys, out _, out var hairTopIdx))
+                {
+                    if (TryGetLayerIndex(ent, activeMaskKey, out var maskIdx) && maskIdx < hairTopIdx)
+                    {
+                        object? topHairKey = null;
+                        foreach (var hKey in cache.HairKeys)
+                        {
+                            if (TryGetLayerIndex(ent, hKey, out var hIdx) && hIdx == hairTopIdx)
+                            {
+                                topHairKey = hKey;
+                                break;
+                            }
+                        }
+                        if (topHairKey != null)
+                            TryMoveBlockRelative(ent, maskKeys, topHairKey, true);
+                    }
+                }
+            }
+        }
+    }
+    private List<object> GetHeadTrimKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
+    {
+        var candidates = new List<object>
+        {
+            HumanoidVisualLayers.HeadSide,
+            HumanoidVisualLayers.HeadTop,
+        };
+        foreach (var (category, markings) in ent.Comp1.MarkingSet.Markings)
+        {
+            if (category != MarkingCategories.HeadTop && category != MarkingCategories.HeadSide)
+                continue;
+
+            foreach (var marking in markings)
+            {
+                if (!_markingManager.TryGetMarking(marking, out var prototype))
+                    continue;
+
+                foreach (var sprite in prototype.Sprites)
+                {
+                    if (sprite is SpriteSpecifier.Rsi rsi)
+                        candidates.Add($"{marking.MarkingId}-{rsi.RsiState}");
+                }
+            }
         }
 
-        // Front face visible: hair below the marker that the species puts above it.
-        TryMoveBlockRelative(ent, cache.HairKeys, anchor, false);
+        return candidates;
+    }
+
+    private bool TryGetClusterTopFromKeys(
+        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
+        List<object> keys,
+        out object key,
+        out int index)
+    {
+        key = HumanoidVisualLayers.HeadTop;
+        index = 0;
+        var found = false;
+
+        foreach (var candidate in keys)
+        {
+            if (!TryGetLayerIndex(ent, candidate, out var candidateIdx))
+                continue;
+
+            if (!found || candidateIdx > index)
+            {
+                found = true;
+                key = candidate;
+                index = candidateIdx;
+            }
+        }
+
+        return found;
+    }
+
+    private bool TryGetHeadTrimBottom(
+        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
+        List<object> headTrimKeys,
+        out object bottomKey,
+        out int bottomIndex)
+    {
+        bottomKey = null!;
+        bottomIndex = int.MaxValue;
+        var found = false;
+
+        foreach (var key in headTrimKeys)
+        {
+            if (!TryGetLayerIndex(ent, key, out var index))
+                continue;
+
+            if (!found || index < bottomIndex)
+            {
+                found = true;
+                bottomKey = key;
+                bottomIndex = index;
+            }
+        }
+
+        return found;
     }
 
     /// <summary>
