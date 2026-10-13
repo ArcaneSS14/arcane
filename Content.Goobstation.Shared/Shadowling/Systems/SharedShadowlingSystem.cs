@@ -246,6 +246,12 @@ public abstract class SharedShadowlingSystem : EntitySystem
 
         var target = args.Target.Value;
 
+        // Arcane-Start
+        // Another enthrall or hypnosis may have converted the target during the do-after.
+        if (!CanEnthrall(uid, target))
+            return;
+        // Arcane-End
+
         var thrall = EnsureComp<ThrallComponent>(target);
         thrall.Converter = uid;
         AddThrallComponents(target, components); // Arcane-Edit

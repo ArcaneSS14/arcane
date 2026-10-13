@@ -5,11 +5,13 @@ using Content.Shared._Arcane.Body.Components;
 using Content.Shared._Shitmed.Body.Part;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Arcane.Body.Systems;
 
@@ -28,7 +30,8 @@ public sealed class LostPartMarkingsSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<HumanoidAppearanceComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
+        // Before the body drops the part's markings, so they can still be copied from the body.
+        SubscribeLocalEvent<HumanoidAppearanceComponent, BodyPartRemovedEvent>(OnBodyPartRemoved, before: [typeof(SharedBodySystem)]);
     }
 
     // The body drops a lost part's markings, so keep them for the part regrown into that slot.
@@ -40,13 +43,24 @@ public sealed class LostPartMarkingsSystem : EntitySystem
         if (TryComp<LostPartMarkingsComponent>(ent, out var lost))
             lost.Markings.Remove(args.Slot);
 
-        if (!TryComp<BodyPartAppearanceComponent>(args.Part, out var appearance)
-            || appearance.Markings.Count == 0)
+        if (!TryComp<BodyPartAppearanceComponent>(args.Part, out var appearance))
             return;
 
-        EnsureComp<LostPartMarkingsComponent>(ent).Markings[args.Slot] = appearance.Markings.ToDictionary(
-            pair => pair.Key,
-            pair => pair.Value.Select(m => new Marking(m)).ToList());
+        // Copied from the body, which alone knows if a marking is forced (spends no marking points).
+        // A marking the body no longer has went with a child part lost earlier and is kept for that part's slot.
+        var markings = new Dictionary<HumanoidVisualLayers, List<Marking>>();
+        foreach (var (layer, list) in appearance.Markings)
+        {
+            var category = MarkingCategoriesConversion.FromHumanoidVisualLayers(layer);
+            foreach (var marking in list)
+            {
+                if (ent.Comp.MarkingSet.TryGetMarking(category, marking.MarkingId, out var bodyMarking))
+                    markings.GetOrNew(layer).Add(new Marking(bodyMarking));
+            }
+        }
+
+        if (markings.Count > 0)
+            EnsureComp<LostPartMarkingsComponent>(ent).Markings[args.Slot] = markings;
     }
 
     /// <summary>
@@ -77,10 +91,15 @@ public sealed class LostPartMarkingsSystem : EntitySystem
         appearance.Markings = markings;
         Dirty(part, appearance);
 
-        foreach (var list in markings.Values)
+        foreach (var (layer, list) in markings)
         {
+            var category = MarkingCategoriesConversion.FromHumanoidVisualLayers(layer);
             foreach (var marking in list)
-                _humanoid.AddMarking(body, marking.MarkingId, marking.MarkingColors, false, true, body.Comp);
+            {
+                // A stale slot entry may hold a marking the body already got back from another part.
+                if (!body.Comp.MarkingSet.TryGetMarking(category, marking.MarkingId, out _))
+                    _humanoid.AddMarking(body, marking.MarkingId, marking.MarkingColors, false, marking.Forced, body.Comp);
+            }
         }
 
         Dirty(body.Owner, body.Comp);

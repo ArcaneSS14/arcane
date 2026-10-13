@@ -672,6 +672,7 @@ public partial class SharedBodySystem
 
                     container = Containers.GetContainer(parentEntity, GetPartSlotContainerId(connection));
                     Containers.Insert(childPart, container);
+                    _lostPartMarkings.RestoreMarkings(ent, (childPart, childPartComponent)); // Arcane
 
                     SetupOrgans((childPart, childPartComponent), connectionSlot.Organs);
                 }
