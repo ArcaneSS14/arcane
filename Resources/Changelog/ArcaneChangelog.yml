@@ -3140,3 +3140,18 @@ Entries:
   time: '2026-10-13T13:55:13.0000000+00:00'
   prNumber: 492
   url: https://github.com/ArcaneSS14/arcane/pull/492
+- author: 'bulbo44kkey, RabbitBat '
+  changes:
+    - type: Tweak
+      message: Изменены спрайты юбки-комбинезона артиста и её парика.
+    - type: Tweak
+      message: >-
+        Изменено содержимое лотерейного ящика, теперь у вас есть шанс найти там
+        Черемшу
+  id: 229
+  time: '2026-10-13T16:05:10.0000000+00:00'
+  prNumber: 504
+  url: https://github.com/ArcaneSS14/arcane/pull/504
+  media:
+    - >-
+      https://github.com/user-attachments/assets/bf2dc546-8871-4752-8035-d2ab25f10ea0
