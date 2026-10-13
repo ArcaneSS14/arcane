@@ -3097,3 +3097,18 @@ Entries:
   time: '2026-10-11T16:16:10.0000000+00:00'
   prNumber: 503
   url: https://github.com/ArcaneSS14/arcane/pull/503
+- author: uty206, HappyRoach, libelyarnuy_pizdohvost
+  changes:
+    - type: Tweak
+      message: Станция центрального командования и фланд обновлены
+    - type: Tweak
+      message: 'Обновлён терминал. '
+    - type: Add
+      message: Добавлены новые блюспейс дормы "Сауна".
+  id: 227
+  time: '2026-10-13T02:43:01.0000000+00:00'
+  prNumber: 500
+  url: https://github.com/ArcaneSS14/arcane/pull/500
+  media:
+    - >-
+      https://github.com/user-attachments/assets/bf835bf0-17e4-41f2-93f7-dc26c090bc72
