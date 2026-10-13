@@ -63,13 +63,17 @@ public sealed class GoreExecutionSystem : EntitySystem
     {
         if (!ent.Comp.Active)
             return;
-
+        var holder = TryComp<GunComponent>(ent.Owner, out var gun) ? gun.Holder : null;
+        if (holder is not { } performer || !_admin.IsAdmin(performer))
+        {
+            SetActive(ent, false, holder);
+            return;
+        }
         foreach (var projectile in args.FiredProjectiles)
         {
             EnsureComp<GoreExecutionBulletComponent>(projectile);
         }
 
-        var holder = TryComp<GunComponent>(ent.Owner, out var gun) ? gun.Holder : null;
         SetActive(ent, false, holder);
     }
 
