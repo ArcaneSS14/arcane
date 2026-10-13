@@ -5,9 +5,6 @@ using Content.Shared.Humanoid.Markings;
 
 namespace Content.Shared._Arcane.Body.Components;
 
-/// <summary>
-/// Markings of body parts this body lost, by part slot container, kept for a part regrown into that slot.
-/// </summary>
 [RegisterComponent]
 public sealed partial class LostPartMarkingsComponent : Component
 {

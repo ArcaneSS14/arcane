@@ -59,7 +59,7 @@ public sealed class ShadowlingThrallSystem : EntitySystem
         if (TryComp<CollectiveMindComponent>(uid, out var collective))
             collective.Channels.Remove(ShadowMind);
 
-        // Arcane-Edit-Start: Thralls grant light resistance on enthrall, losing one does not change it
+        // Arcane-Edit-Start
 //        if (component.Converter == null)
 //            return;
 //

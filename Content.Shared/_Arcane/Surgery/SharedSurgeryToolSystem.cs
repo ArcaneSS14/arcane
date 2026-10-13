@@ -598,7 +598,6 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         return TryComp(user, out OfferItemComponent? offer) && offer.IsInOfferMode;
     }
 
-    // A knife on a corpse that is butchered with one is left to SharpSystem.
     private bool IsButchering(EntityUid body, EntityUid tool)
     {
         return HasComp<SharpComponent>(tool)

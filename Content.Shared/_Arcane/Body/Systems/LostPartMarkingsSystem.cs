@@ -15,9 +15,6 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Arcane.Body.Systems;
 
-/// <summary>
-/// Gives a regrown body part the markings of the part it replaces.
-/// </summary>
 public sealed class LostPartMarkingsSystem : EntitySystem
 {
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
@@ -30,11 +27,10 @@ public sealed class LostPartMarkingsSystem : EntitySystem
     {
         base.Initialize();
 
-        // Before the body drops the part's markings, so they can still be copied from the body.
+        // The body drops the part's markings, so read them first while it still knows which are forced.
         SubscribeLocalEvent<HumanoidAppearanceComponent, BodyPartRemovedEvent>(OnBodyPartRemoved, before: [typeof(SharedBodySystem)]);
     }
 
-    // The body drops a lost part's markings, so keep them for the part regrown into that slot.
     private void OnBodyPartRemoved(Entity<HumanoidAppearanceComponent> ent, ref BodyPartRemovedEvent args)
     {
         if (!_net.IsServer || TerminatingOrDeleted(ent))
@@ -46,8 +42,6 @@ public sealed class LostPartMarkingsSystem : EntitySystem
         if (!TryComp<BodyPartAppearanceComponent>(args.Part, out var appearance))
             return;
 
-        // Copied from the body, which alone knows if a marking is forced (spends no marking points).
-        // A marking the body no longer has went with a child part lost earlier and is kept for that part's slot.
         var markings = new Dictionary<HumanoidVisualLayers, List<Marking>>();
         foreach (var (layer, list) in appearance.Markings)
         {
@@ -63,18 +57,12 @@ public sealed class LostPartMarkingsSystem : EntitySystem
             EnsureComp<LostPartMarkingsComponent>(ent).Markings[args.Slot] = markings;
     }
 
-    /// <summary>
-    /// Shows a part regrown into a slot with the markings of the part lost from that slot.
-    /// Call after attaching it, so the part appearance first picks up its base layer from the body.
-    /// </summary>
     public void RestoreMarkings(Entity<HumanoidAppearanceComponent?> body, Entity<BodyPartComponent> part)
     {
         if (!Resolve(body, ref body.Comp, false))
             return;
 
-        // Losing a part hides all of its sublayers, but attaching it only shows its own layer,
-        // so markings it never recorded (e.g. hair) would otherwise stay hidden.
-        // Sublayers drawn by other parts (hands, feet) are shown when those parts are attached.
+        // Losing a part hides all its sublayers, but attaching it shows only its own layer.
         if (part.Comp.ToHumanoidLayers() is { } partLayer)
         {
             var partLayers = GetPartLayers(body);
@@ -96,7 +84,6 @@ public sealed class LostPartMarkingsSystem : EntitySystem
             var category = MarkingCategoriesConversion.FromHumanoidVisualLayers(layer);
             foreach (var marking in list)
             {
-                // A stale slot entry may hold a marking the body already got back from another part.
                 if (!body.Comp.MarkingSet.TryGetMarking(category, marking.MarkingId, out _))
                     _humanoid.AddMarking(body, marking.MarkingId, marking.MarkingColors, false, marking.Forced, body.Comp);
             }

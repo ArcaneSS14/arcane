@@ -225,8 +225,7 @@ public abstract class SharedShadowlingSystem : EntitySystem
     }
 
     // Arcane-Start
-    // Never overwrite existing components: that would replace the ThrallComponent set up by the caller
-    // and a species' innate night vision, which must survive the thrall status being removed.
+    // removeExisting would reset the caller's ThrallComponent and a species' own night vision.
     public void AddThrallComponents(EntityUid target, EntProtoId components)
     {
         var innateNightVision = HasComp<NightVisionComponent>(target);
@@ -247,7 +246,6 @@ public abstract class SharedShadowlingSystem : EntitySystem
         var target = args.Target.Value;
 
         // Arcane-Start
-        // Another enthrall or hypnosis may have converted the target during the do-after.
         if (!CanEnthrall(uid, target))
             return;
         // Arcane-End
@@ -260,7 +258,7 @@ public abstract class SharedShadowlingSystem : EntitySystem
             sling.Thralls.Add(target);
 
         // Arcane-Start
-        // Upstream applied this as a side effect of replacing the ThrallComponent, which AddThrallComponents no longer does.
+        // Upstream got this from re-adding ThrallComponent, which AddThrallComponents no longer does.
         if (sling != null && TryComp<LightDetectionDamageComponent>(uid, out var lightDet))
             _lightDamage.AddResistance((uid, lightDet), -sling.LightResistanceModifier);
         // Arcane-End

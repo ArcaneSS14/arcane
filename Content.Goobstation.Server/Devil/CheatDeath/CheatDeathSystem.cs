@@ -71,11 +71,10 @@ public sealed partial class CheatDeathSystem : EntitySystem
     }
 
     // Arcane-Start
-    // Losing the head would move the mind into it, leaving the revive action on a body nobody controls.
+    // Losing the head would move the mind into it, away from the body that has the revive action.
     private void OnBrainRemoveAttempt(Entity<CheatDeathComponent> ent, ref BeforeBrainRemovedEvent args) =>
         args.Blocked = true;
     // Arcane-End
-
 
     private void OnDeathCheatAttempt(Entity<CheatDeathComponent> ent, ref CheatDeathEvent args)
     {

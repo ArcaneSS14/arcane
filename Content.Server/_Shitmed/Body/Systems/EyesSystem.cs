@@ -17,8 +17,10 @@ namespace Content.Server._Shitmed.Body.Systems
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly BlindableSystem _blindableSystem = default!;
         [Dependency] private readonly BodySystem _bodySystem = default!;
-        [Dependency] private readonly IComponentFactory _componentFactory = default!; // Arcane
-        [Dependency] private readonly IPrototypeManager _proto = default!; // Arcane
+        // Arcane-Start
+        [Dependency] private readonly IComponentFactory _componentFactory = default!;
+        [Dependency] private readonly IPrototypeManager _proto = default!;
+        // Arcane-End
 
         public override void Initialize()
         {
@@ -49,7 +51,6 @@ namespace Content.Server._Shitmed.Body.Systems
         }
 
         // Arcane-Start
-        // Species without eyes (e.g. slime people) see without them, so losing implanted eyes must not blind them.
         private bool HasInnateEyes(BodyComponent? body)
         {
             if (body?.Prototype is not { } bodyProto)
