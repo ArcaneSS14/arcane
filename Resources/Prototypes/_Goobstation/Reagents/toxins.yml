@@ -368,7 +368,7 @@
           reagent: Microplastics
           min: 10
         - !type:MetabolizerTypeCondition # Goobstation - Yowie
-          type: [ Yowie ]
+          type: [ Yowie, HumanoidXeno ] # Arcane-Edit
           inverted: true
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.90
@@ -389,6 +389,12 @@
         - !type:MetabolizerTypeCondition # Goob, Vox are stinky
           type: [ Vox ]
           inverted: true
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yowie, Vox, HumanoidXeno ]
+        reagent: Protein
+        amount: 0.25
 
 - type: reagent
   id: Caffeine
