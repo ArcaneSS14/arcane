@@ -16,11 +16,16 @@ public sealed class ErpPanelBuiState(NetEntity user, NetEntity target) : BoundUs
 }
 
 [Serializable, NetSerializable]
-public sealed partial class ErpPanelSendMessage(string interaction, float customArousal, float customMoaning) : BoundUserInterfaceMessage
+public sealed partial class ErpPanelSendMessage(string interaction) : BoundUserInterfaceMessage
 {
     public readonly string Interaction = interaction;
-    public readonly float CustomArousal = customArousal;
-    public readonly float CustomMoaning = customMoaning;
+}
+
+[Serializable, NetSerializable]
+public sealed partial class ErpPanelSetMultipliersMessage(float arousal, float moaning) : BoundUserInterfaceMessage
+{
+    public readonly float Arousal = arousal;
+    public readonly float Moaning = moaning;
 }
 
 [ByRefEvent]
