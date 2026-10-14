@@ -380,7 +380,7 @@
   - type: General
     amount: 10000 # Arcane-Edit: 15000 > 10000
   technologyPrerequisites:
-  - RiotSuppression # Arcane-Edit
+  - EnergyBarriers # Arcane-Edit
   recipeUnlocks:
   - WeaponLaserCarbine
   - WeaponLaserCannon
@@ -389,7 +389,7 @@
   - PowerCellIRSMG
   - PortableRecharger
   # Arcane-End
-  position: 1,-3 # Arcane-Edit
+  position: 1,-4 # Arcane-Edit
 
 - type: technology
   id: PortableMicrofusionWeaponry
