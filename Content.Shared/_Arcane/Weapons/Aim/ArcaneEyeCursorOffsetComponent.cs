@@ -12,5 +12,5 @@ public sealed partial class ArcaneEyeCursorOffsetComponent : Component
     public float OffsetSpeed = 0.5f;
 
     [DataField, AutoNetworkedField]
-    public float PvsIncrease = 1.6f;
+    public EntityUid? Source;
 }

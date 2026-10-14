@@ -1,11 +1,8 @@
-using Robust.Shared.GameObjects;
-using Robust.Shared.GameStates;
-
 namespace Content.Shared._Arcane.Weapons.Aim;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent]
 public sealed partial class ArcaneAimPvsComponent : Component
 {
-    [DataField, AutoNetworkedField]
+    [DataField]
     public float Increase = 1.6f;
 }

@@ -5,6 +5,7 @@ using Content.Shared.Movement.Systems;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
+using Robust.Client.UserInterface;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Maths;
@@ -15,7 +16,7 @@ public sealed class ArcaneEyeCursorOffsetSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IInputManager _input = default!;
-    [Dependency] private readonly IClyde _clyde = default!;
+    [Dependency] private readonly IEyeManager _eyeManager = default!;
     [Dependency] private readonly SharedContentEyeSystem _eye = default!;
 
     private readonly Dictionary<EntityUid, Vector2> _currentOffsets = new();
@@ -31,6 +32,8 @@ public sealed class ArcaneEyeCursorOffsetSystem : EntitySystem
     private void OnShutdown(Entity<ArcaneEyeCursorOffsetComponent> ent, ref ComponentShutdown args)
     {
         _currentOffsets.Remove(ent.Owner);
+        if (TryComp<EyeComponent>(ent.Owner, out var eye))
+            _eye.UpdateEyeOffset((ent.Owner, eye));
     }
 
     private void OnGetEyeOffset(Entity<ArcaneEyeCursorOffsetComponent> ent, ref GetEyeOffsetEvent args)
@@ -51,24 +54,27 @@ public sealed class ArcaneEyeCursorOffsetSystem : EntitySystem
 
         if (!TryComp<ArcaneEyeCursorOffsetComponent>(player, out var comp))
         {
-            _currentOffsets.Remove(player);
+            if (_currentOffsets.Remove(player) && TryComp<EyeComponent>(player, out var staleEye))
+                _eye.UpdateEyeOffset((player, staleEye));
             return;
         }
 
-        var viewport = _input.MouseScreenPosition;
-
-        var screenSize = _clyde.ScreenSize;
-        if (screenSize.X <= 0 || screenSize.Y <= 0)
+        if (_eyeManager.MainViewport is not Control viewport)
             return;
 
+        var vpSize = (Vector2) viewport.Size;
+        if (vpSize.X <= 0 || vpSize.Y <= 0)
+            return;
+
+        var mouse = _input.MouseScreenPosition.Position - viewport.GlobalPixelPosition;
+
         var normalized = new Vector2(
-            ((float) viewport.X / screenSize.X - 0.5f) * 2f,
-            (0.5f - (float) viewport.Y / screenSize.Y) * 2f);
+            (mouse.X / vpSize.X - 0.5f) * 2f,
+            (0.5f - mouse.Y / vpSize.Y) * 2f);
 
         normalized = Vector2.Clamp(normalized, -Vector2.One, Vector2.One);
 
         var target = normalized * comp.MaxOffset;
-
         var current = _currentOffsets.GetValueOrDefault(player, Vector2.Zero);
         var delta = target - current;
         var step = comp.OffsetSpeed * frameTime * 10f;

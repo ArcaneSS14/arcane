@@ -26,18 +26,8 @@ public sealed class ArcaneAimSystem : SharedArcaneAimSystem
     {
         base.EnableAim(ent, user);
 
-        var offset = EnsureComp<ArcaneEyeCursorOffsetComponent>(user);
-        offset.MaxOffset = ent.Comp.Offset;
-        offset.OffsetSpeed = ent.Comp.OffsetSpeed;
-        offset.PvsIncrease = ent.Comp.PvsIncrease;
-        Dirty(user, offset);
-
-        if (!HasComp<ArcaneAimPvsComponent>(user))
-        {
-            var pvs = EnsureComp<ArcaneAimPvsComponent>(user);
-            pvs.Increase = ent.Comp.PvsIncrease;
-            Dirty(user, pvs);
-        }
+        var pvs = EnsureComp<ArcaneAimPvsComponent>(user);
+        pvs.Increase = ent.Comp.PvsIncrease;
 
         if (TryComp<ContentEyeComponent>(user, out var contentEye) &&
             TryComp<EyeComponent>(user, out var eye))
@@ -48,9 +38,14 @@ public sealed class ArcaneAimSystem : SharedArcaneAimSystem
 
     protected override void DisableAim(Entity<ArcaneAimComponent> ent, EntityUid user)
     {
+        var wasSource = TryComp<ArcaneEyeCursorOffsetComponent>(user, out var offset) &&
+                        offset.Source == ent.Owner;
+
         base.DisableAim(ent, user);
 
-        RemComp<ArcaneEyeCursorOffsetComponent>(user);
+        if (!wasSource)
+            return;
+
         RemComp<ArcaneAimPvsComponent>(user);
 
         if (TryComp<ContentEyeComponent>(user, out var contentEye) &&

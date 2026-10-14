@@ -7,6 +7,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Hands;
+using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -100,6 +101,9 @@ public sealed class GoreExecutionSystem : EntitySystem
     private void OnProjectileHit(Entity<GoreExecutionBulletComponent> ent, ref ProjectileHitEvent args)
     {
         if (!_mobState.IsAlive(args.Target))
+            return;
+
+        if (!HasComp<HumanoidAppearanceComponent>(args.Target))
             return;
 
         if (!TryComp<BodyComponent>(args.Target, out var body))

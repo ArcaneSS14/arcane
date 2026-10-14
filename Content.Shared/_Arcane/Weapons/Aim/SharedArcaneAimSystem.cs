@@ -4,7 +4,6 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Wieldable;
-using Content.Shared.Wieldable.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 
@@ -48,6 +47,12 @@ public abstract class SharedArcaneAimSystem : EntitySystem
         ent.Comp.Active = true;
         ent.Comp.User = user;
         Dirty(ent);
+
+        var offset = EnsureComp<ArcaneEyeCursorOffsetComponent>(user);
+        offset.MaxOffset = ent.Comp.Offset;
+        offset.OffsetSpeed = ent.Comp.OffsetSpeed;
+        offset.Source = ent.Owner;
+        Dirty(user, offset);
     }
 
     protected virtual void DisableAim(Entity<ArcaneAimComponent> ent, EntityUid user)
@@ -55,6 +60,12 @@ public abstract class SharedArcaneAimSystem : EntitySystem
         ent.Comp.Active = false;
         ent.Comp.User = null;
         Dirty(ent);
+
+        if (TryComp<ArcaneEyeCursorOffsetComponent>(user, out var offset) &&
+            offset.Source == ent.Owner)
+        {
+            RemComp<ArcaneEyeCursorOffsetComponent>(user);
+        }
     }
 
     private void OnActorMoveInput(Entity<ActorComponent> ent, ref MoveInputEvent args)
