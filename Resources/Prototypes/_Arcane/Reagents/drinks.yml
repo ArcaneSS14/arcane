@@ -1,0 +1,8 @@
+- type: reagent
+  parent: BaseSoda
+  id: Bobda
+  name: reagent-name-bobda
+  desc: reagent-desc-bobda
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: bobda
+  color: "#7d5739"
