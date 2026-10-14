@@ -1,0 +1,39 @@
+ent-DrinkBobdaCan = банка бобды
+    .desc = Та самая.
+ent-DrinkBlueraspberryBobdaCan = банка бобды со вкусом голубой малины
+    .desc = Та самая.
+ent-DrinkCherryBobdaCan = банка вишнёвой бобды
+    .desc = Та самая.
+ent-DrinkCranberryBobdaCan = банка клюквенной бобды
+    .desc = Та самая.
+ent-DrinkGrapeBobdaCan = банка виноградной бобды
+    .desc = Та самая.
+ent-DrinkLimeBobdaCan = банка лаймовой бобды
+    .desc = Та самая.
+ent-DrinkPeachBobdaCan = банка персиковой бобды
+    .desc = Та самая.
+ent-DrinkPineappleBobdaCan = банка ананасовой бобды
+    .desc = Та самая.
+ent-DrinkVanillaBobdaCan = банка ванильной бобды
+    .desc = Та самая.
+
+# Diet
+
+ent-DrinkDietBobdaCan = банка диетической бобды
+    .desc = Та самая. Теперь диетическая!
+ent-DrinkDietBlueraspberryBobdaCan = банка диетической бобды со вкусом голубой малины
+    .desc = Та самая. Теперь диетическая!
+ent-DrinkDietCherryBobdaCan = банка диетической вишнёвой бобды
+    .desc = Та самая. Теперь диетическая!
+ent-DrinkDietCranberryBobdaCan = банка диетической клюквенной бобды
+    .desc = Та самая. Теперь диетическая!
+ent-DrinkDietGrapeBobdaCan = банка диетической виноградной бобды
+    .desc = Та самая. Теперь диетическая!
+ent-DrinkDietLimeBobdaCan = банка диетической лаймовой бобды
+    .desc = Та самая. Теперь диетическая!
+ent-DrinkDietPeachBobdaCan = банка диетической персиковой бобды
+    .desc = Та самая. Теперь диетическая!
+ent-DrinkDietPineappleBobdaCan = банка диетической ананасовой бобды
+    .desc = Та самая. Теперь диетическая!
+ent-DrinkDietVanillaBobdaCan = банка диетической ванильной бобды
+    .desc = Та самая. Теперь диетическая!
