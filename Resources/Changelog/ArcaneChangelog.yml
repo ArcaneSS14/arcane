@@ -3211,3 +3211,13 @@ Entries:
       https://github.com/user-attachments/assets/20e4ef6f-3339-4945-a896-ecc06bf8e16a
     - >-
       https://github.com/user-attachments/assets/4e97b08b-f6c7-4d6e-8f1a-aaec67d189c3
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: Исправлен спрайт открытого состояния тыквенных бутылок ёкаев (Oni)
+    - type: Fix
+      message: Исправлена проверка Target при передаче предмета целевому игроку
+  id: 234
+  time: '2026-10-14T23:04:00.0000000+00:00'
+  prNumber: 513
+  url: https://github.com/ArcaneSS14/arcane/pull/513
