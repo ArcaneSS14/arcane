@@ -3221,3 +3221,54 @@ Entries:
   time: '2026-10-14T23:04:00.0000000+00:00'
   prNumber: 513
   url: https://github.com/ArcaneSS14/arcane/pull/513
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Метки на отрубленных частях тела возвращаются при восстановлении тела.
+    - type: Fix
+      message: Виды без собственных глаз не слепнут после удаления вставленных глаз.
+    - type: Fix
+      message: Трэлл не теряет врождённое ночное зрение после освобождения.
+    - type: Fix
+      message: Обман смерти дьявола срабатывает после отрубания головы.
+    - type: Fix
+      message: >-
+        Нажатие по трупу разделываемого существа теперь разделывает его, а не
+        делает шаг операции.
+    - type: Fix
+      message: Тенеморф больше не лечится от света при большом количестве треллов.
+    - type: Tweak
+      message: Потеря трелла снижает сопротивление тенелинга свету.
+    - type: Tweak
+      message: Полный иммунитет к свету даёт только "Пустота".
+    - type: Fix
+      message: >-
+        Несколько тенеморфов и младших тенеморфов одновременно получают урон от
+        света и лечатся в тени.
+  id: 235
+  time: '2026-10-14T23:19:42.0000000+00:00'
+  prNumber: 508
+  url: https://github.com/ArcaneSS14/arcane/pull/508
+  media:
+    - >-
+      https://github.com/user-attachments/assets/9c01c4ea-ff3d-42c5-923a-3f74f6419e4d
+    - >-
+      https://github.com/user-attachments/assets/f1d3d9be-60c8-4dbd-a793-2f07cb4bcafa
+    - >-
+      https://github.com/user-attachments/assets/d9f458f1-e3a7-412a-8b4f-6a814b629807
+    - >-
+      https://github.com/user-attachments/assets/8bdbf503-73e7-48e0-b005-01ed27718232
+    - >-
+      https://github.com/user-attachments/assets/f34dbac6-4441-414d-8915-506716deb67c
+    - >-
+      https://github.com/user-attachments/assets/d492c26c-3111-4e25-8245-d96a894985d1
+    - >-
+      https://github.com/user-attachments/assets/8eab7fe7-de7b-49ce-82ca-2ff023a944c2
+    - >-
+      https://github.com/user-attachments/assets/5d9e0e1f-2dad-48b9-bc79-c270bff1eb2b
+    - >-
+      https://github.com/user-attachments/assets/722168e5-4473-48e9-8f8e-ea4dfc80f164
+    - >-
+      https://github.com/user-attachments/assets/c6309097-65c1-4ca4-851e-166ef99bedea
+    - >-
+      https://github.com/user-attachments/assets/eea56d2a-25d9-49f6-a1ba-b01872aef781
