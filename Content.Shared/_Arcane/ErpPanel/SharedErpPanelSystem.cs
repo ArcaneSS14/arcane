@@ -14,7 +14,27 @@ using Robust.Shared.Utility;
 using Content.Shared.Popups;
 
 namespace Content.Shared._Arcane.ErpPanel;
-
+// ATTATION CAT AHEAD 
+//         .                 .
+//        . .               . .
+//       .   .             .   .
+//      .     . . . . . . .     .
+//      .                       .
+//     .      ..         ..      .
+//  . . .     ..         ..     . . .
+//     .            .            .
+//  . . .        .  .  .        . . .
+//      .                       .
+//        . .               . .
+//            . . . . . . .
+//          .               .
+//        .                   .           .
+//       .                     .         .
+//       .                     .        .
+//       .                     .      .
+//        .   .           .   .   . .
+//         . . . . . . . . . . . .
+// Thank you for attaion 
 public sealed class SharedErpPanelSystem : EntitySystem
 {
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
