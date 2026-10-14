@@ -3196,3 +3196,18 @@ Entries:
       https://github.com/user-attachments/assets/bab9d256-4d95-441a-8385-6c3519db277d
     - >-
       https://github.com/user-attachments/assets/8bb2434f-e480-40a3-806b-32ce1d0a47ff
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: >-
+        Исправлена ошибка, из-за которой нельзя было переключать противогаз "под
+        волосами" и "над волосами".
+  id: 233
+  time: '2026-10-14T22:36:34.0000000+00:00'
+  prNumber: 509
+  url: https://github.com/ArcaneSS14/arcane/pull/509
+  media:
+    - >-
+      https://github.com/user-attachments/assets/20e4ef6f-3339-4945-a896-ecc06bf8e16a
+    - >-
+      https://github.com/user-attachments/assets/4e97b08b-f6c7-4d6e-8f1a-aaec67d189c3
