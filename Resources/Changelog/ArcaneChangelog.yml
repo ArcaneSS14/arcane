@@ -3163,3 +3163,17 @@ Entries:
   time: '2026-10-13T18:10:39.0000000+00:00'
   prNumber: 505
   url: https://github.com/ArcaneSS14/arcane/pull/505
+- author: ALFAPRO
+  changes:
+    - type: Tweak
+      message: На карте Chloris на СМ больше нет лишних урановых окон.
+    - type: Tweak
+      message: Утильмат на аванпосте Интек больше не требует доступ.
+    - type: Tweak
+      message: На аванпост лаваленда добавили стиралки.
+    - type: Tweak
+      message: В ботании Saltern появился биогенератор.
+  id: 231
+  time: '2026-10-14T11:37:54.0000000+00:00'
+  prNumber: 510
+  url: https://github.com/ArcaneSS14/arcane/pull/510
