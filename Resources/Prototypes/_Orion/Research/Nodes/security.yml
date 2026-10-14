@@ -380,7 +380,8 @@
   - type: General
     amount: 10000 # Arcane-Edit: 15000 > 10000
   technologyPrerequisites:
-  - EnergyBarriers # Arcane-Edit
+  - RiotSuppression # Arcane-Edit
+  - EnergyBarriers # Arcane
   recipeUnlocks:
   - WeaponLaserCarbine
   - WeaponLaserCannon
