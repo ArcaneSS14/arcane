@@ -3,9 +3,9 @@ meta:
   category: Grid
   engineVersion: 270.1.0
   forkId: arcane
-  forkVersion: 2888b87e54dc801ec24f0b9d7b1f48f6c5587737
-  time: 09/01/2026 09:05:49
-  entityCount: 5272
+  forkVersion: 59b2c39ed106a6a574bf12d027c55a939b9b3785
+  time: 10/13/2026 06:06:24
+  entityCount: 5273
 maps: []
 grids:
 - 1
@@ -11982,6 +11982,13 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: FlatpackWashingMachine
+  entities:
+  - uid: 5273
+    components:
+    - type: Transform
+      pos: 0.70433176,-1.7369442
+      parent: 1
 - proto: FlippoLighter
   entities:
   - uid: 1319
@@ -28477,6 +28484,8 @@ entities:
     - type: Transform
       pos: 0.5,17.5
       parent: 1
+    missingComponents:
+    - AccessReader
 - proto: VendingMachineSeedsUnlocked
   entities:
   - uid: 3876
