@@ -14,6 +14,14 @@ public sealed partial class ThrallComponent : Component
     [ViewVariables]
     public EntityUid? Converter;
 
+    // Arcane-Start
+    [ViewVariables]
+    public bool InnateNightVision;
+
+    [ViewVariables]
+    public float GrantedLightResistance;
+    // Arcane-End
+
     [DataField]
     public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "ThrallFaction";
 
