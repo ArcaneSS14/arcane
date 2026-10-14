@@ -54,6 +54,10 @@
   - MagazinePistolPractice
   - SpeedLoaderMagnumPractice
   - MagazinePistolSubMachineGunPractice
+  # Arcane-Start
+  - WeaponLaserCellRevolver
+  - PowerCellIRRevolver
+  # Arcane-End
   position: 0,0
 
 - type: technology
@@ -381,9 +385,7 @@
   - WeaponLaserCarbine
   - WeaponLaserCannon
   # Arcane-Start
-  - WeaponLaserCellRevolver
   - WeaponLaserCellSMG
-  - PowerCellIRRevolver
   - PowerCellIRSMG
   - PortableRecharger
   # Arcane-End
