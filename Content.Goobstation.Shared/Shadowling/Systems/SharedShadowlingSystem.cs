@@ -204,7 +204,7 @@ public abstract class SharedShadowlingSystem : EntitySystem
 
         // Target needs to be alive
         if (!TryComp<MobStateComponent>(target, out var mobState)
-            || !_mobStateSystem.IsCritical(target, mobState) && !_mobStateSystem.IsCritical(target, mobState))
+            || !_mobStateSystem.IsIncapacitated(target, mobState)) // Arcane-Edit
             return true;
 
         _popup.PopupPredicted(Loc.GetString("shadowling-enthrall-dead"), uid, uid, PopupType.SmallCaution);
