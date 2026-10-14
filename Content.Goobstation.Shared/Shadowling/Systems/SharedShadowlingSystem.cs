@@ -81,12 +81,12 @@ public abstract class SharedShadowlingSystem : EntitySystem
         }
     }
 
-    public void OnThrallRemoved(Entity<ShadowlingComponent> ent)
+    public void OnThrallRemoved(Entity<ShadowlingComponent> ent, ThrallComponent thrall) // Arcane-Edit
     {
         if (!TryComp<LightDetectionDamageComponent>(ent, out var lightDet))
             return;
 
-        _lightDamage.AddResistance((ent.Owner, lightDet), -ent.Comp.LightResistanceModifier);
+        _lightDamage.AddResistance((ent.Owner, lightDet), thrall.GrantedLightResistance); // Arcane-Edit
     }
 
     public ProtoId<CollectiveMindPrototype> ShadowMind = "Shadowmind";
@@ -263,8 +263,13 @@ public abstract class SharedShadowlingSystem : EntitySystem
 
         // Arcane-Start
         // Upstream got this from re-adding ThrallComponent, which AddThrallComponents no longer does.
+        // Only the part above the floor is stored, so losing the thrall refunds exactly that.
         if (sling != null && TryComp<LightDetectionDamageComponent>(uid, out var lightDet))
+        {
+            var before = lightDet.ResistanceModifier;
             _lightDamage.AddResistance((uid, lightDet), -sling.LightResistanceModifier);
+            thrall.GrantedLightResistance = before - lightDet.ResistanceModifier;
+        }
         // Arcane-End
 
         _audio.PlayPredicted(

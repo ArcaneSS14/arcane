@@ -23,6 +23,7 @@
   - type: LightDetection
   - type: LightDetectionDamage
     # resistanceModifier: Todo: find why it doesn't work correctly
+    minResistanceModifier: 0.1 # Arcane
 
 - type: entity
   id: ShadowlingAbilitiesObtainable

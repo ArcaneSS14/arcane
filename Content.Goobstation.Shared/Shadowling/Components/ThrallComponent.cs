@@ -17,6 +17,9 @@ public sealed partial class ThrallComponent : Component
     // Arcane-Start
     [ViewVariables]
     public bool InnateNightVision;
+
+    [ViewVariables]
+    public float GrantedLightResistance;
     // Arcane-End
 
     [DataField]
