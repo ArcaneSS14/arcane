@@ -75,5 +75,5 @@
     range: 25
   - type: ArcaneAim
     offset: 8
-    pvsIncrease: 0.8
+    pvsIncrease: 1.6
     offsetSpeed: 0.5

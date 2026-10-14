@@ -10,9 +10,6 @@ public sealed partial class TargetLockComponent : Component
     [DataField]
     public EntProtoId Action = "ActionArcaneTargetLock";
 
-    [DataField]
-    public EntityUid? ActionEntity;
-
     [DataField, AutoNetworkedField]
     public EntityUid? LockedTarget;
 

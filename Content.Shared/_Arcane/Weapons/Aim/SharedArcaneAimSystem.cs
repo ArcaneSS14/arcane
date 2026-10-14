@@ -1,5 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Hands;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Wieldable;
 using Content.Shared.Wieldable.Components;
@@ -10,6 +12,8 @@ namespace Content.Shared._Arcane.Weapons.Aim;
 
 public abstract class SharedArcaneAimSystem : EntitySystem
 {
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -25,6 +29,7 @@ public abstract class SharedArcaneAimSystem : EntitySystem
     {
         if (args.Handled)
             return;
+
         args.Handled = true;
 
         var user = args.Performer;
@@ -34,8 +39,6 @@ public abstract class SharedArcaneAimSystem : EntitySystem
             DisableAim(ent, user);
             return;
         }
-        if (!IsWielded(ent))
-            return;
 
         EnableAim(ent, user);
     }
@@ -59,11 +62,19 @@ public abstract class SharedArcaneAimSystem : EntitySystem
         if (!args.State)
             return;
 
-        var query = EntityQueryEnumerator<ArcaneAimComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        if (!TryComp<HandsComponent>(ent.Owner, out var hands))
+            return;
+
+        foreach (var handId in hands.SortedHands)
         {
+            if (!_hands.TryGetHeldItem((ent.Owner, hands), handId, out var item))
+                continue;
+
+            if (!TryComp<ArcaneAimComponent>(item, out var comp))
+                continue;
+
             if (comp.Active && comp.User == ent.Owner)
-                DisableAim((uid, comp), ent.Owner);
+                DisableAim(new Entity<ArcaneAimComponent>(item.Value, comp), ent.Owner);
         }
     }
 
@@ -83,13 +94,5 @@ public abstract class SharedArcaneAimSystem : EntitySystem
     {
         if (ent.Comp.Active && ent.Comp.User is { } user)
             DisableAim(ent, user);
-    }
-
-    private bool IsWielded(EntityUid uid)
-    {
-        if (!TryComp<WieldableComponent>(uid, out var wieldable))
-            return true;
-
-        return wieldable.Wielded;
     }
 }

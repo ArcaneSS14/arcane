@@ -4,6 +4,7 @@ using Content.Shared.Hands;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared._Goobstation.Wizard.Projectiles;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.GameObjects;
@@ -50,14 +51,25 @@ public sealed class TargetLockSystem : EntitySystem
             return;
         }
 
-        Vector2 userPos = _xform.GetMapCoordinates(user).Position;
-        Vector2 targetPos = _xform.GetMapCoordinates(target).Position;
+        var userCoords = _xform.GetMapCoordinates(user);
+        var targetCoords = _xform.GetMapCoordinates(target);
 
-        if ((userPos - targetPos).Length() > ent.Comp.Range)
+        if (userCoords.MapId != targetCoords.MapId)
+        {
+            _popup.PopupEntity(Loc.GetString("arcane-target-lock-none"), ent.Owner, user);
             return;
+        }
+
+        if ((userCoords.Position - targetCoords.Position).Length() > ent.Comp.Range)
+        {
+            _popup.PopupEntity(Loc.GetString("arcane-target-lock-out-of-range"), ent.Owner, user);
+            return;
+        }
 
         ent.Comp.LockedTarget = target;
         Dirty(ent);
+        _popup.PopupEntity(Loc.GetString("arcane-target-lock-enabled",
+            ("target", Name(target))), ent.Owner, user);
     }
 
     private void OnAmmoShot(Entity<TargetLockComponent> ent, ref AmmoShotEvent args)
@@ -72,28 +84,33 @@ public sealed class TargetLockSystem : EntitySystem
             return;
         }
 
-        Vector2 targetPos = _xform.GetMapCoordinates(target).Position;
+        var targetCoords = _xform.GetMapCoordinates(target);
 
         foreach (EntityUid projectile in args.FiredProjectiles)
         {
             if (!TryComp<ProjectileComponent>(projectile, out _))
                 continue;
 
-            if (TryComp<PhysicsComponent>(projectile, out var physics))
-            {
-                Vector2 projPos = _xform.GetMapCoordinates(projectile).Position;
-                Vector2 dirToTarget = targetPos - projPos;
+            if (HasComp<HomingProjectileComponent>(projectile))
+                continue;
 
-                if (dirToTarget.LengthSquared() > 0.0001f)
-                {
-                    float speed = physics.LinearVelocity.Length();
-                    if (speed < 0.01f)
-                        speed = 30f;
+            if (!TryComp<PhysicsComponent>(projectile, out var physics))
+                continue;
 
-                    Vector2 newVelocity = dirToTarget.Normalized() * speed;
-                    _physics.SetLinearVelocity(projectile, newVelocity, body: physics);
-                }
-            }
+            var projCoords = _xform.GetMapCoordinates(projectile);
+            if (projCoords.MapId != targetCoords.MapId)
+                continue;
+
+            Vector2 dirToTarget = targetCoords.Position - projCoords.Position;
+            if (dirToTarget.LengthSquared() <= 0.0001f)
+                continue;
+
+            float speed = physics.LinearVelocity.Length();
+            if (speed < 0.01f)
+                speed = 30f;
+
+            Vector2 newVelocity = Vector2.Normalize(dirToTarget) * speed;
+            _physics.SetLinearVelocity(projectile, newVelocity, body: physics);
         }
 
         ent.Comp.LockedTarget = null;
