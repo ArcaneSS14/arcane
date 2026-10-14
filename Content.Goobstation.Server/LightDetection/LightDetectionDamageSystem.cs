@@ -30,7 +30,7 @@ public sealed class LightDetectionDamageSystem : SharedLightDetectionDamageSyste
         while (query.MoveNext(out var uid, out var comp, out var lightDet))
         {
             if (comp.NextUpdate > _timing.CurTime)
-                return;
+                continue; // Arcane-Edit
 
             comp.NextUpdate = _timing.CurTime + comp.UpdateInterval;
 
@@ -41,14 +41,14 @@ public sealed class LightDetectionDamageSystem : SharedLightDetectionDamageSyste
             {
                 _damageable.TryChangeDamage(uid, comp.DamageToDeal * comp.ResistanceModifier, splitDamage: SplitDamageBehavior.SplitEnsureAll);
                 _audio.PlayPvs(comp.SoundOnDamage, uid, AudioParams.Default.WithVolume(-2f));
-                return;
+                continue; // Arcane-Edit
             }
 
             if (comp.DetectionValue > 0 && comp.HealOnShadows && !_mobState.IsDead(uid))
             {
                 _woundSystem.TryHealWoundsOnOwner(uid, comp.DamageToHeal, true);
                 _damageable.TryChangeDamage(uid, comp.DamageToHeal, true, false, targetPart: TargetBodyPart.All, splitDamage: SplitDamageBehavior.SplitEnsureAllOrganic, canMiss: false);
-                return;
+                continue; // Arcane-Edit
             }
         }
     }
