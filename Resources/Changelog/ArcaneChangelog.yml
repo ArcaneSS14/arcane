@@ -3287,3 +3287,13 @@ Entries:
   time: '2026-10-15T00:04:17.0000000+00:00'
   prNumber: 514
   url: https://github.com/ArcaneSS14/arcane/pull/514
+- author: Kat_L
+  changes:
+    - type: Fix
+      message: >-
+        Призраки больше не могут провести обстрел с консоли управления
+        артиллерийскими орудиями
+  id: 237
+  time: '2026-10-15T04:08:34.0000000+00:00'
+  prNumber: 515
+  url: https://github.com/ArcaneSS14/arcane/pull/515
