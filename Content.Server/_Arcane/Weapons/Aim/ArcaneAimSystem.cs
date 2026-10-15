@@ -38,8 +38,8 @@ public sealed class ArcaneAimSystem : SharedArcaneAimSystem
 
     protected override void DisableAim(Entity<ArcaneAimComponent> ent, EntityUid user)
     {
-        var wasSource = TryComp<ArcaneEyeCursorOffsetComponent>(user, out var offset) &&
-                        offset.Source == ent.Owner;
+        var wasSource = TryComp<ArcaneAimCameraOffsetComponent>(user, out var camera) &&
+                        camera.Source == ent.Owner;
 
         base.DisableAim(ent, user);
 

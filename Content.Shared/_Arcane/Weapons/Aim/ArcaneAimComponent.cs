@@ -10,13 +10,10 @@ public sealed partial class ArcaneAimComponent : Component
     public EntProtoId Action = "ActionArcaneAim";
 
     [DataField]
-    public float Offset = 8f;
+    public float Offset = 12f;
 
     [DataField]
-    public float PvsIncrease = 1.6f;
-
-    [DataField]
-    public float OffsetSpeed = 0.5f;
+    public float PvsIncrease = 0.8f;
 
     [DataField, AutoNetworkedField]
     public bool Active;

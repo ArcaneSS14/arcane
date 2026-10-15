@@ -74,6 +74,7 @@
   - type: TargetLock
     range: 25
   - type: ArcaneAim
-    offset: 8
-    pvsIncrease: 1.6
-    offsetSpeed: 0.5
+    offset: 12
+    pvsIncrease: 0.8
+
+

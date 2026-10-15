@@ -3,13 +3,10 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Arcane.Weapons.Aim;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
-public sealed partial class ArcaneEyeCursorOffsetComponent : Component
+public sealed partial class ArcaneAimCameraOffsetComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public float MaxOffset = 8f;
-
-    [DataField, AutoNetworkedField]
-    public float OffsetSpeed = 0.5f;
+    public float Offset = 9f;
 
     [DataField, AutoNetworkedField]
     public EntityUid? Source;

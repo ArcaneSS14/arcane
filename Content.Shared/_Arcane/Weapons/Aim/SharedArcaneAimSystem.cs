@@ -4,6 +4,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Wieldable;
+using Content.Shared.Wieldable.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 
@@ -30,7 +31,6 @@ public abstract class SharedArcaneAimSystem : EntitySystem
             return;
 
         args.Handled = true;
-
         var user = args.Performer;
 
         if (ent.Comp.Active)
@@ -39,7 +39,31 @@ public abstract class SharedArcaneAimSystem : EntitySystem
             return;
         }
 
+        if (!IsHeldBy(user, ent.Owner) ||
+            !TryComp<WieldableComponent>(ent.Owner, out var wieldable) ||
+            !wieldable.Wielded)
+        {
+            return;
+        }
+
         EnableAim(ent, user);
+    }
+
+    private bool IsHeldBy(EntityUid user, EntityUid item)
+    {
+        if (!TryComp<HandsComponent>(user, out var hands))
+            return false;
+
+        foreach (var handId in hands.SortedHands)
+        {
+            if (_hands.TryGetHeldItem((user, hands), handId, out var held) &&
+                held == item)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected virtual void EnableAim(Entity<ArcaneAimComponent> ent, EntityUid user)
@@ -48,11 +72,10 @@ public abstract class SharedArcaneAimSystem : EntitySystem
         ent.Comp.User = user;
         Dirty(ent);
 
-        var offset = EnsureComp<ArcaneEyeCursorOffsetComponent>(user);
-        offset.MaxOffset = ent.Comp.Offset;
-        offset.OffsetSpeed = ent.Comp.OffsetSpeed;
-        offset.Source = ent.Owner;
-        Dirty(user, offset);
+        var camera = EnsureComp<ArcaneAimCameraOffsetComponent>(user);
+        camera.Offset = ent.Comp.Offset;
+        camera.Source = ent.Owner;
+        Dirty(user, camera);
     }
 
     protected virtual void DisableAim(Entity<ArcaneAimComponent> ent, EntityUid user)
@@ -61,31 +84,29 @@ public abstract class SharedArcaneAimSystem : EntitySystem
         ent.Comp.User = null;
         Dirty(ent);
 
-        if (TryComp<ArcaneEyeCursorOffsetComponent>(user, out var offset) &&
-            offset.Source == ent.Owner)
+        if (TryComp<ArcaneAimCameraOffsetComponent>(user, out var camera) &&
+            camera.Source == ent.Owner)
         {
-            RemComp<ArcaneEyeCursorOffsetComponent>(user);
+            RemComp<ArcaneAimCameraOffsetComponent>(user);
         }
     }
 
     private void OnActorMoveInput(Entity<ActorComponent> ent, ref MoveInputEvent args)
     {
-        if (!args.State)
-            return;
-
-        if (!TryComp<HandsComponent>(ent.Owner, out var hands))
+        if (!args.State || !TryComp<HandsComponent>(ent.Owner, out var hands))
             return;
 
         foreach (var handId in hands.SortedHands)
         {
-            if (!_hands.TryGetHeldItem((ent.Owner, hands), handId, out var item))
+            if (!_hands.TryGetHeldItem((ent.Owner, hands), handId, out var item) ||
+                item is not { } itemUid ||
+                !TryComp<ArcaneAimComponent>(itemUid, out var aim))
+            {
                 continue;
+            }
 
-            if (!TryComp<ArcaneAimComponent>(item, out var comp))
-                continue;
-
-            if (comp.Active && comp.User == ent.Owner)
-                DisableAim(new Entity<ArcaneAimComponent>(item.Value, comp), ent.Owner);
+            if (aim.Active && aim.User == ent.Owner)
+                DisableAim(new Entity<ArcaneAimComponent>(itemUid, aim), ent.Owner);
         }
     }
 
