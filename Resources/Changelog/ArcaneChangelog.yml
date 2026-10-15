@@ -3272,3 +3272,18 @@ Entries:
       https://github.com/user-attachments/assets/c6309097-65c1-4ca4-851e-166ef99bedea
     - >-
       https://github.com/user-attachments/assets/eea56d2a-25d9-49f6-a1ba-b01872aef781
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: >-
+        Множители возбуждения и стонов в панели взаимодействий теперь действуют
+        и на чужие взаимодействия с вами. 0% больше не дает другим игрокам вас
+        возбуждать.
+    - type: Tweak
+      message: >-
+        Настройки множителей в панели взаимодействий сохраняются между
+        открытиями.
+  id: 236
+  time: '2026-10-15T00:04:17.0000000+00:00'
+  prNumber: 514
+  url: https://github.com/ArcaneSS14/arcane/pull/514
