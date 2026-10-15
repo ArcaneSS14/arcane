@@ -62,15 +62,16 @@ public sealed class ArcaneEyeCursorOffsetSystem : EntitySystem
         if (_eyeManager.MainViewport is not Control viewport)
             return;
 
-        var vpSize = (Vector2) viewport.Size;
+        var vpSize = (Vector2) viewport.PixelSize;
         if (vpSize.X <= 0 || vpSize.Y <= 0)
             return;
 
-        var mouse = _input.MouseScreenPosition.Position - viewport.GlobalPixelPosition;
+        var mouse = _input.MouseScreenPosition.Position;
+        var center = viewport.GlobalPixelPosition + vpSize / 2f;
 
         var normalized = new Vector2(
-            (mouse.X / vpSize.X - 0.5f) * 2f,
-            (0.5f - mouse.Y / vpSize.Y) * 2f);
+            (mouse.X - center.X) / (vpSize.X / 2f),
+            (center.Y - mouse.Y) / (vpSize.Y / 2f));
 
         normalized = Vector2.Clamp(normalized, -Vector2.One, Vector2.One);
 
