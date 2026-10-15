@@ -29,7 +29,7 @@ public abstract class SharedLightDetectionDamageSystem : EntitySystem
 
     public void AddResistance(Entity<LightDetectionDamageComponent> ent, float amount)
     {
-        ent.Comp.ResistanceModifier += amount;
+        ent.Comp.ResistanceModifier = Math.Max(ent.Comp.ResistanceModifier + amount, ent.Comp.MinResistanceModifier); // Arcane-Edit
         DirtyField(ent.Owner, ent.Comp, nameof(LightDetectionDamageComponent.ResistanceModifier));
     }
 }

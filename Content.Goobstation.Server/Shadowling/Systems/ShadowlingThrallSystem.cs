@@ -51,7 +51,8 @@ public sealed class ShadowlingThrallSystem : EntitySystem
         if (_mind.TryGetMind(uid, out var mindId, out _))
             _roles.MindRemoveRole<ShadowlingRoleComponent>(mindId);
 
-        RemComp<NightVisionComponent>(uid);
+        if (!component.InnateNightVision) // Arcane
+            RemComp<NightVisionComponent>(uid); // Arcane-Edit
         RemComp<ThrallGuiseComponent>(uid);
         RemComp<LesserShadowlingComponent>(uid);
 
@@ -64,7 +65,7 @@ public sealed class ShadowlingThrallSystem : EntitySystem
         // Adjust lightning resistance for shadowling
         var shadowling = component.Converter.Value;
         if (TryComp<ShadowlingComponent>(shadowling, out var shadowlingComp))
-            _shadowling.OnThrallRemoved((shadowling, shadowlingComp));
+            _shadowling.OnThrallRemoved((shadowling, shadowlingComp), component); // Arcane-Edit
     }
 
     private void OnExamined(EntityUid uid, ThrallComponent component, ExaminedEvent args)

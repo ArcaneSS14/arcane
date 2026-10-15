@@ -3163,3 +3163,165 @@ Entries:
   time: '2026-10-13T18:10:39.0000000+00:00'
   prNumber: 505
   url: https://github.com/ArcaneSS14/arcane/pull/505
+- author: ALFAPRO
+  changes:
+    - type: Tweak
+      message: На карте Chloris на СМ больше нет лишних урановых окон.
+    - type: Tweak
+      message: Утильмат на аванпосте Интек больше не требует доступ.
+    - type: Tweak
+      message: На аванпост лаваленда добавили стиралки.
+    - type: Tweak
+      message: В ботании Saltern появился биогенератор.
+  id: 231
+  time: '2026-10-14T11:37:54.0000000+00:00'
+  prNumber: 510
+  url: https://github.com/ArcaneSS14/arcane/pull/510
+- author: seemah
+  changes:
+    - type: Add
+      message: Добавлена помывка игроков ыы14 (душ c функционалом раковины).
+    - type: Add
+      message: Портирована бобда.
+    - type: Add
+      message: Портирована стойка с RMC.
+  id: 232
+  time: '2026-10-14T11:41:10.0000000+00:00'
+  prNumber: 479
+  url: https://github.com/ArcaneSS14/arcane/pull/479
+  media:
+    - >-
+      https://github.com/user-attachments/assets/87d8c2fc-2ada-4622-9e5a-73d292606f94
+    - >-
+      https://github.com/user-attachments/assets/bab9d256-4d95-441a-8385-6c3519db277d
+    - >-
+      https://github.com/user-attachments/assets/8bb2434f-e480-40a3-806b-32ce1d0a47ff
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: >-
+        Исправлена ошибка, из-за которой нельзя было переключать противогаз "под
+        волосами" и "над волосами".
+  id: 233
+  time: '2026-10-14T22:36:34.0000000+00:00'
+  prNumber: 509
+  url: https://github.com/ArcaneSS14/arcane/pull/509
+  media:
+    - >-
+      https://github.com/user-attachments/assets/20e4ef6f-3339-4945-a896-ecc06bf8e16a
+    - >-
+      https://github.com/user-attachments/assets/4e97b08b-f6c7-4d6e-8f1a-aaec67d189c3
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: Исправлен спрайт открытого состояния тыквенных бутылок ёкаев (Oni)
+    - type: Fix
+      message: Исправлена проверка Target при передаче предмета целевому игроку
+  id: 234
+  time: '2026-10-14T23:04:00.0000000+00:00'
+  prNumber: 513
+  url: https://github.com/ArcaneSS14/arcane/pull/513
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Метки на отрубленных частях тела возвращаются при восстановлении тела.
+    - type: Fix
+      message: Виды без собственных глаз не слепнут после удаления вставленных глаз.
+    - type: Fix
+      message: Трэлл не теряет врождённое ночное зрение после освобождения.
+    - type: Fix
+      message: Обман смерти дьявола срабатывает после отрубания головы.
+    - type: Fix
+      message: >-
+        Нажатие по трупу разделываемого существа теперь разделывает его, а не
+        делает шаг операции.
+    - type: Fix
+      message: Тенеморф больше не лечится от света при большом количестве треллов.
+    - type: Tweak
+      message: Потеря трелла снижает сопротивление тенелинга свету.
+    - type: Tweak
+      message: Полный иммунитет к свету даёт только "Пустота".
+    - type: Fix
+      message: >-
+        Несколько тенеморфов и младших тенеморфов одновременно получают урон от
+        света и лечатся в тени.
+  id: 235
+  time: '2026-10-14T23:19:42.0000000+00:00'
+  prNumber: 508
+  url: https://github.com/ArcaneSS14/arcane/pull/508
+  media:
+    - >-
+      https://github.com/user-attachments/assets/9c01c4ea-ff3d-42c5-923a-3f74f6419e4d
+    - >-
+      https://github.com/user-attachments/assets/f1d3d9be-60c8-4dbd-a793-2f07cb4bcafa
+    - >-
+      https://github.com/user-attachments/assets/d9f458f1-e3a7-412a-8b4f-6a814b629807
+    - >-
+      https://github.com/user-attachments/assets/8bdbf503-73e7-48e0-b005-01ed27718232
+    - >-
+      https://github.com/user-attachments/assets/f34dbac6-4441-414d-8915-506716deb67c
+    - >-
+      https://github.com/user-attachments/assets/d492c26c-3111-4e25-8245-d96a894985d1
+    - >-
+      https://github.com/user-attachments/assets/8eab7fe7-de7b-49ce-82ca-2ff023a944c2
+    - >-
+      https://github.com/user-attachments/assets/5d9e0e1f-2dad-48b9-bc79-c270bff1eb2b
+    - >-
+      https://github.com/user-attachments/assets/722168e5-4473-48e9-8f8e-ea4dfc80f164
+    - >-
+      https://github.com/user-attachments/assets/c6309097-65c1-4ca4-851e-166ef99bedea
+    - >-
+      https://github.com/user-attachments/assets/eea56d2a-25d9-49f6-a1ba-b01872aef781
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: >-
+        Множители возбуждения и стонов в панели взаимодействий теперь действуют
+        и на чужие взаимодействия с вами. 0% больше не дает другим игрокам вас
+        возбуждать.
+    - type: Tweak
+      message: >-
+        Настройки множителей в панели взаимодействий сохраняются между
+        открытиями.
+  id: 236
+  time: '2026-10-15T00:04:17.0000000+00:00'
+  prNumber: 514
+  url: https://github.com/ArcaneSS14/arcane/pull/514
+- author: Kat_L
+  changes:
+    - type: Fix
+      message: >-
+        Призраки больше не могут провести обстрел с консоли управления
+        артиллерийскими орудиями
+  id: 237
+  time: '2026-10-15T04:08:34.0000000+00:00'
+  prNumber: 515
+  url: https://github.com/ArcaneSS14/arcane/pull/515
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: >-
+        Ветка арсенала в R&D пересобрана: пули получить сложнее, лазеры проще.
+        Вся ветка стоит 175к вместо 180к.
+    - type: Add
+      message: Отдельная технология "Урановые боеприпасы".
+    - type: Fix
+      message: >-
+        Диск технологий 1 уровня больше не может выдать лазерный карабин или
+        лазерную пушку.
+    - type: Fix
+      message: Продвинутые эмиттеры больше не висят посреди ветки СБ.
+    - type: Tweak
+      message: >-
+        Транквилизирующие патроны для дробовиков теперь содержат 15 ед.
+        хлоралгидрата вместо 7. Броня теперь снижает дозу транквилизатора. При
+        защите от Колющего урона от 33% и выше транквилиз тор не действует. Все
+        что ниже серьезно уменьшают дозу реагента. К примеру 10% резиста уберут
+        30% дозы, 20 резисты 60% дозы
+  id: 238
+  time: '2026-10-15T15:30:17.0000000+00:00'
+  prNumber: 501
+  url: https://github.com/ArcaneSS14/arcane/pull/501
+  media:
+    - >-
+      https://github.com/user-attachments/assets/5ddebf0c-e9ab-41c2-8473-453c3ed62e96
