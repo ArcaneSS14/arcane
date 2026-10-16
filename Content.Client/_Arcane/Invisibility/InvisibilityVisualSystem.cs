@@ -1,3 +1,4 @@
+using Content.Client.Humanoid;
 using Content.Shared._Arcane.Invisibility;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -18,6 +19,7 @@ public sealed class InvisibilityVisualSystem : EntitySystem
 {
     private static readonly ProtoId<ShaderPrototype> ShaderPrototype = "ArcaneInvisibility";
 
+    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly MarkingManager _marking = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
@@ -113,24 +115,9 @@ public sealed class InvisibilityVisualSystem : EntitySystem
                 sprite.LayerSetShader(index, (ShaderInstance?) null);
         }
 
-        foreach (var markingList in humanoid.MarkingSet.Markings.Values)
-        {
-            foreach (var marking in markingList)
-            {
-                if (!_marking.TryGetMarking(marking, out var prototype))
-                    continue;
-
-                foreach (var spriteSpec in prototype.Sprites)
-                {
-                    if (spriteSpec is not SpriteSpecifier.Rsi rsi)
-                        continue;
-
-                    var layerId = $"{marking.MarkingId}-{rsi.RsiState}";
-                    if (_sprite.LayerMapTryGet((uid, sprite), layerId, out var markIndex, false))
-                        sprite.LayerSetShader(markIndex, (ShaderInstance?) null);
-                }
-            }
-        }
+        // Rebuilding the marking layers restores their own shaders, such as the hair gradient.
+        if (!TerminatingOrDeleted(uid))
+            _humanoid.UpdateSprite((uid, humanoid, sprite));
     }
 
     private ShaderInstance GetShader(EntityUid uid, float visibility)

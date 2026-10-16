@@ -19,6 +19,7 @@ public enum HairGradientStyle : byte
     Ombre = 0,
     Split = 1,
     Underdye = 2,
+    Highlights = 3,
 }
 // Arcane-End
 
@@ -91,8 +92,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         // Arcane-Start
         EarsAboveHair = earsAboveHair;
         HairGradientEnabled = hairGradientEnabled;
-        HairGradientStyle = hairGradientStyle;
-        HairGradientOffset = Math.Clamp(hairGradientOffset, 0f, 1f);
+        HairGradientStyle = Enum.IsDefined(hairGradientStyle) ? hairGradientStyle : HairGradientStyle.Ombre;
+        HairGradientOffset = float.IsFinite(hairGradientOffset) ? Math.Clamp(hairGradientOffset, 0f, 1f) : 0.5f;
         if (hairGradientColors != null && hairGradientColors.Count > 0)
         {
             var colors = hairGradientColors.Take(2).Select(ClampColor).ToList();
@@ -155,17 +156,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     public HumanoidCharacterAppearance WithHairGradient(bool enabled, IReadOnlyList<Color> colors, HairGradientStyle? style = null, float? offset = null)
     {
-        var gradientColors = colors.Take(2).Select(ClampColor).ToList();
-        while (gradientColors.Count < 2)
-            gradientColors.Add(gradientColors.Count == 0 ? HairColor : gradientColors[^1]);
-        var appearance = new HumanoidCharacterAppearance(this)
-        {
-            HairGradientEnabled = enabled,
-            HairGradientColors = gradientColors,
-            HairGradientStyle = style ?? HairGradientStyle,
-            HairGradientOffset = Math.Clamp(offset ?? HairGradientOffset, 0f, 1f),
-        };
-        return appearance;
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, enabled, colors, style ?? HairGradientStyle, offset ?? HairGradientOffset, EarsAboveHair);
     }
     // Arcane-End
 

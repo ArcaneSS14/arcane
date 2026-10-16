@@ -306,26 +306,19 @@ namespace Content.Server.Database
             }
 
             var barkVoice = profile.BarkVoice ?? SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
+            // Arcane-Start
             var erpPreference = (ErpPreference) profile.ErpPreference;
             var customSpeciesName = profile.CustomSpeciesName ?? "";
 
-            // Arcane-Start
-            var hairColor = ParseHairColor(profile.HairColor);
             var hairGradientEnabled = profile.HairGradientEnabled;
             List<Color>? hairGradientColors = null;
             var hairGradientStyle = HairGradientStyle.Ombre;
             var hairGradientOffset = 0.5f;
-
-            var gradientDataString = profile.HairGradientData;
-            var legacyGradientData = profile.HairColor.StartsWith('{')
-                ? profile.HairColor
-                : null;
-
-            if (!string.IsNullOrEmpty(gradientDataString))
+            if (!string.IsNullOrEmpty(profile.HairGradientData))
             {
                 try
                 {
-                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(gradientDataString, HairGradientJsonOptions);
+                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(profile.HairGradientData, HairGradientJsonOptions);
                     if (data != null && data.Colors.Count > 0)
                     {
                         hairGradientColors = data.Colors.Select(c => Color.FromHex(c.Trim())).ToList();
@@ -336,45 +329,6 @@ namespace Content.Server.Database
                 catch
                 {
                     hairGradientEnabled = false;
-                }
-            }
-            else if (!string.IsNullOrEmpty(legacyGradientData))
-            {
-                try
-                {
-                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(legacyGradientData, HairGradientJsonOptions);
-                    if (data != null && data.Colors.Count > 0)
-                    {
-                        hairGradientColors = data.Colors.Select(c => Color.FromHex(c.Trim())).ToList();
-                        hairGradientEnabled = true;
-                        hairGradientStyle = data.Style;
-                        hairGradientOffset = data.Offset;
-                        hairColor = hairGradientColors[0];
-                    }
-                }
-                catch
-                {
-                    hairColor = Color.White;
-                }
-            }
-            else if (profile.HairColor.StartsWith('[') || profile.HairColor.Contains(';'))
-            {
-                try
-                {
-                    List<string>? hexCodes = profile.HairColor.StartsWith('[')
-                        ? JsonSerializer.Deserialize<List<string>>(profile.HairColor)
-                        : profile.HairColor.Split(';').ToList();
-
-                    if (hexCodes != null && hexCodes.Count > 0)
-                    {
-                        hairGradientColors = hexCodes.Select(c => Color.FromHex(c.Trim())).ToList();
-                        hairColor = hairGradientColors[0];
-                        hairGradientEnabled = true;
-                    }
-                }
-                catch
-                {
-                    hairColor = Color.White;
                 }
             }
             // Arcane-End
@@ -406,7 +360,7 @@ namespace Content.Server.Database
                 new HumanoidCharacterAppearance
                 (
                     profile.HairName,
-                    hairColor, // Arcane-Edit
+                    Color.FromHex(profile.HairColor),
                     profile.FacialHairName,
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
@@ -433,27 +387,13 @@ namespace Content.Server.Database
         }
 
         // Arcane-Start
-        internal static readonly JsonSerializerOptions HairGradientJsonOptions = new()
+        private static readonly JsonSerializerOptions HairGradientJsonOptions = new()
         {
             PropertyNameCaseInsensitive = true,
             Converters = { new JsonStringEnumConverter() }
         };
 
-        private static Color ParseHairColor(string value)
-        {
-            try
-            {
-                return value.StartsWith('{') || value.StartsWith('[') || value.Contains(';')
-                    ? Color.White
-                    : Color.FromHex(value);
-            }
-            catch
-            {
-                return Color.White;
-            }
-        }
-
-        internal sealed class HairGradientSaveData
+        private sealed class HairGradientSaveData
         {
             public List<string> Colors { get; set; } = new();
             public HairGradientStyle Style { get; set; } = HairGradientStyle.Ombre;
