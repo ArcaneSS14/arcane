@@ -1,6 +1,6 @@
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
-using Content.Goobstation.Shared.Clothing.Components;
+using Content.Goobstation.Common.Clothing;
 using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -56,6 +56,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     private readonly List<object> _hairKeyScratch = new();
     private readonly List<object> _cloakKeyScratch = new();
     private readonly List<object> _tailKeyScratch = new();
+    private readonly List<object> _slotKeyScratch = new();
     private readonly Dictionary<(string MarkingId, string RsiState), string> _markingKeyCache = new();
 
     private static readonly ProtoId<SpeciesPrototype> HarpySpecies = "Harpy";
@@ -79,6 +80,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         public List<object> TailKeys = new();
         public object? TailAnchor;
         public bool TailAnchorCaptured;
+        public bool TailBelowNeck;
     }
 
     private enum DirectionalView
@@ -152,19 +154,10 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     private void OnMove(EntityUid uid, HumanoidAppearanceComponent component, ref MoveEvent args)
     {
-        // The facing is camera-relative (world rotation + eye), so a turn that stays on one cardinal step can
-        // still cross a view boundary once the eye is turned: e.g. a 0° → 20° rotation under a 30° camera is
-        // Front → Side, even though both angles are cardinal-south. Compare the computed camera-relative views
-        // for the old and new world rotation instead of bailing on equal cardinal directions.
-        var worldRotation = _transform.GetWorldRotation(uid);
-        var oldWorldRotation = worldRotation - (args.NewRotation - args.OldRotation);
-        var eyeRotation = _eyeManager.CurrentEye.Rotation;
-        if (GetView(worldRotation + eyeRotation) == GetView(oldWorldRotation + eyeRotation))
+        // Compare against the view last applied rather than the local rotation delta: a parent change (e.g. stepping
+        // onto a rotated grid) turns the entity in the world without changing its local rotation.
+        if (_lastViews.TryGetValue(uid, out var last) && last == GetActiveView(uid))
             return;
-
-        // Movement on its own does not change the block keys, but the facing is derived from world rotation, so
-        // drop the saved view and let the reorder re-resolve it rather than trusting a stale front/side/back.
-        _lastViews.Remove(uid);
 
         if (TryComp(uid, out SpriteComponent? sprite))
             ApplyOrdering((uid, component, sprite));
@@ -312,8 +305,10 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     /// </summary>
     private void EnsureTailAboveHair(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, OrderingCache cache)
     {
+        // Species that draw the tail under the clothes (resomi) keep it there; hoisting it would bury the hair.
         if (cache.TailKeys.Count == 0 ||
             cache.HairKeys.Count == 0 ||
+            cache.TailBelowNeck ||
             ent.Comp1.Species == HarpySpecies)
         {
             return;
@@ -392,10 +387,12 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             HairKeys = new List<object>(hairKeys),
             CloakKeys = new List<object>(cloakKeys),
             TailKeys = new List<object>(tailKeys),
-            // The species-level anchor the tail rests above never changes with the markings, so keep it across
-            // membership rebuilds once it has been captured from a native (base) ordering.
+            // The species-level anchors never change with the markings, so keep them across membership rebuilds once
+            // they have been captured from a native (base) ordering.
+            HairFrontAnchor = previous?.HairFrontAnchor,
             TailAnchor = previous?.TailAnchor,
             TailAnchorCaptured = previous?.TailAnchorCaptured ?? false,
+            TailBelowNeck = previous?.TailBelowNeck ?? false,
         };
 
         // Save the tail's native anchor before directional ordering changes its layer index.
@@ -405,6 +402,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         {
             cache.TailAnchor = anchor;
             cache.TailAnchorCaptured = true;
+            cache.TailBelowNeck = TryGetLayerIndex(ent, "neck", out var neckIdx) && tailStart < neckIdx;
         }
 
         _cache[ent.Owner] = cache;
@@ -469,26 +467,54 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     {
         buffer.Clear();
         buffer.Add(HumanoidVisualLayers.Hair);
+        AddMarkingLayerKeys(ent, HumanoidVisualLayers.Hair, buffer);
 
+        // A marking layer that was never created (unknown layering target, missing body part) must not make the
+        // whole block unresolvable and freeze the hair in place.
+        for (var i = buffer.Count - 1; i >= 0; i--)
+        {
+            if (!TryGetLayerIndex(ent, buffer[i], out _))
+                buffer.RemoveAt(i);
+        }
+
+        return buffer;
+    }
+
+    /// <summary>
+    ///     Adds the keys of every marking layer drawn on <paramref name="layer"/>, resolving per-state layering the
+    ///     same way the appearance system does. Membership follows where a layer is drawn, not its marking category:
+    ///     a HeadSide comb on the Hair layer moves with the hair, and harpy ears on the Head layer are no head trim.
+    /// </summary>
+    private void AddMarkingLayerKeys(
+        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
+        HumanoidVisualLayers layer,
+        List<object> buffer)
+    {
         foreach (var markingList in ent.Comp1.MarkingSet.Markings.Values)
         {
             foreach (var marking in markingList)
             {
-                if (!_markingManager.TryGetMarking(marking, out var prototype) ||
-                    prototype.MarkingCategory != MarkingCategories.Hair)
-                {
+                if (!_markingManager.TryGetMarking(marking, out var prototype))
                     continue;
-                }
 
                 foreach (var sprite in prototype.Sprites)
                 {
-                    if (sprite is SpriteSpecifier.Rsi rsi)
+                    if (sprite is not SpriteSpecifier.Rsi rsi)
+                        continue;
+
+                    var spriteLayer = prototype.BodyPart;
+                    if (prototype.Layering != null &&
+                        prototype.Layering.TryGetValue(rsi.RsiState, out var layerName) &&
+                        !Enum.TryParse(layerName, out spriteLayer))
+                    {
+                        continue;
+                    }
+
+                    if (spriteLayer == layer)
                         buffer.Add(GetMarkingKey(marking.MarkingId, rsi.RsiState));
                 }
             }
         }
-
-        return buffer;
     }
 
     private List<object> GetCloakBlockKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> buffer)
@@ -505,31 +531,16 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     /// <summary>
     ///     The tail/wings visual layers and their marking layers, restricted to keys the sprite actually has (the
-    ///     "Wings" visual layer only exists for species that define it).
+    ///     "Wings" visual layer only exists for species that define it). Tail markings layered onto TailBehind or
+    ///     TailBehindBackpack (moth wings) already split themselves per view and stay where they are drawn.
     /// </summary>
     private List<object> GetTailBlockKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> buffer)
     {
         buffer.Clear();
         buffer.Add(HumanoidVisualLayers.Tail);
         buffer.Add(HumanoidVisualLayers.Wings);
-
-        foreach (var (category, markings) in ent.Comp1.MarkingSet.Markings)
-        {
-            if (category != MarkingCategories.Tail && category != MarkingCategories.Wings)
-                continue;
-
-            foreach (var marking in markings)
-            {
-                if (!_markingManager.TryGetMarking(marking, out var prototype))
-                    continue;
-
-                foreach (var sprite in prototype.Sprites)
-                {
-                    if (sprite is SpriteSpecifier.Rsi rsi)
-                        buffer.Add(GetMarkingKey(marking.MarkingId, rsi.RsiState));
-                }
-            }
-        }
+        AddMarkingLayerKeys(ent, HumanoidVisualLayers.Tail, buffer);
+        AddMarkingLayerKeys(ent, HumanoidVisualLayers.Wings, buffer);
 
         for (var i = buffer.Count - 1; i >= 0; i--)
         {
@@ -556,188 +567,97 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         return composed;
     }
 
+    /// <summary>
+    ///     Front and side views keep the hair in its native slot, directly below the species' front anchor. The back
+    ///     view hoists it above the head-trim cluster so the back of the head covers the ears.
+    /// </summary>
     private void EnsureHairLayout(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, bool backView, OrderingCache cache)
     {
         if (cache.HairKeys.Count == 0)
             return;
 
-        var headTrimKeys = GetHeadTrimKeys(ent);
+        // The anchor is only discoverable while the hair rests in its native layout, so record it before the first
+        // back view hoists the block; base layers never move, so it stays valid for the entity's lifetime.
+        if (cache.HairFrontAnchor == null &&
+            TryGetLayerIndex(ent, HumanoidVisualLayers.Hair, out var hairIndex) &&
+            TryGetFrontAnchor(ent, hairIndex, out var frontAnchor))
+        {
+            cache.HairFrontAnchor = frontAnchor;
+        }
 
         if (backView)
         {
-            if (TryGetClusterTopFromKeys(ent, headTrimKeys, out var clusterTop, out _))
-            {
+            if (TryGetClusterTop(ent, out var clusterTop, out _))
                 TryMoveBlockRelative(ent, cache.HairKeys, clusterTop, true);
-            }
-            else if (TryGetLayerIndex(ent, HumanoidVisualLayers.HeadTop, out _))
-            {
-                TryMoveBlockRelative(ent, cache.HairKeys, HumanoidVisualLayers.HeadTop, true);
-            }
         }
-        else
+        else if (cache.HairFrontAnchor != null)
         {
-            if (TryGetHeadTrimBottom(ent, headTrimKeys, out var trimBottomKey, out _))
-            {
-                TryMoveBlockRelative(ent, cache.HairKeys, trimBottomKey, false);
-            }
-            else
-            {
-                if (!TryGetBlockExtent(ent, cache.HairKeys, out _, out var blockEnd))
-                    return;
-
-                if (TryGetFrontAnchor(ent, blockEnd, out var frontAnchor))
-                    TryMoveBlockRelative(ent, cache.HairKeys, frontAnchor, false);
-            }
+            TryMoveBlockRelative(ent, cache.HairKeys, cache.HairFrontAnchor, false);
         }
-        bool isMaskToggledDown = false;
-        if (_inventory.TryGetSlotEntity(ent.Owner, "mask", out var maskUid))
-        {
-            if (TryComp<AltClothingLayerComponent>(maskUid, out var altLayerComp))
-            {
-                if (TryGetLayerIndex(ent, "maskalt", out _))
-                {
-                    isMaskToggledDown = true;
-                }
-            }
-        }
-        object? activeMaskKey = null;
-        if (TryGetLayerIndex(ent, "mask", out _))
-            activeMaskKey = "mask";
-        else if (TryGetLayerIndex(ent, "maskalt", out _))
-            activeMaskKey = "maskalt";
 
-        if (activeMaskKey != null)
-        {
-            var maskKeys = new List<object> { activeMaskKey };
-
-            if (isMaskToggledDown)
-            {
-                if (TryGetBlockExtent(ent, cache.HairKeys, out var hairBottomIdx, out _))
-                {
-                    if (TryGetLayerIndex(ent, activeMaskKey, out var maskIdx) && maskIdx > hairBottomIdx)
-                    {
-                        object? bottomHairKey = null;
-                        foreach (var hKey in cache.HairKeys)
-                        {
-                            if (TryGetLayerIndex(ent, hKey, out var hIdx) && hIdx == hairBottomIdx)
-                            {
-                                bottomHairKey = hKey;
-                                break;
-                            }
-                        }
-                        if (bottomHairKey != null)
-                            TryMoveBlockRelative(ent, maskKeys, bottomHairKey, false);
-                    }
-                }
-            }
-            else
-            {
-                if (TryGetBlockExtent(ent, cache.HairKeys, out _, out var hairTopIdx))
-                {
-                    if (TryGetLayerIndex(ent, activeMaskKey, out var maskIdx) && maskIdx < hairTopIdx)
-                    {
-                        object? topHairKey = null;
-                        foreach (var hKey in cache.HairKeys)
-                        {
-                            if (TryGetLayerIndex(ent, hKey, out var hIdx) && hIdx == hairTopIdx)
-                            {
-                                topHairKey = hKey;
-                                break;
-                            }
-                        }
-                        if (topHairKey != null)
-                            TryMoveBlockRelative(ent, maskKeys, topHairKey, true);
-                    }
-                }
-            }
-        }
+        EnsureMaskLayout(ent, backView, cache);
     }
-    private List<object> GetHeadTrimKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
+
+    /// <summary>
+    ///     Keeps the worn mask's layers on the same side of the hair as in the native layout. A raised mask sits above
+    ///     the hair, so it follows the hair over the head-trim cluster in the back view and returns to its slot
+    ///     otherwise; a pulled-down mask renders on its alternative slot and never moves.
+    /// </summary>
+    private void EnsureMaskLayout(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, bool backView, OrderingCache cache)
     {
-        var candidates = new List<object>
+        if (!TryComp(ent.Owner, out InventorySlotsComponent? slots) ||
+            !slots.VisualLayerKeys.TryGetValue("mask", out var maskLayers) ||
+            maskLayers.Count == 0 ||
+            !_inventory.TryGetSlotEntity(ent.Owner, "mask", out var mask))
         {
-            HumanoidVisualLayers.HeadSide,
-            HumanoidVisualLayers.HeadTop,
-        };
-        foreach (var (category, markings) in ent.Comp1.MarkingSet.Markings)
-        {
-            if (category != MarkingCategories.HeadTop && category != MarkingCategories.HeadSide)
-                continue;
-
-            foreach (var marking in markings)
-            {
-                if (!_markingManager.TryGetMarking(marking, out var prototype))
-                    continue;
-
-                foreach (var sprite in prototype.Sprites)
-                {
-                    if (sprite is SpriteSpecifier.Rsi rsi)
-                        candidates.Add($"{marking.MarkingId}-{rsi.RsiState}");
-                }
-            }
+            return;
         }
 
-        return candidates;
+        // Same slot lookup the clothing system uses to place the layers.
+        var mapLayerEv = new GetActualMapLayerEvent("mask");
+        RaiseLocalEvent(mask.Value, ref mapLayerEv);
+        var slotLayer = mapLayerEv.MapLayer;
+        if (!TryGetLayerIndex(ent, slotLayer, out _))
+            slotLayer = "mask";
+
+        _slotKeyScratch.Clear();
+        _slotKeyScratch.AddRange(maskLayers);
+
+        if (backView && slotLayer == "mask" && TryGetTopKey(ent, cache.HairKeys, out var hairTop))
+        {
+            TryMoveBlockRelative(ent, _slotKeyScratch, hairTop, true);
+            return;
+        }
+
+        TryMoveBlockRelative(ent, _slotKeyScratch, slotLayer, true);
     }
 
-    private bool TryGetClusterTopFromKeys(
+    private bool TryGetTopKey(
         Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
         List<object> keys,
-        out object key,
-        out int index)
+        out object key)
     {
-        key = HumanoidVisualLayers.HeadTop;
-        index = 0;
-        var found = false;
+        key = null!;
+        var index = int.MinValue;
 
         foreach (var candidate in keys)
         {
-            if (!TryGetLayerIndex(ent, candidate, out var candidateIdx))
+            if (!TryGetLayerIndex(ent, candidate, out var candidateIdx) || candidateIdx <= index)
                 continue;
 
-            if (!found || candidateIdx > index)
-            {
-                found = true;
-                key = candidate;
-                index = candidateIdx;
-            }
+            key = candidate;
+            index = candidateIdx;
         }
 
-        return found;
-    }
-
-    private bool TryGetHeadTrimBottom(
-        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
-        List<object> headTrimKeys,
-        out object bottomKey,
-        out int bottomIndex)
-    {
-        bottomKey = null!;
-        bottomIndex = int.MaxValue;
-        var found = false;
-
-        foreach (var key in headTrimKeys)
-        {
-            if (!TryGetLayerIndex(ent, key, out var index))
-                continue;
-
-            if (!found || index < bottomIndex)
-            {
-                found = true;
-                bottomKey = key;
-                bottomIndex = index;
-            }
-        }
-
-        return found;
+        return index != int.MinValue;
     }
 
     /// <summary>
     ///     Reorders the tail/wings block against the cloak (neck) block per view. From the back the tail is native:
     ///     it rests on its species anchor (usually the head-trim cluster top, or the head itself for species whose
     ///     base order puts the tail above the head) with the cloak tucked directly below it, so the tail hides the
-    ///     cloak. From the front and the sides the cloak spreads over the shoulders directly below the head and the
-    ///     tail is tucked under the cloak, so the tail only renders above the cloak when the back faces the camera.
+    ///     cloak. From the front and the sides the cloak returns to its native slot and the tail is tucked away by
+    ///     <see cref="EnsureTailBehindLegs"/>, so the tail only renders above the cloak when the back faces the camera.
     /// </summary>
     private void EnsureTailAndCloakLayout(
         Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
@@ -746,17 +666,11 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     {
         if (cache.CloakKeys.Count == 0 ||
             cache.TailKeys.Count == 0 ||
-            !TryGetLayerIndex(ent, "head", out _) ||
             !TryResolveBlock(ent, cache.TailKeys, out var tailIndices, out var tailStart, out var tailEnd) ||
             !TryResolveBlock(ent, cache.CloakKeys, out _, out _, out var cloakTop))
         {
             return;
         }
-
-        // The native base layout has the cloak below the tail, which is also the back view's layout.
-        var cloakBelowTail = cloakTop < tailStart;
-
-        var wantCloakBelowTail = view == DirectionalView.Back;
 
         if (ent.Comp1.Species == HarpySpecies)
         {
@@ -765,15 +679,18 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             return;
         }
 
+        // A tail drawn under the clothes never sits above the cloak, so its back view keeps the front layout.
+        if (view != DirectionalView.Back || cache.TailBelowNeck)
+        {
+            EnsureCloakInSlot(ent, cache);
+            return;
+        }
+
         // Only the extremes of the blocks are compared here, so a tail block split by a marking-layer rebuild
         // (base still sunk on an old index, marking recreated above the legs) must not be treated as already in
         // place: fall through to the re-stitching path below.
-        if (IsResolvedBlockContiguous(tailIndices, tailStart, tailEnd) &&
-            cloakBelowTail == wantCloakBelowTail)
+        if (IsResolvedBlockContiguous(tailIndices, tailStart, tailEnd) && cloakTop < tailStart)
             return;
-
-        var tailCount = cache.TailKeys.Count;
-        var cloakCount = cache.CloakKeys.Count;
 
         // The tail is extracted before anything else mutates the sprite, so its pre-resolved indices from above stay
         // valid; the cloak is re-resolved by the extractor because removing the tail shifts every cloak layer above
@@ -788,46 +705,53 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             return;
         }
 
-        if (wantCloakBelowTail)
+        // Back view: tail back on its native spot, directly above its anchor; cloak right below the tail.
+        if (cache.TailAnchorCaptured && TryGetLayerIndex(ent, cache.TailAnchor!, out var anchorIdx))
         {
-            // Back view: tail back on its native spot, directly above its anchor; cloak right below the tail.
-            if (cache.TailAnchorCaptured && TryGetLayerIndex(ent, cache.TailAnchor!, out var anchorIdx))
-            {
-                var backTailTarget = anchorIdx + 1;
-                InsertBlock(ent, tailBlock, backTailTarget);
-                InsertBlock(ent, cloakBlock, backTailTarget - cloakCount);
-                return;
-            }
-
-            // Anchor unknown (rare, e.g. the cache was rebuilt mid-front-view): fall back to the head-trim cluster.
-            if (TryGetClusterTop(ent, out _, out var clusterIdx))
-            {
-                var backTailTarget = clusterIdx + 1;
-                InsertBlock(ent, tailBlock, backTailTarget);
-                InsertBlock(ent, cloakBlock, backTailTarget - cloakCount);
-                return;
-            }
-
-            InsertBlock(ent, tailBlock, tailStart);
-            InsertBlock(ent, cloakBlock, cloakStart);
+            var backTailTarget = anchorIdx + 1;
+            InsertBlock(ent, tailBlock, backTailTarget);
+            InsertBlock(ent, cloakBlock, backTailTarget);
             return;
         }
 
-        // Front/side view: cloak spread below the head, tail tucked directly under the cloak. The cloak is left
-        // above any back-slot bag, so bags no longer render over it.
-        if (!TryGetLayerIndex(ent, "head", out var headIdx))
+        // Anchor unknown (rare, e.g. the cache was rebuilt mid-front-view): fall back to the head-trim cluster.
+        if (TryGetClusterTop(ent, out _, out var clusterIdx))
         {
-            InsertBlock(ent, tailBlock, tailStart);
-            InsertBlock(ent, cloakBlock, cloakStart);
+            var backTailTarget = clusterIdx + 1;
+            InsertBlock(ent, tailBlock, backTailTarget);
+            InsertBlock(ent, cloakBlock, backTailTarget);
             return;
         }
 
-        var cloakTarget = headIdx - cloakCount;
-        var tailTarget = Math.Max(0, cloakTarget - tailCount);
-        // Cloak goes in first, directly below the head; the tail follows below it. Inserting the tail first would
-        // shift the belt/outerClothing layers up onto the cloak's index, drawing them over it.
-        InsertBlock(ent, cloakBlock, cloakTarget);
-        InsertBlock(ent, tailBlock, tailTarget);
+        InsertBlock(ent, tailBlock, tailStart);
+        InsertBlock(ent, cloakBlock, cloakStart);
+    }
+
+    /// <summary>
+    ///     Puts the cloak back in its native slot above the "neck" layer, or above the worn bag for species that draw
+    ///     the back slot over the neck slot, so it stays under the hair, mask and ears but over any bag.
+    /// </summary>
+    private void EnsureCloakInSlot(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, OrderingCache cache)
+    {
+        if (!TryGetLayerIndex(ent, "neck", out var neckIdx))
+            return;
+
+        object anchor = "neck";
+        _slotKeyScratch.Clear();
+        if (TryComp(ent.Owner, out InventorySlotsComponent? slots) &&
+            slots.VisualLayerKeys.TryGetValue("back", out var backLayers))
+        {
+            _slotKeyScratch.AddRange(backLayers);
+        }
+
+        if (TryGetTopKey(ent, _slotKeyScratch, out var bagTop) &&
+            TryGetLayerIndex(ent, bagTop, out var bagTopIdx) &&
+            bagTopIdx > neckIdx)
+        {
+            anchor = bagTop;
+        }
+
+        TryMoveBlockRelative(ent, cache.CloakKeys, anchor, true);
     }
 
     /// <summary>
@@ -877,24 +801,8 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (ent.Comp1.EarsAboveHair)
             return candidates;
 
-        foreach (var (category, markings) in ent.Comp1.MarkingSet.Markings)
-        {
-            if (category != MarkingCategories.HeadTop && category != MarkingCategories.HeadSide)
-                continue;
-
-            foreach (var marking in markings)
-            {
-                if (!_markingManager.TryGetMarking(marking, out var prototype))
-                    continue;
-
-                foreach (var sprite in prototype.Sprites)
-                {
-                    if (sprite is SpriteSpecifier.Rsi rsi)
-                        candidates.Add($"{marking.MarkingId}-{rsi.RsiState}");
-                }
-            }
-        }
-
+        AddMarkingLayerKeys(ent, HumanoidVisualLayers.HeadSide, candidates);
+        AddMarkingLayerKeys(ent, HumanoidVisualLayers.HeadTop, candidates);
         return candidates;
     }
 
@@ -941,7 +849,8 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     /// <summary>
     ///     The species-level layers a tail/wings block can rest directly above in the native base ordering. Species
-    ///     differ: most put the tail just above the head-trim cluster, harpies put it above the head itself.
+    ///     differ: most put the tail just above the head-trim cluster, harpies put it above the head itself, and
+    ///     resomi put it above the limbs, under the jumpsuit.
     /// </summary>
     private static readonly object[] TailAnchorCandidates =
     {
@@ -961,6 +870,14 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         "ears",
         HumanoidVisualLayers.Snout,
         "id",
+        HumanoidVisualLayers.RHand,
+        HumanoidVisualLayers.LHand,
+        HumanoidVisualLayers.RFoot,
+        HumanoidVisualLayers.LFoot,
+        HumanoidVisualLayers.RLeg,
+        HumanoidVisualLayers.LLeg,
+        HumanoidVisualLayers.RArm,
+        HumanoidVisualLayers.LArm,
     };
 
     /// <summary>
@@ -1203,7 +1120,8 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             return false;
         }
 
-        InsertBlock(ent, block, placeAbove ? anchorStart + 1 : Math.Max(0, anchorStart - block.Count));
+        // Inserting at the anchor's own index pushes the anchor up, leaving the block directly below it.
+        InsertBlock(ent, block, placeAbove ? anchorStart + 1 : anchorStart);
         return true;
     }
 
