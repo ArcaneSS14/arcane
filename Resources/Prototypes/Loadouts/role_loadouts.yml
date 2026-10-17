@@ -108,6 +108,7 @@
   - Glasses
   - BartenderOuterClothing
   - BartenderJumpsuit
+  - ServiceCloak # Arcane
   - CommonBackpack
   # Goobstation - EE Plasmeme Change.
   - BartenderEnvirohelm
@@ -411,6 +412,9 @@
   # Orion-Start
   - Undershirt
   - Underwear
+  # Arcane-Start
+  - GroupGrimoire
+  # Arcane-End
   - Socks
   - Wrists
   # Orion-End
