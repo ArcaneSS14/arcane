@@ -1,0 +1,39 @@
+- type: entity
+  parent: BaseMagazineHighCaliber
+  id: Magazine50BMG
+  name: magazine (.50 BMG)
+  components:
+  - type: Tag
+    tags:
+      - Magazine50BMG
+  - type: Sprite
+    sprite: _Orion/Objects/Weapons/Guns/Ammunition/Magazines/Snipers/sr127_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: Magazine50BMG
+  id: Magazine50BMGAPX
+  name: magazine (.50 BMG AP-X)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHighCaliberAPX
+
+- type: entity
+  parent: Magazine50BMG
+  id: Magazine50BMGEmpty
+  name: magazine (.50 BMG, empty)
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  parent: Magazine50BMGAPX
+  id: Magazine50BMGAPXEmpty
+  name: magazine (.50 BMG AP-X, empty)
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
