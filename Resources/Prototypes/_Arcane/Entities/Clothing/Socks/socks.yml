@@ -41,7 +41,6 @@
     sprite: _Arcane/Clothing/Socks/white_rigged_stockings.rsi
     state: icon
   - type: Clothing
-    slot: socks
     sprite: _Arcane/Clothing/Socks/white_rigged_stockings.rsi
   - type: Storage
     grid:
