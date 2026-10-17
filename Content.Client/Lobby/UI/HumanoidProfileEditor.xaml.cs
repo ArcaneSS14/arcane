@@ -402,7 +402,7 @@ namespace Content.Client.Lobby.UI
             HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-ombre"), (int) HairGradientStyle.Ombre);
             HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-split"), (int) HairGradientStyle.Split);
             HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-underdye"), (int) HairGradientStyle.Underdye);
-            HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-balayage"), (int) HairGradientStyle.Balayage);
+            HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-streaks"), (int) HairGradientStyle.Streaks);
             HairGradientStyleButton.OnItemSelected += args =>
             {
                 HairGradientStyleButton.SelectId(args.Id);
@@ -2442,10 +2442,10 @@ namespace Content.Client.Lobby.UI
                     HairGradientTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-underdye");
                     HairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-underdye", ("value", offsetVal));
                     break;
-                case HairGradientStyle.Balayage:
-                    HairGradientRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-balayage");
-                    HairGradientTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-balayage");
-                    HairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-balayage", ("value", offsetVal));
+                case HairGradientStyle.Streaks:
+                    HairGradientRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-streaks");
+                    HairGradientTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-streaks");
+                    HairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-streaks", ("value", offsetVal));
                     break;
                 default:
                     HairGradientRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-ombre");

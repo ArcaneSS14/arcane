@@ -19,7 +19,7 @@ public enum HairGradientStyle : byte
     Ombre = 0,
     Split = 1,
     Underdye = 2,
-    Balayage = 3,
+    Streaks = 3,
 }
 // Arcane-End
 

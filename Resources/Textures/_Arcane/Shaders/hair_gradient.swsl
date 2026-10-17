@@ -62,7 +62,7 @@ void fragment() {
         highp float threshold = 0.4 + gradientOffset * 0.45;
         smoothT = smoothstep(threshold - 0.05, threshold + 0.05, depth * 0.55 + lowness * 0.35 + strand * 0.2);
     } else if (gradientStyle == 3) {
-        // Balayage: painted strands reach the accent at different heights and thicken toward the tips.
+        // Streaks: painted strands reach the accent at different heights and thicken toward the tips.
         highp float column = floor(UV2.x * frameWidth);
         highp float strand = 0.5 + 0.5 * sin(column * 1.9 + sin(column * 0.7) * 2.0);
         highp float base = clamp((0.8 + gradientOffset * 0.3 - UV2.y) / 0.3, 0.0, 1.0);
