@@ -1,0 +1,14 @@
+- type: entity
+  parent: [ ClothingBeltStorageWaistbag, BaseCommandContraband ]
+  id: ClothingBeltCommandMaidPouch
+  name: command maid pouch
+  description: A sleek waist pouch for command maids, fits literally anything.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Belt/command_maid_pouch.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Belt/command_maid_pouch.rsi
+  - type: Storage
+    grid:
+    - 0,0,7,1

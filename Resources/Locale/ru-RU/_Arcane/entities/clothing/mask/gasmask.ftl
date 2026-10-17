@@ -12,3 +12,5 @@ ent-ClothingMaskGasQMPatreon = противогаз КМ
     .desc = { ent-ClothingMaskGas.desc }
 ent-ClothingMaskGasRDPatreon = противогаз НР
     .desc = { ent-ClothingMaskGas.desc }
+ent-ClothingMaskGasCommaid = уборочный противогаз
+    .desc = Специализированный противогаз, созданный для тяжёлых работ по уборке.
