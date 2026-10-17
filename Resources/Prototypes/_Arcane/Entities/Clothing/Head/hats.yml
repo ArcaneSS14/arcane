@@ -395,3 +395,16 @@
     sprite: _Arcane/Clothing/Head/headband_kitsune.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Head/headband_kitsune.rsi
+# Command
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMaidFura
+  name: maid cap
+  description: A neat cap fitting for a head maid.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/maid_fura.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/maid_fura.rsi

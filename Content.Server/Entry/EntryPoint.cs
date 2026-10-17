@@ -200,6 +200,7 @@ namespace Content.Server.Entry
 
         protected override void Dispose(bool disposing)
         {
+            _lastAntagManager.Shutdown(); // Arcane
             var dest = _cfg.GetCVar(CCVars.DestinationFile);
             if (!string.IsNullOrEmpty(dest))
             {

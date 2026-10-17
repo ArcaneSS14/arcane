@@ -1,0 +1,12 @@
+ent-AirSensorVaporBase = { ent-AirSensorBase }
+    .suffix = Пар
+    .desc = { ent-AirSensorBase.desc }
+ent-AirSensorVapor = { ent-AirSensor }
+    .desc = { ent-AirSensor.desc }
+ent-GasVentPumpVapor = { ent-GasVentPump }
+    .desc = { ent-GasVentPump.desc }
+ent-GasVentScrubberVapor = { ent-GasVentScrubber }
+    .desc = { ent-GasVentScrubber.desc }
+ent-AirAlarmNoAuto = { ent-AirAlarm }
+    .suffix = Авторежим выключен
+    .desc = { ent-AirAlarm.desc }

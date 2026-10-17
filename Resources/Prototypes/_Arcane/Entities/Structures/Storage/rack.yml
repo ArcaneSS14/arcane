@@ -1,0 +1,37 @@
+- type: entity
+  parent: BaseStructure
+  id: RMCCounter
+  components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Storage/rack.rsi
+    state: icon
+  - type: Icon
+    sprite: _RMC14/Structures/Storage/rack.rsi
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+  - type: Climbable
+  - type: Bonkable
+    bonkDamage:
+      types:
+        Blunt: 4
+  - type: Clickable
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHull
+  - type: Tag
+    tags:
+    - ForceFixRotations
+  - type: RequireProjectileTarget # Goobstation - Crawling
+    ignoreThrow: true
+  - type: InteractionVerbs # Orion
+    allowedVerbs:
+      - KnockOn
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic

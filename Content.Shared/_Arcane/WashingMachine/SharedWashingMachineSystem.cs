@@ -27,6 +27,8 @@ using Content.Shared.Standing;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Tools;
+using Content.Shared.Tools.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Content.Shared._Arcane.WashingMachine.Events;
@@ -63,17 +65,14 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private static readonly TimeSpan EscapeTime = TimeSpan.FromSeconds(10);
     private static readonly TimeSpan EnterTime = TimeSpan.FromSeconds(2);
     private static readonly TimeSpan StuffTime = TimeSpan.FromSeconds(3);
-
-    private static readonly ProtoId<SpeciesPrototype>[] BigRaceSpecies =
-    {
-        "Oni",
-        "Yowie",
-    };
+    private const float MaxFittingHeight = 212f;
+    private const float MaxFittingWidth = 43f;
 
     protected static readonly Vector2[] CardinalOffsets =
     {
@@ -100,6 +99,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         SubscribeLocalEvent<WashingMachineComponent, CanDropTargetEvent>(OnCanDropTarget);
         SubscribeLocalEvent<WashingMachineComponent, DragDropTargetEvent>(OnDragDropTarget);
         SubscribeLocalEvent<WashingMachineComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<WashingMachineComponent, DoAfterAttemptEvent<StuffInWashingMachineDoAfterEvent>>(OnStuffInAttempt);
         SubscribeLocalEvent<WashingMachineComponent, StuffInWashingMachineDoAfterEvent>(OnStuffInDoAfter);
         SubscribeLocalEvent<WashingMachineComponent, EnterWashingMachineDoAfterEvent>(OnEnterDoAfter);
         SubscribeLocalEvent<WashingMachineComponent, AnchorStateChangedEvent>(OnAnchorStateChanged);
@@ -365,7 +365,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         if (!HasComp<StandingStateComponent>(user))
             return false;
 
-        if (IsBigRace(user))
+        if (!CanFitInMachine(user))
             return false;
 
         if (HasComp<WashingMachineStuckComponent>(user))
@@ -571,16 +571,42 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
         args.Handled = true;
 
+        var coordinates = Transform(args.Dragged).Coordinates;
+        var @event = new StuffInWashingMachineDoAfterEvent
+        {
+            Coordinates = GetNetCoordinates(coordinates),
+            TargetCoordinates = coordinates,
+        };
+
         var doAfter = new DoAfterArgs(EntityManager, args.User, StuffTime,
-            new StuffInWashingMachineDoAfterEvent(), ent.Owner, target: args.Dragged, used: ent.Owner)
+            @event, ent.Owner, target: args.Dragged, used: ent.Owner)
         {
             BreakOnDamage = true,
-            BreakOnMove = false,
+            BreakOnMove = true,
             NeedHand = false,
+            AttemptFrequency = AttemptFrequency.EveryTick,
             DuplicateCondition = DuplicateConditions.SameTool | DuplicateConditions.SameTarget
         };
 
         _doAfter.TryStartDoAfter(doAfter, out _);
+    }
+
+    private void OnStuffInAttempt(Entity<WashingMachineComponent> ent, ref DoAfterAttemptEvent<StuffInWashingMachineDoAfterEvent> args)
+    {
+        if (args.Event.TargetCoordinates is null && args.Event.Coordinates is { } netCoordinates)
+            args.Event.TargetCoordinates = GetCoordinates(netCoordinates);
+
+        if (args.Event.TargetCoordinates is not { } startCoordinates)
+            return;
+
+        if (args.DoAfter.Args.Target is not { } target || !TryComp(target, out TransformComponent? xform))
+        {
+            args.Cancel();
+            return;
+        }
+
+        if (!_transform.InRange(xform.Coordinates, startCoordinates, args.DoAfter.Args.MovementThreshold))
+            args.Cancel();
     }
 
     private void OnStuffInDoAfter(Entity<WashingMachineComponent> ent, ref StuffInWashingMachineDoAfterEvent args)
@@ -633,6 +659,9 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             return;
 
         if (args.User == args.Used || HasComp<BodyComponent>(args.Used))
+            return;
+
+        if (HasComp<ToolComponent>(args.Used))
             return;
 
         if (ent.Comp.WashingMachineState == WashingMachineState.Idle && !_storage.IsOpen(ent.Owner))
@@ -694,7 +723,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         if (!HasComp<BodyComponent>(target))
             return false;
 
-        if (IsBigRace(target))
+        if (!CanFitInMachine(target))
             return false;
 
         if (HasComp<WashingMachineStuckComponent>(target))
@@ -739,9 +768,16 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         return storage.Whitelist == null || _whitelistSystem.IsValid(storage.Whitelist, target);
     }
 
-    private bool IsBigRace(EntityUid uid)
+    private bool CanFitInMachine(EntityUid uid)
     {
-        return TryComp<HumanoidAppearanceComponent>(uid, out var humanoid) && BigRaceSpecies.Contains(humanoid.Species);
+        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+            return true;
+
+        var species = _prototypeManager.Index(humanoid.Species);
+        var height = species.AverageHeight * humanoid.Height;
+        var width = species.AverageWidth * humanoid.Width;
+
+        return height < MaxFittingHeight && width < MaxFittingWidth;
     }
 
     private bool HasPersonInside(EntityUid machine)

@@ -1,0 +1,80 @@
+- type: entity
+  parent: [ BaseMajorContraband, BaseWeaponRifle ]
+  id: WeaponRifleM82
+  name: Barrett M82A1 (.50 BMG)
+  description: A semi-automatic .50 BMG anti-materiel rifle. Feeds exclusively from M82A1 .50 BMG magazines.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Weapons/Guns/Snipers/riflespecter.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Orion/Objects/Weapons/Guns/Snipers/snl177/tiny.rsi
+  - type: Item
+    sprite: _Orion/Objects/Weapons/Guns/Snipers/snl177/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -38
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    fireRate: 1.2
+    minAngle: 24
+    maxAngle: 45
+    cameraRecoilScalar: 6
+    soundGunshot:
+      collection: 50bmgShot
+    soundEmpty:
+      path: /Audio/_Orion/Weapons/Guns/Rifles/rifle_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: Magazine50BMG
+        insertSound: /Audio/_Orion/Weapons/Guns/Rifles/762_reload.ogg
+        ejectSound: /Audio/_Orion/Weapons/Guns/Rifles/m28_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine50BMG
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeHighCaliber
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.7
+    sprintModifier: 0.5
+  - type: UseDelay
+    delay: 0.8
+  - type: UseDelayBlockShoot
+  - type: ActionGrant
+    actions:
+    - ActionArcaneGoreExecution
+    - ActionArcaneTargetLock
+    - ActionArcaneAim
+  - type: ItemActionGrant
+    actions:
+    - ActionArcaneGoreExecution
+    - ActionArcaneTargetLock
+  - type: GoreExecution
+  - type: TargetLock
+    range: 25
+  - type: ArcaneAim
+    offset: 12
+    pvsIncrease: 0.8
+
+

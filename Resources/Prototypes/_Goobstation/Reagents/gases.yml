@@ -262,9 +262,11 @@
         ignoreResistances: true
         damage:
           groups:
-            Burn: -20
-            Toxin: -50
-            Brute: -20
+          # Arcane-Edit-Start
+            Burn: -5
+            Toxin: -10
+            Brute: -5
+          # Arcane-Edit-End
       - !type:PopupMessage
         conditions:
         - !type:ReagentCondition
@@ -320,9 +322,11 @@
         ignoreResistances: true
         damage:
           groups:
-            Burn: -20
-            Toxin: -50
-            Brute: -20
+          # Arcane-Edit-Start
+            Burn: -5
+            Toxin: -10
+            Brute: -5
+          # Arcane-Edit-End
       - !type:PopupMessage
         conditions:
         - !type:ReagentCondition
@@ -334,7 +338,7 @@
         type: Local
         visualType: Medium
         messages: [ "effect-sleepy" ]
-        probability: 0.01
+        probability: 0.1 # Arcane-Edit
       - !type:GenericStatusEffect
         conditions:
         - !type:ReagentCondition
@@ -342,7 +346,7 @@
           min: 8
         - !type:BloodReagentThresholdCondition
           reagent: NitrosylPlasmide
-          max: 0.01
+          max: 0.1 # Arcane-Edit
         key: ForcedSleep
         component: ForcedSleeping
         time: 1
@@ -381,13 +385,13 @@
           reagent: Nitrium
           min: 8
           max: 12
-        speedModifier: 1.4
+        speedModifier: 1.3 # Arcane-Edit
       - !type:NitriumMovespeedModifier
         conditions:
         - !type:ReagentCondition
           reagent: Nitrium
           min: 12
-        speedModifier: 1.6
+        speedModifier: 1.4 # Arcane-Edit
       - !type:AddReagentToBlood
         conditions:
         - !type:ReagentCondition
@@ -431,13 +435,13 @@
           reagent: Nitrium
           min: 8
           max: 12
-        speedModifier: 1.4
+        speedModifier: 1.3 # Arcane-Edit
       - !type:NitriumMovespeedModifier
         conditions:
         - !type:ReagentCondition
           reagent: Nitrium
           min: 12
-        speedModifier: 1.6
+        speedModifier: 1.4 # Arcane-Edit
       - !type:AddReagentToBlood
         conditions:
         - !type:MetabolizerTypeCondition # Fuck you

@@ -32,6 +32,8 @@ ent-ClothingHeadbandFox = лисьи ушки
     .desc = Рыжий ободок с пушистыми лисьими ушками.
 ent-ClothingHeadbandKitsune = ушки кицунэ
     .desc = Традиционный элемент костюма в стиле мифической лисы.
+ent-ClothingHeadHatMaidFura = фуражка горничной
+    .desc = Аккуратная фуражка, подобающая старшей горничной.
 
 # Sponsor
 

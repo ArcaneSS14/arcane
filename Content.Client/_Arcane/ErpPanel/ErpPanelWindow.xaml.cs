@@ -111,7 +111,8 @@ public sealed partial class ErpPanelWindow : FancyWindow
     private List<string> _currentInteractions = new();
     private bool _hasInitializedCategories;
 
-    public Action<string, float, float>? OnSendEmote;
+    public Action<string>? OnSendEmote;
+    public Action<float, float>? OnMultipliersChanged;
 
     public ErpPanelWindow()
     {
@@ -130,19 +131,21 @@ public sealed partial class ErpPanelWindow : FancyWindow
         ClearSearchButton.OnPressed += _ => SearchInput.Text = string.Empty;
         ClearSearchButton.Disabled = true;
 
-        CustomArousalToggle.OnToggled += args => SetModifierEnabled(
-            ArousalSlider,
-            ArousalLabel,
-            args.Pressed,
-            ExplicitAccentColor);
-        CustomMoaningToggle.OnToggled += args => SetModifierEnabled(
-            MoaningSlider,
-            MoaningLabel,
-            args.Pressed,
-            FriendlyAccentColor);
+        CustomArousalToggle.OnToggled += args =>
+        {
+            SetModifierEnabled(ArousalSlider, ArousalLabel, args.Pressed, ExplicitAccentColor);
+            SendMultipliers();
+        };
+        CustomMoaningToggle.OnToggled += args =>
+        {
+            SetModifierEnabled(MoaningSlider, MoaningLabel, args.Pressed, FriendlyAccentColor);
+            SendMultipliers();
+        };
 
         ArousalSlider.OnValueChanged += _ => UpdateMultiplierLabels();
         MoaningSlider.OnValueChanged += _ => UpdateMultiplierLabels();
+        ArousalSlider.OnReleased += _ => SendMultipliers();
+        MoaningSlider.OnReleased += _ => SendMultipliers();
 
         ExpandAllButton.OnPressed += _ => SetAllCategoriesExpanded(true);
         CollapseAllButton.OnPressed += _ => SetAllCategoriesExpanded(false);
@@ -165,6 +168,8 @@ public sealed partial class ErpPanelWindow : FancyWindow
         if (_currentUser == null || _currentTarget == null)
             return;
 
+        LoadMultipliers(_currentUser.Value);
+
         var targetName = Identity.Name(_currentTarget.Value, _entManager, _currentUser.Value);
         HeaderLabel.Text = targetName;
         HeaderLabel.ToolTip = Loc.GetString("erp-panel-header", ("target", targetName));
@@ -182,6 +187,30 @@ public sealed partial class ErpPanelWindow : FancyWindow
         UpdateCooldowns();
         UpdateArousal();
         ReloadInteractionsIfNeeded();
+    }
+
+    private void LoadMultipliers(EntityUid user)
+    {
+        if (!_entManager.TryGetComponent<ErpPanelOwnerComponent>(user, out var panel))
+            return;
+
+        LoadMultiplier(CustomArousalToggle, ArousalSlider, ArousalLabel, panel.ArousalMultiplier, ExplicitAccentColor);
+        LoadMultiplier(CustomMoaningToggle, MoaningSlider, MoaningLabel, panel.MoanMultiplier, FriendlyAccentColor);
+        UpdateMultiplierLabels();
+    }
+
+    private static void LoadMultiplier(CheckBox toggle, Slider slider, Label label, float value, Color activeColor)
+    {
+        toggle.Pressed = value != 100;
+        slider.SetValueWithoutEvent(value);
+        SetModifierEnabled(slider, label, toggle.Pressed, activeColor);
+    }
+
+    private void SendMultipliers()
+    {
+        OnMultipliersChanged?.Invoke(
+            CustomArousalToggle.Pressed ? ArousalSlider.Value : 100f,
+            CustomMoaningToggle.Pressed ? MoaningSlider.Value : 100f);
     }
 
     private void UpdateMultiplierLabels()
@@ -499,10 +528,7 @@ public sealed partial class ErpPanelWindow : FancyWindow
 
         button.OnPressed += _ =>
         {
-            OnSendEmote?.Invoke(
-                interaction.ID,
-                CustomArousalToggle.Pressed ? ArousalSlider.Value : 100f,
-                CustomMoaningToggle.Pressed ? MoaningSlider.Value : 100f);
+            OnSendEmote?.Invoke(interaction.ID);
 
             if (interaction.Cooldown <= TimeSpan.Zero)
                 return;

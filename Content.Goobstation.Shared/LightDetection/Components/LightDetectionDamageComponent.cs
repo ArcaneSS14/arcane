@@ -51,6 +51,11 @@ public sealed partial class LightDetectionDamageComponent : Component
     [DataField, AutoNetworkedField]
     public float ResistanceModifier = 1;
 
+    // Arcane-Start
+    [DataField, AutoNetworkedField]
+    public float MinResistanceModifier;
+    // Arcane-End
+
     /// <summary>
     /// How much damage to deal to the entity.
     /// Shadowlings will have Light Resistance, so this will get affected by that.
