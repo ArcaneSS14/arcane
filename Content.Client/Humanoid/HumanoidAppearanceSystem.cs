@@ -6,10 +6,10 @@ using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Client._Arcane.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics; // Arcane
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -23,8 +23,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
-
-    private static readonly ProtoId<ShaderPrototype> HairGradientShader = "ArcaneHairGradient"; // Arcane
+    [Dependency] private readonly HairGradientSystem _hairGradient = default!; // Arcane
 
     public override void Initialize()
     {
@@ -42,20 +41,13 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
     private void OnCvarChanged(bool value)
     {
+        // Arcane-Edit-Start
         var humanoidQuery = EntityManager.AllEntityQueryEnumerator<HumanoidAppearanceComponent, SpriteComponent>();
-        while (humanoidQuery.MoveNext(out var _, out var humanoidComp, out var spriteComp))
-        {
-            UpdateSprite(humanoidComp, spriteComp);
-        }
-    }
-
-    private void UpdateSprite(HumanoidAppearanceComponent component, SpriteComponent sprite)
-    {
-        var humanoidQuery = AllEntityQuery<HumanoidAppearanceComponent, SpriteComponent>();
         while (humanoidQuery.MoveNext(out var uid, out var humanoidComp, out var spriteComp))
         {
             UpdateSprite((uid, humanoidComp, spriteComp));
         }
+        // Arcane-Edit-End
     }
 
     public void UpdateSprite(Entity<HumanoidAppearanceComponent, SpriteComponent> entity) // Goob edit - made public
@@ -302,6 +294,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             }
         }
 
+        _hairGradient.ReleaseUnusedShaders(entity); // Arcane
         humanoid.ClientOldMarkings = new MarkingSet(humanoid.MarkingSet);
 
         AddUndergarments(entity, applyUndergarmentTop, applyUndergarmentBottom);
@@ -428,24 +421,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         // each sprite when we have one marking setting multiple layers,
         // lets just kinda sorta do that ourselves
         var layerDict = new Dictionary<string, int>();
-        // Arcane-Start: Hair gradient shader preparation
-        var markingShader = markingPrototype.Shader;
-        var isHairGradient = markingShader == null && markingPrototype.MarkingCategory == MarkingCategories.Hair && humanoid.HairGradientEnabled;
-        ShaderInstance? hairGradientShader = null;
-        if (isHairGradient)
-        {
-            hairGradientShader = _prototypeManager.Index(HairGradientShader).InstanceUnique();
-            var gradientColors = humanoid.HairGradientColors;
-            var roots = gradientColors.Count > 0 ? gradientColors[0] : (humanoid.CachedHairColor ?? Color.Black);
-            var tips = gradientColors.Count > 1 ? gradientColors[1] : roots;
-
-            hairGradientShader.SetParameter("gradientStart", new Vector3(roots.R, roots.G, roots.B));
-            hairGradientShader.SetParameter("gradientEnd", new Vector3(tips.R, tips.G, tips.B));
-            hairGradientShader.SetParameter("gradientStyle", (int) humanoid.HairGradientStyle);
-            hairGradientShader.SetParameter("gradientOffset", humanoid.HairGradientOffset);
-        }
-        // Arcane-End
-
+        var isHairGradient = markingPrototype.Shader == null && markingPrototype.MarkingCategory == MarkingCategories.Hair && humanoid.HairGradientEnabled; // Arcane
         // FLOOF ADD END
         for (var j = 0; j < markingPrototype.Sprites.Count; j++)
         {
@@ -503,20 +479,17 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 sprite.LayerMapSet(layerId, layer);
                 sprite.LayerSetSprite(layerId, rsi);
             }
-            // Arcane-Edit-Start: Hair gradient shader application
+            // imp special via beck. check if there's a shader defined in the markingPrototype's shader datafield, and if there is...
+			if (markingPrototype.Shader != null)
+			{
+			// use spriteComponent's layersetshader function to set the layer's shader to that which is specified.
+				sprite.LayerSetShader(layerId, markingPrototype.Shader);
+			}
+            // end imp special
+            // Arcane-Start
             if (isHairGradient)
-            {
-                sprite.LayerSetShader(layerId, hairGradientShader!, "ArcaneHairGradient");
-            }
-            else if (markingShader != null)
-            {
-                sprite.LayerSetShader(layerId, markingShader);
-            }
-            else if (sprite.LayerMapTryGet(layerId, out var spriteLayer))
-            {
-                sprite.LayerSetShader(spriteLayer, null, null);
-            }
-            // Arcane-Edit-End
+                sprite.LayerSetShader(layerId, _hairGradient.GetLayerShader((entity.Owner, humanoid), layerId, rsi), HairGradientSystem.ShaderPrototype.Id);
+            // Arcane-End
             sprite.LayerSetVisible(layerId, visible);
 
             if (!visible || setting == null) // this is kinda implied

@@ -45,6 +45,7 @@ using Content.Goobstation.Common.CCVar; // Goob Station - Barks
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Orion.RichText;
 using Content.Client._Arcane.DirectionalLayering;
+using Content.Client._Arcane.Humanoid;
 using Content.Client._Arcane.TTS;
 using Content.Client._Arcane.StyleSheets; // Arcane
 using Content.Shared._Arcane.ERP;
@@ -145,14 +146,9 @@ namespace Content.Client.Lobby.UI
 
         private ClothingDisplayMode _clothingDisplayMode = ClothingDisplayMode.ShowAll; // Orion
         // Arcane-Start
-        private OptionButton _hairGradientStyleOption = default!;
-        private Label _hairRootsLabel = default!;
-        private ColorSelectorSliders _hairRootsSelector = default!;
-        private Label _hairTipsLabel = default!;
-        private ColorSelectorSliders _hairTipsSelector = default!;
-        private Label _hairGradientOffsetLabel = default!;
-        private Slider _hairGradientOffsetSlider = default!;
         private bool _updatingHairGradientControls;
+        private HairGradientHarmony? _hairGradientHarmony;
+        private int _hairGradientVariant;
         // Arcane-End
 
         public HumanoidProfileEditor(
@@ -402,153 +398,53 @@ namespace Content.Client.Lobby.UI
                 ReloadPreview();
             };
 
-            // Arcane-Start: Hair gradient UI setup
-            var styleRow = new BoxContainer
+            // Arcane-Start
+            HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-ombre"), (int) HairGradientStyle.Ombre);
+            HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-split"), (int) HairGradientStyle.Split);
+            HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-underdye"), (int) HairGradientStyle.Underdye);
+            HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-streaks"), (int) HairGradientStyle.Streaks);
+            HairGradientStyleButton.OnItemSelected += args =>
             {
-                Orientation = BoxContainer.LayoutOrientation.Horizontal,
-                Margin = new Thickness(0, 4, 0, 4),
-                HorizontalExpand = true
-            };
-            var styleLabel = new Label
-            {
-                Text = Loc.GetString("humanoid-profile-editor-hair-gradient-style-label"),
-                Margin = new Thickness(0, 0, 8, 0)
-            };
-            _hairGradientStyleOption = new OptionButton
-            {
-                HorizontalExpand = true
-            };
-            _hairGradientStyleOption.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-ombre"), (int) HairGradientStyle.Ombre);
-            _hairGradientStyleOption.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-split"), (int) HairGradientStyle.Split);
-            _hairGradientStyleOption.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-underdye"), (int) HairGradientStyle.Underdye);
-            _hairGradientStyleOption.OnItemSelected += args =>
-            {
-                _hairGradientStyleOption.SelectId(args.Id);
+                HairGradientStyleButton.SelectId(args.Id);
                 UpdateHairGradientLabels();
                 OnHairGradientColorsChanged();
             };
-            styleRow.AddChild(styleLabel);
-            styleRow.AddChild(_hairGradientStyleOption);
-            HairGradientColorContainer.AddChild(styleRow);
 
-            _hairRootsLabel = new Label
+            HairGradientRootsSelector.OnColorChanged += _ =>
             {
-                Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-ombre"),
-                Margin = new Thickness(0, 4, 0, 2)
+                _hairGradientHarmony = null;
+                OnHairGradientColorsChanged();
             };
-            HairGradientColorContainer.AddChild(_hairRootsLabel);
-
-            _hairRootsSelector = new ColorSelectorSliders { SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv, HorizontalExpand = true };
-            _hairRootsSelector.OnColorChanged += _ => OnHairGradientColorsChanged();
-            HairGradientColorContainer.AddChild(_hairRootsSelector);
-
-            _hairTipsLabel = new Label
-            {
-                Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-ombre"),
-                Margin = new Thickness(0, 8, 0, 2)
-            };
-            HairGradientColorContainer.AddChild(_hairTipsLabel);
-
-            _hairTipsSelector = new ColorSelectorSliders { SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv, HorizontalExpand = true };
-            _hairTipsSelector.OnColorChanged += _ => OnHairGradientColorsChanged();
-            HairGradientColorContainer.AddChild(_hairTipsSelector);
-
-            // Offset / Height Slider
-            var offsetContainer = new BoxContainer
-            {
-                Orientation = BoxContainer.LayoutOrientation.Vertical,
-                Margin = new Thickness(0, 6, 0, 4),
-                HorizontalExpand = true
-            };
-            _hairGradientOffsetLabel = new Label
-            {
-                Margin = new Thickness(0, 2, 0, 2)
-            };
-            _hairGradientOffsetSlider = new Slider
-            {
-                MinValue = 0,
-                MaxValue = 100,
-                Value = 50,
-                HorizontalExpand = true
-            };
-            _hairGradientOffsetSlider.OnValueChanged += _ =>
+            HairGradientTipsSelector.OnColorChanged += _ => OnHairGradientColorsChanged();
+            HairGradientOffsetSlider.OnValueChanged += _ =>
             {
                 UpdateHairGradientLabels();
                 OnHairGradientColorsChanged();
             };
-            offsetContainer.AddChild(_hairGradientOffsetLabel);
-            offsetContainer.AddChild(_hairGradientOffsetSlider);
-            HairGradientColorContainer.AddChild(offsetContainer);
 
-            // Smart Harmony Buttons
-            var harmonyRow = new BoxContainer
+            HairGradientLightenButton.OnPressed += _ => SuggestHairGradientTips(HairGradientHarmony.Lighten);
+            HairGradientAnalogousButton.OnPressed += _ => SuggestHairGradientTips(HairGradientHarmony.Analogous);
+            HairGradientContrastButton.OnPressed += _ => SuggestHairGradientTips(HairGradientHarmony.Contrast);
+            HairGradientSwapButton.OnPressed += _ =>
             {
-                Orientation = BoxContainer.LayoutOrientation.Horizontal,
-                Margin = new Thickness(0, 4, 0, 6),
-                HorizontalExpand = true
-            };
-
-            var naturalBtn = new Button
-            {
-                Text = Loc.GetString("humanoid-profile-editor-hair-gradient-btn-natural"),
-                ToolTip = Loc.GetString("humanoid-profile-editor-hair-gradient-btn-natural-tooltip"),
-                HorizontalExpand = true
-            };
-            naturalBtn.OnPressed += _ =>
-            {
-                _hairTipsSelector.Color = GenerateNaturalOmbre(_hairRootsSelector.Color);
+                (HairGradientRootsSelector.Color, HairGradientTipsSelector.Color) = (HairGradientTipsSelector.Color, HairGradientRootsSelector.Color);
+                _hairGradientHarmony = null;
                 OnHairGradientColorsChanged();
             };
-            harmonyRow.AddChild(naturalBtn);
-
-            var analogousBtn = new Button
-            {
-                Text = Loc.GetString("humanoid-profile-editor-hair-gradient-btn-analogous"),
-                ToolTip = Loc.GetString("humanoid-profile-editor-hair-gradient-btn-analogous-tooltip"),
-                HorizontalExpand = true
-            };
-            analogousBtn.OnPressed += _ =>
-            {
-                _hairTipsSelector.Color = GenerateAnalogous(_hairRootsSelector.Color);
-                OnHairGradientColorsChanged();
-            };
-            harmonyRow.AddChild(analogousBtn);
-
-            var contrastBtn = new Button
-            {
-                Text = Loc.GetString("humanoid-profile-editor-hair-gradient-btn-contrast"),
-                ToolTip = Loc.GetString("humanoid-profile-editor-hair-gradient-btn-contrast-tooltip"),
-                HorizontalExpand = true
-            };
-            contrastBtn.OnPressed += _ =>
-            {
-                _hairTipsSelector.Color = GenerateContrast(_hairRootsSelector.Color);
-                OnHairGradientColorsChanged();
-            };
-            harmonyRow.AddChild(contrastBtn);
-
-            var swapBtn = new Button
-            {
-                Text = Loc.GetString("humanoid-profile-editor-hair-gradient-btn-swap"),
-                ToolTip = Loc.GetString("humanoid-profile-editor-hair-gradient-btn-swap-tooltip"),
-                HorizontalExpand = true
-            };
-            swapBtn.OnPressed += _ =>
-            {
-                var temp = _hairRootsSelector.Color;
-                _hairRootsSelector.Color = _hairTipsSelector.Color;
-                _hairTipsSelector.Color = temp;
-                OnHairGradientColorsChanged();
-            };
-            harmonyRow.AddChild(swapBtn);
-
-            HairGradientColorContainer.AddChild(harmonyRow);
 
             HairGradientEnabled.OnToggled += _ =>
             {
                 if (Profile == null)
                     return;
+
                 HairGradientColorContainer.Visible = HairGradientEnabled.Pressed;
+                // Identical colors mean the gradient was never configured; seed it from the current hair color with lighter tips.
+                if (HairGradientEnabled.Pressed && HairGradientRootsSelector.Color == HairGradientTipsSelector.Color)
+                {
+                    HairGradientRootsSelector.Color = Profile.Appearance.HairColor;
+                    HairGradientTipsSelector.Color = HairGradientPalette.Suggest(Profile.Appearance.HairColor, HairGradientHarmony.Lighten, 0);
+                }
+
                 OnHairGradientColorsChanged();
             };
             // Arcane-End
@@ -2511,9 +2407,9 @@ namespace Content.Client.Lobby.UI
             if (Profile == null || _updatingHairGradientControls)
                 return;
 
-            var colors = new List<Color> { _hairRootsSelector.Color, _hairTipsSelector.Color };
-            var style = (HairGradientStyle) _hairGradientStyleOption.SelectedId;
-            var offset = _hairGradientOffsetSlider.Value / 100f;
+            var colors = new List<Color> { HairGradientRootsSelector.Color, HairGradientTipsSelector.Color };
+            var style = (HairGradientStyle) HairGradientStyleButton.SelectedId;
+            var offset = HairGradientOffsetSlider.Value / 100f;
 
             Profile = Profile.WithCharacterAppearance(
                 Profile.Appearance.WithHairGradient(HairGradientEnabled.Pressed, colors, style, offset));
@@ -2521,34 +2417,48 @@ namespace Content.Client.Lobby.UI
             SetDirty();
         }
 
+        private void SuggestHairGradientTips(HairGradientHarmony harmony)
+        {
+            _hairGradientVariant = _hairGradientHarmony == harmony ? _hairGradientVariant + 1 : 0;
+            _hairGradientHarmony = harmony;
+            HairGradientTipsSelector.Color = HairGradientPalette.Suggest(HairGradientRootsSelector.Color, harmony, _hairGradientVariant);
+            OnHairGradientColorsChanged();
+        }
+
         private void UpdateHairGradientLabels()
         {
-            var style = (HairGradientStyle) _hairGradientStyleOption.SelectedId;
-            var offsetVal = (int) _hairGradientOffsetSlider.Value;
+            var style = (HairGradientStyle) HairGradientStyleButton.SelectedId;
+            var offsetVal = (int) HairGradientOffsetSlider.Value;
 
             switch (style)
             {
                 case HairGradientStyle.Split:
-                    _hairRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-split");
-                    _hairTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-split");
-                    _hairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-split", ("value", offsetVal));
+                    HairGradientRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-split");
+                    HairGradientTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-split");
+                    HairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-split", ("value", offsetVal));
                     break;
                 case HairGradientStyle.Underdye:
-                    _hairRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-underdye");
-                    _hairTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-underdye");
-                    _hairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-underdye", ("value", offsetVal));
+                    HairGradientRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-underdye");
+                    HairGradientTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-underdye");
+                    HairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-underdye", ("value", offsetVal));
                     break;
-                case HairGradientStyle.Ombre:
+                case HairGradientStyle.Streaks:
+                    HairGradientRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-streaks");
+                    HairGradientTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-streaks");
+                    HairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-streaks", ("value", offsetVal));
+                    break;
                 default:
-                    _hairRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-ombre");
-                    _hairTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-ombre");
-                    _hairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-ombre", ("value", offsetVal));
+                    HairGradientRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-ombre");
+                    HairGradientTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-ombre");
+                    HairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-ombre", ("value", offsetVal));
                     break;
             }
         }
 
         private void UpdateHairGradientControls()
         {
+            _hairGradientHarmony = null;
+
             if (Profile == null)
             {
                 HairGradientEnabled.Pressed = false;
@@ -2556,107 +2466,17 @@ namespace Content.Client.Lobby.UI
                 return;
             }
 
+            var colors = Profile.Appearance.HairGradientColors;
             _updatingHairGradientControls = true;
-            try
-            {
-                HairGradientEnabled.Pressed = Profile.Appearance.HairGradientEnabled;
-                var colors = Profile.Appearance.HairGradientColors;
+            HairGradientEnabled.Pressed = Profile.Appearance.HairGradientEnabled;
+            HairGradientColorContainer.Visible = HairGradientEnabled.Pressed;
+            HairGradientRootsSelector.Color = colors.Count > 0 ? colors[0] : Profile.Appearance.HairColor;
+            HairGradientTipsSelector.Color = colors.Count > 1 ? colors[1] : HairGradientRootsSelector.Color;
+            HairGradientStyleButton.SelectId((int) Profile.Appearance.HairGradientStyle);
+            HairGradientOffsetSlider.Value = MathF.Round(Profile.Appearance.HairGradientOffset * 100f);
+            _updatingHairGradientControls = false;
 
-                _hairRootsSelector.Color = colors.Count > 0 ? colors[0] : Profile.Appearance.HairColor;
-                _hairTipsSelector.Color = colors.Count > 1 ? colors[1] : _hairRootsSelector.Color;
-
-                if (!_hairGradientStyleOption.TrySelectId((int) Profile.Appearance.HairGradientStyle))
-                    _hairGradientStyleOption.SelectId((int) HairGradientStyle.Ombre);
-
-                _hairGradientOffsetSlider.Value = (float) Math.Round(Profile.Appearance.HairGradientOffset * 100f);
-
-                UpdateHairGradientLabels();
-                HairGradientColorContainer.Visible = HairGradientEnabled.Pressed;
-            }
-            finally
-            {
-                _updatingHairGradientControls = false;
-            }
-        }
-
-        private static Color GenerateNaturalOmbre(Color roots)
-        {
-            var hsv = Color.ToHsv(roots);
-            var hue = hsv.X;
-            var sat = hsv.Y;
-            var val = hsv.Z;
-
-            // Achromatic dark (black / very dark gray)
-            if (val < 0.2f || (sat < 0.1f && val < 0.35f))
-            {
-                return Color.FromHsv(new Vector4(0.08f, 0.45f, 0.65f, 1f));
-            }
-
-            // Achromatic light (white / silver / pale gray)
-            if (sat < 0.12f && val >= 0.7f)
-            {
-                return Color.FromHsv(new Vector4(0.12f, 0.20f, 0.95f, 1f));
-            }
-
-            // Natural hair tones: brown, black, ginger, blond (hue roughly 0.03 to 0.16)
-            if (hue >= 0.03f && hue <= 0.16f)
-            {
-                var targetVal = Math.Clamp(val + 0.30f, 0.55f, 0.95f);
-                var targetSat = Math.Clamp(sat * 0.82f, 0.20f, 0.75f);
-                var targetHue = (hue * 0.6f) + (0.12f * 0.4f);
-                return Color.FromHsv(new Vector4(targetHue, targetSat, targetVal, 1f));
-            }
-
-            // Vivid / fantasy dyed hair: gentle pastel sun-fade
-            var fadeVal = Math.Clamp(val + 0.25f, 0.65f, 1f);
-            var fadeSat = Math.Clamp(sat * 0.65f, 0.25f, 0.8f);
-            return Color.FromHsv(new Vector4(hue, fadeSat, fadeVal, 1f));
-        }
-
-        private static Color GenerateAnalogous(Color roots)
-        {
-            var hsv = Color.ToHsv(roots);
-            var hue = hsv.X;
-            var sat = hsv.Y;
-            var val = hsv.Z;
-
-            if (sat < 0.15f)
-            {
-                if (val < 0.35f)
-                {
-                    return Color.FromHsv(new Vector4(0.60f, 0.40f, 0.50f, 1f));
-                }
-                return Color.FromHsv(new Vector4(0.75f, 0.25f, Math.Max(val, 0.85f), 1f));
-            }
-
-            var shift = (hue is >= 0.18f and <= 0.65f) ? -0.083f : 0.083f;
-            var newHue = (hue + shift + 1.0f) % 1.0f;
-            var newSat = Math.Clamp(sat, 0.35f, 0.95f);
-            var newVal = Math.Clamp(Math.Max(val, 0.55f), 0f, 1f);
-            return Color.FromHsv(new Vector4(newHue, newSat, newVal, 1f));
-        }
-
-        private static Color GenerateContrast(Color roots)
-        {
-            var hsv = Color.ToHsv(roots);
-            var hue = hsv.X;
-            var sat = hsv.Y;
-            var val = hsv.Z;
-
-            if (val < 0.25f || (sat < 0.15f && val < 0.4f))
-            {
-                return Color.FromHsv(new Vector4(0.50f, 0.85f, 0.90f, 1f)); // Electric cyan
-            }
-
-            if (sat < 0.15f && val >= 0.8f)
-            {
-                return Color.FromHsv(new Vector4(0.60f, 0.80f, 0.35f, 1f)); // Deep sapphire
-            }
-
-            var compHue = (hue + 0.5f) % 1.0f;
-            var compSat = Math.Clamp(Math.Max(sat, 0.65f), 0.3f, 1f);
-            var compVal = Math.Clamp(Math.Max(val, 0.70f), 0.3f, 1f);
-            return Color.FromHsv(new Vector4(compHue, compSat, compVal, 1f));
+            UpdateHairGradientLabels();
         }
         // Arcane-End
 
