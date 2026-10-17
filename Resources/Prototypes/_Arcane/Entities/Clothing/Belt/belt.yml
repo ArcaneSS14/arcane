@@ -10,3 +10,42 @@
     sprite: _Arcane/Clothing/Belt/Sponsor/service_apron.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Belt/Sponsor/service_apron.rsi
+
+# Command
+
+- type: entity
+  parent: ClothingBeltJanitor
+  id: ClothingBeltJanitorBow
+  name: janitor belt with a bow
+  description: A decorative yet practical janitor belt featuring a cute bow.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Belt/janitor_bow_belt.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Belt/janitor_bow_belt.rsi
+    equippedState: equipped-BELT
+  - type: ItemMapper
+    sprite: _Arcane/Clothing/Belt/janitor_bow_belt.rsi
+    mapLayers:
+      icon-trashbag:
+        whitelist:
+          tags:
+          - TrashBag
+      icon-cleaner:
+        whitelist:
+          tags:
+          - Spray
+  - type: ArcaneItemClothingVisuals
+    clothingVisuals:
+      belt:
+      - whitelist:
+          tags:
+          - TrashBag
+        layer:
+          state: equipped-BELT-trashbag
+      - whitelist:
+          tags:
+          - Spray
+        layer:
+          state: equipped-BELT-cleaner
