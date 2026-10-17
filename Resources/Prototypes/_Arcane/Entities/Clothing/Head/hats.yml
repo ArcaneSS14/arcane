@@ -361,7 +361,7 @@
   - type: Sprite
     sprite: _Arcane/Clothing/Head/headband_cow.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Head/headband_cat.rsi
+    sprite: _Arcane/Clothing/Head/headband_cow.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -372,7 +372,7 @@
   - type: Sprite
     sprite: _Arcane/Clothing/Head/headband_dog.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Head/headband_cat.rsi
+    sprite: _Arcane/Clothing/Head/headband_dog.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -383,7 +383,7 @@
   - type: Sprite
     sprite: _Arcane/Clothing/Head/headband_fox.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Head/headband_cat.rsi
+    sprite: _Arcane/Clothing/Head/headband_fox.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -394,4 +394,4 @@
   - type: Sprite
     sprite: _Arcane/Clothing/Head/headband_kitsune.rsi
   - type: Clothing
-    sprite: _Arcane/Clothing/Head/headband_cat.rsi
+    sprite: _Arcane/Clothing/Head/headband_kitsune.rsi

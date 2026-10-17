@@ -20,7 +20,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   userRequirements:
   - !type:SexRequirement
     sexes:
@@ -50,7 +50,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: AnusFingering
@@ -70,7 +70,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: AnusTailFuck
@@ -94,7 +94,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   userRequirements:
   - !type:TailRequirement
 
@@ -131,7 +131,7 @@
     - Male
     - Futanari
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   - !type:ArousalRequirement
 
 - type: panelInteraction
@@ -154,7 +154,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: AnalFingering2
@@ -175,7 +175,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: ToyButt
@@ -198,7 +198,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   userRequirements:
   - !type:HeldItemRequirement
     tags:
@@ -227,7 +227,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   userRequirements:
   - !type:ClothesWearingRequirements
     tags:
@@ -254,7 +254,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   userRequirements:
   - !type:NearbyTargetRequirement
     tags:
@@ -278,7 +278,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: RunningFingerAnus
@@ -298,7 +298,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: WallAnusFuck
@@ -324,7 +324,7 @@
     tags:
     - Wall
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   - !type:ArousalRequirement
   userRequirements:
   - !type:SexRequirement
@@ -354,7 +354,7 @@
   targetRequirements:
   - !type:CumOverlayRequirement
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   - !type:SexRequirement
     sexes:
     - Male

@@ -661,9 +661,6 @@
     slots: [ plug ]
   - type: Item
     size: Tiny
-  - type: Tag
-    tags:
-    - ToyPlug
 
 - type: entity
   parent: ClothingAnalPlug

@@ -116,7 +116,7 @@ ent-ClothingPlugShark = акулий хвост-пробка
 ent-BoxCardboardPlug = коробка с пробками
     .desc = Коробка, содержащая набор различных пробок.
 
-ent-VendingMachineLoveRestock = набор припасов для Лавмата
+ent-VendingMachineLoveRestock = набор пополнения для Лавмата
     .desc = Коробка с расходными материалами для пополнения автомата.
 
 ent-BdsmLeash = кожаный поводок
@@ -145,7 +145,7 @@ ent-ClothingNeckChokerLaceRed = красный кружевной чокер
     .desc = Страстное красное кружево, которое так и приковывает к себе чужие взгляды.
 ent-ClothingNeckChokerLaceWhite = белый кружевной чокер
     .desc = Невинный белый цвет, который в таких играх приобретает совсем другой смысл.
-ent-ClothingNeckChokerPinkHeart = розовый ошечокерйник с сердечком
+ent-ClothingNeckChokerPinkHeart = розовый чокер с сердечком
     .desc = Очаровательный аксессуар для самой послушной и милой куколки.
 ent-ClothingNeckChokerPinkHeartSpikes = розовый чокер с шипами и сердечком
     .desc = Для тех, кто снаружи кажется милым котенком, но умеет выпускать коготки.
