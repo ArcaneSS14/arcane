@@ -19,7 +19,7 @@ public enum HairGradientStyle : byte
     Ombre = 0,
     Split = 1,
     Underdye = 2,
-    Highlights = 3,
+    Balayage = 3,
 }
 // Arcane-End
 
@@ -103,7 +103,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         }
         else
         {
-            HairGradientColors = new() { Color.Black, Color.Black };
+            HairGradientColors = new() { HairColor, HairColor };
         }
         // Arcane-End
     }
@@ -344,15 +344,33 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     // Arcane-Edit-Start
     public override int GetHashCode()
     {
-        var hash = HashCode.Combine(
-            HashCode.Combine(HairStyleId, HairColor, HairGradientEnabled),
-            FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings, EarsAboveHair);
-        hash = HashCode.Combine(hash, HairGradientStyle, HairGradientOffset);
+        // Hash the same sequence data that Equals compares.
+        var hash = new HashCode();
+        hash.Add(HairStyleId);
+        hash.Add(HairColor);
+        hash.Add(HairGradientEnabled);
+        hash.Add(HairGradientStyle);
+        hash.Add(HairGradientOffset);
         foreach (var color in HairGradientColors)
+            hash.Add(color);
+
+        hash.Add(FacialHairStyleId);
+        hash.Add(FacialHairColor);
+        hash.Add(EyeColor);
+        hash.Add(SkinColor);
+        hash.Add(Markings.Count);
+        foreach (var marking in Markings)
         {
-            hash = HashCode.Combine(hash, color);
+            hash.Add(marking.MarkingId);
+            hash.Add(marking.MarkingColors.Count);
+            foreach (var color in marking.MarkingColors)
+                hash.Add(color);
+            hash.Add(marking.Visible);
+            hash.Add(marking.Forced);
         }
-        return hash;
+
+        hash.Add(EarsAboveHair);
+        return hash.ToHashCode();
     }
     // Arcane-Edit-End
 

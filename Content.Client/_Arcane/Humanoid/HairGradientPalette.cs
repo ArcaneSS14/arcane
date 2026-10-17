@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client.Stylesheets.Colorspace;
 
 namespace Content.Client._Arcane.Humanoid;
 
@@ -10,8 +11,7 @@ public enum HairGradientHarmony : byte
 }
 
 /// <summary>
-/// Suggests a tips color for a hair gradient. Works in OkLCh, the same space the shader blends in,
-/// so hue steps look even and lightness stays readable on the hair sprite.
+/// Suggests gradient tips in OkLCh, the space the shader blends in, so hue steps look even.
 /// </summary>
 public static class HairGradientPalette
 {
@@ -19,7 +19,6 @@ public static class HairGradientPalette
     private const float Deg = MathF.PI / 180f;
     private const float MaxLightness = 0.95f;
 
-    // Golden blond hue that sun-bleached natural hair drifts towards.
     private const float BlondHue = 80f * Deg;
 
     // Share of the remaining headroom up to MaxLightness, so light roots still get distinct variants.
@@ -31,10 +30,9 @@ public static class HairGradientPalette
     private static readonly float[] AnalogousNeutralHues = { 250f, 300f, 200f, 30f };
     private static readonly float[] ContrastNeutralHues = { 220f, 340f, 150f, 50f, 280f };
 
-    /// <param name="variant">Increment on repeated presses to cycle through alternative suggestions.</param>
     public static Color Suggest(Color roots, HairGradientHarmony harmony, int variant)
     {
-        var lch = Color.ToLch(Color.ToLab(Color.FromSrgb(roots)));
+        var lch = Color.ToLch(roots.LabFromSrgb());
         var (l, c, h) = (lch.X, lch.Y, lch.Z);
 
         return harmony switch
@@ -61,7 +59,7 @@ public static class HairGradientPalette
 
         // Natural warm hair drifts to golden blond; dyed colors keep their hue and fade to a pastel.
         var natural = h is > 20f * Deg and < 110f * Deg;
-        var targetH = natural ? LerpHue(h, BlondHue, 0.4f) : h;
+        var targetH = natural ? (float) Angle.Lerp(h, BlondHue, 0.4f).Theta : h;
         var targetC = natural ? MathF.Max(c * 0.85f, 0.05f) : c * 0.7f;
         return FromLch(targetL, targetC, targetH);
     }
@@ -92,15 +90,7 @@ public static class HairGradientPalette
         return values[(variant % values.Length + values.Length) % values.Length];
     }
 
-    private static float LerpHue(float from, float to, float t)
-    {
-        var delta = MathF.IEEERemainder(to - from, MathF.Tau);
-        return from + delta * t;
-    }
-
-    /// <summary>
-    /// Converts OkLCh to sRGB, lowering chroma until the color fits the sRGB gamut.
-    /// </summary>
+    // Lowers chroma until the color fits the sRGB gamut.
     private static Color FromLch(float l, float c, float h)
     {
         var full = ToSrgb(l, c, h);
@@ -118,7 +108,7 @@ public static class HairGradientPalette
                 high = mid;
         }
 
-        return Clamp(ToSrgb(l, low, h));
+        return Color.FromLch(new Vector4(l, low, h, 1f)).LabToSrgb();
     }
 
     private static Color ToSrgb(float l, float c, float h)
@@ -133,13 +123,5 @@ public static class HairGradientPalette
         return color.R is >= -epsilon and <= 1f + epsilon &&
                color.G is >= -epsilon and <= 1f + epsilon &&
                color.B is >= -epsilon and <= 1f + epsilon;
-    }
-
-    private static Color Clamp(Color color)
-    {
-        return new Color(
-            Math.Clamp(color.R, 0f, 1f),
-            Math.Clamp(color.G, 0f, 1f),
-            Math.Clamp(color.B, 0f, 1f));
     }
 }

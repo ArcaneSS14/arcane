@@ -402,7 +402,7 @@ namespace Content.Client.Lobby.UI
             HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-ombre"), (int) HairGradientStyle.Ombre);
             HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-split"), (int) HairGradientStyle.Split);
             HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-underdye"), (int) HairGradientStyle.Underdye);
-            HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-highlights"), (int) HairGradientStyle.Highlights);
+            HairGradientStyleButton.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-style-balayage"), (int) HairGradientStyle.Balayage);
             HairGradientStyleButton.OnItemSelected += args =>
             {
                 HairGradientStyleButton.SelectId(args.Id);
@@ -438,7 +438,7 @@ namespace Content.Client.Lobby.UI
                     return;
 
                 HairGradientColorContainer.Visible = HairGradientEnabled.Pressed;
-                // Identical colors mean the gradient was never configured; start from the current hair color instead of black.
+                // Identical colors mean the gradient was never configured; seed it from the current hair color with lighter tips.
                 if (HairGradientEnabled.Pressed && HairGradientRootsSelector.Color == HairGradientTipsSelector.Color)
                 {
                     HairGradientRootsSelector.Color = Profile.Appearance.HairColor;
@@ -2442,10 +2442,10 @@ namespace Content.Client.Lobby.UI
                     HairGradientTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-underdye");
                     HairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-underdye", ("value", offsetVal));
                     break;
-                case HairGradientStyle.Highlights:
-                    HairGradientRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-highlights");
-                    HairGradientTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-highlights");
-                    HairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-highlights", ("value", offsetVal));
+                case HairGradientStyle.Balayage:
+                    HairGradientRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-balayage");
+                    HairGradientTipsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-tips-balayage");
+                    HairGradientOffsetLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-offset-balayage", ("value", offsetVal));
                     break;
                 default:
                     HairGradientRootsLabel.Text = Loc.GetString("humanoid-profile-editor-hair-gradient-roots-ombre");
@@ -2467,13 +2467,12 @@ namespace Content.Client.Lobby.UI
             }
 
             var colors = Profile.Appearance.HairGradientColors;
+            _updatingHairGradientControls = true;
             HairGradientEnabled.Pressed = Profile.Appearance.HairGradientEnabled;
             HairGradientColorContainer.Visible = HairGradientEnabled.Pressed;
             HairGradientRootsSelector.Color = colors.Count > 0 ? colors[0] : Profile.Appearance.HairColor;
             HairGradientTipsSelector.Color = colors.Count > 1 ? colors[1] : HairGradientRootsSelector.Color;
             HairGradientStyleButton.SelectId((int) Profile.Appearance.HairGradientStyle);
-
-            _updatingHairGradientControls = true;
             HairGradientOffsetSlider.Value = MathF.Round(Profile.Appearance.HairGradientOffset * 100f);
             _updatingHairGradientControls = false;
 

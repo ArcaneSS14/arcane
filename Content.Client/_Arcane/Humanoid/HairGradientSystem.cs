@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client.Stylesheets.Colorspace;
 using Content.Shared.Humanoid;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -8,9 +9,6 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Arcane.Humanoid;
 
-/// <summary>
-/// Owns the per-layer hair gradient shader instances of humanoids.
-/// </summary>
 public sealed class HairGradientSystem : EntitySystem
 {
     public static readonly ProtoId<ShaderPrototype> ShaderPrototype = "ArcaneHairGradient";
@@ -33,10 +31,10 @@ public sealed class HairGradientSystem : EntitySystem
     {
         base.Shutdown();
 
-        foreach (var shaders in _shaders.Values)
+        foreach (var (uid, shaders) in _shaders)
         {
-            foreach (var shader in shaders.Values)
-                shader.Dispose();
+            foreach (var (layerId, shader) in shaders)
+                DisposeLayerShader(uid, layerId, shader);
         }
 
         _shaders.Clear();
@@ -47,8 +45,8 @@ public sealed class HairGradientSystem : EntitySystem
         if (!_shaders.Remove(ent, out var shaders))
             return;
 
-        foreach (var shader in shaders.Values)
-            shader.Dispose();
+        foreach (var (layerId, shader) in shaders)
+            DisposeLayerShader(ent, layerId, shader);
     }
 
     public ShaderInstance GetLayerShader(Entity<HumanoidAppearanceComponent> ent, string layerId, SpriteSpecifier.Rsi rsi)
@@ -81,13 +79,31 @@ public sealed class HairGradientSystem : EntitySystem
 
     public void ReleaseLayerShader(EntityUid uid, string layerId)
     {
-        if (_shaders.TryGetValue(uid, out var shaders) && shaders.Remove(layerId, out var shader))
-            shader.Dispose();
+        if (!_shaders.TryGetValue(uid, out var shaders) || !shaders.Remove(layerId, out var shader))
+            return;
+
+        DisposeLayerShader(uid, layerId, shader);
+        if (shaders.Count == 0)
+            _shaders.Remove(uid);
+    }
+
+    private void DisposeLayerShader(EntityUid uid, string layerId, ShaderInstance shader)
+    {
+        // Detach first. A renderer may still hold the SpriteLayer after the humanoid component is shut down.
+        if (TryComp<SpriteComponent>(uid, out var sprite) &&
+            _sprite.LayerMapTryGet((uid, sprite), layerId, out var index, false) &&
+            sprite[index] is SpriteComponent.Layer layer &&
+            ReferenceEquals(layer.Shader, shader))
+        {
+            sprite.LayerSetShader(index, (ShaderInstance?) null);
+        }
+
+        shader.Dispose();
     }
 
     private static Vector3 ToOklab(Color color)
     {
-        var lab = Color.ToLab(Color.FromSrgb(color));
+        var lab = color.LabFromSrgb();
         return new Vector3(lab.X, lab.Y, lab.Z);
     }
 

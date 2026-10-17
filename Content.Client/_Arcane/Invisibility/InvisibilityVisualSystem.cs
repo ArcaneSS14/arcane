@@ -38,8 +38,12 @@ public sealed class InvisibilityVisualSystem : EntitySystem
     {
         base.Shutdown();
 
-        foreach (var shader in _shaders.Values)
+        foreach (var (uid, shader) in _shaders)
+        {
+            DetachShader(uid, shader);
             shader.Dispose();
+        }
+
         _shaders.Clear();
     }
 
@@ -100,24 +104,36 @@ public sealed class InvisibilityVisualSystem : EntitySystem
 
     private void RemoveShader(EntityUid uid)
     {
-        if (_shaders.Remove(uid, out var cached))
-            cached.Dispose();
-
-        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid) ||
-            !TryComp<SpriteComponent>(uid, out var sprite))
-        {
+        if (!_shaders.TryGetValue(uid, out var cached))
             return;
-        }
 
-        foreach (var layer in humanoid.BaseLayers.Keys)
-        {
-            if (_sprite.LayerMapTryGet((uid, sprite), layer, out var index, false))
-                sprite.LayerSetShader(index, (ShaderInstance?) null);
-        }
+        DetachShader(uid, cached);
 
         // Rebuilding the marking layers restores their own shaders, such as the hair gradient.
-        if (!TerminatingOrDeleted(uid))
+        if (!TerminatingOrDeleted(uid) &&
+            TryComp<HumanoidAppearanceComponent>(uid, out var humanoid) &&
+            TryComp<SpriteComponent>(uid, out var sprite))
+        {
             _humanoid.UpdateSprite((uid, humanoid, sprite));
+        }
+
+        _shaders.Remove(uid);
+        cached.Dispose();
+    }
+
+    private void DetachShader(EntityUid uid, ShaderInstance shader)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
+        var index = 0;
+        foreach (var layer in sprite.AllLayers)
+        {
+            if (layer is SpriteComponent.Layer actual && ReferenceEquals(actual.Shader, shader))
+                sprite.LayerSetShader(index, (ShaderInstance?) null);
+
+            index++;
+        }
     }
 
     private ShaderInstance GetShader(EntityUid uid, float visibility)

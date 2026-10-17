@@ -306,10 +306,10 @@ namespace Content.Server.Database
             }
 
             var barkVoice = profile.BarkVoice ?? SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
-            // Arcane-Start
             var erpPreference = (ErpPreference) profile.ErpPreference;
             var customSpeciesName = profile.CustomSpeciesName ?? "";
 
+            // Arcane-Start
             var hairGradientEnabled = profile.HairGradientEnabled;
             List<Color>? hairGradientColors = null;
             var hairGradientStyle = HairGradientStyle.Ombre;
@@ -387,13 +387,13 @@ namespace Content.Server.Database
         }
 
         // Arcane-Start
-        private static readonly JsonSerializerOptions HairGradientJsonOptions = new()
+        internal static readonly JsonSerializerOptions HairGradientJsonOptions = new()
         {
             PropertyNameCaseInsensitive = true,
             Converters = { new JsonStringEnumConverter() }
         };
 
-        private sealed class HairGradientSaveData
+        internal sealed class HairGradientSaveData
         {
             public List<string> Colors { get; set; } = new();
             public HairGradientStyle Style { get; set; } = HairGradientStyle.Ombre;

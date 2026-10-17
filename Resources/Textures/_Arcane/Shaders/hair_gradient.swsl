@@ -54,17 +54,19 @@ void fragment() {
             smoothT = smoothstep(center - 0.08, center + 0.08, side + strandWeave);
         }
     } else if (gradientStyle == 2) {
-        // Underdye: shadowed strands of the lower hair get the accent, the lit outer layer and the crown keep the roots color.
-        // Hair sprites shade in a few steps between ~0.6 and 1.0 luminance, so depth is ranked inside that band.
-        highp float depth = clamp((0.97 - lum) / 0.3, 0.0, 1.0);
-        highp float lowness = clamp((0.92 - UV2.y) / 0.3, 0.0, 1.0);
-        highp float threshold = 0.8 + (gradientOffset - 0.5) * 0.4;
-        smoothT = smoothstep(threshold - 0.04, threshold + 0.04, depth * 0.7 + lowness * 0.5);
+        // Underdye: shadowed lower strands get the accent. Depth spans the four sprite shades (~0.4-0.9 linear),
+        // and a per-column offset keeps the dye edge on strands instead of a straight cut.
+        highp float depth = clamp((0.95 - lum) / 0.55, 0.0, 1.0);
+        highp float lowness = clamp((0.95 - UV2.y) / 0.45, 0.0, 1.0);
+        highp float strand = fract(sin(floor(UV2.x * frameWidth) * 78.233) * 43758.5453);
+        highp float threshold = 0.4 + gradientOffset * 0.45;
+        smoothT = smoothstep(threshold - 0.05, threshold + 0.05, depth * 0.55 + lowness * 0.35 + strand * 0.2);
     } else if (gradientStyle == 3) {
-        // Highlights: one-pixel streaks on evenly spread columns; the darkest shade is the outline and keeps the base color.
+        // Balayage: painted strands reach the accent at different heights and thicken toward the tips.
         highp float column = floor(UV2.x * frameWidth);
-        highp float density = 0.1 + gradientOffset * 0.35;
-        smoothT = fract(column * 0.618034 + 0.27) < density ? smoothstep(0.68, 0.72, lum) : 0.0;
+        highp float strand = 0.5 + 0.5 * sin(column * 1.9 + sin(column * 0.7) * 2.0);
+        highp float base = clamp((0.8 + gradientOffset * 0.3 - UV2.y) / 0.3, 0.0, 1.0);
+        smoothT = smoothstep(0.0, 1.0, clamp(base + (strand - 0.5) * 0.9 + (lum - 0.5) * 0.15, 0.0, 1.0));
     } else {
         // Ombre: vertical transition that follows the head curvature.
         highp float dx = (UV2.x - 0.5) * 2.0;
@@ -79,9 +81,11 @@ void fragment() {
     highp vec3 gradientColor = clamp(oklab_to_linear_srgb(mix(rootsLab, tipsLab, smoothT)), 0.0, 1.0);
 
     highp float shade = lum;
+    // Lift the accent so it reads as the picked color instead of a darker one.
     if (gradientStyle == 2) {
-        // Lift the shadowed accent so it reads as the picked color instead of a darker one.
         shade = mix(lum, 0.5 + lum * 0.5, smoothT);
+    } else if (gradientStyle == 3) {
+        shade = mix(lum, 0.5 + lum * 0.5, smoothT * 0.5);
     }
 
     COLOR = vec4(vec3(shade) * gradientColor, texColor.a);

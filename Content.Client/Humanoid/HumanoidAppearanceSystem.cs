@@ -41,20 +41,13 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
     private void OnCvarChanged(bool value)
     {
+        // Arcane-Edit-Start
         var humanoidQuery = EntityManager.AllEntityQueryEnumerator<HumanoidAppearanceComponent, SpriteComponent>();
-        while (humanoidQuery.MoveNext(out var _, out var humanoidComp, out var spriteComp))
-        {
-            UpdateSprite(humanoidComp, spriteComp);
-        }
-    }
-
-    private void UpdateSprite(HumanoidAppearanceComponent component, SpriteComponent sprite)
-    {
-        var humanoidQuery = AllEntityQuery<HumanoidAppearanceComponent, SpriteComponent>();
         while (humanoidQuery.MoveNext(out var uid, out var humanoidComp, out var spriteComp))
         {
             UpdateSprite((uid, humanoidComp, spriteComp));
         }
+        // Arcane-Edit-End
     }
 
     public void UpdateSprite(Entity<HumanoidAppearanceComponent, SpriteComponent> entity) // Goob edit - made public
@@ -345,6 +338,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             }
 
             var layerId = $"{marking.MarkingId}-{rsi.RsiState}";
+            _hairGradient.ReleaseLayerShader(spriteEnt.Owner, layerId); // Arcane
             if (!_sprite.LayerMapTryGet(spriteEnt.AsNullable(), layerId, out var index, false))
             {
                 continue;
@@ -352,7 +346,6 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
             _sprite.LayerMapRemove(spriteEnt.AsNullable(), layerId);
             _sprite.RemoveLayer(spriteEnt.AsNullable(), index);
-            _hairGradient.ReleaseLayerShader(spriteEnt.Owner, layerId); // Arcane
         }
     }
 
