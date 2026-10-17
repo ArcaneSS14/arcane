@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: CrateVendingMachineLove
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: CrateVendingMachineLoveFilled
+  cost: 4000
+  category: cargoproduct-category-name-service
+  group: market

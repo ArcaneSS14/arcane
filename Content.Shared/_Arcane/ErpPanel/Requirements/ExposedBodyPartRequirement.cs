@@ -1,7 +1,7 @@
 using Content.Shared._Arcane.ERP;
-using Content.Shared.Body.Part;
 using Content.Shared.Inventory;
 using Robust.Shared.Serialization;
+using Content.Shared._Arcane.Body.Part;
 
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 
@@ -9,14 +9,16 @@ namespace Content.Shared._Arcane.ErpPanel.Requirements;
 public sealed partial class ExposedBodyPartRequirement : InvertableErpRequirement
 {
     [DataField(required: true)]
-    public BodyPartType Part;
+    public ErpBodyPartType Part;
 
     public override bool IsAvailable(EntityUid uid, IEntityManager entityManager)
     {
         var coveringSlots = Part switch
         {
-            BodyPartType.Chest => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERSHIRT,
-            BodyPartType.Groin => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERWEAR,
+            ErpBodyPartType.Chest => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERSHIRT,
+            ErpBodyPartType.Groin => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERWEAR,
+            ErpBodyPartType.Butt => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERWEAR | SlotFlags.PLUG,
+
             _ => SlotFlags.NONE,
         };
 
