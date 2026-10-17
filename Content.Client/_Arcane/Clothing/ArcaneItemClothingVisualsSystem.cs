@@ -64,7 +64,7 @@ public sealed class ArcaneItemClothingVisualsSystem : EntitySystem
             var matched = false;
             foreach (var containedEnt in contained)
             {
-                if (!_whitelist.IsWhitelistPass(entry.Whitelist, containedEnt))
+                if (!_whitelist.IsWhitelistPassOrNull(entry.Whitelist, containedEnt))
                     continue;
 
                 matched = true;
