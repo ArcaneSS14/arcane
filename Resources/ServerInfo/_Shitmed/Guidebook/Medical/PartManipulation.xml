@@ -12,21 +12,21 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   Обычно тело имеет 11 основных частей. Это:
 
   <Box>
-  <GuideEntityEmbed Entity="HeadHuman" Caption="голова"/>
+  <GuideEntityEmbed Entity="BaseHeadHuman" Caption="голова"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="RightHandHuman" Caption="правая рука"/>
-  <GuideEntityEmbed Entity="RightArmHuman" Caption="правое предплечье"/>
-  <GuideEntityEmbed Entity="ChestHuman" Caption="торс"/>
-  <GuideEntityEmbed Entity="GroinHuman" Caption="пах"/>
-  <GuideEntityEmbed Entity="LeftArmHuman" Caption="левое предплечье"/>
-  <GuideEntityEmbed Entity="LeftHandHuman" Caption="левая рука"/>
+  <GuideEntityEmbed Entity="BaseRightHandHuman" Caption="правая рука"/>
+  <GuideEntityEmbed Entity="BaseRightArmHuman" Caption="правое предплечье"/>
+  <GuideEntityEmbed Entity="BaseChestHuman" Caption="торс"/>
+  <GuideEntityEmbed Entity="BaseGroinHuman" Caption="пах"/>
+  <GuideEntityEmbed Entity="BaseLeftArmHuman" Caption="левое предплечье"/>
+  <GuideEntityEmbed Entity="BaseLeftHandHuman" Caption="левая рука"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="RightFootHuman" Caption="правая нога"/>
-  <GuideEntityEmbed Entity="RightLegHuman" Caption="правое бедро"/>
-  <GuideEntityEmbed Entity="LeftLegHuman" Caption="левое бедро"/>
-  <GuideEntityEmbed Entity="LeftFootHuman" Caption="левая нога"/>
+  <GuideEntityEmbed Entity="BaseRightFootHuman" Caption="правая нога"/>
+  <GuideEntityEmbed Entity="BaseRightLegHuman" Caption="правое бедро"/>
+  <GuideEntityEmbed Entity="BaseLeftLegHuman" Caption="левое бедро"/>
+  <GuideEntityEmbed Entity="BaseLeftFootHuman" Caption="левая нога"/>
   </Box>
 
   У некоторых видов может быть больше или меньше частей, например хвосты, крылья или дополнительные конечности, но это примерная структура, с которой вы столкнётесь.
