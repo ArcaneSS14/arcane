@@ -18,5 +18,10 @@ namespace Content.Shared._EinsteinEngines.Forensics
         /// </summary>
         [DataField]
         public float SniffDelay = 5.0f;
+
+        // Arcane-Start
+        [DataField]
+        public float PathRange = 12f;
+        // Arcane-End
     }
 }

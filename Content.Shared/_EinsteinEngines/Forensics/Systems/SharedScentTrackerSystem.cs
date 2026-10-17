@@ -88,7 +88,7 @@ public abstract class SharedScentTrackerSystem : EntitySystem
             || !TryComp<ForensicsComponent>(args.Examined, out var forcomp))
             return;
 
-        if (forcomp.Scent != string.Empty && component.Scent == forcomp.Scent)
+        if (component.Scent != string.Empty && (component.Scent == forcomp.Scent || forcomp.Scents.Contains(component.Scent))) // Arcane-Edit
             args.PushMarkup(Loc.GetString("examined-scent"), -1);
     }
 
@@ -99,9 +99,12 @@ public abstract class SharedScentTrackerSystem : EntitySystem
             || !TryComp<ForensicsComponent>(target, out var forcomp))
             return;
 
-        if (forcomp.Scent != string.Empty)
+        // Arcane-Edit-Start
+        var scent = forcomp.Scent != string.Empty || forcomp.Scents.Count == 0 ? forcomp.Scent : forcomp.Scents[^1];
+        if (scent != string.Empty)
         {
-            component.Scent = forcomp.Scent;
+            component.Scent = scent;
+        // Arcane-Edit-End
             _popupSystem.PopupPredicted(Loc.GetString("tracking-scent", ("target", Identity.Name(target, EntityManager))), uid, uid);
         }
         else
