@@ -22,6 +22,13 @@ public sealed partial class ACCVars
         CVarDef.Create("game.preset_history_size", 8, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
+    ///     Maximum number of rounds in a row the same preset can be randomly selected.
+    ///     Zero disables the limit.
+    /// </summary>
+    public static readonly CVarDef<int> GamePresetMaxStreak =
+        CVarDef.Create("game.preset_max_streak", 2, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
     ///     At what distance from the player the NPC will sleep.
     /// </summary>
     public static readonly CVarDef<int> NpcSleepRange =

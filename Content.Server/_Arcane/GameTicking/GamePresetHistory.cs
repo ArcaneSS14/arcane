@@ -7,6 +7,7 @@ public sealed class GamePresetHistory
 {
     private readonly Queue<ProtoId<GamePresetPrototype>> _presets = new();
     private ProtoId<GamePresetPrototype>? _previousPreset;
+    private int _streak;
     private int _capacity;
 
     public int Capacity
@@ -21,9 +22,15 @@ public sealed class GamePresetHistory
 
     public void Record(ProtoId<GamePresetPrototype> preset)
     {
+        _streak = _previousPreset == preset ? _streak + 1 : 1;
         _previousPreset = preset;
         _presets.Enqueue(preset);
         Trim();
+    }
+
+    public bool IsStreakLimitReached(ProtoId<GamePresetPrototype> preset, int maxStreak)
+    {
+        return maxStreak > 0 && _previousPreset == preset && _streak >= maxStreak;
     }
 
     public float GetWeight(ProtoId<GamePresetPrototype> preset, float repeatMultiplier, float previousRoundMultiplier)

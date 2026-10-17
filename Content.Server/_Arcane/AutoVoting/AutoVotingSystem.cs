@@ -28,6 +28,7 @@ public sealed partial class AutoVotingSystem : EntitySystem
 
     private bool _enabled;
     private readonly GamePresetHistory _history = new();
+    private int _maxStreak;
     private int _restartGeneration;
 
     public override void Initialize()
@@ -36,6 +37,7 @@ public sealed partial class AutoVotingSystem : EntitySystem
 
         Subs.CVar(_cfg, ACCVars.AutoVotingEnabled, SetAutoVotingEnabled, true);
         Subs.CVar(_cfg, ACCVars.GamePresetHistorySize, size => _history.Capacity = size, true);
+        Subs.CVar(_cfg, ACCVars.GamePresetMaxStreak, value => _maxStreak = value, true);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
@@ -71,6 +73,7 @@ public sealed partial class AutoVotingSystem : EntitySystem
     private bool TrySelectGamePreset()
     {
         var weights = new Dictionary<GamePresetPrototype, float>();
+        GamePresetPrototype? blocked = null;
         foreach (var preset in _prototypes.EnumeratePrototypes<GamePresetPrototype>())
         {
             if (!preset.ShowInVote ||
@@ -78,10 +81,16 @@ public sealed partial class AutoVotingSystem : EntitySystem
                 _players.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
                 continue;
 
+            if (_history.IsStreakLimitReached(preset.ID, _maxStreak))
+                blocked = preset;
+
             weights.Add(preset, _history.GetWeight(preset.ID,
                 preset.RepeatWeightMultiplier,
                 preset.PreviousRoundWeightMultiplier));
         }
+
+        if (blocked != null && weights.Count > 1)
+            weights.Remove(blocked);
 
         if (weights.Count == 0)
             return false;
