@@ -87,3 +87,16 @@
   name: Kensuke Ushio - In The Pool
   path:
     path: /Audio/_Arcane/Lobby/InThePool.ogg
+
+- type: jukebox
+  id: CATheme
+  name: TDshka - CA theme
+  path:
+    path: /Audio/_Arcane/Jukebox/TDshka/CA_Theme.ogg
+
+- type: jukebox
+  id: NPTheme
+  name: TDshka - NP theme
+  path:
+    path: /Audio/_Arcane/Jukebox/TDshka/NP_Theme.ogg
+
