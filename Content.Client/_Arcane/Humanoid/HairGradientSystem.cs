@@ -18,7 +18,7 @@ public sealed class HairGradientSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
-    private readonly Dictionary<EntityUid, Dictionary<string, ShaderInstance>> _shaders = new();
+    private readonly Dictionary<EntityUid, LayerShaders> _shaders = new();
 
     public override void Initialize()
     {
@@ -31,9 +31,9 @@ public sealed class HairGradientSystem : EntitySystem
     {
         base.Shutdown();
 
-        foreach (var (uid, shaders) in _shaders)
+        foreach (var (uid, layers) in _shaders)
         {
-            foreach (var (layerId, shader) in shaders)
+            foreach (var (layerId, shader) in layers.ByLayer)
                 DisposeLayerShader(uid, layerId, shader);
         }
 
@@ -42,20 +42,21 @@ public sealed class HairGradientSystem : EntitySystem
 
     private void OnShutdown(Entity<HumanoidAppearanceComponent> ent, ref ComponentShutdown args)
     {
-        if (!_shaders.Remove(ent, out var shaders))
+        if (!_shaders.Remove(ent, out var layers))
             return;
 
-        foreach (var (layerId, shader) in shaders)
+        foreach (var (layerId, shader) in layers.ByLayer)
             DisposeLayerShader(ent, layerId, shader);
     }
 
     public ShaderInstance GetLayerShader(Entity<HumanoidAppearanceComponent> ent, string layerId, SpriteSpecifier.Rsi rsi)
     {
-        var shaders = _shaders.GetOrNew(ent);
-        if (!shaders.TryGetValue(layerId, out var shader))
+        var layers = _shaders.GetOrNew(ent);
+        layers.Applied.Add(layerId);
+        if (!layers.ByLayer.TryGetValue(layerId, out var shader))
         {
             shader = _prototype.Index(ShaderPrototype).InstanceUnique();
-            shaders[layerId] = shader;
+            layers.ByLayer[layerId] = shader;
         }
 
         var colors = ent.Comp.HairGradientColors;
@@ -77,13 +78,23 @@ public sealed class HairGradientSystem : EntitySystem
         return shader;
     }
 
-    public void ReleaseLayerShader(EntityUid uid, string layerId)
+    // Marking layers are rebuilt on every sprite update, so a shader is kept until a rebuild stops applying it.
+    public void ReleaseUnusedShaders(EntityUid uid)
     {
-        if (!_shaders.TryGetValue(uid, out var shaders) || !shaders.Remove(layerId, out var shader))
+        if (!_shaders.TryGetValue(uid, out var layers))
             return;
 
-        DisposeLayerShader(uid, layerId, shader);
-        if (shaders.Count == 0)
+        foreach (var (layerId, shader) in layers.ByLayer)
+        {
+            if (layers.Applied.Contains(layerId))
+                continue;
+
+            layers.ByLayer.Remove(layerId);
+            DisposeLayerShader(uid, layerId, shader);
+        }
+
+        layers.Applied.Clear();
+        if (layers.ByLayer.Count == 0)
             _shaders.Remove(uid);
     }
 
@@ -119,5 +130,11 @@ public sealed class HairGradientSystem : EntitySystem
             (height - region.Bottom) / height,
             region.Right / width,
             (height - region.Top) / height);
+    }
+
+    private sealed class LayerShaders
+    {
+        public readonly Dictionary<string, ShaderInstance> ByLayer = new();
+        public readonly HashSet<string> Applied = new();
     }
 }
