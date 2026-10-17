@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    {
+      "name": "FoodKillerBurger",
+      "directions": 1
+    },
+    {
+      "name": "FoodKillerBurger-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "FoodKillerBurger-inhand-right",
+      "directions": 4
+    }
+  ]
+}
