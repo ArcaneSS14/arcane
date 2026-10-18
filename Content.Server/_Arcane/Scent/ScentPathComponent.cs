@@ -15,7 +15,11 @@ public sealed partial class ScentPathComponent : Component
     public TimeSpan CarryTime = TimeSpan.FromMinutes(5);
 
     [ViewVariables]
-    public readonly List<(EntityCoordinates Coordinates, TimeSpan Time)> Points = new();
+    public readonly Dictionary<(EntityUid Grid, Vector2i Tile), (EntityCoordinates Coordinates, TimeSpan Time)> Points = new();
+
+    // A tile walked twice is queued twice, the entry is stale if its time differs from Points.
+    [ViewVariables]
+    public readonly Queue<((EntityUid Grid, Vector2i Tile) Key, TimeSpan Time)> Order = new();
 
     [ViewVariables]
     public string Scent = string.Empty;
@@ -25,6 +29,16 @@ public sealed partial class ScentPathComponent : Component
 
     [ViewVariables]
     public Vector2i LastTile;
+}
+
+[RegisterComponent, Access(typeof(ScentPathSystem))]
+public sealed partial class ScentPathViewerComponent : Component
+{
+    [ViewVariables]
+    public string Scent = string.Empty;
+
+    [ViewVariables]
+    public readonly Dictionary<(EntityUid Grid, Vector2i Tile), TimeSpan> Sent = new();
 }
 
 [RegisterComponent, Access(typeof(ScentPathSystem))]

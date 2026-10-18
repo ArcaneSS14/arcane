@@ -30,12 +30,16 @@ public sealed class ScentPathSystem : EntitySystem
     private TimeSpan _nextSend;
     private TimeSpan _nextCarryCheck;
 
+    private readonly Dictionary<string, ScentPathComponent> _trailsByScent = new();
+    private readonly List<(EntityUid Grid, Vector2i Tile)> _expired = new();
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ScentComponent, DidEquipEvent>(OnEquip);
         SubscribeLocalEvent<ScentComponent, DidEquipHandEvent>(OnEquipHand);
+        SubscribeLocalEvent<ScentPathViewerComponent, PlayerAttachedEvent>(OnPlayerAttached);
     }
 
     public override void Update(float frameTime)
@@ -53,7 +57,7 @@ public sealed class ScentPathSystem : EntitySystem
         if (now >= _nextSend)
         {
             _nextSend = now + SendInterval;
-            Send();
+            Send(now);
         }
 
         if (now >= _nextCarryCheck)
@@ -71,16 +75,21 @@ public sealed class ScentPathSystem : EntitySystem
             if (trail.Scent != scent.Scent)
             {
                 trail.Points.Clear();
+                trail.Order.Clear();
                 trail.Scent = scent.Scent;
+                trail.LastGrid = null;
             }
 
-            var expired = 0;
-            while (expired < trail.Points.Count && trail.Points[expired].Time + trail.Lifetime <= now)
-                expired++;
+            while (trail.Order.TryPeek(out var entry) && entry.Time + trail.Lifetime <= now)
+            {
+                trail.Order.Dequeue();
 
-            trail.Points.RemoveRange(0, expired);
+                if (trail.Points.TryGetValue(entry.Key, out var point) && point.Time == entry.Time)
+                    trail.Points.Remove(entry.Key);
+            }
 
-            if (trail.Scent == string.Empty
+            if (trail.Lifetime <= TimeSpan.Zero
+                || trail.Scent == string.Empty
                 || _container.IsEntityInContainer(uid)
                 || !TryComp<MapGridComponent>(xform.GridUid, out var grid))
             {
@@ -125,47 +134,93 @@ public sealed class ScentPathSystem : EntitySystem
         if (mixture == null || mixture.Pressure < trail.MinPressure)
             return;
 
-        var coords = _map.GridTileToLocal(grid, grid, tile);
-
-        var index = trail.Points.FindIndex(p => p.Coordinates == coords);
-        if (index != -1)
-            trail.Points.RemoveAt(index);
-
-        trail.Points.Add((coords, now));
+        var key = (grid.Owner, tile);
+        trail.Points[key] = (_map.GridTileToLocal(grid, grid, tile), now);
+        trail.Order.Enqueue((key, now));
     }
 
-    private void Send()
+    private void Send(TimeSpan now)
     {
+        _trailsByScent.Clear();
+        var collected = false;
+
         var trackers = EntityQueryEnumerator<ScentTrackerComponent, ActorComponent, TransformComponent>();
         while (trackers.MoveNext(out var uid, out var tracker, out var actor, out var xform))
         {
             if (tracker.Scent == string.Empty)
-                continue;
-
-            var origin = _transform.GetMapCoordinates(uid, xform);
-            var points = new List<ScentPathPoint>();
-
-            var trails = EntityQueryEnumerator<ScentPathComponent>();
-            while (trails.MoveNext(out var trail))
             {
-                if (trail.Scent != tracker.Scent)
-                    continue;
+                RemCompDeferred<ScentPathViewerComponent>(uid);
+                continue;
+            }
 
-                foreach (var (coords, time) in trail.Points)
+            if (!collected)
+            {
+                collected = true;
+
+                var trails = EntityQueryEnumerator<ScentPathComponent>();
+                while (trails.MoveNext(out var trail))
                 {
-                    if (!coords.IsValid(EntityManager))
-                        continue;
-
-                    var map = _transform.ToMapCoordinates(coords, false);
-                    if (map.MapId != origin.MapId || (map.Position - origin.Position).LengthSquared() > tracker.PathRange * tracker.PathRange)
-                        continue;
-
-                    points.Add(new ScentPathPoint(GetNetCoordinates(coords), time, time + trail.Lifetime));
+                    if (trail.Scent != string.Empty)
+                        _trailsByScent[trail.Scent] = trail;
                 }
             }
 
-            RaiseNetworkEvent(new ScentPathMessage(points), actor.PlayerSession);
+            var viewer = EnsureComp<ScentPathViewerComponent>(uid);
+            var reset = viewer.Scent != tracker.Scent;
+            if (reset)
+            {
+                viewer.Scent = tracker.Scent;
+                viewer.Sent.Clear();
+            }
+
+            if (!_trailsByScent.TryGetValue(tracker.Scent, out var path))
+            {
+                viewer.Sent.Clear();
+                if (reset)
+                    RaiseNetworkEvent(new ScentPathMessage(true, TimeSpan.Zero, new()), actor.PlayerSession);
+
+                continue;
+            }
+
+            foreach (var (key, time) in viewer.Sent)
+            {
+                if (time + path.Lifetime <= now)
+                    _expired.Add(key);
+            }
+
+            foreach (var key in _expired)
+            {
+                viewer.Sent.Remove(key);
+            }
+
+            _expired.Clear();
+
+            var origin = _transform.GetMapCoordinates(uid, xform);
+            var rangeSquared = tracker.PathRange * tracker.PathRange;
+            var points = new List<ScentPathPoint>();
+
+            foreach (var (key, (coords, time)) in path.Points)
+            {
+                if (viewer.Sent.TryGetValue(key, out var sent) && sent == time
+                    || !coords.IsValid(EntityManager))
+                    continue;
+
+                var map = _transform.ToMapCoordinates(coords, false);
+                if (map.MapId != origin.MapId || (map.Position - origin.Position).LengthSquared() > rangeSquared)
+                    continue;
+
+                viewer.Sent[key] = time;
+                points.Add(new ScentPathPoint(GetNetCoordinates(coords), time));
+            }
+
+            if (reset || points.Count > 0)
+                RaiseNetworkEvent(new ScentPathMessage(reset, path.Lifetime, points), actor.PlayerSession);
         }
+    }
+
+    private void OnPlayerAttached(EntityUid uid, ScentPathViewerComponent comp, PlayerAttachedEvent args)
+    {
+        RemCompDeferred<ScentPathViewerComponent>(uid);
     }
 
     private void OnEquip(EntityUid uid, ScentComponent comp, DidEquipEvent args)
@@ -219,6 +274,9 @@ public sealed class ScentPathSystem : EntitySystem
             return;
 
         var forensics = EnsureComp<ForensicsComponent>(uid);
+        if (forensics.MaxScents <= 0)
+            return;
+
         forensics.Scents.Remove(scent);
         forensics.Scents.Add(scent);
 
