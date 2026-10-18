@@ -42,3 +42,15 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Back/Satchels/rd.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelCommandMaid
+  name: command maid bag
+  description: A spacious bag for a command maid.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Satchels/command_maid_bag.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Back/Satchels/command_maid_bag.rsi

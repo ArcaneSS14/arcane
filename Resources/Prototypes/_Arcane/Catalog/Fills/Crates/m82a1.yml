@@ -1,0 +1,30 @@
+- type: entity
+  parent: CratePlastic
+  id: CrateM82A1Bundle
+  name: M82A1 bundle
+  description: A plastic crate holding an M82A1 anti-materiel rifle, four .50 BMG magazines and a single AP-X cartridge.
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/Crates/weapon.rsi
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleM82
+          amount: 1
+        - id: Magazine50BMG
+          amount: 1
+        - id: Magazine50BMGAPX
+          amount: 1
+        - id: Magazine50BMGEmpty
+          amount: 1
+        - id: Magazine50BMGAPXEmpty
+          amount: 1
+        - id: CartridgeHighCaliberAPX
+          amount: 1
+        - id: ClothingOuterHardsuitSpecter
+          amount: 1
+        - id: ClothingShoesBootsMagSpecter
+          amount: 1
+        - id: ClothingHandsGlovesCombat
+          amount: 1
