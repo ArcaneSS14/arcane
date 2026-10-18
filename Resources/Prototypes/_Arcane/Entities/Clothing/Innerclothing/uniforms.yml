@@ -551,3 +551,29 @@
     sprite: _Arcane/Clothing/Innerclothing/USSP/investigator.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/USSP/investigator.rsi
+
+# Command
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtMaidStrict
+  name: strict maid dress
+  description: A strict yet elegant maid dress.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/maid_strict.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/maid_strict.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitButler
+  name: butler suit
+  description: An elegant suit for a proper butler.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/butler.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/butler.rsi
