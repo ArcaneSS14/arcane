@@ -11,6 +11,7 @@
   id: dogEarsWag
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Human, Dwarf, Felinid] # Arcane-Edit
   sprites:
     - sprite: _Goobstation/Mobs/Customization/dog_markings.rsi

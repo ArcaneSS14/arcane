@@ -3,6 +3,7 @@
   id: FeroxiEars
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [ Feroxi ]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Feroxi/ear_markings.rsi #RedTerror Goob Resprite
@@ -35,6 +36,7 @@
   id: FeroxiEarsTips
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [ Feroxi ]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Feroxi/ear_markings.rsi #RedTerror Goob Resprite
@@ -430,6 +432,7 @@
   id: FeroxiEarsTiger
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [ Feroxi ]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Feroxi/ear_markings.rsi
@@ -443,6 +446,7 @@
   id: FeroxiEarsPierced
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [ Feroxi ]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Feroxi/ear_markings.rsi
@@ -452,6 +456,7 @@
   id: FeroxiEarsPiercedTiger
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [ Feroxi ]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Feroxi/ear_markings.rsi
@@ -463,6 +468,7 @@
   id: FeroxiEarsAlt
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [ Feroxi ]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Feroxi/ear_markings.rsi
@@ -474,6 +480,7 @@
   id: FeroxiEarsAltTips
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [ Feroxi ]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Feroxi/ear_markings.rsi
@@ -487,6 +494,7 @@
   id: FeroxiEarsAltTiger
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [ Feroxi ]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Feroxi/ear_markings.rsi

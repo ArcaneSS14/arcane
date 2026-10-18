@@ -162,6 +162,7 @@
   id: DemonCowEars
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
@@ -171,6 +172,7 @@
   id: DemonEars
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
@@ -180,6 +182,7 @@
   id: EarsArcanaAlt
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
@@ -189,6 +192,7 @@
   id: EarsArcana
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
@@ -198,6 +202,7 @@
   id: DemonBiggerCowEars
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
@@ -207,6 +212,7 @@
   id: DemonFinEars
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
@@ -216,6 +222,7 @@
   id: DemonOxEars
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi

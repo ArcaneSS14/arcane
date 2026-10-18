@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Client.Eye;
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
-using Content.Goobstation.Common.Clothing;
 using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -15,7 +14,7 @@ using static Robust.Client.GameObjects.SpriteComponent;
 namespace Content.Client._Arcane.DirectionalLayering;
 
 /// <summary>
-///     Reorders a humanoid's hair, tail, cloak and mask layers by which side of the character faces the camera.
+///     Reorders a humanoid's ear, tail and cloak layers by which side of the character faces the camera.
 ///     Every pass pulls these blocks out of the sprite and re-inserts them next to base layers that never move, so the
 ///     result depends only on the current view, never on the views applied before it.
 /// </summary>
@@ -45,9 +44,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         public DirectionalView? View;
         public DirectionalView? DummyView;
         public bool NativeCaptured;
-        public object? HairAnchor;
         public object? TailAnchor;
-        public bool TailBelowNeck;
     }
 
     private enum DirectionalView
@@ -122,7 +119,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
     private void OnEquipmentVisualsUpdated(EquipmentVisualsUpdatedEvent args)
     {
-        if (args.Slot != "neck" && args.Slot != "back" && args.Slot != "mask" ||
+        if (args.Slot != "neck" && args.Slot != "back" ||
             !TryComp(args.Equipee, out HumanoidAppearanceComponent? humanoid) ||
             !TryComp(args.Equipee, out SpriteComponent? sprite))
         {
@@ -160,58 +157,54 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     {
         state.View = view;
 
-        var hair = GetHairKeys(ent);
-        var tail = GetTailKeys(ent, hair);
+        var ears = TryGetIndex(ent, HumanoidVisualLayers.Hair, out _) ? GetEarKeys(ent) : new List<object>();
+        var tail = GetTailKeys(ent, ears);
 
         // Only this system moves these blocks, so the first pass still sees the species' native order.
         if (!state.NativeCaptured)
         {
             state.NativeCaptured = true;
-            state.HairAnchor = FindAnchorAbove(ent, hair, hair, tail);
-            state.TailAnchor = FindAnchorAbove(ent, tail, hair, tail);
-            state.TailBelowNeck = TryGetBlockStart(ent, tail, out var tailStart) &&
-                                  TryGetIndex(ent, "neck", out var neckIdx) &&
-                                  tailStart < neckIdx;
+            state.TailAnchor = FindAnchorAbove(ent, tail);
         }
 
         var cloakAnchor = GetCloakAnchor(ent);
-        var cloak = cloakAnchor != null ? GetSlotKeys(ent, "neck", hair, tail) : new List<object>();
-        var mask = IsMaskOnMainLayer(ent) ? GetSlotKeys(ent, "mask", hair, tail) : new List<object>();
+        var cloak = cloakAnchor != null ? GetSlotKeys(ent, "neck", ears, tail) : new List<object>();
 
-        var blocks = ExtractBlocks(ent, hair, tail, cloak, mask);
-        var hairLayers = blocks[0];
+        var blocks = ExtractBlocks(ent, ears, tail, cloak);
+        var earLayers = blocks[0];
         var tailLayers = blocks[1];
         var cloakLayers = blocks[2];
-        var maskLayers = blocks[3];
 
         if (cloakLayers.Count > 0 && TryGetIndex(ent, cloakAnchor!, out var cloakAnchorIdx))
             InsertBlock(ent, cloakLayers, cloakAnchorIdx + 1);
 
-        if (hairLayers.Count > 0)
-        {
-            InsertBlock(ent, hairLayers, TryGetClusterTop(ent, out var clusterTop)
-                ? clusterTop + 1
-                : GetNativeIndex(ent, state.HairAnchor));
-        }
-
-        var hairTop = hairLayers.Count > 0 ? hairLayers[^1].Key : null;
-
-        if (maskLayers.Count > 0)
-        {
-            var maskAnchor = hairTop ?? "mask";
-            if (TryGetIndex(ent, maskAnchor, out var maskAnchorIdx))
-                InsertBlock(ent, maskLayers, maskAnchorIdx + 1);
-        }
+        // Ears sit right against the hair block: under it, or over it when the character opts in.
+        if (earLayers.Count > 0)
+            InsertBlock(ent, earLayers, GetEarIndex(ent));
 
         if (tailLayers.Count > 0)
-            InsertBlock(ent, tailLayers, GetTailIndex(ent, state, view, hairTop));
+            InsertBlock(ent, tailLayers, GetTailIndex(ent, state, view));
     }
 
-    private int? GetTailIndex(
-        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
-        LayeringState state,
-        DirectionalView view,
-        object? hairTop)
+    private int GetEarIndex(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
+    {
+        TryGetIndex(ent, HumanoidVisualLayers.Hair, out var hairIdx);
+        if (!ent.Comp1.EarsAboveHair)
+            return hairIdx;
+
+        var hair = new List<object>();
+        AddMarkingLayerKeys(ent, HumanoidVisualLayers.Hair, hair);
+        var top = hairIdx;
+        foreach (var key in hair)
+        {
+            if (TryGetIndex(ent, key, out var index))
+                top = Math.Max(top, index);
+        }
+
+        return top + 1;
+    }
+
+    private int? GetTailIndex(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, LayeringState state, DirectionalView view)
     {
         switch (view)
         {
@@ -220,20 +213,10 @@ public sealed class DirectionalLayeringSystem : EntitySystem
                 return 0;
             case DirectionalView.Side when TryGetLowestLeg(ent, out var legIdx):
                 return legIdx;
-            // A tail drawn under the clothes (resomi) stays there; any other tail covers the hoisted hair.
-            case DirectionalView.Back when !state.TailBelowNeck &&
-                                           hairTop != null &&
-                                           TryGetIndex(ent, hairTop, out var hairTopIdx):
-                return hairTopIdx + 1;
+            // A null anchor means nothing stable sat above the tail, so it goes back on top.
             default:
-                return GetNativeIndex(ent, state.TailAnchor);
+                return state.TailAnchor != null && TryGetIndex(ent, state.TailAnchor, out var index) ? index : null;
         }
-    }
-
-    // A null anchor means nothing stable sat above the block, so it goes back on top.
-    private int? GetNativeIndex(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, object? anchor)
-    {
-        return anchor != null && TryGetIndex(ent, anchor, out var index) ? index : null;
     }
 
     private bool TryGetIndex(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, object key, out int index)
@@ -260,38 +243,40 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         }
     }
 
-    private bool TryGetBlockStart(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> keys, out int start)
+    private List<object> GetEarKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
     {
-        start = int.MaxValue;
-        foreach (var key in keys)
+        var keys = new List<object>();
+        foreach (var markingList in ent.Comp1.MarkingSet.Markings.Values)
         {
-            if (TryGetIndex(ent, key, out var index))
-                start = Math.Min(start, index);
+            foreach (var marking in markingList)
+            {
+                if (!_markingManager.TryGetMarking(marking, out var prototype) || !prototype.UnderHair)
+                    continue;
+
+                foreach (var sprite in prototype.Sprites)
+                {
+                    if (sprite is SpriteSpecifier.Rsi rsi)
+                        keys.Add(GetMarkingKey(marking.MarkingId, rsi.RsiState));
+                }
+            }
         }
 
-        return start != int.MaxValue;
-    }
-
-    private List<object> GetHairKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
-    {
-        var keys = new List<object> { HumanoidVisualLayers.Hair };
-        AddMarkingLayerKeys(ent, HumanoidVisualLayers.Hair, keys);
         return FilterExisting(ent, keys, null, null);
     }
 
     // Tail markings layered onto TailBehind or TailBehindBackpack (moth wings) split themselves per view already.
-    private List<object> GetTailKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> hair)
+    private List<object> GetTailKeys(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> ears)
     {
         var keys = new List<object> { HumanoidVisualLayers.Tail, HumanoidVisualLayers.Wings };
         AddMarkingLayerKeys(ent, HumanoidVisualLayers.Tail, keys);
         AddMarkingLayerKeys(ent, HumanoidVisualLayers.Wings, keys);
-        return FilterExisting(ent, keys, hair, null);
+        return FilterExisting(ent, keys, ears, null);
     }
 
     private List<object> GetSlotKeys(
         Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
         string slot,
-        List<object> hair,
+        List<object> ears,
         List<object> tail)
     {
         var keys = new List<object>();
@@ -301,7 +286,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
             keys.AddRange(slotKeys);
         }
 
-        return FilterExisting(ent, keys, hair, tail);
+        return FilterExisting(ent, keys, ears, tail);
     }
 
     private List<object> FilterExisting(
@@ -371,12 +356,8 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         return key;
     }
 
-    // The nearest base or slot layer above the block in the native order; blocks go back directly below it.
-    private object? FindAnchorAbove(
-        Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
-        List<object> block,
-        List<object> hair,
-        List<object> tail)
+    // The nearest base or slot layer above the block in the native order; the block goes back directly below it.
+    private object? FindAnchorAbove(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> block)
     {
         var end = int.MinValue;
         foreach (var key in block)
@@ -393,8 +374,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
 
         void Consider(object candidate)
         {
-            if (hair.Contains(candidate) ||
-                tail.Contains(candidate) ||
+            if (block.Contains(candidate) ||
                 !TryGetIndex(ent, candidate, out var index) ||
                 index <= end ||
                 index >= bestIdx)
@@ -443,42 +423,6 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         }
 
         return anchor;
-    }
-
-    // A pulled-down mask renders on its alternative slot below the hair and never moves.
-    private bool IsMaskOnMainLayer(Entity<HumanoidAppearanceComponent, SpriteComponent> ent)
-    {
-        if (!_inventory.TryGetSlotEntity(ent.Owner, "mask", out var mask))
-            return false;
-
-        var mapLayerEv = new GetActualMapLayerEvent("mask");
-        RaiseLocalEvent(mask.Value, ref mapLayerEv);
-        return (mapLayerEv.MapLayer == "mask" || !TryGetIndex(ent, mapLayerEv.MapLayer, out _)) &&
-               TryGetIndex(ent, "mask", out _);
-    }
-
-    /// <summary>
-    ///     The top of the head-trim cluster: the "mask", "HeadSide" and "HeadTop" base layers and their marking layers.
-    ///     The hair is hoisted above it in every view so it covers the ears, unless the character keeps the ears above
-    ///     the hair.
-    /// </summary>
-    private bool TryGetClusterTop(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, out int top)
-    {
-        var keys = new List<object> { "mask", HumanoidVisualLayers.HeadSide, HumanoidVisualLayers.HeadTop };
-        if (!ent.Comp1.EarsAboveHair)
-        {
-            AddMarkingLayerKeys(ent, HumanoidVisualLayers.HeadSide, keys);
-            AddMarkingLayerKeys(ent, HumanoidVisualLayers.HeadTop, keys);
-        }
-
-        top = int.MinValue;
-        foreach (var key in keys)
-        {
-            if (TryGetIndex(ent, key, out var index))
-                top = Math.Max(top, index);
-        }
-
-        return top != int.MinValue;
     }
 
     private bool TryGetLowestLeg(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, out int lowest)
