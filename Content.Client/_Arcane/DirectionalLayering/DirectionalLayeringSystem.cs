@@ -14,7 +14,8 @@ using static Robust.Client.GameObjects.SpriteComponent;
 namespace Content.Client._Arcane.DirectionalLayering;
 
 /// <summary>
-///     Reorders a humanoid's ear, tail and cloak layers by which side of the character faces the camera.
+///     Keeps a humanoid's ears against the hair and the cloak over the bag, and moves the tail by which side of the
+///     character faces the camera.
 ///     Every pass pulls these blocks out of the sprite and re-inserts them next to base layers that never move, so the
 ///     result depends only on the current view, never on the views applied before it.
 /// </summary>
@@ -530,12 +531,13 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         };
     }
 
+    // 4-directional RSIs round diagonals to north or south, see DirExt.Convert.
     private static DirectionalView GetView(Direction direction)
     {
         return direction switch
         {
-            Direction.South => DirectionalView.Front,
-            Direction.North => DirectionalView.Back,
+            Direction.South or Direction.SouthEast or Direction.SouthWest => DirectionalView.Front,
+            Direction.North or Direction.NorthEast or Direction.NorthWest => DirectionalView.Back,
             _ => DirectionalView.Side,
         };
     }

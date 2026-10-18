@@ -2,6 +2,7 @@
   id: SlimeCatEars
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true
   speciesRestriction: [SlimePerson]
   coloring:
     default:
