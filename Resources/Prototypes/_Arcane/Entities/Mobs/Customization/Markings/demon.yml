@@ -489,7 +489,7 @@
 
 - type: marking
   id: DemonChestCowSpots
-  bodyPart: LLeg
+  bodyPart: RHand
   markingCategory: Chest
   speciesRestriction: [Demon]
   sprites:
@@ -498,7 +498,7 @@
 
 - type: marking
   id: DemonChestGuard
-  bodyPart: LLeg
+  bodyPart: RHand
   markingCategory: Chest
   speciesRestriction: [Demon]
   sprites:
@@ -507,7 +507,7 @@
 
 - type: marking
   id: DemonChestLinesEmperos
-  bodyPart: LLeg
+  bodyPart: RHand
   markingCategory: Chest
   speciesRestriction: [Demon]
   sprites:
@@ -516,7 +516,7 @@
 
 - type: marking
   id: DemonChestQueenLines
-  bodyPart: LLeg
+  bodyPart: RHand
   markingCategory: Chest
   speciesRestriction: [Demon]
   sprites:
@@ -525,7 +525,7 @@
 
 - type: marking
   id: DemonChestTreeLines
-  bodyPart: LLeg
+  bodyPart: RHand
   markingCategory: Chest
   speciesRestriction: [Demon]
   sprites:
@@ -534,7 +534,7 @@
 
 - type: marking
   id: DemonChestTrinitySpots
-  bodyPart: LLeg
+  bodyPart: RHand
   markingCategory: Chest
   speciesRestriction: [Demon]
   sprites:
@@ -543,7 +543,7 @@
 
 - type: marking
   id: DemonChestAratakiPainting
-  bodyPart: LLeg
+  bodyPart: RHand
   markingCategory: Chest
   speciesRestriction: [Demon]
   sprites:
@@ -552,7 +552,7 @@
 
 - type: marking
   id: DemonChestGradientPainting
-  bodyPart: LLeg
+  bodyPart: RHand
   markingCategory: Chest
   speciesRestriction: [Demon]
   sprites:
@@ -561,7 +561,7 @@
 
 - type: marking
   id: DemonChestSkeleton
-  bodyPart: LLeg
+  bodyPart: RHand
   markingCategory: Chest
   speciesRestriction: [Demon]
   sprites:
