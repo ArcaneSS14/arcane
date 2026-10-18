@@ -9,7 +9,7 @@
   - type: Sprite
     state: pill7
   - type: Label
-    currentLabel: hercuri 10u
+    currentLabel: medical-label-hercuri-10u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -24,7 +24,7 @@
   suffix: Hercuri 10u, 15
   components:
   - type: Label
-    currentLabel: hercuri 10u
+    currentLabel: medical-label-hercuri-10u
   - type: StorageFill
     contents:
     - id: PillHercuri
@@ -41,7 +41,7 @@
   - type: Sprite
     state: pill14
   - type: Label
-    currentLabel: herignis 10u
+    currentLabel: medical-label-herignis-10u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -56,7 +56,7 @@
   suffix: Herignis 10u, 15
   components:
   - type: Label
-    currentLabel: herignis 10u
+    currentLabel: medical-label-herignis-10u
   - type: StorageFill
     contents:
     - id: PillHerignis
@@ -73,7 +73,7 @@
   - type: Sprite
     state: pill12
   - type: Label
-    currentLabel: probital 10u
+    currentLabel: medical-label-probital-10u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -88,7 +88,7 @@
   suffix: Probital 10u, 15
   components:
   - type: Label
-    currentLabel: probital 10u
+    currentLabel: medical-label-probital-10u
   - type: StorageFill
     contents:
     - id: PillProbital
@@ -105,7 +105,7 @@
   - type: Sprite
     state: pill17
   - type: Label
-    currentLabel: pentenic acid 5u
+    currentLabel: medical-label-pentenic-acid-5u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -120,7 +120,7 @@
   suffix: Pentenic acid 5u, 15
   components:
   - type: Label
-    currentLabel: pentenic acid 5u
+    currentLabel: medical-label-pentenic-acid-5u
   - type: StorageFill
     contents:
     - id: PillPentenicAcid
@@ -137,7 +137,7 @@
   - type: Sprite
     state: pill11
   - type: Label
-    currentLabel: multiver 10u
+    currentLabel: medical-label-multiver-10u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -152,7 +152,7 @@
   suffix: Multiver 10u, 15
   components:
   - type: Label
-    currentLabel: multiver 10u
+    currentLabel: medical-label-multiver-10u
   - type: StorageFill
     contents:
     - id: PillMultiver
@@ -169,7 +169,7 @@
   - type: Sprite
     state: pill2
   - type: Label
-    currentLabel: syriniver 3u
+    currentLabel: medical-label-syriniver-3u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -203,7 +203,7 @@
   - type: Sprite
     state: pill19
   - type: Label
-    currentLabel: genecide 3u
+    currentLabel: medical-label-genecide-3u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -237,7 +237,7 @@
   - type: Sprite
     state: pill9
   - type: Label
-    currentLabel: ammoniated mercury 5u
+    currentLabel: medical-label-ammoniated-mercury-5u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -256,7 +256,7 @@
   - type: Sprite
     state: pill6
   - type: Label
-    currentLabel: anti-brute 25u
+    currentLabel: medical-label-anti-brute-25u
   - type: SolutionContainerManager
     solutions:
       food:
@@ -277,7 +277,7 @@
   - type: Sprite
     state: pill8
   - type: Label
-    currentLabel: anti-burn 30u
+    currentLabel: medical-label-anti-burn-30u
   - type: SolutionContainerManager
     solutions:
       food:

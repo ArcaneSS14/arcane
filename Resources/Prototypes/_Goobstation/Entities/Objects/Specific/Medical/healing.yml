@@ -39,7 +39,7 @@
   id: SyringePoisonFentUsed
   components:
   - type: Label
-    currentLabel: fentanyl
+    currentLabel: reagent-name-fentanyl # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -56,7 +56,7 @@
   id: SyringePoisonFent
   components:
   - type: Label
-    currentLabel: fentanyl
+    currentLabel: reagent-name-fentanyl # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -73,7 +73,7 @@
   suffix: lethal injection
   components:
   - type: Label
-    currentLabel: Lethal Injection
+    currentLabel: medical-label-lethal-injection # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -95,7 +95,7 @@
   - type: Sprite
     state: pill18
   - type: Label
-    currentLabel: tramadol 7.5u
+    currentLabel: medical-label-tramadol-7-5u # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       food:
@@ -111,7 +111,7 @@
   suffix: Tramadol 7.5u, 15
   components:
   - type: Label
-    currentLabel: tramadol 7.5u
+    currentLabel: medical-label-tramadol-7-5u # Arcane-Edit
   - type: StorageFill
     contents:
     - id: PillTramadol
@@ -128,7 +128,7 @@
   - type: Sprite
     state: pill19
   - type: Label
-    currentLabel: oxycodone 5u
+    currentLabel: medical-label-oxycodone-5u # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       food:
@@ -144,7 +144,7 @@
   suffix: Oxycodone 5u, 15
   components:
   - type: Label
-    currentLabel: oxycodone 5u
+    currentLabel: medical-label-oxycodone-5u # Arcane-Edit
   - type: StorageFill
     contents:
     - id: PillOxycodone
@@ -161,7 +161,7 @@
   - type: Sprite
     state: pill1
   - type: Label
-    currentLabel: Ibuprofen 10u
+    currentLabel: medical-label-ibuprofen-10u # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       food:
@@ -177,7 +177,7 @@
   suffix: Ibuprofen 10u, 15
   components:
   - type: Label
-    currentLabel: Ibuprofen 10u
+    currentLabel: medical-label-ibuprofen-10u # Arcane-Edit
   - type: StorageFill
     contents:
     - id: PillIbuprofen
@@ -191,7 +191,7 @@
   suffix: Tramadol 15u
   components:
   - type: Label
-    currentLabel: Tramadol
+    currentLabel: reagent-name-tramadol # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -208,7 +208,7 @@
   suffix: Oxycodone 15u
   components:
   - type: Label
-    currentLabel: Oxycodone
+    currentLabel: reagent-name-oxycodone # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -225,7 +225,7 @@
   suffix: Ibuprofen 15u
   components:
   - type: Label
-    currentLabel: Ibuprofen
+    currentLabel: reagent-name-ibuprofen # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -242,7 +242,7 @@
   suffix: heroin 15u
   components:
   - type: Label
-    currentLabel: Heroin
+    currentLabel: reagent-name-heroin # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       injector:
