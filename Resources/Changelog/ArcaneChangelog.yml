@@ -3372,3 +3372,11 @@ Entries:
       https://github.com/user-attachments/assets/2b3a6b09-2379-4421-8b04-ab9431eb2ed4
     - >-
       https://github.com/user-attachments/assets/ff2d1949-2147-4414-a45b-4aa8796a52cf
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: Таблетки на русском
+  id: 241
+  time: '2026-10-18T22:49:33.0000000+00:00'
+  prNumber: 522
+  url: https://github.com/ArcaneSS14/arcane/pull/522
