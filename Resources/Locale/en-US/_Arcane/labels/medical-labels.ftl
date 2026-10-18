@@ -19,6 +19,7 @@ medical-label-hyronalin-30u = Hyronalin 30u
 medical-label-ibuprofen-10u = Ibuprofen 10u
 medical-label-iron-10u = iron 10u
 medical-label-kelotane-10u = kelotane 10u
+medical-label-lethal-injection = lethal injection
 medical-label-multiver-10u = multiver 10u
 medical-label-oxycodone-5u = oxycodone 5u
 medical-label-pentenic-acid-5u = pentenic acid 5u

@@ -19,6 +19,7 @@ medical-label-hyronalin-30u = { reagent-name-hyronalin } 30ед.
 medical-label-ibuprofen-10u = { reagent-name-ibuprofen } 10ед.
 medical-label-iron-10u = { reagent-name-iron } 10ед.
 medical-label-kelotane-10u = { reagent-name-kelotane } 10ед.
+medical-label-lethal-injection = смертельная инъекция
 medical-label-multiver-10u = { reagent-name-multiver } 10ед.
 medical-label-oxycodone-5u = { reagent-name-oxycodone } 5ед.
 medical-label-pentenic-acid-5u = { reagent-name-pentenic-acid } 5ед.
