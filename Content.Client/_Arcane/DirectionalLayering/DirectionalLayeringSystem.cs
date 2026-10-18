@@ -5,7 +5,6 @@ using Content.Client.Inventory;
 using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
-using Content.Shared.Inventory;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Utility;
@@ -25,7 +24,6 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly IEyeManager _eyeManager = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
 
     private static readonly object[] LegLayers =
     {
@@ -35,8 +33,6 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         HumanoidVisualLayers.LFoot,
     };
 
-    private static readonly object[] BaseLayers = Enum.GetValues<HumanoidVisualLayers>().Cast<object>().ToArray();
-
     private readonly Dictionary<EntityUid, LayeringState> _states = new();
     private readonly Dictionary<(string MarkingId, string RsiState), string> _markingKeys = new();
 
@@ -45,7 +41,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         public DirectionalView? View;
         public DirectionalView? DummyView;
         public bool NativeCaptured;
-        public object? TailAnchor;
+        public ISpriteLayer? TailAnchor;
     }
 
     private enum DirectionalView
@@ -165,7 +161,7 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         if (!state.NativeCaptured)
         {
             state.NativeCaptured = true;
-            state.TailAnchor = FindAnchorAbove(ent, tail);
+            state.TailAnchor = FindLayerAbove(ent, tail);
         }
 
         var cloakAnchor = GetCloakAnchor(ent);
@@ -214,9 +210,9 @@ public sealed class DirectionalLayeringSystem : EntitySystem
                 return 0;
             case DirectionalView.Side when TryGetLowestLeg(ent, out var legIdx):
                 return legIdx;
-            // A null anchor means nothing stable sat above the tail, so it goes back on top.
+            // A null result means nothing sat above the tail or that layer is gone, so it goes back on top.
             default:
-                return state.TailAnchor != null && TryGetIndex(ent, state.TailAnchor, out var index) ? index : null;
+                return state.TailAnchor != null ? IndexOf(ent.Comp2, state.TailAnchor) : null;
         }
     }
 
@@ -357,50 +353,31 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         return key;
     }
 
-    // The nearest base or slot layer above the block in the native order; the block goes back directly below it.
-    private object? FindAnchorAbove(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> block)
+    // The layer right above the block in the native order, whatever its key; the block goes back directly below it.
+    private ISpriteLayer? FindLayerAbove(Entity<HumanoidAppearanceComponent, SpriteComponent> ent, List<object> block)
     {
-        var end = int.MinValue;
+        var end = -1;
         foreach (var key in block)
         {
             if (TryGetIndex(ent, key, out var index))
                 end = Math.Max(end, index);
         }
 
-        if (end == int.MinValue)
-            return null;
+        return end < 0 ? null : ent.Comp2.AllLayers.ElementAtOrDefault(end + 1);
+    }
 
-        object? best = null;
-        var bestIdx = int.MaxValue;
-
-        void Consider(object candidate)
+    private static int? IndexOf(SpriteComponent sprite, ISpriteLayer layer)
+    {
+        var index = 0;
+        foreach (var candidate in sprite.AllLayers)
         {
-            if (block.Contains(candidate) ||
-                !TryGetIndex(ent, candidate, out var index) ||
-                index <= end ||
-                index >= bestIdx)
-            {
-                return;
-            }
+            if (candidate == layer)
+                return index;
 
-            best = candidate;
-            bestIdx = index;
+            index++;
         }
 
-        foreach (var candidate in BaseLayers)
-        {
-            Consider(candidate);
-        }
-
-        if (_inventory.TryGetSlots(ent.Owner, out var slots))
-        {
-            foreach (var slot in slots)
-            {
-                Consider(slot.Name);
-            }
-        }
-
-        return best;
+        return null;
     }
 
     // Above the "neck" slot, or above the worn bag for species that draw the back slot over the neck slot.
