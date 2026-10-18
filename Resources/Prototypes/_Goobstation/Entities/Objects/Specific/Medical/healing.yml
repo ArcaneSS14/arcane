@@ -95,7 +95,7 @@
   - type: Sprite
     state: pill18
   - type: Label
-    currentLabel: tramadol 7.5u
+    currentLabel: medical-label-tramadol-7-5u # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       food:
@@ -111,7 +111,7 @@
   suffix: Tramadol 7.5u, 15
   components:
   - type: Label
-    currentLabel: tramadol 7.5u
+    currentLabel: medical-label-tramadol-7-5u # Arcane-Edit
   - type: StorageFill
     contents:
     - id: PillTramadol
@@ -128,7 +128,7 @@
   - type: Sprite
     state: pill19
   - type: Label
-    currentLabel: oxycodone 5u
+    currentLabel: medical-label-oxycodone-5u # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       food:
@@ -144,7 +144,7 @@
   suffix: Oxycodone 5u, 15
   components:
   - type: Label
-    currentLabel: oxycodone 5u
+    currentLabel: medical-label-oxycodone-5u # Arcane-Edit
   - type: StorageFill
     contents:
     - id: PillOxycodone
@@ -161,7 +161,7 @@
   - type: Sprite
     state: pill1
   - type: Label
-    currentLabel: Ibuprofen 10u
+    currentLabel: medical-label-ibuprofen-10u # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       food:
@@ -177,7 +177,7 @@
   suffix: Ibuprofen 10u, 15
   components:
   - type: Label
-    currentLabel: Ibuprofen 10u
+    currentLabel: medical-label-ibuprofen-10u # Arcane-Edit
   - type: StorageFill
     contents:
     - id: PillIbuprofen
