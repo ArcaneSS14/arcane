@@ -117,20 +117,24 @@ public sealed class DirectionalLayeringSystem : EntitySystem
     /// </summary>
     public void CopySprite(Entity<SpriteComponent> source, Entity<SpriteComponent> copy, Direction direction)
     {
-        var view = GetView(direction);
-        if (!TryComp(source, out HumanoidAppearanceComponent? humanoid) ||
-            !_states.TryGetValue(source, out var state) ||
-            state.View is not { } sourceView ||
-            sourceView == view)
+        if (!TryComp(source, out HumanoidAppearanceComponent? humanoid))
         {
             _sprite.CopySprite(source.AsNullable(), copy.AsNullable());
             return;
         }
 
-        // The layout depends only on the view, so the source gets back exactly the layout it had.
-        ApplyOrdering((source, humanoid, source.Comp), state, view);
+        var view = GetView(direction);
+        var state = GetState(source);
+        var sourceView = state.View;
+        if (sourceView != view)
+            ApplyOrdering((source, humanoid, source.Comp), state, view);
+
         _sprite.CopySprite(source.AsNullable(), copy.AsNullable());
-        ApplyOrdering((source, humanoid, source.Comp), state, sourceView);
+
+        // The layout depends only on the view, so the source gets back exactly the layout it had. A source that was
+        // never laid out keeps this one until the next frame picks its own view.
+        if (sourceView is { } previous && previous != view)
+            ApplyOrdering((source, humanoid, source.Comp), state, previous);
     }
 
     private void OnAppearanceUpdated(EntityUid uid, HumanoidAppearanceComponent component, HumanoidAppearanceUpdatedEvent args)
