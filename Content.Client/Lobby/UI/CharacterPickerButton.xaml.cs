@@ -63,10 +63,6 @@ public sealed partial class CharacterPickerButton : ContainerButton
         DeleteButton.Visible = !isSelected;
 
         View.SetEntity(_previewDummy);
-        // Arcane-Start
-        _entManager.System<_Arcane.DirectionalLayering.DirectionalLayeringSystem>()
-            .ApplyDummyOrdering(_previewDummy, Direction.South);
-        // Arcane-End
         DescriptionLabel.Text = description;
 
         ConfirmDeleteButton.OnPressed += _ =>
