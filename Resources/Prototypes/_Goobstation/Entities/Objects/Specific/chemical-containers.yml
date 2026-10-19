@@ -4,12 +4,13 @@
   parent: Jug
   suffix: salicylic acid
   id: JugSalicylicAcid
+  # categories: [ HideSpawnMenu ] # Arcane-Edit
   components:
   - type: Label
     currentLabel: reagent-name-salicylic-acid
   - type: SolutionContainerManager
     solutions:
-      drink:
+      drink: # Arcane-Edit
         reagents:
         - ReagentId: SalicylicAcid
           Quantity: 200
@@ -18,12 +19,13 @@
   parent: Jug
   suffix: oxandrolone
   id: JugOxandrolone
+  # categories: [ HideSpawnMenu ] # Arcane-Edit
   components:
   - type: Label
     currentLabel: reagent-name-oxandrolone
   - type: SolutionContainerManager
     solutions:
-      drink:
+      drink: # Arcane-Edit
         reagents:
         - ReagentId: Oxandrolone
           Quantity: 200
@@ -32,12 +34,13 @@
   parent: Jug
   suffix: holy water
   id: JugHolyWater
+  # categories: [ HideSpawnMenu ] # Arcane-Edit
   components:
   - type: Label
     currentLabel: reagent-name-holywater
   - type: SolutionContainerManager
     solutions:
-      drink:
+      drink: # Arcane-Edit
         reagents:
         - ReagentId: Holywater
           Quantity: 200

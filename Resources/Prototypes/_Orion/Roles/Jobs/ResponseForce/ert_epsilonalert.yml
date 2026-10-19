@@ -122,12 +122,14 @@
     - ChemistryBottleOmnizine
     - JugOxandrolone
     - JugSalicylicAcid
-    # Arcane-Start
+    # Arcane-Edit-Start
     # - ParamedHypo
     # - CartridgeAtropine
     # - CartridgeAtropine
-    # Arcane-End
+    # Arcane-Edit-End
     - MagazinePistol
     - MagazinePistol
+  # Arcane-Edit-Start
   inhand:
-  - MedicalBeamGunBattery # Arcane-Edit
+  - MedicalBeamGunBattery
+  # Arcane-Edit-End
