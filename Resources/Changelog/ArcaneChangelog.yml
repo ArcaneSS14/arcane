@@ -3399,3 +3399,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/01ae1bed-f7e6-48dd-95bd-c5c9832c977d
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: В Секрет+Лёгкий теперь падают раундстартовые антагонисты
+  id: 243
+  time: '2026-10-19T02:42:47.0000000+00:00'
+  prNumber: 526
+  url: https://github.com/ArcaneSS14/arcane/pull/526
