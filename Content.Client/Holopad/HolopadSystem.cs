@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client._Arcane.DirectionalLayering;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Holopad;
 using Robust.Client.GameObjects;
@@ -17,6 +18,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly DirectionalLayeringSystem _directionalLayering = default!; // Arcane
 
     public override void Initialize()
     {
@@ -80,7 +82,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
             // Otherwise copy the target's current physical appearance
             else
             {
-                _sprite.CopySprite((target.Value, targetSprite), (hologram, hologramSprite));
+                _directionalLayering.CopySprite((target.Value, targetSprite), (hologram, hologramSprite), Direction.South); // Arcane-Edit
             }
         }
 

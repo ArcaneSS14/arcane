@@ -7,6 +7,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using static Robust.Client.GameObjects.SpriteComponent;
 
@@ -80,10 +81,12 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         while (query.MoveNext(out var uid, out var humanoid, out var sprite, out var xform))
         {
             var state = GetState(uid);
+            // Nullspace dummies are only drawn by SpriteViews, which render them with an unrotated eye.
+            var eye = xform.MapID == MapId.Nullspace ? Angle.Zero : eyeRotation;
             var view = state.DummyView
                 ?? (sprite.EnableDirectionOverride
                     ? GetView(sprite.DirectionOverride)
-                    : GetView(_transform.GetWorldRotation(xform) + eyeRotation));
+                    : GetView(_transform.GetWorldRotation(xform) + eye));
 
             if (state.View == view)
                 continue;
@@ -106,6 +109,28 @@ public sealed class DirectionalLayeringSystem : EntitySystem
         var state = GetState(uid);
         state.DummyView = GetView(direction);
         ApplyOrdering((uid, humanoid, sprite), state, state.DummyView.Value);
+    }
+
+    /// <summary>
+    ///     Copies a humanoid's sprite laid out for the direction the copy is drawn with, instead of the view the source
+    ///     is seen from right now.
+    /// </summary>
+    public void CopySprite(Entity<SpriteComponent> source, Entity<SpriteComponent> copy, Direction direction)
+    {
+        var view = GetView(direction);
+        if (!TryComp(source, out HumanoidAppearanceComponent? humanoid) ||
+            !_states.TryGetValue(source, out var state) ||
+            state.View is not { } sourceView ||
+            sourceView == view)
+        {
+            _sprite.CopySprite(source.AsNullable(), copy.AsNullable());
+            return;
+        }
+
+        // The layout depends only on the view, so the source gets back exactly the layout it had.
+        ApplyOrdering((source, humanoid, source.Comp), state, view);
+        _sprite.CopySprite(source.AsNullable(), copy.AsNullable());
+        ApplyOrdering((source, humanoid, source.Comp), state, sourceView);
     }
 
     private void OnAppearanceUpdated(EntityUid uid, HumanoidAppearanceComponent component, HumanoidAppearanceUpdatedEvent args)
