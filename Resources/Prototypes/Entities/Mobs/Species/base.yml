@@ -183,6 +183,7 @@
   - type: Crawler
   - type: Dna
   - type: Scent # Einstein Engines
+  - type: ScentPath # Arcane
   - type: MindContainer
   - type: MindExaminable
   - type: CanEnterCryostorage
