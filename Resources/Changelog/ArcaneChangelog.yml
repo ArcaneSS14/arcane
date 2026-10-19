@@ -3380,3 +3380,22 @@ Entries:
   time: '2026-10-18T22:49:33.0000000+00:00'
   prNumber: 522
   url: https://github.com/ArcaneSS14/arcane/pull/522
+- author: Kinar7
+  changes:
+    - type: Add
+      message: >-
+        Вульпканины, идущие по следу, теперь видят дорожку запаха на полу и
+        могут найти по ней человека. След держится 3 минуты и не остаётся в
+        вакууме.
+    - type: Tweak
+      message: >-
+        Предмет получает запах только после 5 минут у персонажа. На предмете
+        может быть не больше двух запахов одновременно. Старый запах пропадает
+        при появлении нового.
+  id: 242
+  time: '2026-10-19T01:22:29.0000000+00:00'
+  prNumber: 506
+  url: https://github.com/ArcaneSS14/arcane/pull/506
+  media:
+    - >-
+      https://github.com/user-attachments/assets/01ae1bed-f7e6-48dd-95bd-c5c9832c977d
