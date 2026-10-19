@@ -3355,3 +3355,55 @@ Entries:
       https://github.com/user-attachments/assets/8e8cd43a-d9fc-4f4f-b39c-a099acabb4fa
     - >-
       https://github.com/user-attachments/assets/da5491fc-7ae1-4758-bf4f-4445712a6da0
+- author: RabbitBat, raid_3390
+  changes:
+    - type: Add
+      message: Добавлен вещмешок цк.
+    - type: Tweak
+      message: Изменён обычный вещмешок в лодауте ПНТ на вещмешок цк
+  id: 240
+  time: '2026-10-18T20:49:15.0000000+00:00'
+  prNumber: 524
+  url: https://github.com/ArcaneSS14/arcane/pull/524
+  media:
+    - >-
+      https://github.com/user-attachments/assets/554f81f8-1ad9-4446-827f-d896b3f08a34
+    - >-
+      https://github.com/user-attachments/assets/2b3a6b09-2379-4421-8b04-ab9431eb2ed4
+    - >-
+      https://github.com/user-attachments/assets/ff2d1949-2147-4414-a45b-4aa8796a52cf
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: Таблетки на русском
+  id: 241
+  time: '2026-10-18T22:49:33.0000000+00:00'
+  prNumber: 522
+  url: https://github.com/ArcaneSS14/arcane/pull/522
+- author: Kinar7
+  changes:
+    - type: Add
+      message: >-
+        Вульпканины, идущие по следу, теперь видят дорожку запаха на полу и
+        могут найти по ней человека. След держится 3 минуты и не остаётся в
+        вакууме.
+    - type: Tweak
+      message: >-
+        Предмет получает запах только после 5 минут у персонажа. На предмете
+        может быть не больше двух запахов одновременно. Старый запах пропадает
+        при появлении нового.
+  id: 242
+  time: '2026-10-19T01:22:29.0000000+00:00'
+  prNumber: 506
+  url: https://github.com/ArcaneSS14/arcane/pull/506
+  media:
+    - >-
+      https://github.com/user-attachments/assets/01ae1bed-f7e6-48dd-95bd-c5c9832c977d
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: В Секрет+Лёгкий теперь падают раундстартовые антагонисты
+  id: 243
+  time: '2026-10-19T02:42:47.0000000+00:00'
+  prNumber: 526
+  url: https://github.com/ArcaneSS14/arcane/pull/526
