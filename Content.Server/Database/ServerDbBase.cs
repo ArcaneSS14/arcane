@@ -416,8 +416,7 @@ namespace Content.Server.Database
                     hairGradientEnabled,
                     hairGradientColors,
                     hairGradientStyle,
-                    hairGradientOffset,
-                    profile.EarsAboveHair
+                    hairGradientOffset
                     // Arcane-End
                 ),
                 spawnPriority,
@@ -498,7 +497,6 @@ namespace Content.Server.Database
             // Orion-End
             profile.Species = humanoid.Species;
             profile.CustomSpeciesName = humanoid.CustomSpeciesName; // Arcane
-            profile.EarsAboveHair = appearance.EarsAboveHair; // Arcane
             profile.Height = humanoid.Height; // Goobstation: port EE height/width sliders
             profile.Width = humanoid.Width; // Goobstation: port EE height/width sliders
             profile.Age = humanoid.Age;

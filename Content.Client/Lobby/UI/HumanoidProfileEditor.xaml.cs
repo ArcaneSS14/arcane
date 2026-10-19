@@ -44,7 +44,6 @@ using Direction = Robust.Shared.Maths.Direction;
 using Content.Goobstation.Common.CCVar; // Goob Station - Barks
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared._Orion.RichText;
-using Content.Client._Arcane.DirectionalLayering;
 using Content.Client._Arcane.TTS;
 using Content.Client._Arcane.StyleSheets; // Arcane
 using Content.Shared._Arcane.ERP;
@@ -724,10 +723,6 @@ namespace Content.Client.Lobby.UI
             Markings.OnMarkingRemoved += OnMarkingChange;
             Markings.OnMarkingColorChange += OnMarkingChange;
             Markings.OnMarkingRankChange += OnMarkingChange;
-            // Arcane-Start
-            Markings.OnEarsAboveHairChange += OnEarsAboveHairChange;
-            Markings.ShowEarsAboveHairOption = true;
-            // Arcane-End
 
             #endregion Markings
 
@@ -1429,7 +1424,6 @@ namespace Content.Client.Lobby.UI
             PreviewDummy = _controller.LoadProfileEntity(Profile, JobOverride, _clothingDisplayMode); // Orion-Edit: Clothing display mode
             SpriteView.SetEntity(PreviewDummy);
             _entManager.System<MetaDataSystem>().SetEntityName(PreviewDummy, Profile.Name);
-            SetPreviewRotation(_previewRotation); // Arcane
 
             // Orion-Start
             _flavorText?.TargetPreview.SetEntity(PreviewDummy);
@@ -1938,17 +1932,6 @@ namespace Content.Client.Lobby.UI
             ReloadProfilePreview();
         }
 
-        // Arcane-Start
-        private void OnEarsAboveHairChange(bool newValue)
-        {
-            if (Profile is null)
-                return;
-
-            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithEarsAboveHair(newValue));
-            ReloadProfilePreview();
-        }
-        // Arcane-End
-
         private void OnSkinColorOnValueChanged()
         {
             if (Profile is null) return;
@@ -2347,7 +2330,6 @@ namespace Content.Client.Lobby.UI
             Markings.SetData(Profile.Appearance.Markings, Profile.Species,
                 Profile.Sex, Profile.Appearance.SkinColor, Profile.Appearance.EyeColor
             );
-            Markings.EarsAboveHair = Profile.Appearance.EarsAboveHair; // Arcane
         }
 
         private void UpdateGenderControls()
@@ -2749,11 +2731,6 @@ namespace Content.Client.Lobby.UI
         private void SetPreviewRotation(Direction direction)
         {
             SpriteView.OverrideDirection = (Direction) ((int) direction % 4 * 2);
-
-            // Arcane-Start
-            if (SpriteView.OverrideDirection is { } overrideDirection && _entManager.EntityExists(PreviewDummy))
-                _entManager.System<DirectionalLayeringSystem>().ApplyDummyOrdering(PreviewDummy, overrideDirection);
-            // Arcane-End
         }
 
         private void RandomizeEverything()

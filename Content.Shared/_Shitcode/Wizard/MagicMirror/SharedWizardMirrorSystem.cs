@@ -93,8 +93,7 @@ public abstract class SharedWizardMirrorSystem : EntitySystem
             facialHair.Item2,
             humanoid.EyeColor,
             humanoid.SkinColor,
-            humanoid.MarkingSet.GetForwardEnumerator().ToList(),
-            earsAboveHair: humanoid.EarsAboveHair); // Arcane
+            humanoid.MarkingSet.GetForwardEnumerator().ToList());
 
         var profile = new HumanoidCharacterProfile().WithGender(humanoid.Gender)
             .WithSex(humanoid.Sex)

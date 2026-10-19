@@ -1,14 +1,13 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Tajaran Tails
 
-# Arcane-Edit-Start: Tail's sprites from _Arcane
 - type: marking
   id: TajaranTailRetro
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Tajaran]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/Tajaran/tails.rsi
+  - sprite: _Goobstation/Mobs/Customization/Tajaran/tails.rsi
     state: tail
 
 - type: marking
@@ -17,7 +16,7 @@
   markingCategory: Tail
   speciesRestriction: [Tajaran]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/Tajaran/tails.rsi
+  - sprite: _Goobstation/Mobs/Customization/Tajaran/tails.rsi
     state: tail_anim
 
 - type: marking
@@ -26,9 +25,9 @@
   markingCategory: Tail
   speciesRestriction: [Tajaran]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/Tajaran/tails.rsi
+  - sprite: _Goobstation/Mobs/Customization/Tajaran/tails.rsi
     state: tail
-  - sprite: _Arcane/Mobs/Customization/Tajaran/tail_markings.rsi
+  - sprite: _Goobstation/Mobs/Customization/Tajaran/tail_markings.rsi
     state: tail_rings
 
 - type: marking
@@ -37,11 +36,10 @@
   markingCategory: Tail
   speciesRestriction: [Tajaran]
   sprites:
-  - sprite: _Arcane/Mobs/Customization/Tajaran/tails.rsi
+  - sprite: _Goobstation/Mobs/Customization/Tajaran/tails.rsi
     state: tail_anim
-  - sprite: _Arcane/Mobs/Customization/Tajaran/tail_markings.rsi
+  - sprite: _Goobstation/Mobs/Customization/Tajaran/tail_markings.rsi
     state: tail_anim_rings
-# Arcane-Edit-End
 
 # Tajaran Ears
 

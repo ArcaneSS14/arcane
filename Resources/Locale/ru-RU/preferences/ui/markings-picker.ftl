@@ -6,7 +6,6 @@ markings-rank-up = Вверх
 markings-rank-down = Вниз
 markings-search = Поиск
 marking-points-remaining = Черт осталось: { $points }
-markings-ears-above-hair = Показывать уши поверх волос
 marking-used = { $marking-name }
 marking-used-forced = { $marking-name } (Принудительно)
 marking-slot-add = Добавить
