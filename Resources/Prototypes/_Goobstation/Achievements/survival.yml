@@ -229,6 +229,7 @@
     - !type:HasComponentCondition
       components:
       - type: HumanoidAppearance
+        species: Human
 
 - type: achievement
   id: Dormammu

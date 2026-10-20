@@ -150,6 +150,7 @@ namespace Content.IntegrationTests.Tests
             "Saltern",
             "Serpentcrest",
             "Silly",           // Arcane
+            "Shoukou",         // Goob
             "Snowball",
             "TestTeg",        // Dev map
             "Train",           // Not in pool
@@ -199,6 +200,7 @@ namespace Content.IntegrationTests.Tests
               "Saltern",
               "Serpentcrest",
               "Silly",           // Arcane
+              "Shoukou",         // Goob
              // "Snowball", // fuck off not in pool
               "WonderBox",       // Arcane
         };

@@ -170269,7 +170269,7 @@ entities:
     - type: Transform
       pos: -90.5,5.5
       parent: 2
-    - type: Timer
+    - type: SignalTimer
   - uid: 25840
     components:
     - type: Transform
