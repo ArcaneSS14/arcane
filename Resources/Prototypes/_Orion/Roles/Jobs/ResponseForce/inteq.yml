@@ -74,7 +74,7 @@
     mask: ClothingMaskBreathMedicalSecurity
     eyes: ClothingEyesHudMedical
     ears: ClothingHeadsetInteQ
-    gloves: ClothingHandsGlovesNitrile
+    gloves: ClothingHandsGlovesSurgical # Arcane-Edit
     outerClothing: ClothingOuterCoatInteQMedical
     shoes: ClothingShoesBootsCombatFilled
     id: ERTInteQVanguardIDCard
@@ -91,13 +91,18 @@
     - MedkitAdvancedFilled
     - CrowbarRed
     - ChemistryBottleOmnizine
-    - ParamedHypo
-    - CartridgeAtropine
-    - CartridgeAtropine
-    - MedicalBeamGunBattery
+    # Arcane-Edit-Start
+    # - ParamedHypo
+    # - CartridgeAtropine
+    # - CartridgeAtropine
+    # Arcane-Edit-End
     - MagazinePistol
     - MagazinePistol
     - MagazineBoxPistolInteQ
+  # Arcane-Edit-Start
+  inhand:
+  - MedicalBeamGunBattery
+  # Arcane-Edit-End
 
 # InteQ ERT Strike Team
 - type: startingGear
