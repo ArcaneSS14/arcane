@@ -30,13 +30,13 @@ public sealed partial class ChangelingEggSystem : EntitySystem
     ];
     // Arcane-End
 
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ChangelingSystem _changeling = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ChangelingSystem _changeling = default!;
     // Arcane-Start
     [Dependency] private IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedInternalResourcesSystem _resource = default!;
+    [Dependency] private SharedInternalResourcesSystem _resource = default!;
     // Arcane-End
 
     public override void Update(float frameTime)

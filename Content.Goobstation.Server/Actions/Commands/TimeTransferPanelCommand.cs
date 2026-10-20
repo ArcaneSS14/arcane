@@ -8,7 +8,7 @@ using Robust.Shared.Console;
 namespace Content.Goobstation.Server.Actions.Commands;
 
 [AdminCommand(AdminFlags.Host)] // Orion
-public sealed class TimeTransferPanelCommand : LocalizedCommands
+public sealed partial class TimeTransferPanelCommand : LocalizedCommands
 {
     [Dependency] private EuiManager _euis = default!;
 

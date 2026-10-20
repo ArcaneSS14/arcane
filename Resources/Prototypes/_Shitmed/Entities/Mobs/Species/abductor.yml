@@ -10,8 +10,6 @@
   - BaseMobDisgust # Goobstation
   id: MobAbductor
   components:
-  - type: VoiceChatEffect # Goobstation - Voice chat
-    effect: Abductor
   - type: Absorbable # BLOOD FOR THE BLOOD GOD
   # - type: GlorpAccent # GoobStation - Glorpshit # Removed for EE - Languages
   - type: HumanoidAppearance

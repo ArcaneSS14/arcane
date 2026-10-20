@@ -110,13 +110,8 @@ public sealed partial class AdminLogManager
     {
         if (filter?.Round == null || !TryGetCacheSnapshot(filter.Round.Value, out var cache)) // Arcane-Edit
         {
-            if (filter?.Round == null || !TryGetCache(filter.Round.Value, out var cached))
-            {
-                results = null;
-                return false;
-            }
-
-            cache = cached.ToArray();
+            results = null;
+            return false;
         }
 
         // TODO ADMIN LOGS a better heuristic than linq spaghetti

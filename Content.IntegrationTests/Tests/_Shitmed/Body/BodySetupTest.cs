@@ -27,6 +27,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
+using Content.Server.Tools.Innate;
+using Content.Shared._Shitmed.Targeting;
 
 namespace Content.IntegrationTests.Tests._Shitmed.Body;
 

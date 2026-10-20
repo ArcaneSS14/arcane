@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 
+using Content.Client.IconSmoothing;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
@@ -10,6 +11,7 @@ namespace Content.Client.Fluids;
 
 public sealed partial class PuddleSystem : SharedPuddleSystem // Goob
 {
+    [Dependency] private readonly IconSmoothSystem _smooth = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()

@@ -30,6 +30,8 @@ using Content.Shared._Orion.Construction.Events;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.DoAfter;

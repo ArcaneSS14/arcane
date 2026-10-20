@@ -19,9 +19,9 @@ public sealed partial class DisgustSystem : EntitySystem
     private float _disgustUpdateAccumulator;
     // Arcane-end
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AlertsSystem _alets = default!;
-    [Dependency] private readonly SharedEntityEffectsSystem _effect = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AlertsSystem _alets = default!;
+    [Dependency] private SharedEntityEffectsSystem _effect = default!;
 
     public override void Initialize()
     {

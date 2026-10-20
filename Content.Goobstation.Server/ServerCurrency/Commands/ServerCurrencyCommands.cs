@@ -12,7 +12,7 @@ namespace Content.Goobstation.Server.ServerCurrency.Commands
 {
     // [AnyCommand] // Arcane: hidden from players
     [AdminCommand(AdminFlags.Host)] // Arcane
-    public sealed class BalanceServerCurrencyCommand : IConsoleCommand
+    public sealed partial class BalanceServerCurrencyCommand : IConsoleCommand
     {
         [Dependency] private ICommonCurrencyManager _currencyMan = default!;
         [Dependency] private IChatManager _chatManager = default!;
@@ -43,7 +43,7 @@ namespace Content.Goobstation.Server.ServerCurrency.Commands
 
     // [AnyCommand] // Arcane: hidden from players
     [AdminCommand(AdminFlags.Host)] // Arcane
-    public sealed class GiftServerCurrencyCommand : IConsoleCommand
+    public sealed partial class GiftServerCurrencyCommand : IConsoleCommand
     {
         [Dependency] private ICommonCurrencyManager _currencyMan = default!;
         [Dependency] private IChatManager _chatManager = default!;

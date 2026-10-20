@@ -78,11 +78,6 @@ public sealed partial class AudioTab : Control
             SliderVolumeInterface,
             scale: ContentAudioSystem.InterfaceMultiplier);
 
-        Control.AddOptionPercentSlider(
-            GoobCVars.VoiceChatVolume,
-            SliderVolumeVoiceChat,
-            0, 2); // Goobstation - Voice chat
-
         // Goobstation - Highlight Chat Ping/Audio!
         Control.AddOptionPercentSlider(
             CCVars.ChatHighlightVolume,

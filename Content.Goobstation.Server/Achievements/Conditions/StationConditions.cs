@@ -108,7 +108,7 @@ public sealed partial class ResearchCompleteConditionSystem : SessionsConditionS
     private void OnDatabaseModified(Entity<TechnologyDatabaseComponent> ent, ref TechnologyDatabaseModifiedEvent args)
     {
         var disciplines = ent.Comp.SupportedDisciplines;
-        var unlocked = ent.Comp.UnlockedTechnologies;
+        var unlocked = ent.Comp.ResearchedTechnologies;
         if (Entries.Count == 0 || disciplines.Count == 0 || _completed.Contains(ent))
             return;
 

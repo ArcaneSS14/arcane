@@ -471,37 +471,6 @@ public sealed partial class GoobCVars
 
     #endregion
 
-    #region Voicechat
-
-    public static readonly CVarDef<bool> VoiceChatEnabled =
-        CVarDef.Create("voice.enabled", false, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
-
-    public static readonly CVarDef<int> VoiceChatPort =
-        CVarDef.Create("voice.vc_server_port", 1213, CVar.SERVER | CVar.REPLICATED);
-
-    public static readonly CVarDef<float> VoiceChatVolume =
-        CVarDef.Create("voice.volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE, "Voice chat playback volume, 0 to 2.");
-
-    public static readonly CVarDef<float> VoiceChatBufferTargetMultiplier =
-        CVarDef.Create("voice.buffer_target_multiplier", 1.0f, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<int> VoiceChatMinBufferSize =
-        CVarDef.Create("voice.min_buffer_size", 10, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<int> VoiceChatMaxBufferSize =
-        CVarDef.Create("voice.max_buffer_size", 50, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<bool> VoiceChatAdvancedTimeStretch =
-        CVarDef.Create("voice.advanced_time_stretch", true, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<bool> VoiceChatDebugLogging =
-        CVarDef.Create("voice.debug_logging", false, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<bool> VoiceChatHearSelf =
-        CVarDef.Create("voice.hear_self", false, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    #endregion
-
     #region Queue
 
     /// <summary>

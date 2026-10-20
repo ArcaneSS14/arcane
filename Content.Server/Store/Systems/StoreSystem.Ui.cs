@@ -41,6 +41,7 @@ public sealed partial class StoreSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // goobstation - ntr update
 
     private void InitializeUi()
     {

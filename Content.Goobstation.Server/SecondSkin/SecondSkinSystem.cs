@@ -17,7 +17,7 @@ public sealed partial class SecondSkinSystem : SharedSecondSkinSystem
     private float _skinUpdateAccumulator;
     // Arcane-end
 
-    [Dependency] private readonly DamageableSystem _dmg = default!;
+    [Dependency] private DamageableSystem _dmg = default!;
 
     public override void Update(float frameTime)
     {

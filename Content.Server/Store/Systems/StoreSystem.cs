@@ -13,7 +13,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Server._White.StoreDiscount;
 using Content.Goobstation.Shared.NTR;
 using Content.Shared.Mind;
 using Content.Shared.Mindshield;
@@ -32,7 +31,6 @@ public sealed partial class StoreSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindShieldCheckSystem _mindShieldCheck = default!; // Arcane
-    [Dependency] private readonly StoreDiscountSystem _storeDiscount = default!; // WD EDIT
     [Dependency] private readonly PolymorphSystem _polymorph = default!; // goob edit
 
     public override void Initialize()

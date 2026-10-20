@@ -1716,10 +1716,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("ooc_icon");
 
-                    b.Property<int>("TierId")
-                        .HasColumnType("integer")
-                        .HasColumnName("tier_id");
-
                     b.HasKey("PlayerId")
                         .HasName("PK_rmc_patrons");
 

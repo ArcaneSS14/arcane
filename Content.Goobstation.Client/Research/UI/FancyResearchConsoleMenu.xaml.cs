@@ -35,10 +35,10 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     private ResearchConsoleBoundInterfaceState? _lastState;
     // Orion-End
 
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!; // Orion
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private ILocalizationManager _loc = default!; // Orion
 
     private readonly ResearchSystem _research;
     private readonly SpriteSystem _sprite;

@@ -73,6 +73,7 @@ public sealed class LinkAccountManager : IPostInjectInit
     private readonly Dictionary<NetUserId, TimeSpan> _lastRequest = new();
     private readonly TimeSpan _minimumWait = TimeSpan.FromSeconds(0.5);
     private readonly Dictionary<NetUserId, SharedRMCPatronFull> _connected = new();
+    private readonly Dictionary<string, SharedRMCPatronTier> _fauxTiers = new(); // Goob
     private readonly Dictionary<NetUserId, ProtoId<PatronTierPrototype>> _fauxPatronAssignments = new(); // Goob
     private bool _tiersSynced; // Goob
     private readonly List<SharedRMCPatron> _allPatrons = [];
@@ -99,15 +100,18 @@ public sealed class LinkAccountManager : IPostInjectInit
 
         var patron = patronData.Preferences;
         var tier = patronData.PrimaryTier;
+        var tierProto = tier == null ? null : _prototypes.GetPatronTierByDatabaseId(tier.Id);
         var sharedTier = tier == null
             ? null
             : new SharedRMCPatronTier(
+                tierProto?.ID ?? "",
                 patronData.Tiers.Any(sponsorTier => sponsorTier.ShowOnCredits),
                 patronData.Tiers.Any(sponsorTier => sponsorTier.GhostColor),
                 patronData.Tiers.Any(sponsorTier => sponsorTier.GhostCosmetics),
                 patronData.Tiers.Any(sponsorTier => sponsorTier.GhostParticles),
                 patronData.Tiers.Any(sponsorTier => sponsorTier.LobbyMessage),
                 patronData.Tiers.Any(sponsorTier => sponsorTier.RoundEndShoutout),
+                (tierProto?.OocIconTiers.Count ?? 0) > 0,
                 tier.Name,
                 tier.Icon
             );
@@ -140,6 +144,7 @@ public sealed class LinkAccountManager : IPostInjectInit
             linked.HasPlayerRole,
             ghostColor,
             ghostCosmetics,
+            patron?.OocIcon,
             lobbyMessage,
             shoutouts);
         // arcane discord link end
@@ -569,6 +574,7 @@ public sealed class LinkAccountManager : IPostInjectInit
                 // arcane discord link end
                 GhostColor: null,
                 GhostCosmetics: null,
+                OocIcon: null,
                 LobbyMessage: null,
                 RoundEndShoutout: null
             );
@@ -576,46 +582,6 @@ public sealed class LinkAccountManager : IPostInjectInit
 
         return _connected.GetValueOrDefault(userId);
     }
-
-    // Goobstation-Start
-    public void SetGhostCosmetics(NetUserId user, string? particles, string? hat, string? mask)
-    {
-        if (GetPatron(user)?.Tier is not { } tier ||
-            !tier.GhostCosmetics && !tier.GhostParticles)
-            return;
-
-        if (!tier.GhostParticles)
-            particles = null;
-
-        if (!tier.GhostCosmetics)
-        {
-            hat = null;
-            mask = null;
-        }
-
-        var cosmetics = particles == null && hat == null && mask == null
-            ? null
-            : new SharedRMCGhostCosmetics(particles, hat, mask);
-
-        _db.SetGhostCosmetics(user, particles, hat, mask);
-
-        if (_connected.TryGetValue(user, out var connected))
-        {
-            connected = connected with { GhostCosmetics = cosmetics };
-            _connected[user] = connected;
-            PatronUpdated?.Invoke((user, connected));
-        }
-    }
-
-    public async Task ReloadPatron(ICommonSession player)
-    {
-        await LoadData(player, CancellationToken.None);
-        SendPatronStatus(player);
-
-        if (_connected.TryGetValue(player.UserId, out var connected))
-            PatronUpdated?.Invoke((player.UserId, connected));
-    }
-    // Goobstation-End
 
     // arcane discord link start
     public bool CanPlay(ICommonSession player, out string locId)

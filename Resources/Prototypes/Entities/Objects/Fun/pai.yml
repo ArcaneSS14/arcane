@@ -7,8 +7,6 @@
   name: personal ai device
   description: Your electronic pal who's fun to be with!
   components:
-  - type: VoiceChatEffect # Goobstation - Voice chat
-    effect: Robot
   - type: Instrument
     allowPercussion: false
     handheld: false

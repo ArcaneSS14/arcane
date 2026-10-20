@@ -18,11 +18,11 @@ public sealed partial class RandomIntervalSoundSystem : EntitySystem
     private TimeSpan _nextSoundUpdate;
     // Arcane-end
 
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {

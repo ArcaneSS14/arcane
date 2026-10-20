@@ -9,8 +9,6 @@
   id: BaseMobXenomorph
   abstract: true
   components:
-  - type: VoiceChatEffect # Goobstation - Voice chat
-    effect: Alien
   - type: Xenomorph
     weedHeal: # Goobstation - nerfed healing
       groups:

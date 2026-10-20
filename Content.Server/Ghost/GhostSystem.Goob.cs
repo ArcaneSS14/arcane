@@ -15,7 +15,6 @@ namespace Content.Server.Ghost;
 public sealed partial class GhostSystem
 {
     [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly GhostVisibilitySystem _ghostVisibility = default!;
 
 
     private static readonly ProtoId<DamageTypePrototype> IonDamageType = "Ion";

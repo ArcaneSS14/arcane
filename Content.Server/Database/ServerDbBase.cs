@@ -2133,6 +2133,41 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             }
 
             await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task<List<RMCPatronTier>> GetPatronTiers()
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.RMCPatronTiers.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<int> AddPatronTier(RMCPatronTier tier)
+        {
+            await using var db = await GetDb();
+            db.DbContext.RMCPatronTiers.Add(tier);
+            await db.DbContext.SaveChangesAsync();
+            return tier.Id;
+        }
+
+        public async Task<bool> UpdatePatronTier(RMCPatronTier tier)
+        {
+            await using var db = await GetDb();
+            var existing = await db.DbContext.RMCPatronTiers.FirstOrDefaultAsync(t => t.Id == tier.Id);
+            if (existing == null)
+                return false;
+
+            existing.Name = tier.Name;
+            existing.Icon = tier.Icon;
+            existing.DiscordRole = tier.DiscordRole;
+            existing.Priority = tier.Priority;
+            existing.ShowOnCredits = tier.ShowOnCredits;
+            existing.GhostColor = tier.GhostColor;
+            existing.GhostCosmetics = tier.GhostCosmetics;
+            existing.GhostParticles = tier.GhostParticles;
+            existing.LobbyMessage = tier.LobbyMessage;
+            existing.RoundEndShoutout = tier.RoundEndShoutout;
+
+            await db.DbContext.SaveChangesAsync();
             return true;
         }
 
@@ -2217,12 +2252,13 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     {
                         message.Message,
                         message.Patron.Player.LastSeenUserName,
+                        tier.Id,
                     })
                 .Distinct()
                 .ToListAsync();
 
             return messages
-                .Select(message => (message.Message, message.LastSeenUserName))
+                .Select(message => (message.Message, message.LastSeenUserName, message.Id))
                 .ToList();
         }
 
@@ -2235,11 +2271,11 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     from role in linked.Discord.Roles
                     join tier in db.DbContext.RMCPatronTiers on role.RoleId equals tier.DiscordRole
                     where tier.RoundEndShoutout && !string.IsNullOrWhiteSpace(shoutout.Name)
-                    select shoutout.Name)
+                    select new { shoutout.Name, tier.Id })
                 .Distinct()
                 .ToListAsync();
 
-            return ntNames.Select(p => (p.Name, p.TierId)).ToList();
+            return ntNames.Select(p => (p.Name, p.Id)).ToList();
         }
         // Goob end
 

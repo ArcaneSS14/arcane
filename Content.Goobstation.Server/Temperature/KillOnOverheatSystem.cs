@@ -13,9 +13,9 @@ namespace Content.Goobstation.Server.Temperature;
 
 public sealed partial class KillOnOverheatSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!; // Arcane
-    [Dependency] private readonly MobStateSystem _mob = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!; // Arcane
+    [Dependency] private MobStateSystem _mob = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     // Arcane-start
     private static readonly TimeSpan OverheatUpdateInterval = TimeSpan.FromSeconds(0.5);

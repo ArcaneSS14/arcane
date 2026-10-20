@@ -22,7 +22,7 @@ using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server.Dragon;
 
-public sealed class DragonSystem : EntitySystem
+public sealed partial class DragonSystem : EntitySystem
 {
     [Dependency] private readonly CarpRiftsConditionSystem _carpRifts = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;

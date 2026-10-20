@@ -18,12 +18,12 @@ namespace Content.Goobstation.Client.Barks;
 
 public sealed partial class BarkSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAudioSystem _sharedAudio = default!;
-    [Dependency] private readonly GhostSystem _ghostSystem = default!; // Arcane
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAudioSystem _sharedAudio = default!;
+    [Dependency] private GhostSystem _ghostSystem = default!; // Arcane
 
     private readonly Dictionary<NetEntity, EntityUid> _playingSounds = new();
     private static readonly char[] Characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();

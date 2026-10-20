@@ -1633,10 +1633,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("ooc_icon");
 
-                    b.Property<int>("TierId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("tier_id");
-
                     b.HasKey("PlayerId")
                         .HasName("PK_rmc_patrons");
 

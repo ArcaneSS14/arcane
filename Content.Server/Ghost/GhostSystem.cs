@@ -178,7 +178,6 @@ namespace Content.Server.Ghost
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
         [Dependency] private readonly GhostVisibilitySystem _ghostVisibility = default!;
-        [Dependency] private readonly SharedBodySystem _bodySystem = default!; // Shitmed Change
         [Dependency] private readonly IServerPreferencesManager _prefs = default!; // Orion
 
         private EntityQuery<GhostComponent> _ghostQuery;
@@ -869,32 +868,26 @@ namespace Content.Server.Ghost
                     if (TryComp<DamageableComponent>(playerEntity, out var damageable)
                         && TryComp<MobThresholdsComponent>(playerEntity, out var thresholds))
                     {
-                        FixedPoint2 dealtDamage = 200;
-
-                        if (TryComp<DamageableComponent>(playerEntity, out var damageable)
-                            && TryComp<MobThresholdsComponent>(playerEntity, out var thresholds))
-                        {
-                            var playerDeadThreshold = _mobThresholdSystem.GetThresholdForState(playerEntity.Value, MobState.Dead, thresholds);
-                            dealtDamage = playerDeadThreshold - damageable.TotalDamage;
-                        }
-
-                        // Shitmed Change Start
-                        var damageType = HasComp<SiliconComponent>(playerEntity)
-                            ? IonDamageType
-                            : AsphyxiationDamageType;
-                        DamageSpecifier damage = new(_prototypeManager.Index(damageType), dealtDamage);
-
-                        if (TryComp<BodyComponent>(playerEntity, out var body)
-                            && body.BodyType == BodyType.Complex
-                            && body.RootContainer.ContainedEntities.FirstOrNull() is not null)
-                            _damageable.TryChangeDamage(playerEntity,
-                                damage,
-                                true,
-                                targetPart: TargetBodyPart.All);
-                        else
-                            _damageable.TryChangeDamage(playerEntity, damage, true);
-                        // Shitmed Change End
+                        var playerDeadThreshold = _mobThresholdSystem.GetThresholdForState(playerEntity.Value, MobState.Dead, thresholds);
+                        dealtDamage = playerDeadThreshold - damageable.TotalDamage;
                     }
+
+                    // Shitmed Change Start
+                    var damageType = HasComp<SiliconComponent>(playerEntity)
+                        ? IonDamageType
+                        : AsphyxiationDamageType;
+                    DamageSpecifier shDamage = new(_prototypeManager.Index(damageType), dealtDamage);
+
+                    if (TryComp<BodyComponent>(playerEntity, out var body)
+                        && body.BodyType == BodyType.Complex
+                        && body.RootContainer.ContainedEntities.FirstOrNull() is not null)
+                        _damageable.TryChangeDamage(playerEntity.Value,
+                            shDamage,
+                            true,
+                            targetPart: TargetBodyPart.All);
+                    else
+                        _damageable.TryChangeDamage(playerEntity.Value, shDamage, true);
+                    // Shitmed Change End
 
                     //DamageSpecifier damage = new(_prototypeManager.Index<DamageTypePrototype>(damageType), dealtDamage); // Goob
                     DamageSpecifier damage = new(_prototypeManager.Index(GoobGetSuicideDamageType(playerEntity.Value)), dealtDamage); // Goob - IPC and such

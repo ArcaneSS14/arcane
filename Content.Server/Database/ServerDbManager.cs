@@ -334,6 +334,8 @@ namespace Content.Server.Database
 
         Task SetOocIcon(Guid player, string? icon);
 
+        Task<List<RMCPatronTier>> GetPatronTiers();
+
         Task<int> AddPatronTier(RMCPatronTier tier);
 
         Task<bool> UpdatePatronTier(RMCPatronTier tier);
@@ -341,6 +343,8 @@ namespace Content.Server.Database
         Task<List<Guid>> GetPatronPlayerIdsForTier(int tierId);
 
         Task<bool> DeletePatronTier(int tierId);
+
+        Task SyncPatronTiers(List<RMCPatronTier> tiers);
         // Goob end
 
         Task SetLobbyMessage(Guid player, string message);
@@ -1135,10 +1139,28 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.SetOocIcon(player, icon));
         }
 
-        public Task SyncPatronTiers(List<RMCPatronTier> tiers)
+        public Task<List<RMCPatronTier>> GetPatronTiers()
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(_db.GetPatronTiers);
+        }
+
+        public Task<int> AddPatronTier(RMCPatronTier tier)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddPatronTier(tier));
+        }
+
+        public Task<bool> UpdatePatronTier(RMCPatronTier tier)
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.UpdatePatronTier(tier));
+        }
+
+        public Task SyncPatronTiers(List<RMCPatronTier> tiers)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SyncPatronTiers(tiers));
         }
 
         public Task<List<Guid>> GetPatronPlayerIdsForTier(int tierId)

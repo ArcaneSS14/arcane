@@ -9,7 +9,6 @@ namespace Content.Server.Store.Systems;
 public sealed partial class StoreSystem
 {
     [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly PolymorphSystem _polymorph = default!;
 
     private void InitializeGoob()
     {

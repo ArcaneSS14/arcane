@@ -148,6 +148,15 @@ namespace Content.Server.Bible
 
             string othersMessage;
             string selfMessage;
+            // Goob start damagesystem update required
+            _damageableSystem.TryChangeDamage(args.Target.Value,
+                component.Damage,
+                out var damage,
+                true,
+                origin: uid,
+                targetPart: TargetBodyPart.All,
+                ignoreBlockers: true,
+                splitDamage: SplitDamageBehavior.SplitEnsureAll);
 
             if (damage is { Empty: false }) // Goob end damagesystemupdate required // Arcane
             {

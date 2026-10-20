@@ -390,7 +390,7 @@ public sealed partial class RespiratorSystem : EntitySystem // Goob - made parti
             suffocationDamage *= VacuumSuffocationMultiplier;
         // Arcane-End
 
-        _damageableSys.TryChangeDamage(ent, suffocationDamage, targetPart: TargetBodyPart.All, interruptsDoAfters: false); // Shitmed Change // Arcane-Edit
+        _damageableSys.TryChangeDamage(ent.Owner, suffocationDamage, targetPart: TargetBodyPart.All, interruptsDoAfters: false); // Shitmed Change // Arcane-Edit
 
         if (ent.Comp.SuffocationCycles < ent.Comp.SuffocationCycleThreshold)
             return;

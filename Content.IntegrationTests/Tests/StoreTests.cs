@@ -1,5 +1,17 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Server.Traitor.Uplink;
+using Content.Shared._Goobstation.Wizard.Refund;
+using Content.Shared.Inventory;
+using Content.Shared.Mind;
+using Content.Shared.Store;
+using Content.Shared.Store.Components;
+using Content.Shared.StoreDiscount.Components;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Random;
+
 namespace Content.IntegrationTests.Tests;
 
 [TestFixture]

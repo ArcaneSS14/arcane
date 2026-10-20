@@ -294,8 +294,6 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.FocusConsoleChat);
             AddButton(ContentKeyFunctions.CycleChatChannelForward);
             AddButton(ContentKeyFunctions.CycleChatChannelBackward);
-            AddButton(ContentKeyFunctions.VoicePushToTalk); // Goobstation - Voice chat
-            AddButton(ContentKeyFunctions.VoicePushToTalkRadio); // Goobstation - Voice chat
             AddButton(ContentKeyFunctions.OpenCharacterMenu);
             AddButton(ContentKeyFunctions.OpenCraftingMenu);
             AddButton(ContentKeyFunctions.OpenGuidebook);

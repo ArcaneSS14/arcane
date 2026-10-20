@@ -48,18 +48,18 @@ public sealed partial class JoinQueueManager : IJoinQueueManager
         });
 
 
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IConnectionManager _connection = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly IServerNetManager _net = default!;
-    [Dependency] private readonly LinkAccountManager _linkAccount = default!;
-    [Dependency] private readonly UserDbDataManager _userDb = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IGameMapManager _gameMapManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly ITaskManager _taskManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IConnectionManager _connection = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private IServerNetManager _net = default!;
+    [Dependency] private LinkAccountManager _linkAccount = default!;
+    [Dependency] private UserDbDataManager _userDb = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IGameMapManager _gameMapManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private ITaskManager _taskManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
     private ISawmill _sawmill = default!;
 
