@@ -6,3 +6,23 @@
   cost: 1
   components:
   - type: EnglishAccent
+
+- type: trait
+  id: StrongAmericanAccent
+  name: trait-strong-american-name
+  description: trait-strong-american-desc
+  category: SpeechTraits
+  cost: 2
+  components:
+  - type: EnglishAccent
+    transliterateChance: 0.4
+    yeryChance: 0.9
+    signChance: 0.9
+    shchChance: 0.9
+    tseChance: 0.9
+    hardLChance: 0.9
+    latinChance: 0.6
+    latinCooldown: 1
+    stretchChance: 0.15
+    prefixChance: 0.4
+    suffixChance: 0.35
