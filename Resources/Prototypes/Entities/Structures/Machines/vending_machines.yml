@@ -216,6 +216,10 @@
   - type: VendingMachine
     pack: CondimentInventory
     offState: off
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/condiments.rsi
     drawdepth: SmallObjects
@@ -912,6 +916,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: DinnerwareAds
   - type: SpeakOnUIClosed
@@ -1075,6 +1083,10 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     ejectDelay: 0.6
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: NanoMedAds
   - type: SpeakOnUIClosed
@@ -1236,6 +1248,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Edit-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-Edit-End
   - type: DatasetVocalizer
     dataset: MegaSeedAds
   - type: SpeakOnUIClosed
@@ -1840,6 +1856,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: HyDrobeAds
   - type: SpeakOnUIClosed
@@ -1940,6 +1960,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: BarDrobeAds
   - type: SpeakOnUIClosed
@@ -2206,6 +2230,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: ChefDrobeAds
   - type: SpeakOnUIClosed
@@ -2368,6 +2396,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Science
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: RoboDrobeAds
   - type: SpeakOnUIClosed
@@ -2566,6 +2598,10 @@
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/tankdispenser.rsi #TODO add visualiser for remaining tanks as layers
     state: dispenser
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
 
 - type: entity
   parent: VendingMachine
@@ -2581,6 +2617,10 @@
     layers:
     - state: dispenser
     - state: dispensereng
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
 
 - type: entity
   parent: VendingMachine

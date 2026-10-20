@@ -40,13 +40,16 @@
     ThrowingKnife: 1
   # Orion-Start
   prices:
+    # Arcane-Edit-Start
+    ButchCleaver: 100
+    KitchenKnife: 75
     RollingPin: 75
-    Spoon: 50
-    Fork: 25
+    Spoon: 20
+    Fork: 20
     FoodBowlBig: 30
-    FoodPlate: 40
-    FoodPlateSmall: 40
-    FoodPlateTin: 40
-    FoodPlateMuffinTin: 40
-    DrinkGlass: 25
+    FoodPlateTin: 30
+    FoodPlateMuffinTin: 30
+    Beaker: 30
+    LargeBeaker: 30
+    # Arcane-Edit-End
   # Orion-End
