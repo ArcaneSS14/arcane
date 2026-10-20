@@ -3417,3 +3417,24 @@ Entries:
   time: '2026-10-20T19:07:22.0000000+00:00'
   prNumber: 530
   url: https://github.com/ArcaneSS14/arcane/pull/530
+- author: RabbitBat, Gustov
+  changes:
+    - type: Tweak
+      message: >-
+        Изменены спрайты (снова) спонсорских противогазов командования, теперь
+        они также имеют нормальную иконку.
+    - type: Fix
+      message: >-
+        Исправлена проблема, из-за которой миму за расу Арканы не выдавался
+        гримуар.
+    - type: Fix
+      message: Исправлено отсуствие категорий "Сервисный отдел, плащ" у роли Бармен.
+  id: 245
+  time: '2026-10-20T19:09:54.0000000+00:00'
+  prNumber: 521
+  url: https://github.com/ArcaneSS14/arcane/pull/521
+  media:
+    - >-
+      https://github.com/user-attachments/assets/68022381-59a3-42d2-a5bd-ab4a92353f13
+    - >-
+      https://github.com/user-attachments/assets/5295f88a-0b23-4b77-bcb4-3c9e3eb77995
