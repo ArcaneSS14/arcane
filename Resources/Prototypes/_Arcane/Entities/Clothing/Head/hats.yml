@@ -340,3 +340,17 @@
     sprite: _Arcane/Clothing/Head/Hats/officer_cap.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Hats/officer_cap.rsi
+
+# Command
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMaidFura
+  name: maid cap
+  description: A neat cap fitting for a head maid.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/maid_fura.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/maid_fura.rsi

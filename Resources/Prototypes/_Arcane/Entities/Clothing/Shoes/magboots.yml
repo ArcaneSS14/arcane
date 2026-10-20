@@ -1,0 +1,18 @@
+- type: entity
+  parent: ClothingShoesBootsMagBase
+  id: ClothingShoesBootsMagSpecter
+  name: specter magboots
+  description: Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Clothing/Shoes/Boots/deathsquad.rsi
+  - type: Clothing
+    sprite: _Goobstation/Clothing/Shoes/Boots/deathsquad.rsi
+  - type: Magboots
+    enabledPrefix: null
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: Tag
+    tags:
+    - WhitelistChameleon

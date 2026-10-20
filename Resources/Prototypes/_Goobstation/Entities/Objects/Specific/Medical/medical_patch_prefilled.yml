@@ -32,7 +32,7 @@
   suffix: Bicaridine
   components:
   - type: Label
-    currentLabel: Bicaridine 30u
+    currentLabel: medical-label-bicaridine-30u # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -48,7 +48,7 @@
   suffix: Dermaline
   components:
   - type: Label
-    currentLabel: Dermaline 30u
+    currentLabel: medical-label-dermaline-30u # Arcane-Edit
   - type: SolutionContainerManager
     solutions:
       drink:
