@@ -39,15 +39,17 @@
   components:
   - type: MedievalAccent
 
-- type: trait
-  id: NewYorkAccent
-  name: trait-newyork-name
-  description: trait-newyork-desc
-  category: SpeechTraits
-  cost: 1
-  components:
-  - type: ReplacementAccent
-    accent: newyork
+# Arcane-Edit-Start: Removed
+#- type: trait
+#  id: NewYorkAccent
+#  name: trait-newyork-name
+#  description: trait-newyork-desc
+#  category: SpeechTraits
+#  cost: 1
+#  components:
+#  - type: ReplacementAccent
+#    accent: newyork
+# Arcane-Edit-End
 
 - type: trait
   id: british
