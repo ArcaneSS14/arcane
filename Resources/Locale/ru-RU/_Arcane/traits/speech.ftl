@@ -1,4 +1,4 @@
-trait-english-name = Акцент MI-13
-trait-english-desc = Вы кажется, из агенства MI-13
-trait-strong-american-name = Сильный акцент MI-13
-trait-strong-american-desc = Вы особо не покидали агенство MI-13. Ваш акцент сильно вас выдает.
+trait-mi13-name = Акцент MI13
+trait-mi13-desc = Вы, кажется, из агентства MI13.
+trait-strong-mi13-name = Сильный акцент MI13
+trait-strong-mi13-desc = Вы почти не покидали агентство MI13. Акцент сильно вас выдаёт.

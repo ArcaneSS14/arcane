@@ -1,4 +1,4 @@
-trait-english-name = MI-13 accent
-trait-english-desc = You seem to come from space MI-13.
-trait-strong-american-name = MI-13 strong accent
-trait-strong-american-desc = You came from space MI-13 and never really learned how to speak properly.
+trait-mi13-name = MI13 accent
+trait-mi13-desc = You seem to be from the MI13 agency.
+trait-strong-mi13-name = Strong MI13 accent
+trait-strong-mi13-desc = You have barely ever left the MI13 agency. Your accent gives you away.
