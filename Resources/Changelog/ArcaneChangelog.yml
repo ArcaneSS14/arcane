@@ -3438,3 +3438,25 @@ Entries:
       https://github.com/user-attachments/assets/68022381-59a3-42d2-a5bd-ab4a92353f13
     - >-
       https://github.com/user-attachments/assets/5295f88a-0b23-4b77-bcb4-3c9e3eb77995
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: Исправлен лодаут медика ОБР, теперь его вещи не выпадают при спавне.
+    - type: Fix
+      message: >-
+        Исправлены губовские кувшины с Оксалодроном, Салисовой кислотой, и
+        Cвятой водой, теперь в них есть жидкость.
+    - type: Tweak
+      message: Изменены нитриловые перчатки медика обр на хирургические БС .
+    - type: Tweak
+      message: >-
+        в карманах ОБР медиков кода Эпсилон и Гамма теперь вместо второго
+        фальшфлеера будет магазин ОБР.
+    - type: Remove
+      message: Убран лишний фальшфлеер у ОБР медиков всех кодов.
+    - type: Remove
+      message: Убран лишний гипоспрей и его катриджи у ОБР медиков всех кодов.
+  id: 246
+  time: '2026-10-20T19:11:08.0000000+00:00'
+  prNumber: 523
+  url: https://github.com/ArcaneSS14/arcane/pull/523
