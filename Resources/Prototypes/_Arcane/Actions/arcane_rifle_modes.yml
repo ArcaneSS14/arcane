@@ -1,0 +1,52 @@
+- type: entity
+  parent: BaseAction
+  id: ActionArcaneGoreExecution
+  name: gore execution
+  description: Arms the rifle. The next shot rips the head off a living target.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    useDelay: 1
+    icon:
+      sprite: Mobs/Species/Human/organs.rsi
+      state: brain
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionArcaneTargetLock
+  name: target lock
+  description: Select a living creature. The next shot will be aimed at it.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    useDelay: 0.5
+    icon:
+      sprite: _Arcane/Interface/Actions/action_sniper.rsi
+      state: eyeclose
+    iconOn:
+      sprite: _Arcane/Interface/Actions/action_sniper.rsi
+      state: eyeopen
+  - type: TargetAction
+    range: 25
+    checkCanAccess: false
+    interactOnMiss: false
+    repeat: false
+  - type: EntityTargetAction
+    event: !type:ArcaneTargetLockSelectEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionArcaneAim
+  name: aim down sights
+  description: Zoom and shift the camera. Moving or pressing again cancels.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    useDelay: 0.2
+    icon:
+      sprite: _Goobstation/Wizard/Effects/effects.rsi
+      state: marker
+  - type: InstantAction
+    event: !type:ArcaneAimActionEvent

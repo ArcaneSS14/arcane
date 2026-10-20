@@ -22,6 +22,9 @@ ent-ClothingHatBeretBlueShield = берет офицера "Синий Щит"
 ent-ClothingHatCapBlueShield = фуражка офицера "Синий Щит"
     .desc = Деловая фуражка, созданная специально для сотрудников «Синий Щит».
 
+ent-ClothingHeadHatMaidFura = фуражка горничной
+    .desc = Аккуратная фуражка, подобающая старшей горничной.
+
 # Sponsor
 
 ent-ClothingHatNTRBlackBeret = чёрный берет представителя NanoTrasen

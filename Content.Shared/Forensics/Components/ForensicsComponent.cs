@@ -19,6 +19,14 @@ namespace Content.Shared.Forensics.Components // Goob/Einstein Engins - Shared F
         [DataField, AutoNetworkedField] // Einstein Engines - Scent Tracking
         public string Scent = String.Empty;
 
+        // Arcane-Start
+        [DataField, AutoNetworkedField]
+        public List<string> Scents = new();
+
+        [DataField]
+        public int MaxScents = 2;
+        // Arcane-End
+
         [DataField, AutoNetworkedField] // Einstein Engines - Network that shit
         public HashSet<string> Residues = new();
 

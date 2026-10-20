@@ -12,3 +12,6 @@ ent-ClothingBackpackSatchelQuartermaster = сумка квартирмейсте
 
 ent-ClothingBackpackSatchelRD = сумка научного руководителя
     .desc = Огромная сумка со множеством креплений. Из глубин доносится подозрительное тиканье, а ткань слегка вибрирует от близости к артефактам.
+
+ent-ClothingBackpackSatchelCommandMaid = сумка горничной командования
+    .desc = Вместительная сумка для горничной высшего звена.
