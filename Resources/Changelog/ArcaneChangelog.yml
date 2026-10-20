@@ -3407,3 +3407,13 @@ Entries:
   time: '2026-10-19T02:42:47.0000000+00:00'
   prNumber: 526
   url: https://github.com/ArcaneSS14/arcane/pull/526
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: Исправлено отсуствие скидок отдела для некоторых вендмашин.
+    - type: Tweak
+      message: Изменены цены в Посудомате.
+  id: 244
+  time: '2026-10-20T19:07:22.0000000+00:00'
+  prNumber: 530
+  url: https://github.com/ArcaneSS14/arcane/pull/530
