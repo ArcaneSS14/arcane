@@ -8,8 +8,10 @@
     state: service
   - type: MachineBoard
     prototype: Photocopier
+    partRequirements: # Orion
+      Servo: 1
+      MatterBin: 1
     stackRequirements:
-      Manipulator: 1
       Glass: 2
       Cable: 2
       Steel: 2

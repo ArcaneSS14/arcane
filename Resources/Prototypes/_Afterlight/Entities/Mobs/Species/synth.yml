@@ -21,7 +21,6 @@
     - Hair
   - type: Hunger
     baseDecayRate: 0.02
-    starvingSlowdownModifier: 0.75
   - type: Thirst
   - type: Puller
     needsHands: false

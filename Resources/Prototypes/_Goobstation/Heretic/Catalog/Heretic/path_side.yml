@@ -101,7 +101,10 @@
   name: knowledge-path-side-knowledge-name
   description: knowledge-path-side-knowledge-desc
   icon: { sprite: _Goobstation/Heretic/book.rsi, state: icon }
-  productHereticKnowledge: RitualOfKnowledge
+  raiseProductEventOnMind: true
+  productEvent: !type:EventHereticAddKnowledge
+    knowledge:
+    - RitualOfKnowledge
   cost:
     KnowledgePoint: 1
   categories:

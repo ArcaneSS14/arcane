@@ -50,7 +50,7 @@
   name: achievement-mostly-armless-name
   description: achievement-mostly-armless-desc
   category: Survival
-  icon: { entity: LeftArmHuman }
+  icon: { entity: LeftArmMoth }
   hidden: true
   condition: !type:RoundEndCondition
     requirements:
@@ -220,7 +220,7 @@
   name: achievement-easy-prey-name
   description: achievement-easy-prey-desc
   category: Survival
-  icon: { entity: LeftArmHuman }
+  icon: { entity: LeftArmMoth }
   hidden: true
   condition: !type:CausedMobStateCondition
     requirements:
