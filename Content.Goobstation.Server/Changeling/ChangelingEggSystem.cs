@@ -12,7 +12,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Server.Changeling;
 
-public sealed class ChangelingEggSystem : EntitySystem
+public sealed partial class ChangelingEggSystem : EntitySystem
 {
     // Arcane-Start
     public static readonly IReadOnlyList<Type> TransferredComponents =
@@ -103,6 +103,12 @@ public sealed class ChangelingEggSystem : EntitySystem
         // Arcane-Edit-End
 
         EntityManager.AddComponent(newUid, comp.lingStore);
+
+        foreach (var listing in comp.lingStore.FullListingsCatalog)
+        {
+            if (listing is { PurchaseAmount: > 0, RaiseProductEventOnUser: true, ProductEvent: { } productEvent })
+                RaiseLocalEvent(newUid, productEvent);
+        }
 
         _bodySystem.GibBody(uid);
     }

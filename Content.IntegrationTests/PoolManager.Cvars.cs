@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 #nullable enable
+using Content.Goobstation.Common.CCVar;
 using Content.Shared.CCVar;
 
 namespace Content.IntegrationTests;

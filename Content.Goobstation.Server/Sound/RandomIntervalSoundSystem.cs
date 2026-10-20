@@ -11,7 +11,7 @@ namespace Content.Goobstation.Server.Sound;
 /// <summary>
 /// periodically plays the sound from RandomIntervalSoundComponent (server-only).
 /// </summary>
-public sealed class RandomIntervalSoundSystem : EntitySystem
+public sealed partial class RandomIntervalSoundSystem : EntitySystem
 {
     // Arcane-start
     private static readonly TimeSpan SoundUpdateInterval = TimeSpan.FromSeconds(1);

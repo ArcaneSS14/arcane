@@ -20,7 +20,7 @@ namespace Content.Goobstation.Server.ServerCurrency
     /// <summary>
     /// Connects <see cref="ServerCurrencyManager"/> to the simulation state.
     /// </summary>
-    public sealed class ServerCurrencySystem : EntitySystem
+    public sealed partial class ServerCurrencySystem : EntitySystem
     {
         [Dependency] private readonly ICommonCurrencyManager _currencyMan = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;

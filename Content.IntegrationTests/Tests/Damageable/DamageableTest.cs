@@ -1,8 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -99,7 +101,7 @@ namespace Content.IntegrationTests.Tests.Damageable
             var server = pair.Server;
 
             var sEntityManager = server.ResolveDependency<IEntityManager>();
-            var sMapManager = server.ResolveDependency<IMapManager>();
+            var sMapManager = server.System<SharedMapSystem>();
             var sPrototypeManager = server.ResolveDependency<IPrototypeManager>();
             var sEntitySystemManager = server.ResolveDependency<IEntitySystemManager>();
 
@@ -164,7 +166,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                 var damageToDeal = FixedPoint2.New(types.Count * 5);
                 DamageSpecifier damage = new(group3, damageToDeal);
 
-                sDamageableSystem.TryChangeDamage(uid, damage, true);
+                sDamageableSystem.ChangeDamage(uid, damage, true);
 
                 Assert.Multiple(() =>
                 {
@@ -178,7 +180,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                 });
 
                 // Heal
-                sDamageableSystem.TryChangeDamage(uid, -damage);
+                sDamageableSystem.ChangeDamage(uid, -damage);
 
                 Assert.Multiple(() =>
                 {
@@ -197,7 +199,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                 Assert.That(types, Has.Count.EqualTo(3));
 
                 damage = new DamageSpecifier(group3, 14);
-                sDamageableSystem.TryChangeDamage(uid, damage, true);
+                sDamageableSystem.ChangeDamage(uid, damage, true);
 
                 Assert.Multiple(() =>
                 {
@@ -209,7 +211,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                 });
 
                 // Heal
-                sDamageableSystem.TryChangeDamage(uid, -damage);
+                sDamageableSystem.ChangeDamage(uid, -damage);
 
                 Assert.Multiple(() =>
                 {
@@ -225,7 +227,7 @@ namespace Content.IntegrationTests.Tests.Damageable
                     Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
                 });
                 damage = new DamageSpecifier(group1, FixedPoint2.New(10)) + new DamageSpecifier(type2b, FixedPoint2.New(10));
-                sDamageableSystem.TryChangeDamage(uid, damage, true);
+                sDamageableSystem.ChangeDamage(uid, damage, true);
 
                 Assert.Multiple(() =>
                 {
@@ -234,16 +236,20 @@ namespace Content.IntegrationTests.Tests.Damageable
                     Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
                 });
 
-                // Test SetAll function
-                sDamageableSystem.SetAllDamage(sDamageableEntity, sDamageableComponent, 10);
+                // Test SetAll and ClearAll function
+                sDamageableSystem.SetAllDamage((sDamageableEntity, sDamageableComponent), 10);
                 Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.New(10 * sDamageableComponent.Damage.DamageDict.Count)));
-                sDamageableSystem.SetAllDamage(sDamageableEntity, sDamageableComponent, 0);
+                sDamageableSystem.SetAllDamage((sDamageableEntity, sDamageableComponent), 0);
+                Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
+                sDamageableSystem.SetAllDamage((sDamageableEntity, sDamageableComponent), 10);
+                Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.New(10 * sDamageableComponent.Damage.DamageDict.Count)));
+                sDamageableSystem.ClearAllDamage((sDamageableEntity, sDamageableComponent));
                 Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
 
                 // Test 'wasted' healing
-                sDamageableSystem.TryChangeDamage(uid, new DamageSpecifier(type3a, 5));
-                sDamageableSystem.TryChangeDamage(uid, new DamageSpecifier(type3b, 7));
-                sDamageableSystem.TryChangeDamage(uid, new DamageSpecifier(group3, -11));
+                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(type3a, 5));
+                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(type3b, 7));
+                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(group3, -11));
 
                 Assert.Multiple(() =>
                 {
@@ -253,11 +259,11 @@ namespace Content.IntegrationTests.Tests.Damageable
                 });
 
                 // Test Over-Healing
-                sDamageableSystem.TryChangeDamage(uid, new DamageSpecifier(group3, FixedPoint2.New(-100)));
+                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(group3, FixedPoint2.New(-100)));
                 Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
 
                 // Test that if no health change occurred, returns false
-                sDamageableSystem.TryChangeDamage(uid, new DamageSpecifier(group3, -100));
+                sDamageableSystem.ChangeDamage(uid, new DamageSpecifier(group3, -100));
                 Assert.That(sDamageableComponent.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
             });
             await pair.CleanReturnAsync();

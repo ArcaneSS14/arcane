@@ -1,9 +1,8 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
+using Content.Server.Roles;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Dragon;
@@ -34,10 +33,6 @@ public sealed class DragonSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!; // Goobstation
-    [Dependency] private readonly StunSystem _stun = default!; // Goobstation
-    [Dependency] private readonly ISerializationManager _serManager = default!; // Goobstation
-    [Dependency] private readonly DamageableSystem _damage = default!; // Goobstation
     [Dependency] private readonly TurfSystem _turf = default!;
 
     private EntityQuery<CarpRiftsConditionComponent> _objQuery;
@@ -66,22 +61,18 @@ public sealed class DragonSystem : EntitySystem
         SubscribeLocalEvent<DragonComponent, RefreshMovementSpeedModifiersEvent>(OnDragonMove);
         SubscribeLocalEvent<DragonComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<DragonComponent, EntityZombifiedEvent>(OnZombified);
-        SubscribeLocalEvent<DragonComponent, DragonRoarActionEvent>(OnDragonRoar); // Goobstation
-        SubscribeLocalEvent<DragonComponent, DragonSpawnCarpHordeActionEvent>(OnRiseFish); // Goobstation
+
+        InitializeGoob();
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<DragonComponent, TransformComponent>(); // Goobstation - added Transform and Devourer components
-        while (query.MoveNext(out var uid, out var comp, out var xform)) // Goobstation - added Transform and Devourer components
+        var query = EntityQueryEnumerator<DragonComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
-            // Goobstation start
-            // Heal the dragon a bit if it's near the carp rift.
-            if (_lookup.GetEntitiesInRange<DragonRiftComponent>(xform.Coordinates, comp.CarpRiftHealingRange).Count > 0)
-                _damage.TryChangeDamage(uid, comp.CarpRiftHealing * frameTime, true, false);
-            // Goobstation end
+            GoobHealDragonIfNearRift((uid, comp), frameTime); // Goob - dragon heal
 
             if (comp.WeakenedAccumulator > 0f)
             {
@@ -127,8 +118,8 @@ public sealed class DragonSystem : EntitySystem
     {
         Roar(uid, component);
         _actions.AddAction(uid, ref component.SpawnRiftActionEntity, component.SpawnRiftAction);
-        _actions.AddAction(uid, ref component.SpawnCarpsActionEntity, component.SpawnCarpsAction); // Goobstation
-        _actions.AddAction(uid, ref component.RoarActionEntity, component.RoarAction); // Goobstation
+
+        GoobOnInit(uid, component, args); // Goob - new actions. TODO move
     }
 
     private void OnShutdown(EntityUid uid, DragonComponent component, ComponentShutdown args)
@@ -294,52 +285,4 @@ public sealed class DragonSystem : EntitySystem
         _movement.RefreshMovementSpeedModifiers(uid);
         _popup.PopupEntity(Loc.GetString("carp-rift-destroyed"), uid, uid);
     }
-    #region Goobstation
-
-    private void OnRiseFish(EntityUid uid, DragonComponent component, DragonSpawnCarpHordeActionEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        Roar(uid, component);
-        var xform = Transform(uid);
-        for (int i = 0; i < component.CarpAmount; i++)
-        {
-            var ent = Spawn(component.CarpProtoId, xform.Coordinates);
-
-            // Update their look to match the leader.
-            if (TryComp<RandomSpriteComponent>(uid, out var randomSprite))
-            {
-                var spawnedSprite = EnsureComp<RandomSpriteComponent>(ent);
-                _serManager.CopyTo(randomSprite, ref spawnedSprite, notNullableOverride: true);
-                Dirty(ent, spawnedSprite);
-            }
-        }
-
-        args.Handled = true;
-    }
-
-    private void OnDragonRoar(EntityUid uid, DragonComponent component, DragonRoarActionEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        Roar(uid, component);
-
-        // TODO: add pushing (like from push horn but stronger) after upstream is merged
-
-        var xform = Transform(uid);
-        var nearMobs = _lookup.GetEntitiesInRange<NpcFactionMemberComponent>(xform.Coordinates, component.RoarRange, LookupFlags.Uncontained);
-        foreach (var mob in nearMobs)
-        {
-            if (_faction.IsEntityFriendly(uid, (mob.Owner, mob.Comp)))
-                continue;
-
-            _stun.TryUpdateStunDuration (mob, TimeSpan.FromSeconds(component.RoarStunTime));
-        }
-
-        args.Handled = true;
-    }
-
-    #endregion
 }

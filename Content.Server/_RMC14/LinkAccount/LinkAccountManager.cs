@@ -32,6 +32,7 @@ using System.Threading.Tasks;
 using Content.Server.Connection;
 using Content.Server._Arcane.DiscordRoles;
 using Content.Goobstation.Common.CCVar;
+using Content.Goobstation.Common.Patrons; // Goob
 using Content.Server.Database;
 using Content.Shared.CCVar;
 using Content.Shared._Arcane.DiscordRoles;
@@ -43,6 +44,7 @@ using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes; // Goob
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Color = System.Drawing.Color;
@@ -58,6 +60,8 @@ public sealed class LinkAccountManager : IPostInjectInit
     [Dependency] private readonly IServerNetManager _serverNet = default!;
     // arcane discord link end
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!; // Goob
+    [Dependency] private readonly ILogManager _log = default!; // Goob
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly UserDbDataManager _userDb = default!;
     // arcane discord link start
@@ -69,8 +73,8 @@ public sealed class LinkAccountManager : IPostInjectInit
     private readonly Dictionary<NetUserId, TimeSpan> _lastRequest = new();
     private readonly TimeSpan _minimumWait = TimeSpan.FromSeconds(0.5);
     private readonly Dictionary<NetUserId, SharedRMCPatronFull> _connected = new();
-    private readonly Dictionary<string, SharedRMCPatronTier> _fauxTiers = new();
-    private readonly Dictionary<NetUserId, string> _fauxPatronAssignments = new();
+    private readonly Dictionary<NetUserId, ProtoId<PatronTierPrototype>> _fauxPatronAssignments = new(); // Goob
+    private bool _tiersSynced; // Goob
     private readonly List<SharedRMCPatron> _allPatrons = [];
     private readonly List<(string Message, string User)> _lobbyMessages = [];
     private readonly List<string> _shoutouts = [];
@@ -151,9 +155,9 @@ public sealed class LinkAccountManager : IPostInjectInit
         _connected.Remove(player.UserId);
     }
 
-    private void SendPatronStatus(ICommonSession player)
+    public void SendPatronStatus(ICommonSession player) // Goob - public
     {
-        var connected = _connected.GetValueOrDefault(player.UserId);
+        var connected = GetPatron(player.UserId); // Goob - include faux tiers
         var msg = new LinkAccountStatusMsg { Patron = connected, };
         _net.ServerSendMessage(msg, player.Channel);
         SendPatrons(player);
@@ -335,8 +339,160 @@ public sealed class LinkAccountManager : IPostInjectInit
         }
     }
 
+    // Goob start
+
+    public void SetGhostCosmetics(NetUserId user, string? particles, string? hat, string? mask)
+    {
+        if (GetPatron(user)?.Tier is not { } tier ||
+            !tier.GhostCosmetics && !tier.GhostParticles)
+        {
+            return;
+        }
+
+        if (!tier.GhostParticles)
+            particles = null;
+
+        if (!tier.GhostCosmetics)
+        {
+            hat = null;
+            mask = null;
+        }
+
+        var cosmetics = particles == null && hat == null && mask == null
+            ? null
+            : new SharedRMCGhostCosmetics(particles, hat, mask);
+
+        _db.SetGhostCosmetics(user, particles, hat, mask);
+
+        if (_connected.TryGetValue(user, out var connected))
+        {
+            connected = connected with { GhostCosmetics = cosmetics };
+            _connected[user] = connected;
+            PatronUpdated?.Invoke((user, connected));
+        }
+    }
+
+    public void SetOocIcon(NetUserId user, string? icon)
+    {
+        if (GetPatronTier(user) is not { } tier)
+            return;
+
+        if (icon != null &&
+            (!_prototypes.TryIndex<OocIconPrototype>(icon, out var iconProto) || !tier.CanUse(iconProto)))
+        {
+            return;
+        }
+
+        _db.SetOocIcon(user, icon);
+
+        if (_connected.TryGetValue(user, out var connected))
+        {
+            connected = connected with { OocIcon = icon };
+            _connected[user] = connected;
+            PatronUpdated?.Invoke((user, connected));
+        }
+    }
+
+    public string? GetOocIcon(NetUserId user)
+    {
+        if (GetPatronTier(user) is not { } tier)
+            return null;
+
+        if (GetPatron(user)?.OocIcon is { } selected &&
+            _prototypes.TryIndex<OocIconPrototype>(selected, out var icon) &&
+            tier.CanUse(icon))
+        {
+            return icon.ID;
+        }
+
+        return tier.Icon;
+    }
+
+    public PatronTierPrototype? GetPatronTier(NetUserId user)
+    {
+        if (GetPatron(user)?.Tier is not { } tier)
+            return null;
+
+        return _prototypes.TryIndex(tier.Id, out var proto) ? proto : null;
+    }
+
+    private SharedRMCPatronTier? GetSharedTier(int databaseId)
+    {
+        if (_prototypes.GetPatronTierByDatabaseId(databaseId) is not { } proto)
+            return null;
+
+        return GetSharedTier(proto);
+    }
+
+    private static SharedRMCPatronTier GetSharedTier(PatronTierPrototype proto)
+    {
+        return new SharedRMCPatronTier(
+            proto.ID,
+            proto.ShowOnCredits,
+            proto.GhostColor,
+            proto.GhostCosmetics,
+            proto.GhostParticles,
+            proto.LobbyMessage,
+            proto.RoundEndShoutout,
+            proto.OocIconTiers.Count > 0,
+            Loc.GetString(proto.Name),
+            proto.Icon
+        );
+    }
+
+    private async Task SyncTiers()
+    {
+        var tiers = new List<RMCPatronTier>();
+        foreach (var proto in _prototypes.EnumeratePrototypes<PatronTierPrototype>())
+        {
+            tiers.Add(new RMCPatronTier
+            {
+                Id = proto.DatabaseId,
+                Name = Loc.GetString(proto.Name),
+                DiscordRole = proto.DiscordRole,
+                Priority = proto.Priority,
+                Icon = proto.Icon,
+                ShowOnCredits = proto.ShowOnCredits,
+                GhostColor = proto.GhostColor,
+                GhostCosmetics = proto.GhostCosmetics,
+                GhostParticles = proto.GhostParticles,
+                LobbyMessage = proto.LobbyMessage,
+                RoundEndShoutout = proto.RoundEndShoutout,
+            });
+        }
+
+        _tiersSynced = true;
+        try
+        {
+            await _db.SyncPatronTiers(tiers);
+        }
+        catch (Exception e)
+        {
+            _log.GetSawmill("link_account").Error($"Failed to sync patron tier prototypes to the database:\n{e}");
+        }
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        if (args.WasModified<PatronTierPrototype>())
+            _tiersSynced = false;
+    }
+
+    public async Task ReloadPatron(ICommonSession player)
+    {
+        await LoadData(player, CancellationToken.None);
+        SendPatronStatus(player);
+
+        if (_connected.TryGetValue(player.UserId, out var connected))
+            PatronUpdated?.Invoke((player.UserId, connected));
+    }
+    // Goob end
+
     public async Task RefreshAllPatrons()
     {
+        if (!_tiersSynced) // Goob
+            await SyncTiers(); // Goob
+
         var patrons = await _db.GetAllPatrons();
         var messages = await _db.GetLobbyMessages();
         var shoutouts = await _db.GetShoutouts();
@@ -345,13 +501,24 @@ public sealed class LinkAccountManager : IPostInjectInit
         _lobbyMessages.Clear();
         _shoutouts.Clear();
 
+        // Goob start - patron tier prototypes
         foreach (var patron in patrons)
         {
             _allPatrons.Add(new SharedRMCPatron(patron.PlayerName, patron.Tier.Name));
         }
 
-        _lobbyMessages.AddRange(messages);
-        _shoutouts.AddRange(shoutouts);
+        foreach (var (message, user, tierId) in messages)
+        {
+            if (_prototypes.GetPatronTierByDatabaseId(tierId) is { LobbyMessage: true })
+                _lobbyMessages.Add((message, user));
+        }
+
+        foreach (var (name, tierId) in shoutouts)
+        {
+            if (_prototypes.GetPatronTierByDatabaseId(tierId) is { RoundEndShoutout: true })
+                _shoutouts.Add(name);
+        }
+        // Goob end
 
         PatronsReloaded?.Invoke();
     }
@@ -392,10 +559,10 @@ public sealed class LinkAccountManager : IPostInjectInit
     public SharedRMCPatronFull? GetPatron(NetUserId userId)
     {
         if (_fauxPatronAssignments.TryGetValue(userId, out var tierId) &&
-            _fauxTiers.TryGetValue(tierId, out var tier))
+            _prototypes.TryIndex(tierId, out var tier))
         {
             return new SharedRMCPatronFull(
-                Tier: tier,
+                Tier: GetSharedTier(tier),
                 Linked: true,
                 // arcane discord link start
                 HasPlayerRole: true,
@@ -505,15 +672,11 @@ public sealed class LinkAccountManager : IPostInjectInit
         }
     }
 
-    public Dictionary<string, SharedRMCPatronTier> GetAllFauxTiers()
-    {
-        return _fauxTiers;
-    }
-
-    public Dictionary<NetUserId, string> GetAllFauxPatronAssignments()
+    public IReadOnlyDictionary<NetUserId, ProtoId<PatronTierPrototype>> GetAllFauxPatronAssignments()
     {
         return _fauxPatronAssignments;
     }
+    // Goob end
 
     void IPostInjectInit.PostInject()
     {
@@ -535,5 +698,6 @@ public sealed class LinkAccountManager : IPostInjectInit
         _userDb.AddOnLoadPlayer(LoadData);
         _userDb.AddOnFinishLoad(FinishLoad);
         _userDb.AddOnPlayerDisconnect(ClientDisconnected);
+        _prototypes.PrototypesReloaded += OnPrototypesReloaded; // Goob
     }
 }

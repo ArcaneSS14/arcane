@@ -12,7 +12,7 @@ using Robust.Shared.Random;
 
 namespace Content.Goobstation.Server.SecondSkin;
 
-public sealed class DisgustSystem : EntitySystem
+public sealed partial class DisgustSystem : EntitySystem
 {
     // Arcane-start
     private const float DisgustUpdateInterval = 1f;

@@ -14,7 +14,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Server.MedicalPatch;
 
-public sealed class MedicalPatchSystem : EntitySystem
+public sealed partial class MedicalPatchSystem : EntitySystem
 {
     // Arcane-start
     private static readonly TimeSpan PatchUpdateInterval = TimeSpan.FromSeconds(0.25);

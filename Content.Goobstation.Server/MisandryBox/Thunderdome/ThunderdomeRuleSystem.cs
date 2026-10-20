@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Goobstation.Common.Mind;
 using Content.Goobstation.Common.Mobs;
 using Content.Goobstation.Server.MisandryBox.Mind;
@@ -42,10 +43,12 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Goobstation.Server.MisandryBox.Thunderdome;
 
-public sealed class ThunderdomeRuleSystem : EntitySystem
+public sealed partial class ThunderdomeRuleSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -633,7 +636,7 @@ public sealed class ThunderdomeRuleSystem : EntitySystem
             {
                 var inGun = container.ID is "gun_magazine" or "gun_chamber" or "revolver-ammo";
 
-                foreach (var contained in container.ContainedEntities)
+                foreach (var contained in container.ContainedEntities.ToArray())
                 {
                     toCheck.Enqueue(contained);
 

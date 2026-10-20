@@ -16,6 +16,8 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Content.Shared.Damage;
 using Content.Shared._Shitmed.Targeting;
+using Content.Shared.Damage; // Omu
+using Content.Shared.Damage.Systems; // Omu
 
 namespace Content.Server._White.Xenomorphs.Larva;
 

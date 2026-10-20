@@ -1,4 +1,5 @@
 using Content.Goobstation.Server.IoC;
+using Content.Goobstation.Server.VoiceChat;
 using Content.Goobstation.Common.JoinQueue;
 using Content.Goobstation.Common.ServerCurrency;
 using Robust.Shared.ContentPack;
@@ -8,6 +9,8 @@ namespace Content.Goobstation.Server.Entry;
 
 public sealed class EntryPoint : GameServer
 {
+    private VoiceChatManager _voiceManager = default!;
+    private VoiceLogManager _voiceLogs = default!;
     private ICommonCurrencyManager _curr = default!;
     private IJoinQueueManager _joinQueue = default!;
 
@@ -18,6 +21,12 @@ public sealed class EntryPoint : GameServer
         ServerGoobContentIoC.Register();
 
         IoCManager.BuildGraph();
+
+        _voiceManager = IoCManager.Resolve<VoiceChatManager>();
+        _voiceManager.Initialize();
+
+        _voiceLogs = IoCManager.Resolve<VoiceLogManager>();
+        _voiceLogs.Initialize();
 
         _joinQueue = IoCManager.Resolve<IJoinQueueManager>();
         _joinQueue.Initialize();
@@ -43,5 +52,7 @@ public sealed class EntryPoint : GameServer
         base.Dispose(disposing);
 
         _curr.Shutdown();
+        _voiceManager.Shutdown();
+        _voiceLogs.Shutdown();
     }
 }

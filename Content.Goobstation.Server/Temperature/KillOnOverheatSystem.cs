@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Server.Temperature;
 
-public sealed class KillOnOverheatSystem : EntitySystem
+public sealed partial class KillOnOverheatSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!; // Arcane
     [Dependency] private readonly MobStateSystem _mob = default!;

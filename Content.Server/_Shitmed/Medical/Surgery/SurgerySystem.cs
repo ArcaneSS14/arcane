@@ -14,6 +14,7 @@ using Content.Shared._Shitmed.Targeting;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Shitmed.Medical.Surgery;
 

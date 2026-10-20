@@ -40,6 +40,7 @@
   components:
     - type: AccessReader
       access: [[ "Command" ]]
+    - type: VoiceBroadcastConsole
     - type: CommunicationsConsole
       title: comms-console-announcement-title-centcom
       global: true

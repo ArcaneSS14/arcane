@@ -14,7 +14,7 @@ namespace Content.Goobstation.Shared.GrabIntent;
 
 public sealed partial class GrabIntentSystem
 {
-    [Dependency] private readonly MobStateSystem _mobState = default!; // Orion
+    [Dependency] private MobStateSystem _mobState = default!; // Orion
 
     #region Release/Throw Initialization
 

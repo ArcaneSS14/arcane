@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server._Arcane.DiscordRoles;
+using Content.Goobstation.Common.Patrons;
 using Content.Server._RMC14.LinkAccount;
 using Content.Server.Administration;
 using Content.Server.Database;
@@ -9,12 +10,16 @@ using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Server.Administration.Commands;
 
-internal abstract class BasePatronDbCommand : LocalizedCommands
+internal abstract partial class BasePatronDbCommand : LocalizedCommands
 {
-    protected static readonly string[] BoolOptions = ["true", "false"];
+    [Dependency] protected IServerDbManager Db = default!;
+    [Dependency] protected LinkAccountManager LinkAccount = default!;
+    [Dependency] protected IPlayerManager PlayerManager = default!;
+    [Dependency] protected IPrototypeManager Prototypes = default!;
 
     [Dependency] protected readonly IServerDbManager Db = default!;
     [Dependency] protected readonly DiscordRoleManager DiscordRoles = default!;
@@ -23,22 +28,20 @@ internal abstract class BasePatronDbCommand : LocalizedCommands
 
     protected async Task<RMCPatronTier?> FindTier(IConsoleShell shell, string idOrName)
     {
-        var tiers = await Db.GetPatronTiers();
-        var tier = int.TryParse(idOrName, out var id)
-            ? tiers.FirstOrDefault(t => t.Id == id)
-            : tiers.FirstOrDefault(t => string.Equals(t.Name, idOrName, StringComparison.OrdinalIgnoreCase));
-
-        if (tier == null)
+        foreach (var tier in Prototypes.EnumeratePrototypes<PatronTierPrototype>())
         {
-            shell.WriteError($"Patron tier '{idOrName}' not found.");
-            shell.WriteError(tiers.Count == 0
-                ? "There are no patron tiers in the database."
-                : $"Available tiers: {string.Join(", ", tiers.Select(t => $"[{t.Id}] {t.Name}"))}");
+            if (tier.ID.Equals(idOrName, StringComparison.OrdinalIgnoreCase) ||
+                Loc.GetString(tier.Name).Equals(idOrName, StringComparison.OrdinalIgnoreCase) ||
+                int.TryParse(idOrName, out var dbId) && tier.DatabaseId == dbId)
+            {
+                return tier;
+            }
         }
 
-        return tier;
+        shell.WriteError($"Patron tier '{idOrName}' not found.");
+        shell.WriteError($"Available tiers: {string.Join(", ", Prototypes.EnumeratePrototypes<PatronTierPrototype>().Select(t => t.ID))}");
+        return null;
     }
-
 
     protected async Task RefreshPatrons(IEnumerable<Guid> playerIds)
     {
@@ -55,7 +58,7 @@ internal abstract class BasePatronDbCommand : LocalizedCommands
         LinkAccount.SendPatronsToAll();
     }
 
-    protected async Task<List<Guid>> GetTierMemberIds(int tierId)
+    protected CompletionResult CompleteTiers(string hint, params string[] extra)
     {
         return await Db.GetPatronPlayerIdsForTier(tierId);
     }

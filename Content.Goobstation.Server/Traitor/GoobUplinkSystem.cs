@@ -21,7 +21,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Server.Traitor;
 
-public sealed class GoobUplinkSystem : GoobCommonUplinkSystem
+public sealed partial class GoobUplinkSystem : GoobCommonUplinkSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;

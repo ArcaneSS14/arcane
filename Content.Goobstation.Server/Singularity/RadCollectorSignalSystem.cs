@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Server.Singularity;
 
-public sealed class RadCollectorSignalSystem : EntitySystem
+public sealed partial class RadCollectorSignalSystem : EntitySystem
 {
     // Arcane-start
     private const float SignalUpdateInterval = 0.25f;

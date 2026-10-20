@@ -11,7 +11,7 @@ using Robust.Shared.Network;
 
 namespace Content.Goobstation.Server.ServerCurrency
 {
-    public sealed class ServerCurrencyManager : ICommonCurrencyManager
+    public sealed partial class ServerCurrencyManager : ICommonCurrencyManager
     {
         [Dependency] private readonly IServerDbManager _db = default!;
         [Dependency] private readonly ITaskManager _task = default!;

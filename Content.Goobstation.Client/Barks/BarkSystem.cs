@@ -16,7 +16,7 @@ using Content.Client.Ghost;
 
 namespace Content.Goobstation.Client.Barks;
 
-public sealed class BarkSystem : EntitySystem
+public sealed partial class BarkSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -230,7 +230,7 @@ public sealed class BarkSystem : EntitySystem
         return SharedAudioSystem.GainToVolume(volume);
     }
 
-    private sealed class ActiveBark
+    private sealed partial class ActiveBark
     {
         public EntityUid? Source;
         public bool IsPreview;
