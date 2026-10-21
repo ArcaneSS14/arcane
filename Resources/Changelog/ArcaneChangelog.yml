@@ -3477,3 +3477,22 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/93161b00-22eb-43f1-b64c-be86e9bf8825
+- author: RabbitBat
+  changes:
+    - type: Add
+      message: >-
+        Добавлено подскальзывание для туфель с тонким каблуком, с неболшьим
+        шансом, когда будете бегать, вы можете упасть!
+    - type: Remove
+      message: Убраны ущербные ботфорты и ботфорты без каблуков с кринжовыми спрайтами.
+    - type: Tweak
+      message: Изменён перевод некоторых туфель из Dressmate.
+    - type: Fix
+      message: Исправлено отсуствие звуков у некоторых туфель. цок цок цок цок цок цок.
+  id: 248
+  time: '2026-10-21T12:47:51.0000000+00:00'
+  prNumber: 536
+  url: https://github.com/ArcaneSS14/arcane/pull/536
+  media:
+    - >-
+      https://github.com/user-attachments/assets/dc7020bf-3f8a-4c66-abad-d3b6c7789357
