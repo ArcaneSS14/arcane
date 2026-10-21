@@ -95,7 +95,6 @@ using Content.Server._Goobstation.Wizard.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
-using Content.Server.Ghost.Components;
 using Content.Server.Mind;
 using Content.Server.Preferences.Managers;
 using Content.Server.Roles.Jobs;
@@ -111,7 +110,9 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Eye;
@@ -149,7 +150,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Ghost
 {
-    public sealed class GhostSystem : SharedGhostSystem
+    public sealed partial class GhostSystem : SharedGhostSystem // Goob - made partial
     {
         [Dependency] private readonly SharedActionsSystem _actions = default!;
         [Dependency] private readonly IAdminLogManager _adminLog = default!;
@@ -177,7 +178,6 @@ namespace Content.Server.Ghost
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
         [Dependency] private readonly GhostVisibilitySystem _ghostVisibility = default!;
-        [Dependency] private readonly SharedBodySystem _bodySystem = default!; // Shitmed Change
         [Dependency] private readonly IServerPreferencesManager _prefs = default!; // Orion
 
         private EntityQuery<GhostComponent> _ghostQuery;
@@ -185,7 +185,6 @@ namespace Content.Server.Ghost
 
         private static readonly ProtoId<TagPrototype> AllowGhostShownByEventTag = "AllowGhostShownByEvent";
         private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
-        private static readonly ProtoId<DamageTypePrototype> IonDamageType = "Ion";
 
         public override void Initialize()
         {
@@ -307,7 +306,7 @@ namespace Content.Server.Ghost
             // Allow this entity to be seen by other ghosts.
             var visibility = EnsureComp<VisibilityComponent>(uid);
 
-            if (_gameTicker.RunLevel != GameRunLevel.PostRound && !_ghostVisibility.IsVisible(component))
+            if (_gameTicker.RunLevel != GameRunLevel.PostRound && !_ghostVisibility.IsVisible(component)) // Goob - ghost visibility system
             {
                 _visibilitySystem.AddLayer((uid, visibility), (int) VisibilityFlags.Ghost, false);
                 _visibilitySystem.RemoveLayer((uid, visibility), (int) VisibilityFlags.Normal, false);
@@ -854,44 +853,51 @@ namespace Content.Server.Ghost
             // + If we're in a mob that is critical, and we're supposed to be able to return if possible,
             //   we're succumbing - the mob is killed. Therefore, character is dead. Ghosting OK.
             //   (If the mob survives, that's a bug. Ghosting is kept regardless.)
-            var canReturn = handleEv.CanReturnGlobal && _mind.IsCharacterDeadPhysically(mind); // Goob edit
+            var canReturn = handleEv.CanReturnGlobal && _mind.IsCharacterDeadPhysically(mind); // Goob - use handleEv
 
             if (_configurationManager.GetCVar(CCVars.GhostKillCrit) &&
-                handleEv.CanReturnGlobal && // Goob edit
+                handleEv.CanReturnGlobal && // Goob - use now settable CanReturnGlobal
                 TryComp(playerEntity, out MobStateComponent? mobState))
             {
                 if (_mobState.IsCritical(playerEntity.Value, mobState))
                 {
                     canReturn = true;
 
-                    if (!HasComp<XenomorphPreventSuicideComponent>(playerEntity.Value))
+                    FixedPoint2 dealtDamage = 200;
+
+                    if (TryComp<DamageableComponent>(playerEntity, out var damageable)
+                        && TryComp<MobThresholdsComponent>(playerEntity, out var thresholds))
                     {
-                        FixedPoint2 dealtDamage = 200;
-
-                        if (TryComp<DamageableComponent>(playerEntity, out var damageable)
-                            && TryComp<MobThresholdsComponent>(playerEntity, out var thresholds))
-                        {
-                            var playerDeadThreshold = _mobThresholdSystem.GetThresholdForState(playerEntity.Value, MobState.Dead, thresholds);
-                            dealtDamage = playerDeadThreshold - damageable.TotalDamage;
-                        }
-
-                        // Shitmed Change Start
-                        var damageType = HasComp<SiliconComponent>(playerEntity)
-                            ? IonDamageType
-                            : AsphyxiationDamageType;
-                        DamageSpecifier damage = new(_prototypeManager.Index(damageType), dealtDamage);
-
-                        if (TryComp<BodyComponent>(playerEntity, out var body)
-                            && body.BodyType == BodyType.Complex
-                            && body.RootContainer.ContainedEntities.FirstOrNull() is not null)
-                            _damageable.TryChangeDamage(playerEntity,
-                                damage,
-                                true,
-                                targetPart: TargetBodyPart.All);
-                        else
-                            _damageable.TryChangeDamage(playerEntity, damage, true);
-                        // Shitmed Change End
+                        var playerDeadThreshold = _mobThresholdSystem.GetThresholdForState(playerEntity.Value, MobState.Dead, thresholds);
+                        dealtDamage = playerDeadThreshold - damageable.TotalDamage;
                     }
+
+                    // Shitmed Change Start
+                    var damageType = HasComp<SiliconComponent>(playerEntity)
+                        ? IonDamageType
+                        : AsphyxiationDamageType;
+                    DamageSpecifier shDamage = new(_prototypeManager.Index(damageType), dealtDamage);
+
+                    if (TryComp<BodyComponent>(playerEntity, out var body)
+                        && body.BodyType == BodyType.Complex
+                        && body.RootContainer.ContainedEntities.FirstOrNull() is not null)
+                        _damageable.TryChangeDamage(playerEntity.Value,
+                            shDamage,
+                            true,
+                            targetPart: TargetBodyPart.All);
+                    else
+                        _damageable.TryChangeDamage(playerEntity.Value, shDamage, true);
+                    // Shitmed Change End
+
+                    //DamageSpecifier damage = new(_prototypeManager.Index<DamageTypePrototype>(damageType), dealtDamage); // Goob
+                    DamageSpecifier damage = new(_prototypeManager.Index(GoobGetSuicideDamageType(playerEntity.Value)), dealtDamage); // Goob - IPC and such
+
+                    // Goob start - add check
+                    if (GoobIsSuicideAllowedIC(playerEntity.Value))
+                    {
+                        _damageable.ChangeDamage(playerEntity.Value, damage, true, targetPart: GoobGetShitmedSuicideTarget(playerEntity.Value)); // Goob - shitmed targeting
+                    }
+                    // Goob end
                 }
             }
 
@@ -910,7 +916,7 @@ namespace Content.Server.Ghost
     public sealed class GhostAttemptHandleEvent(MindComponent mind, bool canReturnGlobal) : HandledEntityEventArgs
     {
         public MindComponent Mind { get; } = mind;
-        public bool CanReturnGlobal { get; set; } = canReturnGlobal; // Goob edit
+        public bool CanReturnGlobal { get; set; } = canReturnGlobal; // Goob - allow set
         public bool Result { get; set; }
     }
 }

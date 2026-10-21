@@ -45,8 +45,8 @@ public sealed partial class QueueCritterWalk : LayoutContainer
     private const float OffScreenSpawn = -SpriteDisplaySize;
 
     private readonly Dictionary<string, Critter> _critters = [];
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     private SpriteSystem _spriteSystem = default!;
 

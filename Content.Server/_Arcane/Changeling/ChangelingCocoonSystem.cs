@@ -2,6 +2,7 @@ using Content.Server._Arcane.Changeling.Components;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 

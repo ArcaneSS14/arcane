@@ -31,7 +31,6 @@
     - Slime
     - Sap
     # Arcane-End
-  - type: DemonicWhisper
   - type: Visibility
     layer: 2 # Ghost visflag
   - type: Spectral

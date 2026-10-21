@@ -75,6 +75,9 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<bool> RemoveClumsyOnAntag =
         CVarDef.Create("game.antag.gain.remove_clumsy", false, CVar.SERVERONLY);
 
+    public static readonly CVarDef<string> DisabledGamePresets =
+        CVarDef.Create("game.disabled_presets", "", CVar.SERVERONLY);
+
     /// <summary>
     ///     Is ore silo enabled.
     /// </summary>
@@ -105,6 +108,9 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<string> LastReadRoundEndNoEorgPopup =
         CVarDef.Create("game.last_read_end_eorg_popup_time", "", CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<bool> RoundIntroEnabled =
+        CVarDef.Create("game.round_intro", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
     /// How long to display the EORG popup for.
     /// </summary>
@@ -117,7 +123,7 @@ public sealed partial class GoobCVars
     public static readonly CVarDef<bool> DisablePathfinding =
         CVarDef.Create("goob.disable_pathfinding", false, CVar.SERVER | CVar.SERVERONLY);
 
-  
+
     #region Player Listener
 
     /// <summary>
@@ -465,37 +471,6 @@ public sealed partial class GoobCVars
 
     #endregion
 
-    #region Voicechat
-
-    public static readonly CVarDef<bool> VoiceChatEnabled =
-        CVarDef.Create("voice.enabled", false, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
-
-    public static readonly CVarDef<int> VoiceChatPort =
-        CVarDef.Create("voice.vc_server_port", 1213, CVar.SERVER | CVar.REPLICATED);
-
-    public static readonly CVarDef<float> VoiceChatVolume =
-        CVarDef.Create("voice.volume", 5f, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<float> VoiceChatBufferTargetMultiplier =
-        CVarDef.Create("voice.buffer_target_multiplier", 1.0f, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<int> VoiceChatMinBufferSize =
-        CVarDef.Create("voice.min_buffer_size", 10, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<int> VoiceChatMaxBufferSize =
-        CVarDef.Create("voice.max_buffer_size", 50, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<bool> VoiceChatAdvancedTimeStretch =
-        CVarDef.Create("voice.advanced_time_stretch", true, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<bool> VoiceChatDebugLogging =
-        CVarDef.Create("voice.debug_logging", false, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<bool> VoiceChatHearSelf =
-        CVarDef.Create("voice.hear_self", false, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    #endregion
-
     #region Queue
 
     /// <summary>
@@ -586,7 +561,19 @@ public sealed partial class GoobCVars
     /// Applies to Brute and Burn damage
     /// </summary>
     public static readonly CVarDef<float> ExplosionWoundMultiplier =
-        CVarDef.Create("explosion.wounding_multiplier", 2.5f, CVar.SERVERONLY);
+        CVarDef.Create("explosion.wounding_multiplier", 4f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Explosion damage multiplied on vital parts.
+    /// </summary>
+    public static readonly CVarDef<float> ExplosionVitalMultiplier =
+        CVarDef.Create("explosion.vital_multiplier", 1.5f, CVar.SERVER | CVar.REPLICATED, "Multiplier of explosion damage done on vital parts due to woundmed stuff.");
+
+    /// <summary>
+    /// Explosion damage multiplied on non-vital parts.
+    /// </summary>
+    public static readonly CVarDef<float> ExplosionNonVitalMultiplier =
+        CVarDef.Create("explosion.non_vital_multiplier", 1f, CVar.SERVER | CVar.REPLICATED, "Multiplier of explosion damage done on non-vital parts due to woundmed stuff.");
 
     #endregion
 
@@ -697,6 +684,48 @@ public sealed partial class GoobCVars
     /// </summary>
     public static readonly CVarDef<int> ParticleGlobalBudget =
         CVarDef.Create("particles.global_budget", 8000, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> InteractionParticlesEnabled =
+        CVarDef.Create("particles.interaction_enabled", true, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> InHandInteractionParticleScale =
+        CVarDef.Create("particles.inhand_interaction_scale", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    #endregion
+
+    #region Runechat
+
+    /// <summary>
+    /// Whether speech bubbles are drawn SS13 runechat style
+    /// </summary>
+    public static readonly CVarDef<bool> ChatRunechat =
+        CVarDef.Create("chat.runechat", false, CVar.CLIENTONLY | CVar.ARCHIVE); // Arcane-Edit: true -> false
+
+    #endregion
+
+    #region Radio Channel Colors
+
+    public static readonly CVarDef<bool> UseCustomRadioChannelColors =
+        CVarDef.Create("radio.use_custom_channel_colors", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Per-channel color overrides, formatted as "ChannelId=#RRGGBB;OtherChannel=#RRGGBB".
+    /// </summary>
+    public static readonly CVarDef<string> RadioChannelColors =
+        CVarDef.Create("radio.channel_colors", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    #endregion
+
+    #region Interaction Outline
+
+    public static readonly CVarDef<bool> UseCustomInteractionOutlineColors =
+        CVarDef.Create("interaction_outline.use_custom_colors", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> ValidInteractionOutlineColor =
+        CVarDef.Create("interaction_outline.in_range_color", "#00FF0055", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> InvalidInteractionOutlineColor =
+        CVarDef.Create("interaction_outline.out_of_range_color", "#FF000055", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     #endregion
 }

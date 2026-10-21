@@ -45798,7 +45798,7 @@ entities:
     - type: Transform
       pos: -7.5,-4.5
       parent: 8244
-    - type: Timer
+    - type: SignalTimer
   - uid: 8425
     components:
     - type: MetaData

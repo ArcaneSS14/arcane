@@ -8,6 +8,7 @@
   physicalDesc: reagent-physical-desc-sugary
   flavor: sweet
   color: aquamarine
+  puddleSpriteSet: Powder # Goob
   recognizable: true
 
 - type: reagent
@@ -18,6 +19,7 @@
   physicalDesc: reagent-physical-desc-gloopy
   flavor: sweet
   color: darkred
+  puddleSpriteSet: Blood # Goob
   recognizable: true
 
 - type: reagent
@@ -47,6 +49,7 @@
   physicalDesc: reagent-physical-desc-oily
   flavor: oily
   color: yellow
+  puddleSpriteSet: Shiny # Goob
   recognizable: true
 
 - type: reagent
@@ -57,6 +60,7 @@
   physicalDesc: reagent-physical-desc-overpowering
   flavor: spicy
   color: gray
+  puddleSpriteSet: Splotchy # Goob
   recognizable: true
 
 - type: reagent
@@ -67,6 +71,7 @@
   physicalDesc: reagent-physical-desc-spicy
   flavor: spicy
   color: red
+  puddleSpriteSet: Blood # Goob
   recognizable: true
 
 - type: reagent
@@ -77,6 +82,7 @@
   physicalDesc: reagent-physical-desc-tangy
   flavor: tomato
   color: red
+  puddleSpriteSet: Blood # Goob
   recognizable: true
 
 - type: reagent
@@ -87,6 +93,7 @@
   physicalDesc: reagent-physical-desc-saucey
   flavor: ketchunaise
   color: "#fba399"
+  puddleSpriteSet: Blood # Goob
   recognizable: true
 
 - type: reagent
@@ -107,6 +114,7 @@
   physicalDesc: reagent-physical-desc-thick
   flavor: mayonnaise
   color: "#f9f5e5"
+  puddleSpriteSet: Blood # Goob
   recognizable: true
 
 - type: reagent
@@ -117,6 +125,7 @@
   physicalDesc: reagent-physical-desc-thick
   flavor: mustard
   color: "#ffdb58"
+  puddleSpriteSet: Blood # Goob
   recognizable: true
 
 - type: reagent
@@ -127,6 +136,7 @@
   physicalDesc: reagent-physical-desc-sour
   flavor: sour
   color: "#efdaae"
+  puddleSpriteSet: Shiny # Goob
   recognizable: true
 
 - type: reagent
@@ -137,6 +147,7 @@
   physicalDesc: reagent-physical-desc-salty
   flavor: salty
   color: saddlebrown
+  puddleSpriteSet: Shiny # Goob
   recognizable: true
   metabolisms:
     Food:
@@ -154,6 +165,7 @@
   physicalDesc: reagent-physical-desc-grainy
   flavor: salty
   color: "#cfd1d0"
+  puddleSpriteSet: Powder # Goob
   recognizable: true
   boilingPoint: 1465.0
   meltingPoint: 800.7
@@ -196,6 +208,7 @@
   desc: reagent-desc-syrup
   flavor: sweet
   color: "#fb7125"
+  puddleSpriteSet: Shiny # Goob
   recognizable: true
   physicalDesc: reagent-physical-desc-sticky
   viscosity: 0.55 #Start using syrup to attach your remote recievers to your microwaves!
