@@ -3525,3 +3525,20 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/839c78cc-7907-471a-a023-55a7142a9a33
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: >-
+        Добавлено английское произношение английских слов, латинских слогов и
+        букв.
+    - type: Fix
+      message: Речь в частоту не дублируется
+  id: 251
+  time: '2026-10-21T18:10:49.0000000+00:00'
+  prNumber: 535
+  url: https://github.com/ArcaneSS14/arcane/pull/535
+  media:
+    - >-
+      https://github.com/user-attachments/assets/fe7c8887-682b-406d-8730-67e05362f024
+    - >-
+      https://github.com/user-attachments/assets/b709cbd6-93ad-4a5e-bd01-1ff124aada9e
