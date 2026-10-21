@@ -94,6 +94,8 @@ public sealed class QuickDialogEntry
     /// </summary>
     public string? Placeholder;
 
+    public int? MaxLength; // Arcane
+
     public QuickDialogEntry(string fieldId, QuickDialogEntryType type, string prompt, string? placeholder = null)
     {
         FieldId = fieldId;

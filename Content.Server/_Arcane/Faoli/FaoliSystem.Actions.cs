@@ -5,6 +5,7 @@ using Robust.Shared.Spawners;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage;
 using Robust.Shared.Player;
+using Content.Server.Administration;
 using Content.Server.Prayer;
 using Content.Shared.Temperature.Components;
 using Content.Server.Temperature.Systems;
@@ -22,6 +23,8 @@ public sealed partial class FaoliSystem
     [Dependency] private readonly TemperatureSystem _temp = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
     private EntityQuery<ActorComponent> _actorQuery;
+
+    private const int MaxMessageLength = 200;
 
     private void SubscribeAbilities()
     {
@@ -169,11 +172,11 @@ public sealed partial class FaoliSystem
             return;
         }
 
-        _quickDialog.OpenDialog(performer.PlayerSession, Loc.GetString("faoli-message"), "Message", (string message) =>
+        _quickDialog.OpenDialog(performer.PlayerSession, Loc.GetString("faoli-message"), "Message", (LongString message) =>
         {
             if (OnUseAbility(args.Performer, args.Cost))
                 _prayer.SendSubtleMessage(target.PlayerSession, target.PlayerSession, message, Loc.GetString("faoli-message-whisper"));
-        });
+        }, maxLength: MaxMessageLength);
 
         if (args.Sound != null)
             _audio.PlayPvs(args.Sound, args.Performer);
