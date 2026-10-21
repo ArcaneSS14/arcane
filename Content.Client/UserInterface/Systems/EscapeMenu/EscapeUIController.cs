@@ -27,6 +27,7 @@ using Content.Shared.Preferences;
 using Content.Client.Guidebook;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Goobstation.Common.CCVar; // Goobstation - Voice chat
 
 namespace Content.Client.UserInterface.Systems.EscapeMenu;
 

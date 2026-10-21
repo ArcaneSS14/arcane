@@ -6,9 +6,9 @@ using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Goobstation.Shared.Held;
 
-public sealed class GoobHandsSystem : EntitySystem
+public sealed partial class GoobHandsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {

@@ -64,7 +64,7 @@
   parent: ClothingShoesBootsJack
   id: ClothingShoesBootsJackTallHeels
   name: tall heels jackboots
-  description: A pair of knee-high jackboots, complete with heels. All style, all the time. 
+  description: A pair of knee-high jackboots, complete with heels. All style, all the time.
   components:
   - type: Sprite
     sprite: _Orion/Clothing/Shoes/Boots/jackboots_heels_tall.rsi
@@ -76,6 +76,15 @@
       params:
         volume: -6
         variation: 0.09
+  # Arcane-Edit-Start
+  - type: HeelSlip
+    slipChance: 0.01
+    runSpeedThreshold: 3.0
+    slowdownModifier: 0.25
+    slowdownDurationMin: 3
+    slowdownDurationMax: 5
+    knockdownTime: 4.5
+  # Arcane-Edit-End
 
 - type: entity
   parent: ClothingShoesBootsMagDeathsquad

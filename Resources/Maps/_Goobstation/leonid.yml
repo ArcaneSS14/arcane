@@ -120588,6 +120588,7 @@ entities:
       pos: -107.561905,0.48849216
       parent: 2
     - type: Stack
+      stackType: FloorTileStackGym
       count: 20
     - type: Physics
       angularDamping: 0
@@ -167773,7 +167774,7 @@ entities:
     - type: Transform
       pos: -90.5,5.5
       parent: 2
-    - type: Timer
+    - type: SignalTimer
   - uid: 25840
     components:
     - type: Transform
@@ -184199,6 +184200,7 @@ entities:
       pos: -57.577026,75.454285
       parent: 2
     - type: Stack
+      stackType: Steel
       count: 4
     - type: Physics
       angularDamping: 0

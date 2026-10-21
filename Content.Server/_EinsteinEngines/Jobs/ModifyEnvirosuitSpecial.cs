@@ -6,6 +6,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.Roles;
 using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._EinsteinEngines.Jobs;
 
@@ -18,8 +19,7 @@ public sealed partial class ModifyEnvirosuitSpecial : JobSpecial
     [DataField(required: true)]
     public int Charges { get; private set; }
 
-    [ValidatePrototypeId<SpeciesPrototype>]
-    private const string Species = "Plasmaman";
+    private static readonly ProtoId<SpeciesPrototype> Species = "Plasmaman";
 
     private const string Slot = "jumpsuit";
 
