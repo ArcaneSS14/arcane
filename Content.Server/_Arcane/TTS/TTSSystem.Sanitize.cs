@@ -14,14 +14,15 @@ public sealed partial class TTSSystem
         args.Message = args.Message.Replace("+", "");
     }
 
-    private static readonly Regex NonAllowedChars = new Regex(@"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ]", RegexOptions.Compiled);
-    private static readonly Regex MatchedWord = new Regex(@"(?<![a-zA-Zа-яёА-ЯЁ])[a-zA-Zа-яёА-ЯЁ0-9]+?(?![a-zA-Zа-яёА-ЯЁ])", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
+    private static readonly Regex NonAllowedChars = new Regex(@"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ']", RegexOptions.Compiled);
+    private static readonly Regex MatchedWord = new Regex(@"(?<![a-zA-Zа-яёА-ЯЁ0-9'])[a-zA-Zа-яёА-ЯЁ0-9']+(?![a-zA-Zа-яёА-ЯЁ0-9'])", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
     private static readonly Regex DecimalSep = new Regex(@"(?<=[1-90])(\.|,)(?=[1-90])", RegexOptions.Compiled);
     private static readonly Regex Numbers = new Regex(@"\d+", RegexOptions.Compiled);
 
     private string Sanitize(string text)
     {
         text = text.Trim();
+        text = text.Replace('’', '\'');
         text = NonAllowedChars.Replace(text, "");
         text = MatchedWord.Replace(text, ReplaceMatchedWord);
         text = DecimalSep.Replace(text, " целых ");

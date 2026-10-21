@@ -97,11 +97,20 @@ public static class EnglishPhoneticTranslit
         ("ng", "нг"),
         ("qu", "кв"),
         ("gh", "г"),
+        ("th", "т"),
+    };
+
+    /// <summary>
+    /// Silent-letter clusters that drop their first letter only at the start of a word
+    /// (write, know, psychology, gnaw). Never applied mid-word: "ships" keeps its p,
+    /// "signal" keeps its g, "darkness" keeps its k.
+    /// </summary>
+    private static readonly (string Pattern, string Replacement)[] WordInitialRules =
+    {
         ("wr", "р"),
         ("kn", "н"),
         ("ps", "с"),
         ("gn", "н"),
-        ("th", "т"),
     };
 
     private static readonly HashSet<string> SoftThWords = new()
@@ -155,6 +164,22 @@ public static class EnglishPhoneticTranslit
         {
             var ch = word[i];
 
+            // Contractions: "i'm"/"i'll"/"i've"/"i'd" start with "ай", elsewhere the
+            // apostrophe is dropped and the rest is spelled out (dictionary covers
+            // the common forms with proper phonetics).
+            if (ch == '\'')
+            {
+                i++;
+                continue;
+            }
+
+            if (i == 0 && ch == 'i' && word.Length > 1 && word[1] == '\'')
+            {
+                sb.Append("ай");
+                i++;
+                continue;
+            }
+
             if (!char.IsAsciiLetter(ch))
             {
                 sb.Append(ch);
@@ -162,9 +187,8 @@ public static class EnglishPhoneticTranslit
                 continue;
             }
 
-            // Word-initial silent-letter clusters.
-            if (i == 0 && TryMatchPattern(word, i, out var cluster, out var clusterLen)
-                && cluster is "р" or "н" or "с" /* wr/kn/ps/gn */)
+            // Word-initial silent-letter clusters (wr/kn/ps/gn).
+            if (i == 0 && TryMatchWordInitial(word, out var cluster, out var clusterLen))
             {
                 sb.Append(cluster);
                 i += clusterLen;
@@ -225,7 +249,7 @@ public static class EnglishPhoneticTranslit
                     'e' => "и",
                     'i' => "ай",
                     'o' => "оу",
-                    'u' => "йу",
+                    'u' => IsAfterConsonant(word, i) ? "йу" : "у",
                     _ => ch.ToString(),
                 });
                 i++;
@@ -235,6 +259,11 @@ public static class EnglishPhoneticTranslit
             // Fixed multi-letter patterns (digraphs, suffixes, vowel pairs).
             if (TryMatchPattern(word, i, out var replacement, out var length))
             {
+                // "sh" before a front vowel is the softer щ (shield, ship); elsewhere ш (shop, shy).
+                if (replacement == "ш" && word[i] == 's'
+                    && i + 2 < word.Length && word[i + 2] is 'e' or 'i')
+                    replacement = "щ";
+
                 // "th" is voiced ("з") in a set of common words.
                 if (replacement == "т" && word[i] == 't' && SoftThWords.Contains(word))
                     replacement = "з";
@@ -252,17 +281,22 @@ public static class EnglishPhoneticTranslit
                     i++;
                     continue;
                 case 'g':
-                    sb.Append(IsBeforeEiy(word, i) ? "дж" : "г");
+                    // Default hard g (get, give, forget, gear). Only final -ge is soft
+                    // (age, page, large); other soft-g words live in the word dictionary.
+                    if (i == word.Length - 2 && word[^1] == 'e')
+                        sb.Append("дж");
+                    else
+                        sb.Append('г');
                     i++;
                     continue;
                 case 's':
-                {
-                    var betweenVowels = i > 0 && i + 1 < word.Length
-                        && IsVowel(word[i - 1]) && IsVowel(word[i + 1]);
-                    sb.Append(betweenVowels ? 'з' : 'с');
-                    i++;
-                    continue;
-                }
+                    {
+                        var betweenVowels = i > 0 && i + 1 < word.Length
+                            && IsVowel(word[i - 1]) && IsVowel(word[i + 1]);
+                        sb.Append(betweenVowels ? 'з' : 'с');
+                        i++;
+                        continue;
+                    }
                 case 'y':
                     if (i == 0)
                         sb.Append('й');
@@ -365,6 +399,24 @@ public static class EnglishPhoneticTranslit
         return false;
     }
 
+    private static bool TryMatchWordInitial(string word, out string replacement, out int length)
+    {
+        foreach (var (pattern, value) in WordInitialRules)
+        {
+            if (pattern.Length <= word.Length
+                && word.AsSpan(0, pattern.Length).Equals(pattern, StringComparison.Ordinal))
+            {
+                replacement = value;
+                length = pattern.Length;
+                return true;
+            }
+        }
+
+        replacement = string.Empty;
+        length = 0;
+        return false;
+    }
+
     /// <summary>
     /// True when the vowel at <paramref name="index"/> is followed by a single consonant
     /// and a final e (optionally followed by a plural/ed s or d).
@@ -398,6 +450,11 @@ public static class EnglishPhoneticTranslit
     private static bool IsBeforeEiy(string word, int index)
     {
         return index + 1 < word.Length && word[index + 1] is 'e' or 'i' or 'y';
+    }
+
+    private static bool IsAfterConsonant(string word, int index)
+    {
+        return index > 0 && IsConsonant(word[index - 1]);
     }
 
     private static bool IsVowel(char ch)
@@ -459,6 +516,58 @@ public static class EnglishPhoneticTranslit
             {"us", "ас"},
             {"you", "йу"},
             {"your", "йор"},
+
+            // Contractions (apostrophe stays in the sanitized word).
+            {"i'm", "айм"},
+            {"i'll", "айл"},
+            {"i've", "айв"},
+            {"i'd", "айд"},
+            {"you're", "йур"},
+            {"you'll", "юл"},
+            {"you've", "юв"},
+            {"you'd", "юд"},
+            {"he's", "хиз"},
+            {"he'll", "хил"},
+            {"he'd", "хид"},
+            {"she's", "шиз"},
+            {"she'll", "шил"},
+            {"she'd", "шид"},
+            {"it's", "итс"},
+            {"it'll", "итл"},
+            {"we're", "уир"},
+            {"we'll", "уил"},
+            {"we've", "уив"},
+            {"we'd", "уид"},
+            {"they're", "зэйр"},
+            {"they'll", "зэйл"},
+            {"they've", "зэйв"},
+            {"they'd", "зэйд"},
+            {"that's", "зэтс"},
+            {"that'll", "зэтл"},
+            {"there's", "зэрс"},
+            {"here's", "хирс"},
+            {"what's", "уотс"},
+            {"who's", "хуз"},
+            {"where's", "уэрз"},
+            {"when's", "уэнз"},
+            {"why's", "вайз"},
+            {"isn't", "изнт"},
+            {"aren't", "арнт"},
+            {"wasn't", "вознт"},
+            {"weren't", "вэрнт"},
+            {"don't", "доунт"},
+            {"doesn't", "дазнт"},
+            {"didn't", "диднт"},
+            {"can't", "кэнт"},
+            {"won't", "воунт"},
+            {"wouldn't", "вуднт"},
+            {"shouldn't", "шуднт"},
+            {"couldn't", "куднт"},
+            {"mustn't", "мастнт"},
+            {"haven't", "хэвнт"},
+            {"hasn't", "хэзнт"},
+            {"hadn't", "хэднт"},
+            {"let's", "лэтс"},
             {"i", "ай"},
             {"me", "ми"},
             {"my", "май"},
@@ -559,7 +668,7 @@ public static class EnglishPhoneticTranslit
             {"left", "лэфт"},
             {"need", "нид"},
             {"want", "уонт"},
-            {"even", "иивэн"},
+            {"even", "ивэн"},
             {"still", "стил"},
             {"yet", "йэт"},
             {"ever", "эвэр"},
@@ -583,7 +692,31 @@ public static class EnglishPhoneticTranslit
             {"cheerioes'", "чирйоуз"},
             {"cheerios'", "чирйоуз"},
             {"help", "хэлп"},
+            {"minute", "минит"},
+            {"minutes", "минитс"},
+            {"okay", "окэй"},
+            {"ok", "окэй"},
+            {"maybe", "мэйби"},
+            {"sure", "щур"},
+            {"fine", "файн"},
+            {"great", "грэйт"},
             {"give", "гив"},
+            {"forget", "фогэт"},
+            {"forgotten", "фоготэн"},
+            {"begin", "бигин"},
+            {"girl", "гёрл"},
+            {"gift", "гифт"},
+            {"giant", "джайэнт"},
+            {"gem", "джэм"},
+            {"general", "джэнэрэл"},
+            {"gentle", "джэнтл"},
+            {"germ", "джерм"},
+            {"gym", "джим"},
+            {"magic", "мэджик"},
+            {"logic", "лоджик"},
+            {"challenge", "чэлэндж"},
+            {"large", "лардж"},
+            {"charge", "чардж"},
             {"live", "лив"},
             {"love", "лав"},
             {"red", "рэд"},
@@ -640,7 +773,7 @@ public static class EnglishPhoneticTranslit
             {"nine", "найн"},
             {"ten", "тэн"},
             {"hundred", "хандрид"},
-            {"thousand", "заузэнд"},
+            {"thousand", "cаузэнд"},
             {"million", "милион"},
             {"everyone", "эвриуан"},
             {"everything", "эврифинг"},
@@ -674,7 +807,7 @@ public static class EnglishPhoneticTranslit
             {"station", "стэйшн"},
             {"yellow", "йэлоу"},
             {"used", "йузт"},
-            {"maintenance", "мэйнтэнэнэс"},
+            {"maintenance", "мэйнтэнэнс"},
             {"armory", "армори"},
             {"brig", "бриг"},
             {"chapel", "чэпл"},
@@ -702,7 +835,7 @@ public static class EnglishPhoneticTranslit
             {"pai", "пэйи"},
             {"escape", "искэйп"},
             {"arrivals", "эрайвалз"},
-            {"emergency", "имэроджэнси"},
+            {"emergency", "имэрджэнси"},
             {"operative", "опэрэтив"},
             {"revolutionary", "рэволйушнэри"},
             {"heretic", "хэритик"},
