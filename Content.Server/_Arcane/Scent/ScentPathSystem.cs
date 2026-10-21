@@ -40,6 +40,7 @@ public sealed class ScentPathSystem : EntitySystem
         SubscribeLocalEvent<ScentComponent, DidEquipEvent>(OnEquip);
         SubscribeLocalEvent<ScentComponent, DidEquipHandEvent>(OnEquipHand);
         SubscribeLocalEvent<ScentPathViewerComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ScentCarryComponent, EntInsertedIntoContainerMessage>(OnInserted);
     }
 
     public override void Update(float frameTime)
@@ -243,6 +244,7 @@ public sealed class ScentPathSystem : EntitySystem
         {
             carry.Holder = holder;
             carry.Since = _timing.CurTime;
+            carry.Applied = false;
         }
 
         if (!TryComp<ContainerManagerComponent>(item, out var manager))
@@ -283,12 +285,18 @@ public sealed class ScentPathSystem : EntitySystem
                 continue;
             }
 
-            if (now - carry.Since < path.CarryTime)
+            if (carry.Applied || now - carry.Since < path.CarryTime)
                 continue;
 
             AddScent(uid, scent.Scent);
-            RemCompDeferred<ScentCarryComponent>(uid);
+            carry.Applied = true;
         }
+    }
+
+    private void OnInserted(EntityUid uid, ScentCarryComponent comp, EntInsertedIntoContainerMessage args)
+    {
+        if (IsCarriedBy(uid, comp.Holder))
+            StartCarry(comp.Holder, args.Entity);
     }
 
     public void AddScent(EntityUid uid, string scent)

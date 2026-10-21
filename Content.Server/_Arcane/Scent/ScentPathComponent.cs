@@ -49,4 +49,7 @@ public sealed partial class ScentCarryComponent : Component
 
     [ViewVariables]
     public TimeSpan Since;
+
+    [ViewVariables]
+    public bool Applied;
 }
