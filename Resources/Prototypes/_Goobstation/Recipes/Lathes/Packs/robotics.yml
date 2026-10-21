@@ -3,6 +3,7 @@
 - type: latheRecipePack
   id: IPCPartsStatic
   recipes:
+  - ChestIPC
   - GroinIPC
   - LeftArmIPC
   - RightArmIPC
