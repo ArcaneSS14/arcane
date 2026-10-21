@@ -40,5 +40,7 @@ public static partial class PoolManager
         (CCVars.MovementMobPushing.Name, "false"),
         (CCVars.LavalandEnabled.Name, "false"), // Lavaland Change
         (CCVars.AfkKickEnabled.Name, "false"), // Arcane Change
+        (GoobCVars.DisablePathfinding.Name, "true"), // Goobstation
+        (GoobCVars.InteractionParticlesEnabled.Name, "false"), // Goobstation
     };
 }
