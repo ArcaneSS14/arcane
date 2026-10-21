@@ -22184,7 +22184,7 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 51954.4
-    - type: Timer
+    - type: SignalTimer
 - proto: PoweredlightRed
   entities:
   - uid: 2841
@@ -22371,7 +22371,7 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 51954.4
-    - type: Timer
+    - type: SignalTimer
 - proto: PrisonerIDCard
   entities:
   - uid: 2867

@@ -5,7 +5,9 @@ using Content.Shared._Orion.Mood;
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
 using Content.Shared.StatusIcon;
@@ -25,6 +27,7 @@ public sealed class HungerSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!; // Goob
     /* // Arcane-Edit-Start: Optimization
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
@@ -85,6 +88,7 @@ public sealed class HungerSystem : EntitySystem
     private void OnShutdown(EntityUid uid, HungerComponent component, ComponentShutdown args)
     {
         _alerts.ClearAlertCategory(uid, component.HungerAlertCategory);
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(uid); // Goob
     }
 
     /* // Arcane-Edit-Start

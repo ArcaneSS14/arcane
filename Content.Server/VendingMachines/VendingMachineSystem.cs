@@ -16,6 +16,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Server.Vocalization.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Database;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Power;
 using Content.Shared.Silicons.Borgs.Components;

@@ -72,6 +72,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction ZoomIn = "ZoomIn";
         public static readonly BoundKeyFunction ResetZoom = "ResetZoom";
         public static readonly BoundKeyFunction ResistGrab = "ResistGrab"; // Goobstation - Grab Intent
+        public static readonly BoundKeyFunction NamePeek = "NamePeek"; // Goob
         // Orion-Start
         public static readonly BoundKeyFunction TogglePosing = "TogglePosing";
         public static readonly BoundKeyFunction PosingOffsetLeft = "PosingOffsetLeft";

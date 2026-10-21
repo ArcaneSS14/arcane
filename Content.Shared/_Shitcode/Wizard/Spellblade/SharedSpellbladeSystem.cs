@@ -3,6 +3,8 @@
 using System.Linq;
 using Content.Shared._White.Blink;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Electrocution;
 using Content.Shared.Examine;

@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server._Arcane.DiscordRoles;
+using Content.Goobstation.Common.Patrons;
 using Content.Server._RMC14.LinkAccount;
 using Content.Server.Administration;
 using Content.Server.Database;
@@ -9,17 +10,19 @@ using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Server.Administration.Commands;
 
-internal abstract class BasePatronDbCommand : LocalizedCommands
+internal abstract partial class BasePatronDbCommand : LocalizedCommands
 {
-    protected static readonly string[] BoolOptions = ["true", "false"];
+    [Dependency] protected IServerDbManager Db = default!;
+    [Dependency] protected DiscordRoleManager DiscordRoles = default!;
+    [Dependency] protected LinkAccountManager LinkAccount = default!;
+    [Dependency] protected IPlayerManager PlayerManager = default!;
+    [Dependency] protected IPrototypeManager Prototypes = default!;
 
-    [Dependency] protected readonly IServerDbManager Db = default!;
-    [Dependency] protected readonly DiscordRoleManager DiscordRoles = default!;
-    [Dependency] protected readonly LinkAccountManager LinkAccount = default!;
-    [Dependency] protected readonly IPlayerManager PlayerManager = default!;
+    protected static readonly string[] BoolOptions = ["true", "false"];
 
     protected async Task<RMCPatronTier?> FindTier(IConsoleShell shell, string idOrName)
     {
@@ -27,6 +30,15 @@ internal abstract class BasePatronDbCommand : LocalizedCommands
         var tier = int.TryParse(idOrName, out var id)
             ? tiers.FirstOrDefault(t => t.Id == id)
             : tiers.FirstOrDefault(t => string.Equals(t.Name, idOrName, StringComparison.OrdinalIgnoreCase));
+
+        if (tier == null)
+        {
+            var proto = Prototypes.EnumeratePrototypes<PatronTierPrototype>().FirstOrDefault(t =>
+                t.ID.Equals(idOrName, StringComparison.OrdinalIgnoreCase) ||
+                Loc.GetString(t.Name).Equals(idOrName, StringComparison.OrdinalIgnoreCase));
+            if (proto != null)
+                tier = tiers.FirstOrDefault(t => t.Id == proto.DatabaseId);
+        }
 
         if (tier == null)
         {
@@ -38,7 +50,6 @@ internal abstract class BasePatronDbCommand : LocalizedCommands
 
         return tier;
     }
-
 
     protected async Task RefreshPatrons(IEnumerable<Guid> playerIds)
     {
@@ -58,6 +69,12 @@ internal abstract class BasePatronDbCommand : LocalizedCommands
     protected async Task<List<Guid>> GetTierMemberIds(int tierId)
     {
         return await Db.GetPatronPlayerIdsForTier(tierId);
+    }
+
+    protected async ValueTask<CompletionResult> CompleteTiers(string hint, params string[] extra)
+    {
+        var tiers = await Db.GetPatronTiers();
+        return CompletionResult.FromHintOptions(tiers.Select(t => t.Name).Concat(extra), hint);
     }
 
     protected async ValueTask<CompletionResult> CompleteTierNames(string hint)

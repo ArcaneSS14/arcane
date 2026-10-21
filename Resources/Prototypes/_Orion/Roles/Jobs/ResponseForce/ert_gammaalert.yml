@@ -107,13 +107,13 @@
     head: ClothingHeadHelmetERTMedic
 #   neck: ExecutiveIDCard # Arcane-Edit
     eyes: ClothingEyesGlassesMedSec # Goobstation
-    gloves: ClothingHandsGlovesNitrile
+    gloves: ClothingHandsGlovesSurgical # Arcane-Edit
     outerClothing: ClothingOuterHardsuitERTMedical
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityWebbingFilledMedical # Fancier
     pocket1: WeaponPistolMk58
-    pocket2: Flare
+    pocket2: ERTSecurityUndeterminedWeapon # Arcane-Edit
   storage:
     back:
     - CentCommHypo
@@ -122,10 +122,14 @@
     - ChemistryBottleOmnizine
     - JugOxandrolone
     - JugSalicylicAcid
-    - ParamedHypo
-    - CartridgeAtropine
-    - CartridgeAtropine
-    - MedicalBeamGunBattery
+    # Arcane-Edit-Start
+    # - ParamedHypo
+    # - CartridgeAtropine
+    # - CartridgeAtropine
+    # Arcane-Edit-End
     - MagazinePistol
     - MagazinePistol
-    - ERTSecurityUndeterminedWeapon
+  # Arcane-Edit-Start
+  inhand:
+  - MedicalBeamGunBattery
+  # Arcane-Edit-End
