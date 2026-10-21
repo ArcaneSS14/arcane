@@ -13,6 +13,7 @@ using Content.Shared.Body.Events;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Devour;
 using Content.Shared.Devour.Components;
 using Content.Shared.Examine;

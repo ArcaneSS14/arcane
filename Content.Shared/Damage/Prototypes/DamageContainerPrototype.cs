@@ -1,5 +1,4 @@
-// SPDX-License-Identifier: MIT
-
+using Content.Shared.Damage.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Damage.Prototypes

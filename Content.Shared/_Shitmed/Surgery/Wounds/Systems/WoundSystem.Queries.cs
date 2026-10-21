@@ -9,6 +9,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Goobstation.Maths.FixedPoint;
 using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Components;
 
 namespace Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 
@@ -226,7 +227,7 @@ public sealed partial class WoundSystem
     /// </summary>
     public bool HasWoundsExceedingMangleSeverity(EntityUid targetEntity, WoundableComponent? targetWoundable = null)
     {
-        if (!Resolve(targetEntity, ref targetWoundable))
+        if (!Resolve(targetEntity, ref targetWoundable, false))
             return false;
 
         foreach (var wound in GetWoundableWounds(targetEntity, targetWoundable))

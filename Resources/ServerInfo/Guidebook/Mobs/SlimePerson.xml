@@ -14,13 +14,26 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   ## Внутреннее хранилище
   Внутри оболочки слаймолюда есть внутреннее хранилище, объемом 2x3. Любой может видеть что находится внутри и забрать это без разрешения, так что будьте осторожнее. При превращении в гераса внутреннее хранилище остается.
 
-  Slimepeople have accelerated regeneration compared to other humanoids.
+  - Slimepeople have an [bold]internal 2x3 storage inventory[/bold] inside of their slime membrane. 
+  - Anyone can see what's inside and take it out of you without asking, so be careful.
 
-  Slime people have no bones and their limbs come off easier.
+  ## Diet
+  - Slime Blood is technically a source of moderately filling food for other species, although drinking the blood of your coworkers is usually frowned upon.
+  
+  ## Benefits
+  
+  - They [color=#1e90ff]suffocate 80% slower.[/color] This makes them by far the species most capable to survive in hard vacuum. For a while.
+  - They take [color=#1e90ff]40% less Blunt damage and 20% less Poison damage[/color]
+  - Slimepeople have [color=#1e90ff]accelerated regeneration[/color] compared to other humanoids.
+  - Slimepeople have [color=#1e90ff]no bones to break.[/color]
+  
+  ## Drawbacks
 
-  Slime Blood is technically a source of moderately filling food for other species, although drinking the blood of your coworkers is usually frowned upon.
-  They suffocate 80% slower, but take pressure damage 9% faster. This makes them by far the species most capable to survive in hard vacuum. For a while.
+  - They take [color=#ffa500]significant damage if they are sprayed or splashed with water[/color], but can (and like other species, need to) drink it safely to stay hydrated.
+  - They take [color=#ffa500]50% more Cold damage, 15% more Slash damage and 15% more Piercing damage[/color].
+  - As a result of their lack of bones, [color=#ffa500]their limbs come off easier.[/color]
+  - Their body [color=#ffa500]processes only two toxins at a time[/color] compared to three.
+  - They take [color=#ffa500]pressure damage 9% faster.[/color]
 
-  They take [color=#1e90ff]40% less Blunt damage and 20% less Poison damage[/color], but [color=#ffa500]50% more Cold damage, 15% more Slash damage and 15% more Piercing damage[/color].
 
 </Document>

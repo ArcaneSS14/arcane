@@ -513,6 +513,11 @@ public enum LogType
     /// </summary>
     SiliconLaws = 10005, // Goobstation
 
+    /// <summary>
+    /// Paint spray interactions.
+    /// </summary>
+    Paint = 10006, // Goobstation
+
     // Arcane-start
     /// <summary>
     /// AHelp conversation message.

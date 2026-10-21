@@ -2,6 +2,7 @@
 
 using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.Silicons.Borgs;
@@ -167,7 +168,7 @@ public abstract class SharedArmorSystem : EntitySystem
 
                 // Orion-Edit-Start
                 msg.PushNewline();
-                var armorType = Loc.GetString("armor-damage-type-class-" + coefficientArmor.Key.ToLower());
+                var armorType = Loc.GetString("armor-damage-type-class-" + coefficientArmor.Key.ToString().ToLowerInvariant());
                 var sign = protectionPercent < 0f ? "-" : string.Empty;
                 var roman = RomanNumerals.ToRoman(rounded);
 
@@ -182,7 +183,7 @@ public abstract class SharedArmorSystem : EntitySystem
             {
                 msg.PushNewline();
 
-                var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.ToLower());
+                var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.Id.ToLower());
                 msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
                     ("type", armorType),
                     ("value", flatArmor.Value)

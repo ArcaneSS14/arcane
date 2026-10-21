@@ -46,6 +46,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         InitializeConsole();
         InitializeVest();
         InitializeVictim();
+        InitializePolymorph();
         base.Initialize();
     }
 

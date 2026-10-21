@@ -5,7 +5,6 @@ using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Robust.Shared.Containers;
 using Robust.Shared.Audio;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Orion.Morph;
@@ -87,23 +86,23 @@ public sealed partial class MorphComponent : Component
     [AutoNetworkedField]
     public List<EntProtoId> MemoryObjects = []; // Arcane-Edit EntityUid > EntProtoId
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField]
     public string? MemoryAction = "ActionMorphRemember";
     public EntityUid? MemoryActionEntity;
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField]
     public string? ReplicationAction = "ActionMorphReplication";
     public EntityUid? ReplicationActionEntity;
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField]
     public string? MimicryAction = "ActionMorphMimicry";
     public EntityUid? MimicryActionEntity;
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField]
     public string? AmbushAction = "ActionMorphAmbush";
     public EntityUid? AmbushActionEntity;
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField]
     public string? VentOpenAction = "ActionMorphVentOpen";
     public EntityUid? VentOpenActionEntity;
 

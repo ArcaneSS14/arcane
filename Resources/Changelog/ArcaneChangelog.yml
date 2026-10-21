@@ -3496,3 +3496,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/dc7020bf-3f8a-4c66-abad-d3b6c7789357
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Апстрим 20/10/26
+  id: 249
+  time: '2026-10-21T16:14:25.0000000+00:00'
+  prNumber: 532
+  url: https://github.com/ArcaneSS14/arcane/pull/532

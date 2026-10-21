@@ -39,7 +39,7 @@ namespace Content.Shared.Localizations
             _loc.LoadCulture(culture); // Not so Orion, but okay
             if (_culture != FallbackCulture)
                 _loc.LoadCulture(fallbackCulture);
-            _loc.SetFallbackCluture(fallbackCulture);
+            _loc.SetFallbackCulture(fallbackCulture);
             // Orion-End
 
             _loc.AddFunction(culture, "PRESSURE", FormatPressure);
