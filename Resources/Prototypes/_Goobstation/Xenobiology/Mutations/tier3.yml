@@ -55,7 +55,7 @@
     shader: XenoMetallic
     breed: GoldMutation
     maxOffspring: 4
-    mutationChance: 0.45
+    mutationChance: 0.1 # Arcane-Edit 0.45 > 0.1
     potentialMutations:
     - GoldMutation
     - AdamantineMutation

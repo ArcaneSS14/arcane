@@ -3504,3 +3504,51 @@ Entries:
   time: '2026-10-21T16:14:25.0000000+00:00'
   prNumber: 532
   url: https://github.com/ArcaneSS14/arcane/pull/532
+- author: Kinar7
+  changes:
+    - type: Add
+      message: >-
+        Добавлена черта акцент MI-13. Заставляет вас слегка говорить на
+        английском.
+    - type: Add
+      message: >-
+        Добавлена черта Сильный акцент MI-13. Сразу вас выдает что вы работали
+        на MI-13 продолжительное время.
+    - type: Remove
+      message: >-
+        Южный, ковбойский и нью-йоркский акценты убраны из выбора черт
+        персонажа.
+  id: 250
+  time: '2026-10-21T18:08:31.0000000+00:00'
+  prNumber: 531
+  url: https://github.com/ArcaneSS14/arcane/pull/531
+  media:
+    - >-
+      https://github.com/user-attachments/assets/839c78cc-7907-471a-a023-55a7142a9a33
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: >-
+        Добавлено английское произношение английских слов, латинских слогов и
+        букв.
+    - type: Fix
+      message: Речь в частоту не дублируется
+  id: 251
+  time: '2026-10-21T18:10:49.0000000+00:00'
+  prNumber: 535
+  url: https://github.com/ArcaneSS14/arcane/pull/535
+  media:
+    - >-
+      https://github.com/user-attachments/assets/fe7c8887-682b-406d-8730-67e05362f024
+    - >-
+      https://github.com/user-attachments/assets/b709cbd6-93ad-4a5e-bd01-1ff124aada9e
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Радиус лимита спавна слаймов поднят с 5 до 10 тайлов.
+    - type: Fix
+      message: Исправление бага с экстрактом.
+  id: 252
+  time: '2026-10-21T18:13:45.0000000+00:00'
+  prNumber: 533
+  url: https://github.com/ArcaneSS14/arcane/pull/533

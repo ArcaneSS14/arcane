@@ -68,6 +68,7 @@ public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEff
         if (TryComp<DelayedReactionComponent>(target.Owner, out var delayed) && delayed.Delay > TimeSpan.Zero)
         {
             var uid = target.Owner;
+            RemComp<ReactiveComponent>(uid);
             Timer.Spawn(delayed.Delay, () =>
             {
                 if (Exists(uid))

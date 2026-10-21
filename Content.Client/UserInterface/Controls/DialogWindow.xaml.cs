@@ -74,6 +74,10 @@ public sealed partial class DialogWindow : FancyWindow
                 _ => throw new ArgumentOutOfRangeException()
             };
             var (valid, name) = pair;
+            // Arcane-Start
+            if (entry.MaxLength is { } maxLength)
+                valid = s => s.Length <= maxLength && pair.Item1(s);
+            // Arcane-End
 
             edit.IsValid += valid;
             // try use placeholder from the caller, fall back to the generic one for whatever type is being validated.
