@@ -1,8 +1,6 @@
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesHeelsThin
-  name: thin-heel shoes
-  description: Shoes with a thin, unstable heel.
   abstract: true
   components:
   - type: FootstepModifier
@@ -23,21 +21,12 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingShoesBaseButcherable
+  parent: ClothingShoesHeelsThin
   id: ClothingShoesHeelsWide
-  name: wide-heel shoes
-  description: Shoes with a thin, unstable heel.
   abstract: true
   components:
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepHighHeels
-      params:
-        volume: -6
-        variation: 0.09
-  - type: Tag
-    tags:
-    - WhitelistChameleon
+  - type: HeelSlip
+    slipChance: 0.01
 
 - type: entity
   parent: ClothingShoesBase
