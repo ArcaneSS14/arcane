@@ -141,7 +141,7 @@
       quickEquip: false
       clothingVisuals:
         neck:
-        - map: [ "neck" ]
+        - map: [ "neck-goldfish" ] # Arcane-Edit
           state: equipped-NECK
         - state: mouth-equipped-NECK
           shader: unshaded
