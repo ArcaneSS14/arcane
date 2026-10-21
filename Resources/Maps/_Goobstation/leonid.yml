@@ -167797,7 +167797,6 @@ entities:
     - type: Transform
       pos: -90.5,5.5
       parent: 2
-    - type: Timer
   - uid: 25841
     components:
     - type: Transform

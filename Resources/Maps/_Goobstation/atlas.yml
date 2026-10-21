@@ -44510,7 +44510,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 6706
     components:
     - type: Transform
@@ -44526,7 +44525,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 6708
     components:
     - type: Transform
@@ -44535,7 +44533,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 6709
     components:
     - type: Transform

@@ -74096,7 +74096,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 10924
     components:
     - type: Transform
@@ -74389,7 +74388,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 10965
     components:
     - type: Transform
@@ -74398,7 +74396,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 10966
     components:
     - type: Transform
