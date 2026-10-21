@@ -13,6 +13,7 @@ public sealed class FrontalLispSystem : EntitySystem
     private static readonly Regex RegexLowerTh = new(@"[t]+[s]+|[s]+[c]+(?=[iey]+)|[c]+(?=[iey]+)|[p][s]+|([s]+[t]+|[t]+)(?=[i]+[o]+[u]*[n]*)|[c]+[h]+(?=[i]*[e]*)|[z]+|[s]+|[x]+(?=[e]+)");
     private static readonly Regex RegexUpperEcks = new(@"[E]+[Xx]+[Cc]*|[X]+");
     private static readonly Regex RegexLowerEcks = new(@"[e]+[x]+[c]*|[x]+");
+    private static readonly Regex RegexRussian = new(@"[сзцСЗЦ]"); // Arcane
     // @formatter:on
 
     public override void Initialize()
@@ -31,6 +32,17 @@ public sealed class FrontalLispSystem : EntitySystem
         // handles ex(c), x
         message = RegexUpperEcks.Replace(message, "Ekth"); // Goob Edit
         message = RegexLowerEcks.Replace(message, "ekth");
+        // Arcane-Start
+        message = RegexRussian.Replace(message, m => m.Value switch
+        {
+            "с" => "ш",
+            "з" => "ж",
+            "ц" => "ч",
+            "С" => "Ш",
+            "З" => "Ж",
+            _ => "Ч",
+        });
+        // Arcane-End
 
         args.Message = message;
     }
