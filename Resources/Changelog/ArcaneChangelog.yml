@@ -3579,3 +3579,13 @@ Entries:
       https://github.com/user-attachments/assets/44ea962a-b6ce-4444-8860-d68904bbeb0e
     - >-
       https://github.com/user-attachments/assets/6897ed56-ac22-433e-9c3d-5387c105fb71
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: Вещи в рюкзаке теперь тоже пропитываются запахом владельца.
+    - type: Tweak
+      message: упоминание СРП в документах заменено на ДО
+  id: 254
+  time: '2026-10-21T22:51:13.0000000+00:00'
+  prNumber: 539
+  url: https://github.com/ArcaneSS14/arcane/pull/539
