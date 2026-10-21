@@ -68174,6 +68174,7 @@ entities:
       parent: 2
       pos: -35.41196,-5.3664083
     - type: Stack
+      stackType: Gold
       count: 15
 - proto: IngotSilver
   entities:
@@ -69890,8 +69891,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -54.320633,-24.320639
-    - type: Stack
-      count: 8
 - proto: MicrowaveMachineCircuitboard
   entities:
   - uid: 9533
@@ -77252,6 +77251,7 @@ entities:
       parent: 2
       pos: -19.331738,-14.409908
     - type: Stack
+      stackType: Plasteel
       count: 10
 - proto: SheetPlastic
   entities:
@@ -77328,6 +77328,7 @@ entities:
       parent: 2
       pos: -19.644238,-14.534996
     - type: Stack
+      stackType: Steel
       count: 15
   - uid: 11672
     components:
