@@ -214,7 +214,8 @@ public static class EnglishPhoneticTranslit
             if (ch == 'e' && i == word.Length - 2 && word[^1] == 's' && word.Length >= 4)
             {
                 var prev = word[i - 1];
-                if (Sibilants.Contains(prev) || word.EndsWith("ches") || word.EndsWith("shes"))
+                if (Sibilants.Contains(prev) || word.EndsWith("ches") || word.EndsWith("shes")
+                    || (prev == 'g' && IsSoftG(word, i - 1)))
                     sb.Append("из");
                 else if (VoicelessConsonants.Contains(prev))
                     sb.Append('с');
@@ -249,7 +250,9 @@ public static class EnglishPhoneticTranslit
                     'e' => "и",
                     'i' => "ай",
                     'o' => "оу",
-                    'u' => IsAfterConsonant(word, i) ? "йу" : "у",
+                    // A magic e u is /juː/ at the start of a word (use) and after a
+                    // consonant (cute, huge); after a vowel it stays a plain u.
+                    'u' => i == 0 || IsAfterConsonant(word, i) ? "йу" : "у",
                     _ => ch.ToString(),
                 });
                 i++;
@@ -281,9 +284,10 @@ public static class EnglishPhoneticTranslit
                     i++;
                     continue;
                 case 'g':
-                    // Default hard g (get, give, forget, gear). Only final -ge is soft
-                    // (age, page, large); other soft-g words live in the word dictionary.
-                    if (i == word.Length - 2 && word[^1] == 'e')
+                    // Default hard g (get, give, forget, gear). A g before a silent e
+                    // is soft (age, pages, aged); other soft-g words live in the word
+                    // dictionary.
+                    if (IsSoftG(word, i))
                         sb.Append("дж");
                     else
                         sb.Append('г');
@@ -450,6 +454,28 @@ public static class EnglishPhoneticTranslit
     private static bool IsBeforeEiy(string word, int index)
     {
         return index + 1 < word.Length && word[index + 1] is 'e' or 'i' or 'y';
+    }
+
+    /// <summary>
+    /// True when the g at <paramref name="index"/> is soft and sounds like "дж"
+    /// (age, pages, aged). A final -ge is always soft, while the -ges and -ged
+    /// forms need a vowel in front of the g, so that "rugged" keeps its second
+    /// g hard.
+    /// </summary>
+    private static bool IsSoftG(string word, int index)
+    {
+        if (word[index] != 'g')
+            return false;
+
+        // Final -ge: "age", "ridge", "edge".
+        if (index + 2 == word.Length && word[index + 1] == 'e')
+            return true;
+
+        // -ges and -ged: "pages", "aged".
+        if (index + 3 == word.Length && word[index + 1] == 'e' && word[index + 2] is 's' or 'd')
+            return index > 0 && IsVowel(word[index - 1]);
+
+        return false;
     }
 
     private static bool IsAfterConsonant(string word, int index)
@@ -773,7 +799,7 @@ public static class EnglishPhoneticTranslit
             {"nine", "найн"},
             {"ten", "тэн"},
             {"hundred", "хандрид"},
-            {"thousand", "cаузэнд"},
+            {"thousand", "саузэнд"},
             {"million", "милион"},
             {"everyone", "эвриуан"},
             {"everything", "эврифинг"},

@@ -15,23 +15,32 @@ public sealed partial class TTSSystem
     }
 
     private static readonly Regex NonAllowedChars = new Regex(@"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ']", RegexOptions.Compiled);
-    private static readonly Regex MatchedWord = new Regex(@"(?<![a-zA-Zа-яёА-ЯЁ0-9'])[a-zA-Zа-яёА-ЯЁ0-9']+(?![a-zA-Zа-яёА-ЯЁ0-9'])", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+    // A word may contain an apostrophe, but only between letters: edge apostrophes
+    // ("'hello'", "players'") are left out of the word so the dictionary lookups
+    // still work.
+    private static readonly Regex MatchedWord = new Regex(@"(?<![a-zA-Zа-яёА-ЯЁ0-9])[a-zA-Zа-яёА-ЯЁ0-9]+(?:'[a-zA-Zа-яёА-ЯЁ0-9]+)*(?![a-zA-Zа-яёА-ЯЁ0-9])", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
     private static readonly Regex DecimalSep = new Regex(@"(?<=[1-90])(\.|,)(?=[1-90])", RegexOptions.Compiled);
     private static readonly Regex Numbers = new Regex(@"\d+", RegexOptions.Compiled);
 
-    private string Sanitize(string text)
+    internal static string Sanitize(string text)
     {
         text = text.Trim();
         text = text.Replace('’', '\'');
         text = NonAllowedChars.Replace(text, "");
         text = MatchedWord.Replace(text, ReplaceMatchedWord);
+
+        // Apostrophes that were not part of a word are dropped, so they never
+        // reach the speech API.
+        text = text.Replace("'", "");
+
         text = DecimalSep.Replace(text, " целых ");
         text = Numbers.Replace(text, ReplaceWord2Num);
         text = text.Trim();
         return text;
     }
 
-    private string ReplaceMatchedWord(Match word)
+    private static string ReplaceMatchedWord(Match word)
     {
         var lower = word.Value.ToLowerInvariant();
 
@@ -58,7 +67,7 @@ public sealed partial class TTSSystem
         return false;
     }
 
-    private string ReplaceWord2Num(Match word)
+    private static string ReplaceWord2Num(Match word)
     {
         if (!long.TryParse(word.Value, out var number))
             return word.Value;
