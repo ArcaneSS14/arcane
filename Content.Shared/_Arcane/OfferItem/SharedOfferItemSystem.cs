@@ -16,7 +16,6 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    [ValidatePrototypeId<AlertPrototype>]
     protected const string OfferAlert = "Offer";
 
     public override void Initialize()

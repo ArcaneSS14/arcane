@@ -19,12 +19,12 @@ namespace Content.Client._Arcane.DirectionalLayering;
 ///     Every pass pulls these blocks out of the sprite and re-inserts them next to base layers that never move, so the
 ///     result depends only on the current view, never on the views applied before it.
 /// </summary>
-public sealed class DirectionalLayeringSystem : EntitySystem
+public sealed partial class DirectionalLayeringSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly MarkingManager _markingManager = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private MarkingManager _markingManager = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private static readonly object[] LegLayers =
     {

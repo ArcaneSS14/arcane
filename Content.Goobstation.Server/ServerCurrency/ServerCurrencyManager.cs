@@ -11,12 +11,12 @@ using Robust.Shared.Network;
 
 namespace Content.Goobstation.Server.ServerCurrency
 {
-    public sealed class ServerCurrencyManager : ICommonCurrencyManager
+    public sealed partial class ServerCurrencyManager : ICommonCurrencyManager
     {
-        [Dependency] private readonly IServerDbManager _db = default!;
-        [Dependency] private readonly ITaskManager _task = default!;
-        [Dependency] private readonly IPlayerManager _player = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!; // Arcane
+        [Dependency] private IServerDbManager _db = default!;
+        [Dependency] private ITaskManager _task = default!;
+        [Dependency] private IPlayerManager _player = default!;
+        [Dependency] private IConfigurationManager _cfg = default!; // Arcane
         private readonly List<Task> _pendingSaveTasks = new();
 
         public event Action? ClientBalanceChange;

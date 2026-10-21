@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # From https://github.com/DeltaV-Station/Delta-v/
 name: PR Changelogs
-concurrency: commit_action
 on:
   pull_request_target:
     types: [closed]

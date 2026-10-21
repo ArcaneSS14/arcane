@@ -18,6 +18,9 @@ public sealed partial class IceCubeComponent : BaseSpriteOverlayComponent
     [ViewVariables(VVAccess.ReadOnly)]
     public BodyType? OldBodyType = null;
 
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool AddedBlockMovement;
+
     [DataField]
     public BodyType FrozenBodyType = BodyType.Dynamic;
 

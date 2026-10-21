@@ -93,6 +93,7 @@ namespace Content.Server.NPC.Pathfinding
             _xformQuery = GetEntityQuery<TransformComponent>();
 
             _playerManager.PlayerStatusChanged += OnPlayerChange;
+            InitializeGoob(); // Goobstation
             InitializeGrid();
             SubscribeNetworkEvent<RequestPathfindingDebugMessage>(OnBreadcrumbs);
         }

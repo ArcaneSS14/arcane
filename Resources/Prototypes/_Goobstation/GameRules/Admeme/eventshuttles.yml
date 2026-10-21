@@ -42,6 +42,7 @@
     - Diona
     - Harpy
     - Plasmaman
+    - Synth
   - type: AntagObjectives
     objectives:
     - ContractorRansomObjective

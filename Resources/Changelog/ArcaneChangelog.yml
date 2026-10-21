@@ -3355,3 +3355,152 @@ Entries:
       https://github.com/user-attachments/assets/8e8cd43a-d9fc-4f4f-b39c-a099acabb4fa
     - >-
       https://github.com/user-attachments/assets/da5491fc-7ae1-4758-bf4f-4445712a6da0
+- author: RabbitBat, raid_3390
+  changes:
+    - type: Add
+      message: Добавлен вещмешок цк.
+    - type: Tweak
+      message: Изменён обычный вещмешок в лодауте ПНТ на вещмешок цк
+  id: 240
+  time: '2026-10-18T20:49:15.0000000+00:00'
+  prNumber: 524
+  url: https://github.com/ArcaneSS14/arcane/pull/524
+  media:
+    - >-
+      https://github.com/user-attachments/assets/554f81f8-1ad9-4446-827f-d896b3f08a34
+    - >-
+      https://github.com/user-attachments/assets/2b3a6b09-2379-4421-8b04-ab9431eb2ed4
+    - >-
+      https://github.com/user-attachments/assets/ff2d1949-2147-4414-a45b-4aa8796a52cf
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: Таблетки на русском
+  id: 241
+  time: '2026-10-18T22:49:33.0000000+00:00'
+  prNumber: 522
+  url: https://github.com/ArcaneSS14/arcane/pull/522
+- author: Kinar7
+  changes:
+    - type: Add
+      message: >-
+        Вульпканины, идущие по следу, теперь видят дорожку запаха на полу и
+        могут найти по ней человека. След держится 3 минуты и не остаётся в
+        вакууме.
+    - type: Tweak
+      message: >-
+        Предмет получает запах только после 5 минут у персонажа. На предмете
+        может быть не больше двух запахов одновременно. Старый запах пропадает
+        при появлении нового.
+  id: 242
+  time: '2026-10-19T01:22:29.0000000+00:00'
+  prNumber: 506
+  url: https://github.com/ArcaneSS14/arcane/pull/506
+  media:
+    - >-
+      https://github.com/user-attachments/assets/01ae1bed-f7e6-48dd-95bd-c5c9832c977d
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: В Секрет+Лёгкий теперь падают раундстартовые антагонисты
+  id: 243
+  time: '2026-10-19T02:42:47.0000000+00:00'
+  prNumber: 526
+  url: https://github.com/ArcaneSS14/arcane/pull/526
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: Исправлено отсуствие скидок отдела для некоторых вендмашин.
+    - type: Tweak
+      message: Изменены цены в Посудомате.
+  id: 244
+  time: '2026-10-20T19:07:22.0000000+00:00'
+  prNumber: 530
+  url: https://github.com/ArcaneSS14/arcane/pull/530
+- author: RabbitBat, Gustov
+  changes:
+    - type: Tweak
+      message: >-
+        Изменены спрайты (снова) спонсорских противогазов командования, теперь
+        они также имеют нормальную иконку.
+    - type: Fix
+      message: >-
+        Исправлена проблема, из-за которой миму за расу Арканы не выдавался
+        гримуар.
+    - type: Fix
+      message: Исправлено отсуствие категорий "Сервисный отдел, плащ" у роли Бармен.
+  id: 245
+  time: '2026-10-20T19:09:54.0000000+00:00'
+  prNumber: 521
+  url: https://github.com/ArcaneSS14/arcane/pull/521
+  media:
+    - >-
+      https://github.com/user-attachments/assets/68022381-59a3-42d2-a5bd-ab4a92353f13
+    - >-
+      https://github.com/user-attachments/assets/5295f88a-0b23-4b77-bcb4-3c9e3eb77995
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: Исправлен лодаут медика ОБР, теперь его вещи не выпадают при спавне.
+    - type: Fix
+      message: >-
+        Исправлены губовские кувшины с Оксалодроном, Салисовой кислотой, и
+        Cвятой водой, теперь в них есть жидкость.
+    - type: Tweak
+      message: Изменены нитриловые перчатки медика обр на хирургические БС .
+    - type: Tweak
+      message: >-
+        в карманах ОБР медиков кода Эпсилон и Гамма теперь вместо второго
+        фальшфлеера будет магазин ОБР.
+    - type: Remove
+      message: Убран лишний фальшфлеер у ОБР медиков всех кодов.
+    - type: Remove
+      message: Убран лишний гипоспрей и его катриджи у ОБР медиков всех кодов.
+  id: 246
+  time: '2026-10-20T19:11:08.0000000+00:00'
+  prNumber: 523
+  url: https://github.com/ArcaneSS14/arcane/pull/523
+- author: Huwaiear
+  changes:
+    - type: Add
+      message: >-
+        Добавлена новая маркинг-категория " На всё тело", теперь маркеры,
+        которые рисуются на несколько конечностей тела, будут добавляться сюда.
+        ( Данная категория есть только у Аркан, но если нарисуют какие-нибудь
+        тату, то тогда можно и для остальных рас добавить )
+    - type: Fix
+      message: Исправлены слои наложения у Аркан.
+  id: 247
+  time: '2026-10-21T09:17:35.0000000+00:00'
+  prNumber: 527
+  url: https://github.com/ArcaneSS14/arcane/pull/527
+  media:
+    - >-
+      https://github.com/user-attachments/assets/93161b00-22eb-43f1-b64c-be86e9bf8825
+- author: RabbitBat
+  changes:
+    - type: Add
+      message: >-
+        Добавлено подскальзывание для туфель с тонким каблуком, с неболшьим
+        шансом, когда будете бегать, вы можете упасть!
+    - type: Remove
+      message: Убраны ущербные ботфорты и ботфорты без каблуков с кринжовыми спрайтами.
+    - type: Tweak
+      message: Изменён перевод некоторых туфель из Dressmate.
+    - type: Fix
+      message: Исправлено отсуствие звуков у некоторых туфель. цок цок цок цок цок цок.
+  id: 248
+  time: '2026-10-21T12:47:51.0000000+00:00'
+  prNumber: 536
+  url: https://github.com/ArcaneSS14/arcane/pull/536
+  media:
+    - >-
+      https://github.com/user-attachments/assets/dc7020bf-3f8a-4c66-abad-d3b6c7789357
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Апстрим 20/10/26
+  id: 249
+  time: '2026-10-21T16:14:25.0000000+00:00'
+  prNumber: 532
+  url: https://github.com/ArcaneSS14/arcane/pull/532
