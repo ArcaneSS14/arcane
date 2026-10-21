@@ -285,8 +285,8 @@ public static class EnglishPhoneticTranslit
                     continue;
                 case 'g':
                     // Default hard g (get, give, forget, gear). A g before a silent e
-                    // is soft (age, pages, aged); other soft-g words live in the word
-                    // dictionary.
+                    // is soft (age, pages, aged, charges); other soft-g words live in
+                    // the word dictionary.
                     if (IsSoftG(word, i))
                         sb.Append("дж");
                     else
@@ -458,9 +458,9 @@ public static class EnglishPhoneticTranslit
 
     /// <summary>
     /// True when the g at <paramref name="index"/> is soft and sounds like "дж"
-    /// (age, pages, aged). A final -ge is always soft, while the -ges and -ged
-    /// forms need a vowel in front of the g, so that "rugged" keeps its second
-    /// g hard.
+    /// (age, pages, aged, charges). A final -ge is always soft, and the -ges and
+    /// -ged forms are soft as well, as long as the g is not doubled: "rugged"
+    /// keeps its second g hard.
     /// </summary>
     private static bool IsSoftG(string word, int index)
     {
@@ -471,9 +471,9 @@ public static class EnglishPhoneticTranslit
         if (index + 2 == word.Length && word[index + 1] == 'e')
             return true;
 
-        // -ges and -ged: "pages", "aged".
+        // -ges and -ged: "pages", "aged", "charges".
         if (index + 3 == word.Length && word[index + 1] == 'e' && word[index + 2] is 's' or 'd')
-            return index > 0 && IsVowel(word[index - 1]);
+            return index > 0 && word[index - 1] != 'g';
 
         return false;
     }
