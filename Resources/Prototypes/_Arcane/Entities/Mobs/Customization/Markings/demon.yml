@@ -488,81 +488,81 @@
 # Chest
 
 - type: marking
-  id: DemonChestCowSpots
-  bodyPart: RHand
-  markingCategory: Chest
+  id: DemonBodyCowSpots
+  bodyPart: BodyOverlay
+  markingCategory: BodyOverlay
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: cow_spots
 
 - type: marking
-  id: DemonChestGuard
-  bodyPart: RHand
-  markingCategory: Chest
+  id: DemonBodyGuardStripes
+  bodyPart: BodyOverlay
+  markingCategory: BodyOverlay
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: guards_stripes
 
 - type: marking
-  id: DemonChestLinesEmperos
-  bodyPart: RHand
-  markingCategory: Chest
+  id: DemonBodyLinesEmperos
+  bodyPart: BodyOverlay
+  markingCategory: BodyOverlay
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: lines_emperos
 
 - type: marking
-  id: DemonChestQueenLines
-  bodyPart: RHand
-  markingCategory: Chest
+  id: DemonBodyQueenLines
+  bodyPart: BodyOverlay
+  markingCategory: BodyOverlay
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: queen_lines
 
 - type: marking
-  id: DemonChestTreeLines
-  bodyPart: RHand
-  markingCategory: Chest
+  id: DemonBodyTreeLines
+  bodyPart: BodyOverlay
+  markingCategory: BodyOverlay
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: tree_lines
 
 - type: marking
-  id: DemonChestTrinitySpots
-  bodyPart: RHand
-  markingCategory: Chest
+  id: DemonBodyTrinitySpots
+  bodyPart: BodyOverlay
+  markingCategory: BodyOverlay
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: trinity_spots
 
 - type: marking
-  id: DemonChestAratakiPainting
-  bodyPart: RHand
-  markingCategory: Chest
+  id: DemonBodyAratakiPainting
+  bodyPart: BodyOverlay
+  markingCategory: BodyOverlay
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: arataki_painting
 
 - type: marking
-  id: DemonChestGradientPainting
-  bodyPart: RHand
-  markingCategory: Chest
+  id: DemonBodyGradientPaint
+  bodyPart: BodyOverlay
+  markingCategory: BodyOverlay
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: gradient_paint
 
 - type: marking
-  id: DemonChestSkeleton
-  bodyPart: RHand
-  markingCategory: Chest
+  id: DemonBodySkeleton
+  bodyPart: BodyOverlay
+  markingCategory: BodyOverlay
   speciesRestriction: [Demon]
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi

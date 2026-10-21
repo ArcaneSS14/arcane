@@ -86,6 +86,12 @@ public sealed class CosmicBlankSystem : EntitySystem
                 continue;
 
             mind.PreventGhosting = false;
+            if (TerminatingOrDeleted(comp.OriginalBody))
+            {
+                QueueDel(uid);
+                continue;
+            }
+
             _mind.TransferTo(mindEnt, comp.OriginalBody);
             RemComp<CosmicBlankComponent>(comp.OriginalBody);
             RemComp<CosmicCultExamineComponent>(comp.OriginalBody);
