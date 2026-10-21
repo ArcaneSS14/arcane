@@ -3589,3 +3589,28 @@ Entries:
   time: '2026-10-21T22:51:13.0000000+00:00'
   prNumber: 539
   url: https://github.com/ArcaneSS14/arcane/pull/539
+- author: mxgnvrx
+  changes:
+    - type: Add
+      message: Добавлен стиль градиента волос «Пряди».
+    - type: Tweak
+      message: >-
+        Кнопки подбора цвета градиента волос предлагают более естественные
+        оттенки, повторное нажатие даёт другой вариант.
+    - type: Tweak
+      message: >-
+        Окрашенные стороны градиента волос «Сплит» теперь поворачиваются вместе
+        с персонажем.
+    - type: Tweak
+      message: Край градиента «Скрытые пряди» теперь идёт по прядям.
+    - type: Fix
+      message: Градиент волос больше не пропадает после окончания невидимости.
+  id: 255
+  time: '2026-10-21T22:26:26.0000000+00:00'
+  prNumber: 520
+  url: https://github.com/ArcaneSS14/arcane/pull/520
+  media:
+    - >-
+      https://github.com/user-attachments/assets/3d81469d-6a46-4316-82a0-b24f7f3d6d36
+    - >-
+      https://github.com/user-attachments/assets/964a23d3-33cc-4f6a-a31f-0fef343f3748
