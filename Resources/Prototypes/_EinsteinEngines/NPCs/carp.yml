@@ -33,7 +33,7 @@
       - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
         state: mouth
         shader: unshaded
-      - map: [ "neck" ]
+      - map: [ "neck-goldfish" ] # Arcane-Edit
         state: equipped-NECK
         visible: false
     - type: DamageStateVisuals
@@ -53,7 +53,7 @@
           alive: "Rainbow"
         enum.DamageStateVisualLayers.BaseUnshaded:
           mouth: ""
-        neck:
+        neck-goldfish: # Arcane-Edit
           equipped-NECK: Rainbow
     - type: FireVisuals
       sprite: Mobs/Effects/onfire.rsi
