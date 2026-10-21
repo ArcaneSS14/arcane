@@ -3542,3 +3542,13 @@ Entries:
       https://github.com/user-attachments/assets/fe7c8887-682b-406d-8730-67e05362f024
     - >-
       https://github.com/user-attachments/assets/b709cbd6-93ad-4a5e-bd01-1ff124aada9e
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Радиус лимита спавна слаймов поднят с 5 до 10 тайлов.
+    - type: Fix
+      message: Исправление бага с экстрактом.
+  id: 252
+  time: '2026-10-21T18:13:45.0000000+00:00'
+  prNumber: 533
+  url: https://github.com/ArcaneSS14/arcane/pull/533
