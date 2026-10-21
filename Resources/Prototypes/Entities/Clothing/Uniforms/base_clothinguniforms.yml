@@ -81,7 +81,7 @@
     femaleMask: UniformTop
   # Orion-Start
   - type: SlotBlock
-    blockList: [ UNDERSHIRT ]
+    blockList: [ UNDERSHIRT, PLUG ]
     hideList: [ UNDERWEAR ]
   # Orion-End
   # Arcane-Start
@@ -110,7 +110,7 @@
   components:
   # Orion-Start
   - type: SlotBlock
-    blockList: [ UNDERSHIRT, UNDERWEAR ]
+    blockList: [ UNDERSHIRT, UNDERWEAR, PLUG ]
   # Orion-End
   - type: SuitSensor
   - type: DeviceNetwork
@@ -135,7 +135,7 @@
     femaleMask: UniformTop
   # Orion-Start
   - type: SlotBlock
-    blockList: [ UNDERSHIRT ]
+    blockList: [ UNDERSHIRT, PLUG ]
     hideList: [ UNDERWEAR ]
   # Orion-End
   - type: Tag

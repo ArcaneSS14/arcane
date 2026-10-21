@@ -646,3 +646,121 @@
   - type: Construction
     graph: ClothingStraponXeno
     node: erp
+
+- type: entity
+  parent: BaseItem
+  id: ClothingAnalPlug
+  name: plug
+  description: A small plastic device for medical purposes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Plug/anal_plug.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Plug/anal_plug.rsi
+    slots: [ plug ]
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: ClothingAnalPlug
+  id: ClothingPlugCat
+  name: cat tail plug
+  description: An element of a cat costume with a attachment.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Plug/plug_cat.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Plug/plug_cat.rsi
+
+- type: entity
+  parent: ClothingAnalPlug
+  id: ClothingPlugCow
+  name: cow tail plug
+  description: A prop cow tail for a themed costume.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Plug/plug_cow.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Plug/plug_cow.rsi
+
+- type: entity
+  parent: ClothingAnalPlug
+  id: ClothingPlugFox
+  name: fox tail plug
+  description: An artificial fluffy fox tail to complete the look.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Plug/plug_fox.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Plug/plug_fox.rsi
+
+- type: entity
+  parent: ClothingAnalPlug
+  id: ClothingPlugKitsune
+  name: kitsune tail plug
+  description: A decorative element of a mythical fox costume.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Plug/plug_kitsune.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Plug/plug_kitsune.rsi
+
+- type: entity
+  parent: ClothingAnalPlug
+  id: ClothingPlugPinkCrystal
+  name: plug with pink crystal
+  description: An accessory decorated with a decorative pink stone.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Plug/plug_pink_crystal.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Plug/plug_pink_crystal.rsi
+
+- type: entity
+  parent: ClothingAnalPlug
+  id: ClothingPlugShark
+  name: shark tail plug
+  description: An unusual element of a masquerade costume in the shape of a shark fin.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Plug/plug_shark.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Plug/plug_shark.rsi
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxCardboardPlug
+  name: box of plugs
+  description: A box containing a set of various plugs.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Plug/plug_box.rsi
+    state: icon
+  - type: Storage
+    grid:
+    - 0,0,6,0
+    maxItemSize: Tiny
+  - type: Item
+    sprite: _Arcane/ERP/Toys/Plug/plug_box.rsi
+    size: Small
+    shape:
+    - 0,0,1,1
+    heldPrefix: box
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingAnalPlug
+        - id: ClothingPlugCat
+        - id: ClothingPlugCow
+        - id: ClothingPlugFox
+        - id: ClothingPlugKitsune
+        - id: ClothingPlugPinkCrystal
+        - id: ClothingPlugShark
