@@ -3460,3 +3460,20 @@ Entries:
   time: '2026-10-20T19:11:08.0000000+00:00'
   prNumber: 523
   url: https://github.com/ArcaneSS14/arcane/pull/523
+- author: Huwaiear
+  changes:
+    - type: Add
+      message: >-
+        Добавлена новая маркинг-категория " На всё тело", теперь маркеры,
+        которые рисуются на несколько конечностей тела, будут добавляться сюда.
+        ( Данная категория есть только у Аркан, но если нарисуют какие-нибудь
+        тату, то тогда можно и для остальных рас добавить )
+    - type: Fix
+      message: Исправлены слои наложения у Аркан.
+  id: 247
+  time: '2026-10-21T09:17:35.0000000+00:00'
+  prNumber: 527
+  url: https://github.com/ArcaneSS14/arcane/pull/527
+  media:
+    - >-
+      https://github.com/user-attachments/assets/93161b00-22eb-43f1-b64c-be86e9bf8825
