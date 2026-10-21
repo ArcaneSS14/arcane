@@ -206,6 +206,9 @@
   id: WeaponRifleLecter
   description: A military-grade assault rifle that's seen more wars than you can remember. The full-size package and steady recoil of the Lecter help it excel at one thing—pinpoint accuracy. Feeds from 5.56mm rifle magazines. # Goobstation | Orion-Edit: .20 > 5.56mm
   components:
+  - type: Tag
+    tags:
+    - WeaponRifleLecter # Goobstation - S.E.C. cyborg lethal module
   - type: Sprite
     sprite: _Orion/Objects/Weapons/Guns/Rifles/lecter/big.rsi # Orion-Edit: New sprites
     layers:

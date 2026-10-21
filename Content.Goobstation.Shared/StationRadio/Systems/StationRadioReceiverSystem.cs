@@ -1,15 +1,16 @@
 using Content.Goobstation.Shared.StationRadio.Components;
 using Content.Goobstation.Shared.StationRadio.Events;
 using Content.Shared.Interaction;
+using Content.Shared.Power;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Shared.StationRadio.Systems;
 
-public sealed class StationRadioReceiverSystem : EntitySystem
+public sealed partial class StationRadioReceiverSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IGameTiming _timing = default!; // Arcane-Edit
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IGameTiming _timing = default!; // Arcane-Edit
 
     public override void Initialize()
     {

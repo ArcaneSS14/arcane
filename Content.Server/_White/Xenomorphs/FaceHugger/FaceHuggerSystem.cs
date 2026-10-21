@@ -11,7 +11,6 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Damage;
 using Content.Shared.Hands;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
@@ -32,6 +31,19 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Goobstation.Shared.Clothing.Components;
 using Content.Goobstation.Shared.Xenomorph;
+using Content.Shared._White.Xenomorphs.Infection;
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared._White.Xenomorphs.FaceHugger;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Throwing;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._White.Xenomorphs.FaceHugger;
 
@@ -344,7 +356,7 @@ public sealed class FaceHuggerSystem : EntitySystem
     /// </summary>
     public void InjectChemicals(EntityUid uid, FaceHuggerComponent component, EntityUid target)
     {
-        if (!CanInject(uid, component, target))
+        if (component.SleepChemAmount <= 0 || !CanInject(uid, component, target))
             return;
 
         var sleepChem = CreateSleepChemicalSolution(component, component.SleepChemAmount);

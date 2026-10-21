@@ -37,6 +37,7 @@ namespace Content.Shared.Humanoid.Markings
         Overlay,
 
         Tracheas, // Arcane
+        BodyOverlay, // Arcane
     }
 
     public static class MarkingCategoriesConversion
@@ -69,6 +70,7 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.RFoot => MarkingCategories.RightFoot,
                 HumanoidVisualLayers.Wings => MarkingCategories.Wings,
                 HumanoidVisualLayers.Tracheas => MarkingCategories.Tracheas, // Arcane
+                HumanoidVisualLayers.BodyOverlay => MarkingCategories.BodyOverlay, // Arcane
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
                 _ => MarkingCategories.Overlay,
             };

@@ -147,7 +147,7 @@ public sealed partial class FaoliSystem
             return;
         }
 
-        _damageable.TryChangeDamage(args.Target, comp.Damage * args.Multiply, true, false, damage, targetPart: TargetBodyPart.All, splitDamage: comp.SplitBehavior);
+        _damageable.TryChangeDamage(args.Target, comp.Damage * args.Multiply, true, false, targetPart: TargetBodyPart.All, splitDamage: comp.SplitBehavior);
 
         if (args.Sound != null)
             _audio.PlayPvs(args.Sound, args.Performer);

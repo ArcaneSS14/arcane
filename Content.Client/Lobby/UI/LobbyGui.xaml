@@ -64,6 +64,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                     <Control HorizontalExpand="True" />
                                     <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" SeparationOverride="6">
                                         <vote:VoteCallMenuButton Name="CallVoteButton" />
+                                        <cc:CommandButton Command="achievements" StyleClasses="ButtonBig" Text="{Loc 'achievements-button'}" /> <!-- Arcane -->
                                         <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}" />
                                     </BoxContainer>
                                 </BoxContainer>

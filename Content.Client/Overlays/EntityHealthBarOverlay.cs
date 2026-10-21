@@ -6,6 +6,7 @@ using Content.Client.UserInterface.Systems;
 using Content.Shared.Damage;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Mech.Components;
+using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;

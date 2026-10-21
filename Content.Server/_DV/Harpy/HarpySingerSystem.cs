@@ -19,6 +19,11 @@ using Content.Shared.UserInterface;
 using Content.Shared.Zombies;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared._DV.Harpy.Components;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._DV.Harpy
 {

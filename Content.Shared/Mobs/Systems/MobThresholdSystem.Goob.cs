@@ -5,6 +5,7 @@ using Content.Shared._Shitmed.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared._Arcane.Body.Components;
+using Content.Shared.Damage.Components;
 
 namespace Content.Shared.Mobs.Systems;
 
