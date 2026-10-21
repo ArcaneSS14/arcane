@@ -91041,7 +91041,7 @@ entities:
     - type: Transform
       pos: -10.5,-12.5
       parent: 2
-    - type: Timer
+    - type: SignalTimer
   - uid: 14748
     components:
     - type: MetaData

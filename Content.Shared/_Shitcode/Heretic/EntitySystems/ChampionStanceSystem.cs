@@ -3,8 +3,9 @@
 using Content.Goobstation.Common.Bloodstream;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared.Body.Part;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 using Content.Shared.Heretic.Components.PathSpecific;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;

@@ -22,9 +22,9 @@ namespace Content.Goobstation.Client.Research.UI;
 [GenerateTypedNameReferences]
 public sealed partial class FancyTechnologyInfoPanel : Control
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!; // Orion
+    [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ILocalizationManager _loc = default!; // Orion
 
     public TechnologyPrototype Prototype;
     public Action<TechnologyPrototype>? BuyAction;

@@ -262,6 +262,7 @@ public abstract partial class InventorySystem
             {
                 BreakOnMove = !clothing.EquipWhileMoving,
                 NeedHand = true,
+                FaceTarget = false, // Goob
             };
 
             doAfterStarted = _doAfter.TryStartDoAfter(args); // Arcane-Edit
@@ -567,6 +568,7 @@ public abstract partial class InventorySystem
             {
                 BreakOnMove = !clothing.EquipWhileMoving,
                 NeedHand = true,
+                FaceTarget = false, // Goob
             };
 
             doAfterStarted = _doAfter.TryStartDoAfter(args); // Arcane-Edit
@@ -725,7 +727,7 @@ public abstract partial class InventorySystem
     {
         foreach (var item in _handsSystem.EnumerateHeld(uid))
         {
-            _interactionSystem.DoContactInteraction(uid, item);
+            _interactionSystem.DoContactInteraction(uid, item, null, true); // Goob
         }
     }
 }

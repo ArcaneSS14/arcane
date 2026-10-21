@@ -5,7 +5,7 @@
   suffix: Procenyl Lazide
   components:
   - type: Label
-    currentLabel: Procenyl Lazide 10u
+    currentLabel: medical-label-procenyl-lazide-10u
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -21,7 +21,7 @@
   suffix: Ebifin
   components:
   - type: Label
-    currentLabel: Ebifin 10u
+    currentLabel: medical-label-ebifin-10u
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -37,7 +37,7 @@
   suffix: Salbutamol
   components:
   - type: Label
-    currentLabel: Salbutamol 30u
+    currentLabel: medical-label-salbutamol-30u
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -53,7 +53,7 @@
   suffix: Syriniver
   components:
   - type: Label
-    currentLabel: Syriniver 10u
+    currentLabel: medical-label-syriniver-10u
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -69,7 +69,7 @@
   suffix: Hyronalin
   components:
   - type: Label
-    currentLabel: Hyronalin 30u
+    currentLabel: medical-label-hyronalin-30u
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -85,7 +85,7 @@
   suffix: Formaldehyde
   components:
   - type: Label
-    currentLabel: Formaldehyde 30u
+    currentLabel: medical-label-formaldehyde-30u
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -103,7 +103,7 @@
   suffix: Synthflesh
   components:
   - type: Label
-    currentLabel: Synthflesh 40u
+    currentLabel: medical-label-synthflesh-40u
   - type: SolutionContainerManager
     solutions:
       drink:

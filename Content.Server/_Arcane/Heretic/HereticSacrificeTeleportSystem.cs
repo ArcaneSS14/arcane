@@ -5,6 +5,7 @@ using Content.Shared.Administration.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Drunk;
 using Content.Shared.Jittering;
 using Content.Shared.Mind;

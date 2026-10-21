@@ -11,8 +11,8 @@ namespace Content.Goobstation.Shared.Clothing.Systems;
 [Virtual]
 public partial class SharedClothingCoatingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Orion
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!; // Orion
 
     public override void Initialize()
     {

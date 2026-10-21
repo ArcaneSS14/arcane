@@ -56,4 +56,18 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     [color=red]НИКОГДА НЕ ЭЛЕКТРОШОКИРУЙТЕ КПБ дефибриллятором или иным способом, пока он мёртв, так как это вызовет разряд батареи с выбросом энергии наружу![/color]
   </Box>
 
+  ## Diet
+
+  - As IPCs are silicon-based beings, they do not require food or water to survive, and are unable to eat.
+
+  ## Benefits
+
+  - They take [color=#1e90ff]20% less Brute damage, and 60% less Radiation damage.[/color]
+  - No bones to break.
+
+  ## Drawbacks
+
+  - They take [color=#ffa500]70% more Heat damage and 100% more Shock damage.[/color]
+  - Cannot [color=red](and should not)[/color] be defibrillated.
+
 </Document>

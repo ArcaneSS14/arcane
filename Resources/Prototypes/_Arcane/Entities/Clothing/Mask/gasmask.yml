@@ -1,22 +1,10 @@
 - type: entity
   parent: ClothingMaskGas
   id: ClothingMaskGasCommandPatreon
-  components:
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
 
 - type: entity
   parent: ClothingMaskGasCaptain
   id: ClothingMaskGasCommandArmorPatreon
-  components:
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
 
 # Sponsor
 
