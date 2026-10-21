@@ -192444,8 +192444,6 @@ entities:
     - type: Transform
       pos: 98.5,-5.5
       parent: 2
-    - type: Supermatter
-      activated: True
 - proto: SurgerykitFilled
   entities:
   - uid: 30252
