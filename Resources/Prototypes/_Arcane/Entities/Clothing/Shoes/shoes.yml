@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesBaseButcherable
   id: ClothingShoesHeelsThin
   name: thin-heel shoes
   description: Shoes with a thin, unstable heel.
@@ -18,6 +18,26 @@
     slowdownDurationMin: 3
     slowdownDurationMax: 5
     knockdownTime: 4.5
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesHeelsWide
+  name: wide-heel shoes
+  description: Shoes with a thin, unstable heel.
+  abstract: true
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHighHeels
+      params:
+        volume: -6
+        variation: 0.09
+  - type: Tag
+    tags:
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingShoesBase
@@ -200,7 +220,7 @@
     sprite: _Arcane/Clothing/Shoes/black_shoes.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesHeelsWide
   id: ClothingShoesBlackWithDenseHeel
   name: black shoes with dense heel
   description: Black dance shoes.
