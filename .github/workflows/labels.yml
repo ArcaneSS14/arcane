@@ -27,20 +27,23 @@ jobs:
     - name: Check for Merge Conflicts
       if: ${{ !cancelled() && github.event_name == 'pull_request_target' && github.event.action != 'review_requested' && github.event.pull_request.draft == false }}
       uses: eps1lon/actions-label-merge-conflict@v3.0.0
+      continue-on-error: true
       with:
         dirtyLabel: "S: Merge Conflict"
-        repoToken: "${{ secrets.BOT_TOKEN }}"
+        repoToken: "${{ secrets.GITHUB_TOKEN }}"
         commentOnDirty: "This pull request has conflicts, please resolve those before we can evaluate the pull request."
 
     - name: Label by changed files
       if: ${{ !cancelled() && github.event_name == 'pull_request_target' && contains(fromJSON('["opened", "synchronize", "reopened"]'), github.event.action) }}
       uses: actions/labeler@v5
+      continue-on-error: true
 
     - name: Label size
       if: ${{ !cancelled() && github.event_name == 'pull_request_target' && contains(fromJSON('["opened", "synchronize", "reopened"]'), github.event.action) }}
       uses: "pascalgn/size-label-action@v0.5.5"
+      continue-on-error: true
       env:
-        GITHUB_TOKEN: "${{ secrets.BOT_TOKEN }}"
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       with:
         sizes: >
           {
@@ -55,23 +58,26 @@ jobs:
       if: ${{ !cancelled() && github.event.action == 'review_requested' }}
       uses: actions-ecosystem/action-add-labels@v1
       with:
-        labels: "S: Needs Review"
+        labels: "S: Требуется ревью"
 
     - name: Remove awaiting changes
       if: ${{ !cancelled() && github.event.action == 'review_requested' }}
       uses: actions-ecosystem/action-remove-labels@v1
+      continue-on-error: true
       with:
-        labels: "S: Awaiting Changes"
+        labels: "S: Ожидание изменений"
 
     - name: Label branch stable
       if: ${{ !cancelled() && github.event_name == 'pull_request_target' && github.event.action == 'opened' && github.event.pull_request.base.ref == 'stable' }}
       uses: actions-ecosystem/action-add-labels@v1
+      continue-on-error: true
       with:
         labels: "Branch: Stable"
 
     - name: Label branch staging
       if: ${{ !cancelled() && github.event_name == 'pull_request_target' && github.event.action == 'opened' && github.event.pull_request.base.ref == 'staging' }}
       uses: actions-ecosystem/action-add-labels@v1
+      continue-on-error: true
       with:
         labels: "Branch: Staging"
 
@@ -79,7 +85,7 @@ jobs:
       if: ${{ !cancelled() && (github.event_name == 'issues' || (github.event_name == 'pull_request_target' && github.event.action == 'opened')) && join(github.event.issue.labels) == '' }}
       uses: actions-ecosystem/action-add-labels@v1
       with:
-        labels: "S: Untriaged"
+        labels: "S: Неотсортированный"
 
     - name: Get PR context
       if: github.event_name == 'workflow_run'
@@ -157,7 +163,7 @@ jobs:
       with:
         number: ${{ steps.pr-context.outputs.number }}
         labels: |
-          S: Needs Review
+          S: Требуется ревью
           S: Needs Second Approval
 
     - name: Add Second Approval Requirement
@@ -168,7 +174,7 @@ jobs:
       with:
         number: ${{ steps.pr-context.outputs.number }}
         labels: |
-          S: Needs Review
+          S: Требуется ревью
           S: Needs Second Approval
 
     - name: Remove Other Labels on Second Approval
@@ -188,5 +194,5 @@ jobs:
       with:
         number: ${{ steps.pr-context.outputs.number }}
         labels: |
-          S: Needs Review
+          S: Требуется ревью
           S: Needs Second Approval
