@@ -1,4 +1,34 @@
 - type: entity
+  abstract: true
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesHeelsThin
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHighHeels
+      params:
+        volume: -6
+        variation: 0.09
+  - type: HeelSlip
+    slipChance: 0.05
+    runSpeedThreshold: 3.0
+    slowdownModifier: 0.25
+    slowdownDurationMin: 3
+    slowdownDurationMax: 5
+    knockdownTime: 4.5
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  abstract: true
+  parent: ClothingShoesHeelsThin
+  id: ClothingShoesHeelsWide
+  components:
+  - type: HeelSlip
+    slipChance: 0.01
+
+- type: entity
   parent: ClothingShoesBase
   id: ClothingShoesBeer
   name: beer shoes
@@ -80,7 +110,7 @@
 # Dressmate
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesHeelsThin
   id: ClothingShoesWhite
   name: white shoes
   description: White dance shoes.
@@ -89,28 +119,6 @@
     sprite: _Arcane/Clothing/Shoes/white_shoes.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Shoes/white_shoes.rsi
-
-- type: entity
-  parent: ClothingShoesBase
-  id: ClothingShoesThighHighWithoutHeels
-  name: thigh-high boots without heels
-  description: It was originally created for walking through the mud. Now it's usually usually used to stomp on faces.
-  components:
-  - type: Sprite
-    sprite: _Arcane/Clothing/Shoes/thigh_high_without_heels.rsi
-  - type: Clothing
-    sprite: _Arcane/Clothing/Shoes/thigh_high_without_heels.rsi
-
-- type: entity
-  parent: ClothingShoesBase
-  id: ClothingShoesThighHighBoots
-  name: thigh-high boots
-  description: It was originally created for walking through the mud. Now it's usually usually used to stomp on faces.
-  components:
-  - type: Sprite
-    sprite: _Arcane/Clothing/Shoes/thigh_high_boots.rsi
-  - type: Clothing
-    sprite: _Arcane/Clothing/Shoes/thigh_high_boots.rsi
 
 - type: entity
   parent: ClothingShoesBase
@@ -135,7 +143,7 @@
     sprite: _Arcane/Clothing/Shoes/solid_geta.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesHeelsThin
   id: ClothingShoesGeta
   name: geta
   description: Japanese wooden shoes resembling a bench on legs.
@@ -146,7 +154,7 @@
     sprite: _Arcane/Clothing/Shoes/geta.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesHeelsThin
   id: ClothingShoesGetaWithOneBoard
   name: geta with one board
   description: Japanese wooden shoes resembling a bench on legs.
@@ -157,7 +165,7 @@
     sprite: _Arcane/Clothing/Shoes/geta_one_board.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesHeelsThin
   id: ClothingShoesRed
   name: red shoes
   description: Red dance shoes.
@@ -168,7 +176,7 @@
     sprite: _Arcane/Clothing/Shoes/red_shoes.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesHeelsThin
   id: ClothingShoesClassicPumps
   name: classic pumps
   description: Old-fashioned classic shoes.
@@ -179,7 +187,7 @@
     sprite: _Arcane/Clothing/Shoes/classic_pumps.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesHeelsThin
   id: ClothingShoesBlue
   name: blue shoes
   description: Blue dance shoes.
@@ -190,7 +198,7 @@
     sprite: _Arcane/Clothing/Shoes/blue_shoes.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesHeelsThin
   id: ClothingShoesBlack
   name: black shoes
   description: Black dance shoes.
@@ -201,7 +209,7 @@
     sprite: _Arcane/Clothing/Shoes/black_shoes.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesHeelsWide
   id: ClothingShoesBlackWithDenseHeel
   name: black shoes with dense heel
   description: Black dance shoes.
@@ -212,7 +220,7 @@
     sprite: _Arcane/Clothing/Shoes/black_shoes_with_dense_heel.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesHeelsThin
   id: ClothingShoesBDSMBoots
   name: BDSM boots
   description: Someone will have fun tonight...

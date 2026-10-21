@@ -4,9 +4,9 @@ using Content.Goobstation.Common.Damage;
 using Content.Shared.Damage.Systems;
 
 namespace Content.Goobstation.Shared.Damage;
-public sealed class StaminaRegenerationSystem : EntitySystem
+public sealed partial class StaminaRegenerationSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
+    [Dependency] private SharedStaminaSystem _staminaSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

@@ -147,7 +147,7 @@ namespace Content.Shared.Lathe
         }
     }
 
-    [Serializable]
+    [Serializable, DataDefinition]
     public sealed partial class LatheRecipeBatch
     {
         public ProtoId<LatheRecipePrototype> Recipe;

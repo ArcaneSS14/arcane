@@ -15,6 +15,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.EntityEffects.Effects.Solution;
 using Content.Shared.Fluids;
 using Content.Shared.Inventory;
@@ -103,15 +104,14 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
                     // bloodloss damage is based on the base value, and modified by how low your blood level is.
                     var amt = bloodstream.BloodlossDamage / (0.1f + bloodPercentage);
 
-                    // Goobstation start
+                    // Goob start
                     var multiplierEv = new GetBloodlossDamageMultiplierEvent();
                     RaiseLocalEvent(uid, multiplierEv);
                     amt *= multiplierEv.Multiplier;
+                    // Goob end
 
-                    _damageableSystem.TryChangeDamage(uid, amt,
-                        ignoreResistances: false, interruptsDoAfters: false,
-                        splitDamage: SplitDamageBehavior.SplitEnsureAll, targetPart: TargetBodyPart.All);
-                    // Goobstation end
+                    _damageableSystem.TryChangeDamage(uid, amt, ignoreResistances: false, interruptsDoAfters: false,
+                        splitDamage: SplitDamageBehavior.SplitEnsureAll, targetPart: TargetBodyPart.All); // Goob - shitmed edit
 
                     // Apply dizziness as a symptom of bloodloss.
                     // The effect is applied in a way that it will never be cleared without being healthy.
@@ -288,6 +288,8 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         var totalFloat = total.Float();
         if (TryComp<BodyComponent>(ent, out var body) && body.BodyType == BodyType.Simple) // Goobstation
             TryModifyBleedAmount(ent.AsNullable(), totalFloat); // Goobstation - do not apply base bleed to woundmed supported bodies
+
+        SplatterBloodOnWalls(ent, totalFloat); // Goob
 
         /// Critical hit. Causes target to lose blood, using the bleed rate modifier of the weapon, currently divided by 5
         /// The crit chance is currently the bleed rate modifier divided by 25.
@@ -672,6 +674,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
             SolutionContainer.RemoveAllSolution(ent.Comp.TemporarySolution.Value);
         }
 
+        RaiseSplashOnWall(Transform(ent).Coordinates, tempSol.Clone()); // Goob
         _puddle.TrySpillAt(ent, tempSol, out _);
     }
 

@@ -1,0 +1,17 @@
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: PhotocopierMachineCircuitboard
+  name: photocopier machine board
+  description: A machine printed circuit board for a photocopier.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: Photocopier
+    partRequirements: # Orion
+      Servo: 1
+      MatterBin: 1
+    stackRequirements:
+      Glass: 2
+      Cable: 2
+      Steel: 2

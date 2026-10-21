@@ -6,6 +6,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Server.Administration;
 using Content.Shared._Arcane.Faoli;
 

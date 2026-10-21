@@ -918,8 +918,9 @@
   - type: Tracer # Orion
     color: "#ffe600"
   - type: ExplodeOnTrigger
+  - type: ExplosionEffect # Goob
   - type: Explosive
-    explosionType: Default
+    explosionType: Transparent # Goob
     maxIntensity: 40
     intensitySlope: 6
     totalIntensity: 200
@@ -941,8 +942,9 @@
     layers:
     - state: frag
   - type: ExplodeOnTrigger
+  - type: ExplosionEffect # Goob
   - type: Explosive
-    explosionType: Default
+    explosionType: Transparent # Goob
     maxIntensity: 2 # max 30 per tile
     intensitySlope: 1
     totalIntensity: 4 # 60 total damage to distribute over tiles
@@ -992,8 +994,9 @@
     color: "#ffe600"
     length: 1.5
   - type: ExplodeOnTrigger
+  - type: ExplosionEffect # Goob
   - type: Explosive
-    explosionType: Default
+    explosionType: Transparent # Goob
     totalIntensity: 150 # a ~2 tile radius
     intensitySlope: 10 # Orion-Edit: 5 > 10
     maxIntensity: 10
@@ -1033,6 +1036,7 @@
     layers:
     - state: grenade
   - type: ExplodeOnTrigger
+  - type: ExplosionEffect # Goob
   - type: Explosive
     explosionType: Default
     totalIntensity: 25 # Arcane-Edit: 50 -> 25
@@ -1073,8 +1077,9 @@
     sound: /Audio/Items/smoke_grenade_smoke.ogg
     positional: true
   - type: ExplodeOnTrigger
+  - type: ExplosionEffect # Goob
   - type: Explosive
-    explosionType: Default
+    explosionType: Transparent # Goob
     totalIntensity: 0.01 # a little pop
     intensitySlope: 1
     maxIntensity: 0.01
@@ -1212,6 +1217,7 @@
     layers:
     - state: ball
   - type: ExplodeOnTrigger
+  - type: ExplosionEffect # Goob
   - type: Explosive
     explosionType: DemolitionCharge
     maxIntensity: 9

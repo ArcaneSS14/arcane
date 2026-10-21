@@ -166,6 +166,26 @@
   position: 0,-2 # Arcane-Edit
 
 - type: technology
+  id: SecurityCyborgTechnology
+  name: research-technology-security-cyborg-name
+  description: research-technology-security-cyborg-desc
+  icon:
+    sprite: _Goobstation/Mobs/Silicon/sec_chassis.rsi
+    state: sec
+  discipline: Security
+  tier: 2
+  announceChannels:
+  - Security
+  pointCosts:
+  - type: General
+    amount: 10000
+  technologyPrerequisites:
+  - RiotSuppression
+  recipeUnlocks:
+  - SecEndoskeleton
+  position: -1,-2 # Arcane-Edit
+
+- type: technology
   id: Explosives
   name: research-technology-explosives-name
   description: research-technology-explosives-desc
