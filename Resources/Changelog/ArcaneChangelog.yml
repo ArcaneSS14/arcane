@@ -3552,3 +3552,30 @@ Entries:
   time: '2026-10-21T18:13:45.0000000+00:00'
   prNumber: 533
   url: https://github.com/ArcaneSS14/arcane/pull/533
+- author: Kat_L
+  changes:
+    - type: Add
+      message: >-
+        Увеличение ассортимента в Лавмате. Подробности в
+        [PR](https://github.com/ArcaneSS14/arcane/pull/512)
+    - type: Add
+      message: Добавлен слот заднего прохода
+    - type: Tweak
+      message: >-
+        У Лавмата точно есть ящик пополнения и в списках заказов отдела
+        снабжения
+  id: 253
+  time: '2026-10-21T22:24:32.0000000+00:00'
+  prNumber: 512
+  url: https://github.com/ArcaneSS14/arcane/pull/512
+  media:
+    - >-
+      https://github.com/user-attachments/assets/7069592e-8f15-43b8-9790-0ea98b53cf51
+    - >-
+      https://github.com/user-attachments/assets/e137b43b-53a8-4b4f-bb93-a81872a66004
+    - >-
+      https://github.com/user-attachments/assets/fc085ce1-4e6a-4b0d-b7b5-de6af088bb50
+    - >-
+      https://github.com/user-attachments/assets/44ea962a-b6ce-4444-8860-d68904bbeb0e
+    - >-
+      https://github.com/user-attachments/assets/6897ed56-ac22-433e-9c3d-5387c105fb71
