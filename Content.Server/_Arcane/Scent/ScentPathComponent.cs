@@ -12,7 +12,7 @@ public sealed partial class ScentPathComponent : Component
     public float MinPressure = 20f;
 
     [DataField]
-    public TimeSpan CarryTime = TimeSpan.FromMinutes(5);
+    public TimeSpan CarryTime = TimeSpan.FromSeconds(35);
 
     [ViewVariables]
     public readonly Dictionary<(EntityUid Grid, Vector2i Tile), (EntityCoordinates Coordinates, TimeSpan Time)> Points = new();
@@ -49,4 +49,7 @@ public sealed partial class ScentCarryComponent : Component
 
     [ViewVariables]
     public TimeSpan Since;
+
+    [ViewVariables]
+    public bool Applied;
 }
