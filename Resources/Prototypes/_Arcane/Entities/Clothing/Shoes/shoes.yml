@@ -1,7 +1,7 @@
 - type: entity
+  abstract: true
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesHeelsThin
-  abstract: true
   components:
   - type: FootstepModifier
     footstepSoundCollection:
@@ -21,9 +21,9 @@
     - WhitelistChameleon
 
 - type: entity
+  abstract: true
   parent: ClothingShoesHeelsThin
   id: ClothingShoesHeelsWide
-  abstract: true
   components:
   - type: HeelSlip
     slipChance: 0.01
