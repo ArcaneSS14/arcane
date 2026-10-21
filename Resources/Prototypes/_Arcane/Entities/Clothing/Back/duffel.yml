@@ -54,3 +54,12 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Back/Duffels/rd.rsi
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseCentcommContraband]
+  id: ClothingBackpackDuffellCentcomm
+  name: centcomm duffel bag
+  description: An expensive dark green duffel. Smells like fax machines.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/Duffels/centcommduffel.rsi

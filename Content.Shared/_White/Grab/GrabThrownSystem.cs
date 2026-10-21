@@ -10,6 +10,7 @@ using Robust.Shared.Player;
 using System.Numerics;
 using Content.Shared.Stunnable;
 using Robust.Shared.Physics.Components;
+using Content.Shared.Damage.Components;
 
 namespace Content.Shared._White.Grab;
 

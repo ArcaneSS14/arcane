@@ -12,9 +12,9 @@ namespace Content.Goobstation.Server.ServerCurrency.Commands
 {
     // [AnyCommand] // Arcane: token shop hidden from players
     [AdminCommand(AdminFlags.Host)] // Arcane
-    public sealed class CurrencyUiCommand : IConsoleCommand
+    public sealed partial class CurrencyUiCommand : IConsoleCommand
     {
-        [Dependency] private readonly IConfigurationManager _cfg = default!; // Arcane
+        [Dependency] private IConfigurationManager _cfg = default!; // Arcane
 
         public string Command => "balanceui";
 

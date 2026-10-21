@@ -35,5 +35,8 @@ namespace Content.Server.Chemistry.Components
 
         [DataField]
         public bool Active;
+
+        [ViewVariables]
+        public HashSet<EntityUid> ReactedEntities = new(); // Goob
     }
 }

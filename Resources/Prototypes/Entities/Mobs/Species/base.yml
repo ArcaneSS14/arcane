@@ -28,10 +28,11 @@
     # Arcane-Edit-Start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["jumpsuit"]
-    # Arcane-Edit-End
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: [ "enum.HumanoidVisualLayers.BodyOverlay" ]
+    - map: ["jumpsuit"]
+    # Arcane-Edit-End
     - map: ["enum.HumanoidVisualLayers.Face"] #Goob 120 - why did we have face on dummy but not basespecies
     - map: [ "gloves" ]
     - map: [ "shoes" ]
@@ -147,7 +148,6 @@
     - Vulgarity # Goobstation - add Profanol
     - Brainrotted # Goobstation - skibidi rizz ohio update
     - Adrenaline
-    - Brainrotted # Goobstation - skibidi rizz ohio update
     - Dementia # Goobstation - Amnestic spray!
   - type: Body
     prototype: Human
@@ -182,6 +182,7 @@
   - type: Crawler
   - type: Dna
   - type: Scent # Einstein Engines
+  - type: ScentPath # Arcane
   - type: MindContainer
   - type: MindExaminable
   - type: CanEnterCryostorage
@@ -395,10 +396,11 @@
     # Arcane-Edit-Start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["jumpsuit"]
-    # Arcane-Edit-End
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: [ "enum.HumanoidVisualLayers.BodyOverlay" ]
+    - map: ["jumpsuit"]
+    # Arcane-Edit-End
     - map: ["enum.HumanoidVisualLayers.Handcuffs"]
       color: "#ffffff"
       sprite: Objects/Misc/handcuffs.rsi

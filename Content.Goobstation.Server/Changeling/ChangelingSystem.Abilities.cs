@@ -53,9 +53,9 @@ namespace Content.Goobstation.Server.Changeling;
 public sealed partial class ChangelingSystem
 {
     #region Dependencies
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly WeldableSystem _weldable = default!; //for biodegrade unweld
-    [Dependency] private readonly ChangelingCocoonSystem _cocoon = default!; // Arcane
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private WeldableSystem _weldable = default!; //for biodegrade unweld
+    [Dependency] private ChangelingCocoonSystem _cocoon = default!; // Arcane
     #endregion
 
     public void SubscribeAbilities()
