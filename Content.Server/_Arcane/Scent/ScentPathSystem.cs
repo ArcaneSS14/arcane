@@ -239,11 +239,35 @@ public sealed class ScentPathSystem : EntitySystem
             return;
 
         var carry = EnsureComp<ScentCarryComponent>(item);
-        if (carry.Holder == holder)
+        if (carry.Holder != holder)
+        {
+            carry.Holder = holder;
+            carry.Since = _timing.CurTime;
+        }
+
+        if (!TryComp<ContainerManagerComponent>(item, out var manager))
             return;
 
-        carry.Holder = holder;
-        carry.Since = _timing.CurTime;
+        foreach (var container in _container.GetAllContainers(item, manager))
+        {
+            foreach (var contained in container.ContainedEntities)
+            {
+                StartCarry(holder, contained);
+            }
+        }
+    }
+
+    private bool IsCarriedBy(EntityUid item, EntityUid holder)
+    {
+        while (_container.TryGetContainingContainer(item, out var container))
+        {
+            if (container.Owner == holder)
+                return true;
+
+            item = container.Owner;
+        }
+
+        return false;
     }
 
     private void CheckCarry(TimeSpan now)
@@ -251,8 +275,7 @@ public sealed class ScentPathSystem : EntitySystem
         var query = EntityQueryEnumerator<ScentCarryComponent>();
         while (query.MoveNext(out var uid, out var carry))
         {
-            if (!_container.TryGetContainingContainer(uid, out var container)
-                || container.Owner != carry.Holder
+            if (!IsCarriedBy(uid, carry.Holder)
                 || !TryComp<ScentPathComponent>(carry.Holder, out var path)
                 || !TryComp<ScentComponent>(carry.Holder, out var scent))
             {
