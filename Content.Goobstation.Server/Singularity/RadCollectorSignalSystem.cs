@@ -8,16 +8,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Server.Singularity;
 
-public sealed class RadCollectorSignalSystem : EntitySystem
+public sealed partial class RadCollectorSignalSystem : EntitySystem
 {
     // Arcane-start
     private const float SignalUpdateInterval = 0.25f;
     private float _signalUpdateAccumulator;
     // Arcane-end
 
-    [Dependency] private readonly AutomationSystem _automation = default!;
-    [Dependency] private readonly DeviceLinkSystem _device = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private AutomationSystem _automation = default!;
+    [Dependency] private DeviceLinkSystem _device = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public static readonly ProtoId<SourcePortPrototype> EmptyPort = "RadEmpty";
     public static readonly ProtoId<SourcePortPrototype> LowPort = "RadLow";

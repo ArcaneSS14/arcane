@@ -1,7 +1,7 @@
 using Content.Shared._EinsteinEngines.Language;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Orion.Language.Components;
 
@@ -15,8 +15,8 @@ public sealed partial class LanguageLearnComponent : Component
     /// <summary>
     /// The languages to be learned when the item is used.
     /// </summary>
-    [DataField(required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
-    public List<string> Languages { get; set; } = new();
+    [DataField(required: true)]
+    public List<ProtoId<LanguagePrototype>> Languages { get; set; } = new();
 
     /// <summary>
     /// The amount of time it takes to learn the language.

@@ -144071,7 +144071,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 30.5,-5.5
       parent: 2
-    - type: Timer
+    - type: SignalTimer
   - uid: 17067
     components:
     - type: Transform
@@ -144521,7 +144521,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -29.5,39.5
       parent: 2
-    - type: Timer
+    - type: SignalTimer
   - uid: 17144
     components:
     - type: Transform

@@ -10,6 +10,8 @@
   - Medical
   flavor: medicine
   color: "#081a80"
+  puddleSpriteSet: Acid # Goob
+  puddleColor: "#081a8080" # Goob
   metabolisms:
     Medicine:
       effects:
@@ -28,6 +30,7 @@
   physicalDesc: reagent-physical-desc-translucent
   flavor: medicine
   color: "#3a1d8a"
+  puddleSpriteSet: Shiny # Goob
   metabolisms:
     Medicine:
       effects:
@@ -88,6 +91,7 @@
   physicalDesc: reagent-physical-desc-chalky
   flavor: medicine
   color: "#64ffe6"
+  puddleSpriteSet: Splotchy # Goob
   metabolisms:
     Medicine:
       effects:
@@ -228,6 +232,8 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: medicine
   color: "#0091ff"
+  puddleSpriteSet: Acid # Goob
+  puddleColor: "#0091ffCC" # Goob
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: -5
@@ -243,10 +249,6 @@
           # Arcane-Edit-Start
           - !type:TemperatureCondition
             max: 273
-          scaleByTemperature:
-            min: 100.0
-            max: 273
-            scale: 3
           damage:
             Airloss: -3
             Brute: -6
@@ -259,10 +261,6 @@
             max: 273
           - !type:MobStateCondition
             mobstate: Critical
-          scaleByTemperature:
-            min: 100.0
-            max: 273
-            scale: 3
           damage:
             Airloss: -6
             Brute: -3
@@ -304,10 +302,6 @@
           conditions:
           - !type:TemperatureCondition
             max: 213.0
-          scaleByTemperature: # Shitmed Change
-            min: 100.0
-            max: 213.0
-            scale: 1.6
           damage:
             types:
                 Cellular: -2
@@ -330,6 +324,8 @@
   physicalDesc: reagent-physical-desc-translucent
   flavor: medicine
   color: "#215263"
+  puddleSpriteSet: Shiny # Goob
+  puddleColor: "#21526370" # Goob
   metabolisms:
     Medicine:
       effects:
@@ -478,6 +474,7 @@
   physicalDesc: reagent-physical-desc-odorless
   flavor: medicine
   color: "#d2fffa"
+  puddleSpriteSet: Shiny # Goob
   metabolisms:
     Medicine:
       effects:
@@ -675,6 +672,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: medicine
   color: "#bf3d19"
+  puddleSpriteSet: Splotchy # Goob
   metabolisms:
     Medicine:
       effects:
@@ -710,6 +708,7 @@
   physicalDesc: reagent-physical-desc-pungent
   flavor: medicine
   color: "#ff7db5"
+  puddleSpriteSet: Splotchy # Goob
   metabolisms:
     Medicine:
       effects:
@@ -975,6 +974,7 @@
   physicalDesc: reagent-physical-desc-salty
   flavor: salty
   color: "#0064C8"
+  puddleSpriteSet: Water # Goob
   metabolisms:
     Drink:
       effects:
@@ -1047,6 +1047,7 @@
   physicalDesc: reagent-physical-desc-pungent
   flavor: medicine
   color: "#d49a2f"
+  puddleSpriteSet: Splotchy # Goob
   metabolisms:
     Poison:
       effects:
@@ -1094,6 +1095,7 @@
   physicalDesc: reagent-physical-desc-viscous
   flavor: medicine
   color: "#ba7d7d"
+  puddleSpriteSet: Acid # Goob
   metabolisms:
     Medicine:
       effects:
@@ -1160,6 +1162,7 @@
   physicalDesc: reagent-physical-desc-soothing
   flavor: medicine
   color: "#fcf7f9"
+  puddleSpriteSet: Shiny # Goob
   metabolisms:
     Medicine:
       effects:
@@ -1180,7 +1183,7 @@
             Blunt: -3 # Was 2, Buffed due to limb damage changes(GoobStation)
             Slash: -3 # Was 2, Buffed due to limb damage changes(GoobStation)
             Piercing: -3 # Was 2, Buffed due to limb damage changes(GoobStation)
-      - !type:ImmunityModifier #Goobstation
+      - !type:ImmunityModifier # Goobstation
         gainRateModifier: 0.0011 #3x stronger than Immurin
         strengthModifier: 0.0088888888888 #Twice as strong
         statusLifetime: 3
@@ -1251,6 +1254,8 @@
   physicalDesc: reagent-physical-desc-translucent
   flavor: medicine
   color: "#404040"
+  puddleSpriteSet: Shiny # Goob
+  puddleColor: "#40404050" # Goob
   metabolisms:
     Medicine:
       effects:
@@ -1502,6 +1507,7 @@
   physicalDesc: reagent-physical-desc-holy
   flavor: holy
   color: "#91C3F7"
+  puddleSpriteSet: Water # Goob
   metabolisms:
     Drink:
       effects:
@@ -1727,10 +1733,6 @@
           conditions:
           - !type:TemperatureCondition
             max: 213.0
-          scaleByTemperature: # Shitmed Change
-            min: 100.0
-            max: 213.0
-            scale: 1.6
           damage: # Goobstation - Cryo rebalance
             groups:
               Airloss: -10.0
@@ -1860,6 +1862,7 @@
   physicalDesc: reagent-physical-desc-grainy
   flavor: medicine
   color: "#baa15d"
+  puddleSpriteSet: Powder # Goob
   metabolisms:
     Medicine:
       effects:
@@ -1892,6 +1895,8 @@
   physicalDesc: reagent-physical-desc-crystalline
   flavor: medicine
   color: "#27870a"
+  puddleSpriteSet: Powder # Goob
+  puddleColor: "#27870a50" # Goob
   metabolisms:
     Medicine:
       effects:

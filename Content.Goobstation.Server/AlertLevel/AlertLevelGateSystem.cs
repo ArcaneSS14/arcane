@@ -27,16 +27,16 @@ namespace Content.Goobstation.Server.AlertLevel;
 /// <summary>
 /// Controls whether the gated alert level is unlocked.
 /// </summary>
-public sealed class AlertLevelGateSystem : EntitySystem
+public sealed partial class AlertLevelGateSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

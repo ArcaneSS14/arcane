@@ -7,10 +7,10 @@ using Content.Shared.DoAfter;
 
 namespace Content.Goobstation.Server.Factory;
 
-public sealed class ConstructorSystem : SharedConstructorSystem
+public sealed partial class ConstructorSystem : SharedConstructorSystem
 {
-    [Dependency] private readonly ConstructionSystem _construction = default!;
-    [Dependency] private readonly StartableMachineSystem _machine = default!;
+    [Dependency] private ConstructionSystem _construction = default!;
+    [Dependency] private StartableMachineSystem _machine = default!;
 
     private EntityQuery<ActiveDoAfterComponent> _activeQuery;
 

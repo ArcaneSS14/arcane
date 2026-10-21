@@ -486,6 +486,7 @@ public sealed partial class AdminLogsControl : Control
                     ShownLogs++;
 
                 LogsContainer.AddChild(label);
+                GoobAddLogControls(label); // Goob
                 LogsContainer.AddChild(separator);
             }
             catch (Exception e)
