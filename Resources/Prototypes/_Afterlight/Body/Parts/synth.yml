@@ -11,7 +11,7 @@
   - type: BodyPart
     species: Synth
   - type: Damageable
-    damageModifierSet: Synth
+    # damageModifierSet: Synth # Arcane-Edit
   - type: Extractable
     juiceSolution:
       reagents:
