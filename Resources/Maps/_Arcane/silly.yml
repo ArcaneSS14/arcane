@@ -45788,7 +45788,6 @@ entities:
     - type: Transform
       pos: -7.5,-4.5
       parent: 8245
-    - type: Timer
   - uid: 8426
     components:
     - type: MetaData
