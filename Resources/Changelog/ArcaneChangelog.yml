@@ -3670,3 +3670,17 @@ Entries:
   time: '2026-10-22T19:56:17.0000000+00:00'
   prNumber: 544
   url: https://github.com/ArcaneSS14/arcane/pull/544
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Сварка лечит КПБ по всему телу и больше не зацикливается.
+    - type: Fix
+      message: Борги снова чинятся сваркой.
+    - type: Fix
+      message: Зажжённая сварка больше не поджигает КПБ.
+    - type: Fix
+      message: Операция лечения ран больше не повторяется бесконечно после исцеления.
+  id: 261
+  time: '2026-10-22T21:43:06.0000000+00:00'
+  prNumber: 549
+  url: https://github.com/ArcaneSS14/arcane/pull/549
