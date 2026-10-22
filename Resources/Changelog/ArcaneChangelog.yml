@@ -3644,3 +3644,11 @@ Entries:
       https://github.com/user-attachments/assets/6be91b4e-32e9-4d80-b06a-a71b0f896b3b
     - >-
       https://github.com/user-attachments/assets/42585d7c-84eb-40eb-93be-3031caa9f2b3
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: В лобби снова отображается уровень спонсорства.
+  id: 258
+  time: '2026-10-22T18:18:49.0000000+00:00'
+  prNumber: 547
+  url: https://github.com/ArcaneSS14/arcane/pull/547
