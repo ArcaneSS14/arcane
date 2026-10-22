@@ -303,6 +303,9 @@ public sealed class SharedErpPanelSystem : EntitySystem
         if (!HasComp<ErpPanelOwnerComponent>(target))
             return false;
 
+        if (_mobState.IsIncapacitated(target))
+            return false;
+
         if (!HasComp<ArousalComponent>(user) || !HasComp<ArousalComponent>(target))
             return false;
 
