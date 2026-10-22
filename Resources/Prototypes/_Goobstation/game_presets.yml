@@ -143,21 +143,6 @@
     - SpaceTrafficControlFriendlyEventScheduler
 
 - type: gamePreset
-  id: TheGuide
-  alias:
-    - combat
-    - combatdynamic
-  name: guide-title
-  description: guide-description
-  showInVote: true
-  minPlayers: 25
-  rules:
-    - CombatDynamic
-    - SubGamemodesRule
-    - IonStormScheduler
-    - SpaceTrafficControlEventScheduler
-
-- type: gamePreset
   id: SecretPlusLow
   alias:
     - secretpluslow
@@ -185,17 +170,6 @@
   rules:
     - SecretPlusMid
     - BasicRoundstartVariation # Arcane
-    - MeteorSwarmScheduler
-
-- type: gamePreset
-  id: SecretPlusHigh
-  alias:
-    - secretplushigh
-  name: secretplus-high-title
-  description: secretplus-high-description
-  showInVote: true
-  rules:
-    - SecretPlusHigh
     - MeteorSwarmScheduler
 
 - type: gamePreset
