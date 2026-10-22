@@ -25,18 +25,18 @@
     sprite: _Arcane/ERP/condoms.rsi
   - type: Condom
 
-  - type: entity
-    parent: ClothingUnderwearCondom
-    id: ClothingUnderwearCondomFilled
-    name: used condom
-    description: A rubber sheath full of dried up cum. Best not to put that back on.
-    components:
-    - type: Sprite
-      state: icon-used
-    - type: Condom
-      full: true
-    - type: Damageable
-      damageContainer: RubberBalloon
+- type: entity
+  parent: ClothingUnderwearCondom
+  id: ClothingUnderwearCondomFilled
+  name: used condom
+  description: A rubber sheath full of dried up cum. Best not to put that back on.
+  components:
+  - type: Sprite
+    state: icon-used
+  - type: Condom
+    full: true
+  - type: Damageable
+    damageContainer: RubberBalloon
 #  - type: DamageOnHighSpeedImpact
 #    minimumSpeed: 1
 #    speedDamageFactor: 1
