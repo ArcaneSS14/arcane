@@ -28,8 +28,8 @@ public sealed class RechargeableBlockingSystem : EntitySystem
         SubscribeLocalEvent<RechargeableBlockingComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<RechargeableBlockingComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<RechargeableBlockingComponent, ItemToggleActivateAttemptEvent>(AttemptToggle);
-        SubscribeLocalEvent<RechargeableBlockingComponent, PowerCellChangedEvent>(OnPowerCellChanged);
         SubscribeLocalEvent<RechargeableBlockingComponent, ChargeChangedEvent>(OnChargeChanged);
+        SubscribeLocalEvent<RechargeableBlockingComponent, PowerCellChangedEvent>(OnPowerCellChanged);
     }
 
     public override void Update(float frameTime)
@@ -109,7 +109,7 @@ public sealed class RechargeableBlockingSystem : EntitySystem
             return;
 
         var charge = _battery.GetCharge((batteryUid.Value, battery));
-        if (charge < battery.MaxCharge)
+        if (component.Discharged && charge < battery.MaxCharge)
         {
             if (HasComp<BatterySelfRechargerComponent>(batteryUid))
                 args.Popup = Loc.GetString("rechargeable-blocking-remaining-time-popup", ("remainingTime", GetRemainingTime(uid)));

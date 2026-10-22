@@ -561,7 +561,7 @@
               acts: [ "Destruction" ]
         - trigger:
             !type:DamageTrigger
-            damage: 180 # Arcane-Edit
+            damage: 200 # Arcane-Edit
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
