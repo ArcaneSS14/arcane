@@ -3614,3 +3614,20 @@ Entries:
       https://github.com/user-attachments/assets/3d81469d-6a46-4316-82a0-b24f7f3d6d36
     - >-
       https://github.com/user-attachments/assets/964a23d3-33cc-4f6a-a31f-0fef343f3748
+- author: ChangelingRUES
+  changes:
+    - type: Tweak
+      message: >-
+        На всех картах пула добавлены раундстарт стиралки. Они гарантировано
+        стоят в туалетах (и примыкающих душевых), по одной штуке у дорм, и в
+        мед-отсеках (ради поддержания стерильности меда).
+    - type: Tweak
+      message: >-
+        На следующих картах появилась консоль мониторинга СМ: Bagel, Fland,
+        Oasis, Barratry, Leonid, Chloris.
+    - type: Tweak
+      message: Карта Core заимела одеждоматы и БС дормы.
+  id: 256
+  time: '2026-10-22T00:18:08.0000000+00:00'
+  prNumber: 538
+  url: https://github.com/ArcaneSS14/arcane/pull/538
