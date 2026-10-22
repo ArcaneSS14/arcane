@@ -3631,3 +3631,16 @@ Entries:
   time: '2026-10-22T00:18:08.0000000+00:00'
   prNumber: 538
   url: https://github.com/ArcaneSS14/arcane/pull/538
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлено логирование открытия/закрытия чата.
+  id: 257
+  time: '2026-10-22T00:29:33.0000000+00:00'
+  prNumber: 543
+  url: https://github.com/ArcaneSS14/arcane/pull/543
+  media:
+    - >-
+      https://github.com/user-attachments/assets/6be91b4e-32e9-4d80-b06a-a71b0f896b3b
+    - >-
+      https://github.com/user-attachments/assets/42585d7c-84eb-40eb-93be-3031caa9f2b3
