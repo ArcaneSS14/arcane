@@ -54,14 +54,19 @@ public sealed partial class VendingMachineGridSlot : PanelContainer
 
         LayoutContainer.SetPosition(CodeLabel, new Vector2(2f, 2f));
 
+        // Arcane-Start
+        PriceLabel.SetSize = new Vector2(SlotSize - 8f, 14f);
+        LayoutContainer.SetPosition(PriceLabel, new Vector2(4f, SlotSize - 16f));
+        // Arcane-End
+
         AmountBadge.SetSize = new Vector2(BadgeSize, BadgeSize);
-        LayoutContainer.SetPosition(AmountBadge, new Vector2(SlotSize - BadgeSize - 2f, SlotSize - BadgeSize - 2f));
+        LayoutContainer.SetPosition(AmountBadge, new Vector2(SlotSize - BadgeSize - 2f, 2f)); // Arcane-Edit
 
         SoldOverlay.SetSize = new Vector2(SlotSize, 22f);
         LayoutContainer.SetPosition(SoldOverlay, new Vector2(0f, (SlotSize - 22f) / 2f));
     }
 
-    public void SetItem(EntProtoId protoId, string code, uint amount, bool soldOut)
+    public void SetItem(EntProtoId protoId, string code, uint amount, int price, bool soldOut)
     {
         CodeLabel.Text = code;
         ItemSprite.SetPrototype(protoId);
@@ -71,8 +76,18 @@ public sealed partial class VendingMachineGridSlot : PanelContainer
             ToolTip = GetItemText(proto);
         }
 
+        SetPrice(price); // Arcane
         SetAmount(amount, soldOut);
     }
+
+    // Arcane-Start
+    public void SetPrice(int price)
+    {
+        PriceLabel.Text = price <= 0
+            ? _loc.GetString("vending-machine-price-free")
+            : _loc.GetString("vending-machine-price-credits", ("amount", price));
+    }
+    // Arcane-End
 
     public void SetAmount(uint amount, bool soldOut)
     {

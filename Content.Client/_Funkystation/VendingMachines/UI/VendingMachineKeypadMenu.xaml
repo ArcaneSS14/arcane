@@ -7,6 +7,7 @@
     <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
 
         <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" MinWidth="460">
+            <Label Name="BalanceLabel" Margin="12 10 12 0" Visible="False" /> <!-- Arcane -->
 
             <PanelContainer Name="GlassBackground" VerticalExpand="True" HorizontalExpand="True">
                 <PanelContainer.PanelOverride>
