@@ -17,18 +17,18 @@
 #     factions:
 #     - Syndicate
 #
-# - type: entity
-#   name: contractor spawner
-#   id: SpawnPointContractor
-#   parent: MarkerBase
-#   components:
-#   - type: SpawnPoint
-#   - type: Sprite
-#     sprite: Markers/jobs.rsi
-#     layers:
-#       - state: green
-#       - sprite: Structures/Wallmounts/signs.rsi
-#         state: radiation
+ - type: entity
+   name: contractor spawner
+   id: SpawnPointContractor
+   parent: MarkerBase
+   components:
+   - type: SpawnPoint
+   - type: Sprite
+     sprite: Markers/jobs.rsi
+     layers:
+       - state: green
+       - sprite: Structures/Wallmounts/signs.rsi
+         state: radiation
 #
 # - type: entity
 #   categories: [ HideSpawnMenu, Spawner ]
