@@ -4,6 +4,8 @@ using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared._Shitmed.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared._Arcane.Body.Components;
+using Content.Shared.Damage.Components;
 
 namespace Content.Shared.Mobs.Systems;
 
@@ -42,7 +44,7 @@ public sealed partial class MobThresholdSystem
                 !TryComp(woundable, out BodyPartComponent? bpc))
                 continue;
 
-            if (criticalParts.Contains(bpc.PartType))
+            if (criticalParts.Contains(bpc.PartType) && !HasComp<NonVitalBodyPartComponent>(woundable)) // Arcane-Edit
                 result += wdc.TotalDamage;
         }
 

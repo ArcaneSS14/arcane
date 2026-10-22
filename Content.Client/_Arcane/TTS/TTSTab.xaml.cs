@@ -94,12 +94,12 @@ public sealed partial class TTSTab : Control
                 Text = displayName,
                 ToolTip = voice.ID,
                 HorizontalExpand = true,
-                StyleClasses = { StyleNano.ButtonOpenRight }
+                StyleClasses = { StyleClass.ButtonOpenRight }
             };
 
             if (voice.ID == _selectedVoiceId)
             {
-                selectButton.AddStyleClass(StyleBase.ButtonCaution);
+                selectButton.AddStyleClass(StyleClass.Negative);
             }
 
             selectButton.OnPressed += _ =>
@@ -112,7 +112,7 @@ public sealed partial class TTSTab : Control
                 Text = Loc.GetString("humanoid-profile-editor-voice-play"),
                 MinWidth = 30,
                 ToolTip = Loc.GetString("humanoid-profile-editor-voice-tooltip-play"),
-                StyleClasses = { StyleNano.ButtonOpenLeft }
+                StyleClasses = { StyleClass.ButtonOpenLeft }
             };
 
             previewButton.OnPressed += _ =>

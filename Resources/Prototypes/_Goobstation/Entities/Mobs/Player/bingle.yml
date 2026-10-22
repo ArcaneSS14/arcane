@@ -11,6 +11,7 @@
     upgradedID: MobBingleUpgraded
   - type: GhostTakeoverAvailable
   - type: GhostRole
+    banJob: GhostRoleBingle # Arcane
     name: ghost-role-information-bingle-name
     description: ghost-role-information-bingle-description
     rules: ghost-role-information-bingle-rules

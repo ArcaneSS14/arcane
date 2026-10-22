@@ -84,7 +84,7 @@
         Heat: 1.5 # burn more
   - type: Damageable
     damageContainer: Biological # Shadowkin
-    damageModifierSet: Shadowkin
+#    damageModifierSet: Shadowkin # Arcane-Edit
 #    - type: DamageVisuals
 #      damageOverlayGroups:
 #        Brute:

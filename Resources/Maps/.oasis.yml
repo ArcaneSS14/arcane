@@ -144454,7 +144454,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 30.5,-5.5
       parent: 2
-    - type: Timer
   - uid: 16281
     components:
     - type: Transform
@@ -144904,7 +144903,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -29.5,39.5
       parent: 2
-    - type: Timer
   - uid: 16368
     components:
     - type: Transform
@@ -191059,7 +191057,7 @@ entities:
     - type: Transform
       pos: 32.407604,-20.344194
       parent: 2
-- proto: WeaponEnergyTurretAI
+- proto: WeaponEnergyTurretCommand
   entities:
   - uid: 10872
     components:
@@ -191138,7 +191136,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 9626
-- proto: WeaponEnergyTurretAIControlPanel
+- proto: WeaponEnergyTurretCommandControlPanel
   entities:
   - uid: 9626
     components:

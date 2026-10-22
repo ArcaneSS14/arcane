@@ -11,6 +11,12 @@ public sealed partial class ACCVars
         CVarDef.Create("tts.use_tts", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Default volume setting of TTS sound
+    /// </summary>
+    public static readonly CVarDef<float> TTSVolume =
+        CVarDef.Create("tts.volume", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     ///     TTS radio volume.
     /// </summary>
     public static readonly CVarDef<float> TTSRadioVolume =

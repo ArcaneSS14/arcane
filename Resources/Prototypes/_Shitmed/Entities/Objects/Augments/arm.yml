@@ -137,6 +137,7 @@
     size: Huge
   - type: Construction
     graph: AugmentToolsPanel
+    defaultTarget: "utility tools panel" # Arcane
 
 - type: entity
   parent: BaseIncompleteAugmentToolPanel
@@ -267,6 +268,7 @@
     size: Huge
   - type: Construction
     graph: AugmentStrength
+    defaultTarget: augment # Arcane
 
 - type: entity
   parent: BaseIncompleteAugmentStrength

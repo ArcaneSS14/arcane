@@ -1,3 +1,10 @@
+# Service
+ent-ClothingUniformJumpskirtMaidStrict = строгое платье горничной
+    .desc = Строгое, но элегантное платье горничной.
+ent-ClothingUniformJumpsuitButler = костюм дворецкого
+    .desc = Элегантный костюм для настоящего дворецкого.
+ent-ClothingUniformJumpskirtMimeSexy = сексуальная юбка-комбинезон мима
+    .desc = ...
 ent-ClothingUniformPivozavr = футболка пивозавра
     .desc = Древняя рептилия, которая любит пиво.
 # Sponsor

@@ -182,6 +182,16 @@
     sprite: Clothing/Belt/securitywebbing.rsi
   - type: Clothing
     sprite: Clothing/Belt/securitywebbing.rsi
+  # Arcane-Start
+  - type: Stainable
+    clothingVisuals:
+      belt:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: armorblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: armorbloodicon
+  # Arcane-End
 
 - type: entity
   parent: [ ClothingBeltStorageBase, BaseSecurityCargoContraband ]
@@ -220,6 +230,16 @@
     damageCoefficient: 0.1
   - type: StaticPrice
     price: 500
+  # Arcane-Start
+  - type: Stainable
+    clothingVisuals:
+      belt:
+      - sprite: _Arcane/Effects/blood.rsi
+        state: armorblood
+    iconVisuals:
+    - sprite: _Arcane/Effects/blood.rsi
+      state: armorbloodicon
+  # Arcane-End
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing

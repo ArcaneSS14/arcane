@@ -14,7 +14,7 @@
   - type: Woundable # Goobstation
     boneEntity: BoneWeak
   - type: Damageable # Shitmed
-    damageModifierSet: Harpy
+#    damageModifierSet: Harpy # Arcane-Edit
 
 - type: entity
   parent: [ PartHarpyBase, BaseChest ]

@@ -66,8 +66,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             // Arcane-Edit-Start
             if (_radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset))
             {
-                args.RadioMessageSent = true;
-                args.Channel = null; // prevent duplicate messages from other listeners.
+                args.Channel = null;
             }
             // Arcane-Edit-End
         }
@@ -146,7 +145,8 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             };
 
             // Arcane-Start
-            if (canUnderstand && args.Voice is { } voice)
+            // The speaker only gets their local speech TTS; no self-feedback radio TTS.
+            if (parent != args.MessageSource && canUnderstand && args.Voice is { } voice)
             {
                 var ev = new TTSRadioPlayEvent(args.OriginalChatMsg.Message, args.Language, voice, args.Channel.Frequency);
                 RaiseLocalEvent(parent, ref ev);

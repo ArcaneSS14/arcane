@@ -1,0 +1,67 @@
+# Ban-only jobs: ghost roles reference them via GhostRole banJob so admins can role-ban them.
+- type: department
+  id: GhostRoles
+  name: department-GhostRoles
+  description: department-GhostRoles-description
+  color: "#8C8C8C"
+  weight: 100
+  buttonStyle: ButtonColorSpecificDepartment
+  editorHidden: true
+  primary: false
+  roles:
+  - GhostRoleInteQ
+  - GhostRoleHermit
+  - GhostRoleXenomorph
+  - GhostRoleSyndicate
+  - GhostRoleWizard
+  - GhostRoleWraith
+  - GhostRoleCosmicCult
+  - GhostRoleBingle
+
+- type: job
+  id: GhostRoleInteQ
+  name: job-name-ghost-role-inteq
+  playTimeTracker: JobGhostRoleInteQ
+  setPreference: false
+
+- type: job
+  id: GhostRoleHermit
+  name: job-name-ghost-role-hermit
+  playTimeTracker: JobGhostRoleHermit
+  setPreference: false
+
+- type: job
+  id: GhostRoleXenomorph
+  name: job-name-ghost-role-xenomorph
+  playTimeTracker: JobGhostRoleXenomorph
+  setPreference: false
+
+- type: job
+  id: GhostRoleSyndicate
+  name: job-name-ghost-role-syndicate
+  playTimeTracker: JobGhostRoleSyndicate
+  setPreference: false
+
+- type: job
+  id: GhostRoleWizard
+  name: job-name-ghost-role-wizard
+  playTimeTracker: JobGhostRoleWizard
+  setPreference: false
+
+- type: job
+  id: GhostRoleWraith
+  name: job-name-ghost-role-wraith
+  playTimeTracker: JobGhostRoleWraith
+  setPreference: false
+
+- type: job
+  id: GhostRoleCosmicCult
+  name: job-name-ghost-role-cosmic-cult
+  playTimeTracker: JobGhostRoleCosmicCult
+  setPreference: false
+
+- type: job
+  id: GhostRoleBingle
+  name: job-name-ghost-role-bingle
+  playTimeTracker: JobGhostRoleBingle
+  setPreference: false

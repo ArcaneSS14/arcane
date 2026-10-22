@@ -1290,7 +1290,10 @@ namespace Content.Shared.Preferences
             var groups = new Dictionary<string, int>();
             var result = new List<ProtoId<TraitPrototype>>();
 
-            foreach (var trait in traits)
+            // Arcane-Edit-Start
+            // Cheapest first, so points granted by negative-cost traits count before positive ones are checked.
+            foreach (var trait in traits.OrderBy(t => protoManager.TryIndex(t, out var p) ? p.Cost : 0))
+            // Arcane-Edit-End
             {
                 if (!protoManager.TryIndex(trait, out var traitProto))
                     continue;

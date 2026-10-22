@@ -33,3 +33,6 @@ seeds-yellow-tulip-display-name = жёлтый тюльпан
 
 seeds-pink-tulip-name = розовый тюльпан
 seeds-pink-tulip-display-name = розовый тюльпан
+
+seeds-pomato-name = помидофель
+seeds-pomato-display-name = помидофель

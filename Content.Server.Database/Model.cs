@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Content.Server.Database
 {
-    public abstract class ServerDbContext : DbContext
+    public abstract partial class ServerDbContext : DbContext // Goob
     {
         protected ServerDbContext(DbContextOptions options) : base(options)
         {
@@ -329,6 +329,7 @@ namespace Content.Server.Database
                 .HasDefaultValue(HwidType.Legacy);
 
             ModelBan.OnModelCreating(modelBuilder);
+            GoobOnModelCreating(modelBuilder); // Goob
 
             // RMC14
             modelBuilder.Entity<RMCLinkedAccount>()
@@ -502,6 +503,7 @@ namespace Content.Server.Database
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
         public string CustomSpeciesName { get; set; } = ""; // Arcane
+        public bool EarsAboveHair { get; set; } // Arcane
         public float Height { get; set; } = 1f; // Goobstation: port EE height/width sliders
         public float Width { get; set; } = 1f; // Goobstation: port EE height/width sliders
         public string BarkVoice { get; set; } = null!; // Goob Station - Barks

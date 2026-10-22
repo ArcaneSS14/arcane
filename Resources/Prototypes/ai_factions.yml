@@ -19,6 +19,7 @@
     - Heretic # goob edit - heretics
     - Blob # Goobstation - Blob
     - Shadowling # Einstein Engines - Shadowlings
+    - Changeling # Arcane
   friendly: # Goobstation
     - Wizard
     - PirateFaction # goob - pirates
@@ -94,6 +95,7 @@
   - Blob # Goobstation - Blob
   - PirateFaction # goob - pirates
   - Lavafauna # Goob - Lavaland
+  - Changeling # Arcane
   friendly: # Goobstation
   - Wizard
   - Shadowling # Einstein Engines - Shadowlings
@@ -148,6 +150,7 @@
   - PirateFaction # goob - pirates
   - Wraith # Goobstation - Wraith
   - Lavafauna # Goob - Lavaland
+  - Changeling # Arcane
   friendly: # Goobstation
     - Wizard
 
@@ -195,6 +198,7 @@
   - PirateFaction # goob - pirates
   - Xenoborg
   - Lavafauna # Goob - Lavaland
+  - Changeling # Arcane
 
 - type: npcFaction
   id: AllHostile
@@ -279,6 +283,7 @@
   - Heretic # goob edit - heretics
   - Blob # Goobstation - Blob
   - PirateFaction # goob - pirates
+  - Changeling # Arcane
   friendly: # Goobstation
   - Wraith # Goobstation
   - Lavafauna # Lavaland

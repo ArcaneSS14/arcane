@@ -47,3 +47,14 @@
     sprite: _Arcane/Clothing/Uniforms/Jumpskirts/Sponsor/detective.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Uniforms/Jumpskirts/Sponsor/detective.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtMime
+  id: ClothingUniformJumpskirtMimeSexy
+  name: sexy mime jumpskirt
+  description: ...
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirts/mimesexy.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Uniforms/Jumpskirts/mimesexy.rsi

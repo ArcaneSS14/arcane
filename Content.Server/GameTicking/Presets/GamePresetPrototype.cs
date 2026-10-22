@@ -2,7 +2,6 @@
 
 using Content.Server.Maps;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.GameTicking.Presets
 {
@@ -27,6 +26,14 @@ namespace Content.Server.GameTicking.Presets
         [DataField("showInVote")]
         public bool ShowInVote;
 
+        // Arcane-Edit-Start
+        [DataField]
+        public float RepeatWeightMultiplier = 0.5f;
+
+        [DataField]
+        public float PreviousRoundWeightMultiplier = 0.5f;
+        // Arcane-Edit-End
+
         [DataField("minPlayers")]
         public int? MinPlayers;
 
@@ -45,7 +52,7 @@ namespace Content.Server.GameTicking.Presets
         /// If specified, the gamemode will only be run with these maps.
         /// If none are elligible, the global fallback will be used.
         /// </summary>
-        [DataField("supportedMaps", customTypeSerializer: typeof(PrototypeIdSerializer<GameMapPoolPrototype>))]
-        public string? MapPool;
+        [DataField("supportedMaps")]
+        public ProtoId<GameMapPoolPrototype>? MapPool;
     }
 }

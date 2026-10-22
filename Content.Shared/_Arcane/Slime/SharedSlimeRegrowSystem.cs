@@ -7,7 +7,11 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared._Arcane.Body.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
+using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
+using Content.Shared._Shitmed.Targeting;
+using Content.Shared._Shitmed.Targeting.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -31,12 +35,14 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly LostPartMarkingsSystem _lostPartMarkings = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ThirstSystem _thirst = default!;
     [Dependency] private readonly TraumaSystem _trauma = default!;
+    [Dependency] private readonly WoundSystem _wound = default!;
 
     public override void Initialize()
     {
@@ -97,11 +103,13 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
 
         var candidate = _random.Pick(candidates);
 
-        if (!TryGrowLimb(candidate.ParentId, candidate.SlotId, candidate.Slot))
+        if (!TryGrowLimb(ent, candidate.ParentId, candidate.SlotId, candidate.Slot))
         {
             _popup.PopupEntity(Loc.GetString(ent.Comp.NoLimbPopup), user, user);
             return;
         }
+
+        RefreshBodyStatus(user);
 
         // Resources are only spent once the limb actually regrew.
         _hunger.ModifyHunger(user, -ent.Comp.HungerCost, hunger);
@@ -114,8 +122,8 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
     }
 
     /// <summary>
-    /// Traverses the body prototype starting from the root, collecting every missing,
-    /// non-vital part slot that could be regrown.
+    /// Traverses the body prototype starting from the root, collecting every missing
+    /// part slot that could be regrown. The head counts; the chest and groin never do.
     /// </summary>
     private List<MissingLimb> FindMissingLimbs(EntityUid uid, BodyComponent body)
     {
@@ -160,7 +168,7 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
                 if (connectionSlot.Part is not { } partId
                     || !_proto.TryIndex<EntityPrototype>(partId, out var partProto)
                     || !partProto.TryGetComponent<BodyPartComponent>(out var partComp, _componentFactory)
-                    || (partComp.PartType & BodyPartType.Vital) != 0)
+                    || (partComp.PartType & (BodyPartType.Chest | BodyPartType.Groin)) != 0)
                     continue;
 
                 missing.Add(new MissingLimb(parentEntity, connection, connectionSlot));
@@ -170,7 +178,7 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
         return missing;
     }
 
-    private bool TryGrowLimb(EntityUid parentId, string slotId, BodyPrototypeSlot slot)
+    private bool TryGrowLimb(Entity<SlimeRegrowComponent> ent, EntityUid parentId, string slotId, BodyPrototypeSlot slot)
     {
         if (slot.Part is not { } partId)
             return false;
@@ -184,6 +192,8 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
             QueueDel(childPart);
             return false;
         }
+
+        _lostPartMarkings.RestoreMarkings(ent.Owner, (childPart, childPartComp));
 
         // Regrowing a limb also heals the stump (Dismemberment trauma) its removal left behind,
         // otherwise it would still need surgery to clean up before the socket is usable again.
@@ -207,6 +217,17 @@ public abstract partial class SharedSlimeRegrowSystem : EntitySystem
         }
 
         return true;
+    }
+
+    // A regrown part starts undamaged, so no wound severity change would update the body status doll.
+    private void RefreshBodyStatus(EntityUid body)
+    {
+        if (!TryComp<TargetingComponent>(body, out var targeting))
+            return;
+
+        targeting.BodyStatus = _wound.GetWoundableStatesOnBodyPainFeels(body);
+        Dirty(body, targeting);
+        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(body)), body);
     }
 
     private readonly record struct MissingLimb(EntityUid ParentId, string SlotId, BodyPrototypeSlot Slot);

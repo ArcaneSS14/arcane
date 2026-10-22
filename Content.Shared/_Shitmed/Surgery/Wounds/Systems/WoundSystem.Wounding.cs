@@ -7,7 +7,9 @@ using Content.Shared._Shitmed.Weapons.Melee.Events;
 using Content.Shared._Shitmed.Weapons.Ranged.Events;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Gibbing.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -36,7 +38,17 @@ public sealed partial class WoundSystem
         SubscribeLocalEvent<WoundableComponent, AttemptHandsMeleeEvent>(OnAttemptHandsMelee);
         SubscribeLocalEvent<WoundableComponent, AttemptHandsShootEvent>(OnAttemptHandsShoot);
         SubscribeLocalEvent<TraumaInflicterComponent, TraumaBeingRemovedEvent>(OnTraumaBeingRemoved);
+        SubscribeLocalEvent<WoundableComponent, BodyPartAddedEvent>(OnWoundableAttached); // Arcane
     }
+
+    // Arcane-Start
+    // A severed part keeps the Severed severity when reattached, which blocks its healing until it is recomputed.
+    private void OnWoundableAttached(Entity<WoundableComponent> ent, ref BodyPartAddedEvent args)
+    {
+        if (ent.Comp.WoundableSeverity == WoundableSeverity.Severed)
+            CheckWoundableSeverityThresholds(ent, ent.Comp);
+    }
+    // Arcane-End
 
     #region Event Handling
 

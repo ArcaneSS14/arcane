@@ -1,0 +1,13 @@
+- type: entity
+  parent: CartridgeHighCaliber
+  id: CartridgeHighCaliberAPX
+  name: cartridge (.50 BMG AP-X)
+  components:
+  - type: CartridgeAmmo
+    proto: BulletHighCaliberAPX
+  - type: Sprite
+    layers:
+    - state: fast
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: SpentAmmoVisuals
+    state: fast

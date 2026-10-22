@@ -9,3 +9,15 @@
     state: sheetBEER
   - type: Clothing
     sprite: _Arcane/Clothing/Neck/Bedsheets/beer_bedsheet.rsi
+
+- type: entity
+  parent: BedsheetBase
+  id: BedsheetBun
+  name: bun bedsheet
+  description: He-he, purple bunny!!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Neck/Bedsheets/bun_bedsheet.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Neck/Bedsheets/bun_bedsheet.rsi

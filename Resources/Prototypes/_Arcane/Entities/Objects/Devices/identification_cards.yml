@@ -1,3 +1,4 @@
+# нужно сделать стандартную карту для айди-карт _Arcane, чтобы не указывать каждый раз путь <-- Bun-Bun
 - type: entity
   parent: IDCardStandard
   id: AdjutantIDCard
@@ -18,9 +19,12 @@
   description: Command Maid ID card.
   components:
   - type: Sprite
+    sprite: _Arcane/Objects/Misc/id_cards.rsi
     layers:
-    - state: silver
-    - state: idcommandmaid
+    - state: ert_commaid
+    - state: idcommaid
+  - type: Item
+    heldPrefix: pink
   - type: PresetIdCard
     job: CommandMaid
 

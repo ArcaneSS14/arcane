@@ -25,7 +25,7 @@
     requiredLegs: 2
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Diona
+#    damageModifierSet: Diona # Arcane-Edit
 #  - type: DamageVisuals
 #    damageOverlayGroups:
 #      Brute:

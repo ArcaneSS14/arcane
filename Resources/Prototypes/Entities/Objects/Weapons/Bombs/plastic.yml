@@ -77,6 +77,7 @@
   - type: DeviceLinkSink
     ports:
     - Trigger
+  - type: ExplosionEffect # Goob
   - type: Explosive # Powerful explosion in a very small radius. Doesn't break underplating.
     explosionType: DemolitionCharge
     totalIntensity: 60
@@ -93,6 +94,7 @@
     speechVerb: Robotic
     speechSounds: Pai
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     prob: 0.05
     name: ghost-role-information-c4-name
     description: ghost-role-information-c4-description
@@ -158,6 +160,7 @@
   - type: DeviceLinkSink
     ports:
     - Trigger
+  - type: ExplosionEffect # Goob
   - type: Explosive
     explosionType: Cryo
     totalIntensity: 120

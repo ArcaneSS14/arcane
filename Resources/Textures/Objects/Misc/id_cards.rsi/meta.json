@@ -314,21 +314,7 @@
             "name": "idadjutant"
         },
         {
-            "name": "ert_commaid"
-        },
-        {
-            "name": "idcommaid"
-        },
-        {
             "name": "idiaa"
-        },
-        {
-            "name": "pink-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "pink-inhand-left",
-            "directions": 4
         }
     ]
 }

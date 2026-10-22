@@ -199,7 +199,7 @@ flavor-complex-rocksandstones = как скалы и камни
 ## Basic drinks
 
 flavor-complex-water = как вода
-flavor-complex-beer = как моча
+flavor-complex-beer = как жидкое золото
 flavor-complex-cognac = как сухой пряный алкоголь
 flavor-complex-mead = как забродивший мёд
 flavor-complex-vermouth = как виноградная мякоть
@@ -354,3 +354,5 @@ flavor-complex-punishment = как наказание
 flavor-complex-artifact-glue = like crushed artifacts
 flavor-weh = как вех
 flavor-hew = как хев
+
+flavor-bobda = как старая газировка с порохом

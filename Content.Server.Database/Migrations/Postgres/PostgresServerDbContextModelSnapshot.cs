@@ -26,6 +26,45 @@ namespace Content.Server.Database.Migrations.Postgres
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Content.Server.Database.AchievementProgress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("achievement_progress_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AchievementId")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("achievement_id");
+
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("player_user_id");
+
+                    b.Property<int>("Progress")
+                        .HasColumnType("integer")
+                        .HasColumnName("progress");
+
+                    b.Property<DateTime?>("UnlockedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("unlocked_at");
+
+                    b.HasKey("Id")
+                        .HasName("PK_achievement_progress");
+
+                    b.HasIndex("AchievementId")
+                        .HasDatabaseName("IX_achievement_progress_achievement_id");
+
+                    b.HasIndex("PlayerUserId", "AchievementId")
+                        .IsUnique();
+
+                    b.ToTable("achievement_progress", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.Admin", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -1308,6 +1347,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("custom_species_name");
 
+                    b.Property<bool>("EarsAboveHair")
+                        .HasColumnType("boolean")
+                        .HasColumnName("ears_above_hair");
+
                     b.Property<int>("ErpPreference")
                         .HasColumnType("integer")
                         .HasColumnName("erp_preference");
@@ -1692,6 +1735,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("ghost_particles");
 
+                    b.Property<string>("OocIcon")
+                        .HasColumnType("text")
+                        .HasColumnName("ooc_icon");
+
                     b.HasKey("PlayerId")
                         .HasName("PK_rmc_patrons");
 
@@ -1737,11 +1784,8 @@ namespace Content.Server.Database.Migrations.Postgres
             modelBuilder.Entity("Content.Server.Database.RMCPatronTier", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("rmc_patron_tiers_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("DiscordRole")
                         .HasColumnType("numeric(20,0)")
@@ -2032,6 +2076,19 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasDatabaseName("IX_player_round_rounds_id");
 
                     b.ToTable("player_round", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.AchievementProgress", b =>
+                {
+                    b.HasOne("Content.Server.Database.Player", "Player")
+                        .WithMany()
+                        .HasForeignKey("PlayerUserId")
+                        .HasPrincipalKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_achievement_progress_player_player_user_id");
+
+                    b.Navigation("Player");
                 });
 
             modelBuilder.Entity("Content.Server.Database.Admin", b =>

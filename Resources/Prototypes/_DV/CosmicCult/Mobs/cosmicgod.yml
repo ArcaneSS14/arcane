@@ -114,6 +114,7 @@
     energy: 25
     color: "#43286a"
   - type: GhostRole
+    banJob: GhostRoleCosmicCult # Arcane
     allowMovement: true
     allowSpeech: false
     makeSentient: true

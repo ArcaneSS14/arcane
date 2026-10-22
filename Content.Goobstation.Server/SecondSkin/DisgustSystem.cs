@@ -12,16 +12,16 @@ using Robust.Shared.Random;
 
 namespace Content.Goobstation.Server.SecondSkin;
 
-public sealed class DisgustSystem : EntitySystem
+public sealed partial class DisgustSystem : EntitySystem
 {
     // Arcane-start
     private const float DisgustUpdateInterval = 1f;
     private float _disgustUpdateAccumulator;
     // Arcane-end
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AlertsSystem _alets = default!;
-    [Dependency] private readonly SharedEntityEffectsSystem _effect = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AlertsSystem _alets = default!;
+    [Dependency] private SharedEntityEffectsSystem _effect = default!;
 
     public override void Initialize()
     {

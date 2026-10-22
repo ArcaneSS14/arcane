@@ -41,6 +41,7 @@ namespace Content.Shared.Humanoid
             {
                 case HumanoidVisualLayers.Head:
                     yield return HumanoidVisualLayers.Head;
+                    yield return HumanoidVisualLayers.Face; // Arcane
                     yield return HumanoidVisualLayers.Eyes;
                     yield return HumanoidVisualLayers.HeadSide;
                     yield return HumanoidVisualLayers.HeadTop;
@@ -74,6 +75,7 @@ namespace Content.Shared.Humanoid
                     yield return HumanoidVisualLayers.Wings; // for IPC wings port from SimpleStation
                     yield return HumanoidVisualLayers.Tail;
                     yield return HumanoidVisualLayers.Tracheas; // Arcane
+                    yield return HumanoidVisualLayers.BodyOverlay; // Arcane
                 // Shitmed Change Start
                     yield return HumanoidVisualLayers.Groin;
                     break;

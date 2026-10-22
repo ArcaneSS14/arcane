@@ -25,7 +25,7 @@
       collection: MaleCoughs
     CatMeow:
       collection: CatMeows
-    CatHisses:
+    Hiss: # Arcane-Edit
       collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
@@ -81,7 +81,7 @@
       collection: FemaleCoughs
     CatMeow:
       collection: CatMeows
-    CatHisses:
+    Hiss: # Arcane-Edit
       collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches

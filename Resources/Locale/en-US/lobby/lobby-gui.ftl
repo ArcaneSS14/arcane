@@ -10,6 +10,11 @@
 ui-lobby-title = Lobby: {$serverName}
 ui-lobby-ahelp-button = AHelp
 ui-lobby-options-button = Options
+ui-lobby-theme-button = UI theme: { $theme }
+ui-lobby-theme-default = Default
+ui-lobby-theme-gold = Gold
+ui-lobby-theme-cosmos = Cosmos
+ui-lobby-theme-locked = Available with the second supporter tier
 ui-lobby-leave-button = Leave
 ui-lobby-observe-button = Observe
 ui-lobby-ready-up-button = Ready Up

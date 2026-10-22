@@ -1,0 +1,22 @@
+- type: constructionGraph
+  id: TorsherGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: torsher
+          completed:
+            - !type:SetAnchor
+              value: false
+          steps:
+            - material: WoodPlank
+              amount: 3
+              doAfter: 2
+            - tag: LightBulb
+              name: construction-graph-tag-light-bulb
+              icon:
+                sprite: Objects/Power/light_bulb.rsi
+                state: normal
+              doAfter: 1
+    - node: torsher
+      entity: Torsher

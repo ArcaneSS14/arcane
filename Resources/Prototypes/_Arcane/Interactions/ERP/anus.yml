@@ -20,7 +20,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   userRequirements:
   - !type:SexRequirement
     sexes:
@@ -50,7 +50,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: AnusFingering
@@ -70,7 +70,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: AnusTailFuck
@@ -94,17 +94,45 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
+    part: Butt
+  userRequirements:
+  - !type:TailRequirement
+
+- type: panelInteraction
+  id: CockSelfAssFuck
+  category: Anus
+  userArouse: 15
+  targetArouse: 10
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/asscrap1.ogg
+  - /Audio/_Arcane/Interactions/asscrap2.ogg
+  - /Audio/_Arcane/Interactions/asscrap3.ogg
+  messages:
+  - вставляет член $target себе в анус и трахает себя им.
+  - садится на член $target верхом, принимая его в анус.
+  - направляет член $target в свою задницу и ритмично двигает бёдрами.
+  - насаживается на член $target, вытаскивая из себя удовольствие.
+  - вжимает член $target в свой анус, устраиваясь верхом.
+  - впихивает член $target в себя и трахая свою задницу.
+  icon: _Arcane/Interface/ErpPanel/fuck_ass.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
     part: Groin
   userRequirements:
-  - !type:SpeciesRequirement
-    species:
-    - Demon
-    - Felinid
-    - Vulpkanin
-    - Tajaran
-    - HumanoidXeno
-    - Rodentia
-    - Feroxi
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Butt
+  - !type:ArousalRequirement
 
 - type: panelInteraction
   id: AnalLick2
@@ -126,7 +154,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: AnalFingering2
@@ -147,7 +175,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: ToyButt
@@ -170,7 +198,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   userRequirements:
   - !type:HeldItemRequirement
     tags:
@@ -199,7 +227,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   userRequirements:
   - !type:ClothesWearingRequirements
     tags:
@@ -226,7 +254,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   userRequirements:
   - !type:NearbyTargetRequirement
     tags:
@@ -250,7 +278,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: RunningFingerAnus
@@ -270,7 +298,7 @@
   - RequiresERP
   targetRequirements:
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
 
 - type: panelInteraction
   id: WallAnusFuck
@@ -296,8 +324,13 @@
     tags:
     - Wall
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   - !type:ArousalRequirement
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
 
 - type: panelInteraction
   id: LickAnusCondensedCum
@@ -321,7 +354,7 @@
   targetRequirements:
   - !type:CumOverlayRequirement
   - !type:ExposedBodyPartRequirement
-    part: Groin
+    part: Butt
   - !type:SexRequirement
     sexes:
     - Male

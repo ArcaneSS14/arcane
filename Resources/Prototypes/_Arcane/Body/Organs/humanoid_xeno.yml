@@ -99,7 +99,7 @@
     state: heart-off
   - type: Metabolizer
     maxPoisonsProcessable: 2
-    metabolizerTypes: [Animal]
+    metabolizerTypes: [HumanoidXeno]
     groups:
     - id: Medicine
     - id: Poison
@@ -123,9 +123,13 @@
         - ReagentId: FluorosulfuricAcid
           Quantity: 5
   - type: Stomach
+    specialDigestible:
+      tags:
+      - Trash
+    isSpecialDigestibleExclusive: false
   - type: Metabolizer
     maxPoisonsProcessable: 3
-    metabolizerTypes: [Animal]
+    metabolizerTypes: [HumanoidXeno]
     groups:
     - id: Food
     - id: Drink
@@ -140,7 +144,7 @@
     state: liver
   - type: Metabolizer
     maxPoisonsProcessable: 1
-    metabolizerTypes: [Human]
+    metabolizerTypes: [HumanoidXeno]
     groups:
     - id: Alcohol
       rateModifier: 0.1
@@ -157,7 +161,7 @@
       - state: kidney-r
   - type: Metabolizer
     maxPoisonsProcessable: 5
-    metabolizerTypes: [Human]
+    metabolizerTypes: [HumanoidXeno]
     removeEmpty: true
 
 - type: entity

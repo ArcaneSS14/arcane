@@ -109,3 +109,8 @@
 - type: Tag
   id: Bed
 
+- type: Tag
+  id: HorseEmotes
+
+- type: Tag
+  id: Magazine50BMG

@@ -269,8 +269,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
 
     public void RoundStarting(int id)
     {
-        _currentRoundId = id;
-        CacheNewRound();
+        CacheNewRound(id); // Arcane-Edit
     }
 
     public void RunLevelChanged(GameRunLevel level)

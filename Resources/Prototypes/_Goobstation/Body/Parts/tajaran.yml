@@ -12,7 +12,7 @@
   - type: BodyPart
     species: Tajaran
   - type: Damageable
-    damageModifierSet: Tajaran
+#    damageModifierSet: Tajaran # Arcane-Edit
 
 - type: entity
   id: ChestTajaran

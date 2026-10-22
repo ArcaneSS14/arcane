@@ -50,3 +50,11 @@ loadout-group-engineer-cloak = Инженерный отдел, плащ
 
 # Cargo
 loadout-group-cargo-cloak = Отдел снабжения, плащ
+
+# Command
+loadout-group-hop-mask = Глава персонала, маска
+loadout-group-chief-engineer-mask = Старший инженер, маска
+loadout-group-chief-medical-officer-mask = Главный врач, маска
+loadout-group-quartermaster-mask = Квартирмейстер, маска
+loadout-group-research-director-mask = Научный руководитель, маска
+loadout-group-head-of-security-mask = Глава службы безопасности, маска

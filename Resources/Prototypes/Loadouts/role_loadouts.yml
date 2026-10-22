@@ -20,19 +20,22 @@
   - CaptainJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobHeadOfPersonnel
   groups:
   - HoPHead
+  - HoPMask # Arcane
   - Glasses
   - HoPNeck
   - HoPOuterClothing
@@ -49,14 +52,16 @@
   - HoPJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 # Silicons
 - type: roleLoadout
@@ -91,14 +96,16 @@
   - PassengerJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobBartender
@@ -107,6 +114,7 @@
   - Glasses
   - BartenderOuterClothing
   - BartenderJumpsuit
+  - ServiceCloak # Arcane
   - CommonBackpack
   # Goobstation - EE Plasmeme Change.
   - BartenderEnvirohelm
@@ -118,14 +126,16 @@
   - BartenderJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobServiceWorker
@@ -157,12 +167,14 @@
   - ServiceWorkerJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
-  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - ServiceWorkerEnvirohelm
   - ServiceWorkerEnvirosuit
   - ServiceWorkerEnvirogloves
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobChef
@@ -173,7 +185,6 @@
   - ChefOuterClothing
   - ServiceCloak # Arcane
   - ChefJumpsuit
-  - GroupGrimoire # Arcane
   - CommonBackpack
   # Goobstation - EE Plasmeme Change.
   - ChefEnvirohelm
@@ -194,12 +205,14 @@
   - ChefJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
-  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - ChefEnvirohelm
   - ChefEnvirosuit
   - ChefEnvirogloves
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobLibrarian
@@ -220,14 +233,16 @@
   - LibrarianJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
+  # Arcane-Start
   - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobLawyer
@@ -246,14 +261,16 @@
   - LawyerJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobChaplain
@@ -278,14 +295,16 @@
   - ChaplainJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobJanitor
@@ -307,14 +326,16 @@
   - JanitorJobTrinkets
   - Trinkets
   - Animals # Goobstation?
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobBotanist
@@ -335,14 +356,16 @@
   - BotanistJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobClown
@@ -359,7 +382,6 @@
   - Trinkets
   # Arcane-Start
   - ClownUnderwear
-  - GroupGrimoire
   # Arcane-End
   # Goobstation - EE Plasmeme Change.
   - ClownEnvirohelm
@@ -374,7 +396,10 @@
   - Socks
   - Wrists
   # Orion-End
+  # Arcane-Start
   - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobMime
@@ -384,13 +409,9 @@
   - MimeMask
   - Glasses
   - MimeOuterClothing
-  # Arcane-Start
-  - ServiceCloak
-  # Arcane-End
+  - ServiceCloak # Arcane
   - MimeJumpsuit
-  # Arcane-Start
-  - MimeHands
-  # Arcane-End
+  - MimeHands # Arcane
   - MimeGloves # Goobstation
   - MimeShoes # Goobstation
   - MimeBackpack
@@ -404,16 +425,17 @@
   - MimeJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  # Arcane-Start
-  - MimeSocks
-  # Arcane-End
+  - MimeSocks # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
+  # Arcane-Start
   - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobMusician
@@ -436,20 +458,23 @@
   - Instruments
   - Trinkets
   - Animals
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 # Cargo
 - type: roleLoadout
   id: JobQuartermaster
   groups:
   - QuartermasterHead
+  - QuartermasterMask # Arcane
   - Glasses
   - QuartermasterNeck
   - QuartermasterOuterClothing
@@ -467,14 +492,16 @@
   - QuartermasterJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobCargoTechnician
@@ -497,14 +524,16 @@
   - CargoTechnicianJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobSalvageSpecialist
@@ -525,20 +554,23 @@
   - SalvageSpecialistJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 # Engineering
 - type: roleLoadout
   id: JobChiefEngineer
   groups:
   - ChiefEngineerHead
+  - ChiefEngineerMask # Arcane
   - ChiefEngineerNeck
   - ChiefEngineerOuterClothing
   - ChiefEngineerJumpsuit
@@ -554,14 +586,16 @@
   - ChiefEngineerJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobTechnicalAssistant
@@ -578,14 +612,16 @@
   - TechnicalAssistantJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobStationEngineer
@@ -607,14 +643,16 @@
   - StationEngineerJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobAtmosphericTechnician
@@ -635,20 +673,23 @@
   - AtmosphericTechnicianJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 # Science
 - type: roleLoadout
   id: JobResearchDirector
   groups:
   - ResearchDirectorHead
+  - ResearchDirectorMask # Arcane
   - Glasses
   - ResearchDirectorNeck
   - ResearchDirectorOuterClothing
@@ -666,14 +707,16 @@
   - ResearchDirectorJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobScientist
@@ -697,14 +740,16 @@
   - ScientistJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobResearchAssistant
@@ -722,20 +767,23 @@
   - ResearchAssistantJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 # Security
 - type: roleLoadout
   id: JobHeadOfSecurity
   groups:
   - HeadofSecurityHead
+  - HeadofSecurityMask # Arcane
   - HeadofSecurityNeck
   - HeadofSecurityOuterClothing
   - HeadofSecurityJumpsuit
@@ -754,14 +802,16 @@
   - HeadofSecurityJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobWarden
@@ -785,14 +835,16 @@
   - WardenJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobSecurityOfficer
@@ -817,14 +869,16 @@
   - SecurityJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobDetective
@@ -845,14 +899,16 @@
   - DetectiveJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobSecurityCadet
@@ -871,20 +927,23 @@
   - SecurityCadetJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 # Medical
 - type: roleLoadout
   id: JobChiefMedicalOfficer
   groups:
   - ChiefMedicalOfficerHead
+  - ChiefMedicalOfficerMask # Arcane
   - MedicalMask
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerOuterClothing
@@ -903,14 +962,16 @@
   - ChiefMedicalOfficerJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobMedicalDoctor
@@ -947,12 +1008,14 @@
   - MedicalDoctorJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
-  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - MedicalDoctorEnvirohelm
   - MedicalDoctorEnvirosuit
   - MedicalDoctorEnvirogloves
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobMedicalIntern
@@ -970,14 +1033,16 @@
   - MedicalInternJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobChemist
@@ -1013,12 +1078,14 @@
   - ChemistJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
-  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - ChemistEnvirohelm
   - ChemistEnvirosuit
   - ChemistEnvirogloves
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobParamedic
@@ -1055,12 +1122,14 @@
   - ParamedicJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathToolMedical
-  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - ParamedicEnvirohelm
   - ParamedicEnvirosuit
   - ParamedicEnvirogloves
-  - Patron # Arcane
+  # Arcane-Start
+  - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 # Wildcards
 - type: roleLoadout
@@ -1068,9 +1137,7 @@
   groups:
   - Glasses
   - ReporterOuterClothing # Goobstation - Bodycams
-  # Arcane-Start
-  - ServiceCloak
-  # Arcane-End
+  - ServiceCloak # Arcane
   - ReporterJumpsuit
   - CommonBackpack
   # Goobstation - EE Plasmeme Change.
@@ -1092,12 +1159,14 @@
   - ReporterJobTrinkets
   - Animals # Goobstation
   - GroupSpeciesBreathTool
-  - GroupGrimoire # Arcane
   # Goobstation - EE Plasmeme Change.
   - ReporterEnvirohelm
   - ReporterEnvirosuit
   - ReporterEnvirogloves
+  # Arcane-Start
   - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 - type: roleLoadout
   id: JobPsychologist
@@ -1118,14 +1187,16 @@
   - PsychologistJobTrinkets
   - Trinkets
   - Animals # Goobstation
-  - GroupGrimoire # Arcane
   # Orion-Start
   - Undershirt
   - Underwear
   - Socks
   - Wrists
   # Orion-End
+  # Arcane-Start
   - Patron
+  - GroupGrimoire
+  # Arcane-End
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit

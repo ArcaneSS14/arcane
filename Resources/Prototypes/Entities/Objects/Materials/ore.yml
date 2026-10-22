@@ -21,9 +21,9 @@
     methodPointRewards:
       Deconstruct:
       - type: General
-        amount: 250
+        amount: 67 # Arcane-Edit
       - type: Experimental
-        amount: 30
+        amount: 5 # Arcane-Edit
     discoveryTrigger: machine:ore-sample
   # Orion-End
   - type: Fixtures
@@ -357,6 +357,15 @@
   - type: Material
   - type: Extractable
     grindableSolutionName: coal
+  # Goob start - Afterlight synths
+  - type: Edible
+    requiresSpecialDigestion: true
+    solution: coal
+  - type: FlavorProfile
+    flavors:
+    - bitter
+  - type: BadFood
+  # Goob end
   - type: SolutionContainerManager
     solutions:
       coal:

@@ -1,0 +1,55 @@
+- type: entity
+  abstract: true
+  parent: AirSensorBase
+  id: AirSensorVaporBase
+  suffix: Vapor Atmosphere
+  components:
+  - type: AtmosMonitor
+    gasThresholdPrototypes:
+      Oxygen: stationOxygen
+      Nitrogen: stationNitrogen
+      CarbonDioxide: stationCO2
+      Plasma: stationPlasma
+      Tritium: stationTritium
+      Ammonia: stationAmmonia
+      NitrousOxide: stationNO
+      Frezon: danger
+      BZ: danger
+      Healium: ignore 
+      Nitrium: danger
+      Pluoxium: ignore
+      Aphrodisiac: ignore
+
+- type: entity
+  parent: [AirSensorVaporBase, AirSensor]
+  id: AirSensorVapor
+
+- type: entity
+  parent: [AirSensorVaporBase, GasVentPump]
+  id: GasVentPumpVapor
+
+- type: entity
+  parent: [AirSensorVaporBase, GasVentScrubber]
+  id: GasVentScrubberVapor
+  components:
+  - type: GasVentScrubber
+    wideNet: false
+    filterGases:
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+    - BZ
+    - Healium
+    - Nitrium
+    - Pluoxium
+
+- type: entity
+  parent: AirAlarm
+  id: AirAlarmNoAuto
+  suffix: auto mode disabled
+  components:
+  - type: AirAlarm
+    autoMode: false

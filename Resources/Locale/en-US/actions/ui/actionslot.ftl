@@ -7,3 +7,9 @@
 
 ui-actionslot-charges = Uses left: {$charges}
 ui-actionslot-duration = [color=#a10505] {$duration} sec cooldown ({$timeLeft} sec remaining)[/color]
+
+# Arcane-Edit-Start
+ui-actionslot-pinned = Pinned — middle click to unpin
+ui-actionslot-unavailable = Unavailable
+ui-actionslot-pinned-unavailable = Unavailable — pinned, middle click to unpin
+# Arcane-Edit-End

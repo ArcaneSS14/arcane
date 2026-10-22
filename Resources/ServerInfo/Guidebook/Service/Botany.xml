@@ -77,10 +77,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <GuideEntityEmbed Entity="DiseaseSwab"/>
 </Box>
 
-## Chemicals
-Some chemicals have special effects on plants.
+## Химикаты
+Некоторые химикаты оказывают на растения особое воздействие.
 
-[textlink="Click here to see all botanical chemicals." link="Botanical"]
+[textlink="Здесь перечислены все химикаты для ботаники." link="Botanical"]
 
 <GuideReagentEmbed Reagent="Dylovene"/>
 <GuideReagentEmbed Reagent="Cryoxadone"/>

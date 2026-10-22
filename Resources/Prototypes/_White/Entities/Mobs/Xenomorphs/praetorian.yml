@@ -70,6 +70,7 @@
     evolvesTo:
     - prototype: MobXenomorphQueen
   - type: GhostRole
+    banJob: GhostRoleXenomorph # Arcane
     allowMovement: true
     allowSpeech: true
     makeSentient: true

@@ -16,6 +16,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Server.Vocalization.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Database;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Power;
 using Content.Shared.Silicons.Borgs.Components;
@@ -156,9 +157,10 @@ namespace Content.Server.VendingMachines
 
             if (type != InventoryType.Regular ||
                 pricing.DiscountDepartment is not { } discountDepartment ||
-                user == null ||
-                !TryGetAccount(user.Value, out var account) ||
-                !_bank.TryGetDepartment(account, out var buyerDepartment) ||
+                // Arcane-Edit-Start
+                user is not { } buyer ||
+                !_bank.TryGetPlayerJobDepartment(buyer, out var buyerDepartment) ||
+                // Arcane-Edit-End
                 buyerDepartment != discountDepartment)
             {
                 return basePrice;

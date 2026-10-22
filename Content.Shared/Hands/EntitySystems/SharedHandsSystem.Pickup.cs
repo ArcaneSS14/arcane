@@ -206,10 +206,10 @@ public abstract partial class SharedHandsSystem
             if (!ContainerSystem.CanRemove(entity, container))
                 return false;
 
-            if (_inventory.TryGetSlotEntity(uid, container.ID, out var slotEnt) &&
-                slotEnt == entity &&
-                !_inventory.CanUnequip(uid, container.ID, out _))
+            // Arcane-Edit-Start
+            if (_inventory.TryGetSlotEntity(uid, container.ID, out var slotEnt) && slotEnt == entity)
                 return false;
+            // Arcane-Edit-End
         }
 
         // check can insert (including raising attempt events).
@@ -287,7 +287,7 @@ public abstract partial class SharedHandsSystem
             return;
         }
 
-        _interactionSystem.DoContactInteraction(uid, entity); //Possibly fires twice if manually picked up via interacting with the object
+        _interactionSystem.DoContactInteraction(uid, entity, null, true); // Goob - Possibly fires twice if manually picked up via interacting with the object
 
         if (log)
             _adminLogger.Add(LogType.Pickup, LogImpact.Low, $"{ToPrettyString(uid):user} picked up {ToPrettyString(entity):entity}");

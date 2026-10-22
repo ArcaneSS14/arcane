@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Goobstation.Common.Body;
 using Content.Goobstation.Common.DelayedDeath;
 using Content.Goobstation.Shared.CheatDeath;
 using Content.Goobstation.Shared.Devour.Events;
@@ -8,6 +9,7 @@ using Content.Server.Administration.Systems;
 using Content.Server.Jittering;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Examine;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -17,12 +19,12 @@ namespace Content.Goobstation.Server.Devil.CheatDeath;
 
 public sealed partial class CheatDeathSystem : EntitySystem
 {
-    [Dependency] private readonly RejuvenateSystem _rejuvenateSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly ActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly JitteringSystem _jitter = default!;
-    [Dependency] private readonly MobThresholdSystem _thresholdSystem = default!;
+    [Dependency] private RejuvenateSystem _rejuvenateSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private ActionsSystem _actionsSystem = default!;
+    [Dependency] private JitteringSystem _jitter = default!;
+    [Dependency] private MobThresholdSystem _thresholdSystem = default!;
 
     public override void Initialize()
     {
@@ -36,6 +38,7 @@ public sealed partial class CheatDeathSystem : EntitySystem
         SubscribeLocalEvent<CheatDeathComponent, ExaminedEvent>(OnExamined);
 
         SubscribeLocalEvent<CheatDeathComponent, DelayedDeathEvent>(OnDelayedDeath);
+        SubscribeLocalEvent<CheatDeathComponent, BeforeBrainRemovedEvent>(OnBrainRemoveAttempt); // Arcane
     }
 
     private void OnInit(Entity<CheatDeathComponent> ent, ref MapInitEvent args) =>
@@ -68,6 +71,11 @@ public sealed partial class CheatDeathSystem : EntitySystem
             RemCompDeferred(ent.Owner, ent.Comp);
     }
 
+    // Arcane-Start
+    // Losing the head would move the mind into it, away from the body that has the revive action.
+    private void OnBrainRemoveAttempt(Entity<CheatDeathComponent> ent, ref BeforeBrainRemovedEvent args) =>
+        args.Blocked = true;
+    // Arcane-End
 
     private void OnDeathCheatAttempt(Entity<CheatDeathComponent> ent, ref CheatDeathEvent args)
     {

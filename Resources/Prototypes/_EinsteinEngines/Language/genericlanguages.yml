@@ -20,6 +20,7 @@
   id: RobotTalk
   isVisibleLanguage: true
   speech:
+    color: "#13a10e" # Arcane
     fontId: RobotoLight # Orion-Edit
     boldFontId: RobotoBoldCondensed # Orion-Edit
   # Orion-Start

@@ -28,9 +28,11 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
         base.Initialize();
         var cache = IoCManager.Resolve<IResourceCache>();
 
+        // Arcane-Edit-Start
         _smallFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Italic.ttf"), 10);
         _mediumFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Italic.ttf"), 12);
-        _largeFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-BoldItalic.ttf"), 14);
+        _largeFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Italic.ttf"), 14);
+        // Arcane-Edit-End
     }
 
     public void OnStateEntered(GameplayState state)
@@ -90,7 +92,7 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
         }
 
         var dimensions = handle.GetDimensions(font, popup.Text, scale);
-        handle.DrawString(font, updatedPosition - dimensions / 2f, popup.Text, scale, color.WithAlpha(alpha));
+        handle.DrawString(font, updatedPosition - dimensions / 2f + popup.RandomOffset, popup.Text, scale, color.WithAlpha(alpha)); // Arcane-Edit
     }
 
     /// <summary>

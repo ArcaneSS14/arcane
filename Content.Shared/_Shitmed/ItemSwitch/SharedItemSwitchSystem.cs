@@ -95,7 +95,12 @@ public abstract class SharedItemSwitchSystem : EntitySystem
                 continue;
             args.Verbs.Add(new ActivationVerb()
             {
-                Text = Loc.TryGetString($"itemswitch-component-state-{state.Value.Verb}", out var title) ? title : state.Value.Verb, // Orion-Edit: Localize
+                // Arcane-Edit-Start: verbs such as "cloak&mantle" cannot be FTL ids, so fall back to the state key
+                Text = Loc.TryGetString($"itemswitch-component-state-{state.Value.Verb}", out var title)
+                    || Loc.TryGetString($"itemswitch-component-state-{state.Key}", out title)
+                        ? title
+                        : state.Value.Verb, // Orion-Edit: Localize
+                // Arcane-Edit-End
                 Category = VerbCategory.Switch,
                 Act = () => Switch((ent.Owner, ent.Comp), state.Key, user, ent.Comp.Predictable)
             });
@@ -202,7 +207,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
 
         if (TryComp<ItemComponent>(uid, out var item) && _container.TryGetContainingContainer((uid, null, null), out var container))
         {
-            if (TryComp(container.Owner, out StorageComponent? storage))
+            if (container.ID == StorageComponent.ContainerId && TryComp(container.Owner, out StorageComponent? storage)) // Arcane-Edit
             {
                 _transform.AttachToGridOrMap(uid);
                 if (!_storage.Insert(container.Owner, uid, out _, null, storage, false))

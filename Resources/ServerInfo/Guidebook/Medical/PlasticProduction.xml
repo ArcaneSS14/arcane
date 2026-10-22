@@ -8,7 +8,7 @@
 
   ## Рецепт
 
-  Для производства [bold]10 Пластиковых листов[/bold], combine the following in a chemical mixer and heat to at least [bold]374 Kelvin[/bold]:
+  Для производства [bold]10 пластиковых листов[/bold] смешайте в химическом миксере следующие вещества и нагрейте смесь как минимум до [bold]374 К[/bold]:
 
   — 10u [bold]Машинного масла[/bold]
 
@@ -16,13 +16,13 @@
 
   — 4u [bold]Серной кислоты[/bold]
 
-  ## Components
+  ## Компоненты
 
   <GuideReagentEmbed Reagent="Oil"/>
   <GuideReagentEmbed Reagent="Ash"/>
   <GuideReagentEmbed Reagent="SulfuricAcid"/>
 
-  ## Output
+  ## Результат
 
   После завершения синтеза пластик появится поверх мензурки или ХимМастера.
 

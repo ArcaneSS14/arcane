@@ -17,3 +17,56 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Socks/Sponsor/mime_stockings.rsi
+
+# Lovemate
+
+- type: entity
+  parent: ClothingSocksBase
+  id: ClothingLatexStockings
+  name: latex stockings
+  description: A black stockings made of very lightweight latex.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Socks/latex_stokings.rsi
+
+# Command
+
+- type: entity
+  parent: ClothingSocksBase
+  id: ClothingSocksWhiteRigged
+  name: white rigged stockings
+  description: White stockings equipped with tactical rig straps.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Socks/white_rigged_stockings.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Socks/white_rigged_stockings.rsi
+  - type: Storage
+    grid:
+    - 0,0,1,1
+    maxItemSize: Small
+    whitelist:
+      tags:
+      - CombatKnife
+      - KitchenKnife
+      - Knife
+      - Paper
+  - type: ContainerContainer # У ClothingSocksBase нет инвентаря
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface # У ClothingSocksBase нет показа инвентаря
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ArcaneItemClothingVisuals
+    clothingVisuals:
+      socks:
+      - whitelist:
+          tags:
+          - CombatKnife
+          - KitchenKnife
+          - Knife
+        layer:
+          state: equipped-SOCKS-knife

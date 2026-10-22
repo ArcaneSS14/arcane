@@ -46,7 +46,7 @@
   - type: Inventory
     templateId: yowie
   - type: Damageable
-    damageModifierSet: Yowie
+#    damageModifierSet: Yowie # Arcane-Edit
   - type: Metabolizer
     updateInterval: 3
   - type: BoganAccent

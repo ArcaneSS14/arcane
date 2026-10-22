@@ -30,7 +30,7 @@
     requiredLegs: 2
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Chitinid
+#    damageModifierSet: Chitinid # Arcane-Edit
   - type: Speech
     speechVerb: Chitinid
     allowedEmotes: ['Chitter', 'Click', 'Hiss', 'Scream'] # Arcane-Edit: Upstream fix: Added 'Scream'

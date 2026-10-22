@@ -21,7 +21,7 @@
       collection: CatMeows
       params:
         variation: 0.125
-    CatHisses:
+    Hiss: # Arcane-Edit
       collection: CatHisses
       params:
         variation: 0.125

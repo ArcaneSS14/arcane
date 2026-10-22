@@ -1,6 +1,7 @@
-using Content.Shared.Body.Part;
+using Content.Shared._Arcane.ERP;
 using Content.Shared.Inventory;
 using Robust.Shared.Serialization;
+using Content.Shared._Arcane.Body.Part;
 
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 
@@ -8,14 +9,16 @@ namespace Content.Shared._Arcane.ErpPanel.Requirements;
 public sealed partial class ExposedBodyPartRequirement : InvertableErpRequirement
 {
     [DataField(required: true)]
-    public BodyPartType Part;
+    public ErpBodyPartType Part;
 
     public override bool IsAvailable(EntityUid uid, IEntityManager entityManager)
     {
         var coveringSlots = Part switch
         {
-            BodyPartType.Chest => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERSHIRT,
-            BodyPartType.Groin => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERWEAR,
+            ErpBodyPartType.Chest => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERSHIRT,
+            ErpBodyPartType.Groin => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERWEAR,
+            ErpBodyPartType.Butt => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERWEAR | SlotFlags.PLUG,
+
             _ => SlotFlags.NONE,
         };
 
@@ -26,7 +29,19 @@ public sealed partial class ExposedBodyPartRequirement : InvertableErpRequiremen
         if (!inventory.TryGetContainerSlotEnumerator(uid, out var slots, coveringSlots))
             return false;
 
-        var isExposed = !slots.NextItem(out _);
+        var isExposed = true;
+
+        while (slots.MoveNext(out var containerSlot))
+        {
+            if (containerSlot?.ContainedEntity is not { } item)
+                continue;
+
+            if (entityManager.TryGetComponent<CondomComponent>(item, out var condom) && !condom.Full)
+                continue;
+
+            isExposed = false;
+            break;
+        }
 
         return Inverted ? !isExposed : isExposed;
     }

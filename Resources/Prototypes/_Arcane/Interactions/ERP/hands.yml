@@ -78,3 +78,52 @@
   - !type:NearbyStaticEntityRequirement
     tags:
     - Wall
+
+- type: panelInteraction
+  id: TargetHandFap
+  category: Hands
+  userArouse: 10
+  targetArouse: 5
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  messages:
+  - берёт руку $target и дрочит ею свой член.
+  - направляет руку $target на свой член и ласкает им себя.
+  - обхватывает свой член ладонью $target и быстро двигает ею.
+  - использует руку $target, чтобы доставить себе удовольствие.
+  - оборачивает свой член вокруг пальцев $target и двигается вверх-вниз.
+  icon: _Arcane/Interface/ErpPanel/cock_fap.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: TargetHandFingering
+  category: Hands
+  userArouse: 10
+  targetArouse: 5
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  messages:
+  - берёт $target за руку, сгибая пальцы и вводя ими у влагалища.
+  - направляет руку $target в свою киску и пальцами ласкает её.
+  - заводит пальцы $target , лаская ими свою киску.
+  - использует пальчики $target, чтобы доставить себе удовольствие.
+  icon: _Arcane/Interface/ErpPanel/pussy_fingering.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin

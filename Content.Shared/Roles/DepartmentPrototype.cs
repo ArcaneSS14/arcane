@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.Cargo.Prototypes;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Roles;
@@ -57,6 +58,16 @@ public sealed partial class DepartmentPrototype : IPrototype
     /// </summary>
     [DataField]
     public bool EditorHidden;
+
+    // Arcane-Start
+    /// <summary>
+    /// Station account this department draws its budget from. Also decides which department perks,
+    /// such as vending machine discounts, members of this department get.
+    /// Null means the department grants no account and no perks.
+    /// </summary>
+    [DataField]
+    public ProtoId<CargoAccountPrototype>? StationAccount { get; private set; }
+    // Arcane-End
 }
 
 /// <summary>

@@ -1111,3 +1111,75 @@
     - AdminBenefit
   equipment:
     neck: ClothingCloakSecurityPatron
+
+# Command
+
+- type: loadout
+  id: MaskGasCaptainPatreon
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    mask: ClothingMaskGasCaptainPatreon
+
+- type: loadout
+  id: MaskGasCEPatreon
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    mask: ClothingMaskGasCEPatreon
+
+- type: loadout
+  id: MaskGasCMOPatreon
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    mask: ClothingMaskGasCMOPatreon
+
+- type: loadout
+  id: MaskGasHoPPatreon
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    mask: ClothingMaskGasHoPPatreon
+
+- type: loadout
+  id: MaskGasHoSPatreon
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    mask: ClothingMaskGasHoSPatreon
+
+- type: loadout
+  id: MaskGasQMPatreon
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    mask: ClothingMaskGasQMPatreon
+
+- type: loadout
+  id: MaskGasRDPatreon
+  effects:
+  - !type:SponsorRequirementLoadoutEffect
+    roles:
+    - SponsorTier2
+    - AdminBenefit
+  equipment:
+    mask: ClothingMaskGasRDPatreon

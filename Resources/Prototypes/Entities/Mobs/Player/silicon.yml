@@ -8,7 +8,7 @@
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
-    # - Binary # Goobstation - replaced with collective mind
+    - Binary
     - Common
     - Command
     - Engineering
@@ -19,7 +19,7 @@
     - Supply
   - type: ActiveRadio
     channels:
-    # - Binary # Goobstation - replaced with collective mind
+    - Binary
     - Common
     - Command
     - Engineering
@@ -28,11 +28,6 @@
     - Security
     - Service
     - Supply
-  # Goobstation
-  - type: CollectiveMind
-    defaultChannel: Binary
-    channels:
-    - Binary
   - type: IgnoreUIRange
   - type: StationAiHeld
   - type: StationAiOverlay
@@ -44,7 +39,10 @@
     - ActionAIViewLaws
     - ActionOpenRemoteDevicesMenu # Corvax-Next-AiRemoteControl
     - ActionOpenCameraWarpMenu # Goobstation-Ai-Camera-Jumping
-    - ActionTTSVoiceChange # Arcane
+    # Arcane-Start
+    - ActionTTSVoiceChange
+    - ActionOpenRadioChannels
+    # Arcane-End
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -101,23 +99,20 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: IntrinsicRadioReceiver
-  #- type: IntrinsicRadioTransmitter
-  #  channels:
-  #  - Binary # Goobstation - replaced with collective mind
-  - type: ActiveRadio
-    channels:
-    # - Binary # Goobstation - replaced with collective mind
-    - Common
-  # Goobstation
-  - type: CollectiveMind
-    defaultChannel: Binary
+  - type: IntrinsicRadioTransmitter
     channels:
     - Binary
-    canUseInCrit: true # Goobstation
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
   - type: ActionGrant
     actions:
     - ActionAIViewLaws
-    - ActionTTSVoiceChange # Arcane
+    # Arcane-Start
+    - ActionTTSVoiceChange
+    - ActionOpenRadioChannels
+    # Arcane-End
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:

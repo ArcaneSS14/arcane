@@ -19,6 +19,9 @@ using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Doors.Components; // Arcane
+using Content.Shared.Prying.Components; // Arcane
+using Content.Shared.Prying.Systems; // Arcane
 using Content.Shared.Storage.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Whitelist;
@@ -56,6 +59,7 @@ public abstract partial class SharedMechSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!; // Goobstation Change
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!; // Goobstation Change
     [Dependency] private readonly IConfigurationManager _config = default!; // Goobstation Change
+    [Dependency] private readonly PryingSystem _prying = default!; // Arcane
 
     // Goobstation: Local variable for checking if mech guns can be used out of them.
     private bool _canUseMechGunOutside;
@@ -120,6 +124,11 @@ public abstract partial class SharedMechSystem : EntitySystem
         {
             RaiseLocalEvent(component.CurrentSelectedEquipment.Value, args);
         }
+
+        // Arcane-Start
+        if (!args.Handled && HasComp<PryingComponent>(uid) && HasComp<DoorComponent>(args.Target))
+            args.Handled = _prying.TryPry(args.Target, uid, out _, uid);
+        // Arcane-End
     }
 
     private void OnStartup(EntityUid uid, MechComponent component, ComponentStartup args)

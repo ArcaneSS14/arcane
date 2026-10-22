@@ -1,0 +1,4 @@
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtMimeSexy
+  result: ClothingUniformJumpskirtMimeSexy

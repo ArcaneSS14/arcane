@@ -57,13 +57,14 @@
       - !type:EjectVendorItems
   - type: Repairable
     doAfterDelay: 8
+  - type: ESForcedFacingUi # Goob
   - type: ActivatableUI
     key: enum.VendingMachineUiKey.Key
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
       enum.VendingMachineUiKey.Key:
-        type: VendingMachineBoundUserInterface
+        type: VendingMachineKeypadBoundUserInterface # Goob
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: WiresPanel
@@ -85,18 +86,13 @@
     messageSet: SpookySpeakerMessagesGeneric
     speakChance: 0.2
   - type: IntrinsicRadioReceiver
-  #- type: IntrinsicRadioTransmitter
-  #  channels:
-  #  - Binary # Goobstation - replaced with collective mind
-  - type: ActiveRadio
-    channels:
-    # - Binary # Goobstation - replaced with collective mind
-    - Common
-  # Goobstation
-  - type: CollectiveMind
-    defaultChannel: Binary
+  - type: IntrinsicRadioTransmitter
     channels:
     - Binary
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
   - type: IntellicardableMind # Goobstation - intellicard on more AIs
   - type: DoAfter
   - type: Electrified
@@ -107,7 +103,7 @@
     castShadows: false
     radius: 2
     energy: 1.5
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: LitOnPowered
   - type: ApcPowerReceiver
@@ -174,13 +170,14 @@
           collection: MetalGlassBreak
   - type: Repairable
     doAfterDelay: 8
+  - type: ESForcedFacingUi # Goob
   - type: ActivatableUI
     key: enum.VendingMachineUiKey.Key
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
       enum.VendingMachineUiKey.Key:
-        type: VendingMachineBoundUserInterface
+        type: VendingMachineKeypadBoundUserInterface # Goob
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: WiresPanel
@@ -216,6 +213,10 @@
   - type: VendingMachine
     pack: CondimentInventory
     offState: off
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/condiments.rsi
     drawdepth: SmallObjects
@@ -279,6 +280,10 @@
     normalState: normal-unshaded
     denyState: deny-unshaded
     loopDeny: false
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: BoozeOMatAds
   - type: SpeakOnUIClosed
@@ -362,7 +367,7 @@
     radius: 1
     energy: 2.0
     color: "#ffb0b0"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
@@ -384,6 +389,10 @@
     brokenState: broken
     normalState: normal-unshaded
     ejectState: eject-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: ChefvendAds
   - type: SpeakOnUIClosed
@@ -404,7 +413,7 @@
     radius: 1.5
     energy: 3.0
     color: "#4b93ad"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -473,7 +482,7 @@
     radius: 1.8
     energy: 3.0
     color: "#3db83b"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Tag
     tags:
@@ -509,7 +518,7 @@
     radius: 1.8
     energy: 3.0
     color: "#3db83b"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Tag
     tags:
@@ -556,7 +565,7 @@
     radius: 1.5
     energy: 2.0
     color: "#ad7c4b"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -600,7 +609,7 @@
     radius: 1.5
     energy: 3.0
     color: "#3c5eb5"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -627,7 +636,7 @@
     radius: 1.5
     energy: 3.0
     color: "#423438"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -650,7 +659,7 @@
     radius: 1.5
     energy: 3.0
     color: "#A50824"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -677,7 +686,7 @@
     radius: 1.5
     energy: 3.0
     color: "#44964A"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -706,7 +715,7 @@
     radius: 1.5
     energy: 3.0
     color: "#CBC6BE"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -738,7 +747,7 @@
     radius: 1.5
     energy: 3.0
     color: "#D3A44D"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: true
@@ -776,7 +785,7 @@
     radius: 1.5
     energy: 3.0
     color: "#66538F"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -814,7 +823,7 @@
     radius: 1.5
     energy: 3.0
     color: "#6927C5"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -852,7 +861,7 @@
     radius: 1.5
     energy: 3.0
     color: "#D82929"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -904,6 +913,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: DinnerwareAds
   - type: SpeakOnUIClosed
@@ -925,7 +938,7 @@
     radius: 1.5
     energy: 3.0
     color: "#4b93ad"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -965,7 +978,7 @@
     radius: 1.5
     energy: 3.0
     color: "#9a18d6"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -1005,7 +1018,7 @@
     radius: 1.5
     energy: 3.0
     color: "#6148c7"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -1021,6 +1034,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
   - type: Sprite
     noRot: true
     sprite: Structures/Machines/VendingMachines/engivend.rsi
@@ -1038,7 +1055,7 @@
     radius: 1.5
     energy: 3.0
     color: "#b89e2a"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -1063,6 +1080,10 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     ejectDelay: 0.6
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: NanoMedAds
   - type: SpeakOnUIClosed
@@ -1082,7 +1103,7 @@
     radius: 1.5
     energy: 3.0
     color: "#9dc5c9"
-    mask: /Textures/Effects/LightMasks/cone.png # Goobstation
+    lightMask: ConeSingle # Goobstation
     autoRot: true # Goobstation
   - type: GuideHelp
     guides:
@@ -1102,6 +1123,10 @@
   - type: VendingMachine
     pack: NanoMedPlusInventory
     offState: off
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/medical.rsi
     layers:
@@ -1128,6 +1153,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: NutriMaxAds
   - type: SpeakOnUIClosed
@@ -1148,7 +1177,7 @@
     radius: 1.5
     energy: 3.0
     color: "#326e3f"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -1164,6 +1193,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Security
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: SecTechAds
   - type: SpeakOnUIClosed
@@ -1185,7 +1218,7 @@
     radius: 1
     energy: 2.0
     color: "#78645c"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: GuideHelp
     guides:
@@ -1212,6 +1245,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Edit-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-Edit-End
   - type: DatasetVocalizer
     dataset: MegaSeedAds
   - type: SpeakOnUIClosed
@@ -1230,7 +1267,7 @@
     radius: 1.5
     energy: 3.0
     color: "#326e3f"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -1276,7 +1313,7 @@
     radius: 1.5
     energy: 3.0
     color: "#c73434"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -1313,7 +1350,7 @@
     radius: 1.5
     energy: 3.0
     color: "#737785"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -1335,7 +1372,7 @@
     radius: 1.5
     energy: 3.0
     color: "#3c5eb5"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -1357,7 +1394,7 @@
     radius: 1.5
     energy: 3.0
     color: "#CE3401"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -1379,7 +1416,7 @@
     radius: 1.5
     energy: 3.0
     color: "#5F6A1C"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -1401,7 +1438,7 @@
     radius: 1.5
     energy: 3.0
     color: "#207E79"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -1440,7 +1477,7 @@
     radius: 1.5
     energy: 3.0
     color: "#389690"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -1485,7 +1522,7 @@
     radius: 1.5
     energy: 3.0
     color: "#c73434"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -1528,7 +1565,7 @@
     radius: 1.5
     energy: 3.0
     color: "#9dc5c9"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -1549,6 +1586,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Science
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: VendomatAds
   - type: SpeakOnUIClosed
@@ -1570,7 +1611,7 @@
     radius: 1.5
     energy: 3.0
     color: "#B0ADA9"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -1594,6 +1635,10 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
   - type: Sprite
     noRot: true
     sprite: Structures/Machines/VendingMachines/youtool.rsi
@@ -1609,7 +1654,7 @@
     radius: 1.5
     energy: 3.0
     color: "#d4ab33"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -1652,7 +1697,7 @@
     radius: 1.5
     energy: 3.0
     color: "#326e3f"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -1694,7 +1739,7 @@
     radius: 1.5
     energy: 3.0
     color: "#ffe599"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: Transform
     noRot: false
@@ -1728,7 +1773,7 @@
     radius: 1.5
     energy: 3.0
     color: "#b89f25"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: ShopVendor # DeltaV
     pack: SalvageVendorInventory
@@ -1792,7 +1837,7 @@
     radius: 1.5
     energy: 3.0
     color: "#d4ab33"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 # job clothing
@@ -1808,6 +1853,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: HyDrobeAds
   - type: SpeakOnUIClosed
@@ -1840,6 +1889,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: LawDrobeAds
   - type: SpeakOnUIClosed
@@ -1868,6 +1921,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Security
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: SecDrobeAds
   - type: SpeakOnUIClosed
@@ -1900,6 +1957,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: BarDrobeAds
   - type: SpeakOnUIClosed
@@ -1928,6 +1989,10 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/chapdrobe.rsi
     layers:
@@ -1944,7 +2009,7 @@
     radius: 1.5
     energy: 3.0
     color: "#CCCCCC" #The holy C
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -1958,6 +2023,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Cargo
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: CargoDrobeAds
   - type: SpeakOnUIClosed
@@ -1990,6 +2059,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: MediDrobeAds
   - type: SpeakOnUIClosed
@@ -2018,6 +2091,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: ChemDrobeAds
   - type: SpeakOnUIClosed
@@ -2046,6 +2123,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: CuraDrobeAds
   - type: SpeakOnUIClosed
@@ -2074,6 +2155,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: AtmosDrobeAds
   - type: SpeakOnUIClosed
@@ -2106,6 +2191,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: EngiDrobeAds
   - type: SpeakOnUIClosed
@@ -2138,6 +2227,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: ChefDrobeAds
   - type: SpeakOnUIClosed
@@ -2166,6 +2259,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Security
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: DetDrobeAds
   - type: SpeakOnUIClosed
@@ -2194,6 +2291,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Service
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: JaniDrobeAds
   - type: SpeakOnUIClosed
@@ -2214,7 +2315,7 @@
     radius: 1.5
     energy: 3.0
     color: "#6927C5"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
 
 - type: entity
@@ -2228,6 +2329,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Science
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: SciDrobeAds
   - type: SpeakOnUIClosed
@@ -2288,6 +2393,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Science
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: RoboDrobeAds
   - type: SpeakOnUIClosed
@@ -2316,6 +2425,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: GeneDrobeAds
   - type: SpeakOnUIClosed
@@ -2344,6 +2457,10 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: DatasetVocalizer
     dataset: ViroDrobeAds
   - type: SpeakOnUIClosed
@@ -2386,7 +2503,7 @@
     radius: 1.5
     energy: 3.0
     color: "#48CF48"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: AccessReader
     access: [["CentralCommand"]]
@@ -2422,7 +2539,7 @@
     radius: 1.5
     energy: 3.0
     color: "#3c5eb5"
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: DatasetVocalizer
     dataset: HappyHonkAds
@@ -2478,6 +2595,10 @@
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/tankdispenser.rsi #TODO add visualiser for remaining tanks as layers
     state: dispenser
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
 
 - type: entity
   parent: VendingMachine
@@ -2493,6 +2614,10 @@
     layers:
     - state: dispenser
     - state: dispensereng
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Engineering
+  # Arcane-End
 
 - type: entity
   parent: VendingMachine
@@ -2506,6 +2631,10 @@
     brokenState: broken
     normalState: normal
     denyState: deny
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   # ejectDelay: 2 Goobstation - No reason for the eject delay to be 2 seconds
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/chemvend.rsi
@@ -2579,6 +2708,10 @@
   - type: VendingMachine
     pack: NanoMedInventory
     offState: off
+  # Arcane-Start
+  - type: VendingMachinePricing
+    discountDepartment: Medical
+  # Arcane-End
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/wallmed.rsi
     layers:

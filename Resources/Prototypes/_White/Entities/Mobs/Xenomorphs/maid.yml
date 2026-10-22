@@ -39,6 +39,7 @@
   - type: OwOAccent
   - type: Pacified
   - type: GhostRole
+    banJob: GhostRoleXenomorph # Arcane
     allowMovement: true
     allowSpeech: true
     makeSentient: true

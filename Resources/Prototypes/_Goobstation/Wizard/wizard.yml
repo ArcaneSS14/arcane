@@ -50,6 +50,7 @@
   id: SpawnPointWizard
   components:
   - type: GhostRole
+    banJob: GhostRoleWizard # Arcane
     name: roles-wizard-name
     description: roles-wizard-objective
     rules: ghost-role-information-antagonist-rules

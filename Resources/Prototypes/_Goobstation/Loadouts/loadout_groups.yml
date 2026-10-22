@@ -351,6 +351,15 @@
   loadouts:
   - AtmosEnvirogloves
 
+- type: loadoutGroup
+  id: AtmosphericTechnicianBelt
+  minLimit: 1
+  maxLimit: 1
+  name: loadout-group-atmospheric-technician-belt
+  loadouts:
+  - AtmosphericTechnicianUtilityBelt
+  - AtmosphericTechnicianAtmosBelt
+
 # Chief Engineer
 
 - type: loadoutGroup
@@ -1339,6 +1348,7 @@
   minLimit: 0
   loadouts:
   - CaptainMask
+  - MaskGasCaptainPatreon # Arcane
 
 # roboticist
 
@@ -1767,6 +1777,7 @@
   loadouts:
   - JumpsuitHawaiBlack
   - JumpsuitHawaiBlue
+  - JumpsuitHawaiGreen
   - JumpsuitHawaiRed
   - JumpsuitHawaiYellow
   - ComfortableUniformPatron # Arcane

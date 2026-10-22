@@ -1,3 +1,47 @@
+# Command
+
+- type: loadoutGroup
+  id: HoPMask
+  name: loadout-group-hop-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasHoPPatreon
+
+- type: loadoutGroup
+  id: ChiefEngineerMask
+  name: loadout-group-chief-engineer-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasCEPatreon
+
+- type: loadoutGroup
+  id: ChiefMedicalOfficerMask
+  name: loadout-group-chief-medical-officer-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasCMOPatreon
+
+- type: loadoutGroup
+  id: QuartermasterMask
+  name: loadout-group-quartermaster-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasQMPatreon
+
+- type: loadoutGroup
+  id: ResearchDirectorMask
+  name: loadout-group-research-director-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasRDPatreon
+
+- type: loadoutGroup
+  id: HeadofSecurityMask
+  name: loadout-group-head-of-security-mask
+  minLimit: 0
+  loadouts:
+  - MaskGasHoSPatreon
+
 - type: loadoutGroup
   id: AdjutantJumpsuit
   name: loadout-group-adj-jumpsuit
@@ -35,17 +79,20 @@
   - CommandMaidJumpskirtAlt
   - CommandMaidJumpskirtMaidLong
   - CommandMaidJumpskirtJanimaidmini
+  - CommandMaidJumpskirtMaidStrict
   - CommandMaidJumpskirtElegantMaid
   - CommandMaidJumpskirtJanimaid
   - CommandMaidJumpskirtMaidPink
   - CommandMaidJumpskirtMaidBlue
   - CommandMaidJumpsuit
+  - CommandMaidJumpsuitButler
 
 - type: loadoutGroup
   id: CommandMaidBackpack
   name: loadout-group-command-maid-backpack
   loadouts:
   - CommandMaidBackpack
+  - CommandMaidSatchel
 
 - type: loadoutGroup
   id: CommandMaidHead
@@ -55,6 +102,7 @@
   - CommandMaidCap
   - CommandMaidBowsCap
   - CommandMaidBlackCap
+  - CommandMaidMaidFura
 
 - type: loadoutGroup
   id: CommandMaidGloves
@@ -78,6 +126,28 @@
   - CommandMaidNeckBowTie
   - CommandMaidNeckShortTie
   - CommandMaidNeckMediumTie
+
+- type: loadoutGroup
+  id: CommandMaidBelt
+  name: loadout-group-command-maid-belt
+  minLimit: 0
+  loadouts:
+  - CommandMaidBeltJanitorBow
+  - CommandMaidBeltPouch
+
+- type: loadoutGroup
+  id: CommandMaidMask
+  name: loadout-group-command-maid-mask
+  minLimit: 0
+  loadouts:
+  - CommandMaidGasMask
+
+- type: loadoutGroup
+  id: CommandMaidSocks
+  name: loadout-group-command-maid-socks
+  minLimit: 0
+  loadouts:
+  - CommandMaidSocksWhiteRigged
 
 - type: loadoutGroup
   id: IAAJumpsuit

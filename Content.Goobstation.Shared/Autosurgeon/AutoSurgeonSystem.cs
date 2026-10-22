@@ -18,14 +18,14 @@ namespace Content.Goobstation.Shared.Autosurgeon;
 
 // There might be some goidacode inside, I warned you.
 // It should also maybe be in _Shitmed instead of here, but who cares.
-public sealed class AutoSurgeonSystem : EntitySystem
+public sealed partial class AutoSurgeonSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly ISerializationManager _serializationManager = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private ISerializationManager _serializationManager = default!;
 
     public override void Initialize()
     {
@@ -123,23 +123,32 @@ public sealed class AutoSurgeonSystem : EntitySystem
             }
             else
             {
-                if (!TryComp<OrganComponent>(newPart, out var newOrganComp)
-                || !_body.CanInsertOrgan(parent, newOrganComp.SlotId))
+                if (!TryComp<OrganComponent>(newPart, out var newOrganComp))
+                // || !_body.CanInsertOrgan(parent, newOrganComp.SlotId)) // Arcane-Edit
                 {
                     Del(newPart);
                     _audio.Stop(ent.Comp.ActiveSound);
                     return;
                 }
 
+                _body.TryCreateOrganSlot(parent, newOrganComp.SlotId, out _); // Arcane
+
                 var oldOrgan = _body.GetPartOrgans(parent)
                     .FirstOrDefault(organ => organ.Component.SlotId == newOrganComp.SlotId)
                     .Id;
 
-                if (!_body.AddOrganToFirstValidSlot(parent, newPart) && oldOrgan.Valid)
+                // Arcane-Edit-Start
+                var removedOldOrgan = oldOrgan.Valid && _body.RemoveOrgan(oldOrgan);
+
+                if (!_body.InsertOrgan(parent, newPart, newOrganComp.SlotId))
                 {
-                    _body.RemoveOrgan(oldOrgan);
-                    _body.InsertOrgan(parent, newPart, newOrganComp.SlotId);
+                    Del(newPart);
+                    _audio.Stop(ent.Comp.ActiveSound);
+                    if (removedOldOrgan)
+                        _body.InsertOrgan(parent, oldOrgan, newOrganComp.SlotId);
+                    return;
                 }
+                // Arcane-Edit-End
             }
 
             _audio.Stop(ent.Comp.ActiveSound);
@@ -333,22 +342,30 @@ public sealed class AutoSurgeonSystem : EntitySystem
                 }
                 else
                 {
-                    if (!TryComp<OrganComponent>(newPart, out var newOrganComp)
-                    || !_body.CanInsertOrgan(parent, newOrganComp.SlotId))
+                    if (!TryComp<OrganComponent>(newPart, out var newOrganComp))
+                    // || !_body.CanInsertOrgan(parent, newOrganComp.SlotId)) // Arcane-Edit
                     {
                         Del(newPart);
                         continue;
                     }
 
+                    _body.TryCreateOrganSlot(parent, newOrganComp.SlotId, out _); // Arcane
+
                     var oldOrgan = _body.GetPartOrgans(parent)
                         .FirstOrDefault(organ => organ.Component.SlotId == newOrganComp.SlotId)
                         .Id;
 
-                    if (!_body.AddOrganToFirstValidSlot(parent, newPart) && oldOrgan.Valid)
+                    // Arcane-Edit-Start
+                    var removedOldOrgan = oldOrgan.Valid && _body.RemoveOrgan(oldOrgan);
+
+                    if (!_body.InsertOrgan(parent, newPart, newOrganComp.SlotId))
                     {
-                        _body.RemoveOrgan(oldOrgan);
-                        _body.InsertOrgan(parent, newPart, newOrganComp.SlotId);
+                        Del(newPart);
+                        if (removedOldOrgan)
+                            _body.InsertOrgan(parent, oldOrgan, newOrganComp.SlotId);
+                        continue;
                     }
+                    // Arcane-Edit-End
                 }
 
                 continue;

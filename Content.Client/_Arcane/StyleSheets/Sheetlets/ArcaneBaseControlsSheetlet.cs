@@ -51,14 +51,14 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         var sliderBackground = StrictBox(sheet.SecondaryPalette.BackgroundDark, buttonBorder, 1, 0, 6);
         var sliderFill = StrictBox(sheet.HighlightPalette.Element, sheet.HighlightPalette.Base.WithAlpha(0.65f), 1, 0, 6);
         var sliderOutline = StrictBox(Color.Transparent, sheet.PrimaryPalette.TextDark.WithAlpha(0.68f), 1, 0, 6);
-        var sliderGrabber = StrictBox(sheet.HighlightPalette.TextDark, ArcanePalette.NeonOutline, 1, 4, 8);
+        var sliderGrabber = StrictBox(sheet.HighlightPalette.TextDark, sheet.AccentColor, 1, 4, 8);
         var tabActive = StrictBox(sheet.PrimaryPalette.Element, sheet.PrimaryPalette.Base.WithAlpha(0.7f), 1, 8, 4);
         var tabInactive = StrictBox(sheet.SecondaryPalette.Element, buttonBorder, 1, 8, 4);
         var progressBackground = StrictBox(sheet.SecondaryPalette.BackgroundDark, buttonBorder, 1, 0, 14);
         var progressForeground = StrictBox(sheet.HighlightPalette.Element, sheet.HighlightPalette.Base.WithAlpha(0.7f), 1, 0, 14);
         var scrollbar = StrictBox(sheet.PrimaryPalette.Element.WithAlpha(0.6f), buttonBorder, 1, 0, 0);
-        var scrollbarHovered = StrictBox(sheet.HighlightPalette.Element.WithAlpha(0.85f), ArcanePalette.NeonOutline, 1, 0, 0);
-        var scrollbarPressed = StrictBox(sheet.HighlightPalette.TextDark.WithAlpha(0.95f), ArcanePalette.NeonOutline, 1, 0, 0);
+        var scrollbarHovered = StrictBox(sheet.HighlightPalette.Element.WithAlpha(0.85f), sheet.AccentColor, 1, 0, 0);
+        var scrollbarPressed = StrictBox(sheet.HighlightPalette.TextDark.WithAlpha(0.95f), sheet.AccentColor, 1, 0, 0);
         scrollbar.SetContentMarginOverride(StyleBox.Margin.Left | StyleBox.Margin.Top, 10);
         scrollbarHovered.SetContentMarginOverride(StyleBox.Margin.Left | StyleBox.Margin.Top, 10);
         scrollbarPressed.SetContentMarginOverride(StyleBox.Margin.Left | StyleBox.Margin.Top, 10);
@@ -66,7 +66,7 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         var windowPanel = StrictBox(sheet.SecondaryPalette.Background.WithAlpha(0.98f), buttonBorder, 1, 8, 6);
         var contextMenuPanel = StrictBox(sheet.SecondaryPalette.BackgroundDark.WithAlpha(0.99f),
             sheet.SecondaryPalette.Base.WithAlpha(0.68f), 1, 0, 0);
-        var contextMenuPalette = ArcanePalette.Buttons with
+        var contextMenuPalette = sheet.ButtonPalette with
         {
             Element = sheet.SecondaryPalette.Background,
             HoveredElement = sheet.PrimaryPalette.Element,
@@ -77,7 +77,7 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         var alertHeader = StrictBox(sheet.NegativePalette.BackgroundLight, sheet.NegativePalette.Base.WithAlpha(0.6f), 1, 8, 3);
         var itemListBackground = StrictBox(sheet.SecondaryPalette.BackgroundDark, buttonBorder, 1, 0, 0);
         var itemListItem = StrictBox(sheet.SecondaryPalette.Background, buttonBorder, 1, 4, 4);
-        var itemListSelected = StrictBox(sheet.PrimaryPalette.Element, ArcanePalette.NeonOutline, 1, 4, 4);
+        var itemListSelected = StrictBox(sheet.PrimaryPalette.Element, sheet.AccentColor, 1, 4, 4);
         var itemListDisabled = StrictBox(sheet.SecondaryPalette.DisabledElement, buttonBorder.WithAlpha(0.25f), 1, 4, 4);
 
         var rules = new List<StyleRule>
@@ -185,13 +185,13 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         };
 
         rules.AddRange(TexturedButtonStateRules(buttonTexture, buttonBorderTexture, Button,
-            ArcanePalette.Buttons, ArcanePalette.NeonOutline));
+            sheet.ButtonPalette, sheet.AccentColor));
         rules.AddRange(TexturedButtonStateRules(
             buttonTexture,
             buttonBorderTexture,
             () => E<MenuButton>(),
-            ArcanePalette.Buttons,
-            ArcanePalette.NeonOutline,
+            sheet.ButtonPalette,
+            sheet.AccentColor,
             8,
             4));
         rules.AddRange(TexturedButtonStateRules(buttonTexture, buttonBorderTexture,
@@ -199,16 +199,16 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
         rules.AddRange(TexturedButtonStateRules(buttonTexture, buttonBorderTexture,
             () => Button().Class(StyleClass.Negative), sheet.NegativePalette, sheet.NegativePalette.Base));
         rules.AddRange(TexturedButtonStateRules(buttonTexture, buttonBorderTexture,
-            () => Button().Class(StyleClass.ButtonSmall), ArcanePalette.Buttons, ArcanePalette.NeonOutline, 8, 2));
+            () => Button().Class(StyleClass.ButtonSmall), sheet.ButtonPalette, sheet.AccentColor, 8, 2));
 
-        AddComposedButtonRules(rules, buttonTexture, buttonBorderTexture, Button, ArcanePalette.Buttons,
-            ArcanePalette.NeonOutline);
+        AddComposedButtonRules(rules, buttonTexture, buttonBorderTexture, Button, sheet.ButtonPalette,
+            sheet.AccentColor);
         AddComposedButtonRules(rules, buttonTexture, buttonBorderTexture,
             () => Button().Class(StyleClass.Positive), sheet.PositivePalette, sheet.PositivePalette.Base);
         AddComposedButtonRules(rules, buttonTexture, buttonBorderTexture,
             () => Button().Class(StyleClass.Negative), sheet.NegativePalette, sheet.NegativePalette.Base);
         AddComposedButtonRules(rules, buttonTexture, buttonBorderTexture, () => E<MenuButton>(),
-            ArcanePalette.Buttons, ArcanePalette.NeonOutline, 8, 4);
+            sheet.ButtonPalette, sheet.AccentColor, 8, 4);
 
         foreach (var (styleClass, color) in DepartmentButtonColors)
             rules.AddRange(DepartmentButtonStateRules(buttonTexture, buttonBorderTexture, styleClass, color));

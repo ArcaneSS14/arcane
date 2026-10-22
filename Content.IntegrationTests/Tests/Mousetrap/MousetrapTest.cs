@@ -1,6 +1,6 @@
 using Content.IntegrationTests.Tests.Movement;
 using Content.Server.NPC.HTN;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mobs;
@@ -141,6 +141,7 @@ public sealed class MousetrapHumanMoveOverTest : MovementTest
         await PlaceInHands(ShoesProtoId);
         // Thanks to quick-equip, using the shoes will wear them
         await UseInHand();
+        await AwaitDoAfters(); // Arcane
 
         // Move back over the trap
         await Move(DirectionFlag.West, 1f);

@@ -414,7 +414,7 @@
   components:
   - type: DevilRule
   - type: GameRule
-    minPlayers: 15
+    minPlayers: 20 # Arcane-Edit
   - type: AntagObjectives
     objectives:
     - DevilContractObjective
@@ -424,6 +424,7 @@
     agentName: devil-roundend-name
     definitions:
     - prefRoles: [ Devil ]
+      min: 0 # Arcane
       max: 1
       # Arcane-Edit-Start
       playerRatio: 20

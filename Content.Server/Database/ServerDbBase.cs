@@ -32,7 +32,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Database
 {
-    public abstract class ServerDbBase
+    public abstract partial class ServerDbBase // Goob
     {
         private readonly ISawmill _opsLog;
         public event Action<DatabaseNotification>? OnNotificationReceived;
@@ -310,22 +310,15 @@ namespace Content.Server.Database
             var customSpeciesName = profile.CustomSpeciesName ?? "";
 
             // Arcane-Start
-            var hairColor = ParseHairColor(profile.HairColor);
             var hairGradientEnabled = profile.HairGradientEnabled;
             List<Color>? hairGradientColors = null;
             var hairGradientStyle = HairGradientStyle.Ombre;
             var hairGradientOffset = 0.5f;
-
-            var gradientDataString = profile.HairGradientData;
-            var legacyGradientData = profile.HairColor.StartsWith('{')
-                ? profile.HairColor
-                : null;
-
-            if (!string.IsNullOrEmpty(gradientDataString))
+            if (!string.IsNullOrEmpty(profile.HairGradientData))
             {
                 try
                 {
-                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(gradientDataString, HairGradientJsonOptions);
+                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(profile.HairGradientData, HairGradientJsonOptions);
                     if (data != null && data.Colors.Count > 0)
                     {
                         hairGradientColors = data.Colors.Select(c => Color.FromHex(c.Trim())).ToList();
@@ -336,45 +329,6 @@ namespace Content.Server.Database
                 catch
                 {
                     hairGradientEnabled = false;
-                }
-            }
-            else if (!string.IsNullOrEmpty(legacyGradientData))
-            {
-                try
-                {
-                    var data = JsonSerializer.Deserialize<HairGradientSaveData>(legacyGradientData, HairGradientJsonOptions);
-                    if (data != null && data.Colors.Count > 0)
-                    {
-                        hairGradientColors = data.Colors.Select(c => Color.FromHex(c.Trim())).ToList();
-                        hairGradientEnabled = true;
-                        hairGradientStyle = data.Style;
-                        hairGradientOffset = data.Offset;
-                        hairColor = hairGradientColors[0];
-                    }
-                }
-                catch
-                {
-                    hairColor = Color.White;
-                }
-            }
-            else if (profile.HairColor.StartsWith('[') || profile.HairColor.Contains(';'))
-            {
-                try
-                {
-                    List<string>? hexCodes = profile.HairColor.StartsWith('[')
-                        ? JsonSerializer.Deserialize<List<string>>(profile.HairColor)
-                        : profile.HairColor.Split(';').ToList();
-
-                    if (hexCodes != null && hexCodes.Count > 0)
-                    {
-                        hairGradientColors = hexCodes.Select(c => Color.FromHex(c.Trim())).ToList();
-                        hairColor = hairGradientColors[0];
-                        hairGradientEnabled = true;
-                    }
-                }
-                catch
-                {
-                    hairColor = Color.White;
                 }
             }
             // Arcane-End
@@ -406,7 +360,7 @@ namespace Content.Server.Database
                 new HumanoidCharacterAppearance
                 (
                     profile.HairName,
-                    hairColor, // Arcane-Edit
+                    Color.FromHex(profile.HairColor),
                     profile.FacialHairName,
                     Color.FromHex(profile.FacialHairColor),
                     Color.FromHex(profile.EyeColor),
@@ -416,7 +370,8 @@ namespace Content.Server.Database
                     hairGradientEnabled,
                     hairGradientColors,
                     hairGradientStyle,
-                    hairGradientOffset
+                    hairGradientOffset,
+                    profile.EarsAboveHair
                     // Arcane-End
                 ),
                 spawnPriority,
@@ -437,20 +392,6 @@ namespace Content.Server.Database
             PropertyNameCaseInsensitive = true,
             Converters = { new JsonStringEnumConverter() }
         };
-
-        private static Color ParseHairColor(string value)
-        {
-            try
-            {
-                return value.StartsWith('{') || value.StartsWith('[') || value.Contains(';')
-                    ? Color.White
-                    : Color.FromHex(value);
-            }
-            catch
-            {
-                return Color.White;
-            }
-        }
 
         internal sealed class HairGradientSaveData
         {
@@ -497,6 +438,7 @@ namespace Content.Server.Database
             // Orion-End
             profile.Species = humanoid.Species;
             profile.CustomSpeciesName = humanoid.CustomSpeciesName; // Arcane
+            profile.EarsAboveHair = appearance.EarsAboveHair; // Arcane
             profile.Height = humanoid.Height; // Goobstation: port EE height/width sliders
             profile.Width = humanoid.Width; // Goobstation: port EE height/width sliders
             profile.Age = humanoid.Age;
@@ -2095,10 +2037,48 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             await db.DbContext.SaveChangesAsync();
         }
 
+        public async Task SetOocIcon(Guid player, string? icon)
+        {
+            await using var db = await GetDb();
+            var patron = await db.DbContext.RMCPatrons.FirstOrDefaultAsync(p => p.PlayerId == player);
+            if (patron == null)
+                return;
+
+            patron.OocIcon = icon;
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task SyncPatronTiers(List<RMCPatronTier> tiers)
+        {
+            await using var db = await GetDb();
+            var existing = await db.DbContext.RMCPatronTiers.ToDictionaryAsync(t => t.Id);
+
+            foreach (var tier in tiers)
+            {
+                if (!existing.TryGetValue(tier.Id, out var row))
+                {
+                    db.DbContext.RMCPatronTiers.Add(tier);
+                    continue;
+                }
+
+                row.Name = tier.Name;
+                row.DiscordRole = tier.DiscordRole;
+                row.Priority = tier.Priority;
+                row.ShowOnCredits = tier.ShowOnCredits;
+                row.GhostColor = tier.GhostColor;
+                row.GhostCosmetics = tier.GhostCosmetics;
+                row.GhostParticles = tier.GhostParticles;
+                row.LobbyMessage = tier.LobbyMessage;
+                row.RoundEndShoutout = tier.RoundEndShoutout;
+            }
+
+            await db.DbContext.SaveChangesAsync();
+        }
+
         public async Task<List<RMCPatronTier>> GetPatronTiers()
         {
             await using var db = await GetDb();
-            return await db.DbContext.RMCPatronTiers.ToListAsync();
+            return await db.DbContext.RMCPatronTiers.AsNoTracking().ToListAsync();
         }
 
         public async Task<int> AddPatronTier(RMCPatronTier tier)
@@ -2126,6 +2106,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             existing.GhostParticles = tier.GhostParticles;
             existing.LobbyMessage = tier.LobbyMessage;
             existing.RoundEndShoutout = tier.RoundEndShoutout;
+
             await db.DbContext.SaveChangesAsync();
             return true;
         }
@@ -2197,7 +2178,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             await db.DbContext.SaveChangesAsync();
         }
 
-        public async Task<List<(string Message, string User)>> GetLobbyMessages()
+        // Goob start - tier perks from prototypes
+        public async Task<List<(string Message, string User, int TierId)>> GetLobbyMessages()
         {
             await using var db = await GetDb();
             var messages = await (
@@ -2210,16 +2192,17 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     {
                         message.Message,
                         message.Patron.Player.LastSeenUserName,
+                        tier.Id,
                     })
                 .Distinct()
                 .ToListAsync();
 
             return messages
-                .Select(message => (message.Message, message.LastSeenUserName))
+                .Select(message => (message.Message, message.LastSeenUserName, message.Id))
                 .ToList();
         }
 
-        public async Task<List<string>> GetShoutouts()
+        public async Task<List<(string Name, int TierId)>> GetShoutouts()
         {
             await using var db = await GetDb();
             var ntNames = await (
@@ -2228,12 +2211,13 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     from role in linked.Discord.Roles
                     join tier in db.DbContext.RMCPatronTiers on role.RoleId equals tier.DiscordRole
                     where tier.RoundEndShoutout && !string.IsNullOrWhiteSpace(shoutout.Name)
-                    select shoutout.Name)
+                    select new { shoutout.Name, tier.Id })
                 .Distinct()
                 .ToListAsync();
 
-            return ntNames;
+            return ntNames.Select(p => (p.Name, p.Id)).ToList();
         }
+        // Goob end
 
         private static async Task<RMCPatron> GetOrCreatePatronPreferences(ServerDbContext db, Guid player)
         {

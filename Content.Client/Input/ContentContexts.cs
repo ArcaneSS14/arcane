@@ -37,6 +37,7 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.SaveItemLocation);
             common.AddFunction(ContentKeyFunctions.Point);
             common.AddFunction(ContentKeyFunctions.ResistGrab); // Goobstation - Grab Intent
+            common.AddFunction(ContentKeyFunctions.NamePeek); // Goob
             common.AddFunction(ContentKeyFunctions.ZoomOut);
             common.AddFunction(ContentKeyFunctions.ZoomIn);
             common.AddFunction(ContentKeyFunctions.ResetZoom);
@@ -86,7 +87,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.SmartEquipBack); // Goobstation - Smart equip to back
             human.AddFunction(ContentKeyFunctions.OpenBackpack);
             human.AddFunction(ContentKeyFunctions.OpenBelt);
-            human.AddFunction(ContentKeyFunctions.MouseMiddle);
+            human.AddFunction(ContentKeyFunctions.ToggleActionPin); // Arcane
             human.AddFunction(ContentKeyFunctions.RotateObjectClockwise);
             human.AddFunction(ContentKeyFunctions.RotateObjectCounterclockwise);
             human.AddFunction(ContentKeyFunctions.FlipObject);
@@ -115,6 +116,7 @@ namespace Content.Client.Input
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);
+            common.AddFunction(ContentKeyFunctions.ToggleActionPin); // Arcane
 
             foreach (var boundKey in ContentKeyFunctions.GetHotbarBoundKeys())
             {

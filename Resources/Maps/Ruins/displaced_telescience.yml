@@ -4030,7 +4030,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,1.5
       parent: 1
-- proto: HeadHuman
+- proto: BaseHeadHuman
   entities:
   - uid: 456
     components:
@@ -4122,7 +4122,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.125,-9.5
       parent: 1
-- proto: LeftArmHuman
+- proto: BaseLeftArmHuman
   entities:
   - uid: 327
     components:

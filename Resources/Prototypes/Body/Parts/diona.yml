@@ -20,7 +20,7 @@
   - type: BodyPart # Shitmed Change
     species: Diona
   - type: Damageable # Shitmed
-    damageModifierSet: Diona
+#    damageModifierSet: Diona # Arcane-Edit
 
 - type: entity
   id: ChestDiona

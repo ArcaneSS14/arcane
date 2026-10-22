@@ -1,6 +1,7 @@
 - type: vendingMachineInventory
   id: DressMateInventory
   startingInventory:
+    ClothingUniformJumpskirtMaidStrict: 3
     ClothingUniformJumpskirtMaidBlue: 3
     ClothingUniformJumpskirtMaidLong: 3
     ClothingUniformJumpskirtMaidPink: 3
@@ -39,6 +40,7 @@
     ClothingHeadWhiteVeil: 2
     ClothingHeadBlackVeil: 2
     ClothingHeadBeerVeil: 2
+    ClothingHeadHatMaidFura: 2
     ClothingUniformDressesWithFlowers: 2
     ClothingUniformJumpskirtPurpleElegantDress: 2
     ClothingUniformJumpskirtBlueElegantDress: 2
@@ -71,9 +73,8 @@
     ClothingShoesBlackWithDenseHeel: 3
     ClothingShoesClassicPumps: 3
     ClothingShoesBDSMBoots: 3
-    ClothingShoesThighHighBoots: 3
-    ClothingShoesThighHighWithoutHeels: 3
     ClothingShoesGeta: 3
     ClothingShoesSolidGeta: 3
     ClothingShoesGetaWithOneBoard: 3
     ClothingShoesStuddedLaceUpBoots: 3
+    ClothingSocksWhiteRigged: 1

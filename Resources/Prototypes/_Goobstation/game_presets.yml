@@ -131,6 +131,7 @@
   description: sleeper-description
   showInVote: true
   # Arcane-start
+  repeatWeightMultiplier: 0.65
   # minPlayers: 5
   rules:
     # - CalmDynamic
@@ -148,7 +149,7 @@
     - combatdynamic
   name: guide-title
   description: guide-description
-  showInVote: false
+  showInVote: true
   minPlayers: 25
   rules:
     - CombatDynamic
@@ -165,6 +166,7 @@
   name: secretplus-low-title
   description: secretplus-low-description
   showInVote: true
+  repeatWeightMultiplier: 0.35 # Arcane
   rules:
     - SecretPlusLow
     - BasicRoundstartVariation # Arcane
@@ -179,9 +181,21 @@
   name: secretplus-mid-title
   description: secretplus-mid-description
   showInVote: true
+  repeatWeightMultiplier: 0.4 # Arcane
   rules:
     - SecretPlusMid
     - BasicRoundstartVariation # Arcane
+    - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: SecretPlusHigh
+  alias:
+    - secretplushigh
+  name: secretplus-high-title
+  description: secretplus-high-description
+  showInVote: true
+  rules:
+    - SecretPlusHigh
     - MeteorSwarmScheduler
 
 - type: gamePreset
@@ -189,7 +203,6 @@
   alias:
     - secretplusadmeme
     - secretplusevil
-    - secretplushigh
     - chaos
   name: secretplus-admeme-title
   description: secretplus-admeme-description

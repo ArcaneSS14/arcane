@@ -172,7 +172,7 @@ public record struct EntityStorageIntoContainerAttemptEvent(BaseContainer Contai
 public record struct StorageOpenAttemptEvent(EntityUid User, bool Silent, bool Cancelled = false);
 
 [ByRefEvent]
-public readonly record struct StorageBeforeOpenEvent;
+public record struct StorageBeforeOpenEvent(bool SkipEmptyContents = false);
 
 [ByRefEvent]
 public readonly record struct StorageAfterOpenEvent;

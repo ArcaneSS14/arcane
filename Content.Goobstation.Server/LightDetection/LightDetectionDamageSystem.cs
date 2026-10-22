@@ -4,6 +4,7 @@ using Content.Shared._Shitmed.Damage;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -14,13 +15,13 @@ namespace Content.Goobstation.Server.LightDetection;
 /// <summary>
 /// This handles healing or dealing damage to an entity that is standing on a lighted area.
 /// </summary>
-public sealed class LightDetectionDamageSystem : SharedLightDetectionDamageSystem
+public sealed partial class LightDetectionDamageSystem : SharedLightDetectionDamageSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly WoundSystem _woundSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private WoundSystem _woundSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     public override void Update(float frameTime)
     {
@@ -30,7 +31,7 @@ public sealed class LightDetectionDamageSystem : SharedLightDetectionDamageSyste
         while (query.MoveNext(out var uid, out var comp, out var lightDet))
         {
             if (comp.NextUpdate > _timing.CurTime)
-                return;
+                continue; // Arcane-Edit
 
             comp.NextUpdate = _timing.CurTime + comp.UpdateInterval;
 
@@ -41,14 +42,14 @@ public sealed class LightDetectionDamageSystem : SharedLightDetectionDamageSyste
             {
                 _damageable.TryChangeDamage(uid, comp.DamageToDeal * comp.ResistanceModifier, splitDamage: SplitDamageBehavior.SplitEnsureAll);
                 _audio.PlayPvs(comp.SoundOnDamage, uid, AudioParams.Default.WithVolume(-2f));
-                return;
+                continue; // Arcane-Edit
             }
 
             if (comp.DetectionValue > 0 && comp.HealOnShadows && !_mobState.IsDead(uid))
             {
                 _woundSystem.TryHealWoundsOnOwner(uid, comp.DamageToHeal, true);
                 _damageable.TryChangeDamage(uid, comp.DamageToHeal, true, false, targetPart: TargetBodyPart.All, splitDamage: SplitDamageBehavior.SplitEnsureAllOrganic, canMiss: false);
-                return;
+                continue; // Arcane-Edit
             }
         }
     }

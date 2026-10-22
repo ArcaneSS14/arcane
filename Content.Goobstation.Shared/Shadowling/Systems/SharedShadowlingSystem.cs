@@ -3,10 +3,12 @@ using Content.Goobstation.Shared.Changeling.Components;
 using Content.Goobstation.Shared.LightDetection.Components;
 using Content.Goobstation.Shared.LightDetection.Systems;
 using Content.Goobstation.Shared.Mindcontrol;
+using Content.Goobstation.Shared.Overlays;
 using Content.Goobstation.Shared.Shadowling.Components;
 using Content.Shared._Starlight.CollectiveMind;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
@@ -24,17 +26,17 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Shared.Shadowling.Systems;
 
-public abstract class SharedShadowlingSystem : EntitySystem
+public abstract partial class SharedShadowlingSystem : EntitySystem
 {
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedLightDetectionDamageSystem _lightDamage = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private SharedLightDetectionDamageSystem _lightDamage = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
 
     public override void Initialize()
     {
@@ -80,12 +82,12 @@ public abstract class SharedShadowlingSystem : EntitySystem
         }
     }
 
-    public void OnThrallRemoved(Entity<ShadowlingComponent> ent)
+    public void OnThrallRemoved(Entity<ShadowlingComponent> ent, ThrallComponent thrall) // Arcane-Edit
     {
         if (!TryComp<LightDetectionDamageComponent>(ent, out var lightDet))
             return;
 
-        _lightDamage.AddResistance((ent.Owner, lightDet), -ent.Comp.LightResistanceModifier);
+        _lightDamage.AddResistance((ent.Owner, lightDet), thrall.GrantedLightResistance); // Arcane-Edit
     }
 
     public ProtoId<CollectiveMindPrototype> ShadowMind = "Shadowmind";
@@ -109,7 +111,7 @@ public abstract class SharedShadowlingSystem : EntitySystem
 
     protected virtual void StartHatchingProgress(Entity<ShadowlingComponent> ent) { }
 
-    private void BeforeDamageChanged(EntityUid uid, ShadowlingComponent comp, BeforeDamageChangedEvent args)
+    private void BeforeDamageChanged(EntityUid uid, ShadowlingComponent comp, ref BeforeDamageChangedEvent args)
     {
         // Can't take damage during hatching
         if (comp.IsHatching)
@@ -203,7 +205,7 @@ public abstract class SharedShadowlingSystem : EntitySystem
 
         // Target needs to be alive
         if (!TryComp<MobStateComponent>(target, out var mobState)
-            || !_mobStateSystem.IsCritical(target, mobState) && !_mobStateSystem.IsCritical(target, mobState))
+            || !_mobStateSystem.IsIncapacitated(target, mobState)) // Arcane-Edit
             return true;
 
         _popup.PopupPredicted(Loc.GetString("shadowling-enthrall-dead"), uid, uid, PopupType.SmallCaution);
@@ -223,6 +225,18 @@ public abstract class SharedShadowlingSystem : EntitySystem
                && !HasComp<ThrallComponent>(target);
     }
 
+    // Arcane-Start
+    // removeExisting would reset the caller's ThrallComponent and a species' own night vision.
+    public void AddThrallComponents(EntityUid target, EntProtoId components)
+    {
+        var innateNightVision = HasComp<NightVisionComponent>(target);
+        EntityManager.AddComponents(target, _protoMan.Index(components), removeExisting: false);
+
+        if (TryComp<ThrallComponent>(target, out var thrall))
+            thrall.InnateNightVision = innateNightVision;
+    }
+    // Arcane-End
+
     public void DoEnthrall(EntityUid uid, EntProtoId components, SimpleDoAfterEvent args)
     {
         if (args.Cancelled
@@ -232,13 +246,32 @@ public abstract class SharedShadowlingSystem : EntitySystem
 
         var target = args.Target.Value;
 
+        // Arcane-Start
+        if (!CanEnthrall(uid, target))
+            return;
+        // Arcane-End
+
         var thrall = EnsureComp<ThrallComponent>(target);
         thrall.Converter = uid;
-        var comps = _protoMan.Index(components);
-        EntityManager.AddComponents(target, comps);
+        // Arcane-Edit-Start
+        // var comps = _protoMan.Index(components);
+        // EntityManager.AddComponents(target, comps);
+        // Arcane-Edit-End
+        AddThrallComponents(target, components); // Arcane
 
         if (TryComp<ShadowlingComponent>(uid, out var sling))
             sling.Thralls.Add(target);
+
+        // Arcane-Start
+        // Upstream got this from re-adding ThrallComponent, which AddThrallComponents no longer does.
+        // Only the part above the floor is stored, so losing the thrall refunds exactly that.
+        if (sling != null && TryComp<LightDetectionDamageComponent>(uid, out var lightDet))
+        {
+            var before = lightDet.ResistanceModifier;
+            _lightDamage.AddResistance((uid, lightDet), -sling.LightResistanceModifier);
+            thrall.GrantedLightResistance = before - lightDet.ResistanceModifier;
+        }
+        // Arcane-End
 
         _audio.PlayPredicted(
             new SoundPathSpecifier("/Audio/Items/Defib/defib_zap.ogg"),

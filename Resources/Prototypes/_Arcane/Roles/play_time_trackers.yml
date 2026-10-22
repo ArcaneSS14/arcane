@@ -6,3 +6,27 @@
 
 - type: playTimeTracker
   id: JobIAA
+
+- type: playTimeTracker
+  id: JobGhostRoleInteQ
+
+- type: playTimeTracker
+  id: JobGhostRoleHermit
+
+- type: playTimeTracker
+  id: JobGhostRoleXenomorph
+
+- type: playTimeTracker
+  id: JobGhostRoleSyndicate
+
+- type: playTimeTracker
+  id: JobGhostRoleWizard
+
+- type: playTimeTracker
+  id: JobGhostRoleWraith
+
+- type: playTimeTracker
+  id: JobGhostRoleCosmicCult
+
+- type: playTimeTracker
+  id: JobGhostRoleBingle

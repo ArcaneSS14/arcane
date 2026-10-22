@@ -43,7 +43,7 @@
 # Non-Addictive Drugs
 - type: moodEffect
   id: EthanolBenefit
-  moodChange: 5
+  moodChange: 4
   timeout: 180 #3 minutes
 
 - type: moodEffect
@@ -53,7 +53,7 @@
 
 - type: moodEffect
   id: StrongStimulant
-  moodChange: 6
+  moodChange: 5
   timeout: 60 #1 minute
 
 # Floor Juice
@@ -90,8 +90,8 @@
 
 - type: moodEffect
   id: PsicodineEffect
-  moodChange: 8
-  timeout: 300 #5 minutes
+  moodChange: 10
+  timeout: 180 #3 minutes
 
 - type: moodEffect
   id: MildPaincauser
@@ -182,7 +182,7 @@
 
 - type: moodEffect
   id: ChocolateEffect
-  moodChange: 4
+  moodChange: 2
   timeout: 1800 #30 minutes
 
 - type: moodEffect
@@ -197,5 +197,5 @@
 
 - type: moodEffect
   id: TastyEffect
-  moodChange: 5
+  moodChange: 4
   timeout: 1800 #30 minutes

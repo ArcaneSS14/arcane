@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: latheRecipe
+  id: EnergyBoozeDispenserMachineCircuitboard
+  parent: BaseGoldCircuitboardRecipe
+  result: EnergyBoozeDispenserMachineCircuitboard
+  icon:
+    sprite: Structures/smalldispensers.rsi
+    drawdepth: SmallObjects
+    state: booze
+
+- type: latheRecipe
+  id: EnergySodaDispenserMachineCircuitboard
+  parent: BaseGoldCircuitboardRecipe
+  result: EnergySodaDispenserMachineCircuitboard
+  icon:
+    sprite: Structures/smalldispensers.rsi
+    drawdepth: SmallObjects
+    state: soda

@@ -107,6 +107,11 @@ namespace Content.Server.Construction
 
                     if (!preventStepExamine)
                         targetEdge.Steps[0].DoExamine(args);
+
+                    // Arcane-Start
+                    if (!preventStepExamine)
+                        ExamineAlternativeFinishes(uid, component, targetEdge, args);
+                    // Arcane-End
                     return;
                 }
 
@@ -125,6 +130,27 @@ namespace Content.Server.Construction
             }
 
         }
+
+        // Arcane-Start
+        // A node can branch into several finished products (e.g. augment boards); list the ones the target path skips.
+        private void ExamineAlternativeFinishes(EntityUid uid, ConstructionComponent component, ConstructionGraphEdge targetEdge, ExaminedEvent args)
+        {
+            if (GetCurrentGraph(uid, component) is not { } graph || GetCurrentNode(uid, component) is not { } node)
+                return;
+
+            foreach (var edge in node.Edges)
+            {
+                if (edge == targetEdge
+                    || edge.Steps.Count == 0
+                    || GetNodeFromGraph(graph, edge.Target) is not { Edges.Count: 0 } finish
+                    || finish.Name == component.DeconstructionNode)
+                    continue;
+
+                args.PushMarkup(Loc.GetString("construction-component-alternative-step-header"));
+                edge.Steps[0].DoExamine(args);
+            }
+        }
+        // Arcane-End
 
 
         /// <summary>

@@ -27,7 +27,7 @@ public sealed class ScentTrackerSystem : SharedScentTrackerSystem
 
         var query = AllEntityQuery<ForensicsComponent>();
         while (query.MoveNext(out var uid, out var comp))
-            if (scentcomp.Scent == comp.Scent
+            if ((scentcomp.Scent == comp.Scent || comp.Scents.Contains(scentcomp.Scent)) // Arcane-Edit
                 && _timing.CurTime > comp.TargetTime)
             {
                 comp.TargetTime = _timing.CurTime + TimeSpan.FromSeconds(1.0f);

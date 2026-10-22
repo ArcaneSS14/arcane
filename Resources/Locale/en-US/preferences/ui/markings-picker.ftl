@@ -17,6 +17,7 @@ markings-rank-up = Up
 markings-rank-down = Down
 markings-search = Search
 marking-points-remaining = Markings left: {$points}
+markings-ears-above-hair = Show Ears Above Hair
 marking-used = {$marking-name}
 marking-used-forced = {$marking-name} (Forced)
 marking-slot-add = Add

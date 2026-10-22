@@ -23,6 +23,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server._Shitmed.PartStatus;
 

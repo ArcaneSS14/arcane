@@ -15,6 +15,6 @@
   recipeUnlocks:
   - DiodeDiscElectroDisruptive
   - DiodeDiscElectroBehavioural
-  position: -1,-2
+  position: 14,3 # Arcane-Edit
   technologyPrerequisites:
   - PlasmaControl # Arcane-Edit

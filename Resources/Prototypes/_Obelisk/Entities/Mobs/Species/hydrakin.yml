@@ -16,7 +16,7 @@
   - type: Thirst
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Hydrakin
+#    damageModifierSet: Hydrakin # Arcane-Edit
   - type: Uncloneable
   - type: Butcherable
     butcheringType: Spike

@@ -79587,7 +79587,7 @@ entities:
     - type: Transform
       pos: 16.414852,-23.288176
       parent: 4812
-- proto: ChestHuman
+- proto: BaseChestHuman
   entities:
   - uid: 12423
     components:

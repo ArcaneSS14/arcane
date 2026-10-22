@@ -14,6 +14,7 @@ using Content.Shared.Fluids.Components;
 using Content.Shared.Friction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
+using Content.Shared._Arcane.Stains;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
@@ -68,6 +69,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         SubscribeLocalEvent<PuddleComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<PuddleComponent, SolutionContainerChangedEvent>(OnSolutionUpdate);
         SubscribeLocalEvent<PuddleComponent, GetFootstepSoundEvent>(OnGetFootstepSound);
+        SubscribeLocalEvent<PuddleComponent, GetStainableSolutionEvent>(OnGetStainableSolution); // Arcane
         SubscribeLocalEvent<PuddleComponent, ExaminedEvent>(HandlePuddleExamined);
         SubscribeLocalEvent<PuddleComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
 
@@ -151,6 +153,20 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         }
     }
 
+    // Arcane-Start
+    private void OnGetStainableSolution(Entity<PuddleComponent> entity, ref GetStainableSolutionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution, out var solution))
+            return;
+
+        args.Solution = solution;
+        args.Handled = true;
+    }
+    // Arcane-End
+
     private void HandlePuddleExamined(Entity<PuddleComponent> entity, ref ExaminedEvent args)
     {
         using (args.PushGroup(nameof(PuddleComponent)))
@@ -196,6 +212,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         if (!Resolve(ent, ref puddle, ref appearance))
             return;
 
+        var spriteSet = DefaultPuddleSpriteSet; // Goob
         var volume = FixedPoint2.Zero;
         var color = Color.White;
 
@@ -210,8 +227,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
             // Kinda EH
             // Could potentially do alpha per-solution but future problem.
 
-            color = solution.GetColorWithout(_prototypeManager, _standoutReagents);
-            color = color.WithAlpha(0.7f);
+            color = solution.GetPuddleColorWithout(_prototypeManager, _standoutReagents); // Goob
 
             foreach (var standout in _standoutReagents)
             {
@@ -220,14 +236,18 @@ public abstract partial class SharedPuddleSystem : EntitySystem
                     continue;
 
                 var interpolateValue = quantity.Float() / solution.Volume.Float();
+                var standoutReagent = _prototypeManager.Index<ReagentPrototype>(standout); // Goob
                 color = Color.InterpolateBetween(color,
-                    _prototypeManager.Index<ReagentPrototype>(standout).SubstanceColor,
+                    standoutReagent.PuddleColor ?? standoutReagent.SubstanceColor, // Goob
                     interpolateValue);
             }
+
+            spriteSet = GetPuddleSpriteSet(solution); // Goob
         }
 
         _appearance.SetData(ent, PuddleVisuals.CurrentVolume, volume.Float(), appearance);
         _appearance.SetData(ent, PuddleVisuals.SolutionColor, color, appearance);
+        _appearance.SetData(ent, PuddleVisuals.SpriteSet, (string) spriteSet, appearance); // Goob
     }
 
     private void UpdateSlip(Entity<PuddleComponent> entity, Solution solution)

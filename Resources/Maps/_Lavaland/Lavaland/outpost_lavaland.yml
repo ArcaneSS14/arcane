@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 264.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 01/02/2026 11:21:30
+  engineVersion: 270.1.0
+  forkId: arcane
+  forkVersion: 59b2c39ed106a6a574bf12d027c55a939b9b3785
+  time: 10/13/2026 04:19:42
   entityCount: 2079
 maps: []
 grids:
@@ -621,60 +621,18 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 235
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.6852
-          - 81.57766
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.6852
+            Nitrogen: 81.57766
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -685,6 +643,9 @@ entities:
     - type: LavalandStation
     - type: ImplicitRoof
     - type: FTLDrive
+    - type: TileHistory
+      chunkHistory: {}
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 2
@@ -698,6 +659,8 @@ entities:
       - 62
       - 1242
       - 1258
+    - type: Fixtures
+      fixtures: {}
   - uid: 3
     components:
     - type: Transform
@@ -710,6 +673,8 @@ entities:
       - 1241
       - 754
       - 753
+    - type: Fixtures
+      fixtures: {}
   - uid: 4
     components:
     - type: Transform
@@ -721,6 +686,8 @@ entities:
       - 1259
       - 1244
       - 750
+    - type: Fixtures
+      fixtures: {}
   - uid: 5
     components:
     - type: Transform
@@ -733,6 +700,8 @@ entities:
       - 748
       - 1243
       - 1257
+    - type: Fixtures
+      fixtures: {}
   - uid: 6
     components:
     - type: Transform
@@ -746,6 +715,8 @@ entities:
       - 1246
       - 759
       - 756
+    - type: Fixtures
+      fixtures: {}
   - uid: 7
     components:
     - type: Transform
@@ -757,6 +728,8 @@ entities:
       - 1262
       - 68
       - 767
+    - type: Fixtures
+      fixtures: {}
   - uid: 8
     components:
     - type: Transform
@@ -768,6 +741,8 @@ entities:
       - 1265
       - 1253
       - 66
+    - type: Fixtures
+      fixtures: {}
   - uid: 9
     components:
     - type: Transform
@@ -781,6 +756,8 @@ entities:
       - 67
       - 1248
       - 1263
+    - type: Fixtures
+      fixtures: {}
   - uid: 10
     components:
     - type: Transform
@@ -791,6 +768,8 @@ entities:
       - 1249
       - 1264
       - 65
+    - type: Fixtures
+      fixtures: {}
   - uid: 11
     components:
     - type: Transform
@@ -804,6 +783,8 @@ entities:
       - 1269
       - 1252
       - 59
+    - type: Fixtures
+      fixtures: {}
   - uid: 12
     components:
     - type: Transform
@@ -816,6 +797,8 @@ entities:
       - 1268
       - 1267
       - 1256
+    - type: Fixtures
+      fixtures: {}
   - uid: 13
     components:
     - type: Transform
@@ -828,6 +811,8 @@ entities:
       - 1270
       - 1255
       - 1271
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 14
@@ -1215,68 +1200,92 @@ entities:
     - type: Transform
       pos: 7.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 70
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 71
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 16.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 72
     components:
     - type: Transform
       pos: 11.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 73
     components:
     - type: Transform
       pos: 18.5,12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 74
     components:
     - type: Transform
       pos: 25.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 75
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 31.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 76
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 29.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 77
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 23.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 78
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,-9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 79
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 12.5,17.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 80
     components:
     - type: Transform
       pos: 29.5,18.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 81
@@ -4242,32 +4251,6 @@ entities:
     - type: Transform
       pos: 16.5,-12.5
       parent: 1
-- proto: ClothingBackpackDuffelSurgeryFilled
-  entities:
-  - uid: 638
-    components:
-    - type: Transform
-      pos: 32.501015,1.6738029
-      parent: 1
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: >-
-            It provides the following protection:
-
-            - [color=orange]Explosion[/color] damage [color=white]to contents[/color] reduced by [color=lightblue]10%[/color].
-          priority: 0
-          component: Armor
-        - message: This decreases your running speed by [color=yellow]10%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        title: null
 - proto: ClothingHandsGlovesColorYellow
   entities:
   - uid: 639
@@ -4407,22 +4390,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -4885,72 +4854,98 @@ entities:
     - type: Transform
       pos: 10.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 735
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 20.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 736
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 27.5,13.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 737
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 33.5,1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 738
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 29.5,-4.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 739
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 12.5,-3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 740
     components:
     - type: Transform
       pos: 29.5,8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 741
     components:
     - type: Transform
       pos: 33.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 742
     components:
     - type: Transform
       pos: 32.5,13.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 743
     components:
     - type: Transform
       pos: 22.5,6.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 744
     components:
     - type: Transform
       pos: 15.5,-12.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 745
     components:
     - type: Transform
       pos: 13.5,14.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 746
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 21.5,-0.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FireAlarm
   entities:
   - uid: 747
@@ -4958,6 +4953,8 @@ entities:
     - type: Transform
       pos: 14.5,3.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: Firelock
   entities:
   - uid: 748
@@ -8901,7 +8898,7 @@ entities:
     - type: Transform
       pos: 24.5,-6.5
       parent: 1
-- proto: HandheldHealthAnalyzerUnpowered
+- proto: HandheldHealthAnalyzer
   entities:
   - uid: 658
     components:
@@ -8941,6 +8938,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 26.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: LockerQuarterMaster
   entities:
   - uid: 1341
@@ -8976,6 +8975,11 @@ entities:
     components:
     - type: Transform
       pos: 25.5,2.5
+      parent: 1
+  - uid: 2078
+    components:
+    - type: Transform
+      pos: 11.5,13.5
       parent: 1
 - proto: MaintenanceFluffSpawner
   entities:
@@ -9408,7 +9412,7 @@ entities:
   - uid: 1423
     components:
     - type: Transform
-      pos: 25.5,-4.5
+      pos: 24.272968,-4.5531445
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -11131,6 +11135,26 @@ entities:
     - type: Transform
       pos: 5.5,0.5
       parent: 1
+- proto: SurgerykitFilled
+  entities:
+  - uid: 638
+    components:
+    - type: Transform
+      pos: 32.501015,1.6738029
+      parent: 1
+    - type: GroupExamine
+      group:
+      - components:
+        - Armor
+        - ClothingSpeedModifier
+        entries:
+        - message: >-
+            It provides the following protection:
+
+            - [color=orange]Explosion[/color] damage [color=white]to contents[/color] reduced by [color=lightblue]10%[/color].
+          component: Armor
+        - message: This decreases your running speed by [color=yellow]10%[/color].
+          component: ClothingSpeedModifier
 - proto: Table
   entities:
   - uid: 1686
@@ -11274,11 +11298,6 @@ entities:
     - type: Transform
       pos: 32.5,1.5
       parent: 1
-  - uid: 1711
-    components:
-    - type: Transform
-      pos: 25.5,-4.5
-      parent: 1
   - uid: 1712
     components:
     - type: Transform
@@ -11298,13 +11317,6 @@ entities:
     components:
     - type: Transform
       pos: 11.5,14.5
-      parent: 1
-- proto: TelecomTransmitter
-  entities:
-  - uid: 2078
-    components:
-    - type: Transform
-      pos: 11.5,13.5
       parent: 1
 - proto: ToolboxElectricalFilled
   entities:
@@ -13211,6 +13223,13 @@ entities:
       parent: 1
     - type: WarpPoint
       location: lavaland
+- proto: WashingMachine
+  entities:
+  - uid: 1711
+    components:
+    - type: Transform
+      pos: 25.5,-4.5
+      parent: 1
 - proto: WaterCooler
   entities:
   - uid: 2065

@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Server._Arcane.Heretic; 
+using Content.Server._Arcane.Heretic.Components; 
 using Content.Server._Goobstation.Objectives.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Heretic.Components;
@@ -86,6 +88,7 @@ namespace Content.Server.Heretic.Ritual;
             if (!args.EntityManager.TryGetComponent<MobStateComponent>(look, out var mobstate) // only mobs
             || OnlyHumanoid && !args.EntityManager.HasComponent<HumanoidAppearanceComponent>(look) // only humans
             || args.EntityManager.HasComponent<BorgChassisComponent>(look) // no borgs
+            || args.EntityManager.HasComponent<HereticSacrificedComponent>(look) // Arcane
             || OnlyTargets
                 && hereticComp.SacrificeTargets.All(x => x.Entity != args.EntityManager.GetNetEntity(look)) // only targets
                 && !_heretic.TryGetHereticComponent(look, out _, out _)) // or other heretics
@@ -130,19 +133,24 @@ namespace Content.Server.Heretic.Ritual;
                     ? isCommand || isSec || isHeretic ? 3f : 2f
                     : 0f;
 
-            try
+            // Arcane-Start
+            if (!args.EntityManager.System<HereticSacrificeTeleportSystem>().TryTeleportVictim(uid))
             {
-                // YES!!! GIB!!!
-                _body.GibBody(uid);
-            }
-            catch (Exception e)
-            {
-                if (!args.EntityManager.IsQueuedForDeletion(uid) && !args.EntityManager.Deleted(uid))
-                    args.EntityManager.QueueDeleteEntity(uid);
+                try
+                {
+                    // YES!!! GIB!!!
+                    _body.GibBody(uid);
+                }
+                catch (Exception e)
+                {
+                    if (!args.EntityManager.IsQueuedForDeletion(uid) && !args.EntityManager.Deleted(uid))
+                        args.EntityManager.QueueDeleteEntity(uid);
 
-                _sawmill ??= _log.GetSawmill("sacrifice");
-                _sawmill.Error(e.Message);
+                    _sawmill ??= _log.GetSawmill("sacrifice");
+                    _sawmill.Error(e.Message);
+                }
             }
+            // Arcane-End
 
             // Sacrificed heretics lose their powers forever
             if (otherMind != EntityUid.Invalid && otherHeretic is { } h)

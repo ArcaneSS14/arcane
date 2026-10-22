@@ -46,6 +46,7 @@
   id: MobXenomorphSentinel
   components:
   - type: GhostRole
+    banJob: GhostRoleXenomorph # Arcane
     allowMovement: true
     allowSpeech: true
     makeSentient: true

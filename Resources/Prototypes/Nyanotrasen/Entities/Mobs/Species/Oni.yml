@@ -42,7 +42,7 @@
   - type: Body
     prototype: Oni
   - type: Damageable # Goob-Fixes
-    damageModifierSet: Oni
+#    damageModifierSet: Oni # Arcane-Edit
   - type: LightweightDrunk
     boozeStrengthMultiplier: 0.5 # REAL hard to get drunk
   - type: Fixtures

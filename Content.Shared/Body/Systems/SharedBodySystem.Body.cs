@@ -2,6 +2,7 @@
 
 using System.Linq;
 using System.Numerics;
+using Content.Shared._Arcane.Body.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
@@ -60,6 +61,7 @@ public partial class SharedBodySystem
     [Dependency] private readonly TraumaSystem _trauma = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     // Shitmed Change End
+    [Dependency] private readonly LostPartMarkingsSystem _lostPartMarkings = default!; // Arcane
 
     private const float GibletLaunchImpulse = 8;
     private const float GibletLaunchImpulseVariance = 3;
@@ -461,23 +463,34 @@ public partial class SharedBodySystem
         return gibs;
     }
 
-    public virtual bool BurnPart(EntityUid partId,
-        BodyPartComponent? part = null)
+    /// <summary>
+    /// [Woundmed]
+    /// Behavior for burning a part away.
+    /// If is root will destroy whole body lol
+    /// </summary>
+    public virtual EntityUid? TryBurnPart(Entity<BodyPartComponent> part,
+        bool destroyWholeIfRoot = true)
     {
-        if (!Resolve(partId, ref part, logMissing: false))
-            return false;
+        if (part.Comp.Body is not { } bodyUid)
+            return null;
 
-        if (part.Body is { } bodyEnt)
+        // TODO reminder: remember if rootpart is deleted that breaks everything rn btw
+        // so basically todo fix destroyWholeIfRoot = false
+        if (IsPartRoot(bodyUid, part) && destroyWholeIfRoot)
         {
-            if (IsPartRoot(bodyEnt, partId, part: part))
-                return false;
-
-            DropSlotContents((partId, part));
-            QueueDel(partId);
-            return true;
+            foreach (var item in _inventory.GetHandOrInventoryEntities(bodyUid))
+            {
+                SharedTransform.DropNextTo(item, bodyUid); // kill yourself
+            }
+            QueueDel(bodyUid);
+            return bodyUid;
         }
-
-        return false;
+        else
+        {
+            DropSlotContents(part);
+            QueueDel(part);
+            return part;
+        }
     }
 
     private void OnProfileLoadFinished(EntityUid uid, BodyComponent component, ProfileLoadFinishedEvent args)
@@ -643,6 +656,7 @@ public partial class SharedBodySystem
                         Dirty(childPart, childPartComponent);
 
                         Containers.Insert(childPart, container);
+                        _lostPartMarkings.RestoreMarkings(ent, (childPart, childPartComponent)); // Arcane
 
                         SetupOrgans((childPart, childPartComponent), connectionSlot.Organs);
                     }
@@ -669,6 +683,7 @@ public partial class SharedBodySystem
 
                     container = Containers.GetContainer(parentEntity, GetPartSlotContainerId(connection));
                     Containers.Insert(childPart, container);
+                    _lostPartMarkings.RestoreMarkings(ent, (childPart, childPartComponent)); // Arcane
 
                     SetupOrgans((childPart, childPartComponent), connectionSlot.Organs);
                 }

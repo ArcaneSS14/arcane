@@ -10,6 +10,7 @@
     - sprite: _White/Mobs/Aliens/Xenomorphs/larva.rsi
       state: xenomorph
   - type: GhostRole
+    banJob: GhostRoleXenomorph # Arcane
     name: ghost-role-information-xenomorph-larva-name
     description: ghost-role-information-xenomorph-larva-description
     rules: ghost-role-information-rules-default-xeno

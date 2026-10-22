@@ -17,6 +17,7 @@
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
+    banJob: GhostRoleHermit # Arcane
     name: ghost-role-information-hermit-lavaland
     description: ghost-role-information-hermit-lavaland-description
     rules: ghost-role-information-hermit-rules

@@ -5,11 +5,21 @@ namespace Content.Shared._Arcane.CCVars;
 [CVarDefs]
 public sealed partial class ACCVars
 {
+    public static readonly CVarDef<string> UiTheme =
+        CVarDef.Create("ui.arcane_theme", "default", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
-    ///     Are auto voting enabled at the end of a round?
+    ///     Enable automatic random preset selection and map voting when returning to the lobby.
     /// </summary>
     public static readonly CVarDef<bool> AutoVotingEnabled =
         CVarDef.Create("vote.auto_voting_enabled", false, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Number of successfully started rounds remembered for random preset selection.
+    ///     Zero disables history-based penalties;
+    /// </summary>
+    public static readonly CVarDef<int> GamePresetHistorySize =
+        CVarDef.Create("game.preset_history_size", 8, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
     ///     At what distance from the player the NPC will sleep.
@@ -69,6 +79,13 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<float> JukeboxVolume =
         CVarDef.Create("jukebox.volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    ///     Volume multiplier for everything the station radio plays: the music it relays and the
+    ///     relayed speech it reads out loud.
+    /// </summary>
+    public static readonly CVarDef<float> StationRadioVolume =
+        CVarDef.Create("stationradio.volume", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     ///     Restricts custom species names so players cannot use the name of another species.

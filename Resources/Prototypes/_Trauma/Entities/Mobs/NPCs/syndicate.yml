@@ -6,6 +6,7 @@
   suffix: Syndicate
   components:
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true
@@ -63,6 +64,7 @@
   suffix: Syndicate
   components:
   - type: GhostRole
+    banJob: GhostRoleSyndicate # Arcane
     makeSentient: true
     allowSpeech: true
     allowMovement: true

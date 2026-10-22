@@ -71,6 +71,86 @@
     state: long_straight
 
 - type: marking
+  id: HumanHairAngel
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: angel
+
+- type: marking
+  id: HumanHairArataki
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: arataki
+
+- type: marking
+  id: HumanHairGacha
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: gacha
+
+- type: marking
+  id: HumanHairKasaneTeto
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: kasaneteto
+
+- type: marking
+  id: HumanHairManMessy
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: manmessy
+
+- type: marking
+  id: HumanHairMessyBangsEyes
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: messybangseyes
+
+- type: marking
+  id: HumanHairTord
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: tord
+
+- type: marking
+  id: HumanHairHatsuneMiku
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: hatsunemiku
+
+- type: marking
+  id: HumanHairThreeBun
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: hairthreebun
+
+- type: marking
+  id: HumanHairThreeBunAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: hairthreebunalt
+
+- type: marking
   id: HumanHairManBunBob
   bodyPart: Hair
   markingCategory: Hair
@@ -173,3 +253,11 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/hair.rsi
     state: wolfcut_f
+
+- type: marking
+  id: HumanHairBobWithTail
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: bob_with_tail

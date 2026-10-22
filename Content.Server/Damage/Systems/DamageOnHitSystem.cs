@@ -2,8 +2,9 @@
 
 using System.Linq;
 using Content.Server.Damage.Components;
-using Content.Shared.Damage;
 using Content.Shared.Weapons.Melee.Events;
+using System.Linq;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Damage.Systems;
 

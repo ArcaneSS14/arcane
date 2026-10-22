@@ -105,3 +105,14 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Underwear/undershirt/red.rsi
+
+# Lovemate
+
+- type: entity
+  parent: ClothingBraBase
+  id: ClothingBraBelts
+  name: belts
+  description: A thin black belts.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Underwear/undershirt/belts.rsi

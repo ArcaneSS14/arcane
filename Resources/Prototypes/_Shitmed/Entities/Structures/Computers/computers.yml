@@ -43,6 +43,10 @@
     - type: CommunicationsConsole
       title: comms-console-announcement-title-centcom
       global: true
+    # Arcane-Start
+    - type: AlertLevelGateConsole
+      enabled: false
+    # Arcane-End
 
 - type: entity
   parent: BaseComputer

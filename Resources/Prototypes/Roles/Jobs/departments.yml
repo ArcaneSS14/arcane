@@ -15,6 +15,7 @@
   - SalvageSpecialist
   - ShaftMiner # Lavaland Change
   - Bitrunner # Orion
+  stationAccount: Cargo # Arcane
 
 # Arcane-Start
 - type: department
@@ -55,6 +56,10 @@
   - Visitor
   - ServiceWorker
   - PartyMaker # event-restricted, Goobstation
+  # Arcane-Start
+  - CommandMaid
+  stationAccount: Service
+  # Arcane-End
 
 - type: department
   id: CentralCommand
@@ -124,6 +129,7 @@
   - Adjutant # Arcane
   primary: false
 #  weight: 100 # Orion-Edit: Moved
+  stationAccount: Command # Arcane
 
 - type: department
   id: Engineering
@@ -139,6 +145,7 @@
   - ChiefEngineer
   - StationEngineer
   - TechnicalAssistant
+  stationAccount: Engineering # Arcane
 
 - type: department
   id: Medical
@@ -157,6 +164,7 @@
   - Psychologist
   - Paramedic
   - Virologist # Gooby goob ba gooby goob ba
+  stationAccount: Medical # Arcane
 
 - type: department
   id: Security
@@ -175,6 +183,7 @@
   - Warden
   - Brigmedic # Goob
   - SecurityClown # event-restricted, Goob
+  stationAccount: Security # Arcane
 
 - type: department
   id: Science
@@ -190,6 +199,7 @@
   - Scientist
   - ResearchAssistant
   - Roboticist #Goob
+  stationAccount: Science # Arcane
 
 - type: department
   id: Silicon

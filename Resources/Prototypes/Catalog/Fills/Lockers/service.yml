@@ -98,6 +98,10 @@
       - id: FlashlightLantern
       - id: Plunger
       - id: WireBrush
+      # Arcane-Start
+      - id: FlatpackWashingMachine
+        amount: 2
+      # Arcane-End
 
 - type: entity
   id: ClosetLegalFilled

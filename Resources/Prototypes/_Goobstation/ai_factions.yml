@@ -12,6 +12,7 @@
   - Heretic
   - Wizard
   - Blob
+  - Changeling # Arcane
 
 - type: npcFaction
   id: Assistant

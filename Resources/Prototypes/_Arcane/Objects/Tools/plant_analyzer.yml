@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseItem
+  id: PlantAnalyzer
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Tools/plant_analyzer.rsi
+    layers:
+    - state: icon
+    - state: plantanalyzer
+      shader: unshaded
+  - type: Item
+    size: Small
+  - type: PlantAnalyzer
+    scanSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg" 
+  - type: UserInterface
+    interfaces:
+      enum.PlantAnalyzerUiKey.Key:
+        type: PlantAnalyzerBoundUserInterface

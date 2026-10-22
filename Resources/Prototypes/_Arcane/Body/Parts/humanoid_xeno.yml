@@ -5,7 +5,7 @@
   abstract: true
   components:
   - type: Damageable
-    damageModifierSet: HumanoidXenomorph
+#    damageModifierSet: HumanoidXenomorph # Arcane-Edit
   - type: Icon
     sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
     state: torso_m

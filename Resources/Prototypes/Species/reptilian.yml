@@ -26,16 +26,19 @@
   category: Classic
   description: "/ServerInfo/_Orion/SpeciesDescriptions/Reptilian.xml"
   pros:
-  - Получают на 30% меньше режущего урона. # Arcane
+  # Arcane-Start
+#  - Получают на 20% меньше режущего урона. # Arcane-Edit
+#  - Получают на 30% меньше теплового урона. # Arcane-Edit
+  # Arcane-End
   - Имеют большую толерантность к боли.
   - Могут таскать предметы хвостом.
   special:
   - Имеют отличимый от других рас порог температуры. При низкой температуре получают 0.1 холода в секунду. При высокой температуре получают 1.5 ожогов в секунду.
   - Имеет животный желудок.
-  cons:
+  # cons: # Arcane-Edit
   # Arcane-start
-  - Получают на 25% больше колющего урона.
-  - Получают на 30% больше холодового урона.
+#  - Получают на 10% больше колющего урона. # Arcane-Edit
+#  - Получают на 30% больше холодового урона. # Arcane-Edit
   # Arcane-end
   # Orion-End
 
@@ -79,6 +82,9 @@
       points: 1
       required: true
       defaultMarkings: [ LizardTailSmooth ]
+    Head:
+      points: 1
+      required: false
     Snout:
       points: 1
       required: true
@@ -109,6 +115,9 @@
       required: false
     LeftFoot:
       points: 2
+      required: false
+    Arms:
+      points: 1
       required: false
     RightArm:
       points: 2

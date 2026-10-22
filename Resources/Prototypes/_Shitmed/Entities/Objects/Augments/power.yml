@@ -28,6 +28,7 @@
   - type: Construction
     graph: AugmentPowerCellSlot
     node: cables
+    defaultTarget: augment # Arcane
 
 - type: entity
   parent: BaseAugment
@@ -83,7 +84,7 @@
   parent: BaseItem
   id: AugmentRechargerCasing
   name: augment recharger casing
-  description: Can be implanted into a body to recharge an internal power cell. This one is incomplete.
+  description: Can be implanted into a body to recharge an internal power cell. A cell recharger board makes it charge from APCs, a cyborg recharging station board from cyborg recharging stations. This one is incomplete. # Arcane-Edit
   components:
   - type: Sprite
     sprite: _Shitmed/Objects/Augments/power.rsi
@@ -91,6 +92,7 @@
   - type: Construction
     graph: AugmentRecharger
     node: casing
+    defaultTarget: apc # Arcane
   - type: Tag
     tags: [ AugmentRechargerCasing ]
 
@@ -98,7 +100,7 @@
   parent: BaseItem
   id: AugmentRechargerCables
   name: augment recharger casing with cables
-  description: Can be implanted into a body to recharge an internal power cell. This one is incomplete.
+  description: Can be implanted into a body to recharge an internal power cell. A cell recharger board makes it charge from APCs, a cyborg recharging station board from cyborg recharging stations. This one is incomplete. # Arcane-Edit
   components:
   - type: Sprite
     sprite: _Shitmed/Objects/Augments/power.rsi
@@ -106,6 +108,7 @@
   - type: Construction
     graph: AugmentRecharger
     node: cables
+    defaultTarget: apc # Arcane
 
 - type: entity
   parent: BaseAugmentRecharger

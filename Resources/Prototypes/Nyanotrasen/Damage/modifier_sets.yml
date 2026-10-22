@@ -4,8 +4,8 @@
   id: Felinid
   coefficients:
     # Arcane-Edit-Start
-    Blunt: 0.75
-    Slash: 0.8
-    Piercing: 1.25
+    Blunt: 1.15
+    Slash: 1.15
+    Piercing: 1.15
     # Arcane-Edit-End
   ignoreArmorPierceFlags: All # Goobstation

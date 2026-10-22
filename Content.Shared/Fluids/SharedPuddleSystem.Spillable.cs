@@ -19,6 +19,7 @@ using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Player;
+using Robust.Shared.Network;
 
 namespace Content.Shared.Fluids;
 
@@ -26,6 +27,7 @@ public abstract partial class SharedPuddleSystem
 {
     private static readonly FixedPoint2 MeleeHitTransferProportion = 0.25;
     [Dependency] private readonly InjectorSystem _injectorSystem = default!;
+    [Dependency] private readonly INetManager _net = default!; // Arcane
 
     protected virtual void InitializeSpillable()
     {
@@ -169,6 +171,11 @@ public abstract partial class SharedPuddleSystem
                 $"{ToPrettyString(args.User):actor} "
                 + $"splashed {SharedSolutionContainerSystem.ToPrettyString(splitSolution):solution} "
                 + $"from {ToPrettyString(entity.Owner):entity} onto {ToPrettyString(hit):target}");
+
+            // Arcane-Start
+            var stainEv = new SpilledOnEvent(entity.Owner, splitSolution.Clone());
+            RaiseLocalEvent(hit, stainEv);
+            // Arcane-End
 
             Reactive.DoEntityReaction(hit, splitSolution, ReactionMethod.Touch);
 

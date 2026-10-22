@@ -4,8 +4,10 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-surgery-verb-text = Начать операцию
-surgery-verb-message = Начата операция над этим существом.
+# Arcane-Edit-Start
+surgery-verb-text = Хирургическая карта
+surgery-verb-message = Открыть хирургическую карту пациента.
+# Arcane-Edit-End
 surgery-ui-window-title = Операция
 surgery-ui-window-require = Требуется
 surgery-ui-window-parts = < Части

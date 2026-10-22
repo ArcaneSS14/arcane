@@ -387,7 +387,8 @@ namespace Content.Server.Connection
                 return true;
 
             return _discordRoles.HasRole(session, DiscordRole.SponsorTier1) ||
-                   _discordRoles.HasRole(session, DiscordRole.SponsorTier2);
+                   _discordRoles.HasRole(session, DiscordRole.SponsorTier2) ||
+                   _discordRoles.HasRole(session, DiscordRole.AdminBenefit);
         }
 
         private async Task<bool> HasPrivilegedJoin(NetUserId userId, bool isAdmin)
@@ -396,7 +397,8 @@ namespace Content.Server.Connection
                 return true;
 
             return await _discordRoles.HasRole(userId, DiscordRole.SponsorTier1, default) ||
-                   await _discordRoles.HasRole(userId, DiscordRole.SponsorTier2, default);
+                   await _discordRoles.HasRole(userId, DiscordRole.SponsorTier2, default) ||
+                   await _discordRoles.HasRole(userId, DiscordRole.AdminBenefit, default);
         }
 
         private bool HasBuiltInJoinPrivilege(NetUserId userId, bool isAdmin)

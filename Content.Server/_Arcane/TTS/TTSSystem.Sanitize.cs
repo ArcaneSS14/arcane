@@ -14,41 +14,60 @@ public sealed partial class TTSSystem
         args.Message = args.Message.Replace("+", "");
     }
 
-    private static readonly Regex NonAllowedChars = new Regex(@"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ]", RegexOptions.Compiled);
-    private static readonly Regex Dygraphs = new Regex(@"(jsh|ch|sh|ja|ju|je|zh|hh|ih|jh|eh)", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
-    private static readonly Regex Latin = new Regex(@"[a-zA-Z]", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
-    private static readonly Regex MatchedWord = new Regex(@"(?<![a-zA-Zа-яёА-ЯЁ])[a-zA-Zа-яёА-ЯЁ]+?(?![a-zA-Zа-яёА-ЯЁ])", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
+    private static readonly Regex NonAllowedChars = new Regex(@"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ']", RegexOptions.Compiled);
+
+    // A word may contain an apostrophe, but only between letters: edge apostrophes
+    // ("'hello'", "players'") are left out of the word so the dictionary lookups
+    // still work.
+    private static readonly Regex MatchedWord = new Regex(@"(?<![a-zA-Zа-яёА-ЯЁ0-9])[a-zA-Zа-яёА-ЯЁ0-9]+(?:'[a-zA-Zа-яёА-ЯЁ0-9]+)*(?![a-zA-Zа-яёА-ЯЁ0-9])", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
     private static readonly Regex DecimalSep = new Regex(@"(?<=[1-90])(\.|,)(?=[1-90])", RegexOptions.Compiled);
     private static readonly Regex Numbers = new Regex(@"\d+", RegexOptions.Compiled);
 
-    private string Sanitize(string text)
+    internal static string Sanitize(string text)
     {
         text = text.Trim();
+        text = text.Replace('’', '\'');
         text = NonAllowedChars.Replace(text, "");
-        text = Dygraphs.Replace(text, ReplaceLat2Cyr);
-        text = Latin.Replace(text, ReplaceLat2Cyr);
         text = MatchedWord.Replace(text, ReplaceMatchedWord);
+
+        // Apostrophes that were not part of a word are dropped, so they never
+        // reach the speech API.
+        text = text.Replace("'", "");
+
         text = DecimalSep.Replace(text, " целых ");
         text = Numbers.Replace(text, ReplaceWord2Num);
         text = text.Trim();
         return text;
     }
 
-    private string ReplaceLat2Cyr(Match oneChar)
+    private static string ReplaceMatchedWord(Match word)
     {
-        if (ReverseTranslit.TryGetValue(oneChar.Value.ToLower(), out var replace))
-            return replace;
-        return oneChar.Value;
-    }
+        var lower = word.Value.ToLowerInvariant();
 
-    private string ReplaceMatchedWord(Match word)
-    {
-        if (WordReplacement.TryGetValue(word.Value.ToLower(), out var replace))
+        // Abbreviations are spelled letter by letter; checked on the raw word so both
+        // latin ("id") and cyrillic ("нт") keys work.
+        if (WordReplacement.TryGetValue(lower, out var replace))
             return replace;
+
+        // Latin words are phonetically transliterated for the russian TTS engine.
+        if (HasLatin(lower))
+            return EnglishPhoneticTranslit.Transliterate(lower);
+
         return word.Value;
     }
 
-    private string ReplaceWord2Num(Match word)
+    private static bool HasLatin(string word)
+    {
+        foreach (var c in word)
+        {
+            if (c is >= 'a' and <= 'z')
+                return true;
+        }
+
+        return false;
+    }
+
+    private static string ReplaceWord2Num(Match word)
     {
         if (!long.TryParse(word.Value, out var number))
             return word.Value;
@@ -165,6 +184,9 @@ public sealed partial class TTSSystem
             {"ви", "Вэ И"},
             {"ии", "И И"},
             {"осщ", "О Сэ Ща"},
+            {"сщ", "Сэ Ща"},
+            {"осща", "О Сэ Ща"},
+            {"сща", "Сэ Ща"},
             {"бдсм", "Бэ Дэ Эс Эм"},
             {"рп","Эр Пэ"},
             {"гк","Гэ Ка"},
@@ -172,50 +194,6 @@ public sealed partial class TTSSystem
             {"св","Эс Вэ"},
             {"нв","Эн Вэ"},
             {"прс","Пэ Рэ Эс"}
-        };
-
-    private static readonly IReadOnlyDictionary<string, string> ReverseTranslit =
-        new Dictionary<string, string>()
-        {
-            {"й", "й"},
-            {"ъ", "ъ"},
-            {"ь", "ь"},
-            {"a", "а"},
-            {"b", "б"},
-            {"v", "в"},
-            {"g", "г"},
-            {"d", "д"},
-            {"e", "е"},
-            {"je", "ё"},
-            {"zh", "ж"},
-            {"z", "з"},
-            {"i", "и"},
-            {"y", "й"},
-            {"k", "к"},
-            {"l", "л"},
-            {"m", "м"},
-            {"n", "н"},
-            {"o", "о"},
-            {"p", "п"},
-            {"r", "р"},
-            {"s", "с"},
-            {"t", "т"},
-            {"u", "у"},
-            {"f", "ф"},
-            {"h", "х"},
-            {"c", "ц"},
-            {"x", "кс"},
-            {"w", "в"},
-            {"ch", "ч"},
-            {"sh", "ш"},
-            {"ph", "ф"},
-            {"jsh", "щ"},
-            {"hh", "ъ"},
-            {"ih", "ы"},
-            {"jh", "ь"},
-            {"eh", "э"},
-            {"ju", "ю"},
-            {"ja", "я"},
         };
 }
 

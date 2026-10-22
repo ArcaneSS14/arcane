@@ -250,3 +250,6 @@ ent-MedicalBiofabMachineBoard = медицинский биофабрикато�
 ent-CutterMachineCircuitboard = резательный станок (машинная плата)
     .desc = { ent-BaseMachineCircuitboard.desc }
     .suffix = { ent-BaseMachineCircuitboard.suffix }
+ent-SmartFridgeCircuitboard = умный холодильник (машинная плата)
+    .desc = Печатная плата умного холодильника.
+    .suffix = { ent-BaseMachineCircuitboard.suffix }

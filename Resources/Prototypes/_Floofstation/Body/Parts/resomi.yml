@@ -10,7 +10,7 @@
   - type: BodyPart
     species: Resomi
   - type: Damageable
-    damageModifierSet: Resomi
+#    damageModifierSet: Resomi # Arcane-Edit
   - type: Woundable # Goobstation
     boneEntity: BoneWeak
 
