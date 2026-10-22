@@ -22,6 +22,6 @@ public sealed partial class StellarInteractionParticleSystem
         if (_player.LocalEntity != performer)
             return false;
 
-        return type != StellarInteractionParticleType.InHand || _showOverheadInteractionParticle;
+        return _showOverheadInteractionParticle;
     }
 }
