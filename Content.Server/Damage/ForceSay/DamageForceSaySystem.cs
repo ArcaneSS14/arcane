@@ -13,6 +13,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server._Arcane.Chat.Systems; // Arcane
 
 namespace Content.Server.Damage.ForceSay;
 
@@ -22,6 +23,7 @@ public sealed class DamageForceSaySystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ChatInputLoggingSystem _chatInputLogging = default!; // Arcane
 
     public override void Initialize()
     {
@@ -51,7 +53,7 @@ public sealed class DamageForceSaySystem : EntitySystem
         }
     }
 
-    private void TryForceSay(EntityUid uid, DamageForceSayComponent component, bool useSuffix=true)
+    private void TryForceSay(EntityUid uid, DamageForceSayComponent component, bool useSuffix=true, EntityUid? interruptionSource = null) // Arcane-Edit: EntityUid? interruptionSource = null
     {
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;
@@ -72,6 +74,11 @@ public sealed class DamageForceSaySystem : EntitySystem
         // set cooldown & raise event
         component.NextAllowedTime = _timing.CurTime + component.Cooldown;
         RaiseNetworkEvent(new DamageForceSayEvent { Suffix = useSuffix ? suffix : null }, actor.PlayerSession);
+
+        // Arcane-Start
+        if (interruptionSource is { } interrupter)
+            _chatInputLogging.LogChatInterruption(uid, interrupter);
+        // Arcane-End
     }
 
     private void AllowNextSpeech(EntityUid uid)
@@ -119,7 +126,7 @@ public sealed class DamageForceSaySystem : EntitySystem
                 return;
         }
 
-        TryForceSay(uid, component);
+        TryForceSay(uid, component, interruptionSource: args.Origin); // Arcane-Edit: interruptionSource: args.Origin
     }
 
     private void OnMobStateChanged(EntityUid uid, DamageForceSayComponent component, MobStateChangedEvent args)
