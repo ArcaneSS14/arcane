@@ -17,7 +17,7 @@ public sealed class AdminLogLabel : RichTextLabel
         var impactText = $"[color={impactColor}]█[/color]";
 
         var formatted = new FormattedMessage();
-        formatted.AddMarkupOrThrow($"{impactText} [bold]{log.Date:HH:mm:ss}[/bold]: {log.Message}");
+        formatted.AddMarkupOrThrow($"{impactText} [bold]{log.Date:HH:mm:ss}[/bold]: {FormattedMessage.EscapeText(log.Message)}");
         // Arcane-End
 
         SetMessage(formatted); // Arcane-Edit

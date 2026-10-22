@@ -4,6 +4,8 @@ using Content.Server.Administration.Logs;
 using Content.Shared.Chat;
 using Content.Shared._Arcane.Chat;
 using Content.Shared.Database;
+using Robust.Server.Player;
+using Robust.Shared.Enums;
 using Robust.Shared.Player;
 
 namespace Content.Server._Arcane.Chat.Systems;
@@ -11,6 +13,7 @@ namespace Content.Server._Arcane.Chat.Systems;
 public sealed class ChatInputLoggingSystem : EntitySystem
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private readonly Dictionary<ICommonSession, EntityUid?> _focusedSessions = new();
     private readonly HashSet<EntityUid> _focusedEntities = new();
@@ -22,6 +25,15 @@ public sealed class ChatInputLoggingSystem : EntitySystem
         SubscribeNetworkEvent<ChatInputFocusChangedEvent>(OnChatInputFocusChanged);
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
+        _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
+    }
+
+    public override void Shutdown()
+    {
+        _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
+        _focusedSessions.Clear();
+        _focusedEntities.Clear();
+        base.Shutdown();
     }
 
     public bool IsChatInputFocused(EntityUid entity)
@@ -83,5 +95,15 @@ public sealed class ChatInputLoggingSystem : EntitySystem
 
         _focusedSessions[ev.Player] = ev.Entity;
         _focusedEntities.Add(ev.Entity);
+    }
+
+    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
+    {
+        if (args.NewStatus != SessionStatus.Disconnected ||
+            !_focusedSessions.Remove(args.Session, out var focusedEntity))
+            return;
+
+        if (focusedEntity is { } focused)
+            _focusedEntities.Remove(focused);
     }
 }
