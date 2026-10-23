@@ -5,7 +5,7 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Emp;
+using Content.Shared.Emp; // Arcane-Edit
 using Content.Shared.Examine;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
@@ -31,7 +31,7 @@ public sealed class RechargeableBlockingSystem : EntitySystem
         SubscribeLocalEvent<RechargeableBlockingComponent, ChargeChangedEvent>(OnChargeChanged);
         SubscribeLocalEvent<RechargeableBlockingComponent, PowerCellChangedEvent>(OnPowerCellChanged);
     }
-
+    // Arcane-Edit-Start
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -58,18 +58,18 @@ public sealed class RechargeableBlockingSystem : EntitySystem
             CheckCharge(uid, component);
         }
     }
-
+    // Arcane-Edit-End
     private void OnExamined(Entity<RechargeableBlockingComponent> ent, ref ExaminedEvent args)
     {
         if (!ent.Comp.Discharged)
             return;
-
+        // Arcane-Edit-Start
         if (HasComp<EmpDisabledComponent>(ent))
         {
             args.PushMarkup(Loc.GetString("rechargeable-blocking-emp-disabled"));
             return;
         }
-
+        // Arcane-Edit-End
         args.PushMarkup(Loc.GetString("rechargeable-blocking-discharged"));
         args.PushMarkup(Loc.GetString("rechargeable-blocking-remaining-time", ("remainingTime", GetRemainingTime(ent))));
     }
@@ -78,12 +78,13 @@ public sealed class RechargeableBlockingSystem : EntitySystem
     {
         if (!_battery.TryGetBatteryComponent(uid, out var batteryComponent, out var batteryUid)
             || !TryComp<BatterySelfRechargerComponent>(batteryUid, out var recharger)
-            || recharger is not { AutoRechargeRate: > 0 })
+            || recharger is not { AutoRechargeRate: > 0 }) // Arcane-Edit
             return 0;
-
+        // Arcane-Edit-Start
         var charge = _battery.GetCharge((batteryUid.Value, batteryComponent));
         var remaining = MathF.Max(0, batteryComponent.MaxCharge - charge);
         return (int) MathF.Ceiling(remaining / recharger.AutoRechargeRate);
+        // Arcane-Edit-End
     }
 
     private void OnDamageChanged(EntityUid uid, RechargeableBlockingComponent component, DamageChangedEvent args)
@@ -93,12 +94,13 @@ public sealed class RechargeableBlockingSystem : EntitySystem
             || args.DamageDelta == null)
             return;
 
-        var batteryUse = Math.Min(args.DamageDelta.GetTotal().Float(), _battery.GetCharge((batteryUid.Value, batteryComponent)));
+        var batteryUse = Math.Min(args.DamageDelta.GetTotal().Float(), _battery.GetCharge((batteryUid.Value, batteryComponent))); // Arcane-Edit
         _battery.TryUseCharge(batteryUid.Value, batteryUse);
     }
 
     private void AttemptToggle(EntityUid uid, RechargeableBlockingComponent component, ref ItemToggleActivateAttemptEvent args)
     {
+        // Arcane-Edit-Start
         if (HasComp<EmpDisabledComponent>(uid))
         {
             args.Cancelled = true;
@@ -118,8 +120,8 @@ public sealed class RechargeableBlockingSystem : EntitySystem
 
             args.Cancelled = true;
         }
+        // Arcane-Edit-End
     }
-
     private void OnChargeChanged(EntityUid uid, RechargeableBlockingComponent component, ChargeChangedEvent args)
     {
         CheckCharge(uid, component);
@@ -132,9 +134,9 @@ public sealed class RechargeableBlockingSystem : EntitySystem
 
     private void CheckCharge(EntityUid uid, RechargeableBlockingComponent component)
     {
-        if (!_battery.TryGetBatteryComponent(uid, out var battery, out var batteryUid))
+        if (!_battery.TryGetBatteryComponent(uid, out var battery, out var batteryUid)) // Arcane-Edit
             return;
-
+        // Arcane-Edit-Start
         var charge = _battery.GetCharge((batteryUid.Value, battery));
 
         if (charge < 1)
@@ -154,7 +156,6 @@ public sealed class RechargeableBlockingSystem : EntitySystem
             }
             return;
         }
-
         if (charge < battery.MaxCharge)
             return;
 
@@ -170,5 +171,5 @@ public sealed class RechargeableBlockingSystem : EntitySystem
                 _battery.RefreshChargeRate((batteryUid.Value, battery));
             }
         }
-    }
+    }    // Arcane-Edit-End
 }
