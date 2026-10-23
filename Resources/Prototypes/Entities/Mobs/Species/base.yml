@@ -28,10 +28,10 @@
     # Arcane-Edit-Start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["enum.HumanoidVisualLayers.LHand"]
-    - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: [ "enum.HumanoidVisualLayers.BodyOverlay" ]
     - map: ["jumpsuit"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: ["enum.HumanoidVisualLayers.RHand"]
     # Arcane-Edit-End
     - map: ["enum.HumanoidVisualLayers.Face"] #Goob 120 - why did we have face on dummy but not basespecies
     - map: [ "gloves" ]
@@ -396,10 +396,10 @@
     # Arcane-Edit-Start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["enum.HumanoidVisualLayers.LHand"]
-    - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: [ "enum.HumanoidVisualLayers.BodyOverlay" ]
     - map: ["jumpsuit"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: ["enum.HumanoidVisualLayers.RHand"]
     # Arcane-Edit-End
     - map: ["enum.HumanoidVisualLayers.Handcuffs"]
       color: "#ffffff"
