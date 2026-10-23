@@ -129,7 +129,7 @@ public sealed partial class VendingMachineKeypadMenu : FancyWindow
             var code = GetCode(i);
 
             var slot = new VendingMachineGridSlot();
-            slot.SetItem(entry.ID, code, entry.Amount, entry.Amount == 0);
+            slot.SetItem(entry.ID, code, entry.Amount, entry.DisplayPrice, entry.Amount == 0); // Arcane-Edit
 
             ItemGrid.AddChild(slot);
             _slots.Add(slot);
@@ -149,9 +149,20 @@ public sealed partial class VendingMachineKeypadMenu : FancyWindow
 
         for (var i = 0; i < inventory.Count; i++)
         {
+            _slots[i].SetPrice(inventory[i].DisplayPrice); // Arcane-Edit
             _slots[i].SetAmount(inventory[i].Amount, inventory[i].Amount == 0);
         }
     }
+
+    // Arcane-Start
+    public void SetBalance(int? balance)
+    {
+        BalanceLabel.Visible = balance != null;
+
+        if (balance != null)
+            BalanceLabel.Text = Loc.GetString("vending-machine-balance", ("amount", balance.Value));
+    }
+    // Arcane-End
 
     public void PlayVendAnimation(int slotIndex)
     {
