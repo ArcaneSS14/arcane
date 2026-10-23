@@ -3695,3 +3695,18 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/3ea23d6a-5718-4d9e-be41-516837c3ab60
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: >-
+        При взаимодействии с предметами(подбор, закрытие/открытие) они
+        отображаются только у пользователя для пользователя. Это можно отключить
+        в настройках.
+    - type: Fix
+      message: Вода теперь голубого цвета.
+    - type: Fix
+      message: В автоматах показывается баланс и стоимость лота.
+  id: 263
+  time: '2026-10-23T01:08:20.0000000+00:00'
+  prNumber: 551
+  url: https://github.com/ArcaneSS14/arcane/pull/551
