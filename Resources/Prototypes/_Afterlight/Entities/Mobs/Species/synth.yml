@@ -46,7 +46,7 @@
     soundsId: ReptilianBodyEmotes
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Synth
+    # damageModifierSet: Synth # Arcane-Edit
   - type: MeleeWeapon
     soundHit:
       collection: Punch

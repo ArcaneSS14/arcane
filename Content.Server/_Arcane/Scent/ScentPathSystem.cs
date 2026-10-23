@@ -40,6 +40,7 @@ public sealed class ScentPathSystem : EntitySystem
         SubscribeLocalEvent<ScentComponent, DidEquipEvent>(OnEquip);
         SubscribeLocalEvent<ScentComponent, DidEquipHandEvent>(OnEquipHand);
         SubscribeLocalEvent<ScentPathViewerComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ScentCarryComponent, EntInsertedIntoContainerMessage>(OnInserted);
     }
 
     public override void Update(float frameTime)
@@ -239,11 +240,36 @@ public sealed class ScentPathSystem : EntitySystem
             return;
 
         var carry = EnsureComp<ScentCarryComponent>(item);
-        if (carry.Holder == holder)
+        if (carry.Holder != holder)
+        {
+            carry.Holder = holder;
+            carry.Since = _timing.CurTime;
+            carry.Applied = false;
+        }
+
+        if (!TryComp<ContainerManagerComponent>(item, out var manager))
             return;
 
-        carry.Holder = holder;
-        carry.Since = _timing.CurTime;
+        foreach (var container in _container.GetAllContainers(item, manager))
+        {
+            foreach (var contained in container.ContainedEntities)
+            {
+                StartCarry(holder, contained);
+            }
+        }
+    }
+
+    private bool IsCarriedBy(EntityUid item, EntityUid holder)
+    {
+        while (_container.TryGetContainingContainer(item, out var container))
+        {
+            if (container.Owner == holder)
+                return true;
+
+            item = container.Owner;
+        }
+
+        return false;
     }
 
     private void CheckCarry(TimeSpan now)
@@ -251,8 +277,7 @@ public sealed class ScentPathSystem : EntitySystem
         var query = EntityQueryEnumerator<ScentCarryComponent>();
         while (query.MoveNext(out var uid, out var carry))
         {
-            if (!_container.TryGetContainingContainer(uid, out var container)
-                || container.Owner != carry.Holder
+            if (!IsCarriedBy(uid, carry.Holder)
                 || !TryComp<ScentPathComponent>(carry.Holder, out var path)
                 || !TryComp<ScentComponent>(carry.Holder, out var scent))
             {
@@ -260,12 +285,18 @@ public sealed class ScentPathSystem : EntitySystem
                 continue;
             }
 
-            if (now - carry.Since < path.CarryTime)
+            if (carry.Applied || now - carry.Since < path.CarryTime)
                 continue;
 
             AddScent(uid, scent.Scent);
-            RemCompDeferred<ScentCarryComponent>(uid);
+            carry.Applied = true;
         }
+    }
+
+    private void OnInserted(EntityUid uid, ScentCarryComponent comp, EntInsertedIntoContainerMessage args)
+    {
+        if (IsCarriedBy(uid, comp.Holder))
+            StartCarry(comp.Holder, args.Entity);
     }
 
     public void AddScent(EntityUid uid, string scent)

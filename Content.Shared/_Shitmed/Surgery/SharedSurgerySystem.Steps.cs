@@ -11,6 +11,7 @@ using Content.Shared._Shitmed.BodyEffects;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
@@ -299,6 +300,12 @@ public abstract partial class SharedSurgerySystem
         // Arcane-Start
         ev.IgnoreBlockers = true;
         _wounds.TryHaltAllBleeding(args.Part, force: true);
+
+        // A heal outside surgery can clear the damage while trauma-blocked wounds stay, and a no-op heal never reaches them.
+        if (!TryComp<DamageableComponent>(args.Part, out var partDamage)
+            || !partDamage.Damage.TryGetDamageInGroup(group, out var groupDamage)
+            || groupDamage <= 0)
+            _wounds.TryHealWoundsOnWoundable(args.Part, -adjustedDamage.GetTotal() * ev.PartMultiplier, out _, damageGroup: group, ignoreBlockers: true);
         // Arcane-End
         RaiseLocalEvent(args.Body, ref ev);
     }

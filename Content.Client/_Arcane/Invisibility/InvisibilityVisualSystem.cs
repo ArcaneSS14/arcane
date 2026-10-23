@@ -1,3 +1,4 @@
+using Content.Client.Humanoid;
 using Content.Shared._Arcane.Invisibility;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -18,6 +19,7 @@ public sealed class InvisibilityVisualSystem : EntitySystem
 {
     private static readonly ProtoId<ShaderPrototype> ShaderPrototype = "ArcaneInvisibility";
 
+    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly MarkingManager _marking = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
@@ -36,8 +38,12 @@ public sealed class InvisibilityVisualSystem : EntitySystem
     {
         base.Shutdown();
 
-        foreach (var shader in _shaders.Values)
+        foreach (var (uid, shader) in _shaders)
+        {
+            DetachShader(uid, shader);
             shader.Dispose();
+        }
+
         _shaders.Clear();
     }
 
@@ -98,38 +104,35 @@ public sealed class InvisibilityVisualSystem : EntitySystem
 
     private void RemoveShader(EntityUid uid)
     {
-        if (_shaders.Remove(uid, out var cached))
-            cached.Dispose();
-
-        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid) ||
-            !TryComp<SpriteComponent>(uid, out var sprite))
-        {
+        if (!_shaders.TryGetValue(uid, out var cached))
             return;
+
+        DetachShader(uid, cached);
+
+        // Rebuilding the marking layers restores their own shaders, such as the hair gradient.
+        if (!TerminatingOrDeleted(uid) &&
+            TryComp<HumanoidAppearanceComponent>(uid, out var humanoid) &&
+            TryComp<SpriteComponent>(uid, out var sprite))
+        {
+            _humanoid.UpdateSprite((uid, humanoid, sprite));
         }
 
-        foreach (var layer in humanoid.BaseLayers.Keys)
+        _shaders.Remove(uid);
+        cached.Dispose();
+    }
+
+    private void DetachShader(EntityUid uid, ShaderInstance shader)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
+        var index = 0;
+        foreach (var layer in sprite.AllLayers)
         {
-            if (_sprite.LayerMapTryGet((uid, sprite), layer, out var index, false))
+            if (layer is SpriteComponent.Layer actual && ReferenceEquals(actual.Shader, shader))
                 sprite.LayerSetShader(index, (ShaderInstance?) null);
-        }
 
-        foreach (var markingList in humanoid.MarkingSet.Markings.Values)
-        {
-            foreach (var marking in markingList)
-            {
-                if (!_marking.TryGetMarking(marking, out var prototype))
-                    continue;
-
-                foreach (var spriteSpec in prototype.Sprites)
-                {
-                    if (spriteSpec is not SpriteSpecifier.Rsi rsi)
-                        continue;
-
-                    var layerId = $"{marking.MarkingId}-{rsi.RsiState}";
-                    if (_sprite.LayerMapTryGet((uid, sprite), layerId, out var markIndex, false))
-                        sprite.LayerSetShader(markIndex, (ShaderInstance?) null);
-                }
-            }
+            index++;
         }
     }
 

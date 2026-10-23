@@ -92,4 +92,10 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<bool> RestrictedCustomSpeciesNames =
         CVarDef.Create("content.restricted_custom_species_names", true, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    ///     Whether the client should show the overhead interaction animation for its own actions.
+    /// </summary>
+    public static readonly CVarDef<bool> ShowOverheadInteractionParticle =
+        CVarDef.Create("accessibility.show_overhead_interaction_particle", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

@@ -45,6 +45,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Arcane.Chat; // Arcane
 
 
 namespace Content.Client.UserInterface.Systems.Chat;
@@ -1028,6 +1029,7 @@ public sealed partial class ChatUIController : UIController
 
     public void NotifyChatFocus(bool isFocused)
     {
+        _chatSys?.NotifyChatInputFocusChanged(isFocused); // Arcane
         _typingIndicator?.ClientChangedChatFocus(isFocused);
     }
 

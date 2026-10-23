@@ -131,7 +131,7 @@ public sealed partial class SlimeComponent : Component
     /// Radius (in tiles) used to count nearby slimes for slime overpopulation checks.
     /// </summary>
     [DataField]
-    public float MitosisDensityRange = 5f;
+    public float MitosisDensityRange = 10f;
     // Arcane-End
 
     /// <summary>

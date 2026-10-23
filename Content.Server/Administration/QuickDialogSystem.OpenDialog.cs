@@ -19,19 +19,19 @@ public sealed partial class QuickDialogSystem
     /// <typeparam name="T1">Type of the input.</typeparam>
     [PublicAPI]
     public void OpenDialog<T1>(ICommonSession session, string title, string prompt, Action<T1> okAction,
-        Action? cancelAction = null)
+        Action? cancelAction = null, int? maxLength = null) // Arcane-Edit
     {
         OpenDialogInternal(
             session,
             title,
             new List<QuickDialogEntry>
             {
-                new("1", TypeToEntryType(typeof(T1)), prompt)
+                new("1", TypeToEntryType(typeof(T1)), prompt) { MaxLength = maxLength } // Arcane-Edit
             },
             QuickDialogButtonFlag.OkButton | QuickDialogButtonFlag.CancelButton,
             (ev =>
             {
-                if (TryParseQuickDialog<T1>(TypeToEntryType(typeof(T1)), ev.Responses["1"], out var v1))
+                if (TryParseQuickDialog<T1>(TypeToEntryType(typeof(T1)), ev.Responses["1"], out var v1) && (maxLength == null || ev.Responses["1"].Length <= maxLength)) // Arcane-Edit
                     okAction.Invoke(v1);
                 else
                 {
