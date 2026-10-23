@@ -341,6 +341,60 @@
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Hats/officer_cap.rsi
 
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadbandCat
+  name: cat headband
+  description: A headband with cat ears.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/headband_cat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/headband_cat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadbandCow
+  name: cow headband
+  description: A decorative headband with cow ears and horns.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/headband_cow.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/headband_cow.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadbandDog
+  name: dog headband
+  description: A soft headband that mimics dog ears.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/headband_dog.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/headband_dog.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadbandFox
+  name: fox headband
+  description: A red headband with fluffy fox ears.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/headband_fox.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/headband_fox.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadbandKitsune
+  name: kitsune headband
+  description: A traditional element of a costume in the style of a mythical fox.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/headband_kitsune.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/headband_kitsune.rsi
 # Command
 
 - type: entity

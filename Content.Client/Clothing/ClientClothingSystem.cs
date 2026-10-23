@@ -54,6 +54,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         {"socks", "SOCKS"},
         {"wrists", "WRISTS"},
         // Orion-End
+        {"plug", "PLUG"}, // Arcane
     };
 
     [Dependency] private readonly IResourceCache _cache = default!;

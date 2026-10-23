@@ -3552,3 +3552,200 @@ Entries:
   time: '2026-10-21T18:13:45.0000000+00:00'
   prNumber: 533
   url: https://github.com/ArcaneSS14/arcane/pull/533
+- author: Kat_L
+  changes:
+    - type: Add
+      message: >-
+        Увеличение ассортимента в Лавмате. Подробности в
+        [PR](https://github.com/ArcaneSS14/arcane/pull/512)
+    - type: Add
+      message: Добавлен слот заднего прохода
+    - type: Tweak
+      message: >-
+        У Лавмата точно есть ящик пополнения и в списках заказов отдела
+        снабжения
+  id: 253
+  time: '2026-10-21T22:24:32.0000000+00:00'
+  prNumber: 512
+  url: https://github.com/ArcaneSS14/arcane/pull/512
+  media:
+    - >-
+      https://github.com/user-attachments/assets/7069592e-8f15-43b8-9790-0ea98b53cf51
+    - >-
+      https://github.com/user-attachments/assets/e137b43b-53a8-4b4f-bb93-a81872a66004
+    - >-
+      https://github.com/user-attachments/assets/fc085ce1-4e6a-4b0d-b7b5-de6af088bb50
+    - >-
+      https://github.com/user-attachments/assets/44ea962a-b6ce-4444-8860-d68904bbeb0e
+    - >-
+      https://github.com/user-attachments/assets/6897ed56-ac22-433e-9c3d-5387c105fb71
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: Вещи в рюкзаке теперь тоже пропитываются запахом владельца.
+    - type: Tweak
+      message: упоминание СРП в документах заменено на ДО
+  id: 254
+  time: '2026-10-21T22:51:13.0000000+00:00'
+  prNumber: 539
+  url: https://github.com/ArcaneSS14/arcane/pull/539
+- author: mxgnvrx
+  changes:
+    - type: Add
+      message: Добавлен стиль градиента волос «Пряди».
+    - type: Tweak
+      message: >-
+        Кнопки подбора цвета градиента волос предлагают более естественные
+        оттенки, повторное нажатие даёт другой вариант.
+    - type: Tweak
+      message: >-
+        Окрашенные стороны градиента волос «Сплит» теперь поворачиваются вместе
+        с персонажем.
+    - type: Tweak
+      message: Край градиента «Скрытые пряди» теперь идёт по прядям.
+    - type: Fix
+      message: Градиент волос больше не пропадает после окончания невидимости.
+  id: 255
+  time: '2026-10-21T22:26:26.0000000+00:00'
+  prNumber: 520
+  url: https://github.com/ArcaneSS14/arcane/pull/520
+  media:
+    - >-
+      https://github.com/user-attachments/assets/3d81469d-6a46-4316-82a0-b24f7f3d6d36
+    - >-
+      https://github.com/user-attachments/assets/964a23d3-33cc-4f6a-a31f-0fef343f3748
+- author: ChangelingRUES
+  changes:
+    - type: Tweak
+      message: >-
+        На всех картах пула добавлены раундстарт стиралки. Они гарантировано
+        стоят в туалетах (и примыкающих душевых), по одной штуке у дорм, и в
+        мед-отсеках (ради поддержания стерильности меда).
+    - type: Tweak
+      message: >-
+        На следующих картах появилась консоль мониторинга СМ: Bagel, Fland,
+        Oasis, Barratry, Leonid, Chloris.
+    - type: Tweak
+      message: Карта Core заимела одеждоматы и БС дормы.
+  id: 256
+  time: '2026-10-22T00:18:08.0000000+00:00'
+  prNumber: 538
+  url: https://github.com/ArcaneSS14/arcane/pull/538
+- author: ReWAFFlution
+  changes:
+    - type: Add
+      message: Добавлено логирование открытия/закрытия чата.
+  id: 257
+  time: '2026-10-22T00:29:33.0000000+00:00'
+  prNumber: 543
+  url: https://github.com/ArcaneSS14/arcane/pull/543
+  media:
+    - >-
+      https://github.com/user-attachments/assets/6be91b4e-32e9-4d80-b06a-a71b0f896b3b
+    - >-
+      https://github.com/user-attachments/assets/42585d7c-84eb-40eb-93be-3031caa9f2b3
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: В лобби снова отображается уровень спонсорства.
+  id: 258
+  time: '2026-10-22T18:18:49.0000000+00:00'
+  prNumber: 547
+  url: https://github.com/ArcaneSS14/arcane/pull/547
+- author: mithail
+  changes:
+    - type: Fix
+      message: У КПБ появился слот для пробок.
+  id: 259
+  time: '2026-10-22T19:14:41.0000000+00:00'
+  prNumber: 546
+  url: https://github.com/ArcaneSS14/arcane/pull/546
+- author: ReWAFFlution
+  changes:
+    - type: Remove
+      message: Наполнненные презервативы больше не лопаются.
+    - type: Tweak
+      message: Взаимодействие в ЕРП панели с мёртвыми и критованными невозможно
+  id: 260
+  time: '2026-10-22T19:56:17.0000000+00:00'
+  prNumber: 544
+  url: https://github.com/ArcaneSS14/arcane/pull/544
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Сварка лечит КПБ по всему телу и больше не зацикливается.
+    - type: Fix
+      message: Борги снова чинятся сваркой.
+    - type: Fix
+      message: Зажжённая сварка больше не поджигает КПБ.
+    - type: Fix
+      message: Операция лечения ран больше не повторяется бесконечно после исцеления.
+  id: 261
+  time: '2026-10-22T21:43:06.0000000+00:00'
+  prNumber: 549
+  url: https://github.com/ArcaneSS14/arcane/pull/549
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Янтарный код снова доступен на консоли связи без разблокировки.
+  id: 262
+  time: '2026-10-23T00:51:32.0000000+00:00'
+  prNumber: 552
+  url: https://github.com/ArcaneSS14/arcane/pull/552
+  media:
+    - >-
+      https://github.com/user-attachments/assets/3ea23d6a-5718-4d9e-be41-516837c3ab60
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: >-
+        При взаимодействии с предметами(подбор, закрытие/открытие) они
+        отображаются только у пользователя для пользователя. Это можно отключить
+        в настройках.
+    - type: Fix
+      message: Вода теперь голубого цвета.
+    - type: Fix
+      message: В автоматах показывается баланс и стоимость лота.
+  id: 263
+  time: '2026-10-23T01:08:20.0000000+00:00'
+  prNumber: 551
+  url: https://github.com/ArcaneSS14/arcane/pull/551
+- author: RabbitBat
+  changes:
+    - type: Remove
+      message: Временно убран антагонист "Контратник" на доработку
+    - type: Remove
+      message: режимы  Secret+ High и TheGuide (Стандартный)
+    - type: Tweak
+      message: >-
+        Изменено подскальзывание на каблуках, теперь мы можете подскользнуться
+        только во время спринта.
+    - type: Fix
+      message: Исправлен баг, из за которого энергощит синдиката не самозаряжался.
+    - type: Tweak
+      message: Изменено здоровье энергощита синдиката в два раза.
+    - type: Add
+      message: >-
+        Добавлен перегрев энергощиту синдиката в связи с увеличением здоровья
+        энергощиту, теперь если его заряд достигнет 0 от шквала урона, то ему
+        понадобится самозарядится до 100%, чтобы его снова можно включить
+  id: 264
+  time: '2026-10-23T10:35:32.0000000+00:00'
+  prNumber: 550
+  url: https://github.com/ArcaneSS14/arcane/pull/550
+  media:
+    - >-
+      https://github.com/user-attachments/assets/7dffc49d-a066-4acf-a0db-5c0bed21e63f
+- author: mithail
+  changes:
+    - type: Fix
+      message: >-
+        Пятна спермы на стенах теперь смываются Космическим Очистителем или
+        водой.
+  id: 265
+  time: '2026-10-23T11:01:30.0000000+00:00'
+  prNumber: 553
+  url: https://github.com/ArcaneSS14/arcane/pull/553
+  media:
+    - >-
+      https://github.com/user-attachments/assets/7f4d88bd-111d-4862-b2ff-358773106ce8
