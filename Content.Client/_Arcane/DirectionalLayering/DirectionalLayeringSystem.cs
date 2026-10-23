@@ -336,10 +336,8 @@ public sealed partial class DirectionalLayeringSystem : EntitySystem
         return result;
     }
 
-    /// <summary>
-    ///     Adds the keys of every marking layer drawn on <paramref name="layer"/>, resolving per-state layering the same
-    ///     way the appearance system does, so membership follows where a layer is drawn rather than its category.
-    /// </summary>
+    // Resolves per-state layering like the appearance system, so a marking belongs to the layer it is drawn on,
+    // not to its category.
     private void AddMarkingLayerKeys(
         Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
         HumanoidVisualLayers layer,
@@ -444,10 +442,7 @@ public sealed partial class DirectionalLayeringSystem : EntitySystem
         return lowest != int.MaxValue;
     }
 
-    /// <summary>
-    ///     Removes the layers of every block from the sprite and returns them per block in draw order. Keys that share
-    ///     one layer stay together, so none of them is lost from the layer map.
-    /// </summary>
+    // Keys that share one layer stay together, so none of them is lost from the layer map.
     private List<(object Key, Layer Layer)>[] ExtractBlocks(
         Entity<HumanoidAppearanceComponent, SpriteComponent> ent,
         params List<object>[] blocks)
@@ -518,10 +513,8 @@ public sealed partial class DirectionalLayeringSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    ///     Mirrors <see cref="Layer.GetDirection"/> for 4-directional layers, including the anti-flicker bias, so the
-    ///     ordering matches the sprite states that actually render.
-    /// </summary>
+    // Mirrors Layer.GetDirection for 4-directional layers, anti-flicker bias included, so the order matches the
+    // sprite states that actually render.
     private static DirectionalView GetView(Angle angle)
     {
         var ang = angle.Reduced().FlipPositive().Theta;
