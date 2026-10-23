@@ -3684,3 +3684,14 @@ Entries:
   time: '2026-10-22T21:43:06.0000000+00:00'
   prNumber: 549
   url: https://github.com/ArcaneSS14/arcane/pull/549
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Янтарный код снова доступен на консоли связи без разблокировки.
+  id: 262
+  time: '2026-10-23T00:51:32.0000000+00:00'
+  prNumber: 552
+  url: https://github.com/ArcaneSS14/arcane/pull/552
+  media:
+    - >-
+      https://github.com/user-attachments/assets/3ea23d6a-5718-4d9e-be41-516837c3ab60
