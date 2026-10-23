@@ -3736,3 +3736,16 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/7dffc49d-a066-4acf-a0db-5c0bed21e63f
+- author: mithail
+  changes:
+    - type: Fix
+      message: >-
+        Пятна спермы на стенах теперь смываются Космическим Очистителем или
+        водой.
+  id: 265
+  time: '2026-10-23T11:01:30.0000000+00:00'
+  prNumber: 553
+  url: https://github.com/ArcaneSS14/arcane/pull/553
+  media:
+    - >-
+      https://github.com/user-attachments/assets/7f4d88bd-111d-4862-b2ff-358773106ce8
