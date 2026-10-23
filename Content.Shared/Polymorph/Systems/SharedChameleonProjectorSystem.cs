@@ -264,7 +264,12 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
         var comp = EnsureComp<ChameleonDisguiseComponent>(disguise);
         comp.User = user;
         comp.Projector = ent;
-        comp.SourceEntity = entity;
+        // Arcane-Edit-Start
+//        comp.SourceEntity = entity;
+        // Morph mimicry sources are uninitialized and deleted right away; keep only their prototype.
+        if (LifeStage(entity) >= EntityLifeStage.Initialized)
+            comp.SourceEntity = entity;
+        // Arcane-Edit-End
         comp.SourceProto = Prototype(entity)?.ID;
         Dirty(disguise, comp);
 
@@ -342,8 +347,13 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
 
         // remove then re-add to prevent a funny
         RemComp<T>(ent);
-        var dest = AddComp<T>(ent);
+        // Arcane-Edit-Start
+//        var dest = AddComp<T>(ent);
+        // Sprites build their layers on ComponentAdd, so copy the data before adding.
+        var dest = Factory.GetComponent<T>();
         _serMan.CopyTo(src, ref dest, notNullableOverride: true);
+        AddComp(ent, dest);
+        // Arcane-Edit-End
         Dirty(ent, dest);
         return false;
     }

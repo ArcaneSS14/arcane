@@ -2,6 +2,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Polymorph.Components;
 using Content.Shared.Polymorph.Systems;
 using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Map;
 using Robust.Shared.Network;
 
 namespace Content.Shared._Orion.Morph;
@@ -42,10 +43,8 @@ public abstract class SharedMorphSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<TransformComponent>(actor, out var transform))
-            return;
-
-        var targetUid = EntityManager.CreateEntityUninitialized(arg.PrototypeId, transform.Coordinates);
+        // Nullspace: an uninitialized entity must not be parented to the grid.
+        var targetUid = EntityManager.CreateEntityUninitialized(arg.PrototypeId, MapCoordinates.Nullspace);
 
         if (!targetUid.IsValid())
             return;
