@@ -142,6 +142,7 @@
   - type: Access
     groups:
     - Service
+    - Journalism # Arcane
 
 - type: entity
   parent: [DoorRemoteDefault, BaseCommandContraband]

@@ -4,6 +4,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
+using Content.Goobstation.Common.BlockTeleport;
 using Content.Shared._Starlight.VentCrawling.Components;
 using Content.Shared.Actions.Events;
 using Content.Shared.Hands;
@@ -11,6 +12,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Content.Shared.NodeContainer;
+using Content.Shared.Popups;
 using Content.Shared.Throwing;
 
 namespace Content.Server._Starlight.VentCrawling;
@@ -18,6 +20,7 @@ namespace Content.Server._Starlight.VentCrawling;
 public sealed class BeingVentCrawSystem : EntitySystem
 {
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!; // Arcane
 
     public override void Initialize()
     {
@@ -35,6 +38,7 @@ public sealed class BeingVentCrawSystem : EntitySystem
         SubscribeLocalEvent<BeingVentCrawlerComponent, DropAttemptEvent>(OnDropAttempt);
         SubscribeLocalEvent<BeingVentCrawlerComponent, IsUnequippingAttemptEvent>(OnUnequiptAttempt);
         SubscribeLocalEvent<BeingVentCrawlerComponent, IsEquippingAttemptEvent>(OnEquiptAttempt);
+        SubscribeLocalEvent<BeingVentCrawlerComponent, TeleportAttemptEvent>(OnTeleportAttempt); // Arcane
 
     }
 
@@ -119,4 +123,14 @@ public sealed class BeingVentCrawSystem : EntitySystem
 
     private void OnEquiptAttempt(EntityUid uid, BeingVentCrawlerComponent component, ref IsEquippingAttemptEvent args)
         => args.Cancel();
+
+    // Arcane-Start
+    private void OnTeleportAttempt(EntityUid uid, BeingVentCrawlerComponent component, ref TeleportAttemptEvent args)
+    {
+        args.Cancelled = true;
+
+        if (args.Message != null)
+            _popup.PopupEntity(Loc.GetString(args.Message), uid, uid);
+    }
+    // Arcane-End
 }

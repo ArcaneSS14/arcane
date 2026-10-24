@@ -1612,6 +1612,7 @@
     borderColor: "#00842e"
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
+    diskSpace: 10 # Arcane
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
