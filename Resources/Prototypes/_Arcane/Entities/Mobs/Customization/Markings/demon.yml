@@ -499,45 +499,95 @@
   bodyPart: BodyOverlay
   markingCategory: BodyOverlay
   speciesRestriction: [Demon]
+  layering:
+    cow_spots_l_hand: LHand
+    cow_spots_r_hand: RHand
+  colorLinks:
+    cow_spots_l_hand: cow_spots
+    cow_spots_r_hand: cow_spots
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: cow_spots
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: cow_spots_l_hand
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: cow_spots_r_hand
 
 - type: marking
   id: DemonBodyGuardStripes
   bodyPart: BodyOverlay
   markingCategory: BodyOverlay
   speciesRestriction: [Demon]
+  layering:
+    guards_stripes_l_hand: LHand
+    guards_stripes_r_hand: RHand
+  colorLinks:
+    guards_stripes_l_hand: guards_stripes
+    guards_stripes_r_hand: guards_stripes
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: guards_stripes
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: guards_stripes_l_hand
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: guards_stripes_r_hand
 
 - type: marking
   id: DemonBodyLinesEmperos
   bodyPart: BodyOverlay
   markingCategory: BodyOverlay
   speciesRestriction: [Demon]
+  layering:
+    lines_emperos_l_hand: LHand
+    lines_emperos_r_hand: RHand
+  colorLinks:
+    lines_emperos_l_hand: lines_emperos
+    lines_emperos_r_hand: lines_emperos
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: lines_emperos
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: lines_emperos_l_hand
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: lines_emperos_r_hand
 
 - type: marking
   id: DemonBodyQueenLines
   bodyPart: BodyOverlay
   markingCategory: BodyOverlay
   speciesRestriction: [Demon]
+  layering:
+    queen_lines_l_hand: LHand
+    queen_lines_r_hand: RHand
+  colorLinks:
+    queen_lines_l_hand: queen_lines
+    queen_lines_r_hand: queen_lines
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: queen_lines
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: queen_lines_l_hand
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: queen_lines_r_hand
 
 - type: marking
   id: DemonBodyTreeLines
   bodyPart: BodyOverlay
   markingCategory: BodyOverlay
   speciesRestriction: [Demon]
+  layering:
+    tree_lines_l_hand: LHand
+    tree_lines_r_hand: RHand
+  colorLinks:
+    tree_lines_l_hand: tree_lines
+    tree_lines_r_hand: tree_lines
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: tree_lines
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: tree_lines_l_hand
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: tree_lines_r_hand
 
 - type: marking
   id: DemonBodyTrinitySpots
@@ -553,27 +603,57 @@
   bodyPart: BodyOverlay
   markingCategory: BodyOverlay
   speciesRestriction: [Demon]
+  layering:
+    arataki_painting_l_hand: LHand
+    arataki_painting_r_hand: RHand
+  colorLinks:
+    arataki_painting_l_hand: arataki_painting
+    arataki_painting_r_hand: arataki_painting
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: arataki_painting
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: arataki_painting_l_hand
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: arataki_painting_r_hand
 
 - type: marking
   id: DemonBodyGradientPaint
   bodyPart: BodyOverlay
   markingCategory: BodyOverlay
   speciesRestriction: [Demon]
+  layering:
+    gradient_paint_l_hand: LHand
+    gradient_paint_r_hand: RHand
+  colorLinks:
+    gradient_paint_l_hand: gradient_paint
+    gradient_paint_r_hand: gradient_paint
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: gradient_paint
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: gradient_paint_l_hand
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: gradient_paint_r_hand
 
 - type: marking
   id: DemonBodySkeleton
   bodyPart: BodyOverlay
   markingCategory: BodyOverlay
   speciesRestriction: [Demon]
+  layering:
+    skeleton_l_hand: LHand
+    skeleton_r_hand: RHand
+  colorLinks:
+    skeleton_l_hand: skeleton
+    skeleton_r_hand: skeleton
   sprites:
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: skeleton
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: skeleton_l_hand
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: skeleton_r_hand
 
 # Wings
 
