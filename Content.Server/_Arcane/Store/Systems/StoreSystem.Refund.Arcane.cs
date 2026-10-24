@@ -20,9 +20,7 @@ public sealed partial class StoreSystem
         {
             var (currency, amount) = listing.Cost.First();
             refundComp.Currency = currency;
-            refundComp.RefundAmount = FixedPoint2.New(amount.Float() * RefundRatio);
+            refundComp.RefundAmount = FixedPoint2.New((int) MathF.Floor(amount.Float() * RefundRatio));
         }
-
-        Dirty(product, refundComp);
     }
 }
