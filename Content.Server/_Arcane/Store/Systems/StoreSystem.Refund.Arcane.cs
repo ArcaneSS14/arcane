@@ -49,12 +49,21 @@ public sealed partial class StoreSystem
 
         if (TryComp<SolutionContainerManagerComponent>(product, out var solutionManager))
         {
-            var totalVolume = 0f;
+            var reagents = new Dictionary<string, FixedPoint2>();
             foreach (var (_, soln) in _solutionContainer.EnumerateSolutions((product, solutionManager)))
             {
-                totalVolume += soln.Comp.Solution.Volume.Float();
+                foreach (var (reagent, quantity) in soln.Comp.Solution.Contents)
+                {
+                    var id = reagent.Prototype;
+                    if (reagents.TryGetValue(id, out var existing))
+                        reagents[id] = existing + quantity;
+                    else
+                        reagents[id] = quantity;
+                }
             }
-            refundComp.OriginalSolutionVolume = totalVolume;
+
+            if (reagents.Count > 0)
+                refundComp.OriginalSolutionReagents = reagents;
         }
     }
 }

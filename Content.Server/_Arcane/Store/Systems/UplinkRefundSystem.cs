@@ -205,21 +205,43 @@ public sealed class UplinkRefundSystem : EntitySystem
             }
         }
 
-        if (refundable.OriginalSolutionVolume.HasValue)
+        if (refundable.OriginalSolutionReagents != null)
         {
-            var currentVolume = 0f;
+            var currentReagents = new Dictionary<string, FixedPoint2>();
             if (TryComp<SolutionContainerManagerComponent>(used, out var solutionManager))
             {
                 foreach (var (_, soln) in _solutionContainer.EnumerateSolutions((used, solutionManager)))
                 {
-                    currentVolume += soln.Comp.Solution.Volume.Float();
+                    foreach (var (reagent, quantity) in soln.Comp.Solution.Contents)
+                    {
+                        var id = reagent.Prototype;
+                        if (currentReagents.TryGetValue(id, out var existing))
+                            currentReagents[id] = existing + quantity;
+                        else
+                            currentReagents[id] = quantity;
+                    }
                 }
             }
 
-            if (currentVolume < refundable.OriginalSolutionVolume.Value - 0.1f)
+            if (currentReagents.Count != refundable.OriginalSolutionReagents.Count)
             {
-                _popup.PopupEntity(Loc.GetString("uplink-refund-fail-solution-used"), used, user);
+                _popup.PopupEntity(Loc.GetString("uplink-refund-fail-solution-changed"), used, user);
                 return false;
+            }
+
+            foreach (var (reagentId, originalQuantity) in refundable.OriginalSolutionReagents)
+            {
+                if (!currentReagents.TryGetValue(reagentId, out var currentQuantity))
+                {
+                    _popup.PopupEntity(Loc.GetString("uplink-refund-fail-solution-changed"), used, user);
+                    return false;
+                }
+
+                if (currentQuantity != originalQuantity)
+                {
+                    _popup.PopupEntity(Loc.GetString("uplink-refund-fail-solution-changed"), used, user);
+                    return false;
+                }
             }
         }
 

@@ -23,5 +23,5 @@ public sealed partial class UplinkRefundableComponent : Component
     public List<string>? OriginalContainerPrototypes;
 
     [DataField]
-    public float? OriginalSolutionVolume;
+    public Dictionary<string, FixedPoint2>? OriginalSolutionReagents;
 }
