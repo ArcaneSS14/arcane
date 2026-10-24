@@ -210,6 +210,8 @@ public sealed partial class StoreSystem
 
             RaiseLocalEvent(product, new ItemPurchasedEvent(buyer));
 
+            ArcaneHandleUplinkRefundable(uid, listing, product); // Arcane-Edit
+
             HandleRefundComp(uid, component, product, listing.Cost, listing); // Goob edit
 
             var xForm = Transform(product);
