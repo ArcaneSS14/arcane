@@ -1,10 +1,11 @@
+using System.Linq;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Server.Store.Systems;
 using Content.Shared._Arcane.Store.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
@@ -17,6 +18,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 
 namespace Content.Server._Arcane.Store.Systems;
 
@@ -135,23 +137,27 @@ public sealed class UplinkRefundSystem : EntitySystem
             return true;
         }
 
-        if (TryComp<ImplantedComponent>(user, out var implanted) && implanted.ImplantContainer != null)
+        if (!TryComp<ImplantedComponent>(user, out var implanted))
+            return false;
+
+        var container = implanted.ImplantContainer;
+        if (container == null)
+            return false;
+
+        foreach (var implant in container.ContainedEntities)
         {
-            foreach (var implant in implanted.ImplantContainer.ContainedEntities)
-            {
-                if (implant != originalUplink)
-                    continue;
+            if (implant != originalUplink)
+                continue;
 
-                if (!TryComp<StoreComponent>(implant, out var implantStore))
-                    return false;
+            if (!TryComp<StoreComponent>(implant, out var implantStore))
+                return false;
 
-                if (implantStore.AccountOwner != null && implantStore.AccountOwner != userMind)
-                    return false;
+            if (implantStore.AccountOwner != null && implantStore.AccountOwner != userMind)
+                return false;
 
-                uplink = implant;
-                store = implantStore;
-                return true;
-            }
+            uplink = implant;
+            store = implantStore;
+            return true;
         }
 
         return false;
@@ -171,6 +177,73 @@ public sealed class UplinkRefundSystem : EntitySystem
             args.Handled = true;
     }
 
+    private bool CanRefundItem(EntityUid used, UplinkRefundableComponent refundable, EntityUid user)
+    {
+        if (refundable.OriginalContainerPrototypes != null)
+        {
+            var currentPrototypes = new List<string>();
+            if (TryComp<ContainerManagerComponent>(used, out var containerManager))
+            {
+                foreach (var container in containerManager.Containers.Values)
+                {
+                    foreach (var entity in container.ContainedEntities)
+                    {
+                        var meta = MetaData(entity);
+                        if (meta.EntityPrototype != null)
+                            currentPrototypes.Add(meta.EntityPrototype.ID);
+                    }
+                }
+            }
+
+            currentPrototypes.Sort();
+            var originalPrototypes = new List<string>(refundable.OriginalContainerPrototypes);
+            originalPrototypes.Sort();
+
+            if (!((IEnumerable<string>) currentPrototypes).SequenceEqual(originalPrototypes))
+            {
+                _popup.PopupEntity(Loc.GetString("uplink-refund-fail-container-changed"), used, user);
+                return false;
+            }
+        }
+
+        if (refundable.OriginalSolutionVolume.HasValue)
+        {
+            var currentVolume = 0f;
+            if (TryComp<SolutionContainerManagerComponent>(used, out var solutionManager) &&
+                solutionManager.Solutions != null)
+            {
+                foreach (var solution in solutionManager.Solutions.Values)
+                {
+                    currentVolume += solution.Volume.Float();
+                }
+            }
+
+            if (currentVolume < refundable.OriginalSolutionVolume.Value - 0.1f)
+            {
+                _popup.PopupEntity(Loc.GetString("uplink-refund-fail-solution-used"), used, user);
+                return false;
+            }
+        }
+
+        if (TryComp<BallisticAmmoProviderComponent>(used, out var ballistic))
+        {
+            var currentCount = ballistic.Entities.Count + ballistic.UnspawnedCount;
+            if (currentCount < ballistic.Capacity)
+            {
+                _popup.PopupEntity(Loc.GetString("uplink-refund-fail-magazine-empty"), used, user);
+                return false;
+            }
+        }
+
+        if (TryComp<CartridgeAmmoComponent>(used, out var cartridge) && cartridge.Spent)
+        {
+            _popup.PopupEntity(Loc.GetString("uplink-refund-fail-cartridge-spent"), used, user);
+            return false;
+        }
+
+        return true;
+    }
+
     private bool TryRefund(EntityUid used, UplinkRefundableComponent refundable, EntityUid uplink, StoreComponent store, EntityUid user)
     {
         if (refundable.IsUsed)
@@ -178,6 +251,9 @@ public sealed class UplinkRefundSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("uplink-refund-fail-used"), used, user);
             return false;
         }
+
+        if (!CanRefundItem(used, refundable, user))
+            return false;
 
         if (refundable.OriginalUplink != uplink)
         {

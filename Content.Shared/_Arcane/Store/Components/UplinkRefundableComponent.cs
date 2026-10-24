@@ -18,4 +18,10 @@ public sealed partial class UplinkRefundableComponent : Component
 
     [DataField]
     public ProtoId<CurrencyPrototype> Currency = "Telecrystal";
+
+    [DataField]
+    public List<string>? OriginalContainerPrototypes;
+
+    [DataField]
+    public float? OriginalSolutionVolume;
 }
