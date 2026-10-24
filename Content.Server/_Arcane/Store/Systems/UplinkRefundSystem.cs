@@ -102,10 +102,7 @@ public sealed class UplinkRefundSystem : EntitySystem
         var user = args.User;
         var target = ent.Owner;
 
-        if (!TryGetUplinkForUser(user, out var uplink, out _))
-            return;
-
-        if (ent.Comp.OriginalUplink != uplink)
+        if (!TryGetUplinkForUser(user, ent.Comp.OriginalUplink, out var uplink, out var store))
             return;
 
         args.Verbs.Add(new InteractionVerb
@@ -113,15 +110,15 @@ public sealed class UplinkRefundSystem : EntitySystem
             Text = Loc.GetString("uplink-refund-verb"),
             Act = () =>
             {
-                if (TryGetUplinkForUser(user, out var currentUplink, out var store))
-                    TryRefund(target, ent.Comp, currentUplink, store, user);
-                else
-                    _popup.PopupEntity(Loc.GetString("uplink-refund-fail-no-uplink"), target, user);
+                if (TryRefund(target, ent.Comp, uplink, store, user))
+                    return;
+
+                _popup.PopupEntity(Loc.GetString("uplink-refund-fail-no-uplink"), target, user);
             },
         });
     }
 
-    private bool TryGetUplinkForUser(EntityUid user, out EntityUid uplink, out StoreComponent store)
+    private bool TryGetUplinkForUser(EntityUid user, EntityUid originalUplink, out EntityUid uplink, out StoreComponent store)
     {
         uplink = default;
         store = default!;
@@ -129,33 +126,31 @@ public sealed class UplinkRefundSystem : EntitySystem
         if (!_mind.TryGetMind(user, out var userMind, out _))
             return false;
 
-        if (_hands.TryGetActiveItem(user, out var held) && TryComp<StoreComponent>(held, out var heldStore))
+        if (_hands.TryGetActiveItem(user, out var held) && held.Value == originalUplink &&
+            TryComp<StoreComponent>(held, out var heldStore) &&
+            (heldStore.AccountOwner == null || heldStore.AccountOwner == userMind))
         {
-            if (heldStore.AccountOwner == null || heldStore.AccountOwner == userMind)
-            {
-                uplink = held.Value;
-                store = heldStore;
-                return true;
-            }
+            uplink = held.Value;
+            store = heldStore;
+            return true;
         }
 
-        if (TryComp<ImplantedComponent>(user, out var implanted))
+        if (TryComp<ImplantedComponent>(user, out var implanted) && implanted.ImplantContainer != null)
         {
-            var container = implanted.ImplantContainer;
-            if (container != null)
+            foreach (var implant in implanted.ImplantContainer.ContainedEntities)
             {
-                foreach (var implant in container.ContainedEntities)
-                {
-                    if (!TryComp<StoreComponent>(implant, out var implantStore))
-                        continue;
+                if (implant != originalUplink)
+                    continue;
 
-                    if (implantStore.AccountOwner != null && implantStore.AccountOwner != userMind)
-                        continue;
+                if (!TryComp<StoreComponent>(implant, out var implantStore))
+                    return false;
 
-                    uplink = implant;
-                    store = implantStore;
-                    return true;
-                }
+                if (implantStore.AccountOwner != null && implantStore.AccountOwner != userMind)
+                    return false;
+
+                uplink = implant;
+                store = implantStore;
+                return true;
             }
         }
 
@@ -205,13 +200,14 @@ public sealed class UplinkRefundSystem : EntitySystem
         var refundAmount = refundable.RefundAmount;
         var currencyId = refundable.Currency.Id;
 
-        QueueDel(used);
-
         var currency = new Dictionary<string, FixedPoint2>
         {
             { currencyId, refundAmount }
         };
-        _store.TryAddCurrency(currency, uplink, store);
+        if (!_store.TryAddCurrency(currency, uplink, store))
+            return false;
+
+        QueueDel(used);
 
         _popup.PopupEntity(
             Loc.GetString("uplink-refund-success", ("amount", refundAmount)),
