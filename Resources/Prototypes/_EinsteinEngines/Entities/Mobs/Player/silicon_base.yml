@@ -145,7 +145,7 @@
         - map: ["belt"]
         - map: ["neck"]
         - map: ["back"]
-#        - map: [ "enum.HumanoidVisualLayers.Face" ] # Arcane-Edit
+        # - map: [ "enum.HumanoidVisualLayers.Face" ] # Arcane-Edit
         - map: ["enum.HumanoidVisualLayers.FacialHair"]
         - map: ["enum.HumanoidVisualLayers.HeadSide"]
         - map: [ "maskalt" ]
