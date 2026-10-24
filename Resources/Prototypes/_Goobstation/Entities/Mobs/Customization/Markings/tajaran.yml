@@ -49,6 +49,7 @@
   id: TajaranEarsRetro
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/ears.rsi
@@ -58,6 +59,7 @@
   id: TajaranEarsSeparate
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/ears.rsi
@@ -69,6 +71,7 @@
   id: TajaranEarsRetroNear
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/ears.rsi
@@ -78,6 +81,7 @@
   id: TajaranEarsSeparateNear
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/ears.rsi
@@ -205,6 +209,7 @@
   id: TajaranEarsBasic
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/felinid_ears.rsi
@@ -216,6 +221,7 @@
   id: TajaranEarsCurled
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/felinid_ears.rsi
@@ -227,6 +233,7 @@
   id: TajaranEarsDroopy
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/felinid_ears.rsi
@@ -238,6 +245,7 @@
   id: TajaranEarsFuzzy
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/felinid_ears.rsi
@@ -249,6 +257,7 @@
   id: TajaranEarsStubby
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/felinid_ears.rsi
@@ -260,6 +269,7 @@
   id: TajaranEarsTall
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/felinid_ears.rsi
@@ -273,6 +283,7 @@
   id: TajaranEarsTorn
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/felinid_ears.rsi
@@ -284,6 +295,7 @@
   id: TajaranEarsWide
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Tajaran]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Tajaran/felinid_ears.rsi
