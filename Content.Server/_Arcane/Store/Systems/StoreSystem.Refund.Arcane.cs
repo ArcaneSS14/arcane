@@ -62,8 +62,7 @@ public sealed partial class StoreSystem
                 }
             }
 
-            if (reagents.Count > 0)
-                refundComp.OriginalSolutionReagents = reagents;
+            refundComp.OriginalSolutionReagents = reagents;
         }
     }
 }
