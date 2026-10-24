@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared._Arcane.Store.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Robust.Shared.Containers;
@@ -10,6 +11,8 @@ namespace Content.Server.Store.Systems;
 
 public sealed partial class StoreSystem
 {
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+
     private const float RefundRatio = 0.8f;
 
     private void ArcaneHandleUplinkRefundable(EntityUid storeUid, ListingDataWithCostModifiers listing, EntityUid product)
@@ -44,13 +47,12 @@ public sealed partial class StoreSystem
                 refundComp.OriginalContainerPrototypes = prototypes;
         }
 
-        if (TryComp<SolutionContainerManagerComponent>(product, out var solutionManager) &&
-            solutionManager.Solutions != null)
+        if (TryComp<SolutionContainerManagerComponent>(product, out var solutionManager))
         {
             var totalVolume = 0f;
-            foreach (var solution in solutionManager.Solutions.Values)
+            foreach (var (_, soln) in _solutionContainer.EnumerateSolutions((product, solutionManager)))
             {
-                totalVolume += solution.Volume.Float();
+                totalVolume += soln.Comp.Solution.Volume.Float();
             }
             refundComp.OriginalSolutionVolume = totalVolume;
         }

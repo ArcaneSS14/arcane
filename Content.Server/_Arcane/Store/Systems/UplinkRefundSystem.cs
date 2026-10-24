@@ -3,6 +3,7 @@ using Content.Goobstation.Maths.FixedPoint;
 using Content.Server.Store.Systems;
 using Content.Shared._Arcane.Store.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
@@ -29,6 +30,7 @@ public sealed class UplinkRefundSystem : EntitySystem
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
 
     public override void Initialize()
     {
@@ -112,10 +114,7 @@ public sealed class UplinkRefundSystem : EntitySystem
             Text = Loc.GetString("uplink-refund-verb"),
             Act = () =>
             {
-                if (TryRefund(target, ent.Comp, uplink, store, user))
-                    return;
-
-                _popup.PopupEntity(Loc.GetString("uplink-refund-fail-no-uplink"), target, user);
+                TryRefund(target, ent.Comp, uplink, store, user);
             },
         });
     }
@@ -209,12 +208,11 @@ public sealed class UplinkRefundSystem : EntitySystem
         if (refundable.OriginalSolutionVolume.HasValue)
         {
             var currentVolume = 0f;
-            if (TryComp<SolutionContainerManagerComponent>(used, out var solutionManager) &&
-                solutionManager.Solutions != null)
+            if (TryComp<SolutionContainerManagerComponent>(used, out var solutionManager))
             {
-                foreach (var solution in solutionManager.Solutions.Values)
+                foreach (var (_, soln) in _solutionContainer.EnumerateSolutions((used, solutionManager)))
                 {
-                    currentVolume += solution.Volume.Float();
+                    currentVolume += soln.Comp.Solution.Volume.Float();
                 }
             }
 
@@ -281,8 +279,12 @@ public sealed class UplinkRefundSystem : EntitySystem
             { currencyId, refundAmount }
         };
         if (!_store.TryAddCurrency(currency, uplink, store))
+        {
+            _popup.PopupEntity(Loc.GetString("uplink-refund-fail-currency"), used, user);
             return false;
+        }
 
+        refundable.IsUsed = true;
         QueueDel(used);
 
         _popup.PopupEntity(
