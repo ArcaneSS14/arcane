@@ -7,8 +7,10 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
 using Content.Shared.Throwing;
+using Content.Shared.Trigger.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Misc;
+using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -28,7 +30,9 @@ public sealed class UplinkRefundSystem : EntitySystem
         SubscribeLocalEvent<UplinkRefundableComponent, GunShotEvent>(OnGunShot);
         SubscribeLocalEvent<UplinkRefundableComponent, MeleeHitEvent>(OnMeleeHit);
         SubscribeLocalEvent<UplinkRefundableComponent, ThrowEvent>(OnThrown);
-        SubscribeLocalEvent<UplinkRefundableComponent, AfterInteractEvent>(OnAfterInteract);
+        SubscribeLocalEvent<UplinkRefundableComponent, AfterInteractEvent>(OnAfterInteract,
+            after: new[] { typeof(SharedTetherGunSystem) });
+        SubscribeLocalEvent<UplinkRefundableComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<StoreComponent, InteractUsingEvent>(OnUplinkInteractUsing);
     }
 
@@ -38,7 +42,6 @@ public sealed class UplinkRefundSystem : EntitySystem
             return;
 
         comp.IsUsed = true;
-        Dirty(uid, comp);
     }
 
     private void OnGunShot(Entity<UplinkRefundableComponent> ent, ref GunShotEvent args)
@@ -64,12 +67,35 @@ public sealed class UplinkRefundSystem : EntitySystem
 
     private void OnAfterInteract(Entity<UplinkRefundableComponent> ent, ref AfterInteractEvent args)
     {
-        if (!args.Handled)
-            return;
-        if (!HasComp<TetherGunComponent>(ent) && !HasComp<ForceGunComponent>(ent))
+        if (HasComp<GunComponent>(ent) || HasComp<TimerTriggerComponent>(ent))
             return;
 
-        MarkUsed(ent, ent.Comp);
+        if (TryComp<TetherGunComponent>(ent, out var tether) && tether.Tethered != null)
+        {
+            MarkUsed(ent, ent.Comp);
+            return;
+        }
+
+        if (TryComp<ForceGunComponent>(ent, out var force) && force.Tethered != null)
+        {
+            MarkUsed(ent, ent.Comp);
+            return;
+        }
+
+        if (args.Handled)
+            MarkUsed(ent, ent.Comp);
+    }
+
+    private void OnUseInHand(Entity<UplinkRefundableComponent> ent, ref UseInHandEvent args)
+    {
+        if (HasComp<GunComponent>(ent))
+            return;
+
+        if (HasComp<TimerTriggerComponent>(ent))
+            return;
+
+        if (args.Handled)
+            MarkUsed(ent, ent.Comp);
     }
 
     private void OnUplinkInteractUsing(Entity<StoreComponent> ent, ref InteractUsingEvent args)

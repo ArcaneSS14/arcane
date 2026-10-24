@@ -1,22 +1,21 @@
 using Content.Goobstation.Maths.FixedPoint;
-using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 using Content.Shared.Store;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Arcane.Store.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent]
 public sealed partial class UplinkRefundableComponent : Component
 {
-    [DataField, AutoNetworkedField]
+    [DataField]
     public EntityUid OriginalUplink;
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public FixedPoint2 RefundAmount;
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public bool IsUsed;
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public ProtoId<CurrencyPrototype> Currency = "Telecrystal";
 }
