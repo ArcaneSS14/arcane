@@ -3644,3 +3644,145 @@ Entries:
       https://github.com/user-attachments/assets/6be91b4e-32e9-4d80-b06a-a71b0f896b3b
     - >-
       https://github.com/user-attachments/assets/42585d7c-84eb-40eb-93be-3031caa9f2b3
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: В лобби снова отображается уровень спонсорства.
+  id: 258
+  time: '2026-10-22T18:18:49.0000000+00:00'
+  prNumber: 547
+  url: https://github.com/ArcaneSS14/arcane/pull/547
+- author: mithail
+  changes:
+    - type: Fix
+      message: У КПБ появился слот для пробок.
+  id: 259
+  time: '2026-10-22T19:14:41.0000000+00:00'
+  prNumber: 546
+  url: https://github.com/ArcaneSS14/arcane/pull/546
+- author: ReWAFFlution
+  changes:
+    - type: Remove
+      message: Наполнненные презервативы больше не лопаются.
+    - type: Tweak
+      message: Взаимодействие в ЕРП панели с мёртвыми и критованными невозможно
+  id: 260
+  time: '2026-10-22T19:56:17.0000000+00:00'
+  prNumber: 544
+  url: https://github.com/ArcaneSS14/arcane/pull/544
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Сварка лечит КПБ по всему телу и больше не зацикливается.
+    - type: Fix
+      message: Борги снова чинятся сваркой.
+    - type: Fix
+      message: Зажжённая сварка больше не поджигает КПБ.
+    - type: Fix
+      message: Операция лечения ран больше не повторяется бесконечно после исцеления.
+  id: 261
+  time: '2026-10-22T21:43:06.0000000+00:00'
+  prNumber: 549
+  url: https://github.com/ArcaneSS14/arcane/pull/549
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Янтарный код снова доступен на консоли связи без разблокировки.
+  id: 262
+  time: '2026-10-23T00:51:32.0000000+00:00'
+  prNumber: 552
+  url: https://github.com/ArcaneSS14/arcane/pull/552
+  media:
+    - >-
+      https://github.com/user-attachments/assets/3ea23d6a-5718-4d9e-be41-516837c3ab60
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: >-
+        При взаимодействии с предметами(подбор, закрытие/открытие) они
+        отображаются только у пользователя для пользователя. Это можно отключить
+        в настройках.
+    - type: Fix
+      message: Вода теперь голубого цвета.
+    - type: Fix
+      message: В автоматах показывается баланс и стоимость лота.
+  id: 263
+  time: '2026-10-23T01:08:20.0000000+00:00'
+  prNumber: 551
+  url: https://github.com/ArcaneSS14/arcane/pull/551
+- author: RabbitBat
+  changes:
+    - type: Remove
+      message: Временно убран антагонист "Контратник" на доработку
+    - type: Remove
+      message: режимы  Secret+ High и TheGuide (Стандартный)
+    - type: Tweak
+      message: >-
+        Изменено подскальзывание на каблуках, теперь мы можете подскользнуться
+        только во время спринта.
+    - type: Fix
+      message: Исправлен баг, из за которого энергощит синдиката не самозаряжался.
+    - type: Tweak
+      message: Изменено здоровье энергощита синдиката в два раза.
+    - type: Add
+      message: >-
+        Добавлен перегрев энергощиту синдиката в связи с увеличением здоровья
+        энергощиту, теперь если его заряд достигнет 0 от шквала урона, то ему
+        понадобится самозарядится до 100%, чтобы его снова можно включить
+  id: 264
+  time: '2026-10-23T10:35:32.0000000+00:00'
+  prNumber: 550
+  url: https://github.com/ArcaneSS14/arcane/pull/550
+  media:
+    - >-
+      https://github.com/user-attachments/assets/7dffc49d-a066-4acf-a0db-5c0bed21e63f
+- author: mithail
+  changes:
+    - type: Fix
+      message: >-
+        Пятна спермы на стенах теперь смываются Космическим Очистителем или
+        водой.
+  id: 265
+  time: '2026-10-23T11:01:30.0000000+00:00'
+  prNumber: 553
+  url: https://github.com/ArcaneSS14/arcane/pull/553
+  media:
+    - >-
+      https://github.com/user-attachments/assets/7f4d88bd-111d-4862-b2ff-358773106ce8
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Кисти рук снова отображаются поверх комбинезона.
+    - type: Fix
+      message: Узоры демонов на всё тело снова видны на кистях.
+  id: 266
+  time: '2026-10-23T21:25:54.0000000+00:00'
+  prNumber: 555
+  url: https://github.com/ArcaneSS14/arcane/pull/555
+  media:
+    - >-
+      https://github.com/user-attachments/assets/eb823a78-6386-422d-b751-a92a095b52e4
+    - >-
+      https://github.com/user-attachments/assets/713d8676-1fb3-4acb-8623-cb83eb1b585e
+    - >-
+      https://github.com/user-attachments/assets/425354c2-c6bd-42e0-8938-e3474a73e8e8
+    - >-
+      https://github.com/user-attachments/assets/5c389498-a3b2-41a3-a7a5-8eff18ead411
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: 'передов Киры Спешл теперь корректно отображается '
+  id: 267
+  time: '2026-10-23T21:27:31.0000000+00:00'
+  prNumber: 554
+  url: https://github.com/ArcaneSS14/arcane/pull/554
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: >-
+        Исправлено отображение волос, масок, плащей, ушей и хвостов при повороте
+        персонажа.
+  id: 268
+  time: '2026-10-25T00:21:18.0000000+00:00'
+  prNumber: 529
+  url: https://github.com/ArcaneSS14/arcane/pull/529

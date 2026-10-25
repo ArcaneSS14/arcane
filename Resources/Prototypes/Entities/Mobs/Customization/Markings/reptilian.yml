@@ -354,6 +354,7 @@
   id: LizardHornsKoboldEars
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Reptilian, Kobold] # Shitmed Change
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
@@ -363,6 +364,7 @@
   id: LizardHornsFloppyKoboldEars
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Reptilian, Kobold] # Shitmed Change
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi

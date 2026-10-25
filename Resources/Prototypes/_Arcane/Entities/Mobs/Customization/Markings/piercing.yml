@@ -2,6 +2,7 @@
   id: PiercingRightEar
   bodyPart: HeadSide
   markingCategory: Overlay
+  underHair: true
   speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/piercing.rsi
@@ -11,6 +12,7 @@
   id: PiercingLeftEar
   bodyPart: HeadSide
   markingCategory: Overlay
+  underHair: true
   speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Felinid, Harpy, Rodentia, Tajaran, Oni, Shadowkin, Demon, Vulpkanin]
   sprites:
   - sprite: _Arcane/Mobs/Customization/piercing.rsi

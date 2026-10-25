@@ -5,6 +5,7 @@
   id: FelinidEarsBasic
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Felinid, Human]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_ears.rsi
@@ -16,6 +17,7 @@
   id: FelinidEarsCurled
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Felinid]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_ears.rsi
@@ -27,6 +29,7 @@
   id: FelinidEarsDroopy
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Felinid]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_ears.rsi
@@ -38,6 +41,7 @@
   id: FelinidEarsFuzzy
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Felinid]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_ears.rsi
@@ -49,6 +53,7 @@
   id: FelinidEarsStubby
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Felinid]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_ears.rsi
@@ -60,6 +65,7 @@
   id: FelinidEarsTall
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Felinid]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_ears.rsi
@@ -73,6 +79,7 @@
   id: FelinidEarsTorn
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Felinid]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_ears.rsi
@@ -84,6 +91,7 @@
   id: FelinidEarsWide
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Felinid]
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_ears.rsi
