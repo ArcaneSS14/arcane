@@ -3802,3 +3802,11 @@ Entries:
   time: '2026-10-25T09:58:52.0000000+00:00'
   prNumber: 560
   url: https://github.com/ArcaneSS14/arcane/pull/560
+- author: mxgnvrx
+  changes:
+    - type: Tweak
+      message: Инженерные очки снова защищают глаза от сварки.
+  id: 271
+  time: '2026-10-25T15:30:30.0000000+00:00'
+  prNumber: 561
+  url: https://github.com/ArcaneSS14/arcane/pull/561
