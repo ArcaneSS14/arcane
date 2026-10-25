@@ -3786,3 +3786,11 @@ Entries:
   time: '2026-10-25T00:21:18.0000000+00:00'
   prNumber: 529
   url: https://github.com/ArcaneSS14/arcane/pull/529
+- author: mithail
+  changes:
+    - type: Tweak
+      message: Время использования блюспейс кристалла увеличено с 3 до 10 секунд.
+  id: 269
+  time: '2026-10-25T09:20:58.0000000+00:00'
+  prNumber: 559
+  url: https://github.com/ArcaneSS14/arcane/pull/559
