@@ -210,7 +210,7 @@ public sealed partial class StoreSystem
 
             RaiseLocalEvent(product, new ItemPurchasedEvent(buyer));
 
-            ArcaneHandleUplinkRefundable(uid, listing, product); // Arcane-Edit
+            ArcaneHandleUplinkRefundable(uid, listing, product); // Arcane
 
             HandleRefundComp(uid, component, product, listing.Cost, listing); // Goob edit
 

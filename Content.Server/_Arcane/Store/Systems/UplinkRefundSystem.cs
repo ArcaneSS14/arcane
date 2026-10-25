@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Linq;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Server.Store.Systems;
@@ -23,7 +25,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Arcane.Store.Systems;
 
-public sealed class UplinkRefundSystem : EntitySystem
+public sealed partial class UplinkRefundSystem : EntitySystem
 {
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -31,19 +33,6 @@ public sealed class UplinkRefundSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<UplinkRefundableComponent, GunShotEvent>(OnGunShot);
-        SubscribeLocalEvent<UplinkRefundableComponent, MeleeHitEvent>(OnMeleeHit);
-        SubscribeLocalEvent<UplinkRefundableComponent, ThrowEvent>(OnThrown);
-        SubscribeLocalEvent<UplinkRefundableComponent, AfterInteractEvent>(OnAfterInteract,
-            after: new[] { typeof(SharedTetherGunSystem) });
-        SubscribeLocalEvent<StoreComponent, InteractUsingEvent>(OnUplinkInteractUsing);
-        SubscribeLocalEvent<UplinkRefundableComponent, GetVerbsEvent<InteractionVerb>>(OnGetVerbs);
-    }
 
     private void MarkUsed(EntityUid uid, UplinkRefundableComponent comp)
     {
@@ -53,6 +42,7 @@ public sealed class UplinkRefundSystem : EntitySystem
         comp.IsUsed = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnGunShot(Entity<UplinkRefundableComponent> ent, ref GunShotEvent args)
     {
         if (args.Ammo.Count == 0)
@@ -61,6 +51,7 @@ public sealed class UplinkRefundSystem : EntitySystem
         MarkUsed(ent, ent.Comp);
     }
 
+    [SubscribeLocalEvent]
     private void OnMeleeHit(Entity<UplinkRefundableComponent> ent, ref MeleeHitEvent args)
     {
         if (!args.IsHit || args.HitEntities.Count == 0)
@@ -69,11 +60,13 @@ public sealed class UplinkRefundSystem : EntitySystem
         MarkUsed(ent, ent.Comp);
     }
 
+    [SubscribeLocalEvent]
     private void OnThrown(Entity<UplinkRefundableComponent> ent, ref ThrowEvent args)
     {
         MarkUsed(ent, ent.Comp);
     }
 
+    [SubscribeLocalEvent(after: new[] { typeof(SharedTetherGunSystem) })]
     private void OnAfterInteract(Entity<UplinkRefundableComponent> ent, ref AfterInteractEvent args)
     {
         if (HasComp<GunComponent>(ent) || HasComp<TimerTriggerComponent>(ent))
@@ -95,6 +88,7 @@ public sealed class UplinkRefundSystem : EntitySystem
             MarkUsed(ent, ent.Comp);
     }
 
+    [SubscribeLocalEvent]
     private void OnGetVerbs(Entity<UplinkRefundableComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract || args.Hands == null)
@@ -117,6 +111,21 @@ public sealed class UplinkRefundSystem : EntitySystem
                 TryRefund(target, ent.Comp, uplink, store, user);
             },
         });
+    }
+
+    [SubscribeLocalEvent]
+    private void OnUplinkInteractUsing(Entity<StoreComponent> ent, ref InteractUsingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        var used = args.Used;
+
+        if (!TryComp<UplinkRefundableComponent>(used, out var refundable))
+            return;
+
+        if (TryRefund(used, refundable, ent.Owner, ent.Comp, args.User))
+            args.Handled = true;
     }
 
     private bool TryGetUplinkForUser(EntityUid user, EntityUid originalUplink, out EntityUid uplink, out StoreComponent store)
@@ -160,20 +169,6 @@ public sealed class UplinkRefundSystem : EntitySystem
         }
 
         return false;
-    }
-
-    private void OnUplinkInteractUsing(Entity<StoreComponent> ent, ref InteractUsingEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        var used = args.Used;
-
-        if (!TryComp<UplinkRefundableComponent>(used, out var refundable))
-            return;
-
-        if (TryRefund(used, refundable, ent.Owner, ent.Comp, args.User))
-            args.Handled = true;
     }
 
     private bool CanRefundItem(EntityUid used, UplinkRefundableComponent refundable, EntityUid user)
