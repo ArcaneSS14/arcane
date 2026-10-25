@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA 3.0",
+    "copyright": "Sprites by <author>, put the real author here",
+    "size": {
+        "x": 16,
+        "y": 16
+    },
+    "states": [
+        {"name": "line1"},
+        {"name": "line2"},
+        {"name": "line3"}
+    ]
+}
