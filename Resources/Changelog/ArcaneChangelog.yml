@@ -3776,3 +3776,13 @@ Entries:
   time: '2026-10-23T21:27:31.0000000+00:00'
   prNumber: 554
   url: https://github.com/ArcaneSS14/arcane/pull/554
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: >-
+        Исправлено отображение волос, масок, плащей, ушей и хвостов при повороте
+        персонажа.
+  id: 268
+  time: '2026-10-25T00:21:18.0000000+00:00'
+  prNumber: 529
+  url: https://github.com/ArcaneSS14/arcane/pull/529
