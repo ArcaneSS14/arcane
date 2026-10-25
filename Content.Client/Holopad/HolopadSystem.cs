@@ -1,3 +1,4 @@
+using Content.Client._Arcane.DirectionalLayering;
 using Content.Client.Graphics;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Holopad;
@@ -14,6 +15,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private DirectionalLayeringSystem _directionalLayering = default!; // Arcane
 
     public override void Initialize()
     {
@@ -77,7 +79,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
             // Otherwise copy the target's current physical appearance
             else
             {
-                _sprite.CopySprite((target.Value, targetSprite), (hologram, hologramSprite));
+                _directionalLayering.CopySprite((target.Value, targetSprite), (hologram, hologramSprite), Direction.South); // Arcane-Edit
             }
         }
 

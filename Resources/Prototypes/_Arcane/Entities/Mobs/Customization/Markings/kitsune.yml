@@ -35,6 +35,7 @@
   id: KitsuneEarsFox
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true
   speciesRestriction: [Human, Oni, Felinid, Vulpkanin, SlimePerson]
   sprites:
   - sprite: _Arcane/Mobs/Customization/Kitsune.rsi
