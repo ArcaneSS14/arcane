@@ -347,13 +347,9 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
 
         // remove then re-add to prevent a funny
         RemComp<T>(ent);
-        // Arcane-Edit-Start
-//        var dest = AddComp<T>(ent);
-        // Sprites build their layers on ComponentAdd, so copy the data before adding.
-        var dest = Factory.GetComponent<T>();
+        var dest = Factory.GetComponent<T>(); // Arcane-Edit
         _serMan.CopyTo(src, ref dest, notNullableOverride: true);
-        AddComp(ent, dest);
-        // Arcane-Edit-End
+        AddComp(ent, dest); // Arcane
         Dirty(ent, dest);
         return false;
     }

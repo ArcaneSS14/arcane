@@ -30,7 +30,7 @@ public sealed partial class ChameleonDisguiseComponent : Component
     /// The disguise source entity for copying the sprite.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public EntityUid? SourceEntity; // Arcane
+    public EntityUid? SourceEntity; // Arcane-Edit
 
     /// <summary>
     /// The source entity's prototype.
