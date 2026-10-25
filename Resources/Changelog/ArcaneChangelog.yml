@@ -3794,3 +3794,11 @@ Entries:
   time: '2026-10-25T09:20:58.0000000+00:00'
   prNumber: 559
   url: https://github.com/ArcaneSS14/arcane/pull/559
+- author: mithail
+  changes:
+    - type: Tweak
+      message: Рецепт октогена снова требует вестин.
+  id: 270
+  time: '2026-10-25T09:58:52.0000000+00:00'
+  prNumber: 560
+  url: https://github.com/ArcaneSS14/arcane/pull/560
