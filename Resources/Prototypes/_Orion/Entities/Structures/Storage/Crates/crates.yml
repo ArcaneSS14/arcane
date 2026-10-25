@@ -207,6 +207,20 @@
     sprite: _Orion/Structures/Storage/Crates/bitrun_secure.rsi
   - type: AccessReader
     access: [["Salvage"]] # No Bitrunning :(
+  # Arcane-Edit-Start
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHelmetBitrunner
+          amount: 1
+        - id: ClothingOuterCoatBitrunner
+          amount: 1
+        - id: ClothingUniformBitrunner
+          amount: 1
+        - id: ClothingHandsGlovesBitrunner
+          amount: 1
+  # Arcane-Edit-End
 
 - type: entity
   parent: CrateBitrunSecure

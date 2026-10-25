@@ -438,6 +438,10 @@
         {
             "name": "arataki_painting_r_hand",
             "directions": 4
+        },
+        {
+            "name": "ears_huge",
+            "directions": 4
         }
     ]
 }

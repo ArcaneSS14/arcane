@@ -49,3 +49,15 @@
     sprite: _Arcane/Clothing/Hands/Sponsor/mime_mittens.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Hands/Sponsor/mime_mittens.rsi
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesBitrunner
+  name: bitrunner gloves
+  description: Dark gloves with rigid padding and bright cuffs, protecting hands from static electricity and unnecessary questions.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Hands/Gloves/bitrunner_gloves.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Hands/Gloves/bitrunner_gloves.rsi
+  - type: Insulated
