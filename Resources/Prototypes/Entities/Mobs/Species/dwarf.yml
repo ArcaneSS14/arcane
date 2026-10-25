@@ -67,9 +67,11 @@
     speaks:
     - TauCetiBasic
     - SolCommon
+    - Dwarvish # Arcane
     understands:
     - TauCetiBasic
     - SolCommon
+    - Dwarvish # Arcane
   - type: HumanoidAppearance
     species: Dwarf
     hideLayersOnEquip:

@@ -510,6 +510,7 @@
     - Schechi
     - NewKinPidgin
     - Hydraspeak # Arcane
+    - Dwarvish # Arcane
     understands:
     - TauCetiBasic
     - Canilunzt
@@ -532,6 +533,7 @@
     - Schechi
     - NewKinPidgin
     - Hydraspeak # Arcane
+    - Dwarvish # Arcane
   - type: SpeechSynthesis # Corvax-Frontier-Barks
     voice: Borg
   # Arcane-start

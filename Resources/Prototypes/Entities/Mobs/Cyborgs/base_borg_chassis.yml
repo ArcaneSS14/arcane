@@ -288,6 +288,7 @@
     - Schechi
     - NewKinPidgin
     - Hydraspeak # Arcane
+    - Dwarvish # Arcane
     understands:
     - TauCetiBasic
     - Canilunzt
@@ -309,6 +310,7 @@
     - Schechi
     - NewKinPidgin
     - Hydraspeak # Arcane
+    - Dwarvish # Arcane
   - type: ProtectedFromStepTriggers
   - type: DamageOnInteractProtection
     damageProtection:

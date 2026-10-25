@@ -125,6 +125,7 @@
     - Schechi
     - NewKinPidgin
     - Hydraspeak # Arcane
+    - Dwarvish # Arcane
     understands:
     - TauCetiBasic # Add individual languages so they can understand without understanding animals.
     - Canilunzt
@@ -147,6 +148,7 @@
     - Schechi
     - NewKinPidgin
     - Hydraspeak # Arcane
+    - Dwarvish # Arcane
   # Einstein Engines - Language end
   - type: Vocal
     sounds:
