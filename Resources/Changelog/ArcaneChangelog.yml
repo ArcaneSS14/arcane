@@ -3820,3 +3820,15 @@ Entries:
   time: '2026-10-26T09:40:29.0000000+00:00'
   prNumber: 537
   url: https://github.com/ArcaneSS14/arcane/pull/537
+- author: seemah
+  changes:
+    - type: Fix
+      message: Цилиндр клоуна теперь отображается корректно.
+    - type: Fix
+      message: >-
+        Нижнее бельё у ксеноморфов теперь отображается в соответствии с их
+        масками ног.
+  id: 273
+  time: '2026-10-26T09:41:48.0000000+00:00'
+  prNumber: 565
+  url: https://github.com/ArcaneSS14/arcane/pull/565
