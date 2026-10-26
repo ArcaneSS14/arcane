@@ -1,19 +1,5 @@
 - type: entity
   parent: FoodSnackBase
-  id: FoodSnackCookie
-  name: cookie
-  description: Flat sweet bakery.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - sweet
-  - type: Sprite
-    sprite: _Arcane/Objects/Consumable/Food/bay_treats.rsi
-    state: cookie
-  - type: Item
-
-- type: entity
-  parent: FoodSnackBase
   id: FoodSnackFishCracker
   name: fish cracker
   description: Fish-shapped crackers.
