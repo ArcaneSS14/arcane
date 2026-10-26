@@ -9,10 +9,10 @@ using Robust.Shared.Map;
 
 namespace Content.Client.Fluids;
 
-public sealed partial class PuddleSystem : SharedPuddleSystem // Goob
+public sealed partial class PuddleSystem : SharedPuddleSystem
 {
-    [Dependency] private readonly IconSmoothSystem _smooth = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IconSmoothSystem _smooth = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -30,7 +30,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem // Goob
 
         if (args.AppearanceData.TryGetValue(PuddleVisuals.CurrentVolume, out var volumeObj))
         {
-            volume = (float)volumeObj;
+            volume = (float) volumeObj;
         }
 
         // Update smoothing and sprite based on volume.
@@ -61,7 +61,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem // Goob
 
         if (args.AppearanceData.TryGetValue(PuddleVisuals.SolutionColor, out var colorObj))
         {
-            var color = (Color)colorObj;
+            var color = (Color) colorObj;
             _sprite.SetColor((uid, args.Sprite), color * baseColor);
         }
         else
