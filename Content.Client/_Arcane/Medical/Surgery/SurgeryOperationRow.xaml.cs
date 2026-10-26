@@ -16,6 +16,14 @@ public enum SurgeryOperationStatus : byte
     Completed,
 }
 
+public enum SurgeryOperationSection : byte
+{
+    Started,
+    Incision,
+    Cavity,
+    Closing,
+}
+
 /// <summary>
 /// An operation in the chart; its progress counts the steps of the surgeries it requires as well.
 /// </summary>
@@ -23,8 +31,11 @@ public sealed record SurgeryOperationEntry(
     EntProtoId Id,
     string Name,
     SurgeryOperationStatus Status,
+    SurgeryOperationSection Section,
     int Done,
-    int Total);
+    int Total,
+    // The step to do next with its tool, or its name when it needs no tool.
+    (EntityUid Step, string Text)? Next);
 
 [GenerateTypedNameReferences]
 public sealed partial class SurgeryOperationRow : BoxContainer
@@ -70,6 +81,14 @@ public sealed partial class SurgeryOperationRow : BoxContainer
         else
         {
             StatusLabel.Text = string.Empty;
+        }
+
+        NextStepIcon.Visible = entry.Next != null;
+        NextStepLabel.Visible = entry.Next != null;
+        if (entry.Next is { } next)
+        {
+            NextStepIcon.Texture = getIcon(next.Step);
+            NextStepLabel.Text = Loc.GetString("surgery-ui-operation-next", ("step", next.Text));
         }
 
         // Icons are reused while the chain keeps its length, so progress does not reset hover or tooltips.

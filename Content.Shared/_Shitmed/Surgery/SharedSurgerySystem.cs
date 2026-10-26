@@ -604,7 +604,15 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             if (GetSingleton(surgery) is not { } surgeryEnt)
                 continue;
 
+            // Most surgeries are for one part type, so the cheap part check skips the costlier organ checks on other parts.
             var ev = new SurgeryValidEvent(body, part);
+            if (TryComp(surgeryEnt, out SurgeryPartConditionComponent? partCondition))
+            {
+                OnPartConditionValid((surgeryEnt, partCondition), ref ev);
+                if (ev.Cancelled)
+                    continue;
+            }
+
             RaiseLocalEvent(surgeryEnt, ref ev);
 
             if (ev.Cancelled || IsSurgerySkipped(part, surgeryEnt))

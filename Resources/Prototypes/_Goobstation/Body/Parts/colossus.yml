@@ -124,7 +124,7 @@
   - type: BodyPart
     partType: Chest
     # Shitmed Change Start
-    toolName: "a chest"
+    toolName: surgery-tool-part-chest # Arcane-Edit
     containerName: "chest_slot"
   - type: Woundable
     damageContainer: InorganicMetaphysical
