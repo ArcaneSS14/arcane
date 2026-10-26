@@ -50,7 +50,7 @@ namespace Content.Goobstation.Server.Chemistry.Components
         [ViewVariables(VVAccess.ReadWrite)]
         public float BaseEnergyCostMultiplier = 1f;
 
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadWrite)] // Arcane-Edit
         public float FinalEnergyCostMultiplier = 1f;
 
         [DataField]
@@ -59,5 +59,13 @@ namespace Content.Goobstation.Server.Chemistry.Components
         [DataField]
         public ProtoId<MachinePartPrototype> MatterBinPart = "MatterBin";
         // Orion-End
+
+        // Arcane-Start
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float BaseMaxCharge;
+
+        [DataField]
+        public float MaxChargeTierStep = 0.3f;
+        // Arcane-End
     }
 }

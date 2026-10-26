@@ -27,6 +27,7 @@ machine-upgrade-power-output = power output throughput
 machine-upgrade-process-speed = processing speed
 machine-upgrade-capacity = capacity
 machine-upgrade-energy-cost = energy cost per unit
+machine-upgrade-battery-capacity = battery capacity
 machine-upgrade-cook-speed = cooking speed
 machine-upgrade-research-cooldown = research cooldown
 machine-upgrade-scan-quality = scan quality

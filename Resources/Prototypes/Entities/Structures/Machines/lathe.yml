@@ -340,6 +340,17 @@
     # Goobstation Packs
     - SharedBoards
     - ShuttleBoardsGoob
+    # Arcane-Start
+    - AILawboards
+    - CargoBoardsStaticGoob
+    - ElectronicsStatic
+    - ExperimentalScienceGoob
+    - MedicalCloning
+    - MiningBoards
+    - ScienceBoardsGoob
+    - ServiceBoardsGoob
+    - ServiceBoardsArcane
+    # Arcane-End
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
