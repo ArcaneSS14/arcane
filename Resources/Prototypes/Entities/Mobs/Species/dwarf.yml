@@ -66,11 +66,11 @@
   - type: LanguageKnowledge # Einstein Engines - Languages
     speaks:
     - TauCetiBasic
-    - SolCommon
+#    - SolCommon # Arcane-Edit: Removed
     - Dwarvish # Arcane
     understands:
     - TauCetiBasic
-    - SolCommon
+#    - SolCommon # Arcane-Edit: Removed
     - Dwarvish # Arcane
   - type: HumanoidAppearance
     species: Dwarf

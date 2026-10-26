@@ -21,7 +21,7 @@
   - GruntishTranslator
   - YowKriolTranslator # goob edit - yowie language
   # Arcane-Start
-  - KarshanTranslator # demon language
+  - KarshanTranslator
   - DwarvishTranslator
   - HydraspeakTranslator
   # Arcane-End
@@ -49,7 +49,7 @@
   - YowKriolTranslatorImplanter # goob edit - yowie language
   - SignTranslatorImplanter # goob edit
   # Arcane-Start
-  - KarshanTranslatorImplanter # demon language
+  - KarshanTranslatorImplanter
   - DwarvishTranslatorImplanter
   - HydraspeakTranslatorImplanter
   # Arcane-End

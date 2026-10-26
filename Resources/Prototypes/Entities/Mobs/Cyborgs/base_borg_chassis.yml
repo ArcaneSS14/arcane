@@ -290,6 +290,7 @@
     # Arcane-Start
     - Hydraspeak
     - Dwarvish
+    - Karshan
     # Arcane-End
     understands:
     - TauCetiBasic
@@ -314,6 +315,7 @@
     # Arcane-Start
     - Hydraspeak
     - Dwarvish
+    - Karshan
     # Arcane-End
   - type: ProtectedFromStepTriggers
   - type: DamageOnInteractProtection
