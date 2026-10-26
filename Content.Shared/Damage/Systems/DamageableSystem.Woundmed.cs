@@ -152,11 +152,20 @@ public sealed partial class DamageableSystem
     // Arcane-Start
     private bool HasWoundsHealedBy(EntityUid uid, WoundableComponent woundable, DamageSpecifier damage)
     {
+        foreach (var (type, value) in damage.DamageDict)
+        {
+            if (value < 0 && HasWoundsOfType(uid, woundable, type))
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool HasWoundsOfType(EntityUid uid, WoundableComponent woundable, string type)
+    {
         foreach (var wound in _wounds.GetWoundableWounds(uid, woundable))
         {
-            if (wound.Comp.WoundSeverityPoint > 0
-                && damage.DamageDict.TryGetValue(wound.Comp.DamageType, out var value)
-                && value < 0)
+            if (wound.Comp.WoundSeverityPoint > 0 && wound.Comp.DamageType == type)
                 return true;
         }
 
@@ -588,7 +597,8 @@ public sealed partial class DamageableSystem
 
                         foreach (var (id, _, damageable) in parts)
                             if (damageable.Damage.DamageDict.TryGetValue(type, out var currentDamage)
-                                && currentDamage > 0)
+                                && currentDamage > 0 // Arcane-Edit
+                                || _woundableQuery.TryComp(id, out var woundable) && HasWoundsOfType(id, woundable, type)) // Arcane
                                 count++;
 
                         if (count > 0)
