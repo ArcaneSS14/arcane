@@ -44,8 +44,6 @@
   - id: BitrunningGearPremiumCrusherModsDisk
     cost: 1040
 # Arcane-Edit-Start
-  - id: ClothingHeadHelmetBitrunner
-    cost: 512
   - id: ClothingUniformBitrunner
     cost: 256
   - id: ClothingOuterCoatBitrunner

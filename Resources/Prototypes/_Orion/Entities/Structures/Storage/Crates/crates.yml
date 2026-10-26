@@ -212,8 +212,6 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: ClothingHeadHelmetBitrunner
-          amount: 1
         - id: ClothingOuterCoatBitrunner
           amount: 1
         - id: ClothingUniformBitrunner
