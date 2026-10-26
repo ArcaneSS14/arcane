@@ -191,7 +191,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         var payload = new NetworkPayload
         {
             { DeviceNetworkConstants.Command, SurveillanceCameraSystem.CameraSubnetData },
-            { SurveillanceCameraSystem.CameraSubnetData, router.SubnetFrequencyId.Value.Id } // Arcane
+            { SurveillanceCameraSystem.CameraSubnetData, router.SubnetFrequencyId.Value.Id } // Arcane-Edit
         };
 
         _deviceNetworkSystem.QueuePacket(uid, origin, payload);

@@ -449,13 +449,13 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
     // Goobstation start
     private void RequestKnownSubnetsInfo(EntityUid uid, SurveillanceCameraMonitorComponent? monitor = null)
     {
-        if (!Resolve(uid, ref monitor)) return; // Arcane
+        if (!Resolve(uid, ref monitor)) return; // Arcane-Edit
 
         foreach (var subnetAddress in monitor.KnownSubnets.Values)
         {
             var payload = new NetworkPayload
             {
-                { DeviceNetworkConstants.Command, SurveillanceCameraSystem.CameraPingSubnetMessage }, // Arcane
+                { DeviceNetworkConstants.Command, SurveillanceCameraSystem.CameraPingSubnetMessage }, // Arcane-Edit
             };
             _deviceNetworkSystem.QueuePacket(uid, subnetAddress, payload);
         }

@@ -100,7 +100,7 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
             {
                 case CameraConnectMessage:
                     if (!args.Data.TryGetValue(CameraAddressData, out dest)
-                        || string.IsNullOrEmpty(args.SenderAddress)) // Arcane
+                        || string.IsNullOrEmpty(args.SenderAddress)) // Arcane-Edit
                     {
                         return;
                     }
@@ -109,7 +109,7 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
                     break;
                 case CameraHeartbeatMessage:
                     if (!args.Data.TryGetValue(CameraAddressData, out dest)
-                        || string.IsNullOrEmpty(args.SenderAddress)) // Arcane
+                        || string.IsNullOrEmpty(args.SenderAddress)) // Arcane-Edit
                     {
                         return;
                     }
