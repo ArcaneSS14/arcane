@@ -228,9 +228,10 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                             component.KnownMobileCameras.Add(address, (name, netEntity.Value));
                             foreach (var player in component.Viewers)
                                 if (TryComp<ActorComponent>(player, out var actor))
+                                    // Arcane-Start
                                     _pvsOverrideSystem.AddSessionOverride(
-                                        _entityManager.GetEntity(netEntity.Value.Item2.NetEntity), actor.PlayerSession);
-                        }
+                                    _entityManager.GetEntity(netEntity.Value.Item2.NetEntity), actor.PlayerSession);
+                        }           // Arcane-End
                     }
                     else if (!component.KnownCameras.ContainsKey(address))
                     {
