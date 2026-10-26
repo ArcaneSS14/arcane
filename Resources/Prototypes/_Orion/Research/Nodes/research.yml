@@ -228,9 +228,11 @@
   - SchechiTranslator
   - GruntishTranslator
   - YowKriolTranslator
-  - HydraspeakTranslator # Arcane
-  - KarshanTranslator # Arcane
-  - DwarvishTranslator # Arcane
+  # Arcane-Start
+  - HydraspeakTranslator
+  - KarshanTranslator
+  - DwarvishTranslator
+  # Arcane-End
   position: -1,8
 
 - type: technology
@@ -267,7 +269,9 @@
   - GruntishTranslatorImplanter
   - YowKriolTranslatorImplanter
   - SignTranslatorImplanter
-  - HydraspeakTranslatorImplanter # Arcane
-  - KarshanTranslatorImplanter # Arcane
-  - DwarvishTranslatorImplanter # Arcane
+  # Arcane-Start
+  - HydraspeakTranslatorImplanter
+  - KarshanTranslatorImplanter
+  - DwarvishTranslatorImplanter
+  # Arcane-End
   position: -1,9
