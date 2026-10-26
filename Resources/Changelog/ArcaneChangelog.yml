@@ -3850,3 +3850,14 @@ Entries:
   time: '2026-10-26T18:22:41.0000000+00:00'
   prNumber: 567
   url: https://github.com/ArcaneSS14/arcane/pull/567
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Ахелп теперь "краснеет" если есть непрочитанные сообщения в нём.
+  id: 276
+  time: '2026-10-26T18:24:22.0000000+00:00'
+  prNumber: 569
+  url: https://github.com/ArcaneSS14/arcane/pull/569
+  media:
+    - >-
+      https://github.com/user-attachments/assets/8bbc59ef-eec5-442b-b4b9-74d2c57e0cbb
