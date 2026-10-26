@@ -238,6 +238,7 @@
     - id: LidSalami
     - id: MobHamsterHamlet
     - id: MobLaserRaptor
+    - id: MobCheremsha # Arcane
     - id: DrinkNothing
     - id: FoodOatmeal
     - id: FoodDonutChaos

@@ -168,3 +168,15 @@
       displayName: Wrists
       stripTime: 3
     # Orion-End
+    # Arcane-Start
+    - name: plug
+      slotTexture: plug
+      fullTextureName: template_small
+      slotFlags: PLUG
+      slotGroup: Extra
+      uiWindowPos: 1,2
+      strippingWindowPos: 3,5
+      displayName: plug
+      stripTime: 3
+      stripHidden: true
+    # Arcane-End

@@ -153,7 +153,32 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                             <!-- Arcane-Start -->
                             <BoxContainer Margin="10" Orientation="Vertical">
                                 <CheckBox Name="HairGradientEnabled" Text="{Loc 'humanoid-profile-editor-hair-gradient'}" />
-                                <BoxContainer Name="HairGradientColorContainer" Visible="False" Orientation="Vertical" HorizontalExpand="True" />
+                                <BoxContainer Name="HairGradientColorContainer" Visible="False" Orientation="Vertical" HorizontalExpand="True">
+                                    <BoxContainer Margin="0 4 0 4" HorizontalExpand="True">
+                                        <Label Text="{Loc 'humanoid-profile-editor-hair-gradient-style-label'}" Margin="0 0 8 0" />
+                                        <OptionButton Name="HairGradientStyleButton" HorizontalExpand="True" />
+                                    </BoxContainer>
+                                    <Label Name="HairGradientRootsLabel" Margin="0 4 0 2" />
+                                    <ColorSelectorSliders Name="HairGradientRootsSelector" SelectorType="Hsv" HorizontalExpand="True" />
+                                    <Label Name="HairGradientTipsLabel" Margin="0 8 0 2" />
+                                    <ColorSelectorSliders Name="HairGradientTipsSelector" SelectorType="Hsv" HorizontalExpand="True" />
+                                    <Label Name="HairGradientOffsetLabel" Margin="0 8 0 2" />
+                                    <Slider Name="HairGradientOffsetSlider" MinValue="0" MaxValue="100" Value="50" HorizontalExpand="True" />
+                                    <BoxContainer Margin="0 4 0 6" HorizontalExpand="True">
+                                        <Button Name="HairGradientLightenButton" HorizontalExpand="True"
+                                                Text="{Loc 'humanoid-profile-editor-hair-gradient-btn-natural'}"
+                                                ToolTip="{Loc 'humanoid-profile-editor-hair-gradient-btn-natural-tooltip'}" />
+                                        <Button Name="HairGradientAnalogousButton" HorizontalExpand="True"
+                                                Text="{Loc 'humanoid-profile-editor-hair-gradient-btn-analogous'}"
+                                                ToolTip="{Loc 'humanoid-profile-editor-hair-gradient-btn-analogous-tooltip'}" />
+                                        <Button Name="HairGradientContrastButton" HorizontalExpand="True"
+                                                Text="{Loc 'humanoid-profile-editor-hair-gradient-btn-contrast'}"
+                                                ToolTip="{Loc 'humanoid-profile-editor-hair-gradient-btn-contrast-tooltip'}" />
+                                        <Button Name="HairGradientSwapButton" HorizontalExpand="True"
+                                                Text="{Loc 'humanoid-profile-editor-hair-gradient-btn-swap'}"
+                                                ToolTip="{Loc 'humanoid-profile-editor-hair-gradient-btn-swap-tooltip'}" />
+                                    </BoxContainer>
+                                </BoxContainer>
                             </BoxContainer>
                             <!-- Arcane-End -->
                             <!-- Eyes -->

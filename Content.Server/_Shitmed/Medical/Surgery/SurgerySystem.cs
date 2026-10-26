@@ -14,6 +14,7 @@ using Content.Shared._Shitmed.Targeting;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Shitmed.Medical.Surgery;
 
@@ -130,13 +131,15 @@ public sealed class SurgerySystem : SharedSurgerySystem
         // kinda funky but still works
         // TODO: Also the scar treating surgery too, fuck. I hate this system and by every second I have to spend working with THIS I want to kill myself more and more
         // _wounds.TryHaltAllBleeding(part, force: true); // Arcane-Edit
-        return _damageable.TryChangeDamage(body, // Arcane-Edit
+        _damageable.TryChangeDamage(body, // Arcane-Edit
             damage,
+            out var newDamage,
             true,
             origin: user,
             partMultiplier: partMultiplier,
             targetPart: affectAll ? TargetBodyPart.All : _body.GetTargetBodyPart(partComp),
             ignoreBlockers: ignoreBlockers); // Arcane-Edit
+        return newDamage;
     }
 
     // Arcane-Edit-Start

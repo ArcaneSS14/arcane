@@ -126,7 +126,7 @@ public sealed class CrawlUnderObjectsSystem : SharedCrawlUnderObjectsSystem
 
     private void OnAttemptClimb(EntityUid uid,
         CrawlUnderObjectsComponent component,
-        AttemptClimbEvent args)
+        ref AttemptClimbEvent args)
     {
         if (component.Enabled)
             args.Cancelled = true;

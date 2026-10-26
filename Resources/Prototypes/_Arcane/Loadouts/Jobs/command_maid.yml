@@ -44,9 +44,24 @@
     jumpsuit: ClothingUniformMajordomCommandMaid
 
 - type: loadout
+  id: CommandMaidJumpskirtMaidStrict
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMaidStrict
+
+- type: loadout
+  id: CommandMaidJumpsuitButler
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitButler
+
+- type: loadout
   id: CommandMaidBackpack
   equipment:
     back: ClothingBackpackCommandMaid
+
+- type: loadout
+  id: CommandMaidSatchel
+  equipment:
+    back: ClothingBackpackSatchelCommandMaid
 
 - type: loadout
   id: CommandMaidCap
@@ -62,6 +77,11 @@
   id: CommandMaidBlackCap
   equipment:
     head: ClothingHeadHatBlackCommandMaid
+
+- type: loadout
+  id: CommandMaidMaidFura
+  equipment:
+    head: ClothingHeadHatMaidFura
 
 - type: loadout
   id: CommandMaidGloves
@@ -92,3 +112,23 @@
   id: CommandMaidNeckMediumTie
   equipment:
     neck: ClothingNeckMediumTieCommandMaid
+
+- type: loadout
+  id: CommandMaidBeltJanitorBow
+  equipment:
+    belt: ClothingBeltJanitorBow
+
+- type: loadout
+  id: CommandMaidBeltPouch
+  equipment:
+    belt: ClothingBeltCommandMaidPouch
+
+- type: loadout
+  id: CommandMaidGasMask
+  equipment:
+    mask: ClothingMaskGasCommaid
+
+- type: loadout
+  id: CommandMaidSocksWhiteRigged
+  equipment:
+    socks: ClothingSocksWhiteRigged

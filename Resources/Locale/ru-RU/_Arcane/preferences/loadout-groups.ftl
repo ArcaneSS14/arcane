@@ -9,6 +9,9 @@ loadout-group-command-maid-head = Горничная командования, �
 loadout-group-command-maid-gloves = Горничная командования, перчатки
 loadout-group-command-maid-shoes = Горничная командования, обувь
 loadout-group-command-maid-neck = Горничная командования, шея
+loadout-group-command-maid-belt = Горничная командования, пояс
+loadout-group-command-maid-mask = Горничная командования, маска
+loadout-group-command-maid-socks = Горничная командования, носки
 
 loadout-group-iaa-jumpsuit = Агент внутренних дел, комбинезон
 

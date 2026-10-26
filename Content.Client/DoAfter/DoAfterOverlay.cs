@@ -14,7 +14,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Client.DoAfter;
 
-public sealed class DoAfterOverlay : Overlay
+public sealed partial class DoAfterOverlay : Overlay // Goob
 {
     private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
 
@@ -126,6 +126,8 @@ public sealed class DoAfterOverlay : Overlay
                     alpha = 0.5f;
                 }
 
+                alpha = GetDoAfterAlpha(time - doAfter.StartTime, doAfter.Args.Delay, alpha); // Goob
+
                 // Orion-Edit-Start
                 // Use sprite bounds to avoid overlap, but clamp the offset so oversized layers
                 // (e.g. tails) do not push the indicator too far upward.
@@ -178,7 +180,7 @@ public sealed class DoAfterOverlay : Overlay
                     var xProgress = (EndX - StartX) * elapsedRatio + StartX;
                     var box = new Box2(new Vector2(StartX, 3f) / EyeManager.PixelsPerMeter, new Vector2(xProgress, 4f) / EyeManager.PixelsPerMeter);
                     box = box.Translated(position);
-                    handle.DrawRect(box, doAfter.Args.ColorOverride ?? color); // Goob edit
+                    handle.DrawRect(box, ApplyOverrideAlpha(doAfter.Args.ColorOverride, color)); // Goob edit
                 }
 
                 offset += _barTexture.Height / scale;

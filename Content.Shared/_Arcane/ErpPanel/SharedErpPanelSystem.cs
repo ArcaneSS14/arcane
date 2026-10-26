@@ -3,6 +3,7 @@ using Content.Shared.Chat;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -14,7 +15,27 @@ using Robust.Shared.Utility;
 using Content.Shared.Popups;
 
 namespace Content.Shared._Arcane.ErpPanel;
-
+// ATTATION CAT AHEAD
+//         .                 .
+//        . .               . .
+//       .   .             .   .
+//      .     . . . . . . .     .
+//      .                       .
+//     .      ..         ..      .
+//  . . .     ..         ..     . . .
+//     .            .            .
+//  . . .        .  .  .        . . .
+//      .                       .
+//        . .               . .
+//            . . . . . . .
+//          .               .
+//        .                   .           .
+//       .                     .         .
+//       .                     .        .
+//       .                     .      .
+//        .   .           .   .   . .
+//         . . . . . . . . . . . .
+// Thank you for attaion
 public sealed class SharedErpPanelSystem : EntitySystem
 {
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
@@ -27,6 +48,7 @@ public sealed class SharedErpPanelSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     private static readonly EntProtoId HeartsProto = new("EffectHearts");
 
@@ -42,6 +64,7 @@ public sealed class SharedErpPanelSystem : EntitySystem
         Subs.BuiEvents<ErpPanelOwnerComponent>(ErpPanelKey.Key, subs =>
         {
             subs.Event<ErpPanelSendMessage>(OnSendMessage);
+            subs.Event<ErpPanelSetMultipliersMessage>(OnSetMultipliers);
         });
     }
 
@@ -81,7 +104,17 @@ public sealed class SharedErpPanelSystem : EntitySystem
         if (target == null || user != entity.Owner)
             return;
 
-        ProccessInteraction(user, target.Value, args.Interaction, args.CustomArousal, args.CustomMoaning);
+        ProccessInteraction(user, target.Value, args.Interaction);
+    }
+
+    private void OnSetMultipliers(Entity<ErpPanelOwnerComponent> entity, ref ErpPanelSetMultipliersMessage args)
+    {
+        if (args.Actor != entity.Owner)
+            return;
+
+        entity.Comp.ArousalMultiplier = Math.Clamp(args.Arousal, 0, 300);
+        entity.Comp.MoanMultiplier = Math.Clamp(args.Moaning, 0, 300);
+        Dirty(entity);
     }
 
     private void OnGetVerbs(
@@ -115,7 +148,7 @@ public sealed class SharedErpPanelSystem : EntitySystem
         args.Verbs.Add(verb);
     }
 
-    public void ProccessInteraction(EntityUid user, EntityUid target, string interactionId, float customArousal, float customMoaning)
+    public void ProccessInteraction(EntityUid user, EntityUid target, string interactionId)
     {
         if (!_prototype.TryIndex<PanelInteractionPrototype>(interactionId, out var interaction))
             return;
@@ -129,12 +162,9 @@ public sealed class SharedErpPanelSystem : EntitySystem
         if (!CheckRequirements(user, target, interaction))
             return;
 
-        customArousal = Math.Clamp(customArousal, 0, 300);
-        customMoaning = Math.Clamp(customMoaning, 0, 300);
-
         if (interaction.TargetArouse != 0 && TryComp<ArousalComponent>(target, out var targetArousalComp))
         {
-            var targetDelta = interaction.TargetArouse * customArousal / 100;
+            var targetDelta = interaction.TargetArouse * GetArousalMultiplier(target);
             var currentTargetArousal = _arousal.GetArousal(targetArousalComp);
 
             if (targetDelta < 0 && Math.Abs(targetDelta) > currentTargetArousal)
@@ -144,7 +174,7 @@ public sealed class SharedErpPanelSystem : EntitySystem
                 Spawn(HeartsProto, _transform.GetMapCoordinates(target));
 
             _arousal.AddArousal(target, targetDelta);
-            ProccessMoan(target, customMoaning);
+            ProccessMoan(target);
         }
 
         userPanel.Cooldowns[interaction.ID] = _ticking.CurTime;
@@ -173,18 +203,18 @@ public sealed class SharedErpPanelSystem : EntitySystem
 
         if (interaction.UserArouse != 0 && TryComp<ArousalComponent>(user, out var userArousalComp))
         {
-            var userDelta = interaction.UserArouse * customArousal / 100;
+            var userDelta = interaction.UserArouse * GetArousalMultiplier(user);
             var currentUserArousal = _arousal.GetArousal(userArousalComp);
 
             if (userDelta < 0 && Math.Abs(userDelta) > currentUserArousal)
                 userDelta = -currentUserArousal;
 
             _arousal.AddArousal(user, userDelta);
-            ProccessMoan(user, customMoaning);
+            ProccessMoan(user);
         }
     }
 
-    public void ProccessMoan(EntityUid uid, float customMoaning)
+    public void ProccessMoan(EntityUid uid, float customMoaning = 100)
     {
         if (!TryComp<ArousalComponent>(uid, out var userArousal) || userArousal.LastValue <= 0 || userArousal.MaxArousal == 0)
             return;
@@ -192,11 +222,19 @@ public sealed class SharedErpPanelSystem : EntitySystem
         if (!TryComp<HumanoidAppearanceComponent>(uid, out var userHumanoid))
             return;
 
+        if (TryComp<ErpPanelOwnerComponent>(uid, out var panel))
+            customMoaning *= panel.MoanMultiplier / 100;
+
         var userMoanChance = userArousal.LastValue / userArousal.MaxArousal * customMoaning / 100f;
         userMoanChance = Math.Clamp(userMoanChance, 0f, 1f);
 
         if (_random.Prob(userMoanChance) && _arousal.TryMoan(uid, userArousal))
             MoanWithGender(uid, userHumanoid.Gender, userArousal.LastValue / userArousal.MaxArousal);
+    }
+
+    private float GetArousalMultiplier(EntityUid uid)
+    {
+        return TryComp<ErpPanelOwnerComponent>(uid, out var panel) ? panel.ArousalMultiplier / 100 : 1;
     }
 
     private void MoanWithGender(EntityUid uid, Gender userHumanoid, float arousalPercent)
@@ -265,6 +303,9 @@ public sealed class SharedErpPanelSystem : EntitySystem
         if (!HasComp<ErpPanelOwnerComponent>(target))
             return false;
 
+        if (_mobState.IsIncapacitated(target))
+            return false;
+
         if (!HasComp<ArousalComponent>(user) || !HasComp<ArousalComponent>(target))
             return false;
 
@@ -273,6 +314,9 @@ public sealed class SharedErpPanelSystem : EntitySystem
 
     private bool IsValidInteraction(EntityUid user, EntityUid target, PanelInteractionPrototype interaction)
     {
+        if (_mobState.IsIncapacitated(target))
+            return false;
+
         if (!_interaction.InRangeAndAccessible(user, target, interaction.Range))
             return false;
 

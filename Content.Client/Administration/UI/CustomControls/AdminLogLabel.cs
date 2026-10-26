@@ -1,6 +1,8 @@
 ﻿using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Administration.UI.CustomControls;
 
@@ -10,8 +12,15 @@ public sealed class AdminLogLabel : RichTextLabel
     {
         Log = log;
         Separator = separator;
+        // Arcane-Start
+        var impactColor = GetImpactColor(log.Impact);
+        var impactText = $"[color={impactColor}]█[/color]";
 
-        SetMessage($"{log.Date:HH:mm:ss}: {log.Message}");
+        var formatted = new FormattedMessage();
+        formatted.AddMarkupOrThrow($"{impactText} [bold]{log.Date:HH:mm:ss}[/bold]: {FormattedMessage.EscapeText(log.Message)}");
+        // Arcane-End
+
+        SetMessage(formatted); // Arcane-Edit
         OnVisibilityChanged += VisibilityChanged;
     }
 
@@ -24,10 +33,14 @@ public sealed class AdminLogLabel : RichTextLabel
         Separator.Visible = Visible;
     }
 
-    protected override void Dispose(bool disposing)
+    // Arcane-Start
+    private static string GetImpactColor(LogImpact impact) => impact switch
     {
-        base.Dispose(disposing);
-
-        OnVisibilityChanged -= VisibilityChanged;
-    }
+        LogImpact.Extreme => "red",
+        LogImpact.High => "orange",
+        LogImpact.Medium => "yellow",
+        LogImpact.Low => "lightgreen",
+        _ => "gray"
+    };
+    // Arcane-End
 }

@@ -6,10 +6,11 @@ using Content.Shared.VendingMachines;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 using System.Linq;
+using Content.Client._Funkystation.VendingMachines; // Goob
 
 namespace Content.Client.VendingMachines
 {
-    public sealed class VendingMachineBoundUserInterface : BoundUserInterface
+    public sealed class VendingMachineBoundUserInterface : BoundUserInterface, IVendingMachineBoundUi // Goob
     {
         [ViewVariables]
         private VendingMachineMenu? _menu;
@@ -36,8 +37,11 @@ namespace Content.Client.VendingMachines
             var enabled = EntMan.TryGetComponent(Owner, out VendingMachineComponent? bendy) && !bendy.Ejecting;
 
             var system = EntMan.System<VendingMachineSystem>();
-            _cachedInventory = system.GetAllInventory(Owner);
-
+            // Arcane-Edit-Start
+            var newInventory = system.GetAllInventory(Owner);
+            ApplyDisplayPrices(newInventory);
+            _cachedInventory = newInventory;
+            // Arcane-Edit-End
             _menu?.Populate(_cachedInventory, enabled);
         }
 

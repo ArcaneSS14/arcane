@@ -52,6 +52,9 @@ binds:
 - function: ResistGrab
   type: State
   key: B
+- function: NamePeek # Goob
+  type: State
+  key: Alt
 # Shuttle
 - function: ShuttleStrafeUp
   type: State

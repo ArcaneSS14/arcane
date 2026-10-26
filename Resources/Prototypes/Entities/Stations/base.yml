@@ -147,6 +147,10 @@
     - type: AlertLevel
       alertLevelPrototype: stationAlerts
     - type: AlertLevelGate # Arcane-Edit: Gates red alert
+    # Arcane-Start
+    - type: AmberAlert
+      unlocked: true
+    # Arcane-End
 
 - type: entity
   id: BaseStationExpeditions

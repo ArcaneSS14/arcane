@@ -150,6 +150,11 @@
   - type: SolutionInjectOnProjectileHit
     transferAmount: 15
     solution: ammo
+    # Arcane-Start
+    pierceArmor: false
+    damageModifierResistances:
+      Piercing: 3
+    # Arcane-End
 
 - type: entity
   id: PelletShotgunFlare

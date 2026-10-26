@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseBullet
+  id: BulletHighCaliberAPX
+  name: bullet (.50 BMG AP-X)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40
+        Structural: 120
+      armorPenetration: 1
+    penetrationThreshold: 50

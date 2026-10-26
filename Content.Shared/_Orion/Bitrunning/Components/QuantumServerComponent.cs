@@ -83,7 +83,7 @@ public sealed partial class QuantumServerComponent : Component
     [DataField]
     public TimeSpan ExitBlindnessTime = TimeSpan.FromSeconds(3.5);
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<BitrunningVirtualDomainPrototype>)), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public string? CurrentDomain;
 
     // Server-only runtime state. These fields are not synchronized to clients.

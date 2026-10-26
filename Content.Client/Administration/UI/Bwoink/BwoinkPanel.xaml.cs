@@ -16,7 +16,7 @@ namespace Content.Client.Administration.UI.Bwoink
     {
         private readonly Action<string> _messageSender;
         // Arcane-Edit-Start
-        private static readonly TimeSpan HistoryRequestTimeout = TimeSpan.FromSeconds(10);
+        private static readonly TimeSpan HistoryRequestTimeout = TimeSpan.FromSeconds(35);
         private DateTime _historyRequestedAt = DateTime.MinValue;
         private AdminLogCursor? _nextHistoryCursor;
         private bool _historyLoaded;

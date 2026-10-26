@@ -152,7 +152,7 @@ public sealed class MindSystem : SharedMindSystem
     {
         base.UnVisit(mindId, mind);
 
-        if (!Resolve(mindId, ref mind))
+        if (!Resolve(mindId, ref mind, false)) // Goob - Fix (deleted mind)
             return;
 
         if (mind.VisitingEntity == null)

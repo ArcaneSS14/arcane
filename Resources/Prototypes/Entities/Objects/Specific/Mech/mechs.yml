@@ -51,6 +51,12 @@
     requireAnchored: false
     joinSystem: true
   - type: DoAfter
+  # Arcane-Start
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSound: /Audio/Items/jaws_pry.ogg
+  # Arcane-End
   - type: Repairable
     fuelCost: 25
     doAfterDelay: 10
@@ -132,7 +138,7 @@
     enabled: false
     softness: 5
     autoRot: true
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     radius: 7
     energy: 3
     netsync: false

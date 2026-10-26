@@ -25,7 +25,7 @@
       params:
         volume: -12
     Hiss:
-      collection: HumanoidXenoHisses
+      collection: XenomorphHiss
     Roars:
       collection: HumanoidXenoRoars
     Growl:
@@ -37,7 +37,7 @@
     DefaultDeathgasp:
       collection: HumanoidXenoDeathgasp
     Yawn:
-      collection: XenomorphHiss
+      collection: HumanoidXenoHisses
       params:
         volume: -12
     Snore:

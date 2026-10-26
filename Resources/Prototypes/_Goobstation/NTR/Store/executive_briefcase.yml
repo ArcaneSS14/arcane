@@ -80,8 +80,6 @@
 #    - NTREvil # for evil stuff
     currencyWhitelist:
     - NTLoyaltyPoint
-    sales:
-      enabled: false
     ownerOnly: true
 
 - type: storeCategory

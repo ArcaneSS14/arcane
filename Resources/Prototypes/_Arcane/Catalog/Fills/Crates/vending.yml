@@ -1,0 +1,11 @@
+- type: entity
+  parent: CratePlastic
+  id: CrateVendingMachineLoveFilled
+  name: Love restock crate
+  description: Contains a restock box Lovemat.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: VendingMachineLoveRestock
+        amount: 2
