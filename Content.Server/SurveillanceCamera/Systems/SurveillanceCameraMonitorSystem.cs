@@ -203,8 +203,8 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                         component.KnownMobileCamerasLastHeartbeat[args.SenderAddress] = 0;
                     // Goobstation end
                     break;
-                // Arcane-Edit-Start
                 case SurveillanceCameraSystem.CameraDataMessage:
+                    // Arcane-Start
                     string? name = null;
                     string? subnetData = null;
                     string? address = null;
@@ -222,7 +222,7 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
 
                     if (isMobile)
                     {
-                        EnsureComp<HasMobileCamerasSurveillanceCameraMonitorComponent>(uid);
+                        EnsureComp<HasMobileCamerasSurveillanceCameraMonitorComponent>(uid); // Arcane
                         if (!component.KnownMobileCameras.ContainsKey(address))
                         {
                             component.KnownMobileCameras.Add(address, (name, netEntity.Value));
@@ -236,11 +236,11 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                     {
                         component.KnownCameras.Add(address, (name, netEntity.Value));
                     }
-
+                    // Arcane-End
                     UpdateUserInterface(uid, component);
                     break;
-                // Arcane-Edit-Start
                 case SurveillanceCameraSystem.CameraSubnetData:
+                    // Arcane-Start
                     if (args.Data.TryGetValue(SurveillanceCameraSystem.CameraSubnetData, out string? subnet)
                         && !string.IsNullOrEmpty(subnet)
                         && !component.KnownSubnets.ContainsKey(subnet))
@@ -256,7 +256,8 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
 
                     UpdateUserInterface(uid, component);
                     break;
-            }   // Arcane-Edit-End
+                    // Arcane-End
+            }
         }
     }
 
@@ -627,7 +628,7 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
             return;
         }
         AddViewer(uid, player);
-        // Arcane-Edit-Start
+        // Arcane-Start
         if (monitor.KnownSubnets.Count == 0)
         {
             RefreshSubnets(uid, monitor);
@@ -636,7 +637,7 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
         {
             RefreshCameras(uid, monitor);
         }
-        // Arcane-Edit-End
+        // Arcane-End
     }
 
     private void UpdateUserInterface(EntityUid uid, SurveillanceCameraMonitorComponent? monitor = null, EntityUid? player = null)
