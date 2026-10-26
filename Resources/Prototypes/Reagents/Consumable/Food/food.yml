@@ -81,7 +81,6 @@
   physicalDesc: reagent-physical-desc-sweet
   flavor: sweet
   color: white
-  puddleSpriteSet: Powder # Goob
   meltingPoint: 146.0
   metabolisms:
     Food:

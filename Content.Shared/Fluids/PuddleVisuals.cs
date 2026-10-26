@@ -9,6 +9,5 @@ namespace Content.Shared.Fluids
     {
         CurrentVolume,
         SolutionColor,
-        SpriteSet, // Goob
     }
 }
