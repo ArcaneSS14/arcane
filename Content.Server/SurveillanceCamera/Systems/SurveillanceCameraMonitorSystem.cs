@@ -59,7 +59,13 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                 continue;
             } Goobstation remove */
             monitor.LastHeartbeatSent += frameTime;
-            SendHeartbeat(uid, monitor.ActiveCameraAddress, monitor); // Goobstation
+            // Arcane-Edit-Start
+            if (monitor.LastHeartbeatSent >= HeartbeatDelay)
+            {
+                SendHeartbeat(uid, monitor.ActiveCameraAddress, monitor); // Goobstation
+                monitor.LastHeartbeatSent = 0f;
+            }
+            // Arcane-Edit-End
             monitor.LastHeartbeat += frameTime;
 
             if (monitor.LastHeartbeat > MaxHeartbeatTime) // Goobstation
@@ -240,12 +246,17 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                         && !component.KnownSubnets.ContainsKey(subnet))
                     {
                         component.KnownSubnets.Add(subnet, args.SenderAddress);
-                        RequestKnownSubnetsInfo(uid, component); // Arcane
+                        var connectPayload = new NetworkPayload
+                        {
+                            { DeviceNetworkConstants.Command, SurveillanceCameraSystem.CameraSubnetConnectMessage },
+                        };
+                        _deviceNetworkSystem.QueuePacket(uid, args.SenderAddress, connectPayload);
+                        RequestKnownSubnetsInfo(uid, component);
                     }
 
                     UpdateUserInterface(uid, component);
                     break;
-            }
+            }   // Arcane-Edit-End
         }
     }
 
@@ -278,6 +289,7 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
         }
         else
         {
+            ReconnectToSubnets(uid, component); // Arcane
             RequestKnownSubnetsInfo(uid, component);
         }
     }
@@ -354,7 +366,6 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
 
             _deviceNetworkSystem.QueuePacket(uid, subnetAddress, payload);
         }
-        monitor.LastHeartbeatSent = 0f; // Arcane
         // Goobstation end
     }
 
