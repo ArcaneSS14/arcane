@@ -4,6 +4,7 @@
   id: HumanLongEars
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   forcedColoring: true
   followSkinColor: true
   speciesRestriction: [Human, Dwarf, Demon, Felinid] # Arcane-Edit
@@ -15,6 +16,7 @@
   id: LongEarsWide
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   forcedColoring: true
   followSkinColor: true
   speciesRestriction: [Human, Demon, Felinid] # Arcane-Edit
@@ -26,6 +28,7 @@
   id: LongEarsSmall
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   forcedColoring: true
   followSkinColor: true
   speciesRestriction: [Human, Dwarf, Demon, Felinid] # Arcane-Edit
@@ -37,6 +40,7 @@
   id: LongEarsUpwards
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   forcedColoring: true
   followSkinColor: true
   speciesRestriction: [Human, Demon, Felinid] # Arcane-Edit
@@ -48,6 +52,7 @@
   id: LongEarsTall
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   forcedColoring: true
   followSkinColor: true
   speciesRestriction: [Human, Demon, Felinid] # Arcane-Edit
@@ -59,6 +64,7 @@
   id: LongEarsThin
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   forcedColoring: true
   followSkinColor: true
   speciesRestriction: [Human, Dwarf, Demon, Felinid] # Arcane-Edit

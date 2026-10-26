@@ -117,6 +117,7 @@
   id: HydrakinEarsDefault
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Hydrakin]
   sprites:
   - sprite: _Obelisk/Mobs/Customization/hydrakin_parts.rsi
@@ -126,6 +127,7 @@
   id: HydrakinEarsOld
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Hydrakin]
   sprites:
   - sprite: _Obelisk/Mobs/Customization/hydrakin_parts.rsi
@@ -135,6 +137,7 @@
   id: HydrakinEarsFin
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Hydrakin]
   sprites:
   - sprite: _Obelisk/Mobs/Customization/hydrakin_parts.rsi
@@ -144,6 +147,7 @@
   id: HydrakinEarsFrilled
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Hydrakin]
   sprites:
   - sprite: _Obelisk/Mobs/Customization/hydrakin_parts.rsi
@@ -396,6 +400,7 @@
   id: HydrakinHydraSeerEars
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Hydrakin]
   sprites:
   - sprite: _Obelisk/Mobs/Customization/hydrakin_hydraseer.rsi

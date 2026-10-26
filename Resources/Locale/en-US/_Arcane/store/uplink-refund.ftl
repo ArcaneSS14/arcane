@@ -1,0 +1,12 @@
+uplink-refund-success = Returned {$amount} TC.
+uplink-refund-fail-used = This item has already been used and cannot be refunded.
+uplink-refund-fail-wrong-uplink = This item was purchased from a different uplink.
+uplink-refund-fail-not-in-hand = Hold the item in your active hand to refund it.
+uplink-refund-fail-zero = This item has no refund value.
+uplink-refund-fail-no-uplink = You have no uplink to refund this item to.
+uplink-refund-fail-container-changed = The contents of this item have been changed and cannot be refunded.
+uplink-refund-fail-solution-changed = The contents of this item have been changed and cannot be refunded.
+uplink-refund-fail-magazine-empty = This magazine is not full and cannot be refunded.
+uplink-refund-fail-cartridge-spent = This cartridge has already been fired and cannot be refunded.
+uplink-refund-fail-currency = Failed to add currency to the uplink.
+uplink-refund-verb = Refund to uplink
