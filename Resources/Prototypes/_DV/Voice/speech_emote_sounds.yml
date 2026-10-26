@@ -10,9 +10,9 @@
     Laugh:
       collection: HarpyFemaleLaugh
     Sneeze:
-      collection: MaleSneezes
+      collection: FemaleSneezes # Goob - harpy emotes fix
     Cough:
-      collection: MaleCoughs
+      collection: FemaleCoughs # Goob - harpy emotes fix
     Sigh:
       collection: HarpyFemaleSigh
     Crying:
@@ -39,8 +39,8 @@
       collection: HarpyBeeps
     Rev:
       collection: HarpyRevs
-#    Click:
-#      collection: HarpyClicks
+    Click:
+      collection: HarpyClicks
     Chitter:
       collection: HarpyChitter
     Squeak:
@@ -129,8 +129,8 @@
       collection: HarpyBeeps
     Rev:
       collection: HarpyRevs
-#    Click:
-#      collection: HarpyClicks
+    Click:
+      collection: HarpyClicks
     Chitter:
       collection: HarpyChitter
     Squeak:

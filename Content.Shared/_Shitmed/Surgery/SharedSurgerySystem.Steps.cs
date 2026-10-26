@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Goobstation.Common.Surgery;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -10,6 +11,7 @@ using Content.Shared._Shitmed.BodyEffects;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
@@ -298,6 +300,12 @@ public abstract partial class SharedSurgerySystem
         // Arcane-Start
         ev.IgnoreBlockers = true;
         _wounds.TryHaltAllBleeding(args.Part, force: true);
+
+        // A heal outside surgery can clear the damage while trauma-blocked wounds stay, and a no-op heal never reaches them.
+        if (!TryComp<DamageableComponent>(args.Part, out var partDamage)
+            || !partDamage.Damage.TryGetDamageInGroup(group, out var groupDamage)
+            || groupDamage <= 0)
+            _wounds.TryHealWoundsOnWoundable(args.Part, -adjustedDamage.GetTotal() * ev.PartMultiplier, out _, damageGroup: group, ignoreBlockers: true);
         // Arcane-End
         RaiseLocalEvent(args.Body, ref ev);
     }
@@ -456,7 +464,7 @@ public abstract partial class SharedSurgerySystem
 
         // Adding organs is generally done for a single one at a time, so we only need to check for the first.
         var firstOrgan = organComp.Organ.Values.FirstOrDefault();
-        if (firstOrgan == default)
+        if (firstOrgan.Component == null)
             return;
 
         // Arcane-Edit-Start
@@ -472,6 +480,9 @@ public abstract partial class SharedSurgerySystem
 
         if (insertedOrgan.OriginalBody == args.Body)
             return;
+
+        var transplantEv = new OrganTransplantedEvent(args.Body, args.Tool);
+        RaiseLocalEvent(args.User, ref transplantEv);
 
         var ev = new SurgeryStepDamageChangeEvent(args.User, args.Body, args.Part, ent);
         RaiseLocalEvent(ent, ref ev);
@@ -598,7 +609,7 @@ public abstract partial class SharedSurgerySystem
             return;
 
         var organType = ent.Comp.Organ.Values.FirstOrDefault();
-        if (organType == default)
+        if (organType.Component == null)
             return;
 
         var markingCategory = MarkingCategoriesConversion.FromHumanoidVisualLayers(ent.Comp.MarkingCategory);

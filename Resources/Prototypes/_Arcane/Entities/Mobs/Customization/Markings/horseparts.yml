@@ -20,6 +20,7 @@
   id: HorseEars
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true
   speciesRestriction: [Human, Dwarf, Felinid, Vulpkanin, SlimePerson]
   sprites:
   - sprite: _Arcane/Mobs/Customization/horse_markings.rsi

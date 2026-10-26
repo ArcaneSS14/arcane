@@ -1,22 +1,12 @@
 - type: entity
   parent: ClothingMaskGas
   id: ClothingMaskGasCommandPatreon
-  components:
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
 
 - type: entity
   parent: ClothingMaskGasCaptain
   id: ClothingMaskGasCommandArmorPatreon
-  components:
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - HeadTop
-    - HeadSide
+
+# Sponsor
 
 - type: entity
   parent: ClothingMaskGasCommandArmorPatreon
@@ -88,3 +78,27 @@
     sprite: _Arcane/Clothing/Mask/gasrd.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Mask/gasrd.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskDog
+  name: dog mask
+  description: A full face mask in the shape of a dog’s head.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/dog_mask.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/dog_mask.rsi
+# Command
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasCommaid
+  name: housekeeping gas mask
+  description: A specialized gas mask designed for heavy cleaning duties.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/gascommaid.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/gascommaid.rsi

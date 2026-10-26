@@ -25,6 +25,9 @@
   - CommandMaidBackpack
   - CommandMaidGloves
   - CommandMaidShoes
+  - CommandMaidBelt
+  - CommandMaidMask
+  - CommandMaidSocks
   - Trinkets
   - Animals
   - GroupSpeciesBreathTool
@@ -32,7 +35,6 @@
   - Patron
   - Undershirt
   - Underwear
-  - Socks
   - Wrists
   - GroupGrimoire
 

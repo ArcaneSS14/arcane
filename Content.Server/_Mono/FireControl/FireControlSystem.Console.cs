@@ -8,6 +8,7 @@ using Content.Shared._Mono.FireControl;
 using Content.Shared.Power;
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Server.GameObjects;
+using Content.Shared.Ghost;
 
 namespace Content.Server._Mono.FireControl;
 
@@ -57,6 +58,10 @@ public sealed partial class FireControlSystem : EntitySystem
         if (component.ConnectedServer == null || !TryComp<FireControlServerComponent>(component.ConnectedServer, out var server))
             return;
 
+        // Arcane-Start
+        if (TryComp<GhostComponent>(args.Actor, out var ghost) && !ghost.CanGhostInteract)
+            return;
+        // Arcane-End
         // Fire the actual weapons
         FireWeapons((EntityUid)component.ConnectedServer, args.Selected, args.Coordinates, server);
 

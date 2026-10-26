@@ -12,7 +12,8 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Camera;
 using Content.Shared.CCVar;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Explosion;
 using Content.Shared.Explosion.Components;
@@ -36,7 +37,6 @@ namespace Content.Server.Explosion.EntitySystems;
 
 public sealed partial class ExplosionSystem : SharedExplosionSystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -182,6 +182,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             explosive.MaxTileBreak,
             explosive.CanCreateVacuum,
             user);
+
+        RaiseExplosiveTriggered(uid); // Goob
 
         if (explosive.DeleteAfterExplosion ?? delete)
             QueueDel(uid);
@@ -359,8 +361,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 
-        // camera shake
-        CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity);
 
         //For whatever bloody reason, sound system requires ENTITY coordinates.
         var mapEntityCoords = _transformSystem.ToCoordinates(_map.GetMap(pos.MapId), pos);
@@ -382,6 +382,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             : queued.Proto.Sound;
 
         _audio.PlayStatic(sound, filter, mapEntityCoords, true, sound.Params);
+        ExplosionScreenshake(filter, iterationIntensity.Count < queued.Proto.SmallSoundIterationThreshold); // Goob
 
         // play far sound
         // far sound should play for anyone who wasn't in range of any of the effects of the bomb

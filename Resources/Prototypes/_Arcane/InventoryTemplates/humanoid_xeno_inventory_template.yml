@@ -178,3 +178,13 @@
     uiWindowPos: 0,3
     strippingWindowPos: 0,0
     displayName: Eyes
+  - name: plug
+    slotTexture: plug
+    fullTextureName: template_small
+    slotFlags: PLUG
+    slotGroup: Extra
+    uiWindowPos: 1,2
+    strippingWindowPos: 3,5
+    displayName: plug
+    stripTime: 3
+    stripHidden: true

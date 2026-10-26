@@ -33,6 +33,7 @@ DEBUG_CHANGELOG_FILE_OLD = Path("Resources/Changelog/Old.yml")
 
 GITHUB_API_URL = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
+DISCORD_MAX_RETRIES = 10
 
 CHANGELOG_FILE = (
     os.environ.get("CHANGELOG_FILE")
@@ -418,6 +419,8 @@ def get_most_recent_workflow(
         )
 
     return max(past_runs, key=lambda run: run.get("created_at", ""), default=None)
+
+    raise RuntimeError("Could not find a previous successful publish run")
 
 
 def get_current_run(

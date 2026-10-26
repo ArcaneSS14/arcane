@@ -299,6 +299,7 @@ internal sealed partial class ChatManager : IChatManager
             else
             {
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message-no-icon",
+                    ("patronColor", patronColor), // Goob
                     ("playerName", player.Name),
                     ("message", FormattedMessage.EscapeText(message)));
             }

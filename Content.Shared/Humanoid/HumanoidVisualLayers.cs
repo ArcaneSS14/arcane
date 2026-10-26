@@ -46,7 +46,7 @@ namespace Content.Shared.Humanoid
         Fire,
 
         Tracheas, // Arcane edit
-
+        BodyOverlay, // Arcane
     }
 }
 

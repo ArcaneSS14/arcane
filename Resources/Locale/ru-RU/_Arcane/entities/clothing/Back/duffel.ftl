@@ -15,3 +15,6 @@ ent-ClothingBackpackDuffellQuartermaster = вещмешок квартирмей
 
 ent-ClothingBackpackDuffellRD = вещмешок научного руководителя
     .desc = Выглядит избыточно пустым, лишь на дне рисуется пятно от смайла.
+
+ent-ClothingBackpackDuffellCentcomm = вещмешок ЦК
+    .desc = Дорогой тёмно-зелёный вещмешок. Пахнет факсовым аппаратом.

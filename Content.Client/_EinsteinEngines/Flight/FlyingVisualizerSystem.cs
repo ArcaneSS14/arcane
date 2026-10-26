@@ -31,8 +31,30 @@ public sealed class FlyingVisualizerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, FlightVisualsComponent comp, ComponentShutdown args)
     {
-        AddShader(uid, null, comp.AnimateLayer, comp.TargetLayer);
+        AddShader(uid, null, comp.AnimateLayer, FindShaderLayer(uid, comp.Shader)); // Arcane - layers move after takeoff
     }
+
+    // Arcane-Edit-Start
+    /// <summary>
+    ///     Finds the layer that carries the flight shader now, since other systems can reorder layers mid-flight.
+    /// </summary>
+    private int? FindShaderLayer(Entity<SpriteComponent?> entity, ShaderInstance shader)
+    {
+        if (!Resolve(entity, ref entity.Comp, false))
+            return null;
+
+        var index = 0;
+        foreach (var layer in entity.Comp.AllLayers)
+        {
+            if (layer is SpriteComponent.Layer { Shader: var layerShader } && layerShader == shader)
+                return index;
+
+            index++;
+        }
+
+        return null;
+    }
+    // Arcane-Edit-End
 
     private void AddShader(Entity<SpriteComponent?> entity, ShaderInstance? shader, bool animateLayer, int? layer)
     {
@@ -43,9 +65,6 @@ public sealed class FlyingVisualizerSystem : EntitySystem
 
         if (animateLayer && layer is not null)
             entity.Comp.LayerSetShader(layer.Value, shader);
-
-        //entity.Comp.GetScreenTexture = shader is not null;
-        entity.Comp.RaiseShaderEvent = shader is not null;
     }
 
     /// <summary>

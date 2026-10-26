@@ -12,7 +12,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Server.Changeling;
 
-public sealed class ChangelingEggSystem : EntitySystem
+public sealed partial class ChangelingEggSystem : EntitySystem
 {
     // Arcane-Start
     public static readonly IReadOnlyList<Type> TransferredComponents =
@@ -30,13 +30,13 @@ public sealed class ChangelingEggSystem : EntitySystem
     ];
     // Arcane-End
 
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ChangelingSystem _changeling = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ChangelingSystem _changeling = default!;
     // Arcane-Start
     [Dependency] private IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedInternalResourcesSystem _resource = default!;
+    [Dependency] private SharedInternalResourcesSystem _resource = default!;
     // Arcane-End
 
     public override void Update(float frameTime)
@@ -103,6 +103,12 @@ public sealed class ChangelingEggSystem : EntitySystem
         // Arcane-Edit-End
 
         EntityManager.AddComponent(newUid, comp.lingStore);
+
+        foreach (var listing in comp.lingStore.FullListingsCatalog)
+        {
+            if (listing is { PurchaseAmount: > 0, RaiseProductEventOnUser: true, ProductEvent: { } productEvent })
+                RaiseLocalEvent(newUid, productEvent);
+        }
 
         _bodySystem.GibBody(uid);
     }
