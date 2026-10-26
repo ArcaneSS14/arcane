@@ -314,25 +314,14 @@ public sealed partial class DamageableSystem
             // </Woundmed>
         }
 
-        // Arcane-Edit-Start
-//        if (!damageDone.Empty)
-//        {
-//            OnEntityDamageChanged((ent, ent.Comp), damageDone, interruptsDoAfters, origin,
-//                uncappedDamage: damageDoneHypotheticalUncapped); // Woundmed
-//
-//            if (isWoundable) // Woundmed
-//                TryUpdateParentBodyDamage(ent, interruptsDoAfters, origin, ignoreBlockers);
-//        }
-        // A heal still reaches wounds left on a part whose damage is already cleared.
-        if (!damageDone.Empty || isWoundable && !damageDoneHypotheticalUncapped.Empty)
+        if (!damageDone.Empty || isWoundable && !damageDoneHypotheticalUncapped.Empty) // Arcane-Edit
         {
             OnEntityDamageChanged((ent, ent.Comp), damageDone, interruptsDoAfters, origin,
-                ignoreBlockers, uncappedDamage: damageDoneHypotheticalUncapped); // Woundmed
+                ignoreBlockers, uncappedDamage: damageDoneHypotheticalUncapped); // Arcane-Edit
 
-            if (isWoundable && !damageDone.Empty) // Woundmed
+            if (isWoundable && !damageDone.Empty) // Arcane-Edit
                 TryUpdateParentBodyDamage(ent, interruptsDoAfters, origin, ignoreBlockers);
         }
-        // Arcane-Edit-End
 
         return damageDone;
     }
