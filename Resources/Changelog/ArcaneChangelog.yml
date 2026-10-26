@@ -3832,3 +3832,11 @@ Entries:
   time: '2026-10-26T09:41:48.0000000+00:00'
   prNumber: 565
   url: https://github.com/ArcaneSS14/arcane/pull/565
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Возвращены старые спрайты луж
+  id: 274
+  time: '2026-10-26T16:58:54.0000000+00:00'
+  prNumber: 566
+  url: https://github.com/ArcaneSS14/arcane/pull/566
