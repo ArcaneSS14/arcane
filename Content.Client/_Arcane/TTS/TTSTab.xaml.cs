@@ -143,15 +143,22 @@ public sealed partial class TTSTab : Control
             .OrderBy(o => Loc.GetString(o.Name))
             .ToList();
 
-        SetSelectedSex(MapSex(sex));
+        SetSelectedSex(MapSex(sex, _selectedVoiceId));
     }
 
     /// <summary>
-    /// Voices are not restricted to a specific sex, but the tab opens on the sex
-    /// that matches the character's current sex by default.
+    /// The tab opens on the sex category of the currently selected voice (e.g. a random one),
+    /// falling back to the character's sex when the voice is sexless or unknown.
     /// </summary>
-    private static Sex MapSex(Sex sex)
+    private Sex MapSex(Sex sex, string? voiceId)
     {
+        if (voiceId != null &&
+            _prototypeManager.TryIndex<TTSVoicePrototype>(voiceId, out var voice) &&
+            voice.Sex is Sex.Male or Sex.Female)
+        {
+            return voice.Sex;
+        }
+
         return sex switch
         {
             Sex.Male => Sex.Male,
