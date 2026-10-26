@@ -3876,3 +3876,14 @@ Entries:
       https://github.com/user-attachments/assets/dcdc0374-6852-4210-b6a0-d020c110dda4
     - >-
       https://github.com/user-attachments/assets/2dc306c3-afbc-480e-ac43-8d144f458b1e
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Морф снова нормально мимикрирует в объекты, которые он запомнил.
+  id: 278
+  time: '2026-10-26T18:47:01.0000000+00:00'
+  prNumber: 556
+  url: https://github.com/ArcaneSS14/arcane/pull/556
+  media:
+    - >-
+      https://github.com/user-attachments/assets/adaccd41-bf24-4254-b084-809f1e54494b
