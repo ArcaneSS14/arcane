@@ -9,7 +9,6 @@
   contrabandSeverity: Minor
   flavor: bitter
   color: "#FAFAFA"
-  puddleSpriteSet: Shiny # Goob
   boilingPoint: 212.0  # Dexosyephedrine vape when?
   meltingPoint: 170.0
   metabolisms:
@@ -126,7 +125,6 @@
   physicalDesc: reagent-physical-desc-powdery
   flavor: bitter
   color: "#D2FFFA"
-  puddleSpriteSet: Powder # Goob
   boilingPoint: 255.0
   meltingPoint: 36.0
   metabolisms:
@@ -219,7 +217,6 @@
   contrabandSeverity: Syndicate
   flavor: sharp
   color: "#9A040E"
-  puddleSpriteSet: Acid # Goob
   boilingPoint: 212.0
   meltingPoint: 170.0
   metabolisms:
@@ -353,7 +350,6 @@
   flavor: bitter
   flavorMinimum: 0.05
   color: "#808080"
-  puddleSpriteSet: Powder # Goob
   physicalDesc: reagent-physical-desc-crystalline
   plantMetabolism:
   - !type:PlantAdjustNutrition
@@ -387,7 +383,6 @@
   desc: reagent-desc-nicotine
   flavor: bitter
   color: "#C0C0C0"
-  puddleSpriteSet: Powder # Goob
   physicalDesc: reagent-physical-desc-strong-smelling
   plantMetabolism:
   - !type:PlantAdjustHealth
