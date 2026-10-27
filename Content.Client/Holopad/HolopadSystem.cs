@@ -99,7 +99,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
                 State = holopadhologram.RsiState
             };
 
-            _sprite.AddLayer((hologram, hologramSprite), layer, null);
+            _sprite.AddLayer((hologram, hologramSprite), layer, typingLayer >= 0 ? 0 : null); // Arcane-Edit
         }
 
         // Override specific values
