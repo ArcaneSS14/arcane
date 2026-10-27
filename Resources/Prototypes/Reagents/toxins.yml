@@ -562,6 +562,7 @@
           - Hydrakin # Fuck you
           - Slime # Arcane
           - HumanoidXeno # Arcane
+          - Synth # Arcane
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -580,6 +581,7 @@
           - Hydrakin # Fuck you
           - Slime # Arcane
           - HumanoidXeno # Arcane
+          - Synth # Arcane
           inverted: true
       - !type:HealthChange
         conditions:
@@ -593,6 +595,7 @@
           - Hydrakin # Fuck you
           - Slime # Arcane
           - HumanoidXeno # Acrane
+          - Synth # Arcane
           inverted: true
         damage:
           types:
@@ -749,7 +752,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition # Goobstation - Yowie
-          type: [ Yowie ]
+          type: [ Yowie, Synth ] # Arcane-Edit
           inverted: true
         damage:
           types:
