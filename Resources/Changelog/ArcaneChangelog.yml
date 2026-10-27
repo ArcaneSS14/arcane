@@ -3887,3 +3887,18 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/adaccd41-bf24-4254-b084-809f1e54494b
+- author: RabbitBat, FourHybra, bulbo44kkey, NeGhostea
+  changes:
+    - type: Add
+      message: Добавлен комбинезон, пальто, перчатки битраннера в вендомат Битраннинга.
+    - type: Add
+      message: Добавлены ступеньки из светлого дерева мапперам на вооружение.
+    - type: Add
+      message: Добавлены огромные уши арканам.
+  id: 279
+  time: '2026-10-27T00:46:44.0000000+00:00'
+  prNumber: 562
+  url: https://github.com/ArcaneSS14/arcane/pull/562
+  media:
+    - >-
+      https://github.com/user-attachments/assets/6b7b4b7d-f28e-4eb5-b99c-993954aba7f5
