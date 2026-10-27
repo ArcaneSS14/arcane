@@ -1,5 +1,5 @@
 conflict-wear-fail = Cannot use { $item } together with { $conflict }.
 
-conflict-wear-knowledge-CloseQuartersCombat = knowledge of CQC
-conflict-wear-knowledge-Capoeira = knowledge of Capoeira
-conflict-wear-knowledge-SleepingCarp = knowledge of Sleeping Carp
+conflict-wear-knowledge-close-quarters-combat = knowledge of CQC
+conflict-wear-knowledge-capoeira = knowledge of Capoeira
+conflict-wear-knowledge-sleeping-carp = knowledge of Sleeping Carp
