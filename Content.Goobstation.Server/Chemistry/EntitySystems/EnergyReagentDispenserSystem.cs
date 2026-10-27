@@ -244,21 +244,23 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
             _itemSlotsSystem.AddItemSlot(entity.Owner,
                 SharedEnergyReagentDispenser.OutputSlotName,
                 entity.Comp.EnergyBeakerSlot);
+        // Arcane-Start
         }
 
-        // Arcane-Edit-Start
         private void OnInit(Entity<EnergyReagentDispenserComponent> entity, ref ComponentInit args)
         {
             if (TryComp<BatteryComponent>(entity, out var battery))
                 entity.Comp.BaseMaxCharge = battery.MaxCharge;
+        // Arcane-End
 
+            // Orion-Start
             if (!TryComp<ApcPowerReceiverBatteryComponent>(entity, out var apcBattery))
                 return;
 
             entity.Comp.BaseRechargeRate = apcBattery.BatteryRechargeRate;
             entity.Comp.FinalRechargeRate = apcBattery.BatteryRechargeRate;
+            // Orion-End
         }
-        // Arcane-Edit-End
 
         // Orion-Start
         private void OnPartsRefresh(EntityUid uid, EnergyReagentDispenserComponent component, RefreshPartsEvent args)
