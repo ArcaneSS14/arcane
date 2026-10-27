@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
@@ -7,6 +8,7 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -16,6 +18,7 @@ namespace Content.Shared.Body.Systems
     {
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private readonly INetManager _net = default!; // Arcane
 
         public const string DefaultSolutionName = "stomach";
 
@@ -89,6 +92,17 @@ namespace Content.Shared.Body.Systems
                 {
                     stomach.ReagentDeltas.Remove(item);
                 }
+
+                // Arcane-Start: reagents made by reactions in the stomach never went through TryTransferSolution
+                if (_net.IsServer)
+                {
+                    foreach (var reagent in stomachSolution.Contents)
+                    {
+                        if (!stomach.ReagentDeltas.Any(delta => delta.ReagentQuantity.Reagent == reagent.Reagent))
+                            stomach.ReagentDeltas.Add(new StomachComponent.ReagentDelta(reagent));
+                    }
+                }
+                // Arcane-End
 
                 _solutionContainerSystem.UpdateChemicals(stomach.Solution.Value);
 
