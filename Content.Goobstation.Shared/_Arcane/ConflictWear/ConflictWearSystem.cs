@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using Content.Goobstation.Common.Interactions;
 using Content.Goobstation.Common.MartialArts;
 using Content.Shared._Arcane.ConflictWear;
@@ -21,7 +23,6 @@ public sealed partial class ConflictWearSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<ConflictWearComponent, BeingEquippedAttemptEvent>(OnBeingEquippedAttempt);
         SubscribeLocalEvent<ConflictWearComponent, UseInHandAttemptEvent>(OnUseInHandAttempt);
     }
@@ -31,10 +32,10 @@ public sealed partial class ConflictWearSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!TryComp<ClothingComponent>(ent, out var clothing))
+        if (!TryComp<ClothingComponent>(ent, out _))
             return;
 
-        if (CheckConflicts(ent.Owner, ent.Comp, args.EquipTarget, clothing.Slots, out var popup))
+        if (CheckConflicts(ent.Owner, ent.Comp, args.EquipTarget, args.SlotFlags, out var popup))
         {
             args.Cancel();
             args.Reason = popup;
@@ -97,7 +98,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
                         var failPopup = new LocId(rule.FailPopup?.Id ?? "conflict-wear-fail");
                         popup = Loc.GetString(failPopup,
                             ("item", MetaData(item).EntityName ?? string.Empty),
-                            ("conflict", MetaData(equippedItem).EntityName ?? string.Empty));
+                            ("conflict", MetaData(equippedItem.Value).EntityName ?? string.Empty));
                         return true;
                     }
                 }
@@ -126,9 +127,9 @@ public sealed partial class ConflictWearSystem : EntitySystem
             return false;
 
         var failPopup = new LocId(rule.FailPopup?.Id ?? "conflict-wear-fail");
-        var conflictName = Loc.TryGetString($"conflict-wear-knowledge-{form}", out var loc)
-            ? loc
-            : form;
+
+        var locKey = $"conflict-wear-knowledge-{ToKebabCase(form)}";
+        var conflictName = Loc.TryGetString(locKey, out var loc) ? loc : form;
 
         popup = Loc.GetString(failPopup,
             ("item", MetaData(item).EntityName ?? string.Empty),
@@ -168,9 +169,10 @@ public sealed partial class ConflictWearSystem : EntitySystem
         return false;
     }
 
-    private bool TryGetEquippedPrototype(EntityUid user, EntProtoId protoId, out EntityUid equipped)
+    private bool TryGetEquippedPrototype(EntityUid user, EntProtoId protoId,
+        [NotNullWhen(true)] out EntityUid? equipped)
     {
-        equipped = EntityUid.Invalid;
+        equipped = null;
 
         var query = EntityQueryEnumerator<ClothingComponent>();
         while (query.MoveNext(out var uid, out _))
@@ -209,5 +211,31 @@ public sealed partial class ConflictWearSystem : EntitySystem
     {
         var meta = MetaData(uid);
         return meta.EntityPrototype?.ID == protoId.Id;
+    }
+
+    private static string ToKebabCase(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+            return value;
+
+        var sb = new StringBuilder(value.Length + 4);
+
+        for (var i = 0; i < value.Length; i++)
+        {
+            var c = value[i];
+
+            if (char.IsUpper(c))
+            {
+                if (i > 0)
+                    sb.Append('-');
+                sb.Append(char.ToLowerInvariant(c));
+            }
+            else
+            {
+                sb.Append(c);
+            }
+        }
+
+        return sb.ToString();
     }
 }
