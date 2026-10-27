@@ -61,8 +61,12 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
             return;
 
         // Remove all sprite layers
+        // Arcane-Start: holographic avatars have no typing indicator to copy, so the hologram keeps its own
+        var typingLayer = _sprite.LayerMapTryGet((hologram, hologramSprite), TypingIndicatorLayers.Base, out var index, false) ? index : -1;
+        // Arcane-End
         for (var i = hologramSprite.AllLayers.Count() - 1; i >= 0; i--)
-            _sprite.RemoveLayer((hologram, hologramSprite), i);
+            if (i != typingLayer) // Arcane
+                _sprite.RemoveLayer((hologram, hologramSprite), i); // Arcane-Edit
 
         if (TryComp<SpriteComponent>(target, out var targetSprite))
         {
