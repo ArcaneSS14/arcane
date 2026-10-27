@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by discord:LunaLita#0840, theanemone, bulbo44key",
+    "copyright": "Created by discord:LunaLita#0840, theanemone, bulbo44key, NeGhostea",
     "size": {
         "x": 32,
         "y": 32
@@ -437,6 +437,10 @@
         },
         {
             "name": "arataki_painting_r_hand",
+            "directions": 4
+        },
+        {
+            "name": "ears_huge",
             "directions": 4
         }
     ]
