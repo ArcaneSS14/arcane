@@ -12,7 +12,8 @@ ent-ClothingOuterApostolCoat = плащ апостола
     .desc = Вонми гласу моления моего, внегда воззвати ми к Тебе.
 ent-ClothingOuterCoatAdjutant = зимняя куртка адъютанта
     .desc = Тяжёлая куртка из 'синтетического' меха животных.
-
+ent-ClothingOuterCoatBitrunner = пальто битраннера
+    .desc = Тёмное пальто с кроваво-красной подкладкой для тех, кто любит выглядеть угрожающе даже во время обычного блуждания по коридорам станции.
 # USSP
 
 ent-ClothingOuterUSSPTrenchCoat = плащ-пальто

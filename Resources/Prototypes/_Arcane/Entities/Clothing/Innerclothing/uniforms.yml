@@ -577,3 +577,14 @@
     state: icon
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/butler.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBitrunner
+  name: bitrunner jumpsuit
+  description: A dark form-fitting jumpsuit with shoulder pads and red accents, designed for maximum convenience when running away from security.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/bitrunner_jumpsuit.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/bitrunner_jumpsuit.rsi
