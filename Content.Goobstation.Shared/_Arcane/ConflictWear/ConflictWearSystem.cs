@@ -92,7 +92,6 @@ public sealed partial class ConflictWearSystem : EntitySystem
                 {
                     if (ProtoIdMatches(item, protoId))
                         continue;
-
                     if (TryGetEquippedPrototype(user, protoId, out var equippedItem))
                     {
                         var failPopup = new LocId(rule.FailPopup?.Id ?? "conflict-wear-fail");
