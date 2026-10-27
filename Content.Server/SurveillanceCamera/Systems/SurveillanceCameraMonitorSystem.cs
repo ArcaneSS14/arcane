@@ -204,60 +204,58 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                     // Goobstation end
                     break;
                 case SurveillanceCameraSystem.CameraDataMessage:
-                    // Arcane-Start
+                    // Arcane-Edit-Start
                     string? name = null;
                     string? subnetData = null;
                     string? address = null;
                     (NetEntity, NetCoordinates)? netEntity = null;
-
                     if (!args.Data.TryGetValue(SurveillanceCameraSystem.CameraNameData, out name)
                      || !args.Data.TryGetValue(SurveillanceCameraSystem.CameraSubnetData, out subnetData)
                      || !args.Data.TryGetValue(SurveillanceCameraSystem.CameraAddressData, out address)
                      || !args.Data.TryGetValue(SurveillanceCameraSystem.CameraNetEntity, out netEntity))
+                    // Arcane-Edit-End
                     {
                         return;
                     }
+                    // Arcane-Edit-Start
                     bool isMobile = args.Data.TryGetValue(SurveillanceCameraSystem.CameraMobile, out bool? mobile)
                                     && mobile.HasValue && mobile.Value;
-
                     if (isMobile)
+                    // Arcane-Edit-End
                     {
-                        EnsureComp<HasMobileCamerasSurveillanceCameraMonitorComponent>(uid); // Arcane
+                        EnsureComp<HasMobileCamerasSurveillanceCameraMonitorComponent>(uid); // Arcane-Edit
                         if (!component.KnownMobileCameras.ContainsKey(address))
                         {
                             component.KnownMobileCameras.Add(address, (name, netEntity.Value));
                             foreach (var player in component.Viewers)
                                 if (TryComp<ActorComponent>(player, out var actor))
-                                    // Arcane-Start
+                                    // Arcane-Edit-Start
                                     _pvsOverrideSystem.AddSessionOverride(
                                     _entityManager.GetEntity(netEntity.Value.Item2.NetEntity), actor.PlayerSession);
-                        }           // Arcane-End
+                        }           // Arcane-Edit-End
                     }
                     else if (!component.KnownCameras.ContainsKey(address))
-                    {
                         component.KnownCameras.Add(address, (name, netEntity.Value));
-                    }
-                    // Arcane-End
                     UpdateUserInterface(uid, component);
                     break;
                 case SurveillanceCameraSystem.CameraSubnetData:
-                    // Arcane-Start
                     if (args.Data.TryGetValue(SurveillanceCameraSystem.CameraSubnetData, out string? subnet)
                         && !string.IsNullOrEmpty(subnet)
                         && !component.KnownSubnets.ContainsKey(subnet))
                     {
                         component.KnownSubnets.Add(subnet, args.SenderAddress);
+                        // Arcane-Start
                         var connectPayload = new NetworkPayload
                         {
                             { DeviceNetworkConstants.Command, SurveillanceCameraSystem.CameraSubnetConnectMessage },
                         };
                         _deviceNetworkSystem.QueuePacket(uid, args.SenderAddress, connectPayload);
                         RequestKnownSubnetsInfo(uid, component);
+                        // Arcane-End
                     }
 
                     UpdateUserInterface(uid, component);
                     break;
-                    // Arcane-End
             }
         }
     }
@@ -291,7 +289,7 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
         }
         else
         {
-            ReconnectToSubnets(uid, component); // Arcane
+            ReconnectToSubnets(uid, component);
             RequestKnownSubnetsInfo(uid, component);
         }
     }
@@ -451,7 +449,10 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
     // Goobstation start
     private void RequestKnownSubnetsInfo(EntityUid uid, SurveillanceCameraMonitorComponent? monitor = null)
     {
-        if (!Resolve(uid, ref monitor)) return; // Arcane-Edit
+        if (!Resolve(uid, ref monitor))
+        {
+            return;
+        }
 
         foreach (var subnetAddress in monitor.KnownSubnets.Values)
         {
