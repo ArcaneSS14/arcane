@@ -1,6 +1,6 @@
 using Content.Goobstation.Common.Interactions;
-using Content.Goobstation.Shared.MartialArts.Components;
 using Content.Goobstation.Common.MartialArts;
+using Content.Shared._Arcane.ConflictWear;
 using Content.Shared._Arcane.ConflictWear.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory;
@@ -9,7 +9,7 @@ using Content.Shared.Popups;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Arcane.ConflictWear;
+namespace Content.Goobstation.Shared._Arcane.ConflictWear;
 
 public sealed partial class ConflictWearSystem : EntitySystem
 {
@@ -21,6 +21,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<ConflictWearComponent, BeingEquippedAttemptEvent>(OnBeingEquippedAttempt);
         SubscribeLocalEvent<ConflictWearComponent, UseInHandAttemptEvent>(OnUseInHandAttempt);
     }
@@ -91,12 +92,12 @@ public sealed partial class ConflictWearSystem : EntitySystem
                     if (ProtoIdMatches(item, protoId))
                         continue;
 
-                    if (HasEquippedPrototype(user, protoId))
+                    if (TryGetEquippedPrototype(user, protoId, out var equippedItem))
                     {
                         var failPopup = new LocId(rule.FailPopup?.Id ?? "conflict-wear-fail");
                         popup = Loc.GetString(failPopup,
-                            ("item", item),
-                            ("conflict", protoId));
+                            ("item", MetaData(item).EntityName ?? string.Empty),
+                            ("conflict", MetaData(equippedItem).EntityName ?? string.Empty));
                         return true;
                     }
                 }
@@ -108,6 +109,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
 
         return false;
     }
+
     private bool CheckKnowledgeConflict(EntityUid item, EntityUid user, ConflictWearRulePrototype rule,
         out string popup)
     {
@@ -129,17 +131,17 @@ public sealed partial class ConflictWearSystem : EntitySystem
             : form;
 
         popup = Loc.GetString(failPopup,
-            ("item", item),
+            ("item", MetaData(item).EntityName ?? string.Empty),
             ("conflict", conflictName));
         return true;
     }
 
-    public bool CheckKnowledgeConflicts(EntityUid user, string knowledge, out string popup)
+    public bool CheckKnowledgeConflicts(EntityUid item, EntityUid user, string knowledge, out string popup)
     {
         popup = string.Empty;
 
         var query = EntityQueryEnumerator<ConflictWearComponent, ClothingComponent>();
-        while (query.MoveNext(out var item, out var comp, out _))
+        while (query.MoveNext(out var equippedItem, out var comp, out _))
         {
             foreach (var ruleId in comp.Rules)
             {
@@ -152,13 +154,13 @@ public sealed partial class ConflictWearSystem : EntitySystem
                 if (!rule.ConflictingKnowledge.Contains(knowledge))
                     continue;
 
-                if (!IsEquipped(user, item))
+                if (!IsEquipped(user, equippedItem))
                     continue;
 
                 var failPopup = new LocId(rule.FailPopup?.Id ?? "conflict-wear-fail");
                 popup = Loc.GetString(failPopup,
-                    ("item", item),
-                    ("conflict", knowledge));
+                    ("item", MetaData(item).EntityName ?? string.Empty),
+                    ("conflict", MetaData(equippedItem).EntityName ?? string.Empty));
                 return true;
             }
         }
@@ -166,16 +168,21 @@ public sealed partial class ConflictWearSystem : EntitySystem
         return false;
     }
 
-    private bool HasEquippedPrototype(EntityUid user, EntProtoId protoId)
+    private bool TryGetEquippedPrototype(EntityUid user, EntProtoId protoId, out EntityUid equipped)
     {
+        equipped = EntityUid.Invalid;
+
         var query = EntityQueryEnumerator<ClothingComponent>();
         while (query.MoveNext(out var uid, out _))
         {
             if (!IsEquipped(user, uid))
                 continue;
 
-            if (ProtoIdMatches(uid, protoId))
-                return true;
+            if (!ProtoIdMatches(uid, protoId))
+                continue;
+
+            equipped = uid;
+            return true;
         }
 
         return false;

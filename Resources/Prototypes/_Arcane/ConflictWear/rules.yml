@@ -7,7 +7,6 @@
 #  conflictingPrototypes:
 #  - ClothingAbductorBeltFilled
 #  - ClothingHandsGlovesGuerrilla
-#  failPopup: conflict-wear-abductor-guerrilla
 
 - type: conflictWearRule
   id: GuerrillaGlovesVsAnyMartialArt
@@ -20,4 +19,3 @@
   - Capoeira
   - SleepingCarp
   bidirectional: true
-  failPopup: conflict-wear-guerrilla-martialart
