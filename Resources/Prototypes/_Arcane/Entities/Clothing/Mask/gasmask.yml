@@ -11,6 +11,7 @@
 - type: entity
   parent: ClothingMaskGasCommandArmorPatreon
   id: ClothingMaskGasCaptainPatreon
+  categories: [ HideSpawnMenu ]
   name: gas mask captain
   description: A face-covering mask that can be connected to an air supply.
   components:
@@ -22,6 +23,7 @@
 - type: entity
   parent: ClothingMaskGasCommandPatreon
   id: ClothingMaskGasCEPatreon
+  categories: [ HideSpawnMenu ]
   name: gas mask ce
   components:
   - type: Sprite
@@ -32,6 +34,7 @@
 - type: entity
   parent: ClothingMaskGasCommandPatreon
   id: ClothingMaskGasCMOPatreon
+  categories: [ HideSpawnMenu ]
   name: gas mask cmo
   components:
   - type: Sprite
@@ -42,6 +45,7 @@
 - type: entity
   parent: ClothingMaskGasCommandPatreon
   id: ClothingMaskGasHoPPatreon
+  categories: [ HideSpawnMenu ]
   name: gas mask hop
   components:
   - type: Sprite
@@ -52,6 +56,7 @@
 - type: entity
   parent: ClothingMaskGasCommandArmorPatreon
   id: ClothingMaskGasHoSPatreon
+  categories: [ HideSpawnMenu ]
   name: gas mask hos
   components:
   - type: Sprite
@@ -62,6 +67,7 @@
 - type: entity
   parent: ClothingMaskGasCommandPatreon
   id: ClothingMaskGasQMPatreon
+  categories: [ HideSpawnMenu ]
   name: gas mask qm
   components:
   - type: Sprite
@@ -72,6 +78,7 @@
 - type: entity
   parent: ClothingMaskGasCommandPatreon
   id: ClothingMaskGasRDPatreon
+  categories: [ HideSpawnMenu ]
   name: gas mask rd
   components:
   - type: Sprite

@@ -109,6 +109,7 @@
 - type: entity
   parent: ClothingHeadHatArmoredPlus
   id: ClothingHatNTRBlackBeret
+  categories: [ HideSpawnMenu ]
   name: NTR's black beret
   description: NTR's black beret.
   components:
@@ -120,6 +121,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatClownPink
+  categories: [ HideSpawnMenu ]
   name: pink clown hat
   description: Pink clown hat.
   components:
@@ -131,6 +133,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatCMO
+  categories: [ HideSpawnMenu ]
   name: CMO's hat
   description: CMO's hat.
   components:
@@ -142,6 +145,7 @@
 - type: entity
   parent: ClothingHeadHatArmoredPlus
   id: ClothingHatHOSCap
+  categories: [ HideSpawnMenu ]
   name: HOS' cap.
   description: HOS' cap.
   components:
@@ -153,6 +157,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatQMBlackBeret
+  categories: [ HideSpawnMenu ]
   name: QM's black beret
   description: QM's black beret.
   components:
@@ -164,6 +169,7 @@
 - type: entity
   parent: ClothingHeadHatCentcom
   id: ClothingHatSanitar
+  categories: [ HideSpawnMenu ]
   name: sanitar hat
   description: Sanitar hat.
   components:
@@ -175,6 +181,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatBotanist
+  categories: [ HideSpawnMenu ]
   name: botanical hat
   description: A wide-brimmed hat for working in the sun.
   components:
@@ -186,6 +193,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatCamouflage
+  categories: [ HideSpawnMenu ]
   name: camouflage hat
   description: Camouflage hat.
   components:
@@ -197,6 +205,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatClownCilinder
+  categories: [ HideSpawnMenu ]
   name: clown's cilinder
   description: Funny stripped cilinder.
   components:
@@ -208,6 +217,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatCow
+  categories: [ HideSpawnMenu ]
   name: cow helmet
   description: Cow.
   components:
@@ -219,6 +229,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatFishCookBandana
+  categories: [ HideSpawnMenu ]
   name: cook's fish bandana
   description: Fish cutter's bandana.
   components:
@@ -230,6 +241,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatCookHigh
+  categories: [ HideSpawnMenu ]
   name: high cook hat
   description: Probably hides a rat.
   components:
@@ -241,6 +253,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatCookInclined
+  categories: [ HideSpawnMenu ]
   name: inclined cook hat
   description: Inclined cook hat.
   components:
@@ -252,6 +265,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatJester
+  categories: [ HideSpawnMenu ]
   name: jester's hat
   description: Old-fashioned clown hat.
   components:
@@ -263,6 +277,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHatCookRed
+  categories: [ HideSpawnMenu ]
   name: red cook hat
   description: Red cook hat.
   components:

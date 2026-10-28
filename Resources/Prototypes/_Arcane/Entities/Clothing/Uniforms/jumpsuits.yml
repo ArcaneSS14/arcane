@@ -79,6 +79,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformWellMaintainedDetective
+  categories: [ HideSpawnMenu ]
   name: the well-groomed detective uniform
   description: Immaculately pressed dark red suit. He exudes expensive cologne and unsolved shift secrets.
   components:
