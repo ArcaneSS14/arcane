@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 
+using Content.Shared._Orion.Construction.Prototypes; // Arcane
 using Content.Shared.Materials;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -59,6 +60,21 @@ public sealed partial class FlatpackCreatorComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public string SlotId = "board_slot";
+
+    // Arcane-Start
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float PackDurationMultiplier = 1f;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [AutoNetworkedField]
+    public float MaterialUseMultiplier = 1f;
+
+    [DataField]
+    public ProtoId<MachinePartPrototype> SpeedPart = "MicroLaser";
+
+    [DataField]
+    public ProtoId<MachinePartPrototype> MaterialPart = "MatterBin";
+    // Arcane-End
 }
 
 [Serializable, NetSerializable]

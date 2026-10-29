@@ -167,6 +167,13 @@ public abstract class SharedFlatpackSystem : EntitySystem
             cost[mat] -= amount;
         }
 
+        // Arcane-Start
+        foreach (var mat in new List<string>(cost.Keys))
+        {
+            cost[mat] = (int) MathF.Round(cost[mat] * entity.Comp.MaterialUseMultiplier);
+        }
+        // Arcane-End
+
         return true;
     }
 }
