@@ -56,6 +56,7 @@
   - type: Tag
     tags:
     - Trash
+    - Dishware # Arcane
   - type: PhysicalComposition
     materialComposition:
       Glass: 50
@@ -158,6 +159,7 @@
   - type: Tag
     tags:
     - Trash
+    - Dishware # Arcane
 
 - type: entity
   parent: BaseItem
@@ -180,6 +182,7 @@
   - type: Tag
     tags:
     - Trash
+    - Dishware # Arcane
 
 # Pie Tin
 
