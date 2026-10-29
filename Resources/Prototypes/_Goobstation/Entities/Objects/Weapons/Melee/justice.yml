@@ -67,6 +67,12 @@
   - type: StealTarget
     stealGroup: WeaponSecHeadSword
   - type: IntrinsicRadioReceiver
+  # Arcane-Start
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
+    - Security
+  # Arcane-End
   - type: ActiveRadio
     channels:
     - Common
