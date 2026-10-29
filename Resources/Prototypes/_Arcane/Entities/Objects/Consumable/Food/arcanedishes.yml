@@ -7,6 +7,9 @@
   - type: Sprite
     sprite: _Arcane/Objects/Consumable/Food/tiger_biscuit.rsi
     state: sponge_cake_roll
+  - type: SliceableFood
+    count: 5
+    slice: FoodBakedTigerRollPiece
   - type: SolutionContainerManager
     solutions:
       food:
@@ -20,6 +23,30 @@
     tags:
     - Cake
     - Meat
+
+- type: entity
+  parent: FoodBakedBase
+  id: FoodBakedTigerRollPiece
+  name: biscuit roll piece
+  description: A slice of chocolate biscuit roll.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Consumable/Food/tiger_biscuit.rsi
+    state: sponge_cake_roll_piece
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Theobromine
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Cake
+    - Meat
+    - Slice
 
 - type: entity
   parent: FoodBowlBase

@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: ClothingHeadBase
   id: MaterialTigerPelt
   name: tiger pelt
   description: It doesn't growl anymore.
@@ -7,8 +7,11 @@
   - type: Sprite
     sprite: _Arcane/Objects/Misc/AnimalMaterials/tiger_pelt.rsi
     state: icon
-  - type: Item
-    size: Normal
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Misc/tiger_pelt.rsi
+    equippedPrefix: tiger
+    slots:
+    - HEAD
   - type: Tag
     tags:
     - TigerPelt
@@ -78,7 +81,7 @@
     - Meat
 
 - type: entity
-  parent: BaseItem
+  parent: ClothingBeltBase
   id: MaterialSealTail
   name: seal tail
   description: YOU MONSTER!
@@ -86,8 +89,11 @@
   - type: Sprite
     sprite: _Arcane/Objects/Misc/AnimalMaterials/seal_tail.rsi
     state: icon
-  - type: Item
-    size: Normal
+  - type: Clothing
+    sprite: _Arcane/Clothing/Belt/Misc/seal_tail.rsi
+    equippedPrefix: seal
+    slots:
+    - BELT
   - type: Tag
     tags:
     - SealTail
