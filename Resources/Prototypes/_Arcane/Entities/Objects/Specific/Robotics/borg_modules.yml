@@ -24,6 +24,18 @@
         whitelist:
           components:
           - Seed
+    - hand:
+        emptyLabel: borg-slot-produce-empty-arcane
+        emptyRepresentative: FoodTomato
+        whitelist:
+          components:
+          - Produce
+    - hand:
+        emptyLabel: borg-slot-produce-empty-arcane
+        emptyRepresentative: FoodTomato
+        whitelist:
+          components:
+          - Produce
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
 
