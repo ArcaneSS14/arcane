@@ -3923,3 +3923,24 @@ Entries:
       https://github.com/user-attachments/assets/0fe9d971-87ff-4e72-ba54-0b7d888185b0
     - >-
       https://github.com/user-attachments/assets/bb56d7ac-9e3b-4684-a61f-7c53c5efb96c
+- author: mxgnvrx
+  changes:
+    - type: Tweak
+      message: Операции в карте операции разбиты на разделы по глубине доступа.
+    - type: Tweak
+      message: В строке операции показан следующий этап и нужный для него инструмент.
+    - type: Tweak
+      message: Карта операции сразу обновляется вслед за состоянием пациента.
+    - type: Fix
+      message: >-
+        Названия частей тела, органов и имплантов в хирургии переведены на
+        русский.
+  id: 281
+  time: '2026-10-29T13:28:00.0000000+00:00'
+  prNumber: 570
+  url: https://github.com/ArcaneSS14/arcane/pull/570
+  media:
+    - >-
+      https://github.com/user-attachments/assets/0a3fc15f-71ee-4a73-af8d-d6e1d213419f
+    - >-
+      https://github.com/user-attachments/assets/e1891327-4033-44c8-84d3-0fb2b6cde7fb
