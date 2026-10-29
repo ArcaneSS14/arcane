@@ -4018,3 +4018,11 @@ Entries:
   time: '2026-10-29T13:49:27.0000000+00:00'
   prNumber: 572
   url: https://github.com/ArcaneSS14/arcane/pull/572
+- author: Vecortys
+  changes:
+    - type: Remove
+      message: Реверт логов открытия чата.
+  id: 286
+  time: '2026-10-29T18:55:06.0000000+00:00'
+  prNumber: 576
+  url: https://github.com/ArcaneSS14/arcane/pull/576
