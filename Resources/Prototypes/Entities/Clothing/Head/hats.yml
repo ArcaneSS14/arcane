@@ -1189,6 +1189,11 @@
     sprite: Clothing/Head/Hats/tacticalmaidheadband.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/tacticalmaidheadband.rsi
+  # Arcane-Start
+  - type: Tag
+    tags:
+    - TacticalMaidHeadband
+  # Arcane-End
 
 - type: entity
   parent: ClothingHeadBase

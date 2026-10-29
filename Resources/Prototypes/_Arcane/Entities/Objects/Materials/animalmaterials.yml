@@ -1,0 +1,94 @@
+- type: entity
+  parent: BaseItem
+  id: MaterialTigerPelt
+  name: tiger pelt
+  description: It doesn't growl anymore.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Misc/AnimalMaterials/tiger_pelt.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+    - TigerPelt
+    - Raw
+
+- type: entity
+  parent: BaseItem
+  id: MaterialCrocodileTail
+  name: crocodile tail
+  description: This can cut a chicken.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Misc/AnimalMaterials/crocodile_tail.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Tool
+    qualities:
+    - Slicing
+    speed: 0.35
+    useSound:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 4
+  - type: Sharp
+  - type: Tag
+    tags:
+    - CrocodileTail
+    - Meat
+    - Knife
+
+- type: entity
+  parent: BaseItem
+  id: MaterialTurtleShell
+  name: turtle shell
+  description: A sturdy dome that once protected a little turtle.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Misc/AnimalMaterials/turtle_shell.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.85
+  - type: Tag
+    tags:
+    - TurtleShell
+
+- type: entity
+  parent: BaseItem
+  id: MaterialRabbitHide
+  name: rabbit hide
+  description: You can't even cover yourself with this.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Misc/AnimalMaterials/rabbit_hide.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - RabbitHide
+    - Meat
+
+- type: entity
+  parent: BaseItem
+  id: MaterialSealTail
+  name: seal tail
+  description: YOU MONSTER!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Misc/AnimalMaterials/seal_tail.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+    - SealTail

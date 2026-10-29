@@ -102,6 +102,11 @@
   - Mouse
   - Mothroach
   - Goldfish
+  # Arcane-Start
+  - Rabbit
+  - Turtle
+  - Seal
+  # Arcane-End
 
 - type: loadoutGroup
   id: GroupTankHarness

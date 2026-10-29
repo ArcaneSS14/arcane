@@ -114,3 +114,39 @@
 
 - type: Tag
   id: Magazine50BMG
+
+- type: Tag
+  id: Tiger
+
+- type: Tag
+  id: TigerPelt
+
+- type: Tag
+  id: Crocodile
+
+- type: Tag
+  id: CrocodileTail
+
+- type: Tag
+  id: Turtle
+
+- type: Tag
+  id: TurtleShell
+
+- type: Tag
+  id: Rabbit
+
+- type: Tag
+  id: RabbitHide
+
+- type: Tag
+  id: Seal
+
+- type: Tag
+  id: SealTail
+
+- type: Tag
+  id: PetRafael
+
+- type: Tag
+  id: TacticalMaidHeadband

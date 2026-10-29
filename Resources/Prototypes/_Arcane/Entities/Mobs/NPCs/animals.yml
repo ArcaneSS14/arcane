@@ -40,3 +40,520 @@
   - type: Tag
     tags:
     - VimPilot
+
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: MobTiger
+  name: tiger
+  description: Bad kitty!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Arcane/Mobs/Animals/tiger.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: tiger_alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: tiger_alive
+      Critical:
+        Base: tiger_dead
+      Dead:
+        Base: tiger_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Critical
+      250: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4.8
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      path: /Audio/_Arcane/Animals/tiger_roar.ogg
+    damage:
+      types:
+        Slash: 12
+        Piercing: 6
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 300
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 4
+    - id: MaterialTigerPelt
+      amount: 1
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: InteractionPopup
+    successChance: 0.1
+    interactSuccessString: petting-success-tiger
+    interactFailureString: petting-failure-tiger
+    interactSuccessSound:
+      path: /Audio/_Arcane/Animals/tiger_roar.ogg
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - Tiger
+
+- type: entity
+  parent: [ SimpleMobBase, MobCombat, MobBloodstream ]
+  id: MobCrocodile
+  name: crocodile
+  description: A large reptile that lives in water.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Arcane/Mobs/Animals/crocodile.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: crocodile_alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: crocodile_alive
+      Dead:
+        Base: crocodile_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.55
+        density: 400
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      180: Critical
+      300: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.0
+    baseSprintSpeed: 1.2
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/_Arcane/Animals/crocodile_growl.ogg
+    damage:
+      types:
+        Slash: 14
+        Piercing: 8
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 350
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 5
+    - id: MaterialCrocodileTail
+      amount: 1
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: InteractionPopup
+    successChance: 0.1
+    interactSuccessString: petting-success-crocodile
+    interactFailureString: petting-failure-crocodile
+    interactSuccessSound:
+      path: /Audio/_Arcane/Animals/crocodile_growl.ogg
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - Crocodile
+
+- type: entity
+  parent: [ SimpleMobBase, StripableInventoryBase ]
+  id: MobTurtle
+  name: turtle
+  description: A slow reptile covered by a shell.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Arcane/Mobs/Animals/turtle.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: turtle_alive
+    - map: ["enum.AnimalVisuals.TurtleHide"]
+      state: turtle_hide
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: turtle_moving
+    noMovementLayers:
+      movement:
+        state: turtle_alive
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AnimalVisuals.TurtleHide:
+        enum.AnimalVisuals.TurtleHide:
+          True: { visible: true }
+          False: { visible: false }
+        "movement":
+          True: { visible: false }
+          False: { visible: true }
+        enum.DamageStateVisualLayers.Base:
+          True: { visible: false }
+          False: { visible: true }
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: turtle_alive
+      Dead:
+        Base: turtle_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 150
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Critical
+      120: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.6
+    baseSprintSpeed: 0.8
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 150
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 2
+    - id: MaterialTurtleShell
+      amount: 1
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: RuminantCompound
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-turtle
+    interactFailureString: petting-failure-turtle
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/sloth_squeak.ogg
+  - type: Damageable
+    damageModifierSet: TurtleShell
+  - type: MobTurtle
+  - type: Inventory
+    speciesId: turtle
+    templateId: turtle
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: PolymorphOnEquip
+    requiredProto: ClothingHeadHatTacticalMaidHeadband
+    polymorphProto: TurtleNinjaPolymorph
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - Turtle
+    - PetRafael
+
+- type: entity
+  parent: [ SimpleMobBase ]
+  id: MobTurtleNinja
+  name: ninja turtle
+  description: Rafael in a tactical maid band. Now fast!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Arcane/Mobs/Animals/turtle.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: turtle_alive_ninja
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: turtle_ninja
+    noMovementLayers:
+      movement:
+        state: turtle_alive_ninja
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: turtle_alive_ninja
+      Dead:
+        Base: turtle_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 150
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Critical
+      120: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4.5
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 150
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 2
+    - id: MaterialTurtleShell
+      amount: 1
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: RuminantCompound
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-turtle
+    interactFailureString: petting-failure-turtle
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/sloth_squeak.ogg
+  - type: Damageable
+    damageModifierSet: TurtleShell
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - Turtle
+    - PetRafael
+
+- type: entity
+  parent: MobTurtleNinja
+  id: MobTurtleRafael
+  name: Rafael
+  description: The quartermaster's pet. Loves pizza and maid bands.
+  components:
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: StealTarget
+    stealGroup: AnimalRafael
+
+- type: entity
+  parent: SimpleMobBase
+  id: MobRabbit
+  name: rabbit
+  description: No, we rabbits are dumb, but we multiply well.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Arcane/Mobs/Animals/rabbit.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: rabbit_alive
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: rabbit_running
+    noMovementLayers:
+      movement:
+        state: rabbit_alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: rabbit_alive
+      Critical:
+        Base: rabbit_dead
+      Dead:
+        Base: rabbit_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 20
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      15: Critical
+      30: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 6
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 40
+  - type: Butcherable
+    spawned:
+    - id: MaterialRabbitHide
+      amount: 1
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: MouseCompound
+  - type: NPCRetaliation
+    attackMemoryLength: 1
+  - type: FactionException
+  - type: InteractionPopup
+    successChance: 0.8
+    interactSuccessString: petting-success-rabbit
+    interactFailureString: petting-failure-rabbit
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - Rabbit
+
+- type: entity
+  parent: [ SimpleMobBase ]
+  id: MobSeal
+  name: seal
+  description: A chubby aquatic creature that is easy to approach.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Arcane/Mobs/Animals/seal.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: seal_alive
+    - map: ["enum.AnimalVisuals.Petting"]
+      state: seal_slap
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: seal_moving
+    noMovementLayers:
+      movement:
+        state: seal_alive
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AnimalVisuals.Petting:
+        enum.AnimalVisuals.Petting:
+          True: { visible: true }
+          False: { visible: false }
+        enum.DamageStateVisualLayers.Base:
+          True: { visible: false }
+          False: { visible: true }
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: seal_alive
+      Dead:
+        Base: seal_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.0
+    baseSprintSpeed: 2.6
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 200
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 3
+    - id: MaterialSealTail
+      amount: 1
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: RuminantCompound
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-seal
+    interactFailureString: petting-failure-seal
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Effects/thudswoosh.ogg
+  - type: PettingAnimation
+    duration: 0.5
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - Seal

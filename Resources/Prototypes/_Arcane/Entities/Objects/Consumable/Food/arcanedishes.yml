@@ -1,0 +1,108 @@
+- type: entity
+  parent: FoodBakedBase
+  id: FoodBakedTigerRoll
+  name: biscuit roll
+  description: A chocolate roll. The tiger pelt stays inside.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Consumable/Food/tiger_biscuit.rsi
+    state: sponge_cake_roll
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Theobromine
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Cake
+    - Meat
+
+- type: entity
+  parent: FoodBowlBase
+  id: FoodSoupCrocodileStew
+  name: stewed crocodile
+  description: A hearty crocodile tail stew. The tail stays in the bowl.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - savory
+  - type: Sprite
+    layers:
+    - sprite: Objects/Consumable/Food/bowl.rsi
+      state: bowl2
+    - sprite: _Arcane/Objects/Consumable/Food/crocodile_stew.rsi
+      state: crocodile_stew
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+- type: entity
+  parent: FoodBowlBase
+  id: FoodSoupTurtleSoup
+  name: turtle soup
+  description: A classic soup. The shell stays in the bowl.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - creamy
+  - type: Sprite
+    layers:
+    - sprite: Objects/Consumable/Food/bowl.rsi
+      state: bowl2
+    - sprite: _Arcane/Objects/Consumable/Food/turtle_soup.rsi
+      state: turtle_soup
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+- type: entity
+  parent: FoodBakedBase
+  id: FoodBakedRabbit
+  name: roast rabbit
+  description: Roast rabbit with peas. The hide stays.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Consumable/Food/roast_rabbit.rsi
+    state: broiled_rabbit
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
