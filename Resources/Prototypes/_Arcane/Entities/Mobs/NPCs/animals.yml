@@ -295,6 +295,10 @@
   - type: PolymorphOnEquip
     requiredProto: ClothingHeadHatTacticalMaidHeadband
     polymorphProto: TurtleNinjaPolymorph
+  - type: Item
+    size: Normal
+  - type: CanEscapeInventory
+    baseResistTime: 5
   - type: Tag
     tags:
     - CannotSuicide
@@ -372,6 +376,10 @@
       path: /Audio/Animals/sloth_squeak.ogg
   - type: Damageable
     damageModifierSet: TurtleShell
+  - type: Item
+    size: Normal
+  - type: CanEscapeInventory
+    baseResistTime: 5
   - type: Tag
     tags:
     - CannotSuicide
@@ -463,6 +471,10 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/fox_squeak.ogg
+  - type: Item
+    size: Tiny
+  - type: CanEscapeInventory
+    baseResistTime: 3
   - type: Tag
     tags:
     - CannotSuicide
