@@ -9,8 +9,8 @@
     state: booze
   - type: Item
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 2000
+    startingCharge: 2000
   - type: BatterySelfRecharger
     autoRechargeRate: 20
   - type: ActivatableUI
@@ -57,8 +57,8 @@
     state: soda
   - type: Item
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 2000
+    startingCharge: 2000
   - type: BatterySelfRecharger
     autoRechargeRate: 20
   - type: ActivatableUI
@@ -105,8 +105,8 @@
     state: industrial
   - type: Item
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 2000
+    startingCharge: 2000
   - type: BatterySelfRecharger
     autoRechargeRate: 20
   - type: ActivatableUI

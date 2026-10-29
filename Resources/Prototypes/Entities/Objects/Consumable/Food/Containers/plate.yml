@@ -200,6 +200,7 @@
   - type: Tag
     tags:
     - Trash
+    - Dishware # Arcane
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
@@ -224,6 +225,7 @@
   - type: Tag
     tags:
     - Trash
+    - Dishware # Arcane
   - type: PhysicalComposition
     materialComposition:
       Steel: 25

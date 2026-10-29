@@ -104,8 +104,11 @@
         emptyLabel: borg-slot-chemical-containers-empty
         emptyRepresentative: Beaker
         whitelist:
+          tags:
+          - Dishware
           components:
           - FitsInDispenser
+          - Edible
     - item: KitchenKnife
     - item: RollingPin
     - item: ReagentContainerFlour
@@ -113,6 +116,8 @@
         emptyLabel: borg-slot-ingredients-empty-arcane
         emptyRepresentative: ReagentContainerFlour
         whitelist:
+          tags:
+          - Dishware
           components:
           - Edible
     - item: FoodCondimentBottleEnzyme
@@ -120,6 +125,8 @@
         emptyLabel: borg-slot-ingredients-empty-arcane
         emptyRepresentative: FoodCondimentBottleEnzyme
         whitelist:
+          tags:
+          - Dishware
           components:
           - Edible
     - item: FoodMeat
@@ -127,6 +134,8 @@
         emptyLabel: borg-slot-ingredients-empty-arcane
         emptyRepresentative: FoodMeat
         whitelist:
+          tags:
+          - Dishware
           components:
           - Edible
     - item: FoodCarrot
@@ -134,6 +143,8 @@
         emptyLabel: borg-slot-ingredients-empty-arcane
         emptyRepresentative: FoodCarrot
         whitelist:
+          tags:
+          - Dishware
           components:
           - Edible
   - type: BorgModuleIcon
