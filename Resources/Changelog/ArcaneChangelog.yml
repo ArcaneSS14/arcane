@@ -3982,3 +3982,15 @@ Entries:
   time: '2026-10-29T13:36:51.0000000+00:00'
   prNumber: 574
   url: https://github.com/ArcaneSS14/arcane/pull/574
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: Остановленное кровотечение больше не открывается снова.
+    - type: Fix
+      message: >-
+        Раны на уже вылеченной части тела снова заживают от лекарств и
+        хирургического лечения.
+  id: 283
+  time: '2026-10-29T13:39:42.0000000+00:00'
+  prNumber: 571
+  url: https://github.com/ArcaneSS14/arcane/pull/571
