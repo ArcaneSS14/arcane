@@ -40,6 +40,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingJumpskirtWellMaintainedDetective
+  categories: [ HideSpawnMenu ]
   name: detective's well-groomed jumpskirt
   description: Stylish and immaculately clean jumpsuit skirt. He smells faintly of expensive cologne, cheap tobacco, and the unsolved mysteries of the shift.
   components:

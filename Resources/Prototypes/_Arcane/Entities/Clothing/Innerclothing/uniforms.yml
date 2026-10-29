@@ -14,6 +14,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformBartender
+  categories: [ HideSpawnMenu ]
   name: bartender unoform
   description: Bartender uniform.
   components:
@@ -25,6 +26,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformBartenderSkirt
+  categories: [ HideSpawnMenu ]
   name: bartender unoform with skirt
   description: Bartender uniform with skirt.
   components:
@@ -36,6 +38,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformNTRBlack
+  categories: [ HideSpawnMenu ]
   name: NTR's black uniform
   description: An indicator of skill and sense of style.
   components:
@@ -47,6 +50,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformNTRBlackSkirt
+  categories: [ HideSpawnMenu ]
   name: NTR's black uniform with skirt
   description: An indicator of skill and sense of style.
   components:
@@ -58,6 +62,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformNTRWhiteSkirt
+  categories: [ HideSpawnMenu ]
   name: NTR's white uniform with skirt
   description: An indicator of skill and sense of style.
   components:
@@ -69,6 +74,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformNTRWhite
+  categories: [ HideSpawnMenu ]
   name: NTR's white uniform
   description: An indicator of skill and sense of style.
   components:
@@ -80,6 +86,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformPinkClown
+  categories: [ HideSpawnMenu ]
   name: pink clown dress
   description: Even more fun, tricks and style!
   components:
@@ -91,6 +98,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformCMOSweaterSkirt
+  categories: [ HideSpawnMenu ]
   name: CMO's sweater with skirt
   description: An expensive, high-quality sweater shows who's the boss of pracrical medicine.
   components:
@@ -102,6 +110,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformCMOSweater
+  categories: [ HideSpawnMenu ]
   name: CMO's sweater
   description: An expensive, high-quality sweater shows who's the boss of pracrical medicine.
   components:
@@ -113,6 +122,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformHOSShortDress
+  categories: [ HideSpawnMenu ]
   name: HOS' short dress
   description: Show them, who's mom here.
   components:
@@ -124,6 +134,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformNun
+  categories: [ HideSpawnMenu ]
   name: nun's dress
   description: Modest gothic black dress.
   components:
@@ -135,6 +146,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformVirologistPatron
+  categories: [ HideSpawnMenu ]
   name: virologist uniform
   description: Sterilie uniform for working with microorganisms.
   components:
@@ -146,6 +158,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformVirologistTurtleneckPatron
+  categories: [ HideSpawnMenu ]
   name: virologist turtleneck
   description: Sterilie uniform for working with microorganisms.
   components:
@@ -157,6 +170,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformVirologistTurtleneckSkirtPatron
+  categories: [ HideSpawnMenu ]
   name: virologist turtleneck with skirt
   description: Sterilie uniform for working with microorganisms.
   components:
@@ -168,6 +182,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformVirologistSkirtPatron
+  categories: [ HideSpawnMenu ]
   name: virologist uniform with skirt
   description: Sterilie uniform for working with microorganisms.
   components:
@@ -179,6 +194,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformParamedicPatron
+  categories: [ HideSpawnMenu ]
   name: paramedic uniform
   description: Rescuer's clothes.
   components:
@@ -190,6 +206,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformParamedicTurtleneckPatron
+  categories: [ HideSpawnMenu ]
   name: paramedic turtleneck
   description: Rescuer's clothes.
   components:
@@ -201,6 +218,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformParamedicTurtleneckSkirtPatron
+  categories: [ HideSpawnMenu ]
   name: paramedic turtleneck with skirt
   description: Rescuer's clothes.
   components:
@@ -212,6 +230,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformParamedicSkirtPatron
+  categories: [ HideSpawnMenu ]
   name: paramedic uniform with skirt
   description: Rescuer's clothes.
   components:
@@ -223,6 +242,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformDoctorTurtleneckPatron
+  categories: [ HideSpawnMenu ]
   name: doctor turtleneck
   description: Medical worker's uniform.
   components:
@@ -234,6 +254,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformDoctorTurtleneckSkirtPatron
+  categories: [ HideSpawnMenu ]
   name: chemist turtleneck with skirt
   description: Medical worker's uniform.
   components:
@@ -245,6 +266,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformChemistTurtleneckPatron
+  categories: [ HideSpawnMenu ]
   name: chemist turtleneck
   description: High-quality clothes protecting from chemical burns.
   components:
@@ -256,6 +278,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformChemistTurtleneckSkirtPatron
+  categories: [ HideSpawnMenu ]
   name: chemist turtleneck with skirt
   description: High-quality clothes protecting from chemical burns.
   components:
@@ -267,6 +290,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformChemistSkirtPatron
+  categories: [ HideSpawnMenu ]
   name: chemist uniform with skirt
   description: High-quality clothes protecting from chemical burns.
   components:
@@ -278,6 +302,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformChemistPatron
+  categories: [ HideSpawnMenu ]
   name: chemist uniform
   description: High-quality clothes protecting from chemical burns.
   components:
@@ -289,6 +314,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformQMBlackSkirtSleeveles
+  categories: [ HideSpawnMenu ]
   name: sleeveles QM's black uniform with skirt
   description: "Get out of here and get me some money too!"
   components:
@@ -300,6 +326,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformQMBlackSleeveles
+  categories: [ HideSpawnMenu ]
   name: sleeveles QM's black uniform
   description: "Get out of here and get me some money too!"
   components:
@@ -311,6 +338,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformQMSkirtSleeveles
+  categories: [ HideSpawnMenu ]
   name: sleeveles QM's uniform with skirt
   description: "Get out of here and get me some money too!"
   components:
@@ -322,6 +350,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformQMSleeveles
+  categories: [ HideSpawnMenu ]
   name: sleeveles QM's uniform
   description: "Get out of here and get me some money too!"
   components:
@@ -333,6 +362,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformTwilightSparkle
+  categories: [ HideSpawnMenu ]
   name: bookworm's clothes
   description: For those who love to read and dress brightly.
   components:
@@ -344,6 +374,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformBotanist
+  categories: [ HideSpawnMenu ]
   name: botanist uniform
   description: Special clothes for working with plants.
   components:
@@ -355,6 +386,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformBotanistWhithStraps
+  categories: [ HideSpawnMenu ]
   name: botanist jumpsuit with straps
   description: Special clothes for working with plants.
   components:
@@ -366,6 +398,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformCamouflage
+  categories: [ HideSpawnMenu ]
   name: camouflage jumpsuit
   description: I am a bush.
   components:
@@ -377,6 +410,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformChiefCook
+  categories: [ HideSpawnMenu ]
   name: chief's uniform
   description: FOOLS!!!
   components:
@@ -388,6 +422,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformFreeClothes
+  categories: [ HideSpawnMenu ]
   name: free clothes
   description: Cheep and angrily.
   components:
@@ -399,6 +434,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformCook
+  categories: [ HideSpawnMenu ]
   name: cook's uniform
   description: French restaurant uniform.
   components:
@@ -410,6 +446,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformDancer
+  categories: [ HideSpawnMenu ]
   name: dancer's dress
   description: Dress for bright perfomances.
   components:
@@ -421,6 +458,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformFeminine
+  categories: [ HideSpawnMenu ]
   name: feminine uniform
   description: Allez venez, Milord.
   components:
@@ -432,6 +470,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformFeminineEmpty
+  categories: [ HideSpawnMenu ]
   name: empty feminine uniform
   description: Allez venez, Milord.
   components:
@@ -443,6 +482,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJesterCostume
+  categories: [ HideSpawnMenu ]
   name: jester's costume
   description: Old-fashioned clown costume.
   components:
@@ -454,6 +494,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformPerfomanceDress
+  categories: [ HideSpawnMenu ]
   name: perfomance dress
   description: Chick and shine.
   components:
@@ -465,6 +506,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformComfortableUniform
+  categories: [ HideSpawnMenu ]
   name: comfortable uniform
   description: Comfortable uniform.
   components:
@@ -476,6 +518,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformServiceShirt
+  categories: [ HideSpawnMenu ]
   name: shirt
   description: White shirt.
   components:
@@ -487,6 +530,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformServiceShirtSkirt
+  categories: [ HideSpawnMenu ]
   name: shirt with skirt
   description: White shirt with black skirt.
   components:
@@ -498,6 +542,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformSterileUniform
+  categories: [ HideSpawnMenu ]
   name: sterile uniform
   description: Veterinarian clothing.
   components:
@@ -577,3 +622,14 @@
     state: icon
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/butler.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBitrunner
+  name: bitrunner jumpsuit
+  description: A dark form-fitting jumpsuit with shoulder pads and red accents, designed for maximum convenience when running away from security.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/bitrunner_jumpsuit.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/bitrunner_jumpsuit.rsi

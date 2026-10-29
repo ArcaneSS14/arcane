@@ -284,7 +284,8 @@ internal sealed partial class ChatManager : IChatManager
             colorOverride = prefs.AdminOOCColor;
         }
         // RMC - Heavily modified for patreon.
-        if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) &&
+        if (colorOverride == null && // Arcane
+            _netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) &&
             SponsorRoleBenefits.TryGetOocColor(_discordRoles, player, out var patronColor))
         {
             colorOverride = Color.FromHex(patronColor); // Arcane

@@ -308,7 +308,7 @@ public abstract partial class SharedBloodstreamSystem
             || !TryComp<WoundableComponent>(args.Component.HoldingWoundable, out var woundable)
             || !woundable.CanBleed
             || args.NewSeverity < component.SeverityThreshold
-            || args.NewSeverity < args.OldSeverity)
+            || args.NewSeverity <= args.OldSeverity) // Arcane-Edit
             return;
 
         component.BleedingAmountRaw = args.NewSeverity * _cfg.GetCVar(SurgeryCVars.BleedingSeverityTrade);

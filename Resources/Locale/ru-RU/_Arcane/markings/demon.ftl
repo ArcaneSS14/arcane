@@ -20,6 +20,7 @@ marking-EarsArcana = Ушки арканы
 marking-DemonBiggerCowEars = Большие коровьи ушки
 marking-DemonFinEars = Плавники
 marking-DemonOxEars = Ушки быка
+marking-DemonHugeEars = Огромные ушки
 marking-DemonCowHorns = Рога коровьи
 marking-DemonHornsDeer = Рога оленьи
 marking-DemonHornsSmall = Рога небольшие

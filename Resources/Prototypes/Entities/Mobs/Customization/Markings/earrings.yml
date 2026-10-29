@@ -4,6 +4,7 @@
   id: EarringsStudLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -18,6 +19,7 @@
   id: EarringsStudRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -32,6 +34,7 @@
   id: EarringsHeavyLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -46,6 +49,7 @@
   id: EarringsHeavyRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -60,6 +64,7 @@
   id: EarringsDropBasicLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -74,6 +79,7 @@
   id: EarringsDropBasicRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -88,6 +94,7 @@
   id: EarringsDropColoredLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -104,6 +111,7 @@
   id: EarringsDropColoredRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -120,6 +128,7 @@
   id: EarringsDropLongLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -136,6 +145,7 @@
   id: EarringsDropLongRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -152,6 +162,7 @@
   id: EarringsCrescentLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -166,6 +177,7 @@
   id: EarringsCrescentRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -180,6 +192,7 @@
   id: EarringsBangleLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -194,6 +207,7 @@
   id: EarringsBangleRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -208,6 +222,7 @@
   id: EarringsHoopBasicLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -222,6 +237,7 @@
   id: EarringsHoopBasicRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -236,6 +252,7 @@
   id: EarringsHoopMiniLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -250,6 +267,7 @@
   id: EarringsHoopMiniRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -264,6 +282,7 @@
   id: EarringsCrossBasicLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -278,6 +297,7 @@
   id: EarringsCrossBasicRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -292,6 +312,7 @@
   id: EarringsCrossSaintPeterLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -306,6 +327,7 @@
   id: EarringsCrossSaintPeterRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -320,6 +342,7 @@
   id: EarringsGemstoneBasicLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -336,6 +359,7 @@
   id: EarringsGemstoneBasicRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -352,6 +376,7 @@
   id: EarringsGemstoneLongLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -368,6 +393,7 @@
   id: EarringsGemstoneLongRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -384,6 +410,7 @@
   id: EarringsGemstoneDoubleLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -402,6 +429,7 @@
   id: EarringsGemstoneDoubleRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -420,6 +448,7 @@
   id: EarringsDangleBasicLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -436,6 +465,7 @@
   id: EarringsDangleBasicRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -452,6 +482,7 @@
   id: EarringsDangleLongLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -468,6 +499,7 @@
   id: EarringsDangleLongRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -484,6 +516,7 @@
   id: EarringsEightLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -498,6 +531,7 @@
   id: EarringsEightRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -512,6 +546,7 @@
   id: EarringsCrystalBasicLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -528,6 +563,7 @@
   id: EarringsCrystalBasicRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -544,6 +580,7 @@
   id: EarringsCrystalLongLeft
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:
@@ -560,6 +597,7 @@
   id: EarringsCrystalLongRight
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Dwarf, Human, SlimePerson, Arachnid, Reptilian, Diona, Oni, Felinid, Vulpkanin, Harpy, Gingerbread, Arachne, Demon] # Arcane-Edit
   coloring:
     default:

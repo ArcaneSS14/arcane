@@ -183,6 +183,7 @@
   id: LizardKoboldEarsMid
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [ Reptilian ]
   sprites:
   - sprite: _Impstation/Mobs/Customization/Reptilian/headside.rsi
@@ -192,6 +193,7 @@
   id: LizardKoboldEarsTall
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [ Reptilian ]
   sprites:
   - sprite: _Impstation/Mobs/Customization/Reptilian/headside.rsi
@@ -239,6 +241,7 @@
   id: LizardHornsKoboldEarspiercings
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [ Reptilian ]
   sprites:
   - sprite: _Impstation/Mobs/Customization/Reptilian/headtop.rsi

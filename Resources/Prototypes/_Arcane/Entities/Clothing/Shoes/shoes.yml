@@ -44,6 +44,7 @@
 - type: entity
   parent: ClothingShoesBase
   id: ClothingShoesOldFashionedMedical
+  categories: [ HideSpawnMenu ]
   name: doctor's old-fashioned shoes
   description: Classic shoes from enlightenment ages.
   components:
@@ -55,6 +56,7 @@
 - type: entity
   parent: ClothingShoesBase
   id: ClothingShoesQMBoots
+  categories: [ HideSpawnMenu ]
   name: QM's boots
   description: Expensive stylish black boots.
   components:
@@ -66,6 +68,7 @@
 - type: entity
   parent: ClothingShoesBase
   id: ClothingShoesMusicianBoots
+  categories: [ HideSpawnMenu ]
   name: musician boots
   description: High boots with buckles.
   components:
@@ -77,6 +80,7 @@
 - type: entity
   parent: ClothingShoesClown
   id: ClothingShoesJesters
+  categories: [ HideSpawnMenu ]
   name: jester's shoes
   description: Old-fashioned clown shoes.
   components:
@@ -88,6 +92,7 @@
 - type: entity
   parent: ClothingShoesBase
   id: ClothingShoesTwilightSparkle
+  categories: [ HideSpawnMenu ]
   name: bookworm's boots
   description: Why do they so high?.
   components:
@@ -99,6 +104,7 @@
 - type: entity
   parent: ClothingShoesBase
   id: ClothingShoesWorkerBoots
+  categories: [ HideSpawnMenu ]
   name: worker boots
   description: Comfortable boots to run around the station.
   components:

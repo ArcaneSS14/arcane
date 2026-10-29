@@ -6,3 +6,12 @@
   components:
   - type: Implanter
     implant: KarshanTranslatorImplant
+
+- type: entity
+  parent: [ BaseTranslatorImplanter ]
+  id: DwarvishTranslatorImplanter
+  name: Dwarvish translator Implanter
+  suffix: Dwarvish
+  components:
+  - type: Implanter
+    implant: DwarvishTranslatorImplant

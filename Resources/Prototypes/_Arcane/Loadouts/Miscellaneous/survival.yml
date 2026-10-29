@@ -1,0 +1,15 @@
+- type: loadoutEffectGroup
+  id: EffectSpeciesSynth
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Synth
+
+- type: loadout
+  id: EmergencySynth
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesSynth
+  storage:
+    back:
+    - BoxSurvivalSlotsSynth

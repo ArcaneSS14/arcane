@@ -1338,8 +1338,8 @@
       Plasteel: 5 # Orion
     partRequirements: # Orion
       MatterBin: 2
-      MicroLaser: 2
-      Servo: 1
+      MicroLaser: 3 # Arcane-Edit: 2 > 3
+#      Servo: 1 # Arcane-Edit: Removed
 
 - type: entity
   id: EmitterCircuitboard

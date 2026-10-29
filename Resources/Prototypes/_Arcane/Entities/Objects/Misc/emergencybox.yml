@@ -1,0 +1,48 @@
+- type: entity
+  parent: BoxSurvivalSlots
+  id: BoxSurvivalSlotsSynth
+  name: synth survival box
+  description: It's a box with basic supplies for synth self-repair inside.
+  components:
+  - type: ContainerContainer
+    containers:
+      water: !type:ContainerSlot
+      nutriblock: !type:ContainerSlot
+      flare: !type:ContainerSlot
+      bloodpack: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      water:
+        ejectOnInteract: false
+        whitelist:
+          tags:
+          - DrinkBottle
+      nutriblock:
+        ejectOnInteract: false
+        whitelist:
+          tags:
+          - FoodSnack
+          - BreadEmergency
+          - FoodTinMRE
+      flare:
+        ejectOnInteract: false
+        whitelist:
+          tags:
+          - Flare
+      bloodpack:
+        ejectOnInteract: false
+        whitelist:
+          tags:
+          - Bloodpack
+  - type: ContainerFill
+    containers:
+      water:
+      - DrinkWaterBottleFull
+      nutriblock:
+      - FoodSnackCoalCrunch
+      flare:
+      - Flare
+      bloodpack:
+      - SynthBloodpack1
+  - type: Sprite
+    state: box_silicon

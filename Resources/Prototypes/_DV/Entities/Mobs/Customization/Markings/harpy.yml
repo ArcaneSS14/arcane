@@ -5,6 +5,7 @@
   id: HarpyEarsDefault
   bodyPart: Head
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Harpy]
   coloring:
     default:
