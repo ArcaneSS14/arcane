@@ -257,6 +257,10 @@
       Vinegar: 8
       OilOlive: 5
       Nutriment: 30
+      # Arcane-Start
+      Blood: 15
+      Carbon: 10
+      # Arcane-End
       # Condiments
       TableSalt: 2
       Blackpepper: 2

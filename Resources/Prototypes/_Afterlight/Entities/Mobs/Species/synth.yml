@@ -146,6 +146,10 @@
     batteryChargeMultiplier: 10.8
     cellularDamageMultiplier: 0.2
   - type: ZombieImmune
+  # Arcane-Start
+  - type: BlockInjection
+  - type: Uncloneable
+  # Arcane-End
   - type: Tag
     tags:
     - CanPilot

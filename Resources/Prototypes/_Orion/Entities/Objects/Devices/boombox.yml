@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseItem
   id: HandledBoomBox
+  categories: [ HideSpawnMenu ] # Arcane
   name: boombox
   description: Music speaker, portable jukebox.
   components:
