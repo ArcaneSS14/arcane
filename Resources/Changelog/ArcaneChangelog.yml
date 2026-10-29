@@ -3994,3 +3994,19 @@ Entries:
   time: '2026-10-29T13:39:42.0000000+00:00'
   prNumber: 571
   url: https://github.com/ArcaneSS14/arcane/pull/571
+- author: Kinar7
+  changes:
+    - type: Add
+      message: В принтер плат добавлены платы из всех фабов, кроме фаба СБ.
+    - type: Fix
+      message: Энергораздатчики снова можно улучшать.
+    - type: Add
+      message: Ёмкость материи увеличивает батарею энергораздатчиков.
+    - type: Add
+      message: DT-2 "Правосудие" может говорить в общий канал и канал СБ.
+    - type: Add
+      message: Новые усы "Велосипедный руль".
+  id: 284
+  time: '2026-10-29T13:46:22.0000000+00:00'
+  prNumber: 564
+  url: https://github.com/ArcaneSS14/arcane/pull/564
