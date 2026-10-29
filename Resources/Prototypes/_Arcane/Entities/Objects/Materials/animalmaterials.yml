@@ -28,7 +28,6 @@
   - type: Tool
     qualities:
     - Slicing
-    speed: 0.35
     useSound:
       path: /Audio/Weapons/bladeslice.ogg
   - type: MeleeWeapon

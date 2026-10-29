@@ -26,10 +26,10 @@ public sealed class TurtleHideSystem : EntitySystem
         component.IsHidden = true;
         _appearance.SetData(uid, AnimalVisuals.TurtleHide, true);
 
-        if (HasComp<InputMoverComponent>(uid))
+        if (TryComp<InputMoverComponent>(uid, out var mover))
         {
-            component.HadInputMover = true;
-            RemComp<InputMoverComponent>(uid);
+            mover.CanMove = false;
+            Dirty(uid, mover);
         }
 
         Timer.Spawn(TimeSpan.FromSeconds(5), () =>
@@ -38,21 +38,11 @@ public sealed class TurtleHideSystem : EntitySystem
 
             component.IsHidden = false;
             _appearance.SetData(uid, AnimalVisuals.TurtleHide, false);
-
-            if (component.HadInputMover)
+            if (TryComp<InputMoverComponent>(uid, out var mover))
             {
-                AddComp<InputMoverComponent>(uid);
-                component.HadInputMover = false;
+                mover.CanMove = true;
+                Dirty(uid, mover);
             }
         });
     }
-}
-
-[RegisterComponent]
-public sealed partial class MobTurtleComponent : Component
-{
-    [ViewVariables(VVAccess.ReadOnly)]
-    public bool IsHidden = false;
-
-    public bool HadInputMover = false;
 }
