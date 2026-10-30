@@ -978,6 +978,12 @@
             type: [ Feroxi ]
           factor: 2
         - !type:ModifyBloodLevel
+          # Arcane-Start
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Synth ]
+            inverted: true
+          # Arcane-End
           amount: 6 # Goobstation - buffed by two times due to shitmed changes # Arcane-Edit: 12 > 6
 
 - type: reagent

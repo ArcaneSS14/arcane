@@ -3,6 +3,7 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCleanerJumpsuit
+  categories: [ HideSpawnMenu ]
   name: cleaner jumpsuit
   description: Cheap jumpsuit with big pocket in the middle.
   components:
@@ -14,6 +15,7 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCookApron
+  categories: [ HideSpawnMenu ]
   name: cook apron
   description: Cook apron.
   components:
@@ -25,6 +27,7 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterMusicianJacket
+  categories: [ HideSpawnMenu ]
   name: musician jacket
   description: Rock you like a hurricane!
   components:
@@ -36,6 +39,7 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterRadioHostJacket
+  categories: [ HideSpawnMenu ]
   name: radio host's jacket
   description: Never gonna give you up!
   components:
@@ -47,6 +51,7 @@
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterCow
+  categories: [ HideSpawnMenu ]
   name: mimicry costume
   description: Moo.
   components:
@@ -64,6 +69,7 @@
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterServiceJacket
+  categories: [ HideSpawnMenu ]
   name: service jacket
   description: Black jacket.
   components:

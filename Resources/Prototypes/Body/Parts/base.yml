@@ -52,7 +52,7 @@
   - type: BodyPart
     partType: Chest
     # Shitmed Change Start
-    toolName: "a chest"
+    toolName: surgery-tool-part-chest # Arcane-Edit
     containerName: "chest_slot"
     children:
       groin:
@@ -117,7 +117,7 @@
   - type: BodyPart
     partType: Groin
     # Shitmed Change Start
-    toolName: "a groin"
+    toolName: surgery-tool-part-groin # Arcane-Edit
     containerName: "groin_slot"
     children:
       right leg:
@@ -180,7 +180,7 @@
     state: "head_m"
   - type: BodyPart
     partType: Head
-    toolName: "a head" # Shitmed Change
+    toolName: surgery-tool-part-head # Shitmed Change # Arcane-Edit
     organs: # Shitmed Change
       brain:
         id: brain
@@ -241,7 +241,7 @@
   - type: BodyPart
     partType: Arm
     symmetry: Left
-    toolName: "a left arm" # Shitmed Change
+    toolName: surgery-tool-part-left-arm # Shitmed Change # Arcane-Edit
     children: # Shitmed Change
       left hand:
         id: left hand
@@ -279,7 +279,7 @@
   - type: BodyPart
     partType: Arm
     symmetry: Right
-    toolName: "a right arm" # Shitmed Change
+    toolName: surgery-tool-part-right-arm # Shitmed Change # Arcane-Edit
     children: # Shitmed Change
       right hand:
         id: right hand
@@ -317,7 +317,7 @@
   - type: BodyPart
     partType: Hand
     symmetry: Left
-    toolName: "a left hand" # Shitmed Change
+    toolName: surgery-tool-part-left-hand # Shitmed Change # Arcane-Edit
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: LHand
@@ -350,7 +350,7 @@
   - type: BodyPart
     partType: Hand
     symmetry: Right
-    toolName: "a right hand" # Shitmed Change
+    toolName: surgery-tool-part-right-hand # Shitmed Change # Arcane-Edit
   - type: Woundable
     integrity: 60
     integrityCap: 60
@@ -383,7 +383,7 @@
   - type: BodyPart
     partType: Leg
     symmetry: Left
-    toolName: "a left leg" # Shitmed Change
+    toolName: surgery-tool-part-left-leg # Shitmed Change # Arcane-Edit
     children: # Shitmed Change
       left foot:
         id: left foot
@@ -422,7 +422,7 @@
   - type: BodyPart
     partType: Leg
     symmetry: Right
-    toolName: "a right leg" # Shitmed Change
+    toolName: surgery-tool-part-right-leg # Shitmed Change # Arcane-Edit
     children: # Shitmed Change
       right foot:
         id: right foot
@@ -461,7 +461,7 @@
   - type: BodyPart
     partType: Foot
     symmetry: Left
-    toolName: "a left foot" # Shitmed Change
+    toolName: surgery-tool-part-left-foot # Shitmed Change # Arcane-Edit
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: LFoot
@@ -494,7 +494,7 @@
   - type: BodyPart
     partType: Foot
     symmetry: Right
-    toolName: "a right foot" # Shitmed Change
+    toolName: surgery-tool-part-right-foot # Shitmed Change # Arcane-Edit
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: RFoot

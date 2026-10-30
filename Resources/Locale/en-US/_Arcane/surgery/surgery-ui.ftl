@@ -8,6 +8,12 @@ surgery-ui-window-tools-hint = Pick a surgery, then use tools on the patient.
 surgery-ui-step-tool = Tool: {$tool}
 surgery-ui-step-stage = Stage: {$stage}
 surgery-ui-step-satisfied-tooltip = Not needed yet: earlier steps come first, and this one may be required after them.
+surgery-ui-operation-next = next: {$step}
+
+surgery-ui-section-started = Started
+surgery-ui-section-incision = Through the incision
+surgery-ui-section-cavity = In the opened cavity
+surgery-ui-section-closing = Closing
 
 surgery-ui-part-missing = {$part} (missing)
 surgery-ui-part-started = Started: {$surgery} ({$done}/{$total})
