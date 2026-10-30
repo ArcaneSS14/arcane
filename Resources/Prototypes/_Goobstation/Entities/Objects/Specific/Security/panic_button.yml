@@ -14,3 +14,7 @@
   - type: Tag
     tags:
       - SecBeltEquip
+  # Arcane-Start
+  - type: TTS
+    voice: Fact_core
+  # Arcane-End
