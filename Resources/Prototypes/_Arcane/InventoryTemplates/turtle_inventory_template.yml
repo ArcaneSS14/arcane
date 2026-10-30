@@ -1,0 +1,12 @@
+- type: inventoryTemplate
+  id: turtle
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,2
+    strippingWindowPos: 1,0
+    displayName: Head
+    whitelist:
+      tags:
+        - TacticalMaidHeadband

@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: FoodExotic
+  icon:
+    sprite: _Arcane/Objects/Consumable/Food/roast_rabbit.rsi
+    state: broiled_rabbit
+  product: CrateFoodExotic
+  cost: 15000
+  category: cargoproduct-category-name-food
+  group: market

@@ -1,0 +1,12 @@
+- type: polymorph
+  id: TurtleNinjaPolymorph
+  configuration:
+    entity: MobTurtleNinja
+    forced: true
+    transferDamage: true
+    transferName: true
+    transferHumanoidAppearance: false
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false
+    allowRepeatedMorphs: false

@@ -1,0 +1,57 @@
+- type: microwaveMealRecipe
+  id: RecipeTigerRoll
+  name: biscuit roll recipe
+  result: FoodBakedTigerRoll
+  time: 10
+  group: Dessert
+  solids:
+    FoodDough: 1
+    FoodMeat: 1
+    FoodSnackChocolateBar: 1
+    MaterialTigerPelt: 1
+  reagents:
+    Flour: 10
+    Milk: 5
+    Egg: 1
+
+- type: microwaveMealRecipe
+  id: RecipeCrocodileStew
+  name: stewed crocodile recipe
+  result: FoodSoupCrocodileStew
+  time: 25
+  group: Soup
+  solids:
+    FoodCarrot: 1
+    FoodCorn: 1
+    FoodLime: 1
+    FoodBowlBig: 1
+    MaterialCrocodileTail: 1
+  reagents:
+    Water: 10
+
+- type: microwaveMealRecipe
+  id: RecipeTurtleSoup
+  name: turtle soup recipe
+  result: FoodSoupTurtleSoup
+  time: 25
+  group: Soup
+  solids:
+    FoodCarrot: 1
+    FoodPotato: 1
+    FoodBowlBig: 1
+    MaterialTurtleShell: 1
+  reagents:
+    Water: 10
+
+- type: microwaveMealRecipe
+  id: RecipeFriedRabbit
+  name: roast rabbit recipe
+  result: FoodBakedRabbit
+  time: 15
+  group: Savory
+  solids:
+    MaterialRabbitHide: 1
+    FoodPeaPod: 1
+    FoodPlate: 1
+  reagents:
+    Enzyme: 5

@@ -1,0 +1,9 @@
+ent-SpawnMobTiger = спавнер тигра
+ent-SpawnMobCrocodile = спавнер крокодила
+ent-SpawnMobTurtle = спавнер черепахи
+ent-SpawnMobTurtleNinja = спавнер ниндзя-черепашки
+ent-SpawnMobTurtleRafael = спавнер Рафаэля
+ent-SpawnMobRabbit = спавнер кролика
+ent-SpawnMobSeal = спавнер нерпы
+ent-SpawnMobCheremsha = спавнер черемши
+ent-SpawnMobRandomArcaneFauna = спавнер случайной фауны
