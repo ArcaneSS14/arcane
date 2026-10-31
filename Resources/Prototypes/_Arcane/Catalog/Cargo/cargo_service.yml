@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: ServiceUSSPGear
+  icon:
+    sprite: _Arcane/Clothing/Head/USSP/police_pilotka.rsi
+    state: icon
+  product: CrateServiceUSSPGear
+  cost: 4000
+  category: cargoproduct-category-name-service
+  group: market
