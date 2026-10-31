@@ -28,3 +28,6 @@
     state: icon
   - type: Clothing
     sprite: _Arcane/Clothing/Belt/USSP/waistbagussp.rsi
+  - type: Storage
+    grid:
+    - 0,0,7,1
