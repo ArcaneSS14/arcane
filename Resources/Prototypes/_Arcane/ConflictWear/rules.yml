@@ -1,0 +1,21 @@
+# пример как делаются правила ConflictWear в yml:
+#- type: conflictWearRule
+#  id: AbductorBeltVsGuerrillaGloves
+#  slots:
+#  - belt
+#  - gloves
+#  conflictingPrototypes:
+#  - ClothingAbductorBeltFilled
+#  - ClothingHandsGlovesGuerrilla
+
+- type: conflictWearRule
+  id: GuerrillaGlovesVsAnyMartialArt
+  slots:
+  - gloves
+  conflictingPrototypes:
+  - ClothingHandsGlovesGuerrilla
+  conflictingKnowledge:
+  - CloseQuartersCombat
+  - Capoeira
+  - SleepingCarp
+  bidirectional: true
