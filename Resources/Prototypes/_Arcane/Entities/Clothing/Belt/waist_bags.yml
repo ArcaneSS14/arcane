@@ -1,3 +1,5 @@
+# Command
+
 - type: entity
   parent: [ ClothingBeltStorageWaistbag, BaseCommandContraband ]
   id: ClothingBeltCommandMaidPouch
@@ -12,3 +14,17 @@
   - type: Storage
     grid:
     - 0,0,7,1
+
+# USSP
+
+- type: entity
+  parent: ClothingBeltStorageWaistbag
+  id: ClothingBeltUSSPWaistbag
+  name: ussp waist bag
+  description: A leather belt with a pouch attached at the sides.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Belt/USSP/waistbagussp.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Arcane/Clothing/Belt/USSP/waistbagussp.rsi

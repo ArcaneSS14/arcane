@@ -18,3 +18,6 @@ ent-ClothingBackpackDuffellRD = вещмешок научного руковод
 
 ent-ClothingBackpackDuffellCentcomm = вещмешок ЦК
     .desc = Дорогой тёмно-зелёный вещмешок. Пахнет факсовым аппаратом.
+
+ent-ClothingBackpackDuffelUSSP = почтальонская сумка милиции
+    .desc = Большая плечевая сумка, весьма вместительная для хранения большого количества вещей.
