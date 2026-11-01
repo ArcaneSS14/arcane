@@ -4071,3 +4071,15 @@ Entries:
   time: '2026-11-01T14:41:14.0000000+00:00'
   prNumber: 580
   url: https://github.com/ArcaneSS14/arcane/pull/580
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: энергораздатчикам боргов повышена ёмкость энергии с 1500 до 2000
+    - type: Fix
+      message: >-
+        поварской модуль борга теперь может брать миски, тарелки и форморчки для
+        пирогов. 
+  id: 291
+  time: '2026-11-01T14:43:39.0000000+00:00'
+  prNumber: 577
+  url: https://github.com/ArcaneSS14/arcane/pull/577
