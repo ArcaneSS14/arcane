@@ -16,11 +16,11 @@ chatsan-word-4-2 = бб
 chatsan-word-4-3 = g[jf]+rf+
 chatsan-replacement-4 = пока
 
-chatsan-word-5 = бр+о+
-chatsan-replacement-5 = братан
+chatsan-word-5 = лол
+chatsan-replacement-5 = умора
 
-chatsan-word-6 = братан
-chatsan-replacement-6 = брат
+chatsan-word-6 = рофл
+chatsan-replacement-6 = шутка
 
 chatsan-word-7 = омг
 chatsan-replacement-7 = боже мой
@@ -106,11 +106,11 @@ chatsan-replacement-32 = не знаю
 chatsan-word-33 = мб
 chatsan-replacement-33 = может быть
 
-chatsan-word-34 = увы
-chatsan-replacement-34 = { "" }
+chatsan-word-34 = чекни
+chatsan-replacement-34 = проверь
 
-chatsan-word-35 = увынск
-chatsan-replacement-35 = { "" }
+chatsan-word-35 = норм
+chatsan-replacement-35 = нормально
 
 chatsan-word-36 = окак
 chatsan-replacement-36 = странновато
