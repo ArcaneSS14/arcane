@@ -4057,3 +4057,17 @@ Entries:
   time: '2026-11-01T14:39:21.0000000+00:00'
   prNumber: 581
   url: https://github.com/ArcaneSS14/arcane/pull/581
+- author: RabbitBat, Slaybrine
+  changes:
+    - type: Add
+      message: >-
+        Добавлен ящик с реквизитом СССП в заказах карго! Вы ведь всегда хотели
+        представить себя милиционером СССП?
+    - type: Add
+      message: >-
+        Добавлена новая одежда СССП: пилотка милиционера СССП, поясная сумка,
+        почтальонская сумка СССП
+  id: 290
+  time: '2026-11-01T14:41:14.0000000+00:00'
+  prNumber: 580
+  url: https://github.com/ArcaneSS14/arcane/pull/580
