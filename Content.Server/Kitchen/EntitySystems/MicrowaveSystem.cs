@@ -77,6 +77,8 @@ namespace Content.Server.Kitchen.EntitySystems
         private static readonly ProtoId<TagPrototype> MetalTag = "Metal";
         private static readonly ProtoId<TagPrototype> PlasticTag = "Plastic";
 
+        public readonly record struct MicrowaveSolid(EntityUid Uid, string Id, int Count, List<string>? Substitutes);
+
         public override void Initialize()
         {
             base.Initialize();
@@ -198,8 +200,13 @@ namespace Content.Server.Kitchen.EntitySystems
             }
         }
 
-        private void SubtractContents(MicrowaveComponent component, FoodRecipePrototype recipe)
+        private bool SubtractContents(MicrowaveComponent component, FoodRecipePrototype recipe)
         {
+            var solids = GetSolids(component);
+
+            if (!TryAllocateSolids(recipe.IngredientsSolids, solids, 1, out var allocated))
+                return false;
+
             // TODO Turn recipe.IngredientsReagents into a ReagentQuantity[]
 
             var totalReagentsToRemove = recipe.IngredientsReagents.ToDictionary(x => x.Key.Id, x => x.Value);
@@ -233,58 +240,163 @@ namespace Content.Server.Kitchen.EntitySystems
                 }
             }
 
-            foreach (var recipeSolid in recipe.IngredientsSolids)
+            ConsumeSolids(component, solids, allocated);
+
+            return true;
+        }
+
+        private List<MicrowaveSolid> GetSolids(MicrowaveComponent component)
+        {
+            var solids = new List<MicrowaveSolid>(component.Storage.ContainedEntities.Count);
+
+            foreach (var item in component.Storage.ContainedEntities)
             {
-                for (var i = 0; i < recipeSolid.Value; i++)
+                string? solidId;
+                var amount = 1;
+
+                // If an entity has a stack component, use the stacktype instead of prototype id
+                if (TryComp<StackComponent>(item, out var stackComp))
                 {
-                    foreach (var item in component.Storage.ContainedEntities)
-                    {
-                        string? itemID = null;
+                    solidId = _prototype.Index<StackPrototype>(stackComp.StackTypeId).Spawn;
+                    amount = stackComp.Count;
+                }
+                else
+                {
+                    var metaData = MetaData(item);
+                    if (metaData.EntityPrototype == null)
+                        continue;
 
-                        // If an entity has a stack component, use the stacktype instead of prototype id
-                        if (TryComp<StackComponent>(item, out var stackComp))
-                        {
-                            itemID = _prototype.Index(stackComp.StackTypeId).Spawn;
-                        }
-                        else
-                        {
-                            var metaData = MetaData(item);
-                            if (metaData.EntityPrototype == null)
-                            {
-                                continue;
-                            }
-                            itemID = metaData.EntityPrototype.ID;
-                        }
+                    solidId = metaData.EntityPrototype.ID;
+                }
 
-                        if (itemID != recipeSolid.Key && !IsSubstituteFor(item, recipeSolid.Key))
-                        {
-                            continue;
-                        }
+                solids.Add(new MicrowaveSolid(item, solidId, amount, GetSubstitutes(item)));
+            }
 
-                        if (stackComp is not null)
-                        {
-                            if (stackComp.Count == 1)
-                            {
-                                _container.Remove(item, component.Storage);
-                            }
-                            _stack.ReduceCount((item, stackComp), 1);
-                            break;
-                        }
-                        else
-                        {
-                            _container.Remove(item, component.Storage);
-                            Del(item);
-                            break;
-                        }
-                    }
+            return solids;
+        }
+
+        private List<string>? GetSubstitutes(EntityUid item)
+        {
+            if (!TryComp<RecipeSubstituteComponent>(item, out var substitute) || substitute.Substitutes.Count == 0)
+                return null;
+
+            var substitutes = new List<string>(substitute.Substitutes.Count);
+            foreach (var id in substitute.Substitutes)
+                substitutes.Add(id.Id);
+
+            return substitutes;
+        }
+
+        private void ConsumeSolids(MicrowaveComponent component, List<MicrowaveSolid> solids, Dictionary<int, int> allocated)
+        {
+            foreach (var (index, amount) in allocated)
+            {
+                var item = solids[index].Uid;
+
+                if (TryComp<StackComponent>(item, out var stackComp))
+                {
+                    if (stackComp.Count <= amount)
+                        _container.Remove(item, component.Storage);
+
+                    _stack.ReduceCount((item, stackComp), amount);
+                }
+                else
+                {
+                    _container.Remove(item, component.Storage);
+                    Del(item);
                 }
             }
         }
 
-        private bool IsSubstituteFor(EntityUid item, EntProtoId solid)
+        private static bool TryAllocateSolids(
+            IReadOnlyDictionary<EntProtoId, FixedPoint2> requirements,
+            List<MicrowaveSolid> solids,
+            int portions,
+            out Dictionary<int, int> allocated)
         {
-            return TryComp<RecipeSubstituteComponent>(item, out var substitute)
-                && substitute.Substitutes.Contains(solid);
+            allocated = new Dictionary<int, int>();
+
+            if (requirements.Count == 0)
+                return true;
+
+            var remaining = new Dictionary<string, int>(requirements.Count);
+            foreach (var (id, amount) in requirements)
+                remaining[id.Id] = Math.Max(1, amount.Int()) * portions;
+
+            var available = new int[solids.Count];
+            for (var i = 0; i < solids.Count; i++)
+                available[i] = solids[i].Count;
+
+            var requiredIds = new HashSet<string>(remaining.Keys);
+
+            foreach (var id in remaining.Keys.ToArray())
+            {
+                for (var pass = 0; pass < 2 && remaining[id] > 0; pass++)
+                {
+                    for (var i = 0; i < solids.Count && remaining[id] > 0; i++)
+                    {
+                        if (available[i] <= 0 || solids[i].Id != id)
+                            continue;
+
+                        if (pass == 0 && IsSubstituteForOther(solids[i], requiredIds))
+                            continue;
+
+                        TakeSolid(available, remaining, allocated, id, i);
+                    }
+                }
+            }
+
+            foreach (var id in remaining.Keys.ToArray())
+            {
+                for (var i = 0; i < solids.Count && remaining[id] > 0; i++)
+                {
+                    if (available[i] <= 0 || solids[i].Id == id)
+                        continue;
+
+                    if (solids[i].Substitutes is not { } substitutes || !substitutes.Contains(id))
+                        continue;
+
+                    TakeSolid(available, remaining, allocated, id, i);
+                }
+            }
+
+            foreach (var amount in remaining.Values)
+            {
+                if (amount > 0)
+                    return false;
+            }
+
+            return true;
+        }
+
+        private static void TakeSolid(
+            int[] available,
+            Dictionary<string, int> remaining,
+            Dictionary<int, int> allocated,
+            string id,
+            int index)
+        {
+            var amount = Math.Min(available[index], remaining[id]);
+            if (amount <= 0)
+                return;
+
+            available[index] -= amount;
+            remaining[id] -= amount;
+            allocated[index] = allocated.GetValueOrDefault(index) + amount;
+        }
+
+        private static bool IsSubstituteForOther(MicrowaveSolid solid, HashSet<string> requiredIds)
+        {
+            if (solid.Substitutes is not { } substitutes)
+                return false;
+
+            foreach (var substitute in substitutes)
+            {
+                if (requiredIds.Contains(substitute))
+                    return true;
+            }
+
+            return false;
         }
 
         private void OnInit(Entity<MicrowaveComponent> ent, ref ComponentInit args)
@@ -553,7 +665,7 @@ namespace Content.Server.Kitchen.EntitySystems
             if (!HasContents(component) || HasComp<ActiveMicrowaveComponent>(uid) || !(TryComp<ApcPowerReceiverComponent>(uid, out var apc) && apc.Powered))
                 return;
 
-            var solidsDict = new Dictionary<string, int>();
+            var solids = new List<MicrowaveSolid>();
             var reagentDict = new Dictionary<string, FixedPoint2>();
             var malfunctioning = false;
             // TODO use lists of Reagent quantities instead of reagent prototype ids.
@@ -608,17 +720,7 @@ namespace Content.Server.Kitchen.EntitySystems
                 if (solidID is null)
                     continue;
 
-                if (!solidsDict.TryAdd(solidID, amountToAdd))
-                    solidsDict[solidID] += amountToAdd;
-
-                if (TryComp<RecipeSubstituteComponent>(item, out var substitute))
-                {
-                    foreach (var substituteId in substitute.Substitutes)
-                    {
-                        if (!solidsDict.TryAdd(substituteId.Id, amountToAdd))
-                            solidsDict[substituteId.Id] += amountToAdd;
-                    }
-                }
+                solids.Add(new MicrowaveSolid(item, solidID, amountToAdd, GetSubstitutes(item)));
 
                 // only use reagents we have access to
                 // you have to break the eggs before we can use them!
@@ -639,7 +741,7 @@ namespace Content.Server.Kitchen.EntitySystems
             List<FoodRecipePrototype> recipes = getRecipesEv.Recipes;
             recipes.AddRange(_recipeManager.Recipes);
             var portionedRecipe = recipes.Select(r =>
-                CanSatisfyRecipe(component, r, solidsDict, reagentDict)).FirstOrDefault(r => r.Item2 > 0);
+                CanSatisfyRecipe(component, r, solids, reagentDict)).FirstOrDefault(r => r.Item2 > 0);
 
             _audio.PlayPvs(component.StartCookingSound, uid);
             var activeComp = AddComp<ActiveMicrowaveComponent>(uid); //microwave is now cooking
@@ -663,7 +765,7 @@ namespace Content.Server.Kitchen.EntitySystems
             }
         }
 
-        public static (FoodRecipePrototype, int) CanSatisfyRecipe(MicrowaveComponent component, FoodRecipePrototype recipe, Dictionary<string, int> solids, Dictionary<string, FixedPoint2> reagents)
+        public static (FoodRecipePrototype, int) CanSatisfyRecipe(MicrowaveComponent component, FoodRecipePrototype recipe, List<MicrowaveSolid> solids, Dictionary<string, FixedPoint2> reagents)
         {
             var portions = 0;
 
@@ -671,19 +773,6 @@ namespace Content.Server.Kitchen.EntitySystems
             {
                 //can't be a multiple of this recipe
                 return (recipe, 0);
-            }
-
-            foreach (var solid in recipe.IngredientsSolids)
-            {
-                if (!solids.ContainsKey(solid.Key))
-                    return (recipe, 0);
-
-                if (solids[solid.Key] < solid.Value)
-                    return (recipe, 0);
-
-                portions = portions == 0
-                    ? solids[solid.Key] / solid.Value.Int()
-                    : Math.Min(portions, solids[solid.Key] / solid.Value.Int());
             }
 
             foreach (var reagent in recipe.IngredientsReagents)
@@ -701,7 +790,48 @@ namespace Content.Server.Kitchen.EntitySystems
             }
 
             //cook only as many of those portions as time allows
-            return (recipe, (int) Math.Min(portions, component.CurrentCookTimerTime / recipe.CookTime));
+            portions = portions == 0
+                ? (int) (component.CurrentCookTimerTime / recipe.CookTime)
+                : (int) Math.Min(portions, component.CurrentCookTimerTime / recipe.CookTime);
+
+            if (recipe.IngredientsSolids.Count == 0 && recipe.IngredientsReagents.Count == 0)
+                return (recipe, 0);
+
+            portions = GetMaxPortions(recipe.IngredientsSolids, solids, portions);
+            if (portions <= 0)
+                return (recipe, 0);
+
+            for (var available = portions; available > 0; available--)
+            {
+                if (TryAllocateSolids(recipe.IngredientsSolids, solids, available, out _))
+                    return (recipe, available);
+            }
+
+            return (recipe, 0);
+        }
+
+        private static int GetMaxPortions(
+            IReadOnlyDictionary<EntProtoId, FixedPoint2> requirements,
+            List<MicrowaveSolid> solids,
+            int limit)
+        {
+            foreach (var (id, amount) in requirements)
+            {
+                var required = Math.Max(1, amount.Int());
+
+                var available = 0;
+                foreach (var solid in solids)
+                {
+                    if (solid.Id == id.Id || (solid.Substitutes is { } substitutes && substitutes.Contains(id.Id)))
+                        available += solid.Count;
+                }
+
+                limit = Math.Min(limit, available / required);
+                if (limit <= 0)
+                    return 0;
+            }
+
+            return limit;
         }
 
         public override void Update(float frameTime)
@@ -729,13 +859,17 @@ namespace Content.Server.Kitchen.EntitySystems
                 if (active.PortionedRecipe.Item1 != null)
                 {
                     var coords = Transform(uid).Coordinates;
+                    var cooked = 0;
                     for (var i = 0; i < active.PortionedRecipe.Item2; i++)
                     {
-                        SubtractContents(microwave, active.PortionedRecipe.Item1);
+                        if (!SubtractContents(microwave, active.PortionedRecipe.Item1))
+                            break;
+
                         Spawn(active.PortionedRecipe.Item1.Result, coords);
+                        cooked++;
                     }
 
-                    GoobRaiseCooked(uid, active.PortionedRecipe.Item2); // Goob
+                    GoobRaiseCooked(uid, cooked); // Goob
                 }
 
                 _container.EmptyContainer(microwave.Storage);
