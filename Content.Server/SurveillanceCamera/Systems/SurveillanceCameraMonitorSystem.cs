@@ -63,7 +63,6 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
             if (monitor.LastHeartbeatSent >= HeartbeatDelay)
             {
                 SendHeartbeat(uid, monitor.ActiveCameraAddress, monitor); // Goobstation
-                monitor.LastHeartbeatSent = 0f;
             }
             // Arcane-Edit-End
             monitor.LastHeartbeat += frameTime;
@@ -142,6 +141,14 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
             }
         }
         // Goobstation end
+        // Arcane-Start
+        var resetQuery = EntityQueryEnumerator<ActiveSurveillanceCameraMonitorComponent, SurveillanceCameraMonitorComponent>();
+        while (resetQuery.MoveNext(out _, out _, out var resetMonitor))
+        {
+            if (resetMonitor.LastHeartbeatSent >= HeartbeatDelay)
+                resetMonitor.LastHeartbeatSent = 0f;
+        }
+        // Arcane-End
     }
 
     /// ROUTING:
