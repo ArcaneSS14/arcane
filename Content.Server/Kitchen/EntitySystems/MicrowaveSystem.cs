@@ -319,84 +319,96 @@ namespace Content.Server.Kitchen.EntitySystems
             if (requirements.Count == 0)
                 return true;
 
-            var remaining = new Dictionary<string, int>(requirements.Count);
+            var requiredIds = new List<string>();
             foreach (var (id, amount) in requirements)
-                remaining[id.Id] = Math.Max(1, amount.Int()) * portions;
+            {
+                var units = GetRequiredUnits(amount) * portions;
+                for (var i = 0; i < units; i++)
+                    requiredIds.Add(id.Id);
+            }
 
-            var available = new int[solids.Count];
+            if (requiredIds.Count == 0)
+                return true;
+
+            // a solid can only satisfy a single requirement, so every unit of supply is a node in the matching
+            var supply = new List<int>();
             for (var i = 0; i < solids.Count; i++)
-                available[i] = solids[i].Count;
-
-            var requiredIds = new HashSet<string>(remaining.Keys);
-
-            foreach (var id in remaining.Keys.ToArray())
             {
-                for (var pass = 0; pass < 2 && remaining[id] > 0; pass++)
-                {
-                    for (var i = 0; i < solids.Count && remaining[id] > 0; i++)
-                    {
-                        if (available[i] <= 0 || solids[i].Id != id)
-                            continue;
-
-                        if (pass == 0 && IsSubstituteForOther(solids[i], requiredIds))
-                            continue;
-
-                        TakeSolid(available, remaining, allocated, id, i);
-                    }
-                }
+                var units = Math.Min(solids[i].Count, requiredIds.Count);
+                for (var u = 0; u < units; u++)
+                    supply.Add(i);
             }
 
-            foreach (var id in remaining.Keys.ToArray())
+            if (supply.Count < requiredIds.Count)
+                return false;
+
+            var assigned = new int[supply.Count];
+            Array.Fill(assigned, -1);
+
+            for (var requirement = 0; requirement < requiredIds.Count; requirement++)
             {
-                for (var i = 0; i < solids.Count && remaining[id] > 0; i++)
-                {
-                    if (available[i] <= 0 || solids[i].Id == id)
-                        continue;
-
-                    if (solids[i].Substitutes is not { } substitutes || !substitutes.Contains(id))
-                        continue;
-
-                    TakeSolid(available, remaining, allocated, id, i);
-                }
-            }
-
-            foreach (var amount in remaining.Values)
-            {
-                if (amount > 0)
+                var visited = new bool[supply.Count];
+                if (!TryAssignSolid(requiredIds, requirement, solids, supply, assigned, visited))
                     return false;
+            }
+
+            for (var unit = 0; unit < supply.Count; unit++)
+            {
+                if (assigned[unit] < 0)
+                    continue;
+
+                var index = supply[unit];
+                allocated[index] = allocated.GetValueOrDefault(index) + 1;
             }
 
             return true;
         }
 
-        private static void TakeSolid(
-            int[] available,
-            Dictionary<string, int> remaining,
-            Dictionary<int, int> allocated,
-            string id,
-            int index)
+        private static bool TryAssignSolid(
+            List<string> requiredIds,
+            int requirement,
+            List<MicrowaveSolid> solids,
+            List<int> supply,
+            int[] assigned,
+            bool[] visited)
         {
-            var amount = Math.Min(available[index], remaining[id]);
-            if (amount <= 0)
-                return;
+            var id = requiredIds[requirement];
 
-            available[index] -= amount;
-            remaining[id] -= amount;
-            allocated[index] = allocated.GetValueOrDefault(index) + amount;
-        }
-
-        private static bool IsSubstituteForOther(MicrowaveSolid solid, HashSet<string> requiredIds)
-        {
-            if (solid.Substitutes is not { } substitutes)
-                return false;
-
-            foreach (var substitute in substitutes)
+            // exact matches are tried first so a substitute is only spent when nothing else can cover the requirement
+            for (var pass = 0; pass < 2; pass++)
             {
-                if (requiredIds.Contains(substitute))
-                    return true;
+                for (var unit = 0; unit < supply.Count; unit++)
+                {
+                    if (visited[unit])
+                        continue;
+
+                    var solid = solids[supply[unit]];
+
+                    if (pass == 0 ? solid.Id != id : !IsSubstitute(solid, id))
+                        continue;
+
+                    visited[unit] = true;
+
+                    if (assigned[unit] < 0
+                        || TryAssignSolid(requiredIds, assigned[unit], solids, supply, assigned, visited))
+                    {
+                        assigned[unit] = requirement;
+                        return true;
+                    }
+                }
             }
 
             return false;
+        }
+
+        private static bool IsSubstitute(MicrowaveSolid solid, string id)
+        {
+            return solid.Id != id && solid.Substitutes is { } substitutes && substitutes.Contains(id);
+        }
+
+        private static int GetRequiredUnits(FixedPoint2 amount)
+        {
+            return Math.Max(1, (int) Math.Ceiling(amount.Double()));
         }
 
         private void OnInit(Entity<MicrowaveComponent> ent, ref ComponentInit args)
@@ -817,7 +829,7 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             foreach (var (id, amount) in requirements)
             {
-                var required = Math.Max(1, amount.Int());
+                var required = GetRequiredUnits(amount);
 
                 var available = 0;
                 foreach (var solid in solids)
