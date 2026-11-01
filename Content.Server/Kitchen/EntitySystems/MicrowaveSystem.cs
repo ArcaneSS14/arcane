@@ -256,7 +256,7 @@ namespace Content.Server.Kitchen.EntitySystems
                             itemID = metaData.EntityPrototype.ID;
                         }
 
-                        if (itemID != recipeSolid.Key)
+                        if (itemID != recipeSolid.Key && !IsSubstituteFor(item, recipeSolid.Key))
                         {
                             continue;
                         }
@@ -279,6 +279,12 @@ namespace Content.Server.Kitchen.EntitySystems
                     }
                 }
             }
+        }
+
+        private bool IsSubstituteFor(EntityUid item, EntProtoId solid)
+        {
+            return TryComp<RecipeSubstituteComponent>(item, out var substitute)
+                && substitute.Substitutes.Contains(solid);
         }
 
         private void OnInit(Entity<MicrowaveComponent> ent, ref ComponentInit args)
@@ -604,6 +610,15 @@ namespace Content.Server.Kitchen.EntitySystems
 
                 if (!solidsDict.TryAdd(solidID, amountToAdd))
                     solidsDict[solidID] += amountToAdd;
+
+                if (TryComp<RecipeSubstituteComponent>(item, out var substitute))
+                {
+                    foreach (var substituteId in substitute.Substitutes)
+                    {
+                        if (!solidsDict.TryAdd(substituteId.Id, amountToAdd))
+                            solidsDict[substituteId.Id] += amountToAdd;
+                    }
+                }
 
                 // only use reagents we have access to
                 // you have to break the eggs before we can use them!
