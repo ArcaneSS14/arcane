@@ -224,7 +224,6 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                         if (component.KnownMobileCameras.TryAdd(address, (name, netEntity.Value)))
                         {
                             var cameraEntity = _entityManager.GetEntity(netEntity.Value.Item2.NetEntity);
-
                             foreach (var player in component.Viewers)
                             {
                                 if (TryComp<ActorComponent>(player, out var actor) && actor.PlayerSession != null)
@@ -233,11 +232,28 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                                 }
                             }
                         }
-                        // Arcane-Edit-End
                     }
                     else if (!component.KnownCameras.ContainsKey(address))
                     {
                         component.KnownCameras.Add(address, (name, netEntity.Value));
+                    }
+                    UpdateUserInterface(uid, component);
+                    break;
+                // Arcane-Edit-End
+                case SurveillanceCameraSystem.CameraSubnetData:
+                    if (args.Data.TryGetValue(SurveillanceCameraSystem.CameraSubnetData, out string? subnet)
+                        && !string.IsNullOrEmpty(subnet)
+                        && !component.KnownSubnets.ContainsKey(subnet))
+                    {
+                        component.KnownSubnets.Add(subnet, args.SenderAddress);
+                        // Arcane-Start
+                        var connectPayload = new NetworkPayload
+                        {
+                            { DeviceNetworkConstants.Command, SurveillanceCameraSystem.CameraSubnetConnectMessage },
+                        };
+                        _deviceNetworkSystem.QueuePacket(uid, args.SenderAddress, connectPayload);
+                        RequestKnownSubnetsInfo(uid, component);
+                        // Arcane-End
                     }
                     UpdateUserInterface(uid, component);
                     break;
