@@ -4047,3 +4047,13 @@ Entries:
   time: '2026-11-01T14:23:40.0000000+00:00'
   prNumber: 579
   url: https://github.com/ArcaneSS14/arcane/pull/579
+- author: RabbittBat
+  changes:
+    - type: Fix
+      message: >-
+        Исправлено наложение слоёв для нижней одежды, которая не маркер
+        внешности, а слот одежды.
+  id: 289
+  time: '2026-11-01T14:39:21.0000000+00:00'
+  prNumber: 581
+  url: https://github.com/ArcaneSS14/arcane/pull/581
