@@ -35,7 +35,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
         if (!TryComp<ClothingComponent>(ent, out _))
             return;
 
-        if (CheckConflicts(ent.Owner, ent.Comp, args.EquipTarget, args.SlotFlags, out var popup))
+        if (CheckConflicts(ent.Owner, ent.Comp, args.EquipTarget, args.SlotFlags, isUseInHand: false, out var popup))
         {
             args.Cancel();
             args.Reason = popup;
@@ -50,7 +50,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
         if (!_net.IsServer)
             return;
 
-        if (CheckConflicts(ent.Owner, ent.Comp, args.User, SlotFlags.NONE, out var popup))
+        if (CheckConflicts(ent.Owner, ent.Comp, args.User, SlotFlags.NONE, isUseInHand: true, out var popup))
         {
             args.Cancel();
             _popup.PopupEntity(popup, args.User, args.User, PopupType.MediumCaution);
@@ -58,7 +58,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
     }
 
     private bool CheckConflicts(EntityUid item, ConflictWearComponent comp, EntityUid user, SlotFlags slots,
-        out string popup)
+        bool isUseInHand, out string popup)
     {
         popup = string.Empty;
 
@@ -92,7 +92,8 @@ public sealed partial class ConflictWearSystem : EntitySystem
                 {
                     if (ProtoIdMatches(item, protoId))
                         continue;
-                    if (TryGetEquippedPrototype(user, protoId, out var equippedItem))
+
+                    if (TryGetEquippedPrototype(user, protoId, rule.Slots, out var equippedItem))
                     {
                         var failPopup = new LocId(rule.FailPopup?.Id ?? "conflict-wear-fail");
                         popup = Loc.GetString(failPopup,
@@ -103,7 +104,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
                 }
             }
 
-            if (CheckKnowledgeConflict(item, user, rule, out popup))
+            if (CheckKnowledgeConflict(item, user, rule, isUseInHand, out popup))
                 return true;
         }
 
@@ -111,7 +112,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
     }
 
     private bool CheckKnowledgeConflict(EntityUid item, EntityUid user, ConflictWearRulePrototype rule,
-        out string popup)
+        bool isUseInHand, out string popup)
     {
         popup = string.Empty;
 
@@ -119,6 +120,9 @@ public sealed partial class ConflictWearSystem : EntitySystem
             return false;
 
         if (!TryComp<MartialArtsKnowledgeComponent>(user, out var martial))
+            return false;
+
+        if (martial.Blocked && isUseInHand)
             return false;
 
         var form = martial.MartialArtsForm.ToString();
@@ -154,7 +158,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
                 if (!rule.ConflictingKnowledge.Contains(knowledge))
                     continue;
 
-                if (!IsEquipped(user, equippedItem))
+                if (!IsEquipped(user, equippedItem, rule.Slots))
                     continue;
 
                 var failPopup = new LocId(rule.FailPopup?.Id ?? "conflict-wear-fail");
@@ -169,6 +173,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
     }
 
     private bool TryGetEquippedPrototype(EntityUid user, EntProtoId protoId,
+        List<string> allowedSlots,
         [NotNullWhen(true)] out EntityUid? equipped)
     {
         equipped = null;
@@ -176,7 +181,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
         var query = EntityQueryEnumerator<ClothingComponent>();
         while (query.MoveNext(out var uid, out _))
         {
-            if (!IsEquipped(user, uid))
+            if (!IsEquipped(user, uid, allowedSlots))
                 continue;
 
             if (!ProtoIdMatches(uid, protoId))
@@ -189,13 +194,23 @@ public sealed partial class ConflictWearSystem : EntitySystem
         return false;
     }
 
-    private bool IsEquipped(EntityUid wearer, EntityUid item)
+    private bool IsEquipped(EntityUid wearer, EntityUid item, List<string> allowedSlots)
     {
         if (!TryComp<InventoryComponent>(wearer, out var inv))
             return false;
 
         foreach (var slot in inv.Slots)
         {
+            if (allowedSlots.Count > 0)
+            {
+                if (!allowedSlots.Contains(slot.Name))
+                    continue;
+            }
+            else if ((slot.SlotFlags & SlotFlags.POCKET) != 0)
+            {
+                continue;
+            }
+
             if (!_inventory.TryGetSlotEntity(wearer, slot.Name, out var slotEntity, inv))
                 continue;
 
