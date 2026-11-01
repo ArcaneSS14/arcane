@@ -6,6 +6,7 @@
   - ContrabandDetectorCircuitboard
   - CriminalRecordsComputerCircuitboard
   - WeaponEnergyTurretSecurityMachineCircuitboard
+  - WeaponEnergyTurretSecurityControlPanelElectronics # Arcane
 
 - type: latheRecipePack
   id: MedicalBoardsStaticGoob
