@@ -213,47 +213,32 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                      || !args.Data.TryGetValue(SurveillanceCameraSystem.CameraSubnetData, out subnetData)
                      || !args.Data.TryGetValue(SurveillanceCameraSystem.CameraAddressData, out address)
                      || !args.Data.TryGetValue(SurveillanceCameraSystem.CameraNetEntity, out netEntity))
-                    // Arcane-Edit-End
                     {
                         return;
                     }
-                    // Arcane-Edit-Start
                     bool isMobile = args.Data.TryGetValue(SurveillanceCameraSystem.CameraMobile, out bool? mobile)
                                     && mobile.HasValue && mobile.Value;
                     if (isMobile)
-                    // Arcane-Edit-End
                     {
-                        EnsureComp<HasMobileCamerasSurveillanceCameraMonitorComponent>(uid); // Arcane-Edit
-                        if (!component.KnownMobileCameras.ContainsKey(address))
+                        EnsureComp<HasMobileCamerasSurveillanceCameraMonitorComponent>(uid);
+                        if (component.KnownMobileCameras.TryAdd(address, (name, netEntity.Value)))
                         {
-                            component.KnownMobileCameras.Add(address, (name, netEntity.Value));
+                            var cameraEntity = _entityManager.GetEntity(netEntity.Value.Item2.NetEntity);
+
                             foreach (var player in component.Viewers)
-                                if (TryComp<ActorComponent>(player, out var actor))
-                                    // Arcane-Edit-Start
-                                    _pvsOverrideSystem.AddSessionOverride(
-                                    _entityManager.GetEntity(netEntity.Value.Item2.NetEntity), actor.PlayerSession);
-                        }           // Arcane-Edit-End
+                            {
+                                if (TryComp<ActorComponent>(player, out var actor) && actor.PlayerSession != null)
+                                {
+                                    _pvsOverrideSystem.AddSessionOverride(cameraEntity, actor.PlayerSession);
+                                }
+                            }
+                        }
+                        // Arcane-Edit-End
                     }
                     else if (!component.KnownCameras.ContainsKey(address))
-                        component.KnownCameras.Add(address, (name, netEntity.Value));
-                    UpdateUserInterface(uid, component);
-                    break;
-                case SurveillanceCameraSystem.CameraSubnetData:
-                    if (args.Data.TryGetValue(SurveillanceCameraSystem.CameraSubnetData, out string? subnet)
-                        && !string.IsNullOrEmpty(subnet)
-                        && !component.KnownSubnets.ContainsKey(subnet))
                     {
-                        component.KnownSubnets.Add(subnet, args.SenderAddress);
-                        // Arcane-Start
-                        var connectPayload = new NetworkPayload
-                        {
-                            { DeviceNetworkConstants.Command, SurveillanceCameraSystem.CameraSubnetConnectMessage },
-                        };
-                        _deviceNetworkSystem.QueuePacket(uid, args.SenderAddress, connectPayload);
-                        RequestKnownSubnetsInfo(uid, component);
-                        // Arcane-End
+                        component.KnownCameras.Add(address, (name, netEntity.Value));
                     }
-
                     UpdateUserInterface(uid, component);
                     break;
             }
@@ -283,6 +268,9 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
 
         component.KnownCameras.Clear();
         component.KnownMobileCameras.Clear();
+        component.KnownMobileCamerasLastHeartbeat.Clear();
+        component.KnownMobileCamerasLastHeartbeatSent.Clear();
+
         if (component.KnownSubnets.Count == 0)
         {
             PingCameraNetwork(uid, component);
