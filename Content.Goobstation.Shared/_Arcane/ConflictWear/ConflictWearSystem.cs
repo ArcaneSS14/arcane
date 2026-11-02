@@ -178,16 +178,28 @@ public sealed partial class ConflictWearSystem : EntitySystem
     {
         equipped = null;
 
-        var query = EntityQueryEnumerator<ClothingComponent>();
-        while (query.MoveNext(out var uid, out _))
+        if (!TryComp<InventoryComponent>(user, out var inv))
+            return false;
+
+        foreach (var slot in inv.Slots)
         {
-            if (!IsEquipped(user, uid, allowedSlots))
+            if (allowedSlots.Count > 0)
+            {
+                if (!allowedSlots.Contains(slot.Name))
+                    continue;
+            }
+            else if ((slot.SlotFlags & SlotFlags.POCKET) != 0)
+            {
+                continue;
+            }
+
+            if (!_inventory.TryGetSlotEntity(user, slot.Name, out var slotEntity, inv))
                 continue;
 
-            if (!ProtoIdMatches(uid, protoId))
+            if (!ProtoIdMatches(slotEntity.Value, protoId))
                 continue;
 
-            equipped = uid;
+            equipped = slotEntity.Value;
             return true;
         }
 
