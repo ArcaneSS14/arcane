@@ -178,7 +178,10 @@
   - type: MachineBoard
     prototype: ServiceEnergyChemDispenser
     partRequirements: # Orion
-      Servo: 3
+    # Arcane-Edit-Start
+      Capacitor: 2
+      MatterBin: 1
+    # Arcane-Edit-End
     tagRequirements:
       GlassBeaker:
         amount: 2

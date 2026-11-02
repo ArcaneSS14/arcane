@@ -27,6 +27,7 @@ machine-upgrade-power-output = выходная мощность
 machine-upgrade-process-speed = скорость обработки
 machine-upgrade-capacity = вместимость
 machine-upgrade-energy-cost = энергозатраты на единицу
+machine-upgrade-battery-capacity = ёмкость батареи
 machine-upgrade-cook-speed = скорость приготовления
 machine-upgrade-research-cooldown = время перезарядки сканирования
 machine-upgrade-scan-quality = качество сканирования

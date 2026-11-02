@@ -69,6 +69,12 @@ public sealed partial class WoundSystem
                 continue;
 
             bleeds.IsBleeding = false;
+            // Arcane-Start
+            // The bleed update turns bleeding back on while any amount is left.
+            bleeds.BleedingAmountRaw = 0;
+            bleeds.Scaling = 0;
+            Dirty(wound, bleeds);
+            // Arcane-End
         }
 
         return true;

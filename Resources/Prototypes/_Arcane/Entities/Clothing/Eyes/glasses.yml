@@ -14,6 +14,7 @@
 - type: entity
   parent: ClothingEyesBase
   id: ClothingEyesBookWorm
+  categories: [ HideSpawnMenu ]
   name: bookworm's glasses
   description: Huge and ridiculous. But it allows you to see normaly.
   components:

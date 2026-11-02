@@ -7,6 +7,7 @@ using Content.Client.Stylesheets.Stylesheets;
 using Content.Client._Arcane.StyleSheets;
 using Content.Client._Arcane.DiscordRoles;
 using Content.Shared._Arcane.CCVars;
+using Content.Shared._Arcane.DiscordRoles;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
@@ -91,7 +92,9 @@ namespace Content.Client.Stylesheets
                 return true;
 
             var session = _players.LocalSession;
-            return session != null && _discordRoles.HasRole(session, theme.RequiredRole.Value);
+            return session != null &&
+                   (_discordRoles.HasRole(session, theme.RequiredRole.Value) ||
+                    _discordRoles.HasRole(session, DiscordRole.AdminBenefit));
         }
 
         private static void UpdateExplicitStylesheets(

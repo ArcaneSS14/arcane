@@ -82,6 +82,8 @@ ent-ClothingHeadHatUSSPInvestigator = шляпа следователя
     .desc = Черная шляпа следователя.
 ent-ClothingHeadHatUSSPBlueUshanka = синяя ушанка
     .desc = Меховая тёплая синяя ушанка с эмблемой отдела милиции СССП.
+ent-ClothingHeadHatUSSPPolicePilotka = Пилотка Милиционера
+    .desc = Пилотка с эмблемой отдела милиции СССП.
 
 # Lovemate
 
