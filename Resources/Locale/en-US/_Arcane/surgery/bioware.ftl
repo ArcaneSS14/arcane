@@ -1,0 +1,12 @@
+ent-SurgeryVeinThreading = Vein Threading
+    .desc = Reinforce blood vessels or hydraulic lines to reduce fluid loss from bleeding by 75%.
+ent-SurgeryNerveSplicing = Nerve Splicing
+    .desc = Modify nerves or control circuits to halve stun duration and reduce stamina damage by 20%. Replaces other nerve bioware.
+ent-SurgeryNerveGrounding = Nerve Grounding
+    .desc = Ground nerves or control circuits to prevent electrical shocks. Replaces other nerve bioware.
+ent-SurgeryStepThreadVeins = Thread the veins
+ent-SurgeryStepSpliceNerves = Splice the nerves
+ent-SurgeryStepGroundNerves = Ground the nerves
+surgery-popup-step-SurgeryStepThreadVeins = {$user} is reinforcing the blood vessels of {$target}.
+surgery-popup-step-SurgeryStepSpliceNerves = {$user} is splicing the nerves of {$target}.
+surgery-popup-step-SurgeryStepGroundNerves = {$user} is grounding the nerves of {$target}.

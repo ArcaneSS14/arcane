@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SurgeryBiowareBase
+  id: SurgeryVeinThreading
+  name: Vein Threading
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepThreadVeins
+
+- type: entity
+  parent: SurgeryBiowareBase
+  id: SurgeryNerveSplicing
+  name: Nerve Splicing
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepSpliceNerves
+
+- type: entity
+  parent: SurgeryBiowareBase
+  id: SurgeryNerveGrounding
+  name: Nerve Grounding
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepGroundNerves
+
+- type: entity
+  parent: SurgeryStepBiowareBase
+  id: SurgeryStepThreadVeins
+  name: Thread the veins
+  components:
+  - type: SurgeryBioware
+    category: Blood
+    bleedMultiplier: 0.25
+
+- type: entity
+  parent: SurgeryStepBiowareBase
+  id: SurgeryStepSpliceNerves
+  name: Splice the nerves
+  components:
+  - type: SurgeryStep
+    duration: 15.5
+  - type: SurgeryBioware
+    category: Nerves
+    stunMultiplier: 0.5
+    staminaMultiplier: 0.8
+
+- type: entity
+  parent: SurgeryStepBiowareBase
+  id: SurgeryStepGroundNerves
+  name: Ground the nerves
+  components:
+  - type: SurgeryStep
+    duration: 15.5
+  - type: SurgeryBioware
+    category: Nerves
+    shockImmune: true

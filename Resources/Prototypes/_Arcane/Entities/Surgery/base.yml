@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  abstract: true
+  parent: SurgeryBase
+  id: SurgeryBiowareBase
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenRibcage
+  - type: SurgeryPartCondition
+    parts: [Chest]
+  - type: SurgeryTechnologyCondition
+    technology: ExperimentalSurgery
+
+- type: entity
+  abstract: true
+  parent: SurgeryStepBase
+  id: SurgeryStepBiowareBase
+  components:
+  - type: SurgeryStep
+    duration: 12.5
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
+    state: hemostat
