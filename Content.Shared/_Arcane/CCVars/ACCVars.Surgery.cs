@@ -15,4 +15,10 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<float> SurgeryFailureChancePerSecond =
         CVarDef.Create("surgery.failure_chance_per_second", 0.1f, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    ///     Added to the step's slowdown when a surgeon operates on themselves, only for the failure chance.
+    /// </summary>
+    public static readonly CVarDef<float> SelfSurgeryFailurePenalty =
+        CVarDef.Create("surgery.self_surgery_failure_penalty", 1.2f, CVar.SERVER | CVar.REPLICATED);
 }

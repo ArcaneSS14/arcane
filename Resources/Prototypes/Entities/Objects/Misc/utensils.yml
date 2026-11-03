@@ -81,6 +81,10 @@
     - Fork
   - type: Tweezers # Shitmed: Forks are better than spoons
     speed: 0.35
+  # Arcane-Start
+  - type: Retractor
+    speed: 0.35
+  # Arcane-End
 
 - type: entity
   parent: UtensilBase
@@ -137,6 +141,10 @@
     timeToMix: 0.5
     reactionTypes:
     - Stir
+  # Arcane-Start
+  - type: Drill
+    speed: 0.2
+  # Arcane-End
 
 - type: entity
   parent: UtensilBasePlastic

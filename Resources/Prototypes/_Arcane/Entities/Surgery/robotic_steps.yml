@@ -13,6 +13,7 @@
     add:
     - type: IncisionOpen
     duration: 2
+  - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -29,6 +30,7 @@
     - type: SkinRetracted
     - type: BleedersClamped
     duration: 1
+  - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/crowbar.rsi
     state: icon
@@ -46,6 +48,7 @@
     - type: BonesSawed
     - type: InternalBleedersClamped
     duration: 2
+  - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/multitool.rsi
     state: icon
@@ -61,6 +64,7 @@
     add:
     - type: BonesOpen
     duration: 2
+  - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/wrench.rsi
     state: icon
@@ -76,6 +80,7 @@
     remove:
     - type: BonesOpen
     duration: 2
+  - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/wrench.rsi
     state: icon
@@ -96,6 +101,7 @@
     - type: BodyPartReattached
     - type: InternalBleedersClamped
     duration: 2
+  - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map

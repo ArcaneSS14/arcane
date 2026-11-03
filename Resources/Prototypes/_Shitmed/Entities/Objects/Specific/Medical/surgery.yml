@@ -106,6 +106,10 @@
           params:
             variation: 0.125
             volume: -5
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 2.25
+  # Arcane-End
 
 - type: entity
   name: power pinches
@@ -170,6 +174,12 @@
           params:
             variation: 0.125
             volume: -5
+  # Arcane-Start
+  - type: SurgeryWrench
+    speed: 2.25
+  - type: SurgeryCrowbar
+    speed: 2.25
+  # Arcane-End
 
 - type: entity
   name: energy stapler
@@ -368,3 +378,13 @@
     speed: 10
   - type: Stitches
     speed: 10
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 7.5
+  - type: SurgeryCrowbar
+    speed: 7.5
+  - type: SurgeryWrench
+    speed: 7.5
+  - type: SurgeryMultitool
+    speed: 7.5
+  # Arcane-End

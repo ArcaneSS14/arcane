@@ -165,6 +165,10 @@
         Slash: 12
   - type: Scalpel # Shitmed
     speed: 1.35
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 1
+  # Arcane-End
 
 - type: entity
   name: laser scalpel
@@ -181,6 +185,10 @@
     heldPrefix: laser
   - type: Scalpel # Shitmed
     speed: 1.75
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 1.3
+  # Arcane-End
   # TODO: prevent bleeding from incisions
 
 # Retractor

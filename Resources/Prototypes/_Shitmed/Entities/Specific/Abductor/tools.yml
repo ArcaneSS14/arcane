@@ -18,6 +18,10 @@
   - type: GuideHelp
     guides:
     - Abductors
+  # Arcane-Start
+  - type: SurgeryCrowbar
+    speed: 2
+  # Arcane-End
 
 - type: entity
   name: high-tech wirecutter
@@ -149,6 +153,10 @@
   - type: GuideHelp
     guides:
     - Abductors
+  # Arcane-Start
+  - type: SurgeryWrench
+    speed: 2
+  # Arcane-End
 
 - type: entity
   name: high-tech welding tool

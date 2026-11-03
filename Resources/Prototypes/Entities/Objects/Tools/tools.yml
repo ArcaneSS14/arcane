@@ -192,7 +192,11 @@
   - type: GuideHelp
     guides:
     - Construction
-  - type: SurgeryWrench # Arcane
+  # Arcane-Start
+  - type: SurgeryWrench
+  - type: SurgeryTool
+    startSound: /Audio/Items/ratchet.ogg
+  # Arcane-End
 
 - type: entity
   name: multitool
@@ -256,7 +260,10 @@
     - WirePanels
     - Airlocks
     - InspectingPower
-  - type: SurgeryMultitool # Arcane
+  # Arcane-Start
+  - type: SurgeryMultitool
+  - type: SurgeryTool
+  # Arcane-End
 
 - type: entity
   name: network configurator
@@ -376,7 +383,9 @@
     speed: 1
   # Arcane-Start
   - type: SurgeryScrewdriver
+    speed: 1.5
   - type: SurgeryWrench
+    speed: 1.5
   # Arcane-End
   - type: SurgeryTool # Shitmed
     startSound: /Audio/Items/drill_use.ogg
@@ -556,9 +565,13 @@
   - type: ToolTileCompatible
   # Arcane-Start
   - type: SurgeryScrewdriver
+    speed: 1.2
   - type: SurgeryCrowbar
+    speed: 1.2
   - type: SurgeryWrench
+    speed: 1.2
   - type: SurgeryMultitool
+    speed: 1.2
   # Arcane-End
   - type: MultipleTool
     statusShowBehavior: true

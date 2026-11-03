@@ -39,3 +39,8 @@
       - behavior: [ Anchoring ]
         useSound: /Audio/Items/drill_use.ogg
         changeSound: /Audio/Items/change_drill.ogg
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+  - type: SurgeryCrowbar
+  - type: SurgeryWrench
+  # Arcane-End

@@ -33,6 +33,7 @@ public sealed class SurgeryConditionsSystem : EntitySystem
 
     private float _failureThreshold;
     private float _failureChancePerSecond;
+    private float _selfSurgeryPenalty;
 
     public override void Initialize()
     {
@@ -44,11 +45,26 @@ public sealed class SurgeryConditionsSystem : EntitySystem
 
         Subs.CVar(_config, ACCVars.SurgeryFailureThreshold, value => _failureThreshold = value, true);
         Subs.CVar(_config, ACCVars.SurgeryFailureChancePerSecond, value => _failureChancePerSecond = value, true);
+        Subs.CVar(_config, ACCVars.SelfSurgeryFailurePenalty, value => _selfSurgeryPenalty = value, true);
     }
 
     public float GetSpeedModifier(EntityUid user, EntityUid patient)
     {
         return GetSurfaceModifier(patient) * GetDrunkModifier(user) * GetAnesthesiaModifier(patient);
+    }
+
+    public bool IsSelfSurgeryPenalized(EntityUid user, EntityUid patient, EntityUid step)
+    {
+        return user == patient && !HasComp<SurgerySelfOperableStepComponent>(step);
+    }
+
+    /// <summary>
+    ///     tgstation's flat penalty for operating on yourself: it raises the failure chance without taking more time.
+    /// </summary>
+    public float GetPenalty(EntityUid user, EntityUid patient, EntityUid step, float idealDuration, float duration)
+    {
+        var penalty = duration / idealDuration;
+        return IsSelfSurgeryPenalized(user, patient, step) ? penalty + _selfSurgeryPenalty : penalty;
     }
 
     public float GetCappedDuration(float idealDuration, float duration)

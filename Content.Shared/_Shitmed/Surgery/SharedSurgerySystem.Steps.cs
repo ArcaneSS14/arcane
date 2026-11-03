@@ -1133,8 +1133,8 @@ public abstract partial class SharedSurgerySystem
         // Arcane-Start
         // A step done by hand is already slow by design, so only a tool worse than the proper one counts against it.
         var idealDuration = (_stepQuery.CompOrNull(step)?.Duration ?? duration) / (data == null ? speed : 1f);
-        ev.Penalty = duration / idealDuration;
-        ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, duration);
+        ev.Penalty = _surgeryConditions.GetPenalty(user, body, step, idealDuration, duration);
+        ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, idealDuration * ev.Penalty);
         duration = _surgeryConditions.GetCappedDuration(idealDuration, duration);
         // Arcane-End
 
@@ -1246,7 +1246,7 @@ public abstract partial class SharedSurgerySystem
         speed *= _surgeryConditions.GetSpeedModifier(user, target); // Arcane
 
         // Orion-Start: Self-surgery penalty
-        if (user == target && TryComp<SurgeryTargetComponent>(target, out var surgTarget))
+        if (_surgeryConditions.IsSelfSurgeryPenalized(user, target, surgeryStep) && TryComp<SurgeryTargetComponent>(target, out var surgTarget)) // Arcane-Edit
             speed *= surgTarget.SelfSurgerySpeedModifier;
         // Orion-End
 
