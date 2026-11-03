@@ -4039,3 +4039,47 @@ Entries:
       https://github.com/user-attachments/assets/930ab254-6f65-4869-9a82-89c0e7498792
     - >-
       https://github.com/user-attachments/assets/ff9a075a-4704-4953-a616-f5081a3338e0
+- author: Kinar7
+  changes:
+    - type: Add
+      message: 'кнопке тревоги СБ добавлен ТТС. '
+  id: 288
+  time: '2026-11-01T14:23:40.0000000+00:00'
+  prNumber: 579
+  url: https://github.com/ArcaneSS14/arcane/pull/579
+- author: RabbittBat
+  changes:
+    - type: Fix
+      message: >-
+        Исправлено наложение слоёв для нижней одежды, которая не маркер
+        внешности, а слот одежды.
+  id: 289
+  time: '2026-11-01T14:39:21.0000000+00:00'
+  prNumber: 581
+  url: https://github.com/ArcaneSS14/arcane/pull/581
+- author: RabbitBat, Slaybrine
+  changes:
+    - type: Add
+      message: >-
+        Добавлен ящик с реквизитом СССП в заказах карго! Вы ведь всегда хотели
+        представить себя милиционером СССП?
+    - type: Add
+      message: >-
+        Добавлена новая одежда СССП: пилотка милиционера СССП, поясная сумка,
+        почтальонская сумка СССП
+  id: 290
+  time: '2026-11-01T14:41:14.0000000+00:00'
+  prNumber: 580
+  url: https://github.com/ArcaneSS14/arcane/pull/580
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: энергораздатчикам боргов повышена ёмкость энергии с 1500 до 2000
+    - type: Fix
+      message: >-
+        поварской модуль борга теперь может брать миски, тарелки и форморчки для
+        пирогов. 
+  id: 291
+  time: '2026-11-01T14:43:39.0000000+00:00'
+  prNumber: 577
+  url: https://github.com/ArcaneSS14/arcane/pull/577
