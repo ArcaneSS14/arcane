@@ -4083,3 +4083,31 @@ Entries:
   time: '2026-11-01T14:43:39.0000000+00:00'
   prNumber: 577
   url: https://github.com/ArcaneSS14/arcane/pull/577
+- author: ChangelingRUES
+  changes:
+    - type: Fix
+      message: Валидатор починился.
+  id: 292
+  time: '2026-11-03T07:37:01.0000000+00:00'
+  prNumber: 589
+  url: https://github.com/ArcaneSS14/arcane/pull/589
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: ограничение респавна увеличено до 120 игрокв
+  id: 293
+  time: '2026-11-03T07:46:30.0000000+00:00'
+  prNumber: 588
+  url: https://github.com/ArcaneSS14/arcane/pull/588
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: в строительную сумку помещаются машинные платы
+    - type: Add
+      message: >-
+        плата контролей турелей добавлена в технологию Электрическое оружие (там
+        же где охранные турели)
+  id: 294
+  time: '2026-11-03T08:29:46.0000000+00:00'
+  prNumber: 584
+  url: https://github.com/ArcaneSS14/arcane/pull/584

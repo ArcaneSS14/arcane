@@ -729,6 +729,14 @@
   id: WeaponEnergyTurretSecurityMachineCircuitboard
   result: WeaponEnergyTurretSecurityMachineCircuitboard
 
+# Arcane-Start
+- type: latheRecipe
+  parent: BaseElectronicsRecipe
+  icon: { sprite: Objects/Misc/module.rsi, state: security }
+  id: WeaponEnergyTurretSecurityControlPanelElectronics
+  result: WeaponEnergyTurretSecurityControlPanelElectronics
+# Arcane-End
+
 - type: latheRecipe
   id: ClothingMaskMuzzleSecure
   result: ClothingMaskMuzzleSecure
