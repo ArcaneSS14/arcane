@@ -3,4 +3,4 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._Arcane.Surgery;
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class SurgicallyAnalyzedComponent : Component;
+public sealed partial class SurgicallyAnalyzedComponent : Component { }

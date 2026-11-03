@@ -1,9 +1,12 @@
 using Content.Shared._Arcane.CCVars;
+using Content.Shared._Arcane.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery;
+using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Drunk;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
 using Content.Shared.StatusEffectNew;
@@ -15,17 +18,20 @@ namespace Content.Shared._Arcane.Surgery;
 
 /// <summary>
 ///     Where and in what state a surgery happens: these slow a step down, and a step slowed past the threshold can be botched.
+///     Also checks surgeries that need a dead patient.
 /// </summary>
 public sealed class SurgeryConditionsSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StatusEffectsSystem _status = default!;
 
     private const float MaxDrunkSeconds = 100f;
     private const float AnesthesiaSpeedModifier = 1.25f;
+    private const float AnalyzedSpeedModifier = 1.25f;
 
     private EntityQuery<BuckleComponent> _buckleQuery;
     private EntityQuery<OperatingTableComponent> _operatingTableQuery;
@@ -46,12 +52,19 @@ public sealed class SurgeryConditionsSystem : EntitySystem
         Subs.CVar(_config, ACCVars.SurgeryFailureThreshold, value => _failureThreshold = value, true);
         Subs.CVar(_config, ACCVars.SurgeryFailureChancePerSecond, value => _failureChancePerSecond = value, true);
         Subs.CVar(_config, ACCVars.SelfSurgeryFailurePenalty, value => _selfSurgeryPenalty = value, true);
+
+        SubscribeLocalEvent<SurgeryDeadConditionComponent, SurgeryValidEvent>(OnDeadValid);
+    }
+
+    private void OnDeadValid(Entity<SurgeryDeadConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (!_mobState.IsDead(args.Body))
+            args.Cancelled = true;
     }
 
     public float GetSpeedModifier(EntityUid user, EntityUid patient)
     {
-        var analysisModifier = HasComp<SurgicallyAnalyzedComponent>(patient) ? 1.25f : 1f;
-        return GetSurfaceModifier(patient) * GetDrunkModifier(user) * GetAnesthesiaModifier(patient) * analysisModifier;
+        return GetSurfaceModifier(patient) * GetDrunkModifier(user) * GetAnesthesiaModifier(patient) * GetAnalysisModifier(patient);
     }
 
     public bool IsSelfSurgeryPenalized(EntityUid user, EntityUid patient, EntityUid step)
@@ -131,21 +144,32 @@ public sealed class SurgeryConditionsSystem : EntitySystem
         return best ?? 1f;
     }
 
-    private float GetDrunkModifier(EntityUid user)
+    /// <summary>
+    ///     tgstation's drunkenness amount, read as the seconds of drunkenness left.
+    /// </summary>
+    public float GetDrunkenness(EntityUid uid)
     {
-        if (!_status.TryGetMaxTime<DrunkStatusEffectComponent>(user, out var drunk))
-            return 1f;
+        if (!_status.TryGetMaxTime<DrunkStatusEffectComponent>(uid, out var drunk))
+            return 0f;
 
-        var seconds = drunk.EndEffectTime is { } end
+        return drunk.EndEffectTime is { } end
             ? Math.Clamp((float) (end - _timing.CurTime).TotalSeconds, 0f, MaxDrunkSeconds)
             : MaxDrunkSeconds;
+    }
 
+    private float GetDrunkModifier(EntityUid user)
+    {
         // tgstation's curve: a 12x slowdown at full drunkenness.
-        return 1f / (1f + MathF.Pow(seconds, 1.5f) / 90f);
+        return 1f / (1f + MathF.Pow(GetDrunkenness(user), 1.5f) / 90f);
     }
 
     private float GetAnesthesiaModifier(EntityUid patient)
     {
         return _status.HasEffectComp<ForcedSleepingStatusEffectComponent>(patient) ? AnesthesiaSpeedModifier : 1f;
+    }
+
+    private float GetAnalysisModifier(EntityUid patient)
+    {
+        return HasComp<SurgicallyAnalyzedComponent>(patient) ? AnalyzedSpeedModifier : 1f;
     }
 }

@@ -11,7 +11,12 @@
     - SurgeryStepAutopsy
   - type: SurgeryPartCondition
     parts: [Chest]
-  - type: SurgeryAutopsy
+  - type: SurgeryDeadCondition
+  - type: SurgeryBodyComponentCondition
+    inverse: true
+    components:
+    - type: SurgicallyAnalyzed
+  - type: SurgeryRoboticVariant
 
 - type: entity
   parent: SurgeryAutopsy
@@ -32,7 +37,17 @@
     duration: 10
     tool:
     - type: SurgeryAnalyzer
+    bodyAdd:
+    - type: SurgicallyAnalyzed
   - type: Sprite
     sprite: Objects/Specific/Medical/healthanalyzer.rsi
     state: icon
   - type: SurgeryAutopsy
+    experiments:
+    - whitelist:
+        components:
+        - Xenomorph
+      action: AutopsyXenomorph
+    - species: [Human]
+      action: AutopsyHuman
+    - action: AutopsyNonhuman

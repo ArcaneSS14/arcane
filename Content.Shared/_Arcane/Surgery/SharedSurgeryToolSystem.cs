@@ -5,6 +5,7 @@ using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
 using Content.Shared._Arcane.OfferItem;
+using Content.Shared._Arcane.Surgery.Tools;
 using Content.Shared._Shitmed.Medical.Surgery.Steps;
 using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
 using Content.Shared._Shitmed.Medical.Surgery.Tools;
@@ -46,6 +47,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSurgerySystem _surgery = default!;
+    [Dependency] private readonly SurgeryToolExamineSystem _toolExamine = default!;
 
     private bool _canOperateOnSelf;
 
@@ -58,6 +60,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         // An empty-hand click would otherwise unbuckle the patient from the operating table.
         SubscribeLocalEvent<SurgeryTargetComponent, InteractHandEvent>(OnInteractHand, before: [typeof(SharedBuckleSystem)]);
         SubscribeAllEvent<SurgeryToolOptionPickedEvent>(OnOptionPicked);
+        SubscribeLocalEvent<SurgeryAnalyzerComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
         SubscribeLocalEvent<SurgeryPlanComponent, SurgeryStepEvent>(OnPlanStep);
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs => subs.Event<SurgeryPlanBuiMsg>(OnPlanMessage));
         Subs.CVar(_config, SurgeryCVars.CanOperateOnSelf, value => _canOperateOnSelf = value, true);
@@ -67,16 +70,19 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     {
         var user = args.User;
         var tool = args.Used;
+        // A health analyzer's click is its scan, so it only performs a step planned in the menu and gives no hints.
+        var scanner = HasComp<SurgeryAnalyzerComponent>(tool);
+        var surgical = IsSurgicalTool(tool) && !scanner;
         if (args.Handled
             || IsOffering(user)
             || IsButchering(ent, tool)
-            || !CanOperate(ent, user, IsSurgicalTool(tool))
+            || !CanOperate(ent, user, surgical)
             || !TryGetTargetPart(ent, user, out var part, out var missing))
             return;
 
         var options = GetPlannedOption(ent, part, missing, user, tool) is { } planned
             ? new List<SurgeryToolOption> { planned }
-            : GetToolOptions(ent, part, user, tool, missing);
+            : scanner ? new List<SurgeryToolOption>() : GetToolOptions(ent, part, user, tool, missing);
 
         // Surgery tools may have their own use on a patient, so a click with nothing to do is left to them.
         if (options.Count == 0)
@@ -95,7 +101,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
                 return;
             }
 
-            if (IsSurgicalTool(tool) && _timing.IsFirstTimePredicted)
+            if (surgical && _timing.IsFirstTimePredicted)
                 _popup.PopupClient(GetHint(ent, part, user), ent, user);
             return;
         }

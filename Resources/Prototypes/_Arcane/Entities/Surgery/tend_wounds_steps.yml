@@ -7,9 +7,6 @@
   components:
   - type: SurgeryTendWoundsEffect
     healMultiplier: 0.1
-    damage:
-      groups:
-        Brute: -42.86
 
 - type: entity
   parent: SurgeryStepRepairBurnTissue
@@ -18,9 +15,6 @@
   components:
   - type: SurgeryTendWoundsEffect
     healMultiplier: 0.1
-    damage:
-      groups:
-        Burn: -57.14
 
 - type: entity
   parent: SurgeryStepRepairBruteTissueUpgraded
@@ -29,9 +23,6 @@
   components:
   - type: SurgeryTendWoundsEffect
     healMultiplier: 0.2
-    damage:
-      groups:
-        Brute: -85.71
 
 - type: entity
   parent: SurgeryStepRepairBurnTissueUpgraded
@@ -40,10 +31,8 @@
   components:
   - type: SurgeryTendWoundsEffect
     healMultiplier: 0.2
-    damage:
-      groups:
-        Burn: -114.29
 
+# tgstation's combo flats 3 and 1, scaled like the basic step's: Brute x6 (30 / 5), Burn x8 (40 / 5).
 - type: entity
   parent: SurgeryStepRepairBruteTissue
   id: SurgeryStepRepairAllTissue
@@ -56,8 +45,8 @@
     healMultiplier: 0.07
     damage:
       groups:
-        Brute: -3
-        Burn: -3
+        Brute: -18
+        Burn: -24
 
 - type: entity
   parent: SurgeryStepRepairAllTissue
@@ -76,5 +65,5 @@
     healMultiplier: 0.4
     damage:
       groups:
-        Brute: -1
-        Burn: -1
+        Brute: -6
+        Burn: -8

@@ -1218,7 +1218,7 @@ public abstract partial class SharedSurgerySystem
         // Arcane-Edit-End
 
         // Arcane-Start
-        var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Started);
+        var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Started, stepId);
         RaiseLocalEvent(body, ref mood);
         // Arcane-End
 

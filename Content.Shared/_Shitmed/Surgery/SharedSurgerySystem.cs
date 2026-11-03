@@ -184,7 +184,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             var failEv = new SurgeryStepFailedEvent(args.User, ent, args.Surgery, args.Step);
             RaiseLocalEvent(args.User, ref failEv);
             // Arcane-Start
-            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Failure);
+            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Failure, args.Step);
             RaiseLocalEvent(ent.Owner, ref mood);
             // Arcane-End
             RefreshUI(ent); // Arcane
@@ -203,7 +203,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             // The patient may have changed during the step, and the surgeon would otherwise get no word of it.
             if (_net.IsServer)
                 _popup.PopupEntity(Loc.GetString("surgery-error-failed"), args.User, args.User, PopupType.SmallCaution);
-            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Failure);
+            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Failure, args.Step);
             RaiseLocalEvent(ent.Owner, ref mood);
             // Arcane-End
             RefreshUI(ent); // Arcane
@@ -216,7 +216,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         {
             var botched = new SurgeryStepBotchedEvent(args.User, ent, part);
             RaiseLocalEvent(step, ref botched);
-            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Failure);
+            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Failure, args.Step);
             RaiseLocalEvent(ent.Owner, ref mood);
             // A botched repeatable step keeps going, so only a one-off step counts as a failed procedure.
             args.Repeat = repeatable;
@@ -231,7 +231,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             var ev = new SurgeryStepEvent(args.User, ent, part, tool, surgery, step, false);
             RaiseLocalEvent(step, ref ev);
 
-            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Success);
+            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Success, args.Step);
             RaiseLocalEvent(ent.Owner, ref mood);
 
             var complete = ev.Complete || IsStepComplete(ent, part, args.Step, surgery);

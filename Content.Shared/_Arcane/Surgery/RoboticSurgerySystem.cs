@@ -43,6 +43,6 @@ public sealed class RoboticSurgerySystem : EntitySystem
             || !_prototypes.Index(requirement).TryGetComponent<SurgeryRoboticVariantComponent>(out var variant, _factory))
             return surgery.Requirement;
 
-        return variant.Variant;
+        return variant.Variant ?? surgery.Requirement;
     }
 }
