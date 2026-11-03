@@ -99,8 +99,14 @@ public sealed partial class OrganComponent : Component, ISurgeryToolComponent //
     [DataField]
     public string SlotId = string.Empty;
 
+    // Arcane-Edit-Start
+//    [DataField]
+//    public string ToolName { get; set; } = "An organ";
     [DataField]
-    public string ToolName { get; set; } = "An organ";
+    public LocId ToolName = "surgery-tool-organ";
+
+    string ISurgeryToolComponent.ToolName => Loc.GetString(ToolName);
+    // Arcane-Edit-End
 
     [DataField]
     public float Speed { get; set; } = 1f;

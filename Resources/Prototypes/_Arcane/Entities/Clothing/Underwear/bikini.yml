@@ -3,6 +3,7 @@
 - type: entity
   parent: ClothingUnderwearBase
   id: ClothingUnderwearBikiniChemist
+  categories: [ HideSpawnMenu ]
   name: chemist bikini
   description: Hot swimming suit.
   components:
@@ -14,6 +15,7 @@
 - type: entity
   parent: ClothingUnderwearBase
   id: ClothingUnderwearBikiniDoctor
+  categories: [ HideSpawnMenu ]
   name: doctor bikini
   description: Hot swimming suit.
   components:
@@ -25,6 +27,7 @@
 - type: entity
   parent: ClothingUnderwearBase
   id: ClothingUnderwearBikiniParamedic
+  categories: [ HideSpawnMenu ]
   name: paramedic bikini
   description: Hot swimming suit.
   components:
@@ -36,6 +39,7 @@
 - type: entity
   parent: ClothingUnderwearBase
   id: ClothingUnderwearBikiniVirologist
+  categories: [ HideSpawnMenu ]
   name: virologist bikini
   description: Hot swimming suit.
   components:

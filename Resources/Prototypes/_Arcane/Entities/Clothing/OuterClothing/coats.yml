@@ -1,6 +1,7 @@
 - type: entity
   parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseSecurityCommandContraband]
   id: ClothingOuterArmorHoSLeather
+  categories: [ HideSpawnMenu ]
   name: leather coat
   description: A black leather coat with an experimental bluespace assisted alloy for some extra protection and style for those with a commanding presence.
   components:
@@ -12,6 +13,7 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabEasy
+  categories: [ HideSpawnMenu ]
   name: easy lab coat
   description: A suit that protects against minor chemical spills.
   components:
@@ -33,6 +35,7 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabBelts
+  categories: [ HideSpawnMenu ]
   name: lab coat with belts
   description: A suit that protects against minor chemical spills. Has some black belts on chest.
   components:
@@ -54,6 +57,7 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabBlack
+  categories: [ HideSpawnMenu ]
   name: black lab coat
   description: Black suit that protects against minor chemical spills.
   components:
@@ -75,6 +79,7 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabEnlightenment
+  categories: [ HideSpawnMenu ]
   name: enlightenment lab coat
   description: Word "bacchus" and word "death" means same for you.
   components:
@@ -96,6 +101,7 @@
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterApostolCoat
+  categories: [ HideSpawnMenu ]
   name: apostol coat
   description: Heed the voice of my prayer when I call upon You.
   components:

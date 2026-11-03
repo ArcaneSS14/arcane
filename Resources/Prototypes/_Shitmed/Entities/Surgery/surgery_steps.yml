@@ -820,16 +820,37 @@
   parent: SurgeryStepInsertOrgan
   id: SurgeryStepInsertAugmentPowerCellSlot
   name: Add power cell slot
+  # Arcane-Start
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Organ
+      toolName: surgery-tool-augment-power-cell-slot
+  # Arcane-End
 
 - type: entity
   parent: SurgeryStepInsertOrgan
   id: SurgeryStepInsertAugmentPowerCellCharger
   name: Add power cell charger
+  # Arcane-Start
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Organ
+      toolName: surgery-tool-augment-power-cell-charger
+  # Arcane-End
 
 - type: entity
   parent: SurgeryStepInsertOrgan
   id: SurgeryStepInsertAugmentArm
   name: Add arm augment
+  # Arcane-Start
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Organ
+      toolName: surgery-tool-augment-arm-augment
+  # Arcane-End
 
 # Lobotomy
 - type: entity
