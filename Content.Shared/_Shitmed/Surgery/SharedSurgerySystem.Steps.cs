@@ -1217,6 +1217,11 @@ public abstract partial class SharedSurgerySystem
         RefreshUI(body);
         // Arcane-Edit-End
 
+        // Arcane-Start
+        var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Started);
+        RaiseLocalEvent(body, ref mood);
+        // Arcane-End
+
         var userName = Identity.Entity(user, EntityManager);
         var targetName = Identity.Entity(body, EntityManager);
 
