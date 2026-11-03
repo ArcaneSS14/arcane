@@ -414,7 +414,6 @@
   components:
   - type: DevilRule
   - type: GameRule
-    minPlayers: 20 # Arcane-Edit
   - type: AntagObjectives
     objectives:
     - DevilContractObjective
@@ -446,7 +445,7 @@
   id: OopsAllThieves
   components:
   - type: GameRule
-    minPlayers: 30
+    minPlayers: 10 # Arcane-Edit
     chaosScore: 1200
   - type: AntagSelection
     agentName: thief-round-end-agent-name
