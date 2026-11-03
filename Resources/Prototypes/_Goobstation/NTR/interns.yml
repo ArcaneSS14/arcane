@@ -26,8 +26,19 @@
   components:
   - type: RandomHumanoidAppearance
     randomizeName: true
-  - type: Loadout
-    prototypes: [LeadInternGear]
+# Arcane-Edit-Start: Removed
+#  - type: Loadout
+#    prototypes: [LeadInternGear]
+# Arcane-Edit-End
+  # Arcane-Start
+  - type: CloningAppearance
+    startingGear: LeadInternGear
+    components:
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: AntagImmune
+  # Arcane-End
   - type: AntagImmune
 
 # Basic Intern Coin
@@ -75,8 +86,19 @@
   components:
   - type: RandomHumanoidAppearance
     randomizeName: true
-  - type: Loadout
-    prototypes: [NTInternGear]
+# Arcane-Edit-Start: Removed
+#  - type: Loadout
+#    prototypes: [NTInternGear]
+# Arcane-Edit-End
+  # Arcane-Start
+  - type: CloningAppearance
+    startingGear: NTInternGear
+    components:
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: AntagImmune
+  # Arcane-End
   - type: AntagImmune
 
 # NT Nerd Intern
@@ -88,8 +110,19 @@
   components:
   - type: RandomHumanoidAppearance
     randomizeName: true
-  - type: Loadout
-    prototypes: [NTNerdInternGear]
+# Arcane-Edit-Start: Removed
+#  - type: Loadout
+#    prototypes: [NTNerdInternGear]
+# Arcane-Edit-End
+  # Arcane-Start
+  - type: CloningAppearance
+    startingGear: NTNerdInternGear
+    components:
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: AntagImmune
+  # Arcane-End
   - type: AntagImmune
 
 # NT Nerd Intern Gear
@@ -102,7 +135,7 @@
     shoes: ClothingShoesBootsWork
     back: ClothingBackpackCentcomm
     ears: ClothingHeadsetGrey
-    id: PassengerIDCard # let NTR give them access on bridge lol, im too lazy to make a new ID just for interns
+    id: NTInternIDCard # Arcane-Edit: PassengerIDCard > NTInternIDCard
     pocket1: WeaponLaserCellRevolver
     pocket2: PowerCellHigh
   inhand:
@@ -126,7 +159,7 @@
     shoes: ClothingShoesLeather
     back: ClothingBackpackCentcomm
     ears: ClothingHeadsetGrey
-    id: PassengerIDCard
+    id: NTInternIDCard # Arcane-Edit: PassengerIDCard > NTInternIDCard
     pocket1: DrinkEnergyDrinkCan
     pocket2: TelescopicBaton
   inhand:
@@ -148,7 +181,7 @@
     shoes: ClothingShoesLeather
     back: ClothingBackpackCentcomm
     ears: ClothingHeadsetGrey
-    id: PassengerIDCard
+    id: NTInternIDCard # Arcane-Edit: PassengerIDCard > NTInternIDCard
     pocket1: DrinkEnergyDrinkCan
     pocket2: WeaponDisabler
   inhand:

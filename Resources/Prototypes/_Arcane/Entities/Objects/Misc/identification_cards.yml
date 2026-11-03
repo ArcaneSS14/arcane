@@ -1,0 +1,32 @@
+- type: entity
+  parent: IDCardStandard
+  id: NTInternIDCard
+  name: CentComm intern ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: idcentcom
+  - type: Item
+    heldPrefix:
+  - type: IdCard
+    jobTitle: job-title-nt-intern
+    jobIcon: JobIconNanotrasen
+  - type: Access
+    tags:
+    - Security
+    - Brig
+    - External
+    - Cryogenics
+    - Maintenance
+    - Engineering
+    - Medical
+    - Research
+    - Command
+    - CentralCommand
+    - Service
+    - Hydroponics
+    - Kitchen
+    - Cargo
+    - Theatre
+    - NanotrasenRepresentative

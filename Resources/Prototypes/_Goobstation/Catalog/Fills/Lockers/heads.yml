@@ -11,7 +11,7 @@
     - id: CaneSheathFilledNanotrasen
     - id: HandheldFaxOfficial
     - id: RubberStampNanorep
-    #- id: ExecutiveBriefcaseEmpty # nanorep update # No gamer loot.
+    - id: ExecutiveBriefcaseEmpty # nanorep update # Arcane-Edit: Uncommented
     #- id: ComputerNTRTasksFlatpack # nanorep update
     - id: ClothingEyesGlassesCentCommNoThermal # kinda gamer loot but med/sci and other inspections make it make sense
     - id: Paper
