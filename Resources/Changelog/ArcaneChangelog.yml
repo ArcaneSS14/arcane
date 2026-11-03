@@ -4111,3 +4111,13 @@ Entries:
   time: '2026-11-03T08:29:46.0000000+00:00'
   prNumber: 584
   url: https://github.com/ArcaneSS14/arcane/pull/584
+- author: seemah
+  changes:
+    - type: Fix
+      message: >-
+        Минимальное количество игроков у дьявола было убрано, а у вора -
+        уменьшено (30 -> 10).
+  id: 295
+  time: '2026-11-03T15:02:43.0000000+00:00'
+  prNumber: 586
+  url: https://github.com/ArcaneSS14/arcane/pull/586
