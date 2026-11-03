@@ -4099,3 +4099,60 @@ Entries:
   time: '2026-11-03T07:46:30.0000000+00:00'
   prNumber: 588
   url: https://github.com/ArcaneSS14/arcane/pull/588
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: в строительную сумку помещаются машинные платы
+    - type: Add
+      message: >-
+        плата контролей турелей добавлена в технологию Электрическое оружие (там
+        же где охранные турели)
+  id: 294
+  time: '2026-11-03T08:29:46.0000000+00:00'
+  prNumber: 584
+  url: https://github.com/ArcaneSS14/arcane/pull/584
+- author: seemah
+  changes:
+    - type: Fix
+      message: >-
+        Минимальное количество игроков у дьявола было убрано, а у вора -
+        уменьшено (30 -> 10).
+  id: 295
+  time: '2026-11-03T15:02:43.0000000+00:00'
+  prNumber: 586
+  url: https://github.com/ArcaneSS14/arcane/pull/586
+- author: ChangelingRUES
+  changes:
+    - type: Add
+      message: Добавлена новая БС дорма "Спортивный клуб" (по запросу Чуси).
+  id: 296
+  time: '2026-11-03T15:08:41.0000000+00:00'
+  prNumber: 583
+  url: https://github.com/ArcaneSS14/arcane/pull/583
+  media:
+    - https://i.postimg.cc/qvbxZFMY/All-sport.jpg)](https://postimg.cc/ts66s26t
+    - https://i.postimg.cc/3RCyzyFY/sport-vhod.png)](https://postimg.cc/WFzbk1yH
+    - >-
+      https://i.postimg.cc/9Ff4NQ4L/sport-football.png)](https://postimg.cc/Z01KWZxN
+    - >-
+      https://i.postimg.cc/63wqVWJP/sport-kachalka.png)](https://postimg.cc/67jBtNQV
+    - >-
+      https://i.postimg.cc/MH3G81ch/sport-fitgh.png)](https://postimg.cc/T5mxVLJ9
+    - >-
+      https://i.postimg.cc/rpGFwB0Z/sport-support-room.png)](https://postimg.cc/HJxCSPtb
+    - >-
+      https://i.postimg.cc/XJ737p6Q/sport-locker-room.png)](https://postimg.cc/TySBt2wD
+    - https://i.postimg.cc/hvXBT6j8/sport-bass.png)](https://postimg.cc/XB6m029X
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: >-
+        Исправлена ошибка, из-за которой на мониторинге камер не отображались
+        камеры для подключения.
+  id: 297
+  time: '2026-11-03T15:39:18.0000000+00:00'
+  prNumber: 568
+  url: https://github.com/ArcaneSS14/arcane/pull/568
+  media:
+    - >-
+      https://github.com/user-attachments/assets/11f2dfb2-1027-4e80-939e-faa9763949dc
