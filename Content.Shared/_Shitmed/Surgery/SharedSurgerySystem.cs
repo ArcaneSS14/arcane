@@ -264,7 +264,9 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         // Arcane-Edit-Start
         // Once healed, only its own careful incision is left to seal; a fully opened part is closed by Close Incision.
+        var part = args.Part;
         if (GetTendableDamage(args.Part, ent.Comp.DamageGroup) <= 0
+            && ent.Comp.AdditionalGroups.All(group => GetTendableDamage(part, group) <= 0)
             && (!HasComp<IncisionOpenComponent>(args.Part) || HasComp<SkinRetractedComponent>(args.Part)))
             args.Cancelled = true;
         // Arcane-Edit-End

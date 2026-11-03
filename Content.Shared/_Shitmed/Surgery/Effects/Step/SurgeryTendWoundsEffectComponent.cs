@@ -13,6 +13,11 @@ public sealed partial class SurgeryTendWoundsEffectComponent : Component
     [DataField, AutoNetworkedField]
     public ProtoId<DamageGroupPrototype> MainGroup = "Brute";
 
+    // Arcane-Start
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<DamageGroupPrototype>> AdditionalGroups = new();
+    // Arcane-End
+
     [DataField, AutoNetworkedField]
     public bool IsAutoRepeatable = true;
 

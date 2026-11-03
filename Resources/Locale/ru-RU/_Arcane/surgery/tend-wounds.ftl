@@ -1,0 +1,14 @@
+ent-SurgeryTendWoundsBruteUpgraded = Лечение механических повреждений+
+ent-SurgeryTendWoundsBurnUpgraded = Лечение физических повреждений+
+ent-SurgeryTendWoundsBruteFemto = Лечение механических повреждений++
+ent-SurgeryTendWoundsBurnFemto = Лечение физических повреждений++
+ent-SurgeryTendWoundsCombo = Комплексное лечение повреждений
+ent-SurgeryTendWoundsComboUpgraded = Комплексное лечение повреждений+
+ent-SurgeryTendWoundsComboFemto = Комплексное лечение повреждений++
+ent-SurgeryStepRepairBruteTissueUpgraded = Восстановить механически повреждённую ткань+
+ent-SurgeryStepRepairBurnTissueUpgraded = Восстановить физически повреждённую ткань+
+ent-SurgeryStepRepairBruteTissueFemto = Восстановить механически повреждённую ткань++
+ent-SurgeryStepRepairBurnTissueFemto = Восстановить физически повреждённую ткань++
+ent-SurgeryStepRepairAllTissue = Восстановить повреждённые и обожжённые ткани
+ent-SurgeryStepRepairAllTissueUpgraded = Восстановить повреждённые и обожжённые ткани+
+ent-SurgeryStepRepairAllTissueFemto = Восстановить повреждённые и обожжённые ткани++

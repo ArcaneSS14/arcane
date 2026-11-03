@@ -271,8 +271,11 @@ public abstract partial class SharedSurgerySystem
     {
         // Arcane-Edit-Start
         var healableSeverity = GetTendableDamage(args.Part, ent.Comp.MainGroup);
+        var totalSeverity = healableSeverity;
+        foreach (var additionalGroup in ent.Comp.AdditionalGroups)
+            totalSeverity += GetTendableDamage(args.Part, additionalGroup);
 
-        if (healableSeverity <= 0)
+        if (totalSeverity <= 0)
         {
             // Do not keep a repeatable treatment step alive when no healable progress remains.
             args.Complete = true;
@@ -295,6 +298,21 @@ public abstract partial class SharedSurgerySystem
                 adjustedDamage.DamageDict[type] = current - bonus;
         }
 
+        // Arcane-Start
+        foreach (var additionalGroup in ent.Comp.AdditionalGroups)
+        {
+            var additionalBonus = ent.Comp.HealMultiplier * GetTendableDamage(args.Part, additionalGroup);
+            if (_mobState.IsDead(args.Body))
+                additionalBonus *= 0.2;
+
+            foreach (var type in _prototypes.Index(additionalGroup).DamageTypes)
+            {
+                if (adjustedDamage.DamageDict.TryGetValue(type, out var current))
+                    adjustedDamage.DamageDict[type] = current - additionalBonus;
+            }
+        }
+        // Arcane-End
+
         var ev = new SurgeryStepDamageEvent(args.User, args.Body, args.Part, args.Surgery, adjustedDamage, 0.5f);
         // Arcane-Start
         ev.IgnoreBlockers = true;
@@ -305,6 +323,13 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
+        // Arcane-Start
+        foreach (var group in ent.Comp.AdditionalGroups)
+        {
+            if (GetTendableDamage(args.Part, group) > 0)
+                args.Cancelled = true;
+        }
+        // Arcane-End
         if (GetTendableDamage(args.Part, ent.Comp.MainGroup) > 0) // Arcane-Edit
             args.Cancelled = true;
     }

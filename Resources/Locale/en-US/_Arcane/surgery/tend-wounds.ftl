@@ -1,0 +1,14 @@
+ent-SurgeryTendWoundsBruteUpgraded = Tend Bruise Wounds+
+ent-SurgeryTendWoundsBurnUpgraded = Tend Burn Wounds+
+ent-SurgeryTendWoundsBruteFemto = Tend Bruise Wounds++
+ent-SurgeryTendWoundsBurnFemto = Tend Burn Wounds++
+ent-SurgeryTendWoundsCombo = Advanced Tend Wounds
+ent-SurgeryTendWoundsComboUpgraded = Advanced Tend Wounds+
+ent-SurgeryTendWoundsComboFemto = Advanced Tend Wounds++
+ent-SurgeryStepRepairBruteTissueUpgraded = Repair damaged tissue+
+ent-SurgeryStepRepairBurnTissueUpgraded = Repair burnt tissue+
+ent-SurgeryStepRepairBruteTissueFemto = Repair damaged tissue++
+ent-SurgeryStepRepairBurnTissueFemto = Repair burnt tissue++
+ent-SurgeryStepRepairAllTissue = Repair damaged and burnt tissue
+ent-SurgeryStepRepairAllTissueUpgraded = Repair damaged and burnt tissue+
+ent-SurgeryStepRepairAllTissueFemto = Repair damaged and burnt tissue++

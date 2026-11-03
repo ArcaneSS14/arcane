@@ -1,0 +1,80 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SurgeryStepRepairBruteTissue
+  id: SurgeryStepRepairBruteTissueUpgraded
+  name: Repair damaged tissue+
+  components:
+  - type: SurgeryTendWoundsEffect
+    healMultiplier: 0.1
+    damage:
+      groups:
+        Brute: -42.86
+
+- type: entity
+  parent: SurgeryStepRepairBurnTissue
+  id: SurgeryStepRepairBurnTissueUpgraded
+  name: Repair burnt tissue+
+  components:
+  - type: SurgeryTendWoundsEffect
+    healMultiplier: 0.1
+    damage:
+      groups:
+        Burn: -57.14
+
+- type: entity
+  parent: SurgeryStepRepairBruteTissueUpgraded
+  id: SurgeryStepRepairBruteTissueFemto
+  name: Repair damaged tissue++
+  components:
+  - type: SurgeryTendWoundsEffect
+    healMultiplier: 0.2
+    damage:
+      groups:
+        Brute: -85.71
+
+- type: entity
+  parent: SurgeryStepRepairBurnTissueUpgraded
+  id: SurgeryStepRepairBurnTissueFemto
+  name: Repair burnt tissue++
+  components:
+  - type: SurgeryTendWoundsEffect
+    healMultiplier: 0.2
+    damage:
+      groups:
+        Burn: -114.29
+
+- type: entity
+  parent: SurgeryStepRepairBruteTissue
+  id: SurgeryStepRepairAllTissue
+  name: Repair damaged and burnt tissue
+  components:
+  - type: SurgeryStep
+    duration: 1
+  - type: SurgeryTendWoundsEffect
+    additionalGroups: [Burn]
+    healMultiplier: 0.07
+    damage:
+      groups:
+        Brute: -3
+        Burn: -3
+
+- type: entity
+  parent: SurgeryStepRepairAllTissue
+  id: SurgeryStepRepairAllTissueUpgraded
+  name: Repair damaged and burnt tissue+
+  components:
+  - type: SurgeryTendWoundsEffect
+    healMultiplier: 0.1
+
+- type: entity
+  parent: SurgeryStepRepairAllTissueUpgraded
+  id: SurgeryStepRepairAllTissueFemto
+  name: Repair damaged and burnt tissue++
+  components:
+  - type: SurgeryTendWoundsEffect
+    healMultiplier: 0.4
+    damage:
+      groups:
+        Brute: -1
+        Burn: -1

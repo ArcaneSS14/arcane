@@ -550,6 +550,11 @@
     - SurgeryStepSealTendWound
   - type: SurgeryWoundedCondition
     damageGroup: Brute
+  # Arcane-Start
+  - type: SurgeryTechnologyCondition
+    technology: Surgery
+    inverse: true
+  # Arcane-End
 
 - type: entity
   parent: SurgeryBase
@@ -563,6 +568,11 @@
     - SurgeryStepSealTendWound
   - type: SurgeryWoundedCondition
     damageGroup: Burn
+  # Arcane-Start
+  - type: SurgeryTechnologyCondition
+    technology: Surgery
+    inverse: true
+  # Arcane-End
 
 - type: entity
   parent: SurgeryBase

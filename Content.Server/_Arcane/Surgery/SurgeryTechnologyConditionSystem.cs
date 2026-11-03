@@ -25,21 +25,22 @@ public sealed class SurgeryTechnologyConditionSystem : EntitySystem
             return;
 
         var researched = false;
+        var replaced = false;
         if (_station.GetOwningStation(args.Body) is { } station)
         {
             var query = EntityQueryEnumerator<ResearchServerComponent, TechnologyDatabaseComponent>();
             while (query.MoveNext(out var uid, out _, out var database))
             {
-                if (_station.GetOwningStation(uid) != station
-                    || !_research.IsTechnologyUnlocked(uid, _prototypes.Index(ent.Comp.Technology), database))
+                if (_station.GetOwningStation(uid) != station)
                     continue;
 
-                researched = true;
-                break;
+                researched |= _research.IsTechnologyUnlocked(uid, _prototypes.Index(ent.Comp.Technology), database);
+                if (ent.Comp.ReplacedBy is { } replacement)
+                    replaced |= _research.IsTechnologyUnlocked(uid, _prototypes.Index(replacement), database);
             }
         }
 
-        if (researched == ent.Comp.Inverse)
+        if (replaced || researched == ent.Comp.Inverse)
             args.Cancelled = true;
     }
 }

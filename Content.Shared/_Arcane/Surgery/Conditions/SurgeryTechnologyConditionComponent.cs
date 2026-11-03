@@ -12,4 +12,7 @@ public sealed partial class SurgeryTechnologyConditionComponent : Component
 
     [DataField]
     public bool Inverse;
+
+    [DataField]
+    public ProtoId<TechnologyPrototype>? ReplacedBy;
 }
