@@ -50,7 +50,8 @@ public sealed class SurgeryConditionsSystem : EntitySystem
 
     public float GetSpeedModifier(EntityUid user, EntityUid patient)
     {
-        return GetSurfaceModifier(patient) * GetDrunkModifier(user) * GetAnesthesiaModifier(patient);
+        var analysisModifier = HasComp<SurgicallyAnalyzedComponent>(patient) ? 1.25f : 1f;
+        return GetSurfaceModifier(patient) * GetDrunkModifier(user) * GetAnesthesiaModifier(patient) * analysisModifier;
     }
 
     public bool IsSelfSurgeryPenalized(EntityUid user, EntityUid patient, EntityUid step)

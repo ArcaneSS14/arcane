@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryAutopsy
+  name: Autopsy
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepAutopsy
+  - type: SurgeryPartCondition
+    parts: [Chest]
+  - type: SurgeryAutopsy
+
+- type: entity
+  parent: SurgeryAutopsy
+  id: SurgeryAutopsyXeno
+  name: Xenomorph Autopsy
+  components:
+  - type: Surgery
+    requirement: SurgeryXenoInciseExoskeleton
+  - type: SurgeryPartComponentCondition
+    inverse: false
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepAutopsy
+  name: Analyze the body
+  components:
+  - type: SurgeryStep
+    duration: 10
+    tool:
+    - type: SurgeryAnalyzer
+  - type: Sprite
+    sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    state: icon
+  - type: SurgeryAutopsy
