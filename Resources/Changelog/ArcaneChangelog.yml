@@ -4099,3 +4099,15 @@ Entries:
   time: '2026-11-03T07:46:30.0000000+00:00'
   prNumber: 588
   url: https://github.com/ArcaneSS14/arcane/pull/588
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: в строительную сумку помещаются машинные платы
+    - type: Add
+      message: >-
+        плата контролей турелей добавлена в технологию Электрическое оружие (там
+        же где охранные турели)
+  id: 294
+  time: '2026-11-03T08:29:46.0000000+00:00'
+  prNumber: 584
+  url: https://github.com/ArcaneSS14/arcane/pull/584
