@@ -40,7 +40,7 @@ public sealed partial class TTSSystem
         var cached = await GetFromCache(cacheId);
         if (cached != null)
         {
-            RaiseNetworkEvent(new PlayTTSEvent(cached), Filter.SinglePlayer(args.SenderSession));
+            RaiseNetworkEvent(new PlayTTSEvent(cached, isPreview: true), Filter.SinglePlayer(args.SenderSession));
             return;
         }
 
@@ -48,7 +48,7 @@ public sealed partial class TTSSystem
         if (soundData is null)
             return;
 
-        RaiseNetworkEvent(new PlayTTSEvent(soundData), Filter.SinglePlayer(args.SenderSession), false);
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, isPreview: true), Filter.SinglePlayer(args.SenderSession), false);
 
         await SaveVoiceCache(cacheId, soundData);
     }

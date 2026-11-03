@@ -56,6 +56,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
         SubscribeLocalEvent<MetabolizerComponent, ComponentInit>(OnMetabolizerInit);
         SubscribeLocalEvent<MetabolizerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<MetabolizerComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
+        SubscribeLocalEvent<MetabolizerComponent, OrganAddedToBodyEvent>(OnOrganAddedToBody); // Arcane
     }
 
     private void OnMapInit(Entity<MetabolizerComponent> ent, ref MapInitEvent args)
@@ -79,6 +80,13 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
     {
         ent.Comp.UpdateIntervalMultiplier = args.Multiplier;
     }
+
+    // Arcane-Start: an organ keeps the multiplier of the body it was taken from, e.g. a stasis bed's
+    private void OnOrganAddedToBody(Entity<MetabolizerComponent> ent, ref OrganAddedToBodyEvent args)
+    {
+        UpdateMetabolicMultiplier(args.Body);
+    }
+    // Arcane-End
 
     public override void Update(float frameTime)
     {

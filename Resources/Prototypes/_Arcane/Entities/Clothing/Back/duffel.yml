@@ -63,3 +63,14 @@
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Back/Duffels/centcommduffel.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelUSSP
+  name: ussp mail duffel
+  description: A large shoulder bag, quite roomy and fit for storing a large amount of belongings.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Back/USSP/duffellussp.rsi
+  - type: ClothingSpeedModifier
+    sprintModifier: 0.95

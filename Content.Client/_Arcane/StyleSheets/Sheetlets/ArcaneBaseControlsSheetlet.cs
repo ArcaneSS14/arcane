@@ -194,6 +194,14 @@ public sealed class ArcaneBaseControlsSheetlet : Sheetlet<ArcaneStylesheet>
             sheet.AccentColor,
             8,
             4));
+        rules.AddRange(TexturedButtonStateRules(
+            buttonTexture,
+            buttonBorderTexture,
+            () => E<MenuButton>().Class(StyleClass.Negative),
+            sheet.NegativePalette,
+            sheet.NegativePalette.Base,
+            8,
+            4));
         rules.AddRange(TexturedButtonStateRules(buttonTexture, buttonBorderTexture,
             () => Button().Class(StyleClass.Positive), sheet.PositivePalette, sheet.PositivePalette.Base));
         rules.AddRange(TexturedButtonStateRules(buttonTexture, buttonBorderTexture,

@@ -10,12 +10,13 @@ public enum VoiceRequestType
 
 [Serializable, NetSerializable]
 // ReSharper disable once InconsistentNaming
-public sealed class PlayTTSEvent(byte[] data, NetEntity? sourceUid = null, bool isWhisper = false, int? frequency = null) : EntityEventArgs
+public sealed class PlayTTSEvent(byte[] data, NetEntity? sourceUid = null, bool isWhisper = false, int? frequency = null, bool isPreview = false) : EntityEventArgs
 {
     public byte[] Data { get; } = data;
     public NetEntity? SourceUid { get; } = sourceUid;
     public bool IsWhisper { get; } = isWhisper;
     public int? Frequency { get; } = frequency;
+    public bool IsPreview { get; } = isPreview;
 }
 
 // ReSharper disable once InconsistentNaming

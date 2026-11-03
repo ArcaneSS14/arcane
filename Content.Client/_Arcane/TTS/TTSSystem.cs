@@ -42,6 +42,7 @@ public sealed partial class TTSSystem : EntitySystem
     private bool _ghostRadioUseTTS = false;
     private readonly HashSet<int> _mutedRadioChannels = new();
     private readonly Dictionary<int, float> _radioChannelVolumes = new();
+    private EntityUid? _previewStream;
     private ulong _fileIdx = 0;
     private static ulong _shareIdx = 0;
 
@@ -80,7 +81,14 @@ public sealed partial class TTSSystem : EntitySystem
 
     public void RequestGlobalTTS(VoiceRequestType text, string voiceId)
     {
+        StopPreview();
         RaiseNetworkEvent(new RequestPreviewTTSEvent(voiceId));
+    }
+
+    private void StopPreview()
+    {
+        _audio.Stop(_previewStream);
+        _previewStream = null;
     }
 
     private void OnTtsVolumeChanged(float volume)
@@ -124,6 +132,9 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_useTTS)
             return;
 
+        if (ev.IsPreview)
+            StopPreview();
+
         if (isRadio && isGhost && !_ghostRadioUseTTS)
             return;
 
@@ -144,7 +155,11 @@ public sealed partial class TTSSystem : EntitySystem
                 .WithVolume(AdjustVolume(ev.IsWhisper, isRadio, ev.Frequency, GetSourceVolumeOffset(ev.SourceUid)))
                 .WithMaxDistance(AdjustDistance(ev.IsWhisper));
 
-            if (ev.SourceUid != null)
+            if (ev.IsPreview)
+            {
+                _previewStream = _audio.PlayGlobal(audioResource.AudioStream, null, audioParams)?.Entity;
+            }
+            else if (ev.SourceUid != null)
             {
                 if (!TryGetEntity(ev.SourceUid.Value, out _))
                     return;

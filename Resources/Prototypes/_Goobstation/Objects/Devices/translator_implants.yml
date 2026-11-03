@@ -49,6 +49,7 @@
       - Hydraspeak
       - Xeno
       - Karshan
+      - Dwarvish
       # Arcane-End
     understood:
       - TauCetiBasic # Common Languages -
@@ -91,6 +92,7 @@
       - Hydraspeak
       - Xeno
       - Karshan
+      - Dwarvish
       # Arcane-End
 
 - type: entity

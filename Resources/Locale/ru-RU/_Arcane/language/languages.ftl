@@ -5,3 +5,6 @@ language-Hydraspeak-description =
 language-Karshan-name = Каршаниль
 chat-language-Karshan-name = Каршаниль
 language-Karshan-description = Это язык аркан востока и севера, имеет сходство с мёртвым языком человеческой расы, "финским". Особенностью языка является наличие у каждой согласной своей мягкой и твердой версии.
+language-Dwarvish-name = Дварфийский
+chat-language-Dwarvish-name = Дварфийский
+language-Dwarvish-description = Грубый, твёрдый как камень язык дварфов. Чужаки слышат в нём лишь грохот умлаутов и ворчание согласных.

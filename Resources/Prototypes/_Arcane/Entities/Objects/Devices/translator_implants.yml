@@ -12,3 +12,18 @@
     - Karshan
     requires:
     - TauCetiBasic
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: DwarvishTranslatorImplant
+  categories: [ HideSpawnMenu ]
+  name: dwarvish translator implant
+  description: An implant giving the ability to understand and speak Dwarvish.
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Dwarvish
+    spoken:
+    - Dwarvish
+    requires:
+    - TauCetiBasic
