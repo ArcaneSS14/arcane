@@ -152,7 +152,7 @@
           amount: 2
           defaultPrototype: Beaker
       partRequirements: # Orion
-        Servo: 1
+        MatterBin: 1 # Arcane-Edit: Servo > MatterBin
         Capacitor: 1 # Arcane
 
 - type: entity

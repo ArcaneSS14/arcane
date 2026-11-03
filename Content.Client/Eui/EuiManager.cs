@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using Content.Shared.Eui;
 using Robust.Shared.Network;
 using Robust.Shared.Reflection;
@@ -56,7 +57,7 @@ namespace Content.Client.Eui
                 return;
 
             // Will open/re-open the window if the server wants the eui opened.
-            var euiType = _refl.LooseGetType(message.OpenType);
+            var euiType = _refl.GetAllChildren<BaseEui>().First(t => t.Name == message.OpenType); // Arcane-Edit
             var instance = _dtf.CreateInstance<BaseEui>(euiType);
             instance.Initialize(this, message.Id);
             instance.Opened();

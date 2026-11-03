@@ -3,6 +3,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakNTRBlack
+  categories: [ HideSpawnMenu ]
   name: NTR's black cloak
   description: A black cloak with gold trim, made for the best in his field.
   components:
@@ -12,6 +13,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakNTRTricolor
+  categories: [ HideSpawnMenu ]
   name: NTR's tricolor cloak
   description: Green stripe? Looks exquisitely.
   components:
@@ -21,6 +23,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakCMOHonorable
+  categories: [ HideSpawnMenu ]
   name: CMO's honorable cloak
   description: Only the most experienced doctor can get this.
   components:
@@ -30,6 +33,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakHOSBlack
+  categories: [ HideSpawnMenu ]
   name: HOS' black cloak
   description: Brutal and gloomy.
   components:
@@ -39,6 +43,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakHOSRed
+  categories: [ HideSpawnMenu ]
   name: HOS' red cloak
   description: Brutal and gloomy.
   components:
@@ -48,6 +53,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakCargoPatron
+  categories: [ HideSpawnMenu ]
   name: honorable cargo cloak
   description: Expensive high-quality cloak.
   components:
@@ -57,6 +63,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakEngineerPatron
+  categories: [ HideSpawnMenu ]
   name: honorable engineer cloak
   description: Expensive high-quality cloak.
   components:
@@ -66,6 +73,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakMedicalPatron
+  categories: [ HideSpawnMenu ]
   name: honorable medical cloak
   description: Expensive high-quality cloak.
   components:
@@ -75,6 +83,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakRNDPatron
+  categories: [ HideSpawnMenu ]
   name: honorable science cloak
   description: Expensive high-quality cloak.
   components:
@@ -84,6 +93,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakSecurityPatron
+  categories: [ HideSpawnMenu ]
   name: honorable security cloak
   description: Expensive high-quality cloak.
   components:
@@ -93,6 +103,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakServicePatron
+  categories: [ HideSpawnMenu ]
   name: honorable service cloak
   description: Expensive high-quality cloak.
   components:
@@ -102,6 +113,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakVirologistPatron
+  categories: [ HideSpawnMenu ]
   name: virologist cloak
   description: Expensive high-quality cloak.
   components:
@@ -111,6 +123,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakParamedicPatron
+  categories: [ HideSpawnMenu ]
   name: paramedic cloak
   description: Expensive high-quality cloak.
   components:
@@ -120,6 +133,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakQMBlack
+  categories: [ HideSpawnMenu ]
   name: QM's black cloak
   description: Black feathers! You are definately boss here.
   components:
@@ -129,6 +143,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakQMWhite
+  categories: [ HideSpawnMenu ]
   name: QM's white cloak
   description: Classic.
   components:
@@ -138,6 +153,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakIan
+  categories: [ HideSpawnMenu ]
   name: Ian cloak
   description: We assure you that this is not a real dog, but a plush toy sewn into a coat.
   components:
@@ -147,6 +163,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakSolemnCap
+  categories: [ HideSpawnMenu ]
   name: solemn captain cloak
   description: Luxurious fur-trimmed cloak for special occasions.
   components:
@@ -156,6 +173,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakSolemnQM
+  categories: [ HideSpawnMenu ]
   name: solemn QM's cloak
   description: Luxurious fur-trimmed cloak for special occasions.
   components:

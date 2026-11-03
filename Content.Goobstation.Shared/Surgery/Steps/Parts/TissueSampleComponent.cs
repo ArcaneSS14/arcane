@@ -9,7 +9,7 @@ namespace Content.Goobstation.Shared.Surgery.Steps.Parts;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class TissueSampleComponent : Component, ISurgeryToolComponent
 {
-    public string ToolName => "a xeno tissue sample";
+    public string ToolName => Loc.GetString("surgery-tool-tissue-sample"); // Arcane-Edit
 
     [DataField]
     public bool? Used { get; set; } = true;

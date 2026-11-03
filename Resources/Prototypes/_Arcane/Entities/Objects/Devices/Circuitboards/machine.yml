@@ -11,7 +11,8 @@
   - type: MachineBoard
     prototype: EnergyBoozeDispenser
     partRequirements:
-      Servo: 3
+      Capacitor: 2
+      MatterBin: 1
     tagRequirements:
       GlassBeaker:
         amount: 2
@@ -28,7 +29,8 @@
   - type: MachineBoard
     prototype: EnergySodaDispenser
     partRequirements:
-      Servo: 3
+      Capacitor: 2
+      MatterBin: 1
     tagRequirements:
       GlassBeaker:
         amount: 2
