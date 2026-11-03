@@ -1,6 +1,7 @@
 using Content.Shared._Arcane.Polymorph;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Events;
+using Content.Shared.ActionBlocker;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Arcane.Polymorph;
@@ -8,11 +9,13 @@ namespace Content.Server._Arcane.Polymorph;
 public sealed class TurtleHideSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<MobTurtleComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<MobTurtleComponent, UpdateCanMoveEvent>(OnUpdateCanMove);
     }
 
     private void OnDamageChanged(EntityUid uid, MobTurtleComponent component, DamageChangedEvent args)
@@ -25,24 +28,20 @@ public sealed class TurtleHideSystem : EntitySystem
 
         component.IsHidden = true;
         _appearance.SetData(uid, AnimalVisuals.TurtleHide, true);
-
-        if (TryComp<InputMoverComponent>(uid, out var mover))
-        {
-            mover.CanMove = false;
-            Dirty(uid, mover);
-        }
-
+        _blocker.UpdateCanMove(uid);
         Timer.Spawn(TimeSpan.FromSeconds(5), () =>
         {
             if (!Exists(uid)) return;
 
             component.IsHidden = false;
             _appearance.SetData(uid, AnimalVisuals.TurtleHide, false);
-            if (TryComp<InputMoverComponent>(uid, out var mover))
-            {
-                mover.CanMove = true;
-                Dirty(uid, mover);
-            }
+
+            _blocker.UpdateCanMove(uid);
         });
+    }
+    private void OnUpdateCanMove(EntityUid uid, MobTurtleComponent component, UpdateCanMoveEvent args)
+    {
+        if (component.IsHidden)
+            args.Cancel();
     }
 }
