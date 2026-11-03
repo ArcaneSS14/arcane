@@ -8,6 +8,9 @@
             <PanelContainer Name="Stripe" MinWidth="3" VerticalExpand="True" />
             <Label Name="ArrowLabel" />
             <Label Name="NameLabel" HorizontalExpand="True" ClipText="True" />
+            <TextureRect Name="NextStepIcon" SetSize="16 16" Stretch="KeepAspectCentered"
+                         VerticalAlignment="Center" Visible="False" />
+            <Label Name="NextStepLabel" StyleClasses="LabelWeak" Visible="False" />
             <Label Name="StatusLabel" Margin="0 0 4 0" />
         </BoxContainer>
     </Button>

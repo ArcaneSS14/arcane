@@ -16,5 +16,5 @@ public sealed partial class CCVars
         CVarDef.Create("ghost.respawn_time", 300f, CVar.REPLICATED | CVar.SERVER);
 
     public static readonly CVarDef<int> GhostRespawnMaxPlayers =
-        CVarDef.Create("ghost.respawn_max_players", 80, CVar.SERVERONLY);
+        CVarDef.Create("ghost.respawn_max_players", 120, CVar.SERVERONLY); // Arcane-Edit: 80 > 120
 }
