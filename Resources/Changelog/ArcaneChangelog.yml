@@ -4143,3 +4143,16 @@ Entries:
     - >-
       https://i.postimg.cc/XJ737p6Q/sport-locker-room.png)](https://postimg.cc/TySBt2wD
     - https://i.postimg.cc/hvXBT6j8/sport-bass.png)](https://postimg.cc/XB6m029X
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: >-
+        Исправлена ошибка, из-за которой на мониторинге камер не отображались
+        камеры для подключения.
+  id: 297
+  time: '2026-11-03T15:39:18.0000000+00:00'
+  prNumber: 568
+  url: https://github.com/ArcaneSS14/arcane/pull/568
+  media:
+    - >-
+      https://github.com/user-attachments/assets/11f2dfb2-1027-4e80-939e-faa9763949dc
