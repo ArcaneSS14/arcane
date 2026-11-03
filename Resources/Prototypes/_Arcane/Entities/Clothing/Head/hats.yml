@@ -343,6 +343,17 @@
   - type: Clothing
     sprite: _Arcane/Clothing/Head/USSP/blue_ushanka.rsi
 
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatUSSPPolicePilotka
+  name: policer pilotka
+  description: A pilotka cap with the emblem of the USSP police department.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/USSP/police_pilotka.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/USSP/police_pilotka.rsi
+
 # Lovemate
 
 - type: entity
@@ -410,6 +421,7 @@
     sprite: _Arcane/Clothing/Head/headband_kitsune.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Head/headband_kitsune.rsi
+
 # Command
 
 - type: entity
