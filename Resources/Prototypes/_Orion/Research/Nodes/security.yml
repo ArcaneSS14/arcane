@@ -357,6 +357,7 @@
   - PowerCellIonSMG
   - WeaponDisablerSMG
   - WeaponEnergyTurretSecurityMachineCircuitboard
+  - WeaponEnergyTurretSecurityControlPanelElectronics
   # Arcane-End
   position: 2,-3 # Arcane-Edit
 

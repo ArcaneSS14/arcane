@@ -129,6 +129,7 @@
   - LoadoutSpeciesPlasma # Goobstation
   - EmergencyWaterVapor # Delta-V
   - EmergencySilicon
+  - EmergencySynth # Arcane
 
 # nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
@@ -774,6 +775,7 @@
   - LoadoutSpeciesPlasma # Goobstation
   - EmergencyWaterVaporClown # Delta-V
   - EmergencySilicon
+  - EmergencySynth # Arcane
 
 - type: loadoutGroup
   id: ClownJobTrinkets
@@ -863,6 +865,7 @@
   - LoadoutSpeciesPlasma # Goobstation
   - EmergencyWaterVaporMime # Delta-V
   - EmergencySilicon
+  - EmergencySynth # Arcane
 
 - type: loadoutGroup
   id: MimeJobTrinkets
@@ -1296,6 +1299,7 @@
   - LoadoutSpeciesPlasma # Goobstation
   - EmergencyWaterVaporExtended # Delta-V
   - EmergencySilicon
+  - EmergencySynth # Arcane
 
 # Science
 - type: loadoutGroup
@@ -1700,6 +1704,7 @@
   - LoadoutSpeciesPlasma # Goobstation
   - EmergencyWaterVaporSecurity # Delta-V
   - EmergencySilicon
+  - EmergencySynth # Arcane
 
 # Medical
 - type: loadoutGroup
@@ -1980,6 +1985,7 @@
   - LoadoutSpeciesPlasma # Goobstation
   - EmergencyWaterVaporMedical # Delta-V
   - EmergencySilicon
+  - EmergencySynth # Arcane
 
 # Wildcards
 - type: loadoutGroup
@@ -2025,6 +2031,7 @@
   - LoadoutSpeciesPlasma # Goobstation
   - EmergencyWaterVaporSyndicate # Delta-V
   - EmergencySilicon
+  - EmergencySynth # Arcane
 
 - type: loadoutGroup
   id: SurvivalMilitaryDouble

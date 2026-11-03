@@ -6,6 +6,12 @@ surgery-ui-window-tools-hint = Выберите операцию и работа
 surgery-ui-step-tool = Инструмент: {$tool}
 surgery-ui-step-stage = Этап: {$stage}
 surgery-ui-step-satisfied-tooltip = Пока не требуется: сначала идут предыдущие шаги, после них этот шаг может понадобиться.
+surgery-ui-operation-next = далее: {$step}
+
+surgery-ui-section-started = Начатые
+surgery-ui-section-incision = Через разрез
+surgery-ui-section-cavity = Во вскрытой полости
+surgery-ui-section-closing = Закрытие
 
 surgery-ui-part-missing = {$part} (отсутствует)
 surgery-ui-part-started = Начато: {$surgery} ({$done}/{$total})
