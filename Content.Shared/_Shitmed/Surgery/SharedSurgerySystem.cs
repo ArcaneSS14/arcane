@@ -208,6 +208,8 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         var repeatable = HasComp<SurgeryRepeatableStepComponent>(step);
         if (_surgeryConditions.RollStepFailure(args.User, part, args.FailureChance, args.Penalty))
         {
+            var botched = new SurgeryStepBotchedEvent(args.User, ent, part);
+            RaiseLocalEvent(step, ref botched);
             // A botched repeatable step keeps going, so only a one-off step counts as a failed procedure.
             args.Repeat = repeatable;
             if (!repeatable)
