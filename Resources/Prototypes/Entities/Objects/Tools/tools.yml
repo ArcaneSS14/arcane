@@ -126,6 +126,11 @@
     speed: 0.45
   - type: Tending # Shitmed
     speed: 0.65
+  # Arcane-Start
+  - type: Drill
+    speed: 0.25
+  - type: SurgeryScrewdriver
+  # Arcane-End
   - type: SurgeryTool # Shitmed
     startSound:
       collection: Screwdriver
@@ -187,6 +192,7 @@
   - type: GuideHelp
     guides:
     - Construction
+  - type: SurgeryWrench # Arcane
 
 - type: entity
   name: multitool
@@ -250,6 +256,7 @@
     - WirePanels
     - Airlocks
     - InspectingPower
+  - type: SurgeryMultitool # Arcane
 
 - type: entity
   name: network configurator
@@ -367,6 +374,10 @@
     speed: 0.75
   - type: Drill # Shitmed
     speed: 1
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+  - type: SurgeryWrench
+  # Arcane-End
   - type: SurgeryTool # Shitmed
     startSound: /Audio/Items/drill_use.ogg
 
@@ -543,6 +554,12 @@
     speedModifier: 1.2 # Kept for future adjustments. Currently 1.2x for balance
     useSound: /Audio/Items/drill_use.ogg
   - type: ToolTileCompatible
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+  - type: SurgeryCrowbar
+  - type: SurgeryWrench
+  - type: SurgeryMultitool
+  # Arcane-End
   - type: MultipleTool
     statusShowBehavior: true
     entries:

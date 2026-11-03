@@ -66,6 +66,10 @@
     steps:
     - SurgeryStepOpenIncisionScalpel
     - SurgeryStepRetractSkin
+  # Arcane-Start
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticOpenShell
+  # Arcane-End
 
 - type: entity
   parent: BasePartSurgery
@@ -111,6 +115,10 @@
     - Head
     - Chest
     inverse: true
+  # Arcane-Start
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticCloseShell
+  # Arcane-End
 
 - type: entity
   parent: SurgeryCloseIncision
@@ -152,6 +160,10 @@
     - SurgeryStepPriseOpenBones
   - type: SurgeryPartCondition
     parts: [ Chest ]
+  # Arcane-Start
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticOpenEndoskeleton
+  # Arcane-End
 
 - type: entity
   parent: SurgeryBase
@@ -168,6 +180,10 @@
   - type: SurgeryPartCondition
     parts: [ Chest ]
     inverse: true
+  # Arcane-Start
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticRemovePart
+  # Arcane-End
 
 - type: entity
   parent: BasePartSurgery

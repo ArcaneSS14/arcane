@@ -21,6 +21,7 @@ using Content.Shared.Medical.Healing;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
+using Content.Shared.Wires;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
@@ -52,7 +53,8 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SurgeryTargetComponent, InteractUsingEvent>(OnInteractUsing);
+        // An unlocked synthetic's panel takes the screwdriver first, so its power cell can still be swapped while it lies down.
+        SubscribeLocalEvent<SurgeryTargetComponent, InteractUsingEvent>(OnInteractUsing, after: [typeof(SharedWiresSystem)]);
         // An empty-hand click would otherwise unbuckle the patient from the operating table.
         SubscribeLocalEvent<SurgeryTargetComponent, InteractHandEvent>(OnInteractHand, before: [typeof(SharedBuckleSystem)]);
         SubscribeAllEvent<SurgeryToolOptionPickedEvent>(OnOptionPicked);

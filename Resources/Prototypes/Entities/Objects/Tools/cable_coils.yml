@@ -63,6 +63,11 @@
   - type: Stitches
     speed: 0.7
     used: true
+  # Arcane-Start
+  - type: Hemostat
+    speed: 0.15
+    used: true
+  # Arcane-End
   - type: SurgeryTool
     startSound:
       path: /Audio/_Shitmed/Medical/Surgery/retractor1.ogg

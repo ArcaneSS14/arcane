@@ -112,6 +112,10 @@
     endSound:
       path: /Audio/_Shitmed/Medical/Surgery/scalpel2.ogg
   - type: Scalpel
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 0.75
+  # Arcane-End
   - type: Tag # Goobstation
     tags:
     - SurgeryTool
@@ -200,6 +204,12 @@
     endSound:
       path: /Audio/_Shitmed/Medical/Surgery/retractor2.ogg
   - type: Retractor
+  # Arcane-Start
+  - type: SurgeryWrench
+    speed: 0.75
+  - type: SurgeryCrowbar
+    speed: 0.75
+  # Arcane-End
 
 # Hemostat
 
@@ -225,6 +235,10 @@
   - type: Hemostat
   - type: Tweezers # Shitmed
   - type: Tending # Shitmed
+  # Arcane-Start
+  - type: SurgeryMultitool
+    speed: 0.75
+  # Arcane-End
 
 # Saws
 

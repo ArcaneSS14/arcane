@@ -1,0 +1,39 @@
+ent-SurgeryRoboticOpenShell = Вскрытие корпуса
+    .desc = { ent-SurgeryBase.desc }
+ent-SurgeryRoboticOpenEndoskeleton = Вскрытие эндоскелета
+    .desc = { ent-SurgeryBase.desc }
+ent-SurgeryRoboticCloseShell = Закрытие корпуса
+    .desc = { ent-SurgeryBase.desc }
+ent-SurgeryRoboticRemovePart = Разборка конечности
+    .desc = { ent-SurgeryBase.desc }
+
+ent-SurgeryStepUnscrewShell = Открутить корпус
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepOpenHatch = Открыть люк
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepPrepareElectronics = Подготовить электронику
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepUnwrenchEndoskeleton = Открутить эндоскелет
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepWrenchEndoskeleton = Закрутить эндоскелет
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepScrewShell = Закрутить корпус
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepDetachLimb = Открутить конечность
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepDisconnectLimb = Отсоединить конечность
+    .desc = { ent-SurgeryStepBase.desc }
+
+surgery-tool-screwdriver = отвёртка
+surgery-tool-crowbar = лом
+surgery-tool-wrench = гаечный ключ
+surgery-tool-multitool = мультитул
+
+surgery-popup-step-SurgeryStepUnscrewShell = { $user } откручивает корпус на { $part } у { $target }.
+surgery-popup-step-SurgeryStepOpenHatch = { $user } вскрывает люк на { $part } у { $target }.
+surgery-popup-step-SurgeryStepPrepareElectronics = { $user } подготавливает электронику на { $part } у { $target }.
+surgery-popup-step-SurgeryStepUnwrenchEndoskeleton = { $user } откручивает эндоскелет на { $part } у { $target }.
+surgery-popup-step-SurgeryStepWrenchEndoskeleton = { $user } закручивает эндоскелет на { $part } у { $target }.
+surgery-popup-step-SurgeryStepScrewShell = { $user } закручивает корпус на { $part } у { $target }.
+surgery-popup-step-SurgeryStepDetachLimb = { $user } откручивает { $part } у { $target }.
+surgery-popup-step-SurgeryStepDisconnectLimb = { $user } отсоединяет { $part } у { $target }!

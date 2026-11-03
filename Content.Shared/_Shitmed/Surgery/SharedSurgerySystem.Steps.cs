@@ -1130,6 +1130,13 @@ public abstract partial class SharedSurgerySystem
         var toolUsed = data?.Used ?? false; // if no tool is being used you can't consume it
         var ev = new SurgeryDoAfterEvent(surgeryId, stepId, toolUsed);
         var duration = GetSurgeryDuration(step, user, body, speed);
+        // Arcane-Start
+        // A step done by hand is already slow by design, so only a tool worse than the proper one counts against it.
+        var idealDuration = (_stepQuery.CompOrNull(step)?.Duration ?? duration) / (data == null ? speed : 1f);
+        ev.Penalty = duration / idealDuration;
+        ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, duration);
+        duration = _surgeryConditions.GetCappedDuration(idealDuration, duration);
+        // Arcane-End
 
         // Arcane-Edit-Start: Handle active surgery DoAfters cleanly
         if (TryComp<ActiveDoAfterComponent>(user, out _) &&
@@ -1236,6 +1243,7 @@ public abstract partial class SharedSurgerySystem
                 speed *= operatingTableComponent.SpeedModifier; // apply surgery speed modifier
         if (TryComp(user, out SurgerySpeedModifierComponent? surgerySpeedMod))
             speed *= surgerySpeedMod.SpeedModifier;
+        speed *= _surgeryConditions.GetSpeedModifier(user, target); // Arcane
 
         // Orion-Start: Self-surgery penalty
         if (user == target && TryComp<SurgeryTargetComponent>(target, out var surgTarget))
@@ -1269,7 +1277,7 @@ public abstract partial class SharedSurgerySystem
 
         requirements.Add(surgery);
 
-        if (surgery.Comp.Requirement is { } requirementId &&
+        if (_roboticSurgery.GetRequirement(surgery.Comp, part) is { } requirementId && // Arcane-Edit
             GetSingleton(requirementId) is { } requirement &&
             GetNextStep(body, part, requirement, requirements, user) is { } requiredNext)
         {
@@ -1300,7 +1308,7 @@ public abstract partial class SharedSurgerySystem
             return true;
 
         // TODO RMC14 use index instead of the prototype id
-        if (surgery.Comp.Requirement is { } requirement)
+        if (_roboticSurgery.GetRequirement(surgery.Comp, part) is { } requirement) // Arcane-Edit
         {
             if (GetSingleton(requirement) is not { } requiredEnt ||
                 !TryComp(requiredEnt, out SurgeryComponent? requiredComp) ||

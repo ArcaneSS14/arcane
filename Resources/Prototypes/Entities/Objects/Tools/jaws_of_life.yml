@@ -60,6 +60,7 @@
     speed: 0.45
   - type: Hemostat # Shitmed
     speed: 0.7
+  - type: SurgeryCrowbar # Arcane
   - type: SurgeryTool # Shitmed
     startSound: /Audio/Items/change_jaws.ogg
     endSound: /Audio/Items/change_jaws.ogg

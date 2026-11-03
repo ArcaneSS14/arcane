@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: BasePartSurgery
+  id: SurgeryRoboticOpenShell
+  name: Open Shell
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepUnscrewShell
+    - SurgeryStepOpenHatch
+    - SurgeryStepPrepareElectronics
+  - type: SurgeryPartComponentCondition
+    inverse: false
+    components:
+    - type: RoboticBodyPart
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRoboticOpenEndoskeleton
+  name: Open Endoskeleton
+  components:
+  - type: Surgery
+    requirement: SurgeryRoboticOpenShell
+    steps:
+    - SurgeryStepUnwrenchEndoskeleton
+  - type: SurgeryPartCondition
+    parts: [ Chest ]
+  - type: SurgeryPartComponentCondition
+    inverse: false
+    components:
+    - type: RoboticBodyPart
+
+- type: entity
+  parent: BasePartSurgery
+  id: SurgeryRoboticCloseShell
+  name: Close Shell
+  components:
+  - type: Surgery
+    priority: 1
+    steps:
+    - SurgeryStepWrenchEndoskeleton
+    - SurgeryStepScrewShell
+  - type: SurgeryPartComponentCondition
+    inverse: false
+    components:
+    - type: RoboticBodyPart
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRoboticRemovePart
+  name: Disassemble Limb
+  components:
+  - type: Surgery
+    requirement: SurgeryRoboticOpenShell
+    steps:
+    - SurgeryStepDetachLimb
+    - SurgeryStepDisconnectLimb
+  - type: SurgeryHasBodyCondition
+  - type: SurgeryPartCondition
+    parts: [ Chest ]
+    inverse: true
+  - type: SurgeryPartComponentCondition
+    inverse: false
+    components:
+    - type: RoboticBodyPart

@@ -29,6 +29,10 @@
   - type: Strap
     position: Down
     rotation: -90
+  # Arcane-Start
+  - type: SurgerySurface
+    speedModifier: 1.1
+  # Arcane-End
   # Construction has to be before PlaceableSurface or you'll place things onto the entity instead of deconstructing it.
   - type: Construction
     graph: bed

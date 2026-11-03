@@ -2,6 +2,7 @@
 
 using System.Linq;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared._Arcane.Surgery;
 using Content.Shared._Orion.CorticalBorer;
 using Content.Shared._Orion.CorticalBorer.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
@@ -72,6 +73,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedCorticalBorerSystem _corticalBorer = default!; // Orion
     [Dependency] protected readonly StatusEffectsSystem Status = default!;
+    // Arcane-Start
+    [Dependency] private readonly SurgeryConditionsSystem _surgeryConditions = default!;
+    [Dependency] private readonly RoboticSurgerySystem _roboticSurgery = default!;
+    // Arcane-End
 
     private EntityQuery<BodyComponent> _bodyQuery;
     private EntityQuery<StackComponent> _stackQuery;
@@ -200,13 +205,27 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         }
 
         // Arcane-Edit-Start
-        var ev = new SurgeryStepEvent(args.User, ent, part, tool, surgery, step, false);
-        RaiseLocalEvent(step, ref ev);
+        var repeatable = HasComp<SurgeryRepeatableStepComponent>(step);
+        if (_surgeryConditions.RollStepFailure(args.User, part, args.FailureChance, args.Penalty))
+        {
+            // A botched repeatable step keeps going, so only a one-off step counts as a failed procedure.
+            args.Repeat = repeatable;
+            if (!repeatable)
+            {
+                var botchEv = new SurgeryStepFailedEvent(args.User, ent, args.Surgery, args.Step);
+                RaiseLocalEvent(args.User, ref botchEv);
+            }
+        }
+        else
+        {
+            var ev = new SurgeryStepEvent(args.User, ent, part, tool, surgery, step, false);
+            RaiseLocalEvent(step, ref ev);
 
-        var complete = ev.Complete || IsStepComplete(ent, part, args.Step, surgery);
-        ev.Complete = complete;
-        args.Repeat = HasComp<SurgeryRepeatableStepComponent>(step) && !complete;
-        RaiseLocalEvent(args.User, ref ev);
+            var complete = ev.Complete || IsStepComplete(ent, part, args.Step, surgery);
+            ev.Complete = complete;
+            args.Repeat = repeatable && !complete;
+            RaiseLocalEvent(args.User, ref ev);
+        }
         // Arcane-Edit-End
 
         // consume the tool if it's something like using LV cable as stitches

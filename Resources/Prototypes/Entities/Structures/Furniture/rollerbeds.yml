@@ -64,6 +64,10 @@
       rotation: -90
       buckleOffset: "0,0.15"
       buckleOnInteractHand: False
+    # Arcane-Start
+    - type: SurgerySurface
+      speedModifier: 1.1
+    # Arcane-End
     - type: Appearance
     - type: GenericVisualizer
       visuals:

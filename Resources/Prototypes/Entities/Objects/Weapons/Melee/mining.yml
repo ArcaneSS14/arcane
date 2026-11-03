@@ -77,6 +77,10 @@
     materialComposition:
       Steel: 125
       Plastic: 25
+  # Arcane-Start
+  - type: Drill
+    speed: 0.6
+  # Arcane-End
 
 - type: entity
   name: diamond tipped mining drill

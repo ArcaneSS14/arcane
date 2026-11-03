@@ -12,6 +12,10 @@
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   - type: PlaceableSurface
+  # Arcane-Start
+  - type: SurgerySurface
+    speedModifier: 1.2
+  # Arcane-End
   - type: Fixtures
     fixtures:
       fix1:

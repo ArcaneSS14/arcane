@@ -38,6 +38,7 @@ public sealed class SurgeryBui : BoundUserInterface
     private static readonly ResPath StatusRsiPath = new("/Textures/_Shitmed/Interface/Targeting/Status");
 
     private readonly SurgerySystem _surgery;
+    private readonly RoboticSurgerySystem _roboticSurgery;
     private readonly SurgeryToolSystem _tools;
     private readonly SharedBodySystem _body;
     private readonly SharedContainerSystem _container;
@@ -76,6 +77,7 @@ public sealed class SurgeryBui : BoundUserInterface
     public SurgeryBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         _surgery = EntMan.System<SurgerySystem>();
+        _roboticSurgery = EntMan.System<RoboticSurgerySystem>();
         _tools = EntMan.System<SurgeryToolSystem>();
         _targeting = _uiManager.GetUIController<TargetingUIController>();
         _body = EntMan.System<SharedBodySystem>();
@@ -771,9 +773,9 @@ public sealed class SurgeryBui : BoundUserInterface
         var required = new HashSet<EntProtoId>();
         foreach (var surgeryId in _choices[part])
         {
-            var requirementId = GetSurgery(surgeryId)?.Comp.Requirement;
+            var requirementId = GetRequirement(part, GetSurgery(surgeryId));
             while (requirementId is { } id && required.Add(id))
-                requirementId = GetSurgery(id)?.Comp.Requirement;
+                requirementId = GetRequirement(part, GetSurgery(id));
         }
 
         var entries = new List<(int Priority, SurgeryOperationEntry Entry)>();
@@ -842,10 +844,10 @@ public sealed class SurgeryBui : BoundUserInterface
             && _surgery.GetSingleton(stepId) is { } step)
             next = (step, _tools.GetToolName(step) ?? Name(step));
 
-        return new SurgeryOperationEntry(surgeryId, Name(surgery), status, GetSection(surgery, status), done, total, next);
+        return new SurgeryOperationEntry(surgeryId, Name(surgery), status, GetSection(part, surgery, status), done, total, next);
     }
 
-    private SurgeryOperationSection GetSection(Entity<SurgeryComponent> surgery, SurgeryOperationStatus status)
+    private SurgeryOperationSection GetSection(EntityUid part, Entity<SurgeryComponent> surgery, SurgeryOperationStatus status)
     {
         if (status == SurgeryOperationStatus.Started)
             return SurgeryOperationSection.Started;
@@ -855,8 +857,8 @@ public sealed class SurgeryBui : BoundUserInterface
 
         // Each required surgery opens the part one layer deeper, so a requirement with its own one, like the ribcage
         // after the incision, means the opened cavity.
-        var requirement = surgery.Comp.Requirement is { } id ? GetSurgery(id) : null;
-        return requirement?.Comp.Requirement != null ? SurgeryOperationSection.Cavity : SurgeryOperationSection.Incision;
+        var requirement = GetRequirement(part, surgery) is { } id ? GetSurgery(id) : null;
+        return GetRequirement(part, requirement) != null ? SurgeryOperationSection.Cavity : SurgeryOperationSection.Incision;
     }
 
     #endregion
@@ -930,13 +932,13 @@ public sealed class SurgeryBui : BoundUserInterface
         var chain = new List<(EntProtoId, Entity<SurgeryComponent>)> { (surgeryId, surgery) };
         var visited = new HashSet<EntProtoId> { surgeryId };
 
-        var requirementId = surgery.Comp.Requirement;
+        var requirementId = GetRequirement(part, surgery);
         while (requirementId is { } id && visited.Add(id) && GetSurgery(id) is { } requirement)
         {
             if (!_surgery.IsSurgerySkipped(part, requirement.AsNullable()))
                 chain.Insert(0, (id, requirement));
 
-            requirementId = requirement.Comp.Requirement;
+            requirementId = GetRequirement(part, requirement);
         }
 
         return chain;
@@ -1040,6 +1042,11 @@ public sealed class SurgeryBui : BoundUserInterface
             return null;
 
         return (surgery, comp);
+    }
+
+    private EntProtoId? GetRequirement(EntityUid part, Entity<SurgeryComponent>? surgery)
+    {
+        return surgery is { } found ? _roboticSurgery.GetRequirement(found.Comp, part) : null;
     }
 
     private string Name(EntityUid uid) => EntMan.GetComponent<MetaDataComponent>(uid).EntityName;

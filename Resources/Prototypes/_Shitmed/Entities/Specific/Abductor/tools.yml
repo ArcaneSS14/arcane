@@ -114,6 +114,7 @@
     speed: 0.45
   - type: Tending
     speed: 0.65
+  - type: SurgeryScrewdriver # Arcane
   - type: SurgeryTool
     startSound:
       collection: Screwdriver
@@ -237,6 +238,7 @@
       - Pulsing
   - type: NetworkConfigurator
     showLabel: false
+  - type: SurgeryMultitool # Arcane
   - type: LimitedCharges
   - type: AutoRecharge
     rechargeDuration: 20
