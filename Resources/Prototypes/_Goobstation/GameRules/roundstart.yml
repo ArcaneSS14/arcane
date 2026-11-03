@@ -445,7 +445,7 @@
   id: OopsAllThieves
   components:
   - type: GameRule
-    minPlayers: 10
+    minPlayers: 10 # Arcane-Edit
     chaosScore: 1200
   - type: AntagSelection
     agentName: thief-round-end-agent-name
