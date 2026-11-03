@@ -235,3 +235,25 @@
     sprite: _Arcane/Clothing/Shoes/bdsm_boots.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Shoes/bdsm_boots.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesRunnerLight
+  name: light runner boots
+  description: Sturdy light boots fitted with a reliable non-slip grip.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/Boots/runner_light_boots.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/Boots/runner_light_boots.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesRunnerDark
+  name: dark runner boots
+  description: Quiet dark boots crafted for silent footsteps.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/Boots/runner_dark_boots.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/Boots/runner_dark_boots.rsi

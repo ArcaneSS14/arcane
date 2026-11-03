@@ -422,6 +422,28 @@
   - type: Clothing
     sprite: _Arcane/Clothing/Head/headband_kitsune.rsi
 
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatRunnerLight
+  name: light runner cap
+  description: A lightweight cap designed to shield eyes from bright station lights.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/runner_light_cap.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/runner_light_cap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatRunnerDark
+  name: dark runner cap
+  description: A practical dark cap preferred for stealthy operations.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/runner_dark_cap.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/runner_dark_cap.rsi
+
 # Command
 
 - type: entity

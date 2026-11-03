@@ -1,5 +1,9 @@
 ent-ClothingHandsGlovesBitrunner = перчатки битраннера
     .desc = Тёмные перчатки с жёсткими накладками и яркими манжетами, защищающие руки от статического электричества и лишних вопросов.
+ent-ClothingHandsGlovesRunnerLight = светлые перчатки бегуна
+    .desc = Светлые перчатки с жесткими накладками и надежным хватом.
+ent-ClothingHandsGlovesRunnerDark = тёмные перчатки бегуна
+    .desc = Тёмные перчатки с жесткими накладками и яркими манжетами.
 # Sponsor
 
 ent-ClothingHandsQMLongGloves = длинные перчатки квартирмейстера
