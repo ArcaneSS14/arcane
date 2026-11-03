@@ -4091,3 +4091,11 @@ Entries:
   time: '2026-11-03T07:37:01.0000000+00:00'
   prNumber: 589
   url: https://github.com/ArcaneSS14/arcane/pull/589
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: ограничение респавна увеличено до 120 игрокв
+  id: 293
+  time: '2026-11-03T07:46:30.0000000+00:00'
+  prNumber: 588
+  url: https://github.com/ArcaneSS14/arcane/pull/588
