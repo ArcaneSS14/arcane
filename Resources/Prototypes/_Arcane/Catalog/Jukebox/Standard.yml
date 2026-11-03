@@ -100,9 +100,3 @@
   path:
     path: /Audio/_Arcane/Jukebox/TDshka/NP_Theme.ogg
 
-- type: jukebox
-  id: DajMiJeszczeJednaSzanse
-  name: Piernikowski - Daj Mi Jeszcze Jedna Szanse
-  path:
-    path: /Audio/_Arcane/Lobby/dajmne.ogg
-
