@@ -24,7 +24,7 @@ public sealed class WizdenContentFreeze
         var protoMan = server.ProtoMan;
 
         var recipesCount = protoMan.Count<FoodRecipePrototype>();
-        var recipesLimit = 234; // Goobstation lmao? Arcane WW?
+        var recipesLimit = 234; // Goobstation lmao? Arcane-Edit: 230 -> 234
 
         if (recipesCount > recipesLimit)
         {

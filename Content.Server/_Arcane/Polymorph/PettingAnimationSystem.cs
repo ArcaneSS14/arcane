@@ -4,17 +4,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Arcane.Polymorph;
 
-public sealed class PettingAnimationSystem : EntitySystem
+public sealed partial class PettingAnimationSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<PettingAnimationComponent, InteractHandEvent>(OnInteractHand);
-    }
-
+    [SubscribeLocalEvent]
     private void OnInteractHand(EntityUid uid, PettingAnimationComponent component, InteractHandEvent args)
     {
         _appearance.SetData(uid, AnimalVisuals.Petting, true);

@@ -6,18 +6,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Arcane.Polymorph;
 
-public sealed class TurtleHideSystem : EntitySystem
+public sealed partial class TurtleHideSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private ActionBlockerSystem _blocker = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<MobTurtleComponent, DamageChangedEvent>(OnDamageChanged);
-        SubscribeLocalEvent<MobTurtleComponent, UpdateCanMoveEvent>(OnUpdateCanMove);
-    }
-
+    [SubscribeLocalEvent]
     private void OnDamageChanged(EntityUid uid, MobTurtleComponent component, DamageChangedEvent args)
     {
         if (!args.DamageIncreased || args.DamageDelta == null || args.DamageDelta.GetTotal() <= 0)
@@ -39,6 +33,8 @@ public sealed class TurtleHideSystem : EntitySystem
             _blocker.UpdateCanMove(uid);
         });
     }
+
+    [SubscribeLocalEvent]
     private void OnUpdateCanMove(EntityUid uid, MobTurtleComponent component, UpdateCanMoveEvent args)
     {
         if (component.IsHidden)
