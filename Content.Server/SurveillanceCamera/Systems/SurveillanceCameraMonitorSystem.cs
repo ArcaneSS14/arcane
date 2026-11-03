@@ -228,7 +228,10 @@ public sealed class SurveillanceCameraMonitorSystem : EntitySystem
                     if (isMobile)
                     {
                         EnsureComp<HasMobileCamerasSurveillanceCameraMonitorComponent>(uid);
-                        if (component.KnownMobileCameras.TryAdd(address, (name, netEntity.Value)))
+                        bool isNewCamera = !component.KnownMobileCameras.ContainsKey(address);
+                        component.KnownMobileCameras[address] = (name, netEntity.Value);
+
+                        if (isNewCamera)
                         {
                             var cameraEntity = _entityManager.GetEntity(netEntity.Value.Item2.NetEntity);
                             foreach (var player in component.Viewers)
