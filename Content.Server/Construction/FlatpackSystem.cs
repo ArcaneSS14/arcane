@@ -2,6 +2,7 @@
 
 using Content.Server.Audio;
 using Content.Server.Power.EntitySystems;
+using Content.Shared._Orion.Construction.Events; // Arcane
 using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
 using Content.Shared.Containers.ItemSlots;
@@ -24,7 +25,29 @@ public sealed class FlatpackSystem : SharedFlatpackSystem
 
         SubscribeLocalEvent<FlatpackCreatorComponent, FlatpackCreatorStartPackBuiMessage>(OnStartPack);
         SubscribeLocalEvent<FlatpackCreatorComponent, PowerChangedEvent>(OnPowerChanged);
+        // Arcane-Start
+        SubscribeLocalEvent<FlatpackCreatorComponent, RefreshPartsEvent>(OnPartsRefresh);
+        SubscribeLocalEvent<FlatpackCreatorComponent, UpgradeExamineEvent>(OnUpgradeExamine);
+        // Arcane-End
     }
+
+    // Arcane-Start
+    private void OnPartsRefresh(Entity<FlatpackCreatorComponent> ent, ref RefreshPartsEvent args)
+    {
+        var laserTier = args.GetPartRating(ent.Comp.SpeedPart);
+        var binTier = args.GetPartRating(ent.Comp.MaterialPart);
+
+        ent.Comp.PackDurationMultiplier = RefreshPartsEvent.GetPartCooldownMultiplier(laserTier);
+        ent.Comp.MaterialUseMultiplier = Math.Clamp(1.1f - binTier * 0.1f, 0.5f, 1f);
+        Dirty(ent);
+    }
+
+    private void OnUpgradeExamine(Entity<FlatpackCreatorComponent> ent, ref UpgradeExamineEvent args)
+    {
+        args.AddPercentageUpgrade("machine-upgrade-process-speed", 1f / ent.Comp.PackDurationMultiplier);
+        args.AddPercentageUpgrade("lathe-component-upgrade-material-use", ent.Comp.MaterialUseMultiplier);
+    }
+    // Arcane-End
 
     private void OnStartPack(Entity<FlatpackCreatorComponent> ent, ref FlatpackCreatorStartPackBuiMessage args)
     {
@@ -43,7 +66,7 @@ public sealed class FlatpackSystem : SharedFlatpackSystem
 
         _itemSlots.SetLock(uid, comp.SlotId, true);
         comp.Packing = true;
-        comp.PackEndTime = _timing.CurTime + comp.PackDuration;
+        comp.PackEndTime = _timing.CurTime + comp.PackDuration * comp.PackDurationMultiplier; // Arcane-Edit
         Appearance.SetData(uid, FlatpackCreatorVisuals.Packing, true);
         _ambientSound.SetAmbience(uid, true);
         Dirty(uid, comp);

@@ -173,6 +173,11 @@ public sealed class SurgeryBui : BoundUserInterface
                 _choices[part.Value] = surgeries;
         }
 
+        // The server re-checks choices once a second, so the shown part is checked here to follow the patient at once.
+        // Only that part is checked, since all of them cost about a millisecond.
+        if (_part is { } selected && _choices.ContainsKey(selected))
+            _choices[selected] = _surgery.GetValidSurgeries(Owner, selected);
+
         foreach (var part in _choices.Keys)
             _entries[part] = BuildEntries(part);
 
@@ -696,10 +701,13 @@ public sealed class SurgeryBui : BoundUserInterface
         window.EmptyHintLabel.Visible = _part == null;
         window.EmptyLabel.Text = Loc.GetString(_part == null ? "surgery-ui-window-empty" : "surgery-ui-operations-empty");
 
-        // Rows keep their order as the operation progresses and are reused, so a refresh does not reset hover or scroll.
+        // Rows are reused while the layout holds, so a refresh does not reset hover or scroll.
         var layout = new HashCode();
         foreach (var entry in entries)
+        {
             layout.Add(entry.Id);
+            layout.Add(entry.Section);
+        }
 
         if (_operationsLayout != layout.ToHashCode())
         {
@@ -720,8 +728,22 @@ public sealed class SurgeryBui : BoundUserInterface
         window.Operations.DisposeAllChildren();
         _operationRows.Clear();
 
+        SurgeryOperationSection? section = null;
         foreach (var entry in entries)
         {
+            if (entry.Section != section)
+            {
+                if (section != null)
+                    window.Operations.AddChild(new PanelContainer { StyleClasses = { StyleClass.LowDivider } });
+
+                section = entry.Section;
+                window.Operations.AddChild(new Label
+                {
+                    Text = Loc.GetString($"surgery-ui-section-{entry.Section.ToString().ToLowerInvariant()}"),
+                    StyleClasses = { StyleClass.LabelSubText },
+                });
+            }
+
             var id = entry.Id;
             var row = new SurgeryOperationRow();
             row.OnHeaderPressed += () => ToggleSurgery(id);
@@ -767,6 +789,10 @@ public sealed class SurgeryBui : BoundUserInterface
 
         entries.Sort((a, b) =>
         {
+            var section = a.Entry.Section.CompareTo(b.Entry.Section);
+            if (section != 0)
+                return section;
+
             var priority = a.Priority.CompareTo(b.Priority);
             return priority != 0 ? priority : string.Compare(a.Entry.Name, b.Entry.Name, StringComparison.CurrentCulture);
         });
@@ -779,6 +805,7 @@ public sealed class SurgeryBui : BoundUserInterface
         var own = GetProgress(part, surgery);
         var (done, total) = (0, 0);
         var inOrder = true;
+        EntProtoId? nextStepId = null;
         foreach (var (_, chainSurgery) in BuildChain(part, surgery, surgeryId))
         {
             var progress = GetProgress(part, chainSurgery);
@@ -787,6 +814,7 @@ public sealed class SurgeryBui : BoundUserInterface
                 done += progress.Done;
 
             inOrder &= progress.Done >= progress.Total;
+            nextStepId ??= progress.Next;
         }
 
         // The surgery's own steps come last in its chain, so it is started once one of them counts.
@@ -808,7 +836,27 @@ public sealed class SurgeryBui : BoundUserInterface
         else
             status = SurgeryOperationStatus.Available;
 
-        return new SurgeryOperationEntry(surgeryId, Name(surgery), status, done, total);
+        (EntityUid, string)? next = null;
+        if (status != SurgeryOperationStatus.Completed
+            && nextStepId is { } stepId
+            && _surgery.GetSingleton(stepId) is { } step)
+            next = (step, _tools.GetToolName(step) ?? Name(step));
+
+        return new SurgeryOperationEntry(surgeryId, Name(surgery), status, GetSection(surgery, status), done, total, next);
+    }
+
+    private SurgeryOperationSection GetSection(Entity<SurgeryComponent> surgery, SurgeryOperationStatus status)
+    {
+        if (status == SurgeryOperationStatus.Started)
+            return SurgeryOperationSection.Started;
+
+        if (status == SurgeryOperationStatus.Closing)
+            return SurgeryOperationSection.Closing;
+
+        // Each required surgery opens the part one layer deeper, so a requirement with its own one, like the ribcage
+        // after the incision, means the opened cavity.
+        var requirement = surgery.Comp.Requirement is { } id ? GetSurgery(id) : null;
+        return requirement?.Comp.Requirement != null ? SurgeryOperationSection.Cavity : SurgeryOperationSection.Incision;
     }
 
     #endregion
@@ -899,7 +947,7 @@ public sealed class SurgeryBui : BoundUserInterface
         if (_progress.TryGetValue((part, surgery.Owner), out var cached))
             return cached;
 
-        var progress = new SurgeryProgress(0, 0);
+        var progress = new SurgeryProgress(0, 0, null);
         var inOrder = true;
         foreach (var stepId in surgery.Comp.Steps)
         {
@@ -912,6 +960,9 @@ public sealed class SurgeryBui : BoundUserInterface
             // A later step may already pass its check, like taking an item out of an empty cavity, but is not done yet.
             if (complete && (inOrder || _anyOrder))
                 progress.Done++;
+
+            if (!complete)
+                progress.Next ??= stepId;
 
             inOrder &= complete;
         }
@@ -993,5 +1044,5 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private string Name(EntityUid uid) => EntMan.GetComponent<MetaDataComponent>(uid).EntityName;
 
-    private record struct SurgeryProgress(int Done, int Total);
+    private record struct SurgeryProgress(int Done, int Total, EntProtoId? Next);
 }

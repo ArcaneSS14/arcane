@@ -1,0 +1,26 @@
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateServiceUSSPGear
+  name: ussp gear crate
+  description: Contains a full set of USSP militia clothing — uniforms, hats, bags, and accessories.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformUSSPSolemn
+          amount: 2
+        - id: ClothingUniformUSSPBlue
+          amount: 2
+        - id: ClothingUniformUSSPDarkBlue
+          amount: 2
+        - id: ClothingUniformUSSPInvestigator
+          amount: 2
+        - id: ClothingHeadHatUSSPBlueUshanka
+          amount: 2
+        - id: ClothingHeadHatUSSPPolicePilotka
+          amount: 2
+        - id: ClothingBackpackDuffelUSSP
+          amount: 2
+        - id: ClothingBeltUSSPWaistbag
+          amount: 2
