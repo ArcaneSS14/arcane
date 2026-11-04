@@ -32,6 +32,8 @@ public sealed class SurgeryConditionsSystem : EntitySystem
     private const float MaxDrunkSeconds = 100f;
     private const float AnesthesiaSpeedModifier = 1.25f;
     private const float AnalyzedSpeedModifier = 1.25f;
+    // tgstation's surgery times are for an operating table and take twice as long anywhere else.
+    private const float FloorSpeedModifier = 0.5f;
 
     private EntityQuery<BuckleComponent> _buckleQuery;
     private EntityQuery<OperatingTableComponent> _operatingTableQuery;
@@ -73,7 +75,7 @@ public sealed class SurgeryConditionsSystem : EntitySystem
     }
 
     /// <summary>
-    ///     tgstation's flat penalty for operating on yourself: it raises the failure chance without taking more time.
+    ///     An extra failure penalty for operating on yourself on top of the slowdown, without taking more time.
     /// </summary>
     public float GetPenalty(EntityUid user, EntityUid patient, EntityUid step, float idealDuration, float duration)
     {
@@ -125,12 +127,12 @@ public sealed class SurgeryConditionsSystem : EntitySystem
             if (_operatingTableQuery.HasComp(strap))
                 return 1f;
 
-            return _surfaceQuery.CompOrNull(strap)?.SpeedModifier ?? 1f;
+            return _surfaceQuery.CompOrNull(strap)?.SpeedModifier ?? FloorSpeedModifier;
         }
 
         var xform = Transform(patient);
         if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
-            return 1f;
+            return FloorSpeedModifier;
 
         var tile = _map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
         var anchored = _map.GetAnchoredEntitiesEnumerator(xform.GridUid.Value, grid, tile);
@@ -141,7 +143,7 @@ public sealed class SurgeryConditionsSystem : EntitySystem
                 best = MathF.Max(best ?? surface.SpeedModifier, surface.SpeedModifier);
         }
 
-        return best ?? 1f;
+        return best ?? FloorSpeedModifier;
     }
 
     /// <summary>
@@ -165,7 +167,10 @@ public sealed class SurgeryConditionsSystem : EntitySystem
 
     private float GetAnesthesiaModifier(EntityUid patient)
     {
-        return _status.HasEffectComp<ForcedSleepingStatusEffectComponent>(patient) ? AnesthesiaSpeedModifier : 1f;
+        return _status.HasEffectComp<ForcedSleepingStatusEffectComponent>(patient)
+            || _status.HasEffectComp<AnalgesiaStatusEffectComponent>(patient)
+            ? AnesthesiaSpeedModifier
+            : 1f;
     }
 
     private float GetAnalysisModifier(EntityUid patient)

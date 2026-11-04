@@ -12,7 +12,7 @@
     - type: SurgeryScrewdriver
     add:
     - type: IncisionOpen
-    duration: 2
+    duration: 2.4
   - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
@@ -47,7 +47,7 @@
     add:
     - type: BonesSawed
     - type: InternalBleedersClamped
-    duration: 2
+    duration: 2.4
   - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/multitool.rsi
@@ -63,7 +63,7 @@
     - type: SurgeryWrench
     add:
     - type: BonesOpen
-    duration: 2
+    duration: 2.4
   - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/wrench.rsi
@@ -79,7 +79,7 @@
     - type: SurgeryWrench
     remove:
     - type: BonesOpen
-    duration: 2
+    duration: 2.4
   - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/wrench.rsi
@@ -96,15 +96,30 @@
     remove:
     - type: SkinRetracted
     - type: BleedersClamped
-    - type: IncisionOpen
     - type: BonesSawed
     - type: BodyPartReattached
     - type: InternalBleedersClamped
-    duration: 2
+    duration: 2.4
   - type: SurgerySelfOperableStep
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepWeldShell
+  name: Weld the shell seams
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryWelder
+    remove:
+    - type: IncisionOpen
+    duration: 2.4
+  - type: SurgerySelfOperableStep
+  - type: Sprite
+    sprite: Objects/Tools/welder.rsi
+    state: icon
 
 - type: entity
   parent: SurgeryStepBase

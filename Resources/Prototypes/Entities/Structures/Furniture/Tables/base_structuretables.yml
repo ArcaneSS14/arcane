@@ -14,7 +14,7 @@
   - type: PlaceableSurface
   # Arcane-Start
   - type: SurgerySurface
-    speedModifier: 1.2
+    speedModifier: 0.8
   # Arcane-End
   - type: Fixtures
     fixtures:

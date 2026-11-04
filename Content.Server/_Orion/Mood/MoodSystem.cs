@@ -2,10 +2,12 @@ using System.Linq;
 using Content.Goobstation.Common.Medical;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Goobstation.Shared.Atmos.Events;
+using Content.Server._Arcane.CritThreshold;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Popups;
 using Content.Server.Roles;
+using Content.Shared._Arcane.CritThreshold;
 using Content.Shared._DV.Roles;
 using Content.Shared.Alert;
 using Content.Shared.Chat;
@@ -44,6 +46,7 @@ public sealed class MoodSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
+    [Dependency] private readonly CritThresholdModifierSystem _critThreshold = default!; // Arcane
 
     // Arcane-start
     private const float SanityUpdateInterval = 1f;
@@ -74,6 +77,7 @@ public sealed class MoodSystem : EntitySystem
         SubscribeLocalEvent<SlipEvent>(OnSlip);
         SubscribeLocalEvent<RoleAddedEvent>(OnRoleAdded);
         SubscribeLocalEvent<RoleRemovedEvent>(OnRoleRemoved);
+        SubscribeLocalEvent<MoodComponent, RefreshCritThresholdEvent>(OnRefreshCritThreshold); // Arcane
     }
 
     public override void Update(float frameTime)
@@ -772,30 +776,49 @@ public sealed class MoodSystem : EntitySystem
 
     private void SetCritThreshold(EntityUid uid, MoodComponent component, int modifier)
     {
-        if (!_config.GetCVar(CCVars.MoodModifiesThresholds)
-            || !TryComp<MobThresholdsComponent>(uid, out var mobThresholds)
-            || !TryCacheBaselineThresholds(uid, component, mobThresholds))
+        // Arcane-Edit-Start
+//        if (!_config.GetCVar(CCVars.MoodModifiesThresholds)
+//            || !TryComp<MobThresholdsComponent>(uid, out var mobThresholds)
+//            || !TryCacheBaselineThresholds(uid, component, mobThresholds))
+//            return;
+//
+//        var multiplier = modifier switch
+//        {
+//            1 => component.IncreaseCritThreshold,
+//            -1 => component.DecreaseCritThreshold,
+//            _ => 1f,
+//        };
+//
+//        var soft = component.SoftCritThresholdBeforeModify.Float() * multiplier;
+//        var hard = component.HardCritThresholdBeforeModify.Float() * multiplier;
+//        var dead = component.DeadThresholdBeforeModify.Float() * multiplier;
+//
+//        // Keep threshold ordering valid after scaling.
+//        hard = MathF.Max(hard, soft + 0.01f);
+//        dead = MathF.Max(dead, hard + 0.01f);
+//
+//        _mobThreshold.SetMobStateThreshold(uid, FixedPoint2.New(soft), MobState.SoftCritical, mobThresholds);
+//        _mobThreshold.SetMobStateThreshold(uid, FixedPoint2.New(hard), MobState.HardCritical, mobThresholds);
+//        _mobThreshold.SetMobStateThreshold(uid, FixedPoint2.New(dead), MobState.Dead, mobThresholds);
+        _critThreshold.RefreshCritThreshold(uid);
+        // Arcane-Edit-End
+    }
+
+    // Arcane-Start
+    private void OnRefreshCritThreshold(Entity<MoodComponent> ent, ref RefreshCritThresholdEvent args)
+    {
+        // A mood that is shutting down gives its thresholds back.
+        if (!_config.GetCVar(CCVars.MoodModifiesThresholds) || ent.Comp.LifeStage > ComponentLifeStage.Running)
             return;
 
-        var multiplier = modifier switch
+        args.Modifier *= GetMovementThreshold(ent.Comp.CurrentMoodThreshold) switch
         {
-            1 => component.IncreaseCritThreshold,
-            -1 => component.DecreaseCritThreshold,
+            1 => ent.Comp.IncreaseCritThreshold,
+            -1 => ent.Comp.DecreaseCritThreshold,
             _ => 1f,
         };
-
-        var soft = component.SoftCritThresholdBeforeModify.Float() * multiplier;
-        var hard = component.HardCritThresholdBeforeModify.Float() * multiplier;
-        var dead = component.DeadThresholdBeforeModify.Float() * multiplier;
-
-        // Keep threshold ordering valid after scaling.
-        hard = MathF.Max(hard, soft + 0.01f);
-        dead = MathF.Max(dead, hard + 0.01f);
-
-        _mobThreshold.SetMobStateThreshold(uid, FixedPoint2.New(soft), MobState.SoftCritical, mobThresholds);
-        _mobThreshold.SetMobStateThreshold(uid, FixedPoint2.New(hard), MobState.HardCritical, mobThresholds);
-        _mobThreshold.SetMobStateThreshold(uid, FixedPoint2.New(dead), MobState.Dead, mobThresholds);
     }
+    // Arcane-End
 
     private bool TryCacheBaselineThresholds(EntityUid uid, MoodComponent component, MobThresholdsComponent thresholds)
     {
@@ -817,14 +840,17 @@ public sealed class MoodSystem : EntitySystem
 
     private void ResetCritThresholds(EntityUid uid, MoodComponent component)
     {
-        if (!_config.GetCVar(CCVars.MoodModifiesThresholds)
-            || !TryComp<MobThresholdsComponent>(uid, out var thresholds)
-            || !TryCacheBaselineThresholds(uid, component, thresholds))
-            return;
-
-        _mobThreshold.SetMobStateThreshold(uid, component.SoftCritThresholdBeforeModify, MobState.SoftCritical, thresholds);
-        _mobThreshold.SetMobStateThreshold(uid, component.HardCritThresholdBeforeModify, MobState.HardCritical, thresholds);
-        _mobThreshold.SetMobStateThreshold(uid, component.DeadThresholdBeforeModify, MobState.Dead, thresholds);
+        // Arcane-Edit-Start
+//        if (!_config.GetCVar(CCVars.MoodModifiesThresholds)
+//            || !TryComp<MobThresholdsComponent>(uid, out var thresholds)
+//            || !TryCacheBaselineThresholds(uid, component, thresholds))
+//            return;
+//
+//        _mobThreshold.SetMobStateThreshold(uid, component.SoftCritThresholdBeforeModify, MobState.SoftCritical, thresholds);
+//        _mobThreshold.SetMobStateThreshold(uid, component.HardCritThresholdBeforeModify, MobState.HardCritical, thresholds);
+//        _mobThreshold.SetMobStateThreshold(uid, component.DeadThresholdBeforeModify, MobState.Dead, thresholds);
+        _critThreshold.RefreshCritThreshold(uid);
+        // Arcane-Edit-End
     }
 
     private static MoodThreshold GetMoodThreshold(MoodComponent component, float? moodLevel = null)

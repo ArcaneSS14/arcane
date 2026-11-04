@@ -9,7 +9,7 @@
   - type: StasisBed
   # Arcane-Start
   - type: SurgerySurface
-    speedModifier: 1.3
+    speedModifier: 0.87
   # Arcane-End
   - type: AntiRotOnBuckle
   - type: HealOnBuckle

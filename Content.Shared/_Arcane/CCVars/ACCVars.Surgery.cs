@@ -5,7 +5,7 @@ namespace Content.Shared._Arcane.CCVars;
 public sealed partial class ACCVars
 {
     /// <summary>
-    ///     How many times longer than a proper tool on the floor a surgery step may take before the extra time turns into failure chance.
+    ///     How many times longer than a proper tool on an operating table a surgery step may take before the extra time turns into failure chance.
     /// </summary>
     public static readonly CVarDef<float> SurgeryFailureThreshold =
         CVarDef.Create("surgery.failure_threshold", 2.5f, CVar.SERVER | CVar.REPLICATED);
@@ -20,5 +20,5 @@ public sealed partial class ACCVars
     ///     Added to the step's slowdown when a surgeon operates on themselves, only for the failure chance.
     /// </summary>
     public static readonly CVarDef<float> SelfSurgeryFailurePenalty =
-        CVarDef.Create("surgery.self_surgery_failure_penalty", 1.2f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("surgery.self_surgery_failure_penalty", 0f, CVar.SERVER | CVar.REPLICATED);
 }

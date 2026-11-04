@@ -13,6 +13,10 @@
   technologyPrerequisites:
   - MedicalEquipment
   # There should be surgery operations
+  # Arcane-Start
+  genericUnlocks:
+  - unlockDescription: research-technology-unlock-surgery-experimental-dissection
+  # Arcane-End
   position: 4,10
 
 - type: technology
@@ -32,6 +36,11 @@
   technologyPrerequisites:
   - MedicalEquipment
   # There should be surgery operations
+  # Arcane-Start
+  genericUnlocks:
+  - unlockDescription: research-technology-unlock-surgery-tend-wounds-brute-upgraded
+  - unlockDescription: research-technology-unlock-surgery-tend-wounds-burn-upgraded
+  # Arcane-End
   position: 4,11
 
 - type: technology
@@ -55,6 +64,12 @@
   discountExperimentCosts:
     AutopsyHuman: 5000
   # There should be surgery operations
+  # Arcane-Start
+  genericUnlocks:
+  - unlockDescription: research-technology-unlock-surgery-tend-wounds-brute-femto
+  - unlockDescription: research-technology-unlock-surgery-tend-wounds-burn-femto
+  - unlockDescription: research-technology-unlock-surgery-tend-wounds-combo
+  # Arcane-End
   position: 4,12
 
 - type: technology
@@ -78,6 +93,13 @@
   discountExperimentCosts:
     AutopsyNonhuman: 7500
   # There should be surgery operations
+  # Arcane-Start
+  genericUnlocks:
+  - unlockDescription: research-technology-unlock-surgery-tend-wounds-combo-upgraded
+  - unlockDescription: research-technology-unlock-surgery-vein-threading
+  - unlockDescription: research-technology-unlock-surgery-nerve-splicing
+  - unlockDescription: research-technology-unlock-surgery-nerve-grounding
+  # Arcane-End
   position: 4,13
 
 - type: technology
@@ -105,6 +127,10 @@
   - EnergyCautery
   - AdvancedRetractor
   - AutodocCircuitboard
+  # Arcane-Start
+  genericUnlocks:
+  - unlockDescription: research-technology-unlock-surgery-tend-wounds-combo-femto
+  # Arcane-End
   position: 4,14
 
 - type: technology

@@ -41,6 +41,7 @@
     steps:
     - SurgeryStepWrenchEndoskeleton
     - SurgeryStepScrewShell
+    - SurgeryStepWeldShell
   - type: SurgeryPartComponentCondition
     inverse: false
     components:

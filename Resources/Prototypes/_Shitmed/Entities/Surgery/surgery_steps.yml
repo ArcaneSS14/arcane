@@ -16,7 +16,7 @@
     - type: Scalpel
     add:
     - type: IncisionOpen
-    duration: 2
+    duration: 1.6 # Arcane-Edit: 2 > 1.6
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
@@ -41,7 +41,7 @@
     - type: Hemostat
     add:
     - type: BleedersClamped
-    duration: 4
+    duration: 2.4 # Arcane-Edit: 4 > 2.4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
@@ -79,7 +79,7 @@
     - type: Retractor
     add:
     - type: SkinRetracted
-    duration: 2
+    duration: 2.4 # Arcane-Edit: 2 > 2.4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/retractor.rsi
     state: retractor
@@ -117,7 +117,7 @@
 #    remove:
 #    - type: BonesSealed
     # Arcane-Edit-End
-    duration: 4
+    duration: 5.4 # Arcane-Edit: 4 > 5.4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/circular-saw.rsi
     state: circular-saw
@@ -332,7 +332,7 @@
     - type: IncisionOpen
     - type: BodyPartReattached
     - type: InternalBleedersClamped
-    duration: 2
+    duration: 2.4 # Arcane-Edit: 2 > 2.4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
@@ -486,14 +486,14 @@
   - type: SurgeryStep
     tool:
     - type: Tending
-    duration: 2 # Arcane-Edit: 1 > 2
+    duration: 2.5 # Arcane-Edit: 1 > 2.5
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryTendWoundsEffect
     damage:
       groups:
-        Brute: -30 # Arcane-Edit: -15 > -30
+        Brute: -5 # Arcane-Edit: -15 > -5
   - type: SurgeryRepeatableStep
   - type: SurgeryNoMoodStep # Arcane
 
@@ -505,7 +505,7 @@
   - type: SurgeryStep
     tool:
     - type: Tending
-    duration: 2 # Arcane-Edit: 1 > 2
+    duration: 2.5 # Arcane-Edit: 1 > 2.5
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
@@ -513,7 +513,7 @@
     mainGroup: Burn
     damage:
       groups:
-        Burn: -40 # Arcane-Edit: -20 > -40
+        Burn: -5 # Arcane-Edit: -20 > -5
   - type: SurgeryRepeatableStep
   - type: SurgeryNoMoodStep # Arcane
 

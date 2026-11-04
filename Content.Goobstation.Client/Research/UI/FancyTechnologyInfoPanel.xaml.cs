@@ -180,6 +180,15 @@ public sealed partial class FancyTechnologyInfoPanel : Control
             hasRecipeUnlocks = true; // Orion
         }
 
+        // Arcane-Start
+        foreach (var generic in proto.GenericUnlocks)
+        {
+            var label = new RichTextLabel { Margin = new Thickness(5) };
+            label.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("research-console-unlocks-list-entry-generic", ("text", Loc.GetString(generic.UnlockDescription)))));
+            UnlocksContainer.AddChild(label);
+        }
+        // Arcane-End
+
         // Orion-Start
         var hasGenericUnlocks = proto.GenericUnlocks.Count > 0;
         var hasVisibleUnlocks = hasRecipeUnlocks || hasGenericUnlocks;
