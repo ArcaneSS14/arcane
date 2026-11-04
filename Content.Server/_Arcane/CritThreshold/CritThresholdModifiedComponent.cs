@@ -11,4 +11,7 @@ public sealed partial class CritThresholdModifiedComponent : Component
 {
     [DataField]
     public Dictionary<MobState, FixedPoint2> Baseline = new();
+
+    [DataField]
+    public float Modifier = 1f;
 }

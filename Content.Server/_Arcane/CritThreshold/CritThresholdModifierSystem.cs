@@ -67,6 +67,15 @@ public sealed class CritThresholdModifierSystem : EntitySystem
             }
         }
 
+        // External setters write effective thresholds, so remove the previous scaling before caching their changes.
+        foreach (var state in ScaledStates)
+        {
+            if (modified.Baseline.TryGetValue(state, out var baseline)
+                && _mobThreshold.TryGetThresholdForState(ent, state, out var threshold, ent.Comp)
+                && threshold.Value != FixedPoint2.New(baseline.Float() * modified.Modifier))
+                modified.Baseline[state] = FixedPoint2.New(threshold.Value.Float() / modified.Modifier);
+        }
+
         // Raising goes from death down and lowering from crit up, so a mob never passes through death on the way.
         var states = ScaledStates.Where(modified.Baseline.ContainsKey).ToList();
         if (states.Count > 0
@@ -78,6 +87,8 @@ public sealed class CritThresholdModifierSystem : EntitySystem
         {
             _mobThreshold.SetMobStateThreshold(ent, FixedPoint2.New(modified.Baseline[state].Float() * modifier), state, ent.Comp);
         }
+
+        modified.Modifier = modifier;
 
         if (modifier == 1f)
             RemComp<CritThresholdModifiedComponent>(ent);

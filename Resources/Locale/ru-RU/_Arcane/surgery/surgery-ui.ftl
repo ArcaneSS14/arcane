@@ -34,6 +34,10 @@ surgery-ui-part-state-skin-retracted = Кожа отведена
 surgery-ui-part-state-clamped = Сосуды зажаты
 surgery-ui-part-state-bones-sawed = Кости распилены
 surgery-ui-part-state-bones-open = Кости раскрыты
+surgery-ui-part-state-organs-incised = Органы надрезаны
+surgery-ui-part-state-cavity-widened = Полость расширена
+surgery-ui-part-state-bones-drilled = Кость просверлена
+surgery-ui-part-state-bioware = Биоапгрейд: {$bioware}
 
 surgery-ui-severity-healthy = Без повреждений
 surgery-ui-severity-minor = Лёгкие повреждения

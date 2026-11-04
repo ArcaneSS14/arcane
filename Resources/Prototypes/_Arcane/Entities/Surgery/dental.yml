@@ -1,0 +1,80 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  abstract: true
+  parent: SurgeryBase
+  id: SurgeryDentalBase
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+  - type: SurgeryPartCondition
+    parts: [Head]
+  - type: SurgeryPartComponentCondition
+    inverse: true
+    components:
+    - type: RoboticBodyPart
+
+- type: entity
+  parent: SurgeryDentalBase
+  id: SurgeryDentalImplant
+  name: Dental Implant
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepClampBleeders
+    - SurgeryStepDrillTooth
+    - SurgeryStepInsertDentalPill
+
+- type: entity
+  parent: SurgeryDentalBase
+  id: SurgeryRemoveDentalImplant
+  name: Remove Dental Implant
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepClampBleeders
+    - SurgeryStepDrillTooth
+    - SurgeryStepRemoveDentalPill
+  - type: SurgeryDentalImplantCondition
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepDrillTooth
+  name: Drill a tooth
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Drill
+    add:
+    - type: BonesDrilled
+    duration: 3
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/drill.rsi
+    state: drill
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertDentalPill
+  name: Wedge a pill into the tooth
+  components:
+  - type: SurgeryStep
+    duration: 1.6
+  - type: SurgeryDentalImplantStep
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/pills.rsi
+    state: pill
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveDentalPill
+  name: Remove the dental implant
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Hemostat
+    duration: 3.2
+  - type: SurgeryDentalImplantStep
+    remove: true
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
+    state: hemostat

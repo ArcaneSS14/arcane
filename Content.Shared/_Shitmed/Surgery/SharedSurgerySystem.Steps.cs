@@ -295,7 +295,7 @@ public abstract partial class SharedSurgerySystem
         foreach (var type in group.DamageTypes)
         {
             if (adjustedDamage.DamageDict.TryGetValue(type, out var current))
-                adjustedDamage.DamageDict[type] = current - bonus;
+                adjustedDamage.DamageDict[type] = current - bonus / group.DamageTypes.Count; // Arcane-Edit
         }
 
         // Arcane-Start
@@ -308,7 +308,7 @@ public abstract partial class SharedSurgerySystem
             foreach (var type in _prototypes.Index(additionalGroup).DamageTypes)
             {
                 if (adjustedDamage.DamageDict.TryGetValue(type, out var current))
-                    adjustedDamage.DamageDict[type] = current - additionalBonus;
+                    adjustedDamage.DamageDict[type] = current - additionalBonus / _prototypes.Index(additionalGroup).DamageTypes.Count;
             }
         }
         // Arcane-End
@@ -1154,12 +1154,13 @@ public abstract partial class SharedSurgerySystem
         var speed = data?.Speed ?? 0.5f; // Arcane-Edit: 1 -> 0.5
         var toolUsed = data?.Used ?? false; // if no tool is being used you can't consume it
         var ev = new SurgeryDoAfterEvent(surgeryId, stepId, toolUsed);
-        var duration = GetSurgeryDuration(step, user, body, speed);
+        var duration = GetSurgeryDuration(step, user, body, part, speed); // Arcane-Edit
         // Arcane-Start
         // A step done by hand is already slow by design, so only a tool worse than the proper one counts against it.
         var idealDuration = (_stepQuery.CompOrNull(step)?.Duration ?? duration) / (data == null ? speed : 1f);
-        ev.Penalty = _surgeryConditions.GetPenalty(user, body, step, idealDuration, duration);
-        ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, idealDuration * ev.Penalty);
+        ev.Penalty = _surgeryConditions.GetPenalty(user, body, part, step, idealDuration, duration);
+        ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, idealDuration * ev.Penalty,
+            _surgeryConditions.IsSelfSurgeryPenalized(user, body, part, step));
         duration = _surgeryConditions.GetCappedDuration(idealDuration, duration);
         // Arcane-End
 
@@ -1262,7 +1263,7 @@ public abstract partial class SharedSurgerySystem
     }
     // Arcane-End
 
-    private float GetSurgeryDuration(EntityUid surgeryStep, EntityUid user, EntityUid target, float toolSpeed)
+    private float GetSurgeryDuration(EntityUid surgeryStep, EntityUid user, EntityUid target, EntityUid part, float toolSpeed) // Arcane-Edit
     {
         if (!_stepQuery.TryComp(surgeryStep, out var stepComp))
             return 2f; // Shouldnt really happen but just a failsafe.
@@ -1276,7 +1277,7 @@ public abstract partial class SharedSurgerySystem
         speed *= _surgeryConditions.GetSpeedModifier(user, target); // Arcane
 
         // Orion-Start: Self-surgery penalty
-        if (_surgeryConditions.IsSelfSurgeryPenalized(user, target, surgeryStep) && TryComp<SurgeryTargetComponent>(target, out var surgTarget)) // Arcane-Edit
+        if (_surgeryConditions.IsSelfSurgeryPenalized(user, target, part, surgeryStep) && TryComp<SurgeryTargetComponent>(target, out var surgTarget)) // Arcane-Edit
             speed *= surgTarget.SelfSurgerySpeedModifier;
         // Orion-End
 

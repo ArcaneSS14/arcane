@@ -8,6 +8,10 @@
   - type: Surgery
     steps:
     - SurgeryStepThreadVeins
+  - type: SurgeryBodyComponentCondition
+    inverse: true
+    components:
+    - type: BloodBioware
 
 - type: entity
   parent: SurgeryBiowareBase
@@ -17,6 +21,10 @@
   - type: Surgery
     steps:
     - SurgeryStepSpliceNerves
+  - type: SurgeryBodyComponentCondition
+    inverse: true
+    components:
+    - type: NerveBioware
 
 - type: entity
   parent: SurgeryBiowareBase
@@ -26,6 +34,10 @@
   - type: Surgery
     steps:
     - SurgeryStepGroundNerves
+  - type: SurgeryBodyComponentCondition
+    inverse: true
+    components:
+    - type: NerveBioware
 
 - type: entity
   parent: SurgeryStepBiowareBase
@@ -33,6 +45,7 @@
   name: Thread the veins
   components:
   - type: SurgeryBioware
+    name: surgery-bioware-threaded-veins
     category: Blood
     bleedMultiplier: 0.25
 
@@ -44,6 +57,7 @@
   - type: SurgeryStep
     duration: 15.5
   - type: SurgeryBioware
+    name: surgery-bioware-spliced-nerves
     category: Nerves
     stunMultiplier: 0.5
     staminaMultiplier: 0.8
@@ -56,5 +70,6 @@
   - type: SurgeryStep
     duration: 15.5
   - type: SurgeryBioware
+    name: surgery-bioware-grounded-nerves
     category: Nerves
     shockImmune: true

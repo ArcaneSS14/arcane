@@ -32,6 +32,7 @@ public sealed class SurgeryBui : BoundUserInterface
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
 
     private const float ChangeCheckInterval = 0.25f;
     private static readonly TimeSpan TargetChangeTimeout = TimeSpan.FromSeconds(1);
@@ -40,6 +41,7 @@ public sealed class SurgeryBui : BoundUserInterface
     private readonly SurgerySystem _surgery;
     private readonly RoboticSurgerySystem _roboticSurgery;
     private readonly SurgeryToolSystem _tools;
+    private readonly SurgeryResearchSystem _research;
     private readonly SharedBodySystem _body;
     private readonly SharedContainerSystem _container;
     private readonly SpriteSystem _sprite;
@@ -79,6 +81,7 @@ public sealed class SurgeryBui : BoundUserInterface
         _surgery = EntMan.System<SurgerySystem>();
         _roboticSurgery = EntMan.System<RoboticSurgerySystem>();
         _tools = EntMan.System<SurgeryToolSystem>();
+        _research = EntMan.System<SurgeryResearchSystem>();
         _targeting = _uiManager.GetUIController<TargetingUIController>();
         _body = EntMan.System<SharedBodySystem>();
         _container = EntMan.System<SharedContainerSystem>();
@@ -168,17 +171,23 @@ public sealed class SurgeryBui : BoundUserInterface
 
         // Parts are filtered on every check: the BUI state lags behind a predicted severing, and it arrives
         // before the state of a newly attached part, since the engine applies parents before children.
+        // The server's choices are shared by all surgeons, so research is left to each surgeon's own network.
+        var surgeon = _player.LocalEntity;
         _choices.Clear();
         foreach (var (netPart, surgeries) in _serverChoices)
         {
             if (EntMan.TryGetEntity(netPart, out var part) && IsAttachedPart(part.Value))
-                _choices[part.Value] = surgeries;
+            {
+                _choices[part.Value] = surgeon is { } local
+                    ? surgeries.FindAll(id => _surgery.GetSingleton(id) is not { } surgery || _research.IsResearchedFor(surgery, local))
+                    : surgeries;
+            }
         }
 
         // The server re-checks choices once a second, so the shown part is checked here to follow the patient at once.
         // Only that part is checked, since all of them cost about a millisecond.
         if (_part is { } selected && _choices.ContainsKey(selected))
-            _choices[selected] = _surgery.GetValidSurgeries(Owner, selected);
+            _choices[selected] = _surgery.GetValidSurgeries(Owner, selected, surgeon);
 
         foreach (var part in _choices.Keys)
             _entries[part] = BuildEntries(part);
@@ -587,8 +596,29 @@ public sealed class SurgeryBui : BoundUserInterface
             states.Add((Loc.GetString("surgery-ui-part-state-bones-sawed"), StyleClass.StatusWarning));
         if (EntMan.HasComponent<BonesOpenComponent>(part))
             states.Add((Loc.GetString("surgery-ui-part-state-bones-open"), StyleClass.StatusWarning));
+        if (EntMan.HasComponent<OrgansIncisedComponent>(part))
+            states.Add((Loc.GetString("surgery-ui-part-state-organs-incised"), StyleClass.StatusWarning));
+        if (EntMan.HasComponent<CavityWidenedComponent>(part))
+            states.Add((Loc.GetString("surgery-ui-part-state-cavity-widened"), StyleClass.StatusWarning));
+        if (EntMan.HasComponent<BonesDrilledComponent>(part))
+            states.Add((Loc.GetString("surgery-ui-part-state-bones-drilled"), StyleClass.StatusWarning));
+
+        if (EntMan.TryGetComponent(part, out BodyPartComponent? partComp) && partComp.PartType == BodyPartType.Chest)
+        {
+            AddBiowareState(states, EntMan.GetComponentOrNull<BloodBiowareComponent>(Owner)?.Source);
+            AddBiowareState(states, EntMan.GetComponentOrNull<NerveBiowareComponent>(Owner)?.Source);
+        }
 
         return states;
+    }
+
+    private void AddBiowareState(List<(string, string)> states, EntProtoId? source)
+    {
+        if (source is not { } step
+            || !_proto.Index(step).TryGetComponent<SurgeryBiowareComponent>(out var bioware, EntMan.ComponentFactory))
+            return;
+
+        states.Add((Loc.GetString("surgery-ui-part-state-bioware", ("bioware", Loc.GetString(bioware.Name))), StyleClass.StatusGood));
     }
 
     private bool IsBleeding(EntityUid part)

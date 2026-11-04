@@ -16,6 +16,12 @@ public sealed partial class SurgeryTendWoundsEffectComponent : Component
     // Arcane-Start
     [DataField, AutoNetworkedField]
     public List<ProtoId<DamageGroupPrototype>> AdditionalGroups = new();
+
+    [DataField, AutoNetworkedField]
+    public float FailureFlatMultiplier = 0.8f;
+
+    [DataField, AutoNetworkedField]
+    public float FailureSeverityMultiplier = 0.5f;
     // Arcane-End
 
     [DataField, AutoNetworkedField]

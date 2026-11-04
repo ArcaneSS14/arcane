@@ -33,4 +33,16 @@ public sealed partial class MiniRecipeCardControl : Control
             Main.TooltipSupplier = _ => tooltip;
         }
     }
+
+    // Arcane-Start
+    public MiniRecipeCardControl(TechnologyPrototype technology, string name, IPrototypeManager prototypeManager, SpriteSystem sprite)
+    {
+        RobustXamlLoader.Load(this);
+
+        var discipline = prototypeManager.Index(technology.Discipline);
+        Background.ModulateSelfOverride = discipline.Color;
+        NameLabel.SetMessage(name);
+        Showcase.Texture = sprite.Frame0(technology.Icon);
+    }
+    // Arcane-End
 }

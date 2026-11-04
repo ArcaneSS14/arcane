@@ -35,6 +35,10 @@ surgery-ui-part-state-skin-retracted = Skin retracted
 surgery-ui-part-state-clamped = Bleeders clamped
 surgery-ui-part-state-bones-sawed = Bones sawed
 surgery-ui-part-state-bones-open = Bones open
+surgery-ui-part-state-organs-incised = Organs incised
+surgery-ui-part-state-cavity-widened = Cavity widened
+surgery-ui-part-state-bones-drilled = Bone drilled
+surgery-ui-part-state-bioware = Bioware: {$bioware}
 
 surgery-ui-severity-healthy = Healthy
 surgery-ui-severity-minor = Minor damage

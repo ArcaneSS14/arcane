@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryBrainRevival
+  name: Brain Defibrillation
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepSawBones
+    - SurgeryStepShockBrain
+  - type: SurgeryPartCondition
+    parts: [Head]
+  - type: SurgeryPartComponentCondition
+    inverse: true
+    components:
+    - type: RoboticBodyPart
+  - type: SurgeryDeadCondition
+  - type: SurgeryOrganCondition
+    organ:
+    - type: Brain
+  - type: SurgeryBodyComponentCondition
+    inverse: true
+    components:
+    - type: Unrevivable
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepShockBrain
+  name: Shock the brain
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryDefibrillator
+    duration: 5
+  - type: SurgeryRevivalStep
+  - type: Sprite
+    sprite: Objects/Specific/Medical/defib.rsi
+    state: icon

@@ -332,6 +332,11 @@
     - type: IncisionOpen
     - type: BodyPartReattached
     - type: InternalBleedersClamped
+    # Arcane-Start
+    - type: OrgansIncised
+    - type: CavityWidened
+    - type: BonesDrilled
+    # Arcane-End
     duration: 2.4 # Arcane-Edit: 2 > 2.4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/cautery.rsi
@@ -617,6 +622,10 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryRemoveOrganStep
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
   - type: SurgeryStepPainInflicter
     amount: 90
     painDuration: 60
@@ -636,6 +645,10 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/manipulation.rsi
     state: insertion
   - type: SurgeryAddOrganStep
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
   - type: SurgeryStepPainInflicter
     amount: 90
     painDuration: 60
@@ -717,6 +730,10 @@
     - type: Cautery
     duration: 2
   - type: SurgeryAffixOrganStep
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery

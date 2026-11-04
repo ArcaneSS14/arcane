@@ -8,6 +8,9 @@ namespace Content.Shared._Arcane.Surgery;
 public sealed partial class SurgeryBiowareComponent : Component
 {
     [DataField(required: true)]
+    public LocId Name;
+
+    [DataField(required: true)]
     public BiowareCategory Category;
 
     [DataField]

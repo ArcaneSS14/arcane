@@ -183,9 +183,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
         // Arcane-Start
         foreach (var generic in proto.GenericUnlocks)
         {
-            var label = new RichTextLabel { Margin = new Thickness(5) };
-            label.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("research-console-unlocks-list-entry-generic", ("text", Loc.GetString(generic.UnlockDescription)))));
-            UnlocksContainer.AddChild(label);
+            UnlocksContainer.AddChild(new MiniRecipeCardControl(proto, Loc.GetString(generic.UnlockDescription), _proto, sprite));
         }
         // Arcane-End
 

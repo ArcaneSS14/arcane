@@ -21,4 +21,7 @@ public sealed partial class ACCVars
     /// </summary>
     public static readonly CVarDef<float> SelfSurgeryFailurePenalty =
         CVarDef.Create("surgery.self_surgery_failure_penalty", 0f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> SelfSurgeryFailureChance =
+        CVarDef.Create("surgery.self_surgery_failure_chance", 0.2f, CVar.SERVER | CVar.REPLICATED);
 }

@@ -42,6 +42,7 @@ public sealed class SurgeryConditionsSystem : EntitySystem
     private float _failureThreshold;
     private float _failureChancePerSecond;
     private float _selfSurgeryPenalty;
+    private float _selfSurgeryFailureChance;
 
     public override void Initialize()
     {
@@ -54,6 +55,7 @@ public sealed class SurgeryConditionsSystem : EntitySystem
         Subs.CVar(_config, ACCVars.SurgeryFailureThreshold, value => _failureThreshold = value, true);
         Subs.CVar(_config, ACCVars.SurgeryFailureChancePerSecond, value => _failureChancePerSecond = value, true);
         Subs.CVar(_config, ACCVars.SelfSurgeryFailurePenalty, value => _selfSurgeryPenalty = value, true);
+        Subs.CVar(_config, ACCVars.SelfSurgeryFailureChance, value => _selfSurgeryFailureChance = value, true);
 
         SubscribeLocalEvent<SurgeryDeadConditionComponent, SurgeryValidEvent>(OnDeadValid);
     }
@@ -69,18 +71,20 @@ public sealed class SurgeryConditionsSystem : EntitySystem
         return GetSurfaceModifier(patient) * GetDrunkModifier(user) * GetAnesthesiaModifier(patient) * GetAnalysisModifier(patient);
     }
 
-    public bool IsSelfSurgeryPenalized(EntityUid user, EntityUid patient, EntityUid step)
+    public bool IsSelfSurgeryPenalized(EntityUid user, EntityUid patient, EntityUid part, EntityUid step)
     {
-        return user == patient && !HasComp<SurgerySelfOperableStepComponent>(step);
+        return user == patient
+            && (!TryComp<SurgerySelfOperableStepComponent>(step, out var selfOperable)
+                || selfOperable.RoboticOnly && !HasComp<RoboticBodyPartComponent>(part));
     }
 
     /// <summary>
     ///     An extra failure penalty for operating on yourself on top of the slowdown, without taking more time.
     /// </summary>
-    public float GetPenalty(EntityUid user, EntityUid patient, EntityUid step, float idealDuration, float duration)
+    public float GetPenalty(EntityUid user, EntityUid patient, EntityUid part, EntityUid step, float idealDuration, float duration)
     {
         var penalty = duration / idealDuration;
-        return IsSelfSurgeryPenalized(user, patient, step) ? penalty + _selfSurgeryPenalty : penalty;
+        return IsSelfSurgeryPenalized(user, patient, part, step) ? penalty + _selfSurgeryPenalty : penalty;
     }
 
     public float GetCappedDuration(float idealDuration, float duration)
@@ -88,10 +92,13 @@ public sealed class SurgeryConditionsSystem : EntitySystem
         return MathF.Min(duration, idealDuration * _failureThreshold);
     }
 
-    public float GetFailureChance(float idealDuration, float duration)
+    public float GetFailureChance(float idealDuration, float duration, bool selfSurgery = false)
     {
         var extraSeconds = duration - idealDuration * _failureThreshold;
-        return Math.Clamp(extraSeconds * _failureChancePerSecond, 0f, 0.99f);
+        var chance = extraSeconds * _failureChancePerSecond;
+        if (selfSurgery)
+            chance = MathF.Max(chance, _selfSurgeryFailureChance);
+        return Math.Clamp(chance, 0f, 0.99f);
     }
 
     /// <summary>

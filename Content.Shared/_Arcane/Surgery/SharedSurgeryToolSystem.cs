@@ -15,6 +15,7 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Kitchen.Components;
@@ -88,7 +89,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         if (options.Count == 0)
         {
             // A held part would otherwise be fed to the patient, so a part meant for attaching never falls through.
-            if (TryComp(tool, out BodyPartComponent? held) && AcceptsHeldPart(ent, part, missing, held) is { } fits)
+            if (TryComp(tool, out BodyPartComponent? held) && AcceptsHeldPart(ent, part, user, missing, held) is { } fits)
             {
                 args.Handled = true;
                 if (_timing.IsFirstTimePredicted)
@@ -150,7 +151,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             && !IsToolOption(body, part.Value, user, tool, option))
             return;
 
-        if (option.Target is { } targetSurgery && !_surgery.GetValidSurgeries(body, part.Value).Contains(targetSurgery))
+        if (option.Target is { } targetSurgery && !_surgery.GetValidSurgeries(body, part.Value, user).Contains(targetSurgery))
             option = option with { Target = null };
 
         DoOption(body, part.Value, user, option);
@@ -170,7 +171,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             return;
         }
 
-        if (_surgery.GetValidSurgeries(ent, part.Value).Contains(surgery))
+        if (_surgery.GetValidSurgeries(ent, part.Value, args.Actor).Contains(surgery))
             SetPlan(args.Actor, part, surgery);
     }
 
@@ -185,7 +186,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         (BodyPartType Type, BodyPartSymmetry Symmetry)? missing = null)
     {
         var options = new List<(EntityUid? Owner, SurgeryToolOption Option)>();
-        foreach (var surgeryId in _surgery.GetValidSurgeries(body, part))
+        foreach (var surgeryId in _surgery.GetValidSurgeries(body, part, user))
         {
             if (_surgery.GetSingleton(surgeryId) is not { } surgery
                 || missing is { } slot && !AttachesPart(surgery, slot.Type, slot.Symmetry)
@@ -331,7 +332,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         if (!TryComp(user, out SurgeryPlanComponent? plan)
             || plan.Part != part
             || plan.Surgery is not { } planned
-            || !_surgery.GetValidSurgeries(body, part).Contains(planned)
+            || !_surgery.GetValidSurgeries(body, part, user).Contains(planned)
             || _surgery.GetSingleton(planned) is not { } surgery
             || missing is { } slot && !AttachesPart(surgery, slot.Type, slot.Symmetry)
             || GetNextStep(body, part, surgery, user, tool, fromPlan: true) is not { } next)
@@ -343,7 +344,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     // Checked against the owning surgery directly, since merged options may name any of the surgeries sharing the step.
     private bool IsToolOption(EntityUid body, EntityUid part, EntityUid user, EntityUid tool, SurgeryToolOption option)
     {
-        return _surgery.GetValidSurgeries(body, part).Contains(option.Surgery)
+        return _surgery.GetValidSurgeries(body, part, user).Contains(option.Surgery)
             && _surgery.GetSingleton(option.Surgery) is { } surgery
             && GetNextStep(body, part, surgery, user, tool) is { } next
             && next.OwnerId == option.Surgery
@@ -469,6 +470,9 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
                 && (removed.Symmetry == null || held.Symmetry == removed.Symmetry);
         }
 
+        if (TryComp(step, out SurgeryDentalImplantStepComponent? dental) && !dental.Remove)
+            return HasComp<PillComponent>(tool);
+
         return true;
     }
 
@@ -535,9 +539,11 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
 
     private bool IsCavityInsert(EntProtoId step)
     {
-        return _surgery.GetSingleton(step) is { } stepEnt
-            && TryComp(stepEnt, out SurgeryStepCavityEffectComponent? cavity)
-            && cavity.Action == "Insert";
+        if (_surgery.GetSingleton(step) is not { } stepEnt)
+            return false;
+
+        return TryComp(stepEnt, out SurgeryStepCavityEffectComponent? cavity) && cavity.Action == "Insert"
+            || TryComp(stepEnt, out SurgeryDentalImplantStepComponent? dental) && !dental.Remove;
     }
 
     private bool NeedsConfirmation(EntProtoId step)
@@ -562,11 +568,12 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     // Null when no attach surgery on the part could take a part, otherwise whether one takes the held one.
     private bool? AcceptsHeldPart(EntityUid body,
         EntityUid part,
+        EntityUid user,
         (BodyPartType Type, BodyPartSymmetry Symmetry)? missing,
         BodyPartComponent held)
     {
         bool? accepts = null;
-        foreach (var surgeryId in _surgery.GetValidSurgeries(body, part))
+        foreach (var surgeryId in _surgery.GetValidSurgeries(body, part, user))
         {
             if (_surgery.GetSingleton(surgeryId) is not { } surgery
                 || !TryComp(surgery, out SurgeryPartRemovedConditionComponent? removed)

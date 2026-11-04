@@ -6,7 +6,7 @@
   id: SurgeryBiowareBase
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryInciseOrgans
   - type: SurgeryPartCondition
     parts: [Chest]
   - type: SurgeryTechnologyCondition
@@ -20,5 +20,5 @@
   - type: SurgeryStep
     duration: 12.5
   - type: Sprite
-    sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
-    state: hemostat
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/manipulation.rsi
+    state: insertion

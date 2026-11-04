@@ -559,7 +559,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             return false;
         // Arcane-Edit-End
 
-        var ev = new SurgeryValidEvent(body, targetPart);
+        var ev = new SurgeryValidEvent(body, targetPart, User: user); // Arcane-Edit
         if (_timing.IsFirstTimePredicted)
         {
             RaiseLocalEvent(stepEnt, ref ev);
@@ -629,8 +629,9 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     // Arcane-Start
     /// <summary>
     /// Surgeries that can currently be performed on the part, in prototype order.
+    /// Without a <paramref name="user"/>, surgeries that depend on the surgeon are all included.
     /// </summary>
-    public List<EntProtoId> GetValidSurgeries(EntityUid body, EntityUid part)
+    public List<EntProtoId> GetValidSurgeries(EntityUid body, EntityUid part, EntityUid? user = null)
     {
         var valid = new List<EntProtoId>();
         foreach (var surgery in AllSurgeries)
@@ -638,7 +639,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             if (GetSingleton(surgery) is not { } surgeryEnt)
                 continue;
 
-            var ev = new SurgeryValidEvent(body, part);
+            var ev = new SurgeryValidEvent(body, part, User: user);
             // Arcane-Start
             // Most surgeries are for one part type, so the cheap part check skips the costlier organ checks on other parts.
             if (TryComp(surgeryEnt, out SurgeryPartConditionComponent? partCondition))

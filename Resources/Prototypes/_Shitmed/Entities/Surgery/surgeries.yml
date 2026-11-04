@@ -193,7 +193,7 @@
   - type: Surgery
     requirement: SurgeryOpenIncision
     steps:
-    - SurgeryStepSawBones
+#    - SurgeryStepSawBones # Arcane-Edit
     - SurgeryStepClampInternalBleeders
     - SurgeryStepMendBones
   - type: SurgeryBleedsPresentCondition
@@ -210,6 +210,7 @@
     requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepClampInternalBleeders
+    - SurgeryStepInciseOrgans # Arcane
     - SurgeryStepHealOrgans
   - type: SurgeryBleedsPresentCondition
     inverted: true
@@ -580,7 +581,7 @@
   name: Cavity Implant
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryWidenCavity # Arcane-Edit
     steps:
     - SurgeryStepInsertItem
     - SurgeryStepRemoveItem
@@ -601,6 +602,7 @@
     steps:
     - SurgeryStepSawBones
     - SurgeryStepClampInternalBleeders
+    - SurgeryStepInciseOrgans # Arcane
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
     parts: [ Head ]
@@ -650,7 +652,7 @@
   name: Remove Heart
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryInciseOrgans # Arcane-Edit
   - type: SurgeryPartCondition
     parts: [ Chest ]
   - type: SurgeryOrganSlotCondition
@@ -665,7 +667,7 @@
   name: Insert Heart
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryInciseOrgans # Arcane-Edit
     steps:
     # Arcane-Edit-Start: Removed
 #    - SurgeryStepSawBones
@@ -719,6 +721,10 @@
   id: SurgeryRemoveLiver
   name: Remove Liver
   components:
+  # Arcane-Start
+  - type: Surgery
+    requirement: SurgeryInciseOrgansAbdomen
+  # Arcane-End
   - type: SurgeryPartCondition
     parts: [ Groin ]
   - type: SurgeryOrganCondition
@@ -731,6 +737,7 @@
   name: Insert Liver
   components:
   - type: Surgery
+    requirement: SurgeryInciseOrgansAbdomen # Arcane
     steps:
     - SurgeryStepInsertLiver
     - SurgeryStepSealOrganWound
@@ -748,7 +755,7 @@
   name: Remove Lungs
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryInciseOrgans # Arcane-Edit
   - type: SurgeryPartCondition
     parts: [ Chest ]
   - type: SurgeryOrganCondition
@@ -761,7 +768,7 @@
   name: Insert Lungs
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryInciseOrgans # Arcane-Edit
     steps:
     # Arcane-Edit-Start: Removed
 #    - SurgeryStepSawBones
@@ -781,6 +788,10 @@
   id: SurgeryRemoveStomach
   name: Remove Stomach
   components:
+  # Arcane-Start
+  - type: Surgery
+    requirement: SurgeryInciseOrgansAbdomen
+  # Arcane-End
   - type: SurgeryPartCondition
     parts: [ Groin ]
   - type: SurgeryOrganCondition
@@ -793,6 +804,7 @@
   name: Insert Stomach
   components:
   - type: Surgery
+    requirement: SurgeryInciseOrgansAbdomen # Arcane
     steps:
     - SurgeryStepInsertOrgan
     - SurgeryStepSealOrganWound
@@ -1074,8 +1086,9 @@
   - type: Surgery
     requirement: SurgeryOpenIncision
     steps:
+    - SurgeryStepClampBleeders # Arcane
     - SurgeryStepLobotomize
-    - SurgeryStepCloseIncision
+#    - SurgeryStepCloseIncision # Arcane-Edit
   - type: SurgeryOrganCondition
     organ:
     - type: Brain
@@ -1099,7 +1112,7 @@
     requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepMendBrainTissue
-    - SurgeryStepCloseIncision
+#    - SurgeryStepCloseIncision # Arcane-Edit
   - type: SurgeryOrganCondition
     organ:
     - type: Brain

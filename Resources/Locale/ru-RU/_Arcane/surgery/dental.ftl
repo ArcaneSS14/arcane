@@ -1,0 +1,15 @@
+ent-SurgeryDentalImplant = Зубной имплант
+    .desc = Вставить таблетку в зуб. Позже пациент сможет раскусить её, стиснув зубы.
+ent-SurgeryRemoveDentalImplant = Удаление зубного импланта
+ent-SurgeryStepDrillTooth = Просверлить зуб
+ent-SurgeryStepInsertDentalPill = Вставить таблетку в зуб
+ent-SurgeryStepRemoveDentalPill = Извлечь зубной имплант
+surgery-popup-step-SurgeryStepDrillTooth = {$user} сверлит зуб. Пациент: {$target}.
+surgery-popup-step-SurgeryStepInsertDentalPill = {$user} что-то вставляет в зубы. Пациент: {$target}.
+surgery-popup-step-SurgeryStepRemoveDentalPill = {$user} что-то ищет во рту. Пациент: {$target}.
+ent-ActionActivateDentalPill = Раскусить зубной имплант
+    .desc = Стиснуть зубы и раскусить спрятанную в них таблетку.
+dental-implant-action-name = Раскусить: {$pill}
+dental-implant-grind-self = Вы стискиваете зубы.
+dental-implant-grind-others = {CAPITALIZE($user)} скрипит зубами!
+dental-implant-burst = Вы раскусываете спрятанную таблетку: {$pill}!

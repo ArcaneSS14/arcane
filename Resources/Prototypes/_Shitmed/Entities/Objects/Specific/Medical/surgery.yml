@@ -108,7 +108,7 @@
             volume: -5
   # Arcane-Start
   - type: SurgeryScrewdriver
-    speed: 2.25
+    speed: 0.5
   # Arcane-End
 
 - type: entity
@@ -176,9 +176,9 @@
             volume: -5
   # Arcane-Start
   - type: SurgeryWrench
-    speed: 2.25
+    speed: 0.5
   - type: SurgeryCrowbar
-    speed: 2.25
+    speed: 0.5
   # Arcane-End
 
 - type: entity
@@ -328,13 +328,13 @@
   - type: Stitches
   # Arcane-Start
   - type: SurgeryScrewdriver
-    speed: 0.75
+    speed: 0.5
   - type: SurgeryCrowbar
-    speed: 0.75
+    speed: 0.5
   - type: SurgeryWrench
-    speed: 0.75
+    speed: 0.5
   - type: SurgeryMultitool
-    speed: 0.75
+    speed: 0.5
   # Arcane-End
 
 - type: entity
