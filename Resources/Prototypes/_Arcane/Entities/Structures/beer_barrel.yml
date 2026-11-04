@@ -1,0 +1,26 @@
+- type: entity
+  parent: StorageTank
+  id: BeerBarrel
+  description: Let's drink!
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/beer_barrel.rsi
+    state: beer_barrel
+
+- type: entity
+  parent: BeerBarrel
+  id: BeerBarrelFull
+  description: Let's drink!
+  suffix: Full
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: Beer
+          Quantity: 1500
+  - type: Sprite
+    sprite: _Arcane/Structures/beer_barrel.rsi
+    state: beer_barrel
+
