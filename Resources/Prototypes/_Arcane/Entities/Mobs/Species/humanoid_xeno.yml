@@ -82,14 +82,6 @@
   - type: Thirst
     baseDecayRate: 0.15
   - type: FacehuggerImmune
-  - type: PlasmaVessel
-  - type: ActionGrant
-    actions:
-    - ActionTransferPlasma
-    - ActionSpawnWallResin
-    - ActionSpawnResinMembrane
-    - ActionSpawnResinNest
-    - ActionSpawnResinWeedNode
   - type: Icon
     sprite: _Arcane/Mobs/Species/HumanoidXeno/parts.rsi
     state: full
