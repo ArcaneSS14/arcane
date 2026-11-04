@@ -43,9 +43,10 @@ public sealed class EntityHealthBarOverlay : Overlay
     public ProtoId<HealthIconPrototype>? StatusIcon;
 
     // Arcane-Edit-Start: Vital damage walks the whole body of the mob, which is too much to do every frame.
-    private const int MaxCachedProgress = 1024;
+    private const int MaxCachedProgress = 4096;
     private static readonly TimeSpan ProgressUpdateInterval = TimeSpan.FromSeconds(0.25);
     private readonly Dictionary<EntityUid, (TimeSpan NextUpdate, (float ratio, bool inCrit)? Progress)> _cachedProgress = new();
+    private TimeSpan _nextCachePrune;
     // Arcane-Edit-End
 
     public EntityHealthBarOverlay(IEntityManager entManager, IPrototypeManager prototype, IGameTiming timing) // Arcane-Edit
@@ -181,13 +182,30 @@ public sealed class EntityHealthBarOverlay : Overlay
         if (_cachedProgress.TryGetValue(uid, out var cached) && now < cached.NextUpdate)
             return cached.Progress;
 
-        // Deleted mobs are never removed individually, so this also keeps the cache from growing forever.
-        if (_cachedProgress.Count >= MaxCachedProgress)
-            _cachedProgress.Clear();
-
         var progress = CalcProgress(uid, component, dmg, thresholds);
-        _cachedProgress[uid] = (now + ProgressUpdateInterval, progress);
+
+        if (_cachedProgress.Count >= MaxCachedProgress && now >= _nextCachePrune)
+            PruneCachedProgress(now);
+
+        if (_cachedProgress.Count < MaxCachedProgress || _cachedProgress.ContainsKey(uid))
+            _cachedProgress[uid] = (now + ProgressUpdateInterval, progress);
+
         return progress;
+    }
+
+    /// <summary>
+    /// Removes entries that have expired, which also covers deleted mobs.
+    /// An expired entry would be recalculated anyway, so this never causes extra <see cref="CalcProgress"/> calls.
+    /// </summary>
+    private void PruneCachedProgress(TimeSpan now)
+    {
+        _nextCachePrune = now + ProgressUpdateInterval;
+
+        foreach (var (uid, entry) in _cachedProgress)
+        {
+            if (now >= entry.NextUpdate)
+                _cachedProgress.Remove(uid);
+        }
     }
     // Arcane-End
 

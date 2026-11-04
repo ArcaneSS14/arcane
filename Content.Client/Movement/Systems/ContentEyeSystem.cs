@@ -58,17 +58,17 @@ public sealed class ContentEyeSystem : SharedContentEyeSystem
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
-        UpdateLocalEyeOffset(); // Orion-Edit
+        UpdateLocalEyeOffset(); // Arcane-Edit
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
         // TODO: Ideally we wouldn't want this to run in both FrameUpdate and Update, but we kind of have to since the visual update happens in FrameUpdate, but interaction update happens in Update. It's a workaround and a better solution should be found.
-        UpdateLocalEyeOffset(); // Orion-Edit
+        UpdateLocalEyeOffset(); // Arcane-Edit
     }
 
-    // Orion-Edit-Start
+    // Arcane-Edit-Start
     private void UpdateLocalEyeOffset()
     {
         if (_player.LocalEntity is not { } player ||
@@ -80,5 +80,5 @@ public sealed class ContentEyeSystem : SharedContentEyeSystem
 
         UpdateEyeOffset((player, eye));
     }
-    // Orion-Edit-End
+    // Arcane-Edit-End
 }
