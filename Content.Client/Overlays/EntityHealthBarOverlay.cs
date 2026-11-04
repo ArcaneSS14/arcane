@@ -182,14 +182,18 @@ public sealed class EntityHealthBarOverlay : Overlay
         if (_cachedProgress.TryGetValue(uid, out var cached) && now < cached.NextUpdate)
             return cached.Progress;
 
+        if (!_cachedProgress.ContainsKey(uid) && _cachedProgress.Count >= MaxCachedProgress)
+        {
+            if (now >= _nextCachePrune)
+                PruneCachedProgress(now);
+
+            // No free slot means this mob can't be rate limited, so its bar waits for the next prune.
+            if (_cachedProgress.Count >= MaxCachedProgress)
+                return null;
+        }
+
         var progress = CalcProgress(uid, component, dmg, thresholds);
-
-        if (_cachedProgress.Count >= MaxCachedProgress && now >= _nextCachePrune)
-            PruneCachedProgress(now);
-
-        if (_cachedProgress.Count < MaxCachedProgress || _cachedProgress.ContainsKey(uid))
-            _cachedProgress[uid] = (now + ProgressUpdateInterval, progress);
-
+        _cachedProgress[uid] = (now + ProgressUpdateInterval, progress);
         return progress;
     }
 
