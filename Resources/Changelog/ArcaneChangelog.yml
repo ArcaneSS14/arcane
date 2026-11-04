@@ -4164,3 +4164,20 @@ Entries:
   time: '2026-11-04T12:54:16.0000000+00:00'
   prNumber: 590
   url: https://github.com/ArcaneSS14/arcane/pull/590
+- author: libelyarnuy_pizdohvost
+  changes:
+    - type: Tweak
+      message: WonderBox полностью перестроен.
+  id: 299
+  time: '2026-11-04T13:09:32.0000000+00:00'
+  prNumber: 585
+  url: https://github.com/ArcaneSS14/arcane/pull/585
+  media:
+    - >-
+      https://github.com/user-attachments/assets/62c31993-c11b-403a-9746-33df978dbe6d
+    - >-
+      https://github.com/user-attachments/assets/0ccd828c-cc00-4394-b374-310178545568
+    - >-
+      https://github.com/user-attachments/assets/c63fe0fc-8852-4aa8-a04e-4055cb1a8857
+    - >-
+      https://github.com/user-attachments/assets/d3641e04-31d0-42b0-b1c2-e100566f5067
