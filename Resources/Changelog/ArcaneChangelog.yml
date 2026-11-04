@@ -4156,3 +4156,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/11f2dfb2-1027-4e80-939e-faa9763949dc
+- author: RabbitBat
+  changes:
+    - type: Remove
+      message: Убрано взламывание слот-машины через EMAG
+  id: 298
+  time: '2026-11-04T12:54:16.0000000+00:00'
+  prNumber: 590
+  url: https://github.com/ArcaneSS14/arcane/pull/590
