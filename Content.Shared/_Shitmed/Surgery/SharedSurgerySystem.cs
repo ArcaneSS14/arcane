@@ -605,6 +605,16 @@ public abstract partial class SharedSurgerySystem : EntitySystem
                 continue;
 
             var ev = new SurgeryValidEvent(body, part);
+            // Arcane-Start
+            // Most surgeries are for one part type, so the cheap part check skips the costlier organ checks on other parts.
+            if (TryComp(surgeryEnt, out SurgeryPartConditionComponent? partCondition))
+            {
+                OnPartConditionValid((surgeryEnt, partCondition), ref ev);
+                if (ev.Cancelled)
+                    continue;
+            }
+            // Arcane-End
+
             RaiseLocalEvent(surgeryEnt, ref ev);
 
             if (ev.Cancelled || IsSurgerySkipped(part, surgeryEnt))

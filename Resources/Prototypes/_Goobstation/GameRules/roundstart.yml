@@ -414,7 +414,6 @@
   components:
   - type: DevilRule
   - type: GameRule
-    minPlayers: 20 # Arcane-Edit
   - type: AntagObjectives
     objectives:
     - DevilContractObjective

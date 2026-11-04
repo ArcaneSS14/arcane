@@ -12,6 +12,7 @@
 - type: entity
   parent: ClothingSocksBase
   id: ClothingMimeStockings
+  categories: [ HideSpawnMenu ]
   name: mime's stockings
   description: Stripped stockings.
   components:

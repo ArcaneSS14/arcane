@@ -228,6 +228,16 @@
   - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
     state: ox_ears
 
+- type: marking
+  id: DemonHugeEars
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  underHair: true
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Arcane/Mobs/Species/Demon/markings.rsi
+    state: ears_huge
+
 # HeadTop
 
 - type: marking
