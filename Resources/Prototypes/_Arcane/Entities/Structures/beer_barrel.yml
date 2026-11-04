@@ -7,6 +7,9 @@
   - type: Sprite
     sprite: _Arcane/Structures/beer_barrel.rsi
     state: beer_barrel
+  - type: Transform
+    noRot: false
+  - type: Rotatable
 
 - type: entity
   parent: BeerBarrel
