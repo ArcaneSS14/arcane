@@ -76,6 +76,13 @@
   category: Unusual
   gridPath: /Maps/_Arcane/InfinityDorms/beach.yml
 
+- type: infinityDorm
+  id: Sport
+  title: Спортивный клуб
+  author: ChangelingRUES
+  description: Знаменитое заведение имени одной знаменитой зелёной ящерицы с буквы "Ч".
+  category: Unusual
+  gridPath: /Maps/_Arcane/InfinityDorms/sport.yml
 # endregion НЕОБЫЧНЫЕ
 
 # region ЭКЗОТИЧЕСКИЕ
