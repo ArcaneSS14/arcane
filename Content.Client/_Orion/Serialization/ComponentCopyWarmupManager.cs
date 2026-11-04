@@ -69,7 +69,7 @@ public sealed class ComponentCopyWarmupManager
                 try
                 {
                     var target = _factory.GetComponent(name);
-                    _serialization.CopyTo(entry.Component, ref target, notNullableOverride: true);
+                    _serialization.CopyTo(entry.Component, ref target, skipHook: true, notNullableOverride: true);
                     copied += 1;
                 }
                 catch (Exception e)
