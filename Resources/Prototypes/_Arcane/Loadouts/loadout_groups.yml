@@ -335,6 +335,7 @@
 - type: loadoutGroup
   id: TechnicalAssistantShoes
   name: loadout-group-technical-assistant-shoes
+  minLimit: 0
   loadouts:
   - RunnerLightBoots
   - RunnerDarkBoots

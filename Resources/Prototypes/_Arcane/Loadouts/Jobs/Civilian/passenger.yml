@@ -29,16 +29,6 @@
     jumpsuit: ClothingUniformRunnerDark
 
 - type: loadout
-  id: RunnerLightGloves
-  equipment:
-    gloves: ClothingHandsGlovesRunnerLight
-
-- type: loadout
-  id: RunnerDarkGloves
-  equipment:
-    gloves: ClothingHandsGlovesRunnerDark
-
-- type: loadout
   id: RunnerLightBoots
   equipment:
     shoes: ClothingShoesRunnerLight
