@@ -1,7 +1,7 @@
 ent-ClothingShoesBeer = пивные тапочки
     .desc = Пивные тапочки.
 ent-ClothingShoesRunnerLight = светлые ботинки бегуна
-    .desc = Крепкие светлые ботинки с надежной нескользящей подошвой.
+    .desc = Крепкие светлые ботинки.
 ent-ClothingShoesRunnerDark = тёмные ботинки бегуна
     .desc = Бесшумные тёмные ботинки для незаметной ходьбы.
 # Sponsor

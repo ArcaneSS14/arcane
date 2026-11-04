@@ -240,7 +240,7 @@
   parent: ClothingShoesBase
   id: ClothingShoesRunnerLight
   name: light runner boots
-  description: Sturdy light boots fitted with a reliable non-slip grip.
+  description: Sturdy light boots.
   components:
   - type: Sprite
     sprite: _Arcane/Clothing/Shoes/Boots/runner_light_boots.rsi

@@ -36,6 +36,19 @@
     sprite: _Arcane/Clothing/Hands/Gloves/runner_light_gloves.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Hands/Gloves/runner_light_gloves.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesRunnerDark
+  name: dark runner gloves
+  description: Dark gloves featuring rigid knuckle padding and bright cuffs.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Hands/Gloves/runner_dark_gloves.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Hands/Gloves/runner_dark_gloves.rsi
+  - type: Insulated
 
 # Sponsor
 
@@ -74,14 +87,3 @@
   - type: Clothing
     sprite: _Arcane/Clothing/Hands/Gloves/bitrunner_gloves.rsi
   - type: Insulated
-
-- type: entity
-  parent: ClothingHandsBase
-  id: ClothingHandsGlovesRunnerDark
-  name: dark runner gloves
-  description: Dark gloves featuring rigid knuckle padding and bright cuffs.
-  components:
-  - type: Sprite
-    sprite: _Arcane/Clothing/Hands/Gloves/runner_dark_gloves.rsi
-  - type: Clothing
-    sprite: _Arcane/Clothing/Hands/Gloves/runner_dark_gloves.rsi

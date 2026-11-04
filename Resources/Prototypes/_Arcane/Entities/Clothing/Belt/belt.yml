@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingBeltBase
+  parent: ClothingBeltUtility
   id: ClothingBeltRunnerLight
   name: light runner belt
   description: A durable light belt equipped with convenient attachment loops for gear.
@@ -10,7 +10,7 @@
     sprite: _Arcane/Clothing/Belt/runner_light_belt.rsi
 
 - type: entity
-  parent: ClothingBeltBase
+  parent: ClothingBeltUtility
   id: ClothingBeltRunnerDark
   name: dark runner belt
   description: A durable dark belt equipped with loops for essential tools.
