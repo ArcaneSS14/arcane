@@ -1,6 +1,6 @@
 using Content.Shared.DoAfter;
-using Content.Shared.Emag.Components;
-using Content.Shared.Emag.Systems;
+// using Content.Shared.Emag.Components;
+// using Content.Shared.Emag.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
@@ -28,21 +28,21 @@ public sealed partial class ClawMachineSystem : EntitySystem
 
         SubscribeLocalEvent<ClawMachineComponent, ActivateInWorldEvent>(OnInteractHandEvent);
         SubscribeLocalEvent<ClawMachineComponent, ClawGameDoAfterEvent>(OnSlotMachineDoAfter);
-        SubscribeLocalEvent<ClawMachineComponent, GotEmaggedEvent>(OnEmagged);
+        // SubscribeLocalEvent<ClawMachineComponent, GotEmaggedEvent>(OnEmagged);
     }
 
-    private void OnEmagged(Entity<ClawMachineComponent> ent, ref GotEmaggedEvent args)
-    {
-        if (HasComp<EmaggedComponent>(ent.Owner))
-            return;
-
-        EnsureComp<EmaggedComponent>(ent.Owner);
-
-        args.Handled = true;
-
-        ent.Comp.Prizes = ent.Comp.EvilPrizes; // My name is nhoj nhoj and I am EVIL
-        Dirty(ent);
-    }
+    // private void OnEmagged(Entity<ClawMachineComponent> ent, ref GotEmaggedEvent args)
+    // {
+    //     if (HasComp<EmaggedComponent>(ent.Owner))
+    //         return;
+    //
+    //     EnsureComp<EmaggedComponent>(ent.Owner);
+    //
+    //     args.Handled = true;
+    //
+    //     ent.Comp.Prizes = ent.Comp.EvilPrizes; // My name is nhoj nhoj and I am EVIL
+    //     Dirty(ent);
+    // }
     private void OnInteractHandEvent(Entity<ClawMachineComponent> ent, ref ActivateInWorldEvent args)
     {
         if (ent.Comp.IsSpinning || !_power.IsPowered(ent.Owner))

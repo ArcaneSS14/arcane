@@ -23,8 +23,8 @@ public sealed partial class ClawMachineComponent : Component
     [DataField(required: true), AutoNetworkedField]
     public List<ProtoId<PrizePrototype>> Prizes;
 
-    [DataField]
-    public List<ProtoId<PrizePrototype>> EvilPrizes;
+    // [DataField]
+    // public List<ProtoId<PrizePrototype>> EvilPrizes;
 }
 
 [Serializable, NetSerializable]
