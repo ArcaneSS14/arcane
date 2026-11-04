@@ -16,6 +16,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 using static Robust.Shared.Maths.Color;
 
 namespace Content.Client.Overlays;
@@ -27,6 +28,7 @@ public sealed class EntityHealthBarOverlay : Overlay
 {
     private readonly IEntityManager _entManager;
     private readonly IPrototypeManager _prototype;
+    private readonly IGameTiming _timing; // Arcane
 
     private readonly SharedTransformSystem _transform;
     private readonly MobStateSystem _mobStateSystem;
@@ -40,10 +42,17 @@ public sealed class EntityHealthBarOverlay : Overlay
     public HashSet<string> DamageContainers = new();
     public ProtoId<HealthIconPrototype>? StatusIcon;
 
-    public EntityHealthBarOverlay(IEntityManager entManager, IPrototypeManager prototype)
+    // Arcane-Edit-Start: Vital damage walks the whole body of the mob, which is too much to do every frame.
+    private const int MaxCachedProgress = 1024;
+    private static readonly TimeSpan ProgressUpdateInterval = TimeSpan.FromSeconds(0.25);
+    private readonly Dictionary<EntityUid, (TimeSpan NextUpdate, (float ratio, bool inCrit)? Progress)> _cachedProgress = new();
+    // Arcane-Edit-End
+
+    public EntityHealthBarOverlay(IEntityManager entManager, IPrototypeManager prototype, IGameTiming timing) // Arcane-Edit
     {
         _entManager = entManager;
         _prototype = prototype;
+        _timing = timing; // Arcane
         _transform = _entManager.System<SharedTransformSystem>();
         _mobStateSystem = _entManager.System<MobStateSystem>();
         _mobThresholdSystem = _entManager.System<MobThresholdSystem>();
@@ -63,32 +72,30 @@ public sealed class EntityHealthBarOverlay : Overlay
         var rotationMatrix = Matrix3Helpers.CreateRotation(-rotation);
         _prototype.Resolve(StatusIcon, out var statusIcon);
 
-        var query = _entManager.AllEntityQueryEnumerator<DamageableComponent, SpriteComponent>(); // Arcane-edit: Mech HealthBar
-        while (query.MoveNext(out var uid,
-            /* // Arcane-Edit-Start
-            out var mobThresholdsComponent,
-            out var mobStateComponent,
-            */ // Arcane-Edit-End
-            out var damageableComponent,
-            out var spriteComponent))
+        // Arcane-Edit-Start: Damageable alone matches every wall and item the client has ever seen, so the cost of
+        // this overlay grew throughout the round. Only mobs and mechs can have a health bar.
+        var mapId = args.MapId;
+        var worldAabb = args.WorldAABB;
+
+        void DrawBar(EntityUid uid, DamageableComponent damageableComponent, SpriteComponent spriteComponent)
         {
             if (statusIcon != null && !_statusIconSystem.IsVisible((uid, _entManager.GetComponent<MetaDataComponent>(uid)), statusIcon))
-                continue;
+                return;
 
             // We want the stealth user to still be able to see his health bar himself
             if (!xformQuery.TryGetComponent(uid, out var xform) ||
-                xform.MapID != args.MapId)
-                continue;
+                xform.MapID != mapId)
+                return;
 
             if (damageableComponent.DamageContainerID == null || !DamageContainers.Contains(damageableComponent.DamageContainerID))
-                continue;
+                return;
 
             // we use the status icon component bounds if specified otherwise use sprite
             var bounds = _entManager.GetComponentOrNull<StatusIconComponent>(uid)?.Bounds ?? _spriteSystem.GetLocalBounds((uid, spriteComponent));
             var worldPos = _transform.GetWorldPosition(xform, xformQuery);
 
-            if (!bounds.Translated(worldPos).Intersects(args.WorldAABB))
-                continue;
+            if (!bounds.Translated(worldPos).Intersects(worldAabb))
+                return;
 
             // we are all progressing towards death every day
             // Arcane-Edit-Start
@@ -96,7 +103,7 @@ public sealed class EntityHealthBarOverlay : Overlay
             if (_entManager.TryGetComponent<MobStateComponent>(uid, out var mobState) &&
                 _entManager.TryGetComponent<MobThresholdsComponent>(uid, out var mobThresholds))
             {
-                progress = CalcProgress(uid, mobState, damageableComponent, mobThresholds);
+                progress = GetCachedProgress(uid, mobState, damageableComponent, mobThresholds); // Arcane-Edit
             }
             else if (_entManager.TryGetComponent<MechComponent>(uid, out var mech) && mech.MaxIntegrity > 0)
             {
@@ -104,12 +111,12 @@ public sealed class EntityHealthBarOverlay : Overlay
             }
             else
             {
-                continue;
+                return;
             }
 
             if (progress is not { } healthProgress)
             // Arcane-Edit-End
-                continue;
+                return;
 
             var worldPosition = _transform.GetWorldPosition(xform);
             var worldMatrix = Matrix3Helpers.CreateTranslation(worldPosition);
@@ -144,8 +151,45 @@ public sealed class EntityHealthBarOverlay : Overlay
             handle.DrawRect(pixelDarken, Black.WithAlpha(128));
         }
 
+        // Arcane-Start
+        var mobs = _entManager.AllEntityQueryEnumerator<MobThresholdsComponent, MobStateComponent, DamageableComponent, SpriteComponent>();
+        while (mobs.MoveNext(out var mobUid, out _, out _, out var mobDamageable, out var mobSprite))
+        {
+            DrawBar(mobUid, mobDamageable, mobSprite);
+        }
+
+        var mechs = _entManager.AllEntityQueryEnumerator<MechComponent, DamageableComponent, SpriteComponent>();
+        while (mechs.MoveNext(out var mechUid, out _, out var mechDamageable, out var mechSprite))
+        {
+            // Mobs were already drawn by the query above.
+            if (!_entManager.HasComponent<MobThresholdsComponent>(mechUid) || !_entManager.HasComponent<MobStateComponent>(mechUid))
+                DrawBar(mechUid, mechDamageable, mechSprite);
+        }
+        // Arcane-End
+
         handle.SetTransform(Matrix3x2.Identity);
     }
+
+    // Arcane-Start
+    private (float ratio, bool inCrit)? GetCachedProgress(
+        EntityUid uid,
+        MobStateComponent component,
+        DamageableComponent dmg,
+        MobThresholdsComponent thresholds)
+    {
+        var now = _timing.RealTime;
+        if (_cachedProgress.TryGetValue(uid, out var cached) && now < cached.NextUpdate)
+            return cached.Progress;
+
+        // Deleted mobs are never removed individually, so this also keeps the cache from growing forever.
+        if (_cachedProgress.Count >= MaxCachedProgress)
+            _cachedProgress.Clear();
+
+        var progress = CalcProgress(uid, component, dmg, thresholds);
+        _cachedProgress[uid] = (now + ProgressUpdateInterval, progress);
+        return progress;
+    }
+    // Arcane-End
 
     /// <summary>
     /// Returns a ratio between 0 and 1, and whether the entity is in crit.
