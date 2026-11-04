@@ -370,6 +370,6 @@
     prizes:
     - ClawLose
     - ClawGame
-    evilPrizes:
-    - ClawGameEvil
+    # evilPrizes:
+    # - ClawGameEvil
   - type: DoAfter

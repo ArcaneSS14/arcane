@@ -11,7 +11,7 @@ public sealed partial class SlotMachineComponent : Component
     [DataField, AutoNetworkedField]
     public int SpinCost = 250;
 
-    public EntProtoId? EmagSpawnEntity;
+    // public EntProtoId? EmagSpawnEntity;
 
     [DataField(required: true)]
     public List<ProtoId<PrizePrototype>> Prizes;
