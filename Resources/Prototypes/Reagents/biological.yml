@@ -35,7 +35,7 @@
         moodPrototype: DrankBlood
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Bloodsucker ]
+          type: [ Bloodsucker, Animal, HumanoidXeno, Vox, Yowie ]
           inverted: true
         - !type:ReagentCondition
           reagent: Blood
