@@ -4181,3 +4181,11 @@ Entries:
       https://github.com/user-attachments/assets/c63fe0fc-8852-4aa8-a04e-4055cb1a8857
     - >-
       https://github.com/user-attachments/assets/d3641e04-31d0-42b0-b1c2-e100566f5067
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Снаряжение на базе синдиката было сильно урезано.
+  id: 300
+  time: '2026-11-05T03:23:48.0000000+00:00'
+  prNumber: 597
+  url: https://github.com/ArcaneSS14/arcane/pull/597
