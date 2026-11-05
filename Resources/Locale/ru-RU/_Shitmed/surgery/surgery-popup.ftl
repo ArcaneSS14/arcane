@@ -95,7 +95,7 @@ surgery-popup-step-SurgeryStepInsertEggSack = { $user } вставляет яй�
 surgery-popup-step-SurgeryStepXenoTakeSample = { $user } аккуратно удаляет кусочек { $part } { $target }.
 surgery-popup-step-SurgeryStepGraftXenoSample = { $user } прививает ксеноткань к { $part } { $target }!
 # Arcane-Start
-surgery-popup-step-SurgeryStepExtractForeignBody = { $user } извлекает что-то из { $part } у { $target }!
-surgery-popup-step-SurgeryStepRepairBrain = { $user } восстанавливает мозг в { $part } у { $target }.
+surgery-popup-step-SurgeryStepExtractForeignBody = { $user } извлекает инородное тело. Пациент: { $target }. Часть тела: { $part }.
+surgery-popup-step-SurgeryStepRepairBrain = { $user } восстанавливает мозг. Пациент: { $target }. Часть тела: { $part }.
 surgery-popup-step-SurgeryStepXenoOpenIncision = { surgery-popup-step-SurgeryStepOpenIncisionScalpel }
 # Arcane-End
