@@ -48,6 +48,10 @@
       - CableCoil
       - RawMaterial
       - PartBase
+      # Arcane-Start
+      components:
+      - Circuitboard
+      # Arcane-End
   - type: Dumpable
   - type: ItemToggle
     soundActivate:

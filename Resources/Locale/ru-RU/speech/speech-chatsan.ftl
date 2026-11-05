@@ -16,12 +16,6 @@ chatsan-word-4-2 = бб
 chatsan-word-4-3 = g[jf]+rf+
 chatsan-replacement-4 = пока
 
-chatsan-word-5 = бр+о+
-chatsan-replacement-5 = братан
-
-chatsan-word-6 = братан
-chatsan-replacement-6 = брат
-
 chatsan-word-7 = омг
 chatsan-replacement-7 = боже мой
 
@@ -91,14 +85,11 @@ chatsan-word-27 = непон
 chatsan-word-27-2 = нипон
 chatsan-replacement-27 = не понятно
 
-chatsan-word-28 = ок
-chatsan-replacement-28 = окей
-
 chatsan-word-29 = о+кда+
 chatsan-replacement-29 = окей?
 
-chatsan-word-30 = оке*
-chatsan-replacement-30 = хорошо
+chatsan-word-30 = оке+
+chatsan-replacement-30 = окей
 
 chatsan-word-32 = хз
 chatsan-replacement-32 = не знаю
@@ -107,10 +98,10 @@ chatsan-word-33 = мб
 chatsan-replacement-33 = может быть
 
 chatsan-word-34 = увы
-chatsan-replacement-34 = { "" }
+chatsan-replacement-34 = к сожалению
 
 chatsan-word-35 = увынск
-chatsan-replacement-35 = { "" }
+chatsan-replacement-35 = к сожалению
 
 chatsan-word-36 = окак
 chatsan-replacement-36 = странновато
@@ -127,11 +118,7 @@ chatsan-word-39-2 = в[аэе]+т[аэе]+ф[аэе]+к*
 chatsan-replacement-39 = жесть
 
 chatsan-word-40 = у+жо*с+
-chatsan-word-40-2 = ди[сз]балан[сз]
 chatsan-replacement-40 = ужасно
-
-chatsan-word-41 = епт
-chatsan-replacement-41 = блин
 
 chatsan-word-42 = бр[ау]+х+
 chatsan-replacement-42 = ну блин
@@ -140,7 +127,7 @@ chatsan-word-43 = пох
 chatsan-replacement-43 = плевать
 
 chatsan-word-44 = пикми
-chatsan-replacement-44 = не очень
+chatsan-replacement-44 = гламур
 
 chatsan-word-45 = с[уа]+с+
 chatsan-replacement-45 = подозрительно
@@ -155,7 +142,6 @@ chatsan-word-48 = щ[ая]+с*
 chatsan-word-48-2 = сча+с*
 chatsan-replacement-48 = сейчас
 
-chatsan-word-49 = пу+к
 chatsan-word-49-2 = п[её]+рд
 chatsan-replacement-49 = хм
 
@@ -165,7 +151,6 @@ chatsan-replacement-50 = легко
 chatsan-word-51 = [гg][гg]+
 chatsan-replacement-51 = хорошо сработано
 
-chatsan-word-52 = угар
 chatsan-word-52-2 = л[оае]+л+
 chatsan-replacement-52 = хохма
 
@@ -174,9 +159,6 @@ chatsan-replacement-53 = смешно
 
 chatsan-word-54 = збс[ыь]*
 chatsan-replacement-54 = заебись
-
-chatsan-word-55 = вась
-chatsan-replacement-55 = Василий
 
 chatsan-word-56 = всм
 chatsan-replacement-56 = всмысле
@@ -224,17 +206,7 @@ chatsan-replacement-69 = ссд
 chatsan-word-70 = срп
 chatsan-replacement-70 = должностные обязанности
 
-chatsan-word-71 = чел
-chatsan-replacement-71 = парень
-
-chatsan-word-72 = пацан
-chatsan-replacement-72 = парень
-
-chatsan-word-73 = поц
-chatsan-replacement-73 = парень
-
-chatsan-word-74 = че+ли*к*с*
-chatsan-word-74-2 = скуф
+chatsan-word-74 = че+л(?:и+к*с*|к+с*|с+)
 chatsan-replacement-74 = мужик
 
 chatsan-word-75 = сигма
@@ -252,14 +224,8 @@ chatsan-replacement-78 = очень круто
 chatsan-word-79 = имбу
 chatsan-replacement-79 = крутотень
 
-chatsan-word-80 = найс
-chatsan-replacement-80 = найш
-
 chatsan-word-81 = фулл
 chatsan-replacement-81 = полностью
-
-chatsan-word-82 = рандом
-chatsan-replacement-82 = случайно
 
 chatsan-word-83 = рума
 chatsan-replacement-83 = комната
@@ -286,18 +252,13 @@ chatsan-replacement-89 = золото
 chatsan-word-90 = гем
 chatsan-replacement-90 = алмаз
 
-chatsan-word-91 = долларов
-chatsan-replacement-91 = кредитов
-
 chatsan-word-92 = луткрейт
 chatsan-replacement-92 = ящик
 
 chatsan-word-93 = ган
 chatsan-word-93-2 = шотган
 chatsan-replacement-93 = оружие
-
-chatsan-word-94 = найк про
-chatsan-replacement-94 = кроссовки
+chatsan-replacement-93-2 = дробовик
 
 chatsan-word-95 = бурмалда
 chatsan-word-95-2 = бурмалды
@@ -307,7 +268,6 @@ chatsan-word-95-5 = ванвин
 chatsan-replacement-95 = казино
 
 chatsan-word-96 = лут
-chatsan-word-96-2 = снаряг[ау]
 chatsan-replacement-96 = снаряжение
 
 chatsan-word-97 = манч
@@ -363,24 +323,20 @@ chatsan-replacement-111 = наступать
 chatsan-word-112 = пушим
 chatsan-replacement-112 = наступаем
 
-chatsan-word-113 = кап
 chatsan-word-113-2 = граб
 chatsan-replacement-113 = захват
 
 chatsan-word-114 = капы
 chatsan-replacement-114 = захваты
 
-chatsan-word-115 = капать
-chatsan-replacement-115 = захватывать
-
 chatsan-word-116 = кильнуть
 chatsan-replacement-116 = убить
 
 chatsan-word-117 = таргетить
-chatsan-replacement-117 = атаковать
+chatsan-replacement-117 = преследовать
 
-chatsan-word-118 = тарегит
-chatsan-replacement-118 = атакует
+chatsan-word-118 = таргетит
+chatsan-replacement-118 = преследует
 
 chatsan-word-119 = контрить
 chatsan-replacement-119 = противостоять
@@ -438,7 +394,8 @@ chatsan-replacement-134 = ослабили
 chatsan-word-135 = нерфят
 chatsan-word-135-2 = задебаффят
 chatsan-word-135-3 = задебафят
-chatsan-replacement-135 = ослабят
+chatsan-replacement-135 = ослабляют
+chatsan-replacement-135-2 = ослабят
 
 chatsan-word-136 = бафф
 chatsan-replacement-136 = усиление
@@ -658,49 +615,6 @@ chatsan-replacement-199 = ГК
 
 chatsan-word-200 = дк
 chatsan-replacement-200 = ДК
-
-chatsan-word-201 = пидор
-chatsan-word-201-2 = пидар
-chatsan-word-201-3 = пидорас
-chatsan-word-201-4 = пидарас
-chatsan-replacement-201 = педик
-
-chatsan-word-202 = пидоры
-chatsan-word-202-2 = пидары
-chatsan-word-202-3 = пидорасы
-chatsan-word-202-4 = пидарасы
-chatsan-word-202-5 = пидори
-chatsan-word-202-6 = пидораси
-chatsan-word-202-7 = пидари
-chatsan-word-202-8 = пидараси
-chatsan-word-202-9 = пидорки
-chatsan-word-202-10 = пидарки
-chatsan-replacement-202 = педики
-
-chatsan-word-203 = даун
-chatsan-word-203-2 = адун
-chatsan-word-203-3 = долбаеб
-chatsan-word-203-4 = далбаеб
-chatsan-word-203-5 = еблан
-chatsan-word-203-6 = выблядок
-chatsan-replacement-203 = идиот
-
-chatsan-word-204 = дауниха
-chatsan-word-204-2 = адуниха
-chatsan-word-204-3 = долбаебка
-chatsan-word-204-4 = ебланка
-chatsan-replacement-204 = идиотка
-
-chatsan-word-205 = дауны
-chatsan-word-205-2 = адуны
-chatsan-word-205-3 = долбаебы
-chatsan-word-205-4 = далбаебы
-chatsan-word-205-5 = ебланы
-chatsan-word-205-6 = выблядки
-chatsan-replacement-205 = идиоты
-
-chatsan-word-206 = нахуй
-chatsan-replacement-206 = нахер
 
 chatsan-word-207 = [\/\\@]+
 chatsan-replacement-207 = !
