@@ -4201,3 +4201,11 @@ Entries:
   time: '2026-11-05T03:29:06.0000000+00:00'
   prNumber: 591
   url: https://github.com/ArcaneSS14/arcane/pull/591
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Оптимизирована прогрузка сущностей и шейдеров света.
+  id: 302
+  time: '2026-11-05T09:16:46.0000000+00:00'
+  prNumber: 592
+  url: https://github.com/ArcaneSS14/arcane/pull/592
