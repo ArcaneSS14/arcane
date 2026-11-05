@@ -4189,3 +4189,15 @@ Entries:
   time: '2026-11-05T03:23:48.0000000+00:00'
   prNumber: 597
   url: https://github.com/ArcaneSS14/arcane/pull/597
+- author: seemah
+  changes:
+    - type: Tweak
+      message: >-
+        При попытке вколоть иглу хитиниду или ксеноморфу, надпись теперь гласит
+        "Экзоскелет слишком толстый!" (а не тонкий).
+    - type: Tweak
+      message: Хищные виды, воксы и йови больше не получают отвращение от крови.
+  id: 301
+  time: '2026-11-05T03:29:06.0000000+00:00'
+  prNumber: 591
+  url: https://github.com/ArcaneSS14/arcane/pull/591
