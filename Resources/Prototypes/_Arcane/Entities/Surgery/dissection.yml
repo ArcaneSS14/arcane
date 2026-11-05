@@ -41,7 +41,7 @@
     bodyAdd:
     - type: SurgicallyDissected
   - type: Sprite
-    sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    sprite: _Orion/Objects/Specific/Research/experi_scanner.rsi
     state: icon
   # tgstation's points x50, the size of the nearest Orion scanning experiment reward.
   - type: SurgeryDissection

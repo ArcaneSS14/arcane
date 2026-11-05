@@ -47,6 +47,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly RoboticSurgerySystem _roboticSurgery = default!;
     [Dependency] private readonly SharedSurgerySystem _surgery = default!;
     [Dependency] private readonly SurgeryToolExamineSystem _toolExamine = default!;
 
@@ -71,7 +72,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     {
         var user = args.User;
         var tool = args.Used;
-        // A health analyzer's click is its scan, so it only performs a step planned in the menu and gives no hints.
+        // A scanner's click is its own scan, so it only performs a step planned in the menu and gives no hints.
         var scanner = HasComp<SurgeryAnalyzerComponent>(tool);
         var surgical = IsSurgicalTool(tool) && !scanner;
         if (args.Handled
@@ -359,16 +360,16 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             && _surgery.GetSingleton(planned) is { } surgery
             && GetNextStep(body, part, surgery, user) is { } next)
         {
-            if (GetToolName(next.StepEnt) is not { } tool)
+            if (GetToolName(next.StepEnt, part) is not { } tool)
             {
                 return Loc.GetString("surgery-tool-next-step-no-tool",
                     ("surgery", Name(surgery)),
-                    ("step", Name(next.StepEnt)));
+                    ("step", _roboticSurgery.GetStepName(next.StepEnt, part)));
             }
 
             return Loc.GetString("surgery-tool-next-step",
                 ("surgery", Name(surgery)),
-                ("step", Name(next.StepEnt)),
+                ("step", _roboticSurgery.GetStepName(next.StepEnt, part)),
                 ("tool", tool));
         }
 
@@ -410,7 +411,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         {
             if (anyOrder && _surgery.IsStepComplete(body, part, steps[i], next.Surgery)
                 || _surgery.GetSingleton(steps[i]) is not { } stepEnt
-                || tool is { } held && !CanPerformWith(next.Surgery, stepEnt, held, fromPlan))
+                || tool is { } held && !CanPerformWith(next.Surgery, stepEnt, part, held, fromPlan))
                 continue;
 
             return (next.Surgery.Owner, ownerId, steps[i], stepEnt);
@@ -419,16 +420,16 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         return null;
     }
 
-    private bool CanPerformWith(EntityUid surgery, EntityUid step, EntityUid tool, bool fromPlan)
+    private bool CanPerformWith(EntityUid surgery, EntityUid step, EntityUid part, EntityUid tool, bool fromPlan)
     {
-        return (AcceptsTool(step, tool) || fromPlan && !HasToolRequirement(step) && CanUseWithoutTool(tool))
+        return (AcceptsTool(step, part, tool) || fromPlan && !HasToolRequirement(step) && CanUseWithoutTool(tool))
             && FitsHeldItem(surgery, step, tool);
     }
 
     // Steps without a tool only run from the plan, otherwise any held item would start them.
-    private bool AcceptsTool(EntityUid step, EntityUid tool)
+    private bool AcceptsTool(EntityUid step, EntityUid part, EntityUid tool)
     {
-        if (!TryComp(step, out SurgeryStepComponent? comp) || comp.Tool is not { } tools)
+        if (_roboticSurgery.GetTool(step, part) is not { } tools)
             return false;
 
         foreach (var registry in tools.Values)
@@ -551,9 +552,9 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         return _surgery.GetSingleton(step) is { } stepEnt && HasComp<SurgeryRemovePartStepComponent>(stepEnt);
     }
 
-    public string? GetToolName(EntityUid step)
+    public string? GetToolName(EntityUid step, EntityUid part)
     {
-        if (!TryComp(step, out SurgeryStepComponent? comp) || comp.Tool is not { } tools)
+        if (_roboticSurgery.GetTool(step, part) is not { } tools)
             return null;
 
         foreach (var registry in tools.Values)

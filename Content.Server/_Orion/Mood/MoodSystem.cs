@@ -556,9 +556,11 @@ public sealed class MoodSystem : EntitySystem
         if (!_config.GetCVar(CCVars.MoodEnabled))
             return;
 
-        if (_config.GetCVar(CCVars.MoodModifiesThresholds)
-            && TryComp<MobThresholdsComponent>(uid, out var mobThresholdsComponent))
-            TryCacheBaselineThresholds(uid, component, mobThresholdsComponent);
+        // Arcane-Edit-Start
+//        if (_config.GetCVar(CCVars.MoodModifiesThresholds)
+//            && TryComp<MobThresholdsComponent>(uid, out var mobThresholdsComponent))
+//            TryCacheBaselineThresholds(uid, component, mobThresholdsComponent);
+        // Arcane-Edit-End
 
         EnsureComp<NetMoodComponent>(uid);
         RefreshMood(uid, component);
@@ -820,23 +822,25 @@ public sealed class MoodSystem : EntitySystem
     }
     // Arcane-End
 
-    private bool TryCacheBaselineThresholds(EntityUid uid, MoodComponent component, MobThresholdsComponent thresholds)
-    {
-        if (component.SoftCritThresholdBeforeModify != default
-            && component.HardCritThresholdBeforeModify != default
-            && component.DeadThresholdBeforeModify != default)
-            return true;
-
-        if (!_mobThreshold.TryGetThresholdForState(uid, MobState.SoftCritical, out var soft, thresholds)
-            || !_mobThreshold.TryGetThresholdForState(uid, MobState.HardCritical, out var hard, thresholds)
-            || !_mobThreshold.TryGetThresholdForState(uid, MobState.Dead, out var dead, thresholds))
-            return false;
-
-        component.SoftCritThresholdBeforeModify = soft.Value;
-        component.HardCritThresholdBeforeModify = hard.Value;
-        component.DeadThresholdBeforeModify = dead.Value;
-        return true;
-    }
+    // Arcane-Edit-Start
+//    private bool TryCacheBaselineThresholds(EntityUid uid, MoodComponent component, MobThresholdsComponent thresholds)
+//    {
+//        if (component.SoftCritThresholdBeforeModify != default
+//            && component.HardCritThresholdBeforeModify != default
+//            && component.DeadThresholdBeforeModify != default)
+//            return true;
+//
+//        if (!_mobThreshold.TryGetThresholdForState(uid, MobState.SoftCritical, out var soft, thresholds)
+//            || !_mobThreshold.TryGetThresholdForState(uid, MobState.HardCritical, out var hard, thresholds)
+//            || !_mobThreshold.TryGetThresholdForState(uid, MobState.Dead, out var dead, thresholds))
+//            return false;
+//
+//        component.SoftCritThresholdBeforeModify = soft.Value;
+//        component.HardCritThresholdBeforeModify = hard.Value;
+//        component.DeadThresholdBeforeModify = dead.Value;
+//        return true;
+//    }
+    // Arcane-Edit-End
 
     private void ResetCritThresholds(EntityUid uid, MoodComponent component)
     {

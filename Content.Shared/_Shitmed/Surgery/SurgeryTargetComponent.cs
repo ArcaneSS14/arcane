@@ -18,7 +18,7 @@ public sealed partial class SurgeryTargetComponent : Component
 
     // Orion-Start
     /// <summary>
-    /// Self-surgery speed modifier. 1f / 2f = two times slower; the rest of the penalty is failure chance. // Arcane-Edit
+    /// Self-surgery speed modifier. 1f / 1.5f = 1.5 times slower; the rest of the penalty is failure chance. // Arcane-Edit
     /// </summary>
     [DataField]
     public float SelfSurgerySpeedModifier = 1f / 1.5f; // Arcane-Edit: 1f / 5f > 1f / 1.5f

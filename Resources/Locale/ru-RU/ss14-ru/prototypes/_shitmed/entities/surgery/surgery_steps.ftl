@@ -68,8 +68,10 @@ ent-SurgeryStepInsertLiver = Установить печень
     .desc = { ent-SurgeryStepInsertOrgan.desc }
 ent-SurgeryStepInsertEyes = Установить глаза
     .desc = { ent-SurgeryStepInsertOrgan.desc }
-ent-SurgeryStepInsertPump = Установить трубу
+# Arcane-Edit-Start
+ent-SurgeryStepInsertPump = Установить микропомпу
     .desc = { ent-SurgeryStepInsertOrgan.desc }
+# Arcane-Edit-End
 ent-SurgeryStepInsertHeart = Установить сердце
     .desc = { ent-SurgeryStepInsertOrgan.desc }
 ent-SurgeryStepInsertStomach = Установить желудок
@@ -86,3 +88,9 @@ ent-SurgeryStepInsertAugmentPowerCellCharger = Установить зарядн
     .desc = { ent-SurgeryStepInsertOrgan.desc }
 ent-SurgeryStepInsertAugmentArm = Установить имплант руки
     .desc = { ent-SurgeryStepInsertOrgan.desc }
+# Arcane-Start
+ent-SurgeryStepExtractForeignBody = Извлечь инородное тело
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepRepairBrain = Восстановить мозг
+    .desc = { ent-SurgeryStepBase.desc }
+# Arcane-End

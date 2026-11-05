@@ -85,10 +85,17 @@ surgery-popup-step-SurgeryStepXenoNeutralizeAcid = { $user } нейтрализ�
 surgery-popup-step-SurgeryStepXenoRemoveFeature = { $user } ампутирует { $part } { $target }!
 surgery-popup-step-SurgeryStepXenoRemoveOrgan = { $user } удаляет орган из { $part } { $target }!
 surgery-popup-step-SurgeryStepInsertHiveNode = { $user } вставляет узел улья в { $part } { $target }!
-surgery-popup-step-SurgeryStepInsertResinSpinner = { $user } вставляет cмоляного прядильщика в { $part } { $target }!
+# Arcane-Edit-Start
+surgery-popup-step-SurgeryStepInsertResinSpinner = { $user } вставляет смоляного прядильщика в { $part } { $target }!
+# Arcane-Edit-End
 surgery-popup-step-SurgeryStepInsertNeurotoxinGland = { $user } вставляет нейротоксин железу в { $part } { $target }!
 surgery-popup-step-SurgeryStepInsertAcidGland = { $user } вставляет кислотную железу в { $part } { $target }!
 surgery-popup-step-SurgeryStepInsertPlasmaVessel = { $user } вставляет плазменный сосуд в { $part } { $target }!
 surgery-popup-step-SurgeryStepInsertEggSack = { $user } вставляет яйцевой мешок в { $part } { $target }!
 surgery-popup-step-SurgeryStepXenoTakeSample = { $user } аккуратно удаляет кусочек { $part } { $target }.
 surgery-popup-step-SurgeryStepGraftXenoSample = { $user } прививает ксеноткань к { $part } { $target }!
+# Arcane-Start
+surgery-popup-step-SurgeryStepExtractForeignBody = { $user } извлекает что-то из { $part } у { $target }!
+surgery-popup-step-SurgeryStepRepairBrain = { $user } восстанавливает мозг в { $part } у { $target }.
+surgery-popup-step-SurgeryStepXenoOpenIncision = { surgery-popup-step-SurgeryStepOpenIncisionScalpel }
+# Arcane-End

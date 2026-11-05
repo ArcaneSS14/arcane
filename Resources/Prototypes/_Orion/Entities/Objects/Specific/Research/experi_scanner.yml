@@ -27,6 +27,10 @@
         type: ResearchClientBoundUserInterface
   - type: ResearchClient
   - type: ExperiScanner
+  # Arcane-Start
+  - type: SurgeryTool
+  - type: SurgeryAnalyzer
+  # Arcane-End
   - type: Speech
   - type: PhysicalComposition
     materialComposition:

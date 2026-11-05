@@ -111,9 +111,9 @@ public sealed class SurgeryResearchSystem : SharedSurgeryResearchSystem
 
     private void UpdateAccess(Entity<SurgeryResearchAccessComponent> surgeon)
     {
-        var researched = TryGetSurgeonServer(surgeon, out var server)
+        IEnumerable<ProtoId<TechnologyPrototype>> researched = TryGetSurgeonServer(surgeon, out var server)
             ? server.Comp2.ResearchedTechnologies
-            : new List<ProtoId<TechnologyPrototype>>();
+            : [];
 
         if (surgeon.Comp.Technologies.SetEquals(researched))
             return;

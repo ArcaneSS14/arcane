@@ -6,7 +6,7 @@
   name: Repair damaged tissue+
   components:
   - type: SurgeryTendWoundsEffect
-    healMultiplier: 0.1
+    healMultiplier: 0.115
 
 - type: entity
   parent: SurgeryStepRepairBurnTissue
@@ -14,7 +14,7 @@
   name: Repair burnt tissue+
   components:
   - type: SurgeryTendWoundsEffect
-    healMultiplier: 0.1
+    healMultiplier: 0.115
 
 - type: entity
   parent: SurgeryStepRepairBruteTissueUpgraded
@@ -22,7 +22,7 @@
   name: Repair damaged tissue++
   components:
   - type: SurgeryTendWoundsEffect
-    healMultiplier: 0.2
+    healMultiplier: 0.23
 
 - type: entity
   parent: SurgeryStepRepairBurnTissueUpgraded
@@ -30,7 +30,7 @@
   name: Repair burnt tissue++
   components:
   - type: SurgeryTendWoundsEffect
-    healMultiplier: 0.2
+    healMultiplier: 0.23
 
 - type: entity
   parent: SurgeryStepRepairBruteTissue
@@ -38,14 +38,16 @@
   name: Repair damaged and burnt tissue
   components:
   - type: SurgeryStep
-    duration: 1
+    duration: 2.5
   - type: SurgeryTendWoundsEffect
     additionalGroups: [Burn]
-    healMultiplier: 0.07
+    healMultiplier: 0.19
+    failureFlatMultiplier: 0.2824
+    failureSeverityMultiplier: 0.184
     damage:
       groups:
-        Brute: -3
-        Burn: -3
+        Brute: -8.5
+        Burn: -8.5
 
 - type: entity
   parent: SurgeryStepRepairAllTissue
@@ -53,7 +55,8 @@
   name: Repair damaged and burnt tissue+
   components:
   - type: SurgeryTendWoundsEffect
-    healMultiplier: 0.1
+    healMultiplier: 0.27
+    failureSeverityMultiplier: 0.185
 
 - type: entity
   parent: SurgeryStepRepairAllTissueUpgraded
@@ -61,8 +64,10 @@
   name: Repair damaged and burnt tissue++
   components:
   - type: SurgeryTendWoundsEffect
-    healMultiplier: 0.4
+    healMultiplier: 0.83
+    failureFlatMultiplier: 0.267
+    failureSeverityMultiplier: 0.241
     damage:
       groups:
-        Brute: -1
-        Burn: -1
+        Brute: -3
+        Burn: -3

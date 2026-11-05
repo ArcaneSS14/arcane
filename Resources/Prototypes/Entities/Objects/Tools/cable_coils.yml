@@ -67,6 +67,8 @@
   - type: Hemostat
     speed: 0.15
     used: true
+  - type: SurgeryCable
+    used: true
   # Arcane-End
   - type: SurgeryTool
     startSound:

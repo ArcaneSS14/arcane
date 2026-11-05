@@ -66,16 +66,20 @@ ent-SurgeryRemoveBorgBrain = Удаление позитронного мозг�
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryInsertBrain = Установка мозга
     .desc = { ent-SurgeryBase.desc }
-ent-SurgeryInsertBorgBrain = Вставка позитронного мозга
+# Arcane-Edit-Start
+ent-SurgeryInsertBorgBrain = Установка позитронного мозга
     .desc = { ent-SurgeryInsertBrain.desc }
+# Arcane-Edit-End
 ent-SurgeryRemoveHeart = Удаление сердца
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryInsertHeart = Установка сердца
     .desc = { ent-SurgeryBase.desc }
-ent-SurgeryRemovePump = Удаление трубы
+# Arcane-Edit-Start
+ent-SurgeryRemovePump = Удаление микропомпы
     .desc = { ent-BaseSurgeryRemoveOrgan.desc }
-ent-SurgeryInsertPump = Установка трубы
+ent-SurgeryInsertPump = Установка микропомпы
     .desc = { ent-BaseSurgeryInsertOrgan.desc }
+# Arcane-Edit-End
 ent-SurgeryRemoveLiver = Удаление печени
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryInsertLiver = Установка печени
@@ -106,8 +110,10 @@ ent-SurgeryRemovePowerCellSlot = Удалить батарею
     .desc = { ent-SurgeryRemoveAugmentBase.desc }
 ent-SurgeryInsertPowerCellCharger = Вставить зарядное устройство
     .desc = { ent-SurgeryInstallAugmentBase.desc }
-ent-SurgeryOpenPowerCellCharger = Вскрыть разрез под зарядное устройства
+# Arcane-Edit-Start
+ent-SurgeryOpenPowerCellCharger = Вскрыть разрез под зарядное устройство
     .desc = { ent-SurgeryOpenCavityBase.desc }
+# Arcane-Edit-End
 ent-SurgeryRemovePowerCellCharger = Удалить зарядное устройство
     .desc = { ent-SurgeryRemoveAugmentBase.desc }
 ent-SurgeryOpenArmAugment = Открыть разрез для импланта руки
@@ -120,3 +126,9 @@ ent-SurgeryLobotomize = Лоботомия
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryMendBrainTissue = Восстановить мозговую ткань
     .desc = { ent-SurgeryBase.desc }
+# Arcane-Start
+ent-SurgeryExtractForeignBody = Извлечение инородного тела
+    .desc = { ent-SurgeryBase.desc }
+ent-SurgeryRepairBrainDamage = Восстановление мозга
+    .desc = { ent-SurgeryBase.desc }
+# Arcane-End

@@ -48,6 +48,10 @@
   - type: SurgeryRepeatableStep
   - type: SurgeryBleedsTreatmentStep
     amount: 2
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
 
 - type: entity
   parent: SurgeryStepBase
@@ -126,6 +130,10 @@
     painDuration: 40
     amount: 34
     sleepModifier: 0
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
 
 - type: entity
   parent: SurgeryStepBase
@@ -430,6 +438,10 @@
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
   - type: SurgeryDamageChangeEffect
     damage:
       types:
@@ -496,9 +508,14 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryTendWoundsEffect
+    # Arcane-Start
+    healMultiplier: 0.08
+    failureFlatMultiplier: 0.667
+    failureSeverityMultiplier: 0.435
+    # Arcane-End
     damage:
       groups:
-        Brute: -5 # Arcane-Edit: -15 > -5
+        Brute: -6 # Arcane-Edit: -15 > -6
   - type: SurgeryRepeatableStep
   - type: SurgeryNoMoodStep # Arcane
 
@@ -516,9 +533,14 @@
     state: hemostat
   - type: SurgeryTendWoundsEffect
     mainGroup: Burn
+    # Arcane-Start
+    healMultiplier: 0.08
+    failureFlatMultiplier: 0.667
+    failureSeverityMultiplier: 0.435
+    # Arcane-End
     damage:
       groups:
-        Burn: -5 # Arcane-Edit: -20 > -5
+        Burn: -6 # Arcane-Edit: -20 > -6
   - type: SurgeryRepeatableStep
   - type: SurgeryNoMoodStep # Arcane
 

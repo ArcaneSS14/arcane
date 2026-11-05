@@ -26,9 +26,16 @@ public sealed class SurgeryToolConditionsSystem : EntitySystem
         SubscribeLocalEvent<MatchstickComponent, SurgeryToolUsedEvent>(OnMatchUsed);
     }
 
+    // Arcane-Start
+    public bool IsToolActive(Entity<ItemToggleComponent?> ent, bool ignoreToggle = false)
+    {
+        return ignoreToggle || !Resolve(ent, ref ent.Comp, false) || ent.Comp.Activated;
+    }
+    // Arcane-End
+
     private void OnToggleUsed(Entity<ItemToggleComponent> ent, ref SurgeryToolUsedEvent args)
     {
-        if (ent.Comp.Activated || args.IgnoreToggle)
+        if (IsToolActive(ent.AsNullable(), args.IgnoreToggle)) // Arcane-Edit
             return;
 
         _popup.PopupEntity(Loc.GetString("surgery-tool-turn-on"), ent, args.User);

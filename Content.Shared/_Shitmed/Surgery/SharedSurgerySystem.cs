@@ -10,6 +10,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Consciousness.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Pain.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Steps;
 using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
+using Content.Shared._Shitmed.Medical.Surgery.Tools;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas;
@@ -76,6 +77,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     // Arcane-Start
     [Dependency] private readonly SurgeryConditionsSystem _surgeryConditions = default!;
     [Dependency] private readonly RoboticSurgerySystem _roboticSurgery = default!;
+    [Dependency] private readonly SurgeryToolConditionsSystem _toolConditions = default!;
     // Arcane-End
 
     private EntityQuery<BodyComponent> _bodyQuery;
@@ -164,6 +166,15 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     private void OnBeforeTargetDoAfter(Entity<SurgeryTargetComponent> ent,
         ref DoAfterAttemptEvent<SurgeryDoAfterEvent> args)
     {
+        // Arcane-Start
+        var tool = _hands.GetActiveItemOrSelf(args.Event.User);
+        if (!_toolConditions.IsToolActive(tool, _toolQuery.CompOrNull(tool)?.IgnoreToggle ?? false))
+        {
+            args.Cancel();
+            return;
+        }
+        // Arcane-End
+
         if (_net.IsClient
             || !args.Event.Repeat) // We only wanna do this laggy shit on repeatables. One-time stuff idc.
             return;
@@ -277,11 +288,17 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         // Arcane-Edit-Start
         // Once healed, only its own careful incision is left to seal; a fully opened part is closed by Close Incision.
-        var part = args.Part;
-        if (GetTendableDamage(args.Part, ent.Comp.DamageGroup) <= 0
-            && ent.Comp.AdditionalGroups.All(group => GetTendableDamage(part, group) <= 0)
-            && (!HasComp<IncisionOpenComponent>(args.Part) || HasComp<SkinRetractedComponent>(args.Part)))
-            args.Cancelled = true;
+        if (GetTendableDamage(args.Part, ent.Comp.DamageGroup) > 0
+            || HasComp<IncisionOpenComponent>(args.Part) && !HasComp<SkinRetractedComponent>(args.Part))
+            return;
+
+        foreach (var group in ent.Comp.AdditionalGroups)
+        {
+            if (GetTendableDamage(args.Part, group) > 0)
+                return;
+        }
+
+        args.Cancelled = true;
         // Arcane-Edit-End
     }
 
@@ -458,18 +475,17 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     }
 
     /// <summary>
-    ///     Damage of a group that wound tending can still heal on a part. Part damage can outlast its wounds,
-    ///     since heavy attacks scale wound severity down, so both are counted.
+    ///     Damage of a group that wound tending can still heal on a part. Tending follows the visible damage;
+    ///     wounds left without damage still count, and the step closes them once the damage is gone.
     /// </summary>
     public FixedPoint2 GetTendableDamage(EntityUid part, ProtoId<DamageGroupPrototype> group)
     {
-        var severity = _wounds.GetWoundableSeverityPoint(part, damageGroup: group, healable: true, ignoreBlockers: true);
-
         if (TryComp<DamageableComponent>(part, out var damageable)
-            && damageable.Damage.TryGetDamageInGroup(_prototypes.Index(group), out var damage))
-            return FixedPoint2.Max(severity, damage);
+            && damageable.Damage.TryGetDamageInGroup(_prototypes.Index(group), out var damage)
+            && damage > 0)
+            return damage;
 
-        return severity;
+        return _wounds.GetWoundableSeverityPoint(part, damageGroup: group, healable: true, ignoreBlockers: true);
     }
     // Arcane-End
 

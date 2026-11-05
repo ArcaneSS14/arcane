@@ -59,6 +59,7 @@
     speed: 0.35
   - type: Hemostat # Shitmed
     speed: 0.6
+  - type: SurgeryWirecutter # Arcane
   - type: SurgeryTool # Shitmed
     startSound:
       path: /Audio/Items/wirecutter.ogg
@@ -571,6 +572,8 @@
   - type: SurgeryWrench
     speed: 1.2
   - type: SurgeryMultitool
+    speed: 1.2
+  - type: SurgeryWirecutter
     speed: 1.2
   # Arcane-End
   - type: MultipleTool

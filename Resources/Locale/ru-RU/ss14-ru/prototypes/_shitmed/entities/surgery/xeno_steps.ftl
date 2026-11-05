@@ -36,8 +36,10 @@ ent-SurgeryStepXenoRemoveOrgan = { ent-BaseSurgeryStepXeno }
     .desc = { ent-BaseSurgeryStepXeno.desc }
 ent-SurgeryStepInsertHiveNode = Добавить узел улья
     .desc = { ent-SurgeryStepInsertOrgan.desc }
-ent-SurgeryStepInsertResinSpinner = Добавить cмоляной прядильщик
+# Arcane-Edit-Start
+ent-SurgeryStepInsertResinSpinner = Добавить смоляной прядильщик
     .desc = { ent-SurgeryStepInsertOrgan.desc }
+# Arcane-Edit-End
 ent-SurgeryStepInsertNeurotoxinGland = Добавить нейротоксиновую железу
     .desc = { ent-SurgeryStepInsertOrgan.desc }
 ent-SurgeryStepInsertAcidGland = Добавить кислотную железу

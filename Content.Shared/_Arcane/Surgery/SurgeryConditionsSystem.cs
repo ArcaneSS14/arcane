@@ -1,6 +1,5 @@
 using Content.Shared._Arcane.CCVars;
 using Content.Shared._Arcane.Surgery.Conditions;
-using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
@@ -36,7 +35,6 @@ public sealed class SurgeryConditionsSystem : EntitySystem
     private const float FloorSpeedModifier = 0.5f;
 
     private EntityQuery<BuckleComponent> _buckleQuery;
-    private EntityQuery<OperatingTableComponent> _operatingTableQuery;
     private EntityQuery<SurgerySurfaceComponent> _surfaceQuery;
 
     private float _failureThreshold;
@@ -49,7 +47,6 @@ public sealed class SurgeryConditionsSystem : EntitySystem
         base.Initialize();
 
         _buckleQuery = GetEntityQuery<BuckleComponent>();
-        _operatingTableQuery = GetEntityQuery<OperatingTableComponent>();
         _surfaceQuery = GetEntityQuery<SurgerySurfaceComponent>();
 
         Subs.CVar(_config, ACCVars.SurgeryFailureThreshold, value => _failureThreshold = value, true);
@@ -79,12 +76,12 @@ public sealed class SurgeryConditionsSystem : EntitySystem
     }
 
     /// <summary>
-    ///     An extra failure penalty for operating on yourself on top of the slowdown, without taking more time.
+    ///     How many times slower than ideal the step is; operating on yourself adds to it without taking more time.
     /// </summary>
-    public float GetPenalty(EntityUid user, EntityUid patient, EntityUid part, EntityUid step, float idealDuration, float duration)
+    public float GetPenalty(float idealDuration, float duration, bool selfSurgery)
     {
         var penalty = duration / idealDuration;
-        return IsSelfSurgeryPenalized(user, patient, part, step) ? penalty + _selfSurgeryPenalty : penalty;
+        return selfSurgery ? penalty + _selfSurgeryPenalty : penalty;
     }
 
     public float GetCappedDuration(float idealDuration, float duration)
@@ -129,13 +126,7 @@ public sealed class SurgeryConditionsSystem : EntitySystem
     private float GetSurfaceModifier(EntityUid patient)
     {
         if (_buckleQuery.TryComp(patient, out var buckle) && buckle.BuckledTo is { } strap)
-        {
-            // The operating table applies its own modifier in the surgery duration.
-            if (_operatingTableQuery.HasComp(strap))
-                return 1f;
-
             return _surfaceQuery.CompOrNull(strap)?.SpeedModifier ?? FloorSpeedModifier;
-        }
 
         var xform = Transform(patient);
         if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))

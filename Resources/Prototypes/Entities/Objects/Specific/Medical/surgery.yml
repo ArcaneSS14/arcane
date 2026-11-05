@@ -114,7 +114,7 @@
   - type: Scalpel
   # Arcane-Start
   - type: SurgeryScrewdriver
-    speed: 0.5
+    speed: 0.75
   # Arcane-End
   - type: Tag # Goobstation
     tags:
@@ -165,10 +165,6 @@
         Slash: 12
   - type: Scalpel # Shitmed
     speed: 1.35
-  # Arcane-Start
-  - type: SurgeryScrewdriver
-    speed: 0.5
-  # Arcane-End
 
 - type: entity
   name: laser scalpel
@@ -185,10 +181,6 @@
     heldPrefix: laser
   - type: Scalpel # Shitmed
     speed: 1.75
-  # Arcane-Start
-  - type: SurgeryScrewdriver
-    speed: 0.5
-  # Arcane-End
   # TODO: prevent bleeding from incisions
 
 # Retractor
@@ -214,9 +206,7 @@
   - type: Retractor
   # Arcane-Start
   - type: SurgeryWrench
-    speed: 0.5
-  - type: SurgeryCrowbar
-    speed: 0.5
+    speed: 0.75
   # Arcane-End
 
 # Hemostat
@@ -245,7 +235,7 @@
   - type: Tending # Shitmed
   # Arcane-Start
   - type: SurgeryMultitool
-    speed: 0.5
+    speed: 0.75
   # Arcane-End
 
 # Saws

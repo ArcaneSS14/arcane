@@ -26,11 +26,6 @@
   - type: HealthAnalyzer
     scanningEndSound:
       path: "/Audio/Items/Medical/healthscanner.ogg"
-  # Arcane-Start
-  - type: SurgeryTool
-    ignoreToggle: true
-  - type: SurgeryAnalyzer
-  # Arcane-End
   - type: Tag
     tags:
     - DiscreteHealthAnalyzer

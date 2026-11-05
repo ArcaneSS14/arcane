@@ -22,8 +22,10 @@ ent-SurgeryXenoInsertStomach = Вставить желудок ксеномор�
     .desc = { ent-BaseSurgeryXenoInsertOrgan.desc }
 ent-SurgeryXenoInsertHiveNode = Вставить узел улья
     .desc = { ent-BaseSurgeryXenoInsertOrgan.desc }
-ent-SurgeryXenoInsertResinSpinner = Вставить cмоляной прядильщик
+# Arcane-Edit-Start
+ent-SurgeryXenoInsertResinSpinner = Вставить смоляной прядильщик
     .desc = { ent-BaseSurgeryXenoInsertOrgan.desc }
+# Arcane-Edit-End
 ent-SurgeryXenoInsertNeurotoxinGland = Вставить нейротоксиновую железу
     .desc = { ent-BaseSurgeryXenoInsertOrgan.desc }
 ent-SurgeryXenoInsertAcidGland = Вставить кислотную железу
@@ -42,8 +44,10 @@ ent-SurgeryXenoRemoveStomach = Удалить желудок ксеноморф�
     .desc = { ent-BaseSurgeryXenoRemoveOrgan.desc }
 ent-SurgeryXenoRemoveHiveNode = Удалить узел улья
     .desc = { ent-BaseSurgeryXenoRemoveOrgan.desc }
-ent-SurgeryXenoRemoveResinSpinner = Удалить cмоляной прядильщик
+# Arcane-Edit-Start
+ent-SurgeryXenoRemoveResinSpinner = Удалить смоляной прядильщик
     .desc = { ent-BaseSurgeryXenoRemoveOrgan.desc }
+# Arcane-Edit-End
 ent-SurgeryXenoRemoveNeurotoxinGland = Удалить нейротоксиновую железу
     .desc = { ent-BaseSurgeryXenoRemoveOrgan.desc }
 ent-SurgeryXenoRemoveAcidGland = Удалить кислотную железу

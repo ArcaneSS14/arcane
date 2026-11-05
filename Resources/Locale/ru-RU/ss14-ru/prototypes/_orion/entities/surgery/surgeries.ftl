@@ -7,7 +7,9 @@ ent-SurgeryPacify = Усмирить пациента
 ent-SurgeryRemovePacification = Снять усмирение
     .desc = Хирургическая операция, снимающая последствия усмирения.
 
-ent-SurgeryRemoveKidneys = Удалить почки
+# Arcane-Edit-Start
+ent-SurgeryRemoveKidneys = Удаление почек
     .desc = Хирургическая операция, по вырезанию почек.
-ent-SurgeryInsertKidneys = Установить почки
+ent-SurgeryInsertKidneys = Установка почек
     .desc = Хирургическая операция, по вставлению почек.
+# Arcane-Edit-End

@@ -11,6 +11,7 @@ using Content.Shared._Shitmed.BodyEffects;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
@@ -231,10 +232,10 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
-        if (ent.Comp.Tool == null)
+        if (_roboticSurgery.GetTool(ent.AsNullable(), args.Part) is not { } tools) // Arcane-Edit
             return;
 
-        foreach (var reg in ent.Comp.Tool.Values)
+        foreach (var reg in tools.Values) // Arcane-Edit
         {
             if (GetSurgeryComp(args.Tool, reg.Component) is {} data)
             {
@@ -301,24 +302,73 @@ public abstract partial class SharedSurgerySystem
         // Arcane-Start
         foreach (var additionalGroup in ent.Comp.AdditionalGroups)
         {
+            var additionalTypes = _prototypes.Index(additionalGroup).DamageTypes;
             var additionalBonus = ent.Comp.HealMultiplier * GetTendableDamage(args.Part, additionalGroup);
             if (_mobState.IsDead(args.Body))
                 additionalBonus *= 0.2;
 
-            foreach (var type in _prototypes.Index(additionalGroup).DamageTypes)
+            foreach (var type in additionalTypes)
             {
                 if (adjustedDamage.DamageDict.TryGetValue(type, out var current))
-                    adjustedDamage.DamageDict[type] = current - additionalBonus / _prototypes.Index(additionalGroup).DamageTypes.Count;
+                    adjustedDamage.DamageDict[type] = current - additionalBonus / additionalTypes.Count;
+            }
+        }
+
+        // As in tgstation the whole group amount is healed, so it goes to the damage types the part actually has.
+        if (TryComp<DamageableComponent>(args.Part, out var tendedDamage))
+        {
+            foreach (var tended in ent.Comp.AdditionalGroups.Prepend(ent.Comp.MainGroup))
+            {
+                var types = _prototypes.Index(tended).DamageTypes;
+                var heal = FixedPoint2.Zero;
+                var present = FixedPoint2.Zero;
+                foreach (var type in types)
+                {
+                    if (adjustedDamage.DamageDict.TryGetValue(type, out var amount))
+                        heal += amount;
+                    if (tendedDamage.Damage.DamageDict.TryGetValue(type, out var damage) && damage > 0)
+                        present += damage;
+                }
+
+                if (present <= 0)
+                    continue;
+
+                foreach (var type in types)
+                {
+                    adjustedDamage.DamageDict[type] = tendedDamage.Damage.DamageDict.TryGetValue(type, out var damage) && damage > 0
+                        ? heal * damage / present
+                        : FixedPoint2.Zero;
+                }
             }
         }
         // Arcane-End
 
-        var ev = new SurgeryStepDamageEvent(args.User, args.Body, args.Part, args.Surgery, adjustedDamage, 0.5f);
+        var ev = new SurgeryStepDamageEvent(args.User, args.Body, args.Part, args.Surgery, adjustedDamage, 1f); // Arcane-Edit: 0.5f > 1f
         // Arcane-Start
         ev.IgnoreBlockers = true;
         _wounds.TryHaltAllBleeding(args.Part, force: true);
         // Arcane-End
         RaiseLocalEvent(args.Body, ref ev);
+        // Arcane-Start
+        // Explosion wounds outweigh their damage; once the server-side heal clears the damage, the rest closes with it.
+        if (_net.IsServer && TryComp<DamageableComponent>(args.Part, out var partDamage))
+        {
+            foreach (var tended in ent.Comp.AdditionalGroups.Prepend(ent.Comp.MainGroup))
+            {
+                var tendedGroup = _prototypes.Index(tended);
+                if (partDamage.Damage.TryGetDamageInGroup(tendedGroup, out var left) && left > 0)
+                    continue;
+
+                // The heal is split evenly between wounds and clamped per wound, so each one gets the whole leftover.
+                var leftover = _wounds.GetWoundableSeverityPoint(args.Part, damageGroup: tended, healable: true, ignoreBlockers: true);
+                if (leftover <= 0)
+                    continue;
+
+                var count = _wounds.GetWoundableWounds(args.Part).Count(wound => wound.Comp.DamageGroup == tended);
+                _wounds.TryHealWoundsOnWoundable(args.Part, leftover * count, out _, damageGroup: tendedGroup, ignoreMultipliers: true, ignoreBlockers: true);
+            }
+        }
+        // Arcane-End
     }
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
@@ -326,8 +376,11 @@ public abstract partial class SharedSurgerySystem
         // Arcane-Start
         foreach (var group in ent.Comp.AdditionalGroups)
         {
-            if (GetTendableDamage(args.Part, group) > 0)
-                args.Cancelled = true;
+            if (GetTendableDamage(args.Part, group) <= 0)
+                continue;
+
+            args.Cancelled = true;
+            return;
         }
         // Arcane-End
         if (GetTendableDamage(args.Part, ent.Comp.MainGroup) > 0) // Arcane-Edit
@@ -948,10 +1001,10 @@ public abstract partial class SharedSurgerySystem
 
     private bool TryToolAudio(Entity<SurgeryStepComponent> ent, SurgeryStepEvent args)
     {
-        if (ent.Comp.Tool == null)
+        if (_roboticSurgery.GetTool(ent.AsNullable(), args.Part) is not { } tools) // Arcane-Edit
             return true;
 
-        foreach (var reg in ent.Comp.Tool.Values)
+        foreach (var reg in tools.Values) // Arcane-Edit
         {
             if (!HasSurgeryComp(args.Tool, reg.Component))
                 return false;
@@ -1158,9 +1211,9 @@ public abstract partial class SharedSurgerySystem
         // Arcane-Start
         // A step done by hand is already slow by design, so only a tool worse than the proper one counts against it.
         var idealDuration = (_stepQuery.CompOrNull(step)?.Duration ?? duration) / (data == null ? speed : 1f);
-        ev.Penalty = _surgeryConditions.GetPenalty(user, body, part, step, idealDuration, duration);
-        ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, idealDuration * ev.Penalty,
-            _surgeryConditions.IsSelfSurgeryPenalized(user, body, part, step));
+        var selfSurgery = _surgeryConditions.IsSelfSurgeryPenalized(user, body, part, step);
+        ev.Penalty = _surgeryConditions.GetPenalty(idealDuration, duration, selfSurgery);
+        ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, idealDuration * ev.Penalty, selfSurgery);
         duration = _surgeryConditions.GetCappedDuration(idealDuration, duration);
         // Arcane-End
 
@@ -1231,7 +1284,7 @@ public abstract partial class SharedSurgerySystem
         if (!Loc.TryGetString(locName, out var locResult,
                 ("user", userName), ("target", targetName), ("part", part)))
         {
-            locResult = Loc.GetString($"surgery-popup-step-{stepId}",
+            locResult = Loc.GetString(_roboticSurgery.GetStepPopupKey(stepId, part),
                 ("user", userName), ("target", targetName), ("part", part));
         }
         // Arcane-Edit-End
@@ -1380,10 +1433,18 @@ public abstract partial class SharedSurgerySystem
             _ => SlotFlags.NONE,
         };
 
-        var check = new SurgeryCanPerformStepEvent(user, body, tool, slot);
+        var check = new SurgeryCanPerformStepEvent(user, body, part, tool, slot); // Arcane-Edit
         RaiseLocalEvent(step, ref check);
         if (check.IsValid) // if the step doesn't stop it check the body after
             RaiseLocalEvent(body, ref check);
+
+        // Arcane-Start
+        if (check.IsValid && !_toolConditions.IsToolActive(tool, _toolQuery.CompOrNull(tool)?.IgnoreToggle ?? false))
+        {
+            check.Invalid = StepInvalidReason.ToolInvalid;
+            check.Popup = Loc.GetString("surgery-tool-turn-on");
+        }
+        // Arcane-End
 
         popup = check.Popup;
         reason = check.Invalid;

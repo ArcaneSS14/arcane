@@ -16,13 +16,13 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Arcane.Surgery;
@@ -54,6 +54,31 @@ public sealed class DentalImplantSystem : EntitySystem
         SubscribeLocalEvent<SurgeryDentalImplantConditionComponent, SurgeryValidEvent>(OnValid);
         SubscribeLocalEvent<DentalImplantComponent, ActivateDentalPillActionEvent>(OnActivate);
         SubscribeLocalEvent<DentalImplantComponent, DentalPillDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<SurgeryTargetComponent, BodyPartAddedEvent>(OnPartAttached);
+        SubscribeLocalEvent<SurgeryTargetComponent, BodyPartRemovedEvent>(OnPartDetached);
+    }
+
+    private void OnPartAttached(Entity<SurgeryTargetComponent> ent, ref BodyPartAddedEvent args)
+    {
+        if (!_net.IsServer)
+            return;
+
+        foreach (var pill in GetPills(args.Part))
+        {
+            if (TryComp<DentalImplantComponent>(pill, out var implant) && implant.Action is { } action)
+                _actions.GrantContainedAction(ent.Owner, pill, action);
+        }
+    }
+
+    private void OnPartDetached(Entity<SurgeryTargetComponent> ent, ref BodyPartRemovedEvent args)
+    {
+        if (!_net.IsServer)
+            return;
+
+        foreach (var pill in GetPills(args.Part))
+        {
+            _actions.RemoveProvidedActions(ent.Owner, pill);
+        }
     }
 
     private void OnStep(Entity<SurgeryDentalImplantStepComponent> ent, ref SurgeryStepEvent args)
@@ -72,8 +97,8 @@ public sealed class DentalImplantSystem : EntitySystem
             return;
         }
 
-        // One pill per patient, unlike tgstation's one per tooth.
-        if (GetPill(args.Part) != null
+        // A few pills per patient, unlike tgstation's one per tooth.
+        if (GetPills(args.Part).Count >= ent.Comp.MaxPills
             || _hands.GetActiveItem(args.User) is not { } held
             || !HasComp<PillComponent>(held))
             return;
@@ -90,7 +115,8 @@ public sealed class DentalImplantSystem : EntitySystem
 
     private void OnCompleteCheck(Entity<SurgeryDentalImplantStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        if (ent.Comp.Remove == GetPill(args.Part).HasValue)
+        var count = GetPills(args.Part).Count;
+        if (ent.Comp.Remove ? count > 0 : count < ent.Comp.MaxPills)
             args.Cancelled = true;
     }
 
@@ -107,10 +133,12 @@ public sealed class DentalImplantSystem : EntitySystem
             return;
 
         args.Handled = true;
-        _popup.PopupPredicted(Loc.GetString("dental-implant-grind-self"),
+        _popup.PopupEntity(Loc.GetString("dental-implant-grind-self"), user, user);
+        _popup.PopupEntity(
             Loc.GetString("dental-implant-grind-others", ("user", user)),
             user,
-            user);
+            Filter.PvsExcept(user, entityManager: EntityManager),
+            true);
 
         if (!_mobState.IsCritical(user))
         {
@@ -176,9 +204,15 @@ public sealed class DentalImplantSystem : EntitySystem
 
     private EntityUid? GetPill(EntityUid part)
     {
-        return _container.TryGetContainer(part, ContainerId, out var container) && container.ContainedEntities.Count > 0
-            ? container.ContainedEntities[^1]
-            : null;
+        var pills = GetPills(part);
+        return pills.Count > 0 ? pills[^1] : null;
+    }
+
+    private IReadOnlyList<EntityUid> GetPills(EntityUid part)
+    {
+        return _container.TryGetContainer(part, ContainerId, out var container)
+            ? container.ContainedEntities
+            : [];
     }
 }
 

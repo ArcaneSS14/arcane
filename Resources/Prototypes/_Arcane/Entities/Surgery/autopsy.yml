@@ -40,7 +40,7 @@
     bodyAdd:
     - type: SurgicallyAnalyzed
   - type: Sprite
-    sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    sprite: _Orion/Objects/Specific/Research/experi_scanner.rsi
     state: icon
   - type: SurgeryAutopsy
     experiments:

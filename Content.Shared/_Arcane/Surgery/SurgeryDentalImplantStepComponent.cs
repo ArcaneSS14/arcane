@@ -15,5 +15,8 @@ public sealed partial class SurgeryDentalImplantStepComponent : Component
     public bool Remove;
 
     [DataField]
+    public int MaxPills = 2;
+
+    [DataField]
     public EntProtoId Action = "ActionActivateDentalPill";
 }

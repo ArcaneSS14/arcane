@@ -74,6 +74,10 @@
   - type: SurgeryTechnologyCondition
     technology: AdvancedSurgery
     replacedBy: ExperimentalSurgery
+  - type: SurgeryPartComponentCondition
+    inverse: true
+    components:
+    - type: RoboticBodyPart
 
 - type: entity
   parent: SurgeryTendWoundsCombo

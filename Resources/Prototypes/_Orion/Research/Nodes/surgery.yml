@@ -16,6 +16,9 @@
   # Arcane-Start
   genericUnlocks:
   - unlockDescription: research-technology-unlock-surgery-experimental-dissection
+    icon:
+      sprite: _Orion/Objects/Specific/Research/experi_scanner.rsi
+      state: icon
   # Arcane-End
   position: 4,10
 
@@ -39,7 +42,13 @@
   # Arcane-Start
   genericUnlocks:
   - unlockDescription: research-technology-unlock-surgery-tend-wounds-brute-upgraded
+    icon:
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: brutepack
   - unlockDescription: research-technology-unlock-surgery-tend-wounds-burn-upgraded
+    icon:
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: ointment
   # Arcane-End
   position: 4,11
 
@@ -67,8 +76,17 @@
   # Arcane-Start
   genericUnlocks:
   - unlockDescription: research-technology-unlock-surgery-tend-wounds-brute-femto
+    icon:
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: brutepack
   - unlockDescription: research-technology-unlock-surgery-tend-wounds-burn-femto
+    icon:
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: ointment
   - unlockDescription: research-technology-unlock-surgery-tend-wounds-combo
+    icon:
+      sprite: Objects/Specific/Medical/firstaidkits.rsi
+      state: firstaid
   # Arcane-End
   position: 4,12
 
@@ -96,9 +114,21 @@
   # Arcane-Start
   genericUnlocks:
   - unlockDescription: research-technology-unlock-surgery-tend-wounds-combo-upgraded
+    icon:
+      sprite: Objects/Specific/Medical/firstaidkits.rsi
+      state: firstaid
   - unlockDescription: research-technology-unlock-surgery-vein-threading
+    icon:
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: bloodpack
   - unlockDescription: research-technology-unlock-surgery-nerve-splicing
+    icon:
+      sprite: _Shitmed/Objects/Specific/Medical/Surgery/manipulation.rsi
+      state: insertion
   - unlockDescription: research-technology-unlock-surgery-nerve-grounding
+    icon:
+      sprite: _Shitmed/Objects/Specific/Medical/Surgery/manipulation.rsi
+      state: insertion
   # Arcane-End
   position: 4,13
 
@@ -130,6 +160,9 @@
   # Arcane-Start
   genericUnlocks:
   - unlockDescription: research-technology-unlock-surgery-tend-wounds-combo-femto
+    icon:
+      sprite: Objects/Specific/Medical/firstaidkits.rsi
+      state: firstaid
   # Arcane-End
   position: 4,14
 

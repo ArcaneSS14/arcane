@@ -64,6 +64,10 @@
   id: SurgeryRemoveKidneys
   name: Remove Kidneys
   components:
+  # Arcane-Start
+  - type: Surgery
+    requirement: SurgeryInciseOrgansAbdomen
+  # Arcane-End
   - type: SurgeryPartCondition
     parts: [ Groin ]
   - type: SurgeryOrganSlotCondition
@@ -78,6 +82,7 @@
   name: Insert Kidneys
   components:
   - type: Surgery
+    requirement: SurgeryInciseOrgansAbdomen # Arcane
     steps:
     - SurgeryStepInsertOrgan
     - SurgeryStepSealOrganWound
@@ -88,3 +93,9 @@
   - type: SurgeryOrganCondition
     organ:
     - type: Kidney
+  # Arcane-Start
+  - type: SurgeryPartComponentCondition
+    inverse: true
+    components:
+    - type: RoboticBodyPart
+  # Arcane-End

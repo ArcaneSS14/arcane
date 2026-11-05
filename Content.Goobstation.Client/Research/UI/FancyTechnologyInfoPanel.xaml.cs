@@ -183,7 +183,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
         // Arcane-Start
         foreach (var generic in proto.GenericUnlocks)
         {
-            UnlocksContainer.AddChild(new MiniRecipeCardControl(proto, Loc.GetString(generic.UnlockDescription), _proto, sprite));
+            UnlocksContainer.AddChild(new MiniRecipeCardControl(proto, Loc.GetString(generic.UnlockDescription), generic.Icon ?? proto.Icon, _proto, sprite));
         }
         // Arcane-End
 

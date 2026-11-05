@@ -555,6 +555,10 @@
   - type: SurgeryTechnologyCondition
     technology: Surgery
     inverse: true
+  - type: SurgeryPartComponentCondition
+    inverse: true
+    components:
+    - type: RoboticBodyPart
   # Arcane-End
 
 - type: entity
@@ -573,6 +577,10 @@
   - type: SurgeryTechnologyCondition
     technology: Surgery
     inverse: true
+  - type: SurgeryPartComponentCondition
+    inverse: true
+    components:
+    - type: RoboticBodyPart
   # Arcane-End
 
 - type: entity
@@ -616,6 +624,10 @@
   name: Remove Positronic Brain
   components:
   # TODO: ipc surgery steps
+  # Arcane-Start
+  - type: Surgery
+    requirement: SurgeryOpenRibcage
+  # Arcane-End
   - type: SurgeryPartCondition
     parts: [ Chest ]
   - type: SurgeryOrganCondition
@@ -638,6 +650,10 @@
   id: SurgeryInsertBorgBrain
   name: Insert Positronic Brain
   components:
+  # Arcane-Start
+  - type: Surgery
+    requirement: SurgeryOpenRibcage
+  # Arcane-End
   - type: SurgeryPartCondition
     parts: [ Chest ]
   - type: SurgeryOrganSlotCondition
@@ -748,6 +764,12 @@
   - type: SurgeryOrganCondition
     organ:
     - type: Liver
+  # Arcane-Start
+  - type: SurgeryPartComponentCondition
+    inverse: true
+    components:
+    - type: RoboticBodyPart
+  # Arcane-End
 
 - type: entity
   parent: BaseSurgeryRemoveOrgan
@@ -815,6 +837,12 @@
   - type: SurgeryOrganCondition
     organ:
     - type: Stomach
+  # Arcane-Start
+  - type: SurgeryPartComponentCondition
+    inverse: true
+    components:
+    - type: RoboticBodyPart
+  # Arcane-End
 
 - type: entity
   parent: BaseSurgeryRemoveOrgan
