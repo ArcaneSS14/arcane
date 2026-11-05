@@ -1179,6 +1179,27 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("poll_votes", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.PlayerReputation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("player_reputations_id");
+
+                    b.Property<float>("Reputation")
+                        .HasColumnType("REAL")
+                        .HasColumnName("reputation");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_player_reputations");
+
+                    b.ToTable("player_reputations", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.Preference", b =>
                 {
                     b.Property<int>("Id")

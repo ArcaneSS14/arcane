@@ -2,6 +2,7 @@
 
 using Content.Client._RMC14.LinkAccount;
 using Content.Client._Arcane.DiscordRoles;
+using Content.Client._Arcane.Reputation;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -70,6 +71,7 @@ namespace Content.Client.IoC
             collection.Register<DiscordRoleManager>(); // Arcane
             collection.Register<ISharedDiscordRoleManager, DiscordRoleManager>(); // Arcane
             collection.Register<ClientsidePlaytimeTrackingManager>();
+            collection.Register<ReputationManager>(); // Arcane
         }
     }
 }
