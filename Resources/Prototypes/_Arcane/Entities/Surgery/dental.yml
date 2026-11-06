@@ -9,10 +9,7 @@
     requirement: SurgeryOpenIncision
   - type: SurgeryPartCondition
     parts: [Head]
-  - type: SurgeryPartComponentCondition
-    inverse: true
-    components:
-    - type: RoboticBodyPart
+  - type: SurgeryRoboticVariant
 
 - type: entity
   parent: SurgeryDentalBase

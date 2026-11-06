@@ -12,10 +12,7 @@
     - SurgeryStepShockBrain
   - type: SurgeryPartCondition
     parts: [Head]
-  - type: SurgeryPartComponentCondition
-    inverse: true
-    components:
-    - type: RoboticBodyPart
+  - type: SurgeryRoboticVariant
   - type: SurgeryDeadCondition
   - type: SurgeryOrganCondition
     organ:

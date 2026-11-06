@@ -93,9 +93,4 @@
   - type: SurgeryOrganCondition
     organ:
     - type: Kidney
-  # Arcane-Start
-  - type: SurgeryPartComponentCondition
-    inverse: true
-    components:
-    - type: RoboticBodyPart
-  # Arcane-End
+  - type: SurgeryRoboticVariant # Arcane

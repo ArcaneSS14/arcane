@@ -555,10 +555,7 @@
   - type: SurgeryTechnologyCondition
     technology: Surgery
     inverse: true
-  - type: SurgeryPartComponentCondition
-    inverse: true
-    components:
-    - type: RoboticBodyPart
+  - type: SurgeryRoboticVariant
   # Arcane-End
 
 - type: entity
@@ -577,10 +574,7 @@
   - type: SurgeryTechnologyCondition
     technology: Surgery
     inverse: true
-  - type: SurgeryPartComponentCondition
-    inverse: true
-    components:
-    - type: RoboticBodyPart
+  - type: SurgeryRoboticVariant
   # Arcane-End
 
 - type: entity
@@ -764,12 +758,7 @@
   - type: SurgeryOrganCondition
     organ:
     - type: Liver
-  # Arcane-Start
-  - type: SurgeryPartComponentCondition
-    inverse: true
-    components:
-    - type: RoboticBodyPart
-  # Arcane-End
+  - type: SurgeryRoboticVariant # Arcane
 
 - type: entity
   parent: BaseSurgeryRemoveOrgan
@@ -837,12 +826,7 @@
   - type: SurgeryOrganCondition
     organ:
     - type: Stomach
-  # Arcane-Start
-  - type: SurgeryPartComponentCondition
-    inverse: true
-    components:
-    - type: RoboticBodyPart
-  # Arcane-End
+  - type: SurgeryRoboticVariant # Arcane
 
 - type: entity
   parent: BaseSurgeryRemoveOrgan
