@@ -29,6 +29,10 @@
   - type: ExperiScanner
   # Arcane-Start
   - type: SurgeryTool
+    endSound:
+      path: /Audio/Machines/scan_finish.ogg
+      params:
+        volume: -2
   - type: SurgeryAnalyzer
   # Arcane-End
   - type: Speech

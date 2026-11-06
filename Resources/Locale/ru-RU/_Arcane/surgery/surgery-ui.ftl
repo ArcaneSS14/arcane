@@ -49,7 +49,7 @@ surgery-ui-severity-minor = Лёгкие повреждения
 surgery-ui-severity-moderate = Средние повреждения
 surgery-ui-severity-severe = Тяжёлые повреждения
 surgery-ui-severity-critical = Критические повреждения
-surgery-ui-severity-mangled = Изувечение
+surgery-ui-severity-mangled = Увечья
 surgery-ui-severity-severed = Отсечение
 
 surgery-ui-part-head = Голова
