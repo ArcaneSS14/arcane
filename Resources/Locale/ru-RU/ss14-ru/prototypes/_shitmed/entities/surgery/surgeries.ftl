@@ -56,8 +56,10 @@ ent-SurgeryAttachTail = Прикрепить хвост
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryTendWoundsBrute = Лечение механических повреждений
     .desc = { ent-SurgeryBase.desc }
-ent-SurgeryTendWoundsBurn = Лечение физических повреждений
+# Arcane-Edit-Start
+ent-SurgeryTendWoundsBurn = Лечение ожогов
     .desc = { ent-SurgeryBase.desc }
+# Arcane-Edit-End
 ent-SurgeryInsertItem = Имплантация в полость
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryRemoveBrain = Удаление мозга
@@ -102,12 +104,14 @@ ent-SurgeryInstallAugmentBase = { ent-SurgeryBase }
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryRemoveAugmentBase = { ent-SurgeryBase }
     .desc = { ent-SurgeryBase.desc }
-ent-SurgeryInsertPowerCellSlot = Вставить батарею
+# Arcane-Edit-Start
+ent-SurgeryInsertPowerCellSlot = Установка слота батареи
     .desc = { ent-SurgeryInstallAugmentBase.desc }
-ent-SurgeryOpenPowerCellSlot = Открыть разрез под батарею
+ent-SurgeryOpenPowerCellSlot = Открыть разрез под слот батареи
     .desc = { ent-SurgeryOpenCavityBase.desc }
-ent-SurgeryRemovePowerCellSlot = Удалить батарею
+ent-SurgeryRemovePowerCellSlot = Удаление слота батареи
     .desc = { ent-SurgeryRemoveAugmentBase.desc }
+# Arcane-Edit-End
 ent-SurgeryInsertPowerCellCharger = Вставить зарядное устройство
     .desc = { ent-SurgeryInstallAugmentBase.desc }
 # Arcane-Edit-Start

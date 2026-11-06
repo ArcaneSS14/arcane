@@ -39,3 +39,5 @@ surgery-popup-step-SurgeryStepCloseBloodOutputs-robotic = { $user } is repairing
 surgery-popup-step-SurgeryStepThreadVeins-robotic = { $user } is reinforcing the hydraulic lines. Patient: { $target }.
 surgery-popup-step-SurgeryStepSpliceNerves-robotic = { $user } is splicing the control circuits. Patient: { $target }.
 surgery-popup-step-SurgeryStepGroundNerves-robotic = { $user } is grounding the control circuits. Patient: { $target }.
+surgery-robotic-step-SurgeryStepHealOrgans = Repair internal components
+surgery-popup-step-SurgeryStepHealOrgans-robotic = { $user } is repairing internal components. Patient: { $target }. Body part: { $part }.

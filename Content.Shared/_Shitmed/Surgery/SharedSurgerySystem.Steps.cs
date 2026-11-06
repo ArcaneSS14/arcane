@@ -3,6 +3,7 @@
 using Content.Goobstation.Common.Surgery;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Humanoid;
+using Content.Shared.Body.Components;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Part;
@@ -741,6 +742,9 @@ public abstract partial class SharedSurgerySystem
 
             foreach (var organ in organs)
             {
+                if (HasComp<BrainComponent>(organ.Id))
+                    continue;
+
                 if (healAmount <= 0)
                     break;
 
@@ -816,8 +820,10 @@ public abstract partial class SharedSurgerySystem
             {
                 foreach (var trauma in traumas)
                 {
-                    if (trauma.Comp.TraumaTarget is { } organ)
-                        _trauma.RestoreOrganIntegrity(organ);
+                    // Arcane-Edit-Start
+//                    if (trauma.Comp.TraumaTarget is { } organ)
+//                        _trauma.RestoreOrganIntegrity(organ);
+                    // Arcane-Edit-End
 
                     _trauma.RemoveTrauma(trauma);
                 }

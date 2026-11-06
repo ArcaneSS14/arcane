@@ -51,6 +51,14 @@
     state: icon
 
 - type: surgeryRoboticTool
+  id: Tending
+  tool:
+  - type: SurgeryWrench
+  icon:
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+
+- type: surgeryRoboticTool
   id: Cautery
   tool:
   - type: SurgeryWelder

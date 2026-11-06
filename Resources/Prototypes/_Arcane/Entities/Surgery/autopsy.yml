@@ -48,6 +48,8 @@
         components:
         - Xenomorph
       action: AutopsyXenomorph
+    - species: [HumanoidXeno]
+      action: AutopsyXenomorph
     - species: [Human]
       action: AutopsyHuman
     - action: AutopsyNonhuman

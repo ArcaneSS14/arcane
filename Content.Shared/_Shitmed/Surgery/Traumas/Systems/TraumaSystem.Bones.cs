@@ -55,8 +55,9 @@ public partial class TraumaSystem
         var part = bodyComp.ParentSlot is null
             ? bodyComp.PartType.ToString().ToLower()
             : bodyComp.ParentSlot.Value.Id;
+        var partName = Loc.GetString("body-part-" + part.Replace(" ", "-")); // Arcane
 
-        _popup.PopupClient(Loc.GetString($"popup-trauma-BoneDamage-{args.NewSeverity.ToString()}", ("part", part)),
+        _popup.PopupClient(Loc.GetString($"popup-trauma-BoneDamage-{args.NewSeverity.ToString()}", ("part", partName)), // Arcane-Edit
             bodyComp.Body.Value,
             PopupType.SmallCaution);
 

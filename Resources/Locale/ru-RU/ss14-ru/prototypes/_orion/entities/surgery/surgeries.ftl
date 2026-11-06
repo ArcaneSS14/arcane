@@ -1,6 +1,8 @@
+# Arcane-Edit-Start
 ent-SurgeryCorticalBorerRemoval = Удалить кортикального паразита
     .desc = { ent-SurgeryBase.desc }
-    .suffix = { ent-SurgeryBase.suffix }
+    .suffix = { "" }
+# Arcane-Edit-End
 
 ent-SurgeryPacify = Усмирить пациента
     .desc = Хирургическая операция, которая навсегда усмиряет пациента.

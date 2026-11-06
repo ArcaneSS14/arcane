@@ -6,7 +6,7 @@
   description: research-experiment-autopsy-human-desc
   category: Scanning
   requiredTechnologies: [MedicalEquipment]
-  supportedSources: None
+  supportedSources: HandheldScanner
   objective: !type:ActionCountExperimentObjective
     actionId: AutopsyHuman
   reward:
@@ -22,7 +22,7 @@
   description: research-experiment-autopsy-nonhuman-desc
   category: Scanning
   requiredTechnologies: [MedicalEquipment]
-  supportedSources: None
+  supportedSources: HandheldScanner
   objective: !type:ActionCountExperimentObjective
     actionId: AutopsyNonhuman
   reward:
@@ -38,7 +38,7 @@
   description: research-experiment-autopsy-xenomorph-desc
   category: Scanning
   requiredTechnologies: [MedicalEquipment]
-  supportedSources: None
+  supportedSources: HandheldScanner
   objective: !type:ActionCountExperimentObjective
     actionId: AutopsyXenomorph
   reward:

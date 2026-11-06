@@ -10,8 +10,10 @@ ent-SurgeryXenoExposeEndoskeleton = Обнажить эндоскелет
     .desc = { ent-BaseSurgeryXenoCommon.desc }
 ent-SurgeryXenoResealEndoskeleton = Восстановить эндоскелет
     .desc = { ent-BaseSurgeryXenoCommon.desc }
-ent-SurgeryXenoRemovePart = { ent-BaseSurgeryXeno }
+# Arcane-Edit-Start
+ent-SurgeryXenoRemovePart = { ent-SurgeryRemovePart }
     .desc = { ent-BaseSurgeryXeno.desc }
+# Arcane-Edit-End
 ent-BaseSurgeryXenoInsertOrgan = { ent-BaseSurgeryXeno }
     .desc = { ent-BaseSurgeryXeno.desc }
 ent-SurgeryXenoInsertEyes = Вставить глаза ксеноморфа
