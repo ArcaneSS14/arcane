@@ -168,7 +168,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     {
         // Arcane-Start
         var tool = _hands.GetActiveItemOrSelf(args.Event.User);
-        if (!_toolConditions.IsToolActive(tool, _toolQuery.CompOrNull(tool)?.IgnoreToggle ?? false))
+        if (args.Event.Target is { } toolPart
+            && GetSingleton(args.Event.Step) is { } toolStep
+            && _roboticSurgery.GetTool(toolStep, toolPart) != null
+            && !_toolConditions.IsToolActive(tool, _toolQuery.CompOrNull(tool)?.IgnoreToggle ?? false))
         {
             args.Cancel();
             return;
@@ -207,7 +210,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             || args.Target is not { } target
             || !IsSurgeryValid(ent, target, args.Surgery, args.Step, args.User, out var surgery, out var part, out var step)
             || !PreviousStepsComplete(ent, part, surgery, args.Step, args.User)
-            || !CanPerformStep(args.User, ent, part, step, tool, false))
+            || !CanPerformStep(args.User, ent, part, step, tool, false, out _, out _, out var data)) // Arcane-Edit
         {
             Log.Warning($"{ToPrettyString(args.User)} tried to start invalid surgery.");
             // Arcane-Start
@@ -250,6 +253,11 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             args.Repeat = repeatable && !complete;
             RaiseLocalEvent(args.User, ref ev);
         }
+
+        // Like tgstation, every loop of a repeated step can fail by the conditions it starts in.
+        // The do-after keeps its first delay, since only the do-after system may change it.
+        if (args.Repeat)
+            UpdateStepTiming(args, step, args.User, ent, part, data);
         // Arcane-Edit-End
 
         // consume the tool if it's something like using LV cable as stitches

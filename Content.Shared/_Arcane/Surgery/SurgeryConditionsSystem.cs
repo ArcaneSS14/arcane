@@ -29,10 +29,6 @@ public sealed class SurgeryConditionsSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _status = default!;
 
     private const float MaxDrunkSeconds = 100f;
-    private const float AnesthesiaSpeedModifier = 1.25f;
-    private const float AnalyzedSpeedModifier = 1.25f;
-    // tgstation's surgery times are for an operating table and take twice as long anywhere else.
-    private const float FloorSpeedModifier = 0.5f;
 
     private EntityQuery<BuckleComponent> _buckleQuery;
     private EntityQuery<SurgerySurfaceComponent> _surfaceQuery;
@@ -41,6 +37,9 @@ public sealed class SurgeryConditionsSystem : EntitySystem
     private float _failureChancePerSecond;
     private float _selfSurgeryPenalty;
     private float _selfSurgeryFailureChance;
+    private float _floorSpeedModifier;
+    private float _anesthesiaSpeedModifier;
+    private float _analyzedSpeedModifier;
 
     public override void Initialize()
     {
@@ -53,6 +52,9 @@ public sealed class SurgeryConditionsSystem : EntitySystem
         Subs.CVar(_config, ACCVars.SurgeryFailureChancePerSecond, value => _failureChancePerSecond = value, true);
         Subs.CVar(_config, ACCVars.SelfSurgeryFailurePenalty, value => _selfSurgeryPenalty = value, true);
         Subs.CVar(_config, ACCVars.SelfSurgeryFailureChance, value => _selfSurgeryFailureChance = value, true);
+        Subs.CVar(_config, ACCVars.SurgeryFloorSpeedModifier, value => _floorSpeedModifier = value, true);
+        Subs.CVar(_config, ACCVars.SurgeryAnesthesiaSpeedModifier, value => _anesthesiaSpeedModifier = value, true);
+        Subs.CVar(_config, ACCVars.SurgeryAnalyzedSpeedModifier, value => _analyzedSpeedModifier = value, true);
 
         SubscribeLocalEvent<SurgeryDeadConditionComponent, SurgeryValidEvent>(OnDeadValid);
     }
@@ -126,11 +128,11 @@ public sealed class SurgeryConditionsSystem : EntitySystem
     private float GetSurfaceModifier(EntityUid patient)
     {
         if (_buckleQuery.TryComp(patient, out var buckle) && buckle.BuckledTo is { } strap)
-            return _surfaceQuery.CompOrNull(strap)?.SpeedModifier ?? FloorSpeedModifier;
+            return _surfaceQuery.CompOrNull(strap)?.SpeedModifier ?? _floorSpeedModifier;
 
         var xform = Transform(patient);
         if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
-            return FloorSpeedModifier;
+            return _floorSpeedModifier;
 
         var tile = _map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
         var anchored = _map.GetAnchoredEntitiesEnumerator(xform.GridUid.Value, grid, tile);
@@ -141,7 +143,7 @@ public sealed class SurgeryConditionsSystem : EntitySystem
                 best = MathF.Max(best ?? surface.SpeedModifier, surface.SpeedModifier);
         }
 
-        return best ?? FloorSpeedModifier;
+        return best ?? _floorSpeedModifier;
     }
 
     /// <summary>
@@ -159,7 +161,7 @@ public sealed class SurgeryConditionsSystem : EntitySystem
 
     private float GetDrunkModifier(EntityUid user)
     {
-        // tgstation's curve: a 12x slowdown at full drunkenness.
+        // tgstation's curve: a 12x slowdown at full drunkenness. Its Ballmer peak is left out, since our drunkenness works differently.
         return 1f / (1f + MathF.Pow(GetDrunkenness(user), 1.5f) / 90f);
     }
 
@@ -167,12 +169,12 @@ public sealed class SurgeryConditionsSystem : EntitySystem
     {
         return _status.HasEffectComp<ForcedSleepingStatusEffectComponent>(patient)
             || _status.HasEffectComp<AnalgesiaStatusEffectComponent>(patient)
-            ? AnesthesiaSpeedModifier
+            ? _anesthesiaSpeedModifier
             : 1f;
     }
 
     private float GetAnalysisModifier(EntityUid patient)
     {
-        return HasComp<SurgicallyAnalyzedComponent>(patient) ? AnalyzedSpeedModifier : 1f;
+        return HasComp<SurgicallyAnalyzedComponent>(patient) ? _analyzedSpeedModifier : 1f;
     }
 }

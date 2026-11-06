@@ -24,4 +24,22 @@ public sealed partial class ACCVars
 
     public static readonly CVarDef<float> SelfSurgeryFailureChance =
         CVarDef.Create("surgery.self_surgery_failure_chance", 0.2f, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    ///     Surgery speed on the floor or anything without its own surgery surface; tgstation's times are for an operating table and take twice as long elsewhere.
+    /// </summary>
+    public static readonly CVarDef<float> SurgeryFloorSpeedModifier =
+        CVarDef.Create("surgery.floor_speed_modifier", 0.5f, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    ///     Surgery speed on a patient under anesthesia or painkillers.
+    /// </summary>
+    public static readonly CVarDef<float> SurgeryAnesthesiaSpeedModifier =
+        CVarDef.Create("surgery.anesthesia_speed_modifier", 1.25f, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    ///     Surgery speed on a body that has been autopsied.
+    /// </summary>
+    public static readonly CVarDef<float> SurgeryAnalyzedSpeedModifier =
+        CVarDef.Create("surgery.analyzed_speed_modifier", 1.25f, CVar.SERVER | CVar.REPLICATED);
 }

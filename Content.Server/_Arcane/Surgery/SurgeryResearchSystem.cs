@@ -2,6 +2,7 @@ using Content.Server.Research.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Arcane.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery;
+using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.NPC.Systems;
@@ -125,6 +126,10 @@ public sealed class SurgeryResearchSystem : SharedSurgeryResearchSystem
     // Clients predict surgery for the body they control, so they need its research before the first click.
     private void OnPlayerAttached(PlayerAttachedEvent args)
     {
+        // Ghosts and other bodies without hands cannot operate.
+        if (!HasComp<HandsComponent>(args.Entity))
+            return;
+
         UpdateAccess((args.Entity, EnsureComp<SurgeryResearchAccessComponent>(args.Entity)));
     }
 

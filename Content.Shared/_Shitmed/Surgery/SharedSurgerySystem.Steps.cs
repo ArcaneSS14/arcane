@@ -823,6 +823,16 @@ public abstract partial class SharedSurgerySystem
                     // Arcane-Edit-Start
 //                    if (trauma.Comp.TraumaTarget is { } organ)
 //                        _trauma.RestoreOrganIntegrity(organ);
+                    // The brain comes back only partly healed: left at zero it could never die again, and neurosurgery heals the rest.
+                    if (trauma.Comp.TraumaTarget is { } organ
+                        && TryComp<OrganComponent>(organ, out var organComp)
+                        && organComp.OrganIntegrity < healAmount)
+                    {
+                        var damage = organComp.IntegrityCap - healAmount;
+                        organComp.IntegrityModifiers.Clear();
+                        if (damage <= 0 || !_trauma.TrySetOrganDamageModifier(organ, damage, organ, traumaType, organComp))
+                            _trauma.RestoreOrganIntegrity(organ, organComp);
+                    }
                     // Arcane-Edit-End
 
                     _trauma.RemoveTrauma(trauma);
@@ -1210,18 +1220,10 @@ public abstract partial class SharedSurgerySystem
         _rotateToFace.TryFaceCoordinates(user, _transform.GetMapCoordinates(body).Position);
 
         // We need to check for nullability because of surgeries that dont require a tool, like Cavity Implants
-        var speed = data?.Speed ?? 0.5f; // Arcane-Edit: 1 -> 0.5
+//        var speed = data?.Speed ?? 1; // Arcane-Edit
         var toolUsed = data?.Used ?? false; // if no tool is being used you can't consume it
         var ev = new SurgeryDoAfterEvent(surgeryId, stepId, toolUsed);
-        var duration = GetSurgeryDuration(step, user, body, part, speed); // Arcane-Edit
-        // Arcane-Start
-        // A step done by hand is already slow by design, so only a tool worse than the proper one counts against it.
-        var idealDuration = (_stepQuery.CompOrNull(step)?.Duration ?? duration) / (data == null ? speed : 1f);
-        var selfSurgery = _surgeryConditions.IsSelfSurgeryPenalized(user, body, part, step);
-        ev.Penalty = _surgeryConditions.GetPenalty(idealDuration, duration, selfSurgery);
-        ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, idealDuration * ev.Penalty, selfSurgery);
-        duration = _surgeryConditions.GetCappedDuration(idealDuration, duration);
-        // Arcane-End
+        var duration = UpdateStepTiming(ev, step, user, body, part, data); // Arcane-Edit
 
         // Arcane-Edit-Start: Handle active surgery DoAfters cleanly
         if (TryComp<ActiveDoAfterComponent>(user, out _) &&
@@ -1342,6 +1344,20 @@ public abstract partial class SharedSurgerySystem
 
         return stepComp.Duration / MathF.Max(speed, 0.01f); // Orion-Edit: Guard against zero/invalid values
     }
+
+    // Arcane-Start
+    private float UpdateStepTiming(SurgeryDoAfterEvent ev, EntityUid step, EntityUid user, EntityUid body, EntityUid part, ISurgeryToolComponent? data)
+    {
+        var speed = data?.Speed ?? 0.5f;
+        var duration = GetSurgeryDuration(step, user, body, part, speed);
+        // A step done by hand is already slow by design, so only a tool worse than the proper one counts against it.
+        var idealDuration = (_stepQuery.CompOrNull(step)?.Duration ?? duration) / (data == null ? speed : 1f);
+        var selfSurgery = _surgeryConditions.IsSelfSurgeryPenalized(user, body, part, step);
+        ev.Penalty = _surgeryConditions.GetPenalty(idealDuration, duration, selfSurgery);
+        ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, idealDuration * ev.Penalty, selfSurgery);
+        return _surgeryConditions.GetCappedDuration(idealDuration, duration);
+    }
+    // Arcane-End
     private (Entity<SurgeryComponent> Surgery, int Step)? GetNextStep(EntityUid body, EntityUid part, Entity<SurgeryComponent?> surgery, List<EntityUid> requirements, EntityUid user)
     {
         if (!Resolve(surgery, ref surgery.Comp))
@@ -1445,7 +1461,7 @@ public abstract partial class SharedSurgerySystem
             RaiseLocalEvent(body, ref check);
 
         // Arcane-Start
-        if (check.IsValid && !_toolConditions.IsToolActive(tool, _toolQuery.CompOrNull(tool)?.IgnoreToggle ?? false))
+        if (check.IsValid && check.ValidTool != null && !_toolConditions.IsToolActive(tool, _toolQuery.CompOrNull(tool)?.IgnoreToggle ?? false))
         {
             check.Invalid = StepInvalidReason.ToolInvalid;
             check.Popup = Loc.GetString("surgery-tool-turn-on");
