@@ -71,8 +71,9 @@ public sealed class SurgeryBrainTreatmentSystem : EntitySystem
 
     private void OnCompleteCheck(Entity<SurgeryBrainTreatmentComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
+        // Integrity modifiers are not networked, so the client reads the integrity they add up to.
         if (_body.GetPartOrgans(args.Part).Any(o => HasComp<BrainComponent>(o.Id)
-            && o.Component.IntegrityModifiers.Values.Any(d => d > 0)))
+            && o.Component.OrganIntegrity < o.Component.IntegrityCap))
             args.Cancelled = true;
     }
 }
