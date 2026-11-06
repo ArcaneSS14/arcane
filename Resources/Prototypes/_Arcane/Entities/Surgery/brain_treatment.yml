@@ -8,18 +8,12 @@
   - type: Surgery
     requirement: SurgeryOpenIncision
     steps:
+    - SurgeryStepClampBleeders
+    - SurgeryStepSawBones
     - SurgeryStepTreatBrain
   - type: SurgeryPartCondition
     parts: [Head]
-  - type: SurgeryPartComponentCondition
-    inverse: false
-    components:
-    - type: IncisionOpen
-    - type: BonesSawed
-    - type: BleedersClamped
   - type: SurgeryRoboticVariant
-  - type: SurgeryBleedsPresentCondition
-    inverted: true
   - type: SurgeryOrganCondition
     organ:
     - type: Brain
