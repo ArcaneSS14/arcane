@@ -1,7 +1,7 @@
 ent-SurgeryVeinThreading = Vein Threading
-    .desc = Reinforce blood vessels or hydraulic lines to reduce fluid loss from bleeding by 75%.
+    .desc = Reinforce blood vessels or hydraulic lines, reducing fluid loss from injuries.
 ent-SurgeryNerveSplicing = Nerve Splicing
-    .desc = Modify nerves or control circuits to halve stun duration and reduce stamina damage by 20%. Incompatible with other nerve bioware.
+    .desc = Splice nerves or control circuits together, making the patient more resistant to stuns and exhaustion. Incompatible with other nerve bioware.
 ent-SurgeryNerveGrounding = Nerve Grounding
     .desc = Ground nerves or control circuits to prevent electrical shocks. Incompatible with other nerve bioware.
 ent-SurgeryStepThreadVeins = Thread the veins
