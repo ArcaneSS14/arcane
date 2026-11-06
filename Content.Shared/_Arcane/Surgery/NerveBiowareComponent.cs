@@ -19,4 +19,7 @@ public sealed partial class NerveBiowareComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool ShockImmune;
+
+    [DataField]
+    public float GroundingSiemensCoefficient = 0.25f;
 }

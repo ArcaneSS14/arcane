@@ -89,6 +89,10 @@ public sealed class BiowareSystem : EntitySystem
     private void OnElectrocutionAttempt(Entity<NerveBiowareComponent> ent, ref ElectrocutionAttemptEvent args)
     {
         if (ent.Comp.ShockImmune)
-            args.Cancel();
+        {
+            args.SiemensCoefficient *= ent.Comp.GroundingSiemensCoefficient;
+            args.InterruptsInteraction = false;
+            args.CanStun = false;
+        }
     }
 }

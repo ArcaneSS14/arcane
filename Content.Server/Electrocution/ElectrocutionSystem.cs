@@ -262,7 +262,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         Dirty(uid, electrified);
 
         siemens *= electrified.SiemensCoefficient;
-        if (!DoCommonElectrocutionAttempt(targetUid, uid, ref siemens, electrified.IgnoreInsulation) || siemens <= 0) // Goob edit
+        if (!DoCommonElectrocutionAttempt(targetUid, uid, ref siemens, out var attempt, electrified.IgnoreInsulation) || siemens <= 0) // Goob edit // Arcane-Edit
             return false; // If electrocution would fail, do nothing.
 
         var targets = new List<(EntityUid entity, int depth)>();
@@ -287,7 +287,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
                     ignoreInsulation: electrified.IgnoreInsulation // Goobstation
                 );
             }
-            return lastRet;
+            return lastRet && attempt.InterruptsInteraction; // Arcane-Edit
         }
 
         var node = PoweredNode(uid, electrified, nodeContainer);
@@ -320,7 +320,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
                     electrified.SiemensCoefficient,
                     electrified.IgnoreInsulation); // Goob edit
             }
-            return lastRet;
+            return lastRet && attempt.InterruptsInteraction; // Arcane-Edit
         }
     }
 
@@ -348,8 +348,8 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         EntityUid uid, EntityUid? sourceUid, int shockDamage, TimeSpan time, bool refresh, float siemensCoefficient = 1f,
         StatusEffectsComponent? statusEffects = null, bool ignoreInsulation = false)
     {
-        if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient, ignoreInsulation)
-            || !DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects))
+        if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient, out var attempt, ignoreInsulation) // Arcane-Edit
+            || !DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects, attempt.CanStun)) // Arcane-Edit
             return false;
 
         RaiseLocalEvent(uid, new ElectrocutedEvent(uid, sourceUid, siemensCoefficient, shockDamage), true); // Goobstation
@@ -368,14 +368,14 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         StatusEffectsComponent? statusEffects = null,
         TransformComponent? sourceTransform = null)
     {
-        if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient, ignoreInsulation)) // Goob edit
+        if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient, out var attempt, ignoreInsulation)) // Goob edit // Arcane-Edit
             return false;
 
-        if (!DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects))
+        if (!DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects, attempt.CanStun)) // Arcane-Edit
             return false;
 
         // Coefficient needs to be higher than this to do a powered electrocution!
-        if (siemensCoefficient <= 0.5f)
+        if (siemensCoefficient <= 0.5f || !attempt.CanStun) // Arcane-Edit
             return true;
 
         if (!Resolve(sourceUid, ref sourceTransform)) // This shouldn't really happen, but just in case...
@@ -408,10 +408,10 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         return true;
     }
 
-    private bool DoCommonElectrocutionAttempt(EntityUid uid, EntityUid? sourceUid, ref float siemensCoefficient, bool ignoreInsulation = false)
+    private bool DoCommonElectrocutionAttempt(EntityUid uid, EntityUid? sourceUid, ref float siemensCoefficient, out ElectrocutionAttemptEvent attemptEvent, bool ignoreInsulation = false) // Arcane-Edit
     {
 
-        var attemptEvent = new ElectrocutionAttemptEvent(uid, sourceUid, siemensCoefficient,
+        attemptEvent = new ElectrocutionAttemptEvent(uid, sourceUid, siemensCoefficient, // Arcane-Edit
             ignoreInsulation ? SlotFlags.NONE : ~SlotFlags.POCKET & ~SlotFlags.HEAD); // Goobstation - insulated mouse can't be worn
         RaiseLocalEvent(uid, attemptEvent, true);
 
@@ -425,7 +425,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
 
     private bool DoCommonElectrocution(EntityUid uid, EntityUid? sourceUid,
         int? shockDamage, TimeSpan time, bool refresh, float siemensCoefficient = 1f,
-        StatusEffectsComponent? statusEffects = null)
+        StatusEffectsComponent? statusEffects = null, bool canStun = true) // Arcane-Edit
     {
         if (siemensCoefficient <= 0)
             return false;
@@ -447,7 +447,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         if (!_statusEffects.TryAddStatusEffect<ElectrocutedComponent>(uid, StatusKeyIn, time, refresh, statusEffects))
             return false;
 
-        var shouldStun = siemensCoefficient > 0.5f;
+        var shouldStun = canStun && siemensCoefficient > 0.5f; // Arcane-Edit
 
         if (shouldStun)
         {
