@@ -22,7 +22,6 @@ namespace Content.Server._Arcane.Surgery;
 public sealed class SurgeryResearchSystem : SharedSurgeryResearchSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly NpcFactionSystem _faction = default!;
     [Dependency] private readonly ResearchSystem _research = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
@@ -60,10 +59,9 @@ public sealed class SurgeryResearchSystem : SharedSurgeryResearchSystem
         }
     }
 
-    protected override bool IsTechnologyUnlocked(EntityUid user, ProtoId<TechnologyPrototype> technology)
+    protected override IReadOnlyCollection<ProtoId<TechnologyPrototype>> GetResearchedTechnologies(EntityUid user)
     {
-        return TryGetSurgeonServer(user, out var server)
-            && _research.IsTechnologyUnlocked(server, _prototypes.Index(technology), server.Comp2);
+        return TryGetSurgeonServer(user, out var server) ? server.Comp2.ResearchedTechnologies : [];
     }
 
     /// <summary>
@@ -112,10 +110,7 @@ public sealed class SurgeryResearchSystem : SharedSurgeryResearchSystem
 
     private void UpdateAccess(Entity<SurgeryResearchAccessComponent> surgeon)
     {
-        IEnumerable<ProtoId<TechnologyPrototype>> researched = TryGetSurgeonServer(surgeon, out var server)
-            ? server.Comp2.ResearchedTechnologies
-            : [];
-
+        var researched = GetResearchedTechnologies(surgeon);
         if (surgeon.Comp.Technologies.SetEquals(researched))
             return;
 

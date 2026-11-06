@@ -170,8 +170,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         var tool = _hands.GetActiveItemOrSelf(args.Event.User);
         if (args.Event.Target is { } toolPart
             && GetSingleton(args.Event.Step) is { } toolStep
-            && _roboticSurgery.GetTool(toolStep, toolPart) != null
-            && !_toolConditions.IsToolActive(tool, _toolQuery.CompOrNull(tool)?.IgnoreToggle ?? false))
+            && IsStepToolOff(tool, toolStep, toolPart))
         {
             args.Cancel();
             return;
@@ -296,15 +295,9 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         // Arcane-Edit-Start
         // Once healed, only its own careful incision is left to seal; a fully opened part is closed by Close Incision.
-        if (GetTendableDamage(args.Part, ent.Comp.DamageGroup) > 0
+        if (HasTendableDamage(args.Part, ent.Comp.DamageGroup, ent.Comp.AdditionalGroups)
             || HasComp<IncisionOpenComponent>(args.Part) && !HasComp<SkinRetractedComponent>(args.Part))
             return;
-
-        foreach (var group in ent.Comp.AdditionalGroups)
-        {
-            if (GetTendableDamage(args.Part, group) > 0)
-                return;
-        }
 
         args.Cancelled = true;
         // Arcane-Edit-End
@@ -494,6 +487,11 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             return damage;
 
         return _wounds.GetWoundableSeverityPoint(part, damageGroup: group, healable: true, ignoreBlockers: true);
+    }
+
+    private bool HasTendableDamage(EntityUid part, ProtoId<DamageGroupPrototype> group, List<ProtoId<DamageGroupPrototype>> additionalGroups)
+    {
+        return additionalGroups.Prepend(group).Any(tended => GetTendableDamage(part, tended) > 0);
     }
     // Arcane-End
 

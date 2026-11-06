@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Arcane.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared.Research.Prototypes;
@@ -34,10 +35,10 @@ public abstract class SharedSurgeryResearchSystem : EntitySystem
         if (!Resolve(surgery, ref surgery.Comp, false))
             return true;
 
-        var researched = IsTechnologyUnlocked(user, surgery.Comp.Technology);
-        var replaced = surgery.Comp.ReplacedBy is { } replacement && IsTechnologyUnlocked(user, replacement);
-        return !replaced && researched != surgery.Comp.Inverse;
+        var researched = GetResearchedTechnologies(user);
+        var replaced = surgery.Comp.ReplacedBy is { } replacement && researched.Contains(replacement);
+        return !replaced && researched.Contains(surgery.Comp.Technology) != surgery.Comp.Inverse;
     }
 
-    protected abstract bool IsTechnologyUnlocked(EntityUid user, ProtoId<TechnologyPrototype> technology);
+    protected abstract IReadOnlyCollection<ProtoId<TechnologyPrototype>> GetResearchedTechnologies(EntityUid user);
 }

@@ -287,7 +287,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
                     ignoreInsulation: electrified.IgnoreInsulation // Goobstation
                 );
             }
-            return lastRet && attempt.InterruptsInteraction; // Arcane-Edit
+            return lastRet && !attempt.Grounded; // Arcane-Edit
         }
 
         var node = PoweredNode(uid, electrified, nodeContainer);
@@ -320,7 +320,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
                     electrified.SiemensCoefficient,
                     electrified.IgnoreInsulation); // Goob edit
             }
-            return lastRet && attempt.InterruptsInteraction; // Arcane-Edit
+            return lastRet && !attempt.Grounded; // Arcane-Edit
         }
     }
 
@@ -349,7 +349,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         StatusEffectsComponent? statusEffects = null, bool ignoreInsulation = false)
     {
         if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient, out var attempt, ignoreInsulation) // Arcane-Edit
-            || !DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects, attempt.CanStun)) // Arcane-Edit
+            || !DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects, !attempt.Grounded)) // Arcane-Edit
             return false;
 
         RaiseLocalEvent(uid, new ElectrocutedEvent(uid, sourceUid, siemensCoefficient, shockDamage), true); // Goobstation
@@ -371,11 +371,11 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient, out var attempt, ignoreInsulation)) // Goob edit // Arcane-Edit
             return false;
 
-        if (!DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects, attempt.CanStun)) // Arcane-Edit
+        if (!DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects, !attempt.Grounded)) // Arcane-Edit
             return false;
 
         // Coefficient needs to be higher than this to do a powered electrocution!
-        if (siemensCoefficient <= 0.5f || !attempt.CanStun) // Arcane-Edit
+        if (siemensCoefficient <= 0.5f || attempt.Grounded) // Arcane-Edit
             return true;
 
         if (!Resolve(sourceUid, ref sourceTransform)) // This shouldn't really happen, but just in case...

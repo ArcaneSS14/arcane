@@ -273,11 +273,8 @@ public abstract partial class SharedSurgerySystem
     {
         // Arcane-Edit-Start
         var healableSeverity = GetTendableDamage(args.Part, ent.Comp.MainGroup);
-        var totalSeverity = healableSeverity;
-        foreach (var additionalGroup in ent.Comp.AdditionalGroups)
-            totalSeverity += GetTendableDamage(args.Part, additionalGroup);
 
-        if (totalSeverity <= 0)
+        if (!HasTendableDamage(args.Part, ent.Comp.MainGroup, ent.Comp.AdditionalGroups))
         {
             // Do not keep a repeatable treatment step alive when no healable progress remains.
             args.Complete = true;
@@ -374,17 +371,7 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        // Arcane-Start
-        foreach (var group in ent.Comp.AdditionalGroups)
-        {
-            if (GetTendableDamage(args.Part, group) <= 0)
-                continue;
-
-            args.Cancelled = true;
-            return;
-        }
-        // Arcane-End
-        if (GetTendableDamage(args.Part, ent.Comp.MainGroup) > 0) // Arcane-Edit
+        if (HasTendableDamage(args.Part, ent.Comp.MainGroup, ent.Comp.AdditionalGroups)) // Arcane-Edit
             args.Cancelled = true;
     }
 
@@ -1292,7 +1279,7 @@ public abstract partial class SharedSurgerySystem
         if (!Loc.TryGetString(locName, out var locResult,
                 ("user", userName), ("target", targetName), ("part", part)))
         {
-            locResult = Loc.GetString(_roboticSurgery.GetStepPopupKey(stepId, part),
+            locResult = Loc.GetString(_roboticSurgery.GetRoboticKey($"surgery-popup-step-{stepId}", part),
                 ("user", userName), ("target", targetName), ("part", part));
         }
         // Arcane-Edit-End
@@ -1356,6 +1343,12 @@ public abstract partial class SharedSurgerySystem
         ev.Penalty = _surgeryConditions.GetPenalty(idealDuration, duration, selfSurgery);
         ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, idealDuration * ev.Penalty, selfSurgery);
         return _surgeryConditions.GetCappedDuration(idealDuration, duration);
+    }
+
+    // A switched-off item only matters when the step uses it as its tool.
+    private bool IsStepToolOff(EntityUid tool, EntityUid step, EntityUid part)
+    {
+        return !_toolConditions.IsToolActive(tool) && _roboticSurgery.GetTool(step, part) != null;
     }
     // Arcane-End
     private (Entity<SurgeryComponent> Surgery, int Step)? GetNextStep(EntityUid body, EntityUid part, Entity<SurgeryComponent?> surgery, List<EntityUid> requirements, EntityUid user)
@@ -1461,7 +1454,7 @@ public abstract partial class SharedSurgerySystem
             RaiseLocalEvent(body, ref check);
 
         // Arcane-Start
-        if (check.IsValid && check.ValidTool != null && !_toolConditions.IsToolActive(tool, _toolQuery.CompOrNull(tool)?.IgnoreToggle ?? false))
+        if (check.IsValid && IsStepToolOff(tool, step, part))
         {
             check.Invalid = StepInvalidReason.ToolInvalid;
             check.Popup = Loc.GetString("surgery-tool-turn-on");

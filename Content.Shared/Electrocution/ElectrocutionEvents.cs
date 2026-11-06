@@ -11,10 +11,7 @@ namespace Content.Shared.Electrocution
         public readonly EntityUid TargetUid;
         public readonly EntityUid? SourceUid;
         public float SiemensCoefficient = 1f;
-        // Arcane-Start
-        public bool InterruptsInteraction = true;
-        public bool CanStun = true;
-        // Arcane-End
+        public bool Grounded; // Arcane
 
         public ElectrocutionAttemptEvent(EntityUid targetUid, EntityUid? sourceUid, float siemensCoefficient, SlotFlags targetSlots)
         {

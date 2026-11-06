@@ -91,8 +91,7 @@ public sealed class BiowareSystem : EntitySystem
         if (ent.Comp.ShockImmune)
         {
             args.SiemensCoefficient *= ent.Comp.GroundingSiemensCoefficient;
-            args.InterruptsInteraction = false;
-            args.CanStun = false;
+            args.Grounded = true;
         }
     }
 }

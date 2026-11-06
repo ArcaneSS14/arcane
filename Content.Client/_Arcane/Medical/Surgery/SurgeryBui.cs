@@ -586,17 +586,16 @@ public sealed class SurgeryBui : BoundUserInterface
         var states = new List<(string, string)>();
 
         // Robotic parts reuse the organic state components, so only their wording differs.
-        var suffix = EntMan.HasComponent<RoboticBodyPartComponent>(part) ? "-robotic" : string.Empty;
         if (EntMan.HasComponent<IncisionOpenComponent>(part))
-            states.Add((Loc.GetString($"surgery-ui-part-state-incision{suffix}"), StyleClass.StatusWarning));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-incision", part)), StyleClass.StatusWarning));
         if (EntMan.HasComponent<SkinRetractedComponent>(part))
-            states.Add((Loc.GetString($"surgery-ui-part-state-skin-retracted{suffix}"), StyleClass.StatusWarning));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-skin-retracted", part)), StyleClass.StatusWarning));
         if (EntMan.HasComponent<BleedersClampedComponent>(part))
-            states.Add((Loc.GetString($"surgery-ui-part-state-clamped{suffix}"), StyleClass.StatusOkay));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-clamped", part)), StyleClass.StatusOkay));
         if (EntMan.HasComponent<BonesSawedComponent>(part))
-            states.Add((Loc.GetString($"surgery-ui-part-state-bones-sawed{suffix}"), StyleClass.StatusWarning));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-bones-sawed", part)), StyleClass.StatusWarning));
         if (EntMan.HasComponent<BonesOpenComponent>(part))
-            states.Add((Loc.GetString($"surgery-ui-part-state-bones-open{suffix}"), StyleClass.StatusWarning));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-bones-open", part)), StyleClass.StatusWarning));
         if (EntMan.HasComponent<OrgansIncisedComponent>(part))
             states.Add((Loc.GetString("surgery-ui-part-state-organs-incised"), StyleClass.StatusWarning));
         if (EntMan.HasComponent<CavityWidenedComponent>(part))

@@ -31,6 +31,7 @@ public sealed class RoboticSurgerySystem : EntitySystem
         SubscribeLocalEvent<SurgeryMultitoolComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
         SubscribeLocalEvent<SurgeryWirecutterComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
         SubscribeLocalEvent<SurgeryCableComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
+        SubscribeLocalEvent<SurgeryWelderComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
     }
 
     private void OnVariantValid(Entity<SurgeryRoboticVariantComponent> ent, ref SurgeryValidEvent args)
@@ -88,11 +89,10 @@ public sealed class RoboticSurgerySystem : EntitySystem
     }
 
     /// <summary>
-    ///     The popup key for a step, worded for machinery on a robotic part when the step has such a popup.
+    ///     The locale key worded for machinery on a robotic part, when such a wording exists.
     /// </summary>
-    public string GetStepPopupKey(EntProtoId step, EntityUid part)
+    public string GetRoboticKey(string key, EntityUid part)
     {
-        var key = $"surgery-popup-step-{step}";
         if (_roboticQuery.HasComp(part) && _loc.HasString($"{key}-robotic"))
             return $"{key}-robotic";
 

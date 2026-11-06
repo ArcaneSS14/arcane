@@ -540,11 +540,9 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
 
     private bool IsCavityInsert(EntProtoId step)
     {
-        if (_surgery.GetSingleton(step) is not { } stepEnt)
-            return false;
-
-        return TryComp(stepEnt, out SurgeryStepCavityEffectComponent? cavity) && cavity.Action == "Insert"
-            || TryComp(stepEnt, out SurgeryDentalImplantStepComponent? dental) && !dental.Remove;
+        return _surgery.GetSingleton(step) is { } stepEnt
+            && TryComp(stepEnt, out SurgeryStepCavityEffectComponent? cavity)
+            && cavity.Action == "Insert";
     }
 
     private bool NeedsConfirmation(EntProtoId step)

@@ -5,7 +5,6 @@ using Content.Shared._Shitmed.Medical.Surgery.Steps;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
-using Content.Shared.Traits;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
@@ -31,13 +30,10 @@ public sealed class SurgeryBrainTreatmentSystem : EntitySystem
         if (!_net.IsServer)
             return;
 
-        foreach (var organ in _body.GetPartOrgans(args.Part))
+        foreach (var brain in _body.GetBodyPartOrganComponents<BrainComponent>(args.Part))
         {
-            if (!HasComp<BrainComponent>(organ.Id))
-                continue;
-
-            var remaining = organ.Component.IntegrityCap * ent.Comp.HealFraction;
-            foreach (var (key, damage) in organ.Component.IntegrityModifiers.ToList())
+            var remaining = brain.Organ.IntegrityCap * ent.Comp.HealFraction;
+            foreach (var (key, damage) in brain.Organ.IntegrityModifiers.ToList())
             {
                 if (remaining <= 0)
                     break;
@@ -45,7 +41,7 @@ public sealed class SurgeryBrainTreatmentSystem : EntitySystem
                     continue;
 
                 var healed = FixedPoint2.Min(remaining, damage);
-                _trauma.TryChangeOrganDamageModifier(organ.Id, -healed, key.Item2, key.Item1, organ.Component);
+                _trauma.TryChangeOrganDamageModifier(brain.Owner, -healed, key.Item2, key.Item1, brain.Organ);
                 remaining -= healed;
             }
         }
@@ -56,14 +52,11 @@ public sealed class SurgeryBrainTreatmentSystem : EntitySystem
         if (!_net.IsServer)
             return;
 
-        foreach (var organ in _body.GetPartOrgans(args.Part))
+        foreach (var brain in _body.GetBodyPartOrganComponents<BrainComponent>(args.Part))
         {
-            if (!HasComp<BrainComponent>(organ.Id))
-                continue;
-
-            var damage = organ.Component.IntegrityCap * ent.Comp.FailureDamageFraction;
-            if (!_trauma.TryChangeOrganDamageModifier(organ.Id, damage, organ.Id, nameof(SurgeryBrainTreatmentSystem), organ.Component))
-                _trauma.TryCreateOrganDamageModifier(organ.Id, damage, organ.Id, nameof(SurgeryBrainTreatmentSystem), organ.Component);
+            var damage = brain.Organ.IntegrityCap * ent.Comp.FailureDamageFraction;
+            if (!_trauma.TryChangeOrganDamageModifier(brain.Owner, damage, brain.Owner, nameof(SurgeryBrainTreatmentSystem), brain.Organ))
+                _trauma.TryCreateOrganDamageModifier(brain.Owner, damage, brain.Owner, nameof(SurgeryBrainTreatmentSystem), brain.Organ);
         }
 
         EntityManager.AddComponents(args.Body, _prototypes.Index(ent.Comp.FailureTrait).Components, false);
@@ -72,8 +65,7 @@ public sealed class SurgeryBrainTreatmentSystem : EntitySystem
     private void OnCompleteCheck(Entity<SurgeryBrainTreatmentComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
         // Integrity modifiers are not networked, so the client reads the integrity they add up to.
-        if (_body.GetPartOrgans(args.Part).Any(o => HasComp<BrainComponent>(o.Id)
-            && o.Component.OrganIntegrity < o.Component.IntegrityCap))
+        if (_body.GetBodyPartOrganComponents<BrainComponent>(args.Part).Any(b => b.Organ.OrganIntegrity < b.Organ.IntegrityCap))
             args.Cancelled = true;
     }
 }

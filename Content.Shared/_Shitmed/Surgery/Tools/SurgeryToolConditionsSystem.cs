@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
 using Content.Shared.Smoking;
@@ -16,6 +17,7 @@ namespace Content.Shared._Shitmed.Medical.Surgery.Tools;
 public sealed class SurgeryToolConditionsSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ItemToggleSystem _toggle = default!; // Arcane
 
     public override void Initialize()
     {
@@ -27,15 +29,15 @@ public sealed class SurgeryToolConditionsSystem : EntitySystem
     }
 
     // Arcane-Start
-    public bool IsToolActive(Entity<ItemToggleComponent?> ent, bool ignoreToggle = false)
+    public bool IsToolActive(EntityUid tool)
     {
-        return ignoreToggle || !Resolve(ent, ref ent.Comp, false) || ent.Comp.Activated;
+        return CompOrNull<SurgeryToolComponent>(tool)?.IgnoreToggle == true || _toggle.IsActivated(tool);
     }
     // Arcane-End
 
     private void OnToggleUsed(Entity<ItemToggleComponent> ent, ref SurgeryToolUsedEvent args)
     {
-        if (IsToolActive(ent.AsNullable(), args.IgnoreToggle)) // Arcane-Edit
+        if (ent.Comp.Activated || args.IgnoreToggle)
             return;
 
         _popup.PopupEntity(Loc.GetString("surgery-tool-turn-on"), ent, args.User);
