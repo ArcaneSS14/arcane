@@ -1,0 +1,17 @@
+- type: loadout
+  id: Rabbit
+  storage:
+    back:
+    - MobRabbit
+
+- type: loadout
+  id: Turtle
+  storage:
+    back:
+    - MobTurtle
+
+- type: loadout
+  id: Seal
+  storage:
+    back:
+    - MobSeal

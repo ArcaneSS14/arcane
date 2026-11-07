@@ -1,0 +1,49 @@
+- type: cargoProduct
+  id: LivestockTiger
+  icon:
+    sprite: _Arcane/Mobs/Animals/tiger.rsi
+    state: tiger_alive
+  product: CrateNPCTiger
+  cost: 7500
+  category: cargoproduct-category-name-livestock
+  group: market
+
+- type: cargoProduct
+  id: LivestockCrocodile
+  icon:
+    sprite: _Arcane/Mobs/Animals/crocodile.rsi
+    state: crocodile_alive
+  product: CrateNPCCrocodile
+  cost: 6000
+  category: cargoproduct-category-name-livestock
+  group: market
+
+- type: cargoProduct
+  id: LivestockTurtle
+  icon:
+    sprite: _Arcane/Mobs/Animals/turtle.rsi
+    state: turtle_alive
+  product: CrateNPCTurtle
+  cost: 2500
+  category: cargoproduct-category-name-livestock
+  group: market
+
+- type: cargoProduct
+  id: LivestockRabbit
+  icon:
+    sprite: _Arcane/Mobs/Animals/rabbit.rsi
+    state: rabbit_alive
+  product: CrateNPCRabbit
+  cost: 2000
+  category: cargoproduct-category-name-livestock
+  group: market
+
+- type: cargoProduct
+  id: LivestockSeal
+  icon:
+    sprite: _Arcane/Mobs/Animals/seal.rsi
+    state: seal_alive
+  product: CrateNPCSeal
+  cost: 3000
+  category: cargoproduct-category-name-livestock
+  group: market
