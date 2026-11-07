@@ -1190,7 +1190,8 @@ public abstract partial class SharedSurgerySystem
         var toolComp = _toolQuery.CompOrNull(tool);
         var usedEv = new SurgeryToolUsedEvent(user, body);
         usedEv.IgnoreToggle = toolComp?.IgnoreToggle ?? false;
-        RaiseLocalEvent(tool, ref usedEv);
+        if (_roboticSurgery.GetTool(step, part) != null) // Arcane
+            RaiseLocalEvent(tool, ref usedEv); // Arcane-Edit
         if (usedEv.Cancelled)
         {
             error = StepInvalidReason.ToolInvalid;
