@@ -4220,3 +4220,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/c8d19529-ea04-44ea-81c6-fc947fe03445
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Закрепленное действие не закрепляет подобные себе действия.
+  id: 304
+  time: '2026-11-07T14:59:10.0000000+00:00'
+  prNumber: 596
+  url: https://github.com/ArcaneSS14/arcane/pull/596
