@@ -82,6 +82,7 @@
     - SurgeryStepClampBleeders
     - SurgeryStepCloseBloodOutputs
   - type: SurgeryBleedsPresentCondition
+  - type: SurgeryRoboticVariant # Arcane
 
 - type: entity
   parent: BasePartSurgery
