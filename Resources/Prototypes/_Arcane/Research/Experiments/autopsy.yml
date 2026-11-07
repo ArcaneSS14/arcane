@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: researchExperiment
+  id: AutopsyHuman
+  name: research-experiment-autopsy-human-name
+  description: research-experiment-autopsy-human-desc
+  category: Scanning
+  requiredTechnologies: [MedicalEquipment]
+  supportedSources: HandheldScanner
+  objective: !type:ActionCountExperimentObjective
+    actionId: AutopsyHuman
+  reward:
+    pointRewards:
+    - type: General
+      amount: 500
+    - type: Experimental
+      amount: 150
+
+- type: researchExperiment
+  id: AutopsyNonhuman
+  name: research-experiment-autopsy-nonhuman-name
+  description: research-experiment-autopsy-nonhuman-desc
+  category: Scanning
+  requiredTechnologies: [MedicalEquipment]
+  supportedSources: HandheldScanner
+  objective: !type:ActionCountExperimentObjective
+    actionId: AutopsyNonhuman
+  reward:
+    pointRewards:
+    - type: General
+      amount: 500
+    - type: Experimental
+      amount: 150
+
+- type: researchExperiment
+  id: AutopsyXenomorph
+  name: research-experiment-autopsy-xenomorph-name
+  description: research-experiment-autopsy-xenomorph-desc
+  category: Scanning
+  requiredTechnologies: [MedicalEquipment]
+  supportedSources: HandheldScanner
+  objective: !type:ActionCountExperimentObjective
+    actionId: AutopsyXenomorph
+  reward:
+    pointRewards:
+    - type: General
+      amount: 500
+    - type: Experimental
+      amount: 150

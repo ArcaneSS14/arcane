@@ -4,6 +4,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Interaction.Events;
+using Content.Shared._Arcane.Surgery;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Content.Shared.Damage.Systems;
@@ -44,6 +45,7 @@ public abstract partial class SharedStunSystem : EntitySystem
     [Dependency] protected readonly SharedDoAfterSystem DoAfter = default!;
     [Dependency] protected readonly SharedStaminaSystem Stamina = default!;
     [Dependency] private readonly StatusEffectNew.StatusEffectsSystem _status = default!;
+    [Dependency] private readonly BiowareSystem _bioware = default!; // Arcane
 
     public override void Initialize()
     {
@@ -131,6 +133,7 @@ public abstract partial class SharedStunSystem : EntitySystem
     // TODO STUN: Make events for different things. (Getting modifiers, attempt events, informative events...)
     public bool TryAddStunDuration(EntityUid uid, TimeSpan duration)
     {
+        duration *= _bioware.GetStunMultiplier(uid); // Arcane
         if (!_status.TryAddStatusEffectDuration(uid, StunId, duration))
             return false;
 
@@ -140,6 +143,7 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     public bool TryUpdateStunDuration(EntityUid uid, TimeSpan? duration)
     {
+        duration *= _bioware.GetStunMultiplier(uid); // Arcane
         if (!_status.TryUpdateStatusEffectDuration(uid, StunId, duration))
             return false;
         // goob start
@@ -343,6 +347,7 @@ public abstract partial class SharedStunSystem : EntitySystem
         if (duration == null)
             return TryUpdateParalyzeDuration(uid, duration);
 
+        duration = duration.Value * _bioware.GetStunMultiplier(uid); // Arcane
         if (!_status.TryAddStatusEffectDuration(uid, StunId, duration.Value))
             return false;
 
@@ -355,6 +360,7 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     public bool TryUpdateParalyzeDuration(EntityUid uid, TimeSpan? duration)
     {
+        duration *= _bioware.GetStunMultiplier(uid); // Arcane
         if (!_status.TryUpdateStatusEffectDuration(uid, StunId, duration))
             return false;
 

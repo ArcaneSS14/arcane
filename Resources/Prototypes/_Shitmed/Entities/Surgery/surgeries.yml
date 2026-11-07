@@ -66,6 +66,10 @@
     steps:
     - SurgeryStepOpenIncisionScalpel
     - SurgeryStepRetractSkin
+  # Arcane-Start
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticOpenShell
+  # Arcane-End
 
 - type: entity
   parent: BasePartSurgery
@@ -78,6 +82,7 @@
     - SurgeryStepClampBleeders
     - SurgeryStepCloseBloodOutputs
   - type: SurgeryBleedsPresentCondition
+  - type: SurgeryRoboticVariant # Arcane
 
 - type: entity
   parent: BasePartSurgery
@@ -111,6 +116,10 @@
     - Head
     - Chest
     inverse: true
+  # Arcane-Start
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticCloseShell
+  # Arcane-End
 
 - type: entity
   parent: SurgeryCloseIncision
@@ -152,6 +161,10 @@
     - SurgeryStepPriseOpenBones
   - type: SurgeryPartCondition
     parts: [ Chest ]
+  # Arcane-Start
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticOpenEndoskeleton
+  # Arcane-End
 
 - type: entity
   parent: SurgeryBase
@@ -168,6 +181,10 @@
   - type: SurgeryPartCondition
     parts: [ Chest ]
     inverse: true
+  # Arcane-Start
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticRemovePart
+  # Arcane-End
 
 - type: entity
   parent: BasePartSurgery
@@ -177,7 +194,7 @@
   - type: Surgery
     requirement: SurgeryOpenIncision
     steps:
-    - SurgeryStepSawBones
+#    - SurgeryStepSawBones # Arcane-Edit
     - SurgeryStepClampInternalBleeders
     - SurgeryStepMendBones
   - type: SurgeryBleedsPresentCondition
@@ -194,6 +211,7 @@
     requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepClampInternalBleeders
+    - SurgeryStepInciseOrgans # Arcane
     - SurgeryStepHealOrgans
   - type: SurgeryBleedsPresentCondition
     inverted: true
@@ -534,6 +552,12 @@
     - SurgeryStepSealTendWound
   - type: SurgeryWoundedCondition
     damageGroup: Brute
+  # Arcane-Start
+  - type: SurgeryTechnologyCondition
+    technology: Surgery
+    inverse: true
+  - type: SurgeryRoboticVariant
+  # Arcane-End
 
 - type: entity
   parent: SurgeryBase
@@ -547,6 +571,12 @@
     - SurgeryStepSealTendWound
   - type: SurgeryWoundedCondition
     damageGroup: Burn
+  # Arcane-Start
+  - type: SurgeryTechnologyCondition
+    technology: Surgery
+    inverse: true
+  - type: SurgeryRoboticVariant
+  # Arcane-End
 
 - type: entity
   parent: SurgeryBase
@@ -554,7 +584,7 @@
   name: Cavity Implant
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryWidenCavity # Arcane-Edit
     steps:
     - SurgeryStepInsertItem
     - SurgeryStepRemoveItem
@@ -575,6 +605,7 @@
     steps:
     - SurgeryStepSawBones
     - SurgeryStepClampInternalBleeders
+    - SurgeryStepInciseOrgans # Arcane
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
     parts: [ Head ]
@@ -588,6 +619,10 @@
   name: Remove Positronic Brain
   components:
   # TODO: ipc surgery steps
+  # Arcane-Start
+  - type: Surgery
+    requirement: SurgeryOpenRibcage
+  # Arcane-End
   - type: SurgeryPartCondition
     parts: [ Chest ]
   - type: SurgeryOrganCondition
@@ -610,6 +645,10 @@
   id: SurgeryInsertBorgBrain
   name: Insert Positronic Brain
   components:
+  # Arcane-Start
+  - type: Surgery
+    requirement: SurgeryOpenRibcage
+  # Arcane-End
   - type: SurgeryPartCondition
     parts: [ Chest ]
   - type: SurgeryOrganSlotCondition
@@ -624,7 +663,7 @@
   name: Remove Heart
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryInciseOrgans # Arcane-Edit
   - type: SurgeryPartCondition
     parts: [ Chest ]
   - type: SurgeryOrganSlotCondition
@@ -639,7 +678,7 @@
   name: Insert Heart
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryInciseOrgans # Arcane-Edit
     steps:
     # Arcane-Edit-Start: Removed
 #    - SurgeryStepSawBones
@@ -693,6 +732,10 @@
   id: SurgeryRemoveLiver
   name: Remove Liver
   components:
+  # Arcane-Start
+  - type: Surgery
+    requirement: SurgeryInciseOrgansAbdomen
+  # Arcane-End
   - type: SurgeryPartCondition
     parts: [ Groin ]
   - type: SurgeryOrganCondition
@@ -705,6 +748,7 @@
   name: Insert Liver
   components:
   - type: Surgery
+    requirement: SurgeryInciseOrgansAbdomen # Arcane
     steps:
     - SurgeryStepInsertLiver
     - SurgeryStepSealOrganWound
@@ -715,6 +759,7 @@
   - type: SurgeryOrganCondition
     organ:
     - type: Liver
+  - type: SurgeryRoboticVariant # Arcane
 
 - type: entity
   parent: BaseSurgeryRemoveOrgan
@@ -722,7 +767,7 @@
   name: Remove Lungs
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryInciseOrgans # Arcane-Edit
   - type: SurgeryPartCondition
     parts: [ Chest ]
   - type: SurgeryOrganCondition
@@ -735,7 +780,7 @@
   name: Insert Lungs
   components:
   - type: Surgery
-    requirement: SurgeryOpenRibcage
+    requirement: SurgeryInciseOrgans # Arcane-Edit
     steps:
     # Arcane-Edit-Start: Removed
 #    - SurgeryStepSawBones
@@ -755,6 +800,10 @@
   id: SurgeryRemoveStomach
   name: Remove Stomach
   components:
+  # Arcane-Start
+  - type: Surgery
+    requirement: SurgeryInciseOrgansAbdomen
+  # Arcane-End
   - type: SurgeryPartCondition
     parts: [ Groin ]
   - type: SurgeryOrganCondition
@@ -767,6 +816,7 @@
   name: Insert Stomach
   components:
   - type: Surgery
+    requirement: SurgeryInciseOrgansAbdomen # Arcane
     steps:
     - SurgeryStepInsertOrgan
     - SurgeryStepSealOrganWound
@@ -777,6 +827,7 @@
   - type: SurgeryOrganCondition
     organ:
     - type: Stomach
+  - type: SurgeryRoboticVariant # Arcane
 
 - type: entity
   parent: BaseSurgeryRemoveOrgan
@@ -1048,8 +1099,9 @@
   - type: Surgery
     requirement: SurgeryOpenIncision
     steps:
+    - SurgeryStepClampBleeders # Arcane
     - SurgeryStepLobotomize
-    - SurgeryStepCloseIncision
+#    - SurgeryStepCloseIncision # Arcane-Edit
   - type: SurgeryOrganCondition
     organ:
     - type: Brain
@@ -1073,7 +1125,7 @@
     requirement: SurgeryOpenIncision
     steps:
     - SurgeryStepMendBrainTissue
-    - SurgeryStepCloseIncision
+#    - SurgeryStepCloseIncision # Arcane-Edit
   - type: SurgeryOrganCondition
     organ:
     - type: Brain

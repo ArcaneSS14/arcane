@@ -1,0 +1,158 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Robotic steps add the same part components as the organic ones, so the rest of Shitmed surgery sees an opened part.
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepUnscrewShell
+  name: Unscrew the shell
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryScrewdriver
+    add:
+    - type: IncisionOpen
+    duration: 2.4
+  - type: SurgerySelfOperableStep
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepOpenHatch
+  name: Open the hatch
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryCrowbar
+    add:
+    - type: SkinRetracted
+    - type: BleedersClamped
+    duration: 1
+  - type: SurgerySelfOperableStep
+  - type: Sprite
+    sprite: Objects/Tools/crowbar.rsi
+    state: icon
+
+# Stands in for sawing the bones and clamping internal bleeders, which robotic parts have no use for.
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPrepareElectronics
+  name: Prepare the electronics
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryMultitool
+    add:
+    - type: BonesSawed
+    - type: InternalBleedersClamped
+    duration: 2.4
+  - type: SurgerySelfOperableStep
+  - type: Sprite
+    sprite: Objects/Tools/multitool.rsi
+    state: icon
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepUnwrenchEndoskeleton
+  name: Unwrench the endoskeleton
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryWrench
+    add:
+    - type: BonesOpen
+    duration: 2.4
+  - type: SurgerySelfOperableStep
+  - type: Sprite
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepWrenchEndoskeleton
+  name: Wrench the endoskeleton
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryWrench
+    remove:
+    - type: BonesOpen
+    duration: 2.4
+  - type: SurgerySelfOperableStep
+  - type: Sprite
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepScrewShell
+  name: Screw the shell
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryScrewdriver
+    remove:
+    - type: SkinRetracted
+    - type: BleedersClamped
+    - type: BonesSawed
+    - type: BodyPartReattached
+    - type: InternalBleedersClamped
+    duration: 2.4
+  - type: SurgerySelfOperableStep
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepWeldShell
+  name: Weld the shell seams
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryWelder
+    remove:
+    - type: IncisionOpen
+    duration: 2.4
+  - type: SurgerySelfOperableStep
+  - type: Sprite
+    sprite: Objects/Tools/welder.rsi
+    state: icon
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepDetachLimb
+  name: Unwrench the limb
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryWrench
+    add:
+    - type: BodyPartSawed
+    duration: 2
+  - type: Sprite
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepDisconnectLimb
+  name: Disconnect the limb
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: SurgeryCrowbar
+    remove:
+    - type: SkinRetracted
+    - type: BleedersClamped
+    - type: InternalBleedersClamped
+    - type: IncisionOpen
+    - type: BodyPartSawed
+    - type: BonesSawed
+    duration: 4
+  - type: Sprite
+    sprite: Objects/Tools/crowbar.rsi
+    state: icon
+  - type: SurgeryRemovePartStep

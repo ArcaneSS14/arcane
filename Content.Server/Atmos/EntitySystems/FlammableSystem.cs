@@ -1,3 +1,4 @@
+using Content.Server._Arcane.Surgery;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Stunnable;
@@ -73,7 +74,7 @@ namespace Content.Server.Atmos.EntitySystems
             _physicsQuery = GetEntityQuery<PhysicsComponent>();
 
             SubscribeLocalEvent<FlammableComponent, MapInitEvent>(OnMapInit);
-            SubscribeLocalEvent<FlammableComponent, InteractUsingEvent>(OnInteractUsing, after: [typeof(RepairableSystem)]); // Arcane-Edit: a welder repairs silicons before igniting them
+            SubscribeLocalEvent<FlammableComponent, InteractUsingEvent>(OnInteractUsing, after: [typeof(RepairableSystem), typeof(SurgeryToolSystem)]); // Arcane-Edit: a welder repairs silicons and a hot surgical tool operates before igniting them
             SubscribeLocalEvent<FlammableComponent, StartCollideEvent>(OnCollide);
             SubscribeLocalEvent<FlammableComponent, IsHotEvent>(OnIsHot);
             SubscribeLocalEvent<FlammableComponent, TileFireEvent>(OnTileFire);

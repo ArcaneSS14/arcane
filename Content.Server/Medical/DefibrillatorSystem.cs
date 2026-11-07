@@ -164,13 +164,13 @@ public sealed class DefibrillatorSystem : EntitySystem
     /// <summary>
     ///     Tries to defibrillate the target with the given defibrillator.
     /// </summary>
-    public void Zap(EntityUid uid, EntityUid target, EntityUid user, DefibrillatorComponent? component = null)
+    public EntityUid? Zap(EntityUid uid, EntityUid target, EntityUid user, DefibrillatorComponent? component = null, bool ignoreRot = false) // Arcane-Edit
     {
         if (!Resolve(uid, ref component))
-            return;
+            return null; // Arcane-Edit
 
         if (!_powerCell.TryUseActivatableCharge(uid, user: user))
-            return;
+            return null; // Arcane-Edit
 
         var selfEvent = new SelfBeforeDefibrillatorZapsEvent(user, uid, target);
         RaiseLocalEvent(user, selfEvent);
@@ -179,7 +179,7 @@ public sealed class DefibrillatorSystem : EntitySystem
 
         // Ensure thet new target is still valid.
         if (selfEvent.Cancelled || !CanZap(uid, target, user, component, true))
-            return;
+            return null; // Arcane-Edit
 
         var targetEvent = new TargetBeforeDefibrillatorZapsEvent(user, uid, target);
         RaiseLocalEvent(target, targetEvent);
@@ -187,11 +187,11 @@ public sealed class DefibrillatorSystem : EntitySystem
         target = targetEvent.DefibTarget;
 
         if (targetEvent.Cancelled || !CanZap(uid, target, user, component, true))
-            return;
+            return null; // Arcane-Edit
 
         if (!TryComp<MobStateComponent>(target, out var mob) ||
             !TryComp<MobThresholdsComponent>(target, out var thresholds))
-            return;
+            return null; // Arcane-Edit
 
         _audio.PlayPvs(component.ZapSound, uid);
         _electrocution.TryDoElectrocution(target, null, component.ZapDamage, component.WritheDuration, true, ignoreInsulation: true);
@@ -208,14 +208,14 @@ public sealed class DefibrillatorSystem : EntitySystem
         }
 
         if (!TryComp<UseDelayComponent>(uid, out var useDelay))
-            return;
+            return null; // Arcane-Edit
         _useDelay.SetLength((uid, useDelay), component.ZapDelay, component.DelayId);
         _useDelay.TryResetDelay((uid, useDelay), id: component.DelayId);
 
         ICommonSession? session = null;
 
         var dead = true;
-        if (_rotting.IsRotten(target))
+        if (!ignoreRot && _rotting.IsRotten(target)) // Arcane-Edit
         {
             _chatManager.TrySendInGameICMessage(uid, Loc.GetString("defibrillator-rotten"),
                 InGameICChatType.Speak, true);
@@ -281,5 +281,6 @@ public sealed class DefibrillatorSystem : EntitySystem
         // TODO clean up this clown show above
         var ev = new TargetDefibrillatedEvent(user, (uid, component));
         RaiseLocalEvent(target, ref ev);
+        return target; // Arcane
     }
 }

@@ -38,7 +38,9 @@ public sealed class SurgeryBui : BoundUserInterface
     private static readonly ResPath StatusRsiPath = new("/Textures/_Shitmed/Interface/Targeting/Status");
 
     private readonly SurgerySystem _surgery;
+    private readonly RoboticSurgerySystem _roboticSurgery;
     private readonly SurgeryToolSystem _tools;
+    private readonly SurgeryResearchSystem _research;
     private readonly SharedBodySystem _body;
     private readonly SharedContainerSystem _container;
     private readonly SpriteSystem _sprite;
@@ -76,7 +78,9 @@ public sealed class SurgeryBui : BoundUserInterface
     public SurgeryBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         _surgery = EntMan.System<SurgerySystem>();
+        _roboticSurgery = EntMan.System<RoboticSurgerySystem>();
         _tools = EntMan.System<SurgeryToolSystem>();
+        _research = EntMan.System<SurgeryResearchSystem>();
         _targeting = _uiManager.GetUIController<TargetingUIController>();
         _body = EntMan.System<SharedBodySystem>();
         _container = EntMan.System<SharedContainerSystem>();
@@ -166,17 +170,23 @@ public sealed class SurgeryBui : BoundUserInterface
 
         // Parts are filtered on every check: the BUI state lags behind a predicted severing, and it arrives
         // before the state of a newly attached part, since the engine applies parents before children.
+        // The server's choices are shared by all surgeons, so research is left to each surgeon's own network.
+        var surgeon = _player.LocalEntity;
         _choices.Clear();
         foreach (var (netPart, surgeries) in _serverChoices)
         {
             if (EntMan.TryGetEntity(netPart, out var part) && IsAttachedPart(part.Value))
-                _choices[part.Value] = surgeries;
+            {
+                _choices[part.Value] = surgeon is { } local && part != _part
+                    ? surgeries.FindAll(id => _surgery.GetSingleton(id) is not { } surgery || _research.IsResearchedFor(surgery, local))
+                    : surgeries;
+            }
         }
 
         // The server re-checks choices once a second, so the shown part is checked here to follow the patient at once.
         // Only that part is checked, since all of them cost about a millisecond.
         if (_part is { } selected && _choices.ContainsKey(selected))
-            _choices[selected] = _surgery.GetValidSurgeries(Owner, selected);
+            _choices[selected] = _surgery.GetValidSurgeries(Owner, selected, surgeon);
 
         foreach (var part in _choices.Keys)
             _entries[part] = BuildEntries(part);
@@ -575,18 +585,41 @@ public sealed class SurgeryBui : BoundUserInterface
     {
         var states = new List<(string, string)>();
 
+        // Robotic parts reuse the organic state components, so only their wording differs.
         if (EntMan.HasComponent<IncisionOpenComponent>(part))
-            states.Add((Loc.GetString("surgery-ui-part-state-incision"), StyleClass.StatusWarning));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-incision", part)), StyleClass.StatusWarning));
         if (EntMan.HasComponent<SkinRetractedComponent>(part))
-            states.Add((Loc.GetString("surgery-ui-part-state-skin-retracted"), StyleClass.StatusWarning));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-skin-retracted", part)), StyleClass.StatusWarning));
         if (EntMan.HasComponent<BleedersClampedComponent>(part))
-            states.Add((Loc.GetString("surgery-ui-part-state-clamped"), StyleClass.StatusOkay));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-clamped", part)), StyleClass.StatusOkay));
         if (EntMan.HasComponent<BonesSawedComponent>(part))
-            states.Add((Loc.GetString("surgery-ui-part-state-bones-sawed"), StyleClass.StatusWarning));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-bones-sawed", part)), StyleClass.StatusWarning));
         if (EntMan.HasComponent<BonesOpenComponent>(part))
-            states.Add((Loc.GetString("surgery-ui-part-state-bones-open"), StyleClass.StatusWarning));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-bones-open", part)), StyleClass.StatusWarning));
+        if (EntMan.HasComponent<OrgansIncisedComponent>(part))
+            states.Add((Loc.GetString("surgery-ui-part-state-organs-incised"), StyleClass.StatusWarning));
+        if (EntMan.HasComponent<CavityWidenedComponent>(part))
+            states.Add((Loc.GetString("surgery-ui-part-state-cavity-widened"), StyleClass.StatusWarning));
+        if (EntMan.HasComponent<BonesDrilledComponent>(part))
+            states.Add((Loc.GetString("surgery-ui-part-state-bones-drilled"), StyleClass.StatusWarning));
+
+        if (EntMan.TryGetComponent(part, out BodyPartComponent? partComp) && partComp.PartType == BodyPartType.Chest)
+        {
+            AddBiowareState(states, EntMan.GetComponentOrNull<BloodBiowareComponent>(Owner)?.Source);
+            AddBiowareState(states, EntMan.GetComponentOrNull<NerveBiowareComponent>(Owner)?.Source);
+        }
 
         return states;
+    }
+
+    private void AddBiowareState(List<(string, string)> states, EntProtoId? source)
+    {
+        if (source is not { } step
+            || _surgery.GetSingleton(step) is not { } singleton
+            || !EntMan.TryGetComponent(singleton, out SurgeryBiowareComponent? bioware))
+            return;
+
+        states.Add((Loc.GetString("surgery-ui-part-state-bioware", ("bioware", Loc.GetString(bioware.Name))), StyleClass.StatusGood));
     }
 
     private bool IsBleeding(EntityUid part)
@@ -771,9 +804,9 @@ public sealed class SurgeryBui : BoundUserInterface
         var required = new HashSet<EntProtoId>();
         foreach (var surgeryId in _choices[part])
         {
-            var requirementId = GetSurgery(surgeryId)?.Comp.Requirement;
+            var requirementId = GetRequirement(part, GetSurgery(surgeryId));
             while (requirementId is { } id && required.Add(id))
-                requirementId = GetSurgery(id)?.Comp.Requirement;
+                requirementId = GetRequirement(part, GetSurgery(id));
         }
 
         var entries = new List<(int Priority, SurgeryOperationEntry Entry)>();
@@ -840,12 +873,12 @@ public sealed class SurgeryBui : BoundUserInterface
         if (status != SurgeryOperationStatus.Completed
             && nextStepId is { } stepId
             && _surgery.GetSingleton(stepId) is { } step)
-            next = (step, _tools.GetToolName(step) ?? Name(step));
+            next = (step, _tools.GetToolName(step, part) ?? _roboticSurgery.GetStepName(step, part));
 
-        return new SurgeryOperationEntry(surgeryId, Name(surgery), status, GetSection(surgery, status), done, total, next);
+        return new SurgeryOperationEntry(surgeryId, Name(surgery), status, GetSection(part, surgery, status), done, total, next);
     }
 
-    private SurgeryOperationSection GetSection(Entity<SurgeryComponent> surgery, SurgeryOperationStatus status)
+    private SurgeryOperationSection GetSection(EntityUid part, Entity<SurgeryComponent> surgery, SurgeryOperationStatus status)
     {
         if (status == SurgeryOperationStatus.Started)
             return SurgeryOperationSection.Started;
@@ -855,8 +888,8 @@ public sealed class SurgeryBui : BoundUserInterface
 
         // Each required surgery opens the part one layer deeper, so a requirement with its own one, like the ribcage
         // after the incision, means the opened cavity.
-        var requirement = surgery.Comp.Requirement is { } id ? GetSurgery(id) : null;
-        return requirement?.Comp.Requirement != null ? SurgeryOperationSection.Cavity : SurgeryOperationSection.Incision;
+        var requirement = GetRequirement(part, surgery) is { } id ? GetSurgery(id) : null;
+        return GetRequirement(part, requirement) != null ? SurgeryOperationSection.Cavity : SurgeryOperationSection.Incision;
     }
 
     #endregion
@@ -913,10 +946,10 @@ public sealed class SurgeryBui : BoundUserInterface
                     warning = popup;
 
                 _steps.Add(new SurgeryStepData(step,
-                    Name(step),
+                    _roboticSurgery.GetStepName(step, part),
                     stage,
                     status,
-                    _tools.GetToolName(step),
+                    _tools.GetToolName(step, part),
                     warning,
                     activeStart,
                     activeDuration));
@@ -930,13 +963,13 @@ public sealed class SurgeryBui : BoundUserInterface
         var chain = new List<(EntProtoId, Entity<SurgeryComponent>)> { (surgeryId, surgery) };
         var visited = new HashSet<EntProtoId> { surgeryId };
 
-        var requirementId = surgery.Comp.Requirement;
+        var requirementId = GetRequirement(part, surgery);
         while (requirementId is { } id && visited.Add(id) && GetSurgery(id) is { } requirement)
         {
             if (!_surgery.IsSurgerySkipped(part, requirement.AsNullable()))
                 chain.Insert(0, (id, requirement));
 
-            requirementId = requirement.Comp.Requirement;
+            requirementId = GetRequirement(part, requirement);
         }
 
         return chain;
@@ -1030,6 +1063,9 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private Texture? GetIcon(EntityUid step)
     {
+        if (_part is { } part && _roboticSurgery.GetIcon(step, part) is { } icon)
+            return _sprite.Frame0(icon);
+
         return EntMan.GetComponentOrNull<SpriteComponent>(step)?.Icon?.Default;
     }
 
@@ -1040,6 +1076,11 @@ public sealed class SurgeryBui : BoundUserInterface
             return null;
 
         return (surgery, comp);
+    }
+
+    private EntProtoId? GetRequirement(EntityUid part, Entity<SurgeryComponent>? surgery)
+    {
+        return surgery is { } found ? _roboticSurgery.GetRequirement(found.Comp, part) : null;
     }
 
     private string Name(EntityUid uid) => EntMan.GetComponent<MetaDataComponent>(uid).EntityName;

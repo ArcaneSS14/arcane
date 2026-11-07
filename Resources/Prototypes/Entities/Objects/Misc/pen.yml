@@ -119,6 +119,7 @@
     damage:
       types:
         Piercing: 20 # Goobstation - ow
+  - type: SurgeryScrewdriver # Arcane
 
 - type: entity
   name: Cybersun pen

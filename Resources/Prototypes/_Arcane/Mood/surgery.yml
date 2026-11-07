@@ -1,0 +1,19 @@
+- type: moodCategory
+  id: Surgery
+
+- type: moodEffect
+  id: SurgeryStarted
+  category: Surgery
+  moodChange: -8
+
+- type: moodEffect
+  id: SurgerySuccess
+  category: Surgery
+  moodChange: -8
+  timeout: 180
+
+- type: moodEffect
+  id: SurgeryFailure
+  category: Surgery
+  moodChange: -8
+  timeout: 600

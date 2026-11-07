@@ -325,4 +325,9 @@ public partial record struct GenericUnlock()
     /// </summary>
     [DataField]
     public string UnlockDescription = string.Empty;
+    // Arcane-Start
+
+    [DataField]
+    public SpriteSpecifier? Icon;
+    // Arcane-End
 }
