@@ -4228,3 +4228,14 @@ Entries:
   time: '2026-11-07T14:59:10.0000000+00:00'
   prNumber: 596
   url: https://github.com/ArcaneSS14/arcane/pull/596
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: Исправлено отображение морды при поднятой сварочной маске.
+  id: 305
+  time: '2026-11-07T15:01:12.0000000+00:00'
+  prNumber: 598
+  url: https://github.com/ArcaneSS14/arcane/pull/598
+  media:
+    - >-
+      https://github.com/user-attachments/assets/68159011-5044-4d90-b1e9-1912a7cfab6d
