@@ -1,0 +1,49 @@
+- type: loadout
+  id: RunnerLightCap
+  equipment:
+    head: ClothingHeadHatRunnerLight
+
+- type: loadout
+  id: RunnerDarkCap
+  equipment:
+    head: ClothingHeadHatRunnerDark
+
+- type: loadout
+  id: RunnerLightJacket
+  equipment:
+    outerClothing: ClothingOuterCoatRunnerLight
+
+- type: loadout
+  id: RunnerDarkJacket
+  equipment:
+    outerClothing: ClothingOuterCoatRunnerDark
+
+- type: loadout
+  id: RunnerLightJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformRunnerLight
+
+- type: loadout
+  id: RunnerDarkJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformRunnerDark
+
+- type: loadout
+  id: RunnerLightBoots
+  equipment:
+    shoes: ClothingShoesRunnerLight
+
+- type: loadout
+  id: RunnerDarkBoots
+  equipment:
+    shoes: ClothingShoesRunnerDark
+
+- type: loadout
+  id: RunnerDarkBelt
+  equipment:
+    belt: ClothingBeltRunnerDark
+
+- type: loadout
+  id: RunnerLightBelt
+  equipment:
+    belt: ClothingBeltRunnerLight

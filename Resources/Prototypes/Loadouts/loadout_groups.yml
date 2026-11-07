@@ -330,6 +330,10 @@
   - ContractorJumpsuitTac
   - BlackMJAlt
  # goob changes end
+  # Arcane-Start
+  - RunnerLightJumpsuit
+  - RunnerDarkJumpsuit
+  # Arcane-End
 
 - type: loadoutGroup
   id: PassengerFace
@@ -372,6 +376,10 @@
   - InteQWinter
   - InteQHoodie
   # Orion-End
+  # Arcane-Start
+  - RunnerLightJacket
+  - RunnerDarkJacket
+  # Arcane-End
 
 - type: loadoutGroup
   id: PassengerShoes
@@ -379,6 +387,10 @@
   loadouts:
   - BlackShoes
   - WinterBoots
+  # Arcane-Start
+  - RunnerLightBoots
+  - RunnerDarkBoots
+  # Arcane-End
 
 - type: loadoutGroup
   id: PassengerJobTrinkets
@@ -1164,6 +1176,10 @@
   - YellowJumpsuit
   - YellowJumpskirt
   - EngiMJ # goob
+  # Arcane-Start
+  - RunnerLightJumpsuit
+  - RunnerDarkJumpsuit
+  # Arcane-End
 
 - type: loadoutGroup
   id: TechnicalAssistantJobTrinkets
@@ -1181,6 +1197,10 @@
   - StationEngineerHardhatOrange
   - StationEngineerHardhatRed
   - SeniorEngineerBeret
+  # Arcane-Start
+  - RunnerLightCap
+  - RunnerDarkCap
+  # Arcane-End
 
 - type: loadoutGroup
   id: StationEngineerJumpsuit
@@ -1193,6 +1213,10 @@
   - SeniorEngineerJumpskirt
   - EngiMJ # goob
   - StationEngineerJumpsuitCasual # goob
+  # Arcane-Start
+  - RunnerLightJumpsuit
+  - RunnerDarkJumpsuit
+  # Arcane-En
 
 - type: loadoutGroup
   id: StationEngineerBackpack
@@ -1210,6 +1234,10 @@
   loadouts:
   - StationEngineerOuterVest
   - StationEngineerWintercoat
+  # Arcane-Start
+  - RunnerLightJacket
+  - RunnerDarkJacket
+  # Arcane-End
 
 - type: loadoutGroup
   id: StationEngineerShoes
@@ -1217,6 +1245,10 @@
   loadouts:
   - WorkBoots
   - EngineeringWinterBoots
+  # Arcane-Start
+  - RunnerLightBoots
+  - RunnerDarkBoots
+  # Arcane-End
 
 - type: loadoutGroup
   id: StationEngineerID

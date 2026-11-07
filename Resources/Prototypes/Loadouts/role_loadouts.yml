@@ -79,11 +79,13 @@
   id: JobPassenger
   groups:
   - Glasses
+  - PassengerHead # Arcane
   - PassengerFace
   - PassengerNeck
   - PassengerOuterClothing
   - PassengerJumpsuit
   - PassengerGloves
+  - PassengerBelt # Arcane
   - PassengerShoes
   - CommonBackpack
   # Goobstation - EE Plasmeme Change.
@@ -600,8 +602,11 @@
 - type: roleLoadout
   id: JobTechnicalAssistant
   groups:
+  - TechnicalAssistantHead # Arcane
   - TechnicalAssistantJumpsuit
+  - TechnicalAssistantOuterClothing # Arcane
   - StationEngineerBackpack
+  - TechnicalAssistantShoes # Arcane
   # Goobstation - EE Plasmeme Change.
   - TechnicalAssistantEnvirohelm
   - TechnicalAssistantEnvirosuit

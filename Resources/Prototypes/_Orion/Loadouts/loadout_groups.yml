@@ -49,6 +49,10 @@
   - ChemistUshanka
   - InteQBeret
   - InteQHatSoft
+  # Arcane-Start
+  - RunnerLightCap
+  - RunnerDarkCap
+  # Arcane-End
 
 # Underwear (All roles)
 - type: loadoutGroup
