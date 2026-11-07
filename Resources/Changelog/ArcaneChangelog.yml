@@ -4239,3 +4239,13 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/68159011-5044-4d90-b1e9-1912a7cfab6d
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: >-
+        Исправлено отображение программ в КПК, если программ каким-то образом
+        было больше 8.
+  id: 306
+  time: '2026-11-07T15:43:17.0000000+00:00'
+  prNumber: 595
+  url: https://github.com/ArcaneSS14/arcane/pull/595
