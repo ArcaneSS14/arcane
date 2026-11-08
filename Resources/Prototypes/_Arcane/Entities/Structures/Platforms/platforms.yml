@@ -1,0 +1,287 @@
+- type: entity
+  parent: CMPlatformBaseDestructible
+  id: PlatformWoodenDark
+  name: dark wooden platform
+  description: A raised level of dark wood, often used to elevate areas above others. You could probably climb it.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform
+
+- type: entity
+  parent: CMPlatformCorner
+  id: PlatformWoodenDarkCorner
+  name: dark wooden platform
+  description: A raised level of dark wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform_corner
+
+- type: entity
+  parent: RMCPlatformCornerSmall
+  id: PlatformWoodenDarkCornerSmall
+  name: dark wooden corner
+  description: A raised level of dark wood, often used to elevate areas above others. This is the corner.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform_deco
+
+- type: entity
+  parent: RMCPlatformRound
+  id: PlatformWoodenDarkRound
+  name: dark wooden platform
+  description: A raised level of dark wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform_round
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWoodenDarkStairRight
+  name: dark wooden platform stair
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform_stair
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWoodenDarkStairLeft
+  name: dark wooden platform stair
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform_stair_alt
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWoodenLight
+  name: light wooden platform
+  description: A raised level of light wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform
+
+- type: entity
+  parent: PlatformWoodenDarkCorner
+  id: PlatformWoodenLightCorner
+  name: light wooden platform
+  description: A raised level of light wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform_corner
+
+- type: entity
+  parent: PlatformWoodenDarkCornerSmall
+  id: PlatformWoodenLightCornerSmall
+  name: light wooden corner
+  description: A raised level of light wood, often used to elevate areas above others. This is the corner.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform_deco
+
+- type: entity
+  parent: PlatformWoodenDarkRound
+  id: PlatformWoodenLightRound
+  name: light wooden platform
+  description: A raised level of light wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform_round
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWoodenLightStairRight
+  name: light wooden platform stair
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform_stair
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWoodenLightStairLeft
+  name: light wooden platform stair
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform_stair_alt
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWooden
+  name: wooden platform
+  description: A raised level of wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform
+
+- type: entity
+  parent: PlatformWoodenDarkCorner
+  id: PlatformWoodenCorner
+  name: wooden platform
+  description: A raised level of wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform_corner
+
+- type: entity
+  parent: PlatformWoodenDarkCornerSmall
+  id: PlatformWoodenCornerSmall
+  name: wooden corner
+  description: A raised level of wood, often used to elevate areas above others. This is the corner.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform_deco
+
+- type: entity
+  parent: PlatformWoodenDarkRound
+  id: PlatformWoodenRound
+  name: wooden platform
+  description: A raised level of wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform_round
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWoodenStairRight
+  name: wooden platform stair
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform_stair
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWoodenStairLeft
+  name: wooden platform stair
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform_stair_alt
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWoodenRed
+  name: red wooden platform
+  description: A raised level of red wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform
+
+- type: entity
+  parent: PlatformWoodenDarkCorner
+  id: PlatformWoodenRedCorner
+  name: red wooden platform
+  description: A raised level of red wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform_corner
+
+- type: entity
+  parent: PlatformWoodenDarkCornerSmall
+  id: PlatformWoodenRedCornerSmall
+  name: red wooden corner
+  description: A raised level of red wood, often used to elevate areas above others. This is the corner.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform_deco
+
+- type: entity
+  parent: PlatformWoodenDarkRound
+  id: PlatformWoodenRedRound
+  name: red wooden platform
+  description: A raised level of red wood, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform_round
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWoodenRedStairRight
+  name: red wooden platform stair
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform_stair
+
+- type: entity
+  parent: PlatformWoodenDark
+  id: PlatformWoodenRedStairLeft
+  name: red wooden platform stair
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform_stair_alt
+
+- type: entity
+  parent: RMCPlatformCornerSmall
+  id: PlatformSandstoneCorner
+  name: sandstone platform corner
+  description: A raised level of sandstone, often used to elevate areas above others. This is the corner.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: sandstone_corner
+
+- type: entity
+  parent: RMCPlatformRound
+  id: PlatformSandstoneRound
+  name: sandstone platform
+  description: A raised level of sandstone, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: sandstone_round
+
+- type: entity
+  parent: RMCPlatformCornerSmall
+  id: PlatformStoneCorner
+  name: stone platform corner
+  description: A raised level of stone, often used to elevate areas above others. This is the corner.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: stone_corner
+
+- type: entity
+  parent: RMCPlatformRound
+  id: PlatformStoneRound
+  name: stone platform
+  description: A raised level of stone, often used to elevate areas above others. You could probably climb it.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: stone_round

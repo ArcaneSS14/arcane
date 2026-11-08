@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "By RAID_3390",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "sandstone_corner",
+      "directions": 4
+    },
+    {
+      "name": "sandstone_round",
+      "directions": 4
+    },
+    {
+      "name": "stone_corner",
+      "directions": 4
+    },
+    {
+      "name": "stone_round",
+      "directions": 4
+    },
+    {
+      "name": "wooden_dark_platform",
+      "directions": 4
+    },
+    {
+      "name": "wooden_dark_platform_corner",
+      "directions": 4
+    },
+    {
+      "name": "wooden_dark_platform_deco",
+      "directions": 4
+    },
+    {
+      "name": "wooden_dark_platform_round",
+      "directions": 4
+    },
+    {
+      "name": "wooden_dark_platform_stair",
+      "directions": 4
+    },
+    {
+      "name": "wooden_dark_platform_stair_alt",
+      "directions": 4
+    },
+    {
+      "name": "wooden_light_platform",
+      "directions": 4
+    },
+    {
+      "name": "wooden_light_platform_corner",
+      "directions": 4
+    },
+    {
+      "name": "wooden_light_platform_deco",
+      "directions": 4
+    },
+    {
+      "name": "wooden_light_platform_round",
+      "directions": 4
+    },
+    {
+      "name": "wooden_light_platform_stair",
+      "directions": 4
+    },
+    {
+      "name": "wooden_light_platform_stair_alt",
+      "directions": 4
+    },
+    {
+      "name": "wooden_platform",
+      "directions": 4
+    },
+    {
+      "name": "wooden_platform_corner",
+      "directions": 4
+    },
+    {
+      "name": "wooden_platform_deco",
+      "directions": 4
+    },
+    {
+      "name": "wooden_platform_round",
+      "directions": 4
+    },
+    {
+      "name": "wooden_platform_stair",
+      "directions": 4
+    },
+    {
+      "name": "wooden_platform_stair_alt",
+      "directions": 4
+    },
+    {
+      "name": "wooden_red_platform",
+      "directions": 4
+    },
+    {
+      "name": "wooden_red_platform_corner",
+      "directions": 4
+    },
+    {
+      "name": "wooden_red_platform_deco",
+      "directions": 4
+    },
+    {
+      "name": "wooden_red_platform_round",
+      "directions": 4
+    },
+    {
+      "name": "wooden_red_platform_stair",
+      "directions": 4
+    },
+    {
+      "name": "wooden_red_platform_stair_alt",
+      "directions": 4
+    }
+  ]
+}
