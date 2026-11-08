@@ -3,7 +3,7 @@
 - type: gameMap
   id: OasisHighPop
   mapName: 'Oasis'
-  mapPath: /Maps/_Goobstation/oasis.yml
+  mapPath: /Maps/_Arcane/oasis.yml # Arcane edit
   minPlayers: 85
   stations:
     Oasis:
