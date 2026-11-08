@@ -366,6 +366,18 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (_pinnedActions == null || _actionsSystem == null)
             return;
 
+        var occupied = new HashSet<EntProtoId>();
+
+        foreach (var slot in _actions)
+        {
+            if (slot is { } actionId &&
+                !_pinPlaceholders.ContainsValue(actionId) &&
+                _pinnedSlots.GetPrototype(actionId) is { } prototype)
+            {
+                occupied.Add(prototype);
+            }
+        }
+
         foreach (var slot in _actions.ToArray())
         {
             if (slot is not { } actionId || _pinnedSlots.IsPinned(actionId))
@@ -375,7 +387,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
                 continue;
 
             var prototype = GetActionPrototype(action);
-            if (prototype is not { } proto || !_pinnedActions.IsPinned(proto))
+            if (prototype is not { } proto || !_pinnedActions.IsPinned(proto) || !occupied.Add(proto))
                 continue;
 
             _pinnedSlots.Pin(actionId, proto, action.Comp.Container);
@@ -515,11 +527,12 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
             var prototype = GetActionPrototype(action);
 
+            _pinnedSlots.Pin(actionId, prototype, action.Comp.Container);
+
             // Without a prototype the pin can not be stored, it only lasts until the action is removed.
             if (prototype is { } proto)
                 _pinnedActions?.SetPinned(proto, true);
 
-            _pinnedSlots.Pin(actionId, prototype, action.Comp.Container);
             OnActionsUpdated();
             return;
         }

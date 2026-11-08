@@ -1,9 +1,7 @@
 ﻿using System.Numerics;
 using Content.Shared._Orion.Lighting.Shaders;
-using Content.Shared.CCVar;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
@@ -24,15 +22,17 @@ public sealed class LightingOverlay : Overlay
     public override bool RequestScreenTexture => true;
 
     private readonly ShaderInstance _shader;
-    private bool _enableGlowing;
+
+    /// <summary>
+    /// When false the overlay skips <see cref="BeforeDraw"/>, so the engine does not copy the screen for it either.
+    /// </summary>
+    public bool EnableGlowing;
 
     public LightingOverlay(EntityManager entityManager, IPrototypeManager prototypeManager)
     {
         _entityManager = entityManager;
         _spriteSystem = entityManager.EntitySysManager.GetEntitySystem<SpriteSystem>();
         _transformSystem = entityManager.EntitySysManager.GetEntitySystem<TransformSystem>();
-        var cfg = IoCManager.Resolve<IConfigurationManager>();
-        cfg.OnValueChanged(CCVars.EnableLightsGlowing, val => _enableGlowing = val, true);
 
         IoCManager.InjectDependencies(this);
 
@@ -40,11 +40,13 @@ public sealed class LightingOverlay : Overlay
         ZIndex = (int) DrawDepth.Effects;
     }
 
+    protected override bool BeforeDraw(in OverlayDrawArgs args)
+    {
+        return EnableGlowing;
+    }
+
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (!_enableGlowing)
-            return;
-
         if (ScreenTexture == null)
             return;
 
