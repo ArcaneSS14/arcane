@@ -41,3 +41,5 @@ surgery-popup-step-SurgeryStepSpliceNerves-robotic = { $user } is splicing the c
 surgery-popup-step-SurgeryStepGroundNerves-robotic = { $user } is grounding the control circuits. Patient: { $target }.
 surgery-robotic-step-SurgeryStepHealOrgans = Repair internal components
 surgery-popup-step-SurgeryStepHealOrgans-robotic = { $user } is repairing internal components. Patient: { $target }. Body part: { $part }.
+surgery-robotic-step-SurgeryStepInciseOrgans = Open the component housings
+surgery-popup-step-SurgeryStepInciseOrgans-robotic = { $user } is opening the component housings. Patient: { $target }. Body part: { $part }.

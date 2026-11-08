@@ -1,6 +1,8 @@
 using System.Linq;
+using Content.Shared._Arcane.Surgery.Conditions;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared._Shitmed.Medical.Surgery;
+using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery.Steps;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas.Systems;
 using Content.Shared.Body.Components;
@@ -23,6 +25,7 @@ public sealed class SurgeryBrainTreatmentSystem : EntitySystem
         SubscribeLocalEvent<SurgeryBrainTreatmentComponent, SurgeryStepEvent>(OnStep);
         SubscribeLocalEvent<SurgeryBrainTreatmentComponent, SurgeryStepBotchedEvent>(OnBotched);
         SubscribeLocalEvent<SurgeryBrainTreatmentComponent, SurgeryStepCompleteCheckEvent>(OnCompleteCheck);
+        SubscribeLocalEvent<SurgeryBrainDamagedConditionComponent, SurgeryValidEvent>(OnBrainDamagedValid);
     }
 
     private void OnStep(Entity<SurgeryBrainTreatmentComponent> ent, ref SurgeryStepEvent args)
@@ -64,8 +67,19 @@ public sealed class SurgeryBrainTreatmentSystem : EntitySystem
 
     private void OnCompleteCheck(Entity<SurgeryBrainTreatmentComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        // Integrity modifiers are not networked, so the client reads the integrity they add up to.
-        if (_body.GetBodyPartOrganComponents<BrainComponent>(args.Part).Any(b => b.Organ.OrganIntegrity < b.Organ.IntegrityCap))
+        if (IsBrainDamaged(args.Part))
             args.Cancelled = true;
+    }
+
+    private void OnBrainDamagedValid(Entity<SurgeryBrainDamagedConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (!IsBrainDamaged(args.Part))
+            args.Cancelled = true;
+    }
+
+    // Integrity modifiers are not networked, so the client reads the integrity they add up to.
+    private bool IsBrainDamaged(EntityUid part)
+    {
+        return _body.GetBodyPartOrganComponents<BrainComponent>(part).Any(b => b.Organ.OrganIntegrity < b.Organ.IntegrityCap);
     }
 }

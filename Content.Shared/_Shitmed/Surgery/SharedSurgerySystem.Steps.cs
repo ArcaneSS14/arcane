@@ -829,9 +829,6 @@ public abstract partial class SharedSurgerySystem
     }
 
     // Arcane-Start
-    /// <summary>
-    /// Picks the bone with the lowest integrity below its cap on a woundable, if any.
-    /// </summary>
     private bool TryGetLowestIntegrityBone(
         WoundableComponent woundable,
         [NotNullWhen(true)] out EntityUid? bone,

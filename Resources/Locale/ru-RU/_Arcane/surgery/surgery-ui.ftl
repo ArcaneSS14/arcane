@@ -39,6 +39,7 @@ surgery-ui-part-state-skin-retracted-robotic = Люк открыт
 surgery-ui-part-state-clamped-robotic = Магистрали перекрыты
 surgery-ui-part-state-bones-sawed-robotic = Электроника подготовлена
 surgery-ui-part-state-bones-open-robotic = Эндоскелет откручен
+surgery-ui-part-state-organs-incised-robotic = Корпуса компонентов вскрыты
 surgery-ui-part-state-organs-incised = Органы надрезаны
 surgery-ui-part-state-cavity-widened = Полость расширена
 surgery-ui-part-state-bones-drilled = Кость просверлена

@@ -69,3 +69,5 @@ surgery-popup-step-SurgeryStepSpliceNerves-robotic = { $user } соединяе�
 surgery-popup-step-SurgeryStepGroundNerves-robotic = { $user } заземляет управляющие цепи пациента ({ $target }).
 surgery-robotic-step-SurgeryStepHealOrgans = Отремонтировать внутренние компоненты
 surgery-popup-step-SurgeryStepHealOrgans-robotic = { $user } ремонтирует внутренние компоненты пациента ({ $target }, { $part }).
+surgery-robotic-step-SurgeryStepInciseOrgans = Вскрыть корпуса компонентов
+surgery-popup-step-SurgeryStepInciseOrgans-robotic = { $user } вскрывает корпуса компонентов пациента ({ $target }, { $part }).

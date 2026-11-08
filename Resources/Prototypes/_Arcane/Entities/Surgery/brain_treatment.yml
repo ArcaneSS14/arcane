@@ -17,6 +17,7 @@
   - type: SurgeryOrganCondition
     organ:
     - type: Brain
+  - type: SurgeryBrainDamagedCondition
 
 - type: entity
   parent: SurgeryStepBase

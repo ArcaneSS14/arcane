@@ -12,6 +12,9 @@
     inverse: true
     components:
     - type: BloodBioware
+  - type: SurgeryBodyCondition
+    accepted: [ IPC ]
+    inverse: true
 
 - type: entity
   parent: SurgeryBiowareBase

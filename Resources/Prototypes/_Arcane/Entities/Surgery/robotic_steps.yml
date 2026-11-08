@@ -99,6 +99,9 @@
     - type: BonesSawed
     - type: BodyPartReattached
     - type: InternalBleedersClamped
+    - type: OrgansIncised
+    - type: CavityWidened
+    - type: BonesDrilled
     duration: 2.4
   - type: SurgerySelfOperableStep
   - type: Sprite

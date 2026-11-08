@@ -597,7 +597,7 @@ public sealed class SurgeryBui : BoundUserInterface
         if (EntMan.HasComponent<BonesOpenComponent>(part))
             states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-bones-open", part)), StyleClass.StatusWarning));
         if (EntMan.HasComponent<OrgansIncisedComponent>(part))
-            states.Add((Loc.GetString("surgery-ui-part-state-organs-incised"), StyleClass.StatusWarning));
+            states.Add((Loc.GetString(_roboticSurgery.GetRoboticKey("surgery-ui-part-state-organs-incised", part)), StyleClass.StatusWarning));
         if (EntMan.HasComponent<CavityWidenedComponent>(part))
             states.Add((Loc.GetString("surgery-ui-part-state-cavity-widened"), StyleClass.StatusWarning));
         if (EntMan.HasComponent<BonesDrilledComponent>(part))

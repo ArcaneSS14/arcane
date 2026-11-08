@@ -23,6 +23,8 @@ using Content.Shared.Medical.Healing;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
+using Content.Shared.Repairable;
+using Content.Shared.Tools.Systems;
 using Content.Shared.Wires;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
@@ -50,6 +52,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     [Dependency] private readonly RoboticSurgerySystem _roboticSurgery = default!;
     [Dependency] private readonly SharedSurgerySystem _surgery = default!;
     [Dependency] private readonly SurgeryToolExamineSystem _toolExamine = default!;
+    [Dependency] private readonly SharedToolSystem _tool = default!;
 
     private bool _canOperateOnSelf;
 
@@ -58,7 +61,8 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         base.Initialize();
 
         // An unlocked synthetic's panel takes the screwdriver first, so its power cell can still be swapped while it lies down.
-        SubscribeLocalEvent<SurgeryTargetComponent, InteractUsingEvent>(OnInteractUsing, after: [typeof(SharedWiresSystem)]);
+        // A welder closes an open shell before it repairs the synthetic.
+        SubscribeLocalEvent<SurgeryTargetComponent, InteractUsingEvent>(OnInteractUsing, after: [typeof(SharedWiresSystem)], before: [typeof(RepairableSystem)]);
         // An empty-hand click would otherwise unbuckle the patient from the operating table.
         SubscribeLocalEvent<SurgeryTargetComponent, InteractHandEvent>(OnInteractHand, before: [typeof(SharedBuckleSystem)]);
         SubscribeAllEvent<SurgeryToolOptionPickedEvent>(OnOptionPicked);
@@ -74,7 +78,11 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         var tool = args.Used;
         // A scanner's click is its own scan, so it only performs a step planned in the menu and gives no hints.
         var scanner = HasComp<SurgeryAnalyzerComponent>(tool);
-        var surgical = IsSurgicalTool(tool) && !scanner;
+        // A defibrillator or a repairing welder keeps its own use on the patient, so it gives no surgery hints either.
+        var surgical = IsSurgicalTool(tool)
+            && !scanner
+            && !HasComp<SurgeryDefibrillatorComponent>(tool)
+            && !(TryComp(ent, out RepairableComponent? repairable) && _tool.HasQuality(tool, repairable.QualityNeeded));
         if (args.Handled
             || IsOffering(user)
             || IsButchering(ent, tool)

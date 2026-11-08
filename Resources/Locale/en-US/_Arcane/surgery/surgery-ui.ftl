@@ -40,6 +40,7 @@ surgery-ui-part-state-skin-retracted-robotic = Hatch open
 surgery-ui-part-state-clamped-robotic = Lines shut off
 surgery-ui-part-state-bones-sawed-robotic = Electronics prepared
 surgery-ui-part-state-bones-open-robotic = Endoskeleton unwrenched
+surgery-ui-part-state-organs-incised-robotic = Component housings open
 surgery-ui-part-state-organs-incised = Organs incised
 surgery-ui-part-state-cavity-widened = Cavity widened
 surgery-ui-part-state-bones-drilled = Bone drilled
