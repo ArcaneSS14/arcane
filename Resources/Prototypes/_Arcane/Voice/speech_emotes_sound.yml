@@ -130,3 +130,63 @@
       collection: MaleVulpkaninHowls
     Awoo:
       collection: MaleVulpkaninHowls
+
+- type: emoteSounds
+  id: FemaleTajaran
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      collection: FelinidMeows
+    Mew:
+      collection: FelinidMews
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
+    CatMeow:
+      collection: CatMeows
+    Laugh:
+      collection: CatLaugh
+    Sneeze:
+      collection: CatSneeze
+    Snore:
+      collection: CatGasp
+    Crying:
+      collection: CatCry
+    Sigh:
+      collection: CatSigh
+
+- type: emoteSounds
+  id: MaleTajaran
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      collection: FelinidMeows
+    Mew:
+      collection: FelinidMews
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
+    CatMeow:
+      collection: CatMeows
+    Laugh:
+      collection: CatLaugh
+    Sneeze:
+      collection: CatSneeze
+    Snore:
+      collection: CatGasp
+    Crying:
+      collection: CatCry
+    Sigh:
+      collection: CatSigh
