@@ -55,7 +55,7 @@
   components:
   - type: Loadout
     prototypes: [ SpaceNinjaGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    roleLoadout:
   - type: RandomMetadata
     nameSegments:
     - NamesFirst
