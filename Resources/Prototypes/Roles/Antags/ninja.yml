@@ -32,19 +32,22 @@
     belt: EnergyKatana
   inhand:
     - JetpackBlackFilled
-    - NinjutsuScroll # Goobstation
+    - LibrarianTranslatorImplanter
   storage:
     back: # belt holds katana so satchel has the tools for sabotaging things
-    - Crowbar
-    - Wrench
-    - Screwdriver
-    - Wirecutter
-    - Welder
-    - Multitool
-    - EmergencyMedipen
-    - Flare
-    - FoodSnackNutribrick
     - DrinkWaterBottleFull
+    - DrinkWaterBottleFull
+    - MedkitCombatStandardFilled
+    - WelderIndustrialAdvanced
+    - PowerDrill
+    - JawsOfLife
+    - FoodSoupMiso
+    - FoodSoupMiso
+    - NinjutsuScroll
+    - SmokeImplanter
+    - SpiderclanFlippo
+    - CigaretteSyndicate
+    - Wakizashi
 
 - type: chameleonOutfit
   id: NinjaChameleonOutfit
