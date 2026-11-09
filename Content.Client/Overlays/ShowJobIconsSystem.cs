@@ -2,7 +2,8 @@
 
 using Content.Shared._Goobstation.Wizard.Components;
 using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
+using Content.Shared.Hands.EntitySystems; // Orion
+using Content.Shared.Inventory; // Orion
 using Content.Shared.Overlays;
 using Content.Shared.PDA;
 using Content.Shared.StatusIcon;
@@ -14,7 +15,10 @@ namespace Content.Client.Overlays;
 public sealed class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIconsComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    // Arcane-Edit-Start
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    // Arcane-Edit-End
 
     private static readonly ProtoId<JobIconPrototype> JobIconForNoId = "JobIconNoId";
 
@@ -32,31 +36,47 @@ public sealed class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIconsComponen
 
         var iconId = JobIconForNoId;
 
-        if (_accessReader.FindAccessItemsInventory(uid, out var items))
+        // Arcane-Edit-Start: This runs every frame for every visible mob, so don't collect the items into a new set.
+        var found = false;
+        foreach (var item in _hands.EnumerateHeld(uid))
         {
-            foreach (var item in items)
+            if (TryGetJobIcon(item, ref iconId))
             {
-                // ID Card
-                if (TryComp<IdCardComponent>(item, out var id))
-                {
-                    iconId = id.JobIcon;
-                    break;
-                }
-
-                // PDA
-                if (TryComp<PdaComponent>(item, out var pda)
-                    && pda.ContainedId != null
-                    && TryComp(pda.ContainedId, out id))
-                {
-                    iconId = id.JobIcon;
-                    break;
-                }
+                found = true;
+                break;
             }
         }
+
+        if (!found && _inventory.TryGetSlotEntity(uid, "id", out var idSlot))
+            TryGetJobIcon(idSlot.Value, ref iconId);
+        // Arcane-Edit-End
 
         if (_prototype.Resolve(iconId, out var iconPrototype))
             ev.StatusIcons.Add(iconPrototype);
         else
             Log.Error($"Invalid job icon prototype: {iconPrototype}");
     }
+
+    // Arcane-Edit-Start
+    private bool TryGetJobIcon(EntityUid item, ref ProtoId<JobIconPrototype> iconId)
+    {
+        // ID Card
+        if (TryComp<IdCardComponent>(item, out var id))
+        {
+            iconId = id.JobIcon;
+            return true;
+        }
+
+        // PDA
+        if (TryComp<PdaComponent>(item, out var pda)
+            && pda.ContainedId != null
+            && TryComp(pda.ContainedId, out id))
+        {
+            iconId = id.JobIcon;
+            return true;
+        }
+
+        return false;
+    }
+    // Arcane-Edit-End
 }

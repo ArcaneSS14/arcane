@@ -4156,3 +4156,111 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/11f2dfb2-1027-4e80-939e-faa9763949dc
+- author: RabbitBat
+  changes:
+    - type: Remove
+      message: Убрано взламывание слот-машины через EMAG
+  id: 298
+  time: '2026-11-04T12:54:16.0000000+00:00'
+  prNumber: 590
+  url: https://github.com/ArcaneSS14/arcane/pull/590
+- author: libelyarnuy_pizdohvost
+  changes:
+    - type: Tweak
+      message: WonderBox полностью перестроен.
+  id: 299
+  time: '2026-11-04T13:09:32.0000000+00:00'
+  prNumber: 585
+  url: https://github.com/ArcaneSS14/arcane/pull/585
+  media:
+    - >-
+      https://github.com/user-attachments/assets/62c31993-c11b-403a-9746-33df978dbe6d
+    - >-
+      https://github.com/user-attachments/assets/0ccd828c-cc00-4394-b374-310178545568
+    - >-
+      https://github.com/user-attachments/assets/c63fe0fc-8852-4aa8-a04e-4055cb1a8857
+    - >-
+      https://github.com/user-attachments/assets/d3641e04-31d0-42b0-b1c2-e100566f5067
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Снаряжение на базе синдиката было сильно урезано.
+  id: 300
+  time: '2026-11-05T03:23:48.0000000+00:00'
+  prNumber: 597
+  url: https://github.com/ArcaneSS14/arcane/pull/597
+- author: seemah
+  changes:
+    - type: Tweak
+      message: >-
+        При попытке вколоть иглу хитиниду или ксеноморфу, надпись теперь гласит
+        "Экзоскелет слишком толстый!" (а не тонкий).
+    - type: Tweak
+      message: Хищные виды, воксы и йови больше не получают отвращение от крови.
+  id: 301
+  time: '2026-11-05T03:29:06.0000000+00:00'
+  prNumber: 591
+  url: https://github.com/ArcaneSS14/arcane/pull/591
+- author: ReWAFFlution
+  changes:
+    - type: Tweak
+      message: Оптимизирована прогрузка сущностей и шейдеров света.
+  id: 302
+  time: '2026-11-05T09:16:46.0000000+00:00'
+  prNumber: 592
+  url: https://github.com/ArcaneSS14/arcane/pull/592
+- author: seemah
+  changes:
+    - type: Add
+      message: Добавлена бочка пива. Её можно заказать в карго.
+  id: 303
+  time: '2026-11-05T13:25:32.0000000+00:00'
+  prNumber: 594
+  url: https://github.com/ArcaneSS14/arcane/pull/594
+  media:
+    - >-
+      https://github.com/user-attachments/assets/c8d19529-ea04-44ea-81c6-fc947fe03445
+- author: ReWAFFlution
+  changes:
+    - type: Fix
+      message: Закрепленное действие не закрепляет подобные себе действия.
+  id: 304
+  time: '2026-11-07T14:59:10.0000000+00:00'
+  prNumber: 596
+  url: https://github.com/ArcaneSS14/arcane/pull/596
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: Исправлено отображение морды при поднятой сварочной маске.
+  id: 305
+  time: '2026-11-07T15:01:12.0000000+00:00'
+  prNumber: 598
+  url: https://github.com/ArcaneSS14/arcane/pull/598
+  media:
+    - >-
+      https://github.com/user-attachments/assets/68159011-5044-4d90-b1e9-1912a7cfab6d
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: >-
+        Исправлено отображение программ в КПК, если программ каким-то образом
+        было больше 8.
+  id: 306
+  time: '2026-11-07T15:43:17.0000000+00:00'
+  prNumber: 595
+  url: https://github.com/ArcaneSS14/arcane/pull/595
+- author: RabbitBat, RAID_3390
+  changes:
+    - type: Add
+      message: Добавлены новые платформы на вооружение мапперам.
+  id: 307
+  time: '2026-11-09T07:30:19.0000000+00:00'
+  prNumber: 602
+  url: https://github.com/ArcaneSS14/arcane/pull/602
+  media:
+    - >-
+      https://github.com/user-attachments/assets/2de4aac5-e8b5-4457-9e28-15388b68f6c6
+    - >-
+      https://github.com/user-attachments/assets/84e39558-efbe-4b93-b590-0c0eebf754b1
+    - >-
+      https://github.com/user-attachments/assets/9855321f-09af-4cc6-8382-f534c500c7a2
