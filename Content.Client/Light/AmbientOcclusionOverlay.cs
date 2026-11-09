@@ -5,6 +5,7 @@ using Content.Shared.Maps;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
+using Robust.Shared.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
@@ -20,6 +21,7 @@ public sealed class AmbientOcclusionOverlay : Overlay
     private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
     private static readonly ProtoId<ShaderPrototype> StencilMaskShader = "StencilMask";
     private static readonly ProtoId<ShaderPrototype> StencilEqualDrawShader = "StencilEqualDraw";
+    private const int ResolutionDivisor = 2; // Arcane
 
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
@@ -58,7 +60,8 @@ public sealed class AmbientOcclusionOverlay : Overlay
         var distance = _cfgManager.GetCVar(CCVars.AmbientOcclusionDistance);
         //var color = Color.Red;
         var target = viewport.RenderTarget;
-        var lightScale = target.Size / (Vector2) viewport.Size;
+        var aoSize = Vector2i.ComponentMax(target.Size / ResolutionDivisor, Vector2i.One); // Arcane
+        var lightScale = aoSize / (Vector2) viewport.Size; // Arcane-Edit
         var scale = viewport.RenderScale / (Vector2.One / lightScale);
         var maps = _entManager.System<SharedMapSystem>();
         var lookups = _entManager.System<EntityLookupSystem>();
@@ -69,17 +72,19 @@ public sealed class AmbientOcclusionOverlay : Overlay
 
         var res = _resources.GetForViewport(args.Viewport, static _ => new CachedResources());
 
-        if (res.AOTarget?.Texture.Size != target.Size)
+        // Arcane-Edit-Start
+        if (res.AOTarget?.Texture.Size != aoSize)
         {
             res.AOTarget?.Dispose();
-            res.AOTarget = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-target");
+            res.AOTarget = _clyde.CreateRenderTarget(aoSize, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), new TextureSampleParameters { Filter = true }, name: "ambient-occlusion-target");
         }
 
-        if (res.AOBlurBuffer?.Texture.Size != target.Size)
+        if (res.AOBlurBuffer?.Texture.Size != aoSize)
         {
             res.AOBlurBuffer?.Dispose();
-            res.AOBlurBuffer = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "ambient-occlusion-blur-target");
+            res.AOBlurBuffer = _clyde.CreateRenderTarget(aoSize, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), new TextureSampleParameters { Filter = true }, name: "ambient-occlusion-blur-target");
         }
+        // Arcane-Edit-End
 
         if (res.AOStencilTarget?.Texture.Size != target.Size)
         {
