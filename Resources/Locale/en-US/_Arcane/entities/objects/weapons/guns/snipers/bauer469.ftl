@@ -1,0 +1,2 @@
+ent-ArcaneWeaponRifleBauer469 = Bauer-469 "MultiWinged Angel"
+    .desc = An upgraded version of the Bauer 127 rifle, issued to the Syndicate’s nuclear operatives. It utilizes enhanced 15mm ammunition, an automatic recoil-suppression system, and is compatible with thermal imaging sights.

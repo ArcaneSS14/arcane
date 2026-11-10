@@ -1,0 +1,12 @@
+ent-ArcaneCartridgeAntiMateriel = cartridge (15mm anti-materiel)
+    .desc = A high-power cartridge used by high-precision rifles.
+ent-ArcaneCartridgeAntiMaterielPenetrator = cartridge (15mm armor-pierce)
+    .desc = A high-power armor-piercing cartridge used by high-precision rifles.
+ent-ArcaneCartridgeAntiMaterielFrag = cartridge (15mm frag)
+    .desc = A 15mm cartridge that releases a cluster of fragments on impact.
+ent-ArcaneCartridgeAntiMaterielBlast = cartridge (15mm blast)
+    .desc = A 15mm explosive cartridge.
+ent-ArcaneCartridgeAntiMaterielEmp = cartridge (15mm EMP)
+    .desc = A 15mm electromagnetic pulse cartridge.
+ent-ArcaneCartridgeAntiMaterielHP = cartridge (15mm hollow point)
+    .desc = A 15mm hollow-point cartridge.

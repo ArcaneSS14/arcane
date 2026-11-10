@@ -1,0 +1,81 @@
+- type: entity
+  name: Bauer-469 "MultiWinged Angel"
+  parent: [ BaseWeaponRifle, BaseGunWieldable, BaseSyndicateContraband ]
+  id: ArcaneWeaponRifleBauer469
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Weapons/Guns/Snipers/bauer469/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Arcane/Objects/Weapons/Guns/Snipers/bauer469/tiny.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,1
+    sprite: _Arcane/Objects/Weapons/Guns/Snipers/bauer469/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    pump: true
+    projectileSpeed: 40
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    fireRate: 1.2
+    minAngle: 24
+    maxAngle: 45
+    soundGunshot:
+      path: /Audio/_Arcane/Weapons/Guns/Snipers/Bauer469/bauer469_shot.ogg
+      params:
+        volume: 1
+    soundEmpty:
+      path: /Audio/_Arcane/Weapons/Guns/Snipers/Different/empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: BallisticAmmoProvider
+    soundRack:
+      path: /Audio/_Arcane/Weapons/Guns/Snipers/Bauer469/bauer469_bolt.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: ArcaneMagazineBauer469
+        insertSound: /Audio/_Arcane/Weapons/Guns/Snipers/Different/reload.ogg
+        ejectSound: /Audio/_Arcane/Weapons/Guns/Snipers/Different/unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - ArcaneMagazineBauer469
+      gun_chamber:
+        name: Chamber
+        startingItem: ArcaneCartridgeAntiMateriel
+        priority: 1
+        whitelist:
+          tags:
+          - ArcaneCartridgeAntiMateriel
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      ballistic-ammo: !type:Container
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.25
+    sprintModifier: 0.5
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 7
+    pvsIncrease: 0.5
+  - type: UseDelay
+    delay: 0.85
+  - type: StaticPrice
+    price: 10000

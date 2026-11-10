@@ -1,0 +1,155 @@
+- type: entity
+  id: ArcaneBulletAntiMaterielFrag
+  name: frag bullet
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    scale: 0.5, 0.5
+    layers:
+    - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 25
+    intensitySlope: 4
+    maxIntensity: 8
+    canCreateVacuum: false
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLessLethal
+    capacity: 10
+  - type: RadarBlip
+    color: "#9ACD32"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: ArcaneBulletAntiMaterielBlast
+  name: blast bullet
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    scale: 0.5, 0.5
+    layers:
+    - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 50
+    intensitySlope: 4
+    maxIntensity: 10
+    canCreateVacuum: false
+  - type: RadarBlip
+    color: "#FFAA33"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: ArcaneBulletAntiMaterielEMP
+  name: EMP bullet
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    scale: 0.5, 0.5
+    layers:
+    - state: grenade
+  - type: EmpOnTrigger
+    range: 3
+    energyConsumption: 10000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 1.5
+    color: blue
+    energy: 0.5
+  - type: DeleteOnTrigger
+  - type: Projectile
+    damage:
+      types:
+        Shock: 15
+  - type: RadarBlip
+    color: "#4DB8FF"
+    scale: 0.3
+    shape: Square
+    requireInSpace: true
+
+- type: entity
+  id: ArcaneBulletAntiMaterielTracked
+  parent: BulletAntiMateriel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    color: "#FF6A6A"
+    scale: 0.3
+    shape: Triangle
+    requireInSpace: true
+
+- type: entity
+  id: ArcaneBulletTrace
+  parent: BaseBullet
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: spark
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: ap
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: spark
+  - type: HitscanBasicRaycast
+    collisionMask: BulletImpassable
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+
+- type: entity
+  id: ArcaneBulletAntiMaterielPenetrator
+  parent: ArcaneBulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    armorPenetration: 0.35
+    ignoreResistances: true
+    penetrationThreshold: 1337
+    damage:
+      types:
+        Piercing: 85
+        Structural: 900
+  - type: StaminaDamageOnCollide
+    damage: 35
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20
+
+- type: entity
+  id: ArcaneBulletAntiMaterielHP
+  name: bullet (15mm hollow point)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    armorPenetration: 0.35
+    ignoreResistances: true
+    penetrationThreshold: 1337
+    damage:
+      types:
+        Piercing: 75
+        Blunt: 10
+        Slash: 10
+  - type: StaminaDamageOnCollide
+    damage: 40
