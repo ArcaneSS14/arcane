@@ -2,7 +2,7 @@
   id: Felinetailstripes
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human, Felinid, IPC]
+  speciesRestriction: [Human, Felinid]
   coloring:
     default:
       type:
