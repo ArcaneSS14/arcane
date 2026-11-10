@@ -1,5 +1,5 @@
 ent-ArcaneCartridgeAntiMateriel = патрон (15мм антиматериальный)
-    .desc = Мощный патрон для "Многокрылого ангела" винтовок.
+    .desc = Мощный патрон для винтовки "Многокрылый Ангел"
 ent-ArcaneCartridgeAntiMaterielPenetrator = патрон (15мм бронебойный)
     .desc = Мощный бронебойный патрон для "Многокрылого ангела".
 ent-ArcaneCartridgeAntiMaterielFrag = патрон (15мм осколочный)
