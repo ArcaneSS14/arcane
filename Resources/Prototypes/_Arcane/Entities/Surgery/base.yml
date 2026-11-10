@@ -22,3 +22,4 @@
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/manipulation.rsi
     state: insertion
+  - type: SurgeryAffectsMoodStep

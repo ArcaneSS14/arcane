@@ -92,6 +92,8 @@ public sealed class DentalImplantSystem : EntitySystem
                 return;
 
             _actions.RemoveProvidedActions(args.Body, pill);
+            if (TryComp<DentalImplantComponent>(pill, out var removed))
+                QueueDel(removed.Action);
             RemComp<DentalImplantComponent>(pill);
             _hands.PickupOrDrop(args.User, pill);
             return;

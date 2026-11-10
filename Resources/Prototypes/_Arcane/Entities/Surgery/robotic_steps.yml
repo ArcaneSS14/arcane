@@ -138,6 +138,7 @@
   - type: Sprite
     sprite: Objects/Tools/wrench.rsi
     state: icon
+  - type: SurgeryAffectsMoodStep
 
 - type: entity
   parent: SurgeryStepBase
@@ -159,3 +160,4 @@
     sprite: Objects/Tools/crowbar.rsi
     state: icon
   - type: SurgeryRemovePartStep
+  - type: SurgeryAffectsMoodStep

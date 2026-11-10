@@ -30,6 +30,7 @@
     painType: TraumaticPain
     amount: 34
     sleepModifier: 0.12
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -133,6 +134,7 @@
   # Arcane-Start
   - type: SurgerySelfOperableStep
     roboticOnly: true
+  - type: SurgeryAffectsMoodStep
   # Arcane-End
 
 - type: entity
@@ -193,6 +195,7 @@
   - type: SurgeryTraumaTreatmentStep
     traumaType: OrganDamage
     amount: 30
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -231,6 +234,7 @@
   - type: SurgeryTraumaTreatmentStep
     traumaType: Braindeath
     amount: 60
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -423,6 +427,7 @@
     painDuration: 40
     painType: TraumaticPain
     sleepModifier: 0.0
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -473,6 +478,7 @@
     painDuration: 60
     painType: TraumaticPain
     sleepModifier: 0.14
+  - type: SurgeryAffectsMoodStep # Arcane
 
 # Tend Wounds
 
@@ -494,6 +500,7 @@
     amount: 17
     painDuration: 30
     sleepModifier: 0
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -517,7 +524,6 @@
       groups:
         Brute: -6 # Arcane-Edit: -15 > -6
   - type: SurgeryRepeatableStep
-  - type: SurgeryNoMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -542,7 +548,6 @@
       groups:
         Burn: -6 # Arcane-Edit: -20 > -6
   - type: SurgeryRepeatableStep
-  - type: SurgeryNoMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -917,6 +922,7 @@
     damage:
       types:
         Piercing: 10
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -937,3 +943,4 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryStepEmoteEffect
+  - type: SurgeryAffectsMoodStep # Arcane

@@ -33,3 +33,4 @@
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
+  - type: SurgeryAffectsMoodStep

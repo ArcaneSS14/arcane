@@ -1,9 +1,6 @@
 namespace Content.Shared._Arcane.CritThreshold;
 
-/// <summary>
-///     Raised on a mob to collect what its crit and death thresholds are multiplied by.
-///     Status effects only count the strongest raise and the strongest drop, other sources multiply into <see cref="Modifier"/>.
-/// </summary>
+// Status effects only count the strongest raise and the strongest drop, other sources multiply into Modifier.
 [ByRefEvent]
 public record struct RefreshCritThresholdEvent()
 {

@@ -16,7 +16,6 @@
     inverse: true
     components:
     - type: SurgicallyAnalyzed
-  - type: SurgeryRoboticVariant
 
 - type: entity
   parent: SurgeryAutopsy

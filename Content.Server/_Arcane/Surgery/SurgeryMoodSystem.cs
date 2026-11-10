@@ -34,7 +34,7 @@ public sealed class SurgeryMoodSystem : EntitySystem
 
     private void OnSurgeryMood(Entity<MoodComponent> ent, ref SurgeryMoodEvent args)
     {
-        if (_surgery.GetSingleton(args.Step) is { } step && HasComp<SurgeryNoMoodStepComponent>(step))
+        if (_surgery.GetSingleton(args.Step) is not { } step || !HasComp<SurgeryAffectsMoodStepComponent>(step))
             return;
 
         ent.Comp.CategorisedEffects.TryGetValue(MoodCategory, out var current);
