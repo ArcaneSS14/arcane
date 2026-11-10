@@ -10,15 +10,23 @@
     activated: true
   - type: WeldingMaskOverlay
     texture: /Textures/_Funkystation/Clothing/Head/Welding/weldingOverlay.png
+  # Arcane-Start
+  - type: HideLayerClothing
+    hideOnToggle: true
+    layers:
+      Snout: HEAD
+  # Arcane-End
   - type: ComponentToggler
     components:
     - type: IngestionBlocker
     - type: FlashImmunity
     - type: IdentityBlocker
     - type: EyeProtection
-    - type: HideLayerClothing
-      slots:
-      - Snout
+    # Arcane-Start
+    # - type: HideLayerClothing
+    #   slots:
+    #   - Snout
+    # Arcane-End
     - type: WeldingMaskOverlay
       texture: /Textures/_Funkystation/Clothing/Head/Welding/weldingOverlay.png
   - type: ItemTogglePrefix

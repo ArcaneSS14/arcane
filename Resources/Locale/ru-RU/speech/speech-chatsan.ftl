@@ -98,10 +98,10 @@ chatsan-word-33 = мб
 chatsan-replacement-33 = может быть
 
 chatsan-word-34 = увы
-chatsan-replacement-34 = { "" }
+chatsan-replacement-34 = к сожалению
 
 chatsan-word-35 = увынск
-chatsan-replacement-35 = { "" }
+chatsan-replacement-35 = к сожалению
 
 chatsan-word-36 = окак
 chatsan-replacement-36 = странновато
