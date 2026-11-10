@@ -32,10 +32,10 @@
     belt: EnergyKatana
   inhand:
     - JetpackBlackFilled
-    - LibrarianTranslatorImplanter
+    - LibrarianTranslatorImplanter # Arcane-Edit 
   storage:
     back: # belt holds katana so satchel has the tools for sabotaging things
-    - DrinkWaterBottleFull
+    - DrinkWaterBottleFull # Arcane-Edit-Start
     - DrinkWaterBottleFull
     - MedkitCombatStandardFilled
     - WelderIndustrialAdvanced
@@ -47,7 +47,7 @@
     - SmokeImplanter
     - SpiderclanFlippo
     - CigaretteSyndicate
-    - Wakizashi
+    - Wakizashi           # Arcane-Edit-End
 
 - type: chameleonOutfit
   id: NinjaChameleonOutfit
