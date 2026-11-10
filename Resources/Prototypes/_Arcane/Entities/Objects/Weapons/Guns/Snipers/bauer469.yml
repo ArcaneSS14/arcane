@@ -21,7 +21,6 @@
     minAngle: -23
     maxAngle: -43
   - type: Gun
-    pump: true
     projectileSpeed: 40
     selectedMode: SemiAuto
     availableModes:
