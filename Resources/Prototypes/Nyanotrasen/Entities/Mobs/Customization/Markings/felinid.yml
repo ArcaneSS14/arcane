@@ -106,7 +106,7 @@
   id: FelinidTailBasic
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Felinid, Tajaran, Human, IPC] # Goobstation - Tajaran, Arcane-Edit - IPC
+  speciesRestriction: [Felinid, Tajaran, Human, IPC] # Goobstation - Tajaran Arcane-Edit - IPC
   sprites:
   - sprite: Nyanotrasen/Mobs/Customization/felinid_tails.rsi
     state: basic_tail_tip
