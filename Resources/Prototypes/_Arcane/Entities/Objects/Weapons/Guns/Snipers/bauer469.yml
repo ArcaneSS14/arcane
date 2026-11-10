@@ -15,7 +15,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,1
+    - 0,0,10,1
     sprite: _Arcane/Objects/Weapons/Guns/Snipers/bauer469/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -25,7 +25,7 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    fireRate: 1.2
+    fireRate: 3.2
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -68,13 +68,13 @@
   - type: Appearance
   - type: GunRequiresWield
   - type: SpeedModifiedOnWield
-    walkModifier: 0.25
-    sprintModifier: 0.5
+    walkModifier: 0.3
+    sprintModifier: 0.7
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 7
     pvsIncrease: 0.5
   - type: UseDelay
-    delay: 0.85
+    delay: 0.80
   - type: StaticPrice
     price: 10000
