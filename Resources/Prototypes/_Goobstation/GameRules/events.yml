@@ -49,7 +49,7 @@
     minimumPlayers: 25
     weight: 3
     duration: 1
-  - type: GameRuleес
+  - type: GameRule
     chaosScore: 50
   - type: JobDistributionErrorRule # Goobstation
     jobs:
