@@ -1,5 +1,5 @@
 - type: entity
-  name: Bauer-469 "MultiWinged Angel"
+  name: Bauer-469 "Many-Winged Angel"
   parent: [ BaseWeaponRifle, BaseGunWieldable, BaseSyndicateContraband ]
   id: ArcaneWeaponRifleBauer469
   components:
