@@ -111,10 +111,16 @@ public sealed partial class WantedListUiFragment : BoxContainer
         ));
 
         // Set reason
-        WantedReason.SetMessage(GetLoc(
-            "wanted-list-reason-label",
-            ("reason", record.Reason ?? Loc.GetString("wanted-list-unknown-reason-label"))
-        ));
+        if (record.Reason != null) {
+            WantedReason.Visible = true;
+
+            WantedReason.SetMessage(GetLoc(
+                "wanted-list-reason-label",
+                ("reason", record.Reason ?? Loc.GetString("wanted-list-unknown-reason-label"))
+            ));
+        } else {
+            WantedReason.Visible = false;
+        }
 
         // Set status
         PersonState.SetMessage(GetLoc(
