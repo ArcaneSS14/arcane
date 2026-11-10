@@ -13,4 +13,8 @@ ent-ArcaneMagazineBauer469Blast = magazine (15mm high-explosive)
 ent-ArcaneMagazineBauer469Emp = magazine (15mm EMP)
  .desc = A large magazine for the "Many-Winged Angel", holds rounds with electromagnetic tips.
 ent-ArcaneMagazineBauer469HP = magazine (15mm hollow-point)
+<<<<<<< HEAD
  .desc = A large magazine for the "Many-Winged Angel", holds hollow-point rounds.
+=======
+.desc = A large magazine for the "Many-Winged Angel", holds hollow-point rounds.
+>>>>>>> 8645e740448bca11e1c747f85bc2d878be7ff66c
