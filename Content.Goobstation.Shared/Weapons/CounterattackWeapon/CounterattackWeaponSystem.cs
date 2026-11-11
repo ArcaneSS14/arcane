@@ -54,9 +54,8 @@ public sealed partial class CounterattackWeaponSystem : EntitySystem
         _melee.AttemptLightAttack(ent, meleeWeapon, meleeComp, args.User);
         meleeComp.NextAttack = TimeSpan.Zero;
 
-        // Arcane-Start
+        // Arcane
         _combat.SetInCombatMode(ent.Owner, prev);
-        // Arcane-End
 
         _switch.Switch(meleeWeapon, counterattack.SetItemSwitch);
         if (TryComp<UseDelayComponent>(meleeWeapon, out var delay))
