@@ -29,16 +29,16 @@ public sealed partial class AugmentPowerCellSystem : SharedAugmentPowerCellSyste
 
         // SubscribeLocalEvent<HasAugmentPowerCellSlotComponent, FindBatteryEvent>(OnFindBattery);
         SubscribeLocalEvent<HasAugmentPowerCellSlotComponent, AugmentBatteryAlertEvent>(OnBatteryAlert);
-        SubscribeLocalEvent<HasAugmentPowerCellSlotComponent, FindDrinkerBatteryEvent>(OnFindDrinkerBattery); // Arcane-Edit
+        SubscribeLocalEvent<HasAugmentPowerCellSlotComponent, FindDrinkerBatteryEvent>(OnFindDrinkerBattery); // Arcane
     }
 
-    // Arcane-Edit-Start
+    // Arcane-Start
     private void OnFindDrinkerBattery(Entity<HasAugmentPowerCellSlotComponent> ent, ref FindDrinkerBatteryEvent args)
     {
         if (GetBodyCell(ent) is { } battery)
             args.Battery = battery.Owner;
     }
-    // Arcane-Edit-End
+    // Arcane-End
 
     /* todo goobstream
     private void OnFindBattery(Entity<HasAugmentPowerCellSlotComponent> ent, ref FindBatteryEvent args)
