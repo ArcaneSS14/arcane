@@ -41,7 +41,9 @@ public sealed partial class ExposedBodyPartRequirement : InvertableErpRequiremen
             if (containerSlot?.ContainedEntity is not { } item)
                 continue;
 
-            if (entityManager.TryGetComponent<TagComponent>(item, out var tagComp) && tag.HasTag(tagComp, SkirtTag))
+            if (Part is ErpBodyPartType.Groin or ErpBodyPartType.Butt
+                && entityManager.TryGetComponent<TagComponent>(item, out var tagComp)
+                && tag.HasTag(tagComp, SkirtTag))
                 continue;
 
             if (entityManager.TryGetComponent<CondomComponent>(item, out var condom) && !condom.Full)
