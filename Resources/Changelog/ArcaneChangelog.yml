@@ -4264,3 +4264,13 @@ Entries:
       https://github.com/user-attachments/assets/84e39558-efbe-4b93-b590-0c0eebf754b1
     - >-
       https://github.com/user-attachments/assets/9855321f-09af-4cc6-8382-f534c500c7a2
+- author: uty206
+  changes:
+    - type: Fix
+      message: Исправлено множество ошибок на карте вондербоксе.
+    - type: Fix
+      message: Ряд мелких исправлений на карте оазис и БС дорме качалка.
+  id: 308
+  time: '2026-11-10T14:46:55.0000000+00:00'
+  prNumber: 601
+  url: https://github.com/ArcaneSS14/arcane/pull/601
