@@ -8,6 +8,7 @@ using Robust.Shared.GameObjects;
 
 namespace Content.Shared._EinsteinEngines.Power.Systems;
 
+// Arcane-Edit-Start
 /// <summary>
 /// Raised on a battery drinker so other systems can supply the entity whose battery should be charged.
 /// Needed for batteries that do not live on the drinker entity itself, such as augment power cell slots.
@@ -20,6 +21,7 @@ public struct FindDrinkerBatteryEvent
     /// </summary>
     public EntityUid? Battery;
 }
+// Arcane-Edit-End
 
 // Goobstation - Energycrit: BatteryDrinkerSystem verb prediction
 public abstract class SharedBatteryDrinkerSystem : EntitySystem
@@ -71,6 +73,7 @@ public abstract class SharedBatteryDrinkerSystem : EntitySystem
             return false;
         }
 
+        // Arcane-Edit-Start
         // The drinker itself is the battery (e.g. an IPC).
         if (HasComp<BatteryComponent>(ent))
         {
@@ -88,6 +91,7 @@ public abstract class SharedBatteryDrinkerSystem : EntitySystem
 
         // No direct cell slot, no battery on the entity, and nothing else claimed it.
         return false;
+        // Arcane-Edit-End
     }
 
     /// <summary>
