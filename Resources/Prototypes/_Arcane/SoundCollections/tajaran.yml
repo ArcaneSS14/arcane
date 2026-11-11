@@ -1,24 +1,24 @@
 - type: soundCollection
   id: CatGasp
   files:
-  - /Audio/_Arcane/Voice/Tajaran/cat_gasp
+  - /Audio/_Arcane/Voice/Tajaran/cat_gasp.ogg
 
 - type: soundCollection
   id: CatLaugh
   files:
-  - /Audio/_Arcane/Voice/Tajaran/cat_laugh
+  - /Audio/_Arcane/Voice/Tajaran/cat_laugh.ogg
 
 - type: soundCollection
   id: CatCry
   files:
-  - /Audio/_Arcane/Voice/Tajaran/cat_cry
+  - /Audio/_Arcane/Voice/Tajaran/cat_cry.ogg
 
 - type: soundCollection
   id: CatSneeze
   files:
-  - /Audio/_Arcane/Voice/Tajaran/cat_sneeze
+  - /Audio/_Arcane/Voice/Tajaran/cat_sneeze.ogg
 
 - type: soundCollection
   id: CatSigh
   files:
-  - /Audio/_Arcane/Voice/Tajaran/cat_sigh
+  - /Audio/_Arcane/Voice/Tajaran/cat_sigh.ogg
