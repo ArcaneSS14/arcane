@@ -20,7 +20,7 @@ public sealed partial class CounterattackWeaponSystem : EntitySystem
     [Dependency] private SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private SharedItemSwitchSystem _switch = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private SharedCombatModeSystem _combat = default!; // Arcane-Edit
+    [Dependency] private SharedCombatModeSystem _combat = default!; // Arcane
 
     public override void Initialize()
     {
@@ -45,18 +45,18 @@ public sealed partial class CounterattackWeaponSystem : EntitySystem
             || !TryComp<CounterattackWeaponComponent>(meleeWeapon, out var counterattack))
             return;
 
-        // Arcane-Edit-Start
+        // Arcane-Start
         var prev = _combat.IsInCombatMode(ent.Owner);
         _combat.SetInCombatMode(ent.Owner, true);
-        // Arcane-Edit-End
+        // Arcane-End
 
         meleeComp.NextAttack = TimeSpan.Zero;
         _melee.AttemptLightAttack(ent, meleeWeapon, meleeComp, args.User);
         meleeComp.NextAttack = TimeSpan.Zero;
 
-        // Arcane-Edit-Start
+        // Arcane-Start
         _combat.SetInCombatMode(ent.Owner, prev);
-        // Arcane-Edit-End
+        // Arcane-End
 
         _switch.Switch(meleeWeapon, counterattack.SetItemSwitch);
         if (TryComp<UseDelayComponent>(meleeWeapon, out var delay))
