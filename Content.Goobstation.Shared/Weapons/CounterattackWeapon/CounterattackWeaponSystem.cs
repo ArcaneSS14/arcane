@@ -2,6 +2,7 @@
 
 using System.Linq;
 using Content.Shared._Shitmed.ItemSwitch;
+using Content.Shared.CombatMode;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee;
@@ -19,6 +20,8 @@ public sealed partial class CounterattackWeaponSystem : EntitySystem
     [Dependency] private SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private SharedItemSwitchSystem _switch = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!; // Arcane-Edit
+
     public override void Initialize()
     {
         base.Initialize();
@@ -42,9 +45,19 @@ public sealed partial class CounterattackWeaponSystem : EntitySystem
             || !TryComp<CounterattackWeaponComponent>(meleeWeapon, out var counterattack))
             return;
 
+        // Arcane-Edit-Start
+        var prev = _combat.IsInCombatMode(ent.Owner);
+        _combat.SetInCombatMode(ent.Owner, true);
+        // Arcane-Edit-End
+
         meleeComp.NextAttack = TimeSpan.Zero;
         _melee.AttemptLightAttack(ent, meleeWeapon, meleeComp, args.User);
         meleeComp.NextAttack = TimeSpan.Zero;
+
+        // Arcane-Edit-Start
+        _combat.SetInCombatMode(ent.Owner, prev);
+        // Arcane-Edit-End
+
         _switch.Switch(meleeWeapon, counterattack.SetItemSwitch);
         if (TryComp<UseDelayComponent>(meleeWeapon, out var delay))
             _delay.ResetAllDelays((meleeWeapon, delay));
