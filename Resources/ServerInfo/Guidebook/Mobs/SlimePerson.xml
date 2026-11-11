@@ -14,26 +14,25 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   ## Внутреннее хранилище
   Внутри оболочки слаймолюда есть внутреннее хранилище, объемом 2x3. Любой может видеть что находится внутри и забрать это без разрешения, так что будьте осторожнее. При превращении в гераса внутреннее хранилище остается.
 
-  - Slimepeople have an [bold]internal 2x3 storage inventory[/bold] inside of their slime membrane. 
-  - Anyone can see what's inside and take it out of you without asking, so be careful.
+  - Слаймолюды имеют [bold]внутренний инвентарь 2x3[/bold] внутри своей слаймовой мембраны.
+  - Любой может видеть, что внутри, и забрать это у вас без разрешения, так что будьте осторожны.
 
-  ## Diet
-  - Slime Blood is technically a source of moderately filling food for other species, although drinking the blood of your coworkers is usually frowned upon.
-  
-  ## Benefits
-  
-  - They [color=#1e90ff]suffocate 80% slower.[/color] This makes them by far the species most capable to survive in hard vacuum. For a while.
-  - They take [color=#1e90ff]40% less Blunt damage and 20% less Poison damage[/color]
-  - Slimepeople have [color=#1e90ff]accelerated regeneration[/color] compared to other humanoids.
-  - Slimepeople have [color=#1e90ff]no bones to break.[/color]
-  
-  ## Drawbacks
+  ## Диета
+  - Кровь слаймов технически является источником умеренно питательной еды для других видов, хотя пить кровь своих коллег обычно не одобряется.
 
-  - They take [color=#ffa500]significant damage if they are sprayed or splashed with water[/color], but can (and like other species, need to) drink it safely to stay hydrated.
-  - They take [color=#ffa500]50% more Cold damage, 15% more Slash damage and 15% more Piercing damage[/color].
-  - As a result of their lack of bones, [color=#ffa500]their limbs come off easier.[/color]
-  - Their body [color=#ffa500]processes only two toxins at a time[/color] compared to three.
-  - They take [color=#ffa500]pressure damage 9% faster.[/color]
+  ## Преимущества
 
+  - Они [color=#1e90ff]задыхаются на 80% медленнее.[/color] Это делает их безусловно самым способным к выживанию в жёстком вакууме видом. На некоторое время.
+  - Они получают [color=#1e90ff]на 40% меньше ушибами и на 20% меньше ядовитого урона[/color].
+  - У слаймолюдов [color=#1e90ff]ускоренная регенерация[/color] по сравнению с другими гуманоидами.
+  - У слаймолюдов [color=#1e90ff]нет костей, которые можно сломать.[/color]
+
+  ## Недостатки
+
+  - Они получают [color=#ffa500]значительный урон, если их обрызгать или облить водой[/color], но могут (и, как другие виды, должны) безопасно пить её, чтобы поддерживать водный баланс.
+  - Они получают [color=#ffa500]на 50% больше урона от холода, на 15% больше режущего и на 15% больше колющего урона[/color].
+  - Из-за отсутствия костей [color=#ffa500]их конечности отваливаются легче.[/color]
+  - Их тело [color=#ffa500]перерабатывает только два токсина за раз[/color] вместо трёх.
+  - Они получают [color=#ffa500]урон от давления на 9% быстрее.[/color]
 
 </Document>

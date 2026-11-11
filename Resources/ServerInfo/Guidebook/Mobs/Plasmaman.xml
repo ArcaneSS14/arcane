@@ -72,31 +72,28 @@
     <GuideEntityEmbed Entity="Syringe" Caption=""/>
   </Box>
 
+  ### Сплошные кости!
+  - Они не испытывают ни голода, ни жажды.
+  - У них нет крови, и они не могут истечь ею.
 
-
-  ### All Bones!
-  - They don't experience hunger nor thirst.
-  - They don't have blood and cannot bleed out.
-
-  - Due to their skeleton body, they can consume Milk to gain a positive moodlet and slowly heal Brute, Heat, Shock, and Caustic damage.
-  - They can also consume Plasma to gain a bigger positive moodlet and heal every damage type faster, except for Cellular damage.
+  - Благодаря скелетному телу они могут пить молоко, чтобы получить положительный настрой и медленно лечить урон ушибами, жаром, электричеством и кислотой.
+  - Они также могут употреблять плазму, чтобы получить больший положительный настрой и быстрее лечить все типы урона, кроме клеточного.
 
   <Box>
     <GuideEntityEmbed Entity="DrinkCartonMilk" />
     <GuideEntityEmbed Entity="SheetPlasma1" />
   </Box>
 
-  ## Benefits
-  
-  - They infuse their fists with plasma dust that combusts when they punch, dealing [color=orange]5 Heat[/color] and [color=red]2.25 Blunt[/color] damage. 
-  - They take [color=#1e90ff]25% less Piercing, 20% less Poison, and 15% less Slash damage[/color]
-  - They are [color=#1e90ff]immune to Radiation and Cold damage[/color]. Due to their [color=#1e90ff]Cold immunity[/color], they can live in cold environments without the need of a winter coat.
-  
-  ## Drawbacks
+  ## Преимущества
 
-  - Each successful punch deals [color=orange]2 Heat[/color] damage to their hands.
-  - They take [color=#ffa500]50% more Blunt and 50% more Heat damage[/color].
-  - They have a slightly lower density than the average species. This results in weaknesses such as but not limited to: being slightly more vulnerable to being shoved, picked up, and thrown by Space Wind, and having a harder time pulling heavy objects.
+  - Они насыщают кулаки плазменной пылью, которая воспламеняется при ударе, нанося [color=orange]5 жара[/color] и [color=red]2.25 ушибов[/color].
+  - Они получают [color=#1e90ff]на 25% меньше колющего, на 20% меньше ядовитого и на 15% меньше режущего урона[/color].
+  - Они [color=#1e90ff]невосприимчивы к радиации и холоду[/color]. Благодаря [color=#1e90ff]иммунитету к холоду[/color] они могут жить в холодной среде без зимнего пальто.
 
+  ## Недостатки
+
+  - Каждый успешный удар наносит [color=orange]2 жара[/color] урона их рукам.
+  - Они получают [color=#ffa500]на 50% больше ушибами и на 50% больше жара[/color].
+  - Их плотность чуть ниже, чем у среднего вида. Это приводит к слабостям, таким как: немного большая уязвимость к толчкам, поднятию и отбрасыванию космическим ветром, а также сложности при перетаскивании тяжёлых объектов.
 
 </Document>

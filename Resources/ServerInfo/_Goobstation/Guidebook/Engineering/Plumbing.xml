@@ -6,15 +6,15 @@
 <GuideEntityEmbed Entity="BaseGasCondenser"/>
 </Box>
 
-Modern technology allows space creatures like you and I to automate the movement of liquids.
+Современные технологии позволяют таким космическим существам, как вы и я, автоматизировать перемещение жидкостей.
 
-Research and build a liquid pump and some automation upgrade kits.
-You can upgrade certain liquid handling machines like ChemMasters and industrial reagent grinders.
-Link the pump to the Plumbing Input/Output ports and it will start pumping.
+Исследуйте и постройте жидкостный насос и несколько комплектов улучшения автоматизации.
+Вы можете улучшить определённые машины для работы с жидкостями, такие как ХимМастер и промышленный измельчитель реагентов.
+Подключите насос к портам ввода/вывода сантехники, и он начнёт качать.
 
-Pumps can only transfer between 2 machines, but you can click them to assign a filter. Only that filtered reagent will be moved by the pump.
-Use multiple pumps for advanced stuff.
+Насосы могут передавать жидкости только между 2 машинами, но вы можете кликнуть по ним, чтобы назначить фильтр. Насос будет перемещать только этот отфильтрованный реагент.
+Используйте несколько насосов для продвинутых задач.
 
-Because it's just multitool based you don't need to build any pipes or anything, just link pumps to machines and watch the liquids move!
+Поскольку всё основано на мультитуле, вам не нужно строить никаких труб или чего-либо ещё — просто подключите насосы к машинам и смотрите, как движутся жидкости!
 
 </Document>

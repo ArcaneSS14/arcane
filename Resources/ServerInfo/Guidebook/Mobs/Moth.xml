@@ -3,35 +3,34 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <Document>
-  # Moth People
+  # Мотыльки
 
   <Box>
     <GuideEntityEmbed Entity="MobMoth" Caption=""/>
   </Box>
 
-  Moth people are a winged species, sporting antennae and similar bug-like features. One of their key defining traits is that they are obsessed with the number "65".
+  Мотыльки — это крылатый вид с усиками и другими насекомоподобными чертами. Одна из их ключевых особенностей — одержимость числом «65».
 
-  ## Unique Abilities
+  ## Уникальные способности
 
-  ### Winged Dash
+  ### Крылатый рывок
 
-  - Moth people can [color=#1e90ff]dash small distances once in 6.5 seconds[/color] using their wings, but that requires the gravity to be present. 
+  - Мотыльки могут [color=#1e90ff]совершать рывок на небольшие расстояния раз в 6,5 секунд[/color] с помощью крыльев, но для этого нужна гравитация.
 
-  ## Diet
+  ## Диета
 
-  - They can eat cotton, fabrics and clothing, but virtually none of the food that others would consider "edible".
+  - Они могут есть хлопок, ткани и одежду, но практически никакую еду, которую другие считают «съедобной».
 
-  ## Benefits 
+  ## Преимущества
 
-  - They take [color=#1e90ff]30% less Cold damage[/color]
-  - Their wings give them better acceleration if there is no gravity on the station, but they still can't move without equipment when floating out in space.
-  - They are also [color=#1e90ff]6.5% lighter than most species.[/color]
-  
-  ## Drawbacks
+  - Они получают [color=#1e90ff]на 30% меньше урона от холода[/color].
+  - Их крылья дают им лучшее ускорение при отсутствии гравитации на станции, но в открытом космосе они всё равно не смогут двигаться без снаряжения.
+  - Они также [color=#1e90ff]на 6,5% легче большинства видов.[/color]
 
-  - They move [color=#ffa500]6.5% slower[/color] than other species due to their weak legs. 
-  - They take [color=#ffa500]30% more Heat and 6.5% more Brute damage, and catch on fire more easily[/color].
-  - They prefer a somewhat lower temperature range than humans, making them more susceptible to higher temperatures.
-  
+  ## Недостатки
+
+  - Они двигаются [color=#ffa500]на 6,5% медленнее[/color] других видов из-за слабых ног.
+  - Они получают [color=#ffa500]на 30% больше урона от жара и на 6,5% больше урона ушибами, и легче загораются[/color].
+  - Они предпочитают несколько более низкий температурный диапазон, чем люди, что делает их более восприимчивыми к высоким температурам.
 
 </Document>

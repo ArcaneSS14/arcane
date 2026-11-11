@@ -5,8 +5,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <Document>
   # КПБ
   <GuideEntityEmbed Entity="MobIPCDummy" Caption="I.P.C."/>
-  An IPC (short for Integrated Positronic Chassis) is a type of sentient robot and is considered an [color=yellow]independent individual[/color], meaning [color=red]they are not guided by any laws of robotics[/color]. IPCs cannot be hacked by Emags because they do not have to follow any predefined directives in their system. [color=red]IPCs are silicon-based beings, so they are usually healed by Science or Engineering instead of Medical.[/color]
-  They take 20% less Brute damage, 70% more Heat damage and 100% more Shock damage. Contrary to cyborgs, they take Radiation damage, but 60% less than humans.
+  КПБ (сокращение от Integrated Positronic Chassis — комплексный позитронный корпус) — это тип разумных роботов, считающихся [color=yellow]независимыми личностями[/color], что означает, что [color=red]они не подчиняются никаким законам робототехники[/color]. КПБ нельзя взломать Емагом, поскольку они не обязаны следовать каким-либо предопределённым директивам в своей системе. [color=red]КПБ — кремниевые существа, поэтому их обычно лечат Наука или Инженерия, а не Медицина.[/color]
+  Они получают на 20% меньше урона ушибами, на 70% больше урона от жара и на 100% больше урона от электричества. В отличие от киборгов, они получают радиационный урон, но на 60% меньше, чем люди.
   У них нету костей.
 
   <Box>
@@ -56,18 +56,18 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     [color=red]НИКОГДА НЕ ЭЛЕКТРОШОКИРУЙТЕ КПБ дефибриллятором или иным способом, пока он мёртв, так как это вызовет разряд батареи с выбросом энергии наружу![/color]
   </Box>
 
-  ## Diet
+  ## Диета
 
-  - As IPCs are silicon-based beings, they do not require food or water to survive, and are unable to eat.
+  - Поскольку КПБ являются кремниевыми существами, им не требуется еда или вода для выживания, и они не могут есть.
 
-  ## Benefits
+  ## Преимущества
 
-  - They take [color=#1e90ff]20% less Brute damage, and 60% less Radiation damage.[/color]
-  - No bones to break.
+  - Они получают [color=#1e90ff]на 20% меньше урона ушибами и на 60% меньше радиационного урона.[/color]
+  - Нет костей, которые можно сломать.
 
-  ## Drawbacks
+  ## Недостатки
 
-  - They take [color=#ffa500]70% more Heat damage and 100% more Shock damage.[/color]
-  - Cannot [color=red](and should not)[/color] be defibrillated.
+  - Они получают [color=#ffa500]на 70% больше урона от жара и на 100% больше урона от электричества.[/color]
+  - Не могут [color=red](и не должны)[/color] быть дефибриллированы.
 
 </Document>

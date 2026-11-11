@@ -1,51 +1,51 @@
 <Document>
-  # Revenant
+  # Ревенант
 
-  A Revenant is a telekinetically controlled corpse used by the Harbinger to temporarily gain a physical body. This is your peak form, a short burst of overwhelming power that lets you turn the station into a disaster zone.
+  Ревенант — это телекинетически управляемый труп, используемый Предвестником для временного получения физического тела. Это ваша пиковая форма, короткий всплеск подавляющей силы, позволяющий превратить станцию в зону бедствия.
 
-  Once you possess a corpse, you lose access to your usual wraith powers and instead gain a limited but much more destructive arsenal. You regenerate WP faster, but your health constantly drains and cannot be healed. When your time runs out, the body collapses into smoke and your spirit returns to the void.
+  Как только вы вселяетесь в труп, вы теряете доступ к своим обычным способностям призрака и вместо этого получаете ограниченный, но гораздо более разрушительный арсенал. Вы регенерируете WP быстрее, но ваше здоровье постоянно убывает и не может быть восстановлено. Когда ваше время истекает, тело распадается в дым, и ваш дух возвращается в пустоту.
 
-  Revenants are visually distinct, surrounded by a dark, swirling aura. When one appears, the station knows something terrible has happened.
+  Ревенанты визуально отличаются, окружены тёмной, кружащейся аурой. Когда один появляется, станция знает, что произошло что-то ужасное.
 
-  ## Push
+  ## Толчок
 
-  - Shoves the targeted victim or object away with telekinetic force.
-  - Deals damage if the target hits a wall or another object.
-  - Useful for knocking enemies into hazards or clearing space in tight areas.
+  - Отталкивает выбранную жертву или объект телекинетической силой.
+  - Наносит урон, если цель врезается в стену или другой объект.
+  - Полезно для сбивания врагов в опасности или очистки пространства в тесных местах.
 
-  ## Mass Command
+  ## Массовый приказ
 
-  - Launches every nearby loose object toward a target at once. It's basically the base command action, but on steroids.
-  - Devastating in cluttered rooms like cargo or chemistry. The more sharp objects nearby, the better.
+  - Запускает каждый ближайший свободный объект к цели одновременно. Это в основном базовое действие приказа, но на стероидах.
+  - Разрушительно в захламлённых комнатах, таких как карго или химия. Чем больше острых предметов рядом, тем лучше.
 
-  ## Shockwave
+  ## Ударная волна
 
-  - Releases a massive blast of telekinetic energy that knocks everyone down, shatters windows, and rips plating off floors and walls.
-  - Can be used to disable entire rooms, breach areas, or make quick escapes.
+  - Выпускает массивный взрыв телекинетической энергии, который сбивает всех с ног, разбивает окна и срывает обшивку с полов и стен.
+  - Можно использовать для отключения целых комнат, пробивания областей или быстрого побега.
 
-  ## Touch of Evil
+  ## Прикосновение зла
 
-  - Temporarily supercharges your physical attacks.
-  - Your punches deal enormous damage and send targets flying across the room.
+  - Временно перезаряжает ваши физические атаки.
+  - Ваши удары наносят огромный урон и отправляют цели летать по комнате.
 
-  ## Crush
+  ## Раздавить
 
-  - Focuses your full telekinetic might on a single target, slowly pulverizing them.
-  - Deals immense brute damage over time until the target explodes into gibs.
-  - The effect ends if you lose line of sight or are interrupted.
-  - Is extremely expensive to use, so make sure you don't waste it.
+  - Фокусирует всю вашу телекинетическую мощь на одной цели, медленно пульверизируя её.
+  - Наносит огромный урон ушибами со временем, пока цель не взорвётся на гибы.
+  - Эффект заканчивается, если вы теряете линию видимости или вас прерывают.
+  - Крайне дорого в использовании, так что убедитесь, что не тратите его зря.
 
-  ### General Tips
+  ### Общие советы
 
-  Revenant form is temporary, make every second count. You’re not here to survive; you’re here to devastate.
+  Форма ревенанта временна, считайте каждую секунду. Вы здесь не для того, чтобы выжить; вы здесь, чтобы опустошать.
 
-  Use Shockwave first to scatter and disarm the crew, then pick off survivors with Touch of Evil or Crush.
+  Сначала используйте Ударную волну, чтобы рассеять и обезоружить экипаж, затем добивайте выживших Прикосновением зла или Раздавить.
 
-  Push and Mass Command can both be used to clear barricades or fling objects at fleeing crew.
+  Толчок и Массовый приказ можно использовать для разрушения баррикад или метания объектов в убегающий экипаж.
 
-  Though the revenant has access to terrifying skills, the vessel is still mortal. Don't expect to just tank a bunch of bullets for no reason and make it out alive.
+  Хотя у ревенанта есть доступ к ужасающим навыкам, сосуд всё ещё смертен. Не ожидайте, что просто выдержите кучу пуль без причины и выберетесь живым.
 
-  Remember: once you die, you return to your wraith form. Don’t waste time trying to retreat, just go ham.
+  Помните: как только вы умрёте, вы вернётесь в свою форму призрака. Не тратьте время на попытки отступить, просто идите в разнос.
 
-  [textlink="Back to Harbinger of the Void" link="Harbinger"]
+  [textlink="Назад к Предвестнику Пустоты" link="Harbinger"]
 </Document>
