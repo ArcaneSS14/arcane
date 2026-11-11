@@ -111,6 +111,7 @@ public sealed partial class WantedListUiFragment : BoxContainer
         ));
 
         // Set reason
+        // Arcane-Edit-Start
         if (record.Reason != null) {
             WantedReason.Visible = true;
 
@@ -121,6 +122,7 @@ public sealed partial class WantedListUiFragment : BoxContainer
         } else {
             WantedReason.Visible = false;
         }
+        // Arcane-Edit-End
 
         // Set status
         PersonState.SetMessage(GetLoc(
