@@ -26,6 +26,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.GameTicking; // Arcane
+using Content.Shared._Arcane.GameTicking; // Arcane
 
 namespace Content.Goobstation.Server.StationEvents.SecretPlus;
 
