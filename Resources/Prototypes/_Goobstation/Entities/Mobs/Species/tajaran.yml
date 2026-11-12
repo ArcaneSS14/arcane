@@ -165,12 +165,12 @@
   - type: Vocal
     wilhelm: "/Audio/Nyanotrasen/Voice/Felinid/cat_wilhelm.ogg"
     sounds:
-    # Arcane-Start
+    # Arcane-Edit-Start
       Male: MaleTajaran
       Female: FemaleTajaran
       Unsexed: MaleTajaran
       Futanari: FemaleTajaran
-    # Arcane-End
+    # Arcane-Edit-sEnd
   - type: NoShoesSilentFootsteps
   - type: Tag
     tags:
