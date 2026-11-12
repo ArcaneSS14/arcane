@@ -1,4 +1,4 @@
-namespace Content.Shared.GameTicking;
+namespace Content.Shared._Arcane.GameTicking;
 // ивент подсчёта количества офицеров сб
 public sealed class SecurityBudgetEvent : EntityEventArgs
 {
