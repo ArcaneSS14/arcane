@@ -122,7 +122,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Shared._Arcane.GameTicking; // Arcane
+using Content.Shared._Arcane.GameTicking;
+using Content.Server.Database; // Arcane
 
 namespace Content.Server.GameTicking
 {
@@ -221,11 +222,11 @@ namespace Content.Server.GameTicking
             // Arcane-Start
             var officers = assignedJobs.Where(entry => entry.Value.Item1 == "SecurityOfficer").Select(entry => entry.Key).ToArray();
 
-            RaiseLocalEvent(new SecurityBudgetEvent(officers, lateJoin: false));
+            RaiseLocalEvent(new SecurityBudgetEvent(officers, false));
 
             var securityOfficers = assignedJobs.Where(entry => entry.Value.Item1 == "SecurityOfficer").Select(entry => entry.Key).ToArray();
 
-            RaiseLocalEvent(new SecurityBudgetEvent(new[] { player.UserId }, true));
+            RaiseLocalEvent(new SecurityBudgetEvent(securityOfficers, true));
             // Arcane-End
             RefreshLateJoinAllowed();
 
@@ -244,8 +245,7 @@ namespace Content.Server.GameTicking
         {
             // Arcane-Start
             if (lateJoin && jobId == "SecurityOfficer")
-                RaiseLocalEvent(new SecurityBudgetEvent(
-                    new[] { player.UserId }, lateJoin: true));
+                RaiseLocalEvent(new SecurityBudgetEvent(new[] { player.UserId }, true));
             // Arcane-End
             // arcane discord link start
             if (!_linkAccount.CanPlay(player, out var locId))
