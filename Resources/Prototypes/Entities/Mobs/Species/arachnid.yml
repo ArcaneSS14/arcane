@@ -72,10 +72,12 @@
     allowedEmotes: ['Click', 'Chitter']
   - type: Vocal
     sounds:
-      Male: UnisexArachnid
-      Female: UnisexArachnid
-      Unsexed: UnisexArachnid
-      Futanari: UnisexArachnid # Arcane
+    # Arcane-Edit-Start
+      Male: MaleArachnid
+      Female: FemaleArachnid
+      Unsexed: MaleArachnid
+      Futanari: FemaleArachnid 
+    # Arcane-Edit-End
   - type: TypingIndicator
     proto: spider
   - type: LanguageKnowledge # Einstein Engines - Language

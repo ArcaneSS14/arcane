@@ -488,9 +488,9 @@
   params:
     variation: 0.125
 
-
+# Arcane-Edit-Start
 - type: emoteSounds
-  id: UnisexArachnid
+  id: MaleArachnid
   params:
     variation: 0.125
   sounds:
@@ -520,10 +520,43 @@
       path: /Audio/_Goobstation/Voice/gulpexotic.ogg
     Belch: # Frontier
       collection: Belch # Frontier
-    # Arcane-Start
     Moan:
       collection: MoansMale
-    # Arcane-End
+
+- type: emoteSounds
+  id: FemaleArachnid
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Voice/Arachnid/arachnid_scream.ogg
+    Laugh:
+      path: /Audio/Voice/Arachnid/arachnid_laugh.ogg
+    Chitter:
+      path: /Audio/Voice/Arachnid/arachnid_chitter.ogg
+    Click:
+      path: /Audio/Voice/Arachnid/arachnid_click.ogg
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Honk:
+      collection: BikeHorn
+    CatMeow:
+      collection: CatMeows # Goobstation - effect standardization
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: DeathGasp
+    Surprised: # Goob
+      path: /Audio/_Goobstation/Voice/surprised.ogg
+    Gulp: # Goob
+      path: /Audio/_Goobstation/Voice/gulpexotic.ogg
+    Belch: # Frontier
+      collection: Belch # Frontier
+    Moan:
+      collection: MoansFemale
+    # Arcane-Edit-End
 
 - type: emoteSounds
   id: UnisexDwarf
