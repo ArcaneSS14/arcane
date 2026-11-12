@@ -198,4 +198,6 @@ public sealed partial class SecretPlusComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<WeightedRandomPrototype> RoundStartAntagsWeightTable = "SecretPlus";
+
+    public readonly HashSet<NetUserId> CreditedSecurityOfficers = new(); // Arcane
 }

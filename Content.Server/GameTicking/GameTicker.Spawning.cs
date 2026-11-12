@@ -219,6 +219,13 @@ namespace Content.Server.GameTicking
                 SpawnPlayer(_playerManager.GetSessionById(player), profiles[player], station, job, false);
             }
             // Arcane-Start
+            var officers = assignedJobs
+                .Where(entry => entry.Value.Item1 == "SecurityOfficer")
+                .Select(entry => entry.Key)
+                .ToArray();
+
+            RaiseLocalEvent(new SecurityBudgetEvent(officers, lateJoin: false));
+
             var securityOfficers = assignedJobs.Values.Count(
                 assignment => assignment.Item1 == "SecurityOfficer");
 
@@ -239,6 +246,11 @@ namespace Content.Server.GameTicking
             bool lateJoin = true,
             bool silent = false)
         {
+            // Arcane-Start
+            if (lateJoin && jobId == "SecurityOfficer")
+                RaiseLocalEvent(new SecurityBudgetEvent(
+                    new[] { player.UserId }, lateJoin: true));
+            // Arcane-End
             // arcane discord link start
             if (!_linkAccount.CanPlay(player, out var locId))
             {

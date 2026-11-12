@@ -123,11 +123,25 @@ public sealed partial class SecretPlusSystem : GameRuleSystem<SecretPlusComponen
 
         while (query.MoveNext(out var uid, out var scheduler, out _))
         {
-            if (scheduler.SecurityBudgetApplied)
+            if (args.LateJoin != scheduler.SecurityBudgetApplied)
                 continue;
 
+            var newOfficers = 0;
+            foreach (var officer in args.Officers)
+            {
+                if (scheduler.CreditedSecurityOfficers.Add(officer)) newOfficers++;
+            }
+
+            var points = newOfficers * scheduler.ChaosPerSecurityOfficer;
+            if (args.LateJoin)
+            {
+                scheduler.ChaosScore -= points;
+            }
+        else
+        {
+            scheduler.ChaosScore = -points;
             scheduler.SecurityBudgetApplied = true;
-            scheduler.ChaosScore = -args.Officers * scheduler.ChaosPerSecurityOfficer;
+        }
 
             LogMessage(
                 $"Security event budget: {args.Officers} officers, " +
