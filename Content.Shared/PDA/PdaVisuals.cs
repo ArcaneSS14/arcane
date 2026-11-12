@@ -10,6 +10,7 @@ namespace Content.Shared.PDA
         IdCardInserted,
         ScreenState, // Orion
         PenInserted,//goob addition for pen visual
+        PaperInserted, // Arcane
         PdaType,
     }
 
