@@ -73,9 +73,9 @@
   - type: Vocal
     sounds:
     # Arcane-Edit-Start
-      Male: MaleArachnid
+      Male: UnisexArachnid
       Female: FemaleArachnid
-      Unsexed: MaleArachnid
+      Unsexed: UnisexArachnid
       Futanari: FemaleArachnid 
     # Arcane-Edit-End
   - type: TypingIndicator
