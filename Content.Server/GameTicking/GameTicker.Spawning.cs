@@ -219,17 +219,13 @@ namespace Content.Server.GameTicking
                 SpawnPlayer(_playerManager.GetSessionById(player), profiles[player], station, job, false);
             }
             // Arcane-Start
-            var officers = assignedJobs
-                .Where(entry => entry.Value.Item1 == "SecurityOfficer")
-                .Select(entry => entry.Key)
-                .ToArray();
+            var officers = assignedJobs.Where(entry => entry.Value.Item1 == "SecurityOfficer").Select(entry => entry.Key).ToArray();
 
             RaiseLocalEvent(new SecurityBudgetEvent(officers, lateJoin: false));
 
-            var securityOfficers = assignedJobs.Values.Count(
-                assignment => assignment.Item1 == "SecurityOfficer");
+            var securityOfficers = assignedJobs.Where(entry => entry.Value.Item1 == "SecurityOfficer").Select(entry => entry.Key).ToArray();
 
-            RaiseLocalEvent(new SecurityBudgetEvent(securityOfficers));
+            RaiseLocalEvent(new SecurityBudgetEvent(new[] { player.UserId }, true));
             // Arcane-End
             RefreshLateJoinAllowed();
 

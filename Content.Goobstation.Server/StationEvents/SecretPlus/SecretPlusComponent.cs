@@ -2,6 +2,7 @@
 
 using Content.Goobstation.Common.StationEvents.SecretPlus;
 using Content.Shared.Random;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
