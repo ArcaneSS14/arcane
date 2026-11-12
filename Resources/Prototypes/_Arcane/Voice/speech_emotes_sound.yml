@@ -202,7 +202,7 @@
       collection: CatLaugh
     Sneeze:
       collection: CatSneeze
-    Snore:
+    Gasp:
       collection: CatGasp
     Crying:
       collection: CatCry
