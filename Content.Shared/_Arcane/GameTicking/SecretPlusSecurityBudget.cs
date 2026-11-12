@@ -8,7 +8,7 @@ public sealed class SecurityBudgetEvent : EntityEventArgs
     public NetUserId[] Officers { get; }
     public bool LateJoin { get; }
 
-    public SecurityBudgetEvent(int officers)
+    public SecurityBudgetEvent(NetUserId[] officers, bool lateJoin)
     {
         Officers = officers;
         LateJoin = lateJoin;
