@@ -133,6 +133,20 @@ public sealed partial class SecretPlusComponent : Component
     [DataField]
     public float SpeedRamping = 0f;
 
+    // Arcane-Start
+    /// <summary>
+    /// One-time midround event budget per roundstart security officer.
+    /// </summary>
+    [DataField]
+    public float ChaosPerSecurityOfficer = 50f;
+
+    /// <summary>
+    /// Whether the one-time security budget has been applied.
+    /// </summary>
+    [ViewVariables]
+    public bool SecurityBudgetApplied;
+    // Arcane-End
+
     /// <summary>
     ///   Does this round start with antags at all?
     /// </summary>

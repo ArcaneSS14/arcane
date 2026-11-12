@@ -217,7 +217,12 @@ namespace Content.Server.GameTicking
 
                 SpawnPlayer(_playerManager.GetSessionById(player), profiles[player], station, job, false);
             }
+            // Arcane-Start
+            var securityOfficers = assignedJobs.Values.Count(
+                assignment => assignment.Item1 == "SecurityOfficer");
 
+            RaiseLocalEvent(new SecurityBudgetEvent(securityOfficers));
+            // Arcane-End
             RefreshLateJoinAllowed();
 
             // Allow rules to add roles to players who have been spawned in. (For example, on-station traitors)
