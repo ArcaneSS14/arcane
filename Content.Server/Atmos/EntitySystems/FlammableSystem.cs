@@ -16,6 +16,7 @@ using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Rejuvenate;
+using Content.Shared.Repairable;
 using Content.Shared.Temperature;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -72,7 +73,7 @@ namespace Content.Server.Atmos.EntitySystems
             _physicsQuery = GetEntityQuery<PhysicsComponent>();
 
             SubscribeLocalEvent<FlammableComponent, MapInitEvent>(OnMapInit);
-            SubscribeLocalEvent<FlammableComponent, InteractUsingEvent>(OnInteractUsing);
+            SubscribeLocalEvent<FlammableComponent, InteractUsingEvent>(OnInteractUsing, after: [typeof(RepairableSystem)]); // Arcane-Edit: a welder repairs silicons before igniting them
             SubscribeLocalEvent<FlammableComponent, StartCollideEvent>(OnCollide);
             SubscribeLocalEvent<FlammableComponent, IsHotEvent>(OnIsHot);
             SubscribeLocalEvent<FlammableComponent, TileFireEvent>(OnTileFire);

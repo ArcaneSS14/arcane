@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client._Arcane.DiscordRoles;
 using Content.Client._Orion.ReadyManifest;
 using Content.Client._RMC14.LinkAccount;
 using Content.Client.Audio;
@@ -13,9 +14,11 @@ using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Content.Goobstation.Common.CCVar;
 using Content.Goobstation.Common.ServerCurrency;
+using Content.Shared._Arcane.Sponsor;
 using Content.Shared.CCVar;
 using Robust.Client;
 using Robust.Client.Console;
+using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -40,6 +43,10 @@ namespace Content.Client.Lobby
         [Dependency] private readonly LinkAccountManager _linkAccount = default!; // RMC - Patreon
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
         [Dependency] private readonly IStylesheetManager _stylesheets = default!; // Arcane
+        // Arcane-Start
+        [Dependency] private readonly DiscordRoleManager _discordRoles = default!;
+        [Dependency] private readonly IPlayerManager _player = default!;
+        // Arcane-End
 
         private ISawmill _sawmill = default!; // Goobstation
         private ClientGameTicker _gameTicker = default!;
@@ -103,6 +110,7 @@ namespace Content.Client.Lobby
 
             // _serverCur.ClientBalanceChange += UpdatePlayerBalance; // Arcane: Goob Coins hidden
             _linkAccount.Updated += ApplyDiscordLinkGate; // Arcane
+            _discordRoles.RolesUpdated += UpdateSponsorTier; // Arcane
         }
 
         protected override void Shutdown()
@@ -115,6 +123,7 @@ namespace Content.Client.Lobby
             _contentAudioSystem.LobbySoundtrackChanged -= UpdateLobbySoundtrackInfo;
             // _serverCur.ClientBalanceChange -= UpdatePlayerBalance; // Arcane: Goob Coins hidden
             _linkAccount.Updated -= ApplyDiscordLinkGate; // Arcane
+            _discordRoles.RolesUpdated -= UpdateSponsorTier; // Arcane
 
             _voteManager.ClearPopupContainer();
 
@@ -362,8 +371,9 @@ namespace Content.Client.Lobby
             if (Lobby == null)
                 return;
 
-            Lobby.SponsorTier.Text = _linkAccount.Tier != null
-                ? Loc.GetString($"{_linkAccount.Tier.Tier}-patron-name")
+            Lobby.SponsorTier.Text = _player.LocalSession is { } session &&
+                                     SponsorRoleBenefits.TryGetHighestRole(_discordRoles, session, out var role)
+                ? Loc.GetString($"{SponsorRoleBenefits.All[role].TierName}-patron-name")
                 : Loc.GetString("not-patron-name");
         }
         // Arcane-end

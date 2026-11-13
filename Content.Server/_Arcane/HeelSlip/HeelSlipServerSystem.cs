@@ -1,9 +1,9 @@
+using Content.Goobstation.Shared.Sprinting;
 using Content.Shared._Arcane.HeelSlip;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -33,9 +33,12 @@ public sealed class HeelSlipServerSystem : EntitySystem
         var interval = _accumulator;
         _accumulator = 0f;
 
-        var query = EntityQueryEnumerator<PhysicsComponent, InventoryComponent>();
-        while (query.MoveNext(out var wearer, out var physics, out _))
+        var query = EntityQueryEnumerator<SprinterComponent, InventoryComponent>();
+        while (query.MoveNext(out var wearer, out var sprinter, out _))
         {
+            if (!sprinter.IsSprinting)
+                continue;
+
             if (HasComp<HeelSlipStatusComponent>(wearer))
                 continue;
 
@@ -43,10 +46,6 @@ public sealed class HeelSlipServerSystem : EntitySystem
                 continue;
 
             if (!TryComp<HeelSlipComponent>(shoes, out var heel))
-                continue;
-
-            var speed = physics.LinearVelocity.Length();
-            if (speed < heel.RunSpeedThreshold)
                 continue;
 
             var chance = Math.Clamp(heel.SlipChance * interval, 0f, 1f);

@@ -11,6 +11,15 @@ namespace Content.Shared.Mobs.Systems;
 
 public sealed partial class MobThresholdSystem
 {
+    // Arcane-Start
+    private static readonly BodyPartType[] CriticalParts =
+    [
+        BodyPartType.Head,
+        BodyPartType.Chest,
+        BodyPartType.Groin,
+    ];
+    // Arcane-End
+
     /// <summary>
     /// Calculates the total damage from vital body parts (Head, Chest, Groin), for complex-bodies.
     /// For non-complex bodies or if no vital parts are found, returns the total damage from the target entity.
@@ -31,20 +40,13 @@ public sealed partial class MobThresholdSystem
 
         FixedPoint2 result = FixedPoint2.Zero;
 
-        var criticalParts = new[]
-        {
-            BodyPartType.Head,
-            BodyPartType.Chest,
-            BodyPartType.Groin
-        };
-
         foreach (var (woundable, _) in _wound.GetAllWoundableChildren(rootPart))
         {
             if (!TryComp(woundable, out DamageableComponent? wdc) ||
                 !TryComp(woundable, out BodyPartComponent? bpc))
                 continue;
 
-            if (criticalParts.Contains(bpc.PartType) && !HasComp<NonVitalBodyPartComponent>(woundable)) // Arcane-Edit
+            if (CriticalParts.Contains(bpc.PartType) && !HasComp<NonVitalBodyPartComponent>(woundable)) // Arcane-Edit
                 result += wdc.TotalDamage;
         }
 

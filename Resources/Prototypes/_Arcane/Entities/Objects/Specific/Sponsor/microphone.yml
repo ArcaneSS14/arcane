@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseItem
   id: RadioHostMicrophone
+  categories: [ HideSpawnMenu ]
   name: microphone
   description: To sing and dance!
   components:

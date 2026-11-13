@@ -38,8 +38,11 @@ public sealed class VendingMachineKeypadBoundUserInterface(EntityUid owner, Enum
         var enabled = EntMan.TryGetComponent(Owner, out VendingMachineComponent? bendy) && !bendy.Ejecting;
 
         var system = EntMan.System<VendingMachineSystem>();
-        _cachedInventory = system.GetAllInventory(Owner);
-
+        // Arcane-Edit-Start
+        var newInventory = system.GetAllInventory(Owner);
+        ApplyDisplayPrices(newInventory);
+        _cachedInventory = newInventory;
+        // Arcane-Edit-End
         _menu?.Populate(_cachedInventory, enabled);
     }
 
@@ -48,9 +51,37 @@ public sealed class VendingMachineKeypadBoundUserInterface(EntityUid owner, Enum
         var enabled = EntMan.TryGetComponent(Owner, out VendingMachineComponent? bendy) && !bendy.Ejecting;
 
         var system = EntMan.System<VendingMachineSystem>();
-        _cachedInventory = system.GetAllInventory(Owner);
+        // Arcane-Edit-Start
+        var updatedInventory = system.GetAllInventory(Owner);
+        ApplyDisplayPrices(updatedInventory);
+        _cachedInventory = updatedInventory;
+        // Arcane-Edit-End
         _menu?.UpdateAmounts(_cachedInventory, enabled);
     }
+
+    // Arcane-Start
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        if (message is not VendingMachineInventoryUpdateMessage update)
+            return;
+
+        _cachedInventory = update.Inventory;
+        var enabled = EntMan.TryGetComponent(Owner, out VendingMachineComponent? bendy) && !bendy.Ejecting;
+        _menu?.SetBalance(update.Balance);
+        _menu?.UpdateAmounts(_cachedInventory, enabled);
+    }
+
+    private void ApplyDisplayPrices(List<VendingMachineInventoryEntry> updatedInventory)
+    {
+        foreach (var updated in updatedInventory)
+        {
+            var current = _cachedInventory.FirstOrDefault(entry => entry.ID == updated.ID && entry.Type == updated.Type);
+
+            if (current != null)
+                updated.DisplayPrice = current.DisplayPrice;
+        }
+    }
+    // Arcane-End
 
     private void OnAudioPlayed(VendingMachineKeypadSound type, float pitch)
     {

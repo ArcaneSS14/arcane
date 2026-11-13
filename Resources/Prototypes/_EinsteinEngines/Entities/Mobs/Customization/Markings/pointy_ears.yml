@@ -4,6 +4,7 @@
   id: PointyEarsStandard
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   forcedColoring: true
   speciesRestriction: [Oni, Harpy, Arachne, Lamia, Human, Felinid] # Arcane-Edit
   sprites:
@@ -14,6 +15,7 @@
   id: PointyEarsWide
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   forcedColoring: true
   speciesRestriction: [Oni, Harpy, Arachne, Lamia, Human, Felinid] # Arcane-Edit
   sprites:
@@ -24,6 +26,7 @@
   id: PointyEarsSmall
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   forcedColoring: true
   speciesRestriction: [Oni, Harpy, Arachne, Lamia, Human, Felinid] # Arcane-Edit
   sprites:
@@ -34,6 +37,7 @@
   id: PointyEarsUpwards
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   forcedColoring: true
   speciesRestriction: [Oni, Harpy, Arachne, Lamia, Human, Felinid] # Arcane-Edit
   sprites:
@@ -44,6 +48,7 @@
   id: PointyEarsTall
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   forcedColoring: true
   speciesRestriction: [Oni, Harpy, Arachne, Lamia, Human, Felinid] # Arcane-Edit
   sprites:
@@ -54,6 +59,7 @@
   id: PointyEarsSlanted
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   forcedColoring: true
   speciesRestriction: [Oni, Harpy, Arachne, Lamia, Human, Felinid] # Arcane-Edit
   sprites:
@@ -64,6 +70,7 @@
   id: PointyEarsThin
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   forcedColoring: true
   speciesRestriction: [Oni, Harpy, Arachne, Lamia, Human, Felinid] # Arcane-Edit
   sprites:
@@ -74,6 +81,7 @@
   id: PointyEarsLarge
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   forcedColoring: true
   speciesRestriction: [Oni, Harpy, Arachne, Lamia, Human, Felinid] # Arcane-Edit
   sprites:
@@ -84,6 +92,7 @@
   id: PointyEarsNone
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   forcedColoring: true
   speciesRestriction: [Oni]
   sprites:

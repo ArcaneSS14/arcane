@@ -1,3 +1,4 @@
+using Content.Client._Arcane.DirectionalLayering;
 using Content.Client.Graphics;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Holopad;
@@ -14,6 +15,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private DirectionalLayeringSystem _directionalLayering = default!; // Arcane
 
     public override void Initialize()
     {
@@ -59,8 +61,12 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
             return;
 
         // Remove all sprite layers
+        // Arcane-Start: holographic avatars have no typing indicator to copy, so the hologram keeps its own
+        var typingLayer = _sprite.LayerMapTryGet((hologram, hologramSprite), TypingIndicatorLayers.Base, out var index, false) ? index : -1;
+        // Arcane-End
         for (var i = hologramSprite.AllLayers.Count() - 1; i >= 0; i--)
-            _sprite.RemoveLayer((hologram, hologramSprite), i);
+            if (i != typingLayer) // Arcane
+                _sprite.RemoveLayer((hologram, hologramSprite), i); // Arcane-Edit
 
         if (TryComp<SpriteComponent>(target, out var targetSprite))
         {
@@ -77,7 +83,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
             // Otherwise copy the target's current physical appearance
             else
             {
-                _sprite.CopySprite((target.Value, targetSprite), (hologram, hologramSprite));
+                _directionalLayering.CopySprite((target.Value, targetSprite), (hologram, hologramSprite), Direction.South); // Arcane-Edit
             }
         }
 
@@ -93,7 +99,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
                 State = holopadhologram.RsiState
             };
 
-            _sprite.AddLayer((hologram, hologramSprite), layer, null);
+            _sprite.AddLayer((hologram, hologramSprite), layer, typingLayer >= 0 ? 0 : null); // Arcane-Edit
         }
 
         // Override specific values

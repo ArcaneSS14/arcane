@@ -72,6 +72,10 @@ namespace Content.Shared.Humanoid.Markings
 
             return true;
         }
+
+        // Ears: drawn under the hair unless the character keeps the ears above the hair.
+        [DataField]
+        public bool UnderHair { get; private set; }
         // Arcane-End
 
         /// Impstation start

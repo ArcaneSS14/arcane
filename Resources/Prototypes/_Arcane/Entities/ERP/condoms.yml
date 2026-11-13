@@ -37,28 +37,28 @@
     full: true
   - type: Damageable
     damageContainer: RubberBalloon
-  - type: DamageOnHighSpeedImpact
-    minimumSpeed: 1
-    speedDamageFactor: 1
-    stunChance: 0
-    soundHit:
-      path: /Audio/Effects/balloon_hits.ogg
-    damage:
-      types:
-        Blunt: 1
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 0.1
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Effects/balloon-pop.ogg
-      - !type:SpillBehavior
-        solution: condom
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+#  - type: DamageOnHighSpeedImpact
+#    minimumSpeed: 1
+#    speedDamageFactor: 1
+#    stunChance: 0
+#    soundHit:
+#      path: /Audio/Effects/balloon_hits.ogg
+#    damage:
+#      types:
+#        Blunt: 1
+#  - type: Destructible
+#    thresholds:
+#    - trigger:
+#        !type:DamageTrigger
+#        damage: 0.1
+#      behaviors:
+#      - !type:PlaySoundBehavior
+#        sound:
+#          path: /Audio/Effects/balloon-pop.ogg
+#      - !type:SpillBehavior
+#        solution: condom
+#      - !type:DoActsBehavior
+#        acts: [ "Destruction" ]
 
 - type: entity
   parent: [BaseItem]

@@ -1206,6 +1206,7 @@
   id: HeadEarrings
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Human, Dwarf, Oni, SlimePerson, Tajaran, Vulpkanin, Rodentia, Felinid] # Arcane-Edit
   coloring:
     default:
@@ -1222,6 +1223,7 @@
   id: HeadEarringsDrop
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Human, Dwarf, Oni, SlimePerson, Tajaran, Vulpkanin, Rodentia, Felinid] # Arcane-Edit
   coloring:
     default:
@@ -1238,6 +1240,7 @@
   id: HeadEarringsWeights
   bodyPart: HeadSide
   markingCategory: HeadSide
+  underHair: true # Arcane
   speciesRestriction: [Human, Dwarf, Oni, SlimePerson, Tajaran, Vulpkanin, Rodentia, Felinid] # Arcane-Edit
   coloring:
     default:

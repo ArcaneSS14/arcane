@@ -2,7 +2,7 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-                      MinSize="680 500">
+                      MinSize="680 520">
 
     <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
 
@@ -28,6 +28,7 @@
                 </PanelContainer>
             </Control>
             <Control MinHeight="8" />
+            <Label Name="BalanceLabel" Margin="12 2 12 2" HorizontalAlignment="Right" Visible="False" /> <!-- Arcane -->
 
             <PanelContainer StyleClasses="LowDivider" />
 

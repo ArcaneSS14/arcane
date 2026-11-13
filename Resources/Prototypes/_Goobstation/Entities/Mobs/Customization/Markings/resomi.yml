@@ -15,6 +15,7 @@
   id: ResomiEars
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true # Arcane
   speciesRestriction: [Resomi]
   sprites:
   - sprite: _Goobstation/Mobs/Customization/Resomi/Resomi_headtop.rsi

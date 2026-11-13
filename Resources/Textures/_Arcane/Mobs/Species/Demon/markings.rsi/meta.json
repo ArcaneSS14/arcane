@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by discord:LunaLita#0840, theanemone, bulbo44key",
+    "copyright": "Created by discord:LunaLita#0840, theanemone, bulbo44key, NeGhostea",
     "size": {
         "x": 32,
         "y": 32
@@ -28,6 +28,14 @@
             "directions": 4
         },
         {
+            "name": "cow_spots_l_hand",
+            "directions": 4
+        },
+        {
+            "name": "cow_spots_r_hand",
+            "directions": 4
+        },
+        {
             "name": "deer_antlers_horns",
             "directions": 4
         },
@@ -36,11 +44,35 @@
             "directions": 4
         },
         {
+            "name": "guards_stripes_l_hand",
+            "directions": 4
+        },
+        {
+            "name": "guards_stripes_r_hand",
+            "directions": 4
+        },
+        {
             "name": "lines_emperos",
             "directions": 4
         },
         {
+            "name": "lines_emperos_l_hand",
+            "directions": 4
+        },
+        {
+            "name": "lines_emperos_r_hand",
+            "directions": 4
+        },
+        {
             "name": "queen_lines",
+            "directions": 4
+        },
+        {
+            "name": "queen_lines_l_hand",
+            "directions": 4
+        },
+        {
+            "name": "queen_lines_r_hand",
             "directions": 4
         },
         {
@@ -49,6 +81,14 @@
         },
         {
             "name": "tree_lines",
+            "directions": 4
+        },
+        {
+            "name": "tree_lines_l_hand",
+            "directions": 4
+        },
+        {
+            "name": "tree_lines_r_hand",
             "directions": 4
         },
         {
@@ -356,6 +396,14 @@
             "directions": 4
         },
         {
+            "name": "gradient_paint_l_hand",
+            "directions": 4
+        },
+        {
+            "name": "gradient_paint_r_hand",
+            "directions": 4
+        },
+        {
             "name": "hooves",
             "directions": 4
         },
@@ -372,7 +420,27 @@
             "directions": 4
         },
         {
+            "name": "skeleton_l_hand",
+            "directions": 4
+        },
+        {
+            "name": "skeleton_r_hand",
+            "directions": 4
+        },
+        {
             "name": "arataki_painting",
+            "directions": 4
+        },
+        {
+            "name": "arataki_painting_l_hand",
+            "directions": 4
+        },
+        {
+            "name": "arataki_painting_r_hand",
+            "directions": 4
+        },
+        {
+            "name": "ears_huge",
             "directions": 4
         }
     ]

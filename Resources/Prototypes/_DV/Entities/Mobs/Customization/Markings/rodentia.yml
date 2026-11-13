@@ -6,6 +6,7 @@
 - type: marking
   id: RodentiaHeadTopEarDefault
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia, Human, Felinid] # Arcane-Edit
   coloring:
@@ -34,6 +35,7 @@
 - type: marking
   id: RodentiaHeadTopEarBat
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
@@ -43,6 +45,7 @@
 - type: marking
   id: RodentiaHeadTopEarBatLarge
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
@@ -52,6 +55,7 @@
 - type: marking
   id: RodentiaHeadTopEarHamster
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
@@ -63,6 +67,7 @@
 - type: marking
   id: RodentiaHeadTopEarLong
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
@@ -74,6 +79,7 @@
 - type: marking
   id: RodentiaHeadTopEarMouse
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
@@ -85,6 +91,7 @@
 - type: marking
   id: RodentiaHeadTopEarMouseLarge
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
@@ -96,6 +103,7 @@
 - type: marking
   id: RodentiaHeadTopEarNone
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
@@ -105,6 +113,7 @@
 - type: marking
   id: RodentiaHeadTopEarPointy
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
@@ -114,6 +123,7 @@
 - type: marking
   id: RodentiaHeadTopEarRabbit
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
@@ -125,6 +135,7 @@
 - type: marking
   id: RodentiaHeadTopEarSmall
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
@@ -135,6 +146,7 @@
 - type: marking
   id: RodentiaHeadTopMouseEars2
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:

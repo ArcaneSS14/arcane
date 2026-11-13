@@ -20,8 +20,11 @@
   - SchechiTranslator
   - GruntishTranslator
   - YowKriolTranslator # goob edit - yowie language
-  - KarshanTranslator # Arcane: demon language
-  - HydraspeakTranslator # Arcane
+  # Arcane-Start
+  - KarshanTranslator
+  - DwarvishTranslator
+  - HydraspeakTranslator
+  # Arcane-End
 
 - type: latheRecipePack
   id: TranslatorImplanters
@@ -45,5 +48,8 @@
   - GruntishTranslatorImplanter
   - YowKriolTranslatorImplanter # goob edit - yowie language
   - SignTranslatorImplanter # goob edit
-  - KarshanTranslatorImplanter # Arcane: demon language
-  - HydraspeakTranslatorImplanter # Arcane
+  # Arcane-Start
+  - KarshanTranslatorImplanter
+  - DwarvishTranslatorImplanter
+  - HydraspeakTranslatorImplanter
+  # Arcane-End

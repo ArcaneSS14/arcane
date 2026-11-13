@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Numerics;
+using Content.Client.Stylesheets;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.UserInterface.Controls;
@@ -18,6 +19,12 @@ public sealed class MenuButton : ContainerButton
     private static readonly Color ColorNormal = Color.FromHex("#99a7b3"); // primary color[0] + 0.24 L
     private static readonly Color ColorHovered = Color.FromHex("#acbac6"); // primary color[0] + 0.30 L
     private static readonly Color ColorPressed = Color.FromHex("#75838e"); // primary color[0] + 0.12 L
+
+    // Arcane-Start
+    private static readonly Color ColorNegativeNormal = Color.FromHex("#ff102f");
+    private static readonly Color ColorNegativeHovered = Color.FromHex("#c2394e");
+    private static readonly Color ColorNegativePressed = Color.FromHex("#67000e");
+    // Arcane-End
 
     private const float VertPad = 4f;
 
@@ -109,21 +116,28 @@ public sealed class MenuButton : ContainerButton
     private void UpdateChildColors()
     {
         if (_buttonIcon == null || _buttonLabel == null) return;
+        var negative = HasStyleClass(StyleClass.Negative); // Arcane
         switch (DrawMode)
         {
             case DrawModeEnum.Normal:
-                _buttonIcon.ModulateSelfOverride = ColorNormal;
-                _buttonLabel.ModulateSelfOverride = ColorNormal;
+                // Arcane-Edit-Start
+                _buttonIcon.ModulateSelfOverride = negative ? ColorNegativeNormal : ColorNormal;
+                _buttonLabel.ModulateSelfOverride = negative ? ColorNegativeNormal : ColorNormal;
+                // Arcane-Edit-End
                 break;
 
             case DrawModeEnum.Pressed:
-                _buttonIcon.ModulateSelfOverride = ColorPressed;
-                _buttonLabel.ModulateSelfOverride = ColorPressed;
+                // Arcane-Edit-Start
+                _buttonIcon.ModulateSelfOverride = negative ? ColorNegativePressed : ColorPressed;
+                _buttonLabel.ModulateSelfOverride = negative ? ColorNegativePressed : ColorPressed;
+                // Arcane-Edit-End
                 break;
 
             case DrawModeEnum.Hover:
-                _buttonIcon.ModulateSelfOverride = ColorHovered;
-                _buttonLabel.ModulateSelfOverride = ColorHovered;
+                // Arcane-Edit-Start
+                _buttonIcon.ModulateSelfOverride = negative ? ColorNegativeHovered : ColorHovered;
+                _buttonLabel.ModulateSelfOverride = negative ? ColorNegativeHovered : ColorHovered;
+                // Arcane-Edit-End
                 break;
 
             case DrawModeEnum.Disabled:

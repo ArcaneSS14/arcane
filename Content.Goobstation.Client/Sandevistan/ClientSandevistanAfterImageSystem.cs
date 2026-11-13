@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._Arcane.DirectionalLayering;
 using Content.Goobstation.Shared.Sandevistan;
 using Content.Shared.Tag;
 using Robust.Client.GameObjects;
@@ -11,6 +12,7 @@ public sealed partial class ClientSandevistanAfterimageSystem : EntitySystem
 {
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private DirectionalLayeringSystem _directionalLayering = default!; // Arcane
 
     private static readonly ProtoId<TagPrototype> HideContextMenuTag = "HideContextMenu";
 
@@ -29,7 +31,7 @@ public sealed partial class ClientSandevistanAfterimageSystem : EntitySystem
         _tagSystem.AddTag(ent, HideContextMenuTag);
 
         var afterimageSprite = EnsureComp<SpriteComponent>(ent);
-        _sprite.CopySprite((ent.Comp.SourceEntity, userSprite), (ent.Owner, afterimageSprite));
+        _directionalLayering.CopySprite((ent.Comp.SourceEntity, userSprite), (ent.Owner, afterimageSprite), ent.Comp.DirectionOverride); // Arcane-Edit
         _sprite.SetDrawDepth((ent.Owner, afterimageSprite), (int) DrawDepthEnum.FloorEffects);
         _sprite.SetColor((ent.Owner, afterimageSprite), Color.FromHsv(new Vector4(ent.Comp.Hue, 1, 1, 0.7f)));
         _sprite.ClearPostShaders((ent.Owner, afterimageSprite));

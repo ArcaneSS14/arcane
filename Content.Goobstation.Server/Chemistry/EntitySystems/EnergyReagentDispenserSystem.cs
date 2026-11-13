@@ -55,6 +55,7 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<EnergyReagentDispenserComponent, PowerChangedEvent>(OnPowerChanged);
 
             SubscribeLocalEvent<EnergyReagentDispenserComponent, MapInitEvent>(OnMapInit, before: [typeof(ItemSlotsSystem)]);
+            SubscribeLocalEvent<EnergyReagentDispenserComponent, ComponentInit>(OnInit); // Arcane
 
             // Orion-Start
             SubscribeLocalEvent<EnergyReagentDispenserComponent, RefreshPartsEvent>(OnPartsRefresh);
@@ -243,6 +244,14 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
             _itemSlotsSystem.AddItemSlot(entity.Owner,
                 SharedEnergyReagentDispenser.OutputSlotName,
                 entity.Comp.EnergyBeakerSlot);
+        // Arcane-Start
+        }
+
+        private void OnInit(Entity<EnergyReagentDispenserComponent> entity, ref ComponentInit args)
+        {
+            if (TryComp<BatteryComponent>(entity, out var battery))
+                entity.Comp.BaseMaxCharge = battery.MaxCharge;
+        // Arcane-End
 
             // Orion-Start
             if (!TryComp<ApcPowerReceiverBatteryComponent>(entity, out var apcBattery))
@@ -264,10 +273,15 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
 
             _powerReceiver.SetBatteryRechargeRate(uid, component.FinalRechargeRate); // Arcane
 
+            // Arcane-Start
+            var chargeMultiplier = 1f + component.MaxChargeTierStep * Math.Max(matterBinTier - 1f, 0f);
+            _battery.SetMaxCharge(uid, component.BaseMaxCharge * chargeMultiplier);
+            // Arcane-End
+
             UpdateUiState((uid, component));
         }
 
-        private static void OnUpgradeExamine(EntityUid uid, EnergyReagentDispenserComponent component, UpgradeExamineEvent args)
+        private void OnUpgradeExamine(EntityUid uid, EnergyReagentDispenserComponent component, UpgradeExamineEvent args) // Arcane-Edit
         {
             var rechargeMultiplier = component.BaseRechargeRate <= 0f
                 ? 1f
@@ -275,6 +289,11 @@ namespace Content.Goobstation.Server.Chemistry.EntitySystems
 
             args.AddPercentageUpgrade("machine-upgrade-charging-speed", rechargeMultiplier);
             args.AddPercentageUpgrade("machine-upgrade-energy-cost", component.FinalEnergyCostMultiplier);
+
+            // Arcane-Start
+            if (component.BaseMaxCharge > 0f && TryComp<BatteryComponent>(uid, out var battery))
+                args.AddPercentageUpgrade("machine-upgrade-battery-capacity", battery.MaxCharge / component.BaseMaxCharge);
+            // Arcane-End
         }
 
         private void OnEmaged(Entity<EnergyReagentDispenserComponent> ent, ref GotEmaggedEvent args)

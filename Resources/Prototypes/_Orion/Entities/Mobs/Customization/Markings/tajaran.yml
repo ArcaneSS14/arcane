@@ -343,6 +343,7 @@
 - type: marking
   id: TajaranOutears
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [ Tajaran ]
   sprites:
@@ -388,6 +389,7 @@
 - type: marking
   id: TajaranInears
   markingCategory: HeadTop
+  underHair: true # Arcane
   bodyPart: HeadTop
   speciesRestriction: [ Tajaran ]
   sprites:

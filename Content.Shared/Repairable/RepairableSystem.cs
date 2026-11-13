@@ -34,7 +34,7 @@ public sealed partial class RepairableSystem : EntitySystem
             return;
 
         var ipcSaysMoreRepairies = false; // Goob
-        var isBody = HasComp<BodyComponent>(ent); // Goob
+        var isBody = HasComp<BodyComponent>(ent) && ent.Comp.Damage != null; // Arcane-Edit: borgs have a simple body but heal by value
         if (isBody) // Goob
             ipcSaysMoreRepairies = GoobTryRepairIPC(ent, args.User);
         else if (ent.Comp.DamageValue != null)

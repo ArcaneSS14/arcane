@@ -13,7 +13,8 @@ public sealed partial class SponsorGhostRestriction : CustomGhostRestriction
 
     public override bool CanUse(ICommonSession player, [NotNullWhen(false)] out string? failReason)
     {
-        if (IoCManager.Resolve<ISharedDiscordRoleManager>().HasRole(player, Role))
+        var roles = IoCManager.Resolve<ISharedDiscordRoleManager>();
+        if (roles.HasRole(player, Role) || roles.HasRole(player, DiscordRole.AdminBenefit))
         {
             failReason = null;
             return true;

@@ -29,8 +29,14 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public BodyPartSlot? ParentSlot;
 
+    // Arcane-Edit-Start
+//    [DataField]
+//    public string ToolName { get; set; } = "A body part";
     [DataField]
-    public string ToolName { get; set; } = "A body part";
+    public LocId ToolName = "surgery-tool-body-part";
+
+    string ISurgeryToolComponent.ToolName => Loc.GetString(ToolName);
+    // Arcane-Edit-End
 
     [DataField]
     public string SlotId = string.Empty;

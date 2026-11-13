@@ -1954,6 +1954,7 @@
   id: AndroidCatEars
   bodyPart: HeadTop
   markingCategory: HeadTop
+  underHair: true
   speciesRestriction: [IPC]
   coloring:
     default:

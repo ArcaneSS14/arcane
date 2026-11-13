@@ -8,7 +8,7 @@
   components:
   # Arcane-Start
   - type: UseDelay
-    delay: 3
+    delay: 10
   # Arcane-End
   - type: Stack
     stackType: BSCrystal

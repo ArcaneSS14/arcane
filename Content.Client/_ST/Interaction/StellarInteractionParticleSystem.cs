@@ -58,6 +58,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
 
         SubscribeAllEvent<StellarInteractionParticleEvent>(OnInteractionParticle);
         Subs.CVar(_cfg, GoobCVars.InHandInteractionParticleScale, v => _inHandScale = v, true);
+        InitializeArcane(); // Arcane
     }
 
     public override void FrameUpdate(float frameTime)
@@ -151,6 +152,11 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
 
             type = StellarInteractionParticleType.InHand;
         }
+
+        // Arcane-Start
+        if (!CanShowInteractionParticle(GetEntity(ev.Performer), type))
+            return null;
+        // Arcane-End
 
         if (type == StellarInteractionParticleType.InHand && _inHandScale <= 0f)
             return null;

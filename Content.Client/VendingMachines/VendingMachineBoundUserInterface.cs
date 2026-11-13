@@ -37,8 +37,11 @@ namespace Content.Client.VendingMachines
             var enabled = EntMan.TryGetComponent(Owner, out VendingMachineComponent? bendy) && !bendy.Ejecting;
 
             var system = EntMan.System<VendingMachineSystem>();
-            _cachedInventory = system.GetAllInventory(Owner);
-
+            // Arcane-Edit-Start
+            var newInventory = system.GetAllInventory(Owner);
+            ApplyDisplayPrices(newInventory);
+            _cachedInventory = newInventory;
+            // Arcane-Edit-End
             _menu?.Populate(_cachedInventory, enabled);
         }
 

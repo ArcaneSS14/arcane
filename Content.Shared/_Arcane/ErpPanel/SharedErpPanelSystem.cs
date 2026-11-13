@@ -3,6 +3,7 @@ using Content.Shared.Chat;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -14,7 +15,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Popups;
 
 namespace Content.Shared._Arcane.ErpPanel;
-// ATTATION CAT AHEAD 
+// ATTATION CAT AHEAD
 //         .                 .
 //        . .               . .
 //       .   .             .   .
@@ -34,7 +35,7 @@ namespace Content.Shared._Arcane.ErpPanel;
 //       .                     .      .
 //        .   .           .   .   . .
 //         . . . . . . . . . . . .
-// Thank you for attaion 
+// Thank you for attaion
 public sealed class SharedErpPanelSystem : EntitySystem
 {
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
@@ -47,6 +48,7 @@ public sealed class SharedErpPanelSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     private static readonly EntProtoId HeartsProto = new("EffectHearts");
 
@@ -301,6 +303,9 @@ public sealed class SharedErpPanelSystem : EntitySystem
         if (!HasComp<ErpPanelOwnerComponent>(target))
             return false;
 
+        if (_mobState.IsIncapacitated(target))
+            return false;
+
         if (!HasComp<ArousalComponent>(user) || !HasComp<ArousalComponent>(target))
             return false;
 
@@ -309,6 +314,9 @@ public sealed class SharedErpPanelSystem : EntitySystem
 
     private bool IsValidInteraction(EntityUid user, EntityUid target, PanelInteractionPrototype interaction)
     {
+        if (_mobState.IsIncapacitated(target))
+            return false;
+
         if (!_interaction.InRangeAndAccessible(user, target, interaction.Range))
             return false;
 

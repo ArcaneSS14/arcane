@@ -124,7 +124,11 @@
     - Tradeband
     - Schechi
     - NewKinPidgin
-    - Hydraspeak # Arcane
+    # Arcane-Start
+    - Hydraspeak
+    - Dwarvish
+    - Karshan
+    # Arcane-End
     understands:
     - TauCetiBasic # Add individual languages so they can understand without understanding animals.
     - Canilunzt
@@ -146,7 +150,11 @@
     - Sign # Should know it but not speak it, for obvious reasons.
     - Schechi
     - NewKinPidgin
-    - Hydraspeak # Arcane
+    # Arcane-Start
+    - Hydraspeak
+    - Dwarvish
+    - Karshan
+    # Arcane-End
   # Einstein Engines - Language end
   - type: Vocal
     sounds:

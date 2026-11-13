@@ -555,13 +555,13 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 180
+            damage: 360 # Arcane-Edit
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
         - trigger:
             !type:DamageTrigger
-            damage: 100
+            damage: 200 # Arcane-Edit
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -577,8 +577,10 @@
       price: 350
       # WD EDIT START
     - type: Battery
-      maxCharge: 35
-      startingCharge: 35
+      # Arcane-Edit-Start
+      maxCharge: 100
+      startingCharge: 100
+      # Arcane-Edit-End
     - type: BatterySelfRecharger
       autoRechargeRate: 2
     - type: RechargeableBlocking
