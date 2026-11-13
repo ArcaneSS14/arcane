@@ -20,13 +20,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private INetManager _net = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<ConflictWearComponent, BeingEquippedAttemptEvent>(OnBeingEquippedAttempt);
-        SubscribeLocalEvent<ConflictWearComponent, UseInHandAttemptEvent>(OnUseInHandAttempt);
-    }
-
+    [SubscribeLocalEvent<ConflictWearComponent, BeingEquippedAttemptEvent>]
     private void OnBeingEquippedAttempt(Entity<ConflictWearComponent> ent, ref BeingEquippedAttemptEvent args)
     {
         if (args.Cancelled)
@@ -42,6 +36,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent<ConflictWearComponent, UseInHandAttemptEvent>]
     private void OnUseInHandAttempt(Entity<ConflictWearComponent> ent, ref UseInHandAttemptEvent args)
     {
         if (args.Cancelled)
