@@ -9,15 +9,10 @@ namespace Content.Shared._Arcane.Surgery;
 /// <summary>
 /// Gates surgeries on the research of the surgeon's own network, wherever the surgeon and the patient are.
 /// </summary>
-public abstract class SharedSurgeryResearchSystem : EntitySystem
+public abstract partial class SharedSurgeryResearchSystem : EntitySystem
 {
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<SurgeryTechnologyConditionComponent, SurgeryValidEvent>(OnTechnologyValid);
-    }
-
     // The shared choices list has no surgeon, so research is checked when a surgeon looks at it or operates.
+    [SubscribeLocalEvent]
     private void OnTechnologyValid(Entity<SurgeryTechnologyConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (args.Cancelled || args.User is not { } user)

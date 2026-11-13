@@ -11,13 +11,13 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Arcane.Surgery;
 
-public sealed class SurgeryMoodSystem : EntitySystem
+public sealed partial class SurgeryMoodSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly SurgeryConditionsSystem _surgeryConditions = default!;
-    [Dependency] private readonly SharedSurgerySystem _surgery = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private SurgeryConditionsSystem _surgeryConditions = default!;
+    [Dependency] private SharedSurgerySystem _surgery = default!;
 
     private const string MoodCategory = "Surgery";
     private const float MaxDrunkIgnorePercent = 90f;
@@ -26,12 +26,7 @@ public sealed class SurgeryMoodSystem : EntitySystem
     private static readonly ProtoId<MoodEffectPrototype> SuccessMoodlet = "SurgerySuccess";
     private static readonly ProtoId<MoodEffectPrototype> FailureMoodlet = "SurgeryFailure";
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<MoodComponent, SurgeryMoodEvent>(OnSurgeryMood);
-    }
-
+    [SubscribeLocalEvent]
     private void OnSurgeryMood(Entity<MoodComponent> ent, ref SurgeryMoodEvent args)
     {
         if (_surgery.GetSingleton(args.Step) is not { } step || !HasComp<SurgeryAffectsMoodStepComponent>(step))

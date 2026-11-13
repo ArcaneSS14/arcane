@@ -5,19 +5,13 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._Arcane.Medical.Surgery;
 
-public sealed class SurgeryToolSystem : SharedSurgeryToolSystem
+public sealed partial class SurgeryToolSystem : SharedSurgeryToolSystem
 {
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly RoboticSurgerySystem _roboticSurgery = default!;
-    [Dependency] private readonly SharedSurgerySystem _surgery = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private RoboticSurgerySystem _roboticSurgery = default!;
+    [Dependency] private SharedSurgerySystem _surgery = default!;
 
     private SurgeryToolOptionsPopup? _popup;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeNetworkEvent<SurgeryToolOptionsEvent>(OnOptions);
-    }
 
     public override void Shutdown()
     {
@@ -25,6 +19,7 @@ public sealed class SurgeryToolSystem : SharedSurgeryToolSystem
         ClosePopup();
     }
 
+    [SubscribeNetworkEvent]
     private void OnOptions(SurgeryToolOptionsEvent msg)
     {
         if (!TryGetEntity(msg.Part, out var part))

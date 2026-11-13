@@ -9,12 +9,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Arcane.Surgery;
 
-public sealed class RoboticSurgerySystem : EntitySystem
+public sealed partial class RoboticSurgerySystem : EntitySystem
 {
-    [Dependency] private readonly IComponentFactory _factory = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly SurgeryToolExamineSystem _toolExamine = default!;
+    [Dependency] private IComponentFactory _factory = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private SurgeryToolExamineSystem _toolExamine = default!;
 
     private EntityQuery<RoboticBodyPartComponent> _roboticQuery;
 
@@ -24,7 +24,6 @@ public sealed class RoboticSurgerySystem : EntitySystem
 
         _roboticQuery = GetEntityQuery<RoboticBodyPartComponent>();
 
-        SubscribeLocalEvent<SurgeryRoboticVariantComponent, SurgeryValidEvent>(OnVariantValid);
         SubscribeLocalEvent<SurgeryScrewdriverComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
         SubscribeLocalEvent<SurgeryCrowbarComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
         SubscribeLocalEvent<SurgeryWrenchComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
@@ -34,6 +33,7 @@ public sealed class RoboticSurgerySystem : EntitySystem
         SubscribeLocalEvent<SurgeryWelderComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
     }
 
+    [SubscribeLocalEvent]
     private void OnVariantValid(Entity<SurgeryRoboticVariantComponent> ent, ref SurgeryValidEvent args)
     {
         if (_roboticQuery.HasComp(args.Part))

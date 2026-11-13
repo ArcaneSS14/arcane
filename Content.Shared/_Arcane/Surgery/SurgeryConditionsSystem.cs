@@ -19,14 +19,14 @@ namespace Content.Shared._Arcane.Surgery;
 ///     Where and in what state a surgery happens: these slow a step down, and a step slowed past the threshold can be botched.
 ///     Also checks surgeries that need a dead patient.
 /// </summary>
-public sealed class SurgeryConditionsSystem : EntitySystem
+public sealed partial class SurgeryConditionsSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
 
     private const float MaxDrunkSeconds = 100f;
 
@@ -55,10 +55,9 @@ public sealed class SurgeryConditionsSystem : EntitySystem
         Subs.CVar(_config, ACCVars.SurgeryFloorSpeedModifier, value => _floorSpeedModifier = value, true);
         Subs.CVar(_config, ACCVars.SurgeryAnesthesiaSpeedModifier, value => _anesthesiaSpeedModifier = value, true);
         Subs.CVar(_config, ACCVars.SurgeryAnalyzedSpeedModifier, value => _analyzedSpeedModifier = value, true);
-
-        SubscribeLocalEvent<SurgeryDeadConditionComponent, SurgeryValidEvent>(OnDeadValid);
     }
 
+    [SubscribeLocalEvent]
     private void OnDeadValid(Entity<SurgeryDeadConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (!_mobState.IsDead(args.Body))

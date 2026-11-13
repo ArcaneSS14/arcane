@@ -11,21 +11,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Arcane.Surgery;
 
-public sealed class BiowareSystem : EntitySystem
+public sealed partial class BiowareSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private INetManager _net = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<SurgeryBiowareComponent, SurgeryStepEvent>(OnStep);
-        SubscribeLocalEvent<SurgeryBiowareComponent, SurgeryStepCompleteCheckEvent>(OnCompleteCheck);
-        SubscribeLocalEvent<BloodBiowareComponent, BleedModifierEvent>(OnBleed);
-        SubscribeLocalEvent<NerveBiowareComponent, GetClothingStunModifierEvent>(OnStunModifier);
-        SubscribeLocalEvent<NerveBiowareComponent, BeforeStaminaDamageEvent>(OnStaminaDamage);
-        SubscribeLocalEvent<NerveBiowareComponent, ElectrocutionAttemptEvent>(OnElectrocutionAttempt);
-    }
-
+    [SubscribeLocalEvent]
     private void OnStep(Entity<SurgeryBiowareComponent> ent, ref SurgeryStepEvent args)
     {
         if (!_net.IsServer)
@@ -53,6 +43,7 @@ public sealed class BiowareSystem : EntitySystem
         args.Complete = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnCompleteCheck(Entity<SurgeryBiowareComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
         var source = new EntProtoId(Prototype(ent)!.ID);
@@ -71,21 +62,25 @@ public sealed class BiowareSystem : EntitySystem
         return TryComp<NerveBiowareComponent>(body, out var nerves) ? nerves.StunMultiplier : 1f;
     }
 
+    [SubscribeLocalEvent]
     private void OnBleed(Entity<BloodBiowareComponent> ent, ref BleedModifierEvent args)
     {
         args.BleedAmount *= ent.Comp.BleedMultiplier;
     }
 
+    [SubscribeLocalEvent]
     private void OnStunModifier(Entity<NerveBiowareComponent> ent, ref GetClothingStunModifierEvent args)
     {
         args.Modifier *= ent.Comp.StunMultiplier;
     }
 
+    [SubscribeLocalEvent]
     private void OnStaminaDamage(Entity<NerveBiowareComponent> ent, ref BeforeStaminaDamageEvent args)
     {
         args.Value *= ent.Comp.StaminaMultiplier;
     }
 
+    [SubscribeLocalEvent]
     private void OnElectrocutionAttempt(Entity<NerveBiowareComponent> ent, ref ElectrocutionAttemptEvent args)
     {
         if (ent.Comp.ShockImmune)

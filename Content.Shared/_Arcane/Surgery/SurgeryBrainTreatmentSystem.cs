@@ -12,22 +12,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Arcane.Surgery;
 
-public sealed class SurgeryBrainTreatmentSystem : EntitySystem
+public sealed partial class SurgeryBrainTreatmentSystem : EntitySystem
 {
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private TraumaSystem _trauma = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<SurgeryBrainTreatmentComponent, SurgeryStepEvent>(OnStep);
-        SubscribeLocalEvent<SurgeryBrainTreatmentComponent, SurgeryStepBotchedEvent>(OnBotched);
-        SubscribeLocalEvent<SurgeryBrainTreatmentComponent, SurgeryStepCompleteCheckEvent>(OnCompleteCheck);
-        SubscribeLocalEvent<SurgeryBrainDamagedConditionComponent, SurgeryValidEvent>(OnBrainDamagedValid);
-    }
-
+    [SubscribeLocalEvent]
     private void OnStep(Entity<SurgeryBrainTreatmentComponent> ent, ref SurgeryStepEvent args)
     {
         if (!_net.IsServer)
@@ -50,6 +42,7 @@ public sealed class SurgeryBrainTreatmentSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnBotched(Entity<SurgeryBrainTreatmentComponent> ent, ref SurgeryStepBotchedEvent args)
     {
         if (!_net.IsServer)
@@ -65,12 +58,14 @@ public sealed class SurgeryBrainTreatmentSystem : EntitySystem
         EntityManager.AddComponents(args.Body, _prototypes.Index(ent.Comp.FailureTrait).Components, false);
     }
 
+    [SubscribeLocalEvent]
     private void OnCompleteCheck(Entity<SurgeryBrainTreatmentComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
         if (IsBrainDamaged(args.Part))
             args.Cancelled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnBrainDamagedValid(Entity<SurgeryBrainDamagedConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (!IsBrainDamaged(args.Part))

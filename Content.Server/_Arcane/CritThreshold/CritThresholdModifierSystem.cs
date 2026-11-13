@@ -11,31 +11,25 @@ namespace Content.Server._Arcane.CritThreshold;
 /// <summary>
 ///     Scales crit and death thresholds by everything that answers <see cref="RefreshCritThresholdEvent"/>.
 /// </summary>
-public sealed class CritThresholdModifierSystem : EntitySystem
+public sealed partial class CritThresholdModifierSystem : EntitySystem
 {
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
 
     private static readonly MobState[] ScaledStates = [MobState.SoftCritical, MobState.HardCritical, MobState.Dead];
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<CritThresholdModifierStatusEffectComponent, StatusEffectAppliedEvent>(OnEffectApplied);
-        SubscribeLocalEvent<CritThresholdModifierStatusEffectComponent, StatusEffectRemovedEvent>(OnEffectRemoved);
-        SubscribeLocalEvent<CritThresholdModifierStatusEffectComponent, StatusEffectRelayedEvent<RefreshCritThresholdEvent>>(OnRefreshCritThreshold);
-    }
-
+    [SubscribeLocalEvent]
     private void OnEffectApplied(Entity<CritThresholdModifierStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
     {
         RefreshCritThreshold(args.Target);
     }
 
+    [SubscribeLocalEvent]
     private void OnEffectRemoved(Entity<CritThresholdModifierStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {
         RefreshCritThreshold(args.Target);
     }
 
+    [SubscribeLocalEvent]
     private void OnRefreshCritThreshold(Entity<CritThresholdModifierStatusEffectComponent> ent, ref StatusEffectRelayedEvent<RefreshCritThresholdEvent> args)
     {
         var evArgs = args.Args;

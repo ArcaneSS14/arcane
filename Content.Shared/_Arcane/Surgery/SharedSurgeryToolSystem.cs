@@ -37,22 +37,22 @@ namespace Content.Shared._Arcane.Surgery;
 /// <summary>
 /// Performs surgery steps by clicking a lying patient with a tool, on the body part the surgeon is targeting.
 /// </summary>
-public abstract class SharedSurgeryToolSystem : EntitySystem
+public abstract partial class SharedSurgeryToolSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly RoboticSurgerySystem _roboticSurgery = default!;
-    [Dependency] private readonly SharedSurgerySystem _surgery = default!;
-    [Dependency] private readonly SurgeryToolExamineSystem _toolExamine = default!;
-    [Dependency] private readonly SharedToolSystem _tool = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private RoboticSurgerySystem _roboticSurgery = default!;
+    [Dependency] private SharedSurgerySystem _surgery = default!;
+    [Dependency] private SurgeryToolExamineSystem _toolExamine = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
 
     private bool _canOperateOnSelf;
 
@@ -60,18 +60,14 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     {
         base.Initialize();
 
-        // An unlocked synthetic's panel takes the screwdriver first, so its power cell can still be swapped while it lies down.
-        // A welder closes an open shell before it repairs the synthetic.
-        SubscribeLocalEvent<SurgeryTargetComponent, InteractUsingEvent>(OnInteractUsing, after: [typeof(SharedWiresSystem)], before: [typeof(RepairableSystem)]);
-        // An empty-hand click would otherwise unbuckle the patient from the operating table.
-        SubscribeLocalEvent<SurgeryTargetComponent, InteractHandEvent>(OnInteractHand, before: [typeof(SharedBuckleSystem)]);
-        SubscribeAllEvent<SurgeryToolOptionPickedEvent>(OnOptionPicked);
         SubscribeLocalEvent<SurgeryAnalyzerComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
-        SubscribeLocalEvent<SurgeryPlanComponent, SurgeryStepEvent>(OnPlanStep);
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs => subs.Event<SurgeryPlanBuiMsg>(OnPlanMessage));
         Subs.CVar(_config, SurgeryCVars.CanOperateOnSelf, value => _canOperateOnSelf = value, true);
     }
 
+    // An unlocked synthetic's panel takes the screwdriver first, so its power cell can still be swapped while it lies down.
+    // A welder closes an open shell before it repairs the synthetic.
+    [SubscribeLocalEvent(after: [typeof(SharedWiresSystem)], before: [typeof(RepairableSystem)])]
     private void OnInteractUsing(Entity<SurgeryTargetComponent> ent, ref InteractUsingEvent args)
     {
         var user = args.User;
@@ -122,6 +118,8 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     }
 
     // Planned steps that need no tool, like taking an item out of a cavity, are done with an empty hand.
+    // An empty-hand click would otherwise unbuckle the patient from the operating table.
+    [SubscribeLocalEvent(before: [typeof(SharedBuckleSystem)])]
     private void OnInteractHand(Entity<SurgeryTargetComponent> ent, ref InteractHandEvent args)
     {
         if (args.Handled
@@ -136,6 +134,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             Perform(ent, part, args.User, new List<SurgeryToolOption> { planned });
     }
 
+    [EventSubscription]
     private void OnOptionPicked(SurgeryToolOptionPickedEvent msg, EntitySessionEventArgs args)
     {
         if (!_timing.IsFirstTimePredicted
@@ -321,6 +320,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
 
     // Tool-less steps take whatever is in hand and may start over once undone, so their plan ends with the surgery's
     // last step. Kept until it is done, as a refused, interrupted or ineffective step is reached again only through it.
+    [SubscribeLocalEvent]
     private void OnPlanStep(Entity<SurgeryPlanComponent> ent, ref SurgeryStepEvent args)
     {
         if (args.Complete

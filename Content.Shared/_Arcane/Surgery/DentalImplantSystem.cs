@@ -27,37 +27,25 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Arcane.Surgery;
 
-public sealed class DentalImplantSystem : EntitySystem
+public sealed partial class DentalImplantSystem : EntitySystem
 {
     public const string ContainerId = "dental_implants";
 
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly StomachSystem _stomach = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private StomachSystem _stomach = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<SurgeryDentalImplantStepComponent, SurgeryStepEvent>(OnStep);
-        SubscribeLocalEvent<SurgeryDentalImplantStepComponent, SurgeryStepCompleteCheckEvent>(OnCompleteCheck);
-        SubscribeLocalEvent<SurgeryDentalImplantConditionComponent, SurgeryValidEvent>(OnValid);
-        SubscribeLocalEvent<DentalImplantComponent, ActivateDentalPillActionEvent>(OnActivate);
-        SubscribeLocalEvent<DentalImplantComponent, DentalPillDoAfterEvent>(OnDoAfter);
-        SubscribeLocalEvent<SurgeryTargetComponent, BodyPartAddedEvent>(OnPartAttached);
-        SubscribeLocalEvent<SurgeryTargetComponent, BodyPartRemovedEvent>(OnPartDetached);
-    }
-
+    [SubscribeLocalEvent]
     private void OnPartAttached(Entity<SurgeryTargetComponent> ent, ref BodyPartAddedEvent args)
     {
         if (!_net.IsServer)
@@ -70,6 +58,7 @@ public sealed class DentalImplantSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnPartDetached(Entity<SurgeryTargetComponent> ent, ref BodyPartRemovedEvent args)
     {
         if (!_net.IsServer)
@@ -81,6 +70,7 @@ public sealed class DentalImplantSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnStep(Entity<SurgeryDentalImplantStepComponent> ent, ref SurgeryStepEvent args)
     {
         if (!_net.IsServer)
@@ -115,6 +105,7 @@ public sealed class DentalImplantSystem : EntitySystem
             _metaData.SetEntityName(action, Loc.GetString("dental-implant-action-name", ("pill", held)));
     }
 
+    [SubscribeLocalEvent]
     private void OnCompleteCheck(Entity<SurgeryDentalImplantStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
         var count = GetPills(args.Part).Count;
@@ -122,12 +113,14 @@ public sealed class DentalImplantSystem : EntitySystem
             args.Cancelled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnValid(Entity<SurgeryDentalImplantConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (GetPill(args.Part) == null)
             args.Cancelled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnActivate(Entity<DentalImplantComponent> ent, ref ActivateDentalPillActionEvent args)
     {
         var user = args.Performer;
@@ -155,6 +148,7 @@ public sealed class DentalImplantSystem : EntitySystem
         });
     }
 
+    [SubscribeLocalEvent]
     private void OnDoAfter(Entity<DentalImplantComponent> ent, ref DentalPillDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || !IsInMouth(ent, args.User) || !CanBite(args.User))

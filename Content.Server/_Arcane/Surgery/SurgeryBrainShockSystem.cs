@@ -12,22 +12,16 @@ using Content.Shared.Mobs.Systems;
 
 namespace Content.Server._Arcane.Surgery;
 
-public sealed class SurgeryBrainShockSystem : EntitySystem
+public sealed partial class SurgeryBrainShockSystem : EntitySystem
 {
     private const string BrainDamageId = "SurgicalRevival";
 
-    [Dependency] private readonly DefibrillatorSystem _defibrillator = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
+    [Dependency] private DefibrillatorSystem _defibrillator = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private TraumaSystem _trauma = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<SurgeryRevivalStepComponent, SurgeryStepEvent>(OnStep);
-    }
-
+    [SubscribeLocalEvent]
     private void OnStep(Entity<SurgeryRevivalStepComponent> ent, ref SurgeryStepEvent args)
     {
         if (!TryComp<DefibrillatorComponent>(args.Tool, out var defib))

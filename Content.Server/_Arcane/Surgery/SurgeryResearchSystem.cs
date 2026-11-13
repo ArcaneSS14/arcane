@@ -19,28 +19,18 @@ namespace Content.Server._Arcane.Surgery;
 /// <summary>
 ///     Surgery tied to the research server of the surgeon's own network: technology-gated surgeries, autopsies and dissections.
 /// </summary>
-public sealed class SurgeryResearchSystem : SharedSurgeryResearchSystem
+public sealed partial class SurgeryResearchSystem : SharedSurgeryResearchSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly NpcFactionSystem _faction = default!;
-    [Dependency] private readonly ResearchSystem _research = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private NpcFactionSystem _faction = default!;
+    [Dependency] private ResearchSystem _research = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private StationJobsSystem _stationJobs = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
     private static readonly TimeSpan AccessUpdateInterval = TimeSpan.FromSeconds(1);
     private TimeSpan _nextAccessUpdate;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
-        SubscribeLocalEvent<SurgeryAutopsyComponent, SurgeryStepEvent>(OnAutopsy);
-        SubscribeLocalEvent<SurgeryDissectionComponent, SurgeryStepEvent>(OnDissection);
-        SubscribeLocalEvent<SurgeryDissectionComponent, SurgeryStepBotchedEvent>(OnDissectionBotched);
-    }
 
     public override void Update(float frameTime)
     {
@@ -119,6 +109,7 @@ public sealed class SurgeryResearchSystem : SharedSurgeryResearchSystem
     }
 
     // Clients predict surgery for the body they control, so they need its research before the first click.
+    [SubscribeLocalEvent]
     private void OnPlayerAttached(PlayerAttachedEvent args)
     {
         // Ghosts and other bodies without hands cannot operate.
@@ -128,23 +119,27 @@ public sealed class SurgeryResearchSystem : SharedSurgeryResearchSystem
         UpdateAccess((args.Entity, EnsureComp<SurgeryResearchAccessComponent>(args.Entity)));
     }
 
+    [SubscribeLocalEvent]
     private void OnPlayerDetached(PlayerDetachedEvent args)
     {
         RemCompDeferred<SurgeryResearchAccessComponent>(args.Entity);
     }
 
+    [SubscribeLocalEvent]
     private void OnAutopsy(Entity<SurgeryAutopsyComponent> ent, ref SurgeryStepEvent args)
     {
         if (GetBodyKind(args.Body, ent.Comp.Experiments) is { } experiment && TryGetSurgeonServer(args.User, out var server))
             _research.TryProgressExperimentsByAction(server, experiment.Action, server.Comp2, server.Comp1);
     }
 
+    [SubscribeLocalEvent]
     private void OnDissection(Entity<SurgeryDissectionComponent> ent, ref SurgeryStepEvent args)
     {
         Dissect(ent, args.User, args.Body, args.Part, 1f);
     }
 
     // A botched dissection still uses the body up, for a fraction of the points.
+    [SubscribeLocalEvent]
     private void OnDissectionBotched(Entity<SurgeryDissectionComponent> ent, ref SurgeryStepBotchedEvent args)
     {
         EnsureComp<SurgicallyDissectedComponent>(args.Body);

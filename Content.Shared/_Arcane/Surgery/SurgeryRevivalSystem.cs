@@ -11,29 +11,29 @@ using Content.Shared.Timing;
 
 namespace Content.Shared._Arcane.Surgery;
 
-public sealed class SurgeryRevivalSystem : EntitySystem
+public sealed partial class SurgeryRevivalSystem : EntitySystem
 {
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SurgeryToolExamineSystem _toolExamine = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SurgeryToolExamineSystem _toolExamine = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SurgeryRevivalStepComponent, SurgeryStepCompleteCheckEvent>(OnCompleteCheck);
-        SubscribeLocalEvent<SurgeryDefibrillatorComponent, SurgeryToolUsedEvent>(OnDefibrillatorUsed);
         SubscribeLocalEvent<SurgeryDefibrillatorComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
     }
 
+    [SubscribeLocalEvent]
     private void OnCompleteCheck(Entity<SurgeryRevivalStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
         if (_mobState.IsDead(args.Body))
             args.Cancelled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnDefibrillatorUsed(Entity<SurgeryDefibrillatorComponent> ent, ref SurgeryToolUsedEvent args)
     {
         if (args.Cancelled || !TryComp<DefibrillatorComponent>(ent, out var defib))

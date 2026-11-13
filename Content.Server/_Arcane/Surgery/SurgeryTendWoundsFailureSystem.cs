@@ -10,18 +10,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Arcane.Surgery;
 
-public sealed class SurgeryTendWoundsFailureSystem : EntitySystem
+public sealed partial class SurgeryTendWoundsFailureSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly SharedSurgerySystem _surgery = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private SharedSurgerySystem _surgery = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<SurgeryTendWoundsEffectComponent, SurgeryStepBotchedEvent>(OnBotched);
-    }
-
+    [SubscribeLocalEvent]
     private void OnBotched(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepBotchedEvent args)
     {
         var damage = ent.Comp.Damage * -ent.Comp.FailureFlatMultiplier;
