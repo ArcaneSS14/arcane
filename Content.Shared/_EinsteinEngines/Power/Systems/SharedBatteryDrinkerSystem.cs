@@ -82,6 +82,7 @@ public abstract class SharedBatteryDrinkerSystem : EntitySystem
         }
         // Arcane-Edit-End
 
+        // Arcane-Start
         var ev = new FindDrinkerBatteryEvent();
         RaiseLocalEvent(ent, ref ev);
         if (ev.Battery is { } battery)
