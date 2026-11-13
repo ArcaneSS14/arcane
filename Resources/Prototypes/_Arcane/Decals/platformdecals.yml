@@ -1,0 +1,201 @@
+- type: decal
+  abstract: true
+  parent: CMDecalBase
+  id: PlatformDecalBase
+  tags: ["station", "markings"]
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalSandstoneCorner
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: sandstone_corner
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalSandstoneRound
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: sandstone_round
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalStoneCorner
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: stone_corner
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalStoneRound
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: stone_round
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenDarkPlatform
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenDarkCorner
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform_corner
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenDarkDeco
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform_deco
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenDarkRound
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform_round
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenDarkStair
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform_stair
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenDarkStairAlt
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_dark_platform_stair_alt
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenLightPlatform
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenLightCorner
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform_corner
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenLightDeco
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform_deco
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenLightRound
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform_round
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenLightStair
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform_stair
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenLightStairAlt
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_light_platform_stair_alt
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenPlatform
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenCorner
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform_corner
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenDeco
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform_deco
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenRound
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform_round
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenStair
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform_stair
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenStairAlt
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_platform_stair_alt
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenRedPlatform
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenRedCorner
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform_corner
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenRedDeco
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform_deco
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenRedRound
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform_round
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenRedStair
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform_stair
+
+- type: decal
+  parent: PlatformDecalBase
+  id: PlatformDecalWoodenRedStairAlt
+  sprite:
+    sprite: _Arcane/Structures/arcaneplatforms.rsi
+    state: wooden_red_platform_stair_alt
