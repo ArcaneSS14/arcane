@@ -59,7 +59,7 @@ public sealed partial class SocialAnxietySystem : EntitySystem
         var damage = _melee.GetDamage(uid, uid) * (repeatedHug ? 3 : 2);
         var part = repeatedHug ? TargetBodyPart.Head : TargetBodyPart.LeftArm;
 
-        _damage.TryChangeDamage(hugger, damage, origin: uid, targetPart: part);
+        _damage.TryChangeDamage(hugger, damage, origin: uid, targetPart: part,  canMiss: false);
     }
     // Arcane-End
 }
