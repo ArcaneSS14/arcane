@@ -170,7 +170,7 @@
       Female: FemaleTajaran
       Unsexed: MaleTajaran
       Futanari: FemaleTajaran
-    # Arcane-Edit-sEnd
+    # Arcane-Edit-End
   - type: NoShoesSilentFootsteps
   - type: Tag
     tags:
