@@ -73,13 +73,14 @@ public abstract class SharedBatteryDrinkerSystem : EntitySystem
             return false;
         }
 
-        // Arcane-Start
+        // Arcane-Edit-Start
         // The drinker itself is the battery (e.g. an IPC).
         if (HasComp<BatteryComponent>(ent))
         {
             drinker = ent;
             return true;
         }
+        // Arcane-Edit-End
 
         var ev = new FindDrinkerBatteryEvent();
         RaiseLocalEvent(ent, ref ev);
