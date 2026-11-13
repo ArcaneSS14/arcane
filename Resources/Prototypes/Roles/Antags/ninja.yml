@@ -35,8 +35,8 @@
     - LibrarianTranslatorImplanter # Arcane-Edit 
   storage:
     back: # belt holds katana so satchel has the tools for sabotaging things
-    - DrinkWaterBottleFull # Arcane-Edit-Start
     - DrinkWaterBottleFull
+    # Arcane-Edit-Start
     - MedkitCombatStandardFilled
     - WelderIndustrialAdvanced
     - PowerDrill
@@ -47,7 +47,8 @@
     - SmokeImplanter
     - SpiderclanFlippo
     - CigaretteSyndicate
-    - Wakizashi           # Arcane-Edit-End
+    - Wakizashi
+    # Arcane-Edit-End
 
 - type: chameleonOutfit
   id: NinjaChameleonOutfit
