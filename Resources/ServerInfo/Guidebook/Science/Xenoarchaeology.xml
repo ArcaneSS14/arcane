@@ -3,53 +3,53 @@ SPDX-License-Identifier: MIT
 -->
 
 <Document>
-  # Xenoarchaeology
+  # Ксеноархеология
 
-  Xenoarchaeology is a branch of Science focused on researching alien [bold]artifacts[/bold].
+  Ксеноархеология — это отрасль науки, сосредоточенная на исследовании инопланетных [bold]артефактов[/bold].
 
-  Unlocking their secrets grants research points and reveals strange, potentially useful, or dangerous effects.
+  Разблокировка их секретов даёт исследовательские очки и раскрывает странные, потенциально полезные или опасные эффекты.
 
-  At round start, Science usually has one or two artifacts in the lab. More can be:
-  - Ordered from [color=orange]Cargo[/color]
-  - Found by [color=orange]Salvage[/color]
-  - Assembled from [bold]fragments[/bold]
-  - Appear during certain station events
+  В начале раунда в научной лаборатории обычно находится один или два артефакта. Больше можно:
+  - Заказать в [color=orange]Карго[/color]
+  - Найти у [color=orange]Утилизаторов[/color]
+  - Собрать из [bold]фрагментов[/bold]
+  - Они могут появляться во время определённых событий на станции
 
-  ## Artifacts
+  ## Артефакты
   <Box>
     <GuideEntityEmbed Entity="ComplexXenoArtifact" Caption=""/>
     <GuideEntityEmbed Entity="ComplexXenoArtifactItem" Caption=""/>
   </Box>
 
-  Artifacts contain [bold]nodes[/bold] arranged in [bold]layers[/bold].
-  - Unlocking a node unlocks connected nodes on upper layers.
-  - Each node has [bold]triggers[/bold], actions that must be performed near the artifact to unlock a node.
-  - When a node is unlocked, its [bold]effect[/bold] will trigger, and the node becomes [bold][color=plum]Active[/color][/bold].
-  - Each node has [bold]durability[/bold]: the number of times it can be manually activated after being unlocked.
-  - Higher nodes are harder to reach but give more [bold]research points[/bold].
-  - Unlocking all nodes provides no special bonus, but every node yields research points.
+  Артефакты содержат [bold]узлы[/bold], организованные в [bold]слои[/bold].
+  - Разблокировка узла разблокирует связанные узлы на верхних слоях.
+  - Каждый узел имеет [bold]триггеры[/bold] — действия, которые нужно выполнить рядом с артефактом, чтобы разблокировать узел.
+  - Когда узел разблокирован, срабатывает его [bold]эффект[/bold], и узел становится [bold][color=plum]Активным[/color][/bold].
+  - Каждый узел имеет [bold]прочность[/bold]: количество раз, которое его можно активировать вручную после разблокировки.
+  - До более высоких узлов сложнее добраться, но они дают больше [bold]исследовательских очков[/bold].
+  - Разблокировка всех узлов не даёт особой награды, но каждый узел приносит исследовательские очки.
 
-  ## Equipment
+  ## Оборудование
   <Box>
-    <GuideEntityEmbed Entity="MachineArtifactAnalyzer" Caption="Analyzer"/>
-    <GuideEntityEmbed Entity="ComputerAnalysisConsole" Caption="Analysis Console"/>
-    <GuideEntityEmbed Entity="NodeScanner" Caption="Node Scanner"/>
+    <GuideEntityEmbed Entity="MachineArtifactAnalyzer" Caption="Анализатор"/>
+    <GuideEntityEmbed Entity="ComputerAnalysisConsole" Caption="Консоль анализа"/>
+    <GuideEntityEmbed Entity="NodeScanner" Caption="Сканер узлов"/>
   </Box>
-  - [bold]Artifact Analyzer:[/bold] Stationary device that scans artifacts, sending data to the Console.
-  - [bold][textlink="Analysis Console:" link="AnalysisConsole"][/bold] Stationary device that is used to display the node tree. Must be linked to an Analyzer with a multitool.
-  - [bold]Node Scanner:[/bold] Small hand-held device that can show the ID of the node currently being activated and whether the artifact is ready to trigger, letting scientist have minimal required knowledge for operating inside chamber near artifact and far without direct access to console.
+  - [bold]Анализатор артефактов:[/bold] Стационарное устройство, сканирующее артефакты и отправляющее данные на Консоль.
+  - [bold][textlink="Консоль анализа:" link="AnalysisConsole"][/bold] Стационарное устройство, используемое для отображения дерева узлов. Должно быть подключено к Анализатору мультитулом.
+  - [bold]Сканер узлов:[/bold] Небольшое ручное устройство, которое может показать ID узла, активируемого в данный момент, и готов ли артефакт к срабатыванию, позволяя учёным иметь минимум необходимых знаний для работы внутри камеры рядом с артефактом и вдали без прямого доступа к консоли.
 
   <Box>
-    <GuideEntityEmbed Entity="CrateArtifactContainer" Caption="Artifact Container"/>
-    <GuideEntityEmbed Entity="HandheldArtifactContainer" Caption="Handheld Container"/>
+    <GuideEntityEmbed Entity="CrateArtifactContainer" Caption="Контейнер для артефактов"/>
+    <GuideEntityEmbed Entity="HandheldArtifactContainer" Caption="Ручной контейнер"/>
   </Box>
-  - [bold]Artifact Containers:[/bold] Safely store and transports artifacts and prevent nodes from triggering.
+  - [bold]Контейнеры для артефактов:[/bold] Безопасно хранят и транспортируют артефакты и предотвращают срабатывание узлов.
   <Box>
-    <GuideEntityEmbed Entity="MachineArtifactCrusher" Caption="Crusher"/>
+    <GuideEntityEmbed Entity="MachineArtifactCrusher" Caption="Дробитель"/>
   </Box>
-  - [bold]Artifact Crusher:[/bold] Crushes artifacts into fragments. Four fragments can be rebuilt into a new artifact.
+  - [bold]Дробитель артефактов:[/bold] Дробит артефакты на фрагменты. Четыре фрагмента можно собрать в новый артефакт.
   <Box>
-    <GuideEntityEmbed Entity="ArtifactFragment" Caption="Artifact Fragment"/>
+    <GuideEntityEmbed Entity="ArtifactFragment" Caption="Фрагмент артефакта"/>
   </Box>
-  - [bold]Artifact Fragment:[/bold] Pieces of destroyed artifacts. Four fragments can be rebuilt into a new artifact using the craft menu.
+  - [bold]Фрагмент артефакта:[/bold] Части уничтоженных артефактов. Четыре фрагмента можно собрать в новый артефакт через меню строительства.
 </Document>

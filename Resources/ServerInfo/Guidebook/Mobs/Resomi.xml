@@ -18,17 +18,16 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
   Вместе с особенностями термоустойчивости, они получают на 30% больше урона от тепла и урона ушибами.
 
-  - As a result of the conditions of their home planet and ammonia-based blood, Resomi are [color=#1e90ff]immune to any cold damage and other effects.[/color]
-  - Due to their small size, they can fit in duffelbags.  
-  - Their unarmed attack deals [color=#ec3a3a]Slash[/color] damage.
-  
-  ## Drawbacks
+  - В результате условий их родной планеты и аммиачной крови Резоми [color=#1e90ff]невосприимчивы к любому урону от холода и другим эффектам.[/color]
+  - Благодаря своим небольшим размерам они могут помещаться в вещмешки.
+  - Их безоружная атака наносит [color=#ec3a3a]режущий[/color] урон.
 
-  - They find temperatures that most other species find comfortable to be unbearably hot, finding themselves [color=#ffa500]suffering starting at just 30°C.[/color]
-  - Along with their temperature tolerances, they [color=#ffa500]take 30% more heat damage and 15% more brute damage.[/color]
-  - They have weaker bones.
-  - They weigh less, making it harder for them to pull other species.
-  - Resomi have [color=#ffa500]33% less blood[/color], allowing them to suffer from blood loss much sooner.
+  ## Недостатки
 
+  - Они считают температуры, комфортные для большинства других видов, невыносимо жаркими, [color=#ffa500]начиная страдать уже при 30°C.[/color]
+  - Вместе с их температурными допусками они [color=#ffa500]получают на 30% больше урона от жара и на 15% больше урона ушибами.[/color]
+  - У них более слабые кости.
+  - Они весят меньше, что затрудняет перетаскивание других видов.
+  - У Резоми [color=#ffa500]на 33% меньше крови[/color], поэтому они гораздо раньше страдают от кровопотери.
 
 </Document>
