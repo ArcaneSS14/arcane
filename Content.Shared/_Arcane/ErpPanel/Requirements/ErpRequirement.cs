@@ -1,5 +1,7 @@
 using JetBrains.Annotations;
 using Robust.Shared.Serialization;
+using Content.Shared.Tag;
+
 
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 

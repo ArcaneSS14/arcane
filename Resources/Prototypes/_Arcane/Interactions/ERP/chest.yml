@@ -346,3 +346,49 @@
     species:
     - Harpy
     - Moth
+
+- type: panelInteraction
+  id: RubbingNipples
+  category: Chest
+  userArouse: 5
+  targetArouse: 5
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  - /Audio/_Arcane/Interactions/pat2.ogg
+  selfMessages:
+  - массирует свои соски.
+  - водит пальцами по соскам.
+  - слегка трёт соски.
+  - аккуратно сжимает и разжимает свои соски.
+  icon: _Arcane/Interface/ErpPanel/touch_man_nipples.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: ExpressMilk
+  category: Chest
+  Lactation:
+    reagent: Milk
+    amountPerAct: 5
+    express: false
+  userArouse: 5
+  targetArouse: 5
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  - /Audio/_Arcane/Interactions/pat2.ogg
+  selfMessages:
+  - выжимать
+  icon: _Arcane/Interface/ErpPanel/touch_man_nipples.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:HasAnyTagRequirement
+    tags:
+    - Lactation
+  - !type:ExposedBodyPartRequirement
+    part: Chest

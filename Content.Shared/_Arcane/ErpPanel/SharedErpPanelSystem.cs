@@ -176,8 +176,6 @@ public sealed class SharedErpPanelSystem : EntitySystem
             _arousal.AddArousal(target, targetDelta);
             ProccessMoan(target);
         }
-
-        userPanel.Cooldowns[interaction.ID] = _ticking.CurTime;
         Dirty(user, userPanel);
 
         ProccessMessages(user, target, interaction);
@@ -198,6 +196,13 @@ public sealed class SharedErpPanelSystem : EntitySystem
             }
         }
 
+        if (interaction.Lactation != null)
+            RaiseLocalEvent(new LactationRequestedEvent
+            {
+                User = user,
+                Target = target,
+                Prototype = interaction,
+            });
         if (user == target)
             return;
 

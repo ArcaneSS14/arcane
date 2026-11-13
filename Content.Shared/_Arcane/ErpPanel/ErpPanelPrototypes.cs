@@ -2,6 +2,9 @@ using Content.Shared._Arcane.ErpPanel.Requirements;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Chemistry.Reagent;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Arcane.ErpPanel;
 
@@ -54,6 +57,10 @@ public sealed partial class PanelInteractionPrototype : IPrototype
 
     [DataField]
     public float ChanceLickCum { get; private set; } = 0f;
+
+    [DataField]
+    public LactationInteractionData? Lactation;
+
 }
 
 [Prototype]
@@ -61,4 +68,18 @@ public sealed partial class PanelInteractionCategoryPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
+}
+
+
+[DataDefinition]
+public sealed partial class LactationInteractionData
+{
+    [DataField(required: true)]
+    public ProtoId<ReagentPrototype> Reagent;
+
+    [DataField]
+    public FixedPoint2 AmountPerAct = 5;
+
+    [DataField]
+    public bool Express = false;
 }

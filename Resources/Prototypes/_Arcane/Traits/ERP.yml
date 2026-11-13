@@ -1,0 +1,12 @@
+- type: trait
+  id: Lactation
+  name: trait-Lactation-name
+  description: trait-Lactation-desc
+  category: ERP
+  components:
+  - type: AddTags
+    tags:
+    - Lactation
+  - type: Lactation
+    nutrientCostPerUnit: 2
+    minHunger: 50

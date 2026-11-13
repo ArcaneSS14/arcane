@@ -2,3 +2,7 @@
   id: Nature
   name: trait-category-nature
   maxTraitPoints: 1
+
+- type: traitCategory
+  id: ERP
+  name: trait-category-nature
