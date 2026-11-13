@@ -4435,3 +4435,11 @@ Entries:
   time: '2026-11-13T17:58:35.0000000+00:00'
   prNumber: 616
   url: https://github.com/ArcaneSS14/arcane/pull/616
+- author: Kinar7
+  changes:
+    - type: Add
+      message: инструкция по игре в покер
+  id: 314
+  time: '2026-11-13T18:00:06.0000000+00:00'
+  prNumber: 604
+  url: https://github.com/ArcaneSS14/arcane/pull/604
