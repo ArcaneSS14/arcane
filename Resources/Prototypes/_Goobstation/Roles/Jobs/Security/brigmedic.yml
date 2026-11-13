@@ -20,6 +20,11 @@
   # Orion-Edit-Start
   - SOP-Security-Brigmedic
   # Orion-Edit-End
+  # Arcane-Start
+  - SpaceLaw
+  - SOP-Security
+  - SOP-Alerts
+  # Arcane-End
   - Medicine
   goobcoins: 35
   # Orion-Start

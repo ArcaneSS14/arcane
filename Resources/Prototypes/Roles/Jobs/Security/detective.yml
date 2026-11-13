@@ -19,6 +19,7 @@
   - SOP-Security-Detective
   - SOP-Security
   # Orion-Edit-End
+  - SOP-Alerts # Arcane
   goobcoins: 30 #Goob content
   # Orion-Start
   salary: 80
