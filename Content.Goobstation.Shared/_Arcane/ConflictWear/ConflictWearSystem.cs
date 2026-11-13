@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Content.Goobstation.Common.Interactions;
@@ -20,7 +22,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private INetManager _net = default!;
 
-    [SubscribeLocalEvent<ConflictWearComponent, BeingEquippedAttemptEvent>]
+    [SubscribeLocalEvent]
     private void OnBeingEquippedAttempt(Entity<ConflictWearComponent> ent, ref BeingEquippedAttemptEvent args)
     {
         if (args.Cancelled)
@@ -36,7 +38,7 @@ public sealed partial class ConflictWearSystem : EntitySystem
         }
     }
 
-    [SubscribeLocalEvent<ConflictWearComponent, UseInHandAttemptEvent>]
+    [SubscribeLocalEvent]
     private void OnUseInHandAttempt(Entity<ConflictWearComponent> ent, ref UseInHandAttemptEvent args)
     {
         if (args.Cancelled)
