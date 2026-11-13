@@ -4457,3 +4457,13 @@ Entries:
   time: '2026-11-13T18:42:49.0000000+00:00'
   prNumber: 611
   url: https://github.com/ArcaneSS14/arcane/pull/611
+- author: mithail
+  changes:
+    - type: Fix
+      message: >-
+        Красивые миски (например, от мисо-супа) снова можно использовать в
+        рецептах
+  id: 316
+  time: '2026-11-13T18:57:51.0000000+00:00'
+  prNumber: 582
+  url: https://github.com/ArcaneSS14/arcane/pull/582
