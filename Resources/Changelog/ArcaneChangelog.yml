@@ -4467,3 +4467,21 @@ Entries:
   time: '2026-11-13T18:57:51.0000000+00:00'
   prNumber: 582
   url: https://github.com/ArcaneSS14/arcane/pull/582
+- author: RabbitBat
+  changes:
+    - type: Add
+      message: >-
+        Добавлена система запрета одновременного использования двух и более
+        предметов, скомбинировав которые, вы могли стать Киберпсихом.
+    - type: Tweak
+      message: >-
+        Изменено использование партизанских перчаток от _Orion и Старого
+        Руководства от _GoobStaiton одновременно. Теперь вы НЕ можете
+        одновременно знать Старое руководство, и носить партизанские перчатки.
+  id: 317
+  time: '2026-11-13T19:15:59.0000000+00:00'
+  prNumber: 573
+  url: https://github.com/ArcaneSS14/arcane/pull/573
+  media:
+    - >-
+      https://github.com/user-attachments/assets/8c29723c-2044-4d11-8f36-98e66223aace
