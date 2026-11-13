@@ -4427,3 +4427,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/eecd74ff-021a-4095-84e3-d40bd4d3846a
+- author: RabbitBat
+  changes:
+    - type: Add
+      message: Добавлен слот для бумаги в КПК
+  id: 313
+  time: '2026-11-13T17:58:35.0000000+00:00'
+  prNumber: 616
+  url: https://github.com/ArcaneSS14/arcane/pull/616
