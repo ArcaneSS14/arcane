@@ -449,3 +449,8 @@
     grabEscapeModifier: -0.1
     grabEscapeMultiplier: 0.8
     grabMoveSpeedMultiplier: 2 # 0.8 speed modifier on hard grab
+  # Arcane-Start
+  - type: ConflictWear
+    rules:
+    - GuerrillaGlovesVsAnyMartialArt
+  # Arcane-End
