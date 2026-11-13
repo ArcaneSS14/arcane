@@ -4397,3 +4397,11 @@ Entries:
   time: '2026-11-13T14:13:04.0000000+00:00'
   prNumber: 599
   url: https://github.com/ArcaneSS14/arcane/pull/599
+- author: Rorkh
+  changes:
+    - type: Tweak
+      message: Юбки теперь не мешают проникновению.
+  id: 310
+  time: '2026-11-13T17:46:13.0000000+00:00'
+  prNumber: 613
+  url: https://github.com/ArcaneSS14/arcane/pull/613
