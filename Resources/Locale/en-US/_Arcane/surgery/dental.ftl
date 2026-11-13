@@ -1,0 +1,15 @@
+ent-SurgeryDentalImplant = Dental Implant
+    .desc = Wedge a pill into a tooth. The patient can burst it later by gritting their teeth.
+ent-SurgeryRemoveDentalImplant = Remove Dental Implant
+ent-SurgeryStepDrillTooth = Drill a tooth
+ent-SurgeryStepInsertDentalPill = Wedge a pill into the tooth
+ent-SurgeryStepRemoveDentalPill = Remove the dental implant
+surgery-popup-step-SurgeryStepDrillTooth = {$user} is drilling a tooth of {$target}.
+surgery-popup-step-SurgeryStepInsertDentalPill = {$user} is wedging something into the teeth of {$target}.
+surgery-popup-step-SurgeryStepRemoveDentalPill = {$user} is looking for something in the mouth of {$target}.
+ent-ActionActivateDentalPill = Bite the dental implant
+    .desc = Grit your teeth to burst the pill wedged into them.
+dental-implant-action-name = Bite: {$pill}
+dental-implant-grind-self = You grit your teeth.
+dental-implant-grind-others = {CAPITALIZE($user)} grinds {POSS-ADJ($user)} teeth!
+dental-implant-burst = You burst the implanted {$pill}!

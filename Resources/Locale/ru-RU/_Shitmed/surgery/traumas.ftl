@@ -1,9 +1,13 @@
-popup-trauma-BoneDamage-Damaged = Вы чувствуете боль в { $part }.
-popup-trauma-BoneDamage-Cracked = Вы ощущаете резкую боль в { $part }!
-popup-trauma-BoneDamage-Broken = Вы услышали громкий треск в { $part }!!
+# Arcane-Edit-Start
+popup-trauma-BoneDamage-Damaged = { CAPITALIZE($part) } болит изнутри.
+popup-trauma-BoneDamage-Cracked = { CAPITALIZE($part) } отзывается резкой болью!
+popup-trauma-BoneDamage-Broken = { CAPITALIZE($part) } отзывается громким хрустом!
+# Arcane-Edit-End
 self-inspect-trauma-BoneDamage = болит изнутри
-self-inspect-trauma-BoneDamage-Large = кажется вывихнутым
-inspect-trauma-BoneDamage = Похоже, вывихнуто.
-popup-trauma-OrganDamage-Damaged = С { $part } что-то не так...
-popup-trauma-OrganDamage-Destroyed = Вы чувствуете очень резкую боль в { $part }!
-self-inspect-trauma-OrganDamage = { $part } напряжено, больно дышать.
+# Arcane-Edit-Start
+self-inspect-trauma-BoneDamage-Large = признаки вывиха
+inspect-trauma-BoneDamage = признаки вывиха
+popup-trauma-OrganDamage-Damaged = { CAPITALIZE($part) } ноет изнутри. Что-то не так...
+popup-trauma-OrganDamage-Destroyed = { CAPITALIZE($part) } отзывается невыносимой болью!
+self-inspect-trauma-OrganDamage = боль при дыхании
+# Arcane-Edit-End

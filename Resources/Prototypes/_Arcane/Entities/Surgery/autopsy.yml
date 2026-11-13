@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryAutopsy
+  name: Autopsy
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepAutopsy
+  - type: SurgeryPartCondition
+    parts: [Chest]
+  - type: SurgeryDeadCondition
+  - type: SurgeryBodyComponentCondition
+    inverse: true
+    components:
+    - type: SurgicallyAnalyzed
+
+- type: entity
+  parent: SurgeryAutopsy
+  id: SurgeryAutopsyXeno
+  name: Xenomorph Autopsy
+  components:
+  - type: Surgery
+    requirement: SurgeryXenoInciseExoskeleton
+  - type: SurgeryPartComponentCondition
+    inverse: false
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepAutopsy
+  name: Analyze the body
+  components:
+  - type: SurgeryStep
+    duration: 10
+    tool:
+    - type: SurgeryAnalyzer
+    bodyAdd:
+    - type: SurgicallyAnalyzed
+  - type: Sprite
+    sprite: _Orion/Objects/Specific/Research/experi_scanner.rsi
+    state: icon
+  - type: SurgeryAutopsy
+    experiments:
+    - whitelist:
+        components:
+        - Xenomorph
+      action: AutopsyXenomorph
+    - species: [HumanoidXeno]
+      action: AutopsyXenomorph
+    - species: [Human]
+      action: AutopsyHuman
+    - action: AutopsyNonhuman

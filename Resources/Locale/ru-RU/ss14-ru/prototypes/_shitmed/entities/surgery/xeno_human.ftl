@@ -2,8 +2,10 @@ ent-BaseSurgeryOpenXenoCavity = { ent-SurgeryOpenCavityBase }
     .desc = { ent-SurgeryOpenCavityBase.desc }
 ent-SurgeryOpenXenoCavityHiveNode = Открыть полость узла улья
     .desc = { ent-BaseSurgeryOpenXenoCavity.desc }
-ent-SurgeryOpenXenoCavityResinSpinner = Открыть полость cмоляного прядильщика
+# Arcane-Edit-Start
+ent-SurgeryOpenXenoCavityResinSpinner = Открыть полость смоляного прядильщика
     .desc = { ent-BaseSurgeryOpenXenoCavity.desc }
+# Arcane-Edit-End
 ent-SurgeryOpenXenoCavityNeurotoxinGland = Открыть полость нейротоксиновой железы
     .desc = { ent-BaseSurgeryOpenXenoCavity.desc }
 ent-SurgeryOpenXenoCavityAcidGland = Открыть полость кислотной железы
@@ -26,8 +28,10 @@ ent-SurgeryInsertEggSack = Пересадить мешок для яиц
     .desc = { ent-BaseSurgeryInsertOrgan.desc }
 ent-SurgeryRemoveHiveNode = Удалить пересаженный узел улья
     .desc = { ent-BaseSurgeryRemoveOrgan.desc }
-ent-SurgeryRemoveResinSpinner = Удалить пересаженный cмоляной прядильщик
+# Arcane-Edit-Start
+ent-SurgeryRemoveResinSpinner = Удалить пересаженный смоляной прядильщик
     .desc = { ent-BaseSurgeryRemoveOrgan.desc }
+# Arcane-Edit-End
 ent-SurgeryRemoveNeurotoxinGland = Удалить пересаженную нейротоксиновую железу
     .desc = { ent-BaseSurgeryRemoveOrgan.desc }
 ent-SurgeryRemoveAcidGland = Удалить пересаженную кислотную железу

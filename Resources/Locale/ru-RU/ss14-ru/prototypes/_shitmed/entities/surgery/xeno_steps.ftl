@@ -26,18 +26,22 @@ ent-SurgeryStepXenoMendEndoskeleton = Восстановить эндоскел�
     .desc = { ent-BaseSurgeryStepXeno.desc }
 ent-SurgeryStepXenoCloseEndoskeleton = Закрыть эндоскелет
     .desc = { ent-BaseSurgeryStepXeno.desc }
-ent-SurgeryStepXenoCloseIncision = { ent-BaseSurgeryStepXeno }
+# Arcane-Edit-Start
+ent-SurgeryStepXenoCloseIncision = { ent-SurgeryStepCloseIncision }
     .desc = { ent-BaseSurgeryStepXeno.desc }
-ent-SurgeryStepXenoSealOrganWound = { ent-BaseSurgeryStepXeno }
+ent-SurgeryStepXenoSealOrganWound = { ent-SurgeryStepSealOrganWound }
     .desc = { ent-BaseSurgeryStepXeno.desc }
-ent-SurgeryStepXenoRemoveFeature = { ent-BaseSurgeryStepXeno }
+ent-SurgeryStepXenoRemoveFeature = { ent-SurgeryStepRemoveFeature }
     .desc = { ent-BaseSurgeryStepXeno.desc }
-ent-SurgeryStepXenoRemoveOrgan = { ent-BaseSurgeryStepXeno }
+ent-SurgeryStepXenoRemoveOrgan = { ent-SurgeryStepRemoveOrgan }
     .desc = { ent-BaseSurgeryStepXeno.desc }
+# Arcane-Edit-End
 ent-SurgeryStepInsertHiveNode = Добавить узел улья
     .desc = { ent-SurgeryStepInsertOrgan.desc }
-ent-SurgeryStepInsertResinSpinner = Добавить cмоляной прядильщик
+# Arcane-Edit-Start
+ent-SurgeryStepInsertResinSpinner = Добавить смоляной прядильщик
     .desc = { ent-SurgeryStepInsertOrgan.desc }
+# Arcane-Edit-End
 ent-SurgeryStepInsertNeurotoxinGland = Добавить нейротоксиновую железу
     .desc = { ent-SurgeryStepInsertOrgan.desc }
 ent-SurgeryStepInsertAcidGland = Добавить кислотную железу

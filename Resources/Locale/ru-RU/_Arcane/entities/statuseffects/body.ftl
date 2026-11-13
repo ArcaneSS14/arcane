@@ -1,0 +1,14 @@
+ent-StatusEffectAnalgesia = обезболивание
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectCritThresholdRaise5 = повышение порога крита на 5%
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectCritThresholdRaise10 = повышение порога крита на 10%
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectCritThresholdRaise15 = повышение порога крита на 15%
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectCritThresholdRaise20 = повышение порога крита на 20%
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectCritThresholdLower10 = снижение порога крита на 10%
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectCritThresholdLower30 = снижение порога крита на 30%
+    .desc = { ent-MobStatusEffectBase.desc }

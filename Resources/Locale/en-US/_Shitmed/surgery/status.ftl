@@ -12,3 +12,22 @@ inspect-part-status-conjunction3 = It{" "}
 inspect-part-status-and = and{" "}
 inspect-part-status-you = Your
 inspect-part-status-their = Their
+# Arcane-Start
+body-part-head = head
+body-part-chest = chest
+body-part-left-arm = left arm
+body-part-right-arm = right arm
+body-part-arm = arm
+body-part-left-hand = left hand
+body-part-right-hand = right hand
+body-part-hand = hand
+body-part-groin = groin
+body-part-left-leg = left leg
+body-part-right-leg = right leg
+body-part-leg = leg
+body-part-left-foot = left foot
+body-part-right-foot = right foot
+body-part-foot = foot
+body-part-tail = tail
+body-part-other = other body part
+# Arcane-End

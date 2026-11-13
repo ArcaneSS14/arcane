@@ -1,0 +1,75 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# IDs name the surgical tool a step asks for; robotic parts need the mechanical tool instead.
+
+- type: surgeryRoboticTool
+  id: Scalpel
+  tool:
+  - type: SurgeryScrewdriver
+  icon:
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: surgeryRoboticTool
+  id: Retractor
+  tool:
+  - type: SurgeryCrowbar
+  icon:
+    sprite: Objects/Tools/crowbar.rsi
+    state: icon
+
+- type: surgeryRoboticTool
+  id: Tweezers
+  tool:
+  - type: SurgeryCrowbar
+  icon:
+    sprite: Objects/Tools/crowbar.rsi
+    state: icon
+
+- type: surgeryRoboticTool
+  id: Hemostat
+  tool:
+  - type: SurgeryWirecutter
+  icon:
+    sprite: Objects/Tools/wirecutters.rsi
+    state: cutters-map
+
+- type: surgeryRoboticTool
+  id: BoneSaw
+  tool:
+  - type: SurgeryWrench
+  icon:
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+
+- type: surgeryRoboticTool
+  id: BoneGel
+  tool:
+  - type: SurgeryWrench
+  icon:
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+
+- type: surgeryRoboticTool
+  id: Tending
+  tool:
+  - type: SurgeryWrench
+  icon:
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+
+- type: surgeryRoboticTool
+  id: Cautery
+  tool:
+  - type: SurgeryWelder
+  icon:
+    sprite: Objects/Tools/welder.rsi
+    state: icon
+
+- type: surgeryRoboticTool
+  id: Stitches
+  tool:
+  - type: SurgeryCable
+  icon:
+    sprite: Objects/Tools/cable-coils.rsi
+    state: coillv-30

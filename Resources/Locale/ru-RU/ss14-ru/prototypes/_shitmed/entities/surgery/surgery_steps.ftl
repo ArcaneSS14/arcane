@@ -46,8 +46,10 @@ ent-SurgeryStepCarefulIncisionScalpel = Сделать аккуратный ра
     .desc = { ent-SurgeryStepBase.desc }
 ent-SurgeryStepRepairBruteTissue = Восстановить механически повреждённую ткань
     .desc = { ent-SurgeryStepBase.desc }
-ent-SurgeryStepRepairBurnTissue = Восстановить физически повреждённую ткань
+# Arcane-Edit-Start
+ent-SurgeryStepRepairBurnTissue = Восстановить обожжённую ткань
     .desc = { ent-SurgeryStepBase.desc }
+# Arcane-Edit-End
 ent-SurgeryStepSealTendWound = Закрыть рану
     .desc = { ent-SurgeryStepBase.desc }
 ent-SurgeryStepSealDismembermentWound = Закрыть рану от ампутации
@@ -68,16 +70,20 @@ ent-SurgeryStepInsertLiver = Установить печень
     .desc = { ent-SurgeryStepInsertOrgan.desc }
 ent-SurgeryStepInsertEyes = Установить глаза
     .desc = { ent-SurgeryStepInsertOrgan.desc }
-ent-SurgeryStepInsertPump = Установить трубу
+# Arcane-Edit-Start
+ent-SurgeryStepInsertPump = Установить микропомпу
     .desc = { ent-SurgeryStepInsertOrgan.desc }
+# Arcane-Edit-End
 ent-SurgeryStepInsertHeart = Установить сердце
     .desc = { ent-SurgeryStepInsertOrgan.desc }
 ent-SurgeryStepInsertStomach = Установить желудок
     .desc = { ent-SurgeryStepInsertOrgan.desc }
 ent-SurgeryStepSealOrganWound = Закрыть раны
     .desc = { ent-SurgeryStepBase.desc }
-ent-SurgeryStepInsertAugmentPowerCellSlot = Установить батарею
+# Arcane-Edit-Start
+ent-SurgeryStepInsertAugmentPowerCellSlot = Установить слот батареи
     .desc = { ent-SurgeryStepInsertOrgan.desc }
+# Arcane-Edit-End
 ent-SurgeryStepLobotomize = Лоботомировать
     .desc = { ent-SurgeryStepBase.desc }
 ent-SurgeryStepMendBrainTissue = Восстановить мозговую ткань
@@ -86,3 +92,9 @@ ent-SurgeryStepInsertAugmentPowerCellCharger = Установить зарядн
     .desc = { ent-SurgeryStepInsertOrgan.desc }
 ent-SurgeryStepInsertAugmentArm = Установить имплант руки
     .desc = { ent-SurgeryStepInsertOrgan.desc }
+# Arcane-Start
+ent-SurgeryStepExtractForeignBody = Извлечь инородное тело
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepRepairBrain = Восстановить мозг
+    .desc = { ent-SurgeryStepBase.desc }
+# Arcane-End
