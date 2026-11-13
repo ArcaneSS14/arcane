@@ -77,7 +77,7 @@ namespace Content.Server.Kitchen.EntitySystems
         private static readonly ProtoId<TagPrototype> MetalTag = "Metal";
         private static readonly ProtoId<TagPrototype> PlasticTag = "Plastic";
 
-        public readonly record struct MicrowaveSolid(EntityUid Uid, string Id, int Count, List<string>? Substitutes);
+        public readonly record struct MicrowaveSolid(EntityUid Uid, string Id, int Count, List<string>? Substitutes); // Arcane
 
         public override void Initialize()
         {
@@ -200,12 +200,14 @@ namespace Content.Server.Kitchen.EntitySystems
             }
         }
 
-        private bool SubtractContents(MicrowaveComponent component, FoodRecipePrototype recipe)
+        private bool SubtractContents(MicrowaveComponent component, FoodRecipePrototype recipe) // Arcane-Edit
         {
+            // Arcane-Start
             var solids = GetSolids(component);
 
             if (!TryAllocateSolids(recipe.IngredientsSolids, solids, 1, out var allocated))
                 return false;
+            // Arcane-End
 
             // TODO Turn recipe.IngredientsReagents into a ReagentQuantity[]
 
@@ -240,11 +242,61 @@ namespace Content.Server.Kitchen.EntitySystems
                 }
             }
 
+            // Arcane-Start
+            // foreach (var recipeSolid in recipe.IngredientsSolids)
+            // {
+            //     for (var i = 0; i < recipeSolid.Value; i++)
+            //     {
+            //         foreach (var item in component.Storage.ContainedEntities)
+            //         {
+            //             string? itemID = null;
+            //
+            //             // If an entity has a stack component, use the stacktype instead of prototype id
+            //             if (TryComp<StackComponent>(item, out var stackComp))
+            //             {
+            //                 itemID = _prototype.Index(stackComp.StackTypeId).Spawn;
+            //             }
+            //             else
+            //             {
+            //                 var metaData = MetaData(item);
+            //                 if (metaData.EntityPrototype == null)
+            //                 {
+            //                     continue;
+            //                 }
+            //                 itemID = metaData.EntityPrototype.ID;
+            //             }
+            //
+            //             if (itemID != recipeSolid.Key)
+            //             {
+            //                 continue;
+            //             }
+            //
+            //             if (stackComp is not null)
+            //             {
+            //                 if (stackComp.Count == 1)
+            //                 {
+            //                     _container.Remove(item, component.Storage);
+            //                 }
+            //                 _stack.ReduceCount((item, stackComp), 1);
+            //                 break;
+            //             }
+            //             else
+            //             {
+            //                 _container.Remove(item, component.Storage);
+            //                 Del(item);
+            //                 break;
+            //             }
+            //         }
+            //     }
+            // }
+
             ConsumeSolids(component, solids, allocated);
 
             return true;
+            // Arcane-End
         }
 
+        // Arcane-Start
         private List<MicrowaveSolid> GetSolids(MicrowaveComponent component)
         {
             var solids = new List<MicrowaveSolid>(component.Storage.ContainedEntities.Count);
@@ -410,6 +462,7 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             return Math.Max(1, (int) Math.Ceiling(amount.Double()));
         }
+        // Arcane-End
 
         private void OnInit(Entity<MicrowaveComponent> ent, ref ComponentInit args)
         {
@@ -677,7 +730,10 @@ namespace Content.Server.Kitchen.EntitySystems
             if (!HasContents(component) || HasComp<ActiveMicrowaveComponent>(uid) || !(TryComp<ApcPowerReceiverComponent>(uid, out var apc) && apc.Powered))
                 return;
 
+            // Arcane-Start
+            // var solidsDict = new Dictionary<string, int>();
             var solids = new List<MicrowaveSolid>();
+            // Arcane-End
             var reagentDict = new Dictionary<string, FixedPoint2>();
             var malfunctioning = false;
             // TODO use lists of Reagent quantities instead of reagent prototype ids.
@@ -732,7 +788,12 @@ namespace Content.Server.Kitchen.EntitySystems
                 if (solidID is null)
                     continue;
 
+                // Arcane-Start
+                // if (!solidsDict.TryAdd(solidID, amountToAdd))
+                //     solidsDict[solidID] += amountToAdd;
+
                 solids.Add(new MicrowaveSolid(item, solidID, amountToAdd, GetSubstitutes(item)));
+                // Arcane-End
 
                 // only use reagents we have access to
                 // you have to break the eggs before we can use them!
@@ -752,8 +813,13 @@ namespace Content.Server.Kitchen.EntitySystems
 
             List<FoodRecipePrototype> recipes = getRecipesEv.Recipes;
             recipes.AddRange(_recipeManager.Recipes);
+            // Arcane-Start
+            // var portionedRecipe = recipes.Select(r =>
+            //     CanSatisfyRecipe(component, r, solidsDict, reagentDict)).FirstOrDefault(r => r.Item2 > 0);
+
             var portionedRecipe = recipes.Select(r =>
                 CanSatisfyRecipe(component, r, solids, reagentDict)).FirstOrDefault(r => r.Item2 > 0);
+            // Arcane-End
 
             _audio.PlayPvs(component.StartCookingSound, uid);
             var activeComp = AddComp<ActiveMicrowaveComponent>(uid); //microwave is now cooking
@@ -777,7 +843,7 @@ namespace Content.Server.Kitchen.EntitySystems
             }
         }
 
-        public static (FoodRecipePrototype, int) CanSatisfyRecipe(MicrowaveComponent component, FoodRecipePrototype recipe, List<MicrowaveSolid> solids, Dictionary<string, FixedPoint2> reagents)
+        public static (FoodRecipePrototype, int) CanSatisfyRecipe(MicrowaveComponent component, FoodRecipePrototype recipe, List<MicrowaveSolid> solids, Dictionary<string, FixedPoint2> reagents) // Arcane-Edit
         {
             var portions = 0;
 
@@ -786,6 +852,21 @@ namespace Content.Server.Kitchen.EntitySystems
                 //can't be a multiple of this recipe
                 return (recipe, 0);
             }
+
+            // Arcane-Start
+            // foreach (var solid in recipe.IngredientsSolids)
+            // {
+            //     if (!solids.ContainsKey(solid.Key))
+            //         return (recipe, 0);
+            //
+            //     if (solids[solid.Key] < solid.Value)
+            //         return (recipe, 0);
+            //
+            //     portions = portions == 0
+            //         ? solids[solid.Key] / solid.Value.Int()
+            //         : Math.Min(portions, solids[solid.Key] / solid.Value.Int());
+            // }
+            // Arcane-End
 
             foreach (var reagent in recipe.IngredientsReagents)
             {
@@ -802,6 +883,9 @@ namespace Content.Server.Kitchen.EntitySystems
             }
 
             //cook only as many of those portions as time allows
+            // Arcane-Start
+            // return (recipe, (int) Math.Min(portions, component.CurrentCookTimerTime / recipe.CookTime));
+
             portions = portions == 0
                 ? (int) (component.CurrentCookTimerTime / recipe.CookTime)
                 : (int) Math.Min(portions, component.CurrentCookTimerTime / recipe.CookTime);
@@ -820,8 +904,10 @@ namespace Content.Server.Kitchen.EntitySystems
             }
 
             return (recipe, 0);
+            // Arcane-End
         }
 
+        // Arcane-Start
         private static int GetMaxPortions(
             IReadOnlyDictionary<EntProtoId, FixedPoint2> requirements,
             List<MicrowaveSolid> solids,
@@ -845,6 +931,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
             return limit;
         }
+        // Arcane-End
 
         public override void Update(float frameTime)
         {
@@ -871,17 +958,20 @@ namespace Content.Server.Kitchen.EntitySystems
                 if (active.PortionedRecipe.Item1 != null)
                 {
                     var coords = Transform(uid).Coordinates;
-                    var cooked = 0;
+                    var cooked = 0; // Arcane
                     for (var i = 0; i < active.PortionedRecipe.Item2; i++)
                     {
+                        // Arcane-Start
+                        // SubtractContents(microwave, active.PortionedRecipe.Item1);
                         if (!SubtractContents(microwave, active.PortionedRecipe.Item1))
                             break;
+                        // Arcane-End
 
                         Spawn(active.PortionedRecipe.Item1.Result, coords);
-                        cooked++;
+                        cooked++; // Arcane
                     }
 
-                    GoobRaiseCooked(uid, cooked); // Goob
+                    GoobRaiseCooked(uid, cooked); // Goob // Arcane-Edit
                 }
 
                 _container.EmptyContainer(microwave.Storage);
