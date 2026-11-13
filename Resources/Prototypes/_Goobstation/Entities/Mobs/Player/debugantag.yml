@@ -55,7 +55,7 @@
   components:
   - type: Loadout
     prototypes: [ SpaceNinjaGear ]
-    roleLoadout: [ RoleSurvivalExtended ]
+    # roleLoadout: [ RoleSurvivalExtended ] # Arcane-Edit
   - type: RandomMetadata
     nameSegments:
     - NamesFirst
