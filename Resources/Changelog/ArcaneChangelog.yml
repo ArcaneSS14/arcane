@@ -4443,3 +4443,17 @@ Entries:
   time: '2026-11-13T18:00:06.0000000+00:00'
   prNumber: 604
   url: https://github.com/ArcaneSS14/arcane/pull/604
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: Исправлен перевод в 35 разделах руководства.
+    - type: Fix
+      message: Исправлен перевод губовской еды.
+    - type: Fix
+      message: >-
+        Исправлен перевод для губовского рисования ( окно холста, сами предметы
+        и.т.д)
+  id: 315
+  time: '2026-11-13T18:42:49.0000000+00:00'
+  prNumber: 611
+  url: https://github.com/ArcaneSS14/arcane/pull/611
