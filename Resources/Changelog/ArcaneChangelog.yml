@@ -4405,3 +4405,11 @@ Entries:
   time: '2026-11-13T17:46:13.0000000+00:00'
   prNumber: 613
   url: https://github.com/ArcaneSS14/arcane/pull/613
+- author: seemah
+  changes:
+    - type: Fix
+      message: У арахидов женского пола теперь женские звуки.
+  id: 311
+  time: '2026-11-13T17:47:42.0000000+00:00'
+  prNumber: 617
+  url: https://github.com/ArcaneSS14/arcane/pull/617
