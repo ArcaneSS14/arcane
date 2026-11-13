@@ -1,10 +1,27 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._EinsteinEngines.Silicon.Charge;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Power.Components;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Weapons.Ranged;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared._EinsteinEngines.Power.Systems;
+
+// Arcane-Start
+/// <summary>
+/// Raised on a battery drinker so other systems can supply the entity whose battery should be charged.
+/// Needed for batteries that do not live on the drinker entity itself, such as augment power cell slots.
+/// </summary>
+[ByRefEvent]
+public struct FindDrinkerBatteryEvent
+{
+    /// <summary>
+    /// Entity holding the battery to charge. Set by a handler to claim the event.
+    /// </summary>
+    public EntityUid? Battery;
+}
+// Arcane-End
 
 // Goobstation - Energycrit: BatteryDrinkerSystem verb prediction
 public abstract class SharedBatteryDrinkerSystem : EntitySystem
@@ -56,9 +73,27 @@ public abstract class SharedBatteryDrinkerSystem : EntitySystem
             return false;
         }
 
-        // We don't have a power cell slot, assume it's inside us
-        drinker = ent;
-        return true;
+        // Arcane-Edit-Start
+        // The drinker itself is the battery (e.g. an IPC).
+        if (HasComp<BatteryComponent>(ent))
+        {
+            drinker = ent;
+            return true;
+        }
+        // Arcane-Edit-End
+
+        // Arcane-Start
+        var ev = new FindDrinkerBatteryEvent();
+        RaiseLocalEvent(ent, ref ev);
+        if (ev.Battery is { } battery)
+        {
+            drinker = battery;
+            return true;
+        }
+
+        // No direct cell slot, no battery on the entity, and nothing else claimed it.
+        return false;
+        // Arcane-End
     }
 
     /// <summary>
