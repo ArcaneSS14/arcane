@@ -16,7 +16,7 @@
     - type: Scalpel
     add:
     - type: IncisionOpen
-    duration: 2
+    duration: 1.6 # Arcane-Edit: 2 > 1.6
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
@@ -30,6 +30,7 @@
     painType: TraumaticPain
     amount: 34
     sleepModifier: 0.12
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -41,13 +42,17 @@
     - type: Hemostat
     add:
     - type: BleedersClamped
-    duration: 4
+    duration: 2.4 # Arcane-Edit: 4 > 2.4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryRepeatableStep
   - type: SurgeryBleedsTreatmentStep
     amount: 2
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
 
 - type: entity
   parent: SurgeryStepBase
@@ -79,7 +84,7 @@
     - type: Retractor
     add:
     - type: SkinRetracted
-    duration: 2
+    duration: 2.4 # Arcane-Edit: 2 > 2.4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/retractor.rsi
     state: retractor
@@ -117,7 +122,7 @@
 #    remove:
 #    - type: BonesSealed
     # Arcane-Edit-End
-    duration: 4
+    duration: 5.4 # Arcane-Edit: 4 > 5.4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/circular-saw.rsi
     state: circular-saw
@@ -126,6 +131,11 @@
     painDuration: 40
     amount: 34
     sleepModifier: 0
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  - type: SurgeryAffectsMoodStep
+  # Arcane-End
 
 - type: entity
   parent: SurgeryStepBase
@@ -185,6 +195,7 @@
   - type: SurgeryTraumaTreatmentStep
     traumaType: OrganDamage
     amount: 30
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -223,6 +234,7 @@
   - type: SurgeryTraumaTreatmentStep
     traumaType: Braindeath
     amount: 60
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -332,7 +344,12 @@
     - type: IncisionOpen
     - type: BodyPartReattached
     - type: InternalBleedersClamped
-    duration: 2
+    # Arcane-Start
+    - type: OrgansIncised
+    - type: CavityWidened
+    - type: BonesDrilled
+    # Arcane-End
+    duration: 2.4 # Arcane-Edit: 2 > 2.4
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
@@ -410,6 +427,7 @@
     painDuration: 40
     painType: TraumaticPain
     sleepModifier: 0.0
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -425,6 +443,10 @@
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
   - type: SurgeryDamageChangeEffect
     damage:
       types:
@@ -456,6 +478,7 @@
     painDuration: 60
     painType: TraumaticPain
     sleepModifier: 0.14
+  - type: SurgeryAffectsMoodStep # Arcane
 
 # Tend Wounds
 
@@ -477,6 +500,7 @@
     amount: 17
     painDuration: 30
     sleepModifier: 0
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -486,14 +510,19 @@
   - type: SurgeryStep
     tool:
     - type: Tending
-    duration: 2 # Arcane-Edit: 1 > 2
+    duration: 2.5 # Arcane-Edit: 1 > 2.5
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryTendWoundsEffect
+    # Arcane-Start
+    healMultiplier: 0.08
+    failureFlatMultiplier: 0.667
+    failureSeverityMultiplier: 0.435
+    # Arcane-End
     damage:
       groups:
-        Brute: -30 # Arcane-Edit: -15 > -30
+        Brute: -6 # Arcane-Edit: -15 > -6
   - type: SurgeryRepeatableStep
 
 - type: entity
@@ -504,15 +533,20 @@
   - type: SurgeryStep
     tool:
     - type: Tending
-    duration: 2 # Arcane-Edit: 1 > 2
+    duration: 2.5 # Arcane-Edit: 1 > 2.5
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryTendWoundsEffect
     mainGroup: Burn
+    # Arcane-Start
+    healMultiplier: 0.08
+    failureFlatMultiplier: 0.667
+    failureSeverityMultiplier: 0.435
+    # Arcane-End
     damage:
       groups:
-        Burn: -40 # Arcane-Edit: -20 > -40
+        Burn: -6 # Arcane-Edit: -20 > -6
   - type: SurgeryRepeatableStep
 
 - type: entity
@@ -615,6 +649,10 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryRemoveOrganStep
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
   - type: SurgeryStepPainInflicter
     amount: 90
     painDuration: 60
@@ -634,6 +672,10 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/manipulation.rsi
     state: insertion
   - type: SurgeryAddOrganStep
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
   - type: SurgeryStepPainInflicter
     amount: 90
     painDuration: 60
@@ -715,6 +757,10 @@
     - type: Cautery
     duration: 2
   - type: SurgeryAffixOrganStep
+  # Arcane-Start
+  - type: SurgerySelfOperableStep
+    roboticOnly: true
+  # Arcane-End
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
@@ -876,6 +922,7 @@
     damage:
       types:
         Piercing: 10
+  - type: SurgeryAffectsMoodStep # Arcane
 
 - type: entity
   parent: SurgeryStepBase
@@ -896,3 +943,4 @@
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
     state: hemostat
   - type: SurgeryStepEmoteEffect
+  - type: SurgeryAffectsMoodStep # Arcane

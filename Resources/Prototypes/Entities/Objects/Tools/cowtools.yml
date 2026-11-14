@@ -53,6 +53,10 @@
   - type: Tag # Goobstation
     tags:
     - Screwdriver
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 0.05
+  # Arcane-End
 
 - type: entity
   name: wronch
@@ -79,6 +83,10 @@
   - type: Tag # Goobstation
     tags:
     - Wrench
+  # Arcane-Start
+  - type: SurgeryWrench
+    speed: 0.05
+  # Arcane-End
 
 - type: entity
   name: cowbar
@@ -109,6 +117,7 @@
   - type: Tag # Goobstation
     tags:
     - Crowbar
+  - type: SurgeryCrowbar # Arcane
 
 - type: entity
   name: mooltitool
@@ -127,6 +136,7 @@
   - type: Tag
     tags:
       - Multitool
+  - type: SurgeryMultitool # Arcane
 
 - type: entity
   name: cowelding tool

@@ -1,7 +1,9 @@
 ent-BaseToolSurgery = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
-ent-Cautery = лектрокоагулятор
+# Arcane-Edit-Start
+ent-Cautery = электрокоагулятор
     .desc = Хирургический инструмент, используемый для прижигания открытых ран.
+# Arcane-Edit-End
 ent-Drill = дрель
     .desc = Хирургическая дрель для проделывания отверстий в твёрдом материале.
 ent-Scalpel = скальпель

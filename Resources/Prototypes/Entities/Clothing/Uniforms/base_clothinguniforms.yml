@@ -70,7 +70,6 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
-    - Skirt # Goobstation
 - type: entity
   abstract: true
   parent: UnsensoredClothingUniformBase

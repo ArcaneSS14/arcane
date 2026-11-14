@@ -59,6 +59,7 @@
     speed: 0.35
   - type: Hemostat # Shitmed
     speed: 0.6
+  - type: SurgeryWirecutter # Arcane
   - type: SurgeryTool # Shitmed
     startSound:
       path: /Audio/Items/wirecutter.ogg
@@ -126,6 +127,11 @@
     speed: 0.45
   - type: Tending # Shitmed
     speed: 0.65
+  # Arcane-Start
+  - type: Drill
+    speed: 0.25
+  - type: SurgeryScrewdriver
+  # Arcane-End
   - type: SurgeryTool # Shitmed
     startSound:
       collection: Screwdriver
@@ -187,6 +193,11 @@
   - type: GuideHelp
     guides:
     - Construction
+  # Arcane-Start
+  - type: SurgeryWrench
+  - type: SurgeryTool
+    startSound: /Audio/Items/ratchet.ogg
+  # Arcane-End
 
 - type: entity
   name: multitool
@@ -250,6 +261,10 @@
     - WirePanels
     - Airlocks
     - InspectingPower
+  # Arcane-Start
+  - type: SurgeryMultitool
+  - type: SurgeryTool
+  # Arcane-End
 
 - type: entity
   name: network configurator
@@ -367,6 +382,12 @@
     speed: 0.75
   - type: Drill # Shitmed
     speed: 1
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 1.5
+  - type: SurgeryWrench
+    speed: 1.5
+  # Arcane-End
   - type: SurgeryTool # Shitmed
     startSound: /Audio/Items/drill_use.ogg
 
@@ -543,6 +564,18 @@
     speedModifier: 1.2 # Kept for future adjustments. Currently 1.2x for balance
     useSound: /Audio/Items/drill_use.ogg
   - type: ToolTileCompatible
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 1.2
+  - type: SurgeryCrowbar
+    speed: 1.2
+  - type: SurgeryWrench
+    speed: 1.2
+  - type: SurgeryMultitool
+    speed: 1.2
+  - type: SurgeryWirecutter
+    speed: 1.2
+  # Arcane-End
   - type: MultipleTool
     statusShowBehavior: true
     entries:
