@@ -10,7 +10,11 @@
     {
       "name": "icon"
     },
-	  {
+    {
+      "name": "equipped-BELT",
+      "directions": 4
+    },
+    {
       "name": "body-overlay-2",
       "directions": 4
     },

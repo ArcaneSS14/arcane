@@ -1,0 +1,145 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseLovemateKit
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/policeman_kit.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/policeman_kit.rsi
+
+- type: entity
+  parent: BaseLovemateKit
+  id: KitOfficer
+  name: officer kit
+  description: A complete officer costume set. Includes uniform, policeman hat, and soft handcuffs.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/policeman_kit.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/policeman_kit.rsi
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingUniformJumpsuitPoliceman
+    - id: ClothingHeadHatPolicemanHat
+    - id: SoftHandcuffs
+
+- type: entity
+  parent: BaseLovemateKit
+  id: KitOfficerDress
+  name: officer dress kit
+  description: A complete officer dress costume set. Includes dress, officer cap, and soft handcuffs.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/policewoman_kit.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/policewoman_kit.rsi
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingJumpsuitOfficerDress
+    - id: ClothingHatOficerCapLovemate
+    - id: SoftHandcuffs
+
+- type: entity
+  parent: BaseLovemateKit
+  id: KitTeacher
+  name: teacher kit
+  description: A complete teacher costume set. Includes uniform, glasses, and ruler.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/teacher_kit.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/teacher_kit.rsi
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingUniformJumpsuitTeacher
+    - id: ClothingEyesGlassesTeacher
+    - id: TeacherRuler
+
+- type: entity
+  parent: BaseLovemateKit
+  id: KitTeacherDress
+  name: teacher dress kit
+  description: A complete teacher dress costume set. Includes dress, glasses, and ruler.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/sexyteacher_kit.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/sexyteacher_kit.rsi
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingUniformJumpskirtTeacher
+    - id: ClothingEyesGlassesTeacher
+    - id: TeacherRuler
+
+- type: entity
+  parent: BaseLovemateKit
+  id: KitNurse
+  name: nurse kit
+  description: A complete nurse costume set. Includes uniform and cap.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/sexynurse_kit.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/sexynurse_kit.rsi
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingUniformJumpsuitNurse
+    - id: ClothingHeadHatNurseCap
+
+- type: entity
+  parent: BaseLovemateKit
+  id: KitPupil
+  name: pupil kit
+  description: A complete pupil costume set. Includes uniform, shoes, and socks.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/pupil_kit.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/pupil_kit.rsi
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingUniformJumpsuitPupil
+    - id: ClothingShoesPupil
+    - id: ClothingSocksPupil
+
+- type: entity
+  parent: BaseLovemateKit
+  id: KitRabbit
+  name: rabbit kit
+  description: A complete rabbit costume set. Includes uniform, mask, and tights.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/rabbit_kit.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/rabbit_kit.rsi
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingUniformJumpsuitRabbit
+    - id: ClothingMaskRabbit
+    - id: ClothingSocksRabbitTights
+
+- type: entity
+  parent: BaseLovemateKit
+  id: KitSexyMaid
+  name: sexy maid kit
+  description: A complete sexy maid costume set. Includes dress and panicle.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/sexymaid_kit.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Specific/Lootboxes/Clothing/sexymaid_kit.rsi
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingUniformJumpskirtSexyMaid
+    - id: MaidPanicle
