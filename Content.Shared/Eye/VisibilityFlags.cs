@@ -19,5 +19,6 @@ namespace Content.Shared.Eye
         EldritchInfluence = 1 << 5, // Goobstation
         EldritchInfluenceSpent = 1 << 6, // Goobstation
         Admin = 1 << 7, // Reserved for admins in stealth mode and admin tools.
+        BloodlustCompanion = 1 << 8, // Arcane - bloodlust implant companion, visible only to the host
     }
 }

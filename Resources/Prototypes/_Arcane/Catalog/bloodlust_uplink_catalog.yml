@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: listing
+  id: UplinkBloodlustImplanter
+  name: uplink-bloodlust-implanter-name
+  description: uplink-bloodlust-implanter-desc
+  icon: { sprite: /Textures/_Arcane/Objects/Specific/Syndicate/bloodlust_implanter.rsi, state: icon }
+  productEntity: BloodlustImplanter
+  cost:
+    Telecrystal: 35
+  categories:
+  - UplinkImplants
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
