@@ -197,12 +197,16 @@ public sealed class SharedErpPanelSystem : EntitySystem
         }
 
         if (interaction.Lactation != null)
+        {
             RaiseLocalEvent(new LactationRequestedEvent
             {
                 User = user,
                 Target = target,
                 Prototype = interaction,
             });
+        }
+        else
+
         if (user == target)
             return;
 

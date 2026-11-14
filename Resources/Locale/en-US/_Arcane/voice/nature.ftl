@@ -8,3 +8,5 @@ trait-foxnature-desc = It seems you're a bit of a Vulpkanin now?
 
 trait-horsenature-name = Horse Nature
 trait-horsenature-desc = It seems there is a horse spirit within you!
+
+trait-category-nature = Natures

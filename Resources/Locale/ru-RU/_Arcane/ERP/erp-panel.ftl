@@ -98,6 +98,8 @@ erp-panel-interaction-strike-cool-pose-name = Встать в крутую по�
 erp-panel-interaction-lick-condensed-cum-name = Слизать выделения
 erp-panel-interaction-lick-condensed-cum-self-name = Слизать выделения с себя
 erp-panel-interaction-hug-wings-name = Обнять крыльями
+erp-panel-interaction-suck-milk-name = Сосать груди
+erp-panel-interaction-express-milk-name = Доить груди
 
 # Interaction butt
 erp-panel-interaction-toy-butt-name = Использовать секс-игрушку в попе

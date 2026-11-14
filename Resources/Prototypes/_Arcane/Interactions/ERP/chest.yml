@@ -348,30 +348,9 @@
     - Moth
 
 - type: panelInteraction
-  id: RubbingNipples
+  id: SuckMilk
   category: Chest
-  userArouse: 5
-  targetArouse: 5
-  range: 1.5
-  sounds:
-  - /Audio/_Arcane/Interactions/pat1.ogg
-  - /Audio/_Arcane/Interactions/pat2.ogg
-  selfMessages:
-  - массирует свои соски.
-  - водит пальцами по соскам.
-  - слегка трёт соски.
-  - аккуратно сжимает и разжимает свои соски.
-  icon: _Arcane/Interface/ErpPanel/touch_man_nipples.png
-  tags:
-  - RequiresERP
-  userRequirements:
-  - !type:ExposedBodyPartRequirement
-    part: Chest
-
-- type: panelInteraction
-  id: ExpressMilk
-  category: Chest
-  Lactation:
+  lactation:
     reagent: Milk
     amountPerAct: 5
     express: false
@@ -379,16 +358,60 @@
   targetArouse: 5
   range: 1.5
   sounds:
-  - /Audio/_Arcane/Interactions/pat1.ogg
-  - /Audio/_Arcane/Interactions/pat2.ogg
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss3.ogg
   selfMessages:
-  - выжимать
-  icon: _Arcane/Interface/ErpPanel/touch_man_nipples.png
+  - аккуратно схватившись за грудь, подносит к губам, испивая собственное молоко
+  - поднеся свою грудь ко рту , $target начинает посасывать собственный сосок
+  - торопливо хватается за грудь и начинает  жадно поглощать собственное молоко
+  messages:
+  - прильнув своими устами к соску $target, жадно поглощает молоко.
+  - покрывая грудь поцелуями, припадает к соску $target.
+  - оставляя влажный след на груди, ласкает сосок $target, поглощая молоко.
+  icon: _Arcane/Interface/ErpPanel/boobs_suck.png
   tags:
   - RequiresERP
-  userRequirements:
+  targetRequirements:
   - !type:HasAnyTagRequirement
     tags:
     - Lactation
   - !type:ExposedBodyPartRequirement
     part: Chest
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
+
+- type: panelInteraction
+  id: ExpressMilk
+  category: Chest
+  lactation:
+    reagent: Milk
+    amountPerAct: 5
+    express: true
+  userArouse: 5
+  targetArouse: 5
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/bj4.ogg
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  selfMessages:
+  - бережно сжимает груди, проминая их своими пальцами.
+  - проводя пальцем по соску, резко сжимает грудь ладонью.
+  messages:
+  - подрагивая пальцами, утопает ими в грудях $target, выдавливая молоко.
+  - хватаясь за груди $target, активно перебирает пальцами, выдаивая молоко.
+  - положив руку на грудь $target, массирует её, выдаивая молоко.
+  icon: _Arcane/Interface/ErpPanel/boobs_massage.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:HasAnyTagRequirement
+    tags:
+    - Lactation
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+  - !type:SexRequirement
+    sexes:
+    - Female
+    - Futanari
