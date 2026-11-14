@@ -1,0 +1,32 @@
+- type: constructionGraph
+  id: Window
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: uraniumWindowDirectional
+          steps:
+            - material: UraniumGlass
+              amount: 1
+              doAfter: 2
+
+        - to: uraniumReinforcedWindowDirectional
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 1
+              doAfter: 2
+
+    - node: window
+      entity: Window
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Screwing
+              doAfter: 1
+            - tool: Anchoring
+              doAfter: 2
