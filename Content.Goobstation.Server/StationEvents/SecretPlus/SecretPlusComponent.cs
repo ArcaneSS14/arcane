@@ -2,6 +2,7 @@
 
 using Content.Goobstation.Common.StationEvents.SecretPlus;
 using Content.Shared.Random;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -133,6 +134,20 @@ public sealed partial class SecretPlusComponent : Component
     [DataField]
     public float SpeedRamping = 0f;
 
+    // Arcane-Start
+    /// <summary>
+    /// One-time midround event budget per roundstart security officer.
+    /// </summary>
+    [DataField]
+    public float ChaosPerSecurityOfficer = 50f;
+
+    /// <summary>
+    /// Whether the one-time security budget has been applied.
+    /// </summary>
+    [ViewVariables]
+    public bool SecurityBudgetApplied;
+    // Arcane-End
+
     /// <summary>
     ///   Does this round start with antags at all?
     /// </summary>
@@ -184,4 +199,6 @@ public sealed partial class SecretPlusComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<WeightedRandomPrototype> RoundStartAntagsWeightTable = "SecretPlus";
+
+    public readonly HashSet<NetUserId> CreditedSecurityOfficers = new(); // Arcane
 }

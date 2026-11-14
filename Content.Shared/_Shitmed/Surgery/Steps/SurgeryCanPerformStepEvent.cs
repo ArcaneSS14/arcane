@@ -9,6 +9,7 @@ namespace Content.Shared._Shitmed.Medical.Surgery.Steps;
 public record struct SurgeryCanPerformStepEvent(
     EntityUid User,
     EntityUid Body,
+    EntityUid Part, // Arcane
     EntityUid Tool,
     SlotFlags TargetSlots,
     string? Popup = null,

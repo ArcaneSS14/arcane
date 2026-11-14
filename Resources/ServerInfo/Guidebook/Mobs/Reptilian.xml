@@ -3,31 +3,31 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <Document>
-  # Reptilians
+  # Ящеролюды
 
   <Box>
     <GuideEntityEmbed Entity="MobReptilian" Caption=""/>
   </Box>
-  Reptilians are a humanoid species, sporting tails and a pronounced snout. Their physiology has led them to adopt an accent similar to that of cobras.
+  Ящеролюды — это гуманоидный вид с хвостами и выраженной мордой. Их физиология привела к появлению акцента, похожего на акцент кобр.
 
-  ## Unique Abilities
-  
-  ### Tail Dragging
+  ## Уникальные способности
 
-  - With their ability to manipulate their tails, Reptilians can drag objects with their tail, keeping both of their hands free.
-  
-  ## Diet
+  ### Волочение хвостом
 
-  - They can eat raw meat and drink blood without any ill effects.
+  - Благодаря способности управлять хвостом ящеролюды могут волочить предметы хвостом, оставляя обе руки свободными.
 
-  ## Benefits
+  ## Диета
 
-  - They prefer a somewhat higher temperature range than humans, making them slightly less susceptible to higher temperatures.
+  - Они могут есть сырое мясо и пить кровь без каких-либо негативных последствий.
 
-  - Their unarmed claw attacks deal [color=#ec3a3a]Slash[/color] damage instead of Blunt.
+  ## Преимущества
 
-  ## Drawbacks
+  - Они предпочитают несколько более высокий температурный диапазон, чем люди, что делает их немного менее восприимчивыми к высоким температурам.
 
-  - They take [color=#ffa500]30% more Cold damage.[/color]
+  - Их безоружные атаки когтями наносят [color=#ec3a3a]режущий[/color] урон вместо ушибов.
+
+  ## Недостатки
+
+  - Они получают [color=#ffa500]на 30% больше урона от холода.[/color]
 
 </Document>

@@ -25,6 +25,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.GameTicking; // Arcane
+using Content.Shared._Arcane.GameTicking; // Arcane
 
 namespace Content.Goobstation.Server.StationEvents.SecretPlus;
 
@@ -87,6 +89,7 @@ public sealed partial class SecretPlusSystem : GameRuleSystem<SecretPlusComponen
 
         Subs.CVar(_cfg, GoobCVars.MinimumTimeUntilFirstEvent, value => _minimumTimeUntilFirstEvent = value, true);
         Subs.CVar(_cfg, GoobCVars.RoundstartChaosScoreMultiplier, value => _roundstartChaosScoreMultiplier = value, true);
+        SubscribeLocalEvent<SecurityBudgetEvent>(OnSecurityBudget); // Arcane
     }
 
     protected override void Added(EntityUid uid, SecretPlusComponent scheduler, GameRuleComponent gameRule, GameRuleAddedEvent args)
@@ -113,6 +116,39 @@ public sealed partial class SecretPlusSystem : GameRuleSystem<SecretPlusComponen
             SetupEvents((uid, scheduler), CountActivePlayers());
     }
 
+    // Arcane-Start
+    private void OnSecurityBudget(SecurityBudgetEvent args)
+    {
+        var query = QueryAllRules();
+
+        while (query.MoveNext(out var uid, out var scheduler, out _))
+        {
+            if (args.LateJoin != scheduler.SecurityBudgetApplied)
+                continue;
+
+            var newOfficers = 0;
+            foreach (var officer in args.Officers)
+            {
+                if (scheduler.CreditedSecurityOfficers.Add(officer)) newOfficers++;
+            }
+
+            var points = newOfficers * scheduler.ChaosPerSecurityOfficer;
+            if (args.LateJoin)
+            {
+                scheduler.ChaosScore -= points;
+            }
+        else
+        {
+            scheduler.ChaosScore = -points;
+            scheduler.SecurityBudgetApplied = true;
+        }
+
+            LogMessage(
+                $"Security event budget: {args.Officers} officers, " +
+                $"{-scheduler.ChaosScore} chaos");
+        }
+    }
+    // Arcane-End
     /// <summary>
     ///   Build a list of events to use for the entire story
     /// </summary>
@@ -184,10 +220,6 @@ public sealed partial class SecretPlusSystem : GameRuleSystem<SecretPlusComponen
         var count = CountActivePlayers();
         var ramp = GetRamping((uid, scheduler));
         var speedup = _event.EventSpeedup;
-        var mult = scheduler.ChaosChangeVariation;
-
-        scheduler.ChaosScore += count.Players * scheduler.LivingChaosChange * frameTime * ramp * speedup * mult;
-        scheduler.ChaosScore += count.Ghosts * scheduler.DeadChaosChange * frameTime * speedup * mult;
 
         var currTime = _timing.CurTime;
         if (currTime < scheduler.TimeNextEvent)

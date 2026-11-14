@@ -135,3 +135,13 @@
     speed: 2
   - type: Stitches
     speed: 2
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 1.5
+  - type: SurgeryCrowbar
+    speed: 1.5
+  - type: SurgeryWrench
+    speed: 1.5
+  - type: SurgeryMultitool
+    speed: 1.5
+  # Arcane-End

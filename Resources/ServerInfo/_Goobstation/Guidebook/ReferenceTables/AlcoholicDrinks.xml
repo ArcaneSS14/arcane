@@ -1,8 +1,8 @@
 <Document>
 
-# Alcoholic Drinks
+# Алкогольные напитки
 
-Drink too many of these and you're likely to end up in medbay.\nNot like that's ever stopped anyone!
+Выпейте слишком много — и, скорее всего, окажетесь в медблоке.\nНо разве это когда-нибудь кого-то останавливало!
 
 <GuideReagentGroupEmbed Group="AlcoholicDrinks"/>
 

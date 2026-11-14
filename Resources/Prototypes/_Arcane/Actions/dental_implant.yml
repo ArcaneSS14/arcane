@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ActionActivateDentalPill
+  name: Bite the dental implant
+  description: Grit your teeth to burst the pill wedged into them.
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Specific/Chemistry/pills.rsi
+      state: pill
+  - type: InstantAction
+    event: !type:ActivateDentalPillActionEvent

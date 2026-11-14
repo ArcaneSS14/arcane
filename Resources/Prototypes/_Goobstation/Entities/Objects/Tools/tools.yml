@@ -30,6 +30,12 @@
       - Screwing
     useSound: /Audio/Items/drill_use.ogg
   - type: ToolTileCompatible
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+  - type: SurgeryCrowbar
+  - type: SurgeryWrench
+  - type: SurgeryMultitool
+  # Arcane-End
   - type: MultipleTool
     statusShowBehavior: true
     entries:

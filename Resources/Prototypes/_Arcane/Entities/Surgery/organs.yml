@@ -1,0 +1,78 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryInciseOrgans
+  name: Incise Organs
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenRibcage
+    steps:
+    - SurgeryStepInciseOrgans
+  - type: SurgeryPartCondition
+    parts: [Chest]
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticOpenEndoskeleton
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryInciseOrgansAbdomen
+  name: Incise Organs
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepInciseOrgans
+  - type: SurgeryPartCondition
+    parts: [Groin]
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticOpenShell
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryWidenCavity
+  name: Widen Cavity
+  components:
+  - type: Surgery
+    requirement: SurgeryInciseOrgans
+    steps:
+    - SurgeryStepWidenCavity
+  - type: SurgeryPartCondition
+    parts: [Chest]
+  - type: SurgeryRoboticVariant
+    variant: SurgeryRoboticOpenEndoskeleton
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInciseOrgans
+  name: Incise the organs
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Scalpel
+    add:
+    - type: OrgansIncised
+    duration: 2.4
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+  - type: SurgeryDamageChangeEffect
+    damage:
+      types:
+        Slash: 10
+    sleepModifier: 0.5
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepWidenCavity
+  name: Widen the cavity
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Retractor
+    add:
+    - type: CavityWidened
+    duration: 4.8
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/retractor.rsi
+    state: retractor

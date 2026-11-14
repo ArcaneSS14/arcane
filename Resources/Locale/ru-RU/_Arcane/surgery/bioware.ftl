@@ -1,0 +1,15 @@
+ent-SurgeryVeinThreading = Укрепление сосудов
+    .desc = Укрепляет сосуды или гидравлические магистрали, снижая потерю жидкости при ранениях.
+ent-SurgeryNerveSplicing = Сращивание нервов
+    .desc = Сращивает нервы или управляющие цепи, делая пациента устойчивее к оглушению и усталости. Несовместимо с другой модификацией нервов.
+ent-SurgeryNerveGrounding = Заземление нервов
+    .desc = Заземляет нервы или управляющие цепи, ослабляя удары током и предотвращая оглушение и срыв взаимодействий при разряде. Несовместимо с другой модификацией нервов.
+ent-SurgeryStepThreadVeins = Укрепить сосуды
+ent-SurgeryStepSpliceNerves = Срастить нервы
+ent-SurgeryStepGroundNerves = Заземлить нервы
+surgery-popup-step-SurgeryStepThreadVeins = { $user } укрепляет стенки сосудов пациента ({ $target }).
+surgery-popup-step-SurgeryStepSpliceNerves = { $user } сращивает нервные волокна пациента ({ $target }).
+surgery-popup-step-SurgeryStepGroundNerves = { $user } заземляет нервные пути пациента ({ $target }).
+surgery-bioware-threaded-veins = укреплённые сосуды
+surgery-bioware-spliced-nerves = сращённые нервы
+surgery-bioware-grounded-nerves = заземлённые нервы

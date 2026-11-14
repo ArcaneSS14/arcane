@@ -36,6 +36,14 @@
       - !type:SuppressPain
         amount: 50
         time: 30
+      # Arcane-Start
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectAnalgesia
+        time: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectCritThresholdRaise15
+        time: 2
+      # Arcane-End
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition

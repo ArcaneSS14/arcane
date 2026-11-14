@@ -18,6 +18,11 @@
   - type: GuideHelp
     guides:
     - CQC
+  # Arcane-Start
+  - type: ConflictWear
+    rules:
+    - GuerrillaGlovesVsAnyMartialArt
+  # Arcane-End
 
 - type: entity
   parent: [ BaseItem, BaseSyndicateContraband ]
@@ -38,6 +43,11 @@
   - type: GuideHelp
     guides:
     - SleepingCarp
+  # Arcane-Start
+  - type: ConflictWear
+    rules:
+    - GuerrillaGlovesVsAnyMartialArt
+  # Arcane-End
 
 - type: entity
   parent: [BaseItem, BaseSyndicateContraband]
@@ -57,3 +67,8 @@
   - type: GuideHelp
     guides:
     - Capoeira
+  # Arcane-Start
+  - type: ConflictWear
+    rules:
+    - GuerrillaGlovesVsAnyMartialArt
+  # Arcane-End

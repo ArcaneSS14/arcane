@@ -101,3 +101,4 @@ guide-entry-sop-emergencyresponseteam = ОБР (Отряд Быстрого Ре
 # guide-entry-sop-librarian = Библиотекарь
 # guide-entry-sop-mime = Мим
 # guide-entry-sop-reporter = Репортёр
+guide-entry-gangwars = Войны Банд
