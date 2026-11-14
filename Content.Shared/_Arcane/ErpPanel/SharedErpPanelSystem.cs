@@ -176,6 +176,8 @@ public sealed class SharedErpPanelSystem : EntitySystem
             _arousal.AddArousal(target, targetDelta);
             ProccessMoan(target);
         }
+
+        userPanel.Cooldowns[interaction.ID] = _ticking.CurTime;
         Dirty(user, userPanel);
 
         ProccessMessages(user, target, interaction);
