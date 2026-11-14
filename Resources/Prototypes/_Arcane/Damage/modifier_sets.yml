@@ -24,3 +24,16 @@
     Slash: 0.9
     Heat: 1.2
   ignoreArmorPierceFlags: All
+
+- type: damageModifierSet
+  id: TurtleShell
+  coefficients:
+    Blunt: 0.15
+    Slash: 0.15
+    Piercing: 0.15
+    Heat: 0.15
+    Cold: 0.15
+    Caustic: 0.15
+    Poison: 0.15
+    Radiation: 0.15
+    Asphyxiation: 0.15

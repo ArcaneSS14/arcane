@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Bulbo44kkey",
+  "size": {"x": 64, "y": 64},
+  "states": [
+    {
+     "name": "seal-equipped-BELT",
+     "directions": 4
+    }
+  ]
+}
