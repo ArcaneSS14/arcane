@@ -79,7 +79,6 @@
     sprite: _Arcane/ERP/Toys/Handcuffs/soft_handcuffs.rsi
     slots: [ belt ]
     quickEquip: false
-    equippedState: equipped-BELT
   - type: Tag
     tags:
     - Handcuffs

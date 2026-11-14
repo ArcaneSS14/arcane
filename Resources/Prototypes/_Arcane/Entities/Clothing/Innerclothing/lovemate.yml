@@ -101,6 +101,9 @@
   id: ClothingUniformJumpsuitTeacherOpen
   name: teacher's uniform (open)
   description: A strict teacher's uniform, unbuttoned.
+  components:
+  - type: FoldableClothing
+    foldedEquippedPrefix: open
 
 - type: entity
   parent: ClothingUniformBase
