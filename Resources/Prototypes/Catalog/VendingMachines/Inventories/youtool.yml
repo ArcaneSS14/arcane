@@ -21,6 +21,20 @@
     Multitool: 2
     ClothingBeltUtility: 3
     ClothingHandsGlovesColorYellow: 1
+    # Arcane-Start
+    ClothingHeadHatRunnerLight: 1
+    ClothingHeadHatRunnerDark: 1
+    ClothingOuterCoatRunnerLight: 1
+    ClothingOuterCoatRunnerDark: 1
+    ClothingUniformRunnerLight: 1
+    ClothingUniformRunnerDark: 1
+    ClothingHandsGlovesRunnerLight: 1
+    ClothingHandsGlovesRunnerDark: 1
+    ClothingShoesRunnerLight: 1
+    ClothingShoesRunnerDark: 1
+    ClothingBeltRunnerLight: 1
+    ClothingBeltRunnerDark: 1
+    # Arcane-End
   emaggedInventory: # goob
     ClothingHandsGlovesExplosiveShock: 1
   # Orion-Start

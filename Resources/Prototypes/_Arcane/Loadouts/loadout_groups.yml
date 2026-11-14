@@ -204,6 +204,14 @@
 # Service
 
 - type: loadoutGroup
+  id: PassengerBelt
+  name: loadout-group-passenger-belt
+  minLimit: 0
+  loadouts:
+  - RunnerLightBelt
+  - RunnerDarkBelt
+
+- type: loadoutGroup
   id: ServiceWorkerJumpsuit
   name: loadout-group-service-worker-jumpsuit
   loadouts:
@@ -307,3 +315,27 @@
   minLimit: 0
   loadouts:
   - EngineerCloakPatron
+
+- type: loadoutGroup
+  id: TechnicalAssistantHead
+  name: loadout-group-technical-assistant-head
+  minLimit: 0
+  loadouts:
+  - RunnerLightCap
+  - RunnerDarkCap
+
+- type: loadoutGroup
+  id: TechnicalAssistantOuterClothing
+  name: loadout-group-technical-assistant-outerclothing
+  minLimit: 0
+  loadouts:
+  - RunnerLightJacket
+  - RunnerDarkJacket
+
+- type: loadoutGroup
+  id: TechnicalAssistantShoes
+  name: loadout-group-technical-assistant-shoes
+  minLimit: 0
+  loadouts:
+  - RunnerLightBoots
+  - RunnerDarkBoots

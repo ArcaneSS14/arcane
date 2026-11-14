@@ -34,7 +34,10 @@ ent-ClothingHeadbandKitsune = ушки кицунэ
     .desc = Традиционный элемент костюма в стиле мифической лисы.
 ent-ClothingHeadHatMaidFura = фуражка горничной
     .desc = Аккуратная фуражка, подобающая старшей горничной.
-
+ent-ClothingHeadHatRunnerLight = светлая кепка бегуна
+    .desc = Лёгкая светлая кепка, защищающая глаза от ярких ламп станции.
+ent-ClothingHeadHatRunnerDark = тёмная кепка бегуна
+    .desc = Практичная тёмная кепка для скрытных перемещений.
 # Sponsor
 
 ent-ClothingHatNTRBlackBeret = чёрный берет представителя NanoTrasen

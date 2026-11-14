@@ -1,4 +1,10 @@
 loadout-group-grimoire = Grimoire
+loadout-group-passenger-head = Passenger head
+loadout-group-passenger-belt = Passenger belt
+loadout-group-technical-assistant-head = Technical Assistant head
+loadout-group-technical-assistant-outerclothing = Technical Assistant outer clothing
+loadout-group-technical-assistant-shoes = Technical Assistant shoes
+loadout-group-station-engineer-gloves = Station Engineer gloves
 loadout-group-hop-mask = Head of Personnel Mask
 loadout-group-chief-engineer-mask = Chief Engineer Mask
 loadout-group-chief-medical-officer-mask = Chief Medical Officer Mask
