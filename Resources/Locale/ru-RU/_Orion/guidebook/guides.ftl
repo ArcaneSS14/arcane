@@ -55,7 +55,7 @@ guide-entry-sop-central-command-blueshield_officer = Офицер "Синий Щ
 guide-entry-sop-command = Командование
 guide-entry-sop-command-captain = Капитан
 guide-entry-sop-command-head_of_department = Глава отдела
-guide-entry-sop-command-adjutant = Адьютант
+guide-entry-sop-command-adjutant = Адъютант
 
 guide-entry-sop-legal = Юридический департамент
 guide-entry-sop-legal-internal_affairs_agent = Агент Внутренних Дел

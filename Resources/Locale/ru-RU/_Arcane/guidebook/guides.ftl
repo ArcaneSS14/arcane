@@ -14,6 +14,7 @@ guide-entry-space-law-laws-9 = Законы (XX9)
 guide-entry-space-law-laws-10 = Законы (XX10)
 guide-entry-space-law-punishment-types = Типы наказаний
 guide-entry-space-law-punishment-terms = Сроки заключений
+guide-entry-space-law-evidence = Доказательства
 guide-entry-sop-alerts-delta = Дельта код
 guide-entry-sop-alerts-protocol = Протокол уровней угроз
 guide-entry-space-law-use-of-force = Уровни Применения Силы (УПС)
