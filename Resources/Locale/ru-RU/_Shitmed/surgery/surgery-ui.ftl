@@ -15,7 +15,9 @@ surgery-ui-window-surgeries = < Операции
 surgery-ui-window-steps = < Этапы
 surgery-ui-window-steps-error-skills = У вас нет хирургических навыков.
 surgery-ui-window-steps-error-table = Для этого нужен операционный стол.
-surgery-ui-window-steps-error-armor = Необходимо снять обмурдирование!
+# Arcane-Edit-Start
+surgery-ui-window-steps-error-armor = Необходимо снять обмундирование!
+# Arcane-Edit-End
 surgery-ui-window-steps-error-tools = Отсутствуют инструменты.
 # Arcane
 surgery-ui-window-steps-error-missing-tool = Для этого этапа требуется {$tool}!

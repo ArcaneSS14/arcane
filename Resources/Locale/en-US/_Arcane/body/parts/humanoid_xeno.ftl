@@ -1,6 +1,8 @@
 ent-PartHumanoidXeno = xenomorph body part
     .desc = { ent-BaseItem.desc }
-ent-TorsoHumanoidXeno = xenomorph torso
+ent-ChestHumanoidXeno = xenomorph chest
+    .desc = { ent-PartHumanoidXeno.desc }
+ent-GroinHumanoidXeno = xenomorph groin
     .desc = { ent-PartHumanoidXeno.desc }
 ent-HeadHumanoidXeno = xenomorph head
     .desc = { ent-PartHumanoidXeno.desc }

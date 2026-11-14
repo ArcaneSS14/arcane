@@ -6,6 +6,8 @@ surgery-tool-drill = drill
 surgery-tool-hemostat = hemostat
 surgery-tool-retractor = retractor
 surgery-tool-scalpel = scalpel
-surgery-tool-woundtender = woundtender
-surgery-tool-tweezers = tweezers
+# Arcane-Edit-Start
+surgery-tool-woundtender = hemostat
+surgery-tool-tweezers = hemostat
+# Arcane-Edit-End
 surgery-tool-stitches = stitches

@@ -1,0 +1,105 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SurgeryTendWoundsBrute
+  id: SurgeryTendWoundsBruteUpgraded
+  name: Tend Bruise Wounds+
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepCarefulIncisionScalpel
+    - SurgeryStepRepairBruteTissueUpgraded
+    - SurgeryStepSealTendWound
+  - type: SurgeryTechnologyCondition
+    technology: Surgery
+    inverse: false
+    replacedBy: AdvancedSurgery
+
+- type: entity
+  parent: SurgeryTendWoundsBurn
+  id: SurgeryTendWoundsBurnUpgraded
+  name: Tend Burn Wounds+
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepCarefulIncisionScalpel
+    - SurgeryStepRepairBurnTissueUpgraded
+    - SurgeryStepSealTendWound
+  - type: SurgeryTechnologyCondition
+    technology: Surgery
+    inverse: false
+    replacedBy: AdvancedSurgery
+
+- type: entity
+  parent: SurgeryTendWoundsBruteUpgraded
+  id: SurgeryTendWoundsBruteFemto
+  name: Tend Bruise Wounds++
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepCarefulIncisionScalpel
+    - SurgeryStepRepairBruteTissueFemto
+    - SurgeryStepSealTendWound
+  - type: SurgeryTechnologyCondition
+    technology: AdvancedSurgery
+    replacedBy: SurgeryTools
+
+- type: entity
+  parent: SurgeryTendWoundsBurnUpgraded
+  id: SurgeryTendWoundsBurnFemto
+  name: Tend Burn Wounds++
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepCarefulIncisionScalpel
+    - SurgeryStepRepairBurnTissueFemto
+    - SurgeryStepSealTendWound
+  - type: SurgeryTechnologyCondition
+    technology: AdvancedSurgery
+    replacedBy: SurgeryTools
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryTendWoundsCombo
+  name: Advanced Tend Wounds
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepCarefulIncisionScalpel
+    - SurgeryStepRepairAllTissue
+    - SurgeryStepSealTendWound
+  - type: SurgeryWoundedCondition
+    damageGroup: Brute
+    additionalGroups: [Burn]
+  - type: SurgeryTechnologyCondition
+    technology: AdvancedSurgery
+    replacedBy: ExperimentalSurgery
+  - type: SurgeryRoboticVariant
+
+- type: entity
+  parent: SurgeryTendWoundsCombo
+  id: SurgeryTendWoundsComboUpgraded
+  name: Advanced Tend Wounds+
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepCarefulIncisionScalpel
+    - SurgeryStepRepairAllTissueUpgraded
+    - SurgeryStepSealTendWound
+  - type: SurgeryTechnologyCondition
+    technology: ExperimentalSurgery
+    replacedBy: SurgeryTools
+
+- type: entity
+  parent: SurgeryTendWoundsComboUpgraded
+  id: SurgeryTendWoundsComboFemto
+  name: Advanced Tend Wounds++
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepCarefulIncisionScalpel
+    - SurgeryStepRepairAllTissueFemto
+    - SurgeryStepSealTendWound
+  - type: SurgeryTechnologyCondition
+    technology: SurgeryTools
+    replacedBy: null

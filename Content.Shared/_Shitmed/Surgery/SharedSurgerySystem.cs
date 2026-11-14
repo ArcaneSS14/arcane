@@ -2,6 +2,7 @@
 
 using System.Linq;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared._Arcane.Surgery;
 using Content.Shared._Orion.CorticalBorer;
 using Content.Shared._Orion.CorticalBorer.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
@@ -9,6 +10,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Consciousness.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Pain.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Steps;
 using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
+using Content.Shared._Shitmed.Medical.Surgery.Tools;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems;
 using Content.Shared._Shitmed.Medical.Surgery.Wounds.Components;
 using Content.Shared._Shitmed.Medical.Surgery.Traumas;
@@ -72,6 +74,11 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedCorticalBorerSystem _corticalBorer = default!; // Orion
     [Dependency] protected readonly StatusEffectsSystem Status = default!;
+    // Arcane-Start
+    [Dependency] private readonly SurgeryConditionsSystem _surgeryConditions = default!;
+    [Dependency] private readonly RoboticSurgerySystem _roboticSurgery = default!;
+    [Dependency] private readonly SurgeryToolConditionsSystem _toolConditions = default!;
+    // Arcane-End
 
     private EntityQuery<BodyComponent> _bodyQuery;
     private EntityQuery<StackComponent> _stackQuery;
@@ -159,6 +166,17 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     private void OnBeforeTargetDoAfter(Entity<SurgeryTargetComponent> ent,
         ref DoAfterAttemptEvent<SurgeryDoAfterEvent> args)
     {
+        // Arcane-Start
+        var tool = _hands.GetActiveItemOrSelf(args.Event.User);
+        if (args.Event.Target is { } toolPart
+            && GetSingleton(args.Event.Step) is { } toolStep
+            && IsStepToolOff(tool, toolStep, toolPart))
+        {
+            args.Cancel();
+            return;
+        }
+        // Arcane-End
+
         if (_net.IsClient
             || !args.Event.Repeat) // We only wanna do this laggy shit on repeatables. One-time stuff idc.
             return;
@@ -178,6 +196,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         {
             var failEv = new SurgeryStepFailedEvent(args.User, ent, args.Surgery, args.Step);
             RaiseLocalEvent(args.User, ref failEv);
+            // Arcane-Start
+            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Failure, args.Step);
+            RaiseLocalEvent(ent.Owner, ref mood);
+            // Arcane-End
             RefreshUI(ent); // Arcane
             return;
         }
@@ -187,26 +209,54 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             || args.Target is not { } target
             || !IsSurgeryValid(ent, target, args.Surgery, args.Step, args.User, out var surgery, out var part, out var step)
             || !PreviousStepsComplete(ent, part, surgery, args.Step, args.User)
-            || !CanPerformStep(args.User, ent, part, step, tool, false))
+            || !CanPerformStep(args.User, ent, part, step, tool, false, out _, out _, out var data)) // Arcane-Edit
         {
             Log.Warning($"{ToPrettyString(args.User)} tried to start invalid surgery.");
             // Arcane-Start
             // The patient may have changed during the step, and the surgeon would otherwise get no word of it.
             if (_net.IsServer)
                 _popup.PopupEntity(Loc.GetString("surgery-error-failed"), args.User, args.User, PopupType.SmallCaution);
+            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Failure, args.Step);
+            RaiseLocalEvent(ent.Owner, ref mood);
             // Arcane-End
             RefreshUI(ent); // Arcane
             return;
         }
 
         // Arcane-Edit-Start
-        var ev = new SurgeryStepEvent(args.User, ent, part, tool, surgery, step, false);
-        RaiseLocalEvent(step, ref ev);
+        var repeatable = HasComp<SurgeryRepeatableStepComponent>(step);
+        if (_surgeryConditions.RollStepFailure(args.User, part, args.FailureChance, args.Penalty))
+        {
+            var botched = new SurgeryStepBotchedEvent(args.User, ent, part);
+            RaiseLocalEvent(step, ref botched);
+            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Failure, args.Step);
+            RaiseLocalEvent(ent.Owner, ref mood);
+            // A botched repeatable step keeps going, so only a one-off step counts as a failed procedure.
+            args.Repeat = repeatable;
+            if (!repeatable)
+            {
+                var botchEv = new SurgeryStepFailedEvent(args.User, ent, args.Surgery, args.Step);
+                RaiseLocalEvent(args.User, ref botchEv);
+            }
+        }
+        else
+        {
+            var ev = new SurgeryStepEvent(args.User, ent, part, tool, surgery, step, false);
+            RaiseLocalEvent(step, ref ev);
 
-        var complete = ev.Complete || IsStepComplete(ent, part, args.Step, surgery);
-        ev.Complete = complete;
-        args.Repeat = HasComp<SurgeryRepeatableStepComponent>(step) && !complete;
-        RaiseLocalEvent(args.User, ref ev);
+            var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Success, args.Step);
+            RaiseLocalEvent(ent.Owner, ref mood);
+
+            var complete = ev.Complete || IsStepComplete(ent, part, args.Step, surgery);
+            ev.Complete = complete;
+            args.Repeat = repeatable && !complete;
+            RaiseLocalEvent(args.User, ref ev);
+        }
+
+        // Like tgstation, every loop of a repeated step can fail by the conditions it starts in.
+        // The do-after keeps its first delay, since only the do-after system may change it.
+        if (args.Repeat)
+            UpdateStepTiming(args, step, args.User, ent, part, data);
         // Arcane-Edit-End
 
         // consume the tool if it's something like using LV cable as stitches
@@ -245,9 +295,11 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         // Arcane-Edit-Start
         // Once healed, only its own careful incision is left to seal; a fully opened part is closed by Close Incision.
-        if (GetTendableDamage(args.Part, ent.Comp.DamageGroup) <= 0
-            && (!HasComp<IncisionOpenComponent>(args.Part) || HasComp<SkinRetractedComponent>(args.Part)))
-            args.Cancelled = true;
+        if (HasTendableDamage(args.Part, ent.Comp.DamageGroup, ent.Comp.AdditionalGroups)
+            || HasComp<IncisionOpenComponent>(args.Part) && !HasComp<SkinRetractedComponent>(args.Part))
+            return;
+
+        args.Cancelled = true;
         // Arcane-Edit-End
     }
 
@@ -424,18 +476,22 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     }
 
     /// <summary>
-    ///     Damage of a group that wound tending can still heal on a part. Part damage can outlast its wounds,
-    ///     since heavy attacks scale wound severity down, so both are counted.
+    ///     Damage of a group that wound tending can still heal on a part. Tending follows the visible damage;
+    ///     wounds left without damage still count, and the step closes them once the damage is gone.
     /// </summary>
     public FixedPoint2 GetTendableDamage(EntityUid part, ProtoId<DamageGroupPrototype> group)
     {
-        var severity = _wounds.GetWoundableSeverityPoint(part, damageGroup: group, healable: true, ignoreBlockers: true);
-
         if (TryComp<DamageableComponent>(part, out var damageable)
-            && damageable.Damage.TryGetDamageInGroup(_prototypes.Index(group), out var damage))
-            return FixedPoint2.Max(severity, damage);
+            && damageable.Damage.TryGetDamageInGroup(_prototypes.Index(group), out var damage)
+            && damage > 0)
+            return damage;
 
-        return severity;
+        return _wounds.GetWoundableSeverityPoint(part, damageGroup: group, healable: true, ignoreBlockers: true);
+    }
+
+    private bool HasTendableDamage(EntityUid part, ProtoId<DamageGroupPrototype> group, List<ProtoId<DamageGroupPrototype>> additionalGroups)
+    {
+        return additionalGroups.Prepend(group).Any(tended => GetTendableDamage(part, tended) > 0);
     }
     // Arcane-End
 
@@ -525,7 +581,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             return false;
         // Arcane-Edit-End
 
-        var ev = new SurgeryValidEvent(body, targetPart);
+        var ev = new SurgeryValidEvent(body, targetPart, User: user); // Arcane-Edit
         if (_timing.IsFirstTimePredicted)
         {
             RaiseLocalEvent(stepEnt, ref ev);
@@ -595,8 +651,9 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     // Arcane-Start
     /// <summary>
     /// Surgeries that can currently be performed on the part, in prototype order.
+    /// Without a <paramref name="user"/>, surgeries that depend on the surgeon are all included.
     /// </summary>
-    public List<EntProtoId> GetValidSurgeries(EntityUid body, EntityUid part)
+    public List<EntProtoId> GetValidSurgeries(EntityUid body, EntityUid part, EntityUid? user = null)
     {
         var valid = new List<EntProtoId>();
         foreach (var surgery in AllSurgeries)
@@ -604,7 +661,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             if (GetSingleton(surgery) is not { } surgeryEnt)
                 continue;
 
-            var ev = new SurgeryValidEvent(body, part);
+            var ev = new SurgeryValidEvent(body, part, User: user);
             // Arcane-Start
             // Most surgeries are for one part type, so the cheap part check skips the costlier organ checks on other parts.
             if (TryComp(surgeryEnt, out SurgeryPartConditionComponent? partCondition))

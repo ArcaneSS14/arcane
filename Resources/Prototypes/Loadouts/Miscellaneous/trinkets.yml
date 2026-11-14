@@ -336,11 +336,13 @@
 # Playing Cards (GoobStation START)
 - type: loadout
   id: CardBoxBlack
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:OverallPlaytimeRequirement
-      time: 10h # 10hr
+  # Arcane-Edit-Start: Removed
+#  effects:
+#  - !type:JobRequirementLoadoutEffect
+#    requirement:
+#      !type:OverallPlaytimeRequirement
+#      time: 10h # 10hr
+  # Arcane-Edit-End I want to see poker more often!
   storage:
     back:
     - CardBoxBlack

@@ -122,6 +122,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared._Arcane.GameTicking;
+using Content.Server.Database; // Arcane
 
 namespace Content.Server.GameTicking
 {
@@ -217,7 +219,15 @@ namespace Content.Server.GameTicking
 
                 SpawnPlayer(_playerManager.GetSessionById(player), profiles[player], station, job, false);
             }
+            // Arcane-Start
+            var officers = assignedJobs.Where(entry => entry.Value.Item1 == "SecurityOfficer").Select(entry => entry.Key).ToArray();
 
+            RaiseLocalEvent(new SecurityBudgetEvent(officers, false));
+
+            var securityOfficers = assignedJobs.Where(entry => entry.Value.Item1 == "SecurityOfficer").Select(entry => entry.Key).ToArray();
+
+            RaiseLocalEvent(new SecurityBudgetEvent(securityOfficers, true));
+            // Arcane-End
             RefreshLateJoinAllowed();
 
             // Allow rules to add roles to players who have been spawned in. (For example, on-station traitors)
@@ -233,6 +243,10 @@ namespace Content.Server.GameTicking
             bool lateJoin = true,
             bool silent = false)
         {
+            // Arcane-Start
+            if (lateJoin && jobId == "SecurityOfficer")
+                RaiseLocalEvent(new SecurityBudgetEvent(new[] { player.UserId }, true));
+            // Arcane-End
             // arcane discord link start
             if (!_linkAccount.CanPlay(player, out var locId))
             {

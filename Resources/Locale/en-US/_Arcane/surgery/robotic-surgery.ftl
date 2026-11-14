@@ -1,0 +1,45 @@
+surgery-tool-screwdriver = screwdriver
+surgery-tool-crowbar = crowbar
+surgery-tool-wrench = wrench
+surgery-tool-multitool = multitool
+surgery-tool-welder = welding tool
+surgery-tool-wirecutter = wirecutters
+surgery-tool-cable = cable coil
+
+surgery-popup-step-SurgeryStepUnscrewShell = { $user } is unscrewing the shell. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepOpenHatch = { $user } is prying open the hatch. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepPrepareElectronics = { $user } is preparing the electronics. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepUnwrenchEndoskeleton = { $user } is unwrenching the endoskeleton. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepWrenchEndoskeleton = { $user } is wrenching the endoskeleton back into place. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepScrewShell = { $user } is screwing the shell back on. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepWeldShell = { $user } is welding the shell seams. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepDetachLimb = { $user } is unwrenching the limb from its mount. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepDisconnectLimb = { $user } is disconnecting the limb. Patient: { $target }. Body part: { $part }.
+
+surgery-robotic-step-SurgeryStepClampBleeders = Shut off the lines
+surgery-robotic-step-SurgeryStepClampInternalBleeders = Shut off the inner lines
+surgery-robotic-step-SurgeryStepSawBones = Loosen the mounts
+surgery-robotic-step-SurgeryStepRemoveOrgan = Remove the component
+surgery-robotic-step-SurgeryStepInsertOrgan = Install the component
+surgery-robotic-step-SurgeryStepSealOrganWound = Weld the mounts
+surgery-robotic-step-SurgeryStepSealWounds = Weld the joints
+surgery-robotic-step-SurgeryStepCloseBloodOutputs = Repair the wiring
+surgery-robotic-step-SurgeryStepThreadVeins = Reinforce the hydraulic lines
+surgery-robotic-step-SurgeryStepSpliceNerves = Splice the control circuits
+surgery-robotic-step-SurgeryStepGroundNerves = Ground the control circuits
+
+surgery-popup-step-SurgeryStepClampBleeders-robotic = { $user } is shutting off the lines. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepClampInternalBleeders-robotic = { $user } is shutting off the inner lines. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepSawBones-robotic = { $user } is loosening the mounts. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepRemoveOrgan-robotic = { $user } is removing a component. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepInsertOrgan-robotic = { $user } is installing a component. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepSealOrganWound-robotic = { $user } is welding the mounts. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepSealWounds-robotic = { $user } is welding the joints. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepCloseBloodOutputs-robotic = { $user } is repairing the wiring. Patient: { $target }. Body part: { $part }.
+surgery-popup-step-SurgeryStepThreadVeins-robotic = { $user } is reinforcing the hydraulic lines. Patient: { $target }.
+surgery-popup-step-SurgeryStepSpliceNerves-robotic = { $user } is splicing the control circuits. Patient: { $target }.
+surgery-popup-step-SurgeryStepGroundNerves-robotic = { $user } is grounding the control circuits. Patient: { $target }.
+surgery-robotic-step-SurgeryStepHealOrgans = Repair internal components
+surgery-popup-step-SurgeryStepHealOrgans-robotic = { $user } is repairing internal components. Patient: { $target }. Body part: { $part }.
+surgery-robotic-step-SurgeryStepInciseOrgans = Open the component housings
+surgery-popup-step-SurgeryStepInciseOrgans-robotic = { $user } is opening the component housings. Patient: { $target }. Body part: { $part }.

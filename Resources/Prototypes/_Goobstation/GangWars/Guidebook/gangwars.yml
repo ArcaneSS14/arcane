@@ -1,4 +1,4 @@
 - type: guideEntry
   id: GangWars
-  name: "Gang Wars"
+  name: "guide-entry-gangwars"
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/GangWars.xml"

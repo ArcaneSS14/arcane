@@ -3,3 +3,10 @@
   storage:
     back:
     - ClothingShoesClothwrap
+
+- type: loadout
+  id: PokerChipsBox
+  storage:
+    back:
+    - PokerChipsBox
+  groupBy: "cards"

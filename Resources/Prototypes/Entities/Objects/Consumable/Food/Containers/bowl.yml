@@ -112,3 +112,8 @@
     - map: ["enum.SolutionContainerLayers.Fill"]
       state: fill-1
       visible: false
+  # Arcane-Start
+  - type: RecipeSubstitute
+    substitutes:
+    - FoodBowlBig
+  # Arcane-End

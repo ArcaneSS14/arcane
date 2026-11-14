@@ -521,7 +521,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
         // Goobstation - Modularization
         var modifierEv = new GetClothingStunModifierEvent(uid);
-        RaiseLocalEvent(modifierEv);
+        RaiseLocalEvent(uid, modifierEv, true); // Arcane-Edit
         var clothingModifier= modifierEv.Modifier;
         // Goobstation - Modularization
 

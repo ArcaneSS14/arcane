@@ -127,6 +127,7 @@ guide-entry-salad-recipes = Салаты
 guide-entry-medicinal-recipes = Лечебные
 guide-entry-other-recipes = Другие
 guide-entry-secret-recipes = Секретные
+guide-entry-lawsets = Законы синтетиков
 guide-entry-antagonists = Антагонисты
 guide-entry-bingle = Бингл
 guide-entry-changeling-abilities = Способности Генокрада

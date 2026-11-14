@@ -286,11 +286,17 @@ namespace Content.Client.HealthAnalyzer.UI
                     // TODO: Once these string conditionals are better defined, rewrite to use a switch case based on trauma types.
                     string locString;
                     if (trauma.TargetType.HasValue)
+                        // Arcane-Edit-Start
+//                        locString = Loc.GetString($"condition-body-trauma-{trauma.TraumaType}",
+//                            ("targetSymmetry", trauma.TargetType.Value.Item2 != BodyPartSymmetry.None
+//                                ? $"{trauma.TargetType.Value.Item2.ToString().ToLower()} " // This is so fucking ugly.
+//                                : ""),
+//                            ("targetType", trauma.TargetType.Value.Item1.ToString().ToLower()));
                         locString = Loc.GetString($"condition-body-trauma-{trauma.TraumaType}",
-                            ("targetSymmetry", trauma.TargetType.Value.Item2 != BodyPartSymmetry.None
-                                ? $"{trauma.TargetType.Value.Item2.ToString().ToLower()} " // This is so fucking ugly.
-                                : ""),
-                            ("targetType", trauma.TargetType.Value.Item1.ToString().ToLower()));
+                            ("part", Loc.GetString(trauma.TargetType.Value.Item2 != BodyPartSymmetry.None
+                                ? $"body-part-{trauma.TargetType.Value.Item2.ToString().ToLower()}-{trauma.TargetType.Value.Item1.ToString().ToLower()}"
+                                : $"body-part-{trauma.TargetType.Value.Item1.ToString().ToLower()}")));
+                        // Arcane-Edit-End
                     else
                         locString = trauma.SeverityString != null
                             ? Loc.GetString($"condition-body-trauma-{trauma.TraumaType}-{trauma.SeverityString}", ("woundable", woundableName))
