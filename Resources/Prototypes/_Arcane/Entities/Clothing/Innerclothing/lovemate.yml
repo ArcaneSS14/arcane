@@ -102,6 +102,8 @@
   name: teacher's uniform (open)
   description: A strict teacher's uniform, unbuttoned.
   components:
+  - type: Clothing
+    equippedPrefix: open
   - type: FoldableClothing
     foldedEquippedPrefix: open
 
