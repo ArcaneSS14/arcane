@@ -12,6 +12,8 @@
     sprite: _Arcane/Objects/Consumable/Food/bay_treats.rsi
     state: fish
   - type: Item
+    sprite: _Arcane/Objects/Consumable/Food/bay_treats.rsi
+    state: fish
 
 - type: entity
   parent: FoodSnackBase
@@ -30,3 +32,5 @@
     sprite: _Arcane/Objects/Consumable/Food/bay_treats.rsi
     state: takoyaki
   - type: Item
+    sprite: _Arcane/Objects/Consumable/Food/bay_treats.rsi
+    state: takoyaki
