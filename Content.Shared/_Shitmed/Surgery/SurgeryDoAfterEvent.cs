@@ -12,6 +12,10 @@ public sealed partial class SurgeryDoAfterEvent : SimpleDoAfterEvent
     public readonly EntProtoId Surgery;
     public readonly EntProtoId Step;
     public readonly bool ToolUsed;
+    // Arcane-Start
+    public float FailureChance;
+    public float Penalty;
+    // Arcane-End
 
     public SurgeryDoAfterEvent(EntProtoId surgery, EntProtoId step, bool toolUsed)
     {

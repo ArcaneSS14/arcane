@@ -25,6 +25,7 @@
   - type: Nerve
   - type: Boneless # Goob Edit
     bonePenalty: 1
+  - type: RoboticBodyPart # Arcane
 
 - type: entity
   parent: [ PartIPCBase, BaseChestInorganic ]

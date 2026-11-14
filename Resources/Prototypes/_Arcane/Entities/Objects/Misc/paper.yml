@@ -10,3 +10,12 @@
     backgroundImagePath: "/Textures/_Goobstation/Interface/Paper/paper_background_grey.svg.96dpi.png"
     backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
     contentMargin: 16.0, 16.0, 16.0, 16.0
+
+- type: entity
+  parent: Paper
+  id: PaperPokerRules
+  name: poker rules
+  description: A folded slip that came with a deck of cards.
+  components:
+  - type: Paper
+    content: paper-poker-rules

@@ -55,8 +55,14 @@ public partial class TraumaSystem
         var part = bodyComp.ParentSlot is null
             ? bodyComp.PartType.ToString().ToLower()
             : bodyComp.ParentSlot.Value.Id;
+        // Arcane-Start
+        // Animal bodies name their slots legs or feet, which have no name of their own, so the part type names them.
+        var partName = Loc.TryGetString("body-part-" + part.Replace(" ", "-"), out var slotName)
+            ? slotName
+            : Loc.GetString("body-part-" + bodyComp.PartType.ToString().ToLower());
+        // Arcane-End
 
-        _popup.PopupClient(Loc.GetString($"popup-trauma-BoneDamage-{args.NewSeverity.ToString()}", ("part", part)),
+        _popup.PopupClient(Loc.GetString($"popup-trauma-BoneDamage-{args.NewSeverity.ToString()}", ("part", partName)), // Arcane-Edit
             bodyComp.Body.Value,
             PopupType.SmallCaution);
 

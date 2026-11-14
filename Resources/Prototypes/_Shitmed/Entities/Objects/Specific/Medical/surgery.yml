@@ -316,6 +316,14 @@
   - type: Tweezers
   - type: Tending
   - type: Stitches
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 0.75
+  - type: SurgeryWrench
+    speed: 0.75
+  - type: SurgeryMultitool
+    speed: 0.75
+  # Arcane-End
 
 - type: entity
   parent: [ OmnimedTool, BaseSyndicateContraband ]
@@ -358,3 +366,11 @@
     speed: 10
   - type: Stitches
     speed: 10
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 7.5
+  - type: SurgeryWrench
+    speed: 7.5
+  - type: SurgeryMultitool
+    speed: 7.5
+  # Arcane-End

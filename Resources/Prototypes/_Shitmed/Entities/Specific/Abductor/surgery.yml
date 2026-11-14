@@ -52,6 +52,14 @@
     interfaces:
       enum.MagicMirrorUiKey.Key:
         type: MagicMirrorBoundUserInterface
+  # Arcane-Start
+  - type: SurgeryCrowbar
+    speed: 1.5
+  - type: SurgeryWrench
+    speed: 1.5
+  - type: SurgeryMultitool
+    speed: 1.5
+  # Arcane-End
 
 - type: entity
   name: high-tech searing tool
@@ -124,6 +132,10 @@
   - type: GuideHelp
     guides:
     - Abductors
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 1.5
+  # Arcane-End
 
 - type: entity
   name: high-tech bone manipulator

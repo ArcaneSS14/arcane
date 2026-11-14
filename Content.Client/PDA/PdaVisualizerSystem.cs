@@ -31,6 +31,13 @@ public sealed class PdaVisualizerSystem : VisualizerSystem<PdaVisualsComponent>
         //goob addition for pen visual
         if (AppearanceSystem.TryGetData<bool>(uid, PdaVisuals.PenInserted, out var isPenInserted, args.Component))
             _sprite.LayerSetVisible((uid, args.Sprite), PdaVisualLayers.Pen, isPenInserted);
+        // Arcane-Start
+        if (AppearanceSystem.TryGetData<bool>(uid, PdaVisuals.PaperInserted, out var isPaperInserted, args.Component))
+        {
+            if (_sprite.LayerMapTryGet((uid, args.Sprite), PdaVisualLayers.Paper, out _, false))
+                _sprite.LayerSetVisible((uid, args.Sprite), PdaVisualLayers.Paper, isPaperInserted);
+        }
+        // Arcane-End
     }
 
     public enum PdaVisualLayers : byte
@@ -39,6 +46,9 @@ public sealed class PdaVisualizerSystem : VisualizerSystem<PdaVisualsComponent>
         Screen, // Orion
         Flashlight,
         IdLight,
-        Pen //goob addition for pen visual
+        // Arcane-Edit-Start
+        Pen, //goob addition for pen visual
+        Paper
+        // Arcane-Edit-End
     }
 }

@@ -14,7 +14,11 @@
     sprite: Structures/Furniture/Tables/optable.rsi
     state: operating_table
   - type: OperatingTable
-    speedModifier: 1.5 # Shitmed
+    speedModifier: 1 # Shitmed # Arcane-Edit: 1.5 > 1
+  # Arcane-Start
+  - type: SurgerySurface
+    speedModifier: 1
+  # Arcane-End
   # Begin Shitmed Changes
   - type: Construction
     graph: Machine

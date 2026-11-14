@@ -1,0 +1,81 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExperimentalDissection
+  name: Experimental Dissection
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepExperimentalDissection
+  - type: SurgeryPartCondition
+    parts: [Chest]
+  - type: SurgeryDeadCondition
+  - type: SurgeryBodyComponentCondition
+    inverse: true
+    components:
+    - type: SurgicallyDissected
+  - type: SurgeryTechnologyCondition
+    technology: OldstationSurgery
+
+- type: entity
+  parent: SurgeryExperimentalDissection
+  id: SurgeryExperimentalDissectionXeno
+  name: Xenomorph Experimental Dissection
+  components:
+  - type: Surgery
+    requirement: SurgeryXenoInciseExoskeleton
+  - type: SurgeryPartComponentCondition
+    inverse: false
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExperimentalDissection
+  name: Dissect the body
+  components:
+  - type: SurgeryStep
+    duration: 12
+    tool:
+    - type: SurgeryAnalyzer
+    bodyAdd:
+    - type: SurgicallyDissected
+  - type: Sprite
+    sprite: _Orion/Objects/Specific/Research/experi_scanner.rsi
+    state: icon
+  # tgstation's points x50, the size of the nearest Orion scanning experiment reward.
+  - type: SurgeryDissection
+    botchMultiplier: 0.01
+    damage:
+      types:
+        Slash: 80
+    rewards:
+    - species: [Monkey]
+      points: 100
+    - species: [Abductor]
+      points: 2000
+    - whitelist:
+        requireAll: true
+        components:
+        - HumanoidAppearance
+        - Zombie
+      points: 1500
+    - species: [SlimePerson, Diona]
+      points: 1000
+    - whitelist:
+        components:
+        - HumanoidAppearance
+      points: 500
+    - whitelist:
+        components:
+        - XenomorphQueen
+      points: 5000
+    - whitelist:
+        components:
+        - XenomorphLarva
+      points: 83
+    - whitelist:
+        components:
+        - Xenomorph
+      points: 2500
+    - points: 83

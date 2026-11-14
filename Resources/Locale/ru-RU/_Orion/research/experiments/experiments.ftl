@@ -1,9 +1,15 @@
 research-experiment-autopsy-human-name = Эксперимент по вскрытию человека
-research-experiment-autopsy-human-desc = Мы не хотим инвестировать в станцию, которая не отличает копчик от улитки. Отправьте нам данные о препарировании человека, чтобы получить больше финансирования.
+# Arcane-Edit-Start
+research-experiment-autopsy-human-desc = Мы не хотим инвестировать в станцию, которая не отличает копчик от улитки. Проведите вскрытие человека и завершите анализ экспериментальным сканером в ходе операции, чтобы получить финансирование.
+# Arcane-Edit-End
 research-experiment-autopsy-nonhuman-name = Эксперимент по вскрытию нечеловеческих животных
-research-experiment-autopsy-nonhuman-desc = Когда мы просили копчик, мы не имели в виду... слушайте, просто пришлите нам данные от чего-то ДРУГОГО, а не от человека. Нам плевать, что это может быть обезьяна, просто пришлите нам исследование.
+# Arcane-Edit-Start
+research-experiment-autopsy-nonhuman-desc = Когда мы просили копчик, мы не имели в виду... слушайте, просто вскройте кого-нибудь, кроме человека, и завершите анализ экспериментальным сканером в ходе операции. Нам всё равно, пусть это будет хоть обезьяна.
+# Arcane-Edit-End
 research-experiment-autopsy-xenomorph-name = Эксперимент по вскрытию ксеноморфов
-research-experiment-autopsy-xenomorph-desc = Наше понимание ксеноморфов лишь поверхностное. Пришлите нам исследование по препарированию ксеноморфа.
+# Arcane-Edit-Start
+research-experiment-autopsy-xenomorph-desc = Наше понимание ксеноморфов лишь поверхностное. Проведите вскрытие ксеноморфа и завершите анализ экспериментальным сканером в ходе операции.
+# Arcane-Edit-End
 research-experiment-ordnance-explosive-highyieldbomb-name = Высокопроизводительная взрывчатка
 research-experiment-ordnance-explosive-highyieldbomb-desc = Некоторые реакции реагируют очень энергично и могут быть использованы для получения более крупных взрывчатых веществ. Просканируйте взрывчатку средней мощности и выше.
 research-experiment-ordnance-explosive-lowyieldbomb-name = Маломощная взрывчатка

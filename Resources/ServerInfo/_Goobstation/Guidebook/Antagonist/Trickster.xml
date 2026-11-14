@@ -1,8 +1,8 @@
 <Document>
-  # Trickster
+  # Путь обманщика
   <Box>
     <GuideEntityEmbed Entity="MobWraithTrickster" Caption=""/>
-  </Box> "The greatest trick the devil ever pulled was convincing the world he didn't exist."
+  </Box> «Величайший трюк, который когда-либо провернул дьявол, — убедил мир, что его не существует».
 
-  [textlink="Back to Wraith Evolutions" link="Wraiths"]
+  [textlink="Назад к Эволюциям Фантома" link="Wraith"]
 </Document>

@@ -125,6 +125,7 @@
     temperature: 700
   - type: Cautery # Shitmed
     speed: 0.7
+  - type: SurgeryWelder # Arcane
   - type: SurgeryTool # Shitmed
     startSound:
       collection: Welder

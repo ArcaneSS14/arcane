@@ -13,6 +13,7 @@
     price: 15 #Goobstation - Increased price
   - type: BodyPart # Shitmed Change
     species: Cyborg
+  - type: RoboticBodyPart # Arcane
   - type: Tag
     tags:
     - Trash

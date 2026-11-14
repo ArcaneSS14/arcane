@@ -210,7 +210,7 @@
     state: icon # Orion-Edit
   - type: Pda
     paiSlot:
-      priority: -2
+      priority: -3 # Arcane-Edit -2 -> -3
       whitelist:
         components:
         - PAI
@@ -220,6 +220,13 @@
       whitelist:
         tags:
         - Write
+    # Arcane-Start
+    paperSlot:
+      priority: -2
+      whitelist:
+        tags:
+        - Paper
+    # Arcane-End
     idSlot:
       name: access-id-card-component-default
       ejectSound: /Audio/Machines/id_swipe.ogg
@@ -235,6 +242,7 @@
       PDA-id: !type:ContainerSlot {}
       PDA-pen: !type:ContainerSlot {}
       PDA-pai: !type:ContainerSlot {}
+      PDA-paper: !type:ContainerSlot {} # Arcane
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
   - type: ItemSlots
@@ -763,6 +771,15 @@
         - Write
       ejectSound: null
       insertSound: null
+    # Arcane-Start
+    paperSlot:
+      priority: -2
+      ejectSound: null
+      insertSound: null
+      whitelist:
+        tags:
+        - Paper
+    # Arcane-End
   - type: CartridgeLoader
     cartridgeSlot:
       ejectSound: null

@@ -6,6 +6,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Traumas.Components;
 using Content.Shared.Body.Organ;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Humanoid;
+using Content.Shared.Body.Components;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
@@ -203,13 +204,13 @@ public partial class TraumaSystem
 
     // Arcane-Start
     /// <summary>
-    ///     Whether any organ inside the given part is damaged or still carries integrity modifiers.
+    ///     Whether a non-brain organ inside the given part is damaged or still carries integrity modifiers.
     /// </summary>
     public bool HasOrganDamage(EntityUid part)
     {
-        return _body.GetPartOrgans(part).Any(o =>
-            o.Component.OrganIntegrity < o.Component.IntegrityCap
-            || o.Component.IntegrityModifiers.Values.Any(v => v > 0));
+        return _body.GetPartOrgans(part).Any(o => !HasComp<BrainComponent>(o.Id)
+            && (o.Component.OrganIntegrity < o.Component.IntegrityCap
+                || o.Component.IntegrityModifiers.Values.Any(v => v > 0)));
     }
     // Arcane-End
 
