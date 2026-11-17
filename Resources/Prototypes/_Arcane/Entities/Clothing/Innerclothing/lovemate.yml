@@ -1,4 +1,12 @@
 - type: entity
+  abstract: true
+  parent: ClothingUniformFoldableBase
+  id: ClothingUniformFoldableBaseOpened
+  components:
+  - type: Foldable
+    folded: true
+
+- type: entity
   parent: ClothingUniformBase
   id: ClothingJumpsuitBDSMress
   name: BDSM dress
@@ -74,3 +82,93 @@
     sprite: _Arcane/Clothing/Innerclothing/gentle_pink_dress.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/gentle_pink_dress.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitTeacher
+  name: teacher's uniform
+  description: A strict teacher's uniform. Can be unbuttoned.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/teacher_suit.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/teacher_suit.rsi
+  - type: FoldableClothing
+    foldedEquippedPrefix: open
+
+- type: entity
+  parent: [ClothingUniformFoldableBaseOpened, ClothingUniformJumpsuitTeacher]
+  id: ClothingUniformJumpsuitTeacherOpen
+  name: teacher's uniform (open)
+  description: A strict teacher's uniform, unbuttoned.
+  components:
+  - type: Clothing
+    equippedPrefix: open
+  - type: FoldableClothing
+    foldedEquippedPrefix: open
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtTeacher
+  name: teacher's jumpskirt
+  description: A strict teacher's jumpskirt.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/teacher_dress.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/teacher_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNurse
+  name: nurse's dress
+  description: A neat nurse's dress. For real angels of mercy.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/sexynurse_dress.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/sexynurse_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPupil
+  name: pupil's dress
+  description: A neat school uniform for a diligent pupil.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/pupil_dress.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/pupil_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRabbit
+  name: rabbit suit
+  description: A fluffy rabbit costume. Hop hop!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/rabbit_suit.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/rabbit_suit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtSexyMaid
+  name: sexy maid dress
+  description: A bold and revealing maid dress. Someone will be punished tonight...
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/sexymaid_dress.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/sexymaid_dress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPoliceman
+  name: policeman's suit
+  description: A strict police uniform. Stop, you scum!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/policeman_suit.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/policeman_suit.rsi
