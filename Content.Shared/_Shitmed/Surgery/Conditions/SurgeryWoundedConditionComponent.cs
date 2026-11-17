@@ -10,4 +10,8 @@ public sealed partial class SurgeryWoundedConditionComponent : Component
 {
     [DataField, AutoNetworkedField]
     public ProtoId<DamageGroupPrototype> DamageGroup = "Brute";
+    // Arcane-Start
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<DamageGroupPrototype>> AdditionalGroups = new();
+    // Arcane-End
 }

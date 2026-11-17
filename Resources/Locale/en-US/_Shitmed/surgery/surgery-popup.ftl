@@ -99,3 +99,8 @@ surgery-popup-step-SurgeryStepInsertPlasmaVessel = {$user} is inserting a plasma
 surgery-popup-step-SurgeryStepInsertEggSack = {$user} is inserting an egg sack into {$target}'s {$part}!
 surgery-popup-step-SurgeryStepXenoTakeSample = {$user} is carefully removing a piece of {$target}'s {$part}.
 surgery-popup-step-SurgeryStepGraftXenoSample = {$user} is grafting xeno tissue onto {$target}'s {$part}!
+# Arcane-Start
+surgery-popup-step-SurgeryStepExtractForeignBody = {$user} is extracting something from {$target}'s {$part}!
+surgery-popup-step-SurgeryStepRepairBrain = {$user} is repairing the brain in {$target}'s {$part}.
+surgery-popup-step-SurgeryStepXenoOpenIncision = { surgery-popup-step-SurgeryStepOpenIncisionScalpel }
+# Arcane-End

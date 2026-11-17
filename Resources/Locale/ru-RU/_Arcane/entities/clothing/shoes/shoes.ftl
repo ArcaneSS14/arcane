@@ -1,6 +1,7 @@
 ent-ClothingShoesBeer = пивные тапочки
     .desc = Пивные тапочки.
-
+ent-ClothingShoesPupil = туфли ученицы
+    .desc = Классические школьные туфли.
 # Sponsor
 
 ent-ClothingShoesOldFashionedMedical = старомодные туфли врача

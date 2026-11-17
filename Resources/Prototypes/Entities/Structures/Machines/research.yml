@@ -26,6 +26,11 @@
   - type: LitOnPowered
   - type: ResearchServer
   - type: PeriodicAnomalySpawner # Arcane
+  # Arcane-Start
+  - type: SurgeryResearchServer
+    faction: NanoTrasen
+    stationCrew: true
+  # Arcane-End
   - type: ResearchServerControlStatus # Orion
   - type: TechnologyDatabase
     supportedDisciplines:

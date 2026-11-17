@@ -6,10 +6,12 @@
     DiceBag: 6
     Paper: 8
     d6Dice: 8
-    ChessBoard: 1
-    BackgammonBoard: 1
-    ParchisBoard: 1
-    CheckerBoard: 1
+    # Arcane-Edit-Start
+    ChessBoard: 3
+    BackgammonBoard: 3
+    ParchisBoard: 3
+    CheckerBoard: 3
+    # Arcane-Edit-End
     ShipBattlemap: 1
     SnowBattlemap: 1
     SandBattlemap: 1
@@ -19,7 +21,7 @@
     MysteryFigureBox: 2
     BooksBag: 3
     CardBoxBlack: 3 # GoobStation
-    PokerChipsBox: 1 # Orion
+    PokerChipsBox: 3 # Orion | Arcane-Edit: 1 > 3
 #    PokerChips100: 6 # GoobStation | Orion-Edit: Duplicate
   contrabandInventory:
     Basketball: 1

@@ -5,7 +5,9 @@ condition-body-trauma-BoneDamage-Broken = • The {$woundable}'s bone is broken!
 condition-body-trauma-OrganDamage = • The {$woundable} has some damage on its organs.
 condition-body-trauma-VeinsDamage = • The {$woundable} has some damage on its veins.
 condition-body-trauma-NerveDamage = • The {$woundable} has some damage on its nerves.
-condition-body-trauma-Dismemberment = • The {$targetSymmetry}{$targetType} has been removed...
+# Arcane-Edit-Start
+condition-body-trauma-Dismemberment = • The {$part} has been removed...
+# Arcane-Edit-End
 condition-body-trauma-Shrapnel = • There is shrapnel embedded in the {$woundable}.
 condition-body-trauma-Braindeath = • [color=red]The brain is dead.[/color] It must be surgically repaired before revival is possible.
 condition-body-pain-decreased = • The {$woundable}'s nerves are numbed.

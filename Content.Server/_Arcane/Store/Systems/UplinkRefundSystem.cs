@@ -7,6 +7,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
+using Content.Shared.Access.Components;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
@@ -118,6 +119,9 @@ public sealed partial class UplinkRefundSystem : EntitySystem
             return;
 
         var used = args.Used;
+
+        if (HasComp<IdCardComponent>(used))
+            return;
 
         if (!TryComp<UplinkRefundableComponent>(used, out var refundable))
             return;
@@ -259,6 +263,9 @@ public sealed partial class UplinkRefundSystem : EntitySystem
 
     private bool TryRefund(EntityUid used, UplinkRefundableComponent refundable, EntityUid uplink, StoreComponent store, EntityUid user)
     {
+        if (HasComp<IdCardComponent>(used))
+            return false;
+
         if (refundable.IsUsed)
         {
             _popup.PopupEntity(Loc.GetString("uplink-refund-fail-used"), used, user);

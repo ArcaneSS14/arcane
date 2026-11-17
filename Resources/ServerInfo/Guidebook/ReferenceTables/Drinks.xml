@@ -6,10 +6,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 # Напитки
 Умение приготовить запрашиваемый напиток важно. Вот различные напитки в игре, включая их рецепты:
 
-## Alcoholic Drinks
+## Алкогольные напитки
 <GuideReagentGroupEmbed Group="AlcoholicDrinks"/>
 
-## Non-Alcoholic Drinks
+## Безалкогольные напитки
 <GuideReagentGroupEmbed Group="NonAlcoholicDrinks"/>
 <!-- Goobstation - Split the drinks page into separte 'Alcoholic' and 'Non-alcoholic' categories-->
 </Document>

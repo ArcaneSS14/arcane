@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskRabbit
+  name: rabbit mask
+  description: A cute rabbit mask with long ears.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Mask/rabbit_mask.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Mask/rabbit_mask.rsi

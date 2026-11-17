@@ -1,60 +1,59 @@
 <Document>
-  # Harbinger of the Void
+  # Предвестник Пустоты
   <Box>
     <GuideEntityEmbed Entity="MobWraithHarbinger" Caption=""/>
   </Box>
 
-  The Harbinger of the Void focuses on summoning and controlling the dead or otherworldly creatures. As a Harbinger, you summon minions to do the dirty work for you.
-  Your strength comes from the creatures you raise and the chaos they spread, so cry havoc, and let slip the dogs of war.
+  Предвестник Пустоты сосредоточен на призыве и контроле мёртвых или потусторонних существ. Как Предвестник, вы призываете прислужников, чтобы они делали грязную работу за вас.
+  Ваша сила исходит от существ, которых вы поднимаете, и хаоса, который они сеют, так что кричите «разорение» и спускайте псов войны.
 
-  # Summoning
+  # Призыв
 
-  Your main tools revolve around summoning minions. These minions range from fragile skeletal servants to terrifying revenants, and they are your primary way to apply pressure to the crew while you remain safe.
+  Ваши основные инструменты вращаются вокруг призыва прислужников. Эти прислужники варьируются от хрупких скелетных слуг до ужасающих ревенантов, и они — ваш основной способ оказывать давление на экипаж, пока вы остаётесь в безопасности.
 
-  ## Raise Skeleton
+  ## Поднять скелета
 
-  - Commands a skeleton inside a corpse to detach and join your army.
-  - Only works on fully decomposed corpses, or on closets as a fun alternative. The closet skeleton is even weaker than the already weak raised skeleton. However, both of them pack a punch.
-  - Best used right after absorbing a corpse to maximize your WP gain and your undead workforce.
+  - Приказывает скелету внутри трупа отделиться и присоединиться к вашей армии.
+  - Работает только на полностью разложившихся трупах или на шкафах как забавная альтернатива. Шкафной скелет ещё слабее и без того слабого поднятого скелета. Однако оба они наносят удар.
+  - Лучше всего использовать сразу после поглощения трупа, чтобы максимизировать прирост WP и вашу неживую рабочую силу.
 
-  ## Create Void Portal
+  ## Создать портал Пустоты
 
-  - Opens a summoning circle that periodically spawns in portals from the Void with creatures inside them.
-  - The portals spawn a few tiles away from the circle in random locations.
-  - The summoning circle grows stronger the longer it remains, gaining access to much more powerful creatures.
-  - The circle can only have up to 10 minions at any given time, so it is best used in an area where your minions will frequently be dying, so they can be resummoned.
-  - The ritual circle itself is extremely fragile, don't place it somewhere too obvious.
-  - You can only ever have one active ritual circle.
+  - Открывает круг призыва, который периодически создаёт порталы из Пустоты с существами внутри.
+  - Порталы появляются в нескольких плитках от круга в случайных местах.
+  - Круг призыва становится сильнее, чем дольше он существует, получая доступ к гораздо более мощным существам.
+  - Круг может иметь одновременно не более 10 прислужников, поэтому лучше всего использовать его в области, где ваши прислужники будут часто умирать, чтобы их можно было призвать снова.
+  - Сам ритуальный круг крайне хрупок, не размещайте его на слишком очевидном месте.
+  - У вас может быть только один активный ритуальный круг.
 
-  Power increases slowly over time, starting at 10 points and growing in increments of 5. Timing and placement are key.
-  The ritual circle has the added benefit of increasing your WP regeneration while near it.
+  Сила медленно растёт со временем, начиная с 10 очков и увеличиваясь с шагом 5. Время и размещение имеют решающее значение.
+  Ритуальный круг имеет дополнительное преимущество: он увеличивает вашу регенерацию WP, пока вы рядом с ним.
 
-  ## Summon Void Creature
+  ## Призвать существо Пустоты
 
-  Lets you summon one of three advanced minions from the Void with unique abilities. The summon will be a fragile cocoon that can be destroyed to prevent them from spawning in, so use this in a hidden place.
+  Позволяет вам призвать одного из трёх продвинутых прислужников из Пустоты с уникальными способностями. Призыв будет хрупким коконом, который можно уничтожить, чтобы предотвратить их появление, поэтому используйте это в скрытом месте.
 
-  [textlink="Find out about the skills of each Void summon:" link="VoidSummons"]
+  [textlink="Узнайте о навыках каждого призыва Пустоты:" link="VoidSummons"]
 
-  The cocoon will be a ghost role, and whoever takes the role will be the one picking which Void creature to become. All of them will be useful to you, each with their own strenghts and weaknessess.
+  Кокон будет ролью призрака, и тот, кто возьмёт роль, будет выбирать, каким существом Пустоты стать. Все они будут полезны для вас, каждый со своими сильными и слабыми сторонами.
 
-  ## Raise Revenant
+  ## Поднять ревенанта
 
-  Possess a relatively fresh corpse, taking control of it and gaining extremely powerful abilities and increased WP regeneration.
+  Вселитесь в относительно свежий труп, взяв его под контроль и получив чрезвычайно мощные способности и повышенную регенерацию WP.
 
-  [textlink="The revenant has its own set of skills and mechanics." link="Revenant"]
+  [textlink="У ревенанта свой набор навыков и механик." link="RevenantWraith"]
 
-  ## General tips
+  ## Общие советы
 
-  ### Your void portal
+  ### Ваш портал Пустоты
 
-  Position your portal wisely. Placing it near high-traffic areas can allow your minions to overwhelm the crew faster.
+  Размещайте портал с умом. Размещение его рядом с оживлёнными областями может позволить вашим прислужникам быстрее одолеть экипаж.
 
-  Your minions are, overall, extremely fragile. They can deal nasty damage to unprepared crew, but even as soon as security gets into the armory, most of them stand no chance. Use your summons to secure more bodies, rather than to try and take over the station.
+  Ваши прислужники в целом крайне хрупки. Они могут нанести неприятный урон неподготовленному экипажу, но как только Служба Безопасности доберётся до арсенала, большинство из них не имеют шансов. Используйте призывы, чтобы захватить больше тел, а не пытаться захватить станцию.
 
-  Becoming a revenant is extremely expensive, but you'll be an unstopable killing machine during the short duration of your possesion. Amass lots of WP before using it, as activating this skill is already costly on its own.
+  Стать ревенантом крайне дорого, но вы будете неостановимой машиной убийства в течение короткой длительности вашего вселения. Накапливайте много WP перед использованием, так как активация этого навыка сама по себе дорога.
 
-  Your end goal should always be to use your other skills to amass power to become a revenant.
+  Ваша конечная цель всегда должна состоять в том, чтобы использовать другие навыки для накопления силы, чтобы стать ревенантом.
 
-
-  [textlink="Back to Wraith Evolutions" link="Wraiths"]
+  [textlink="Назад к Эволюциям Призрака" link="Wraith"]
 </Document>

@@ -37,6 +37,7 @@ namespace Content.Shared.PDA
             ItemSlotsSystem.AddItemSlot(uid, PdaComponent.PdaIdSlotId, pda.IdSlot);
             ItemSlotsSystem.AddItemSlot(uid, PdaComponent.PdaPenSlotId, pda.PenSlot);
             ItemSlotsSystem.AddItemSlot(uid, PdaComponent.PdaPaiSlotId, pda.PaiSlot);
+            ItemSlotsSystem.AddItemSlot(uid, PdaComponent.PdaPaperSlotId, pda.PaperSlot); // Arcane
 
             UpdatePdaAppearance(uid, pda);
         }
@@ -46,6 +47,7 @@ namespace Content.Shared.PDA
             ItemSlotsSystem.RemoveItemSlot(uid, pda.IdSlot);
             ItemSlotsSystem.RemoveItemSlot(uid, pda.PenSlot);
             ItemSlotsSystem.RemoveItemSlot(uid, pda.PaiSlot);
+            ItemSlotsSystem.RemoveItemSlot(uid, pda.PaperSlot); // Arcane
         }
 
         protected virtual void OnItemInserted(EntityUid uid, PdaComponent pda, EntInsertedIntoContainerMessage args)
@@ -55,7 +57,10 @@ namespace Content.Shared.PDA
             //goob addition for pen
             if (args.Container.ID == PdaComponent.PdaPenSlotId)
                 pda.ContainedPen = args.Entity;
-
+            // Arcane-Start
+            if (args.Container.ID == PdaComponent.PdaPaperSlotId)
+                pda.ContainedPaper = args.Entity;
+            // Arcane-End
             UpdatePdaAppearance(uid, pda);
         }
 
@@ -66,7 +71,10 @@ namespace Content.Shared.PDA
             //goob addition for pen
             if (args.Container.ID == pda.PenSlot.ID)
                 pda.ContainedPen = null;
-
+            // Arcane-Start
+            if (args.Container.ID == pda.PaperSlot.ID)
+                pda.ContainedPaper = null;
+            // Arcane-End
             UpdatePdaAppearance(uid, pda);
         }
 
@@ -82,6 +90,7 @@ namespace Content.Shared.PDA
             Appearance.SetData(uid, PdaVisuals.ScreenState, GetScreenState(uid)); // Orion
             //goob addition for pen
             Appearance.SetData(uid, PdaVisuals.PenInserted, pda.ContainedPen != null);
+            Appearance.SetData(uid, PdaVisuals.PaperInserted, pda.ContainedPaper != null); // Arcane
         }
 
         // Orion-Start
