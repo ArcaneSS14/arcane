@@ -4643,3 +4643,20 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/32e80a38-d0b2-42aa-bef5-c47d440d37eb
+- author: bzzzbzzbz
+  changes:
+    - type: Add
+      message: Добавлены новые снеки в Ниппон-тан (данго, тайяки, печенье, такояки).
+  id: 323
+  time: '2026-11-17T15:31:40.0000000+00:00'
+  prNumber: 467
+  url: https://github.com/ArcaneSS14/arcane/pull/467
+  media:
+    - >-
+      https://github.com/user-attachments/assets/27f837be-d2b9-4f81-bce5-e04aba381601
+    - >-
+      https://github.com/user-attachments/assets/25aa5558-d2fd-4200-9580-f7734a25925b
+    - >-
+      https://github.com/user-attachments/assets/3a8b51f5-1bb8-4065-9b78-91b5c6818c29
+    - >-
+      https://github.com/user-attachments/assets/a63f0fcc-2074-475b-9bc8-dbe65b743482
