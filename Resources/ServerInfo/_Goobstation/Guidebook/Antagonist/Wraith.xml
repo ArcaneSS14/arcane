@@ -1,106 +1,105 @@
 <Document>
-  # Wraith
+  # Фантом
   <Box>
     <GuideEntityEmbed Entity="MobWraith" Caption=""/>
   </Box>
-  Where most other antagonist roles exist to make you afraid of some maniac with a fire extinguisher coming to get you,
-  the Wraith exists to make you afraid of the station itself.
+  Тогда как большинство других антагонистов существуют, чтобы заставить вас бояться какого-то маньяка с огнетушителем, идущего за вами,
+  фантом существует, чтобы заставить вас бояться самой станции.
 
-  Given enough time and corpses (and given that they almost always appear with other antagonists, there will be corpses), they can progress from an inconvenience to a terrifying juggernaut of murder.
+  При достаточном времени и трупах (а учитывая, что они почти всегда появляются с другими антагонистами, трупы будут), они могут прогрессировать от неудобства до ужасающего джаггернаута убийства.
 
-  They have their downsides, though, and a clever chef with some salt can be far more dangerous to a wraith than an army of supercops armed to the teeth.
+  Однако у них есть свои недостатки, и умный повар с солью может быть гораздо опаснее для фантома, чем армия суперкопов, вооружённых до зубов.
 
-  ## So I've been reborn as a Wraith, now what?
+  ## Итак, я переродился как Фантом, что теперь?
 
-  First and foremost, wraiths are ghosts. They cannot be seen by the living unless manifested, they can hear everything on the station, they can talk to and see normal ghosts, fly through walls, all of it.
-  They can use their powers while incorporeal as well, and are effectively invulnerable in this state.
+  Прежде всего, фантомы — это призраки. Их не могут видеть живые, если они не проявились, они слышат всё на станции, могут говорить с обычными призраками и видеть их, летать сквозь стены — всё это.
+  Они также могут использовать свои силы, будучи бесплотными, и фактически неуязвимы в этом состоянии.
 
-  When wraiths use the Haunt ability, they manifest in a physical form for about minute, able to be injured and even killed.
+  Когда фантомы используют способность Явление, они материализуются в физической форме примерно на минуту, способные быть ранеными и даже убитыми.
 
-  If killed while manifested, though, a wraith isn't necessarily dead. Wraiths can survive being banished from physical form once - the second time kills them for good.
-  Moreover, there's strings attached: when banished, they lose all of their built-up WP and, far more cripplingly, any WP regeneration bonuses from Absorb Corpse. The consolation prize is that Absorb Corpse's cooldown is reset as well.
+  Однако, если их убьют во время проявления, фантом не обязательно мёртв. Фантомы могут пережить изгнание из физической формы один раз — второй раз убивает их окончательно.
+  Более того, есть условия: при изгнании они теряют все накопленные WP и, что гораздо более калечаще, любые бонусы регенерации WP от Поглощения Трупа. Утешительный приз — перезарядка Поглощения Трупа также сбрасывается.
 
-  Wraiths can also move items by pulling them around.
+  Фантомы также могут перемещать предметы, перетаскивая их.
 
-  ## Wraith Points
+  ## Очки Фантома
 
-  Wraith abilities work off the creatively named Wraith Points, or WP, a resource that passively increases over time. The rate of regeneration can be permanently increased by absorbing corpses, or temporarily increased by using Haunt near a crowd or possessing a Revenant.
-  There's no upper limit to banked points or regeneration rate, but banishment resets both.
+  Способности фантома работают на творчески названных Очках Фантома, или WP, ресурсе, который пассивно увеличивается со временем. Скорость регенерации может быть постоянно увеличена поглощением трупов или временно увеличена использованием Явления рядом с толпой или вселением в Ревенанта.
+  Нет верхнего предела для накопленных очков или скорости регенерации, но изгнание сбрасывает оба.
 
-  ### Ok, that's good and all, but how do I work this thing?
+  ### Окей, это хорошо и всё такое, но как мне работать с этой штукой?
 
-  At the beginning, you are fairly weak. Not necessarily in the literal sense, but without WP (Wraith Points!),
-  you are incapable of using most of your skills to cause actual harm. Your two most important abilities are:
+  В начале вы довольно слабы. Не обязательно в буквальном смысле, но без WP (Очков Фантома!)
+  вы неспособны использовать большинство своих навыков, чтобы причинить реальный вред. Ваши две самые важные способности:
 
-  ### Haunt
+  ### Явление
 
-  - Makes you corporeal, allowing others to see you. While this does leave you vulnerable to being attacked, it also increases the rate at which you gain WP based on the number of witnesses to your spooky presence.
-  - Some actions may only be used while corporeal, so this is your way of doing that.
+  - Делает вас материальным, позволяя другим видеть вас. Хотя это оставляет вас уязвимым для атак, это также увеличивает скорость, с которой вы получаете WP, в зависимости от количества свидетелей вашего жуткого присутствия.
+  - Некоторые действия можно использовать только будучи материальным, так что это ваш способ делать это.
 
-  ### Absorb Corpse
+  ### Поглощение трупа
 
-  - Consumes a corpse (so long as they aren't rotting), giving you some extra WP regeneration permanently, as well as a nice chunk of WP in the process.
-  - Once this action is used, it will rot the target and create some nasty black smoke, so it isn't exactly subtle.
-  - Be warned! If you attempt to absorb a corpse that has at least 25 units of Formaldehyde inside it, while the chemical will be removed in the process, you will be left severely harmed! Avoid targetting corpses inside the morgue that may have been injected with this embalming chemical.
+  - Поглощает труп (при условии, что он не гниёт), давая вам дополнительную регенерацию WP навсегда, а также приличный кусок WP в процессе.
+  - После использования этого действия цель сгниёт и создаст неприятный чёрный дым, так что это не совсем незаметно.
+  - Имейте в виду! Если вы попытаетесь поглотить труп, содержащий не менее 25 единиц Формальдегида, хотя химикат будет удалён в процессе, вы останетесь серьёзно ранены! Избегайте нацеливания на трупы в морге, которым могли ввести этот бальзамирующий химикат.
 
-  These are your bread and butter. Once you absorb enough corpses, you will be allowed to...
+  Это ваш хлеб с маслом. Как только вы поглотите достаточно трупов, вам будет позволено...
 
-  ## Evolve
+  ## Эволюционировать
 
-  Past the basic wraith form, three unique paths are available in the form of an ability in its original power set. Each has their own ability set granted on top of the base wraith's, allowing for different styles of gameplay. The different forms also have their own weaknesses to go along with their individual strengths.
+  Помимо базовой формы фантома, доступны три уникальных пути в форме способности в его исходном наборе сил. Каждый имеет свой собственный набор способностей, предоставляемый поверх базового фантома, позволяя различные стили игры. Разные формы также имеют свои собственные слабости вместе с их индивидуальными сильными сторонами.
 
-  ### Be careful around these...
-    [color=red]Salt![/color]
-  - If you walk over salt, you will lose [color=red]all of your skills, and be made corporeal in the process against your will.[/color] This usually is a death sentence for your average Wraith, so always keep an eye out for any lines of salt or ore rocks lying around!
-  - Salt can be hidden under objects, or even inside doorways.
+  ### Будьте осторожны с этими...
+    [color=red]Соль![/color]
+  - Если вы пройдёте по соли, вы потеряете [color=red]все свои навыки и станете материальным в процессе против своей воли.[/color] Обычно это смертный приговор для среднего Фантома, так что всегда следите за любыми линиями соли или рудными камнями, валяющимися вокруг!
+  - Соль можно спрятать под объектами или даже в дверных проёмах.
 
-    [color=red]That pesky chaplain![/color]
-  - The chaplain is immune to most of your actions. In some cases, attempting to interact with them may even end up harming you, instead!
-  - However, the chaplain is not immortal. You can still find ways to kill him indirectly. His corpse will be quite delicious, I promise you that...
+    [color=red]Этот надоедливый священник![/color]
+  - Священник невосприимчив к большинству ваших действий. В некоторых случаях попытка взаимодействия с ним может даже навредить вам вместо этого!
+  - Однако священник не бессмертен. Вы всё ещё можете найти способы убить его косвенно. Его труп будет весьма вкусным, обещаю вам это...
 
-  ## Fighting a Wraith
+  ## Борьба с Фантомом
 
 
-  The Wraith may seem powerful at first, but once you know their weakness, it is quite easy to deal with them.
+  Фантом может показаться мощным поначалу, но как только вы узнаете его слабость, с ним довольно легко справиться.
 
-  - Use salt! [bold]You can make salt lines with salt shakers and salt packets[/bold]! Leave salt spread all over areas of interest for the Wraith.
-  - Get rid of corpses! Without corpses to absorb, the Wraith cannot evolve, which will significantly decrease the amount of harm it can cause. Gib corpses, recycle them, space them. Anything works, so long as there is nothing left to absorb.
-  - Formaldehyde! It is a chemical used to prevent rotting in corpses. It can be bought in cargo or easily synthesized in the Chemistry lab. Injecting a corpse with more than 25 units of Formaldehyde will cause the body to be tainted if the Wraith ever tries to absorb it, hurting them in the process.
-  - Spirit Candles. Although rare, they can be used to reveal wraith in a 12x12 tile area. [bold]If you activate them once Wraith appears, you can make them corporeal![/bold]. Craft one by placing a candle on a skull.
+  - Используйте соль! [bold]Вы можете создавать соляные линии с помощью солонок и пакетиков соли[/bold]! Оставляйте соль разбросанной по всем интересным областям для Фантома.
+  - Избавляйтесь от трупов! Без трупов для поглощения Фантом не может эволюционировать, что значительно уменьшит количество вреда, которое он может причинить. Гиббите трупы, перерабатывайте их, выбрасывайте в космос. Что угодно работает, пока не останется ничего для поглощения.
+  - Формальдегид! Это химикат, используемый для предотвращения гниения трупов. Его можно купить в карго или легко синтезировать в химической лаборатории. Инъекция трупа более 25 единиц Формальдегида испортит тело, если Фантом когда-либо попытается его поглотить, ранив его в процессе.
+  - Свечи духов. Хотя они редки, их можно использовать, чтобы раскрыть фантома в области 12x12 плиток. [bold]Если вы активируете их, когда Фантом появляется, вы можете сделать его материальным![/bold]. Создайте одну, поместив свечу на череп.
 
-  ## Plaguebringer
+  ## Путь чумной крысы
 
-  [textlink="Learn about the Plaguebringer." link="Plaguebringer"]
+  [textlink="Узнайте о Пути чумной крысы." link="Plaguebringer"]
 
-  ## Harbinger of the Void
+  ## Предвестник Пустоты
 
-  [textlink="Learn about the Harbinger of the Void." link="Harbinger"]
+  [textlink="Узнайте о Предвестнике Пустоты." link="Harbinger"]
 
-  ## Trickster
+  ## Трикстер
 
-  [textlink="Learn about the Trickster." link="Trickster"]
+  [textlink="Узнайте о Трикстере." link="Trickster"]
 
-  # Being the Ghost with the Most (Evil)
+  # Быть Фантомом с Самым (Злым)
 
-  ## Making the Most of Base Abilities
+  ## Максимальное использование базовых способностей
 
-  - You can't use Decay on a Cyborg to remove its laws, nor can you use it on a cyborg frame to make the borg it's built from have no laws.
-    With Decay you are able to emag stuff without the usual risk of being seen by others, and that can be extremely helpful for setting up traps and ambushes.
-  - Haunt can give you a ton of WP when used in a large crowd, but a large crowd is also in prime position to wreck you when you're at your most vulnerable.
-  - Whenever someone has a gun drawn, use Command to knock them down, immediately use Possess Object on the gun, and shoot them with it.
-  - Is the chaplain pissing you off? Command and Mass Command may not work on them when you click them directly, but if they're stunned, standing still, or distracted by animated objects, targeting the floor under them works just as well.
-  - Spook may seem harmless, but some cunning applications can save your ass or cause mass chaos in a clutch.
-  - Try using Possess Object on the fire extinguisher in Toxins Storage, bashing open a plasma tank. Then, use Spook to flip lights and cause a fire.
-  - Has Security recently confiscated some guns/weapons? Pop open the contraband safe with the Open doors, lockers, crates option from Spook.
+  - Вы не можете использовать Разложение на Киборге, чтобы удалить его законы, и не можете использовать его на каркасе киборга, чтобы у борга, построенного из него, не было законов.
+    С Разложением вы можете емагать вещи без обычного риска быть замеченным другими, и это может быть чрезвычайно полезно для установки ловушек и засад.
+  - Явление может дать вам тонну WP при использовании в большой толпе, но большая толпа также в отличной позиции, чтобы уничтожить вас, когда вы наиболее уязвимы.
+  - Всякий раз, когда у кого-то есть оружие наизготовку, используйте Приказ, чтобы сбить его с ног, немедленно используйте Вселение в объект на оружии и стреляйте в него из него.
+  - Священник вас бесит? Приказ и Массовый приказ могут не работать на нём при прямом клике, но если он оглушён, стоит на месте или отвлечён анимированными объектами, нацеливание на пол под ним работает так же хорошо.
+  - Испуг может показаться безвредным, но некоторые хитрые применения могут спасти вашу задницу или вызвать массовый хаос в критический момент.
+  - Попробуйте использовать Вселение в объект на огнетушителе в Хранилище Токсинов, разбив плазменный баллон. Затем используйте Испуг, чтобы перевернуть лампы и вызвать пожар.
+  - Служба Безопасности недавно конфисковала какое-то оружие? Вскройте контрабандный сейф с помощью опции «Открыть двери, шкафчики, ящики» из Испуга.
 
-  ## In General
-  [bold]You are not invincible[/bold], no matter how much it may seem like it sometimes. It only takes one twitchy crew member with a weapon and a salt shaker to ruin you.
+  ## В целом
+  [bold]Вы не неуязвимы[/bold], как бы это иногда ни казалось. Достаточно одного нервного члена экипажа с оружием и солонкой, чтобы уничтожить вас.
 
-  Wraiths don't appear alone, so try to lay low for a little while and look for the other antagonists. Scavenge the corpses they'll inevitably leave in their wake for more WP regeneration, or try to strike deals with them with Whisper. A wraith with someone to feed it a steady stream of corpses can get very, very scary, but be warned that some antagonists might not trust you to not murder them and raise the alarm on you.
+  Фантомы не появляются в одиночку, так что постарайтесь залечь на дно на некоторое время и поищите других антагонистов. Собирайте трупы, которые они неизбежно оставят после себя, для большей регенерации WP, или попробуйте заключить с ними сделки с помощью Шёпота. Фантом с кем-то, кто кормит его постоянным потоком трупов, может стать очень, очень страшным, но имейте в виду, что некоторые антагонисты могут не доверять вам не убивать их и поднять тревогу по вам.
 
-  Plan for things going terribly. You may not want to absorb every corpse you find just in case you get banished, but you may not want to leave any corpses undrained either in case the crew gets wise and starts spacing/gibbing/reclaiming corpses immediately.
+  Планируйте, что всё пойдёт ужасно. Вы можете не захотеть поглощать каждый труп, который найдёте, на случай, если вас изгонят, но вы также можете не захотеть оставлять какие-либо трупы неосушенными, на случай, если экипаж поумнеет и начнёт немедленно выбрасывать/гиббить/забирать трупы.
 
-You're not that great at outright killing people without isolating someone or being lucky. Be a scavenger; try to make a bad situation worse for someone already pretty fucked up rather than try to kill a healthy person. The crew will amaze you with how many ways they can kill themselves.
-
+Вы не так хороши в прямом убийстве людей без изоляции кого-то или удачи. Будьте падальщиком; постарайтесь сделать плохую ситуацию хуже для кого-то уже довольно хреново, чем пытаться убить здорового человека. Экипаж поразит вас тем, сколько способов они могут убить себя.
 
 </Document>

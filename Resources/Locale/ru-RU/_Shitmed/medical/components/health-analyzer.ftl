@@ -1,14 +1,16 @@
-condition-body-trauma-BoneDamage-Normal = • У { $woundable } есть небольшие повреждения костей.
-condition-body-trauma-BoneDamage-Damaged = • У { $woundable } есть повреждения костей.
-condition-body-trauma-BoneDamage-Cracked = • Кость { $woundable } почти треснула...
-condition-body-trauma-BoneDamage-Broken = • Кость { $woundable } сломана!
-condition-body-trauma-OrganDamage = • У { $woundable } есть повреждения органов.
-condition-body-trauma-VeinsDamage = • У { $woundable } есть повреждения вен.
-condition-body-trauma-NerveDamage = • У { $woundable } есть повреждения нервов.
-condition-body-trauma-Dismemberment = • Удалён { $targetSymmetry }{ $targetType }...
-condition-body-pain-decreased = • Нервы { $woundable } онемели.
-condition-body-pain-increased = • Нервы { $woundable } стали необычно чувствительными.
-condition-body-unrevivable = • У { $entity } слабое здоровье. Они не выдерживают разряд дефибриллятора.
+# Arcane-Edit-Start
+condition-body-trauma-BoneDamage-Normal = • { CAPITALIZE($woundable) }: небольшие повреждения костей.
+condition-body-trauma-BoneDamage-Damaged = • { CAPITALIZE($woundable) }: повреждения костей.
+condition-body-trauma-BoneDamage-Cracked = • { CAPITALIZE($woundable) }: кость почти треснула...
+condition-body-trauma-BoneDamage-Broken = • { CAPITALIZE($woundable) }: кость сломана!
+condition-body-trauma-OrganDamage = • { CAPITALIZE($woundable) }: повреждения органов.
+condition-body-trauma-VeinsDamage = • { CAPITALIZE($woundable) }: повреждения вен.
+condition-body-trauma-NerveDamage = • { CAPITALIZE($woundable) }: повреждения нервов.
+condition-body-trauma-Dismemberment = • { $part } — отсутствует.
+condition-body-pain-decreased = • { CAPITALIZE($woundable) }: нервы онемели.
+condition-body-pain-increased = • { CAPITALIZE($woundable) }: нервы стали необычно чувствительными.
+condition-body-unrevivable = • { $entity }: слабое здоровье, разряд дефибриллятора не выдержит.
+# Arcane-Edit-End
 condition-body-bleeding = • У { $entity } кровотечение.
 condition-organ-damage-Normal = • { $organ } в основном в порядке.
 condition-organ-damage-Damaged = • { $organ } повреждён.

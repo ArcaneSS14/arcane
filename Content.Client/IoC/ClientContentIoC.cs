@@ -70,6 +70,7 @@ namespace Content.Client.IoC
             collection.Register<DiscordRoleManager>(); // Arcane
             collection.Register<ISharedDiscordRoleManager, DiscordRoleManager>(); // Arcane
             collection.Register<ClientsidePlaytimeTrackingManager>();
+            collection.Register<Content.Client._Orion.Serialization.ComponentCopyWarmupManager>(); // Arcane
         }
     }
 }

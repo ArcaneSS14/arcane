@@ -35,6 +35,12 @@
       zapHeal:
         types:
           Asphyxiation: -40
+    # Arcane-Start
+    - type: SurgeryDefibrillator
+    - type: SurgeryTool
+      startSound:
+        path: /Audio/Items/Defib/defib_charge.ogg
+    # Arcane-End
     - type: DoAfter
     - type: UseDelay
     - type: StaticPrice

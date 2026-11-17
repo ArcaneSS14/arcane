@@ -13,6 +13,32 @@ ent-ClothingUniformJumpskirtMimeSexy = сексуальная юбка-комб�
     .desc = ...
 ent-ClothingUniformPivozavr = футболка пивозавра
     .desc = Древняя рептилия, которая любит пиво.
+ent-ClothingUniformJumpsuitOfficer = форма офицера
+    .desc = Строгая форма офицера. Уважайте закон!
+
+ent-ClothingUniformJumpsuitTeacher = форма учителя
+    .desc = Строгая форма учителя. Можно расстегнуть.
+
+ent-ClothingUniformJumpsuitTeacherOpen = форма учителя (расстёгнутая)
+    .desc = Строгая форма учителя, расстёгнутая.
+
+ent-ClothingUniformJumpskirtTeacher = юбка учительницы
+    .desc = Строгая юбка учительницы.
+
+ent-ClothingUniformJumpsuitNurse = платье медсестры
+    .desc = Аккуратное платье медсестры. Для настоящих ангелов милосердия.
+
+ent-ClothingUniformJumpsuitPupil = форма ученицы
+    .desc = Аккуратная школьная форма для прилежной ученицы.
+
+ent-ClothingUniformJumpsuitRabbit = костюм кролика
+    .desc = Пушистый костюм кролика. Прыг-прыг!
+
+ent-ClothingUniformJumpskirtSexyMaid = платье горничной
+    .desc = Смелое и откровенное платье горничной. Кто-то сегодня будет наказан...
+
+ent-ClothingUniformJumpsuitPoliceman = костюм полицейского
+    .desc = Строгая полицейская форма. Стоять, негодяй!
 # Sponsor
 ent-ClothingUniformBartender = униформа бармена
     .desc = Униформа бармена.

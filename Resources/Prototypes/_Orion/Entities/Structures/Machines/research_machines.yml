@@ -128,4 +128,7 @@
   # Arcane-start
   - type: PeriodicAnomalySpawner
     chance: 0
+  - type: SurgeryResearchServer
+    faction: InteQ
+    stationCrew: false
   # Arcane-end

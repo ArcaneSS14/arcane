@@ -39,6 +39,7 @@ public sealed class StationPowerTests
         "Snowball",
         "Exo",
         "WonderBox", // Arcane
+		"WonderBoxLegacy",       // Arcane
     ];
 
     [Explicit]

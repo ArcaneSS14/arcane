@@ -180,6 +180,13 @@ public sealed partial class FancyTechnologyInfoPanel : Control
             hasRecipeUnlocks = true; // Orion
         }
 
+        // Arcane-Start
+        foreach (var generic in proto.GenericUnlocks)
+        {
+            UnlocksContainer.AddChild(new MiniRecipeCardControl(proto, Loc.GetString(generic.UnlockDescription), generic.Icon ?? proto.Icon, _proto, sprite));
+        }
+        // Arcane-End
+
         // Orion-Start
         var hasGenericUnlocks = proto.GenericUnlocks.Count > 0;
         var hasVisibleUnlocks = hasRecipeUnlocks || hasGenericUnlocks;

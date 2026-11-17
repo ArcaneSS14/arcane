@@ -1,4 +1,8 @@
-surgery-popup-step-SurgeryStepRemoveCorticalBorer = {$user} удаляет существо из {$part} {$target}!
+# Arcane-Edit-Start
+surgery-popup-step-SurgeryStepRemoveCorticalBorer = { $user } извлекает кортикального паразита из тела пациента ({ $target }, { $part }).
+# Arcane-Edit-End
 
-surgery-popup-step-SurgeryStepPacify = {$user} усмиряет {$target}!
-surgery-popup-step-SurgeryStepRemovePacification = {$user} снимает усмирение у {$target}!
+# Arcane-Edit-Start
+surgery-popup-step-SurgeryStepPacify = { $user } проводит усмиряющее вмешательство в мозг пациента ({ $target }).
+surgery-popup-step-SurgeryStepRemovePacification = { $user } устраняет последствия усмиряющего вмешательства в мозг пациента ({ $target }).
+# Arcane-Edit-End

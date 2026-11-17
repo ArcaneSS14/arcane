@@ -5,6 +5,7 @@ using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
 using Content.Shared._Arcane.OfferItem;
+using Content.Shared._Arcane.Surgery.Tools;
 using Content.Shared._Shitmed.Medical.Surgery.Steps;
 using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
 using Content.Shared._Shitmed.Medical.Surgery.Tools;
@@ -14,6 +15,7 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Kitchen.Components;
@@ -21,6 +23,9 @@ using Content.Shared.Medical.Healing;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
+using Content.Shared.Repairable;
+using Content.Shared.Tools.Systems;
+using Content.Shared.Wires;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
@@ -32,19 +37,22 @@ namespace Content.Shared._Arcane.Surgery;
 /// <summary>
 /// Performs surgery steps by clicking a lying patient with a tool, on the body part the surgeon is targeting.
 /// </summary>
-public abstract class SharedSurgeryToolSystem : EntitySystem
+public abstract partial class SharedSurgeryToolSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedSurgerySystem _surgery = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private RoboticSurgerySystem _roboticSurgery = default!;
+    [Dependency] private SharedSurgerySystem _surgery = default!;
+    [Dependency] private SurgeryToolExamineSystem _toolExamine = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
 
     private bool _canOperateOnSelf;
 
@@ -52,35 +60,41 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SurgeryTargetComponent, InteractUsingEvent>(OnInteractUsing);
-        // An empty-hand click would otherwise unbuckle the patient from the operating table.
-        SubscribeLocalEvent<SurgeryTargetComponent, InteractHandEvent>(OnInteractHand, before: [typeof(SharedBuckleSystem)]);
-        SubscribeAllEvent<SurgeryToolOptionPickedEvent>(OnOptionPicked);
-        SubscribeLocalEvent<SurgeryPlanComponent, SurgeryStepEvent>(OnPlanStep);
+        SubscribeLocalEvent<SurgeryAnalyzerComponent, SurgeryToolExaminedEvent>(_toolExamine.OnExamined);
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs => subs.Event<SurgeryPlanBuiMsg>(OnPlanMessage));
         Subs.CVar(_config, SurgeryCVars.CanOperateOnSelf, value => _canOperateOnSelf = value, true);
     }
 
+    // An unlocked synthetic's panel takes the screwdriver first, so its power cell can still be swapped while it lies down.
+    // A welder closes an open shell before it repairs the synthetic.
+    [SubscribeLocalEvent(after: [typeof(SharedWiresSystem)], before: [typeof(RepairableSystem)])]
     private void OnInteractUsing(Entity<SurgeryTargetComponent> ent, ref InteractUsingEvent args)
     {
         var user = args.User;
         var tool = args.Used;
+        // A scanner's click is its own scan, so it only performs a step planned in the menu and gives no hints.
+        var scanner = HasComp<SurgeryAnalyzerComponent>(tool);
+        // A defibrillator or a repairing welder keeps its own use on the patient, so it gives no surgery hints either.
+        var surgical = IsSurgicalTool(tool)
+            && !scanner
+            && !HasComp<SurgeryDefibrillatorComponent>(tool)
+            && !(TryComp(ent, out RepairableComponent? repairable) && _tool.HasQuality(tool, repairable.QualityNeeded));
         if (args.Handled
             || IsOffering(user)
             || IsButchering(ent, tool)
-            || !CanOperate(ent, user, IsSurgicalTool(tool))
+            || !CanOperate(ent, user, surgical)
             || !TryGetTargetPart(ent, user, out var part, out var missing))
             return;
 
         var options = GetPlannedOption(ent, part, missing, user, tool) is { } planned
             ? new List<SurgeryToolOption> { planned }
-            : GetToolOptions(ent, part, user, tool, missing);
+            : scanner ? new List<SurgeryToolOption>() : GetToolOptions(ent, part, user, tool, missing);
 
         // Surgery tools may have their own use on a patient, so a click with nothing to do is left to them.
         if (options.Count == 0)
         {
             // A held part would otherwise be fed to the patient, so a part meant for attaching never falls through.
-            if (TryComp(tool, out BodyPartComponent? held) && AcceptsHeldPart(ent, part, missing, held) is { } fits)
+            if (TryComp(tool, out BodyPartComponent? held) && AcceptsHeldPart(ent, part, user, missing, held) is { } fits)
             {
                 args.Handled = true;
                 if (_timing.IsFirstTimePredicted)
@@ -93,7 +107,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
                 return;
             }
 
-            if (IsSurgicalTool(tool) && _timing.IsFirstTimePredicted)
+            if (surgical && _timing.IsFirstTimePredicted)
                 _popup.PopupClient(GetHint(ent, part, user), ent, user);
             return;
         }
@@ -104,6 +118,8 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     }
 
     // Planned steps that need no tool, like taking an item out of a cavity, are done with an empty hand.
+    // An empty-hand click would otherwise unbuckle the patient from the operating table.
+    [SubscribeLocalEvent(before: [typeof(SharedBuckleSystem)])]
     private void OnInteractHand(Entity<SurgeryTargetComponent> ent, ref InteractHandEvent args)
     {
         if (args.Handled
@@ -118,6 +134,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             Perform(ent, part, args.User, new List<SurgeryToolOption> { planned });
     }
 
+    [EventSubscription]
     private void OnOptionPicked(SurgeryToolOptionPickedEvent msg, EntitySessionEventArgs args)
     {
         if (!_timing.IsFirstTimePredicted
@@ -142,7 +159,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             && !IsToolOption(body, part.Value, user, tool, option))
             return;
 
-        if (option.Target is { } targetSurgery && !_surgery.GetValidSurgeries(body, part.Value).Contains(targetSurgery))
+        if (option.Target is { } targetSurgery && !_surgery.GetValidSurgeries(body, part.Value, user).Contains(targetSurgery))
             option = option with { Target = null };
 
         DoOption(body, part.Value, user, option);
@@ -162,7 +179,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             return;
         }
 
-        if (_surgery.GetValidSurgeries(ent, part.Value).Contains(surgery))
+        if (_surgery.GetValidSurgeries(ent, part.Value, args.Actor).Contains(surgery))
             SetPlan(args.Actor, part, surgery);
     }
 
@@ -177,7 +194,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         (BodyPartType Type, BodyPartSymmetry Symmetry)? missing = null)
     {
         var options = new List<(EntityUid? Owner, SurgeryToolOption Option)>();
-        foreach (var surgeryId in _surgery.GetValidSurgeries(body, part))
+        foreach (var surgeryId in _surgery.GetValidSurgeries(body, part, user))
         {
             if (_surgery.GetSingleton(surgeryId) is not { } surgery
                 || missing is { } slot && !AttachesPart(surgery, slot.Type, slot.Symmetry)
@@ -303,6 +320,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
 
     // Tool-less steps take whatever is in hand and may start over once undone, so their plan ends with the surgery's
     // last step. Kept until it is done, as a refused, interrupted or ineffective step is reached again only through it.
+    [SubscribeLocalEvent]
     private void OnPlanStep(Entity<SurgeryPlanComponent> ent, ref SurgeryStepEvent args)
     {
         if (args.Complete
@@ -323,7 +341,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         if (!TryComp(user, out SurgeryPlanComponent? plan)
             || plan.Part != part
             || plan.Surgery is not { } planned
-            || !_surgery.GetValidSurgeries(body, part).Contains(planned)
+            || !_surgery.GetValidSurgeries(body, part, user).Contains(planned)
             || _surgery.GetSingleton(planned) is not { } surgery
             || missing is { } slot && !AttachesPart(surgery, slot.Type, slot.Symmetry)
             || GetNextStep(body, part, surgery, user, tool, fromPlan: true) is not { } next)
@@ -335,7 +353,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     // Checked against the owning surgery directly, since merged options may name any of the surgeries sharing the step.
     private bool IsToolOption(EntityUid body, EntityUid part, EntityUid user, EntityUid tool, SurgeryToolOption option)
     {
-        return _surgery.GetValidSurgeries(body, part).Contains(option.Surgery)
+        return _surgery.GetValidSurgeries(body, part, user).Contains(option.Surgery)
             && _surgery.GetSingleton(option.Surgery) is { } surgery
             && GetNextStep(body, part, surgery, user, tool) is { } next
             && next.OwnerId == option.Surgery
@@ -350,16 +368,16 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
             && _surgery.GetSingleton(planned) is { } surgery
             && GetNextStep(body, part, surgery, user) is { } next)
         {
-            if (GetToolName(next.StepEnt) is not { } tool)
+            if (GetToolName(next.StepEnt, part) is not { } tool)
             {
                 return Loc.GetString("surgery-tool-next-step-no-tool",
                     ("surgery", Name(surgery)),
-                    ("step", Name(next.StepEnt)));
+                    ("step", _roboticSurgery.GetStepName(next.StepEnt, part)));
             }
 
             return Loc.GetString("surgery-tool-next-step",
                 ("surgery", Name(surgery)),
-                ("step", Name(next.StepEnt)),
+                ("step", _roboticSurgery.GetStepName(next.StepEnt, part)),
                 ("tool", tool));
         }
 
@@ -401,7 +419,7 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         {
             if (anyOrder && _surgery.IsStepComplete(body, part, steps[i], next.Surgery)
                 || _surgery.GetSingleton(steps[i]) is not { } stepEnt
-                || tool is { } held && !CanPerformWith(next.Surgery, stepEnt, held, fromPlan))
+                || tool is { } held && !CanPerformWith(next.Surgery, stepEnt, part, held, fromPlan))
                 continue;
 
             return (next.Surgery.Owner, ownerId, steps[i], stepEnt);
@@ -410,16 +428,16 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         return null;
     }
 
-    private bool CanPerformWith(EntityUid surgery, EntityUid step, EntityUid tool, bool fromPlan)
+    private bool CanPerformWith(EntityUid surgery, EntityUid step, EntityUid part, EntityUid tool, bool fromPlan)
     {
-        return (AcceptsTool(step, tool) || fromPlan && !HasToolRequirement(step) && CanUseWithoutTool(tool))
+        return (AcceptsTool(step, part, tool) || fromPlan && !HasToolRequirement(step) && CanUseWithoutTool(tool))
             && FitsHeldItem(surgery, step, tool);
     }
 
     // Steps without a tool only run from the plan, otherwise any held item would start them.
-    private bool AcceptsTool(EntityUid step, EntityUid tool)
+    private bool AcceptsTool(EntityUid step, EntityUid part, EntityUid tool)
     {
-        if (!TryComp(step, out SurgeryStepComponent? comp) || comp.Tool is not { } tools)
+        if (_roboticSurgery.GetTool(step, part) is not { } tools)
             return false;
 
         foreach (var registry in tools.Values)
@@ -460,6 +478,9 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
                 && held.PartType == removed.Part
                 && (removed.Symmetry == null || held.Symmetry == removed.Symmetry);
         }
+
+        if (TryComp(step, out SurgeryDentalImplantStepComponent? dental) && !dental.Remove)
+            return HasComp<PillComponent>(tool);
 
         return true;
     }
@@ -537,9 +558,9 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
         return _surgery.GetSingleton(step) is { } stepEnt && HasComp<SurgeryRemovePartStepComponent>(stepEnt);
     }
 
-    public string? GetToolName(EntityUid step)
+    public string? GetToolName(EntityUid step, EntityUid part)
     {
-        if (!TryComp(step, out SurgeryStepComponent? comp) || comp.Tool is not { } tools)
+        if (_roboticSurgery.GetTool(step, part) is not { } tools)
             return null;
 
         foreach (var registry in tools.Values)
@@ -554,11 +575,12 @@ public abstract class SharedSurgeryToolSystem : EntitySystem
     // Null when no attach surgery on the part could take a part, otherwise whether one takes the held one.
     private bool? AcceptsHeldPart(EntityUid body,
         EntityUid part,
+        EntityUid user,
         (BodyPartType Type, BodyPartSymmetry Symmetry)? missing,
         BodyPartComponent held)
     {
         bool? accepts = null;
-        foreach (var surgeryId in _surgery.GetValidSurgeries(body, part))
+        foreach (var surgeryId in _surgery.GetValidSurgeries(body, part, user))
         {
             if (_surgery.GetSingleton(surgeryId) is not { } surgery
                 || !TryComp(surgery, out SurgeryPartRemovedConditionComponent? removed)

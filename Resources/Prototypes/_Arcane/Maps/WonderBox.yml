@@ -2,7 +2,7 @@
   id: WonderBox
   mapName: 'WonderBox Station'
   mapPath: /Maps/_Arcane/WonderBox.yml
-  minPlayers: 0
+  minPlayers: 40
   stations:
     WonderBoxStation:
       stationProto: StandardNanotrasenStation
@@ -24,55 +24,55 @@
             NanotrasenRepresentative: [ 1, 1 ]
             BlueshieldOfficer: [ 1, 1 ]
             # Service
-            Bartender: [ 4, 2 ]
-            Botanist: [ 4, 3 ]
-            Janitor: [ 5, 4 ]
-            Chef: [ 4, 2 ]
+            Bartender: [ 3, 3 ]
+            Botanist: [ 3, 3 ]
+            Janitor: [ 4, 4 ]
+            Chef: [ 3, 3 ]
             Chaplain: [ 1, 1 ]
-            Librarian: [ 3, 2 ]
-            ServiceWorker: [ 7, 5 ]
-            Reporter: [ 3, 2 ]
+            Librarian: [ 2, 2 ]
+            ServiceWorker: [ 6, 6 ]
+            Reporter: [ 2, 2 ]
             RadioHost: [ 1, 1 ]
-            Musician: [ 3, 3 ]
+            Musician: [ 2, 2 ]
             # Engineering
             ChiefEngineer: [ 1, 1 ]
-            StationEngineer: [ 10, 7 ]
-            AtmosphericTechnician: [ 4, 3 ]
+            StationEngineer: [ 7, 7 ]
+            AtmosphericTechnician: [ 3, 3 ]
             TechnicalAssistant: [ 5, 5 ]
             # Medical
             ChiefMedicalOfficer: [ 1, 1 ]
-            MedicalDoctor: [ 7, 5 ]
-            Paramedic: [ 3, 2 ]
+            MedicalDoctor: [ 5, 5 ]
+            Paramedic: [ 2, 2 ]
             MedicalIntern: [ 4, 4 ]
             Chemist: [ 3, 3 ]
             Virologist: [ 2, 1 ]
             Psychologist: [ 1, 1 ]
             # Science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 8, 5 ]
-            Roboticist: [ 4, 3 ]
-            ResearchAssistant: [ 6, 5 ]
+            Scientist: [ 5, 5 ]
+            Roboticist: [ 3, 3 ]
+            ResearchAssistant: [ 4, 4 ]
             # Security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             Detective: [ 1, 1 ]
-            Brigmedic: [ 2, 1 ]
-            SecurityOfficer: [ 6, 4 ]
-            SecurityCadet: [ 7, 4 ]
-            Lawyer: [ 3, 3 ]
+            Brigmedic: [ 1, 1 ]
+            SecurityOfficer: [ 6, 6 ]
+            SecurityCadet: [ 4, 4 ]
+            Lawyer: [ 2, 2 ]
             IAA: [ 1, 1 ]
             # Supply
             Quartermaster: [ 1, 1 ]
-            CargoTechnician: [ 7, 5 ]
-            SalvageSpecialist: [ 4, 3 ]
-            ShaftMiner: [ 4, 3 ]
+            CargoTechnician: [ 6, 6 ]
+            SalvageSpecialist: [ 3, 3 ]
+            ShaftMiner: [ 3, 3 ]
             # Civilian
-            Clown: [ 2, 1 ]
+            Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Passenger: [ -1, -1 ]
             # Silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 5, 2 ]
+            Borg: [ 4, 4 ]
 
         # For Goob blob
         - type: StationBlobConfig

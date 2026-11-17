@@ -36,4 +36,4 @@ injector-component-drawing-user = Вы начинаете набирать шп�
 injector-component-injecting-user = Вы начинаете вводить содержимое шприца.
 injector-component-drawing-target = { CAPITALIZE($user) } начинает набирать шприц из вас!
 injector-component-injecting-target = { CAPITALIZE($user) } начинает вводить содержимое шприца в вас!
-injector-component-deny-user = Экзоскелет слишком тонкий!
+injector-component-deny-user = Экзоскелет слишком толстый!

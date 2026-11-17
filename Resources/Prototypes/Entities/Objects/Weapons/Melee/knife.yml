@@ -49,6 +49,10 @@
       path: /Audio/Items/Culinary/chop.ogg
   - type: Scalpel # Shitmed
     speed: 0.65
+  # Arcane-Start
+  - type: SurgeryScrewdriver
+    speed: 0.5
+  # Arcane-End
   - type: CosmicTransmutable # DeltaV
     transmutesTo: SwordCosmicCult
     requiredGlyphType: CosmicGlyphBlades

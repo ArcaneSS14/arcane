@@ -14,3 +14,7 @@
       map: ["unlit"]
   - type: Machine
     board: StasisOperatingTableCircuitboard
+  # Arcane-Start
+  - type: SurgerySurface
+    speedModifier: 1
+  # Arcane-End

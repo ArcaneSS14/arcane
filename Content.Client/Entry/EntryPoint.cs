@@ -78,6 +78,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly DebugMonitorManager _debugMonitorManager = default!;
         [Dependency] private readonly TitleWindowManager _titleWindowManager = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+        [Dependency] private readonly _Orion.Serialization.ComponentCopyWarmupManager _componentCopyWarmup = default!; // Arcane
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
 
         public override void PreInit()
@@ -180,6 +181,7 @@ namespace Content.Client.Entry
             _userInterfaceManager.SetActiveTheme(_configManager.GetCVar(CVars.InterfaceTheme));
             _documentParsingManager.Initialize();
             _titleWindowManager.Initialize();
+            _componentCopyWarmup.Start(); // Arcane
 
             _baseClient.RunLevelChanged += (_, args) =>
             {

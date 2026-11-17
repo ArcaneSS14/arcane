@@ -3,6 +3,7 @@
 using Content.Goobstation.Common.Surgery;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Humanoid;
+using Content.Shared.Body.Components;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Part;
@@ -11,6 +12,7 @@ using Content.Shared._Shitmed.BodyEffects;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
@@ -231,10 +233,10 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
-        if (ent.Comp.Tool == null)
+        if (_roboticSurgery.GetTool(ent.AsNullable(), args.Part) is not { } tools) // Arcane-Edit
             return;
 
-        foreach (var reg in ent.Comp.Tool.Values)
+        foreach (var reg in tools.Values) // Arcane-Edit
         {
             if (GetSurgeryComp(args.Tool, reg.Component) is {} data)
             {
@@ -272,7 +274,7 @@ public abstract partial class SharedSurgerySystem
         // Arcane-Edit-Start
         var healableSeverity = GetTendableDamage(args.Part, ent.Comp.MainGroup);
 
-        if (healableSeverity <= 0)
+        if (!HasTendableDamage(args.Part, ent.Comp.MainGroup, ent.Comp.AdditionalGroups))
         {
             // Do not keep a repeatable treatment step alive when no healable progress remains.
             args.Complete = true;
@@ -292,20 +294,84 @@ public abstract partial class SharedSurgerySystem
         foreach (var type in group.DamageTypes)
         {
             if (adjustedDamage.DamageDict.TryGetValue(type, out var current))
-                adjustedDamage.DamageDict[type] = current - bonus;
+                adjustedDamage.DamageDict[type] = current - bonus / group.DamageTypes.Count; // Arcane-Edit
         }
 
-        var ev = new SurgeryStepDamageEvent(args.User, args.Body, args.Part, args.Surgery, adjustedDamage, 0.5f);
+        // Arcane-Start
+        foreach (var additionalGroup in ent.Comp.AdditionalGroups)
+        {
+            var additionalTypes = _prototypes.Index(additionalGroup).DamageTypes;
+            var additionalBonus = ent.Comp.HealMultiplier * GetTendableDamage(args.Part, additionalGroup);
+            if (_mobState.IsDead(args.Body))
+                additionalBonus *= 0.2;
+
+            foreach (var type in additionalTypes)
+            {
+                if (adjustedDamage.DamageDict.TryGetValue(type, out var current))
+                    adjustedDamage.DamageDict[type] = current - additionalBonus / additionalTypes.Count;
+            }
+        }
+
+        // As in tgstation the whole group amount is healed, so it goes to the damage types the part actually has.
+        if (TryComp<DamageableComponent>(args.Part, out var tendedDamage))
+        {
+            foreach (var tended in ent.Comp.AdditionalGroups.Prepend(ent.Comp.MainGroup))
+            {
+                var types = _prototypes.Index(tended).DamageTypes;
+                var heal = FixedPoint2.Zero;
+                var present = FixedPoint2.Zero;
+                foreach (var type in types)
+                {
+                    if (adjustedDamage.DamageDict.TryGetValue(type, out var amount))
+                        heal += amount;
+                    if (tendedDamage.Damage.DamageDict.TryGetValue(type, out var damage) && damage > 0)
+                        present += damage;
+                }
+
+                if (present <= 0)
+                    continue;
+
+                foreach (var type in types)
+                {
+                    adjustedDamage.DamageDict[type] = tendedDamage.Damage.DamageDict.TryGetValue(type, out var damage) && damage > 0
+                        ? heal * damage / present
+                        : FixedPoint2.Zero;
+                }
+            }
+        }
+        // Arcane-End
+
+        var ev = new SurgeryStepDamageEvent(args.User, args.Body, args.Part, args.Surgery, adjustedDamage, 1f); // Arcane-Edit: 0.5f > 1f
         // Arcane-Start
         ev.IgnoreBlockers = true;
         _wounds.TryHaltAllBleeding(args.Part, force: true);
         // Arcane-End
         RaiseLocalEvent(args.Body, ref ev);
+        // Arcane-Start
+        // Explosion wounds outweigh their damage; once the server-side heal clears the damage, the rest closes with it.
+        if (_net.IsServer && TryComp<DamageableComponent>(args.Part, out var partDamage))
+        {
+            foreach (var tended in ent.Comp.AdditionalGroups.Prepend(ent.Comp.MainGroup))
+            {
+                var tendedGroup = _prototypes.Index(tended);
+                if (partDamage.Damage.TryGetDamageInGroup(tendedGroup, out var left) && left > 0)
+                    continue;
+
+                // The heal is split evenly between wounds and clamped per wound, so each one gets the whole leftover.
+                var leftover = _wounds.GetWoundableSeverityPoint(args.Part, damageGroup: tended, healable: true, ignoreBlockers: true);
+                if (leftover <= 0)
+                    continue;
+
+                var count = _wounds.GetWoundableWounds(args.Part).Count(wound => wound.Comp.DamageGroup == tended);
+                _wounds.TryHealWoundsOnWoundable(args.Part, leftover * count, out _, damageGroup: tendedGroup, ignoreMultipliers: true, ignoreBlockers: true);
+            }
+        }
+        // Arcane-End
     }
 
     private void OnTendWoundsCheck(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        if (GetTendableDamage(args.Part, ent.Comp.MainGroup) > 0) // Arcane-Edit
+        if (HasTendableDamage(args.Part, ent.Comp.MainGroup, ent.Comp.AdditionalGroups)) // Arcane-Edit
             args.Cancelled = true;
     }
 
@@ -663,6 +729,9 @@ public abstract partial class SharedSurgerySystem
 
             foreach (var organ in organs)
             {
+                if (HasComp<BrainComponent>(organ.Id))
+                    continue;
+
                 if (healAmount <= 0)
                     break;
 
@@ -738,8 +807,20 @@ public abstract partial class SharedSurgerySystem
             {
                 foreach (var trauma in traumas)
                 {
-                    if (trauma.Comp.TraumaTarget is { } organ)
-                        _trauma.RestoreOrganIntegrity(organ);
+                    // Arcane-Edit-Start
+//                    if (trauma.Comp.TraumaTarget is { } organ)
+//                        _trauma.RestoreOrganIntegrity(organ);
+                    // The brain comes back only partly healed: left at zero it could never die again, and neurosurgery heals the rest.
+                    if (trauma.Comp.TraumaTarget is { } organ
+                        && TryComp<OrganComponent>(organ, out var organComp)
+                        && organComp.OrganIntegrity < healAmount)
+                    {
+                        var damage = organComp.IntegrityCap - healAmount;
+                        organComp.IntegrityModifiers.Clear();
+                        if (damage <= 0 || !_trauma.TrySetOrganDamageModifier(organ, damage, organ, traumaType, organComp))
+                            _trauma.RestoreOrganIntegrity(organ, organComp);
+                    }
+                    // Arcane-Edit-End
 
                     _trauma.RemoveTrauma(trauma);
                 }
@@ -748,9 +829,6 @@ public abstract partial class SharedSurgerySystem
     }
 
     // Arcane-Start
-    /// <summary>
-    /// Picks the bone with the lowest integrity below its cap on a woundable, if any.
-    /// </summary>
     private bool TryGetLowestIntegrityBone(
         WoundableComponent woundable,
         [NotNullWhen(true)] out EntityUid? bone,
@@ -923,10 +1001,10 @@ public abstract partial class SharedSurgerySystem
 
     private bool TryToolAudio(Entity<SurgeryStepComponent> ent, SurgeryStepEvent args)
     {
-        if (ent.Comp.Tool == null)
+        if (_roboticSurgery.GetTool(ent.AsNullable(), args.Part) is not { } tools) // Arcane-Edit
             return true;
 
-        foreach (var reg in ent.Comp.Tool.Values)
+        foreach (var reg in tools.Values) // Arcane-Edit
         {
             if (!HasSurgeryComp(args.Tool, reg.Component))
                 return false;
@@ -1109,7 +1187,8 @@ public abstract partial class SharedSurgerySystem
         var toolComp = _toolQuery.CompOrNull(tool);
         var usedEv = new SurgeryToolUsedEvent(user, body);
         usedEv.IgnoreToggle = toolComp?.IgnoreToggle ?? false;
-        RaiseLocalEvent(tool, ref usedEv);
+        if (_roboticSurgery.GetTool(step, part) != null) // Arcane
+            RaiseLocalEvent(tool, ref usedEv); // Arcane-Edit
         if (usedEv.Cancelled)
         {
             error = StepInvalidReason.ToolInvalid;
@@ -1126,10 +1205,10 @@ public abstract partial class SharedSurgerySystem
         _rotateToFace.TryFaceCoordinates(user, _transform.GetMapCoordinates(body).Position);
 
         // We need to check for nullability because of surgeries that dont require a tool, like Cavity Implants
-        var speed = data?.Speed ?? 0.5f; // Arcane-Edit: 1 -> 0.5
+//        var speed = data?.Speed ?? 1; // Arcane-Edit
         var toolUsed = data?.Used ?? false; // if no tool is being used you can't consume it
         var ev = new SurgeryDoAfterEvent(surgeryId, stepId, toolUsed);
-        var duration = GetSurgeryDuration(step, user, body, speed);
+        var duration = UpdateStepTiming(ev, step, user, body, part, data); // Arcane-Edit
 
         // Arcane-Edit-Start: Handle active surgery DoAfters cleanly
         if (TryComp<ActiveDoAfterComponent>(user, out _) &&
@@ -1185,6 +1264,11 @@ public abstract partial class SharedSurgerySystem
         RefreshUI(body);
         // Arcane-Edit-End
 
+        // Arcane-Start
+        var mood = new SurgeryMoodEvent(SurgeryMoodOutcome.Started, stepId);
+        RaiseLocalEvent(body, ref mood);
+        // Arcane-End
+
         var userName = Identity.Entity(user, EntityManager);
         var targetName = Identity.Entity(body, EntityManager);
 
@@ -1193,7 +1277,7 @@ public abstract partial class SharedSurgerySystem
         if (!Loc.TryGetString(locName, out var locResult,
                 ("user", userName), ("target", targetName), ("part", part)))
         {
-            locResult = Loc.GetString($"surgery-popup-step-{stepId}",
+            locResult = Loc.GetString(_roboticSurgery.GetRoboticKey($"surgery-popup-step-{stepId}", part),
                 ("user", userName), ("target", targetName), ("part", part));
         }
         // Arcane-Edit-End
@@ -1225,7 +1309,7 @@ public abstract partial class SharedSurgerySystem
     }
     // Arcane-End
 
-    private float GetSurgeryDuration(EntityUid surgeryStep, EntityUid user, EntityUid target, float toolSpeed)
+    private float GetSurgeryDuration(EntityUid surgeryStep, EntityUid user, EntityUid target, EntityUid part, float toolSpeed) // Arcane-Edit
     {
         if (!_stepQuery.TryComp(surgeryStep, out var stepComp))
             return 2f; // Shouldnt really happen but just a failsafe.
@@ -1236,14 +1320,35 @@ public abstract partial class SharedSurgerySystem
                 speed *= operatingTableComponent.SpeedModifier; // apply surgery speed modifier
         if (TryComp(user, out SurgerySpeedModifierComponent? surgerySpeedMod))
             speed *= surgerySpeedMod.SpeedModifier;
+        speed *= _surgeryConditions.GetSpeedModifier(user, target); // Arcane
 
         // Orion-Start: Self-surgery penalty
-        if (user == target && TryComp<SurgeryTargetComponent>(target, out var surgTarget))
+        if (_surgeryConditions.IsSelfSurgeryPenalized(user, target, part, surgeryStep) && TryComp<SurgeryTargetComponent>(target, out var surgTarget)) // Arcane-Edit
             speed *= surgTarget.SelfSurgerySpeedModifier;
         // Orion-End
 
         return stepComp.Duration / MathF.Max(speed, 0.01f); // Orion-Edit: Guard against zero/invalid values
     }
+
+    // Arcane-Start
+    private float UpdateStepTiming(SurgeryDoAfterEvent ev, EntityUid step, EntityUid user, EntityUid body, EntityUid part, ISurgeryToolComponent? data)
+    {
+        var speed = data?.Speed ?? 0.5f;
+        var duration = GetSurgeryDuration(step, user, body, part, speed);
+        // A step done by hand is already slow by design, so only a tool worse than the proper one counts against it.
+        var idealDuration = (_stepQuery.CompOrNull(step)?.Duration ?? duration) / (data == null ? speed : 1f);
+        var selfSurgery = _surgeryConditions.IsSelfSurgeryPenalized(user, body, part, step);
+        ev.Penalty = _surgeryConditions.GetPenalty(idealDuration, duration, selfSurgery);
+        ev.FailureChance = _surgeryConditions.GetFailureChance(idealDuration, idealDuration * ev.Penalty, selfSurgery);
+        return _surgeryConditions.GetCappedDuration(idealDuration, duration);
+    }
+
+    // A switched-off item only matters when the step uses it as its tool.
+    private bool IsStepToolOff(EntityUid tool, EntityUid step, EntityUid part)
+    {
+        return !_toolConditions.IsToolActive(tool) && _roboticSurgery.GetTool(step, part) != null;
+    }
+    // Arcane-End
     private (Entity<SurgeryComponent> Surgery, int Step)? GetNextStep(EntityUid body, EntityUid part, Entity<SurgeryComponent?> surgery, List<EntityUid> requirements, EntityUid user)
     {
         if (!Resolve(surgery, ref surgery.Comp))
@@ -1269,7 +1374,7 @@ public abstract partial class SharedSurgerySystem
 
         requirements.Add(surgery);
 
-        if (surgery.Comp.Requirement is { } requirementId &&
+        if (_roboticSurgery.GetRequirement(surgery.Comp, part) is { } requirementId && // Arcane-Edit
             GetSingleton(requirementId) is { } requirement &&
             GetNextStep(body, part, requirement, requirements, user) is { } requiredNext)
         {
@@ -1300,7 +1405,7 @@ public abstract partial class SharedSurgerySystem
             return true;
 
         // TODO RMC14 use index instead of the prototype id
-        if (surgery.Comp.Requirement is { } requirement)
+        if (_roboticSurgery.GetRequirement(surgery.Comp, part) is { } requirement) // Arcane-Edit
         {
             if (GetSingleton(requirement) is not { } requiredEnt ||
                 !TryComp(requiredEnt, out SurgeryComponent? requiredComp) ||
@@ -1341,10 +1446,18 @@ public abstract partial class SharedSurgerySystem
             _ => SlotFlags.NONE,
         };
 
-        var check = new SurgeryCanPerformStepEvent(user, body, tool, slot);
+        var check = new SurgeryCanPerformStepEvent(user, body, part, tool, slot); // Arcane-Edit
         RaiseLocalEvent(step, ref check);
         if (check.IsValid) // if the step doesn't stop it check the body after
             RaiseLocalEvent(body, ref check);
+
+        // Arcane-Start
+        if (check.IsValid && IsStepToolOff(tool, step, part))
+        {
+            check.Invalid = StepInvalidReason.ToolInvalid;
+            check.Popup = Loc.GetString("surgery-tool-turn-on");
+        }
+        // Arcane-End
 
         popup = check.Popup;
         reason = check.Invalid;

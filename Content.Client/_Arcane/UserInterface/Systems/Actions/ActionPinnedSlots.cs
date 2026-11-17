@@ -113,6 +113,9 @@ internal sealed class ActionPinnedSlots
     /// <returns>True if the action was restored into a pinned slot.</returns>
     public bool TryRestore(EntityUid action, EntProtoId? prototype, EntityUid? container, IList<EntityUid?> slots)
     {
+        if (slots.Contains(action))
+            return _unavailable.Remove(action);
+
         if (TryRestoreSlot(action, prototype, container, slots, true))
             return true;
 
@@ -132,14 +135,6 @@ internal sealed class ActionPinnedSlots
         {
             if (slots[i] is not { } slotId || !_unavailable.Contains(slotId) || !_pins.TryGetValue(slotId, out var pin))
                 continue;
-
-            // The same entity that got granted again, e.g. an item that was dropped and picked back up.
-            if (slotId == action)
-            {
-                slots[i] = action;
-                _unavailable.Remove(slotId);
-                return true;
-            }
 
             // Without a prototype two different actions can not be told apart, so the slot stays empty.
             if (prototype is not { } proto || pin.Prototype != proto)

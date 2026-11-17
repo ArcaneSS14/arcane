@@ -457,3 +457,25 @@
     state: icon
   - type: Clothing
     sprite: _Arcane/Clothing/Head/Hats/maid_fura.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPolicemanHat
+  name: policeman hat
+  description: A strict police cap. Respect the law!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/policeman_hat.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/policeman_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatNurseCap
+  name: nurse cap
+  description: A white cap with a red cross. For real angels of mercy.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Head/Hats/nurse_cap.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Head/Hats/nurse_cap.rsi

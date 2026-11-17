@@ -62,22 +62,20 @@ public sealed partial class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealt
         if (!IsActive)
             return;
 
-        var healthIcons = DecideHealthIcons(entity);
-
-        args.StatusIcons.AddRange(healthIcons);
+        AddHealthIcons(entity, args.StatusIcons); // Arcane-Edit
     }
 
-    private IReadOnlyList<HealthIconPrototype> DecideHealthIcons(Entity<DamageableComponent> entity)
+    // Arcane-Edit-Start: This runs every frame for every visible mob, so write straight into the existing list.
+    private void AddHealthIcons(Entity<DamageableComponent> entity, List<StatusIconData> result)
     {
         var damageableComponent = entity.Comp;
+        // Arcane-Edit-End
 
         if (damageableComponent.DamageContainerID == null ||
             !DamageContainers.Contains(damageableComponent.DamageContainerID))
         {
-            return Array.Empty<HealthIconPrototype>();
+            return; // Arcane-Edit
         }
-
-        var result = new List<HealthIconPrototype>();
 
         // Here you could check health status, diseases, mind status, etc. and pick a good icon, or multiple depending on whatever.
         if (damageableComponent?.DamageContainerID == "Biological")
@@ -91,7 +89,5 @@ public sealed partial class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealt
                     result.Add(icon);
             }
         }
-
-        return result;
     }
 }

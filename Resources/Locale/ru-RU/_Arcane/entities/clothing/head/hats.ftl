@@ -38,6 +38,11 @@ ent-ClothingHeadHatRunnerLight = светлая кепка бегуна
     .desc = Лёгкая светлая кепка, защищающая глаза от ярких ламп станции.
 ent-ClothingHeadHatRunnerDark = тёмная кепка бегуна
     .desc = Практичная тёмная кепка для скрытных перемещений.
+ent-ClothingHeadHatPolicemanHat = фуражка полицейского
+    .desc = Строгая полицейская фуражка. Уважайте закон!
+
+ent-ClothingHeadHatNurseCap = шапочка медсестры
+    .desc = Белая шапочка с красным крестом. Для настоящих ангелов милосердия.
 # Sponsor
 
 ent-ClothingHatNTRBlackBeret = чёрный берет представителя NanoTrasen

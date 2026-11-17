@@ -4,6 +4,8 @@ ent-ClothingShoesRunnerLight = светлые ботинки бегуна
     .desc = Крепкие светлые ботинки.
 ent-ClothingShoesRunnerDark = тёмные ботинки бегуна
     .desc = Бесшумные тёмные ботинки для незаметной ходьбы.
+ent-ClothingShoesPupil = туфли ученицы
+    .desc = Классические школьные туфли.
 # Sponsor
 
 ent-ClothingShoesOldFashionedMedical = старомодные туфли врача

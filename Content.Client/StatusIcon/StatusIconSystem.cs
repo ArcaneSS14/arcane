@@ -56,9 +56,17 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
             _overlay.AddOverlay(new StatusIconOverlay());
     }
 
+    // Arcane-Edit-Start: Called every frame for every visible mob.
+    private readonly List<StatusIconData> _statusIcons = new();
+
+    /// <remarks>
+    /// The returned list is reused and only stays valid until the next call.
+    /// </remarks>
     public List<StatusIconData> GetStatusIcons(EntityUid uid, MetaDataComponent? meta = null)
     {
-        var list = new List<StatusIconData>();
+        var list = _statusIcons;
+        list.Clear();
+        // Arcane-Edit-End
         if (!Resolve(uid, ref meta))
             return list;
 

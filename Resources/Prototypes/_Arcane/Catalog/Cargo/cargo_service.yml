@@ -7,3 +7,13 @@
   cost: 4000
   category: cargoproduct-category-name-service
   group: market
+
+- type: cargoProduct
+  id: FoodCrateBeerBarrel
+  icon:
+    sprite: _Arcane/Structures/beer_barrel.rsi
+    state: beer_barrel
+  product: BeerBarrelFull
+  cost: 2000
+  category: Food
+  group: market

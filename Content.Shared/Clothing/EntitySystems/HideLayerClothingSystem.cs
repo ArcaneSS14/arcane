@@ -1,6 +1,7 @@
 using Content.Shared.Clothing.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
+using Content.Shared.Item.ItemToggle.Components; // Arcane
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -16,6 +17,7 @@ public sealed class HideLayerClothingSystem : EntitySystem
         SubscribeLocalEvent<HideLayerClothingComponent, ClothingGotUnequippedEvent>(OnHideGotUnequipped);
         SubscribeLocalEvent<HideLayerClothingComponent, ClothingGotEquippedEvent>(OnHideGotEquipped);
         SubscribeLocalEvent<HideLayerClothingComponent, ItemMaskToggledEvent>(OnHideToggled);
+        SubscribeLocalEvent<HideLayerClothingComponent, ItemToggledEvent>(OnHideItemToggled); // Arcane
     }
 
     private void OnHideToggled(Entity<HideLayerClothingComponent> ent, ref ItemMaskToggledEvent args)
@@ -23,6 +25,22 @@ public sealed class HideLayerClothingSystem : EntitySystem
         if (args.Wearer != null)
             SetLayerVisibility(ent!, args.Wearer.Value, hideLayers: true);
     }
+    // Arcane-Start
+    private void OnHideItemToggled(Entity<HideLayerClothingComponent> ent, ref ItemToggledEvent args)
+    {
+        if (!ent.Comp.HideOnToggle)
+            return;
+
+        if (!TryComp<ClothingComponent>(ent, out var clothing))
+            return;
+
+        if (clothing.InSlotFlag is not { } slotFlag || !clothing.Slots.HasFlag(slotFlag))
+            return;
+
+        var wearer = Transform(ent).ParentUid;
+        SetLayerVisibility((ent.Owner, ent.Comp, clothing), wearer, hideLayers: args.Activated);
+    }
+    // Arcane-End
 
     private void OnHideGotEquipped(Entity<HideLayerClothingComponent> ent, ref ClothingGotEquippedEvent args)
     {
@@ -98,6 +116,11 @@ public sealed class HideLayerClothingSystem : EntitySystem
 
         if (!clothing.Comp1.HideOnToggle)
             return true;
+
+        // Arcane-Start
+        if (TryComp<ItemToggleComponent>(clothing, out var itemToggle))
+            return itemToggle.Activated;
+        // Arcane-End
 
         if (!TryComp(clothing, out MaskComponent? mask))
             return true;

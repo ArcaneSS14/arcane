@@ -155,6 +155,7 @@ namespace Content.IntegrationTests.Tests
             "TestTeg",        // Dev map
             "Train",           // Not in pool
             "WonderBox",       // Arcane
+			"WonderBoxLegacy",       // Arcane
             // Goob end
         };
         // Goobstation edit start, yeah i know, but this is easier and less load than loading protoman or something.
@@ -203,6 +204,7 @@ namespace Content.IntegrationTests.Tests
               "Shoukou",         // Goob
              // "Snowball", // fuck off not in pool
               "WonderBox",       // Arcane
+			  "WonderBoxLegacy",       // Arcane
         };
         // Goobstation edit end
 

@@ -12,6 +12,7 @@
   - type: Damageable
     damageContainer: Silicon
   - type: Cybernetics
+  - type: RoboticBodyPart # Arcane
   - type: Nerve
     painMultiplier: 1.5
   - type: Woundable

@@ -5,18 +5,13 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._Arcane.Medical.Surgery;
 
-public sealed class SurgeryToolSystem : SharedSurgeryToolSystem
+public sealed partial class SurgeryToolSystem : SharedSurgeryToolSystem
 {
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly SharedSurgerySystem _surgery = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private RoboticSurgerySystem _roboticSurgery = default!;
+    [Dependency] private SharedSurgerySystem _surgery = default!;
 
     private SurgeryToolOptionsPopup? _popup;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeNetworkEvent<SurgeryToolOptionsEvent>(OnOptions);
-    }
 
     public override void Shutdown()
     {
@@ -24,6 +19,7 @@ public sealed class SurgeryToolSystem : SharedSurgeryToolSystem
         ClosePopup();
     }
 
+    [SubscribeNetworkEvent]
     private void OnOptions(SurgeryToolOptionsEvent msg)
     {
         if (!TryGetEntity(msg.Part, out var part))
@@ -32,7 +28,7 @@ public sealed class SurgeryToolSystem : SharedSurgeryToolSystem
         var options = msg.Options;
         ClosePopup();
 
-        var entries = options.Select(GetEntry).OrderBy(e => e.Name).ToList();
+        var entries = options.Select(option => GetEntry(option, part.Value)).OrderBy(e => e.Name).ToList();
         var title = options.Count == 1
             ? Loc.GetString("surgery-tool-options-confirm")
             : Loc.GetString("surgery-tool-options-title", ("part", part.Value));
@@ -52,11 +48,11 @@ public sealed class SurgeryToolSystem : SharedSurgeryToolSystem
         popup.OpenAtMouse();
     }
 
-    private SurgeryToolOptionEntry GetEntry(SurgeryToolOption option)
+    private SurgeryToolOptionEntry GetEntry(SurgeryToolOption option, EntityUid part)
     {
         var step = _surgery.GetSingleton(option.Step);
-        var stepName = step is { } stepEnt ? Name(stepEnt) : option.Step.Id;
-        var toolName = step is { } toolStep ? GetToolName(toolStep) : null;
+        var stepName = step is { } stepEnt ? _roboticSurgery.GetStepName(stepEnt, part) : option.Step.Id;
+        var toolName = step is { } toolStep ? GetToolName(toolStep, part) : null;
         var details = toolName == null
             ? stepName
             : Loc.GetString("surgery-tool-options-step", ("step", stepName), ("tool", toolName));

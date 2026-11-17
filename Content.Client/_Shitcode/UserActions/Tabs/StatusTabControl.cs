@@ -18,6 +18,7 @@ public sealed partial class StatusTabControl : BaseTabControl
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private ClientGameTicker? _gameTicker;
+    private (int Hours, int Minutes)? _shownRoundTime; // Arcane
 
     public StatusTabControl()
     {
@@ -30,6 +31,14 @@ public sealed partial class StatusTabControl : BaseTabControl
         if (_gameTicker != null)
         {
             var roundTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+
+            // Arcane-Start
+            if (_shownRoundTime == (roundTime.Hours, roundTime.Minutes))
+                return;
+
+            _shownRoundTime = (roundTime.Hours, roundTime.Minutes);
+            // Arcane-End
+
             StationTime.Text = Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
             return;
         }

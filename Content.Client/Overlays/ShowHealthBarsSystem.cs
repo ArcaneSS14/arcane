@@ -5,6 +5,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Overlays;
 using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Overlays;
 
@@ -15,6 +16,7 @@ public sealed class ShowHealthBarsSystem : EquipmentHudSystem<ShowHealthBarsComp
 {
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // Arcane
 
     private EntityHealthBarOverlay _overlay = default!;
 
@@ -26,7 +28,7 @@ public sealed class ShowHealthBarsSystem : EquipmentHudSystem<ShowHealthBarsComp
 
         SubscribeLocalEvent<ShowHealthBarsComponent, AfterAutoHandleStateEvent>(OnHandleState);
 
-        _overlay = new(EntityManager, _prototype);
+        _overlay = new(EntityManager, _prototype, _timing); // Arcane-Edit
     }
 
     private void OnHandleState(Entity<ShowHealthBarsComponent> ent, ref AfterAutoHandleStateEvent args)
