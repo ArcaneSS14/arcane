@@ -1,8 +1,8 @@
 ent-ClothingShoesBeer = пивные тапочки
     .desc = Пивные тапочки.
-ent-ClothingShoesRunnerLight = светлые ботинки бегуна
+ent-ClothingShoesRunnerLight = светлые ботинки раннера
     .desc = Крепкие светлые ботинки.
-ent-ClothingShoesRunnerDark = тёмные ботинки бегуна
+ent-ClothingShoesRunnerDark = тёмные ботинки раннера
     .desc = Бесшумные тёмные ботинки для незаметной ходьбы.
 ent-ClothingShoesPupil = туфли ученицы
     .desc = Классические школьные туфли.

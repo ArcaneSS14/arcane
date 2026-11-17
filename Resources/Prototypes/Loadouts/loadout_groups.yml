@@ -1217,7 +1217,7 @@
   # Arcane-Start
   - RunnerLightJumpsuit
   - RunnerDarkJumpsuit
-  # Arcane-En
+  # Arcane-End
 
 - type: loadoutGroup
   id: StationEngineerBackpack

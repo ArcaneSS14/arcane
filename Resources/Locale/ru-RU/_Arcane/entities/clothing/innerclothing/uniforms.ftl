@@ -1,8 +1,8 @@
 ent-ClothingUniformBitrunner = комбинезон битраннера
     .desc = Облегающий тёмный комбинезон с плечевыми накладками и красными акцентами, созданный для максимального удобства при побеге от службы безопасности.
-ent-ClothingUniformRunnerLight = светлый комбинезон бегуна
+ent-ClothingUniformRunnerLight = светлый комбинезон раннера
     .desc = Удобный светлый комбинезон, созданный для быстрого передвижения по техническим тоннелям.
-ent-ClothingUniformRunnerDark = тёмный комбинезон бегуна
+ent-ClothingUniformRunnerDark = тёмный комбинезон раннера
     .desc = Удобный тёмный комбинезон, сливающийся с тенистыми коридорами станции.
 # Service
 ent-ClothingUniformJumpskirtMaidStrict = строгое платье горничной

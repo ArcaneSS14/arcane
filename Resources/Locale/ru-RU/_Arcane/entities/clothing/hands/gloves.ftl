@@ -1,8 +1,8 @@
 ent-ClothingHandsGlovesBitrunner = перчатки битраннера
     .desc = Тёмные перчатки с жёсткими накладками и яркими манжетами, защищающие руки от статического электричества и лишних вопросов.
-ent-ClothingHandsGlovesRunnerLight = светлые перчатки бегуна
+ent-ClothingHandsGlovesRunnerLight = светлые перчатки раннера
     .desc = Светлые перчатки с жесткими накладками и надежным хватом.
-ent-ClothingHandsGlovesRunnerDark = тёмные перчатки бегуна
+ent-ClothingHandsGlovesRunnerDark = тёмные перчатки раннера
     .desc = Тёмные перчатки с жесткими накладками и яркими манжетами.
 # Sponsor
 
