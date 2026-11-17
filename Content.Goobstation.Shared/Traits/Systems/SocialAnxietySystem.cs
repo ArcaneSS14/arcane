@@ -43,7 +43,7 @@ public sealed partial class SocialAnxietySystem : EntitySystem
     }
     // Arcane-Start
     private void ApplyHugDamage(EntityUid uid, SocialAnxietyComponent component, EntityUid hugger)
-    {   
+    {
         if (!_net.IsServer || uid == hugger)
             return;
 
@@ -59,7 +59,10 @@ public sealed partial class SocialAnxietySystem : EntitySystem
         var damage = _melee.GetDamage(uid, uid) * (repeatedHug ? 3 : 2);
         var part = repeatedHug ? TargetBodyPart.Head : TargetBodyPart.LeftArm;
 
-        _damage.TryChangeDamage(hugger, damage, origin: uid, targetPart: part,  canMiss: false);
+        if (_damage.TryChangeDamage( hugger, damage, out var appliedDamage, origin: uid, targetPart: part, canMiss: false) && appliedDamage.GetTotal() > 0)
+        {
+            _melee.PlayMeleeHitEffect(hugger, uid);
+        }
     }
     // Arcane-End
 }
