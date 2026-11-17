@@ -32,7 +32,7 @@
     belt: EnergyKatana
   inhand:
     - JetpackBlackFilled
-    - LibrarianTranslatorImplanter # Arcane-Edit 
+    - NinjutsuScroll # Arcane-Edit 
   storage:
     back: # belt holds katana so satchel has the tools for sabotaging things
     - DrinkWaterBottleFull
@@ -43,7 +43,6 @@
     - JawsOfLife
     - FoodSoupMiso
     - FoodSoupMiso
-    - NinjutsuScroll
     - SmokeImplanter
     - SpiderclanFlippo
     - CigaretteSyndicate
