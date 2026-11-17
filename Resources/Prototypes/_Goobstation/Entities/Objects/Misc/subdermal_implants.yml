@@ -11,9 +11,6 @@
     permanent: true
     implantAction: ActionActivateBluespaceLifeline
   - type: MansusGraspBlockTrigger
-  - type: TriggerOnMobstateChange
-    mobState:
-    - Dead
   - type: TriggerOnActivateImplant
   - type: DeleteParentOnTrigger
   - type: SpawnOnTrigger
