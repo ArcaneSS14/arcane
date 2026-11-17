@@ -4583,3 +4583,11 @@ Entries:
   time: '2026-11-17T14:17:00.0000000+00:00'
   prNumber: 548
   url: https://github.com/ArcaneSS14/arcane/pull/548
+- author: RabbitBat
+  changes:
+    - type: Add
+      message: 'Добавлен обычный кошачий хвост в раздел Хвосты для КПБ '
+  id: 319
+  time: '2026-11-17T14:47:52.0000000+00:00'
+  prNumber: 607
+  url: https://github.com/ArcaneSS14/arcane/pull/607
