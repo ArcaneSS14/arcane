@@ -235,3 +235,14 @@
     sprite: _Arcane/Clothing/Shoes/bdsm_boots.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Shoes/bdsm_boots.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesPupil
+  name: pupil shoes
+  description: Classic school shoes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/pupil_shoes.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/pupil_shoes.rsi

@@ -75,6 +75,10 @@
   - type: Sprite
     sprite: _Arcane/ERP/Toys/Handcuffs/soft_handcuffs.rsi
     state: icon
+  - type: Clothing
+    sprite: _Arcane/ERP/Toys/Handcuffs/soft_handcuffs.rsi
+    slots: [ belt ]
+    quickEquip: false
   - type: Tag
     tags:
     - Handcuffs
@@ -515,7 +519,7 @@
   parent: ClothingOuterBase
   id: ClothingStrapon
   name: strapon
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: _Arcane/ERP/Toys/Strapon/strapon.rsi
@@ -535,7 +539,7 @@
   parent: ClothingStrapon
   id: ClothingStraponHuman
   name: human strapon
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: _Arcane/ERP/Toys/Strapon/strapon_human.rsi
@@ -553,7 +557,7 @@
   parent: ClothingStraponHuman
   id: ClothingStraponAvian
   name: avian strapon
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: _Arcane/ERP/Toys/Strapon/strapon_avian.rsi
@@ -567,7 +571,7 @@
   parent: ClothingStraponHuman
   id: ClothingStraponDog
   name: dog strapon
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: _Arcane/ERP/Toys/Strapon/strapon_dog.rsi
@@ -581,7 +585,7 @@
   parent: ClothingStraponHuman
   id: ClothingStraponDragon
   name: dragon strapon
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: _Arcane/ERP/Toys/Strapon/strapon_dragon.rsi
@@ -595,7 +599,7 @@
   parent: ClothingStraponHuman
   id: ClothingStraponHorse
   name: horse strapon
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: _Arcane/ERP/Toys/Strapon/strapon_horse.rsi
@@ -609,7 +613,7 @@
   parent: ClothingStraponHuman
   id: ClothingStraponPlussize
   name: plussize strapon
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: _Arcane/ERP/Toys/Strapon/strapon_plussize.rsi
@@ -623,7 +627,7 @@
   parent: ClothingStraponHuman
   id: ClothingStraponSlime
   name: slime strapon
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: _Arcane/ERP/Toys/Strapon/strapon_slime.rsi
@@ -637,7 +641,7 @@
   parent: ClothingStraponHuman
   id: ClothingStraponXeno
   name: xeno strapon
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: _Arcane/ERP/Toys/Strapon/strapon_xeno.rsi
@@ -764,3 +768,47 @@
         - id: ClothingPlugKitsune
         - id: ClothingPlugPinkCrystal
         - id: ClothingPlugShark
+
+- type: entity
+  parent: BaseItem
+  id: TeacherRuler
+  name: teacher's ruler
+  description: A wooden ruler. It can be used for discipline... or other purposes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Whip/teacher_ruler.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Arcane/ERP/Toys/Whip/teacher_ruler.rsi
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: MeleeWeapon
+    canWideSwing: false
+    soundHit:
+      path: /Audio/_Arcane/Items/other/Handcuffs/blow-whip.ogg
+    damage:
+      types:
+        Blunt: 0
+
+- type: entity
+  parent: BaseItem
+  id: MaidPanicle
+  name: maid's panicle
+  description: A soft panicle for cleaning. Or for punishment.
+  components:
+  - type: Sprite
+    sprite: _Arcane/ERP/Toys/Whip/maid_panicle.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: _Arcane/ERP/Toys/Whip/maid_panicle.rsi
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: MeleeWeapon
+    canWideSwing: false
+    soundHit:
+      path: /Audio/_Arcane/Items/other/Handcuffs/blow-whip.ogg
+    damage:
+      types:
+        Blunt: 0

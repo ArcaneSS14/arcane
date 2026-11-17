@@ -71,3 +71,21 @@
           - Knife
         layer:
           state: equipped-SOCKS-knife
+
+- type: entity
+  parent: ClothingSocksBase
+  id: ClothingSocksPupil
+  name: pupil socks
+  description: Neat white socks for a diligent pupil.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Socks/pupil_socks.rsi
+
+- type: entity
+  parent: ClothingSocksBase
+  id: ClothingSocksRabbitTights
+  name: rabbit tights
+  description: White tights with a fluffy tail.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Socks/rabbit_tights.rsi
