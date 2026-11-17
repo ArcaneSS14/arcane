@@ -4626,3 +4626,20 @@ Entries:
       https://github.com/user-attachments/assets/4a312035-f959-4646-990e-0164a9929fbb
     - >-
       https://github.com/user-attachments/assets/34539401-5e79-4238-887a-a452d7d103d6
+- author: RabbitBat, Bulbo44kkey
+  changes:
+    - type: Add
+      message: >-
+        Добавлен набор одежды: Полицейского, Полицейской, Учителя, Учительницы,
+        Ученицы, Кролика, Медсестры, Горничной в лавмат.
+    - type: Add
+      message: Добавлена линейка учителя и метёлка горничной!
+    - type: Add
+      message: Теперь мягкие наручники можно повесить на пояс!
+  id: 322
+  time: '2026-11-17T15:25:31.0000000+00:00'
+  prNumber: 620
+  url: https://github.com/ArcaneSS14/arcane/pull/620
+  media:
+    - >-
+      https://github.com/user-attachments/assets/32e80a38-d0b2-42aa-bef5-c47d440d37eb
