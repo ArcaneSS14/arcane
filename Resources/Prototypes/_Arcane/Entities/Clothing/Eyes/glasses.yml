@@ -9,6 +9,17 @@
   - type: Clothing
     sprite: _Arcane/Clothing/Mask/cat_mask.rsi
 
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesTeacher
+  name: teacher's glasses
+  description: Strict glasses for a strict teacher.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Eyes/Glasses/teacher_glasses.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Eyes/Glasses/teacher_glasses.rsi
+
 # Sponsor
 
 - type: entity

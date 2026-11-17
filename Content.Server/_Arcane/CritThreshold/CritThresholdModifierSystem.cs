@@ -17,6 +17,8 @@ public sealed partial class CritThresholdModifierSystem : EntitySystem
 
     private static readonly MobState[] ScaledStates = [MobState.SoftCritical, MobState.HardCritical, MobState.Dead];
 
+    private readonly Dictionary<EntityUid, bool> _pendingRefreshes = new();
+
     [SubscribeLocalEvent]
     private void OnEffectApplied(Entity<CritThresholdModifierStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
     {
@@ -43,6 +45,29 @@ public sealed partial class CritThresholdModifierSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
+        // Setting thresholds can change the mob's mood. Apply any new modifier after the current pass.
+        if (!_pendingRefreshes.TryAdd(ent.Owner, false))
+        {
+            _pendingRefreshes[ent.Owner] = true;
+            return;
+        }
+
+        try
+        {
+            do
+            {
+                _pendingRefreshes[ent.Owner] = false;
+                ApplyCritThresholdModifier((ent.Owner, ent.Comp));
+            } while (_pendingRefreshes[ent.Owner] && TryComp(ent.Owner, out ent.Comp));
+        }
+        finally
+        {
+            _pendingRefreshes.Remove(ent.Owner);
+        }
+    }
+
+    private void ApplyCritThresholdModifier(Entity<MobThresholdsComponent> ent)
+    {
         var ev = new RefreshCritThresholdEvent();
         RaiseLocalEvent(ent, ref ev);
         var modifier = ev.Raise * ev.Drop * ev.Modifier;
@@ -79,7 +104,11 @@ public sealed partial class CritThresholdModifierSystem : EntitySystem
 
         foreach (var state in states)
         {
-            _mobThreshold.SetMobStateThreshold(ent, FixedPoint2.New(modified.Baseline[state].Float() * modifier), state, ent.Comp);
+            var next = FixedPoint2.New(modified.Baseline[state].Float() * modifier);
+            if (_mobThreshold.TryGetThresholdForState(ent, state, out var threshold, ent.Comp) && threshold.Value == next)
+                continue;
+
+            _mobThreshold.SetMobStateThreshold(ent, next, state, ent.Comp);
         }
 
         modified.Modifier = modifier;

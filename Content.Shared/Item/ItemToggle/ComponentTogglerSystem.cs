@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Item.ItemToggle.Components;
+using Robust.Shared.Network;
 
 namespace Content.Shared.Item.ItemToggle;
 
@@ -9,6 +10,8 @@ namespace Content.Shared.Item.ItemToggle;
 /// </summary>
 public sealed class ComponentTogglerSystem : EntitySystem
 {
+    [Dependency] private readonly INetManager _netManager = default!; // Arcane
+
     public override void Initialize()
     {
         base.Initialize();
@@ -41,13 +44,22 @@ public sealed class ComponentTogglerSystem : EntitySystem
         }
         else
         {
-            if (component.Target == null)
+            var target = component.Target; // Arcane
+
+            // Arcane-Edit-Start
+            if (target == null)
+            {
+                if (!_netManager.IsClient)
+                    return;
+
+                target = component.Parent ? Transform(uid).ParentUid : uid;
+            }
+            // Arcane-Edit-End
+
+            if (TerminatingOrDeleted(target.Value)) // Arcane-Edit
                 return;
 
-            if (TerminatingOrDeleted(component.Target.Value))
-                return;
-
-            EntityManager.RemoveComponents(component.Target.Value, component.RemoveComponents ?? component.Components);
+            EntityManager.RemoveComponents(target.Value, component.RemoveComponents ?? component.Components); // Arcane-Edit
         }
     }
 }
