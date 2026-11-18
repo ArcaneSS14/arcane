@@ -1067,7 +1067,10 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem // Goob - p
     {
         var baseStaminaDamage = TryComp<ShovingComponent>(disarmer, out var shoving) ? shoving.StaminaDamage : ShovingComponent.DefaultStaminaDamage;
 
-        return baseStaminaDamage * DampenedMassContest(disarmer, disarmed); // Arcane-Edit
+        // Arcane-Edit-Start
+        return baseStaminaDamage;
+        // return baseStaminaDamage * DampenedMassContest(disarmer, disarmed);
+        // Arcane-Edit-End
 }
 
     // Arcane-Start
@@ -1240,7 +1243,10 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem // Goob - p
 
     private void PhysicalShove(EntityUid user, EntityUid target)
     {
-        var force = _shoveRange * _contests.MassContest(user, target, rangeFactor: _shoveMass);
+        // Arcane-Edit-Start
+        var force = _shoveRange;
+        // var force = _shoveRange * _contests.MassContest(user, target, rangeFactor: _shoveMass);
+        // Arcane-Edit-End
 
         var userPos = TransformSystem.ToMapCoordinates(user.ToCoordinates()).Position;
         var targetPos = TransformSystem.ToMapCoordinates(target.ToCoordinates()).Position;
