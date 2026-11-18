@@ -49,18 +49,23 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
         /// <param name="performerUid">Uid of Performer</param>
         public float MassContest(EntityUid performerUid, bool bypassClamp = false, float rangeFactor = 1f, float otherMass = AverageMass)
         {
+            // Arcane-Edit-Start
+            return 1f;
+            // Arcane-Edit-End
             // Goob edits
-            if (!_doContestSystem
-                || !_doMassContests
-                || !TryComp<PhysicsComponent>(performerUid, out var performerPhysics)
-                || performerPhysics.Mass == 0)
-                return 1f;
-
-            return _allowClampOverride && bypassClamp
-                ? performerPhysics.Mass / otherMass
-                : Math.Clamp(performerPhysics.Mass / otherMass,
-                    1 - _massContestsMaxPercentage * rangeFactor,
-                    1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-Start
+            // if (!_doContestSystem
+            //     || !_doMassContests
+            //     || !TryComp<PhysicsComponent>(performerUid, out var performerPhysics)
+            //     || performerPhysics.Mass == 0)
+            //     return 1f;
+            //
+            // return _allowClampOverride && bypassClamp
+            //     ? performerPhysics.Mass / otherMass
+            //     : Math.Clamp(performerPhysics.Mass / otherMass,
+            //         1 - _massContestsMaxPercentage * rangeFactor,
+            //         1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-End
         }
 
         /// <inheritdoc cref="MassContest(EntityUid, bool, float, float)"/>
@@ -69,13 +74,18 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
         /// </remarks>
         public float MassContest(EntityUid? performerUid, bool bypassClamp = false, float rangeFactor = 1f, float otherMass = AverageMass)
         {
+            // Arcane-Edit-Start
+            return 1f;
+            // Arcane-Edit-End
             // Goob edits
-            if (!_doContestSystem
-                || !_doMassContests
-                || performerUid is null)
-                return 1f;
-
-            return MassContest(performerUid.Value, bypassClamp, rangeFactor, otherMass);
+            // Arcane-Edit-Start
+            // if (!_doContestSystem
+            //     || !_doMassContests
+            //     || performerUid is null)
+            //     return 1f;
+            //
+            // return MassContest(performerUid.Value, bypassClamp, rangeFactor, otherMass);
+            // Arcane-Edit-End
         }
 
         /// <summary>
@@ -85,17 +95,22 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
         /// <param name="performerPhysics"></param>
         public float MassContest(PhysicsComponent performerPhysics, bool bypassClamp = false, float rangeFactor = 1f, float otherMass = AverageMass)
         {
+            // Arcane-Edit-Start
+            return 1f;
+            // Arcane-Edit-End
             // Goob edits
-            if (!_doContestSystem
-                || !_doMassContests
-                || performerPhysics.Mass == 0)
-                return 1f;
-
-            return _allowClampOverride && bypassClamp
-                ? performerPhysics.Mass / otherMass
-                : Math.Clamp(performerPhysics.Mass / otherMass,
-                    1 - _massContestsMaxPercentage * rangeFactor,
-                    1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-Start
+            // if (!_doContestSystem
+            //     || !_doMassContests
+            //     || performerPhysics.Mass == 0)
+            //     return 1f;
+            //
+            // return _allowClampOverride && bypassClamp
+            //     ? performerPhysics.Mass / otherMass
+            //     : Math.Clamp(performerPhysics.Mass / otherMass,
+            //         1 - _massContestsMaxPercentage * rangeFactor,
+            //         1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-End
         }
 
         /// <summary>
@@ -106,73 +121,93 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
         /// <param name="targetUid"></param>
         public float MassContest(EntityUid performerUid, EntityUid targetUid, bool bypassClamp = false, float rangeFactor = 1f)
         {
+            // Arcane-Edit-Start
+            return 1f;
+            // Arcane-Edit-End
             // Goob edits
-            if (!_doContestSystem
-                || !_doMassContests
-                || !TryComp<PhysicsComponent>(performerUid, out var performerPhysics)
-                || !TryComp<PhysicsComponent>(targetUid, out var targetPhysics)
-                || performerPhysics.Mass == 0
-                || targetPhysics.InvMass == 0)
-                return 1f;
-
-            return _allowClampOverride && bypassClamp
-                ? performerPhysics.Mass * targetPhysics.InvMass
-                : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
-                    1 - _massContestsMaxPercentage * rangeFactor,
-                    1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-Start
+            // if (!_doContestSystem
+            //     || !_doMassContests
+            //     || !TryComp<PhysicsComponent>(performerUid, out var performerPhysics)
+            //     || !TryComp<PhysicsComponent>(targetUid, out var targetPhysics)
+            //     || performerPhysics.Mass == 0
+            //     || targetPhysics.InvMass == 0)
+            //     return 1f;
+            //
+            // return _allowClampOverride && bypassClamp
+            //     ? performerPhysics.Mass * targetPhysics.InvMass
+            //     : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
+            //         1 - _massContestsMaxPercentage * rangeFactor,
+            //         1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-End
         }
 
         /// <inheritdoc cref="MassContest(EntityUid, EntityUid, bool, float)"/>
         public float MassContest(EntityUid performerUid, PhysicsComponent targetPhysics, bool bypassClamp = false, float rangeFactor = 1f)
         {
+            // Arcane-Edit-Start
+            return 1f;
+            // Arcane-Edit-End
             // Goob edits
-            if (!_doContestSystem
-                || !_doMassContests
-                || !TryComp<PhysicsComponent>(performerUid, out var performerPhysics)
-                || performerPhysics.Mass == 0
-                || targetPhysics.InvMass == 0)
-                return 1f;
-
-            return _allowClampOverride && bypassClamp
-                ? performerPhysics.Mass * targetPhysics.InvMass
-                : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
-                    1 - _massContestsMaxPercentage * rangeFactor,
-                    1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-Start
+            // if (!_doContestSystem
+            //     || !_doMassContests
+            //     || !TryComp<PhysicsComponent>(performerUid, out var performerPhysics)
+            //     || performerPhysics.Mass == 0
+            //     || targetPhysics.InvMass == 0)
+            //     return 1f;
+            //
+            // return _allowClampOverride && bypassClamp
+            //     ? performerPhysics.Mass * targetPhysics.InvMass
+            //     : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
+            //         1 - _massContestsMaxPercentage * rangeFactor,
+            //         1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-End
         }
 
         /// <inheritdoc cref="MassContest(EntityUid, EntityUid, bool, float)"/>
         public float MassContest(PhysicsComponent performerPhysics, EntityUid targetUid, bool bypassClamp = false, float rangeFactor = 1f)
         {
+            // Arcane-Edit-Start
+            return 1f;
+            // Arcane-Edit-End
             // Goob edits
-            if (!_doContestSystem
-                || !_doMassContests
-                || !TryComp<PhysicsComponent>(targetUid, out var targetPhysics)
-                || performerPhysics.Mass == 0
-                || targetPhysics.InvMass == 0)
-                return 1f;
-
-            return _allowClampOverride && bypassClamp
-                ? performerPhysics.Mass * targetPhysics.InvMass
-                : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
-                    1 - _massContestsMaxPercentage * rangeFactor,
-                    1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-Start
+            // if (!_doContestSystem
+            //     || !_doMassContests
+            //     || !TryComp<PhysicsComponent>(targetUid, out var targetPhysics)
+            //     || performerPhysics.Mass == 0
+            //     || targetPhysics.InvMass == 0)
+            //     return 1f;
+            //
+            // return _allowClampOverride && bypassClamp
+            //     ? performerPhysics.Mass * targetPhysics.InvMass
+            //     : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
+            //         1 - _massContestsMaxPercentage * rangeFactor,
+            //         1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-End
         }
 
         /// <inheritdoc cref="MassContest(EntityUid, EntityUid, bool, float)"/>
         public float MassContest(PhysicsComponent performerPhysics, PhysicsComponent targetPhysics, bool bypassClamp = false, float rangeFactor = 1f)
         {
+            // Arcane-Edit-Start
+            return 1f;
+            // Arcane-Edit-End
             // Goob edits
-            if (!_doContestSystem
-                || !_doMassContests
-                || performerPhysics.Mass == 0
-                || targetPhysics.InvMass == 0)
-                return 1f;
-
-            return _allowClampOverride && bypassClamp
-                ? performerPhysics.Mass * targetPhysics.InvMass
-                : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
-                    1 - _massContestsMaxPercentage * rangeFactor,
-                    1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-Start
+            // if (!_doContestSystem
+            //     || !_doMassContests
+            //     || performerPhysics.Mass == 0
+            //     || targetPhysics.InvMass == 0)
+            //     return 1f;
+            //
+            // return _allowClampOverride && bypassClamp
+            //     ? performerPhysics.Mass * targetPhysics.InvMass
+            //     : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
+            //         1 - _massContestsMaxPercentage * rangeFactor,
+            //         1 + _massContestsMaxPercentage * rangeFactor);
+            // Arcane-Edit-End
         }
 
         #endregion
