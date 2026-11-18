@@ -16,16 +16,35 @@
               amount: 1
               doAfter: 2
 
-    - node: window
-      entity: Window
+    - node: uraniumWindowDirectional
+      entity: UraniumWindowDirectional
       edges:
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: SheetGlass1
-              amount: 2
+              prototype: UraniumGlass
+              amount: 1
             - !type:DeleteEntity {}
           steps:
+            - tool: Screwing
+              doAfter: 1
+            - tool: Anchoring
+              doAfter: 2
+
+    - node: uraniumReinforcedWindowDirectional
+      entity: UraniumReinforcedWindowDirectional
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: ReinforcedUraniumGlass
+              amount: 1
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Screwing
+              doAfter: 1
+            - tool: Prying
+              doAfter: 2
             - tool: Screwing
               doAfter: 1
             - tool: Anchoring
