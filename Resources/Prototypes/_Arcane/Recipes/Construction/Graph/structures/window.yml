@@ -22,7 +22,7 @@
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: UraniumGlass
+              prototype: SheetUGlass1
               amount: 1
             - !type:DeleteEntity {}
           steps:
@@ -37,7 +37,7 @@
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: ReinforcedUraniumGlass
+              prototype: SheetRUGlass1
               amount: 1
             - !type:DeleteEntity {}
           steps:
