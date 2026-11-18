@@ -19,18 +19,15 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
             base.Initialize();
 // Goobstation start
             // Arcane-Edit-Start
-            // Mass-контесты намеренно отключены (нейтрализация массы для толчков).
-            // Stamina/Health/Mind оставлены рабочими — они не связаны с ростом/весом.
-            // Subs.CVar(_cfg, GoobCVars.DoContestsSystem, (val) => _doContestSystem = val, true);
+            Subs.CVar(_cfg, GoobCVars.DoContestsSystem, (val) => _doContestSystem = val, true);
             // Subs.CVar(_cfg, GoobCVars.DoMassContests, (val) => _doMassContests = val, true);
-            // Subs.CVar(_cfg, GoobCVars.AllowClampOverride, (val) => _allowClampOverride = val, true);
+            Subs.CVar(_cfg, GoobCVars.AllowClampOverride, (val) => _allowClampOverride = val, true);
             // Subs.CVar(_cfg, GoobCVars.MassContestsMaxPercentage, (val) => _massContestsMaxPercentage = val, true);
             // Arcane-Edit-End
             Subs.CVar(_cfg, GoobCVars.DoStaminaContests, (val) => _doStaminaContests = val, true);
             Subs.CVar(_cfg, GoobCVars.DoHealthContests, (val) => _doHealthContests = val, true);
             Subs.CVar(_cfg, GoobCVars.DoMindContests, (val) => _doMindContests = val, true);
 // Goobstation end
-
         }
 
         /// <summary>
@@ -60,14 +57,11 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || performerPhysics.Mass == 0)
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? performerPhysics.Mass / otherMass
-            //     : Math.Clamp(performerPhysics.Mass / otherMass,
-            //         1 - _massContestsMaxPercentage * rangeFactor,
-            //         1 + _massContestsMaxPercentage * rangeFactor);
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? performerPhysics.Mass / otherMass
+                : Math.Clamp(performerPhysics.Mass / otherMass,
+                    1 - _massContestsMaxPercentage * rangeFactor,
+                    1 + _massContestsMaxPercentage * rangeFactor);
         }
 
         /// <inheritdoc cref="MassContest(EntityUid, bool, float, float)"/>
@@ -82,10 +76,7 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || performerUid is null)
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return MassContest(performerUid.Value, bypassClamp, rangeFactor, otherMass);
-            // Arcane-Edit-End
+            return MassContest(performerUid.Value, bypassClamp, rangeFactor, otherMass);
         }
 
         /// <summary>
@@ -101,14 +92,11 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || performerPhysics.Mass == 0)
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? performerPhysics.Mass / otherMass
-            //     : Math.Clamp(performerPhysics.Mass / otherMass,
-            //         1 - _massContestsMaxPercentage * rangeFactor,
-            //         1 + _massContestsMaxPercentage * rangeFactor);
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? performerPhysics.Mass / otherMass
+                : Math.Clamp(performerPhysics.Mass / otherMass,
+                    1 - _massContestsMaxPercentage * rangeFactor,
+                    1 + _massContestsMaxPercentage * rangeFactor);
         }
 
         /// <summary>
@@ -128,14 +116,11 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || targetPhysics.InvMass == 0)
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? performerPhysics.Mass * targetPhysics.InvMass
-            //     : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
-            //         1 - _massContestsMaxPercentage * rangeFactor,
-            //         1 + _massContestsMaxPercentage * rangeFactor);
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? performerPhysics.Mass * targetPhysics.InvMass
+                : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
+                    1 - _massContestsMaxPercentage * rangeFactor,
+                    1 + _massContestsMaxPercentage * rangeFactor);
         }
 
         /// <inheritdoc cref="MassContest(EntityUid, EntityUid, bool, float)"/>
@@ -149,14 +134,11 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || targetPhysics.InvMass == 0)
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? performerPhysics.Mass * targetPhysics.InvMass
-            //     : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
-            //         1 - _massContestsMaxPercentage * rangeFactor,
-            //         1 + _massContestsMaxPercentage * rangeFactor);
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? performerPhysics.Mass * targetPhysics.InvMass
+                : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
+                    1 - _massContestsMaxPercentage * rangeFactor,
+                    1 + _massContestsMaxPercentage * rangeFactor);
         }
 
         /// <inheritdoc cref="MassContest(EntityUid, EntityUid, bool, float)"/>
@@ -170,14 +152,11 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || targetPhysics.InvMass == 0)
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? performerPhysics.Mass * targetPhysics.InvMass
-            //     : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
-            //         1 - _massContestsMaxPercentage * rangeFactor,
-            //         1 + _massContestsMaxPercentage * rangeFactor);
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? performerPhysics.Mass * targetPhysics.InvMass
+                : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
+                    1 - _massContestsMaxPercentage * rangeFactor,
+                    1 + _massContestsMaxPercentage * rangeFactor);
         }
 
         /// <inheritdoc cref="MassContest(EntityUid, EntityUid, bool, float)"/>
@@ -190,15 +169,14 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || targetPhysics.InvMass == 0)
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? performerPhysics.Mass * targetPhysics.InvMass
-            //     : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
-            //         1 - _massContestsMaxPercentage * rangeFactor,
-            //         1 + _massContestsMaxPercentage * rangeFactor);
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? performerPhysics.Mass * targetPhysics.InvMass
+                : Math.Clamp(performerPhysics.Mass * targetPhysics.InvMass,
+                    1 - _massContestsMaxPercentage * rangeFactor,
+                    1 + _massContestsMaxPercentage * rangeFactor);
         }
+        public float PushMassContest(EntityUid performer, EntityUid target)
+            => 1f;
 
         #endregion
         #region Stamina Contests
