@@ -19,14 +19,16 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
             base.Initialize();
 // Goobstation start
             // Arcane-Edit-Start
+            // Mass-контесты намеренно отключены (нейтрализация массы для толчков).
+            // Stamina/Health/Mind оставлены рабочими — они не связаны с ростом/весом.
             // Subs.CVar(_cfg, GoobCVars.DoContestsSystem, (val) => _doContestSystem = val, true);
             // Subs.CVar(_cfg, GoobCVars.DoMassContests, (val) => _doMassContests = val, true);
             // Subs.CVar(_cfg, GoobCVars.AllowClampOverride, (val) => _allowClampOverride = val, true);
             // Subs.CVar(_cfg, GoobCVars.MassContestsMaxPercentage, (val) => _massContestsMaxPercentage = val, true);
-            // Subs.CVar(_cfg, GoobCVars.DoStaminaContests, (val) => _doStaminaContests = val, true);
-            // Subs.CVar(_cfg, GoobCVars.DoHealthContests, (val) => _doHealthContests = val, true);
-            // Subs.CVar(_cfg, GoobCVars.DoMindContests, (val) => _doMindContests = val, true);
             // Arcane-Edit-End
+            Subs.CVar(_cfg, GoobCVars.DoStaminaContests, (val) => _doStaminaContests = val, true);
+            Subs.CVar(_cfg, GoobCVars.DoHealthContests, (val) => _doHealthContests = val, true);
+            Subs.CVar(_cfg, GoobCVars.DoMindContests, (val) => _doMindContests = val, true);
 // Goobstation end
 
         }
@@ -210,12 +212,9 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || perfStamina.StaminaDamage == 0)
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? 1 - perfStamina.StaminaDamage / perfStamina.CritThreshold
-            //     : 1 - Math.Clamp(perfStamina.StaminaDamage / perfStamina.CritThreshold, 0, 0.25f * rangeFactor);
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? 1 - perfStamina.StaminaDamage / perfStamina.CritThreshold
+                : 1 - Math.Clamp(perfStamina.StaminaDamage / perfStamina.CritThreshold, 0, 0.25f * rangeFactor);
         }
 
         public float StaminaContest(StaminaComponent perfStamina, bool bypassClamp = false, float rangeFactor = 1f)
@@ -225,12 +224,9 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || !_doStaminaContests)
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? 1 - perfStamina.StaminaDamage / perfStamina.CritThreshold
-            //     : 1 - Math.Clamp(perfStamina.StaminaDamage / perfStamina.CritThreshold, 0, 0.25f * rangeFactor);
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? 1 - perfStamina.StaminaDamage / perfStamina.CritThreshold
+                : 1 - Math.Clamp(perfStamina.StaminaDamage / perfStamina.CritThreshold, 0, 0.25f * rangeFactor);
         }
 
         public float StaminaContest(EntityUid performer, EntityUid target, bool bypassClamp = false, float rangeFactor = 1f)
@@ -242,14 +238,11 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || !TryComp<StaminaComponent>(target, out var targetStamina))
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? (1 - perfStamina.StaminaDamage / perfStamina.CritThreshold)
-            //         / (1 - targetStamina.StaminaDamage / targetStamina.CritThreshold)
-            //     : (1 - Math.Clamp(perfStamina.StaminaDamage / perfStamina.CritThreshold, 0, 0.25f * rangeFactor))
-            //         / (1 - Math.Clamp(targetStamina.StaminaDamage / targetStamina.CritThreshold, 0, 0.25f * rangeFactor));
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? (1 - perfStamina.StaminaDamage / perfStamina.CritThreshold)
+                    / (1 - targetStamina.StaminaDamage / targetStamina.CritThreshold)
+                : (1 - Math.Clamp(perfStamina.StaminaDamage / perfStamina.CritThreshold, 0, 0.25f * rangeFactor))
+                    / (1 - Math.Clamp(targetStamina.StaminaDamage / targetStamina.CritThreshold, 0, 0.25f * rangeFactor));
         }
 
         #endregion
@@ -265,12 +258,9 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || !_mobThreshold.TryGetThresholdForState(performer, Mobs.MobState.SoftCritical, out var threshold)) // Orion-Edit
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? 1 - damage.TotalDamage.Float() / threshold.Value.Float()
-            //     : 1 - Math.Clamp(damage.TotalDamage.Float() / threshold.Value.Float(), 0, 0.25f * rangeFactor);
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? 1 - damage.TotalDamage.Float() / threshold.Value.Float()
+                : 1 - Math.Clamp(damage.TotalDamage.Float() / threshold.Value.Float(), 0, 0.25f * rangeFactor);
         }
 
         public float HealthContest(EntityUid performer, EntityUid target, bool bypassClamp = false, float rangeFactor = 1f)
@@ -284,14 +274,11 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
                 || !_mobThreshold.TryGetThresholdForState(target, Mobs.MobState.SoftCritical, out var targetThreshold)) // Orion-Edit
                 return 1f;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return _allowClampOverride && bypassClamp
-            //     ? (1 - perfDamage.TotalDamage.Float() / perfThreshold.Value.Float())
-            //         / (1 - targetDamage.TotalDamage.Float() / targetThreshold.Value.Float())
-            //     : (1 - Math.Clamp(perfDamage.TotalDamage.Float() / perfThreshold.Value.Float(), 0, 0.25f * rangeFactor))
-            //         / (1 - Math.Clamp(targetDamage.TotalDamage.Float() / targetThreshold.Value.Float(), 0, 0.25f * rangeFactor));
-            // Arcane-Edit-End
+            return _allowClampOverride && bypassClamp
+                ? (1 - perfDamage.TotalDamage.Float() / perfThreshold.Value.Float())
+                    / (1 - targetDamage.TotalDamage.Float() / targetThreshold.Value.Float())
+                : (1 - Math.Clamp(perfDamage.TotalDamage.Float() / perfThreshold.Value.Float(), 0, 0.25f * rangeFactor))
+                    / (1 - Math.Clamp(targetDamage.TotalDamage.Float() / targetThreshold.Value.Float(), 0, 0.25f * rangeFactor));
         }
         #endregion
 
@@ -355,18 +342,15 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
             var healthMultiplier = weightHealth / weightTotal;
             var mindMultiplier = weightMind / weightTotal;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return sumOrMultiply
-            //     ? MassContest(performer, bypassClampMass, rangeFactorMass) * massMultiplier
-            //         + StaminaContest(performer, bypassClampStamina, rangeFactorStamina) * staminaMultiplier
-            //         + HealthContest(performer, bypassClampHealth, rangeFactorHealth) * healthMultiplier
-            //         + MindContest(performer, bypassClampMind, rangeFactorMind) * mindMultiplier
-            //     : MassContest(performer, bypassClampMass, rangeFactorMass) * massMultiplier
-            //         * StaminaContest(performer, bypassClampStamina, rangeFactorStamina) * staminaMultiplier
-            //         * HealthContest(performer, bypassClampHealth, rangeFactorHealth) * healthMultiplier
-            //         * MindContest(performer, bypassClampMind, rangeFactorMind) * mindMultiplier;
-            // Arcane-Edit-End
+            return sumOrMultiply
+                ? MassContest(performer, bypassClampMass, rangeFactorMass) * massMultiplier
+                    + StaminaContest(performer, bypassClampStamina, rangeFactorStamina) * staminaMultiplier
+                    + HealthContest(performer, bypassClampHealth, rangeFactorHealth) * healthMultiplier
+                    + MindContest(performer, bypassClampMind, rangeFactorMind) * mindMultiplier
+                : MassContest(performer, bypassClampMass, rangeFactorMass) * massMultiplier
+                    * StaminaContest(performer, bypassClampStamina, rangeFactorStamina) * staminaMultiplier
+                    * HealthContest(performer, bypassClampHealth, rangeFactorHealth) * healthMultiplier
+                    * MindContest(performer, bypassClampMind, rangeFactorMind) * mindMultiplier;
         }
 
         public float EveryContest(
@@ -396,18 +380,15 @@ namespace Content.Shared._EinsteinEngines.Contests // Goob Edit
             var healthMultiplier = weightHealth / weightTotal;
             var mindMultiplier = weightMind / weightTotal;
 
-            // Arcane-Edit-Start
-            return 1f;
-            // return sumOrMultiply
-            //     ? MassContest(performer, target, bypassClampMass, rangeFactorMass) * massMultiplier
-            //         + StaminaContest(performer, target, bypassClampStamina, rangeFactorStamina) * staminaMultiplier
-            //         + HealthContest(performer, target, bypassClampHealth, rangeFactorHealth) * healthMultiplier
-            //         + MindContest(performer, target, bypassClampMind, rangeFactorMind) * mindMultiplier
-            //     : MassContest(performer, target, bypassClampMass, rangeFactorMass) * massMultiplier
-            //         * StaminaContest(performer, target, bypassClampStamina, rangeFactorStamina) * staminaMultiplier
-            //         * HealthContest(performer, target, bypassClampHealth, rangeFactorHealth) * healthMultiplier
-            //         * MindContest(performer, target, bypassClampMind, rangeFactorMind) * mindMultiplier;
-            // Arcane-Edit-End
+            return sumOrMultiply
+                ? MassContest(performer, target, bypassClampMass, rangeFactorMass) * massMultiplier
+                    + StaminaContest(performer, target, bypassClampStamina, rangeFactorStamina) * staminaMultiplier
+                    + HealthContest(performer, target, bypassClampHealth, rangeFactorHealth) * healthMultiplier
+                    + MindContest(performer, target, bypassClampMind, rangeFactorMind) * mindMultiplier
+                : MassContest(performer, target, bypassClampMass, rangeFactorMass) * massMultiplier
+                    * StaminaContest(performer, target, bypassClampStamina, rangeFactorStamina) * staminaMultiplier
+                    * HealthContest(performer, target, bypassClampHealth, rangeFactorHealth) * healthMultiplier
+                    * MindContest(performer, target, bypassClampMind, rangeFactorMind) * mindMultiplier;
         }
         #endregion
     }
