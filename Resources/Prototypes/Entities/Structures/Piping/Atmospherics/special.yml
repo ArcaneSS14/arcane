@@ -26,6 +26,11 @@
   - type: Tag
     tags:
       - SpreaderIgnore
+  # Arcane-Edit-Start
+  - type: Construction
+    graph: AtmosDeviceFanTiny
+    node: atmosDeviceFanTiny
+  # Arcane-Edit-End
 
 - type: entity
   id: AtmosDeviceFanDirectional
@@ -55,3 +60,8 @@
   - type: Tag
     tags:
       - SpreaderIgnore
+  # Arcane-Edit-Start
+  - type: Construction
+    graph: AtmosDeviceFanTiny
+    node: atmosDeviceFanTiny
+  # Arcane-Edit-End
