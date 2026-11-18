@@ -1,0 +1,17 @@
+- type: construction
+  id: AtmosDeviceFanTiny
+  graph: AtmosDeviceFanTiny
+  startNode: start
+  targetNode: atmosDeviceFanTiny
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: AtmosDeviceFanDirectional
+  graph: AtmosDeviceFanDirectional
+  startNode: start
+  targetNode: atmosDeviceFanDirectional
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
