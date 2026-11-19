@@ -39,4 +39,16 @@
   name: Space
   artist: bulbo44kkey
 
+- type: lobbyBackground
+  id: ArcaneWedding
+  background: /Textures/_Arcane/LobbyScreens/arcanedartemwedding.webp
+  name: Wedding
+  artist: dartem
+
+- type: lobbyBackground
+  id: ArcaneMoths
+  background: /Textures/_Arcane/LobbyScreens/arcaneQuelezzaMoths.webp
+  name: Moths
+  artist: Quelezza
+
 # endregion
