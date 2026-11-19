@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Bulbo44kkey",
+  "size": {"x": 64, "y": 64},
+  "states":
+  [
+    {
+        "name": "tiger_alive",
+        "directions": 4
+    },
+    {
+        "name": "tiger_dead",
+        "directions": 4
+    }
+  ]
+}

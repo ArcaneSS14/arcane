@@ -1,0 +1,130 @@
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTiger
+  name: Tiger Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: tiger_alive
+      sprite: _Arcane/Mobs/Animals/tiger.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobTiger
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobCrocodile
+  name: Crocodile Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: crocodile_alive
+      sprite: _Arcane/Mobs/Animals/crocodile.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobCrocodile
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTurtle
+  name: Turtle Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: turtle_alive
+      sprite: _Arcane/Mobs/Animals/turtle.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobTurtle
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTurtleNinja
+  name: Ninja Turtle Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: turtle_alive_ninja
+      sprite: _Arcane/Mobs/Animals/turtle.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobTurtleNinja
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTurtleRafael
+  name: Rafael Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: turtle_alive_ninja
+      sprite: _Arcane/Mobs/Animals/turtle.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobTurtleRafael
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobRabbit
+  name: Rabbit Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: rabbit_alive
+      sprite: _Arcane/Mobs/Animals/rabbit.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobRabbit
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobSeal
+  name: Seal Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: seal_alive
+      sprite: _Arcane/Mobs/Animals/seal.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSeal
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobCheremsha
+  name: Cheremsha Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: cheremsha
+      sprite: _Arcane/Mobs/Animals/cheremsha.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobCheremsha
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobRandomArcaneFauna
+  name: Random Arcane Fauna Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobTiger
+    - MobCrocodile
+    - MobTurtle
+    - MobRabbit
+    - MobSeal
+    chance: 1
+    offset: 0

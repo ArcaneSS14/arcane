@@ -1,0 +1,6 @@
+- type: stealTargetGroup
+  id: AnimalRafael
+  name: steal-target-group-rafael
+  sprite:
+    sprite: _Arcane/Mobs/Animals/turtle.rsi
+    state: turtle_alive_ninja

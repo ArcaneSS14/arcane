@@ -1,0 +1,9 @@
+- files: ["tiger_roar.ogg"]
+  license: "Custom"
+  copyright: "Sherimfal. License: https://pixabay.com/service/license-summary/"
+  source: "https://pixabay.com/sound-effects/nature-tiger-light-roar-t-293716/"
+
+- files: ["crocodile_growl.ogg"]
+  license: "Custom"
+  copyright: "DRAGON-STUDIO. License: https://pixabay.com/service/license-summary/"
+  source: "https://pixabay.com/sound-effects/horror-monster-growl-376892/"
