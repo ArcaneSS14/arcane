@@ -1,3 +1,25 @@
+- type: entity
+  parent: ClothingBeltUtility
+  id: ClothingBeltRunnerLight
+  name: light runner belt
+  description: A durable light belt equipped with convenient attachment loops for gear.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Belt/runner_light_belt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Belt/runner_light_belt.rsi
+
+- type: entity
+  parent: ClothingBeltUtility
+  id: ClothingBeltRunnerDark
+  name: dark runner belt
+  description: A durable dark belt equipped with loops for essential tools.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Belt/runner_dark_belt.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Belt/runner_dark_belt.rsi
+
 # Sponsor
 
 - type: entity

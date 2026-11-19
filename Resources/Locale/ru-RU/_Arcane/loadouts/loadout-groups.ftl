@@ -1,4 +1,9 @@
 loadout-group-grimoire = Гримуар
+loadout-group-passenger-head = Ассистент, голова
+loadout-group-passenger-belt = Ассистент, пояс
+loadout-group-technical-assistant-head = Технический ассистент, голова
+loadout-group-technical-assistant-outerclothing = Технический ассистент, верхняя одежда
+loadout-group-technical-assistant-shoes = Технический ассистент, обувь
 
 # Service
 loadout-group-service-cloak = Сервисный отдел, плащ

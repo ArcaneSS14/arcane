@@ -34,6 +34,10 @@ ent-ClothingHeadbandKitsune = ушки кицунэ
     .desc = Традиционный элемент костюма в стиле мифической лисы.
 ent-ClothingHeadHatMaidFura = фуражка горничной
     .desc = Аккуратная фуражка, подобающая старшей горничной.
+ent-ClothingHeadHatRunnerLight = светлая кепка раннера
+    .desc = Лёгкая светлая кепка, защищающая глаза от ярких ламп станции.
+ent-ClothingHeadHatRunnerDark = тёмная кепка раннера
+    .desc = Практичная тёмная кепка для скрытных перемещений.
 ent-ClothingHeadHatPolicemanHat = фуражка полицейского
     .desc = Строгая полицейская фуражка. Уважайте закон!
 

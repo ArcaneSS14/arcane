@@ -13,6 +13,20 @@
     ClothingHandsGlovesColorYellow: 12 # GoobStation: was 6, IPCs need insuls more than usual
     BoxInflatable: 2
     ClothingHeadHatCone: 4
+    # Arcane-Start
+    ClothingHeadHatRunnerLight: 2
+    ClothingHeadHatRunnerDark: 2
+    ClothingOuterCoatRunnerLight: 2
+    ClothingOuterCoatRunnerDark: 2
+    ClothingUniformRunnerLight: 2
+    ClothingUniformRunnerDark: 2
+    ClothingHandsGlovesRunnerLight: 2
+    ClothingHandsGlovesRunnerDark: 2
+    ClothingShoesRunnerLight: 2
+    ClothingShoesRunnerDark: 2
+    ClothingBeltRunnerLight: 2
+    ClothingBeltRunnerDark: 2
+    # Arcane-End
   contrabandInventory:
     CowToolboxFilled: 1
     DrinkBeerCan: 3

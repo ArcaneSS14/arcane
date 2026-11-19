@@ -1,0 +1,21 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatRunnerLight
+  name: light runner jacket
+  description: A stylish light jacket featuring reinforced stitching.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Misc/runner_light_jacket.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Misc/runner_light_jacket.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatRunnerDark
+  name: dark runner jacket
+  description: A sleek dark jacket providing protection from prying eyes.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/OuterClothing/Misc/runner_dark_jacket.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/OuterClothing/Misc/runner_dark_jacket.rsi

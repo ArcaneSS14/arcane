@@ -633,3 +633,25 @@
     sprite: _Arcane/Clothing/Innerclothing/bitrunner_jumpsuit.rsi
   - type: Clothing
     sprite: _Arcane/Clothing/Innerclothing/bitrunner_jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformRunnerLight
+  name: light runner jumpsuit
+  description: A comfortable light jumpsuit designed for quick movement through technical maintenance tunnels.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Jumpsuits/runner_light_jumpsuit.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Jumpsuits/runner_light_jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformRunnerDark
+  name: dark runner jumpsuit
+  description: A comfortable dark jumpsuit tailored to blend seamlessly into shadowy corridors.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Innerclothing/Jumpsuits/runner_dark_jumpsuit.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Innerclothing/Jumpsuits/runner_dark_jumpsuit.rsi
