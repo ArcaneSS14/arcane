@@ -22,6 +22,8 @@
   - /Audio/_Arcane/Voice/HumanoidXeno/xeno_growl_1.ogg
   - /Audio/_Arcane/Voice/HumanoidXeno/xeno_growl_2.ogg
   - /Audio/_Arcane/Voice/HumanoidXeno/xeno_growl_3.ogg
+  - /Audio/_Arcane/Voice/HumanoidXeno/xeno_growl_4.ogg
+  - /Audio/_Arcane/Voice/HumanoidXeno/xeno_growl_5.ogg
 
 - type: soundCollection
   id: HumanoidXenoHisses
@@ -43,6 +45,7 @@
   - /Audio/_Arcane/Voice/HumanoidXeno/xeno_roar_3.ogg
   - /Audio/_Arcane/Voice/HumanoidXeno/xeno_roar_4.ogg
   - /Audio/_Arcane/Voice/HumanoidXeno/xeno_roar_5.ogg
+  - /Audio/_Arcane/Voice/HumanoidXeno/xeno_roar_6.ogg
 
 - type: soundCollection
   id: HumanoidXenoRumbles

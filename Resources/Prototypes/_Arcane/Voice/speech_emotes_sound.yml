@@ -130,3 +130,99 @@
       collection: MaleVulpkaninHowls
     Awoo:
       collection: MaleVulpkaninHowls
+
+- type: emoteSounds
+  id: FemaleTajaran
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      collection: FelinidMeows
+    Mew:
+      collection: FelinidMews
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
+    CatMeow:
+      collection: CatMeows
+    Laugh:
+      collection: CatLaugh
+    Sneeze:
+      collection: CatSneeze
+    Gasp:
+      collection: CatGasp
+    Crying:
+      collection: CatCry
+    Sigh:
+      collection: CatSigh
+    Yawn:
+      collection: FemaleYawn
+    Snore:
+      collection: Snores
+    Honk:
+      collection: CluwneHorn
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    DefaultDeathgasp:
+      collection: CatGasp
+    Gulp: # Goob
+      path: /Audio/_Goobstation/Voice/gulpexotic.ogg
+    Surprised: # Goob
+      path: /Audio/_Goobstation/Voice/surprised.ogg
+    Moan:
+      collection: MoansFemale
+
+- type: emoteSounds
+  id: MaleTajaran
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Hiss:
+      collection: FelinidHisses
+    Meow:
+      collection: FelinidMeows
+    Mew:
+      collection: FelinidMews
+    Growl:
+      collection: FelinidGrowls
+    Purr:
+      collection: FelinidPurrs
+    CatMeow:
+      collection: CatMeows
+    Laugh:
+      collection: CatLaugh
+    Sneeze:
+      collection: CatSneeze
+    Gasp:
+      collection: CatGasp
+    Crying:
+      collection: CatCry
+    Sigh:
+      collection: CatSigh
+    Yawn:
+      collection: MaleYawn
+    Snore:
+      collection: Snores
+    Honk:
+      collection: CluwneHorn
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    DefaultDeathgasp:
+      collection: CatGasp
+    Gulp: # Goob
+      path: /Audio/_Goobstation/Voice/gulpexotic.ogg
+    Surprised: # Goob
+      path: /Audio/_Goobstation/Voice/surprised.ogg
+    Moan:
+      collection: MoansMale
