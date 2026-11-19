@@ -88,36 +88,6 @@ public sealed partial class DevilContractSystem : EntitySystem
     }
 
     // Arcane-Start
-    // /// <summary>
-    // /// Normalizes a clause key: trims, lowercases and removes all whitespace.
-    // /// </summary>
-    // private static string NormalizeClauseKey(string value) =>
-    //     value.Trim().ToLowerInvariant().Replace(" ", "");
-    //
-    // /// <summary>
-    // /// Finds a clause prototype by its ID, its raw <see cref="DevilClausePrototype.Name"/>,
-    // /// or its localized name (FTL). All comparisons are normalized.
-    // /// </summary>
-    // private DevilClausePrototype? FindClause(string normalizedKey)
-    // {
-    //     foreach (var clause in _prototypeManager.EnumeratePrototypes<DevilClausePrototype>())
-    //     {
-    //         if (NormalizeClauseKey(clause.ID) == normalizedKey)
-    //             return clause;
-    //
-    //         if (string.IsNullOrEmpty(clause.Name))
-    //             continue;
-    //
-    //         if (NormalizeClauseKey(clause.Name) == normalizedKey)
-    //             return clause;
-    //
-    //         var localized = Loc.GetString(clause.Name);
-    //         if (NormalizeClauseKey(localized) == normalizedKey)
-    //             return clause;
-    //     }
-    //
-    //     return null;
-    // }
 
     private static string NormalizeClauseKey(string value) =>
         value.Trim().ToLowerInvariant().Replace(" ", "");
@@ -359,12 +329,6 @@ public sealed partial class DevilContractSystem : EntitySystem
             if (!match.Success)
                 continue;
             // Arcane-Edit-Start
-            // var clauseKey = match.Groups["clause"].Value.Trim().ToLowerInvariant().Replace(" ", "");
-            //
-            // if (!_prototypeManager.TryIndex(clauseKey, out DevilClausePrototype? clauseProto)
-            //     || !contract.Comp.CurrentClauses.Add(clauseProto))
-            //     continue;
-
             var clauseKey = NormalizeClauseKey(match.Groups["clause"].Value);
 
             var clauseProto = FindClause(clauseKey);
@@ -393,30 +357,6 @@ public sealed partial class DevilContractSystem : EntitySystem
             if (!match.Success)
                 continue;
             // Arcane-Edit-Start
-            // var targetKey = match.Groups["target"].Value.Trim().ToLowerInvariant().Replace(" ", "");
-            // var clauseKey = match.Groups["clause"].Value.Trim().ToLowerInvariant().Replace(" ", "");
-            //
-            // var locId = _targetResolvers.Keys.FirstOrDefault(id => Loc.GetString(id).Equals(targetKey, StringComparison.OrdinalIgnoreCase));
-            // var resolver = _targetResolvers[locId];
-            //
-            // if (resolver(contract.Comp) == null)
-            // {
-            //     _sawmill.Warning($"Unknown resolver: {resolver(contract.Comp)}");
-            //     continue;
-            // }
-            //
-            // if (!_prototypeManager.TryIndex(clauseKey, out DevilClausePrototype? clause))
-            // {
-            //     _sawmill.Warning($"Unknown contract clause: {clauseKey}");
-            //     continue;
-            // }
-            //
-            // if (!processedClauses.Add(clauseKey))
-            // {
-            //     _sawmill.Warning($"Attempted to apply duplicate clause: {clauseKey} on contract {ToPrettyString(contract)}");
-            //     continue;
-            // }
-
             var targetKey = NormalizeClauseKey(match.Groups["target"].Value);
             var clauseKey = NormalizeClauseKey(match.Groups["clause"].Value);
 
@@ -431,19 +371,10 @@ public sealed partial class DevilContractSystem : EntitySystem
 
             if (resolver(contract.Comp) == null)
             {
-                // Arcane-Edit-Start
-                // _sawmill.Warning($"Unknown resolver: {resolver(contract.Comp)}");
-                _sawmill.Warning($"Unknown resolver target for: {locId}");
-                // Arcane-Edit-End
+                _sawmill.Warning($"Unknown resolver target for: {locId}"); // Arcane-Edit
                 continue;
             }
-
             // Arcane-Edit-Start
-            // if (!_prototypeManager.TryIndex(clauseKey, out DevilClausePrototype? clause))
-            // {
-            //     _sawmill.Warning($"Unknown contract clause: {clauseKey}");
-            //     continue;
-            // }
 
             var clause = FindClause(clauseKey);
             if (clause == null)
@@ -454,10 +385,7 @@ public sealed partial class DevilContractSystem : EntitySystem
             }
 
             // no duplicates
-            // Arcane-Edit-Start
-            // if (!processedClauses.Add(clauseKey))
-            if (!processedClauses.Add(clause.ID))
-            // Arcane-Edit-End
+            if (!processedClauses.Add(clause.ID))// Arcane-Edit
             {
                 _sawmill.Warning($"Attempted to apply duplicate clause: {clauseKey} on contract {ToPrettyString(contract)}");
                 continue;
