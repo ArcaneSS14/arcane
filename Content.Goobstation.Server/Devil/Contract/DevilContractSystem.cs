@@ -86,6 +86,72 @@ public sealed partial class DevilContractSystem : EntitySystem
         _clauseRegex = new Regex($@"^\s*(?<target>{targetPattern})\s*:\s*(?<clause>.+?)\s*$",
             RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.Multiline);
     }
+
+    // Arcane-Start
+    // /// <summary>
+    // /// Normalizes a clause key: trims, lowercases and removes all whitespace.
+    // /// </summary>
+    // private static string NormalizeClauseKey(string value) =>
+    //     value.Trim().ToLowerInvariant().Replace(" ", "");
+    //
+    // /// <summary>
+    // /// Finds a clause prototype by its ID, its raw <see cref="DevilClausePrototype.Name"/>,
+    // /// or its localized name (FTL). All comparisons are normalized.
+    // /// </summary>
+    // private DevilClausePrototype? FindClause(string normalizedKey)
+    // {
+    //     foreach (var clause in _prototypeManager.EnumeratePrototypes<DevilClausePrototype>())
+    //     {
+    //         if (NormalizeClauseKey(clause.ID) == normalizedKey)
+    //             return clause;
+    //
+    //         if (string.IsNullOrEmpty(clause.Name))
+    //             continue;
+    //
+    //         if (NormalizeClauseKey(clause.Name) == normalizedKey)
+    //             return clause;
+    //
+    //         var localized = Loc.GetString(clause.Name);
+    //         if (NormalizeClauseKey(localized) == normalizedKey)
+    //             return clause;
+    //     }
+    //
+    //     return null;
+    // }
+
+    private static string NormalizeClauseKey(string value) =>
+        value.Trim().ToLowerInvariant().Replace(" ", "");
+
+    private DevilClausePrototype? FindClause(string normalizedKey)
+    {
+        foreach (var clause in _prototypeManager.EnumeratePrototypes<DevilClausePrototype>())
+        {
+            // 1. By prototype ID (soulownership)
+            if (NormalizeClauseKey(clause.ID) == normalizedKey)
+                return clause;
+
+            // 2. By FTL key derived from ID (clause-soulownership)
+            var idLocKey = $"clause-{clause.ID}";
+            var idLocalized = Loc.GetString(idLocKey);
+            if (idLocalized != idLocKey && NormalizeClauseKey(idLocalized) == normalizedKey)
+                return clause;
+
+            if (string.IsNullOrEmpty(clause.Name))
+                continue;
+
+            // 3. By raw Name from YAML (Soul Ownership)
+            if (NormalizeClauseKey(clause.Name) == normalizedKey)
+                return clause;
+
+            // 4. By localized Name (if Name is a LocId)
+            var localized = Loc.GetString(clause.Name);
+            if (localized != clause.Name && NormalizeClauseKey(localized) == normalizedKey)
+                return clause;
+        }
+
+        return null;
+    }
+    // Arcane-End
     private void OnGetVerbs(Entity<DevilContractComponent> contract, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanInteract
@@ -302,11 +368,18 @@ public sealed partial class DevilContractSystem : EntitySystem
         {
             if (!match.Success)
                 continue;
+            // Arcane-Edit-Start
+            // var clauseKey = match.Groups["clause"].Value.Trim().ToLowerInvariant().Replace(" ", "");
+            //
+            // if (!_prototypeManager.TryIndex(clauseKey, out DevilClausePrototype? clauseProto)
+            //     || !contract.Comp.CurrentClauses.Add(clauseProto))
+            //     continue;
 
-            var clauseKey = match.Groups["clause"].Value.Trim().ToLowerInvariant().Replace(" ", "");
+            var clauseKey = NormalizeClauseKey(match.Groups["clause"].Value);
 
-            if (!_prototypeManager.TryIndex(clauseKey, out DevilClausePrototype? clauseProto)
-                || !contract.Comp.CurrentClauses.Add(clauseProto))
+            var clauseProto = FindClause(clauseKey);
+            if (clauseProto == null || !contract.Comp.CurrentClauses.Add(clauseProto))
+            // Arcane-Edit-End
                 continue;
 
             newWeight += clauseProto.ClauseWeight;
@@ -329,27 +402,72 @@ public sealed partial class DevilContractSystem : EntitySystem
         {
             if (!match.Success)
                 continue;
+            // Arcane-Edit-Start
+            // var targetKey = match.Groups["target"].Value.Trim().ToLowerInvariant().Replace(" ", "");
+            // var clauseKey = match.Groups["clause"].Value.Trim().ToLowerInvariant().Replace(" ", "");
+            //
+            // var locId = _targetResolvers.Keys.FirstOrDefault(id => Loc.GetString(id).Equals(targetKey, StringComparison.OrdinalIgnoreCase));
+            // var resolver = _targetResolvers[locId];
+            //
+            // if (resolver(contract.Comp) == null)
+            // {
+            //     _sawmill.Warning($"Unknown resolver: {resolver(contract.Comp)}");
+            //     continue;
+            // }
+            //
+            // if (!_prototypeManager.TryIndex(clauseKey, out DevilClausePrototype? clause))
+            // {
+            //     _sawmill.Warning($"Unknown contract clause: {clauseKey}");
+            //     continue;
+            // }
+            //
+            // if (!processedClauses.Add(clauseKey))
+            // {
+            //     _sawmill.Warning($"Attempted to apply duplicate clause: {clauseKey} on contract {ToPrettyString(contract)}");
+            //     continue;
+            // }
 
-            var targetKey = match.Groups["target"].Value.Trim().ToLowerInvariant().Replace(" ", "");
-            var clauseKey = match.Groups["clause"].Value.Trim().ToLowerInvariant().Replace(" ", "");
+            var targetKey = NormalizeClauseKey(match.Groups["target"].Value);
+            var clauseKey = NormalizeClauseKey(match.Groups["clause"].Value);
 
-            var locId = _targetResolvers.Keys.FirstOrDefault(id => Loc.GetString(id).Equals(targetKey, StringComparison.OrdinalIgnoreCase));
+            var locId = _targetResolvers.Keys.FirstOrDefault(id => NormalizeClauseKey(Loc.GetString(id)) == targetKey);
+            if (locId == default)
+            {
+                _sawmill.Warning($"Unknown target resolver: {targetKey}");
+                continue;
+            }
+            // Arcane-Edit-End
             var resolver = _targetResolvers[locId];
 
             if (resolver(contract.Comp) == null)
             {
-                _sawmill.Warning($"Unknown resolver: {resolver(contract.Comp)}");
+                // Arcane-Edit-Start
+                // _sawmill.Warning($"Unknown resolver: {resolver(contract.Comp)}");
+                _sawmill.Warning($"Unknown resolver target for: {locId}");
+                // Arcane-Edit-End
                 continue;
             }
 
-            if (!_prototypeManager.TryIndex(clauseKey, out DevilClausePrototype? clause))
+            // Arcane-Edit-Start
+            // if (!_prototypeManager.TryIndex(clauseKey, out DevilClausePrototype? clause))
+            // {
+            //     _sawmill.Warning($"Unknown contract clause: {clauseKey}");
+            //     continue;
+            // }
+
+            var clause = FindClause(clauseKey);
+            if (clause == null)
+            // Arcane-Edit-End
             {
                 _sawmill.Warning($"Unknown contract clause: {clauseKey}");
                 continue;
             }
 
             // no duplicates
-            if (!processedClauses.Add(clauseKey))
+            // Arcane-Edit-Start
+            // if (!processedClauses.Add(clauseKey))
+            if (!processedClauses.Add(clause.ID))
+            // Arcane-Edit-End
             {
                 _sawmill.Warning($"Attempted to apply duplicate clause: {clauseKey} on contract {ToPrettyString(contract)}");
                 continue;
