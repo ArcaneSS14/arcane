@@ -1,0 +1,12 @@
+ent-ArcaneCartridgeAntiMateriel = патрон (15мм антиматериальный)
+    .desc = Мощный патрон для винтовки "Многокрылый Ангел"
+ent-ArcaneCartridgeAntiMaterielPenetrator = патрон (15мм бронебойный)
+    .desc = Мощный бронебойный патрон для "Многокрылого ангела".
+ent-ArcaneCartridgeAntiMaterielFrag = патрон (15мм осколочный)
+    .desc = Патрон калибра 15мм, при попадании разбрасывающий град осколков.
+ent-ArcaneCartridgeAntiMaterielBlast = патрон (15мм фугасный)
+    .desc = Взрывной патрон калибра 15мм.
+ent-ArcaneCartridgeAntiMaterielEmp = патрон (15мм ЭМИ)
+    .desc = Патрон калибра 15мм, создающий электромагнитный импульс.
+ent-ArcaneCartridgeAntiMaterielHP = патрон (15мм экспансивный)
+    .desc = Экспансивный патрон калибра 15мм.

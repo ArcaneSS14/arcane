@@ -74,3 +74,17 @@
     sprite: _Arcane/Clothing/Back/USSP/duffellussp.rsi
   - type: ClothingSpeedModifier
     sprintModifier: 0.95
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  id: ClothingBackpackDuffelSyndicateBauer
+  name: syndicate duffel bag for bauer469
+  description: A large, specialized bag for carrying large-caliber weaponry
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    grid:
+    - 0,0,10,4
