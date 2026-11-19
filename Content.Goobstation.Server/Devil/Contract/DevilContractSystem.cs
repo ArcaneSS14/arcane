@@ -126,26 +126,16 @@ public sealed partial class DevilContractSystem : EntitySystem
     {
         foreach (var clause in _prototypeManager.EnumeratePrototypes<DevilClausePrototype>())
         {
-            // 1. By prototype ID (soulownership)
             if (NormalizeClauseKey(clause.ID) == normalizedKey)
                 return clause;
 
-            // 2. By FTL key derived from ID (clause-soulownership)
-            var idLocKey = $"clause-{clause.ID}";
-            var idLocalized = Loc.GetString(idLocKey);
-            if (idLocalized != idLocKey && NormalizeClauseKey(idLocalized) == normalizedKey)
-                return clause;
+            foreach (var alias in clause.Aliases)
+            {
+                if (NormalizeClauseKey(alias) == normalizedKey)
+                    return clause;
+            }
 
-            if (string.IsNullOrEmpty(clause.Name))
-                continue;
-
-            // 3. By raw Name from YAML (Soul Ownership)
-            if (NormalizeClauseKey(clause.Name) == normalizedKey)
-                return clause;
-
-            // 4. By localized Name (if Name is a LocId)
-            var localized = Loc.GetString(clause.Name);
-            if (localized != clause.Name && NormalizeClauseKey(localized) == normalizedKey)
+            if (!string.IsNullOrEmpty(clause.Name) && NormalizeClauseKey(clause.Name) == normalizedKey)
                 return clause;
         }
 
