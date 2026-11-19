@@ -6,6 +6,7 @@ using Content.Shared.Popups;
 using Content.Shared.Power.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
+using Content.Shared._EinsteinEngines.Power.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Server.Augments;
@@ -28,7 +29,17 @@ public sealed partial class AugmentPowerCellSystem : SharedAugmentPowerCellSyste
 
         // SubscribeLocalEvent<HasAugmentPowerCellSlotComponent, FindBatteryEvent>(OnFindBattery);
         SubscribeLocalEvent<HasAugmentPowerCellSlotComponent, AugmentBatteryAlertEvent>(OnBatteryAlert);
+        SubscribeLocalEvent<HasAugmentPowerCellSlotComponent, FindDrinkerBatteryEvent>(OnFindDrinkerBattery); // Arcane
     }
+
+    // Arcane-Start
+    private void OnFindDrinkerBattery(Entity<HasAugmentPowerCellSlotComponent> ent, ref FindDrinkerBatteryEvent args)
+    {
+        if (GetBodyCell(ent) is { } battery)
+            args.Battery = battery.Owner;
+    }
+    // Arcane-End
+
     /* todo goobstream
     private void OnFindBattery(Entity<HasAugmentPowerCellSlotComponent> ent, ref FindBatteryEvent args)
     {
