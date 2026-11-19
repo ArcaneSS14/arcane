@@ -4673,3 +4673,17 @@ Entries:
   time: '2026-11-19T07:05:16.0000000+00:00'
   prNumber: 605
   url: https://github.com/ArcaneSS14/arcane/pull/605
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: НТР снова получает исполнительный чемодан и консоль заданий в шкафу.
+    - type: Fix
+      message: Задания НТРа на канистру с реагентами теперь можно выполнить.
+    - type: Tweak
+      message: >-
+        Стажёры ЦК получают доступы НТРа, майндщилд и появляются в облике вашего
+        персонажа.
+  id: 325
+  time: '2026-11-19T07:07:36.0000000+00:00'
+  prNumber: 587
+  url: https://github.com/ArcaneSS14/arcane/pull/587
