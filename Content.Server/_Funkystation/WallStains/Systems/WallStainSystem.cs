@@ -43,6 +43,7 @@ public sealed partial class WallStainSystem : EntitySystem
         new(1, 0),
         new(-1, 0)
     };
+    private const int CleanSearchRadius = 1; // Arcane
 
     [Dependency] private SharedMapSystem _map = null!;
     [Dependency] private SharedTransformSystem _transform = null!;
@@ -251,6 +252,41 @@ public sealed partial class WallStainSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("wall-stain-pour-full"), wallUid, args.User);
         }
     }
+    // Arcane-Start
+    private List<EntityUid> CollectStainedWallsInRadius(EntityUid origin)
+    {
+        var result = new List<EntityUid>();
+        if (HasComp<StainedWallComponent>(origin))
+            result.Add(origin);
+
+        var originXform = Transform(origin);
+        var gridUid = originXform.GridUid;
+        if (gridUid == null || !TryComp<MapGridComponent>(gridUid.Value, out var grid))
+        {
+            return result;
+        }
+
+        var originTile = _map.TileIndicesFor(gridUid.Value, grid, originXform.Coordinates);
+
+        for (var dx = -CleanSearchRadius; dx <= CleanSearchRadius; dx++)
+        {
+            for (var dy = -CleanSearchRadius; dy <= CleanSearchRadius; dy++)
+            {
+                var tile = originTile + new Vector2i(dx, dy);
+                var anchored = _map.GetAnchoredEntities(gridUid.Value, grid, tile);
+                while (anchored.MoveNext(out var ent))
+                {
+                    if (ent.Value == origin)
+                        continue;
+                    if (HasComp<StainedWallComponent>(ent.Value))
+                        result.Add(ent.Value);
+                }
+            }
+        }
+
+        return result;
+    }
+    // Arcane-End
 
     private void OnInteractUsing(EntityUid uid, StainedWallComponent component, InteractUsingEvent args)
     {
@@ -276,6 +312,11 @@ public sealed partial class WallStainSystem : EntitySystem
             }
         }
 
+        // Arcane-Start
+        var targets = CollectStainedWallsInRadius(uid);
+        if (targets.Count == 0)
+            return;
+        // Arcane-End
         _popup.PopupEntity(Loc.GetString("wall-stain-cleaning-start"), uid, user);
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(5), new CleanWallStainDoAfterEvent(), uid, target: uid, used: tool)
@@ -297,9 +338,21 @@ public sealed partial class WallStainSystem : EntitySystem
             return;
 
         args.Handled = true;
+        // Arcane-Start
+        var targets = CollectStainedWallsInRadius(uid);
+        if (targets.Count == 0)
+            return;
+        // Arcane-End
         _popup.PopupEntity(Loc.GetString("wall-stain-cleaning-success"), uid, args.User);
 
-        RaiseLocalEvent(uid, new CleanWallStainsEvent(transformToWater: false));
+        // Arcane-Edit-Start
+        foreach (var target in targets)
+        {
+            if (!HasComp<StainedWallComponent>(target))
+                continue;
+            RaiseLocalEvent(target, new CleanWallStainsEvent(transformToWater: false));
+        }
+        // Arcane-Edit-End
     }
 
     private void OnCleanEvent(EntityUid uid, StainedWallComponent component, CleanWallStainsEvent args)
