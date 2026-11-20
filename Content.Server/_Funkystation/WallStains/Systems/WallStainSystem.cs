@@ -30,7 +30,6 @@ public sealed partial class WallStainSystem : EntitySystem
 {
     private static readonly ProtoId<TagPrototype> WindowTag = "Window";
     private static readonly ProtoId<TagPrototype> WallTag = "Wall";
-    private static readonly ProtoId<TagPrototype> GrilleTag = "Grille"; // Arcane
     private static readonly ProtoId<TagPrototype> SoapTag = "Soap";
 
     private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
