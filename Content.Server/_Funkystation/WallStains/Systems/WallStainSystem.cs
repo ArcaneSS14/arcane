@@ -119,10 +119,6 @@ public sealed partial class WallStainSystem : EntitySystem
 
     private bool IsWall(EntityUid uid)
     {
-        // Arcane-Start
-        if (_tag.HasTag(uid, GrilleTag))
-            return false;
-        // Arcane-End
         return HasComp<AirtightComponent>(uid) || _tag.HasTag(uid, WallTag) || _tag.HasTag(uid, WindowTag);
     }
 

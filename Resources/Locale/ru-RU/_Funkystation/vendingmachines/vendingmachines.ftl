@@ -1,1 +1,1 @@
-vending-machine-keypad-sold-out = РАСПРОДАНО
+vending-machine-keypad-sold-out = ПРОДАНО
