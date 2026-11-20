@@ -257,14 +257,13 @@ public sealed partial class WallStainSystem : EntitySystem
     private List<EntityUid> CollectStainedWallsInRadius(EntityUid origin)
     {
         var result = new List<EntityUid>();
+        if (HasComp<StainedWallComponent>(origin))
+            result.Add(origin);
 
         var originXform = Transform(origin);
         var gridUid = originXform.GridUid;
         if (gridUid == null || !TryComp<MapGridComponent>(gridUid.Value, out var grid))
         {
-            // Фолбэк: только сам origin
-            if (HasComp<StainedWallComponent>(origin))
-                result.Add(origin);
             return result;
         }
 
@@ -278,6 +277,8 @@ public sealed partial class WallStainSystem : EntitySystem
                 var anchored = _map.GetAnchoredEntities(gridUid.Value, grid, tile);
                 while (anchored.MoveNext(out var ent))
                 {
+                    if (ent.Value == origin)
+                        continue;
                     if (HasComp<StainedWallComponent>(ent.Value))
                         result.Add(ent.Value);
                 }
