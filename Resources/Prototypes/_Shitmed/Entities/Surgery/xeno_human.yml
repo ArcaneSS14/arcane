@@ -18,6 +18,11 @@
   - type: SurgeryBodyComponentCondition
     components:
     - type: XenoCompatible
+  # Arcane-Start
+  - type: SurgeryBodyCondition
+    accepted: [ IPC ]
+    inverse: true
+  # Arcane-End
 
 - type: entity
   parent: BaseSurgeryOpenXenoCavity
