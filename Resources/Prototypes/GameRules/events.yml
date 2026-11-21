@@ -370,6 +370,10 @@
       - type: AutoImplant
         implants:
         - MicroBombImplant # Goobstation
+        # Arcane-Edit-Start
+        - SmokeImplant
+        - LibrarianTranslatorImplant
+        # Arcane-Edit-End
       - type: RandomMetadata
         nameSegments:
         - NamesNinjaTitle
