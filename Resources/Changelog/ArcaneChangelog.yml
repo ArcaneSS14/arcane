@@ -4700,3 +4700,13 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/fd205f13-2956-4de8-8a73-b0ba6b73068e
+- author: RabbitBat
+  changes:
+    - type: Add
+      message: >-
+        Добавлены холсты и палетка художника в снаряжение в раздел Безделушек.
+        Чтобы их взять нужно наиграть 30 общего времени.
+  id: 327
+  time: '2026-11-21T19:01:44.0000000+00:00'
+  prNumber: 634
+  url: https://github.com/ArcaneSS14/arcane/pull/634
