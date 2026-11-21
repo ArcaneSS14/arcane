@@ -4710,3 +4710,18 @@ Entries:
   time: '2026-11-21T19:01:44.0000000+00:00'
   prNumber: 634
   url: https://github.com/ArcaneSS14/arcane/pull/634
+- author: mxgnvrx
+  changes:
+    - type: Fix
+      message: КПБ снова можно установить штатные импланты.
+    - type: Fix
+      message: >-
+        Шрапнель из КПБ теперь можно извлечь кусачками, оставив ключи шифрования
+        внутри.
+  id: 328
+  time: '2026-11-21T19:03:16.0000000+00:00'
+  prNumber: 635
+  url: https://github.com/ArcaneSS14/arcane/pull/635
+  media:
+    - >-
+      https://github.com/user-attachments/assets/bd94bf84-b06c-43b3-b01c-f2e199d5ae25
