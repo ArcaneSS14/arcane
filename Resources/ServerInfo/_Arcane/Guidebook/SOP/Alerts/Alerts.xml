@@ -53,7 +53,7 @@
 
   ## Таблица кодов
 
-  <Table Columns="5">
+  <Table Columns="4">
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         Тип угрозы
@@ -72,11 +72,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         Уровень опасности
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#808080">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Код после устранения
       </Box>
     </ColorBox>
 
@@ -100,11 +95,6 @@
         ☆☆☆☆☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -124,11 +114,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★☆☆☆☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
       </Box>
     </ColorBox>
 
@@ -152,11 +137,6 @@
         ★☆☆☆☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -178,16 +158,10 @@
         ★☆☆☆☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         Крысиный король
-        (при агрессии к экипажу)
       </Box>
     </ColorBox>
     <ColorBox Color="#138808">
@@ -203,11 +177,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★☆☆☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
       </Box>
     </ColorBox>
 
@@ -231,11 +200,6 @@
         ★★☆☆☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -255,11 +219,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★☆☆☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
       </Box>
     </ColorBox>
 
@@ -283,11 +242,6 @@
         ★★☆☆☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -307,11 +261,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★☆☆☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
       </Box>
     </ColorBox>
 
@@ -335,11 +284,6 @@
         ★★☆☆☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -359,11 +303,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★☆☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
       </Box>
     </ColorBox>
 
@@ -387,11 +326,6 @@
         ★★★☆☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -411,11 +345,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★☆☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
       </Box>
     </ColorBox>
 
@@ -439,11 +368,6 @@
         ★★★☆☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -463,11 +387,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★☆☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#FFA500">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Жёлтый код
       </Box>
     </ColorBox>
 
@@ -491,11 +410,6 @@
         ★★★☆☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#FFA500">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Жёлтый код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -517,11 +431,6 @@
         ★★★☆☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#FFA500">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Жёлтый код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -541,11 +450,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★☆☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#FFA500">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Жёлтый код
       </Box>
     </ColorBox>
 
@@ -570,11 +474,6 @@
         ★★★★☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#FFA500">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Жёлтый код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -594,11 +493,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★★☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
       </Box>
     </ColorBox>
 
@@ -622,11 +516,6 @@
         ★★★★☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#FFA500">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Жёлтый код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -646,11 +535,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★★☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
       </Box>
     </ColorBox>
 
@@ -674,11 +558,6 @@
         ★★★★☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -698,11 +577,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★★☆
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#FFA500">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Жёлтый код
       </Box>
     </ColorBox>
 
@@ -726,11 +600,6 @@
         ★★★★☆
       </Box>
     </ColorBox>
-    <ColorBox Color="#FFA500">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Жёлтый код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -750,11 +619,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★★★
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#138808">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Зелёный код
       </Box>
     </ColorBox>
 
@@ -778,11 +642,6 @@
         ★★★★★
       </Box>
     </ColorBox>
-    <ColorBox Color="#FFA500">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Жёлтый код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -802,11 +661,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★★★
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#FFA500">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Жёлтый код
       </Box>
     </ColorBox>
 
@@ -830,11 +684,6 @@
         ★★★★★
       </Box>
     </ColorBox>
-    <ColorBox Color="#7500cc">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Фиолетовый код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -854,11 +703,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★★★
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#7500cc">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Фиолетовый код
       </Box>
     </ColorBox>
 
@@ -882,11 +726,6 @@
         ★★★★★
       </Box>
     </ColorBox>
-    <ColorBox Color="#b11e13">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Красный код
-      </Box>
-    </ColorBox>
 
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -906,11 +745,6 @@
     <ColorBox Color="#808080">
       <Box HorizontalAlignment="Center" VerticalAlignment="Center">
         ★★★★★
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#b11e13">
-      <Box HorizontalAlignment="Center" VerticalAlignment="Center">
-        Красный код
       </Box>
     </ColorBox>
   </Table>

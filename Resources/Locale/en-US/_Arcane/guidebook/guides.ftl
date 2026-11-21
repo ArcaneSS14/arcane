@@ -25,7 +25,6 @@ guide-entry-space-law-laws-9 = Laws (XX9)
 guide-entry-space-law-laws-10 = Laws (XX10)
 guide-entry-space-law-punishment-types = Punishment types
 guide-entry-space-law-punishment-terms = Sentence terms
-guide-entry-space-law-evidence = Evidence
 guide-entry-space-law-use-of-force = Use of force levels
 
 guide-entry-sop = Job duties
