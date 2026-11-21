@@ -23,6 +23,7 @@ using Content.Shared.Medical.Healing;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
+using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Repairable;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Wires;
@@ -67,7 +68,8 @@ public abstract partial class SharedSurgeryToolSystem : EntitySystem
 
     // An unlocked synthetic's panel takes the screwdriver first, so its power cell can still be swapped while it lies down.
     // A welder closes an open shell before it repairs the synthetic.
-    [SubscribeLocalEvent(after: [typeof(SharedWiresSystem)], before: [typeof(RepairableSystem)])]
+    // A valid surgery step gets the cutters before the radio can extract encryption keys.
+    [SubscribeLocalEvent(after: [typeof(SharedWiresSystem)], before: [typeof(RepairableSystem), typeof(EncryptionKeySystem)])]
     private void OnInteractUsing(Entity<SurgeryTargetComponent> ent, ref InteractUsingEvent args)
     {
         var user = args.User;
