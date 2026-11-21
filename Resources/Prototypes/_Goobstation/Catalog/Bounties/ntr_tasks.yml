@@ -289,7 +289,7 @@
 
 - type: ntrTask
   id: TaskRazorium
-  solutionName: beaker
+  solutionName: drink # Arcane-Edit: beaker > drink
   proto: TaskJug
   reward: 7
   weight: 0.005
@@ -308,7 +308,7 @@
 - type: ntrTask
   id: TaskPunct
   proto: TaskJug
-  solutionName: beaker
+  solutionName: drink # Arcane-Edit: beaker > drink
   reward: 8
   weight: 0.005
   cooldown: 1800
@@ -326,7 +326,7 @@
 - type: ntrTask
   id: TaskTrico
   proto: TaskJug
-  solutionName: beaker
+  solutionName: drink # Arcane-Edit: beaker > drink
   reward: 5
   weight: 0.02
   cooldown: 1800
@@ -344,7 +344,7 @@
 - type: ntrTask
   id: TaskMeth
   proto: TaskJug
-  solutionName: beaker
+  solutionName: drink # Arcane-Edit: beaker > drink
   reward: 10
   weight: 0.001
   cooldown: 1800
@@ -362,7 +362,7 @@
 - type: ntrTask
   id: TaskTHC
   proto: TaskJug
-  solutionName: beaker
+  solutionName: drink # Arcane-Edit: beaker > drink
   reward: 7
   weight: 0.005
   cooldown: 1800

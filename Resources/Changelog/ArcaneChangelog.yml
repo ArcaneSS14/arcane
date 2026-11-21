@@ -4660,3 +4660,30 @@ Entries:
       https://github.com/user-attachments/assets/3a8b51f5-1bb8-4065-9b78-91b5c6818c29
     - >-
       https://github.com/user-attachments/assets/a63f0fcc-2074-475b-9bc8-dbe65b743482
+- author: Valklria
+  changes:
+    - type: Add
+      message: >-
+        Совет Клана Паука, вспомнив, что организация является одной из самых
+        передовых компаний по предоставлению услуг найма, принял решение
+        улучшить снаряжение своих элитных агентов Ниндзя.
+    - type: Tweak
+      message: Изменено снаряжение в сумке ниндзя.
+  id: 324
+  time: '2026-11-19T07:05:16.0000000+00:00'
+  prNumber: 605
+  url: https://github.com/ArcaneSS14/arcane/pull/605
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: НТР снова получает исполнительный чемодан и консоль заданий в шкафу.
+    - type: Fix
+      message: Задания НТРа на канистру с реагентами теперь можно выполнить.
+    - type: Tweak
+      message: >-
+        Стажёры ЦК получают доступы НТРа, майндщилд и появляются в облике вашего
+        персонажа.
+  id: 325
+  time: '2026-11-19T07:07:36.0000000+00:00'
+  prNumber: 587
+  url: https://github.com/ArcaneSS14/arcane/pull/587
