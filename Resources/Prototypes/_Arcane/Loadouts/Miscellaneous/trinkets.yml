@@ -10,3 +10,50 @@
     back:
     - PokerChipsBox
   groupBy: "cards"
+
+- type: loadout
+  id: PaintCanvas
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 108000 # 30h
+  storage:
+    back:
+    - PaintCanvas
+  groupBy: "paintings"
+
+- type: loadout
+  id: PaintCanvasSmall
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 108000 # 30h
+  storage:
+    back:
+    - PaintCanvasSmall
+  groupBy: "paintings"
+
+- type: loadout
+  id: PaintCanvasLandscape
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 108000 # 30h
+  storage:
+    back:
+    - PaintCanvasLandscape
+  groupBy: "paintings"
+
+- type: loadout
+  id: Paintbrush
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 108000 # 30h
+  storage:
+    back:
+    - Paintbrush
