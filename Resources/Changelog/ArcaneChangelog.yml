@@ -4733,3 +4733,15 @@ Entries:
   time: '2026-11-21T19:04:34.0000000+00:00'
   prNumber: 630
   url: https://github.com/ArcaneSS14/arcane/pull/630
+- author: RabbitBat
+  changes:
+    - type: Tweak
+      message: >-
+        Изменено снаряжение ГК, теперь во втором кармашке есть кубик с ведром
+        воды, а в рюкзаке - швабра.
+    - type: Fix
+      message: Исправлено выпадение второго пояса у ГК.
+  id: 330
+  time: '2026-11-21T19:06:01.0000000+00:00'
+  prNumber: 629
+  url: https://github.com/ArcaneSS14/arcane/pull/629
