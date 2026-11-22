@@ -32,6 +32,11 @@ public sealed partial class GrabIntentComponent : Component
     [DataField]
     public TimeSpan StageChangeCooldown = TimeSpan.FromSeconds(1f);
 
+    // Arcane-Start
+    [AutoNetworkedField]
+    public TimeSpan NextGrabAttempt;
+    // Arcane-End
+
     [DataField]
     public float DownedEscapeChanceMultiplier = 0.5f;
 

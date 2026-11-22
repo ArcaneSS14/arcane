@@ -2,6 +2,9 @@
 
 using Content.Goobstation.Common.MartialArts;
 using Content.Goobstation.Shared.Emoting;
+// Arcane-Start
+using Content.Goobstation.Shared.GrabIntent;
+// Arcane-End
 using Content.Goobstation.Shared.MartialArts.Components;
 using Content.Goobstation.Shared.MartialArts.Events;
 using Content.Goobstation.Shared.Weapons.MeleeVulnerability;
@@ -17,6 +20,12 @@ namespace Content.Goobstation.Shared.MartialArts;
 
 public abstract partial class SharedMartialArtsSystem
 {
+    // Arcane-Start
+    private static readonly TimeSpan CapoeiraGrabAttackDelay = TimeSpan.FromSeconds(0.2);
+
+    private static readonly TimeSpan CapoeiraDisarmAttackDelay = TimeSpan.FromSeconds(0.35);
+    // Arcane-End
+
     private void InitializeCapoeira()
     {
         SubscribeLocalEvent<CanPerformComboComponent, PushKickPerformedEvent>(OnPushKick);
@@ -56,6 +65,10 @@ public abstract partial class SharedMartialArtsSystem
 
         if (args.Type == ComboAttackType.Grab)
         {
+            // Arcane-Start
+            LimitCapoeiraAttackDelay(ent, CapoeiraGrabAttackDelay);
+            // Arcane-End
+
             ApplyMultiplier(ent, 1.2f, 0f, TimeSpan.FromSeconds(4), MartialArtModifierType.MoveSpeed);
             _modifier.RefreshMovementSpeedModifiers(ent);
             if (!TryComp(args.Target, out SprinterComponent? sprinter))
@@ -71,10 +84,36 @@ public abstract partial class SharedMartialArtsSystem
             || args.Type is not (ComboAttackType.Disarm or ComboAttackType.Harm))
             return;
 
+        // Arcane-Start
+        if (args.Type == ComboAttackType.Disarm)
+            LimitCapoeiraAttackDelay(ent, CapoeiraDisarmAttackDelay);
+        // Arcane-End
+
         var velocity = GetVelocity(ent);
         var multiplier = Math.Clamp(MathF.Pow(velocity, 0.2f), 1f, 1.5f);
         ApplyMultiplier(ent, multiplier, 0f, TimeSpan.FromSeconds(3));
     }
+
+    // Arcane-Start
+    private void LimitCapoeiraAttackDelay(EntityUid uid, TimeSpan maxDelay)
+    {
+        if (!TryComp(uid, out MeleeWeaponComponent? melee))
+            return;
+
+        var limit = _timing.CurTime + maxDelay;
+        if (melee.NextAttack <= limit)
+            return;
+
+        if (TryComp(uid, out GrabIntentComponent? grab) && grab.NextGrabAttempt < melee.NextAttack)
+        {
+            grab.NextGrabAttempt = melee.NextAttack;
+            Dirty(uid, grab);
+        }
+
+        melee.NextAttack = limit;
+        Dirty(uid, melee);
+    }
+    // Arcane-End
 
     private void OnKickUp(Entity<CanPerformComboComponent> ent, ref KickUpPerformedEvent args)
     {

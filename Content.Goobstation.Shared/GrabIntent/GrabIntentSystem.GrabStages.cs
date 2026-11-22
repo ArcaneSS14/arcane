@@ -241,8 +241,11 @@ public sealed partial class GrabIntentSystem
         if (!ignoreCombatMode && !_combatMode.IsInCombatMode(pullerUid))
             return false;
 
-        if (_timing.CurTime < meleeWeaponComponent.NextAttack)
+        // Arcane-Start
+        if (_timing.CurTime < meleeWeaponComponent.NextAttack
+            || _timing.CurTime < grabIntentComp.NextGrabAttempt)
             return true;
+        // Arcane-End
 
         var max = meleeWeaponComponent.NextAttack > _timing.CurTime ? meleeWeaponComponent.NextAttack : _timing.CurTime;
         var attackRateEv = new GetMeleeAttackRateEvent(pullerUid, meleeWeaponComponent.AttackRate, 1, pullerUid);
