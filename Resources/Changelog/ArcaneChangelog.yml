@@ -4758,3 +4758,13 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/21308db9-2697-48ec-bdfc-cfadce34bebc
+- author: RabbitBat
+  changes:
+    - type: Fix
+      message: >-
+        Роли ГК, Адьютанта, АВД теперь доступны для присоединения на хай-поп
+        Фланде.
+  id: 332
+  time: '2026-11-23T06:12:37.0000000+00:00'
+  prNumber: 632
+  url: https://github.com/ArcaneSS14/arcane/pull/632
