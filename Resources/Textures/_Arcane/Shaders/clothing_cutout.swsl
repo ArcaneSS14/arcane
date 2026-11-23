@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+light_mode unshaded;
+blend_mode none;
+
+void fragment() {
+    if (texture2D(TEXTURE, UV).a == 0.0) {
+        discard;
+    }
+
+    // Replace the wearer's previously rendered pixels with transparent black.
+    COLOR = vec4(0.0);
+}

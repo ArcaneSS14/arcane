@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "BlueMoon and SPLURT contributors. Extracted from state highheels in modular_splurt/icons/obj/clothing/shoes.dmi and modular_splurt/icons/mobs/feet.dmi at https://github.com/BlueMoon-Labs/BlueMoon-Station/tree/85ffe2aae8af71348a8279c8d51a8b411f85f832 . DMI frames repacked to RSI. Two front-facing and two rear-facing grey sole bridge pixels made transparent for Arcane. Rear highlights and side frames darkened; one sole gap made transparent in each side frame. Added a six-pixel cutout mask for the underlying wearer sprite.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "equipped-FEET",
+            "directions": 4
+        },
+        {
+            "name": "cutout-FEET",
+            "directions": 4
+        }
+    ]
+}
