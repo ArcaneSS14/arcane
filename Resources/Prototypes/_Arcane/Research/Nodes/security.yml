@@ -1,0 +1,40 @@
+- type: technology
+  id: Ammo308win
+  name: research-technology-ammo-308win-name
+  description: research-technology-ammo-308win-desc
+  icon:
+    sprite: _Orion/Objects/Weapons/Guns/Snipers/remington700/big.rsi
+    state: icon
+  discipline: Security
+  tier: 2
+  announceChannels:
+  - Security
+  pointCosts:
+  - type: General
+    amount: 5000
+  technologyPrerequisites:
+  - SecurityEquipment
+  recipeUnlocks:
+  - MagazineBox308win
+  position: -1,-1
+
+- type: technology
+  id: UraniumAmmo308win
+  name: research-technology-uranium-ammo-308win-name
+  description: research-technology-uranium-ammo-308win-desc
+  icon:
+    sprite: _Orion/Objects/Weapons/Guns/Ammunition/Casings/60_casing.rsi
+    state: uranium
+  discipline: Security
+  tier: 5
+  announceChannels:
+  - Security
+  pointCosts:
+  - type: General
+    amount: 7500
+  technologyPrerequisites:
+  - UraniumAmmo
+  - Ammo308win
+  recipeUnlocks:
+  - MagazineBox308winUranium
+  position: -3,-6

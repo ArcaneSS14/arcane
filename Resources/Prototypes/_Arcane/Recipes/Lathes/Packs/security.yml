@@ -1,0 +1,7 @@
+# Security techfab only
+- type: latheRecipePack
+  id: Security308Ammo
+  recipes:
+  - MagazineBox308win
+  - MagazineBox308winPractice
+  - MagazineBox308winUranium

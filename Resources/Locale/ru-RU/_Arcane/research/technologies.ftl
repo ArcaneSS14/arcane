@@ -1,5 +1,9 @@
 research-technology-uranium-ammo-name = Урановые боеприпасы
 research-technology-uranium-ammo-desc = Пули из обеднённого урана, пробивающие броню и оставляющие после себя дозу облучения.
+research-technology-ammo-308win-name = Боеприпасы .308 Winchester
+research-technology-ammo-308win-desc = Производство патронов .308 Winchester для охотничьих винтовок с продольно-скользящим затвором.
+research-technology-uranium-ammo-308win-name = Урановые боеприпасы .308
+research-technology-uranium-ammo-308win-desc = Патроны .308 Winchester с урановым сердечником, пробивающие броню и облучающие цель.
 
 research-technology-unlock-surgery-experimental-dissection = Операция: { ent-SurgeryExperimentalDissection }
 research-technology-unlock-surgery-tend-wounds-brute-upgraded = Операция: { ent-SurgeryTendWoundsBruteUpgraded }

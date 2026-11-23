@@ -57,6 +57,7 @@
   # Arcane-Start
   - WeaponLaserCellRevolver
   - PowerCellIRRevolver
+  - MagazineBox308winPractice
   # Arcane-End
   position: 0,0
 
