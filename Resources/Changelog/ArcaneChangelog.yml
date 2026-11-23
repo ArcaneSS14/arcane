@@ -4768,3 +4768,14 @@ Entries:
   time: '2026-11-23T06:12:37.0000000+00:00'
   prNumber: 632
   url: https://github.com/ArcaneSS14/arcane/pull/632
+- author: Rorkh
+  changes:
+    - type: Fix
+      message: Исправлена работа контратак
+  id: 333
+  time: '2026-11-23T17:29:49.0000000+00:00'
+  prNumber: 612
+  url: https://github.com/ArcaneSS14/arcane/pull/612
+  media:
+    - >-
+      https://github.com/user-attachments/assets/90a201d4-1fe4-4b2c-8563-8372f30a51b4
