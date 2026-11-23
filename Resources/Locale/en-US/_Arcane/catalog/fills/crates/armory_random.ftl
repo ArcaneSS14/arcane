@@ -1,0 +1,14 @@
+ent-CrateArmoryRandomPistol = random pistol crate
+    .desc = Contains a random assortment of pistols with magazines. Requires Armory access to open.
+ent-CrateArmoryRandomSubMachineGun = random SMG crate
+    .desc = Contains a random assortment of SMGs with magazines. Requires Armory access to open.
+ent-CrateArmoryRandomLightRifle = random light rifle crate
+    .desc = Contains a random assortment of light rifles with magazines. Requires Armory access to open.
+ent-CrateArmoryRandomHeavyRifle = random heavy rifle crate
+    .desc = Contains two random heavy rifle cases. Requires Armory access to open.
+ent-CrateArmoryRandomPumpShotgun = random pump shotgun crate
+    .desc = Contains a random assortment of pump shotguns with shells. Requires Armory access to open.
+ent-CrateArmoryRandomAutoShotgun = random auto shotgun crate
+    .desc = Contains a random assortment of automatic shotguns with shells. Requires Armory access to open.
+ent-CrateArmoryRandomLaser = random energy weapon crate
+    .desc = Contains a random assortment of energy weapons. Requires Armory access to open.
