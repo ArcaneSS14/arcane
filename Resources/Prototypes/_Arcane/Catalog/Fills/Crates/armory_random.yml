@@ -1,0 +1,78 @@
+# Same tables as random gun safes
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomPistol
+  name: random pistol crate
+  description: Contains a random assortment of pistols with magazines. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomPistol
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomSubMachineGun
+  name: random SMG crate
+  description: Contains a random assortment of SMGs with magazines. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomSMG
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomLightRifle
+  name: random light rifle crate
+  description: Contains a random assortment of light rifles with magazines. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomLightRifle
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomHeavyRifle
+  name: random heavy rifle crate
+  description: Contains two random heavy rifle cases. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomHeavyRifle
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomPumpShotgun
+  name: random pump shotgun crate
+  description: Contains a random assortment of pump shotguns with shells. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomPumpShotgun
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomAutoShotgun
+  name: random auto shotgun crate
+  description: Contains a random assortment of automatic shotguns with shells. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomAutoShotgun
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomLaser
+  name: random energy weapon crate
+  description: Contains a random assortment of energy weapons. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomLaserCarbine

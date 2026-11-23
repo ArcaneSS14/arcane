@@ -1,0 +1,69 @@
+- type: cargoProduct
+  id: ArmoryRandomPistol
+  icon:
+    sprite: _Goobstation/Objects/Weapons/Guns/Pistols/mk58.rsi
+    state: icon
+  product: CrateArmoryRandomPistol
+  cost: 3300
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryRandomSubMachineGun
+  icon:
+    sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
+    state: icon
+  product: CrateArmoryRandomSubMachineGun
+  cost: 3500
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryRandomLightRifle
+  icon:
+    sprite: _Orion/Objects/Weapons/Guns/Rifles/lecter/big.rsi
+    state: icon
+  product: CrateArmoryRandomLightRifle
+  cost: 8000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryRandomHeavyRifle
+  icon:
+    sprite: _Orion/Objects/Weapons/Guns/Rifles/m28/big.rsi
+    state: icon
+  product: CrateArmoryRandomHeavyRifle
+  cost: 10000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryRandomPumpShotgun
+  icon:
+    sprite: _Goobstation/Objects/Weapons/Guns/Shotguns/pump.rsi
+    state: icon
+  product: CrateArmoryRandomPumpShotgun
+  cost: 5000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryRandomAutoShotgun
+  icon:
+    sprite: _Orion/Objects/Weapons/Guns/Shotguns/sh-39/big.rsi
+    state: icon
+  product: CrateArmoryRandomAutoShotgun
+  cost: 6000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryRandomLaser
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
+    state: icon
+  product: CrateArmoryRandomLaser
+  cost: 5500
+  category: cargoproduct-category-name-armory
+  group: market
