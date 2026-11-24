@@ -1,5 +1,3 @@
-# Same tables as random gun safes
-
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   id: CrateArmoryRandomPistol
@@ -9,7 +7,7 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillGunSafeRandomPistol
+        tableId: FillCrateArmoryRandomPistol
 
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
@@ -20,7 +18,7 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillGunSafeRandomSMG
+        tableId: FillCrateArmoryRandomSubMachineGun
 
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
@@ -75,4 +73,99 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillGunSafeRandomLaserCarbine
+        tableId: FillCrateArmoryRandomLaser
+
+- type: entityTable
+  id: FillCrateArmoryRandomPistol
+  table: !type:AllSelector
+    children:
+    - id: MagazinePistol
+      amount: 4
+    - !type:GroupSelector
+      rolls: !type:ConstantNumberSelector
+        value: 2
+      children:
+      - id: WeaponPistolG22
+        weight: 20
+      - id: WeaponPistolMk58
+        weight: 20
+      - id: WeaponPistolG23
+        weight: 20
+      - id: CaseSecurityMiniInspector
+        weight: 10
+      - id: CaseSecurityMiniDeckard
+        weight: 10
+      - id: CaseSecurityMiniFlareGun
+        weight: 4
+      - id: CaseSecurityMiniCellRevolver
+        weight: 4
+      - id: WeaponEarthGovLaserPistol
+        weight: 4
+      - id: WeaponLaserSvalinn
+        weight: 4
+      - id: WeaponLaserGun
+        weight: 2
+      - id: WeaponAdvancedLaser
+        weight: 0.75
+      - id: CaseSecurityMiniVP78
+        weight: 0.5
+      - id: CaseSecurityMiniDesertEagle
+        weight: 0.25
+      - id: WeaponBehonkerLaser
+        weight: 0.25
+      - id: WeaponWaterPistol
+        weight: 0.25
+
+- type: entityTable
+  id: FillCrateArmoryRandomSubMachineGun
+  table: !type:AllSelector
+    children:
+    - id: MagazinePistolSubMachineGun
+      amount: 4
+    - !type:GroupSelector
+      rolls: !type:ConstantNumberSelector
+        value: 2
+      children:
+      - id: WeaponSubMachineGunMP5
+        weight: 23
+      - id: WeaponSubMachineGunWt550
+        weight: 23
+      - id: WeaponSubMachineGunMP7
+        weight: 23
+      - id: WeaponSubMachineGunDrozd
+        weight: 23
+      - id: CaseSecurityP90
+        weight: 2.5
+      - id: CaseSecurityVector
+        weight: 2.5
+      - id: CaseSecurityLaserCellSMG
+        weight: 2
+      - id: WeaponWaterBlaster
+        weight: 0.5
+
+- type: entityTable
+  id: FillCrateArmoryRandomLaser
+  table: !type:AllSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: WeaponLaserCarbine
+        weight: 30
+      - id: WeaponLaserCannon
+        weight: 30
+      - id: WeaponXrayCannon
+        weight: 30
+    - !type:GroupSelector
+      rolls: !type:ConstantNumberSelector
+        value: 2
+      children:
+      - id: WeaponEarthGovLaserRifle
+        weight: 24
+      - id: WeaponEarthGovLaserCarbine
+        weight: 24
+      - id: WeaponEarthGovXRay
+        weight: 24
+      - id: SecurityTeleporterEL20
+        weight: 3.5
+      - id: WeaponEarthGovLaserMG
+        weight: 0.5
