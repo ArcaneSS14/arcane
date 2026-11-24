@@ -18,7 +18,7 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillGunSafeRandomSMG
+        tableId: FillCrateArmoryRandomSubMachineGun
 
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
@@ -117,6 +117,33 @@
         weight: 0.25
 
 - type: entityTable
+  id: FillCrateArmoryRandomSubMachineGun
+  table: !type:AllSelector
+    children:
+    - id: MagazinePistolSubMachineGun
+      amount: 4
+    - !type:GroupSelector
+      rolls: !type:ConstantNumberSelector
+        value: 2
+      children:
+      - id: WeaponSubMachineGunMP5
+        weight: 23
+      - id: WeaponSubMachineGunWt550
+        weight: 23
+      - id: WeaponSubMachineGunMP7
+        weight: 23
+      - id: WeaponSubMachineGunDrozd
+        weight: 23
+      - id: CaseSecurityP90
+        weight: 2.5
+      - id: CaseSecurityVector
+        weight: 2.5
+      - id: CaseSecurityLaserCellSMG
+        weight: 2
+      - id: WeaponWaterBlaster
+        weight: 0.5
+
+- type: entityTable
   id: FillCrateArmoryRandomLaser
   table: !type:AllSelector
     children:
@@ -128,8 +155,6 @@
         weight: 30
       - id: WeaponXrayCannon
         weight: 30
-      - id: WeaponHeadOfSecurityRifle
-        weight: 10
     - !type:GroupSelector
       rolls: !type:ConstantNumberSelector
         value: 2
