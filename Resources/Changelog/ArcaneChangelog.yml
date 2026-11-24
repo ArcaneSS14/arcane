@@ -4793,3 +4793,11 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/863db599-d8b5-4c57-95a0-1bae8c911b64
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: Гарпии и арахниды больше не задыхаются, если долго стоят на месте.
+  id: 335
+  time: '2026-11-24T03:08:40.0000000+00:00'
+  prNumber: 637
+  url: https://github.com/ArcaneSS14/arcane/pull/637
