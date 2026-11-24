@@ -113,3 +113,57 @@
     layers:
     - state: cat_ghost
       shader: unshaded
+
+- type: customGhost
+  parent: ArcaneSponsorGhost
+  id: sponsorMcQueen
+  entity: MobObserverSponsorMcQueen
+  name: custom-ghost-sponsor-mcqueen-name
+  description: custom-ghost-sponsor-mcqueen-desc
+
+- type: entity
+  parent: MobObserver
+  id: MobObserverSponsorMcQueen
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Arcane/Ghosts/sponsor/mcqueen.rsi
+    layers:
+    - state: mcqueen
+      shader: unshaded
+
+- type: customGhost
+  parent: ArcaneSponsorGhost
+  id: sponsorArcane
+  entity: MobObserverSponsorArcane
+  name: custom-ghost-sponsor-arcane-name
+  description: custom-ghost-sponsor-arcane-desc
+
+- type: entity
+  parent: MobObserver
+  id: MobObserverSponsorArcane
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Arcane/Ghosts/sponsor/arcane.rsi
+    layers:
+    - state: arcane-ghost
+      shader: unshaded
+
+- type: customGhost
+  parent: ArcaneSponsorGhost
+  id: sponsorArcane2
+  entity: MobObserverSponsorArcane2
+  name: custom-ghost-sponsor-arcane2-name
+  description: custom-ghost-sponsor-arcane2-desc
+
+- type: entity
+  parent: MobObserver
+  id: MobObserverSponsorArcane2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Arcane/Ghosts/sponsor/arcane.rsi
+    layers:
+    - state: arcane-ghost2
+      shader: unshaded
