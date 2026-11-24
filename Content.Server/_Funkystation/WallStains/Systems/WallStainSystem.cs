@@ -55,6 +55,7 @@ public sealed partial class WallStainSystem : EntitySystem
     [Dependency] private IRobustRandom _random = null!;
     [Dependency] private SharedPuddleSystem _puddle = null!;
     [Dependency] private SharedAudioSystem _audio = null!;
+    [Dependency] private SharedInteractionSystem _interaction = null!; // Arcane
 
     private Shared.Chemistry.Reaction.ReactiveReagentEffectEntry _stainCleanEffectEntry = null!;
 
@@ -339,6 +340,9 @@ public sealed partial class WallStainSystem : EntitySystem
 
         args.Handled = true;
         // Arcane-Start
+        if (!args.User.IsValid())
+            return;
+
         var targets = CollectStainedWallsInRadius(uid);
         if (targets.Count == 0)
             return;
@@ -350,6 +354,10 @@ public sealed partial class WallStainSystem : EntitySystem
         {
             if (!HasComp<StainedWallComponent>(target))
                 continue;
+
+            if (!_interaction.InRangeUnobstructed(args.User, target))
+                continue;
+
             RaiseLocalEvent(target, new CleanWallStainsEvent(transformToWater: false));
         }
         // Arcane-Edit-End
