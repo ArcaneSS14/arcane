@@ -130,8 +130,10 @@
 - type: loadoutGroup
   id: CommandMaidBelt
   name: loadout-group-command-maid-belt
-  minLimit: 0
+  minLimit: 1
+  maxLimit: 1
   loadouts:
+  - CommandMaidBeltJanitor
   - CommandMaidBeltJanitorBow
   - CommandMaidBeltPouch
 

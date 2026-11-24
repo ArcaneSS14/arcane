@@ -56,10 +56,11 @@
   equipment:
     id: CommandMaidPDA
     ears: ClothingHeadsetCommandMaid
-    belt: ClothingBeltJanitorFilled
+    pocket2: MopBucketCubeWrapped
   storage:
     back:
     - Flash
+    - MopItem
 
 - type: chameleonOutfit
   id: CommandMaidChameleonOutfit

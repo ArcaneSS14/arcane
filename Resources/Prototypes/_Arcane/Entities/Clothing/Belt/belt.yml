@@ -72,3 +72,21 @@
           - Spray
         layer:
           state: equipped-BELT-cleaner
+
+- type: entity
+  parent: ClothingBeltJanitorBow
+  id: ClothingBeltJanitorBowFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: AllSoapsTable
+        - id: SprayBottleSpaceCleaner
+        - id: CleanerGrenade
+          amount: 2
+        - id: FlashlightLantern
+        - id: LightReplacer
+        - id: TrashBag

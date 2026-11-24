@@ -15,6 +15,7 @@
     slotId: lungs
   - type: Metabolizer
     updateInterval: 2.0
+    maxReagents: 14 # Arcane
     removeEmpty: true
     solutionOnBody: false
     solution: "Lung"
