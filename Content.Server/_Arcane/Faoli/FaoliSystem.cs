@@ -93,7 +93,7 @@ public sealed partial class FaoliSystem : EntitySystem
         }
     }
 
-    private void OnPlayerSpawn(Entity<FaoliComponent> ent, PlayerSpawnCompleteEvent args)
+    private void OnPlayerSpawn(Entity<FaoliComponent> ent, ref PlayerSpawnCompleteEvent args)
     {
         if (!TryComp<HumanoidAppearanceComponent>(ent, out var humanoid)
             || string.IsNullOrWhiteSpace(humanoid.CustomSpeciesName))
