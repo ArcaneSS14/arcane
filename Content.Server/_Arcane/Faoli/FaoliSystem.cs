@@ -9,12 +9,6 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Server.Administration;
 using Content.Shared._Arcane.Faoli;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using Content.Server.Store.Systems;
-using Content.Shared.GameTicking;
-using Content.Shared.Humanoid;
 
 namespace Content.Server._Arcane.Faoli;
 
@@ -28,13 +22,6 @@ public sealed partial class FaoliSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly StoreSystem _store = default!;
-
-    private static readonly string[] Resonance =
-    [
-        "5b6a72d156971c603999480e0be997348d3128ac735f4767956ee51c1b516c42",
-        "5a655e4379b8bb50e85d250514ffa152b302e1b4487fd44ca54cf36dea494a59",
-    ];
 
     public override void Initialize()
     {
@@ -42,7 +29,6 @@ public sealed partial class FaoliSystem : EntitySystem
 
         SubscribeLocalEvent<FaoliComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<FaoliComponent, DamageChangedEvent>(OnDamageChanged);
-        SubscribeLocalEvent<FaoliComponent, PlayerSpawnCompleteEvent>(OnPlayerSpawn);
 
         SubscribeAbilities();
     }
@@ -91,19 +77,6 @@ public sealed partial class FaoliSystem : EntitySystem
 
             continue;
         }
-    }
-
-    private void OnPlayerSpawn(Entity<FaoliComponent> ent, ref PlayerSpawnCompleteEvent args)
-    {
-        if (!TryComp<HumanoidAppearanceComponent>(ent, out var humanoid)
-            || string.IsNullOrWhiteSpace(humanoid.CustomSpeciesName))
-            return;
-
-        var bytes = SHA256.HashData(Encoding.UTF8.GetBytes(humanoid.CustomSpeciesName.Trim().ToLowerInvariant()));
-        if (!Resonance.Contains(Convert.ToHexString(bytes).ToLowerInvariant()))
-            return;
-
-        _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { ["WizCoin"] = 2 }, ent);
     }
 
     private void OnDamageChanged(Entity<FaoliComponent> ent, ref DamageChangedEvent args)
