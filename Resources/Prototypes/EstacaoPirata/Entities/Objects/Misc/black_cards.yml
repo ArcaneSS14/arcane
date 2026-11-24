@@ -21,14 +21,16 @@
   - type: Storage
     maxItemSize: Normal
     grid:
-    - 0,0,1,1
+    - 0,0,2,1 # Arcane-Edit: 0,0,1,1 > 0,0,2,1
     whitelist:
       components:
       - CardDeck
+      - Paper # Arcane
   - type: OpenTriggeredStorageFill
     contents:
     - id: CardDeckBase
       amount: 1
+    - id: PaperPokerRules # Arcane
   - type: Appearance
 
 # Frontier: base stack for card stack component
@@ -101,6 +103,7 @@
     contents:
     - id: CardDeckBlack
       amount: 1
+    - id: PaperPokerRules # Arcane
 
 - type: entity
   parent: CardDeckBase

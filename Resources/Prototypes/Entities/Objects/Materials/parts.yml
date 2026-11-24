@@ -56,6 +56,11 @@
   - type: Construction
     graph: MetalRod
     node: MetalRod
+  # Arcane-Start
+  - type: Retractor
+    speed: 0.35
+    used: true
+  # Arcane-End
   - type: Appearance
   - type: FloorTile
     outputs:

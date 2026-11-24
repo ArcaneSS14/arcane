@@ -114,9 +114,14 @@
     neck: ClothingNeckMediumTieCommandMaid
 
 - type: loadout
+  id: CommandMaidBeltJanitor
+  equipment:
+    belt: ClothingBeltJanitorFilled
+
+- type: loadout
   id: CommandMaidBeltJanitorBow
   equipment:
-    belt: ClothingBeltJanitorBow
+    belt: ClothingBeltJanitorBowFilled
 
 - type: loadout
   id: CommandMaidBeltPouch

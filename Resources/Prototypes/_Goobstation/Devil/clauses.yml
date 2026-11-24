@@ -2,16 +2,30 @@
 
 # The ID is what is searched for on the paper, coming after the target identifier.
 # Any spaces on the written portion will be removed, so keep it all lowercase and one word.
+#
+# Aliases are stable, non-localized strings that can also be typed on the paper.
+# They must NOT depend on FTL translations, so that input parsing keeps working
+# even if a translation changes. See AGENTS.md, "Localization".
 
 - type: clause
   id: soulownership
   name: Soul Ownership # Orion
+  # Arcane-Start
+  aliases:
+  - Владение душой
+  - владение душой
+  # Arcane-End
   clauseWeight: 25
   event: !type:DevilContractSoulOwnershipEvent
 
 - type: clause
   id: weakness
   name: Weakness # Orion
+  # Arcane-Start
+  aliases:
+  - Слабость
+  - слабость
+  # Arcane-End
   clauseWeight: -35
   damageModifierSet: DevilDealPositive
 
@@ -37,12 +51,17 @@
 #      - MobState
 #      - Door
 #      - Item
-#      tags:
+#    tags:
 #      - Wall
 
 - type: clause
   id: fearoffire
   name: Fear of Fire # Orion
+  # Arcane-Start
+  aliases:
+  - Страх огня
+  - страх огня
+  # Arcane-End
   clauseWeight: -20
   damageModifierSet: HellSpawn
   addedComponents:
@@ -51,6 +70,11 @@
 - type: clause
   id: brokeness
   name: Brokeness # Orion
+  # Arcane-Start
+  aliases:
+  - Безденежье
+  - безденежье
+  # Arcane-End
   clauseWeight: -20
   spawnedItems:
   - ClothingShoesRealJordansAutographed
@@ -58,6 +82,11 @@
 - type: clause
   id: fearofdeath
   name: Fear of Death # Orion
+  # Arcane-Start
+  aliases:
+  - Страх смерти
+  - страх смерти
+  # Arcane-End
   clauseWeight: -25
   addedComponents:
   - type: MobThresholds
@@ -69,6 +98,11 @@
 - type: clause
   id: fearoflight
   name: Fear of Light # Orion
+  # Arcane-Start
+  aliases:
+  - Страх света
+  - страх света
+  # Arcane-End
   clauseWeight: -15
   addedComponents:
   - type: FlashImmunity
@@ -76,6 +110,11 @@
 - type: clause
   id: fearofelectricity
   name: Fear of Electricity # Orion
+  # Arcane-Start
+  aliases:
+  - Страх электричества
+  - страх электричества
+  # Arcane-End
   clauseWeight: -15
   addedComponents:
   - type: Insulated
@@ -83,6 +122,11 @@
 - type: clause
   id: gluttony
   name: Gluttony # Orion
+  # Arcane-Start
+  aliases:
+  - Обжорство
+  - обжорство
+  # Arcane-End
   clauseWeight: -10
   removedComponents:
   - type: Hunger
@@ -91,6 +135,11 @@
 - type: clause
   id: fearofdrowning
   name: Fear of Drowning # Orion
+  # Arcane-Start
+  aliases:
+  - Страх утопления
+  - страх утопления
+  # Arcane-End
   clauseWeight: -10
   addedComponents:
   - type: SpecialBreathingImmunity
@@ -98,6 +147,11 @@
 - type: clause
   id: fearofclowns
   name: Fear of Clowns # Orion
+  # Arcane-Start
+  aliases:
+  - Страх клоунов
+  - страх клоунов
+  # Arcane-End
   clauseWeight: -10
   addedComponents:
   - type: NoSlip
@@ -105,6 +159,11 @@
 - type: clause
   id: fearofcrushing
   name: Fear of Crushing # Orion
+  # Arcane-Start
+  aliases:
+  - Страх раздавливания
+  - страх раздавливания
+  # Arcane-End
   clauseWeight: -10
   addedComponents:
   - type: SpecialPressureImmunity
@@ -112,6 +171,11 @@
 - type: clause
   id: fearoffreezing
   name: Fear of Freezing # Orion
+  # Arcane-Start
+  aliases:
+  - Страх замерзания
+  - страх замерзания
+  # Arcane-End
   clauseWeight: -10
   addedComponents:
   - type: SpecialLowTempImmunity
@@ -119,6 +183,11 @@
 - type: clause
   id: greed
   name: Greed # Orion
+  # Arcane-Start
+  aliases:
+  - Жадность
+  - жадность
+  # Arcane-End
   clauseWeight: -10
   spawnedItems:
   - SpaceCash30000
@@ -126,6 +195,11 @@
 - type: clause
   id: pain
   name: Pain # Orion
+  # Arcane-Start
+  aliases:
+  - Боль
+  - боль
+  # Arcane-End
   clauseWeight: -5
   addedComponents:
   - type: PainNumbnessStatusEffect
@@ -137,12 +211,22 @@
 - type: clause
   id: chance
   name: Chance # Orion
+  # Arcane-Start
+  aliases:
+  - Случайность
+  - случайность
+  # Arcane-End
   clauseWeight: -20
   event: !type:DevilContractChanceEvent
 
 - type: clause
   id: shadows
   name: Shadows # Orion
+  # Arcane-Start
+  aliases:
+  - Тени
+  - тени
+  # Arcane-End
   clauseWeight: -25
   addedComponents:
   - type: Stealth
@@ -151,18 +235,33 @@
 - type: clause
   id: humanity
   name: Humanity # Orion
+  # Arcane-Start
+  aliases:
+  - Человечность
+  - человечность
+  # Arcane-End
   clauseWeight: 80
   polymorph: MobFrogPolymorph
 
 - type: clause
   id: strength
   name: Strength # Orion
+  # Arcane-Start
+  aliases:
+  - Сила
+  - сила
+  # Arcane-End
   clauseWeight: 30
   damageModifierSet: DevilDealNegative
 
 - type: clause
   id: willtofight
   name: Will to Fight # Orion
+  # Arcane-Start
+  aliases:
+  - Воля к борьбе
+  - воля к борьбе
+  # Arcane-End
   clauseWeight: 60
   addedComponents:
   - type: Pacified
@@ -170,6 +269,11 @@
 - type: clause
   id: sight
   name: Sight # Orion
+  # Arcane-Start
+  aliases:
+  - Зрение
+  - зрение
+  # Arcane-End
   clauseWeight: 60
   addedComponents:
   - type: PermanentBlindness
@@ -177,6 +281,11 @@
 - type: clause
   id: coherence
   name: Coherence # Orion
+  # Arcane-Start
+  aliases:
+  - Связность
+  - связность
+  # Arcane-End
   clauseWeight: 30
   addedComponents:
   - type: BackwardsAccent
@@ -185,6 +294,11 @@
 - type: clause
   id: voice
   name: Voice # Orion
+  # Arcane-Start
+  aliases:
+  - Голос
+  - голос
+  # Arcane-End
   clauseWeight: 20
   addedComponents:
   - type: Muted
@@ -192,18 +306,33 @@
 - type: clause
   id: leg
   name: Leg # Orion
+  # Arcane-Start
+  aliases:
+  - Нога
+  - нога
+  # Arcane-End
   clauseWeight: 20
   event: !type:DevilContractLoseLegEvent
 
 - type: clause
   id: hand
   name: Hand # Orion
+  # Arcane-Start
+  aliases:
+  - Рука
+  - рука
+  # Arcane-End
   clauseWeight: 20
   event: !type:DevilContractLoseHandEvent
 
 - type: clause
   id: awake
   name: Awake # Orion
+  # Arcane-Start
+  aliases:
+  - Бодрствование
+  - бодрствование
+  # Arcane-End
   clauseWeight: 35
   addedComponents:
   - type: Narcolepsy
@@ -215,12 +344,22 @@
 - type: clause
   id: organ
   name: Organ # Orion
+  # Arcane-Start
+  aliases:
+  - Орган
+  - орган
+  # Arcane-End
   clauseWeight: 30
   event: !type:DevilContractLoseOrganEvent
 
 - type: clause
   id: legs
   name: Legs # Orion
+  # Arcane-Start
+  aliases:
+  - Ноги
+  - ноги
+  # Arcane-End
   clauseWeight: 40
   addedComponents:
   - type: LegsParalyzed
@@ -228,6 +367,11 @@
 - type: clause
   id: innerpeace
   name: Inner Peace # Orion
+  # Arcane-Start
+  aliases:
+  - Внутренний покой
+  - внутренний покой
+  # Arcane-End
   clauseWeight: 5
   addedComponents:
   - type: TileMovement
@@ -235,6 +379,11 @@
 - type: clause
   id: death
   name: Death # Orion
+  # Arcane-Start
+  aliases:
+  - Смерть
+  - смерть
+  # Arcane-End
   clauseWeight: -25
   addedComponents:
   - type: CheatDeath
@@ -243,6 +392,11 @@
 - type: clause
   id: mortality
   name: Mortality # Orion
+  # Arcane-Start
+  aliases:
+  - Смертность
+  - смертность
+  # Arcane-End
   clauseWeight: -135
   addedComponents:
   - type: CheatDeath
@@ -251,6 +405,11 @@
 - type: clause
   id: time
   name: Time # Orion
+  # Arcane-Start
+  aliases:
+  - Время
+  - время
+  # Arcane-End
   clauseWeight: 150
   addedComponents:
   - type: DelayedDeath

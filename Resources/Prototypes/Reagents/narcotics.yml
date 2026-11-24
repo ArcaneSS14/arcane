@@ -68,6 +68,11 @@
       - !type:ModifyStatusEffect
         effectProto: StatusEffectPainNumbness
         time: 2
+      # Arcane-Start
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectCritThresholdLower30
+        time: 2
+      # Arcane-End
       # Interactions
       - !type:ModifyStatusEffect
         conditions:
@@ -153,6 +158,11 @@
       - !type:ModifyKnockdown
         time: 1
         type: Remove
+      # Arcane-Start
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectCritThresholdLower10
+        time: 2
+      # Arcane-End
       # Side effects
       - !type:Jitter
       - !type:PopupMessage

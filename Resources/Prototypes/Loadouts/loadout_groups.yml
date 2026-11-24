@@ -55,6 +55,7 @@
   # GoobStation Start
   - CardBoxBlack
   - CardBoxNanotrasen
+  - PokerChipsBox # Arcane
   - FoodSnackLollypopWrapped
   - FoodSnackLollypopWrappedRainbow
   - FoodSnackLollypopWrappedCarp
@@ -81,6 +82,12 @@
   - TapeRecorder
   - DrinkOniGourd
   # End DeltaV Additions
+  # Arcane-Start
+  - PaintCanvas
+  - PaintCanvasSmall
+  - PaintCanvasLandscape
+  - Paintbrush
+  # Arcane-End
 
 - type: loadoutGroup
   id: Glasses

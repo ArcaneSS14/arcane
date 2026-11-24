@@ -1,3 +1,5 @@
+ent-ClothingEyesGlassesTeacher = очки учителя
+    .desc = Строгие очки для строгого учителя.
 # Sponsor
 
 ent-ClothingEyesBookWorm = очки книжного червя

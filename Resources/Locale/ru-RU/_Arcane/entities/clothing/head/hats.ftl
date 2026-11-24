@@ -34,7 +34,11 @@ ent-ClothingHeadbandKitsune = ушки кицунэ
     .desc = Традиционный элемент костюма в стиле мифической лисы.
 ent-ClothingHeadHatMaidFura = фуражка горничной
     .desc = Аккуратная фуражка, подобающая старшей горничной.
+ent-ClothingHeadHatPolicemanHat = фуражка полицейского
+    .desc = Строгая полицейская фуражка. Уважайте закон!
 
+ent-ClothingHeadHatNurseCap = шапочка медсестры
+    .desc = Белая шапочка с красным крестом. Для настоящих ангелов милосердия.
 # Sponsor
 
 ent-ClothingHatNTRBlackBeret = чёрный берет представителя NanoTrasen

@@ -738,6 +738,11 @@
       - !type:SuppressPain
         amount: 10
         time: 30
+      # Arcane-Start
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectCritThresholdRaise5
+        time: 2
+      # Arcane-End
       - !type:AdjustPainFeels
         conditions:
         - !type:ReagentCondition
@@ -1501,6 +1506,14 @@
       - !type:SuppressPain
         amount: 25
         time: 30
+      # Arcane-Start
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectAnalgesia
+        time: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectCritThresholdRaise10
+        time: 2
+      # Arcane-End
       - !type:GenericStatusEffect
         key: Adrenaline
         component: IgnoreSlowOnDamage
@@ -1538,6 +1551,14 @@
       - !type:SuppressPain
         amount: 400
         time: 30
+      # Arcane-Start
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectAnalgesia
+        time: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectCritThresholdRaise20
+        time: 2
+      # Arcane-End
       - !type:GenericStatusEffect
         key: Adrenaline
         component: IgnoreSlowOnDamage

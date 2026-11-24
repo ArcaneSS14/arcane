@@ -54,6 +54,7 @@ namespace Content.Client.PDA
             HomeButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/home.png"));
             FlashLightToggleButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/light.png"));
             EjectPenButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/pencil.png"));
+            EjectPaperButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/eject.png")); // Arcane
             EjectIdButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/eject.png"));
             EjectPaiButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/pai.png"));
             PowerOffButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/_Orion/Interface/power.png")); // Orion
@@ -213,6 +214,7 @@ namespace Content.Client.PDA
 
             EjectIdButton.IsActive = state.PdaOwnerInfo.IdOwner != null || state.PdaOwnerInfo.JobTitle != null;
             EjectPenButton.IsActive = state.HasPen;
+            EjectPaperButton.IsActive = state.HasPaper; // Arcane
             EjectPaiButton.IsActive = state.HasPai;
             ActivateMusicButton.Visible = state.CanPlayMusic;
             ShowUplinkButton.Visible = state.HasUplink;

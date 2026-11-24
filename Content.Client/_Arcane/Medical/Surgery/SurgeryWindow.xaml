@@ -4,10 +4,10 @@
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:surgery="clr-namespace:Content.Client._Arcane.Medical.Surgery"
     Title="{Loc 'surgery-ui-window-title'}"
-    MinSize="720 460"
-    SetSize="780 520">
+    MinSize="780 460"
+    SetSize="840 520">
     <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
-        <ScrollContainer HScrollEnabled="False" MinWidth="280" VerticalExpand="True" Margin="5">
+        <ScrollContainer HScrollEnabled="False" MinWidth="340" VerticalExpand="True" Margin="5">
             <BoxContainer Orientation="Vertical" Margin="5 0" SeparationOverride="4">
                 <surgery:SurgeryDollControl Name="Doll" Access="Public" HorizontalAlignment="Center" />
                 <BoxContainer Name="OtherParts" Access="Public" Orientation="Vertical" SeparationOverride="2" Visible="False" />

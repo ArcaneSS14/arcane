@@ -1,0 +1,171 @@
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomPistol
+  name: random pistol crate
+  description: Contains a random assortment of pistols with magazines. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillCrateArmoryRandomPistol
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomSubMachineGun
+  name: random SMG crate
+  description: Contains a random assortment of SMGs with magazines. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillCrateArmoryRandomSubMachineGun
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomLightRifle
+  name: random light rifle crate
+  description: Contains a random assortment of light rifles with magazines. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomLightRifle
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomHeavyRifle
+  name: random heavy rifle crate
+  description: Contains two random heavy rifle cases. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomHeavyRifle
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomPumpShotgun
+  name: random pump shotgun crate
+  description: Contains a random assortment of pump shotguns with shells. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomPumpShotgun
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomAutoShotgun
+  name: random auto shotgun crate
+  description: Contains a random assortment of automatic shotguns with shells. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRandomAutoShotgun
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRandomLaser
+  name: random energy weapon crate
+  description: Contains a random assortment of energy weapons. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillCrateArmoryRandomLaser
+
+- type: entityTable
+  id: FillCrateArmoryRandomPistol
+  table: !type:AllSelector
+    children:
+    - id: MagazinePistol
+      amount: 4
+    - !type:GroupSelector
+      rolls: !type:ConstantNumberSelector
+        value: 2
+      children:
+      - id: WeaponPistolG22
+        weight: 20
+      - id: WeaponPistolMk58
+        weight: 20
+      - id: WeaponPistolG23
+        weight: 20
+      - id: CaseSecurityMiniInspector
+        weight: 10
+      - id: CaseSecurityMiniDeckard
+        weight: 10
+      - id: CaseSecurityMiniFlareGun
+        weight: 4
+      - id: CaseSecurityMiniCellRevolver
+        weight: 4
+      - id: WeaponEarthGovLaserPistol
+        weight: 4
+      - id: WeaponLaserSvalinn
+        weight: 4
+      - id: WeaponLaserGun
+        weight: 2
+      - id: WeaponAdvancedLaser
+        weight: 0.75
+      - id: CaseSecurityMiniVP78
+        weight: 0.5
+      - id: CaseSecurityMiniDesertEagle
+        weight: 0.25
+      - id: WeaponBehonkerLaser
+        weight: 0.25
+      - id: WeaponWaterPistol
+        weight: 0.25
+
+- type: entityTable
+  id: FillCrateArmoryRandomSubMachineGun
+  table: !type:AllSelector
+    children:
+    - id: MagazinePistolSubMachineGun
+      amount: 4
+    - !type:GroupSelector
+      rolls: !type:ConstantNumberSelector
+        value: 2
+      children:
+      - id: WeaponSubMachineGunMP5
+        weight: 23
+      - id: WeaponSubMachineGunWt550
+        weight: 23
+      - id: WeaponSubMachineGunMP7
+        weight: 23
+      - id: WeaponSubMachineGunDrozd
+        weight: 23
+      - id: CaseSecurityP90
+        weight: 2.5
+      - id: CaseSecurityVector
+        weight: 2.5
+      - id: CaseSecurityLaserCellSMG
+        weight: 2
+      - id: WeaponWaterBlaster
+        weight: 0.5
+
+- type: entityTable
+  id: FillCrateArmoryRandomLaser
+  table: !type:AllSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: WeaponLaserCarbine
+        weight: 30
+      - id: WeaponLaserCannon
+        weight: 30
+      - id: WeaponXrayCannon
+        weight: 30
+    - !type:GroupSelector
+      rolls: !type:ConstantNumberSelector
+        value: 2
+      children:
+      - id: WeaponEarthGovLaserRifle
+        weight: 24
+      - id: WeaponEarthGovLaserCarbine
+        weight: 24
+      - id: WeaponEarthGovXRay
+        weight: 24
+      - id: SecurityTeleporterEL20
+        weight: 3.5
+      - id: WeaponEarthGovLaserMG
+        weight: 0.5

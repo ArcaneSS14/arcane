@@ -39,7 +39,10 @@ public sealed partial class DevilClausePrototype : IPrototype
 
     [DataField]
     public ProtoId<PolymorphPrototype>? Polymorph;
-
+    // Arcane-Start
+    [DataField]
+    public List<string> Aliases = new();
+    // Arcane-End
 }
 
 public enum SpecialCase : byte

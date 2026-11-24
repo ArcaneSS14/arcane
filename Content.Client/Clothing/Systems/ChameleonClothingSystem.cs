@@ -5,6 +5,7 @@ using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
+using Content.Shared._Arcane.Stains; // Arcane
 
 namespace Content.Client.Clothing.Systems;
 
@@ -39,7 +40,12 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
         {
             sprite.CopyFrom(otherSprite);
         }
-
+        // Arcane-Start
+        if (TryComp(uid, out StainableComponent? stainable))
+        {
+            stainable.RevealedIconVisuals.Clear();
+        }
+        // Arcane-End
         // Edgecase for PDAs to include visuals when UI is open
         if (TryComp(uid, out PdaBorderColorComponent? borderColor)
             && proto.TryGetComponent(out PdaBorderColorComponent? otherBorderColor, Factory))

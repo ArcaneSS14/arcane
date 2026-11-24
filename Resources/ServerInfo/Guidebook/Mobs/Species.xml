@@ -3,39 +3,39 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <Document>
-  # Species
+  # Виды
 
-  Nanotrasen employs a variety of sapient species. It is wise to get to know them so you know the requirements of your fellow crew members.
+  Nanotrasen нанимает множество разумных видов. Разумно познакомиться с ними, чтобы знать потребности своих товарищей по экипажу.
 
   <Box>
-    <GuideEntityEmbed Entity="MobArachnid" Caption="Arachnid"/>
-    <GuideEntityEmbed Entity="MobDiona" Caption="Diona"/>
-    <GuideEntityEmbed Entity="MobDwarf" Caption="Dwarf"/>
-    <GuideEntityEmbed Entity="MobGingerbread" Caption="Gingerbread"/>
-    <GuideEntityEmbed Entity="MobHarpy" Caption="Harpy"/>
+    <GuideEntityEmbed Entity="MobArachnid" Caption="Арахнид"/>
+    <GuideEntityEmbed Entity="MobDiona" Caption="Диона"/>
+    <GuideEntityEmbed Entity="MobDwarf" Caption="Дворф"/>
+    <GuideEntityEmbed Entity="MobGingerbread" Caption="Пряничный человечек"/>
+    <GuideEntityEmbed Entity="MobHarpy" Caption="Гарпия"/>
   </Box>
   <Box>
-    <GuideEntityEmbed Entity="MobHuman" Caption="Human"/>
-    <GuideEntityEmbed Entity="MobIPCDummy" Caption="IPC"/>
-    <GuideEntityEmbed Entity="MobMoth" Caption="Moth Person"/>
-    <GuideEntityEmbed Entity="MobOni" Caption="Oni"/>
-    <GuideEntityEmbed Entity="MobReptilian" Caption="Reptilian"/>
-    <GuideEntityEmbed Entity="MobResomi" Caption="Resomi"/>
-    <GuideEntityEmbed Entity="MobRodentia" Caption="Rodentia"/>
+    <GuideEntityEmbed Entity="MobHuman" Caption="Человек"/>
+    <GuideEntityEmbed Entity="MobIPCDummy" Caption="КПБ"/>
+    <GuideEntityEmbed Entity="MobMoth" Caption="Мотылёк"/>
+    <GuideEntityEmbed Entity="MobOni" Caption="Ёкаи"/>
+    <GuideEntityEmbed Entity="MobReptilian" Caption="Ящеролюд"/>
+    <GuideEntityEmbed Entity="MobResomi" Caption="Резоми"/>
+    <GuideEntityEmbed Entity="MobRodentia" Caption="Родентия"/>
   </Box>
   <Box>
-    <GuideEntityEmbed Entity="MobSlimePerson" Caption="Slime Person"/>
-    <GuideEntityEmbed Entity="MobTajaran" Caption="Tajaran"/>
-    <GuideEntityEmbed Entity="MobVox" Caption="Vox"/>
-    <GuideEntityEmbed Entity="MobVulpkanin" Caption="Vulpkanin"/>
-    <GuideEntityEmbed Entity="MobYowie" Caption="Yowie"/>
-    <GuideEntityEmbed Entity="MobChitinid" Caption="Chitinid"/>
-    <GuideEntityEmbed Entity="MobFeroxi" Caption="Feroxi"/>
+    <GuideEntityEmbed Entity="MobSlimePerson" Caption="Слаймолюд"/>
+    <GuideEntityEmbed Entity="MobTajaran" Caption="Таяран"/>
+    <GuideEntityEmbed Entity="MobVox" Caption="Вокс"/>
+    <GuideEntityEmbed Entity="MobVulpkanin" Caption="Вульпканин"/>
+    <GuideEntityEmbed Entity="MobYowie" Caption="Йови"/>
+    <GuideEntityEmbed Entity="MobChitinid" Caption="Хитинид"/>
+    <GuideEntityEmbed Entity="MobFeroxi" Caption="Ферокси"/>
   </Box>
   <Box>
-    <GuideEntityEmbed Entity="MobShadowkin" Caption="Shadowkin"/>
-    <GuideEntityEmbed Entity="MobHydrakin" Caption="Hydrakin"/>
-    <GuideEntityEmbed Entity="MobSynth" Caption="Synth"/> <!-- Goob - Afterlight -->
+    <GuideEntityEmbed Entity="MobShadowkin" Caption="Сумеречник"/>
+    <GuideEntityEmbed Entity="MobHydrakin" Caption="Гидракин"/>
+    <GuideEntityEmbed Entity="MobSynth" Caption="Синт"/> <!-- Goob - Afterlight -->
   </Box>
 
 </Document>

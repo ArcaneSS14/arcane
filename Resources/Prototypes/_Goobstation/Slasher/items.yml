@@ -336,6 +336,7 @@
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: Prying
+  - type: SurgeryCrowbar # Arcane
 
 # Cult Kit
 

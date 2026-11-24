@@ -1,0 +1,68 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectAnalgesia
+  name: analgesia
+  components:
+  - type: AnalgesiaStatusEffect
+
+- type: entity
+  abstract: true
+  parent: MobStatusEffectDebuff
+  id: CritThresholdModifierStatusEffect
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+      - MobThresholds
+  - type: CritThresholdModifierStatusEffect
+
+- type: entity
+  parent: CritThresholdModifierStatusEffect
+  id: StatusEffectCritThresholdRaise5
+  name: 1.05x crit threshold
+  components:
+  - type: CritThresholdModifierStatusEffect
+    modifier: 1.05
+
+- type: entity
+  parent: CritThresholdModifierStatusEffect
+  id: StatusEffectCritThresholdRaise10
+  name: 1.1x crit threshold
+  components:
+  - type: CritThresholdModifierStatusEffect
+    modifier: 1.1
+
+- type: entity
+  parent: CritThresholdModifierStatusEffect
+  id: StatusEffectCritThresholdRaise15
+  name: 1.15x crit threshold
+  components:
+  - type: CritThresholdModifierStatusEffect
+    modifier: 1.15
+
+- type: entity
+  parent: CritThresholdModifierStatusEffect
+  id: StatusEffectCritThresholdRaise20
+  name: 1.2x crit threshold
+  components:
+  - type: CritThresholdModifierStatusEffect
+    modifier: 1.2
+
+- type: entity
+  parent: CritThresholdModifierStatusEffect
+  id: StatusEffectCritThresholdLower10
+  name: 0.9x crit threshold
+  components:
+  - type: CritThresholdModifierStatusEffect
+    modifier: 0.9
+
+- type: entity
+  parent: CritThresholdModifierStatusEffect
+  id: StatusEffectCritThresholdLower30
+  name: 0.7x crit threshold
+  components:
+  - type: CritThresholdModifierStatusEffect
+    modifier: 0.7

@@ -82,3 +82,9 @@ ent-SurgeryStepLobotomize = Lobotomize patient
     .desc = { ent-SurgeryStepBase.desc }
 ent-SurgeryStepMendBrainTissue = Mend brain tissue
     .desc = { ent-SurgeryStepBase.desc }
+# Arcane-Start
+ent-SurgeryStepExtractForeignBody = Extract foreign body
+    .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepRepairBrain = Repair the brain
+    .desc = { ent-SurgeryStepBase.desc }
+# Arcane-End

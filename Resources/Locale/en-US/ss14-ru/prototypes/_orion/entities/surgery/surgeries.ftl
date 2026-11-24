@@ -1,6 +1,8 @@
+# Arcane-Edit-Start
 ent-SurgeryCorticalBorerRemoval = Remove Cortical Borer
     .desc = { ent-SurgeryBase.desc }
-    .suffix = { ent-SurgeryBase.suffix }
+    .suffix = { "" }
+# Arcane-Edit-End
 ent-SurgeryPacify = Pacify patient
     .desc = Surgical procedure that makes the patient unable to harm others.
 ent-SurgeryRemovePacification = Remove pacification
