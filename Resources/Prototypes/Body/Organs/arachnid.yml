@@ -96,6 +96,7 @@
   - type: Lung
   - type: Metabolizer
     updateInterval: 1.5
+    maxReagents: 14 # Arcane
     removeEmpty: true
     solutionOnBody: false
     solution: "Lung"
