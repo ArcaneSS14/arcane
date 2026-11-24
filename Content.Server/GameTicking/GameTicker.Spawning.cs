@@ -224,7 +224,7 @@ namespace Content.Server.GameTicking
 
             RaiseLocalEvent(new SecurityBudgetEvent(officers, false));
 
-            var securityOfficers = assignedJobs.Where(entry => entry.Value.Item1 == "SecurityOfficer" || entry.Value.Item1 == "SecurityCadet" || entry.Value.Item1 == "HeadOfSecurity").Select(entry => entry.Key).ToArray();
+            var securityOfficers = assignedJobs.Where(entry => entry.Value.Item1 == "SecurityOfficer" || entry.Value.Item1 == "SecurityCadet" || entry.Value.Item1 == "HeadOfSecurity" || entry.Value.Item1 == "Detective").Select(entry => entry.Key).ToArray();
 
             RaiseLocalEvent(new SecurityBudgetEvent(securityOfficers, true));
             // Arcane-End
@@ -244,7 +244,7 @@ namespace Content.Server.GameTicking
             bool silent = false)
         {
             // Arcane-Start
-            if (lateJoin && jobId is ("SecurityOfficer" or "SecurityCadet" or "HeadOfSecurity"))
+            if (lateJoin && jobId is ("SecurityOfficer" or "SecurityCadet" or "HeadOfSecurity" or "Detective"))
                 RaiseLocalEvent(new SecurityBudgetEvent(new[] { player.UserId }, true));
             // Arcane-End
             // arcane discord link start
