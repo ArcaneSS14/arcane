@@ -10,7 +10,6 @@
   - GroupSpeciesBreathTool
   - Survival
   - Patron
-  - GroupGrimoire
   - Undershirt
   - Underwear
   - Socks
@@ -36,7 +35,6 @@
   - Undershirt
   - Underwear
   - Wrists
-  - GroupGrimoire
 
 - type: roleLoadout
   id: JobIAA
@@ -52,4 +50,3 @@
   - Underwear
   - Socks
   - Wrists
-  - GroupGrimoire
