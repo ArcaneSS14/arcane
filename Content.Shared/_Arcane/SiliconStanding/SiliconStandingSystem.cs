@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
@@ -70,6 +71,10 @@ public sealed class SharedSiliconStandingSystem : EntitySystem
             EnsureComp<SiliconRestingComponent>(uid);
         else
             RemComp<SiliconRestingComponent>(uid);
+
+        // While resting, movement visuals must not overwrite the resting body state.
+        if (resting)
+            RemComp<SpriteMovementComponent>(uid);
 
         if (TryComp<AppearanceComponent>(uid, out var appearance))
             _appearance.SetData(uid, SiliconStandingVisuals.Resting, resting, appearance);

@@ -47,7 +47,7 @@
   - подергивает $target за кончик крыла.
   - неосторожно тянет $target за крыло.
   icon: _Arcane/Interface/ErpPanel/pat-wings.png
-  userRequirements:
+  targetRequirements:
   - !type:SpeciesRequirement
     species:
     - Harpy

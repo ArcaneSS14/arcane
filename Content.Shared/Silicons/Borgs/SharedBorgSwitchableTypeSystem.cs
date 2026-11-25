@@ -107,12 +107,21 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
         if (subtype != null)
             Dirty(ent.Owner, subtype);
 
-        UpdateEntityAppearance(ent);
-
         // Arcane-Edit-Start
         if (Prototypes.TryIndex(borgSubtype, out var subtypePrototype))
+        {
+            if (subtypePrototype.Components != null)
+            {
+                // Add components before UpdateSiliconRestingAction/UpdateEntityAppearance so the
+                // systems can configure components that only exist after AddComponents runs.
+                EntityManager.AddComponents(ent.Owner, subtypePrototype.Components);
+            }
+
             UpdateSiliconRestingAction(ent.Owner, subtypePrototype);
+        }
         // Arcane-Edit-End
+
+        UpdateEntityAppearance(ent);
     }
 
     // Arcane-Edit-Start
@@ -123,6 +132,24 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
 
         if (subtypePrototype.Visuals.RestBodyState != null)
         {
+            var visuals = EnsureComp<SiliconRestingVisualsComponent>(uid);
+            visuals.RestBodyState = subtypePrototype.Visuals.RestBodyState;
+
+            // Fallback: subtype NormalBodyState -> parent borg type SpriteBodyState -> keep default.
+            if (subtypePrototype.Visuals.NormalBodyState != null)
+            {
+                visuals.NormalBodyState = subtypePrototype.Visuals.NormalBodyState;
+            }
+            else if (TryComp<BorgSwitchableTypeComponent>(uid, out var switchable)
+                     && switchable.SelectedBorgType != null
+                     && Prototypes.TryIndex(switchable.SelectedBorgType.Value, out var borgTypeProto)
+                     && borgTypeProto.SpriteBodyState != null)
+            {
+                visuals.NormalBodyState = borgTypeProto.SpriteBodyState;
+            }
+
+            Dirty(uid, visuals);
+
             _actionsSystem.AddAction(uid, ref standing.ToggleRestingAction, SiliconStandingComponent.ToggleRestingActionId);
         }
         else

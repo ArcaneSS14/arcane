@@ -19,6 +19,9 @@
   tags:
   - RequiresERP
   targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   - !type:ExposedBodyPartRequirement
     part: Butt
   userRequirements:
@@ -51,6 +54,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: AnusFingering
@@ -71,6 +77,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: AnusTailFuck
@@ -95,6 +104,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   userRequirements:
   - !type:TailRequirement
 
@@ -132,6 +144,9 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   - !type:ArousalRequirement
 
 - type: panelInteraction
@@ -155,6 +170,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: AnalFingering2
@@ -176,6 +194,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: ToyButt
@@ -228,6 +249,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   userRequirements:
   - !type:ClothesWearingRequirements
     tags:
@@ -279,6 +303,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: RunningFingerAnus
@@ -299,6 +326,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: WallAnusFuck
@@ -323,6 +353,9 @@
   - !type:NearbyStaticEntityRequirement
     tags:
     - Wall
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   - !type:ExposedBodyPartRequirement
     part: Butt
   - !type:ArousalRequirement
@@ -359,3 +392,6 @@
     sexes:
     - Male
     - Futanari
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob

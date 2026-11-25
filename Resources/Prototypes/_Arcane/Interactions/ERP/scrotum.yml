@@ -17,6 +17,9 @@
   tags:
   - RequiresERP
   userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
@@ -44,12 +47,15 @@
   tags:
   - RequiresERP
   targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   - !type:SexRequirement
     sexes:
       - Male
       - Futanari
   - !type:ExposedBodyPartRequirement
-    part: Groin   
+    part: Groin
 
 - type: panelInteraction
   id: SuckScrotum
@@ -71,12 +77,19 @@
   tags:
   - RequiresERP
   targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: RubbingFaceScrotum
@@ -95,9 +108,47 @@
   tags:
   - RequiresERP
   targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+
+- type: panelInteraction
+  id: RubbingFaceScrotumSilicon
+  category: Scrotum
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  messages:
+  - втирается монитором в яйца $target.
+  - упирается экраном в мошонку $target.
+  - трётся монитором об яйца $target.
+  - трётся экраном об яйца $target.
+  icon: _Arcane/Interface/ErpPanel/head-balls.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:TagWhitelistRequirement
+    tags:
+    - SiliconMob

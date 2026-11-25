@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Shared._Arcane.SiliconStanding;
 using Content.Shared.Alert;
 using Content.Shared.Mobs;
 using Content.Shared.Power.EntitySystems;
@@ -8,7 +9,9 @@ using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
+using Robust.Client.ResourceManagement;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Silicons.Borgs;
@@ -24,6 +27,8 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
 
     public override void Initialize()
     {
@@ -75,6 +80,12 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, ref ent.Comp3))
             return;
+
+        // Arcane-Edit-Start
+        // If the borg is resting, let SiliconRestingVisualizerSystem handle the sprite layers.
+        if (HasComp<SiliconRestingComponent>(ent.Owner))
+            return;
+        // Arcane-Edit-End
 
         if (_appearance.TryGetData<MobState>(ent.Owner, MobStateVisuals.State, out var state, ent.Comp2))
         {

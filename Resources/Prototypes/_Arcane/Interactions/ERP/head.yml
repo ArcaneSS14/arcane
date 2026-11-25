@@ -82,6 +82,10 @@
   icon: _Arcane/Interface/ErpPanel/lick-horms.png
   tags:
   - RequiresERP
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   targetRequirements:
   - !type:SpeciesRequirement
     species:
@@ -115,6 +119,10 @@
   - легким движением путает волосы $target.
   - задорно треплет $target по шевелюре.
   icon: _Arcane/Interface/ErpPanel/ruffle_head.png
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: TapCrown
@@ -147,5 +155,9 @@
   icon: _Arcane/Interface/ErpPanel/kiss_back_of_head.png
   tags:
   - RequiresERP
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 

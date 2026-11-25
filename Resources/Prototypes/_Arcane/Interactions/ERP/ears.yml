@@ -17,6 +17,14 @@
   icon: _Arcane/Interface/ErpPanel/bite_ears.png
   tags:
   - RequiresERP
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: BiteEarsHuman
@@ -34,6 +42,38 @@
   icon: _Arcane/Interface/ErpPanel/bite_ears_human.png
   tags:
   - RequiresERP
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+
+- type: panelInteraction
+  id: BiteAntenna
+  category: Ears
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - кусает антенку $target.
+  - осторожно прикусывает антенку $target.
+  - слегка кусает $target за антенку.
+  - игриво покусывает анетку $target.
+  - внезапно кусает $target за антенку.
+  icon: _Arcane/Interface/ErpPanel/bite_antenna.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:TagWhitelistRequirement
+    tags:
+    - SiliconMob
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: EarsKiss
@@ -53,6 +93,39 @@
   icon: _Arcane/Interface/ErpPanel/ears_kiss.png
   tags:
   - RequiresERP
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+
+- type: panelInteraction
+  id: AntennaKiss
+  category: Ears
+  targetArouse: 5
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  - /Audio/_Arcane/Interactions/kiss3.ogg
+  messages:
+  - нежно целует антенку $target.
+  - касается губами антенок $target.
+  - медленно целует антенки $target.
+  - прижимается губами к антенке $target.
+  icon: _Arcane/Interface/ErpPanel/antenna_kiss.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:TagWhitelistRequirement
+    tags:
+    - SiliconMob
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: PatEars
@@ -94,6 +167,10 @@
   icon: _Arcane/Interface/ErpPanel/pat_ears_human.png
   tags:
   - RequiresERP
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: ScratchingEars
@@ -107,3 +184,11 @@
   - почесывает за ухом.
   - трет кожу за ухом.
   icon: _Arcane/Interface/ErpPanel/pat_ears_human.png
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob

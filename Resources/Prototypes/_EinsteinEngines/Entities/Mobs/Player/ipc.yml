@@ -57,6 +57,10 @@
       cell_slot: true
   - type: WiresPanel
   - type: LockedWiresPanel
+  - type: ErpStatus
+  - type: Arousal
+  - type: ErpPanelOwner
+  - type: ErpAllowed
   # Arcane-End
   - type: EncryptionHolderRequiresLock
   #- Goobstation - Energycrit

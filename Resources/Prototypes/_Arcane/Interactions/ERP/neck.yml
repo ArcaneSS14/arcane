@@ -13,6 +13,14 @@
   icon: _Arcane/Interface/ErpPanel/bite_neck.png
   tags:
   - RequiresERP
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: LickNeck
@@ -32,6 +40,10 @@
   icon: _Arcane/Interface/ErpPanel/lick_neck.png
   tags:
   - RequiresERP
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: KissNeck
@@ -51,6 +63,10 @@
   icon: _Arcane/Interface/ErpPanel/kiss_neck.png
   tags:
   - RequiresERP
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: NuzzleNeck
@@ -116,6 +132,10 @@
   icon: _Arcane/Interface/ErpPanel/bite_neck.png
   tags:
   - RequiresERP
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: StretchNeck
@@ -129,8 +149,12 @@
   - плавно перекатывает голову по груди.
   - плотно обхватывает ладонями шею.
   - медленно вращает плечами назад.
-  - осторожно тянет подбородок к потолку. 
+  - осторожно тянет подбородок к потолку.
   icon: _Arcane/Interface/ErpPanel/pat_neck.png
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: GrabsNeck
