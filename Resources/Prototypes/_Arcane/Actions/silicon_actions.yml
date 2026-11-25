@@ -1,0 +1,18 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ActionToggleSiliconModesty
+  name: Cover/Uncover
+  description: Covers or uncovers your private zones.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Machines/door_lock_on.ogg
+      params:
+        volume: -5
+    icon:
+      sprite: _Arcane/Interface/Actions/silicon_modesty.rsi
+      state: covered
+  - type: InstantAction
+    event: !type:ToggleSiliconModestyEvent

@@ -26,10 +26,6 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: SlimeFuckCock
@@ -95,9 +91,6 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: TargetCockFap
@@ -124,9 +117,6 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: CockFootjob
@@ -156,9 +146,6 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: CockSwordmanship
@@ -187,9 +174,6 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   userRequirements:
   - !type:SexRequirement
     sexes:
@@ -197,9 +181,6 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: CockFapTail
@@ -215,9 +196,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
@@ -248,9 +226,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
@@ -293,9 +268,6 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: LegsCockFuckTail
@@ -314,9 +286,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
@@ -347,9 +316,6 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:HeldItemRequirement
     tags:
     - SexToyBlow
@@ -380,9 +346,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:HeldItemRequirement
     tags:
     - SexToyDildo
@@ -407,9 +370,6 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
@@ -441,9 +401,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:CumOverlayRequirement
   - !type:SexRequirement
     sexes:

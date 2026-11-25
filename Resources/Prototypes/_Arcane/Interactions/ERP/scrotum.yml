@@ -17,9 +17,6 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
@@ -47,9 +44,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
       - Male
@@ -77,19 +71,12 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: RubbingFaceScrotum
@@ -108,9 +95,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
@@ -139,9 +123,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male

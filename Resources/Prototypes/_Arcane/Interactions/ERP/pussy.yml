@@ -23,9 +23,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -58,9 +55,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -86,9 +80,6 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -96,9 +87,6 @@
   - !type:ExposedBodyPartRequirement
     part: Groin
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -123,9 +111,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -151,9 +136,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -185,9 +167,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -195,9 +174,6 @@
   - !type:ExposedBodyPartRequirement
     part: Groin
   userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
@@ -236,9 +212,6 @@
   - !type:ExposedBodyPartRequirement
     part: Groin
   userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -264,9 +237,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -297,9 +267,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -331,9 +298,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:HeldItemRequirement
     tags:
     - SexToyBlow
@@ -360,9 +324,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Female
@@ -393,16 +354,10 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:NearbyStaticEntityRequirement
     tags:
     - Wall
   userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:ArousalRequirement
 
 - type: panelInteraction
@@ -425,9 +380,6 @@
   tags:
   - RequiresERP
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:CumOverlayRequirement
   - !type:SexRequirement
     sexes:

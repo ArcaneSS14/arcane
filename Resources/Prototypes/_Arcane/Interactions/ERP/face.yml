@@ -14,10 +14,6 @@
   icon: _Arcane/Interface/ErpPanel/cheeks_kiss.png
   tags:
   - RequiresERP
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   targetRequirements:
   - !type:TagBlacklistRequirement
     tags:
@@ -60,10 +56,6 @@
   icon: _Arcane/Interface/ErpPanel/cheeks_kiss_both.png
   tags:
   - RequiresERP
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   targetRequirements:
   - !type:TagBlacklistRequirement
     tags:
@@ -85,10 +77,6 @@
   icon: _Arcane/Interface/ErpPanel/cheeks_pat.png
   tags:
   - RequiresERP
-  targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: CheeksPress
@@ -127,14 +115,6 @@
   icon: _Arcane/Interface/ErpPanel/gentle_kiss.png
   tags:
   - RequiresERP
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
-  targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: KissLips
@@ -156,14 +136,6 @@
   icon: _Arcane/Interface/ErpPanel/kiss_lips.png
   tags:
   - RequiresERP
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
-  targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: FaceRubCat
@@ -229,7 +201,7 @@
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
-  - садится на лицо $target.
+  - садится вагиной на лицо $target.
   - плавно опускается вагиной на лицо $target.
   - садится на лицо $target, прижимаясь вплотную.
   - усаживается на лицо $target.
@@ -246,9 +218,6 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: FaceSitting
@@ -291,9 +260,6 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
@@ -320,14 +286,11 @@
   - хлопает пенисом по монитору $target.
   - игриво бьёт $target своим членом по монитору.
   - проводит членом по экрану $target.
-  - несильно тычет членом в экран $target.
+  - слегка тычет членом в экран $target.
   icon: _Arcane/Interface/ErpPanel/screen_dick_slap.png
   tags:
   - RequiresERP
   userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male
@@ -555,10 +518,6 @@
   icon: _Arcane/Interface/ErpPanel/kiss_forehead.png
   tags:
   - RequiresERP
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 
 - type: panelInteraction

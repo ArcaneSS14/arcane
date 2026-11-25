@@ -21,10 +21,6 @@
   - !type:TagBlacklistRequirement
     tags:
     - SiliconMob
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: BiteEarsHuman
@@ -46,10 +42,6 @@
   - !type:TagBlacklistRequirement
     tags:
     - SiliconMob
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: BiteAntenna
@@ -68,10 +60,6 @@
   - RequiresERP
   targetRequirements:
   - !type:TagWhitelistRequirement
-    tags:
-    - SiliconMob
-  userRequirements:
-  - !type:TagBlacklistRequirement
     tags:
     - SiliconMob
 
@@ -97,10 +85,6 @@
   - !type:TagBlacklistRequirement
     tags:
     - SiliconMob
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: AntennaKiss
@@ -120,10 +104,6 @@
   - RequiresERP
   targetRequirements:
   - !type:TagWhitelistRequirement
-    tags:
-    - SiliconMob
-  userRequirements:
-  - !type:TagBlacklistRequirement
     tags:
     - SiliconMob
 
@@ -185,10 +165,6 @@
   - трет кожу за ухом.
   icon: _Arcane/Interface/ErpPanel/pat_ears_human.png
   targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
-  userRequirements:
   - !type:TagBlacklistRequirement
     tags:
     - SiliconMob

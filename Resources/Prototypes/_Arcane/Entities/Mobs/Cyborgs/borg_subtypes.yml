@@ -9,12 +9,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisGenericDullahan
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 # Engineering subtypes
 
@@ -27,12 +22,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerMekaengi
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: engineering
@@ -43,12 +33,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerK4t
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: engineering
@@ -59,12 +44,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerK4tAlt
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: engineering
@@ -75,12 +55,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerFMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: engineering
@@ -91,12 +66,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerMMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: engineering
@@ -107,12 +77,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerDullahan
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 # Janitor subtypes
 
@@ -125,12 +90,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: janitor
@@ -141,12 +101,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorK4t
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: janitor
@@ -157,12 +112,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorK4tAlt
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: janitor
@@ -173,12 +123,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorFMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: janitor
@@ -189,12 +134,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorMMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: janitor
@@ -205,12 +145,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorDullahan
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 # Medical subtypes
 
@@ -223,12 +158,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: medical
@@ -239,12 +169,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalK4t
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: medical
@@ -255,12 +180,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalK4tAlt
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: medical
@@ -271,12 +191,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalFMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: medical
@@ -287,12 +202,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalMMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: medical
@@ -303,12 +213,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalDullahan
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 # Mining subtypes
 
@@ -322,12 +227,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: mining
@@ -339,12 +239,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningK4t
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: mining
@@ -356,12 +251,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningK4tAlt
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: mining
@@ -373,12 +263,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningFMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: mining
@@ -390,12 +275,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningMMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: mining
@@ -406,12 +286,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningDullahan
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 # Service subtypes
 
@@ -424,12 +299,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -440,12 +310,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceMekaAlt
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -456,12 +321,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceK4t
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -472,12 +332,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceK4tAlt1
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -488,12 +343,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceK4tAlt2
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -504,12 +354,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceFMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -520,12 +365,7 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceMMeka
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -536,9 +376,4 @@
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceDullahan
   components:
-  - type: ErpStatus
-  - type: Arousal
-  - type: ErpPanelOwner
-  - type: ErpAllowed
-  - type: OwnInteractionVerbs
-    allowedVerbs: [ ]
+  - type: SiliconInteractable

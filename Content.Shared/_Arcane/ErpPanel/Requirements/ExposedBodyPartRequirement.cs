@@ -4,6 +4,7 @@ using Robust.Shared.Serialization;
 using Content.Shared._Arcane.Body.Part;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
+using Content.Shared._Arcane.Silicons;
 
 namespace Content.Shared._Arcane.ErpPanel.Requirements;
 
@@ -17,6 +18,10 @@ public sealed partial class ExposedBodyPartRequirement : InvertableErpRequiremen
 
     public override bool IsAvailable(EntityUid uid, IEntityManager entityManager)
     {
+        // Если на борге есть компонент прикрытия, считаем что часть тела не открыта
+        if (entityManager.HasComponent<SiliconModestyComponent>(uid))
+            return Inverted;
+
         var coveringSlots = Part switch
         {
             ErpBodyPartType.Chest => SlotFlags.INNERCLOTHING | SlotFlags.OUTERCLOTHING | SlotFlags.UNDERSHIRT,

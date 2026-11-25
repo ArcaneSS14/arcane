@@ -19,10 +19,6 @@
   targetRequirements:
   - !type:EmptyInventorySlotRequirement
     slot: shoes
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: ShiftWeight

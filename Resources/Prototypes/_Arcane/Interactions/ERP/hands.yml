@@ -103,9 +103,6 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: TargetHandFingering
@@ -130,6 +127,3 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob

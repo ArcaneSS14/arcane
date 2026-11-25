@@ -17,9 +17,6 @@
   tags:
   - RequiresERP
   userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
   - !type:SexRequirement
     sexes:
     - Male

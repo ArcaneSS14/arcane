@@ -32,9 +32,6 @@
     - Futanari
   - !type:ExposedBodyPartRequirement
     part: Groin
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: LickTheirLips
@@ -51,10 +48,6 @@
   - облизывает пересохшие губы, не сводя глаз с $target.
   - медленно проводит кончиком языка по губам перед $target.
   icon: _Arcane/Interface/ErpPanel/lick_lips.png
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
 
 - type: panelInteraction
   id: FriendlyFlyingKiss
@@ -114,11 +107,3 @@
   icon: _Arcane/Interface/ErpPanel/lick_their_lips.png
   tags:
   - RequiresERP
-  targetRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
-  userRequirements:
-  - !type:TagBlacklistRequirement
-    tags:
-    - SiliconMob
