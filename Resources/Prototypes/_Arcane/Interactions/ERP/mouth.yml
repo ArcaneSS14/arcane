@@ -118,3 +118,7 @@
   - !type:TagBlacklistRequirement
     tags:
     - SiliconMob
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob

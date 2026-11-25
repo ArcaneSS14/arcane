@@ -19,6 +19,7 @@
   targetRequirements:
   - !type:EmptyInventorySlotRequirement
     slot: shoes
+  userRequirements:
   - !type:TagBlacklistRequirement
     tags:
     - SiliconMob
