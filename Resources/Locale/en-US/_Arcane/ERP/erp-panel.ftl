@@ -82,6 +82,7 @@ erp-panel-interaction-lick-anus-condensed-cum-name = Lick secretions from ass
 # Interaction back
 erp-panel-interaction-finger-tap-name = Rub back
 erp-panel-interaction-stretch-body-name = Stretch whole body
+erp-panel-interaction-stretch-body-silicon-name = Stretch whole body
 
 # Interaction chest
 erp-panel-interaction-boobs-slap-name = Slap chest
@@ -113,17 +114,22 @@ erp-panel-interaction-toy-butt-near-cock-name = Run your sex toy over buttocks
 # Interaction ears
 erp-panel-interaction-bite-ears-name = Bite ear
 erp-panel-interaction-bite-ears-human-name = Bite ear
+erp-panel-interaction-bite-antenna-name = Bite antenna
 erp-panel-interaction-ears-kiss-name = Kiss ear
+erp-panel-interaction-antenna-kiss-name = Kiss antenna
 erp-panel-interaction-pat-ears-name = Pat ears
 erp-panel-interaction-pat-ears-human-name = Fondle ears
 erp-panel-interaction-scratching-ears-name = Scratch behind ear
 
 # Interaction face
 erp-panel-interaction-face-rub-cat-name = Rub face
+erp-panel-interaction-screen-rub-cat-name = Rub face against screen
 erp-panel-interaction-face-sitting-name = Sit on face
 erp-panel-interaction-face-pussy-sitting-name = Sit on face with pussy
 erp-panel-interaction-face-dick-slap-name = Slap face with cock
+erp-panel-interaction-screen-dick-slap-name = Slap screen with cock
 erp-panel-interaction-cheeks-kiss-name = Peck cheek
+erp-panel-interaction-screen-kiss-name = Peck screen
 erp-panel-interaction-cheeks-kiss-both-name = Kiss both cheeks
 erp-panel-interaction-cheeks-pat-name = Pat cheeks
 erp-panel-interaction-cheeks-press-name = Press cheeks together
@@ -131,6 +137,7 @@ erp-panel-interaction-gentle-kiss-name = Kiss gently
 erp-panel-interaction-kiss-lips-name = Kiss passionately
 erp-panel-interaction-legs-squeezeface-name = Squeeze face with thighs
 erp-panel-interaction-mewing-name = Make a mewing
+erp-panel-interaction-mewing-silicon-name = Make a mewing
 erp-panel-interaction-kitty-name = Rub face
 erp-panel-interaction-blow-slap-name = Slap face
 erp-panel-interaction-blow-slap-users-name = Hit cheek with palm
@@ -138,6 +145,8 @@ erp-panel-interaction-hitting-face-name = Hit face with palm
 erp-panel-interaction-shed-tear-name = Shed a tear
 erp-panel-interaction-kiss-forehead-name = Peck forehead
 erp-panel-interaction-suspicious-look-name = Suspicious look
+erp-panel-interaction-suspicious-look-silicon-name = Suspicious look
+erp-panel-interaction-knock-on-screen-name = Knock on screen
 
 # Interaction feet
 erp-panel-interaction-feet-mouth-name = Suck feet
@@ -219,6 +228,7 @@ erp-panel-interaction-fondle-scrotum-name = Fondle balls
 erp-panel-interaction-massage-scrotum-name = Massage scrotum
 erp-panel-interaction-suck-scrotum-name = Suck balls
 erp-panel-interaction-rubbing-face-scrotum-name = Rub face on it
+erp-panel-interaction-rubbing-face-scrotum-silicon-name = Rub screen on it
 
 # Interaction shoulders
 erp-panel-interaction-pat-shoulder-name = Pat shoulder

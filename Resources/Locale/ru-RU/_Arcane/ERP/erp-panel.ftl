@@ -228,7 +228,7 @@ erp-panel-interaction-fondle-scrotum-name = Ласкать яйца
 erp-panel-interaction-massage-scrotum-name = Массаж мошонки
 erp-panel-interaction-suck-scrotum-name = Отлизать яйца
 erp-panel-interaction-rubbing-face-scrotum-name = Тереться лицом
-erp-panel-interaction-rubbing-face-scrotum-silicon-name = Тереться лицом
+erp-panel-interaction-rubbing-face-scrotum-silicon-name = Тереться экраном
 
 # Interaction shoulders
 erp-panel-interaction-pat-shoulder-name = Хлопнуть по плечу

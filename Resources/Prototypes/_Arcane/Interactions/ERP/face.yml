@@ -321,7 +321,7 @@
   - игриво бьёт $target своим членом по монитору.
   - проводит членом по экрану $target.
   - несильно тычет членом в экран $target.
-  icon: _Arcane/Interface/ErpPanel/face_dick_slap.png
+  icon: _Arcane/Interface/ErpPanel/screen_dick_slap.png
   tags:
   - RequiresERP
   userRequirements:
