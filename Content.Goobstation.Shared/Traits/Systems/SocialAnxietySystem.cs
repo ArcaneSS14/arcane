@@ -11,6 +11,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Network;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Effects;
+using Robust.Shared.Player;
 // Arcane-End
 
 namespace Content.Goobstation.Shared.Traits.Systems;
@@ -26,6 +28,7 @@ public sealed partial class SocialAnxietySystem : EntitySystem
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private SharedColorFlashEffectSystem _colorFlash = default!;
     // Arcane-End
 
     public override void Initialize()
@@ -59,9 +62,9 @@ public sealed partial class SocialAnxietySystem : EntitySystem
         var damage = _melee.GetDamage(uid, uid) * (repeatedHug ? 3 : 2);
         var part = repeatedHug ? TargetBodyPart.Head : TargetBodyPart.LeftArm;
 
-        if (_damage.TryChangeDamage( hugger, damage, out var appliedDamage, origin: uid, targetPart: part, canMiss: false) && appliedDamage.GetTotal() > 0)
+        if (_damage.TryChangeDamage(hugger, damage, out var appliedDamage, origin: uid, targetPart: part, canMiss: false) && appliedDamage.GetTotal() > 0)
         {
-            _melee.PlayMeleeHitEffect(hugger, uid);
+            _colorFlash.RaiseEffect(Color.Red, new List<EntityUid> { hugger }, Filter.Pvs(hugger));
         }
     }
     // Arcane-End

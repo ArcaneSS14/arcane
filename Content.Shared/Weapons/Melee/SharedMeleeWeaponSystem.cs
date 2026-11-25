@@ -1325,12 +1325,4 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem // Goob - p
             }
         }
     }
-    // Arcane-Start
-    // анимация удара при получении урона
-    public void PlayMeleeHitEffect(EntityUid target, EntityUid attacker)
-    {
-        if (TryComp<TransformComponent>(target, out var targetTransform))
-            DoDamageEffect(new List<EntityUid> { target }, attacker, targetTransform);
-    }
-    // Arcane-End
 }
