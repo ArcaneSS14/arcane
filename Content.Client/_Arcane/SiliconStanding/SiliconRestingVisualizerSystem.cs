@@ -1,116 +1,112 @@
-using Content.Shared._Arcane.SiliconStanding;
+using Content.Shared.Actions;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Events;
+using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
-using Content.Shared.Toggleable;
-using Robust.Client.GameObjects;
+using Robust.Shared.Prototypes;
 
-namespace Content.Client._Arcane.SiliconStanding;
+namespace Content.Shared._Arcane.SiliconStanding;
 
-public sealed class SiliconRestingVisualizerSystem : EntitySystem
+public sealed class SharedSiliconStandingSystem : EntitySystem
 {
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly SharedSiliconStandingSystem _standing = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentStartup>(OnRestingStartup);
-        SubscribeLocalEvent<SiliconRestingComponent, ComponentRemove>(OnRestingRemove);
+        SubscribeLocalEvent<SiliconStandingComponent, ToggleSiliconRestingEvent>(OnToggleAction);
+        SubscribeLocalEvent<SiliconStandingComponent, UpdateCanMoveEvent>(OnCanMove);
+        SubscribeLocalEvent<SiliconStandingComponent, ComponentShutdown>(OnStandingShutdown);
     }
 
-    private void OnRestingStartup(Entity<SiliconRestingComponent> ent, ref ComponentStartup args)
+    private void OnToggleAction(Entity<SiliconStandingComponent> ent, ref ToggleSiliconRestingEvent args)
     {
-        _actionBlocker.UpdateCanMove(ent.Owner);
-        Refresh(ent.Owner, overrideResting: true);
-    }
-
-    private void OnRestingRemove(Entity<SiliconRestingComponent> ent, ref ComponentRemove args)
-    {
-        _actionBlocker.UpdateCanMove(ent.Owner);
-        Refresh(ent.Owner, overrideResting: false);
-    }
-
-    public void Refresh(EntityUid uid, SpriteComponent? sprite = null, bool? overrideResting = null)
-    {
-        if (!Resolve(uid, ref sprite, false))
+        if (!CanToggleResting(ent))
             return;
 
-        if (!TryComp<BorgChassisComponent>(uid, out var borg))
-            return;
+        SetResting(ent, !IsResting(ent));
+        args.Handled = true;
+    }
 
-        var isResting = overrideResting ?? GetRestingVisualState(uid);
-        var spriteEnt = (uid, sprite);
+    private void OnCanMove(Entity<SiliconStandingComponent> ent, ref UpdateCanMoveEvent args)
+    {
+        if (IsResting(ent))
+            args.Cancel();
+    }
 
-        UpdateBorgBodyState(spriteEnt, isResting);
+    private void OnStandingShutdown(Entity<SiliconStandingComponent> ent, ref ComponentShutdown args)
+    {
+        _actions.RemoveAction(ent.Owner, ent.Comp.ToggleRestingAction);
+    }
 
-        if (isResting)
+    public bool GetEffectiveResting(EntityUid uid) => IsResting(uid);
+
+    public bool IsResting(EntityUid uid) => HasComp<SiliconRestingComponent>(uid);
+
+    public bool CanToggleResting(EntityUid uid)
+    {
+        if (!HasComp<SiliconStandingComponent>(uid))
+            return false;
+
+        if (!HasComp<BorgChassisComponent>(uid))
+            return false;
+
+        if (!TryComp<BorgSwitchableSubtypeComponent>(uid, out var subtype) || subtype.BorgSubtype == null)
+            return false;
+
+        if (!_prototype.TryIndex(subtype.BorgSubtype, out var subtypePrototype))
+            return false;
+
+        return subtypePrototype.Visuals.RestBodyState != null;
+    }
+
+    public void SetResting(EntityUid uid, bool resting)
+    {
+        if (resting)
+            EnsureComp<SiliconRestingComponent>(uid);
+        else
+            RemComp<SiliconRestingComponent>(uid);
+
+        // Arcane-Edit-Start
+        if (resting)
         {
-            HideNonBodyLayers(spriteEnt);
-            return;
+            // Remove movement visuals so the resting body state isn't overwritten.
+            RemComp<SpriteMovementComponent>(uid);
         }
-
-        UpdateLightLayer(spriteEnt, borg);
-        UpdateLightStatusLayer(spriteEnt, uid);
-    }
-
-    private void UpdateLightLayer(Entity<SpriteComponent?> spriteEnt, BorgChassisComponent borg)
-    {
-        if (!_appearance.TryGetData<bool>(spriteEnt.Owner, BorgVisuals.HasPlayer, out var hasPlayer))
-            hasPlayer = false;
-
-        var lightState = hasPlayer ? borg.HasMindState : borg.NoMindState;
-        _sprite.LayerSetRsiState(spriteEnt, BorgVisualLayers.Light, lightState);
-        _sprite.LayerSetVisible(spriteEnt, BorgVisualLayers.Light, borg.BrainEntity != null || hasPlayer);
-    }
-
-    private void UpdateLightStatusLayer(Entity<SpriteComponent?> spriteEnt, EntityUid uid)
-    {
-        var lightStatusVisible = false;
-        _appearance.TryGetData<bool>(uid, ToggleableVisuals.Enabled, out lightStatusVisible);
-
-        if (_sprite.LayerMapTryGet(spriteEnt, BorgVisualLayers.LightStatus, out _, false))
-            _sprite.LayerSetVisible(spriteEnt, BorgVisualLayers.LightStatus, lightStatusVisible);
-        else if (_sprite.LayerMapTryGet(spriteEnt, "light", out _, false))
-            _sprite.LayerSetVisible(spriteEnt, "light", lightStatusVisible);
-    }
-
-    private void HideNonBodyLayers(Entity<SpriteComponent?> spriteEnt)
-    {
-        if (!_sprite.LayerMapTryGet(spriteEnt, BorgVisualLayers.Body, out var bodyLayerIndex, false))
-            return;
-
-        var index = 0;
-        foreach (var _ in spriteEnt.Comp!.AllLayers)
+        else if (TryComp<BorgSwitchableTypeComponent>(uid, out var switchable) &&
+                 switchable.SelectedBorgType != null &&
+                 _prototype.TryIndex(switchable.SelectedBorgType.Value, out var borgTypeProto))
         {
-            if (index != bodyLayerIndex)
-                _sprite.LayerSetVisible(spriteEnt, index, false);
+            // Restore movement visuals when standing up, using the same layers as the borg type prototype.
+            var spriteMovement = EnsureComp<SpriteMovementComponent>(uid);
 
-            index++;
+            spriteMovement.NoMovementLayers.Clear();
+            spriteMovement.MovementLayers.Clear();
+
+            if (borgTypeProto.SpriteBodyMovementState is { } movementState)
+            {
+                spriteMovement.NoMovementLayers["movement"] = new PrototypeLayerData
+                {
+                    State = borgTypeProto.SpriteBodyState,
+                };
+                spriteMovement.MovementLayers["movement"] = new PrototypeLayerData
+                {
+                    State = movementState,
+                };
+            }
+
+            Dirty(uid, spriteMovement);
         }
-    }
+        // Arcane-Edit-End
 
-    private void UpdateBorgBodyState(Entity<SpriteComponent?> ent, bool isResting)
-    {
-        if (!Resolve(ent, ref ent.Comp))
-            return;
+        if (TryComp<AppearanceComponent>(uid, out var appearance))
+            _appearance.SetData(uid, SiliconStandingVisuals.Resting, resting, appearance);
 
-        if (!TryComp<SiliconRestingVisualsComponent>(ent, out var visuals))
-            return;
-
-        if (!_sprite.LayerMapTryGet(ent, BorgVisualLayers.Body, out var layer, false))
-            return;
-
-        var state = isResting ? visuals.RestBodyState : visuals.NormalBodyState;
-        _sprite.LayerSetRsiState(ent, layer, state);
-    }
-
-    private bool GetRestingVisualState(EntityUid uid)
-    {
-        return _appearance.TryGetData<bool>(uid, SiliconStandingVisuals.Resting, out var resting)
-            ? resting
-            : _standing.GetEffectiveResting(uid);
+        _actionBlocker.UpdateCanMove(uid);
     }
 }

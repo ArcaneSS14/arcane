@@ -1,112 +1,42 @@
-﻿using Content.Shared.Actions;
+﻿using Content.Shared._Arcane.SiliconStanding;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Events;
-using Content.Shared.Silicons.Borgs;
-using Content.Shared.Silicons.Borgs.Components;
-using Robust.Shared.Prototypes;
+using Robust.Server.Audio;
 
-namespace Content.Shared._Arcane.SiliconStanding;
+namespace Content.Server._Arcane.SiliconStanding;
 
-public sealed class SharedSiliconStandingSystem : EntitySystem
+/// <summary>
+/// Server-only part of the silicon resting system: plays audio and updates movement on resting state changes.
+/// Prediction logic (action handling, movement blocking, state toggle) lives in <see cref="SharedSiliconStandingSystem"/>.
+/// </summary>
+public sealed class SiliconStandingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SiliconStandingComponent, ToggleSiliconRestingEvent>(OnToggleAction);
-        SubscribeLocalEvent<SiliconStandingComponent, UpdateCanMoveEvent>(OnCanMove);
-        SubscribeLocalEvent<SiliconStandingComponent, ComponentShutdown>(OnStandingShutdown);
+        SubscribeLocalEvent<SiliconRestingComponent, ComponentStartup>(OnRestingStartup);
+        SubscribeLocalEvent<SiliconRestingComponent, ComponentRemove>(OnRestingRemove);
     }
 
-    private void OnToggleAction(Entity<SiliconStandingComponent> ent, ref ToggleSiliconRestingEvent args)
+    private void OnRestingStartup(Entity<SiliconRestingComponent> ent, ref ComponentStartup args)
     {
-        if (!CanToggleResting(ent))
-            return;
-
-        SetResting(ent, !IsResting(ent));
-        args.Handled = true;
+        _actionBlocker.UpdateCanMove(ent);
+        PlayRestSound(ent);
     }
 
-    private void OnCanMove(Entity<SiliconStandingComponent> ent, ref UpdateCanMoveEvent args)
+    private void OnRestingRemove(Entity<SiliconRestingComponent> ent, ref ComponentRemove args)
     {
-        if (IsResting(ent))
-            args.Cancel();
+        _actionBlocker.UpdateCanMove(ent);
+        PlayRestSound(ent);
     }
 
-    private void OnStandingShutdown(Entity<SiliconStandingComponent> ent, ref ComponentShutdown args)
+    private void PlayRestSound(EntityUid uid)
     {
-        _actions.RemoveAction(ent.Owner, ent.Comp.ToggleRestingAction);
-    }
-
-    public bool GetEffectiveResting(EntityUid uid) => IsResting(uid);
-
-    public bool IsResting(EntityUid uid) => HasComp<SiliconRestingComponent>(uid);
-
-    public bool CanToggleResting(EntityUid uid)
-    {
-        if (!HasComp<SiliconStandingComponent>(uid))
-            return false;
-
-        if (!HasComp<BorgChassisComponent>(uid))
-            return false;
-
-        if (!TryComp<BorgSwitchableSubtypeComponent>(uid, out var subtype) || subtype.BorgSubtype == null)
-            return false;
-
-        if (!_prototype.TryIndex(subtype.BorgSubtype, out var subtypePrototype))
-            return false;
-
-        return subtypePrototype.Visuals.RestBodyState != null;
-    }
-
-    public void SetResting(EntityUid uid, bool resting)
-    {
-        if (resting)
-            EnsureComp<SiliconRestingComponent>(uid);
-        else
-            RemComp<SiliconRestingComponent>(uid);
-
-        // Arcane-Edit-Start
-        if (resting)
-        {
-            // Remove movement visuals so the resting body state isn't overwritten.
-            RemComp<SpriteMovementComponent>(uid);
-        }
-        else if (TryComp<BorgSwitchableTypeComponent>(uid, out var switchable) &&
-                 switchable.SelectedBorgType != null &&
-                 _prototype.TryIndex(switchable.SelectedBorgType.Value, out var borgTypeProto))
-        {
-            // Restore movement visuals when standing up, using the same layers as the borg type prototype.
-            var spriteMovement = EnsureComp<SpriteMovementComponent>(uid);
-
-            spriteMovement.NoMovementLayers.Clear();
-            spriteMovement.MovementLayers.Clear();
-
-            if (borgTypeProto.SpriteBodyMovementState is { } movementState)
-            {
-                spriteMovement.NoMovementLayers["movement"] = new PrototypeLayerData
-                {
-                    State = borgTypeProto.SpriteBodyState,
-                };
-                spriteMovement.MovementLayers["movement"] = new PrototypeLayerData
-                {
-                    State = movementState,
-                };
-            }
-
-            Dirty(uid, spriteMovement);
-        }
-        // Arcane-Edit-End
-
-        if (TryComp<AppearanceComponent>(uid, out var appearance))
-            _appearance.SetData(uid, SiliconStandingVisuals.Resting, resting, appearance);
-
-        _actionBlocker.UpdateCanMove(uid);
+        if (TryComp<FootstepModifierComponent>(uid, out var footsteps))
+            _audio.PlayPvs(footsteps.FootstepSoundCollection, uid);
     }
 }
