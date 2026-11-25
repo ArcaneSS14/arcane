@@ -737,7 +737,7 @@
 - type: entity
   id: TowelColorSyndicate
   name: syndicate towel
-  parent: [ BaseTowel, BaseSyndicateNonContraband ] # Orion
+  parent: [ BaseTowel, BaseSyndicateNonContraband ] # Arcane
   components:
   - type: Sprite
     layers:

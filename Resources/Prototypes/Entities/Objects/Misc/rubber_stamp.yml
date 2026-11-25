@@ -222,7 +222,7 @@
 
 - type: entity
   name: syndicate rubber stamp
-  parent: [RubberStampBase, BaseSyndicatePropaganda] # Orion
+  parent: [RubberStampBase, BaseSyndicatePropaganda] # Arcane
   id: RubberStampSyndicate
   categories: [ DoNotMap ]
   components:
