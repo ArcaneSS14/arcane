@@ -142,6 +142,10 @@
         {
             "name": "bob_with_tail",
             "directions": 4
+        },
+        {
+            "name": "cloudy",
+            "directions": 4
         }
     ]
 }
