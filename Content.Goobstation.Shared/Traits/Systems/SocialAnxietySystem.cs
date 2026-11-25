@@ -48,10 +48,10 @@ public sealed partial class SocialAnxietySystem : EntitySystem
             return;
 
         var now = _timing.CurTime;
-        var repeatedHug = component.HugWindowUntil.TryGetValue(hugger, out var until) && now < until;
+        var repeatedHug = now < component.HugWindowUntil;
 
         if (!repeatedHug)
-            component.HugWindowUntil[hugger] = now + TimeSpan.FromSeconds(30);
+            component.HugWindowUntil = now + TimeSpan.FromSeconds(30);
 
         if (repeatedHug && !_random.Prob(0.20f))
             return;
