@@ -32,6 +32,10 @@
   name: syndicate flag
   description: Smells bloody. Death to NT!
   components:
+  # Orion-Edit-Start
+  - type: Contraband
+    severity: Propaganda
+  # Orion-Edit-End
   - type: Sprite
     state: syndie_flag
 

@@ -202,6 +202,8 @@
   name: Syndicate flag
   description: The flag of the Sothran Syndicate. Previously used by the Sothran people as a way of declaring opposition against the Nanotrasen, now it became an intergalactic symbol of the same, yet way more skewed purpose, as more groups of interest have joined the rebellions side for their own gain.
   components:
+  - type: Contraband
+    severity: Propaganda
   - type: Sprite
     sprite: _Orion/Structures/Wallmounts/flags.rsi
     state: syndicate
