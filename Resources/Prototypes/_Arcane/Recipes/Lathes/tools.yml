@@ -10,6 +10,15 @@
 
 - type: latheRecipe
   parent: BaseToolRecipe
+  id: InducerSecurity
+  result: InducerSecurity
+  completetime: 4
+  materials:
+    Steel: 500
+    Glass: 300
+
+- type: latheRecipe
+  parent: BaseToolRecipe
   id: PlantAnalyzer
   result: PlantAnalyzer
   completetime: 6

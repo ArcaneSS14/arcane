@@ -1,0 +1,30 @@
+- type: entity
+  parent: [ BaseInducer, BaseSecurityContraband ]
+  id: InducerSecurity
+  name: inducer
+  suffix: Empty, Security
+  description: A device for wirelessly transferring energy from a battery to other devices.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Objects/Tools/Inducer/inducer-security.rsi
+    state: icon
+  - type: ItemMapper
+    mapLayers:
+      inducer-bat:
+        whitelist:
+          tags:
+          - PowerCell
+          - MegaCell
+    sprite: _Arcane/Objects/Tools/Inducer/inducer-security.rsi
+
+- type: entity
+  parent: InducerSecurity
+  id: InducerSecurityBattery
+  name: inducer
+  suffix: Battery, Security
+  description: A device for wirelessly transferring energy from a battery to other devices.
+  components:
+  - type: ItemSlots
+    slots:
+      inducer_power_cell_slot:
+        startingItem: PowerCellHigh
