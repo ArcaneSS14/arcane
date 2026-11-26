@@ -72,7 +72,7 @@
   - type: Gun
     burstFireRate: 6 # Arcane-Edit: 15 > 8
     shotsPerBurst: 3
-    burstCooldown: 1 # Arcane-Edit: 1.5 > 1
+    burstCooldown: 1
     fireRate: 1.5
     lockOnTargetBurst: true
     selectedMode: Burst
