@@ -1,0 +1,24 @@
+- type: listing
+  id: NTRExecutiveMk58Gold
+  name: ntr-executive-mk58-gold-name
+  description: ntr-executive-mk58-gold-desc
+  productEntity: SpawnPodMk58Gold
+  icon:
+    sprite: _Gabystation/Objects/Weapons/Guns/Pistol/mk58gold.rsi
+    state: icon
+  cost:
+    NTLoyaltyPoint: 10
+  categories:
+  - NTRpersonal
+  restockTime: 300
+  resetRestockOnPurchase: true
+  restockAfterPurchase: 600
+
+- type: entity
+  id: SpawnPodMk58Gold
+  categories: [ HideSpawnMenu ]
+  name: SpawnPodMk58Gold
+  parent: SpawnSupplyEmpty
+  components:
+  - type: SpawnOnDespawn
+    prototype: WeaponPistolMk58Gold

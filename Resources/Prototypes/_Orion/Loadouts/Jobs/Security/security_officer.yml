@@ -51,6 +51,22 @@
     back:
     - MagazinePistol
 
+# Arcane-Start
+- type: loadout
+  id: SecurityGunMk58Gold
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Security
+      time: 70h
+  equipment:
+    pocket2: WeaponPistolMk58Gold
+  storage:
+    back:
+    - MagazinePistolGold
+# Arcane-End
+
 - type: loadout
   id: SecurityGunLaserPistol
   equipment:
