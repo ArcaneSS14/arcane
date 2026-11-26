@@ -42,3 +42,7 @@
         whitelist:
           components:
           - GunUpgradeFlashlight
+  # Arcane-Start
+  - type: StaticPrice
+    price: 1750
+  # Arcane-End
