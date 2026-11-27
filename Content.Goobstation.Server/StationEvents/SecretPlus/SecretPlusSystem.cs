@@ -220,6 +220,10 @@ public sealed partial class SecretPlusSystem : GameRuleSystem<SecretPlusComponen
         var count = CountActivePlayers();
         var ramp = GetRamping((uid, scheduler));
         var speedup = _event.EventSpeedup;
+        var mult = scheduler.ChaosChangeVariation;
+
+        scheduler.ChaosScore += count.Players * scheduler.LivingChaosChange * frameTime * ramp * speedup * mult;
+        scheduler.ChaosScore += count.Ghosts * scheduler.DeadChaosChange * frameTime * speedup * mult;
 
         var currTime = _timing.CurTime;
         if (currTime < scheduler.TimeNextEvent)
