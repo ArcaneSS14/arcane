@@ -1,0 +1,8 @@
+- type: selectableAmmo
+  id: BulletDisablerShotgunSpread
+  desc: Disabler bolt spread.
+  icon:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    state: omnilaser
+  protoId: BulletDisablerShotgunSpread
+  fireCost: 100
