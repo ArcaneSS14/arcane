@@ -1,0 +1,101 @@
+- type: entity
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: ArcaneCartridgeAntiMateriel
+  name: cartridge (15mm anti-materiel)
+  description: A high-power cartridge used by high-precision rifles.
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeAntiMateriel
+    - ArcaneCartridgeAntiMateriel
+  - type: CartridgeAmmo
+    proto: ArcaneBulletAntiMaterielTracked
+  - type: Sprite
+    scale: 0.8,0.8
+    sprite: _Arcane/Objects/Weapons/Guns/Ammunition/Casings/12.7x99.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+    - state: tip
+      map: ["enum.AmmoVisualLayers.Tip"]
+      color: "#B68F0E"
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  parent: ArcaneCartridgeAntiMateriel
+  id: ArcaneCartridgeAntiMaterielPenetrator
+  name: cartridge (15mm armor-pierce)
+  components:
+  - type: CartridgeAmmo
+    proto: ArcaneBulletAntiMaterielPenetrator
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+    - state: tip
+      map: ["enum.AmmoVisualLayers.Tip"]
+      color: "#9b0000"
+
+- type: entity
+  parent: ArcaneCartridgeAntiMateriel
+  id: ArcaneCartridgeAntiMaterielFrag
+  name: cartridge (15mm frag)
+  components:
+  - type: CartridgeAmmo
+    proto: ArcaneBulletAntiMaterielFrag
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+    - state: tip
+      map: ["enum.AmmoVisualLayers.Tip"]
+      color: "#7ea53b"
+
+- type: entity
+  parent: ArcaneCartridgeAntiMateriel
+  id: ArcaneCartridgeAntiMaterielBlast
+  name: cartridge (15mm blast)
+  components:
+  - type: CartridgeAmmo
+    proto: ArcaneBulletAntiMaterielBlast
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+    - state: tip
+      map: ["enum.AmmoVisualLayers.Tip"]
+      color: "#8d6425"
+
+- type: entity
+  parent: ArcaneCartridgeAntiMateriel
+  id: ArcaneCartridgeAntiMaterielEmp
+  name: cartridge (15mm emp)
+  components:
+  - type: CartridgeAmmo
+    proto: ArcaneBulletAntiMaterielEMP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+    - state: tip
+      map: ["enum.AmmoVisualLayers.Tip"]
+      color: "#005396"
+
+- type: entity
+  parent: ArcaneCartridgeAntiMateriel
+  id: ArcaneCartridgeAntiMaterielHP
+  name: cartridge (15mm hollow point)
+  components:
+  - type: CartridgeAmmo
+    proto: ArcaneBulletAntiMaterielHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+    - state: tip
+      map: ["enum.AmmoVisualLayers.Tip"]
+      color: "#F5514C"
