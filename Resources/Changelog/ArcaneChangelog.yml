@@ -4868,3 +4868,13 @@ Entries:
       https://github.com/user-attachments/assets/79c425a2-547b-4f4d-b740-df65b3101b19
     - >-
       https://github.com/user-attachments/assets/ca1e71e3-21ad-41a9-b9b3-988dc1254d17
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: >-
+        Теперь в поясе СБ будет спавнится светошумовая и слезоточивая граната,
+        вместо станнера
+  id: 341
+  time: '2026-11-28T06:30:26.0000000+00:00'
+  prNumber: 645
+  url: https://github.com/ArcaneSS14/arcane/pull/645
