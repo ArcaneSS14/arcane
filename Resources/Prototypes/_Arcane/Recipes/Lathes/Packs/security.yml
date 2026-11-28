@@ -1,0 +1,8 @@
+- type: latheRecipePack
+  id: SecurityPowerArcane
+  recipes:
+  - MegaCellHigh
+  - MegaCellSuper
+  - MegaCellHyper
+  # - MegaCellBluespace 
+  - InducerSecurity

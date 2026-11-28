@@ -536,6 +536,7 @@
     - MechWeaponsSecurityLight
     - MechWeaponsSecurityHeavy
     - MechWeaponsArcane # Arcane
+    - SecurityPowerArcane # Arcane
     - SecurityAmmoGoob
     - SecurityCybernetics
     # - ServiceWeapons
