@@ -4878,3 +4878,11 @@ Entries:
   time: '2026-11-28T06:30:26.0000000+00:00'
   prNumber: 645
   url: https://github.com/ArcaneSS14/arcane/pull/645
+- author: Kinar7
+  changes:
+    - type: Fix
+      message: Плату детектора контрабанды теперь можно упаковать в упаковщике.
+  id: 342
+  time: '2026-11-28T07:59:33.0000000+00:00'
+  prNumber: 638
+  url: https://github.com/ArcaneSS14/arcane/pull/638
