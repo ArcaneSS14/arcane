@@ -4834,3 +4834,20 @@ Entries:
   time: '2026-11-28T05:38:58.0000000+00:00'
   prNumber: 656
   url: https://github.com/ArcaneSS14/arcane/pull/656
+- author: Kinar7
+  changes:
+    - type: Add
+      message: >-
+        Добавлен золотой МК-58 для опытных сотрудников службы безопасности (70
+        часов в отделе), его можно выбрать в снаряжении.
+    - type: Add
+      message: >-
+        Золотой МК-58 можно купить в магазине чемодана представителя
+        НаноТрейзен.
+  id: 339
+  time: '2026-11-28T06:05:27.0000000+00:00'
+  prNumber: 654
+  url: https://github.com/ArcaneSS14/arcane/pull/654
+  media:
+    - >-
+      https://github.com/user-attachments/assets/a1db827b-4bb0-4111-95b7-2383f0cb7746
