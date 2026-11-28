@@ -176,14 +176,19 @@
     state: mecha_scatter
   - type: Gun
     fireRate: 1.5
+    # Arcane-Edit-Start
+    burstFireRate: 4
+    burstCooldown: 0.6
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+      - Burst
+    # Arcane-Edit-End
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: BatteryAmmoProvider
-    proto: ShellShotgun
-    fireCost: 20 # Orion-Edit: 30 > 20
+    proto: ShellShotgunHighCaliber # Arcane-Edit
+    fireCost: 30
   - type: Appearance
   - type: AmmoCounter
 
@@ -205,8 +210,8 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: BatteryAmmoProvider
-    proto: ShellShotgunIncendiary
-    fireCost: 30 # Orion-Edit: 40 > 30
+    proto: ShellShotgunHighCaliberIncendiary # Arcane-Edit
+    fireCost: 40
   - type: Appearance
   - type: AmmoCounter
 
