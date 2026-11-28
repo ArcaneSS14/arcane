@@ -140,3 +140,7 @@
     - Structure
   - type: StaticPrice
     price: 25
+  # Arcane-Start
+  - type: FlatpackableBoard
+    prototype: ContrabandDetector
+  # Arcane-End

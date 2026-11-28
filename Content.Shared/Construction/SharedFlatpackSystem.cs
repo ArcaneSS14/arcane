@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Arcane.Construction.Components; // Arcane
 using Content.Shared.Construction.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
@@ -53,6 +54,11 @@ public abstract class SharedFlatpackSystem : EntitySystem
 
         if (TryComp<ComputerBoardComponent>(args.Item, out var computer) && computer.Prototype != null)
             return;
+
+        // Arcane-Start
+        if (HasComp<FlatpackableBoardComponent>(args.Item))
+            return;
+        // Arcane-End
 
         args.Cancelled = true;
     }
@@ -139,6 +145,10 @@ public abstract class SharedFlatpackSystem : EntitySystem
             prototype = machine.Prototype;
         else if (TryComp<ComputerBoardComponent>(board, out var computer))
             prototype = computer.Prototype;
+        // Arcane-Start
+        else if (TryComp<FlatpackableBoardComponent>(board, out var flatpackable))
+            prototype = flatpackable.Prototype;
+        // Arcane-End
         return prototype is not null;
     }
 
