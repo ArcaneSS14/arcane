@@ -4886,3 +4886,11 @@ Entries:
   time: '2026-11-28T07:59:33.0000000+00:00'
   prNumber: 638
   url: https://github.com/ArcaneSS14/arcane/pull/638
+- author: Kinar7
+  changes:
+    - type: Tweak
+      message: заменил калибр дробовика мехов с .50 на .8
+  id: 343
+  time: '2026-11-28T08:00:35.0000000+00:00'
+  prNumber: 614
+  url: https://github.com/ArcaneSS14/arcane/pull/614
