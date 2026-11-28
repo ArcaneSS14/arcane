@@ -1,0 +1,55 @@
+- type: constructionGraph
+  id: AtmosDeviceFanTiny
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: atmosDeviceFanTiny
+      steps:
+      - material: Steel
+        amount: 5
+        doAfter: 5
+      - material: Silver
+        amount: 10
+        doAfter: 5
+
+  - node: atmosDeviceFanTiny
+    entity: AtmosDeviceFanTiny
+    edges:
+    - to: start
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 10
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Screwing
+        doAfter: 1
+
+- type: constructionGraph
+  id: AtmosDeviceFanDirectional
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: atmosDeviceFanDirectional
+      steps:
+      - material: Steel
+        amount: 5
+        doAfter: 5
+      - material: Silver
+        amount: 10
+        doAfter: 5
+
+  - node: atmosDeviceFanDirectional
+    entity: AtmosDeviceFanDirectional
+    edges:
+    - to: start
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 10
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Screwing
+        doAfter: 1
