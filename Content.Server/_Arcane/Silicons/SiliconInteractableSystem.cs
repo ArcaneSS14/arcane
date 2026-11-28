@@ -6,7 +6,6 @@ using Content.Shared._Arcane.ErpPanel;
 using Content.Shared.Actions;
 using Content.Shared.Humanoid;
 using Content.Shared.InteractionVerbs;
-using Content.Shared.Mind.Components;
 using Content.Shared.Preferences;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Tag;
@@ -27,7 +26,7 @@ public sealed class SiliconInteractableSystem : EntitySystem
     {
         "MobGenderMale",
         "MobGenderFemale",
-        "MobGenderFutanari"
+        "MobGenderFutanari",
     };
 
     public override void Initialize()
@@ -36,7 +35,6 @@ public sealed class SiliconInteractableSystem : EntitySystem
 
         SubscribeLocalEvent<SiliconInteractableComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SiliconInteractableComponent, ComponentStartup>(OnComponentStartup);
-        SubscribeLocalEvent<SiliconInteractableComponent, MindAddedMessage>(OnBorgMindAdded);
     }
 
     private void OnMapInit(Entity<SiliconInteractableComponent> ent, ref MapInitEvent args)
@@ -46,27 +44,16 @@ public sealed class SiliconInteractableSystem : EntitySystem
         EnsureComp<ErpPanelOwnerComponent>(ent.Owner);
         EnsureComp<ErpAllowedComponent>(ent.Owner);
         EnsureComp<OwnInteractionVerbsComponent>(ent.Owner);
-
         EnsureComp<SiliconModestyComponent>(ent.Owner);
         _actions.AddAction(ent.Owner, ModestyActionId);
     }
 
     private void OnComponentStartup(Entity<SiliconInteractableComponent> ent, ref ComponentStartup args)
     {
-        TryAssignGenderTag(ent.Owner);
-    }
-
-    private void OnBorgMindAdded(Entity<SiliconInteractableComponent> ent, ref MindAddedMessage args)
-    {
-        TryAssignGenderTag(ent.Owner);
-    }
-
-    private void TryAssignGenderTag(EntityUid uid)
-    {
-        if (!HasComp<BorgChassisComponent>(uid))
+        if (!HasComp<BorgChassisComponent>(ent.Owner))
             return;
 
-        if (!_mindSystem.TryGetMind(uid, out _, out var mind) || mind.UserId == null)
+        if (!_mindSystem.TryGetMind(ent.Owner, out _, out var mind) || mind.UserId == null)
             return;
 
         if (!_preferencesManager.TryGetCachedPreferences(mind.UserId.Value, out var prefs))
@@ -75,22 +62,28 @@ public sealed class SiliconInteractableSystem : EntitySystem
         if (prefs.SelectedCharacter is not HumanoidCharacterProfile profile)
             return;
 
-        string genderTag;
-        switch (profile.Sex)
+        ApplyGenderTag(ent.Owner, profile.Sex);
+
+        var preference = profile.ErpPreference;
+        var erpStatus = EnsureComp<ErpStatusComponent>(ent.Owner);
+
+        var oldPreference = erpStatus.Preference;
+        erpStatus.Preference = preference;
+        Dirty(ent.Owner, erpStatus);
+
+        if (oldPreference != preference)
+            RaiseLocalEvent(ent.Owner, new ErpPreferenceChangedEvent(oldPreference, preference));
+    }
+
+    private void ApplyGenderTag(EntityUid uid, Sex sex)
+    {
+        string genderTag = sex switch
         {
-            case Sex.Male:
-                genderTag = "MobGenderMale";
-                break;
-            case Sex.Female:
-                genderTag = "MobGenderFemale";
-                break;
-            case Sex.Futanari:
-                genderTag = "MobGenderFutanari";
-                break;
-            default:
-                genderTag = "MobGenderMale";
-                break;
-        }
+            Sex.Male => "MobGenderMale",
+            Sex.Female => "MobGenderFemale",
+            Sex.Futanari => "MobGenderFutanari",
+            _ => "MobGenderMale",
+        };
 
         foreach (var tag in GenderTags)
         {

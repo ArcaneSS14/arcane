@@ -194,6 +194,14 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
             footstepModifier.FootstepSoundCollection = prototype.FootstepCollection;
         }
 
+        // Arcane-Start
+        if (subtypePrototype?.Visuals.DisableMovementVisuals == true)
+        {
+            RemComp<SpriteMovementComponent>(entity);
+            return;
+        }
+        // Arcane-End
+
         if (prototype.SpriteBodyMovementState is { } movementState)
         {
             var spriteMovement = EnsureComp<SpriteMovementComponent>(entity);

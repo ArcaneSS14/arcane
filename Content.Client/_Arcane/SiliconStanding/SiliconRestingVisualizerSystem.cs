@@ -79,17 +79,13 @@ public sealed class SiliconRestingVisualizerSystem : EntitySystem
 
     private void HideNonBodyLayers(Entity<SpriteComponent?> spriteEnt)
     {
-        if (!_sprite.LayerMapTryGet(spriteEnt, BorgVisualLayers.Body, out var bodyLayerIndex, false))
-            return;
+        if (_sprite.LayerMapTryGet(spriteEnt, BorgVisualLayers.Light, out _, false))
+            _sprite.LayerSetVisible(spriteEnt, BorgVisualLayers.Light, false);
 
-        var index = 0;
-        foreach (var _ in spriteEnt.Comp!.AllLayers)
-        {
-            if (index != bodyLayerIndex)
-                _sprite.LayerSetVisible(spriteEnt, index, false);
-
-            index++;
-        }
+        if (_sprite.LayerMapTryGet(spriteEnt, BorgVisualLayers.LightStatus, out _, false))
+            _sprite.LayerSetVisible(spriteEnt, BorgVisualLayers.LightStatus, false);
+        else if (_sprite.LayerMapTryGet(spriteEnt, "light", out _, false))
+            _sprite.LayerSetVisible(spriteEnt, "light", false);
     }
 
     private void UpdateBorgBodyState(Entity<SpriteComponent?> ent, bool isResting)
