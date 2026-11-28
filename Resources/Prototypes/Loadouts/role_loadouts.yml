@@ -26,10 +26,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobHeadOfPersonnel
@@ -58,10 +55,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 # Silicons
 - type: roleLoadout
@@ -102,10 +96,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobBartender
@@ -132,10 +123,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobServiceWorker
@@ -171,10 +159,7 @@
   - ServiceWorkerEnvirohelm
   - ServiceWorkerEnvirosuit
   - ServiceWorkerEnvirogloves
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobChef
@@ -209,10 +194,7 @@
   - ChefEnvirohelm
   - ChefEnvirosuit
   - ChefEnvirogloves
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobLibrarian
@@ -239,10 +221,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobLawyer
@@ -267,10 +246,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobChaplain
@@ -301,10 +277,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobJanitor
@@ -332,10 +305,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobBotanist
@@ -362,10 +332,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobClown
@@ -396,10 +363,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobMime
@@ -432,10 +396,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobMusician
@@ -464,10 +425,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 # Cargo
 - type: roleLoadout
@@ -498,10 +456,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobCargoTechnician
@@ -530,10 +485,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobSalvageSpecialist
@@ -560,10 +512,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 # Engineering
 - type: roleLoadout
@@ -592,10 +541,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobTechnicalAssistant
@@ -618,10 +564,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobStationEngineer
@@ -649,10 +592,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobAtmosphericTechnician
@@ -679,10 +619,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 # Science
 - type: roleLoadout
@@ -713,10 +650,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobScientist
@@ -746,10 +680,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobResearchAssistant
@@ -773,10 +704,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 # Security
 - type: roleLoadout
@@ -808,10 +736,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobWarden
@@ -841,10 +766,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobSecurityOfficer
@@ -875,10 +797,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobDetective
@@ -905,10 +824,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobSecurityCadet
@@ -933,10 +849,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 # Medical
 - type: roleLoadout
@@ -968,10 +881,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobMedicalDoctor
@@ -1012,10 +922,7 @@
   - MedicalDoctorEnvirohelm
   - MedicalDoctorEnvirosuit
   - MedicalDoctorEnvirogloves
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobMedicalIntern
@@ -1039,10 +946,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobChemist
@@ -1082,10 +986,7 @@
   - ChemistEnvirohelm
   - ChemistEnvirosuit
   - ChemistEnvirogloves
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobParamedic
@@ -1126,10 +1027,7 @@
   - ParamedicEnvirohelm
   - ParamedicEnvirosuit
   - ParamedicEnvirogloves
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 # Wildcards
 - type: roleLoadout
@@ -1163,10 +1061,7 @@
   - ReporterEnvirohelm
   - ReporterEnvirosuit
   - ReporterEnvirogloves
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 - type: roleLoadout
   id: JobPsychologist
@@ -1193,10 +1088,7 @@
   - Socks
   - Wrists
   # Orion-End
-  # Arcane-Start
-  - Patron
-  - GroupGrimoire
-  # Arcane-End
+  - Patron # Arcane
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit

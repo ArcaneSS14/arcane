@@ -1,4 +1,3 @@
-loadout-group-grimoire = Grimoire
 loadout-group-hop-mask = Head of Personnel Mask
 loadout-group-chief-engineer-mask = Chief Engineer Mask
 loadout-group-chief-medical-officer-mask = Chief Medical Officer Mask

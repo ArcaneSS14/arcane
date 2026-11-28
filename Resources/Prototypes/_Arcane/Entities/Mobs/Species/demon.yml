@@ -1,10 +1,18 @@
 - type: entity
   save: false
   name: Urisst' Mzhand Demon
-  parent: BaseMobSpeciesOrganic
+  parent: [ BaseMobSpeciesOrganic, StorePresetDemonCantrips ]
   id: BaseMobDemon
   abstract: true
   components:
+  - type: Store
+    refundAllowed: false
+    ownerOnly: true
+    balance:
+      WizCoin: 2
+  - type: ActionGrant
+    actions:
+    - ActionDemonGrimoire
   - type: LanguageKnowledge
     speaks:
     - TauCetiBasic

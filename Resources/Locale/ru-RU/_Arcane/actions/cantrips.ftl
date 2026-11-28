@@ -16,3 +16,5 @@ ent-ActionTemperatureReset = Сброс температуры
     .desc = Быстро снижает температуру цели. Стоимость 25.
 ent-ActionFaoliTranser = Передача Фаоля
     .desc = Передает энергию Фаоли другому существу. Стоимость 25.
+ent-ActionDemonGrimoire = Гримуар
+    .desc = Открывает гримуар заговоров.

@@ -205,3 +205,14 @@
       amount: 20
       sound:
         path: /Audio/_Goobstation/Wizard/swap.ogg
+
+- type: entity
+  parent: ActionIntrinsicStore
+  id: ActionDemonGrimoire
+  name: Grimoire
+  description: Opens the grimoire of cantrips.
+  components:
+  - type: Action
+    icon:
+      sprite: _Arcane/Objects/Misc/books.rsi
+      state: demon-grimoire
