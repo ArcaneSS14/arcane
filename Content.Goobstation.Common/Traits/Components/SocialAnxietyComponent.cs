@@ -6,4 +6,5 @@ namespace Content.Goobstation.Common.Traits.Components;
 public sealed partial class SocialAnxietyComponent : Component
 {
     [DataField] public float DownedTime = 3;
+    public TimeSpan HugWindowUntil; // Arcane
 }
