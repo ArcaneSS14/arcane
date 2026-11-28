@@ -46,6 +46,7 @@ public sealed partial class ClimbSystem : VirtualController
 
     private const string ClimbingFixtureName = "climb";
     private const int ClimbingCollisionGroup = (int) (CollisionGroup.TableLayer | CollisionGroup.LowImpassable);
+    private const CollisionGroup ClimbObstructionMask = SharedInteractionSystem.InRangeUnobstructedMask | CollisionGroup.HumanoidBlockLayer | CollisionGroup.GlassAirlockLayer; // Arcane
 
     private EntityQuery<ClimbableComponent> _climbableQuery;
     private EntityQuery<FixturesComponent> _fixturesQuery;
@@ -247,6 +248,7 @@ public sealed partial class ClimbSystem : VirtualController
 
     }
 
+    // Arcane-Edit-Start
     private void OnDoAfter(EntityUid uid, ClimbingComponent component, ClimbDoAfterEvent args)
     {
         component.DoAfter = null;
@@ -254,16 +256,28 @@ public sealed partial class ClimbSystem : VirtualController
         if (args.Handled || args.Cancelled || args.Args.Target == null || args.Args.Used == null)
             return;
 
+        args.Handled = true;
+
         if (_containers.IsEntityInContainer(uid))
+            return;
+
+        var target = args.Args.Target.Value;
+        var user = args.Args.User;
+
+        if (!TryComp<ClimbableComponent>(target, out var climbable))
+            return;
+
+        var canVault = user == uid? CanVault(climbable, user, target, out var reason): CanVault(climbable, user, uid, target, out reason);
+
+        if (!canVault)
         {
-            args.Handled = true;
+            _popupSystem.PopupClient(reason, user, user);
             return;
         }
 
-        Climb(uid, args.Args.User, args.Args.Target.Value, climbing: component);
-        args.Handled = true;
+        Climb(uid, user, target, climbing: component);
     }
-
+    // Arcane-Edit-End
     public void Climb(EntityUid uid, EntityUid user, EntityUid climbable, bool silent = false, ClimbingComponent? climbing = null,
         PhysicsComponent? physics = null, FixturesComponent? fixtures = null, ClimbableComponent? comp = null)
     {
@@ -477,12 +491,17 @@ public sealed partial class ClimbSystem : VirtualController
             reason = Loc.GetString("comp-climbable-cant-climb");
             return false;
         }
+        // Arcane-Edit-Start
+        var canReach = _interactionSystem.InRangeUnobstructed(user, _xformSystem.GetMapCoordinates(target), component.Range, collisionMask: ClimbObstructionMask, predicate: entity => entity == user || entity == target);
 
-        if (!_interactionSystem.InRangeUnobstructed(user, target, component.Range))
+        Log.Warning($"CLIMB CHECK: user={user}, target={target}, " + $"canReach={canReach}, mask={ClimbObstructionMask}");
+
+        if (!canReach)
         {
             reason = Loc.GetString("comp-climbable-cant-reach");
             return false;
         }
+        // Arcane-Edit-End
 
         if (_containers.IsEntityInContainer(user))
         {
@@ -518,20 +537,23 @@ public sealed partial class ClimbSystem : VirtualController
             return false;
         }
 
-        bool Ignored(EntityUid entity) => entity == target || entity == user || entity == dragged;
+    bool Ignored(EntityUid entity) => entity == target || entity == user || entity == dragged;
 
-        if (!_interactionSystem.InRangeUnobstructed(user, target, component.Range, predicate: Ignored)
-            || !_interactionSystem.InRangeUnobstructed(user, dragged, component.Range, predicate: Ignored))
-        {
-            reason = Loc.GetString("comp-climbable-cant-reach");
-            return false;
-        }
+    var targetCoords = _xformSystem.GetMapCoordinates(target);
+    var draggedCoords = _xformSystem.GetMapCoordinates(dragged);
+    // Arcane-Edit-Start
+    var userCanReachTarget = _interactionSystem.InRangeUnobstructed(user, targetCoords, component.Range, collisionMask: ClimbObstructionMask, predicate: Ignored);
 
-        if (_containers.IsEntityInContainer(user) || _containers.IsEntityInContainer(dragged))
-        {
-            reason = Loc.GetString("comp-climbable-cant-reach");
-            return false;
-        }
+    var userCanReachDragged = _interactionSystem.InRangeUnobstructed(user, draggedCoords, component.Range, collisionMask: ClimbObstructionMask, predicate: Ignored);
+
+    var draggedCanReachTarget = _interactionSystem.InRangeUnobstructed(dragged, targetCoords, component.Range, collisionMask: ClimbObstructionMask, predicate: Ignored);
+
+    if (!userCanReachTarget || !userCanReachDragged || !draggedCanReachTarget)
+    // Arcane-Edit-End
+    {
+        reason = Loc.GetString("comp-climbable-cant-reach");
+        return false;
+    }
 
         reason = string.Empty;
         return true;
