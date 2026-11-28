@@ -27,8 +27,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
 
     public override void Initialize()
     {
