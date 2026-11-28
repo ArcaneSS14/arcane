@@ -1082,7 +1082,7 @@
     prototypes:
       - BulletLaserSpread
       - BulletLaserSpreadNarrow
-      - BulletDisablerSmgSpread
+      - BulletDisablerShotgunSpread # Arcane-Edit
   - type: UserInterface
     interfaces:
       enum.AmmoSelectorUiKey.Key:
