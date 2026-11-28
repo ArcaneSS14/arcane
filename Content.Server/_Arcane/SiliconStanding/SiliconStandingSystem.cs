@@ -1,7 +1,6 @@
 ﻿using Content.Shared._Arcane.SiliconStanding;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Movement.Components;
-using Content.Shared.Silicons.Borgs.Components;
 using Robust.Server.Audio;
 
 namespace Content.Server._Arcane.SiliconStanding;

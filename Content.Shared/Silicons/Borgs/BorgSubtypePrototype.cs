@@ -38,6 +38,12 @@ public sealed partial class BorgSubtypePrototype : IPrototype
     /// </summary>
     [DataField]
     public BorgSubtypeVisuals Visuals = new();
+
+    /// <summary>
+    /// The components to add when this subtype selected. Null if nothing needs to be added.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry? Components;
     // Arcane-Edit-End
 }
 
@@ -45,6 +51,13 @@ public sealed partial class BorgSubtypePrototype : IPrototype
 [DataDefinition]
 public sealed partial class BorgSubtypeVisuals
 {
+    /// <summary>
+    /// RSI state name to use when this borg is standing (not resting).
+    /// Falls back to the parent borg type body state when null.
+    /// </summary>
+    [DataField]
+    public string? NormalBodyState;
+
     /// <summary>
     /// RSI state name to use when this borg is resting. Leave null if the subtype has no rest sprite.
     /// </summary>

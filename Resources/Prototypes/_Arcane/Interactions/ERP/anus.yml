@@ -155,6 +155,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: AnalFingering2
@@ -228,6 +231,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
   userRequirements:
   - !type:ClothesWearingRequirements
     tags:
@@ -279,6 +285,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: RunningFingerAnus
@@ -299,6 +308,9 @@
   targetRequirements:
   - !type:ExposedBodyPartRequirement
     part: Butt
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: WallAnusFuck

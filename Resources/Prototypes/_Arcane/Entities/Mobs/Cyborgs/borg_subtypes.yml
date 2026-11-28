@@ -8,6 +8,8 @@
     restBodyState: robot-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisGenericDullahan
+  components:
+  - type: SiliconInteractable
 
 # Engineering subtypes
 
@@ -19,6 +21,8 @@
     restBodyState: engineer-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerMekaengi
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: engineering
@@ -28,6 +32,8 @@
     restBodyState: engineer-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerK4t
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: engineering
@@ -37,6 +43,8 @@
     restBodyState: engineer-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerK4tAlt
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: engineering
@@ -46,6 +54,8 @@
     restBodyState: engineer-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerFMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: engineering
@@ -55,6 +65,8 @@
     restBodyState: engineer-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerMMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: engineering
@@ -64,6 +76,8 @@
     restBodyState: engineer-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisEngineerDullahan
+  components:
+  - type: SiliconInteractable
 
 # Janitor subtypes
 
@@ -75,6 +89,8 @@
     restBodyState: janitor-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: janitor
@@ -84,6 +100,8 @@
     restBodyState: janitor-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorK4t
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: janitor
@@ -93,6 +111,8 @@
     restBodyState: janitor-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorK4tAlt
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: janitor
@@ -102,6 +122,8 @@
     restBodyState: janitor-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorFMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: janitor
@@ -111,6 +133,8 @@
     restBodyState: janitor-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorMMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: janitor
@@ -120,6 +144,8 @@
     restBodyState: janitor-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisJanitorDullahan
+  components:
+  - type: SiliconInteractable
 
 # Medical subtypes
 
@@ -131,6 +157,8 @@
     restBodyState: medical-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: medical
@@ -140,6 +168,8 @@
     restBodyState: medical-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalK4t
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: medical
@@ -149,6 +179,8 @@
     restBodyState: medical-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalK4tAlt
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: medical
@@ -158,6 +190,8 @@
     restBodyState: medical-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalFMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: medical
@@ -167,6 +201,8 @@
     restBodyState: medical-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalMMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: medical
@@ -176,6 +212,8 @@
     restBodyState: medical-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMedicalDullahan
+  components:
+  - type: SiliconInteractable
 
 # Mining subtypes
 
@@ -188,6 +226,8 @@
     noMindState: miner_e
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: mining
@@ -198,6 +238,8 @@
     noMindState: miner_e
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningK4t
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: mining
@@ -208,6 +250,8 @@
     noMindState: miner_e
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningK4tAlt
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: mining
@@ -218,6 +262,8 @@
     noMindState: miner_e
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningFMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: mining
@@ -228,6 +274,8 @@
     noMindState: miner_e
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningMMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: mining
@@ -237,6 +285,8 @@
     restBodyState: miner-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisMiningDullahan
+  components:
+  - type: SiliconInteractable
 
 # Service subtypes
 
@@ -248,6 +298,8 @@
     restBodyState: service-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -257,6 +309,8 @@
     restBodyState: service-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceMekaAlt
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -266,6 +320,8 @@
     restBodyState: service-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceK4t
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -275,6 +331,8 @@
     restBodyState: service-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceK4tAlt1
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -284,6 +342,8 @@
     restBodyState: service-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceK4tAlt2
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -293,6 +353,8 @@
     restBodyState: service-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceFMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -302,6 +364,8 @@
     restBodyState: service-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceMMeka
+  components:
+  - type: SiliconInteractable
 
 - type: borgSubtype
   parentBorgType: service
@@ -311,3 +375,5 @@
     restBodyState: service-rest
     disableMovementVisuals: true
   dummyPrototype: BorgChassisServiceDullahan
+  components:
+  - type: SiliconInteractable

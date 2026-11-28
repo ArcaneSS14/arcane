@@ -1,6 +1,5 @@
 using Content.Shared._Arcane.SiliconStanding;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Toggleable;
 using Robust.Client.GameObjects;
@@ -47,23 +46,46 @@ public sealed class SiliconRestingVisualizerSystem : EntitySystem
 
         UpdateBorgBodyState(spriteEnt, isResting);
 
-        if (!_appearance.TryGetData<bool>(uid, BorgVisuals.HasPlayer, out var hasPlayer))
-            hasPlayer = false;
-
-        var lightVisible = !isResting && (borg.BrainEntity != null || hasPlayer);
-        _sprite.LayerSetVisible(spriteEnt, BorgVisualLayers.Light, lightVisible);
-
-        if (_sprite.LayerMapTryGet(spriteEnt, BorgVisualLayers.LightStatus, out _, false))
+        if (isResting)
         {
-            var lightStatusVisible = false;
-            if (!isResting)
-                _appearance.TryGetData<bool>(uid, ToggleableVisuals.Enabled, out lightStatusVisible);
-
-            _sprite.LayerSetVisible(spriteEnt, BorgVisualLayers.LightStatus, lightStatusVisible);
+            HideNonBodyLayers(spriteEnt);
+            return;
         }
+
+        UpdateLightLayer(spriteEnt, borg);
+        UpdateLightStatusLayer(spriteEnt, uid);
+    }
+
+    private void UpdateLightLayer(Entity<SpriteComponent?> spriteEnt, BorgChassisComponent borg)
+    {
+        if (!_appearance.TryGetData<bool>(spriteEnt.Owner, BorgVisuals.HasPlayer, out var hasPlayer))
+            hasPlayer = false;
 
         var lightState = hasPlayer ? borg.HasMindState : borg.NoMindState;
         _sprite.LayerSetRsiState(spriteEnt, BorgVisualLayers.Light, lightState);
+        _sprite.LayerSetVisible(spriteEnt, BorgVisualLayers.Light, borg.BrainEntity != null || hasPlayer);
+    }
+
+    private void UpdateLightStatusLayer(Entity<SpriteComponent?> spriteEnt, EntityUid uid)
+    {
+        var lightStatusVisible = false;
+        _appearance.TryGetData<bool>(uid, ToggleableVisuals.Enabled, out lightStatusVisible);
+
+        if (_sprite.LayerMapTryGet(spriteEnt, BorgVisualLayers.LightStatus, out _, false))
+            _sprite.LayerSetVisible(spriteEnt, BorgVisualLayers.LightStatus, lightStatusVisible);
+        else if (_sprite.LayerMapTryGet(spriteEnt, "light", out _, false))
+            _sprite.LayerSetVisible(spriteEnt, "light", lightStatusVisible);
+    }
+
+    private void HideNonBodyLayers(Entity<SpriteComponent?> spriteEnt)
+    {
+        if (_sprite.LayerMapTryGet(spriteEnt, BorgVisualLayers.Light, out _, false))
+            _sprite.LayerSetVisible(spriteEnt, BorgVisualLayers.Light, false);
+
+        if (_sprite.LayerMapTryGet(spriteEnt, BorgVisualLayers.LightStatus, out _, false))
+            _sprite.LayerSetVisible(spriteEnt, BorgVisualLayers.LightStatus, false);
+        else if (_sprite.LayerMapTryGet(spriteEnt, "light", out _, false))
+            _sprite.LayerSetVisible(spriteEnt, "light", false);
     }
 
     private void UpdateBorgBodyState(Entity<SpriteComponent?> ent, bool isResting)

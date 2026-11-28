@@ -14,6 +14,31 @@
   icon: _Arcane/Interface/ErpPanel/cheeks_kiss.png
   tags:
   - RequiresERP
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+
+- type: panelInteraction
+  id: ScreenKiss
+  category: Face
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  messages:
+  - нежно целует $target в экран.
+  - осторожно прижимается к экрану $target.
+  - оставляет лёгкий поцелуй на мониторе $target.
+  - ласково целует экран $target.
+  - мягко касается губами монитора $target.
+  icon: _Arcane/Interface/ErpPanel/screen_kiss.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:TagWhitelistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: CheeksKissBoth
@@ -31,6 +56,10 @@
   icon: _Arcane/Interface/ErpPanel/cheeks_kiss_both.png
   tags:
   - RequiresERP
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: CheeksPat
@@ -131,6 +160,38 @@
     - Tajaran
     - HumanoidXeno
     - Rodentia
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+
+- type: panelInteraction
+  id: ScreenRubCat
+  category: Face
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  messages:
+  - трётся мордочкой об экран $target.
+  - мурча, трётся щёкой об монитор $target.
+  - нежно тычется носиком в монитор $target.
+  - водит мордашкой по экрану $target.
+  - мягко трётся о монитор $target.
+  icon: _Arcane/Interface/ErpPanel/face_rub_cat.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Felinid
+    - Vulpkanin
+    - Tajaran
+    - HumanoidXeno
+    - Rodentia
+  targetRequirements:
+  - !type:TagWhitelistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: FacePussySitting
@@ -140,7 +201,7 @@
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
-  - садится лицом на $target.
+  - садится вагиной на лицо $target.
   - плавно опускается вагиной на лицо $target.
   - садится на лицо $target, прижимаясь вплотную.
   - усаживается на лицо $target.
@@ -166,7 +227,7 @@
   sounds:
   - /Audio/_Arcane/Interactions/champ_fingering.ogg
   messages:
-  - садится лицом на $target.
+  - садится на лицо $target.
   - плавно опускается задницей на лицо $target.
   - садится на лицо $target, прижимаясь вплотную.
   - усаживается на лицо $target.
@@ -206,6 +267,41 @@
   - !type:ExposedBodyPartRequirement
     part: Groin
   - !type:ArousalRequirement
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+
+- type: panelInteraction
+  id: ScreenDickSlap
+  category: Face
+  userArouse: 10
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  - /Audio/_Arcane/Interactions/bang2.ogg
+  - /Audio/_Arcane/Interactions/bang3.ogg
+  messages:
+  - шлёпает членом по экрану $target.
+  - хлопает пенисом по монитору $target.
+  - игриво бьёт $target своим членом по монитору.
+  - проводит членом по экрану $target.
+  - слегка тычет членом в экран $target.
+  icon: _Arcane/Interface/ErpPanel/screen_dick_slap.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+    - Futanari
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:ArousalRequirement
+  targetRequirements:
+  - !type:TagWhitelistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: LegsSqueezeface
@@ -236,10 +332,32 @@
   - демонстрирует свою линию челюсти, делая мьюинг.
   - загадочно молчит и прижимает язык к нёбу.
   - делает мьюинг, бросая уверенный и оценивающий взгляд.
-  - указывает пальцем на свою челюсть, показывая мьюинга.
+  - указывает пальцем на свою челюсть, делая мьюнинг.
   - усердно делает мьюинг.
   - выпячивает челюсть, сохраняя полное молчание.
   icon: _Arcane/Interface/ErpPanel/mewing.png
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+
+- type: panelInteraction
+  id: MewingSilicon
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  selfMessages:
+  - напрягает все механизмы своего лица, демонстрируя линию челюсти и делая мьюинг.
+  - загадочно молчит смотря своим холодным экраном.
+  - делает мьюинг, показывая уверенность и оценивающий взгляд.
+  - указывает пальцем на свою челюсть, делая мьюинг.
+  - усердно старается делать мьюинг.
+  - выпячивает челюсть, сохраняя полное спокойствее на экране.
+  icon: _Arcane/Interface/ErpPanel/mewing.png
+  userRequirements:
+  - !type:TagWhitelistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: SuspiciousLook
@@ -253,6 +371,27 @@
   - вопросительно приподнимает бровь.
   - бросает осуждающий взгляд.
   icon: _Arcane/Interface/ErpPanel/heart_icon.png
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+
+- type: panelInteraction
+  id: SuspiciousLookSilicon
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/vine-boom-meme.ogg
+  selfMessages:
+  - выразительно выгибает одну бровь на экране, с подозрением уставившись.
+  - изображает на кэарне, как приподнимает бровь и прищуривает глаза.
+  - интерфейс лица застывает со гримасой подозрения.
+  - вопросительно наклоняет голову.
+  - бросает осуждающий взгляд холодным экраном.
+  icon: _Arcane/Interface/ErpPanel/heart_icon.png
+  userRequirements:
+  - !type:TagWhitelistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: FriendlyNoseBoop
@@ -268,6 +407,10 @@
   icon: _Arcane/Interface/ErpPanel/friendly_nose_boop.png
   tags:
   - RequiresERP
+  targetRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: Kitty
@@ -354,6 +497,10 @@
   - несчастно косится на $target, смахивая слезу.
   - всматривается в $target, проливая слезу.
   icon: _Arcane/Interface/ErpPanel/cry.png
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
 
 - type: panelInteraction
   id: KissForehead
@@ -371,3 +518,21 @@
   icon: _Arcane/Interface/ErpPanel/kiss_forehead.png
   tags:
   - RequiresERP
+
+
+- type: panelInteraction
+  id: KnockOnScreen
+  category: Face
+  sounds:
+  - /Audio/Effects/glass_knock.ogg
+  messages:
+  - стучит по экрану $target.
+  - тыкает в экран $target.
+  - легонько стучит по экрану $target.
+  - нажимает на экран $target.
+  - осторожно тычет в экран $target.
+  icon: _Arcane/Interface/ErpPanel/screen_knok.png
+  targetRequirements:
+  - !type:TagWhitelistRequirement
+    tags:
+    - SiliconMob

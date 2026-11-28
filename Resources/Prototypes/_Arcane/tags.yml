@@ -107,6 +107,15 @@
   id: XenoDildo
 
 - type: Tag
+  id: MobGenderMale
+
+- type: Tag
+  id: MobGenderFemale
+
+- type: Tag
+  id: MobGenderFutanari
+
+- type: Tag
   id: Bed
 
 - type: Tag

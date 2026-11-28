@@ -29,3 +29,25 @@
   - утомленно потягивается всем телом.
   - напрягает мышцы и потягивается всем телом.
   icon: _Arcane/Interface/ErpPanel/stretch_full_body.png
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
+
+- type: panelInteraction
+  id: StretchBodySilicon
+  category: Back
+  sounds:
+  - /Audio/Effects/metal_scrape3.ogg
+  selfMessages:
+  - лениво потягивается механическим телом.
+  - потягивается всем металлическими телом.
+  - демонстративно потягивается всем телом.
+  - разминается и потягивается всем телом.
+  - утомленно потягивается всем железным телом.
+  - напрягает механизмы и потягивается всем телом.
+  icon: _Arcane/Interface/ErpPanel/stretch_full_body.png
+  userRequirements:
+  - !type:TagWhitelistRequirement
+    tags:
+    - SiliconMob

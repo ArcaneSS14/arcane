@@ -82,6 +82,7 @@ erp-panel-interaction-lick-anus-condensed-cum-name = Слизать выделе
 # Interaction back
 erp-panel-interaction-finger-tap-name = Мять спину
 erp-panel-interaction-stretch-body-name = Потянуться всем телом
+erp-panel-interaction-stretch-body-silicon-name = { erp-panel-interaction-stretch-body-name }
 
 # Interaction chest
 erp-panel-interaction-boobs-slap-name = Шлёпнуть по груди
@@ -113,17 +114,22 @@ erp-panel-interaction-toy-butt-near-cock-name = Водить своей секс
 # Interaction ears
 erp-panel-interaction-bite-ears-name = Куснуть ухо
 erp-panel-interaction-bite-ears-human-name = Куснуть ухо
+erp-panel-interaction-bite-antenna-name = Куснуть антенку
 erp-panel-interaction-ears-kiss-name = Целовать ухо
+erp-panel-interaction-antenna-kiss-name = Целовать антенку
 erp-panel-interaction-pat-ears-name = Гладить уши
 erp-panel-interaction-pat-ears-human-name = Трепать уши
 erp-panel-interaction-scratching-ears-name = Почесать за ухо
 
 # Interaction face
 erp-panel-interaction-face-rub-cat-name = Тереться мордочкой
+erp-panel-interaction-screen-rub-cat-name = Тереться мордочкой
 erp-panel-interaction-face-sitting-name = Сесть на лицо
 erp-panel-interaction-face-pussy-sitting-name = Сесть вагиной на лицо
 erp-panel-interaction-face-dick-slap-name = Шлёпнуть членом по лицу
+erp-panel-interaction-screen-dick-slap-name = Шлёпнуть членом по экрану
 erp-panel-interaction-cheeks-kiss-name = Чмокнуть в щёку
+erp-panel-interaction-screen-kiss-name = Чмокнуть в экран
 erp-panel-interaction-cheeks-kiss-both-name = Расцеловать щёки
 erp-panel-interaction-cheeks-pat-name = Гладить по щеке
 erp-panel-interaction-cheeks-press-name = Прижаться щеками
@@ -131,6 +137,7 @@ erp-panel-interaction-gentle-kiss-name = Нежно целовать
 erp-panel-interaction-kiss-lips-name = Засосать
 erp-panel-interaction-legs-squeezeface-name = Сжать лицо ляжками
 erp-panel-interaction-mewing-name = Сделать мьюинг
+erp-panel-interaction-mewing-silicon-name = Сделать мьюинг
 erp-panel-interaction-kitty-name = Тереться мордой
 erp-panel-interaction-blow-slap-name = Влепить пощёчину
 erp-panel-interaction-blow-slap-users-name = Ударить ладонью по щеке
@@ -138,6 +145,8 @@ erp-panel-interaction-hitting-face-name = Ударить ладонью по л�
 erp-panel-interaction-shed-tear-name = Пустить слезу
 erp-panel-interaction-kiss-forehead-name = Чмокнуть в лоб
 erp-panel-interaction-suspicious-look-name = Подозрительный взгляд
+erp-panel-interaction-suspicious-look-silicon-name = Подозрительный взгляд
+erp-panel-interaction-knock-on-screen-name = Постучать по экрану
 
 # Interaction feet
 erp-panel-interaction-feet-mouth-name = Сосать ступни
@@ -219,6 +228,7 @@ erp-panel-interaction-fondle-scrotum-name = Ласкать яйца
 erp-panel-interaction-massage-scrotum-name = Массаж мошонки
 erp-panel-interaction-suck-scrotum-name = Отлизать яйца
 erp-panel-interaction-rubbing-face-scrotum-name = Тереться лицом
+erp-panel-interaction-rubbing-face-scrotum-silicon-name = Тереться экраном
 
 # Interaction shoulders
 erp-panel-interaction-pat-shoulder-name = Хлопнуть по плечу

@@ -147,5 +147,7 @@
   icon: _Arcane/Interface/ErpPanel/kiss_back_of_head.png
   tags:
   - RequiresERP
-
-
+  userRequirements:
+  - !type:TagBlacklistRequirement
+    tags:
+    - SiliconMob
