@@ -81,11 +81,11 @@ public sealed partial class BorgSystem : SharedBorgSystem
         if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, ref ent.Comp3))
             return;
 
-        // Arcane-Edit-Start
+        // Arcane-Start
         // If the borg is resting, let SiliconRestingVisualizerSystem handle the sprite layers.
         if (HasComp<SiliconRestingComponent>(ent.Owner))
             return;
-        // Arcane-Edit-End
+        // Arcane-End
 
         if (_appearance.TryGetData<MobState>(ent.Owner, MobStateVisuals.State, out var state, ent.Comp2))
         {
