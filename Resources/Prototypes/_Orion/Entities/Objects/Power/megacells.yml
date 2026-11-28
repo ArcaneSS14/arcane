@@ -168,11 +168,6 @@
   - type: Battery
     maxCharge: 11000
     startingCharge: 11000
-  # Arcane-Start
-  - type: BatterySelfRecharger
-    autoRechargeRate: 30 # 6 min to full charge
-    autoRechargePauseTime: 3
-  # Arcane-End
 
 - type: entity
   parent: MegaCellBluespace
