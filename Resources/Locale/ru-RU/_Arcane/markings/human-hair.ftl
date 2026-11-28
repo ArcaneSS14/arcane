@@ -31,3 +31,4 @@ marking-HumanHairMulletArcane = Маллет
 marking-HumanHairWolfcutM = Вульфкат (мужской)
 marking-HumanHairWolfcutF = Вульфкат (женский)
 marking-HumanHairBobWithTail = Каре с хвостиком
+marking-HumanHairCloudy = Облачная

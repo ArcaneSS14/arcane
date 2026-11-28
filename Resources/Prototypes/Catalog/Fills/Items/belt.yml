@@ -61,7 +61,11 @@
       amount: 2
     - id: HoloprojectorSecurity
     - id: RadioHandheldSecurity
-    - id: WeaponDisabler # Goobstation
+#    - id: WeaponDisabler # Goobstation # Arcane-Edit: Removed
+    # Arcane-Start
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
+    # Arcane-End
 
 - type: entity
   id: ClothingBeltSecurityFilled

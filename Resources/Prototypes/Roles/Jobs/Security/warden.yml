@@ -30,6 +30,7 @@
   - SpaceLaw
   - SOP-Security-Warden # Orion
   - SOP-Security # Orion
+  - SOP-Alerts # Arcane
   goobcoins: 35 #Goob content
   salary: 90 # Orion
   payrollDepartmentAccount: Security # Orion
