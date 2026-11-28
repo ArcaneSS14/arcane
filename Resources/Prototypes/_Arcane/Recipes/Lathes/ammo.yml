@@ -1,0 +1,23 @@
+# .308 winchester
+
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: MagazineBox308win
+  result: MagazineBox308win
+  materials:
+    Steel: 720
+
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: MagazineBox308winPractice
+  result: MagazineBox308winPractice
+  materials:
+    Steel: 240
+
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: MagazineBox308winUranium
+  result: MagazineBox308winUranium
+  materials:
+    Plastic: 480
+    Uranium: 480
