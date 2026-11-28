@@ -7,6 +7,9 @@
     - to: atmosDeviceFanTiny
       steps:
       - material: Steel
+        amount: 5
+        doAfter: 5
+      - material: Silver
         amount: 10
         doAfter: 5
 
@@ -32,6 +35,9 @@
     - to: atmosDeviceFanDirectional
       steps:
       - material: Steel
+        amount: 5
+        doAfter: 5
+      - material: Silver
         amount: 10
         doAfter: 5
 
