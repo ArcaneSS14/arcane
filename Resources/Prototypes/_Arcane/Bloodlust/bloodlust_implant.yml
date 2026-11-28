@@ -1,0 +1,124 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: BloodlustImplanter
+  name: bloodlust implanter
+  description: An experimental implanter with a huge copy of constructed personalities.
+  components:
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      implanter_slot: !type:ContainerSlot { }
+  - type: Implanter
+    whitelist:
+      components:
+      - MobState
+    blacklist:
+      components:
+      - Guardian
+      tags:
+      - Unimplantable
+    currentMode: Inject
+    implantOnly: true
+    implant: BloodlustImplant
+    implanterSlot:
+      name: Implant
+      locked: true
+      priority: 0
+      whitelist:
+        tags:
+        - SubdermalImplant
+  - type: Sprite
+    sprite: _Arcane/Objects/Specific/Syndicate/bloodlust_implanter.rsi
+    state: icon
+  - type: Item
+    sprite: _Arcane/Objects/Specific/Syndicate/bloodlust_implanter.rsi
+    size: Small
+  - type: Appearance
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BloodlustImplant
+  categories: [ HideSpawnMenu ]
+  name: bloodlust implant
+  description: An experimental implant carrying a copy of countless constructed personalities. One of them is always awake.
+  components:
+  - type: BloodlustImplant
+
+- type: entity
+  id: BloodlustCompanion
+  categories: [ HideSpawnMenu ]
+  name: voice of carnage
+  description: She really, really wants a massacre.
+  components:
+  - type: Sprite
+    sprite: _Arcane/Mobs/Companions/bloodlust_companion.rsi
+    state: companion
+    noRot: true
+    drawdepth: Mobs
+  - type: BloodlustCompanion
+
+- type: entity
+  abstract: true
+  id: BloodlustSparkBase
+  categories: [ HideSpawnMenu ]
+  name: spark
+  components:
+  - type: TimedDespawn
+    lifetime: 0.4
+  - type: PointLight
+    radius: 1.6
+    energy: 1.6
+    color: "#ff5577"
+
+- type: entity
+  parent: BloodlustSparkBase
+  id: BloodlustSpark1
+  components:
+  - type: Sprite
+    sprite: _Arcane/Effects/bloodlust_spark.rsi
+    drawdepth: Effects
+    layers:
+    - state: line1
+      shader: unshaded
+
+- type: entity
+  parent: BloodlustSparkBase
+  id: BloodlustSpark2
+  components:
+  - type: Sprite
+    sprite: _Arcane/Effects/bloodlust_spark.rsi
+    drawdepth: Effects
+    layers:
+    - state: line2
+      shader: unshaded
+
+- type: entity
+  parent: BloodlustSparkBase
+  id: BloodlustSpark3
+  components:
+  - type: Sprite
+    sprite: _Arcane/Effects/bloodlust_spark.rsi
+    drawdepth: Effects
+    layers:
+    - state: line3
+      shader: unshaded
+
+- type: localizedDataset
+  id: BloodlustCombatPhrases
+  values:
+    prefix: bloodlust-combat-
+    count: 8
+
+- type: localizedDataset
+  id: BloodlustKillPhrases
+  values:
+    prefix: bloodlust-kill-
+    count: 7
+
+- type: localizedDataset
+  id: BloodlustIdlePhrases
+  values:
+    prefix: bloodlust-idle-
+    count: 8
