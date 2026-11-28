@@ -4962,3 +4962,30 @@ Entries:
   media:
     - >-
       https://github.com/user-attachments/assets/84f04306-cdce-4104-ac2e-87af7d7a1f0a
+- author: EngineerLND
+  changes:
+    - type: Add
+      message: >-
+        Добавлена возможность использовать панель взаимодействий и ERP панель за
+        КПБ и некоторые шасси боргов.
+    - type: Add
+      message: Теперь пол борга определяется через пол пешки.
+    - type: Fix
+      message: >-
+        Исправлена логика действия "Дернуть за крыло". Теперь оно работает по
+        отношению к нианам, а не только у нианов.
+    - type: Fix
+      message: Исправлены ошибки в текстах некоторых действий в панели.
+    - type: Fix
+      message: Исправлена работа действия "сидеть" для боргов.
+  id: 347
+  time: '2026-11-28T15:33:19.0000000+00:00'
+  prNumber: 651
+  url: https://github.com/ArcaneSS14/arcane/pull/651
+  media:
+    - >-
+      https://github.com/user-attachments/assets/d33b954d-95e8-431b-b9a4-2aeba4e84579
+    - >-
+      https://github.com/user-attachments/assets/00bbc25a-75dd-4b62-8fda-01e610eef092
+    - >-
+      https://github.com/user-attachments/assets/cdb1b535-2f33-48a8-adf2-b80425d0bc88
