@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Adapted from https://github.com/BlueMoon-Labs/BlueMoon-Station/tree/85ffe2aae8af71348a8279c8d51a8b411f85f832
+# modular_splurt/code/modules/clothing/kinkyclothes.dm (/obj/item/clothing/shoes/highheels).
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesHighHeels
+  name: high heels
+  description: They make the wearer appear taller, and more noisy!
+  components:
+  - type: Sprite
+    sprite: _Arcane/Clothing/Shoes/high_heels.rsi
+  - type: Clothing
+    sprite: _Arcane/Clothing/Shoes/high_heels.rsi
+    clothingVisuals:
+      shoes:
+      - state: equipped-FEET
+      - state: cutout-FEET
+        shader: ArcaneClothingCutout
+  - type: ClothingSpriteCutout
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHighHeels
+      params:
+        volume: -6
+        variation: 0.09
