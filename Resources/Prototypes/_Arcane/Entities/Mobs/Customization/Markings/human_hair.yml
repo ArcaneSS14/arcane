@@ -261,3 +261,11 @@
   sprites:
   - sprite: _Arcane/Mobs/Customization/hair.rsi
     state: bob_with_tail
+
+- type: marking
+  id: HumanHairCloudy
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: _Arcane/Mobs/Customization/hair.rsi
+    state: cloudy
