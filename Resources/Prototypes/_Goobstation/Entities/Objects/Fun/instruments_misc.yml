@@ -22,7 +22,7 @@
     inHandsOnly: false
 
 - type: entity
-  parent: [BaseCassette, BaseSyndicateContraband]
+  parent: [BaseCassette, BaseSyndicateNonContraband] # Arcane
   id: BloodredCassette
   name: bloodred cassette player
   description: The least subtle way to enjoy your favorite tunes.

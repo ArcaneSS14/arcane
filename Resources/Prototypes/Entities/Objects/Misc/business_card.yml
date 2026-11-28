@@ -3,7 +3,7 @@
 - type: entity
   id: SyndicateBusinessCard
   name: syndicate business card
-  parent: [ Paper, BaseSyndicateContraband ]
+  parent: [ Paper, BaseSyndicatePropaganda ] # Arcane
   description: A black card with the syndicate's logo. There's something written on the back.
   components:
     - type: Sprite

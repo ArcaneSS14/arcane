@@ -307,6 +307,10 @@
   id: JVNECdDiskSyndicate
   description: 102.9 Syndicate radio
   components:
+  # Arcane-Edit-Start
+  - type: Contraband
+    severity: Propaganda
+  # Arcane-Edit-End
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/ads/Syndicate.ogg

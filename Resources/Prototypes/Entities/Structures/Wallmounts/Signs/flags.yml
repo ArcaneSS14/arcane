@@ -32,6 +32,10 @@
   name: syndicate flag
   description: Smells bloody. Death to NT!
   components:
+  # Arcane-Edit-Start
+  - type: Contraband
+    severity: Propaganda
+  # Arcane-Edit-End
   - type: Sprite
     state: syndie_flag
 
